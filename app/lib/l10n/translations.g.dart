@@ -364,6 +364,7 @@ class _TranslationsLoginEn {
         'empty': 'Password is required',
       };
   Map<String, String> get errors => {
+        'BAD_USER_INPUT': 'Username or password is incorrect',
         'other': _root.common.genericError,
       };
 }
@@ -804,6 +805,7 @@ class _TranslationsLoginPt extends _TranslationsLoginEn {
       };
   @override
   Map<String, String> get errors => {
+        'BAD_USER_INPUT': 'Usuário ou senha inválidos',
         'other': _root.common.genericError,
       };
 }
@@ -1129,6 +1131,8 @@ extension on Translations {
         return 'Username is required';
       case 'login.passwordErrors.empty':
         return 'Password is required';
+      case 'login.errors.BAD_USER_INPUT':
+        return 'Username or password is incorrect';
       case 'login.errors.other':
         return _root.common.genericError;
       case 'notFound.title':
@@ -1289,6 +1293,8 @@ extension on _TranslationsPt {
         return 'O nome de usuário é obrigatório';
       case 'login.passwordErrors.empty':
         return 'A senha é obrigatória';
+      case 'login.errors.BAD_USER_INPUT':
+        return 'Usuário ou senha inválidos';
       case 'login.errors.other':
         return _root.common.genericError;
       case 'notFound.title':

@@ -12,6 +12,7 @@
     "empty": "Password is required"
   },
   "errors(map)": {
+    "BAD_USER_INPUT": "Username or password is incorrect",
     "other": "@:common.genericError"
   }
 }

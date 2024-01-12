@@ -12,6 +12,7 @@
     "empty": "A senha é obrigatória"
   },
   "errors(map)": {
+    "BAD_USER_INPUT": "Usuário ou senha inválidos",
     "other": "@:common.genericError"
   }
 }
