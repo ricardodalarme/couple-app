@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/_shared/data/data_sources/generated/schema.graphql.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/mutations/generated/Login.graphql.dart';
@@ -34,14 +33,10 @@ class AuthenticationDataSourceImpl implements AuthenticationDataSource {
       ),
     );
 
-    final data = response.parsedData?.login;
-
-    if (response.hasException) {
-      throw response.exception!;
-    }
-    if (data == null) {
-      throw const NoDataException();
-    }
+    final data = validateResponseData(
+      response,
+      getData: (data) => data?.login,
+    );
 
     return data;
   }
