@@ -17,7 +17,7 @@ import 'package:quickstart_flutter_bloc/features/term/presentation/terms_page.da
 part 'app_router.gr.dart';
 
 @AutoRouterConfig()
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(page: OnboardingRoute.page),

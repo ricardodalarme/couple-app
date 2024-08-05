@@ -8,7 +8,7 @@ environment:
 dependencies:
   analytics_service:
     path: ./packages/services/analytics
-  auto_route: ^8.3.0
+  auto_route: ^9.2.0
   biometric_service:
     path: ./packages/services/biometric
   common:
@@ -20,7 +20,7 @@ dependencies:
   crash_report_service:
     path: ./packages/services/crash_report
   equatable: ^2.0.5
-  firebase_core: ^3.2.0
+  firebase_core: ^3.3.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
@@ -40,7 +40,7 @@ dependencies:
   slang_flutter: ^3.31.0
 
 dev_dependencies:
-  auto_route_generator: ^8.1.0
+  auto_route_generator: ^9.0.0
   bloc_test: ^9.1.7
   build_runner: ^2.4.11
   flutter_launcher_icons: ^0.13.1
