@@ -14,8 +14,8 @@ class SignUpPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider.value(
-      value: AppInjector.instance.get<SignupBloc>(),
+    return BlocProvider(
+      create: (_) => AppInjector.instance.get<SignupBloc>(),
       child: this,
     );
   }

@@ -16,8 +16,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final appRouter = AppInjector.instance.get<RootStackRouter>();
 
-    return BlocProvider.value(
-      value: AppInjector.instance.get<AppBloc>(),
+    return BlocProvider(
+      create: (_) => AppInjector.instance.get<AppBloc>(),
       child: TranslationProvider(
         child: Builder(
           builder: (context) => BlocListener<AppBloc, AppState>(

@@ -13,8 +13,8 @@ class ChangePasswordPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider.value(
-      value: AppInjector.instance.get<ChangePasswordBloc>(),
+    return BlocProvider(
+      create: (_) => AppInjector.instance.get<ChangePasswordBloc>(),
       child: this,
     );
   }

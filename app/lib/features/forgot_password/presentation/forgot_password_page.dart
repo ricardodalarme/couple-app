@@ -13,8 +13,8 @@ class ForgotPasswordPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider.value(
-      value: AppInjector.instance.get<ForgotPasswordBloc>(),
+    return BlocProvider(
+      create: (_) => AppInjector.instance.get<ForgotPasswordBloc>(),
       child: this,
     );
   }

@@ -13,8 +13,8 @@ class OnboardingPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider.value(
-      value: AppInjector.instance.get<OnboardingCubit>(),
+    return BlocProvider(
+      create: (_) => AppInjector.instance.get<OnboardingCubit>(),
       child: this,
     );
   }
