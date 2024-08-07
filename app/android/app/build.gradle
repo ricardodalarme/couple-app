@@ -1,21 +1,11 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
     id "com.google.gms.google-services"
     id "com.google.firebase.crashlytics"
 }
-
-def localProperties = new Properties()
-def localPropertiesFile = rootProject.file('local.properties')
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
-        localProperties.load(reader)
-    }
-}
-
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-def flutterVersionName = localProperties.getProperty('flutter.versionName')
 
 def keystoreProperties = new Properties()
 def keystorePropertiesFile = rootProject.file('key.properties')
@@ -24,62 +14,55 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace "com.profusion.quickstart_flutter_bloc"
-    ndkVersion flutter.ndkVersion
+    namespace = "com.profusion.quickstart_flutter_bloc"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
     defaultConfig {
-        applicationId "com.profusion.quickstart_flutter_bloc"
-        minSdkVersion 21
-        compileSdk flutter.compileSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
-        multiDexEnabled true
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        applicationId = "com.profusion.quickstart_flutter_bloc"
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
     }
         
-    flavorDimensions "default"
+    flavorDimensions += "default"
     productFlavors { 
-        development {
-            dimension "default"
-            applicationIdSuffix "dev"
+         create("development") {
+            applicationIdSuffix = "dev"
             manifestPlaceholders = [appName: "QS-Flutter [DEV]"]
         } 
-        production {
-            dimension "default"
-            applicationIdSuffix ""
+        create("production") {
+            applicationIdSuffix = ""
             manifestPlaceholders = [appName: "QS-Flutter"]
         }
     }
     
     signingConfigs {
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-            storePassword keystoreProperties['storePassword']
+            keyAlias = keystoreProperties['keyAlias']
+            keyPassword = keystoreProperties['keyPassword']
+            storeFile = keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword = keystoreProperties['storePassword']
         }
     }
 
     buildTypes {
         release {
-            productFlavors.production.signingConfig signingConfigs.release
+            productFlavors.production.signingConfig = signingConfigs.release
         }
     }
 }
 
 flutter {
-    source '../..'
+    source = "../.."
 }
