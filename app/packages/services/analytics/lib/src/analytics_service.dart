@@ -1,4 +1,5 @@
-import 'package:analytics_service/src/exceptions.dart';
+import 'dart:developer';
+
 import 'package:analytics_service/src/models/analytics_event.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
@@ -26,8 +27,8 @@ class AnalyticsServiceImpl implements AnalyticsService {
         name: event.name,
         parameters: event.parameters,
       );
-    } catch (e) {
-      throw LogEventException();
+    } catch (error, stackTrace) {
+      log('Failed to log event: $event', error: error, stackTrace: stackTrace);
     }
   }
 
@@ -35,8 +36,12 @@ class AnalyticsServiceImpl implements AnalyticsService {
   Future<void> setUserId(String? userId) async {
     try {
       await _firebaseAnalytics.setUserId(id: userId);
-    } catch (e) {
-      throw SetUserIdException();
+    } catch (error, stackTrace) {
+      log(
+        'Failed to set user id: $userId',
+        error: error,
+        stackTrace: stackTrace,
+      );
     }
   }
 }

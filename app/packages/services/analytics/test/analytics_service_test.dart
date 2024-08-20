@@ -20,10 +20,6 @@ void main() {
           parameters: any(named: 'parameters'),
         ),
       ).thenAnswer((_) async {});
-
-      when(
-        () => firebaseAnalytics.setUserId(id: any(named: 'id')),
-      ).thenAnswer((_) async {});
     });
 
     test('creates FirebaseAnalytics instance internally when not injected', () {
@@ -47,9 +43,7 @@ void main() {
         ).called(1);
       });
 
-      test(
-          'throws TrackEventFailure '
-          'when logEvent throws exception', () async {
+      test('do not throw exception when logEvent throws exception', () {
         when(
           () => firebaseAnalytics.logEvent(
             name: any(named: 'name'),
@@ -67,33 +61,15 @@ void main() {
 
         expect(
           () => analyticsService.logEvent(event),
-          throwsA(isA<LogEventException>()),
+          returnsNormally,
         );
-      });
-    });
-
-    group('setUserId', () {
-      test('sets user identifier successfully', () {
-        const userId = 'userId';
-
-        analyticsService.setUserId(userId);
 
         verify(
-          () => firebaseAnalytics.setUserId(id: userId),
+          () => firebaseAnalytics.logEvent(
+            name: event.name,
+            parameters: event.parameters,
+          ),
         ).called(1);
-      });
-
-      test(
-          'throws SetUserIdFailure '
-          'when setUserId throws exception', () async {
-        when(
-          () => firebaseAnalytics.setUserId(id: any(named: 'id')),
-        ).thenThrow(Exception());
-
-        expect(
-          () => analyticsService.setUserId('userId'),
-          throwsA(isA<SetUserIdException>()),
-        );
       });
     });
   });
