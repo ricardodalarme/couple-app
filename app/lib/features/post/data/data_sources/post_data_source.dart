@@ -21,23 +21,19 @@ class PostDataSourceImpl implements PostDataSource {
     int? first,
     String? after,
   }) async {
-    try {
-      final response = await _client.query(
-        OptionsQueryGetPosts(
-          variables: VariablesQueryGetPosts(
-            first: first,
-            after: after,
-          ),
+    final response = await _client.query(
+      OptionsQueryGetPosts(
+        variables: VariablesQueryGetPosts(
+          first: first,
+          after: after,
         ),
-      );
-      final data = response.parsedData?.posts;
+      ),
+    );
+    final data = response.parsedData?.posts;
 
-      if (data == null) {
-        throw const NoDataException();
-      }
-      return data;
-    } catch (e) {
-      throw Exception();
+    if (data == null) {
+      throw const NoDataException();
     }
+    return data;
   }
 }

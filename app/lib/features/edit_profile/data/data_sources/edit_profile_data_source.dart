@@ -23,23 +23,19 @@ class EditProfileDataSourceImpl implements EditProfileDataSource {
     required String? firstName,
     required String? lastName,
   }) async {
-    try {
-      final input = InputUpdateUserInput(
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-      );
-      final response = await _client.mutate(
-        OptionsMutationUpdateUser(
-          variables: VariablesMutationUpdateUser(input: input),
-        ),
-      );
+    final input = InputUpdateUserInput(
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+    );
+    final response = await _client.mutate(
+      OptionsMutationUpdateUser(
+        variables: VariablesMutationUpdateUser(input: input),
+      ),
+    );
 
-      if (response.hasException) {
-        throw response.exception!;
-      }
-    } catch (e) {
-      throw Exception();
+    if (response.hasException) {
+      throw response.exception!;
     }
   }
 }

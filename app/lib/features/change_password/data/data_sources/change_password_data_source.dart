@@ -21,22 +21,18 @@ class ChangePasswordDataSourceImpl implements ChangePasswordDataSource {
     required String currentPassword,
     required String newPassword,
   }) async {
-    try {
-      final input = InputChangePasswordInput(
-        oldPassword: currentPassword,
-        newPassword: newPassword,
-      );
-      final response = await _client.mutate(
-        OptionsMutationChangePassword(
-          variables: VariablesMutationChangePassword(input: input),
-        ),
-      );
+    final input = InputChangePasswordInput(
+      oldPassword: currentPassword,
+      newPassword: newPassword,
+    );
+    final response = await _client.mutate(
+      OptionsMutationChangePassword(
+        variables: VariablesMutationChangePassword(input: input),
+      ),
+    );
 
-      if (response.hasException) {
-        throw response.exception!;
-      }
-    } catch (e) {
-      throw Exception();
+    if (response.hasException) {
+      throw response.exception!;
     }
   }
 }

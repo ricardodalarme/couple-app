@@ -22,31 +22,27 @@ class AuthenticationDataSourceImpl implements AuthenticationDataSource {
     required String username,
     required String password,
   }) async {
-    try {
-      final input = InputLoginInput(
-        username: username,
-        password: password,
-      );
-      final response = await _client.mutate(
-        OptionsMutationLogin(
-          variables: VariablesMutationLogin(
-            credentials: input,
-          ),
+    final input = InputLoginInput(
+      username: username,
+      password: password,
+    );
+    final response = await _client.mutate(
+      OptionsMutationLogin(
+        variables: VariablesMutationLogin(
+          credentials: input,
         ),
-      );
+      ),
+    );
 
-      final data = response.parsedData?.login;
+    final data = response.parsedData?.login;
 
-      if (response.hasException) {
-        throw response.exception!;
-      }
-      if (data == null) {
-        throw const NoDataException();
-      }
-
-      return data;
-    } catch (e) {
-      throw Exception();
+    if (response.hasException) {
+      throw response.exception!;
     }
+    if (data == null) {
+      throw const NoDataException();
+    }
+
+    return data;
   }
 }

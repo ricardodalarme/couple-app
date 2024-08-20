@@ -27,25 +27,21 @@ class SignupDataSourceImpl implements SignupDataSource {
     String? firstName,
     String? lastName,
   }) async {
-    try {
-      final input = InputCreateUserInput(
-        username: username,
-        email: email,
-        password: password,
-        firstName: firstName,
-        lastName: lastName,
-      );
-      final response = await _client.mutate(
-        OptionsMutationCreateUser(
-          variables: VariablesMutationCreateUser(input: input),
-        ),
-      );
+    final input = InputCreateUserInput(
+      username: username,
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+    );
+    final response = await _client.mutate(
+      OptionsMutationCreateUser(
+        variables: VariablesMutationCreateUser(input: input),
+      ),
+    );
 
-      if (response.hasException) {
-        throw response.exception!;
-      }
-    } catch (e) {
-      throw Exception();
+    if (response.hasException) {
+      throw response.exception!;
     }
   }
 }

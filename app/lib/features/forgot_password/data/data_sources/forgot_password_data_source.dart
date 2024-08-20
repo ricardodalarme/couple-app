@@ -19,21 +19,17 @@ class ForgotPasswordDataSourceImpl implements ForgotPasswordDataSource {
   Future<void> forgotPassword({
     required String email,
   }) async {
-    try {
-      final input = InputResetPasswordInput(
-        email: email,
-      );
-      final response = await _client.mutate(
-        OptionsMutationResetPassword(
-          variables: VariablesMutationResetPassword(input: input),
-        ),
-      );
+    final input = InputResetPasswordInput(
+      email: email,
+    );
+    final response = await _client.mutate(
+      OptionsMutationResetPassword(
+        variables: VariablesMutationResetPassword(input: input),
+      ),
+    );
 
-      if (response.hasException) {
-        throw response.exception!;
-      }
-    } catch (e) {
-      throw Exception();
+    if (response.hasException) {
+      throw response.exception!;
     }
   }
 }
