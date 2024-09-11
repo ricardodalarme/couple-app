@@ -14,7 +14,8 @@ class PostPage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (_) => AppInjector.instance.get<PostBloc>()..add(const PostFetched()),
+      create: (_) =>
+          AppInjector.instance.get<PostBloc>()..add(const PostFetched()),
       child: this,
     );
   }
