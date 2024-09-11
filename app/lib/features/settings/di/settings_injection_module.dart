@@ -9,6 +9,7 @@ import 'package:quickstart_flutter_bloc/features/settings/data/mappers/settings_
 import 'package:quickstart_flutter_bloc/features/settings/data/repositories/settings_repository_impl.dart';
 import 'package:quickstart_flutter_bloc/features/settings/domain/models/settings_model.dart';
 import 'package:quickstart_flutter_bloc/features/settings/domain/repositories/settings_repository.dart';
+import 'package:quickstart_flutter_bloc/features/settings/presentation/bloc/settings_bloc.dart';
 
 class SettingsInjectionModule extends InjectionModule {
   @override
@@ -34,6 +35,12 @@ class SettingsInjectionModule extends InjectionModule {
             injector.get<Mapper<SettingsLocal, SettingsModel>>(),
         settingsModelToLocalMapper:
             injector.get<Mapper<SettingsModel, SettingsLocal>>(),
+      ),
+    );
+
+    injector.registerFactory<SettingsBloc>(
+      () => SettingsBloc(
+        settingsRepository: injector.get<SettingsRepository>(),
       ),
     );
   }

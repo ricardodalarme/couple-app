@@ -10,6 +10,7 @@ export 'src/tokens/font_sizes.dart';
 export 'src/tokens/spacings.dart';
 export 'src/widgets/base_button.dart';
 export 'src/widgets/base_snack_bar.dart';
+export 'src/widgets/base_switch.dart';
 export 'src/widgets/base_text_field.dart';
 export 'src/widgets/base_view.dart';
 export 'src/widgets/divider.dart';

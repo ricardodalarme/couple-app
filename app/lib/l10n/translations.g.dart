@@ -441,6 +441,7 @@ class _TranslationsSettingsEn {
 
   // Translations
   String get title => 'Settings';
+  String get optionBiometrics => 'Biometrics';
 }
 
 // Path: signup
@@ -902,6 +903,8 @@ class _TranslationsSettingsPt extends _TranslationsSettingsEn {
   // Translations
   @override
   String get title => 'Configurações';
+  @override
+  String get optionBiometrics => 'Biometria';
 }
 
 // Path: signup
@@ -1135,6 +1138,8 @@ extension on Translations {
         return 'Search';
       case 'settings.title':
         return 'Settings';
+      case 'settings.optionBiometrics':
+        return 'Biometrics';
       case 'signup.title':
         return 'Sign Up';
       case 'signup.labelConfirmPassword':
@@ -1283,6 +1288,8 @@ extension on _TranslationsPt {
         return 'Pesquisar';
       case 'settings.title':
         return 'Configurações';
+      case 'settings.optionBiometrics':
+        return 'Biometria';
       case 'signup.title':
         return 'Registrar';
       case 'signup.labelConfirmPassword':

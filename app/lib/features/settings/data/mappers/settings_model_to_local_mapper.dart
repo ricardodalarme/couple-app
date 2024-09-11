@@ -8,6 +8,7 @@ final class SettingsModelToLocalMapper
   SettingsLocal map(SettingsModel input) {
     return SettingsLocal(
       hasOnboarded: input.hasOnboarded,
+      useBiometrics: input.useBiometrics,
     );
   }
 }
