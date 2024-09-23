@@ -1,6 +1,6 @@
 import 'package:local_auth/local_auth.dart';
 
-abstract class BiometricService {
+abstract interface class BiometricService {
   Future<bool> authenticate(String reason);
   Future<bool> isDeviceSupported();
 }

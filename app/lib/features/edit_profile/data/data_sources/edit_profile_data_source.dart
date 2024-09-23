@@ -2,7 +2,7 @@ import 'package:common_data/common_data.dart';
 import 'package:schemas/generated/schema.graphql.dart';
 import 'package:schemas/mutations/generated/UpdateUser.graphql.dart';
 
-abstract class EditProfileDataSource {
+abstract interface class EditProfileDataSource {
   Future<void> updateUser({
     required String? email,
     required String? firstName,

@@ -8,7 +8,7 @@ import 'package:quickstart_flutter_bloc/features/signup/data/repositories/signup
 import 'package:quickstart_flutter_bloc/features/signup/domain/repositories/signup_repository.dart';
 import 'package:quickstart_flutter_bloc/features/signup/presentation/bloc/signup_bloc.dart';
 
-class SignupInjectionModule extends InjectionModule {
+class SignupInjectionModule implements InjectionModule {
   @override
   FutureOr<void> registerDependencies({required Injector injector}) {
     injector.registerSingleton<SignupDataSource>(

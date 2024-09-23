@@ -7,7 +7,7 @@ import 'package:quickstart_flutter_bloc/features/change_password/data/repositori
 import 'package:quickstart_flutter_bloc/features/change_password/domain/repositories/change_password_repository.dart';
 import 'package:quickstart_flutter_bloc/features/change_password/presentation/bloc/change_password_bloc.dart';
 
-class ChangePasswordInjectionModule extends InjectionModule {
+class ChangePasswordInjectionModule implements InjectionModule {
   @override
   FutureOr<void> registerDependencies({required Injector injector}) {
     injector.registerLazySingleton<ChangePasswordDataSource>(

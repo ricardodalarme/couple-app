@@ -1,7 +1,7 @@
 import 'package:common/common.dart';
 import 'package:dio/dio.dart';
 
-abstract class RestClient {
+abstract interface class RestClient {
   Future<Response<T>> get<T>(
     String path, {
     Object? data,

@@ -2,7 +2,7 @@ import 'package:common_data/common_data.dart';
 import 'package:schemas/generated/schema.graphql.dart';
 import 'package:schemas/mutations/generated/ResetPassword.graphql.dart';
 
-abstract class ForgotPasswordDataSource {
+abstract interface class ForgotPasswordDataSource {
   Future<void> forgotPassword({
     required String email,
   });

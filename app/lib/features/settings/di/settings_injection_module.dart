@@ -11,7 +11,7 @@ import 'package:quickstart_flutter_bloc/features/settings/domain/models/settings
 import 'package:quickstart_flutter_bloc/features/settings/domain/repositories/settings_repository.dart';
 import 'package:quickstart_flutter_bloc/features/settings/presentation/bloc/settings_bloc.dart';
 
-class SettingsInjectionModule extends InjectionModule {
+class SettingsInjectionModule implements InjectionModule {
   @override
   FutureOr<void> registerDependencies({required Injector injector}) {
     injector.registerSingleton<SettingsLocalDataSource>(

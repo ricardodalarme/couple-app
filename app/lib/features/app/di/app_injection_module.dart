@@ -13,7 +13,7 @@ import 'package:quickstart_flutter_bloc/routes/app_router.dart';
 import 'package:remote_config_service/remote_config_service.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
 
-class AppInjectionModule extends InjectionModule {
+class AppInjectionModule implements InjectionModule {
   @override
   FutureOr<void> registerDependencies({required Injector injector}) {
     injector.registerLazySingleton<RootStackRouter>(

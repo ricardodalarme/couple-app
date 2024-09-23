@@ -2,7 +2,7 @@ import 'package:common/common.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/models/token_local.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
 
-abstract class TokenLocalDataSource {
+abstract interface class TokenLocalDataSource {
   Future<void> save(TokenLocal token);
 
   Future<TokenLocal?> get();

@@ -2,7 +2,7 @@ import 'package:common_data/common_data.dart';
 import 'package:schemas/generated/schema.graphql.dart';
 import 'package:schemas/mutations/generated/CreateUser.graphql.dart';
 
-abstract class SignupDataSource {
+abstract interface class SignupDataSource {
   Future<void> signup({
     required String username,
     required String email,

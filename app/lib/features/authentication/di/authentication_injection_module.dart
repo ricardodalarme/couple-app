@@ -11,7 +11,7 @@ import 'package:quickstart_flutter_bloc/features/authentication/domain/repositor
 import 'package:schemas/mutations/generated/Login.graphql.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
 
-class AuthenticationInjectionModule extends InjectionModule {
+class AuthenticationInjectionModule implements InjectionModule {
   @override
   FutureOr<void> registerDependencies({required Injector injector}) {
     injector.registerSingleton<AuthenticationDataSource>(

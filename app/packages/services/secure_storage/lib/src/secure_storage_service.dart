@@ -1,7 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:secure_storage_service/src/secure_storage_exception.dart';
 
-abstract class SecureStorageService {
+abstract interface class SecureStorageService {
   Future<String?> read({required String key});
   Future<void> write({required String key, required String value});
   Future<void> delete({required String key});

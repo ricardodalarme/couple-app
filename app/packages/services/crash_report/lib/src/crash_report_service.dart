@@ -1,7 +1,7 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 
-abstract class CrashReportService {
+abstract interface class CrashReportService {
   Future<void> setCrashlyticsCollectionEnabled(bool enabled);
   Future<void> recordFlutterFatalError(FlutterErrorDetails details);
   Future<void> recordError(dynamic error, StackTrace stack, {bool fatal});

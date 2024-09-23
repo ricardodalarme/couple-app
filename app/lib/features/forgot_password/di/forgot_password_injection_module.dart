@@ -7,7 +7,7 @@ import 'package:quickstart_flutter_bloc/features/forgot_password/data/repositori
 import 'package:quickstart_flutter_bloc/features/forgot_password/domain/repositories/forgot_password_repository.dart';
 import 'package:quickstart_flutter_bloc/features/forgot_password/presentation/bloc/forgot_password_bloc.dart';
 
-class ForgotPasswordInjectionModule extends InjectionModule {
+class ForgotPasswordInjectionModule implements InjectionModule {
   @override
   FutureOr<void> registerDependencies({required Injector injector}) {
     injector.registerLazySingleton<ForgotPasswordDataSource>(

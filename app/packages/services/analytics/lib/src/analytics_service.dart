@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:analytics_service/src/models/analytics_event.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
-abstract class AnalyticsService {
+abstract interface class AnalyticsService {
   void logEvent(AnalyticsEvent event);
 }
 

@@ -2,7 +2,7 @@ import 'package:common_data/common_data.dart';
 import 'package:schemas/generated/schema.graphql.dart';
 import 'package:schemas/mutations/generated/ChangePassword.graphql.dart';
 
-abstract class ChangePasswordDataSource {
+abstract interface class ChangePasswordDataSource {
   Future<void> changePassword({
     required String currentPassword,
     required String newPassword,

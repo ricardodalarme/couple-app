@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class PersistentStorageService {
+abstract interface class PersistentStorageService {
   Future<void> initialize();
   String? readString({required String key});
   Future<void> writeString({required String key, required String value});

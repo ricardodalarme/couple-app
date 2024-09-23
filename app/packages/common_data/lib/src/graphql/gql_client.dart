@@ -3,7 +3,7 @@ import 'package:graphql/client.dart';
 import 'package:graphql_query_compress/graphql_query_compress.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
 
-abstract class GQLClient {
+abstract interface class GQLClient {
   Future<QueryResult<T>> query<T>(QueryOptions<T> options);
   ObservableQuery<T> watchQuery<T>(WatchQueryOptions<T> options);
   Future<QueryResult<T>> mutate<T>(MutationOptions<T> options);

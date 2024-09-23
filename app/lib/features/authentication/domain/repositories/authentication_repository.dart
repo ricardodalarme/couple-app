@@ -1,6 +1,6 @@
 import 'dart:async';
 
-abstract class AuthenticationRepository {
+abstract interface class AuthenticationRepository {
   Stream<bool> get isAuthenticated;
 
   void dispose();

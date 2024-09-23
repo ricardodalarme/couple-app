@@ -1,7 +1,7 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:remote_config_service/src/exceptions.dart';
 
-abstract class RemoteConfigService {
+abstract interface class RemoteConfigService {
   bool getBool(String key);
 
   int getInt(String key);

@@ -10,7 +10,7 @@ import 'package:quickstart_flutter_bloc/features/post/domain/repositories/post_r
 import 'package:quickstart_flutter_bloc/features/post/presentation/bloc/post_bloc.dart';
 import 'package:schemas/queries/generated/GetPosts.graphql.dart';
 
-class PostInjectionModule extends InjectionModule {
+class PostInjectionModule implements InjectionModule {
   @override
   FutureOr<void> registerDependencies({required Injector injector}) {
     injector.registerSingleton<PostDataSource>(

@@ -1,4 +1,4 @@
-abstract class Injector {
+abstract interface class Injector {
   T get<T extends Object>({String? instanceName});
 
   void unregister<T extends Object>({String? instanceName});

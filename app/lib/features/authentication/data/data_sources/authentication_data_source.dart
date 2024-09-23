@@ -3,7 +3,7 @@ import 'package:common_data/common_data.dart';
 import 'package:schemas/generated/schema.graphql.dart';
 import 'package:schemas/mutations/generated/Login.graphql.dart';
 
-abstract class AuthenticationDataSource {
+abstract interface class AuthenticationDataSource {
   Future<MutationLoginlogin> logInWithUsernameAndPassword({
     required String username,
     required String password,
