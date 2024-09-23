@@ -12,18 +12,18 @@ PODS:
   - Firebase/RemoteConfig (11.0.0):
     - Firebase/CoreOnly
     - FirebaseRemoteConfig (~> 11.0.0)
-  - firebase_analytics (11.3.1):
+  - firebase_analytics (11.3.2):
     - Firebase/Analytics (= 11.0.0)
     - firebase_core
     - Flutter
-  - firebase_core (3.4.1):
+  - firebase_core (3.5.0):
     - Firebase/CoreOnly (= 11.0.0)
     - Flutter
-  - firebase_crashlytics (4.1.1):
+  - firebase_crashlytics (4.1.2):
     - Firebase/Crashlytics (= 11.0.0)
     - firebase_core
     - Flutter
-  - firebase_remote_config (5.1.1):
+  - firebase_remote_config (5.1.2):
     - Firebase/RemoteConfig (= 11.0.0)
     - firebase_core
     - Flutter
@@ -230,10 +230,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Firebase: 9f574c08c2396885b5e7e100ed4293d956218af9
-  firebase_analytics: b8ce6c2c4b245d3c3bb3a147965d09da0f455959
-  firebase_core: ba84e940cf5cbbc601095f86556560937419195c
-  firebase_crashlytics: 4111f8198b78c99471c955af488cecd8224967e6
-  firebase_remote_config: fd0d891a89fde724371e60300cf054a085664cba
+  firebase_analytics: 4fd10182fd08bb8358f26ac8aca8dad7b6d0f592
+  firebase_core: 2ec6b789859c7c24766344ec71fdf78639402d56
+  firebase_crashlytics: 60630a0f91ee432275fa1660fd8593079761448a
+  firebase_remote_config: e9540adfc076899bf326f934a9dc722dd7795310
   FirebaseABTesting: 2104d957ce33888a3d6f3bde298cdee376dde8f1
   FirebaseAnalytics: 27eb78b97880ea4a004839b9bac0b58880f5a92a
   FirebaseCore: 3cf438f431f18c12cdf2aaf64434648b63f7e383
