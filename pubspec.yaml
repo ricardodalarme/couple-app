@@ -6,4 +6,4 @@ environment:
 
 dev_dependencies:
   husky: ^0.1.7
-  melos: ^6.1.0
+  melos: ^6.2.0
