@@ -2,7 +2,7 @@ name: common
 publish_to: "none"
 
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.5.3
 
 dependencies:
   get_it: ^8.0.0

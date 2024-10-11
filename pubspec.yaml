@@ -2,7 +2,7 @@ name: monorepo
 publish_to: "none"
 
 environment:
-  sdk: ">=3.5.0 <4.0.0"
+  sdk: ">=3.5.3 <4.0.0"
 
 dev_dependencies:
   husky: ^0.1.7

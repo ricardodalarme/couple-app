@@ -2,12 +2,12 @@ name: remote_config_service
 publish_to: "none"
 
 environment:
-  sdk: ">=3.5.0 <4.0.0"
+  sdk: ">=3.5.3 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
   equatable: ^2.0.5
-  firebase_remote_config: ^5.1.2
+  firebase_remote_config: ^5.1.3
   flutter:
     sdk: flutter
 
