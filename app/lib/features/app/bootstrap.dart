@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_storage_service/persistent_storage_service.dart';
+import 'package:quickstart_flutter_bloc/features/_shared/di/shared_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/app/di/app_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/app/observers/bloc_observer.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/di/authentication_injection_module.dart';
@@ -89,6 +90,7 @@ void _checkOnboardingStatus() {
 
 Future<void> _registerModules() async {
   final injectionModules = <InjectionModule>[
+    SharedInjectionModule(),
     AppInjectionModule(),
     AuthenticationInjectionModule(),
     OnboardingInjectionModule(),
