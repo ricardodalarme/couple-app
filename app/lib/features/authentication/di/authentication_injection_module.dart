@@ -14,29 +14,27 @@ import 'package:secure_storage_service/secure_storage_service.dart';
 class AuthenticationInjectionModule implements InjectionModule {
   @override
   FutureOr<void> registerDependencies({required Injector injector}) {
-    injector.registerSingleton<AuthenticationDataSource>(
-      AuthenticationDataSourceImpl(
-        graphlQLClient: injector.get<GQLClient>(),
-      ),
-    );
-
-    injector.registerSingleton<TokenLocalDataSource>(
-      TokenLocalDataSourceImpl(
-        storage: injector.get<SecureStorageService>(),
-      ),
-    );
-
-    injector.registerFactory<Mapper<MutationLoginlogin, TokenLocal>>(
-      LoginResponseToLocalMapper.new,
-    );
-
-    injector.registerSingleton<AuthenticationRepository>(
-      AuthenticationRepositoryImpl(
-        tokenLocalMapper:
-            injector.get<Mapper<MutationLoginlogin, TokenLocal>>(),
-        loginDataSource: injector.get<AuthenticationDataSource>(),
-        tokenLocalDataSource: injector.get<TokenLocalDataSource>(),
-      ),
-    );
+    injector
+      ..registerLazySingleton<AuthenticationDataSource>(
+        () => AuthenticationDataSourceImpl(
+          graphlQLClient: injector.get<GQLClient>(),
+        ),
+      )
+      ..registerLazySingleton<TokenLocalDataSource>(
+        () => TokenLocalDataSourceImpl(
+          storage: injector.get<SecureStorageService>(),
+        ),
+      )
+      ..registerFactory<Mapper<MutationLoginlogin, TokenLocal>>(
+        LoginResponseToLocalMapper.new,
+      )
+      ..registerLazySingleton<AuthenticationRepository>(
+        () => AuthenticationRepositoryImpl(
+          tokenLocalMapper:
+              injector.get<Mapper<MutationLoginlogin, TokenLocal>>(),
+          loginDataSource: injector.get<AuthenticationDataSource>(),
+          tokenLocalDataSource: injector.get<TokenLocalDataSource>(),
+        ),
+      );
   }
 }

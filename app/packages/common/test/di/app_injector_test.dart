@@ -31,8 +31,9 @@ void main() {
     });
 
     test('Unregister instance', () {
-      appInjector.registerSingleton<int>(42, instanceName: 'testUnregister');
-      appInjector.unregister<int>(instanceName: 'testUnregister');
+      appInjector
+        ..registerSingleton<int>(42, instanceName: 'testUnregister')
+        ..unregister<int>(instanceName: 'testUnregister');
       expect(
         () => appInjector.get<int>(instanceName: 'testUnregister'),
         throwsStateError,

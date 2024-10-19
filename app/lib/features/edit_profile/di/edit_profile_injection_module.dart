@@ -10,22 +10,21 @@ import 'package:quickstart_flutter_bloc/features/edit_profile/presentation/bloc/
 class EditProfileInjectionModule implements InjectionModule {
   @override
   FutureOr<void> registerDependencies({required Injector injector}) {
-    injector.registerLazySingleton<EditProfileDataSource>(
-      () => EditProfileDataSourceImpl(
-        graphlQLClient: injector.get<GQLClient>(),
-      ),
-    );
-
-    injector.registerLazySingleton<EditProfileRepository>(
-      () => EditProfileRepositoryImpl(
-        editProfileDataSource: injector.get<EditProfileDataSource>(),
-      ),
-    );
-
-    injector.registerFactory<EditProfileBloc>(
-      () => EditProfileBloc(
-        editProfileRepository: injector.get<EditProfileRepository>(),
-      ),
-    );
+    injector
+      ..registerLazySingleton<EditProfileDataSource>(
+        () => EditProfileDataSourceImpl(
+          graphlQLClient: injector.get<GQLClient>(),
+        ),
+      )
+      ..registerLazySingleton<EditProfileRepository>(
+        () => EditProfileRepositoryImpl(
+          editProfileDataSource: injector.get<EditProfileDataSource>(),
+        ),
+      )
+      ..registerFactory<EditProfileBloc>(
+        () => EditProfileBloc(
+          editProfileRepository: injector.get<EditProfileRepository>(),
+        ),
+      );
   }
 }

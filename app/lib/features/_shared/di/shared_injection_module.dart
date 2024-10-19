@@ -17,46 +17,38 @@ import 'package:secure_storage_service/secure_storage_service.dart';
 class SharedInjectionModule implements InjectionModule {
   @override
   FutureOr<void> registerDependencies({required Injector injector}) {
-    injector.registerLazySingleton<RootStackRouter>(
-      AppRouter.new,
-    );
-
-    injector.registerLazySingleton<SecureStorageService>(
-      SecureStorageServiceImpl.new,
-    );
-
-    injector.registerLazySingleton<PersistentStorageService>(
-      PersistentStorageServiceImpl.new,
-    );
-
-    injector.registerLazySingleton<GQLClient>(
-      () => GQLClientImpl(
-        storage: injector.get<SecureStorageService>(),
-      ),
-    );
-
-    injector.registerLazySingleton<RestClient>(
-      RestClientImpl.new,
-    );
-
-    injector.registerSingleton<AnalyticsService>(
-      AnalyticsServiceImpl(),
-    );
-
-    injector.registerSingleton<RemoteConfigService>(
-      RemoteConfigServiceImpl(),
-    );
-
-    injector.registerSingleton<CrashReportService>(
-      CrashReportServiceImpl(),
-    );
-
-    injector.registerSingleton<BiometricService>(
-      BiometricServiceImpl(),
-    );
-
-    injector.registerFactory<Mapper<FragmentPageInfoFragment, PageInfo>>(
-      PageInfoResponseMapper.new,
-    );
+    injector
+      ..registerLazySingleton<RootStackRouter>(
+        AppRouter.new,
+      )
+      ..registerLazySingleton<SecureStorageService>(
+        SecureStorageServiceImpl.new,
+      )
+      ..registerLazySingleton<PersistentStorageService>(
+        PersistentStorageServiceImpl.new,
+      )
+      ..registerLazySingleton<GQLClient>(
+        () => GQLClientImpl(
+          storage: injector.get<SecureStorageService>(),
+        ),
+      )
+      ..registerLazySingleton<RestClient>(
+        RestClientImpl.new,
+      )
+      ..registerLazySingleton<AnalyticsService>(
+        AnalyticsServiceImpl.new,
+      )
+      ..registerLazySingleton<RemoteConfigService>(
+        RemoteConfigServiceImpl.new,
+      )
+      ..registerLazySingleton<CrashReportService>(
+        CrashReportServiceImpl.new,
+      )
+      ..registerLazySingleton<BiometricService>(
+        BiometricServiceImpl.new,
+      )
+      ..registerFactory<Mapper<FragmentPageInfoFragment, PageInfo>>(
+        PageInfoResponseMapper.new,
+      );
   }
 }
