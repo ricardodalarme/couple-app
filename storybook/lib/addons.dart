@@ -21,6 +21,6 @@ final List<double> textScales = [
 
 final List<WidgetbookAddon<dynamic>> addons = [
   MaterialThemeAddon(themes: themes),
-  TextScaleAddon(scales: textScales),
+  TextScaleAddon(),
   AlignmentAddon(),
 ];
