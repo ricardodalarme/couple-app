@@ -29,15 +29,13 @@ Future<void> bootstrap(Widget Function() builder) async {
   LocaleSettings.useDeviceLocale();
 
   await _setupFirebase();
-  await Future.wait([
-    _setupBloc(),
-    _registerModules(),
-  ]);
+  await _registerModules();
   await Future.wait([
     _checkAuthenticationStatus(),
     _configureCrashReportService(),
     _initializeStorageService(),
   ]);
+  _setupBloc();
   _checkOnboardingStatus();
 
   runApp(builder());
@@ -49,7 +47,7 @@ Future<void> _setupFirebase() async {
   );
 }
 
-Future<void> _setupBloc() async {
+void _setupBloc() {
   Bloc.observer = AppBlocObserver();
 }
 
