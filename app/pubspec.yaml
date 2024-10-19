@@ -13,8 +13,6 @@ dependencies:
     path: ./packages/services/biometric
   common:
     path: ./packages/common
-  common_data:
-    path: ./packages/common_data
   common_ui:
     path: ./packages/common_ui
   crash_report_service:
@@ -28,6 +26,8 @@ dependencies:
     sdk: flutter
   formz_inputs:
     path: ./packages/formz_inputs
+  network:
+    path: ./packages/network
   persistent_storage_service:
     path: ./packages/services/persistent_storage
   remote_config_service:

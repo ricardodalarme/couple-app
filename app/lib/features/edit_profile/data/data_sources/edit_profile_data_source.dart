@@ -1,4 +1,4 @@
-import 'package:common_data/common_data.dart';
+import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/_shared/data/data_sources/generated/schema.graphql.dart';
 import 'package:quickstart_flutter_bloc/features/edit_profile/data/data_sources/mutations/generated/UpdateUser.graphql.dart';
 

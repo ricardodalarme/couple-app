@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:common/common.dart';
-import 'package:common_data/common_data.dart';
+import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/authentication_data_source.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/models/token_local.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/mutations/generated/Login.graphql.dart';

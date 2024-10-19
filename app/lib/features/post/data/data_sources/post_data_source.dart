@@ -1,5 +1,5 @@
 import 'package:common/common.dart';
-import 'package:common_data/common_data.dart';
+import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/data_sources/queries/generated/GetPosts.graphql.dart';
 
 abstract interface class PostDataSource {

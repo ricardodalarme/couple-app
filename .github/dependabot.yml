@@ -44,7 +44,7 @@ updates:
       prefix: "chore"
       include: "scope"
   - package-ecosystem: "pub"
-    directory: "/app/packages/common_data"
+    directory: "/app/packages/network"
     schedule:
       interval: "weekly"
     labels:

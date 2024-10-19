@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:common/common.dart';
-import 'package:common_data/common_data.dart';
+import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/change_password/data/data_sources/change_password_data_source.dart';
 import 'package:quickstart_flutter_bloc/features/change_password/data/repositories/change_password_repository_impl.dart';
 import 'package:quickstart_flutter_bloc/features/change_password/domain/repositories/change_password_repository.dart';
