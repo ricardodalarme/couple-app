@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:common/common.dart';
+import 'package:core/core.dart';
 import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/domain/repositories/authentication_repository.dart';
 import 'package:quickstart_flutter_bloc/features/signup/data/data_sources/signup_data_source.dart';

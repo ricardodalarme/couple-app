@@ -1,4 +1,4 @@
-import 'package:common/common.dart';
+import 'package:core/core.dart';
 import 'package:graphql/client.dart';
 import 'package:graphql_query_compress/graphql_query_compress.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';

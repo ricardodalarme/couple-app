@@ -1,4 +1,4 @@
-import 'package:common/common.dart';
+import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quickstart_flutter_bloc/features/post/domain/models/post_model.dart';
 import 'package:quickstart_flutter_bloc/features/post/presentation/bloc/post_bloc.dart';

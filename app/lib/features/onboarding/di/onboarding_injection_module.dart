@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:common/common.dart';
+import 'package:core/core.dart';
 import 'package:quickstart_flutter_bloc/features/onboarding/presentation/cubit/onboarding_cubit.dart';
 import 'package:quickstart_flutter_bloc/features/settings/domain/repositories/settings_repository.dart';
 

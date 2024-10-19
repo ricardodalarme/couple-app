@@ -11,10 +11,10 @@ dependencies:
   auto_route: ^9.2.2
   biometric_service:
     path: ./packages/services/biometric
-  common:
-    path: ./packages/common
   common_ui:
     path: ./packages/common_ui
+  core:
+    path: ./packages/core
   crash_report_service:
     path: ./packages/services/crash_report
   equatable: ^2.0.5

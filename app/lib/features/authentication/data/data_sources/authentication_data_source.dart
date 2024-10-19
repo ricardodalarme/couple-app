@@ -1,4 +1,4 @@
-import 'package:common/common.dart';
+import 'package:core/core.dart';
 import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/_shared/data/data_sources/generated/schema.graphql.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/mutations/generated/Login.graphql.dart';

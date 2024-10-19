@@ -35,7 +35,7 @@ updates:
 
   # Packages
   - package-ecosystem: "pub"
-    directory: "/app/packages/common"
+    directory: "/app/packages/core"
     schedule:
       interval: "weekly"
     labels:

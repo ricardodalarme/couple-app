@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:common/common.dart';
+import 'package:core/core.dart';
 
 abstract interface class InjectionModule {
   FutureOr<void> registerDependencies({required Injector injector});

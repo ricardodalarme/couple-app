@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:common/common.dart';
+import 'package:core/core.dart';
 import 'package:crash_report_service/crash_report_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';

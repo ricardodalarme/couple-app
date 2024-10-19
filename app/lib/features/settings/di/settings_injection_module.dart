@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:common/common.dart';
+import 'package:core/core.dart';
 import 'package:persistent_storage_service/persistent_storage_service.dart';
 import 'package:quickstart_flutter_bloc/features/settings/data/data_sources/models/settings_local.dart';
 import 'package:quickstart_flutter_bloc/features/settings/data/data_sources/settings_local_data_source.dart';

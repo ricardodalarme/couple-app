@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:common/common.dart';
 import 'package:common_ui/common_ui.dart';
+import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/post/domain/models/post_model.dart';
 import 'package:quickstart_flutter_bloc/features/post/presentation/bloc/post_bloc.dart';

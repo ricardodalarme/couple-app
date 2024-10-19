@@ -1,4 +1,4 @@
-name: common
+name: core
 publish_to: "none"
 
 environment:

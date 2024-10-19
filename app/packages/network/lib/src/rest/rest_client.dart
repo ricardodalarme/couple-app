@@ -1,4 +1,4 @@
-import 'package:common/common.dart';
+import 'package:core/core.dart';
 import 'package:dio/dio.dart';
 
 abstract interface class RestClient {
