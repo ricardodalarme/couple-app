@@ -1,4 +1,4 @@
-import '../../generated/schema.graphql.dart';
+import '../../../../../_shared/data/data_sources/generated/schema.graphql.dart';
 import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;

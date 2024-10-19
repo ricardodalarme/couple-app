@@ -1,6 +1,6 @@
 import 'package:common_data/common_data.dart';
-import 'package:schemas/generated/schema.graphql.dart';
-import 'package:schemas/mutations/generated/ChangePassword.graphql.dart';
+import 'package:quickstart_flutter_bloc/features/_shared/data/data_sources/generated/schema.graphql.dart';
+import 'package:quickstart_flutter_bloc/features/change_password/data/data_sources/mutations/generated/ChangePassword.graphql.dart';
 
 abstract interface class ChangePasswordDataSource {
   Future<void> changePassword({

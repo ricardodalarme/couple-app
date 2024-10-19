@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:common/common.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/authentication_data_source.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/models/token_local.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/mutations/generated/Login.graphql.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/token_local_data_source.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/domain/repositories/authentication_repository.dart';
-import 'package:schemas/mutations/generated/Login.graphql.dart';
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
   AuthenticationRepositoryImpl({

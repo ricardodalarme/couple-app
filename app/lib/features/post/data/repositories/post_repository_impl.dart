@@ -1,8 +1,8 @@
 import 'package:common/common.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/data_sources/post_data_source.dart';
+import 'package:quickstart_flutter_bloc/features/post/data/data_sources/queries/generated/GetPosts.graphql.dart';
 import 'package:quickstart_flutter_bloc/features/post/domain/models/post_model.dart';
 import 'package:quickstart_flutter_bloc/features/post/domain/repositories/post_repository.dart';
-import 'package:schemas/queries/generated/GetPosts.graphql.dart';
 
 class PostRepositoryImpl implements PostRepository {
   PostRepositoryImpl({

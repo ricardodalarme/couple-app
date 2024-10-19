@@ -32,8 +32,6 @@ dependencies:
     path: ./packages/services/persistent_storage
   remote_config_service:
     path: ./packages/services/remote_config
-  schemas:
-    path: ./packages/schemas
   secure_storage_service:
     path: ./packages/services/secure_storage
   slang: ^3.32.0
@@ -47,6 +45,7 @@ dev_dependencies:
   flutter_native_splash: ^2.4.1
   flutter_test:
     sdk: flutter
+  graphql_codegen: ^1.0.1
   mocktail: ^1.0.4
 
 flutter:

@@ -1,6 +1,6 @@
-import '../../fragments/generated/PageInfoFragment.graphql.dart';
+import '../../../../../_shared/data/data_sources/fragments/generated/PageInfoFragment.graphql.dart';
+import '../../../../../_shared/data/data_sources/fragments/generated/UserFragment.graphql.dart';
 import '../../fragments/generated/PostFragment.graphql.dart';
-import '../../fragments/generated/UserFragment.graphql.dart';
 import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
