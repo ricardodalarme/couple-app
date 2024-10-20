@@ -3,19 +3,19 @@ part of 'forgot_password_bloc.dart';
 final class ForgotPasswordState with EquatableMixin, FormzMixin {
   const ForgotPasswordState({
     this.email = const EmailInput.pure(),
-    this.status = FormzSubmissionStatus.initial,
+    this.submission = const Initial(),
   });
 
   final EmailInput email;
-  final FormzSubmissionStatus status;
+  final Resource<void> submission;
 
   ForgotPasswordState copyWith({
     EmailInput? email,
-    FormzSubmissionStatus? status,
+    Resource<void>? submission,
   }) {
     return ForgotPasswordState(
       email: email ?? this.email,
-      status: status ?? this.status,
+      submission: submission ?? this.submission,
     );
   }
 
@@ -23,5 +23,5 @@ final class ForgotPasswordState with EquatableMixin, FormzMixin {
   List<FormzInput<dynamic, dynamic>> get inputs => [email];
 
   @override
-  List<Object?> get props => [email, status];
+  List<Object?> get props => [email, submission];
 }
