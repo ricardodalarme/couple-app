@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/signup/presentation/bloc/signup_bloc.dart';
+import 'package:quickstart_flutter_bloc/l10n/l10n_map_extension.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 import 'package:quickstart_flutter_bloc/routes/app_router.dart';
 
@@ -54,6 +55,12 @@ class SignUpPage extends StatelessWidget implements AutoRouteWrapper {
     switch (state.submission) {
       case Success():
         context.router.replaceAll([const HomeRoute()]);
+      case Failure(:final exception):
+        context.showSnackBar(
+          message: context.l10n.signup.errors
+              .selectOrFallback(exception.l10nPlaceholder),
+          type: SnackBarType.error,
+        );
       default:
         break;
     }

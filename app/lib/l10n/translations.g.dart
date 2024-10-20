@@ -442,6 +442,9 @@ class _TranslationsSignupEn {
   Map<String, String> get confirmPasswordErrors => {
         'invalid': 'Passwords do not match',
       };
+  Map<String, String> get errors => {
+        'other': _root.common.genericError,
+      };
 }
 
 // Path: terms
@@ -892,6 +895,10 @@ class _TranslationsSignupPt extends _TranslationsSignupEn {
   Map<String, String> get confirmPasswordErrors => {
         'invalid': 'Senhas não coincidem',
       };
+  @override
+  Map<String, String> get errors => {
+        'other': _root.common.genericError,
+      };
 }
 
 // Path: terms
@@ -1108,6 +1115,8 @@ extension on Translations {
         return 'Password must be at least 8 characters long and contain at least one letter and one number';
       case 'signup.confirmPasswordErrors.invalid':
         return 'Passwords do not match';
+      case 'signup.errors.other':
+        return _root.common.genericError;
       case 'terms.title':
         return 'Terms';
       default:
@@ -1260,6 +1269,8 @@ extension on _TranslationsPt {
         return 'Senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número';
       case 'signup.confirmPasswordErrors.invalid':
         return 'Senhas não coincidem';
+      case 'signup.errors.other':
+        return _root.common.genericError;
       case 'terms.title':
         return 'Termos';
       default:

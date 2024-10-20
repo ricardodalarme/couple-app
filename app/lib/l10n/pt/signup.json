@@ -13,5 +13,8 @@
   },
   "confirmPasswordErrors(map)": {
     "invalid": "Senhas não coincidem"
+  },
+  "errors(map)": {
+    "other": "@:common.genericError"
   }
 }
