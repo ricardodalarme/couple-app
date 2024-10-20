@@ -199,6 +199,10 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
   late final Translations _root = this; // ignore: unused_field
 
   // Translations
+  late final _TranslationsMissingTranslationsEn missingTranslations =
+      _TranslationsMissingTranslationsEn._(_root);
+  late final _TranslationsUnusedTranslationsEn unusedTranslations =
+      _TranslationsUnusedTranslationsEn._(_root);
   late final _TranslationsChangePasswordEn changePassword =
       _TranslationsChangePasswordEn._(_root);
   late final _TranslationsCommonEn common = _TranslationsCommonEn._(_root);
@@ -220,6 +224,30 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
       _TranslationsSettingsEn._(_root);
   late final _TranslationsSignupEn signup = _TranslationsSignupEn._(_root);
   late final _TranslationsTermsEn terms = _TranslationsTermsEn._(_root);
+}
+
+// Path: missingTranslations
+class _TranslationsMissingTranslationsEn {
+  _TranslationsMissingTranslationsEn._(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+  late final _TranslationsMissingTranslationsPtEn pt =
+      _TranslationsMissingTranslationsPtEn._(_root);
+}
+
+// Path: unusedTranslations
+class _TranslationsUnusedTranslationsEn {
+  _TranslationsUnusedTranslationsEn._(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+  late final _TranslationsUnusedTranslationsEnEn en =
+      _TranslationsUnusedTranslationsEnEn._(_root);
+  late final _TranslationsUnusedTranslationsPtEn pt =
+      _TranslationsUnusedTranslationsPtEn._(_root);
 }
 
 // Path: changePassword
@@ -282,6 +310,9 @@ class _TranslationsEditProfileEn {
       };
   Map<String, String> get emailErrors => {
         'invalid': 'Email is invalid',
+      };
+  Map<String, String> get errors => {
+        'other': _root.common.genericError,
       };
 }
 
@@ -455,6 +486,33 @@ class _TranslationsTermsEn {
 
   // Translations
   String get title => 'Terms';
+}
+
+// Path: missingTranslations.pt
+class _TranslationsMissingTranslationsPtEn {
+  _TranslationsMissingTranslationsPtEn._(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+}
+
+// Path: unusedTranslations.en
+class _TranslationsUnusedTranslationsEnEn {
+  _TranslationsUnusedTranslationsEnEn._(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+}
+
+// Path: unusedTranslations.pt
+class _TranslationsUnusedTranslationsPtEn {
+  _TranslationsUnusedTranslationsPtEn._(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
 }
 
 // Path: onboarding.pages.0
@@ -664,6 +722,10 @@ class _TranslationsEditProfilePt extends _TranslationsEditProfileEn {
   @override
   Map<String, String> get emailErrors => {
         'invalid': 'Email inválido',
+      };
+  @override
+  Map<String, String> get errors => {
+        'other': _root.common.genericError,
       };
 }
 
@@ -1020,6 +1082,8 @@ extension on Translations {
         return 'Last name is required';
       case 'editProfile.emailErrors.invalid':
         return 'Email is invalid';
+      case 'editProfile.errors.other':
+        return _root.common.genericError;
       case 'forgotPassword.title':
         return 'Recover Password';
       case 'forgotPassword.description':
@@ -1174,6 +1238,8 @@ extension on _TranslationsPt {
         return 'Sobrenome é obrigatório';
       case 'editProfile.emailErrors.invalid':
         return 'Email inválido';
+      case 'editProfile.errors.other':
+        return _root.common.genericError;
       case 'forgotPassword.title':
         return 'Recuperar Senha';
       case 'forgotPassword.description':

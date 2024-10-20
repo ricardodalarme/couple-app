@@ -9,5 +9,8 @@
   },
   "emailErrors(map)": {
     "invalid": "Email is invalid"
+  },
+  "errors(map)": {
+    "other": "@:common.genericError"
   }
 }
