@@ -5,6 +5,7 @@ import 'package:flutter/material.dart' show TextButton;
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/login/presentation/bloc/login_bloc.dart';
+import 'package:quickstart_flutter_bloc/l10n/l10n_map_extension.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 import 'package:quickstart_flutter_bloc/routes/app_router.dart';
 
@@ -65,9 +66,10 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
 
   void _handleStatus(BuildContext context, LoginState state) {
     switch (state.login) {
-      case Failure():
+      case Failure(:final exception):
         context.showSnackBar(
-          message: context.l10n.common.genericError,
+          message: context.l10n.login.errors
+              .selectOrFallback(exception.l10nPlaceholder),
           type: SnackBarType.error,
         );
       default:

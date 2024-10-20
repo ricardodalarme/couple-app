@@ -199,10 +199,6 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
   late final Translations _root = this; // ignore: unused_field
 
   // Translations
-  late final _TranslationsMissingTranslationsEn missingTranslations =
-      _TranslationsMissingTranslationsEn._(_root);
-  late final _TranslationsUnusedTranslationsEn unusedTranslations =
-      _TranslationsUnusedTranslationsEn._(_root);
   late final _TranslationsChangePasswordEn changePassword =
       _TranslationsChangePasswordEn._(_root);
   late final _TranslationsCommonEn common = _TranslationsCommonEn._(_root);
@@ -224,30 +220,6 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
       _TranslationsSettingsEn._(_root);
   late final _TranslationsSignupEn signup = _TranslationsSignupEn._(_root);
   late final _TranslationsTermsEn terms = _TranslationsTermsEn._(_root);
-}
-
-// Path: missingTranslations
-class _TranslationsMissingTranslationsEn {
-  _TranslationsMissingTranslationsEn._(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-  late final _TranslationsMissingTranslationsPtEn pt =
-      _TranslationsMissingTranslationsPtEn._(_root);
-}
-
-// Path: unusedTranslations
-class _TranslationsUnusedTranslationsEn {
-  _TranslationsUnusedTranslationsEn._(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-  late final _TranslationsUnusedTranslationsEnEn en =
-      _TranslationsUnusedTranslationsEnEn._(_root);
-  late final _TranslationsUnusedTranslationsPtEn pt =
-      _TranslationsUnusedTranslationsPtEn._(_root);
 }
 
 // Path: changePassword
@@ -353,6 +325,9 @@ class _TranslationsLoginEn {
       };
   Map<String, String> get passwordErrors => {
         'empty': 'Password is required',
+      };
+  Map<String, String> get errors => {
+        'other': _root.common.genericError,
       };
 }
 
@@ -477,33 +452,6 @@ class _TranslationsTermsEn {
 
   // Translations
   String get title => 'Terms';
-}
-
-// Path: missingTranslations.pt
-class _TranslationsMissingTranslationsPtEn {
-  _TranslationsMissingTranslationsPtEn._(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-}
-
-// Path: unusedTranslations.en
-class _TranslationsUnusedTranslationsEnEn {
-  _TranslationsUnusedTranslationsEnEn._(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-}
-
-// Path: unusedTranslations.pt
-class _TranslationsUnusedTranslationsPtEn {
-  _TranslationsUnusedTranslationsPtEn._(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
 }
 
 // Path: onboarding.pages.0
@@ -774,6 +722,10 @@ class _TranslationsLoginPt extends _TranslationsLoginEn {
   @override
   Map<String, String> get passwordErrors => {
         'empty': 'A senha é obrigatória',
+      };
+  @override
+  Map<String, String> get errors => {
+        'other': _root.common.genericError,
       };
 }
 
@@ -1088,6 +1040,8 @@ extension on Translations {
         return 'Username is required';
       case 'login.passwordErrors.empty':
         return 'Password is required';
+      case 'login.errors.other':
+        return _root.common.genericError;
       case 'notFound.title':
         return '404';
       case 'notFound.description':
@@ -1238,6 +1192,8 @@ extension on _TranslationsPt {
         return 'O nome de usuário é obrigatório';
       case 'login.passwordErrors.empty':
         return 'A senha é obrigatória';
+      case 'login.errors.other':
+        return _root.common.genericError;
       case 'notFound.title':
         return '404';
       case 'notFound.description':

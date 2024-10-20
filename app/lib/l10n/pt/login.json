@@ -10,5 +10,8 @@
   },
   "passwordErrors(map)": {
     "empty": "A senha é obrigatória"
+  },
+  "errors(map)": {
+    "other": "@:common.genericError"
   }
 }

@@ -10,5 +10,8 @@
   },
   "passwordErrors(map)": {
     "empty": "Password is required"
+  },
+  "errors(map)": {
+    "other": "@:common.genericError"
   }
 }
