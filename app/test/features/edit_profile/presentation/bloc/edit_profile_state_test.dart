@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz_inputs/formz_inputs.dart';
 import 'package:quickstart_flutter_bloc/features/edit_profile/presentation/bloc/edit_profile_bloc.dart';
@@ -12,11 +13,11 @@ void main() {
       expect(const EditProfileState().copyWith(), const EditProfileState());
     });
 
-    test('returns object with updated status when status is passed', () {
+    test('returns object with updated submission when submission is passed',
+        () {
       expect(
-        const EditProfileState()
-            .copyWith(status: FormzSubmissionStatus.initial),
-        const EditProfileState(),
+        const EditProfileState().copyWith(submission: Success(null)),
+        const EditProfileState(submission: Success(null)),
       );
     });
 
@@ -38,14 +39,6 @@ void main() {
       expect(
         const EditProfileState().copyWith(lastName: lastName),
         const EditProfileState(lastName: lastName),
-      );
-    });
-
-    test('returns object with updated status when status is passed', () {
-      expect(
-        const EditProfileState()
-            .copyWith(status: FormzSubmissionStatus.success),
-        const EditProfileState(status: FormzSubmissionStatus.success),
       );
     });
   });

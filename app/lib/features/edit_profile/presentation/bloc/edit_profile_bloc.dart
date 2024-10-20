@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz_inputs/formz_inputs.dart';
@@ -52,7 +53,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   ) async {
     if (state.isNotValid) return;
 
-    emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+    emit(state.copyWith(submission: const Loading()));
 
     try {
       await _editProfileRepository.updateProfile(
@@ -60,9 +61,10 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
         lastName: state.lastName.value,
         email: state.email.value,
       );
-      emit(state.copyWith(status: FormzSubmissionStatus.success));
-    } catch (e) {
-      emit(state.copyWith(status: FormzSubmissionStatus.failure));
+      emit(state.copyWith(submission: const Success(null)));
+    } catch (exception) {
+      emit(state.copyWith(submission: Failure.fromObject(exception)));
+      emit(state.copyWith(submission: const Initial()));
     }
   }
 }

@@ -2,25 +2,25 @@ part of 'edit_profile_bloc.dart';
 
 final class EditProfileState with EquatableMixin, FormzMixin {
   const EditProfileState({
-    this.status = FormzSubmissionStatus.initial,
+    this.submission = const Initial(),
     this.firstName = const NonEmptyInput.pure(),
     this.lastName = const NonEmptyInput.pure(),
     this.email = const EmailInput.pure(),
   });
 
-  final FormzSubmissionStatus status;
+  final Resource<void> submission;
   final NonEmptyInput firstName;
   final NonEmptyInput lastName;
   final EmailInput email;
 
   EditProfileState copyWith({
-    FormzSubmissionStatus? status,
+    Resource<void>? submission,
     NonEmptyInput? firstName,
     NonEmptyInput? lastName,
     EmailInput? email,
   }) {
     return EditProfileState(
-      status: status ?? this.status,
+      submission: submission ?? this.submission,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       email: email ?? this.email,
@@ -31,5 +31,5 @@ final class EditProfileState with EquatableMixin, FormzMixin {
   List<FormzInput<dynamic, dynamic>> get inputs => [firstName, lastName, email];
 
   @override
-  List<Object?> get props => [status, firstName, lastName, email];
+  List<Object?> get props => [submission, firstName, lastName, email];
 }

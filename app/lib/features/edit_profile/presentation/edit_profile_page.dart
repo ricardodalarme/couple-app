@@ -3,7 +3,6 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz_inputs/formz_inputs.dart';
 import 'package:quickstart_flutter_bloc/features/edit_profile/presentation/bloc/edit_profile_bloc.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 
@@ -24,7 +23,8 @@ class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
     return BaseView(
       title: context.l10n.editProfile.title,
       body: BlocListener<EditProfileBloc, EditProfileState>(
-        listenWhen: (previous, current) => previous.status != current.status,
+        listenWhen: (previous, current) =>
+            previous.submission != current.submission,
         listener: _handleStatus,
         child: const Center(
           child: SingleChildScrollView(
@@ -48,20 +48,20 @@ class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
   }
 
   void _handleStatus(BuildContext context, EditProfileState state) {
-    switch (state.status) {
-      case FormzSubmissionStatus.success:
+    switch (state.submission) {
+      case Success():
         context.router.maybePop();
         context.showSnackBar(
           message: context.l10n.editProfile.messageSuccess,
           type: SnackBarType.success,
         );
-      case FormzSubmissionStatus.failure:
+      case Failure():
         context.showSnackBar(
           message: context.l10n.common.genericError,
           type: SnackBarType.error,
         );
       default:
-        return;
+        break;
     }
   }
 }
@@ -138,7 +138,7 @@ class _SubmitButton extends StatelessWidget {
     return BlocBuilder<EditProfileBloc, EditProfileState>(
       builder: (context, state) => BaseButton(
         text: context.l10n.common.save,
-        isLoading: state.status.isInProgress,
+        isLoading: state.submission.isLoading,
         isEnabled: state.isValid,
         onPressed: () =>
             context.read<EditProfileBloc>().add(const EditProfileSubmitted()),
