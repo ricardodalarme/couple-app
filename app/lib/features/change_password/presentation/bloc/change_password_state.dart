@@ -5,25 +5,25 @@ final class ChangePasswordState with EquatableMixin, FormzMixin {
     this.currentPassword = const NonEmptyInput.pure(),
     this.password = const PasswordInput.pure(),
     this.confirmPassword = const ConfirmedPasswordInput.pure(),
-    this.status = FormzSubmissionStatus.initial,
+    this.submission = const Initial(),
   });
 
   final NonEmptyInput currentPassword;
   final PasswordInput password;
   final ConfirmedPasswordInput confirmPassword;
-  final FormzSubmissionStatus status;
+  final Resource<void> submission;
 
   ChangePasswordState copyWith({
     NonEmptyInput? currentPassword,
     PasswordInput? password,
     ConfirmedPasswordInput? confirmPassword,
-    FormzSubmissionStatus? status,
+    Resource<void>? submission,
   }) {
     return ChangePasswordState(
       currentPassword: currentPassword ?? this.currentPassword,
       password: password ?? this.password,
       confirmPassword: confirmPassword ?? this.confirmPassword,
-      status: status ?? this.status,
+      submission: submission ?? this.submission,
     );
   }
 
@@ -33,5 +33,5 @@ final class ChangePasswordState with EquatableMixin, FormzMixin {
 
   @override
   List<Object?> get props =>
-      [currentPassword, password, confirmPassword, status];
+      [currentPassword, password, confirmPassword, submission];
 }

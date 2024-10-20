@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz_inputs/formz_inputs.dart';
 import 'package:mocktail/mocktail.dart';
@@ -31,7 +32,7 @@ void main() {
           currentPassword: NonEmptyInput.pure(),
           password: PasswordInput.pure(),
           confirmPassword: ConfirmedPasswordInput.pure(),
-          status: FormzSubmissionStatus.initial,
+          submission: Initial(),
         ),
       );
     });

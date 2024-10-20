@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz_inputs/formz_inputs.dart';
 import 'package:quickstart_flutter_bloc/features/change_password/presentation/bloc/change_password_bloc.dart';
@@ -15,11 +16,11 @@ void main() {
       );
     });
 
-    test('returns object with updated status when status is passed', () {
+    test('returns object with updated submission when submission is passed',
+        () {
       expect(
-        const ChangePasswordState()
-            .copyWith(status: FormzSubmissionStatus.initial),
-        const ChangePasswordState(),
+        const ChangePasswordState().copyWith(submission: Success(null)),
+        const ChangePasswordState(submission: Success(null)),
       );
     });
 
