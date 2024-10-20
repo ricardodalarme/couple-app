@@ -272,6 +272,9 @@ class _TranslationsChangePasswordEn {
   Map<String, String> get confirmPasswordErrors => {
         'invalid': 'Passwords do not match',
       };
+  Map<String, String> get errors => {
+        'other': _root.common.genericError,
+      };
 }
 
 // Path: common
@@ -666,6 +669,10 @@ class _TranslationsChangePasswordPt extends _TranslationsChangePasswordEn {
   Map<String, String> get confirmPasswordErrors => {
         'invalid': 'As senhas não coincidem',
       };
+  @override
+  Map<String, String> get errors => {
+        'other': _root.common.genericError,
+      };
 }
 
 // Path: common
@@ -1059,6 +1066,8 @@ extension on Translations {
         return 'New password must be at least 8 characters long and contain at least one letter and one number';
       case 'changePassword.confirmPasswordErrors.invalid':
         return 'Passwords do not match';
+      case 'changePassword.errors.other':
+        return _root.common.genericError;
       case 'common.appName':
         return 'Flutter Bloc Starter';
       case 'common.send':
@@ -1217,6 +1226,8 @@ extension on _TranslationsPt {
         return 'A nova senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número';
       case 'changePassword.confirmPasswordErrors.invalid':
         return 'As senhas não coincidem';
+      case 'changePassword.errors.other':
+        return _root.common.genericError;
       case 'common.appName':
         return 'Flutter Bloc Starter';
       case 'common.send':

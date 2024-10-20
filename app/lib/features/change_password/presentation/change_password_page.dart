@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/change_password/presentation/bloc/change_password_bloc.dart';
+import 'package:quickstart_flutter_bloc/l10n/l10n_map_extension.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 
 @RoutePage()
@@ -55,9 +56,10 @@ class ChangePasswordPage extends StatelessWidget implements AutoRouteWrapper {
           message: context.l10n.changePassword.messageSuccess,
           type: SnackBarType.success,
         );
-      case Failure():
+      case Failure(:final exception):
         context.showSnackBar(
-          message: context.l10n.common.genericError,
+          message: context.l10n.changePassword.errors
+              .selectOrFallback(exception.l10nPlaceholder),
           type: SnackBarType.error,
         );
       default:
