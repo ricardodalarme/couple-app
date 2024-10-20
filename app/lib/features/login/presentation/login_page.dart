@@ -68,8 +68,8 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
     switch (state.login) {
       case Failure(:final exception):
         context.showSnackBar(
-          message: context.l10n.login.errors
-              .selectOrFallback(exception.l10nPlaceholder),
+          message:
+              context.l10n.login.errors.selectOrFallback(exception.l10nKey),
           type: SnackBarType.error,
         );
       default:

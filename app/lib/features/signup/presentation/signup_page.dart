@@ -57,8 +57,8 @@ class SignUpPage extends StatelessWidget implements AutoRouteWrapper {
         context.router.replaceAll([const HomeRoute()]);
       case Failure(:final exception):
         context.showSnackBar(
-          message: context.l10n.signup.errors
-              .selectOrFallback(exception.l10nPlaceholder),
+          message:
+              context.l10n.signup.errors.selectOrFallback(exception.l10nKey),
           type: SnackBarType.error,
         );
       default:

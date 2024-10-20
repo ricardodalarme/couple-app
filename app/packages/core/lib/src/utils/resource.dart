@@ -40,11 +40,11 @@ final class Failure extends Resource<Never> {
   const Failure(this.exception);
 
   factory Failure.fromObject(Object object) => switch (object) {
-        L10nPlaceholderException() => Failure(object),
+        LocalizedException() => Failure(object),
         _ => const Failure(UnknownException()),
       };
 
-  final L10nPlaceholderException exception;
+  final LocalizedException exception;
 
   @override
   bool operator ==(Object other) =>

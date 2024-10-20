@@ -1,9 +1,8 @@
 import 'package:core/core.dart';
 import 'package:test/test.dart';
 
-final class MockException extends L10nPlaceholderException {
-  const MockException(String l10nPlaceholder)
-      : super(l10nPlaceholder: l10nPlaceholder);
+final class MockException extends LocalizedException {
+  const MockException(String l10nPlaceholder) : super(l10nKey: l10nPlaceholder);
 }
 
 void main() {

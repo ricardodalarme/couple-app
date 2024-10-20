@@ -59,7 +59,7 @@ class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
       case Failure(:final exception):
         context.showSnackBar(
           message: context.l10n.editProfile.errors
-              .selectOrFallback(exception.l10nPlaceholder),
+              .selectOrFallback(exception.l10nKey),
           type: SnackBarType.error,
         );
       default:
