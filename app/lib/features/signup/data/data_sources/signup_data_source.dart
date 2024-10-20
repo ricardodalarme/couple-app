@@ -40,8 +40,6 @@ class SignupDataSourceImpl implements SignupDataSource {
       ),
     );
 
-    if (response.hasException) {
-      throw response.exception!;
-    }
+    return validateResponse(response);
   }
 }

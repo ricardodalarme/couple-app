@@ -34,8 +34,6 @@ class EditProfileDataSourceImpl implements EditProfileDataSource {
       ),
     );
 
-    if (response.hasException) {
-      throw response.exception!;
-    }
+    return validateResponse(response);
   }
 }

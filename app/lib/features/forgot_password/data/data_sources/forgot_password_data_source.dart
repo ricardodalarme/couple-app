@@ -28,8 +28,6 @@ class ForgotPasswordDataSourceImpl implements ForgotPasswordDataSource {
       ),
     );
 
-    if (response.hasException) {
-      throw response.exception!;
-    }
+    return validateResponse(response);
   }
 }

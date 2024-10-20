@@ -33,11 +33,9 @@ class AuthenticationDataSourceImpl implements AuthenticationDataSource {
       ),
     );
 
-    final data = validateResponseData(
+    return validateResponseData(
       response,
       getData: (data) => data?.login,
     );
-
-    return data;
   }
 }

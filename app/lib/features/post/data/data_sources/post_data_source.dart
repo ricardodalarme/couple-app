@@ -28,11 +28,10 @@ class PostDataSourceImpl implements PostDataSource {
         ),
       ),
     );
-    final data = response.parsedData?.posts;
 
-    if (data == null) {
-      throw const NoDataException();
-    }
-    return data;
+    return validateResponseData(
+      response,
+      getData: (data) => data?.posts,
+    );
   }
 }

@@ -31,8 +31,6 @@ class ChangePasswordDataSourceImpl implements ChangePasswordDataSource {
       ),
     );
 
-    if (response.hasException) {
-      throw response.exception!;
-    }
+    return validateResponse(response);
   }
 }
