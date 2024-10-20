@@ -5,6 +5,8 @@ import 'package:meta/meta.dart';
 /// [S] represents the type of the success value
 sealed class Resource<S> {
   const Resource();
+
+  bool get isLoading => this is Loading;
 }
 
 @immutable
