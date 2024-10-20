@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/data_sources/queries/generated/GetPosts.graphql.dart';
 

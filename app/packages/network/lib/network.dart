@@ -1,3 +1,4 @@
+export 'src/exceptions/no_data_exception.dart';
 export 'src/exceptions/server_response_exception.dart';
 export 'src/graphql/gql_client.dart';
 export 'src/graphql/validate_response.dart';

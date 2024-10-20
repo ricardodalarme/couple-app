@@ -1,5 +1,5 @@
-import 'package:core/core.dart';
 import 'package:graphql/client.dart' hide UnknownException;
+import 'package:network/src/exceptions/no_data_exception.dart';
 import 'package:network/src/exceptions/server_response_exception.dart';
 
 void validateResponse(QueryResult response) {
