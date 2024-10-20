@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz_inputs/formz_inputs.dart';
 import 'package:quickstart_flutter_bloc/features/signup/presentation/bloc/signup_bloc.dart';
@@ -17,8 +18,8 @@ void main() {
 
     test('returns object with updated status when status is passed', () {
       expect(
-        const SignupState().copyWith(status: FormzSubmissionStatus.initial),
-        const SignupState(),
+        const SignupState().copyWith(submission: Success(null)),
+        const SignupState(submission: Success(null)),
       );
     });
 

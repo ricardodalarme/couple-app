@@ -6,28 +6,28 @@ final class SignupState with EquatableMixin, FormzMixin {
     this.email = const EmailInput.pure(),
     this.password = const PasswordInput.pure(),
     this.confirmPassword = const ConfirmedPasswordInput.pure(),
-    this.status = FormzSubmissionStatus.initial,
+    this.submission = const Initial(),
   });
 
   final NonEmptyInput username;
   final EmailInput email;
   final PasswordInput password;
   final ConfirmedPasswordInput confirmPassword;
-  final FormzSubmissionStatus status;
+  final Resource<void> submission;
 
   SignupState copyWith({
     NonEmptyInput? username,
     EmailInput? email,
     PasswordInput? password,
     ConfirmedPasswordInput? confirmPassword,
-    FormzSubmissionStatus? status,
+    Resource<void>? submission,
   }) {
     return SignupState(
       username: username ?? this.username,
       email: email ?? this.email,
       password: password ?? this.password,
       confirmPassword: confirmPassword ?? this.confirmPassword,
-      status: status ?? this.status,
+      submission: submission ?? this.submission,
     );
   }
 
@@ -37,5 +37,5 @@ final class SignupState with EquatableMixin, FormzMixin {
 
   @override
   List<Object?> get props =>
-      [username, email, password, confirmPassword, status];
+      [username, email, password, confirmPassword, submission];
 }

@@ -3,7 +3,6 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz_inputs/formz_inputs.dart';
 import 'package:quickstart_flutter_bloc/features/signup/presentation/bloc/signup_bloc.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 import 'package:quickstart_flutter_bloc/routes/app_router.dart';
@@ -25,11 +24,9 @@ class SignUpPage extends StatelessWidget implements AutoRouteWrapper {
     return BaseView(
       title: context.l10n.signup.title,
       body: BlocListener<SignupBloc, SignupState>(
-        listener: (context, state) {
-          if (state.status.isSuccess) {
-            context.router.replaceAll([const HomeRoute()]);
-          }
-        },
+        listenWhen: (previous, current) =>
+            previous.submission != current.submission,
+        listener: _handleStatus,
         child: const Center(
           child: SingleChildScrollView(
             padding: EdgeInsets.all(Spacings.large),
@@ -51,6 +48,15 @@ class SignUpPage extends StatelessWidget implements AutoRouteWrapper {
         ),
       ),
     );
+  }
+
+  void _handleStatus(BuildContext context, SignupState state) {
+    switch (state.submission) {
+      case Success():
+        context.router.replaceAll([const HomeRoute()]);
+      default:
+        break;
+    }
   }
 }
 
@@ -148,7 +154,7 @@ class _SubmitButton extends StatelessWidget {
     return BlocBuilder<SignupBloc, SignupState>(
       builder: (context, state) => BaseButton(
         text: context.l10n.signup.buttonSubmit,
-        isLoading: state.status.isInProgress,
+        isLoading: state.submission.isLoading,
         isEnabled: state.isValid,
         onPressed: () =>
             context.read<SignupBloc>().add(const SignupSubmitted()),
