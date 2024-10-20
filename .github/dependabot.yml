@@ -35,7 +35,7 @@ updates:
 
   # Packages
   - package-ecosystem: "pub"
-    directory: "/app/packages/core"
+    directory: "/app/packages/common_ui/"
     schedule:
       interval: "weekly"
     labels:
@@ -44,7 +44,7 @@ updates:
       prefix: "chore"
       include: "scope"
   - package-ecosystem: "pub"
-    directory: "/app/packages/network"
+    directory: "/app/packages/core/"
     schedule:
       interval: "weekly"
     labels:
@@ -53,7 +53,7 @@ updates:
       prefix: "chore"
       include: "scope"
   - package-ecosystem: "pub"
-    directory: "/app/packages/common_ui"
+    directory: "/app/packages/formz_inputs/"
     schedule:
       interval: "weekly"
     labels:
@@ -62,7 +62,7 @@ updates:
       prefix: "chore"
       include: "scope"
   - package-ecosystem: "pub"
-    directory: "/app/packages/formz_inputs"
+    directory: "/app/packages/network/"
     schedule:
       interval: "weekly"
     labels:
@@ -73,7 +73,7 @@ updates:
 
   # Services
   - package-ecosystem: "pub"
-    directory: "/app/packages/services/analytics"
+    directory: "/app/packages/services/analytics/"
     schedule:
       interval: "weekly"
     labels:
@@ -82,7 +82,7 @@ updates:
       prefix: "chore"
       include: "scope"
   - package-ecosystem: "pub"
-    directory: "/app/packages/services/crash_report"
+    directory: "/app/packages/services/biometric/"
     schedule:
       interval: "weekly"
     labels:
@@ -91,7 +91,7 @@ updates:
       prefix: "chore"
       include: "scope"
   - package-ecosystem: "pub"
-    directory: "/app/packages/services/remote_config"
+    directory: "/app/packages/services/crash_report/"
     schedule:
       interval: "weekly"
     labels:
@@ -100,7 +100,7 @@ updates:
       prefix: "chore"
       include: "scope"
   - package-ecosystem: "pub"
-    directory: "/app/packages/services/persistent_storage"
+    directory: "/app/packages/services/persistent_storage/"
     schedule:
       interval: "weekly"
     labels:
@@ -109,7 +109,16 @@ updates:
       prefix: "chore"
       include: "scope"
   - package-ecosystem: "pub"
-    directory: "/app/packages/services/secure_storage"
+    directory: "/app/packages/services/remote_config/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - ":package: dependencies"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+  - package-ecosystem: "pub"
+    directory: "/app/packages/services/secure_storage/"
     schedule:
       interval: "weekly"
     labels:
