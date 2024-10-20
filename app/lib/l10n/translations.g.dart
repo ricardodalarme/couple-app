@@ -331,6 +331,9 @@ class _TranslationsForgotPasswordEn {
   Map<String, String> get emailErrors => {
         'invalid': 'Invalid email',
       };
+  Map<String, String> get errors => {
+        'other': _root.common.genericError,
+      };
 }
 
 // Path: login
@@ -751,6 +754,10 @@ class _TranslationsForgotPasswordPt extends _TranslationsForgotPasswordEn {
   Map<String, String> get emailErrors => {
         'invalid': 'Email inválido',
       };
+  @override
+  Map<String, String> get errors => {
+        'other': _root.common.genericError,
+      };
 }
 
 // Path: login
@@ -1092,6 +1099,8 @@ extension on Translations {
         return 'We\'ve sent you an email with a link to reset your password.';
       case 'forgotPassword.emailErrors.invalid':
         return 'Invalid email';
+      case 'forgotPassword.errors.other':
+        return _root.common.genericError;
       case 'login.title':
         return 'Login';
       case 'login.buttonLogin':
@@ -1248,6 +1257,8 @@ extension on _TranslationsPt {
         return 'Enviamos um email com um link para você redefinir a sua senha.';
       case 'forgotPassword.emailErrors.invalid':
         return 'Email inválido';
+      case 'forgotPassword.errors.other':
+        return _root.common.genericError;
       case 'login.title':
         return 'Entrar';
       case 'login.buttonLogin':
