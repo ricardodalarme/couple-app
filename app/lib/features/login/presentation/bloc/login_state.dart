@@ -4,22 +4,22 @@ final class LoginState with EquatableMixin, FormzMixin {
   const LoginState({
     this.username = const NonEmptyInput.pure(),
     this.password = const NonEmptyInput.pure(),
-    this.status = FormzSubmissionStatus.initial,
+    this.login = const Initial(),
   });
 
   final NonEmptyInput username;
   final NonEmptyInput password;
-  final FormzSubmissionStatus status;
+  final Resource<void> login;
 
   LoginState copyWith({
     NonEmptyInput? username,
     NonEmptyInput? password,
-    FormzSubmissionStatus? status,
+    Resource<void>? login,
   }) {
     return LoginState(
       username: username ?? this.username,
       password: password ?? this.password,
-      status: status ?? this.status,
+      login: login ?? this.login,
     );
   }
 
@@ -27,5 +27,5 @@ final class LoginState with EquatableMixin, FormzMixin {
   List<FormzInput<dynamic, dynamic>> get inputs => [username, password];
 
   @override
-  List<Object?> get props => [username, password, status];
+  List<Object?> get props => [username, password, login];
 }

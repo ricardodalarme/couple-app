@@ -4,7 +4,6 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart' show TextButton;
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz_inputs/formz_inputs.dart';
 import 'package:quickstart_flutter_bloc/features/login/presentation/bloc/login_bloc.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 import 'package:quickstart_flutter_bloc/routes/app_router.dart';
@@ -26,7 +25,7 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
     return BaseView(
       title: context.l10n.login.title,
       body: BlocListener<LoginBloc, LoginState>(
-        listenWhen: (previous, current) => previous.status != current.status,
+        listenWhen: (previous, current) => previous.login != current.login,
         listener: _handleStatus,
         child: Center(
           child: SingleChildScrollView(
@@ -65,14 +64,14 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
   }
 
   void _handleStatus(BuildContext context, LoginState state) {
-    switch (state.status) {
-      case FormzSubmissionStatus.failure:
+    switch (state.login) {
+      case Failure():
         context.showSnackBar(
           message: context.l10n.common.genericError,
           type: SnackBarType.error,
         );
       default:
-        return;
+        break;
     }
   }
 }
@@ -128,7 +127,7 @@ class _LoginButton extends StatelessWidget {
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) => BaseButton(
         text: context.l10n.login.buttonLogin,
-        isLoading: state.status.isInProgress,
+        isLoading: state.login.isLoading,
         isEnabled: state.isValid,
         onPressed: () => context.read<LoginBloc>().add(const LoginSubmitted()),
       ),

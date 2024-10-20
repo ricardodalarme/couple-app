@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz_inputs/formz_inputs.dart';
 import 'package:mocktail/mocktail.dart';
@@ -28,7 +29,7 @@ void main() {
         const LoginState(
           username: NonEmptyInput.pure(),
           password: NonEmptyInput.pure(),
-          status: FormzSubmissionStatus.initial,
+          login: Initial(),
         ),
       );
     });

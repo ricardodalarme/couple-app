@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz_inputs/formz_inputs.dart';
@@ -44,7 +45,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     if (state.isNotValid) return;
 
-    emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+    emit(state.copyWith(login: const Loading()));
 
     try {
       await _authenticationRepository.logInWithUsernameAndPassword(
@@ -52,10 +53,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         password: state.password.value,
       );
 
-      emit(state.copyWith(status: FormzSubmissionStatus.success));
-    } catch (_) {
-      emit(state.copyWith(status: FormzSubmissionStatus.failure));
-      emit(state.copyWith(status: FormzSubmissionStatus.initial));
+      emit(state.copyWith(login: const Success(null)));
+    } catch (exception) {
+      emit(state.copyWith(login: Failure.fromObject(exception)));
+      emit(state.copyWith(login: const Initial()));
     }
   }
 
