@@ -8,6 +8,16 @@ sealed class Resource<S> {
 }
 
 @immutable
+final class Initial extends Resource<Never> {
+  const Initial();
+}
+
+@immutable
+final class Loading extends Resource<Never> {
+  const Loading();
+}
+
+@immutable
 final class Success<S> extends Resource<S> {
   const Success(this.value);
 
@@ -42,9 +52,4 @@ final class Failure extends Resource<Never> {
 
   @override
   int get hashCode => exception.hashCode;
-}
-
-@immutable
-final class Loading extends Resource<Never> {
-  const Loading();
 }

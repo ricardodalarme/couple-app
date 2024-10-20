@@ -26,6 +26,7 @@ class PostPage extends StatelessWidget implements AutoRouteWrapper {
       title: context.l10n.post.title,
       body: BlocBuilder<PostBloc, PostState>(
         builder: (context, state) => switch (state.posts) {
+          Initial() => const SizedBox.shrink(),
           Success(:final value) => _PostSuccess(posts: value),
           Loading() => const LoadingIndicator(),
           Failure() => ErrorIndicator(
