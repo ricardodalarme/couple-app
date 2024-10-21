@@ -1,8 +1,12 @@
 targets:
   $default:
     builders:
+      auto_route_generator:auto_route_generator:
+        generate_for:
+          - lib/features/**/presentation/**.dart
       graphql_codegen:
         options:
+          assetsPath: lib/features/**/data_sources/**.graphql
           clients:
             - graphql
           disableCopyWithGeneration: true
