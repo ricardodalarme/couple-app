@@ -14,19 +14,14 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     required Mapper<MutationLoginlogin, TokenLocal> tokenLocalMapper,
   })  : _loginDataSource = loginDataSource,
         _tokenLocalDataSource = tokenLocalDataSource,
-        _tokenLocalMapper = tokenLocalMapper {
-    _authenticationStreamController.onListen = () {
-      _authenticationStreamController.add(_initialAuthenticationStatus);
-    };
-  }
+        _tokenLocalMapper = tokenLocalMapper;
+
   final AuthenticationDataSource _loginDataSource;
   final TokenLocalDataSource _tokenLocalDataSource;
   final Mapper<MutationLoginlogin, TokenLocal> _tokenLocalMapper;
 
   final StreamController<bool> _authenticationStreamController =
       StreamController<bool>.broadcast();
-
-  bool _initialAuthenticationStatus = false;
 
   @override
   Stream<bool> get isAuthenticated => _authenticationStreamController.stream;
@@ -39,7 +34,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   @override
   Future<void> checkAuthenticationStatus() async {
     final token = await _tokenLocalDataSource.get();
-    _initialAuthenticationStatus = !_hasTokenExpired(token);
+    _authenticationStreamController.add(!_hasTokenExpired(token));
   }
 
   bool _hasTokenExpired(TokenLocal? token) =>
