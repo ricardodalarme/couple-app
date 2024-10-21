@@ -6,11 +6,10 @@ import 'package:quickstart_flutter_bloc/features/login/presentation/bloc/login_b
 
 class LoginInjectionModule implements InjectionModule {
   @override
-  FutureOr<void> registerDependencies({required Injector injector}) {
-    injector.registerFactory<LoginBloc>(
+  FutureOr<void> registerDependencies({required Injector injector}) => injector
+    ..registerFactory<LoginBloc>(
       () => LoginBloc(
         authenticationRepository: injector.get<AuthenticationRepository>(),
       ),
     );
-  }
 }

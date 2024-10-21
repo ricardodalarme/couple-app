@@ -9,22 +9,20 @@ import 'package:quickstart_flutter_bloc/features/forgot_password/presentation/bl
 
 class ForgotPasswordInjectionModule implements InjectionModule {
   @override
-  FutureOr<void> registerDependencies({required Injector injector}) {
-    injector
-      ..registerLazySingleton<ForgotPasswordDataSource>(
-        () => ForgotPasswordDataSourceImpl(
-          graphlQLClient: injector.get<GQLClient>(),
-        ),
-      )
-      ..registerLazySingleton<ForgotPasswordRepository>(
-        () => ForgotPasswordRepositoryImpl(
-          forgotPasswordDataSource: injector.get<ForgotPasswordDataSource>(),
-        ),
-      )
-      ..registerFactory<ForgotPasswordBloc>(
-        () => ForgotPasswordBloc(
-          forgotPasswordRepository: injector.get<ForgotPasswordRepository>(),
-        ),
-      );
-  }
+  FutureOr<void> registerDependencies({required Injector injector}) => injector
+    ..registerLazySingleton<ForgotPasswordDataSource>(
+      () => ForgotPasswordDataSourceImpl(
+        graphlQLClient: injector.get<GQLClient>(),
+      ),
+    )
+    ..registerLazySingleton<ForgotPasswordRepository>(
+      () => ForgotPasswordRepositoryImpl(
+        forgotPasswordDataSource: injector.get<ForgotPasswordDataSource>(),
+      ),
+    )
+    ..registerFactory<ForgotPasswordBloc>(
+      () => ForgotPasswordBloc(
+        forgotPasswordRepository: injector.get<ForgotPasswordRepository>(),
+      ),
+    );
 }

@@ -10,23 +10,21 @@ import 'package:quickstart_flutter_bloc/features/signup/presentation/bloc/signup
 
 class SignupInjectionModule implements InjectionModule {
   @override
-  FutureOr<void> registerDependencies({required Injector injector}) {
-    injector
-      ..registerLazySingleton<SignupDataSource>(
-        () => SignupDataSourceImpl(
-          graphlQLClient: injector.get<GQLClient>(),
-        ),
-      )
-      ..registerLazySingleton<SignupRepository>(
-        () => SignupRepositoryImpl(
-          signupDataSource: injector.get<SignupDataSource>(),
-        ),
-      )
-      ..registerFactory<SignupBloc>(
-        () => SignupBloc(
-          authenticationRepository: injector.get<AuthenticationRepository>(),
-          signupRepository: injector.get<SignupRepository>(),
-        ),
-      );
-  }
+  FutureOr<void> registerDependencies({required Injector injector}) => injector
+    ..registerLazySingleton<SignupDataSource>(
+      () => SignupDataSourceImpl(
+        graphlQLClient: injector.get<GQLClient>(),
+      ),
+    )
+    ..registerLazySingleton<SignupRepository>(
+      () => SignupRepositoryImpl(
+        signupDataSource: injector.get<SignupDataSource>(),
+      ),
+    )
+    ..registerFactory<SignupBloc>(
+      () => SignupBloc(
+        authenticationRepository: injector.get<AuthenticationRepository>(),
+        signupRepository: injector.get<SignupRepository>(),
+      ),
+    );
 }
