@@ -30,12 +30,6 @@ class VariablesMutationUpdateUser {
     return result$data;
   }
 
-  CopyWithVariablesMutationUpdateUser<VariablesMutationUpdateUser>
-      get copyWith => CopyWithVariablesMutationUpdateUser(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -58,48 +52,6 @@ class VariablesMutationUpdateUser {
     final l$input = input;
     return Object.hashAll([l$input]);
   }
-}
-
-abstract class CopyWithVariablesMutationUpdateUser<TRes> {
-  factory CopyWithVariablesMutationUpdateUser(
-    VariablesMutationUpdateUser instance,
-    TRes Function(VariablesMutationUpdateUser) then,
-  ) = _CopyWithImplVariablesMutationUpdateUser;
-
-  factory CopyWithVariablesMutationUpdateUser.stub(TRes res) =
-      _CopyWithStubImplVariablesMutationUpdateUser;
-
-  TRes call({InputUpdateUserInput? input});
-}
-
-class _CopyWithImplVariablesMutationUpdateUser<TRes>
-    implements CopyWithVariablesMutationUpdateUser<TRes> {
-  _CopyWithImplVariablesMutationUpdateUser(
-    this._instance,
-    this._then,
-  );
-
-  final VariablesMutationUpdateUser _instance;
-
-  final TRes Function(VariablesMutationUpdateUser) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? input = _undefined}) =>
-      _then(VariablesMutationUpdateUser._({
-        ..._instance._$data,
-        if (input != _undefined && input != null)
-          'input': (input as InputUpdateUserInput),
-      }));
-}
-
-class _CopyWithStubImplVariablesMutationUpdateUser<TRes>
-    implements CopyWithVariablesMutationUpdateUser<TRes> {
-  _CopyWithStubImplVariablesMutationUpdateUser(this._res);
-
-  TRes _res;
-
-  call({InputUpdateUserInput? input}) => _res;
 }
 
 class MutationUpdateUser {
@@ -163,81 +115,6 @@ class MutationUpdateUser {
     }
     return true;
   }
-}
-
-extension UtilityExtensionMutationUpdateUser on MutationUpdateUser {
-  CopyWithMutationUpdateUser<MutationUpdateUser> get copyWith =>
-      CopyWithMutationUpdateUser(
-        this,
-        (i) => i,
-      );
-}
-
-abstract class CopyWithMutationUpdateUser<TRes> {
-  factory CopyWithMutationUpdateUser(
-    MutationUpdateUser instance,
-    TRes Function(MutationUpdateUser) then,
-  ) = _CopyWithImplMutationUpdateUser;
-
-  factory CopyWithMutationUpdateUser.stub(TRes res) =
-      _CopyWithStubImplMutationUpdateUser;
-
-  TRes call({
-    MutationUpdateUserupdateUser? updateUser,
-    String? $__typename,
-  });
-  CopyWithMutationUpdateUserupdateUser<TRes> get updateUser;
-}
-
-class _CopyWithImplMutationUpdateUser<TRes>
-    implements CopyWithMutationUpdateUser<TRes> {
-  _CopyWithImplMutationUpdateUser(
-    this._instance,
-    this._then,
-  );
-
-  final MutationUpdateUser _instance;
-
-  final TRes Function(MutationUpdateUser) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? updateUser = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(MutationUpdateUser(
-        updateUser: updateUser == _undefined
-            ? _instance.updateUser
-            : (updateUser as MutationUpdateUserupdateUser?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWithMutationUpdateUserupdateUser<TRes> get updateUser {
-    final local$updateUser = _instance.updateUser;
-    return local$updateUser == null
-        ? CopyWithMutationUpdateUserupdateUser.stub(_then(_instance))
-        : CopyWithMutationUpdateUserupdateUser(
-            local$updateUser, (e) => call(updateUser: e));
-  }
-}
-
-class _CopyWithStubImplMutationUpdateUser<TRes>
-    implements CopyWithMutationUpdateUser<TRes> {
-  _CopyWithStubImplMutationUpdateUser(this._res);
-
-  TRes _res;
-
-  call({
-    MutationUpdateUserupdateUser? updateUser,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWithMutationUpdateUserupdateUser<TRes> get updateUser =>
-      CopyWithMutationUpdateUserupdateUser.stub(_res);
 }
 
 const documentNodeMutationUpdateUser = DocumentNode(definitions: [
@@ -420,54 +297,4 @@ class MutationUpdateUserupdateUser {
     }
     return true;
   }
-}
-
-extension UtilityExtensionMutationUpdateUserupdateUser
-    on MutationUpdateUserupdateUser {
-  CopyWithMutationUpdateUserupdateUser<MutationUpdateUserupdateUser>
-      get copyWith => CopyWithMutationUpdateUserupdateUser(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWithMutationUpdateUserupdateUser<TRes> {
-  factory CopyWithMutationUpdateUserupdateUser(
-    MutationUpdateUserupdateUser instance,
-    TRes Function(MutationUpdateUserupdateUser) then,
-  ) = _CopyWithImplMutationUpdateUserupdateUser;
-
-  factory CopyWithMutationUpdateUserupdateUser.stub(TRes res) =
-      _CopyWithStubImplMutationUpdateUserupdateUser;
-
-  TRes call({String? $__typename});
-}
-
-class _CopyWithImplMutationUpdateUserupdateUser<TRes>
-    implements CopyWithMutationUpdateUserupdateUser<TRes> {
-  _CopyWithImplMutationUpdateUserupdateUser(
-    this._instance,
-    this._then,
-  );
-
-  final MutationUpdateUserupdateUser _instance;
-
-  final TRes Function(MutationUpdateUserupdateUser) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? $__typename = _undefined}) =>
-      _then(MutationUpdateUserupdateUser(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImplMutationUpdateUserupdateUser<TRes>
-    implements CopyWithMutationUpdateUserupdateUser<TRes> {
-  _CopyWithStubImplMutationUpdateUserupdateUser(this._res);
-
-  TRes _res;
-
-  call({String? $__typename}) => _res;
 }

@@ -31,12 +31,6 @@ class VariablesMutationLogin {
     return result$data;
   }
 
-  CopyWithVariablesMutationLogin<VariablesMutationLogin> get copyWith =>
-      CopyWithVariablesMutationLogin(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -59,48 +53,6 @@ class VariablesMutationLogin {
     final l$credentials = credentials;
     return Object.hashAll([l$credentials]);
   }
-}
-
-abstract class CopyWithVariablesMutationLogin<TRes> {
-  factory CopyWithVariablesMutationLogin(
-    VariablesMutationLogin instance,
-    TRes Function(VariablesMutationLogin) then,
-  ) = _CopyWithImplVariablesMutationLogin;
-
-  factory CopyWithVariablesMutationLogin.stub(TRes res) =
-      _CopyWithStubImplVariablesMutationLogin;
-
-  TRes call({InputLoginInput? credentials});
-}
-
-class _CopyWithImplVariablesMutationLogin<TRes>
-    implements CopyWithVariablesMutationLogin<TRes> {
-  _CopyWithImplVariablesMutationLogin(
-    this._instance,
-    this._then,
-  );
-
-  final VariablesMutationLogin _instance;
-
-  final TRes Function(VariablesMutationLogin) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? credentials = _undefined}) =>
-      _then(VariablesMutationLogin._({
-        ..._instance._$data,
-        if (credentials != _undefined && credentials != null)
-          'credentials': (credentials as InputLoginInput),
-      }));
-}
-
-class _CopyWithStubImplVariablesMutationLogin<TRes>
-    implements CopyWithVariablesMutationLogin<TRes> {
-  _CopyWithStubImplVariablesMutationLogin(this._res);
-
-  TRes _res;
-
-  call({InputLoginInput? credentials}) => _res;
 }
 
 class MutationLogin {
@@ -163,77 +115,6 @@ class MutationLogin {
     }
     return true;
   }
-}
-
-extension UtilityExtensionMutationLogin on MutationLogin {
-  CopyWithMutationLogin<MutationLogin> get copyWith => CopyWithMutationLogin(
-        this,
-        (i) => i,
-      );
-}
-
-abstract class CopyWithMutationLogin<TRes> {
-  factory CopyWithMutationLogin(
-    MutationLogin instance,
-    TRes Function(MutationLogin) then,
-  ) = _CopyWithImplMutationLogin;
-
-  factory CopyWithMutationLogin.stub(TRes res) = _CopyWithStubImplMutationLogin;
-
-  TRes call({
-    MutationLoginlogin? login,
-    String? $__typename,
-  });
-  CopyWithMutationLoginlogin<TRes> get login;
-}
-
-class _CopyWithImplMutationLogin<TRes> implements CopyWithMutationLogin<TRes> {
-  _CopyWithImplMutationLogin(
-    this._instance,
-    this._then,
-  );
-
-  final MutationLogin _instance;
-
-  final TRes Function(MutationLogin) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? login = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(MutationLogin(
-        login: login == _undefined
-            ? _instance.login
-            : (login as MutationLoginlogin?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWithMutationLoginlogin<TRes> get login {
-    final local$login = _instance.login;
-    return local$login == null
-        ? CopyWithMutationLoginlogin.stub(_then(_instance))
-        : CopyWithMutationLoginlogin(local$login, (e) => call(login: e));
-  }
-}
-
-class _CopyWithStubImplMutationLogin<TRes>
-    implements CopyWithMutationLogin<TRes> {
-  _CopyWithStubImplMutationLogin(this._res);
-
-  TRes _res;
-
-  call({
-    MutationLoginlogin? login,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWithMutationLoginlogin<TRes> get login =>
-      CopyWithMutationLoginlogin.stub(_res);
 }
 
 const documentNodeMutationLogin = DocumentNode(definitions: [
@@ -489,93 +370,4 @@ class MutationLoginlogin {
     }
     return true;
   }
-}
-
-extension UtilityExtensionMutationLoginlogin on MutationLoginlogin {
-  CopyWithMutationLoginlogin<MutationLoginlogin> get copyWith =>
-      CopyWithMutationLoginlogin(
-        this,
-        (i) => i,
-      );
-}
-
-abstract class CopyWithMutationLoginlogin<TRes> {
-  factory CopyWithMutationLoginlogin(
-    MutationLoginlogin instance,
-    TRes Function(MutationLoginlogin) then,
-  ) = _CopyWithImplMutationLoginlogin;
-
-  factory CopyWithMutationLoginlogin.stub(TRes res) =
-      _CopyWithStubImplMutationLoginlogin;
-
-  TRes call({
-    FragmentTokenFragment? accessToken,
-    FragmentTokenFragment? refreshToken,
-    String? $__typename,
-  });
-  CopyWithFragmentTokenFragment<TRes> get accessToken;
-  CopyWithFragmentTokenFragment<TRes> get refreshToken;
-}
-
-class _CopyWithImplMutationLoginlogin<TRes>
-    implements CopyWithMutationLoginlogin<TRes> {
-  _CopyWithImplMutationLoginlogin(
-    this._instance,
-    this._then,
-  );
-
-  final MutationLoginlogin _instance;
-
-  final TRes Function(MutationLoginlogin) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? accessToken = _undefined,
-    Object? refreshToken = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(MutationLoginlogin(
-        accessToken: accessToken == _undefined || accessToken == null
-            ? _instance.accessToken
-            : (accessToken as FragmentTokenFragment),
-        refreshToken: refreshToken == _undefined || refreshToken == null
-            ? _instance.refreshToken
-            : (refreshToken as FragmentTokenFragment),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWithFragmentTokenFragment<TRes> get accessToken {
-    final local$accessToken = _instance.accessToken;
-    return CopyWithFragmentTokenFragment(
-        local$accessToken, (e) => call(accessToken: e));
-  }
-
-  CopyWithFragmentTokenFragment<TRes> get refreshToken {
-    final local$refreshToken = _instance.refreshToken;
-    return CopyWithFragmentTokenFragment(
-        local$refreshToken, (e) => call(refreshToken: e));
-  }
-}
-
-class _CopyWithStubImplMutationLoginlogin<TRes>
-    implements CopyWithMutationLoginlogin<TRes> {
-  _CopyWithStubImplMutationLoginlogin(this._res);
-
-  TRes _res;
-
-  call({
-    FragmentTokenFragment? accessToken,
-    FragmentTokenFragment? refreshToken,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWithFragmentTokenFragment<TRes> get accessToken =>
-      CopyWithFragmentTokenFragment.stub(_res);
-
-  CopyWithFragmentTokenFragment<TRes> get refreshToken =>
-      CopyWithFragmentTokenFragment.stub(_res);
 }

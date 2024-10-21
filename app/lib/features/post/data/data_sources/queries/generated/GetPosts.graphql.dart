@@ -49,12 +49,6 @@ class VariablesQueryGetPosts {
     return result$data;
   }
 
-  CopyWithVariablesQueryGetPosts<VariablesQueryGetPosts> get copyWith =>
-      CopyWithVariablesQueryGetPosts(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -92,58 +86,6 @@ class VariablesQueryGetPosts {
       _$data.containsKey('after') ? l$after : const {},
     ]);
   }
-}
-
-abstract class CopyWithVariablesQueryGetPosts<TRes> {
-  factory CopyWithVariablesQueryGetPosts(
-    VariablesQueryGetPosts instance,
-    TRes Function(VariablesQueryGetPosts) then,
-  ) = _CopyWithImplVariablesQueryGetPosts;
-
-  factory CopyWithVariablesQueryGetPosts.stub(TRes res) =
-      _CopyWithStubImplVariablesQueryGetPosts;
-
-  TRes call({
-    int? first,
-    String? after,
-  });
-}
-
-class _CopyWithImplVariablesQueryGetPosts<TRes>
-    implements CopyWithVariablesQueryGetPosts<TRes> {
-  _CopyWithImplVariablesQueryGetPosts(
-    this._instance,
-    this._then,
-  );
-
-  final VariablesQueryGetPosts _instance;
-
-  final TRes Function(VariablesQueryGetPosts) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? first = _undefined,
-    Object? after = _undefined,
-  }) =>
-      _then(VariablesQueryGetPosts._({
-        ..._instance._$data,
-        if (first != _undefined) 'first': (first as int?),
-        if (after != _undefined) 'after': (after as String?),
-      }));
-}
-
-class _CopyWithStubImplVariablesQueryGetPosts<TRes>
-    implements CopyWithVariablesQueryGetPosts<TRes> {
-  _CopyWithStubImplVariablesQueryGetPosts(this._res);
-
-  TRes _res;
-
-  call({
-    int? first,
-    String? after,
-  }) =>
-      _res;
 }
 
 class QueryGetPosts {
@@ -206,77 +148,6 @@ class QueryGetPosts {
     }
     return true;
   }
-}
-
-extension UtilityExtensionQueryGetPosts on QueryGetPosts {
-  CopyWithQueryGetPosts<QueryGetPosts> get copyWith => CopyWithQueryGetPosts(
-        this,
-        (i) => i,
-      );
-}
-
-abstract class CopyWithQueryGetPosts<TRes> {
-  factory CopyWithQueryGetPosts(
-    QueryGetPosts instance,
-    TRes Function(QueryGetPosts) then,
-  ) = _CopyWithImplQueryGetPosts;
-
-  factory CopyWithQueryGetPosts.stub(TRes res) = _CopyWithStubImplQueryGetPosts;
-
-  TRes call({
-    QueryGetPostsposts? posts,
-    String? $__typename,
-  });
-  CopyWithQueryGetPostsposts<TRes> get posts;
-}
-
-class _CopyWithImplQueryGetPosts<TRes> implements CopyWithQueryGetPosts<TRes> {
-  _CopyWithImplQueryGetPosts(
-    this._instance,
-    this._then,
-  );
-
-  final QueryGetPosts _instance;
-
-  final TRes Function(QueryGetPosts) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? posts = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(QueryGetPosts(
-        posts: posts == _undefined
-            ? _instance.posts
-            : (posts as QueryGetPostsposts?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWithQueryGetPostsposts<TRes> get posts {
-    final local$posts = _instance.posts;
-    return local$posts == null
-        ? CopyWithQueryGetPostsposts.stub(_then(_instance))
-        : CopyWithQueryGetPostsposts(local$posts, (e) => call(posts: e));
-  }
-}
-
-class _CopyWithStubImplQueryGetPosts<TRes>
-    implements CopyWithQueryGetPosts<TRes> {
-  _CopyWithStubImplQueryGetPosts(this._res);
-
-  TRes _res;
-
-  call({
-    QueryGetPostsposts? posts,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWithQueryGetPostsposts<TRes> get posts =>
-      CopyWithQueryGetPostsposts.stub(_res);
 }
 
 const documentNodeQueryGetPosts = DocumentNode(definitions: [
@@ -595,103 +466,6 @@ class QueryGetPostsposts {
   }
 }
 
-extension UtilityExtensionQueryGetPostsposts on QueryGetPostsposts {
-  CopyWithQueryGetPostsposts<QueryGetPostsposts> get copyWith =>
-      CopyWithQueryGetPostsposts(
-        this,
-        (i) => i,
-      );
-}
-
-abstract class CopyWithQueryGetPostsposts<TRes> {
-  factory CopyWithQueryGetPostsposts(
-    QueryGetPostsposts instance,
-    TRes Function(QueryGetPostsposts) then,
-  ) = _CopyWithImplQueryGetPostsposts;
-
-  factory CopyWithQueryGetPostsposts.stub(TRes res) =
-      _CopyWithStubImplQueryGetPostsposts;
-
-  TRes call({
-    FragmentPageInfoFragment? pageInfo,
-    List<QueryGetPostspostsnodes>? nodes,
-    String? $__typename,
-  });
-  CopyWithFragmentPageInfoFragment<TRes> get pageInfo;
-  TRes nodes(
-      Iterable<QueryGetPostspostsnodes> Function(
-              Iterable<
-                  CopyWithQueryGetPostspostsnodes<QueryGetPostspostsnodes>>)
-          _fn);
-}
-
-class _CopyWithImplQueryGetPostsposts<TRes>
-    implements CopyWithQueryGetPostsposts<TRes> {
-  _CopyWithImplQueryGetPostsposts(
-    this._instance,
-    this._then,
-  );
-
-  final QueryGetPostsposts _instance;
-
-  final TRes Function(QueryGetPostsposts) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? pageInfo = _undefined,
-    Object? nodes = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(QueryGetPostsposts(
-        pageInfo: pageInfo == _undefined || pageInfo == null
-            ? _instance.pageInfo
-            : (pageInfo as FragmentPageInfoFragment),
-        nodes: nodes == _undefined || nodes == null
-            ? _instance.nodes
-            : (nodes as List<QueryGetPostspostsnodes>),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWithFragmentPageInfoFragment<TRes> get pageInfo {
-    final local$pageInfo = _instance.pageInfo;
-    return CopyWithFragmentPageInfoFragment(
-        local$pageInfo, (e) => call(pageInfo: e));
-  }
-
-  TRes nodes(
-          Iterable<QueryGetPostspostsnodes> Function(
-                  Iterable<
-                      CopyWithQueryGetPostspostsnodes<QueryGetPostspostsnodes>>)
-              _fn) =>
-      call(
-          nodes: _fn(_instance.nodes.map((e) => CopyWithQueryGetPostspostsnodes(
-                e,
-                (i) => i,
-              ))).toList());
-}
-
-class _CopyWithStubImplQueryGetPostsposts<TRes>
-    implements CopyWithQueryGetPostsposts<TRes> {
-  _CopyWithStubImplQueryGetPostsposts(this._res);
-
-  TRes _res;
-
-  call({
-    FragmentPageInfoFragment? pageInfo,
-    List<QueryGetPostspostsnodes>? nodes,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWithFragmentPageInfoFragment<TRes> get pageInfo =>
-      CopyWithFragmentPageInfoFragment.stub(_res);
-
-  nodes(_fn) => _res;
-}
-
 class QueryGetPostspostsnodes {
   QueryGetPostspostsnodes({required this.$__typename});
 
@@ -743,11 +517,6 @@ class QueryGetPostspostsnodes {
 }
 
 extension UtilityExtensionQueryGetPostspostsnodes on QueryGetPostspostsnodes {
-  CopyWithQueryGetPostspostsnodes<QueryGetPostspostsnodes> get copyWith =>
-      CopyWithQueryGetPostspostsnodes(
-        this,
-        (i) => i,
-      );
   _T when<_T>({
     required _T Function(QueryGetPostspostsnodesPost) post,
     required _T Function(QueryGetPostspostsnodesRemovedPost) removedPost,
@@ -789,47 +558,6 @@ extension UtilityExtensionQueryGetPostspostsnodes on QueryGetPostspostsnodes {
         return orElse();
     }
   }
-}
-
-abstract class CopyWithQueryGetPostspostsnodes<TRes> {
-  factory CopyWithQueryGetPostspostsnodes(
-    QueryGetPostspostsnodes instance,
-    TRes Function(QueryGetPostspostsnodes) then,
-  ) = _CopyWithImplQueryGetPostspostsnodes;
-
-  factory CopyWithQueryGetPostspostsnodes.stub(TRes res) =
-      _CopyWithStubImplQueryGetPostspostsnodes;
-
-  TRes call({String? $__typename});
-}
-
-class _CopyWithImplQueryGetPostspostsnodes<TRes>
-    implements CopyWithQueryGetPostspostsnodes<TRes> {
-  _CopyWithImplQueryGetPostspostsnodes(
-    this._instance,
-    this._then,
-  );
-
-  final QueryGetPostspostsnodes _instance;
-
-  final TRes Function(QueryGetPostspostsnodes) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? $__typename = _undefined}) =>
-      _then(QueryGetPostspostsnodes(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImplQueryGetPostspostsnodes<TRes>
-    implements CopyWithQueryGetPostspostsnodes<TRes> {
-  _CopyWithStubImplQueryGetPostspostsnodes(this._res);
-
-  TRes _res;
-
-  call({String? $__typename}) => _res;
 }
 
 class QueryGetPostspostsnodesPost
@@ -937,96 +665,6 @@ class QueryGetPostspostsnodesPost
   }
 }
 
-extension UtilityExtensionQueryGetPostspostsnodesPost
-    on QueryGetPostspostsnodesPost {
-  CopyWithQueryGetPostspostsnodesPost<QueryGetPostspostsnodesPost>
-      get copyWith => CopyWithQueryGetPostspostsnodesPost(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWithQueryGetPostspostsnodesPost<TRes> {
-  factory CopyWithQueryGetPostspostsnodesPost(
-    QueryGetPostspostsnodesPost instance,
-    TRes Function(QueryGetPostspostsnodesPost) then,
-  ) = _CopyWithImplQueryGetPostspostsnodesPost;
-
-  factory CopyWithQueryGetPostspostsnodesPost.stub(TRes res) =
-      _CopyWithStubImplQueryGetPostspostsnodesPost;
-
-  TRes call({
-    String? id,
-    String? title,
-    String? body,
-    FragmentUserFragment? createdBy,
-    String? $__typename,
-  });
-  CopyWithFragmentUserFragment<TRes> get createdBy;
-}
-
-class _CopyWithImplQueryGetPostspostsnodesPost<TRes>
-    implements CopyWithQueryGetPostspostsnodesPost<TRes> {
-  _CopyWithImplQueryGetPostspostsnodesPost(
-    this._instance,
-    this._then,
-  );
-
-  final QueryGetPostspostsnodesPost _instance;
-
-  final TRes Function(QueryGetPostspostsnodesPost) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? title = _undefined,
-    Object? body = _undefined,
-    Object? createdBy = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(QueryGetPostspostsnodesPost(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
-        body: body == _undefined || body == null
-            ? _instance.body
-            : (body as String),
-        createdBy: createdBy == _undefined || createdBy == null
-            ? _instance.createdBy
-            : (createdBy as FragmentUserFragment),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWithFragmentUserFragment<TRes> get createdBy {
-    final local$createdBy = _instance.createdBy;
-    return CopyWithFragmentUserFragment(
-        local$createdBy, (e) => call(createdBy: e));
-  }
-}
-
-class _CopyWithStubImplQueryGetPostspostsnodesPost<TRes>
-    implements CopyWithQueryGetPostspostsnodesPost<TRes> {
-  _CopyWithStubImplQueryGetPostspostsnodesPost(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? title,
-    String? body,
-    FragmentUserFragment? createdBy,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWithFragmentUserFragment<TRes> get createdBy =>
-      CopyWithFragmentUserFragment.stub(_res);
-}
-
 class QueryGetPostspostsnodesRemovedPost implements QueryGetPostspostsnodes {
   QueryGetPostspostsnodesRemovedPost({this.$__typename = 'RemovedPost'});
 
@@ -1068,54 +706,4 @@ class QueryGetPostspostsnodesRemovedPost implements QueryGetPostspostsnodes {
     }
     return true;
   }
-}
-
-extension UtilityExtensionQueryGetPostspostsnodesRemovedPost
-    on QueryGetPostspostsnodesRemovedPost {
-  CopyWithQueryGetPostspostsnodesRemovedPost<QueryGetPostspostsnodesRemovedPost>
-      get copyWith => CopyWithQueryGetPostspostsnodesRemovedPost(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWithQueryGetPostspostsnodesRemovedPost<TRes> {
-  factory CopyWithQueryGetPostspostsnodesRemovedPost(
-    QueryGetPostspostsnodesRemovedPost instance,
-    TRes Function(QueryGetPostspostsnodesRemovedPost) then,
-  ) = _CopyWithImplQueryGetPostspostsnodesRemovedPost;
-
-  factory CopyWithQueryGetPostspostsnodesRemovedPost.stub(TRes res) =
-      _CopyWithStubImplQueryGetPostspostsnodesRemovedPost;
-
-  TRes call({String? $__typename});
-}
-
-class _CopyWithImplQueryGetPostspostsnodesRemovedPost<TRes>
-    implements CopyWithQueryGetPostspostsnodesRemovedPost<TRes> {
-  _CopyWithImplQueryGetPostspostsnodesRemovedPost(
-    this._instance,
-    this._then,
-  );
-
-  final QueryGetPostspostsnodesRemovedPost _instance;
-
-  final TRes Function(QueryGetPostspostsnodesRemovedPost) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? $__typename = _undefined}) =>
-      _then(QueryGetPostspostsnodesRemovedPost(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImplQueryGetPostspostsnodesRemovedPost<TRes>
-    implements CopyWithQueryGetPostspostsnodesRemovedPost<TRes> {
-  _CopyWithStubImplQueryGetPostspostsnodesRemovedPost(this._res);
-
-  TRes _res;
-
-  call({String? $__typename}) => _res;
 }

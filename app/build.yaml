@@ -5,6 +5,7 @@ targets:
         options:
           clients:
             - graphql
+          disableCopyWithGeneration: true
           namingSeparator: ""
           outputDirectory: generated
           scalars:

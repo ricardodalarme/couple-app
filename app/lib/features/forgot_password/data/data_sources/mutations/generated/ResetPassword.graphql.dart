@@ -32,12 +32,6 @@ class VariablesMutationResetPassword {
     return result$data;
   }
 
-  CopyWithVariablesMutationResetPassword<VariablesMutationResetPassword>
-      get copyWith => CopyWithVariablesMutationResetPassword(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -60,48 +54,6 @@ class VariablesMutationResetPassword {
     final l$input = input;
     return Object.hashAll([l$input]);
   }
-}
-
-abstract class CopyWithVariablesMutationResetPassword<TRes> {
-  factory CopyWithVariablesMutationResetPassword(
-    VariablesMutationResetPassword instance,
-    TRes Function(VariablesMutationResetPassword) then,
-  ) = _CopyWithImplVariablesMutationResetPassword;
-
-  factory CopyWithVariablesMutationResetPassword.stub(TRes res) =
-      _CopyWithStubImplVariablesMutationResetPassword;
-
-  TRes call({InputResetPasswordInput? input});
-}
-
-class _CopyWithImplVariablesMutationResetPassword<TRes>
-    implements CopyWithVariablesMutationResetPassword<TRes> {
-  _CopyWithImplVariablesMutationResetPassword(
-    this._instance,
-    this._then,
-  );
-
-  final VariablesMutationResetPassword _instance;
-
-  final TRes Function(VariablesMutationResetPassword) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? input = _undefined}) =>
-      _then(VariablesMutationResetPassword._({
-        ..._instance._$data,
-        if (input != _undefined && input != null)
-          'input': (input as InputResetPasswordInput),
-      }));
-}
-
-class _CopyWithStubImplVariablesMutationResetPassword<TRes>
-    implements CopyWithVariablesMutationResetPassword<TRes> {
-  _CopyWithStubImplVariablesMutationResetPassword(this._res);
-
-  TRes _res;
-
-  call({InputResetPasswordInput? input}) => _res;
 }
 
 class MutationResetPassword {
@@ -165,81 +117,6 @@ class MutationResetPassword {
     }
     return true;
   }
-}
-
-extension UtilityExtensionMutationResetPassword on MutationResetPassword {
-  CopyWithMutationResetPassword<MutationResetPassword> get copyWith =>
-      CopyWithMutationResetPassword(
-        this,
-        (i) => i,
-      );
-}
-
-abstract class CopyWithMutationResetPassword<TRes> {
-  factory CopyWithMutationResetPassword(
-    MutationResetPassword instance,
-    TRes Function(MutationResetPassword) then,
-  ) = _CopyWithImplMutationResetPassword;
-
-  factory CopyWithMutationResetPassword.stub(TRes res) =
-      _CopyWithStubImplMutationResetPassword;
-
-  TRes call({
-    MutationResetPasswordresetPassword? resetPassword,
-    String? $__typename,
-  });
-  CopyWithMutationResetPasswordresetPassword<TRes> get resetPassword;
-}
-
-class _CopyWithImplMutationResetPassword<TRes>
-    implements CopyWithMutationResetPassword<TRes> {
-  _CopyWithImplMutationResetPassword(
-    this._instance,
-    this._then,
-  );
-
-  final MutationResetPassword _instance;
-
-  final TRes Function(MutationResetPassword) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? resetPassword = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(MutationResetPassword(
-        resetPassword: resetPassword == _undefined
-            ? _instance.resetPassword
-            : (resetPassword as MutationResetPasswordresetPassword?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWithMutationResetPasswordresetPassword<TRes> get resetPassword {
-    final local$resetPassword = _instance.resetPassword;
-    return local$resetPassword == null
-        ? CopyWithMutationResetPasswordresetPassword.stub(_then(_instance))
-        : CopyWithMutationResetPasswordresetPassword(
-            local$resetPassword, (e) => call(resetPassword: e));
-  }
-}
-
-class _CopyWithStubImplMutationResetPassword<TRes>
-    implements CopyWithMutationResetPassword<TRes> {
-  _CopyWithStubImplMutationResetPassword(this._res);
-
-  TRes _res;
-
-  call({
-    MutationResetPasswordresetPassword? resetPassword,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWithMutationResetPasswordresetPassword<TRes> get resetPassword =>
-      CopyWithMutationResetPasswordresetPassword.stub(_res);
 }
 
 const documentNodeMutationResetPassword = DocumentNode(definitions: [
@@ -426,54 +303,4 @@ class MutationResetPasswordresetPassword {
     }
     return true;
   }
-}
-
-extension UtilityExtensionMutationResetPasswordresetPassword
-    on MutationResetPasswordresetPassword {
-  CopyWithMutationResetPasswordresetPassword<MutationResetPasswordresetPassword>
-      get copyWith => CopyWithMutationResetPasswordresetPassword(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWithMutationResetPasswordresetPassword<TRes> {
-  factory CopyWithMutationResetPasswordresetPassword(
-    MutationResetPasswordresetPassword instance,
-    TRes Function(MutationResetPasswordresetPassword) then,
-  ) = _CopyWithImplMutationResetPasswordresetPassword;
-
-  factory CopyWithMutationResetPasswordresetPassword.stub(TRes res) =
-      _CopyWithStubImplMutationResetPasswordresetPassword;
-
-  TRes call({String? $__typename});
-}
-
-class _CopyWithImplMutationResetPasswordresetPassword<TRes>
-    implements CopyWithMutationResetPasswordresetPassword<TRes> {
-  _CopyWithImplMutationResetPasswordresetPassword(
-    this._instance,
-    this._then,
-  );
-
-  final MutationResetPasswordresetPassword _instance;
-
-  final TRes Function(MutationResetPasswordresetPassword) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? $__typename = _undefined}) =>
-      _then(MutationResetPasswordresetPassword(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImplMutationResetPasswordresetPassword<TRes>
-    implements CopyWithMutationResetPasswordresetPassword<TRes> {
-  _CopyWithStubImplMutationResetPasswordresetPassword(this._res);
-
-  TRes _res;
-
-  call({String? $__typename}) => _res;
 }

@@ -32,12 +32,6 @@ class VariablesMutationChangePassword {
     return result$data;
   }
 
-  CopyWithVariablesMutationChangePassword<VariablesMutationChangePassword>
-      get copyWith => CopyWithVariablesMutationChangePassword(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -60,48 +54,6 @@ class VariablesMutationChangePassword {
     final l$input = input;
     return Object.hashAll([l$input]);
   }
-}
-
-abstract class CopyWithVariablesMutationChangePassword<TRes> {
-  factory CopyWithVariablesMutationChangePassword(
-    VariablesMutationChangePassword instance,
-    TRes Function(VariablesMutationChangePassword) then,
-  ) = _CopyWithImplVariablesMutationChangePassword;
-
-  factory CopyWithVariablesMutationChangePassword.stub(TRes res) =
-      _CopyWithStubImplVariablesMutationChangePassword;
-
-  TRes call({InputChangePasswordInput? input});
-}
-
-class _CopyWithImplVariablesMutationChangePassword<TRes>
-    implements CopyWithVariablesMutationChangePassword<TRes> {
-  _CopyWithImplVariablesMutationChangePassword(
-    this._instance,
-    this._then,
-  );
-
-  final VariablesMutationChangePassword _instance;
-
-  final TRes Function(VariablesMutationChangePassword) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? input = _undefined}) =>
-      _then(VariablesMutationChangePassword._({
-        ..._instance._$data,
-        if (input != _undefined && input != null)
-          'input': (input as InputChangePasswordInput),
-      }));
-}
-
-class _CopyWithStubImplVariablesMutationChangePassword<TRes>
-    implements CopyWithVariablesMutationChangePassword<TRes> {
-  _CopyWithStubImplVariablesMutationChangePassword(this._res);
-
-  TRes _res;
-
-  call({InputChangePasswordInput? input}) => _res;
 }
 
 class MutationChangePassword {
@@ -166,81 +118,6 @@ class MutationChangePassword {
     }
     return true;
   }
-}
-
-extension UtilityExtensionMutationChangePassword on MutationChangePassword {
-  CopyWithMutationChangePassword<MutationChangePassword> get copyWith =>
-      CopyWithMutationChangePassword(
-        this,
-        (i) => i,
-      );
-}
-
-abstract class CopyWithMutationChangePassword<TRes> {
-  factory CopyWithMutationChangePassword(
-    MutationChangePassword instance,
-    TRes Function(MutationChangePassword) then,
-  ) = _CopyWithImplMutationChangePassword;
-
-  factory CopyWithMutationChangePassword.stub(TRes res) =
-      _CopyWithStubImplMutationChangePassword;
-
-  TRes call({
-    MutationChangePasswordchangePassword? changePassword,
-    String? $__typename,
-  });
-  CopyWithMutationChangePasswordchangePassword<TRes> get changePassword;
-}
-
-class _CopyWithImplMutationChangePassword<TRes>
-    implements CopyWithMutationChangePassword<TRes> {
-  _CopyWithImplMutationChangePassword(
-    this._instance,
-    this._then,
-  );
-
-  final MutationChangePassword _instance;
-
-  final TRes Function(MutationChangePassword) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? changePassword = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(MutationChangePassword(
-        changePassword: changePassword == _undefined
-            ? _instance.changePassword
-            : (changePassword as MutationChangePasswordchangePassword?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWithMutationChangePasswordchangePassword<TRes> get changePassword {
-    final local$changePassword = _instance.changePassword;
-    return local$changePassword == null
-        ? CopyWithMutationChangePasswordchangePassword.stub(_then(_instance))
-        : CopyWithMutationChangePasswordchangePassword(
-            local$changePassword, (e) => call(changePassword: e));
-  }
-}
-
-class _CopyWithStubImplMutationChangePassword<TRes>
-    implements CopyWithMutationChangePassword<TRes> {
-  _CopyWithStubImplMutationChangePassword(this._res);
-
-  TRes _res;
-
-  call({
-    MutationChangePasswordchangePassword? changePassword,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWithMutationChangePasswordchangePassword<TRes> get changePassword =>
-      CopyWithMutationChangePasswordchangePassword.stub(_res);
 }
 
 const documentNodeMutationChangePassword = DocumentNode(definitions: [
@@ -427,55 +304,4 @@ class MutationChangePasswordchangePassword {
     }
     return true;
   }
-}
-
-extension UtilityExtensionMutationChangePasswordchangePassword
-    on MutationChangePasswordchangePassword {
-  CopyWithMutationChangePasswordchangePassword<
-          MutationChangePasswordchangePassword>
-      get copyWith => CopyWithMutationChangePasswordchangePassword(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWithMutationChangePasswordchangePassword<TRes> {
-  factory CopyWithMutationChangePasswordchangePassword(
-    MutationChangePasswordchangePassword instance,
-    TRes Function(MutationChangePasswordchangePassword) then,
-  ) = _CopyWithImplMutationChangePasswordchangePassword;
-
-  factory CopyWithMutationChangePasswordchangePassword.stub(TRes res) =
-      _CopyWithStubImplMutationChangePasswordchangePassword;
-
-  TRes call({String? $__typename});
-}
-
-class _CopyWithImplMutationChangePasswordchangePassword<TRes>
-    implements CopyWithMutationChangePasswordchangePassword<TRes> {
-  _CopyWithImplMutationChangePasswordchangePassword(
-    this._instance,
-    this._then,
-  );
-
-  final MutationChangePasswordchangePassword _instance;
-
-  final TRes Function(MutationChangePasswordchangePassword) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? $__typename = _undefined}) =>
-      _then(MutationChangePasswordchangePassword(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImplMutationChangePasswordchangePassword<TRes>
-    implements CopyWithMutationChangePasswordchangePassword<TRes> {
-  _CopyWithStubImplMutationChangePasswordchangePassword(this._res);
-
-  TRes _res;
-
-  call({String? $__typename}) => _res;
 }

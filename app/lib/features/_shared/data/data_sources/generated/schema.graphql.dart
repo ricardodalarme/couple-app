@@ -27,12 +27,6 @@ class InputAppFilterInput {
     return result$data;
   }
 
-  CopyWithInputAppFilterInput<InputAppFilterInput> get copyWith =>
-      CopyWithInputAppFilterInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -59,46 +53,6 @@ class InputAppFilterInput {
     return Object.hashAll(
         [_$data.containsKey('clientId') ? l$clientId : const {}]);
   }
-}
-
-abstract class CopyWithInputAppFilterInput<TRes> {
-  factory CopyWithInputAppFilterInput(
-    InputAppFilterInput instance,
-    TRes Function(InputAppFilterInput) then,
-  ) = _CopyWithImplInputAppFilterInput;
-
-  factory CopyWithInputAppFilterInput.stub(TRes res) =
-      _CopyWithStubImplInputAppFilterInput;
-
-  TRes call({String? clientId});
-}
-
-class _CopyWithImplInputAppFilterInput<TRes>
-    implements CopyWithInputAppFilterInput<TRes> {
-  _CopyWithImplInputAppFilterInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputAppFilterInput _instance;
-
-  final TRes Function(InputAppFilterInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? clientId = _undefined}) => _then(InputAppFilterInput._({
-        ..._instance._$data,
-        if (clientId != _undefined) 'clientId': (clientId as String?),
-      }));
-}
-
-class _CopyWithStubImplInputAppFilterInput<TRes>
-    implements CopyWithInputAppFilterInput<TRes> {
-  _CopyWithStubImplInputAppFilterInput(this._res);
-
-  TRes _res;
-
-  call({String? clientId}) => _res;
 }
 
 class InputChannelMessagesStatisticsFilterInput {
@@ -160,13 +114,6 @@ class InputChannelMessagesStatisticsFilterInput {
     return result$data;
   }
 
-  CopyWithInputChannelMessagesStatisticsFilterInput<
-          InputChannelMessagesStatisticsFilterInput>
-      get copyWith => CopyWithInputChannelMessagesStatisticsFilterInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -216,62 +163,6 @@ class InputChannelMessagesStatisticsFilterInput {
       _$data.containsKey('finalDate') ? l$finalDate : const {},
     ]);
   }
-}
-
-abstract class CopyWithInputChannelMessagesStatisticsFilterInput<TRes> {
-  factory CopyWithInputChannelMessagesStatisticsFilterInput(
-    InputChannelMessagesStatisticsFilterInput instance,
-    TRes Function(InputChannelMessagesStatisticsFilterInput) then,
-  ) = _CopyWithImplInputChannelMessagesStatisticsFilterInput;
-
-  factory CopyWithInputChannelMessagesStatisticsFilterInput.stub(TRes res) =
-      _CopyWithStubImplInputChannelMessagesStatisticsFilterInput;
-
-  TRes call({
-    DateTime? beginDate,
-    String? channel,
-    DateTime? finalDate,
-  });
-}
-
-class _CopyWithImplInputChannelMessagesStatisticsFilterInput<TRes>
-    implements CopyWithInputChannelMessagesStatisticsFilterInput<TRes> {
-  _CopyWithImplInputChannelMessagesStatisticsFilterInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputChannelMessagesStatisticsFilterInput _instance;
-
-  final TRes Function(InputChannelMessagesStatisticsFilterInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? beginDate = _undefined,
-    Object? channel = _undefined,
-    Object? finalDate = _undefined,
-  }) =>
-      _then(InputChannelMessagesStatisticsFilterInput._({
-        ..._instance._$data,
-        if (beginDate != _undefined) 'beginDate': (beginDate as DateTime?),
-        if (channel != _undefined) 'channel': (channel as String?),
-        if (finalDate != _undefined) 'finalDate': (finalDate as DateTime?),
-      }));
-}
-
-class _CopyWithStubImplInputChannelMessagesStatisticsFilterInput<TRes>
-    implements CopyWithInputChannelMessagesStatisticsFilterInput<TRes> {
-  _CopyWithStubImplInputChannelMessagesStatisticsFilterInput(this._res);
-
-  TRes _res;
-
-  call({
-    DateTime? beginDate,
-    String? channel,
-    DateTime? finalDate,
-  }) =>
-      _res;
 }
 
 class InputUserBiasedMessagesFilterInput {
@@ -341,12 +232,6 @@ class InputUserBiasedMessagesFilterInput {
     return result$data;
   }
 
-  CopyWithInputUserBiasedMessagesFilterInput<InputUserBiasedMessagesFilterInput>
-      get copyWith => CopyWithInputUserBiasedMessagesFilterInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -403,67 +288,6 @@ class InputUserBiasedMessagesFilterInput {
       l$userName,
     ]);
   }
-}
-
-abstract class CopyWithInputUserBiasedMessagesFilterInput<TRes> {
-  factory CopyWithInputUserBiasedMessagesFilterInput(
-    InputUserBiasedMessagesFilterInput instance,
-    TRes Function(InputUserBiasedMessagesFilterInput) then,
-  ) = _CopyWithImplInputUserBiasedMessagesFilterInput;
-
-  factory CopyWithInputUserBiasedMessagesFilterInput.stub(TRes res) =
-      _CopyWithStubImplInputUserBiasedMessagesFilterInput;
-
-  TRes call({
-    DateTime? beginDate,
-    String? channel,
-    DateTime? finalDate,
-    String? userName,
-  });
-}
-
-class _CopyWithImplInputUserBiasedMessagesFilterInput<TRes>
-    implements CopyWithInputUserBiasedMessagesFilterInput<TRes> {
-  _CopyWithImplInputUserBiasedMessagesFilterInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputUserBiasedMessagesFilterInput _instance;
-
-  final TRes Function(InputUserBiasedMessagesFilterInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? beginDate = _undefined,
-    Object? channel = _undefined,
-    Object? finalDate = _undefined,
-    Object? userName = _undefined,
-  }) =>
-      _then(InputUserBiasedMessagesFilterInput._({
-        ..._instance._$data,
-        if (beginDate != _undefined) 'beginDate': (beginDate as DateTime?),
-        if (channel != _undefined) 'channel': (channel as String?),
-        if (finalDate != _undefined) 'finalDate': (finalDate as DateTime?),
-        if (userName != _undefined && userName != null)
-          'userName': (userName as String),
-      }));
-}
-
-class _CopyWithStubImplInputUserBiasedMessagesFilterInput<TRes>
-    implements CopyWithInputUserBiasedMessagesFilterInput<TRes> {
-  _CopyWithStubImplInputUserBiasedMessagesFilterInput(this._res);
-
-  TRes _res;
-
-  call({
-    DateTime? beginDate,
-    String? channel,
-    DateTime? finalDate,
-    String? userName,
-  }) =>
-      _res;
 }
 
 class InputUserMessagesStatisticsFilterInput {
@@ -533,13 +357,6 @@ class InputUserMessagesStatisticsFilterInput {
     return result$data;
   }
 
-  CopyWithInputUserMessagesStatisticsFilterInput<
-          InputUserMessagesStatisticsFilterInput>
-      get copyWith => CopyWithInputUserMessagesStatisticsFilterInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -596,67 +413,6 @@ class InputUserMessagesStatisticsFilterInput {
       l$userName,
     ]);
   }
-}
-
-abstract class CopyWithInputUserMessagesStatisticsFilterInput<TRes> {
-  factory CopyWithInputUserMessagesStatisticsFilterInput(
-    InputUserMessagesStatisticsFilterInput instance,
-    TRes Function(InputUserMessagesStatisticsFilterInput) then,
-  ) = _CopyWithImplInputUserMessagesStatisticsFilterInput;
-
-  factory CopyWithInputUserMessagesStatisticsFilterInput.stub(TRes res) =
-      _CopyWithStubImplInputUserMessagesStatisticsFilterInput;
-
-  TRes call({
-    DateTime? beginDate,
-    String? channel,
-    DateTime? finalDate,
-    String? userName,
-  });
-}
-
-class _CopyWithImplInputUserMessagesStatisticsFilterInput<TRes>
-    implements CopyWithInputUserMessagesStatisticsFilterInput<TRes> {
-  _CopyWithImplInputUserMessagesStatisticsFilterInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputUserMessagesStatisticsFilterInput _instance;
-
-  final TRes Function(InputUserMessagesStatisticsFilterInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? beginDate = _undefined,
-    Object? channel = _undefined,
-    Object? finalDate = _undefined,
-    Object? userName = _undefined,
-  }) =>
-      _then(InputUserMessagesStatisticsFilterInput._({
-        ..._instance._$data,
-        if (beginDate != _undefined) 'beginDate': (beginDate as DateTime?),
-        if (channel != _undefined) 'channel': (channel as String?),
-        if (finalDate != _undefined) 'finalDate': (finalDate as DateTime?),
-        if (userName != _undefined && userName != null)
-          'userName': (userName as String),
-      }));
-}
-
-class _CopyWithStubImplInputUserMessagesStatisticsFilterInput<TRes>
-    implements CopyWithInputUserMessagesStatisticsFilterInput<TRes> {
-  _CopyWithStubImplInputUserMessagesStatisticsFilterInput(this._res);
-
-  TRes _res;
-
-  call({
-    DateTime? beginDate,
-    String? channel,
-    DateTime? finalDate,
-    String? userName,
-  }) =>
-      _res;
 }
 
 class InputTermVersionFilterInput {
@@ -754,12 +510,6 @@ class InputTermVersionFilterInput {
     return result$data;
   }
 
-  CopyWithInputTermVersionFilterInput<InputTermVersionFilterInput>
-      get copyWith => CopyWithInputTermVersionFilterInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -847,118 +597,6 @@ class InputTermVersionFilterInput {
   }
 }
 
-abstract class CopyWithInputTermVersionFilterInput<TRes> {
-  factory CopyWithInputTermVersionFilterInput(
-    InputTermVersionFilterInput instance,
-    TRes Function(InputTermVersionFilterInput) then,
-  ) = _CopyWithImplInputTermVersionFilterInput;
-
-  factory CopyWithInputTermVersionFilterInput.stub(TRes res) =
-      _CopyWithStubImplInputTermVersionFilterInput;
-
-  TRes call({
-    InputStringFilterInput? body,
-    InputDateTimeFilterInput? createdAt,
-    InputStringFilterInput? description,
-    InputStringFilterInput? title,
-    List<String>? versions,
-  });
-  CopyWithInputStringFilterInput<TRes> get body;
-  CopyWithInputDateTimeFilterInput<TRes> get createdAt;
-  CopyWithInputStringFilterInput<TRes> get description;
-  CopyWithInputStringFilterInput<TRes> get title;
-}
-
-class _CopyWithImplInputTermVersionFilterInput<TRes>
-    implements CopyWithInputTermVersionFilterInput<TRes> {
-  _CopyWithImplInputTermVersionFilterInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputTermVersionFilterInput _instance;
-
-  final TRes Function(InputTermVersionFilterInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? body = _undefined,
-    Object? createdAt = _undefined,
-    Object? description = _undefined,
-    Object? title = _undefined,
-    Object? versions = _undefined,
-  }) =>
-      _then(InputTermVersionFilterInput._({
-        ..._instance._$data,
-        if (body != _undefined) 'body': (body as InputStringFilterInput?),
-        if (createdAt != _undefined)
-          'createdAt': (createdAt as InputDateTimeFilterInput?),
-        if (description != _undefined)
-          'description': (description as InputStringFilterInput?),
-        if (title != _undefined) 'title': (title as InputStringFilterInput?),
-        if (versions != _undefined) 'versions': (versions as List<String>?),
-      }));
-
-  CopyWithInputStringFilterInput<TRes> get body {
-    final local$body = _instance.body;
-    return local$body == null
-        ? CopyWithInputStringFilterInput.stub(_then(_instance))
-        : CopyWithInputStringFilterInput(local$body, (e) => call(body: e));
-  }
-
-  CopyWithInputDateTimeFilterInput<TRes> get createdAt {
-    final local$createdAt = _instance.createdAt;
-    return local$createdAt == null
-        ? CopyWithInputDateTimeFilterInput.stub(_then(_instance))
-        : CopyWithInputDateTimeFilterInput(
-            local$createdAt, (e) => call(createdAt: e));
-  }
-
-  CopyWithInputStringFilterInput<TRes> get description {
-    final local$description = _instance.description;
-    return local$description == null
-        ? CopyWithInputStringFilterInput.stub(_then(_instance))
-        : CopyWithInputStringFilterInput(
-            local$description, (e) => call(description: e));
-  }
-
-  CopyWithInputStringFilterInput<TRes> get title {
-    final local$title = _instance.title;
-    return local$title == null
-        ? CopyWithInputStringFilterInput.stub(_then(_instance))
-        : CopyWithInputStringFilterInput(local$title, (e) => call(title: e));
-  }
-}
-
-class _CopyWithStubImplInputTermVersionFilterInput<TRes>
-    implements CopyWithInputTermVersionFilterInput<TRes> {
-  _CopyWithStubImplInputTermVersionFilterInput(this._res);
-
-  TRes _res;
-
-  call({
-    InputStringFilterInput? body,
-    InputDateTimeFilterInput? createdAt,
-    InputStringFilterInput? description,
-    InputStringFilterInput? title,
-    List<String>? versions,
-  }) =>
-      _res;
-
-  CopyWithInputStringFilterInput<TRes> get body =>
-      CopyWithInputStringFilterInput.stub(_res);
-
-  CopyWithInputDateTimeFilterInput<TRes> get createdAt =>
-      CopyWithInputDateTimeFilterInput.stub(_res);
-
-  CopyWithInputStringFilterInput<TRes> get description =>
-      CopyWithInputStringFilterInput.stub(_res);
-
-  CopyWithInputStringFilterInput<TRes> get title =>
-      CopyWithInputStringFilterInput.stub(_res);
-}
-
 class InputStringFilterInput {
   factory InputStringFilterInput({
     String? contains,
@@ -1027,12 +665,6 @@ class InputStringFilterInput {
     return result$data;
   }
 
-  CopyWithInputStringFilterInput<InputStringFilterInput> get copyWith =>
-      CopyWithInputStringFilterInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -1093,66 +725,6 @@ class InputStringFilterInput {
       _$data.containsKey('startsWith') ? l$startsWith : const {},
     ]);
   }
-}
-
-abstract class CopyWithInputStringFilterInput<TRes> {
-  factory CopyWithInputStringFilterInput(
-    InputStringFilterInput instance,
-    TRes Function(InputStringFilterInput) then,
-  ) = _CopyWithImplInputStringFilterInput;
-
-  factory CopyWithInputStringFilterInput.stub(TRes res) =
-      _CopyWithStubImplInputStringFilterInput;
-
-  TRes call({
-    String? contains,
-    String? endsWith,
-    String? equals,
-    String? startsWith,
-  });
-}
-
-class _CopyWithImplInputStringFilterInput<TRes>
-    implements CopyWithInputStringFilterInput<TRes> {
-  _CopyWithImplInputStringFilterInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputStringFilterInput _instance;
-
-  final TRes Function(InputStringFilterInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? contains = _undefined,
-    Object? endsWith = _undefined,
-    Object? equals = _undefined,
-    Object? startsWith = _undefined,
-  }) =>
-      _then(InputStringFilterInput._({
-        ..._instance._$data,
-        if (contains != _undefined) 'contains': (contains as String?),
-        if (endsWith != _undefined) 'endsWith': (endsWith as String?),
-        if (equals != _undefined) 'equals': (equals as String?),
-        if (startsWith != _undefined) 'startsWith': (startsWith as String?),
-      }));
-}
-
-class _CopyWithStubImplInputStringFilterInput<TRes>
-    implements CopyWithInputStringFilterInput<TRes> {
-  _CopyWithStubImplInputStringFilterInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? contains,
-    String? endsWith,
-    String? equals,
-    String? startsWith,
-  }) =>
-      _res;
 }
 
 class InputDateTimeFilterInput {
@@ -1262,12 +834,6 @@ class InputDateTimeFilterInput {
     return result$data;
   }
 
-  CopyWithInputDateTimeFilterInput<InputDateTimeFilterInput> get copyWith =>
-      CopyWithInputDateTimeFilterInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -1353,90 +919,6 @@ class InputDateTimeFilterInput {
   }
 }
 
-abstract class CopyWithInputDateTimeFilterInput<TRes> {
-  factory CopyWithInputDateTimeFilterInput(
-    InputDateTimeFilterInput instance,
-    TRes Function(InputDateTimeFilterInput) then,
-  ) = _CopyWithImplInputDateTimeFilterInput;
-
-  factory CopyWithInputDateTimeFilterInput.stub(TRes res) =
-      _CopyWithStubImplInputDateTimeFilterInput;
-
-  TRes call({
-    InputDateTimeRangeFilterInput? between,
-    DateTime? equals,
-    DateTime? greaterThan,
-    DateTime? greaterThanOrEqual,
-    DateTime? lessThan,
-    DateTime? lessThanOrEqual,
-  });
-  CopyWithInputDateTimeRangeFilterInput<TRes> get between;
-}
-
-class _CopyWithImplInputDateTimeFilterInput<TRes>
-    implements CopyWithInputDateTimeFilterInput<TRes> {
-  _CopyWithImplInputDateTimeFilterInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputDateTimeFilterInput _instance;
-
-  final TRes Function(InputDateTimeFilterInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? between = _undefined,
-    Object? equals = _undefined,
-    Object? greaterThan = _undefined,
-    Object? greaterThanOrEqual = _undefined,
-    Object? lessThan = _undefined,
-    Object? lessThanOrEqual = _undefined,
-  }) =>
-      _then(InputDateTimeFilterInput._({
-        ..._instance._$data,
-        if (between != _undefined)
-          'between': (between as InputDateTimeRangeFilterInput?),
-        if (equals != _undefined) 'equals': (equals as DateTime?),
-        if (greaterThan != _undefined)
-          'greaterThan': (greaterThan as DateTime?),
-        if (greaterThanOrEqual != _undefined)
-          'greaterThanOrEqual': (greaterThanOrEqual as DateTime?),
-        if (lessThan != _undefined) 'lessThan': (lessThan as DateTime?),
-        if (lessThanOrEqual != _undefined)
-          'lessThanOrEqual': (lessThanOrEqual as DateTime?),
-      }));
-
-  CopyWithInputDateTimeRangeFilterInput<TRes> get between {
-    final local$between = _instance.between;
-    return local$between == null
-        ? CopyWithInputDateTimeRangeFilterInput.stub(_then(_instance))
-        : CopyWithInputDateTimeRangeFilterInput(
-            local$between, (e) => call(between: e));
-  }
-}
-
-class _CopyWithStubImplInputDateTimeFilterInput<TRes>
-    implements CopyWithInputDateTimeFilterInput<TRes> {
-  _CopyWithStubImplInputDateTimeFilterInput(this._res);
-
-  TRes _res;
-
-  call({
-    InputDateTimeRangeFilterInput? between,
-    DateTime? equals,
-    DateTime? greaterThan,
-    DateTime? greaterThanOrEqual,
-    DateTime? lessThan,
-    DateTime? lessThanOrEqual,
-  }) =>
-      _res;
-
-  CopyWithInputDateTimeRangeFilterInput<TRes> get between =>
-      CopyWithInputDateTimeRangeFilterInput.stub(_res);
-}
-
 class InputDateTimeRangeFilterInput {
   factory InputDateTimeRangeFilterInput({
     DateTime? end,
@@ -1483,12 +965,6 @@ class InputDateTimeRangeFilterInput {
     return result$data;
   }
 
-  CopyWithInputDateTimeRangeFilterInput<InputDateTimeRangeFilterInput>
-      get copyWith => CopyWithInputDateTimeRangeFilterInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -1526,58 +1002,6 @@ class InputDateTimeRangeFilterInput {
       _$data.containsKey('start') ? l$start : const {},
     ]);
   }
-}
-
-abstract class CopyWithInputDateTimeRangeFilterInput<TRes> {
-  factory CopyWithInputDateTimeRangeFilterInput(
-    InputDateTimeRangeFilterInput instance,
-    TRes Function(InputDateTimeRangeFilterInput) then,
-  ) = _CopyWithImplInputDateTimeRangeFilterInput;
-
-  factory CopyWithInputDateTimeRangeFilterInput.stub(TRes res) =
-      _CopyWithStubImplInputDateTimeRangeFilterInput;
-
-  TRes call({
-    DateTime? end,
-    DateTime? start,
-  });
-}
-
-class _CopyWithImplInputDateTimeRangeFilterInput<TRes>
-    implements CopyWithInputDateTimeRangeFilterInput<TRes> {
-  _CopyWithImplInputDateTimeRangeFilterInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputDateTimeRangeFilterInput _instance;
-
-  final TRes Function(InputDateTimeRangeFilterInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? end = _undefined,
-    Object? start = _undefined,
-  }) =>
-      _then(InputDateTimeRangeFilterInput._({
-        ..._instance._$data,
-        if (end != _undefined) 'end': (end as DateTime?),
-        if (start != _undefined) 'start': (start as DateTime?),
-      }));
-}
-
-class _CopyWithStubImplInputDateTimeRangeFilterInput<TRes>
-    implements CopyWithInputDateTimeRangeFilterInput<TRes> {
-  _CopyWithStubImplInputDateTimeRangeFilterInput(this._res);
-
-  TRes _res;
-
-  call({
-    DateTime? end,
-    DateTime? start,
-  }) =>
-      _res;
 }
 
 class InputTermVersionOrderInput {
@@ -1618,12 +1042,6 @@ class InputTermVersionOrderInput {
     return result$data;
   }
 
-  CopyWithInputTermVersionOrderInput<InputTermVersionOrderInput> get copyWith =>
-      CopyWithInputTermVersionOrderInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -1655,60 +1073,6 @@ class InputTermVersionOrderInput {
       l$type,
     ]);
   }
-}
-
-abstract class CopyWithInputTermVersionOrderInput<TRes> {
-  factory CopyWithInputTermVersionOrderInput(
-    InputTermVersionOrderInput instance,
-    TRes Function(InputTermVersionOrderInput) then,
-  ) = _CopyWithImplInputTermVersionOrderInput;
-
-  factory CopyWithInputTermVersionOrderInput.stub(TRes res) =
-      _CopyWithStubImplInputTermVersionOrderInput;
-
-  TRes call({
-    EnumOrderableTermVersionFields? field,
-    EnumOrderInput? type,
-  });
-}
-
-class _CopyWithImplInputTermVersionOrderInput<TRes>
-    implements CopyWithInputTermVersionOrderInput<TRes> {
-  _CopyWithImplInputTermVersionOrderInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputTermVersionOrderInput _instance;
-
-  final TRes Function(InputTermVersionOrderInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? field = _undefined,
-    Object? type = _undefined,
-  }) =>
-      _then(InputTermVersionOrderInput._({
-        ..._instance._$data,
-        if (field != _undefined && field != null)
-          'field': (field as EnumOrderableTermVersionFields),
-        if (type != _undefined && type != null)
-          'type': (type as EnumOrderInput),
-      }));
-}
-
-class _CopyWithStubImplInputTermVersionOrderInput<TRes>
-    implements CopyWithInputTermVersionOrderInput<TRes> {
-  _CopyWithStubImplInputTermVersionOrderInput(this._res);
-
-  TRes _res;
-
-  call({
-    EnumOrderableTermVersionFields? field,
-    EnumOrderInput? type,
-  }) =>
-      _res;
 }
 
 class InputUserOrganizationEdgeFilterInput {
@@ -1753,13 +1117,6 @@ class InputUserOrganizationEdgeFilterInput {
     return result$data;
   }
 
-  CopyWithInputUserOrganizationEdgeFilterInput<
-          InputUserOrganizationEdgeFilterInput>
-      get copyWith => CopyWithInputUserOrganizationEdgeFilterInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -1790,49 +1147,6 @@ class InputUserOrganizationEdgeFilterInput {
           : const {}
     ]);
   }
-}
-
-abstract class CopyWithInputUserOrganizationEdgeFilterInput<TRes> {
-  factory CopyWithInputUserOrganizationEdgeFilterInput(
-    InputUserOrganizationEdgeFilterInput instance,
-    TRes Function(InputUserOrganizationEdgeFilterInput) then,
-  ) = _CopyWithImplInputUserOrganizationEdgeFilterInput;
-
-  factory CopyWithInputUserOrganizationEdgeFilterInput.stub(TRes res) =
-      _CopyWithStubImplInputUserOrganizationEdgeFilterInput;
-
-  TRes call({EnumUserOrganizationEdgeStatus? userOrganizationEdgeStatus});
-}
-
-class _CopyWithImplInputUserOrganizationEdgeFilterInput<TRes>
-    implements CopyWithInputUserOrganizationEdgeFilterInput<TRes> {
-  _CopyWithImplInputUserOrganizationEdgeFilterInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputUserOrganizationEdgeFilterInput _instance;
-
-  final TRes Function(InputUserOrganizationEdgeFilterInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? userOrganizationEdgeStatus = _undefined}) =>
-      _then(InputUserOrganizationEdgeFilterInput._({
-        ..._instance._$data,
-        if (userOrganizationEdgeStatus != _undefined)
-          'userOrganizationEdgeStatus':
-              (userOrganizationEdgeStatus as EnumUserOrganizationEdgeStatus?),
-      }));
-}
-
-class _CopyWithStubImplInputUserOrganizationEdgeFilterInput<TRes>
-    implements CopyWithInputUserOrganizationEdgeFilterInput<TRes> {
-  _CopyWithStubImplInputUserOrganizationEdgeFilterInput(this._res);
-
-  TRes _res;
-
-  call({EnumUserOrganizationEdgeStatus? userOrganizationEdgeStatus}) => _res;
 }
 
 class InputOrganizationFilterInput {
@@ -1949,12 +1263,6 @@ class InputOrganizationFilterInput {
     return result$data;
   }
 
-  CopyWithInputOrganizationFilterInput<InputOrganizationFilterInput>
-      get copyWith => CopyWithInputOrganizationFilterInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -2053,123 +1361,6 @@ class InputOrganizationFilterInput {
   }
 }
 
-abstract class CopyWithInputOrganizationFilterInput<TRes> {
-  factory CopyWithInputOrganizationFilterInput(
-    InputOrganizationFilterInput instance,
-    TRes Function(InputOrganizationFilterInput) then,
-  ) = _CopyWithImplInputOrganizationFilterInput;
-
-  factory CopyWithInputOrganizationFilterInput.stub(TRes res) =
-      _CopyWithStubImplInputOrganizationFilterInput;
-
-  TRes call({
-    InputStringFilterInput? corporateTaxpayerRegistry,
-    InputStringFilterInput? email,
-    InputStringFilterInput? name,
-    EnumOrganizationStatus? status,
-    List<String>? tags,
-    InputStringFilterInput? tradingName,
-  });
-  CopyWithInputStringFilterInput<TRes> get corporateTaxpayerRegistry;
-  CopyWithInputStringFilterInput<TRes> get email;
-  CopyWithInputStringFilterInput<TRes> get name;
-  CopyWithInputStringFilterInput<TRes> get tradingName;
-}
-
-class _CopyWithImplInputOrganizationFilterInput<TRes>
-    implements CopyWithInputOrganizationFilterInput<TRes> {
-  _CopyWithImplInputOrganizationFilterInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputOrganizationFilterInput _instance;
-
-  final TRes Function(InputOrganizationFilterInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? corporateTaxpayerRegistry = _undefined,
-    Object? email = _undefined,
-    Object? name = _undefined,
-    Object? status = _undefined,
-    Object? tags = _undefined,
-    Object? tradingName = _undefined,
-  }) =>
-      _then(InputOrganizationFilterInput._({
-        ..._instance._$data,
-        if (corporateTaxpayerRegistry != _undefined)
-          'corporateTaxpayerRegistry':
-              (corporateTaxpayerRegistry as InputStringFilterInput?),
-        if (email != _undefined) 'email': (email as InputStringFilterInput?),
-        if (name != _undefined) 'name': (name as InputStringFilterInput?),
-        if (status != _undefined) 'status': (status as EnumOrganizationStatus?),
-        if (tags != _undefined) 'tags': (tags as List<String>?),
-        if (tradingName != _undefined)
-          'tradingName': (tradingName as InputStringFilterInput?),
-      }));
-
-  CopyWithInputStringFilterInput<TRes> get corporateTaxpayerRegistry {
-    final local$corporateTaxpayerRegistry = _instance.corporateTaxpayerRegistry;
-    return local$corporateTaxpayerRegistry == null
-        ? CopyWithInputStringFilterInput.stub(_then(_instance))
-        : CopyWithInputStringFilterInput(local$corporateTaxpayerRegistry,
-            (e) => call(corporateTaxpayerRegistry: e));
-  }
-
-  CopyWithInputStringFilterInput<TRes> get email {
-    final local$email = _instance.email;
-    return local$email == null
-        ? CopyWithInputStringFilterInput.stub(_then(_instance))
-        : CopyWithInputStringFilterInput(local$email, (e) => call(email: e));
-  }
-
-  CopyWithInputStringFilterInput<TRes> get name {
-    final local$name = _instance.name;
-    return local$name == null
-        ? CopyWithInputStringFilterInput.stub(_then(_instance))
-        : CopyWithInputStringFilterInput(local$name, (e) => call(name: e));
-  }
-
-  CopyWithInputStringFilterInput<TRes> get tradingName {
-    final local$tradingName = _instance.tradingName;
-    return local$tradingName == null
-        ? CopyWithInputStringFilterInput.stub(_then(_instance))
-        : CopyWithInputStringFilterInput(
-            local$tradingName, (e) => call(tradingName: e));
-  }
-}
-
-class _CopyWithStubImplInputOrganizationFilterInput<TRes>
-    implements CopyWithInputOrganizationFilterInput<TRes> {
-  _CopyWithStubImplInputOrganizationFilterInput(this._res);
-
-  TRes _res;
-
-  call({
-    InputStringFilterInput? corporateTaxpayerRegistry,
-    InputStringFilterInput? email,
-    InputStringFilterInput? name,
-    EnumOrganizationStatus? status,
-    List<String>? tags,
-    InputStringFilterInput? tradingName,
-  }) =>
-      _res;
-
-  CopyWithInputStringFilterInput<TRes> get corporateTaxpayerRegistry =>
-      CopyWithInputStringFilterInput.stub(_res);
-
-  CopyWithInputStringFilterInput<TRes> get email =>
-      CopyWithInputStringFilterInput.stub(_res);
-
-  CopyWithInputStringFilterInput<TRes> get name =>
-      CopyWithInputStringFilterInput.stub(_res);
-
-  CopyWithInputStringFilterInput<TRes> get tradingName =>
-      CopyWithInputStringFilterInput.stub(_res);
-}
-
 class InputOrganizationOrderInput {
   factory InputOrganizationOrderInput({
     required EnumOrderableOrganizationFields field,
@@ -2208,12 +1399,6 @@ class InputOrganizationOrderInput {
     return result$data;
   }
 
-  CopyWithInputOrganizationOrderInput<InputOrganizationOrderInput>
-      get copyWith => CopyWithInputOrganizationOrderInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -2247,60 +1432,6 @@ class InputOrganizationOrderInput {
   }
 }
 
-abstract class CopyWithInputOrganizationOrderInput<TRes> {
-  factory CopyWithInputOrganizationOrderInput(
-    InputOrganizationOrderInput instance,
-    TRes Function(InputOrganizationOrderInput) then,
-  ) = _CopyWithImplInputOrganizationOrderInput;
-
-  factory CopyWithInputOrganizationOrderInput.stub(TRes res) =
-      _CopyWithStubImplInputOrganizationOrderInput;
-
-  TRes call({
-    EnumOrderableOrganizationFields? field,
-    EnumOrderInput? type,
-  });
-}
-
-class _CopyWithImplInputOrganizationOrderInput<TRes>
-    implements CopyWithInputOrganizationOrderInput<TRes> {
-  _CopyWithImplInputOrganizationOrderInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputOrganizationOrderInput _instance;
-
-  final TRes Function(InputOrganizationOrderInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? field = _undefined,
-    Object? type = _undefined,
-  }) =>
-      _then(InputOrganizationOrderInput._({
-        ..._instance._$data,
-        if (field != _undefined && field != null)
-          'field': (field as EnumOrderableOrganizationFields),
-        if (type != _undefined && type != null)
-          'type': (type as EnumOrderInput),
-      }));
-}
-
-class _CopyWithStubImplInputOrganizationOrderInput<TRes>
-    implements CopyWithInputOrganizationOrderInput<TRes> {
-  _CopyWithStubImplInputOrganizationOrderInput(this._res);
-
-  TRes _res;
-
-  call({
-    EnumOrderableOrganizationFields? field,
-    EnumOrderInput? type,
-  }) =>
-      _res;
-}
-
 class InputPostFilterInput {
   factory InputPostFilterInput({List<String>? organizations}) =>
       InputPostFilterInput._({
@@ -2332,12 +1463,6 @@ class InputPostFilterInput {
     }
     return result$data;
   }
-
-  CopyWithInputPostFilterInput<InputPostFilterInput> get copyWith =>
-      CopyWithInputPostFilterInput(
-        this,
-        (i) => i,
-      );
 
   @override
   bool operator ==(Object other) {
@@ -2381,48 +1506,6 @@ class InputPostFilterInput {
           : const {}
     ]);
   }
-}
-
-abstract class CopyWithInputPostFilterInput<TRes> {
-  factory CopyWithInputPostFilterInput(
-    InputPostFilterInput instance,
-    TRes Function(InputPostFilterInput) then,
-  ) = _CopyWithImplInputPostFilterInput;
-
-  factory CopyWithInputPostFilterInput.stub(TRes res) =
-      _CopyWithStubImplInputPostFilterInput;
-
-  TRes call({List<String>? organizations});
-}
-
-class _CopyWithImplInputPostFilterInput<TRes>
-    implements CopyWithInputPostFilterInput<TRes> {
-  _CopyWithImplInputPostFilterInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputPostFilterInput _instance;
-
-  final TRes Function(InputPostFilterInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? organizations = _undefined}) =>
-      _then(InputPostFilterInput._({
-        ..._instance._$data,
-        if (organizations != _undefined)
-          'organizations': (organizations as List<String>?),
-      }));
-}
-
-class _CopyWithStubImplInputPostFilterInput<TRes>
-    implements CopyWithInputPostFilterInput<TRes> {
-  _CopyWithStubImplInputPostFilterInput(this._res);
-
-  TRes _res;
-
-  call({List<String>? organizations}) => _res;
 }
 
 class InputTermFilterInput {
@@ -2489,12 +1572,6 @@ class InputTermFilterInput {
     return result$data;
   }
 
-  CopyWithInputTermFilterInput<InputTermFilterInput> get copyWith =>
-      CopyWithInputTermFilterInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -2559,86 +1636,6 @@ class InputTermFilterInput {
   }
 }
 
-abstract class CopyWithInputTermFilterInput<TRes> {
-  factory CopyWithInputTermFilterInput(
-    InputTermFilterInput instance,
-    TRes Function(InputTermFilterInput) then,
-  ) = _CopyWithImplInputTermFilterInput;
-
-  factory CopyWithInputTermFilterInput.stub(TRes res) =
-      _CopyWithStubImplInputTermFilterInput;
-
-  TRes call({
-    InputStringFilterInput? description,
-    List<String>? tags,
-    InputStringFilterInput? title,
-  });
-  CopyWithInputStringFilterInput<TRes> get description;
-  CopyWithInputStringFilterInput<TRes> get title;
-}
-
-class _CopyWithImplInputTermFilterInput<TRes>
-    implements CopyWithInputTermFilterInput<TRes> {
-  _CopyWithImplInputTermFilterInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputTermFilterInput _instance;
-
-  final TRes Function(InputTermFilterInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? description = _undefined,
-    Object? tags = _undefined,
-    Object? title = _undefined,
-  }) =>
-      _then(InputTermFilterInput._({
-        ..._instance._$data,
-        if (description != _undefined)
-          'description': (description as InputStringFilterInput?),
-        if (tags != _undefined) 'tags': (tags as List<String>?),
-        if (title != _undefined) 'title': (title as InputStringFilterInput?),
-      }));
-
-  CopyWithInputStringFilterInput<TRes> get description {
-    final local$description = _instance.description;
-    return local$description == null
-        ? CopyWithInputStringFilterInput.stub(_then(_instance))
-        : CopyWithInputStringFilterInput(
-            local$description, (e) => call(description: e));
-  }
-
-  CopyWithInputStringFilterInput<TRes> get title {
-    final local$title = _instance.title;
-    return local$title == null
-        ? CopyWithInputStringFilterInput.stub(_then(_instance))
-        : CopyWithInputStringFilterInput(local$title, (e) => call(title: e));
-  }
-}
-
-class _CopyWithStubImplInputTermFilterInput<TRes>
-    implements CopyWithInputTermFilterInput<TRes> {
-  _CopyWithStubImplInputTermFilterInput(this._res);
-
-  TRes _res;
-
-  call({
-    InputStringFilterInput? description,
-    List<String>? tags,
-    InputStringFilterInput? title,
-  }) =>
-      _res;
-
-  CopyWithInputStringFilterInput<TRes> get description =>
-      CopyWithInputStringFilterInput.stub(_res);
-
-  CopyWithInputStringFilterInput<TRes> get title =>
-      CopyWithInputStringFilterInput.stub(_res);
-}
-
 class InputTermOrderInput {
   factory InputTermOrderInput({
     required EnumOrderableTermFields field,
@@ -2676,12 +1673,6 @@ class InputTermOrderInput {
     return result$data;
   }
 
-  CopyWithInputTermOrderInput<InputTermOrderInput> get copyWith =>
-      CopyWithInputTermOrderInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -2712,60 +1703,6 @@ class InputTermOrderInput {
       l$type,
     ]);
   }
-}
-
-abstract class CopyWithInputTermOrderInput<TRes> {
-  factory CopyWithInputTermOrderInput(
-    InputTermOrderInput instance,
-    TRes Function(InputTermOrderInput) then,
-  ) = _CopyWithImplInputTermOrderInput;
-
-  factory CopyWithInputTermOrderInput.stub(TRes res) =
-      _CopyWithStubImplInputTermOrderInput;
-
-  TRes call({
-    EnumOrderableTermFields? field,
-    EnumOrderInput? type,
-  });
-}
-
-class _CopyWithImplInputTermOrderInput<TRes>
-    implements CopyWithInputTermOrderInput<TRes> {
-  _CopyWithImplInputTermOrderInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputTermOrderInput _instance;
-
-  final TRes Function(InputTermOrderInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? field = _undefined,
-    Object? type = _undefined,
-  }) =>
-      _then(InputTermOrderInput._({
-        ..._instance._$data,
-        if (field != _undefined && field != null)
-          'field': (field as EnumOrderableTermFields),
-        if (type != _undefined && type != null)
-          'type': (type as EnumOrderInput),
-      }));
-}
-
-class _CopyWithStubImplInputTermOrderInput<TRes>
-    implements CopyWithInputTermOrderInput<TRes> {
-  _CopyWithStubImplInputTermOrderInput(this._res);
-
-  TRes _res;
-
-  call({
-    EnumOrderableTermFields? field,
-    EnumOrderInput? type,
-  }) =>
-      _res;
 }
 
 class InputUserFilterInput {
@@ -2834,12 +1771,6 @@ class InputUserFilterInput {
     return result$data;
   }
 
-  CopyWithInputUserFilterInput<InputUserFilterInput> get copyWith =>
-      CopyWithInputUserFilterInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -2887,97 +1818,6 @@ class InputUserFilterInput {
       _$data.containsKey('username') ? l$username : const {},
     ]);
   }
-}
-
-abstract class CopyWithInputUserFilterInput<TRes> {
-  factory CopyWithInputUserFilterInput(
-    InputUserFilterInput instance,
-    TRes Function(InputUserFilterInput) then,
-  ) = _CopyWithImplInputUserFilterInput;
-
-  factory CopyWithInputUserFilterInput.stub(TRes res) =
-      _CopyWithStubImplInputUserFilterInput;
-
-  TRes call({
-    InputStringFilterInput? email,
-    InputStringFilterInput? name,
-    InputStringFilterInput? username,
-  });
-  CopyWithInputStringFilterInput<TRes> get email;
-  CopyWithInputStringFilterInput<TRes> get name;
-  CopyWithInputStringFilterInput<TRes> get username;
-}
-
-class _CopyWithImplInputUserFilterInput<TRes>
-    implements CopyWithInputUserFilterInput<TRes> {
-  _CopyWithImplInputUserFilterInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputUserFilterInput _instance;
-
-  final TRes Function(InputUserFilterInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? email = _undefined,
-    Object? name = _undefined,
-    Object? username = _undefined,
-  }) =>
-      _then(InputUserFilterInput._({
-        ..._instance._$data,
-        if (email != _undefined) 'email': (email as InputStringFilterInput?),
-        if (name != _undefined) 'name': (name as InputStringFilterInput?),
-        if (username != _undefined)
-          'username': (username as InputStringFilterInput?),
-      }));
-
-  CopyWithInputStringFilterInput<TRes> get email {
-    final local$email = _instance.email;
-    return local$email == null
-        ? CopyWithInputStringFilterInput.stub(_then(_instance))
-        : CopyWithInputStringFilterInput(local$email, (e) => call(email: e));
-  }
-
-  CopyWithInputStringFilterInput<TRes> get name {
-    final local$name = _instance.name;
-    return local$name == null
-        ? CopyWithInputStringFilterInput.stub(_then(_instance))
-        : CopyWithInputStringFilterInput(local$name, (e) => call(name: e));
-  }
-
-  CopyWithInputStringFilterInput<TRes> get username {
-    final local$username = _instance.username;
-    return local$username == null
-        ? CopyWithInputStringFilterInput.stub(_then(_instance))
-        : CopyWithInputStringFilterInput(
-            local$username, (e) => call(username: e));
-  }
-}
-
-class _CopyWithStubImplInputUserFilterInput<TRes>
-    implements CopyWithInputUserFilterInput<TRes> {
-  _CopyWithStubImplInputUserFilterInput(this._res);
-
-  TRes _res;
-
-  call({
-    InputStringFilterInput? email,
-    InputStringFilterInput? name,
-    InputStringFilterInput? username,
-  }) =>
-      _res;
-
-  CopyWithInputStringFilterInput<TRes> get email =>
-      CopyWithInputStringFilterInput.stub(_res);
-
-  CopyWithInputStringFilterInput<TRes> get name =>
-      CopyWithInputStringFilterInput.stub(_res);
-
-  CopyWithInputStringFilterInput<TRes> get username =>
-      CopyWithInputStringFilterInput.stub(_res);
 }
 
 class InputWebhookFilterInput {
@@ -3043,12 +1883,6 @@ class InputWebhookFilterInput {
     return result$data;
   }
 
-  CopyWithInputWebhookFilterInput<InputWebhookFilterInput> get copyWith =>
-      CopyWithInputWebhookFilterInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -3113,74 +1947,6 @@ class InputWebhookFilterInput {
   }
 }
 
-abstract class CopyWithInputWebhookFilterInput<TRes> {
-  factory CopyWithInputWebhookFilterInput(
-    InputWebhookFilterInput instance,
-    TRes Function(InputWebhookFilterInput) then,
-  ) = _CopyWithImplInputWebhookFilterInput;
-
-  factory CopyWithInputWebhookFilterInput.stub(TRes res) =
-      _CopyWithStubImplInputWebhookFilterInput;
-
-  TRes call({
-    bool? active,
-    List<EnumSubscribableEvents>? events,
-    InputStringFilterInput? name,
-  });
-  CopyWithInputStringFilterInput<TRes> get name;
-}
-
-class _CopyWithImplInputWebhookFilterInput<TRes>
-    implements CopyWithInputWebhookFilterInput<TRes> {
-  _CopyWithImplInputWebhookFilterInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputWebhookFilterInput _instance;
-
-  final TRes Function(InputWebhookFilterInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? active = _undefined,
-    Object? events = _undefined,
-    Object? name = _undefined,
-  }) =>
-      _then(InputWebhookFilterInput._({
-        ..._instance._$data,
-        if (active != _undefined) 'active': (active as bool?),
-        if (events != _undefined)
-          'events': (events as List<EnumSubscribableEvents>?),
-        if (name != _undefined) 'name': (name as InputStringFilterInput?),
-      }));
-
-  CopyWithInputStringFilterInput<TRes> get name {
-    final local$name = _instance.name;
-    return local$name == null
-        ? CopyWithInputStringFilterInput.stub(_then(_instance))
-        : CopyWithInputStringFilterInput(local$name, (e) => call(name: e));
-  }
-}
-
-class _CopyWithStubImplInputWebhookFilterInput<TRes>
-    implements CopyWithInputWebhookFilterInput<TRes> {
-  _CopyWithStubImplInputWebhookFilterInput(this._res);
-
-  TRes _res;
-
-  call({
-    bool? active,
-    List<EnumSubscribableEvents>? events,
-    InputStringFilterInput? name,
-  }) =>
-      _res;
-
-  CopyWithInputStringFilterInput<TRes> get name =>
-      CopyWithInputStringFilterInput.stub(_res);
-}
-
 class InputActivateUserInput {
   factory InputActivateUserInput({required String userId}) =>
       InputActivateUserInput._({
@@ -3207,12 +1973,6 @@ class InputActivateUserInput {
     return result$data;
   }
 
-  CopyWithInputActivateUserInput<InputActivateUserInput> get copyWith =>
-      CopyWithInputActivateUserInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -3235,47 +1995,6 @@ class InputActivateUserInput {
     final l$userId = userId;
     return Object.hashAll([l$userId]);
   }
-}
-
-abstract class CopyWithInputActivateUserInput<TRes> {
-  factory CopyWithInputActivateUserInput(
-    InputActivateUserInput instance,
-    TRes Function(InputActivateUserInput) then,
-  ) = _CopyWithImplInputActivateUserInput;
-
-  factory CopyWithInputActivateUserInput.stub(TRes res) =
-      _CopyWithStubImplInputActivateUserInput;
-
-  TRes call({String? userId});
-}
-
-class _CopyWithImplInputActivateUserInput<TRes>
-    implements CopyWithInputActivateUserInput<TRes> {
-  _CopyWithImplInputActivateUserInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputActivateUserInput _instance;
-
-  final TRes Function(InputActivateUserInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? userId = _undefined}) => _then(InputActivateUserInput._({
-        ..._instance._$data,
-        if (userId != _undefined && userId != null)
-          'userId': (userId as String),
-      }));
-}
-
-class _CopyWithStubImplInputActivateUserInput<TRes>
-    implements CopyWithInputActivateUserInput<TRes> {
-  _CopyWithStubImplInputActivateUserInput(this._res);
-
-  TRes _res;
-
-  call({String? userId}) => _res;
 }
 
 class InputAddOrUpdateUserProfilePictureInput {
@@ -3319,13 +2038,6 @@ class InputAddOrUpdateUserProfilePictureInput {
     return result$data;
   }
 
-  CopyWithInputAddOrUpdateUserProfilePictureInput<
-          InputAddOrUpdateUserProfilePictureInput>
-      get copyWith => CopyWithInputAddOrUpdateUserProfilePictureInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -3360,59 +2072,6 @@ class InputAddOrUpdateUserProfilePictureInput {
       _$data.containsKey('userId') ? l$userId : const {},
     ]);
   }
-}
-
-abstract class CopyWithInputAddOrUpdateUserProfilePictureInput<TRes> {
-  factory CopyWithInputAddOrUpdateUserProfilePictureInput(
-    InputAddOrUpdateUserProfilePictureInput instance,
-    TRes Function(InputAddOrUpdateUserProfilePictureInput) then,
-  ) = _CopyWithImplInputAddOrUpdateUserProfilePictureInput;
-
-  factory CopyWithInputAddOrUpdateUserProfilePictureInput.stub(TRes res) =
-      _CopyWithStubImplInputAddOrUpdateUserProfilePictureInput;
-
-  TRes call({
-    String? profilePicture,
-    String? userId,
-  });
-}
-
-class _CopyWithImplInputAddOrUpdateUserProfilePictureInput<TRes>
-    implements CopyWithInputAddOrUpdateUserProfilePictureInput<TRes> {
-  _CopyWithImplInputAddOrUpdateUserProfilePictureInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputAddOrUpdateUserProfilePictureInput _instance;
-
-  final TRes Function(InputAddOrUpdateUserProfilePictureInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? profilePicture = _undefined,
-    Object? userId = _undefined,
-  }) =>
-      _then(InputAddOrUpdateUserProfilePictureInput._({
-        ..._instance._$data,
-        if (profilePicture != _undefined && profilePicture != null)
-          'profilePicture': (profilePicture as String),
-        if (userId != _undefined) 'userId': (userId as String?),
-      }));
-}
-
-class _CopyWithStubImplInputAddOrUpdateUserProfilePictureInput<TRes>
-    implements CopyWithInputAddOrUpdateUserProfilePictureInput<TRes> {
-  _CopyWithStubImplInputAddOrUpdateUserProfilePictureInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? profilePicture,
-    String? userId,
-  }) =>
-      _res;
 }
 
 class InputAddUserToOrganizationInput {
@@ -3466,12 +2125,6 @@ class InputAddUserToOrganizationInput {
     return result$data;
   }
 
-  CopyWithInputAddUserToOrganizationInput<InputAddUserToOrganizationInput>
-      get copyWith => CopyWithInputAddUserToOrganizationInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -3515,65 +2168,6 @@ class InputAddUserToOrganizationInput {
   }
 }
 
-abstract class CopyWithInputAddUserToOrganizationInput<TRes> {
-  factory CopyWithInputAddUserToOrganizationInput(
-    InputAddUserToOrganizationInput instance,
-    TRes Function(InputAddUserToOrganizationInput) then,
-  ) = _CopyWithImplInputAddUserToOrganizationInput;
-
-  factory CopyWithInputAddUserToOrganizationInput.stub(TRes res) =
-      _CopyWithStubImplInputAddUserToOrganizationInput;
-
-  TRes call({
-    String? organizationId,
-    EnumUserOrganizationRole? role,
-    String? userId,
-  });
-}
-
-class _CopyWithImplInputAddUserToOrganizationInput<TRes>
-    implements CopyWithInputAddUserToOrganizationInput<TRes> {
-  _CopyWithImplInputAddUserToOrganizationInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputAddUserToOrganizationInput _instance;
-
-  final TRes Function(InputAddUserToOrganizationInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? organizationId = _undefined,
-    Object? role = _undefined,
-    Object? userId = _undefined,
-  }) =>
-      _then(InputAddUserToOrganizationInput._({
-        ..._instance._$data,
-        if (organizationId != _undefined && organizationId != null)
-          'organizationId': (organizationId as String),
-        if (role != _undefined && role != null)
-          'role': (role as EnumUserOrganizationRole),
-        if (userId != _undefined && userId != null)
-          'userId': (userId as String),
-      }));
-}
-
-class _CopyWithStubImplInputAddUserToOrganizationInput<TRes>
-    implements CopyWithInputAddUserToOrganizationInput<TRes> {
-  _CopyWithStubImplInputAddUserToOrganizationInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? organizationId,
-    EnumUserOrganizationRole? role,
-    String? userId,
-  }) =>
-      _res;
-}
-
 class InputAgreeOrDisagreeToTermVersionInput {
   factory InputAgreeOrDisagreeToTermVersionInput({
     required bool agree,
@@ -3611,13 +2205,6 @@ class InputAgreeOrDisagreeToTermVersionInput {
     return result$data;
   }
 
-  CopyWithInputAgreeOrDisagreeToTermVersionInput<
-          InputAgreeOrDisagreeToTermVersionInput>
-      get copyWith => CopyWithInputAgreeOrDisagreeToTermVersionInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -3649,59 +2236,6 @@ class InputAgreeOrDisagreeToTermVersionInput {
       l$termVersionId,
     ]);
   }
-}
-
-abstract class CopyWithInputAgreeOrDisagreeToTermVersionInput<TRes> {
-  factory CopyWithInputAgreeOrDisagreeToTermVersionInput(
-    InputAgreeOrDisagreeToTermVersionInput instance,
-    TRes Function(InputAgreeOrDisagreeToTermVersionInput) then,
-  ) = _CopyWithImplInputAgreeOrDisagreeToTermVersionInput;
-
-  factory CopyWithInputAgreeOrDisagreeToTermVersionInput.stub(TRes res) =
-      _CopyWithStubImplInputAgreeOrDisagreeToTermVersionInput;
-
-  TRes call({
-    bool? agree,
-    String? termVersionId,
-  });
-}
-
-class _CopyWithImplInputAgreeOrDisagreeToTermVersionInput<TRes>
-    implements CopyWithInputAgreeOrDisagreeToTermVersionInput<TRes> {
-  _CopyWithImplInputAgreeOrDisagreeToTermVersionInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputAgreeOrDisagreeToTermVersionInput _instance;
-
-  final TRes Function(InputAgreeOrDisagreeToTermVersionInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? agree = _undefined,
-    Object? termVersionId = _undefined,
-  }) =>
-      _then(InputAgreeOrDisagreeToTermVersionInput._({
-        ..._instance._$data,
-        if (agree != _undefined && agree != null) 'agree': (agree as bool),
-        if (termVersionId != _undefined && termVersionId != null)
-          'termVersionId': (termVersionId as String),
-      }));
-}
-
-class _CopyWithStubImplInputAgreeOrDisagreeToTermVersionInput<TRes>
-    implements CopyWithInputAgreeOrDisagreeToTermVersionInput<TRes> {
-  _CopyWithStubImplInputAgreeOrDisagreeToTermVersionInput(this._res);
-
-  TRes _res;
-
-  call({
-    bool? agree,
-    String? termVersionId,
-  }) =>
-      _res;
 }
 
 class InputChangeOrganizationStatusInput {
@@ -3751,12 +2285,6 @@ class InputChangeOrganizationStatusInput {
     return result$data;
   }
 
-  CopyWithInputChangeOrganizationStatusInput<InputChangeOrganizationStatusInput>
-      get copyWith => CopyWithInputChangeOrganizationStatusInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -3797,65 +2325,6 @@ class InputChangeOrganizationStatusInput {
   }
 }
 
-abstract class CopyWithInputChangeOrganizationStatusInput<TRes> {
-  factory CopyWithInputChangeOrganizationStatusInput(
-    InputChangeOrganizationStatusInput instance,
-    TRes Function(InputChangeOrganizationStatusInput) then,
-  ) = _CopyWithImplInputChangeOrganizationStatusInput;
-
-  factory CopyWithInputChangeOrganizationStatusInput.stub(TRes res) =
-      _CopyWithStubImplInputChangeOrganizationStatusInput;
-
-  TRes call({
-    String? ifMatchesETag,
-    String? organizationId,
-    EnumOrganizationStatus? status,
-  });
-}
-
-class _CopyWithImplInputChangeOrganizationStatusInput<TRes>
-    implements CopyWithInputChangeOrganizationStatusInput<TRes> {
-  _CopyWithImplInputChangeOrganizationStatusInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputChangeOrganizationStatusInput _instance;
-
-  final TRes Function(InputChangeOrganizationStatusInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? ifMatchesETag = _undefined,
-    Object? organizationId = _undefined,
-    Object? status = _undefined,
-  }) =>
-      _then(InputChangeOrganizationStatusInput._({
-        ..._instance._$data,
-        if (ifMatchesETag != _undefined && ifMatchesETag != null)
-          'ifMatchesETag': (ifMatchesETag as String),
-        if (organizationId != _undefined && organizationId != null)
-          'organizationId': (organizationId as String),
-        if (status != _undefined && status != null)
-          'status': (status as EnumOrganizationStatus),
-      }));
-}
-
-class _CopyWithStubImplInputChangeOrganizationStatusInput<TRes>
-    implements CopyWithInputChangeOrganizationStatusInput<TRes> {
-  _CopyWithStubImplInputChangeOrganizationStatusInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? ifMatchesETag,
-    String? organizationId,
-    EnumOrganizationStatus? status,
-  }) =>
-      _res;
-}
-
 class InputChangePasswordInput {
   factory InputChangePasswordInput({
     required String newPassword,
@@ -3892,12 +2361,6 @@ class InputChangePasswordInput {
     return result$data;
   }
 
-  CopyWithInputChangePasswordInput<InputChangePasswordInput> get copyWith =>
-      CopyWithInputChangePasswordInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -3929,60 +2392,6 @@ class InputChangePasswordInput {
       l$oldPassword,
     ]);
   }
-}
-
-abstract class CopyWithInputChangePasswordInput<TRes> {
-  factory CopyWithInputChangePasswordInput(
-    InputChangePasswordInput instance,
-    TRes Function(InputChangePasswordInput) then,
-  ) = _CopyWithImplInputChangePasswordInput;
-
-  factory CopyWithInputChangePasswordInput.stub(TRes res) =
-      _CopyWithStubImplInputChangePasswordInput;
-
-  TRes call({
-    String? newPassword,
-    String? oldPassword,
-  });
-}
-
-class _CopyWithImplInputChangePasswordInput<TRes>
-    implements CopyWithInputChangePasswordInput<TRes> {
-  _CopyWithImplInputChangePasswordInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputChangePasswordInput _instance;
-
-  final TRes Function(InputChangePasswordInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? newPassword = _undefined,
-    Object? oldPassword = _undefined,
-  }) =>
-      _then(InputChangePasswordInput._({
-        ..._instance._$data,
-        if (newPassword != _undefined && newPassword != null)
-          'newPassword': (newPassword as String),
-        if (oldPassword != _undefined && oldPassword != null)
-          'oldPassword': (oldPassword as String),
-      }));
-}
-
-class _CopyWithStubImplInputChangePasswordInput<TRes>
-    implements CopyWithInputChangePasswordInput<TRes> {
-  _CopyWithStubImplInputChangePasswordInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? newPassword,
-    String? oldPassword,
-  }) =>
-      _res;
 }
 
 class InputChangeUserOrganizationEdgeStatusInput {
@@ -4032,13 +2441,6 @@ class InputChangeUserOrganizationEdgeStatusInput {
     return result$data;
   }
 
-  CopyWithInputChangeUserOrganizationEdgeStatusInput<
-          InputChangeUserOrganizationEdgeStatusInput>
-      get copyWith => CopyWithInputChangeUserOrganizationEdgeStatusInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -4077,65 +2479,6 @@ class InputChangeUserOrganizationEdgeStatusInput {
       l$userId,
     ]);
   }
-}
-
-abstract class CopyWithInputChangeUserOrganizationEdgeStatusInput<TRes> {
-  factory CopyWithInputChangeUserOrganizationEdgeStatusInput(
-    InputChangeUserOrganizationEdgeStatusInput instance,
-    TRes Function(InputChangeUserOrganizationEdgeStatusInput) then,
-  ) = _CopyWithImplInputChangeUserOrganizationEdgeStatusInput;
-
-  factory CopyWithInputChangeUserOrganizationEdgeStatusInput.stub(TRes res) =
-      _CopyWithStubImplInputChangeUserOrganizationEdgeStatusInput;
-
-  TRes call({
-    String? organizationId,
-    EnumUserOrganizationEdgeStatus? status,
-    String? userId,
-  });
-}
-
-class _CopyWithImplInputChangeUserOrganizationEdgeStatusInput<TRes>
-    implements CopyWithInputChangeUserOrganizationEdgeStatusInput<TRes> {
-  _CopyWithImplInputChangeUserOrganizationEdgeStatusInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputChangeUserOrganizationEdgeStatusInput _instance;
-
-  final TRes Function(InputChangeUserOrganizationEdgeStatusInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? organizationId = _undefined,
-    Object? status = _undefined,
-    Object? userId = _undefined,
-  }) =>
-      _then(InputChangeUserOrganizationEdgeStatusInput._({
-        ..._instance._$data,
-        if (organizationId != _undefined && organizationId != null)
-          'organizationId': (organizationId as String),
-        if (status != _undefined && status != null)
-          'status': (status as EnumUserOrganizationEdgeStatus),
-        if (userId != _undefined && userId != null)
-          'userId': (userId as String),
-      }));
-}
-
-class _CopyWithStubImplInputChangeUserOrganizationEdgeStatusInput<TRes>
-    implements CopyWithInputChangeUserOrganizationEdgeStatusInput<TRes> {
-  _CopyWithStubImplInputChangeUserOrganizationEdgeStatusInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? organizationId,
-    EnumUserOrganizationEdgeStatus? status,
-    String? userId,
-  }) =>
-      _res;
 }
 
 class InputCreateAppInput {
@@ -4191,12 +2534,6 @@ class InputCreateAppInput {
     return result$data;
   }
 
-  CopyWithInputCreateAppInput<InputCreateAppInput> get copyWith =>
-      CopyWithInputCreateAppInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -4248,69 +2585,6 @@ class InputCreateAppInput {
       Object.hashAll(l$redirectURL.map((v) => v)),
     ]);
   }
-}
-
-abstract class CopyWithInputCreateAppInput<TRes> {
-  factory CopyWithInputCreateAppInput(
-    InputCreateAppInput instance,
-    TRes Function(InputCreateAppInput) then,
-  ) = _CopyWithImplInputCreateAppInput;
-
-  factory CopyWithInputCreateAppInput.stub(TRes res) =
-      _CopyWithStubImplInputCreateAppInput;
-
-  TRes call({
-    String? description,
-    bool? enabled,
-    String? name,
-    List<String>? redirectURL,
-  });
-}
-
-class _CopyWithImplInputCreateAppInput<TRes>
-    implements CopyWithInputCreateAppInput<TRes> {
-  _CopyWithImplInputCreateAppInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputCreateAppInput _instance;
-
-  final TRes Function(InputCreateAppInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? description = _undefined,
-    Object? enabled = _undefined,
-    Object? name = _undefined,
-    Object? redirectURL = _undefined,
-  }) =>
-      _then(InputCreateAppInput._({
-        ..._instance._$data,
-        if (description != _undefined && description != null)
-          'description': (description as String),
-        if (enabled != _undefined && enabled != null)
-          'enabled': (enabled as bool),
-        if (name != _undefined && name != null) 'name': (name as String),
-        if (redirectURL != _undefined && redirectURL != null)
-          'redirectURL': (redirectURL as List<String>),
-      }));
-}
-
-class _CopyWithStubImplInputCreateAppInput<TRes>
-    implements CopyWithInputCreateAppInput<TRes> {
-  _CopyWithStubImplInputCreateAppInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? description,
-    bool? enabled,
-    String? name,
-    List<String>? redirectURL,
-  }) =>
-      _res;
 }
 
 class InputCreateOrganizationInput {
@@ -4421,12 +2695,6 @@ class InputCreateOrganizationInput {
     return result$data;
   }
 
-  CopyWithInputCreateOrganizationInput<InputCreateOrganizationInput>
-      get copyWith => CopyWithInputCreateOrganizationInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -4522,92 +2790,6 @@ class InputCreateOrganizationInput {
   }
 }
 
-abstract class CopyWithInputCreateOrganizationInput<TRes> {
-  factory CopyWithInputCreateOrganizationInput(
-    InputCreateOrganizationInput instance,
-    TRes Function(InputCreateOrganizationInput) then,
-  ) = _CopyWithImplInputCreateOrganizationInput;
-
-  factory CopyWithInputCreateOrganizationInput.stub(TRes res) =
-      _CopyWithStubImplInputCreateOrganizationInput;
-
-  TRes call({
-    String? corporateTaxpayerRegistry,
-    String? description,
-    String? email,
-    String? logo,
-    String? name,
-    EnumUserOrganizationRole? role,
-    EnumOrganizationStatus? status,
-    List<String>? tags,
-    String? tradingName,
-  });
-}
-
-class _CopyWithImplInputCreateOrganizationInput<TRes>
-    implements CopyWithInputCreateOrganizationInput<TRes> {
-  _CopyWithImplInputCreateOrganizationInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputCreateOrganizationInput _instance;
-
-  final TRes Function(InputCreateOrganizationInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? corporateTaxpayerRegistry = _undefined,
-    Object? description = _undefined,
-    Object? email = _undefined,
-    Object? logo = _undefined,
-    Object? name = _undefined,
-    Object? role = _undefined,
-    Object? status = _undefined,
-    Object? tags = _undefined,
-    Object? tradingName = _undefined,
-  }) =>
-      _then(InputCreateOrganizationInput._({
-        ..._instance._$data,
-        if (corporateTaxpayerRegistry != _undefined &&
-            corporateTaxpayerRegistry != null)
-          'corporateTaxpayerRegistry': (corporateTaxpayerRegistry as String),
-        if (description != _undefined && description != null)
-          'description': (description as String),
-        if (email != _undefined && email != null) 'email': (email as String),
-        if (logo != _undefined) 'logo': (logo as String?),
-        if (name != _undefined && name != null) 'name': (name as String),
-        if (role != _undefined && role != null)
-          'role': (role as EnumUserOrganizationRole),
-        if (status != _undefined && status != null)
-          'status': (status as EnumOrganizationStatus),
-        if (tags != _undefined && tags != null) 'tags': (tags as List<String>),
-        if (tradingName != _undefined && tradingName != null)
-          'tradingName': (tradingName as String),
-      }));
-}
-
-class _CopyWithStubImplInputCreateOrganizationInput<TRes>
-    implements CopyWithInputCreateOrganizationInput<TRes> {
-  _CopyWithStubImplInputCreateOrganizationInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? corporateTaxpayerRegistry,
-    String? description,
-    String? email,
-    String? logo,
-    String? name,
-    EnumUserOrganizationRole? role,
-    EnumOrganizationStatus? status,
-    List<String>? tags,
-    String? tradingName,
-  }) =>
-      _res;
-}
-
 class InputCreatePostInput {
   factory InputCreatePostInput({
     required String body,
@@ -4668,12 +2850,6 @@ class InputCreatePostInput {
     result$data['title'] = l$title;
     return result$data;
   }
-
-  CopyWithInputCreatePostInput<InputCreatePostInput> get copyWith =>
-      CopyWithInputCreatePostInput(
-        this,
-        (i) => i,
-      );
 
   @override
   bool operator ==(Object other) {
@@ -4743,67 +2919,6 @@ class InputCreatePostInput {
   }
 }
 
-abstract class CopyWithInputCreatePostInput<TRes> {
-  factory CopyWithInputCreatePostInput(
-    InputCreatePostInput instance,
-    TRes Function(InputCreatePostInput) then,
-  ) = _CopyWithImplInputCreatePostInput;
-
-  factory CopyWithInputCreatePostInput.stub(TRes res) =
-      _CopyWithStubImplInputCreatePostInput;
-
-  TRes call({
-    String? body,
-    List<String>? images,
-    String? organizationId,
-    String? title,
-  });
-}
-
-class _CopyWithImplInputCreatePostInput<TRes>
-    implements CopyWithInputCreatePostInput<TRes> {
-  _CopyWithImplInputCreatePostInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputCreatePostInput _instance;
-
-  final TRes Function(InputCreatePostInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? body = _undefined,
-    Object? images = _undefined,
-    Object? organizationId = _undefined,
-    Object? title = _undefined,
-  }) =>
-      _then(InputCreatePostInput._({
-        ..._instance._$data,
-        if (body != _undefined && body != null) 'body': (body as String),
-        if (images != _undefined) 'images': (images as List<String>?),
-        if (organizationId != _undefined)
-          'organizationId': (organizationId as String?),
-        if (title != _undefined && title != null) 'title': (title as String),
-      }));
-}
-
-class _CopyWithStubImplInputCreatePostInput<TRes>
-    implements CopyWithInputCreatePostInput<TRes> {
-  _CopyWithStubImplInputCreatePostInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? body,
-    List<String>? images,
-    String? organizationId,
-    String? title,
-  }) =>
-      _res;
-}
-
 class InputCreateTermInput {
   factory InputCreateTermInput({
     required InputTermInput term,
@@ -4843,12 +2958,6 @@ class InputCreateTermInput {
     return result$data;
   }
 
-  CopyWithInputCreateTermInput<InputCreateTermInput> get copyWith =>
-      CopyWithInputCreateTermInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -4879,78 +2988,6 @@ class InputCreateTermInput {
       l$termVersion,
     ]);
   }
-}
-
-abstract class CopyWithInputCreateTermInput<TRes> {
-  factory CopyWithInputCreateTermInput(
-    InputCreateTermInput instance,
-    TRes Function(InputCreateTermInput) then,
-  ) = _CopyWithImplInputCreateTermInput;
-
-  factory CopyWithInputCreateTermInput.stub(TRes res) =
-      _CopyWithStubImplInputCreateTermInput;
-
-  TRes call({
-    InputTermInput? term,
-    InputTermVersionInput? termVersion,
-  });
-  CopyWithInputTermInput<TRes> get term;
-  CopyWithInputTermVersionInput<TRes> get termVersion;
-}
-
-class _CopyWithImplInputCreateTermInput<TRes>
-    implements CopyWithInputCreateTermInput<TRes> {
-  _CopyWithImplInputCreateTermInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputCreateTermInput _instance;
-
-  final TRes Function(InputCreateTermInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? term = _undefined,
-    Object? termVersion = _undefined,
-  }) =>
-      _then(InputCreateTermInput._({
-        ..._instance._$data,
-        if (term != _undefined && term != null)
-          'term': (term as InputTermInput),
-        if (termVersion != _undefined && termVersion != null)
-          'termVersion': (termVersion as InputTermVersionInput),
-      }));
-
-  CopyWithInputTermInput<TRes> get term {
-    final local$term = _instance.term;
-    return CopyWithInputTermInput(local$term, (e) => call(term: e));
-  }
-
-  CopyWithInputTermVersionInput<TRes> get termVersion {
-    final local$termVersion = _instance.termVersion;
-    return CopyWithInputTermVersionInput(
-        local$termVersion, (e) => call(termVersion: e));
-  }
-}
-
-class _CopyWithStubImplInputCreateTermInput<TRes>
-    implements CopyWithInputCreateTermInput<TRes> {
-  _CopyWithStubImplInputCreateTermInput(this._res);
-
-  TRes _res;
-
-  call({
-    InputTermInput? term,
-    InputTermVersionInput? termVersion,
-  }) =>
-      _res;
-
-  CopyWithInputTermInput<TRes> get term => CopyWithInputTermInput.stub(_res);
-
-  CopyWithInputTermVersionInput<TRes> get termVersion =>
-      CopyWithInputTermVersionInput.stub(_res);
 }
 
 class InputTermInput {
@@ -5001,11 +3038,6 @@ class InputTermInput {
     result$data['title'] = l$title;
     return result$data;
   }
-
-  CopyWithInputTermInput<InputTermInput> get copyWith => CopyWithInputTermInput(
-        this,
-        (i) => i,
-      );
 
   @override
   bool operator ==(Object other) {
@@ -5064,63 +3096,6 @@ class InputTermInput {
   }
 }
 
-abstract class CopyWithInputTermInput<TRes> {
-  factory CopyWithInputTermInput(
-    InputTermInput instance,
-    TRes Function(InputTermInput) then,
-  ) = _CopyWithImplInputTermInput;
-
-  factory CopyWithInputTermInput.stub(TRes res) =
-      _CopyWithStubImplInputTermInput;
-
-  TRes call({
-    String? description,
-    List<String>? tags,
-    String? title,
-  });
-}
-
-class _CopyWithImplInputTermInput<TRes>
-    implements CopyWithInputTermInput<TRes> {
-  _CopyWithImplInputTermInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputTermInput _instance;
-
-  final TRes Function(InputTermInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? description = _undefined,
-    Object? tags = _undefined,
-    Object? title = _undefined,
-  }) =>
-      _then(InputTermInput._({
-        ..._instance._$data,
-        if (description != _undefined && description != null)
-          'description': (description as String),
-        if (tags != _undefined) 'tags': (tags as List<String>?),
-        if (title != _undefined && title != null) 'title': (title as String),
-      }));
-}
-
-class _CopyWithStubImplInputTermInput<TRes>
-    implements CopyWithInputTermInput<TRes> {
-  _CopyWithStubImplInputTermInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? description,
-    List<String>? tags,
-    String? title,
-  }) =>
-      _res;
-}
-
 class InputTermVersionInput {
   factory InputTermVersionInput({
     required String body,
@@ -5165,12 +3140,6 @@ class InputTermVersionInput {
     return result$data;
   }
 
-  CopyWithInputTermVersionInput<InputTermVersionInput> get copyWith =>
-      CopyWithInputTermVersionInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -5208,64 +3177,6 @@ class InputTermVersionInput {
       l$version,
     ]);
   }
-}
-
-abstract class CopyWithInputTermVersionInput<TRes> {
-  factory CopyWithInputTermVersionInput(
-    InputTermVersionInput instance,
-    TRes Function(InputTermVersionInput) then,
-  ) = _CopyWithImplInputTermVersionInput;
-
-  factory CopyWithInputTermVersionInput.stub(TRes res) =
-      _CopyWithStubImplInputTermVersionInput;
-
-  TRes call({
-    String? body,
-    String? description,
-    String? version,
-  });
-}
-
-class _CopyWithImplInputTermVersionInput<TRes>
-    implements CopyWithInputTermVersionInput<TRes> {
-  _CopyWithImplInputTermVersionInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputTermVersionInput _instance;
-
-  final TRes Function(InputTermVersionInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? body = _undefined,
-    Object? description = _undefined,
-    Object? version = _undefined,
-  }) =>
-      _then(InputTermVersionInput._({
-        ..._instance._$data,
-        if (body != _undefined && body != null) 'body': (body as String),
-        if (description != _undefined && description != null)
-          'description': (description as String),
-        if (version != _undefined && version != null)
-          'version': (version as String),
-      }));
-}
-
-class _CopyWithStubImplInputTermVersionInput<TRes>
-    implements CopyWithInputTermVersionInput<TRes> {
-  _CopyWithStubImplInputTermVersionInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? body,
-    String? description,
-    String? version,
-  }) =>
-      _res;
 }
 
 class InputCreateTermVersionInput {
@@ -5320,12 +3231,6 @@ class InputCreateTermVersionInput {
     return result$data;
   }
 
-  CopyWithInputCreateTermVersionInput<InputCreateTermVersionInput>
-      get copyWith => CopyWithInputCreateTermVersionInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -5371,69 +3276,6 @@ class InputCreateTermVersionInput {
       l$version,
     ]);
   }
-}
-
-abstract class CopyWithInputCreateTermVersionInput<TRes> {
-  factory CopyWithInputCreateTermVersionInput(
-    InputCreateTermVersionInput instance,
-    TRes Function(InputCreateTermVersionInput) then,
-  ) = _CopyWithImplInputCreateTermVersionInput;
-
-  factory CopyWithInputCreateTermVersionInput.stub(TRes res) =
-      _CopyWithStubImplInputCreateTermVersionInput;
-
-  TRes call({
-    String? body,
-    String? description,
-    String? termId,
-    String? version,
-  });
-}
-
-class _CopyWithImplInputCreateTermVersionInput<TRes>
-    implements CopyWithInputCreateTermVersionInput<TRes> {
-  _CopyWithImplInputCreateTermVersionInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputCreateTermVersionInput _instance;
-
-  final TRes Function(InputCreateTermVersionInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? body = _undefined,
-    Object? description = _undefined,
-    Object? termId = _undefined,
-    Object? version = _undefined,
-  }) =>
-      _then(InputCreateTermVersionInput._({
-        ..._instance._$data,
-        if (body != _undefined && body != null) 'body': (body as String),
-        if (description != _undefined && description != null)
-          'description': (description as String),
-        if (termId != _undefined && termId != null)
-          'termId': (termId as String),
-        if (version != _undefined && version != null)
-          'version': (version as String),
-      }));
-}
-
-class _CopyWithStubImplInputCreateTermVersionInput<TRes>
-    implements CopyWithInputCreateTermVersionInput<TRes> {
-  _CopyWithStubImplInputCreateTermVersionInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? body,
-    String? description,
-    String? termId,
-    String? version,
-  }) =>
-      _res;
 }
 
 class InputCreateUserInput {
@@ -5532,12 +3374,6 @@ class InputCreateUserInput {
     return result$data;
   }
 
-  CopyWithInputCreateUserInput<InputCreateUserInput> get copyWith =>
-      CopyWithInputCreateUserInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -5635,82 +3471,6 @@ class InputCreateUserInput {
   }
 }
 
-abstract class CopyWithInputCreateUserInput<TRes> {
-  factory CopyWithInputCreateUserInput(
-    InputCreateUserInput instance,
-    TRes Function(InputCreateUserInput) then,
-  ) = _CopyWithImplInputCreateUserInput;
-
-  factory CopyWithInputCreateUserInput.stub(TRes res) =
-      _CopyWithStubImplInputCreateUserInput;
-
-  TRes call({
-    String? email,
-    bool? enabled,
-    String? firstName,
-    String? lastName,
-    String? password,
-    List<String>? requiredActions,
-    String? username,
-  });
-}
-
-class _CopyWithImplInputCreateUserInput<TRes>
-    implements CopyWithInputCreateUserInput<TRes> {
-  _CopyWithImplInputCreateUserInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputCreateUserInput _instance;
-
-  final TRes Function(InputCreateUserInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? email = _undefined,
-    Object? enabled = _undefined,
-    Object? firstName = _undefined,
-    Object? lastName = _undefined,
-    Object? password = _undefined,
-    Object? requiredActions = _undefined,
-    Object? username = _undefined,
-  }) =>
-      _then(InputCreateUserInput._({
-        ..._instance._$data,
-        if (email != _undefined && email != null) 'email': (email as String),
-        if (enabled != _undefined && enabled != null)
-          'enabled': (enabled as bool),
-        if (firstName != _undefined) 'firstName': (firstName as String?),
-        if (lastName != _undefined) 'lastName': (lastName as String?),
-        if (password != _undefined && password != null)
-          'password': (password as String),
-        if (requiredActions != _undefined)
-          'requiredActions': (requiredActions as List<String>?),
-        if (username != _undefined && username != null)
-          'username': (username as String),
-      }));
-}
-
-class _CopyWithStubImplInputCreateUserInput<TRes>
-    implements CopyWithInputCreateUserInput<TRes> {
-  _CopyWithStubImplInputCreateUserInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? email,
-    bool? enabled,
-    String? firstName,
-    String? lastName,
-    String? password,
-    List<String>? requiredActions,
-    String? username,
-  }) =>
-      _res;
-}
-
 class InputDeactivateUserInput {
   factory InputDeactivateUserInput({required String userId}) =>
       InputDeactivateUserInput._({
@@ -5737,12 +3497,6 @@ class InputDeactivateUserInput {
     return result$data;
   }
 
-  CopyWithInputDeactivateUserInput<InputDeactivateUserInput> get copyWith =>
-      CopyWithInputDeactivateUserInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -5765,47 +3519,6 @@ class InputDeactivateUserInput {
     final l$userId = userId;
     return Object.hashAll([l$userId]);
   }
-}
-
-abstract class CopyWithInputDeactivateUserInput<TRes> {
-  factory CopyWithInputDeactivateUserInput(
-    InputDeactivateUserInput instance,
-    TRes Function(InputDeactivateUserInput) then,
-  ) = _CopyWithImplInputDeactivateUserInput;
-
-  factory CopyWithInputDeactivateUserInput.stub(TRes res) =
-      _CopyWithStubImplInputDeactivateUserInput;
-
-  TRes call({String? userId});
-}
-
-class _CopyWithImplInputDeactivateUserInput<TRes>
-    implements CopyWithInputDeactivateUserInput<TRes> {
-  _CopyWithImplInputDeactivateUserInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputDeactivateUserInput _instance;
-
-  final TRes Function(InputDeactivateUserInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? userId = _undefined}) => _then(InputDeactivateUserInput._({
-        ..._instance._$data,
-        if (userId != _undefined && userId != null)
-          'userId': (userId as String),
-      }));
-}
-
-class _CopyWithStubImplInputDeactivateUserInput<TRes>
-    implements CopyWithInputDeactivateUserInput<TRes> {
-  _CopyWithStubImplInputDeactivateUserInput(this._res);
-
-  TRes _res;
-
-  call({String? userId}) => _res;
 }
 
 class InputDeleteOrganizationInput {
@@ -5834,12 +3547,6 @@ class InputDeleteOrganizationInput {
     return result$data;
   }
 
-  CopyWithInputDeleteOrganizationInput<InputDeleteOrganizationInput>
-      get copyWith => CopyWithInputDeleteOrganizationInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -5862,48 +3569,6 @@ class InputDeleteOrganizationInput {
     final l$organizationId = organizationId;
     return Object.hashAll([l$organizationId]);
   }
-}
-
-abstract class CopyWithInputDeleteOrganizationInput<TRes> {
-  factory CopyWithInputDeleteOrganizationInput(
-    InputDeleteOrganizationInput instance,
-    TRes Function(InputDeleteOrganizationInput) then,
-  ) = _CopyWithImplInputDeleteOrganizationInput;
-
-  factory CopyWithInputDeleteOrganizationInput.stub(TRes res) =
-      _CopyWithStubImplInputDeleteOrganizationInput;
-
-  TRes call({String? organizationId});
-}
-
-class _CopyWithImplInputDeleteOrganizationInput<TRes>
-    implements CopyWithInputDeleteOrganizationInput<TRes> {
-  _CopyWithImplInputDeleteOrganizationInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputDeleteOrganizationInput _instance;
-
-  final TRes Function(InputDeleteOrganizationInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? organizationId = _undefined}) =>
-      _then(InputDeleteOrganizationInput._({
-        ..._instance._$data,
-        if (organizationId != _undefined && organizationId != null)
-          'organizationId': (organizationId as String),
-      }));
-}
-
-class _CopyWithStubImplInputDeleteOrganizationInput<TRes>
-    implements CopyWithInputDeleteOrganizationInput<TRes> {
-  _CopyWithStubImplInputDeleteOrganizationInput(this._res);
-
-  TRes _res;
-
-  call({String? organizationId}) => _res;
 }
 
 class InputLoginInput {
@@ -5942,12 +3607,6 @@ class InputLoginInput {
     return result$data;
   }
 
-  CopyWithInputLoginInput<InputLoginInput> get copyWith =>
-      CopyWithInputLoginInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -5980,60 +3639,6 @@ class InputLoginInput {
   }
 }
 
-abstract class CopyWithInputLoginInput<TRes> {
-  factory CopyWithInputLoginInput(
-    InputLoginInput instance,
-    TRes Function(InputLoginInput) then,
-  ) = _CopyWithImplInputLoginInput;
-
-  factory CopyWithInputLoginInput.stub(TRes res) =
-      _CopyWithStubImplInputLoginInput;
-
-  TRes call({
-    String? password,
-    String? username,
-  });
-}
-
-class _CopyWithImplInputLoginInput<TRes>
-    implements CopyWithInputLoginInput<TRes> {
-  _CopyWithImplInputLoginInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputLoginInput _instance;
-
-  final TRes Function(InputLoginInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? password = _undefined,
-    Object? username = _undefined,
-  }) =>
-      _then(InputLoginInput._({
-        ..._instance._$data,
-        if (password != _undefined && password != null)
-          'password': (password as String),
-        if (username != _undefined && username != null)
-          'username': (username as String),
-      }));
-}
-
-class _CopyWithStubImplInputLoginInput<TRes>
-    implements CopyWithInputLoginInput<TRes> {
-  _CopyWithStubImplInputLoginInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? password,
-    String? username,
-  }) =>
-      _res;
-}
-
 class InputModerateTextInput {
   factory InputModerateTextInput({required String message}) =>
       InputModerateTextInput._({
@@ -6060,12 +3665,6 @@ class InputModerateTextInput {
     return result$data;
   }
 
-  CopyWithInputModerateTextInput<InputModerateTextInput> get copyWith =>
-      CopyWithInputModerateTextInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -6088,47 +3687,6 @@ class InputModerateTextInput {
     final l$message = message;
     return Object.hashAll([l$message]);
   }
-}
-
-abstract class CopyWithInputModerateTextInput<TRes> {
-  factory CopyWithInputModerateTextInput(
-    InputModerateTextInput instance,
-    TRes Function(InputModerateTextInput) then,
-  ) = _CopyWithImplInputModerateTextInput;
-
-  factory CopyWithInputModerateTextInput.stub(TRes res) =
-      _CopyWithStubImplInputModerateTextInput;
-
-  TRes call({String? message});
-}
-
-class _CopyWithImplInputModerateTextInput<TRes>
-    implements CopyWithInputModerateTextInput<TRes> {
-  _CopyWithImplInputModerateTextInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputModerateTextInput _instance;
-
-  final TRes Function(InputModerateTextInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? message = _undefined}) => _then(InputModerateTextInput._({
-        ..._instance._$data,
-        if (message != _undefined && message != null)
-          'message': (message as String),
-      }));
-}
-
-class _CopyWithStubImplInputModerateTextInput<TRes>
-    implements CopyWithInputModerateTextInput<TRes> {
-  _CopyWithStubImplInputModerateTextInput(this._res);
-
-  TRes _res;
-
-  call({String? message}) => _res;
 }
 
 class InputPublishTermVersionInput {
@@ -6167,12 +3725,6 @@ class InputPublishTermVersionInput {
     return result$data;
   }
 
-  CopyWithInputPublishTermVersionInput<InputPublishTermVersionInput>
-      get copyWith => CopyWithInputPublishTermVersionInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -6206,60 +3758,6 @@ class InputPublishTermVersionInput {
   }
 }
 
-abstract class CopyWithInputPublishTermVersionInput<TRes> {
-  factory CopyWithInputPublishTermVersionInput(
-    InputPublishTermVersionInput instance,
-    TRes Function(InputPublishTermVersionInput) then,
-  ) = _CopyWithImplInputPublishTermVersionInput;
-
-  factory CopyWithInputPublishTermVersionInput.stub(TRes res) =
-      _CopyWithStubImplInputPublishTermVersionInput;
-
-  TRes call({
-    String? ifMatchesETag,
-    String? termVersionId,
-  });
-}
-
-class _CopyWithImplInputPublishTermVersionInput<TRes>
-    implements CopyWithInputPublishTermVersionInput<TRes> {
-  _CopyWithImplInputPublishTermVersionInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputPublishTermVersionInput _instance;
-
-  final TRes Function(InputPublishTermVersionInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? ifMatchesETag = _undefined,
-    Object? termVersionId = _undefined,
-  }) =>
-      _then(InputPublishTermVersionInput._({
-        ..._instance._$data,
-        if (ifMatchesETag != _undefined && ifMatchesETag != null)
-          'ifMatchesETag': (ifMatchesETag as String),
-        if (termVersionId != _undefined && termVersionId != null)
-          'termVersionId': (termVersionId as String),
-      }));
-}
-
-class _CopyWithStubImplInputPublishTermVersionInput<TRes>
-    implements CopyWithInputPublishTermVersionInput<TRes> {
-  _CopyWithStubImplInputPublishTermVersionInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? ifMatchesETag,
-    String? termVersionId,
-  }) =>
-      _res;
-}
-
 class InputRefreshInput {
   factory InputRefreshInput({required String token}) => InputRefreshInput._({
         r'token': token,
@@ -6285,12 +3783,6 @@ class InputRefreshInput {
     return result$data;
   }
 
-  CopyWithInputRefreshInput<InputRefreshInput> get copyWith =>
-      CopyWithInputRefreshInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -6312,46 +3804,6 @@ class InputRefreshInput {
     final l$token = token;
     return Object.hashAll([l$token]);
   }
-}
-
-abstract class CopyWithInputRefreshInput<TRes> {
-  factory CopyWithInputRefreshInput(
-    InputRefreshInput instance,
-    TRes Function(InputRefreshInput) then,
-  ) = _CopyWithImplInputRefreshInput;
-
-  factory CopyWithInputRefreshInput.stub(TRes res) =
-      _CopyWithStubImplInputRefreshInput;
-
-  TRes call({String? token});
-}
-
-class _CopyWithImplInputRefreshInput<TRes>
-    implements CopyWithInputRefreshInput<TRes> {
-  _CopyWithImplInputRefreshInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputRefreshInput _instance;
-
-  final TRes Function(InputRefreshInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? token = _undefined}) => _then(InputRefreshInput._({
-        ..._instance._$data,
-        if (token != _undefined && token != null) 'token': (token as String),
-      }));
-}
-
-class _CopyWithStubImplInputRefreshInput<TRes>
-    implements CopyWithInputRefreshInput<TRes> {
-  _CopyWithStubImplInputRefreshInput(this._res);
-
-  TRes _res;
-
-  call({String? token}) => _res;
 }
 
 class InputRegisterWebhookInput {
@@ -6412,12 +3864,6 @@ class InputRegisterWebhookInput {
     return result$data;
   }
 
-  CopyWithInputRegisterWebhookInput<InputRegisterWebhookInput> get copyWith =>
-      CopyWithInputRegisterWebhookInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -6472,78 +3918,6 @@ class InputRegisterWebhookInput {
   }
 }
 
-abstract class CopyWithInputRegisterWebhookInput<TRes> {
-  factory CopyWithInputRegisterWebhookInput(
-    InputRegisterWebhookInput instance,
-    TRes Function(InputRegisterWebhookInput) then,
-  ) = _CopyWithImplInputRegisterWebhookInput;
-
-  factory CopyWithInputRegisterWebhookInput.stub(TRes res) =
-      _CopyWithStubImplInputRegisterWebhookInput;
-
-  TRes call({
-    bool? active,
-    InputWebhookConfigInput? config,
-    List<EnumSubscribableEvents>? events,
-    String? name,
-  });
-  CopyWithInputWebhookConfigInput<TRes> get config;
-}
-
-class _CopyWithImplInputRegisterWebhookInput<TRes>
-    implements CopyWithInputRegisterWebhookInput<TRes> {
-  _CopyWithImplInputRegisterWebhookInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputRegisterWebhookInput _instance;
-
-  final TRes Function(InputRegisterWebhookInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? active = _undefined,
-    Object? config = _undefined,
-    Object? events = _undefined,
-    Object? name = _undefined,
-  }) =>
-      _then(InputRegisterWebhookInput._({
-        ..._instance._$data,
-        if (active != _undefined && active != null) 'active': (active as bool),
-        if (config != _undefined && config != null)
-          'config': (config as InputWebhookConfigInput),
-        if (events != _undefined && events != null)
-          'events': (events as List<EnumSubscribableEvents>),
-        if (name != _undefined && name != null) 'name': (name as String),
-      }));
-
-  CopyWithInputWebhookConfigInput<TRes> get config {
-    final local$config = _instance.config;
-    return CopyWithInputWebhookConfigInput(
-        local$config, (e) => call(config: e));
-  }
-}
-
-class _CopyWithStubImplInputRegisterWebhookInput<TRes>
-    implements CopyWithInputRegisterWebhookInput<TRes> {
-  _CopyWithStubImplInputRegisterWebhookInput(this._res);
-
-  TRes _res;
-
-  call({
-    bool? active,
-    InputWebhookConfigInput? config,
-    List<EnumSubscribableEvents>? events,
-    String? name,
-  }) =>
-      _res;
-
-  CopyWithInputWebhookConfigInput<TRes> get config =>
-      CopyWithInputWebhookConfigInput.stub(_res);
-}
-
 class InputWebhookConfigInput {
   factory InputWebhookConfigInput({
     required EnumWebhookRequestMethod method,
@@ -6582,12 +3956,6 @@ class InputWebhookConfigInput {
     return result$data;
   }
 
-  CopyWithInputWebhookConfigInput<InputWebhookConfigInput> get copyWith =>
-      CopyWithInputWebhookConfigInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -6619,59 +3987,6 @@ class InputWebhookConfigInput {
       l$url,
     ]);
   }
-}
-
-abstract class CopyWithInputWebhookConfigInput<TRes> {
-  factory CopyWithInputWebhookConfigInput(
-    InputWebhookConfigInput instance,
-    TRes Function(InputWebhookConfigInput) then,
-  ) = _CopyWithImplInputWebhookConfigInput;
-
-  factory CopyWithInputWebhookConfigInput.stub(TRes res) =
-      _CopyWithStubImplInputWebhookConfigInput;
-
-  TRes call({
-    EnumWebhookRequestMethod? method,
-    String? url,
-  });
-}
-
-class _CopyWithImplInputWebhookConfigInput<TRes>
-    implements CopyWithInputWebhookConfigInput<TRes> {
-  _CopyWithImplInputWebhookConfigInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputWebhookConfigInput _instance;
-
-  final TRes Function(InputWebhookConfigInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? method = _undefined,
-    Object? url = _undefined,
-  }) =>
-      _then(InputWebhookConfigInput._({
-        ..._instance._$data,
-        if (method != _undefined && method != null)
-          'method': (method as EnumWebhookRequestMethod),
-        if (url != _undefined && url != null) 'url': (url as String),
-      }));
-}
-
-class _CopyWithStubImplInputWebhookConfigInput<TRes>
-    implements CopyWithInputWebhookConfigInput<TRes> {
-  _CopyWithStubImplInputWebhookConfigInput(this._res);
-
-  TRes _res;
-
-  call({
-    EnumWebhookRequestMethod? method,
-    String? url,
-  }) =>
-      _res;
 }
 
 class InputRemovePostInput {
@@ -6710,12 +4025,6 @@ class InputRemovePostInput {
     return result$data;
   }
 
-  CopyWithInputRemovePostInput<InputRemovePostInput> get copyWith =>
-      CopyWithInputRemovePostInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -6746,59 +4055,6 @@ class InputRemovePostInput {
       l$reason,
     ]);
   }
-}
-
-abstract class CopyWithInputRemovePostInput<TRes> {
-  factory CopyWithInputRemovePostInput(
-    InputRemovePostInput instance,
-    TRes Function(InputRemovePostInput) then,
-  ) = _CopyWithImplInputRemovePostInput;
-
-  factory CopyWithInputRemovePostInput.stub(TRes res) =
-      _CopyWithStubImplInputRemovePostInput;
-
-  TRes call({
-    String? id,
-    String? reason,
-  });
-}
-
-class _CopyWithImplInputRemovePostInput<TRes>
-    implements CopyWithInputRemovePostInput<TRes> {
-  _CopyWithImplInputRemovePostInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputRemovePostInput _instance;
-
-  final TRes Function(InputRemovePostInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? reason = _undefined,
-  }) =>
-      _then(InputRemovePostInput._({
-        ..._instance._$data,
-        if (id != _undefined && id != null) 'id': (id as String),
-        if (reason != _undefined && reason != null)
-          'reason': (reason as String),
-      }));
-}
-
-class _CopyWithStubImplInputRemovePostInput<TRes>
-    implements CopyWithInputRemovePostInput<TRes> {
-  _CopyWithStubImplInputRemovePostInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? reason,
-  }) =>
-      _res;
 }
 
 class InputRemoveUserFromOrganizationInput {
@@ -6838,13 +4094,6 @@ class InputRemoveUserFromOrganizationInput {
     return result$data;
   }
 
-  CopyWithInputRemoveUserFromOrganizationInput<
-          InputRemoveUserFromOrganizationInput>
-      get copyWith => CopyWithInputRemoveUserFromOrganizationInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -6878,60 +4127,6 @@ class InputRemoveUserFromOrganizationInput {
   }
 }
 
-abstract class CopyWithInputRemoveUserFromOrganizationInput<TRes> {
-  factory CopyWithInputRemoveUserFromOrganizationInput(
-    InputRemoveUserFromOrganizationInput instance,
-    TRes Function(InputRemoveUserFromOrganizationInput) then,
-  ) = _CopyWithImplInputRemoveUserFromOrganizationInput;
-
-  factory CopyWithInputRemoveUserFromOrganizationInput.stub(TRes res) =
-      _CopyWithStubImplInputRemoveUserFromOrganizationInput;
-
-  TRes call({
-    String? organizationId,
-    String? userId,
-  });
-}
-
-class _CopyWithImplInputRemoveUserFromOrganizationInput<TRes>
-    implements CopyWithInputRemoveUserFromOrganizationInput<TRes> {
-  _CopyWithImplInputRemoveUserFromOrganizationInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputRemoveUserFromOrganizationInput _instance;
-
-  final TRes Function(InputRemoveUserFromOrganizationInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? organizationId = _undefined,
-    Object? userId = _undefined,
-  }) =>
-      _then(InputRemoveUserFromOrganizationInput._({
-        ..._instance._$data,
-        if (organizationId != _undefined && organizationId != null)
-          'organizationId': (organizationId as String),
-        if (userId != _undefined && userId != null)
-          'userId': (userId as String),
-      }));
-}
-
-class _CopyWithStubImplInputRemoveUserFromOrganizationInput<TRes>
-    implements CopyWithInputRemoveUserFromOrganizationInput<TRes> {
-  _CopyWithStubImplInputRemoveUserFromOrganizationInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? organizationId,
-    String? userId,
-  }) =>
-      _res;
-}
-
 class InputResetPasswordInput {
   factory InputResetPasswordInput({required String email}) =>
       InputResetPasswordInput._({
@@ -6958,12 +4153,6 @@ class InputResetPasswordInput {
     return result$data;
   }
 
-  CopyWithInputResetPasswordInput<InputResetPasswordInput> get copyWith =>
-      CopyWithInputResetPasswordInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -6986,46 +4175,6 @@ class InputResetPasswordInput {
     final l$email = email;
     return Object.hashAll([l$email]);
   }
-}
-
-abstract class CopyWithInputResetPasswordInput<TRes> {
-  factory CopyWithInputResetPasswordInput(
-    InputResetPasswordInput instance,
-    TRes Function(InputResetPasswordInput) then,
-  ) = _CopyWithImplInputResetPasswordInput;
-
-  factory CopyWithInputResetPasswordInput.stub(TRes res) =
-      _CopyWithStubImplInputResetPasswordInput;
-
-  TRes call({String? email});
-}
-
-class _CopyWithImplInputResetPasswordInput<TRes>
-    implements CopyWithInputResetPasswordInput<TRes> {
-  _CopyWithImplInputResetPasswordInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputResetPasswordInput _instance;
-
-  final TRes Function(InputResetPasswordInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? email = _undefined}) => _then(InputResetPasswordInput._({
-        ..._instance._$data,
-        if (email != _undefined && email != null) 'email': (email as String),
-      }));
-}
-
-class _CopyWithStubImplInputResetPasswordInput<TRes>
-    implements CopyWithInputResetPasswordInput<TRes> {
-  _CopyWithStubImplInputResetPasswordInput(this._res);
-
-  TRes _res;
-
-  call({String? email}) => _res;
 }
 
 class InputRestorePostInput {
@@ -7054,12 +4203,6 @@ class InputRestorePostInput {
     return result$data;
   }
 
-  CopyWithInputRestorePostInput<InputRestorePostInput> get copyWith =>
-      CopyWithInputRestorePostInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -7081,46 +4224,6 @@ class InputRestorePostInput {
     final l$id = id;
     return Object.hashAll([l$id]);
   }
-}
-
-abstract class CopyWithInputRestorePostInput<TRes> {
-  factory CopyWithInputRestorePostInput(
-    InputRestorePostInput instance,
-    TRes Function(InputRestorePostInput) then,
-  ) = _CopyWithImplInputRestorePostInput;
-
-  factory CopyWithInputRestorePostInput.stub(TRes res) =
-      _CopyWithStubImplInputRestorePostInput;
-
-  TRes call({String? id});
-}
-
-class _CopyWithImplInputRestorePostInput<TRes>
-    implements CopyWithInputRestorePostInput<TRes> {
-  _CopyWithImplInputRestorePostInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputRestorePostInput _instance;
-
-  final TRes Function(InputRestorePostInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? id = _undefined}) => _then(InputRestorePostInput._({
-        ..._instance._$data,
-        if (id != _undefined && id != null) 'id': (id as String),
-      }));
-}
-
-class _CopyWithStubImplInputRestorePostInput<TRes>
-    implements CopyWithInputRestorePostInput<TRes> {
-  _CopyWithStubImplInputRestorePostInput(this._res);
-
-  TRes _res;
-
-  call({String? id}) => _res;
 }
 
 class InputTriggerWebhookEvent {
@@ -7171,12 +4274,6 @@ class InputTriggerWebhookEvent {
     return result$data;
   }
 
-  CopyWithInputTriggerWebhookEvent<InputTriggerWebhookEvent> get copyWith =>
-      CopyWithInputTriggerWebhookEvent(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -7215,65 +4312,6 @@ class InputTriggerWebhookEvent {
       l$webhookJsonData,
     ]);
   }
-}
-
-abstract class CopyWithInputTriggerWebhookEvent<TRes> {
-  factory CopyWithInputTriggerWebhookEvent(
-    InputTriggerWebhookEvent instance,
-    TRes Function(InputTriggerWebhookEvent) then,
-  ) = _CopyWithImplInputTriggerWebhookEvent;
-
-  factory CopyWithInputTriggerWebhookEvent.stub(TRes res) =
-      _CopyWithStubImplInputTriggerWebhookEvent;
-
-  TRes call({
-    EnumSubscribableEvents? triggerEvent,
-    String? webhookId,
-    Map<String, dynamic>? webhookJsonData,
-  });
-}
-
-class _CopyWithImplInputTriggerWebhookEvent<TRes>
-    implements CopyWithInputTriggerWebhookEvent<TRes> {
-  _CopyWithImplInputTriggerWebhookEvent(
-    this._instance,
-    this._then,
-  );
-
-  final InputTriggerWebhookEvent _instance;
-
-  final TRes Function(InputTriggerWebhookEvent) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? triggerEvent = _undefined,
-    Object? webhookId = _undefined,
-    Object? webhookJsonData = _undefined,
-  }) =>
-      _then(InputTriggerWebhookEvent._({
-        ..._instance._$data,
-        if (triggerEvent != _undefined && triggerEvent != null)
-          'triggerEvent': (triggerEvent as EnumSubscribableEvents),
-        if (webhookId != _undefined && webhookId != null)
-          'webhookId': (webhookId as String),
-        if (webhookJsonData != _undefined && webhookJsonData != null)
-          'webhookJsonData': (webhookJsonData as Map<String, dynamic>),
-      }));
-}
-
-class _CopyWithStubImplInputTriggerWebhookEvent<TRes>
-    implements CopyWithInputTriggerWebhookEvent<TRes> {
-  _CopyWithStubImplInputTriggerWebhookEvent(this._res);
-
-  TRes _res;
-
-  call({
-    EnumSubscribableEvents? triggerEvent,
-    String? webhookId,
-    Map<String, dynamic>? webhookJsonData,
-  }) =>
-      _res;
 }
 
 class InputUpdateOrganizationInput {
@@ -7416,12 +4454,6 @@ class InputUpdateOrganizationInput {
     return result$data;
   }
 
-  CopyWithInputUpdateOrganizationInput<InputUpdateOrganizationInput>
-      get copyWith => CopyWithInputUpdateOrganizationInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -7555,93 +4587,6 @@ class InputUpdateOrganizationInput {
   }
 }
 
-abstract class CopyWithInputUpdateOrganizationInput<TRes> {
-  factory CopyWithInputUpdateOrganizationInput(
-    InputUpdateOrganizationInput instance,
-    TRes Function(InputUpdateOrganizationInput) then,
-  ) = _CopyWithImplInputUpdateOrganizationInput;
-
-  factory CopyWithInputUpdateOrganizationInput.stub(TRes res) =
-      _CopyWithStubImplInputUpdateOrganizationInput;
-
-  TRes call({
-    String? corporateTaxpayerRegistry,
-    String? description,
-    String? email,
-    String? ifMatchesETag,
-    String? logo,
-    String? name,
-    String? organizationId,
-    EnumOrganizationStatus? status,
-    List<String>? tags,
-    String? tradingName,
-  });
-}
-
-class _CopyWithImplInputUpdateOrganizationInput<TRes>
-    implements CopyWithInputUpdateOrganizationInput<TRes> {
-  _CopyWithImplInputUpdateOrganizationInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputUpdateOrganizationInput _instance;
-
-  final TRes Function(InputUpdateOrganizationInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? corporateTaxpayerRegistry = _undefined,
-    Object? description = _undefined,
-    Object? email = _undefined,
-    Object? ifMatchesETag = _undefined,
-    Object? logo = _undefined,
-    Object? name = _undefined,
-    Object? organizationId = _undefined,
-    Object? status = _undefined,
-    Object? tags = _undefined,
-    Object? tradingName = _undefined,
-  }) =>
-      _then(InputUpdateOrganizationInput._({
-        ..._instance._$data,
-        if (corporateTaxpayerRegistry != _undefined)
-          'corporateTaxpayerRegistry': (corporateTaxpayerRegistry as String?),
-        if (description != _undefined) 'description': (description as String?),
-        if (email != _undefined) 'email': (email as String?),
-        if (ifMatchesETag != _undefined && ifMatchesETag != null)
-          'ifMatchesETag': (ifMatchesETag as String),
-        if (logo != _undefined) 'logo': (logo as String?),
-        if (name != _undefined) 'name': (name as String?),
-        if (organizationId != _undefined && organizationId != null)
-          'organizationId': (organizationId as String),
-        if (status != _undefined) 'status': (status as EnumOrganizationStatus?),
-        if (tags != _undefined) 'tags': (tags as List<String>?),
-        if (tradingName != _undefined) 'tradingName': (tradingName as String?),
-      }));
-}
-
-class _CopyWithStubImplInputUpdateOrganizationInput<TRes>
-    implements CopyWithInputUpdateOrganizationInput<TRes> {
-  _CopyWithStubImplInputUpdateOrganizationInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? corporateTaxpayerRegistry,
-    String? description,
-    String? email,
-    String? ifMatchesETag,
-    String? logo,
-    String? name,
-    String? organizationId,
-    EnumOrganizationStatus? status,
-    List<String>? tags,
-    String? tradingName,
-  }) =>
-      _res;
-}
-
 class InputUpdateTermVersionInput {
   factory InputUpdateTermVersionInput({
     String? body,
@@ -7714,12 +4659,6 @@ class InputUpdateTermVersionInput {
     return result$data;
   }
 
-  CopyWithInputUpdateTermVersionInput<InputUpdateTermVersionInput>
-      get copyWith => CopyWithInputUpdateTermVersionInput(
-            this,
-            (i) => i,
-          );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -7782,72 +4721,6 @@ class InputUpdateTermVersionInput {
       _$data.containsKey('version') ? l$version : const {},
     ]);
   }
-}
-
-abstract class CopyWithInputUpdateTermVersionInput<TRes> {
-  factory CopyWithInputUpdateTermVersionInput(
-    InputUpdateTermVersionInput instance,
-    TRes Function(InputUpdateTermVersionInput) then,
-  ) = _CopyWithImplInputUpdateTermVersionInput;
-
-  factory CopyWithInputUpdateTermVersionInput.stub(TRes res) =
-      _CopyWithStubImplInputUpdateTermVersionInput;
-
-  TRes call({
-    String? body,
-    String? description,
-    String? ifMatchesETag,
-    String? termVersionId,
-    String? version,
-  });
-}
-
-class _CopyWithImplInputUpdateTermVersionInput<TRes>
-    implements CopyWithInputUpdateTermVersionInput<TRes> {
-  _CopyWithImplInputUpdateTermVersionInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputUpdateTermVersionInput _instance;
-
-  final TRes Function(InputUpdateTermVersionInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? body = _undefined,
-    Object? description = _undefined,
-    Object? ifMatchesETag = _undefined,
-    Object? termVersionId = _undefined,
-    Object? version = _undefined,
-  }) =>
-      _then(InputUpdateTermVersionInput._({
-        ..._instance._$data,
-        if (body != _undefined) 'body': (body as String?),
-        if (description != _undefined) 'description': (description as String?),
-        if (ifMatchesETag != _undefined && ifMatchesETag != null)
-          'ifMatchesETag': (ifMatchesETag as String),
-        if (termVersionId != _undefined && termVersionId != null)
-          'termVersionId': (termVersionId as String),
-        if (version != _undefined) 'version': (version as String?),
-      }));
-}
-
-class _CopyWithStubImplInputUpdateTermVersionInput<TRes>
-    implements CopyWithInputUpdateTermVersionInput<TRes> {
-  _CopyWithStubImplInputUpdateTermVersionInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? body,
-    String? description,
-    String? ifMatchesETag,
-    String? termVersionId,
-    String? version,
-  }) =>
-      _res;
 }
 
 class InputUpdateUserInput {
@@ -7918,12 +4791,6 @@ class InputUpdateUserInput {
     return result$data;
   }
 
-  CopyWithInputUpdateUserInput<InputUpdateUserInput> get copyWith =>
-      CopyWithInputUpdateUserInput(
-        this,
-        (i) => i,
-      );
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -7982,66 +4849,6 @@ class InputUpdateUserInput {
       _$data.containsKey('userId') ? l$userId : const {},
     ]);
   }
-}
-
-abstract class CopyWithInputUpdateUserInput<TRes> {
-  factory CopyWithInputUpdateUserInput(
-    InputUpdateUserInput instance,
-    TRes Function(InputUpdateUserInput) then,
-  ) = _CopyWithImplInputUpdateUserInput;
-
-  factory CopyWithInputUpdateUserInput.stub(TRes res) =
-      _CopyWithStubImplInputUpdateUserInput;
-
-  TRes call({
-    String? email,
-    String? firstName,
-    String? lastName,
-    String? userId,
-  });
-}
-
-class _CopyWithImplInputUpdateUserInput<TRes>
-    implements CopyWithInputUpdateUserInput<TRes> {
-  _CopyWithImplInputUpdateUserInput(
-    this._instance,
-    this._then,
-  );
-
-  final InputUpdateUserInput _instance;
-
-  final TRes Function(InputUpdateUserInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? email = _undefined,
-    Object? firstName = _undefined,
-    Object? lastName = _undefined,
-    Object? userId = _undefined,
-  }) =>
-      _then(InputUpdateUserInput._({
-        ..._instance._$data,
-        if (email != _undefined) 'email': (email as String?),
-        if (firstName != _undefined) 'firstName': (firstName as String?),
-        if (lastName != _undefined) 'lastName': (lastName as String?),
-        if (userId != _undefined) 'userId': (userId as String?),
-      }));
-}
-
-class _CopyWithStubImplInputUpdateUserInput<TRes>
-    implements CopyWithInputUpdateUserInput<TRes> {
-  _CopyWithStubImplInputUpdateUserInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? email,
-    String? firstName,
-    String? lastName,
-    String? userId,
-  }) =>
-      _res;
 }
 
 enum EnumCategoryNameType {
