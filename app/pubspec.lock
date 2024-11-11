@@ -588,10 +588,10 @@ packages:
     dependency: transitive
     description:
       name: formz
-      sha256: a58eb48d84685b7ffafac1d143bf47d585bf54c7db89fe81c175dfd6e53201c7
+      sha256: "382c7be452ff76833f9efa0b2333fec3a576393f6d2c7801725bed502f3d40c3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.0"
+    version: "0.8.0"
   formz_inputs:
     dependency: "direct main"
     description:
@@ -715,10 +715,10 @@ packages:
     dependency: "direct dev"
     description:
       name: graphql_codegen
-      sha256: "1ff90994e84b28e2b8c94b3e1543a2e8f02666eb06d70a106c01590a87bc0e2b"
+      sha256: "51fc427aa98fb02703724ee842fa08bbefb368c84e2d82cb8fb26b6116f49185"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.1"
+    version: "1.1.0"
   graphql_query_compress:
     dependency: transitive
     description:
