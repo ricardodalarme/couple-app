@@ -29,7 +29,7 @@ Future<void> bootstrap(Widget Function() builder) async {
   LocaleSettings.useDeviceLocale();
 
   await _setupFirebase();
-  await _registerModules();
+  _registerModules();
   await Future.wait([
     _checkAuthenticationStatus(),
     _configureCrashReportService(),
@@ -86,7 +86,7 @@ void _checkOnboardingStatus() {
   }
 }
 
-Future<void> _registerModules() async {
+void _registerModules() {
   final injectionModules = <InjectionModule>[
     SharedInjectionModule(),
     AppInjectionModule(),
@@ -104,6 +104,6 @@ Future<void> _registerModules() async {
   final injector = AppInjector.instance;
 
   for (final injectionModule in injectionModules) {
-    await injectionModule.registerDependencies(injector: injector);
+    injectionModule.registerDependencies(injector: injector);
   }
 }

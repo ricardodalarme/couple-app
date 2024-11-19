@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:core/core.dart';
 import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/data_sources/post_data_source.dart';
@@ -12,7 +10,7 @@ import 'package:quickstart_flutter_bloc/features/post/presentation/bloc/post_blo
 
 class PostInjectionModule implements InjectionModule {
   @override
-  FutureOr<void> registerDependencies({required Injector injector}) => injector
+  void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<PostDataSource>(
       () => PostDataSourceImpl(
         graphlQLClient: injector.get<GQLClient>(),

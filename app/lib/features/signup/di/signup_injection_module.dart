@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:core/core.dart';
 import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/domain/repositories/authentication_repository.dart';
@@ -10,7 +8,7 @@ import 'package:quickstart_flutter_bloc/features/signup/presentation/bloc/signup
 
 class SignupInjectionModule implements InjectionModule {
   @override
-  FutureOr<void> registerDependencies({required Injector injector}) => injector
+  void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<SignupDataSource>(
       () => SignupDataSourceImpl(
         graphlQLClient: injector.get<GQLClient>(),

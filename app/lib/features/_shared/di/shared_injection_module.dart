@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:analytics_service/analytics_service.dart';
 import 'package:auto_route/auto_route.dart' hide PageInfo;
 import 'package:biometric_service/biometric_service.dart';
@@ -16,7 +14,7 @@ import 'package:secure_storage_service/secure_storage_service.dart';
 
 class SharedInjectionModule implements InjectionModule {
   @override
-  FutureOr<void> registerDependencies({required Injector injector}) => injector
+  void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<RootStackRouter>(
       AppRouter.new,
     )

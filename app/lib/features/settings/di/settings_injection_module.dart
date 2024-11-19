@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:core/core.dart';
 import 'package:persistent_storage_service/persistent_storage_service.dart';
 import 'package:quickstart_flutter_bloc/features/settings/data/data_sources/models/settings_local.dart';
@@ -13,7 +11,7 @@ import 'package:quickstart_flutter_bloc/features/settings/presentation/bloc/sett
 
 class SettingsInjectionModule implements InjectionModule {
   @override
-  FutureOr<void> registerDependencies({required Injector injector}) => injector
+  void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<SettingsLocalDataSource>(
       () => SettingsLocalDataSourceImpl(
         storage: injector.get<PersistentStorageService>(),

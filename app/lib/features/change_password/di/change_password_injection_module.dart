@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:core/core.dart';
 import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/change_password/data/data_sources/change_password_data_source.dart';
@@ -9,7 +7,7 @@ import 'package:quickstart_flutter_bloc/features/change_password/presentation/bl
 
 class ChangePasswordInjectionModule implements InjectionModule {
   @override
-  FutureOr<void> registerDependencies({required Injector injector}) => injector
+  void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<ChangePasswordDataSource>(
       () => ChangePasswordDataSourceImpl(
         graphlQLClient: injector.get<GQLClient>(),

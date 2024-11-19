@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:core/core.dart';
 import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/edit_profile/data/data_sources/edit_profile_data_source.dart';
@@ -9,7 +7,7 @@ import 'package:quickstart_flutter_bloc/features/edit_profile/presentation/bloc/
 
 class EditProfileInjectionModule implements InjectionModule {
   @override
-  FutureOr<void> registerDependencies({required Injector injector}) => injector
+  void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<EditProfileDataSource>(
       () => EditProfileDataSourceImpl(
         graphlQLClient: injector.get<GQLClient>(),
