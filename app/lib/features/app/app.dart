@@ -14,7 +14,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = AppInjector.instance.get<RootStackRouter>();
+    final RootStackRouter appRouter = AppInjector.instance.get<RootStackRouter>();
 
     return BlocProvider(
       create: (_) => AppInjector.instance.get<AppBloc>(),
@@ -48,9 +48,9 @@ class App extends StatelessWidget {
   }
 
   void _onStatusChanged(BuildContext context, AppState state) {
-    final appRouter = AppInjector.instance.get<RootStackRouter>();
+    final RootStackRouter appRouter = AppInjector.instance.get<RootStackRouter>();
     final isAuthenticated = state.status == AppStatus.authenticated;
-    final newRoute = isAuthenticated ? const HomeRoute() : const LoginRoute();
+    final PageRouteInfo<void> newRoute = isAuthenticated ? const HomeRoute() : const LoginRoute();
 
     appRouter.replaceAll([newRoute]);
   }

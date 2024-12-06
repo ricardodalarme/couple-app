@@ -25,7 +25,7 @@ class ChangePasswordDataSourceImpl implements ChangePasswordDataSource {
       oldPassword: currentPassword,
       newPassword: newPassword,
     );
-    final response = await _client.mutate(
+    final QueryResult<MutationChangePassword> response = await _client.mutate(
       OptionsMutationChangePassword(
         variables: VariablesMutationChangePassword(input: input),
       ),

@@ -8,7 +8,7 @@ extension ContextSnackBarExtension on BuildContext {
     required String message,
     SnackBarType type = SnackBarType.info,
   }) {
-    final backgroudColor = switch (type) {
+    final Color backgroudColor = switch (type) {
       SnackBarType.info => colors.inverseSurface,
       SnackBarType.success => Colors.green400,
       SnackBarType.error => Colors.red400,

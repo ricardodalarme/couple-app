@@ -19,7 +19,7 @@ class GQLClientImpl implements GQLClient {
     );
     final authLink = AuthLink(
       getToken: () async {
-        final token = await storage.read(key: StorageKeys.accessToken);
+        final String? token = await storage.read(key: StorageKeys.accessToken);
         if (token == null) return null;
         return 'Bearer $token';
       },

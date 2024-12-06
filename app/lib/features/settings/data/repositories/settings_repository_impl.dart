@@ -21,7 +21,7 @@ class SettingsRepositoryImpl implements SettingsRepository {
 
   @override
   SettingsModel get() {
-    final settingsLocal = _localDataSource.get();
+    final SettingsLocal? settingsLocal = _localDataSource.get();
 
     return settingsLocal != null
         ? _settingsLocalToModelMapper.map(settingsLocal)

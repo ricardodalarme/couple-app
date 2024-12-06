@@ -20,7 +20,7 @@ class PostDataSourceImpl implements PostDataSource {
     int? first,
     String? after,
   }) async {
-    final response = await _client.query(
+    final QueryResult<QueryGetPosts> response = await _client.query(
       OptionsQueryGetPosts(
         variables: VariablesQueryGetPosts(
           first: first,

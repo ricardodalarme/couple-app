@@ -33,14 +33,14 @@ void main() {
           () async {
         when(() => flutterSecureStorage.read(key: any(named: 'key')))
             .thenAnswer((_) => Future.value(mockValue));
-        final actual = await secureStorage.read(key: mockKey);
+        final String? actual = await secureStorage.read(key: mockKey);
         expect(actual, mockValue);
       });
 
       test('returns null when FlutterSecureStorage returns null', () async {
         when(() => flutterSecureStorage.read(key: any(named: 'key')))
             .thenAnswer((_) => Future<String?>.value());
-        final actual = await secureStorage.read(key: mockKey);
+        final String? actual = await secureStorage.read(key: mockKey);
         expect(actual, isNull);
       });
 

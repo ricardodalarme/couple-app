@@ -28,7 +28,7 @@ class SignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final buttonText = text(button);
+    final String buttonText = text(button);
 
     return switch (button) {
       ButtonProvider.google => SignInButtonBuilder(

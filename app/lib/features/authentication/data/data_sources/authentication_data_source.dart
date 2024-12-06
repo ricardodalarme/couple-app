@@ -25,7 +25,7 @@ class AuthenticationDataSourceImpl implements AuthenticationDataSource {
       username: username,
       password: password,
     );
-    final response = await _client.mutate(
+    final QueryResult<MutationLogin> response = await _client.mutate(
       OptionsMutationLogin(
         variables: VariablesMutationLogin(
           credentials: input,

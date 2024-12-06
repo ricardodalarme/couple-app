@@ -105,7 +105,7 @@ class Typography extends ThemeExtension<Typography> {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! Typography) return false;
-    final otherTypography = other;
+    final Typography otherTypography = other;
     return otherTypography.titleLarge == titleLarge &&
         otherTypography.titleMedium == titleMedium &&
         otherTypography.titleSmall == titleSmall &&

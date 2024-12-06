@@ -24,7 +24,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     emit(state.copyWith(posts: const Loading()));
 
     try {
-      final posts = await _postRepository.getPosts();
+      final List<PostModel> posts = await _postRepository.getPosts();
       emit(
         state.copyWith(
           posts: Success(posts),

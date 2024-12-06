@@ -56,7 +56,7 @@ class ChangePasswordPage extends StatelessWidget implements AutoRouteWrapper {
           message: context.l10n.changePassword.messageSuccess,
           type: SnackBarType.success,
         );
-      case Failure(:final exception):
+      case Failure(:final LocalizedException exception):
         context.showSnackBar(
           message: context.l10n.changePassword.errors
               .selectOrFallback(exception.l10nKey),

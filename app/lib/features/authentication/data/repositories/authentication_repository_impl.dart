@@ -33,7 +33,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
 
   @override
   Future<void> checkAuthenticationStatus() async {
-    final token = await _tokenLocalDataSource.get();
+    final TokenLocal? token = await _tokenLocalDataSource.get();
     _authenticationStreamController.add(!_hasTokenExpired(token));
   }
 
@@ -46,12 +46,12 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     required String password,
   }) async {
     try {
-      final response = await _loginDataSource.logInWithUsernameAndPassword(
+      final MutationLoginlogin response = await _loginDataSource.logInWithUsernameAndPassword(
         username: username,
         password: password,
       );
 
-      final localToken = _tokenLocalMapper.map(response);
+      final TokenLocal localToken = _tokenLocalMapper.map(response);
       await _tokenLocalDataSource.save(localToken);
 
       _authenticationStreamController.add(true);

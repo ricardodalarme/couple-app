@@ -18,6 +18,7 @@ import 'package:quickstart_flutter_bloc/features/login/di/login_injection_module
 import 'package:quickstart_flutter_bloc/features/onboarding/di/onboarding_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/post/di/post_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/settings/di/settings_injection_module.dart';
+import 'package:quickstart_flutter_bloc/features/settings/domain/models/settings_model.dart';
 import 'package:quickstart_flutter_bloc/features/settings/domain/repositories/settings_repository.dart';
 import 'package:quickstart_flutter_bloc/features/signup/di/signup_injection_module.dart';
 import 'package:quickstart_flutter_bloc/firebase_options.dart';
@@ -52,7 +53,7 @@ void _setupBloc() {
 }
 
 Future<void> _configureCrashReportService() async {
-  final crashReportService = AppInjector.instance.get<CrashReportService>();
+  final CrashReportService crashReportService = AppInjector.instance.get<CrashReportService>();
 
   await crashReportService.setCrashlyticsCollectionEnabled(true);
   FlutterError.onError = crashReportService.recordFlutterFatalError;
@@ -63,23 +64,23 @@ Future<void> _configureCrashReportService() async {
 }
 
 Future<void> _checkAuthenticationStatus() async {
-  final authenticationRepository =
+  final AuthenticationRepository authenticationRepository =
       AppInjector.instance.get<AuthenticationRepository>();
 
   await authenticationRepository.checkAuthenticationStatus();
 }
 
 Future<void> _initializeStorageService() async {
-  final persistentStorageService =
+  final PersistentStorageService persistentStorageService =
       AppInjector.instance.get<PersistentStorageService>();
 
   await persistentStorageService.initialize();
 }
 
 void _checkOnboardingStatus() {
-  final appRouter = AppInjector.instance.get<RootStackRouter>();
-  final settingsRepository = AppInjector.instance.get<SettingsRepository>();
-  final settings = settingsRepository.get();
+  final RootStackRouter appRouter = AppInjector.instance.get<RootStackRouter>();
+  final SettingsRepository settingsRepository = AppInjector.instance.get<SettingsRepository>();
+  final SettingsModel settings = settingsRepository.get();
 
   if (!settings.hasOnboarded) {
     appRouter.replaceAll([const OnboardingRoute()]);
@@ -101,7 +102,7 @@ void _registerModules() {
     SettingsInjectionModule(),
   ];
 
-  final injector = AppInjector.instance;
+  final Injector injector = AppInjector.instance;
 
   for (final injectionModule in injectionModules) {
     injectionModule.registerDependencies(injector: injector);

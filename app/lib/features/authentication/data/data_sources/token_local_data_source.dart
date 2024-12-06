@@ -31,8 +31,8 @@ class TokenLocalDataSourceImpl implements TokenLocalDataSource {
 
   @override
   Future<TokenLocal?> get() async {
-    final token = await _storage.read(key: StorageKeys.accessToken);
-    final expiresIn =
+    final String? token = await _storage.read(key: StorageKeys.accessToken);
+    final String? expiresIn =
         await _storage.read(key: StorageKeys.accessTokenExpiresIn);
 
     if (token == null || expiresIn == null) {

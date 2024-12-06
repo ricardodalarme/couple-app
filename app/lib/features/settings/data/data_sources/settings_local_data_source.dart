@@ -20,15 +20,15 @@ class SettingsLocalDataSourceImpl implements SettingsLocalDataSource {
 
   @override
   Future<void> save(SettingsLocal settings) async {
-    final settingsLocalMap = settings.toMap();
-    final settingsLocalMapInString = jsonEncode(settingsLocalMap);
+    final Map<String, dynamic> settingsLocalMap = settings.toMap();
+    final String settingsLocalMapInString = jsonEncode(settingsLocalMap);
 
     await _storage.writeString(key: _key, value: settingsLocalMapInString);
   }
 
   @override
   SettingsLocal? get() {
-    final settingsLocalMapInString = _storage.readString(key: _key);
+    final String? settingsLocalMapInString = _storage.readString(key: _key);
 
     if (settingsLocalMapInString != null) {
       final settingsLocalMap =

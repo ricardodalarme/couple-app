@@ -22,7 +22,7 @@ class ForgotPasswordDataSourceImpl implements ForgotPasswordDataSource {
     final input = InputResetPasswordInput(
       email: email,
     );
-    final response = await _client.mutate(
+    final QueryResult<MutationResetPassword> response = await _client.mutate(
       OptionsMutationResetPassword(
         variables: VariablesMutationResetPassword(input: input),
       ),

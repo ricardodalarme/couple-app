@@ -11,9 +11,8 @@ abstract interface class EditProfileDataSource {
 }
 
 class EditProfileDataSourceImpl implements EditProfileDataSource {
-  const EditProfileDataSourceImpl({
-    required GQLClient graphlQLClient,
-  }) : _client = graphlQLClient;
+  const EditProfileDataSourceImpl({required GQLClient graphlQLClient})
+    : _client = graphlQLClient;
 
   final GQLClient _client;
 
@@ -28,7 +27,7 @@ class EditProfileDataSourceImpl implements EditProfileDataSource {
       firstName: firstName,
       lastName: lastName,
     );
-    final response = await _client.mutate(
+    final QueryResult<MutationUpdateUser> response = await _client.mutate(
       OptionsMutationUpdateUser(
         variables: VariablesMutationUpdateUser(input: input),
       ),

@@ -19,11 +19,11 @@ class PostRepositoryImpl implements PostRepository {
     int? first,
     String? after,
   }) async {
-    final result = await _postDataSource.getPosts(
+    final QueryGetPostsposts result = await _postDataSource.getPosts(
       first: first,
       after: after,
     );
-    final parsedResult = result.nodes
+    final List<PostModel> parsedResult = result.nodes
         .whereType<QueryGetPostspostsnodesPost>()
         .map(_mapper.map)
         .toList();

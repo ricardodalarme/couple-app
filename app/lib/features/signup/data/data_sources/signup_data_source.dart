@@ -34,7 +34,7 @@ class SignupDataSourceImpl implements SignupDataSource {
       firstName: firstName,
       lastName: lastName,
     );
-    final response = await _client.mutate(
+    final QueryResult<MutationCreateUser> response = await _client.mutate(
       OptionsMutationCreateUser(
         variables: VariablesMutationCreateUser(input: input),
       ),

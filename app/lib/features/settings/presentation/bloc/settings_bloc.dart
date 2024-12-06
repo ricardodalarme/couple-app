@@ -23,7 +23,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     SettingsOpened event,
     Emitter<SettingsState> emit,
   ) {
-    final settings = _settingsRepository.get();
+    final SettingsModel settings = _settingsRepository.get();
     emit(state.copyWith(settings: settings));
   }
 
@@ -31,7 +31,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     SettingsUseBiometricsChangedEvent event,
     Emitter<SettingsState> emit,
   ) async {
-    final newSettings = state.settings.copyWith(
+    final SettingsModel newSettings = state.settings.copyWith(
       useBiometrics: event.value,
     );
 

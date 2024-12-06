@@ -33,7 +33,7 @@ class OnboardingPage extends StatelessWidget implements AutoRouteWrapper {
                   context.read<OnboardingCubit>().onPageChanged(index),
               itemCount: context.l10n.onboarding.pages.length,
               itemBuilder: (context, index) {
-                final page = context.l10n.onboarding.pages[index];
+                final OnboardingPageData page = context.l10n.onboarding.pages[index];
 
                 return Padding(
                   padding: const EdgeInsets.all(Spacings.xxlarge),
