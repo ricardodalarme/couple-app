@@ -1,6 +1,7 @@
 name: storybook
-version: 1.0.0
+resolution: workspace
 publish_to: "none"
+version: 1.0.0
 
 environment:
   sdk: ">=3.5.3 <4.0.0"

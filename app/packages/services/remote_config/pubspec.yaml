@@ -1,4 +1,5 @@
 name: remote_config_service
+resolution: workspace
 publish_to: "none"
 
 environment:

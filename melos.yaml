@@ -15,14 +15,10 @@ scripts:
   get:
     run: flutter pub get
     description: Get all dependencies.
-    exec:
-      concurrency: 1
 
   upgrade:
     run: flutter pub upgrade
     description: Upgrade all dependencies.
-    exec:
-      concurrency: 1
 
   lint:
     steps:
@@ -30,12 +26,12 @@ scripts:
       - format:no-output
     description: Lint all packages.
 
-  format:
-    exec: dart format .
+  format:fix:
+    run: dart format .
     description: Format all packages.
 
   format:no-output:
-    exec: dart format --output none --set-exit-if-changed .
+    run: dart format --output none --set-exit-if-changed .
     description: Run `dart format` for all packages and fail if any files need to be formatted.
 
   test:

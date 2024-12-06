@@ -4,6 +4,20 @@ publish_to: "none"
 environment:
   sdk: ">=3.5.3 <4.0.0"
 
+workspace:
+  - app
+  - storybook
+  - app/packages/common_ui
+  - app/packages/core
+  - app/packages/formz_inputs
+  - app/packages/network
+  - app/packages/services/analytics
+  - app/packages/services/biometric
+  - app/packages/services/crash_report
+  - app/packages/services/persistent_storage
+  - app/packages/services/remote_config
+  - app/packages/services/secure_storage
+
 dev_dependencies:
   husky: ^0.1.7
   melos: ^6.2.0

@@ -1,4 +1,5 @@
 name: quickstart_flutter_bloc
+resolution: workspace
 publish_to: "none"
 version: 0.1.1+3
 

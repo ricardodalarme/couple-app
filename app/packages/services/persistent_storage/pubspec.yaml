@@ -1,4 +1,5 @@
 name: persistent_storage_service
+resolution: workspace
 publish_to: none
 
 environment:

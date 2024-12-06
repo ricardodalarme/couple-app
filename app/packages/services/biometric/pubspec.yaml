@@ -1,4 +1,5 @@
 name: biometric_service
+resolution: workspace
 version: 0.0.1
 
 environment:

@@ -1,4 +1,5 @@
 name: common_ui
+resolution: workspace
 publish_to: "none"
 
 environment:
