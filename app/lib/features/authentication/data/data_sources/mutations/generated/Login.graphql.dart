@@ -36,8 +36,7 @@ class VariablesMutationLogin {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is VariablesMutationLogin) ||
-        runtimeType != other.runtimeType) {
+    if (other is! VariablesMutationLogin || runtimeType != other.runtimeType) {
       return false;
     }
     final l$credentials = credentials;
@@ -100,7 +99,7 @@ class MutationLogin {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is MutationLogin) || runtimeType != other.runtimeType) {
+    if (other is! MutationLogin || runtimeType != other.runtimeType) {
       return false;
     }
     final l$login = login;
@@ -350,7 +349,7 @@ class MutationLoginlogin {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is MutationLoginlogin) || runtimeType != other.runtimeType) {
+    if (other is! MutationLoginlogin || runtimeType != other.runtimeType) {
       return false;
     }
     final l$accessToken = accessToken;

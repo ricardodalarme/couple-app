@@ -83,7 +83,7 @@ class FragmentUserFragment {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is FragmentUserFragment) || runtimeType != other.runtimeType) {
+    if (other is! FragmentUserFragment || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -271,7 +271,7 @@ class FragmentUserFragmentprofilePicture {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is FragmentUserFragmentprofilePicture) ||
+    if (other is! FragmentUserFragmentprofilePicture ||
         runtimeType != other.runtimeType) {
       return false;
     }

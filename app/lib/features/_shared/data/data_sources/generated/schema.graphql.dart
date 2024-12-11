@@ -32,7 +32,7 @@ class InputAppFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputAppFilterInput) || runtimeType != other.runtimeType) {
+    if (other is! InputAppFilterInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$clientId = clientId;
@@ -119,7 +119,7 @@ class InputChannelMessagesStatisticsFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputChannelMessagesStatisticsFilterInput) ||
+    if (other is! InputChannelMessagesStatisticsFilterInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -237,7 +237,7 @@ class InputUserBiasedMessagesFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputUserBiasedMessagesFilterInput) ||
+    if (other is! InputUserBiasedMessagesFilterInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -362,7 +362,7 @@ class InputUserMessagesStatisticsFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputUserMessagesStatisticsFilterInput) ||
+    if (other is! InputUserMessagesStatisticsFilterInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -515,7 +515,7 @@ class InputTermVersionFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputTermVersionFilterInput) ||
+    if (other is! InputTermVersionFilterInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -670,8 +670,7 @@ class InputStringFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputStringFilterInput) ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputStringFilterInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$contains = contains;
@@ -839,7 +838,7 @@ class InputDateTimeFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputDateTimeFilterInput) ||
+    if (other is! InputDateTimeFilterInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -970,7 +969,7 @@ class InputDateTimeRangeFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputDateTimeRangeFilterInput) ||
+    if (other is! InputDateTimeRangeFilterInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -1047,7 +1046,7 @@ class InputTermVersionOrderInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputTermVersionOrderInput) ||
+    if (other is! InputTermVersionOrderInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -1122,7 +1121,7 @@ class InputUserOrganizationEdgeFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputUserOrganizationEdgeFilterInput) ||
+    if (other is! InputUserOrganizationEdgeFilterInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -1268,7 +1267,7 @@ class InputOrganizationFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputOrganizationFilterInput) ||
+    if (other is! InputOrganizationFilterInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -1404,7 +1403,7 @@ class InputOrganizationOrderInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputOrganizationOrderInput) ||
+    if (other is! InputOrganizationOrderInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -1469,7 +1468,7 @@ class InputPostFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputPostFilterInput) || runtimeType != other.runtimeType) {
+    if (other is! InputPostFilterInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$organizations = organizations;
@@ -1577,7 +1576,7 @@ class InputTermFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputTermFilterInput) || runtimeType != other.runtimeType) {
+    if (other is! InputTermFilterInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$description = description;
@@ -1678,7 +1677,7 @@ class InputTermOrderInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputTermOrderInput) || runtimeType != other.runtimeType) {
+    if (other is! InputTermOrderInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$field = field;
@@ -1776,7 +1775,7 @@ class InputUserFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputUserFilterInput) || runtimeType != other.runtimeType) {
+    if (other is! InputUserFilterInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$email = email;
@@ -1888,8 +1887,7 @@ class InputWebhookFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputWebhookFilterInput) ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputWebhookFilterInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$active = active;
@@ -1978,8 +1976,7 @@ class InputActivateUserInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputActivateUserInput) ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputActivateUserInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$userId = userId;
@@ -2043,7 +2040,7 @@ class InputAddOrUpdateUserProfilePictureInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputAddOrUpdateUserProfilePictureInput) ||
+    if (other is! InputAddOrUpdateUserProfilePictureInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -2130,7 +2127,7 @@ class InputAddUserToOrganizationInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputAddUserToOrganizationInput) ||
+    if (other is! InputAddUserToOrganizationInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -2210,7 +2207,7 @@ class InputAgreeOrDisagreeToTermVersionInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputAgreeOrDisagreeToTermVersionInput) ||
+    if (other is! InputAgreeOrDisagreeToTermVersionInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -2290,7 +2287,7 @@ class InputChangeOrganizationStatusInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputChangeOrganizationStatusInput) ||
+    if (other is! InputChangeOrganizationStatusInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -2366,7 +2363,7 @@ class InputChangePasswordInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputChangePasswordInput) ||
+    if (other is! InputChangePasswordInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -2446,7 +2443,7 @@ class InputChangeUserOrganizationEdgeStatusInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputChangeUserOrganizationEdgeStatusInput) ||
+    if (other is! InputChangeUserOrganizationEdgeStatusInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -2539,7 +2536,7 @@ class InputCreateAppInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputCreateAppInput) || runtimeType != other.runtimeType) {
+    if (other is! InputCreateAppInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$description = description;
@@ -2700,7 +2697,7 @@ class InputCreateOrganizationInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputCreateOrganizationInput) ||
+    if (other is! InputCreateOrganizationInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -2856,7 +2853,7 @@ class InputCreatePostInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputCreatePostInput) || runtimeType != other.runtimeType) {
+    if (other is! InputCreatePostInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$body = body;
@@ -2963,7 +2960,7 @@ class InputCreateTermInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputCreateTermInput) || runtimeType != other.runtimeType) {
+    if (other is! InputCreateTermInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$term = term;
@@ -3044,7 +3041,7 @@ class InputTermInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputTermInput) || runtimeType != other.runtimeType) {
+    if (other is! InputTermInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$description = description;
@@ -3145,7 +3142,7 @@ class InputTermVersionInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputTermVersionInput) || runtimeType != other.runtimeType) {
+    if (other is! InputTermVersionInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$body = body;
@@ -3236,7 +3233,7 @@ class InputCreateTermVersionInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputCreateTermVersionInput) ||
+    if (other is! InputCreateTermVersionInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -3379,7 +3376,7 @@ class InputCreateUserInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputCreateUserInput) || runtimeType != other.runtimeType) {
+    if (other is! InputCreateUserInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$email = email;
@@ -3502,7 +3499,7 @@ class InputDeactivateUserInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputDeactivateUserInput) ||
+    if (other is! InputDeactivateUserInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -3552,7 +3549,7 @@ class InputDeleteOrganizationInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputDeleteOrganizationInput) ||
+    if (other is! InputDeleteOrganizationInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -3612,7 +3609,7 @@ class InputLoginInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputLoginInput) || runtimeType != other.runtimeType) {
+    if (other is! InputLoginInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$password = password;
@@ -3670,8 +3667,7 @@ class InputModerateTextInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputModerateTextInput) ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputModerateTextInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$message = message;
@@ -3730,7 +3726,7 @@ class InputPublishTermVersionInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputPublishTermVersionInput) ||
+    if (other is! InputPublishTermVersionInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -3788,7 +3784,7 @@ class InputRefreshInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputRefreshInput) || runtimeType != other.runtimeType) {
+    if (other is! InputRefreshInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$token = token;
@@ -3869,7 +3865,7 @@ class InputRegisterWebhookInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputRegisterWebhookInput) ||
+    if (other is! InputRegisterWebhookInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -3961,8 +3957,7 @@ class InputWebhookConfigInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputWebhookConfigInput) ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputWebhookConfigInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$method = method;
@@ -4030,7 +4025,7 @@ class InputRemovePostInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputRemovePostInput) || runtimeType != other.runtimeType) {
+    if (other is! InputRemovePostInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -4099,7 +4094,7 @@ class InputRemoveUserFromOrganizationInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputRemoveUserFromOrganizationInput) ||
+    if (other is! InputRemoveUserFromOrganizationInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -4158,8 +4153,7 @@ class InputResetPasswordInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputResetPasswordInput) ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputResetPasswordInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$email = email;
@@ -4208,7 +4202,7 @@ class InputRestorePostInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputRestorePostInput) || runtimeType != other.runtimeType) {
+    if (other is! InputRestorePostInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -4279,7 +4273,7 @@ class InputTriggerWebhookEvent {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputTriggerWebhookEvent) ||
+    if (other is! InputTriggerWebhookEvent ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -4459,7 +4453,7 @@ class InputUpdateOrganizationInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputUpdateOrganizationInput) ||
+    if (other is! InputUpdateOrganizationInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -4664,7 +4658,7 @@ class InputUpdateTermVersionInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputUpdateTermVersionInput) ||
+    if (other is! InputUpdateTermVersionInput ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -4796,7 +4790,7 @@ class InputUpdateUserInput {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is InputUpdateUserInput) || runtimeType != other.runtimeType) {
+    if (other is! InputUpdateUserInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$email = email;

@@ -53,7 +53,7 @@ class FragmentTokenFragment {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is FragmentTokenFragment) || runtimeType != other.runtimeType) {
+    if (other is! FragmentTokenFragment || runtimeType != other.runtimeType) {
       return false;
     }
     final l$expires = expires;

@@ -35,7 +35,7 @@ class VariablesMutationCreateUser {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is VariablesMutationCreateUser) ||
+    if (other is! VariablesMutationCreateUser ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -100,7 +100,7 @@ class MutationCreateUser {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is MutationCreateUser) || runtimeType != other.runtimeType) {
+    if (other is! MutationCreateUser || runtimeType != other.runtimeType) {
       return false;
     }
     final l$createUser = createUser;
@@ -286,7 +286,7 @@ class MutationCreateUsercreateUser {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is MutationCreateUsercreateUser) ||
+    if (other is! MutationCreateUsercreateUser ||
         runtimeType != other.runtimeType) {
       return false;
     }

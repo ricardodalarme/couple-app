@@ -71,7 +71,7 @@ class FragmentPageInfoFragment {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is FragmentPageInfoFragment) ||
+    if (other is! FragmentPageInfoFragment ||
         runtimeType != other.runtimeType) {
       return false;
     }

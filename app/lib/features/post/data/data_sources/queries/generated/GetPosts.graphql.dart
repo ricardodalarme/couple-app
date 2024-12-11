@@ -54,8 +54,7 @@ class VariablesQueryGetPosts {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is VariablesQueryGetPosts) ||
-        runtimeType != other.runtimeType) {
+    if (other is! VariablesQueryGetPosts || runtimeType != other.runtimeType) {
       return false;
     }
     final l$first = first;
@@ -133,7 +132,7 @@ class QueryGetPosts {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is QueryGetPosts) || runtimeType != other.runtimeType) {
+    if (other is! QueryGetPosts || runtimeType != other.runtimeType) {
       return false;
     }
     final l$posts = posts;
@@ -437,7 +436,7 @@ class QueryGetPostsposts {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is QueryGetPostsposts) || runtimeType != other.runtimeType) {
+    if (other is! QueryGetPostsposts || runtimeType != other.runtimeType) {
       return false;
     }
     final l$pageInfo = pageInfo;
@@ -503,8 +502,7 @@ class QueryGetPostspostsnodes {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is QueryGetPostspostsnodes) ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryGetPostspostsnodes || runtimeType != other.runtimeType) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -632,7 +630,7 @@ class QueryGetPostspostsnodesPost
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is QueryGetPostspostsnodesPost) ||
+    if (other is! QueryGetPostspostsnodesPost ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -695,7 +693,7 @@ class QueryGetPostspostsnodesRemovedPost implements QueryGetPostspostsnodes {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is QueryGetPostspostsnodesRemovedPost) ||
+    if (other is! QueryGetPostspostsnodesRemovedPost ||
         runtimeType != other.runtimeType) {
       return false;
     }

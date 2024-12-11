@@ -37,7 +37,7 @@ class VariablesMutationChangePassword {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is VariablesMutationChangePassword) ||
+    if (other is! VariablesMutationChangePassword ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -102,8 +102,7 @@ class MutationChangePassword {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is MutationChangePassword) ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationChangePassword || runtimeType != other.runtimeType) {
       return false;
     }
     final l$changePassword = changePassword;
@@ -293,7 +292,7 @@ class MutationChangePasswordchangePassword {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is MutationChangePasswordchangePassword) ||
+    if (other is! MutationChangePasswordchangePassword ||
         runtimeType != other.runtimeType) {
       return false;
     }

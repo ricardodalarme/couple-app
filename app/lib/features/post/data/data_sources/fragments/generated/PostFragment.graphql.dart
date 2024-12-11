@@ -73,7 +73,7 @@ class FragmentPostFragment {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is FragmentPostFragment) || runtimeType != other.runtimeType) {
+    if (other is! FragmentPostFragment || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

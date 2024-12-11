@@ -37,7 +37,7 @@ class VariablesMutationResetPassword {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is VariablesMutationResetPassword) ||
+    if (other is! VariablesMutationResetPassword ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -102,7 +102,7 @@ class MutationResetPassword {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is MutationResetPassword) || runtimeType != other.runtimeType) {
+    if (other is! MutationResetPassword || runtimeType != other.runtimeType) {
       return false;
     }
     final l$resetPassword = resetPassword;
@@ -292,7 +292,7 @@ class MutationResetPasswordresetPassword {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is MutationResetPasswordresetPassword) ||
+    if (other is! MutationResetPasswordresetPassword ||
         runtimeType != other.runtimeType) {
       return false;
     }
