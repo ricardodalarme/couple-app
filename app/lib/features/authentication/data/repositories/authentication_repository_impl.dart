@@ -46,7 +46,8 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     required String password,
   }) async {
     try {
-      final MutationLoginlogin response = await _loginDataSource.logInWithUsernameAndPassword(
+      final MutationLoginlogin response =
+          await _loginDataSource.logInWithUsernameAndPassword(
         username: username,
         password: password,
       );

@@ -12,7 +12,7 @@ abstract interface class EditProfileDataSource {
 
 class EditProfileDataSourceImpl implements EditProfileDataSource {
   const EditProfileDataSourceImpl({required GQLClient graphlQLClient})
-    : _client = graphlQLClient;
+      : _client = graphlQLClient;
 
   final GQLClient _client;
 

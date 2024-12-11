@@ -53,7 +53,8 @@ void _setupBloc() {
 }
 
 Future<void> _configureCrashReportService() async {
-  final CrashReportService crashReportService = AppInjector.instance.get<CrashReportService>();
+  final CrashReportService crashReportService =
+      AppInjector.instance.get<CrashReportService>();
 
   await crashReportService.setCrashlyticsCollectionEnabled(true);
   FlutterError.onError = crashReportService.recordFlutterFatalError;
@@ -79,7 +80,8 @@ Future<void> _initializeStorageService() async {
 
 void _checkOnboardingStatus() {
   final RootStackRouter appRouter = AppInjector.instance.get<RootStackRouter>();
-  final SettingsRepository settingsRepository = AppInjector.instance.get<SettingsRepository>();
+  final SettingsRepository settingsRepository =
+      AppInjector.instance.get<SettingsRepository>();
   final SettingsModel settings = settingsRepository.get();
 
   if (!settings.hasOnboarded) {
