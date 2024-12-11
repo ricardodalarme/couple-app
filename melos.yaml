@@ -74,7 +74,9 @@ scripts:
     run: melos exec -c 1 -- flutter pub run build_runner build --delete-conflicting-outputs
     description: Run build_runner to generate files.
     packageFilters:
-      dependsOn: build_runner
+      scope:
+        - quickstart_flutter_bloc
+        - common_ui
 
   splash_screen:
     exec: flutter pub run flutter_native_splash:create
