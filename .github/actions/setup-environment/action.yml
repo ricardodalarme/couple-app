@@ -9,7 +9,7 @@ runs:
       with:
         channel: "stable"
         cache: true
-        cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:"
+        cache-key: "flutter-:os:-:channel:-:version:-:arch:"
 
     - name: Install melos
       uses: bluefireteam/melos-action@v3
