@@ -22,9 +22,13 @@ scripts:
 
   lint:
     steps:
-      - analyze
+      - check
       - format:no-output
     description: Lint all packages.
+
+  check:
+    run: dart analyze
+    description: Analyze all packages.
 
   format:fix:
     run: dart format .
