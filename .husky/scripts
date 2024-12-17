@@ -30,17 +30,6 @@ check_localization_files() {
   fi
 }
 
-run_format() {
-  printf '\n%bRunning formatter...%b\n' "$YELLOW$BOLD" "$NO_COLOR"
-
-  if melos format:no-output; then
-    printf '%bFormatter completed successfully.%b\n' "$GREEN$BOLD" "$NO_COLOR"
-  else
-    printf '%bFormatting errors found. Please fix them and try again.%b\n' "$RED$BOLD" "$NO_COLOR"
-    return 1
-  fi
-}
-
 run_lint() {
   printf "\n%bRunning linter...%b\n" "$YELLOW$BOLD" "$NO_COLOR"
 

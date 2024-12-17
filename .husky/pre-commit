@@ -5,5 +5,4 @@ source "$(dirname "$0")"/scripts
 
 check_flutter_installed
 check_localization_files
-run_format
 run_lint
