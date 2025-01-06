@@ -23,4 +23,4 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.2
   flutter_native_splash: ^2.4.4
   husky: ^0.1.7
-  melos: ^6.2.0
+  melos: ^6.3.0
