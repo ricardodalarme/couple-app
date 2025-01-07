@@ -23,4 +23,109 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.2
   flutter_native_splash: ^2.4.4
   husky: ^0.1.7
-  melos: ^6.3.0
+  melos: ^7.0.0-dev.3
+
+melos:
+  command:
+    bootstrap:
+      hooks:
+        pre: melos hooks && cp .env.example .env.development
+
+  scripts:
+    # Flutter commands
+    get:
+      run: flutter pub get
+      description: Get all dependencies.
+
+    upgrade:
+      run: flutter pub upgrade
+      description: Upgrade all dependencies.
+
+    lint:
+      steps:
+        - analyze
+        - format:no-output
+      description: Lint all packages.
+
+    analyze:
+      run: flutter analyze --no-pub
+      description: Analyze all packages.
+
+    format:no-output:
+      run: dart format --output none --set-exit-if-changed .
+      description: Run `dart format` for all packages and fail if any files need to be formatted.
+
+    test:
+      run: melos test:single --no-select
+      description: Run all tests available.
+
+    test:single:
+      run: melos exec -c 1 -- flutter test --no-pub
+      description: Run `flutter test` for a specific package.
+      packageFilters:
+        dirExists:
+          - test
+
+    pod:update:
+      exec: cd ios && pod update
+      description: Install iOS dependencies.
+      packageFilters:
+        scope:
+          - quickstart_flutter_bloc
+
+    # App commands
+    l10n:
+      exec: dart run slang && dart format lib/l10n/translations.g.dart
+      description: Generate localization files.
+      packageFilters:
+        scope:
+          - quickstart_flutter_bloc
+
+    l10n:analyze:
+      exec: dart run slang analyze --full --exit-if-changed
+      description: Analyze localization files.
+      packageFilters:
+        scope: quickstart_flutter_bloc
+
+    gen:
+      run: melos gen:single --no-select
+      description: Run build_runner in all packages.
+
+    gen:single:
+      run: melos exec -c 1 -- flutter pub run build_runner build --delete-conflicting-outputs
+      description: Run build_runner to generate files.
+      packageFilters:
+        scope:
+          - quickstart_flutter_bloc
+          - common_ui
+
+    splash_screen:
+      exec: flutter pub run flutter_native_splash:create
+      description: Update the app splash screen.
+      packageFilters:
+        scope: quickstart_flutter_bloc
+
+    launcher_icon:
+      exec: flutter pub run flutter_launcher_icons:main
+      description: Update the app launcher icon.
+      packageFilters:
+        scope: quickstart_flutter_bloc
+
+    build:android-dev:
+      exec: flutter build appbundle --flavor development --dart-define-from-file ../.env.development
+      description: (DEV) Build the Android app.
+      packageFilters:
+        scope:
+          - quickstart_flutter_bloc
+
+    build:android-prd:
+      exec: flutter build appbundle --flavor production --dart-define-from-file ../.env.production
+      description: (PRD) Build the Android app.
+      packageFilters:
+        scope:
+          - quickstart_flutter_bloc
+
+    # Git commands
+    hooks:
+      run: dart run husky install
+      description: Install git hooks.
