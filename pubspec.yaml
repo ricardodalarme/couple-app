@@ -24,6 +24,7 @@ dev_dependencies:
   flutter_native_splash: ^2.4.4
   husky: ^0.1.7
   melos: ^7.0.0-dev.3
+  very_good_cli: ^0.25.0
 
 melos:
   command:
@@ -56,15 +57,8 @@ melos:
       description: Run `dart format` for all packages and fail if any files need to be formatted.
 
     test:
-      run: melos test:single --no-select
+      run: dart run very_good_cli:very_good test -r -- --no-pub
       description: Run all tests available.
-
-    test:single:
-      run: melos exec -c 1 -- flutter test --no-pub
-      description: Run `flutter test` for a specific package.
-      packageFilters:
-        dirExists:
-          - test
 
     pod:update:
       exec: cd ios && pod update
