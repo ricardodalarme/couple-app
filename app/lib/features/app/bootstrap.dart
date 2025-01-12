@@ -27,7 +27,7 @@ import 'package:quickstart_flutter_bloc/routes/app_router.dart';
 
 Future<void> bootstrap(Widget Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
-  LocaleSettings.useDeviceLocale();
+  LocaleSettings.useDeviceLocaleSync();
 
   await _setupFirebase();
   _registerModules();

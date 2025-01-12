@@ -35,8 +35,8 @@ dependencies:
     path: ./packages/services/remote_config
   secure_storage_service:
     path: ./packages/services/secure_storage
-  slang: ^3.32.0
-  slang_flutter: ^3.32.0
+  slang: ^4.4.1
+  slang_flutter: ^4.4.0
 
 dev_dependencies:
   auto_route_generator: ^9.0.0
