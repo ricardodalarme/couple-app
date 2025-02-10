@@ -90,10 +90,10 @@ packages:
     dependency: transitive
     description:
       name: auto_route_generator
-      sha256: c9086eb07271e51b44071ad5cff34e889f3156710b964a308c2ab590769e79e6
+      sha256: c2e359d8932986d4d1bcad7a428143f81384ce10fef8d4aa5bc29e1f83766a46
       url: "https://pub.dev"
     source: hosted
-    version: "9.0.0"
+    version: "9.3.1"
   bloc:
     dependency: transitive
     description:
@@ -338,10 +338,10 @@ packages:
     dependency: transitive
     description:
       name: dart_style
-      sha256: "7856d364b589d1f08986e140938578ed36ed948581fbc3bc9aef1805039ac5ab"
+      sha256: "27eb0ae77836989a3bc541ce55595e8ceee0992807f14511552a898ddd0d88ac"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.7"
+    version: "3.0.1"
   dartx:
     dependency: transitive
     description:
@@ -535,18 +535,18 @@ packages:
     dependency: transitive
     description:
       name: flutter_gen_core
-      sha256: "46ecf0e317413dd065547887c43f93f55e9653e83eb98dc13dd07d40dd225325"
+      sha256: "53890b653738f34363d9f0d40f82104c261716bd551d3ba65f648770b6764c21"
       url: "https://pub.dev"
     source: hosted
-    version: "5.8.0"
+    version: "5.9.0"
   flutter_gen_runner:
     dependency: transitive
     description:
       name: flutter_gen_runner
-      sha256: "77f0a02fc30d9fcf2549fe874eb3fde091435724904bcbb1af60aa40cbfab1f4"
+      sha256: de70b42eb5329f712c8b041069d081ad5fb5109f32d6d1ea9c1b39596786215d
       url: "https://pub.dev"
     source: hosted
-    version: "5.8.0"
+    version: "5.9.0"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -702,10 +702,18 @@ packages:
     dependency: transitive
     description:
       name: gql_code_builder
-      sha256: b70e17fe62af58c3a9a3dfd619bf0b07ca15afe4d285001fbcd0852a40538401
+      sha256: ce60e637b7b5250bebd6a136e5fd784bc94b860ecdcb745163ce27201023816e
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.1+1"
+    version: "0.13.1"
+  gql_code_builder_serializers:
+    dependency: transitive
+    description:
+      name: gql_code_builder_serializers
+      sha256: "5344091f97afb44b15840e32889cacc18116e095105d07671ba762e897c465d4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   gql_dedupe_link:
     dependency: transitive
     description:
@@ -774,10 +782,10 @@ packages:
     dependency: transitive
     description:
       name: graphql_codegen
-      sha256: e472c0aa18f11bdf5e58cef9222ab43fd126a403d1881032427dcf641c5689d1
+      sha256: cfdae81c64bcf3ac5a6f2429b4f53f0a25a553bde638148b142b062d34eaf74f
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
+    version: "1.2.1"
   graphql_query_compress:
     dependency: transitive
     description:
@@ -862,10 +870,10 @@ packages:
     dependency: transitive
     description:
       name: image_size_getter
-      sha256: c3900f04e31468a81aa23b09b1c7d09c3c952122bbe9ecdae336977b7be24c05
+      sha256: "9a299e3af2ebbcfd1baf21456c3c884037ff524316c97d8e56035ea8fdf35653"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.0+1"
+    version: "2.4.0"
   inspector:
     dependency: transitive
     description:
@@ -1435,10 +1443,10 @@ packages:
     dependency: transitive
     description:
       name: source_gen
-      sha256: "14658ba5f669685cd3d63701d01b31ea748310f7ab854e471962670abcf57832"
+      sha256: "35c8150ece9e8c8d263337a265153c3329667640850b9304861faea59fc98f6b"
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.0"
+    version: "2.0.0"
   source_map_stack_trace:
     dependency: transitive
     description:
