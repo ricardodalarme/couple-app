@@ -7,10 +7,7 @@ abstract interface class AuthenticationRepository {
 
   Future<void> checkAuthenticationStatus();
 
-  Future<void> logInWithUsernameAndPassword({
-    required String username,
-    required String password,
-  });
+  Future<void> logInWithUsernameAndPassword({required String username, required String password});
 
   Future<void> logInWithGoogle();
   Future<void> logInWithFacebook();

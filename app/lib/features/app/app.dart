@@ -14,46 +14,39 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final RootStackRouter appRouter =
-        AppInjector.instance.get<RootStackRouter>();
+    final RootStackRouter appRouter = AppInjector.instance.get<RootStackRouter>();
 
     return BlocProvider(
       create: (_) => AppInjector.instance.get<AppBloc>(),
       child: TranslationProvider(
         child: Builder(
-          builder: (context) => BlocListener<AppBloc, AppState>(
-            listenWhen: (previous, current) =>
-                previous.status != current.status,
-            listener: _onStatusChanged,
-            child: MaterialApp.router(
-              onGenerateTitle: (context) => context.l10n.common.appName,
-              theme: AppTheme.light,
-              darkTheme: AppTheme.dark,
-              routerConfig: appRouter.config(
-                navigatorObservers: () => [
-                  AppRouterObserver(),
-                ],
+          builder:
+              (context) => BlocListener<AppBloc, AppState>(
+                listenWhen: (previous, current) => previous.status != current.status,
+                listener: _onStatusChanged,
+                child: MaterialApp.router(
+                  onGenerateTitle: (context) => context.l10n.common.appName,
+                  theme: AppTheme.light,
+                  darkTheme: AppTheme.dark,
+                  routerConfig: appRouter.config(navigatorObservers: () => [AppRouterObserver()]),
+                  locale: TranslationProvider.of(context).flutterLocale,
+                  localizationsDelegates: const [
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                  ],
+                  supportedLocales: AppLocaleUtils.supportedLocales,
+                ),
               ),
-              locale: TranslationProvider.of(context).flutterLocale,
-              localizationsDelegates: const [
-                GlobalMaterialLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-              ],
-              supportedLocales: AppLocaleUtils.supportedLocales,
-            ),
-          ),
         ),
       ),
     );
   }
 
   void _onStatusChanged(BuildContext context, AppState state) {
-    final RootStackRouter appRouter =
-        AppInjector.instance.get<RootStackRouter>();
+    final RootStackRouter appRouter = AppInjector.instance.get<RootStackRouter>();
     final isAuthenticated = state.status == AppStatus.authenticated;
-    final PageRouteInfo<void> newRoute =
-        isAuthenticated ? const HomeRoute() : const LoginRoute();
+    final PageRouteInfo<void> newRoute = isAuthenticated ? const HomeRoute() : const LoginRoute();
 
     appRouter.replaceAll([newRoute]);
   }

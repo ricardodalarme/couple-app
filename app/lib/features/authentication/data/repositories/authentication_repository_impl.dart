@@ -12,16 +12,15 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     required AuthenticationDataSource loginDataSource,
     required TokenLocalDataSource tokenLocalDataSource,
     required Mapper<MutationLoginlogin, TokenLocal> tokenLocalMapper,
-  })  : _loginDataSource = loginDataSource,
-        _tokenLocalDataSource = tokenLocalDataSource,
-        _tokenLocalMapper = tokenLocalMapper;
+  }) : _loginDataSource = loginDataSource,
+       _tokenLocalDataSource = tokenLocalDataSource,
+       _tokenLocalMapper = tokenLocalMapper;
 
   final AuthenticationDataSource _loginDataSource;
   final TokenLocalDataSource _tokenLocalDataSource;
   final Mapper<MutationLoginlogin, TokenLocal> _tokenLocalMapper;
 
-  final StreamController<bool> _authenticationStreamController =
-      StreamController<bool>.broadcast();
+  final StreamController<bool> _authenticationStreamController = StreamController<bool>.broadcast();
 
   @override
   Stream<bool> get isAuthenticated => _authenticationStreamController.stream;
@@ -46,8 +45,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     required String password,
   }) async {
     try {
-      final MutationLoginlogin response =
-          await _loginDataSource.logInWithUsernameAndPassword(
+      final MutationLoginlogin response = await _loginDataSource.logInWithUsernameAndPassword(
         username: username,
         password: password,
       );

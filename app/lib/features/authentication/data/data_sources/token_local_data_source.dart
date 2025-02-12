@@ -11,18 +11,13 @@ abstract interface class TokenLocalDataSource {
 }
 
 class TokenLocalDataSourceImpl implements TokenLocalDataSource {
-  TokenLocalDataSourceImpl({
-    required SecureStorageService storage,
-  }) : _storage = storage;
+  TokenLocalDataSourceImpl({required SecureStorageService storage}) : _storage = storage;
 
   final SecureStorageService _storage;
 
   @override
   Future<void> save(TokenLocal token) async {
-    await _storage.write(
-      key: StorageKeys.accessToken,
-      value: token.token,
-    );
+    await _storage.write(key: StorageKeys.accessToken, value: token.token);
     await _storage.write(
       key: StorageKeys.accessTokenExpiresIn,
       value: token.expires.toIso8601String(),
@@ -32,17 +27,13 @@ class TokenLocalDataSourceImpl implements TokenLocalDataSource {
   @override
   Future<TokenLocal?> get() async {
     final String? token = await _storage.read(key: StorageKeys.accessToken);
-    final String? expiresIn =
-        await _storage.read(key: StorageKeys.accessTokenExpiresIn);
+    final String? expiresIn = await _storage.read(key: StorageKeys.accessTokenExpiresIn);
 
     if (token == null || expiresIn == null) {
       return null;
     }
 
-    return TokenLocal(
-      token: token,
-      expires: DateTime.parse(expiresIn),
-    );
+    return TokenLocal(token: token, expires: DateTime.parse(expiresIn));
   }
 
   @override

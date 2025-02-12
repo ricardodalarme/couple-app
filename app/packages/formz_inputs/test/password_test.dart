@@ -22,8 +22,9 @@ void main() {
       for (final password in validPasswords) {
         final passwordInput = PasswordInput.dirty(password);
 
-        final PasswordValidationError? validationError =
-            passwordInput.validator(passwordInput.value);
+        final PasswordValidationError? validationError = passwordInput.validator(
+          passwordInput.value,
+        );
 
         expect(validationError, isNull);
       }

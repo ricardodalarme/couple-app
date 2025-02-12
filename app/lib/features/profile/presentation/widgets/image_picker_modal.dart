@@ -11,10 +11,7 @@ class ImagePickerModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(
-          top: Spacings.xxlarge,
-          bottom: Spacings.large,
-        ),
+        padding: const EdgeInsets.only(top: Spacings.xxlarge, bottom: Spacings.large),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

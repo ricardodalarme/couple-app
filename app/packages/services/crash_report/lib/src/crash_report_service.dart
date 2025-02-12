@@ -9,9 +9,7 @@ abstract interface class CrashReportService {
 
 class CrashReportServiceImpl implements CrashReportService {
   factory CrashReportServiceImpl([FirebaseCrashlytics? crashlytics]) {
-    return CrashReportServiceImpl._(
-      crashlytics ?? FirebaseCrashlytics.instance,
-    );
+    return CrashReportServiceImpl._(crashlytics ?? FirebaseCrashlytics.instance);
   }
 
   const CrashReportServiceImpl._(this._crashlytics);
@@ -29,11 +27,7 @@ class CrashReportServiceImpl implements CrashReportService {
   }
 
   @override
-  Future<void> recordError(
-    dynamic error,
-    StackTrace stack, {
-    bool fatal = false,
-  }) async {
+  Future<void> recordError(dynamic error, StackTrace stack, {bool fatal = false}) async {
     await _crashlytics.recordError(error, stack, fatal: fatal);
   }
 }

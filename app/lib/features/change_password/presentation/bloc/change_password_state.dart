@@ -28,10 +28,8 @@ final class ChangePasswordState with EquatableMixin, FormzMixin {
   }
 
   @override
-  List<FormzInput<dynamic, dynamic>> get inputs =>
-      [currentPassword, password, confirmPassword];
+  List<FormzInput<dynamic, dynamic>> get inputs => [currentPassword, password, confirmPassword];
 
   @override
-  List<Object?> get props =>
-      [currentPassword, password, confirmPassword, submission];
+  List<Object?> get props => [currentPassword, password, confirmPassword, submission];
 }

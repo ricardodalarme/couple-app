@@ -3,10 +3,5 @@ import 'package:widgetbook/widgetbook.dart';
 
 final WidgetbookNode textDividerExample = WidgetbookUseCase(
   name: 'TextDivider',
-  builder: (context) => TextDivider(
-    context.knobs.string(
-      label: 'Text',
-      initialValue: 'Example',
-    ),
-  ),
+  builder: (context) => TextDivider(context.knobs.string(label: 'Text', initialValue: 'Example')),
 );

@@ -11,11 +11,7 @@ final class LoginState with EquatableMixin, FormzMixin {
   final NonEmptyInput password;
   final Resource<void> login;
 
-  LoginState copyWith({
-    NonEmptyInput? username,
-    NonEmptyInput? password,
-    Resource<void>? login,
-  }) {
+  LoginState copyWith({NonEmptyInput? username, NonEmptyInput? password, Resource<void>? login}) {
     return LoginState(
       username: username ?? this.username,
       password: password ?? this.password,

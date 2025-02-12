@@ -45,8 +45,8 @@ void main() {
       'emits [LoginState] when [LoginPasswordChanged] is added',
       build: () => loginBloc,
       act: (bloc) => bloc.add(const LoginPasswordChanged('password')),
-      expect: () =>
-          [const LoginState(password: NonEmptyInput.dirty('password'))],
+      expect:
+          () => [const LoginState(password: NonEmptyInput.dirty('password'))],
     );
   });
 }

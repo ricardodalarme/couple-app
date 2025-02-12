@@ -42,9 +42,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       errorText: widget.errorText,
       suffixIcon: ExcludeFocus(
         child: IconButton(
-          icon: Icon(
-            _obscureText ? Icons.visibility : Icons.visibility_off,
-          ),
+          icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
           onPressed: () => setState(() => _obscureText = !_obscureText),
         ),
       ),

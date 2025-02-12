@@ -4,10 +4,8 @@ import 'package:quickstart_flutter_bloc/features/settings/domain/repositories/se
 
 class OnboardingInjectionModule implements InjectionModule {
   @override
-  void registerDependencies({required Injector injector}) => injector
-    ..registerFactory<OnboardingCubit>(
-      () => OnboardingCubit(
-        settingsRepository: injector.get<SettingsRepository>(),
-      ),
-    );
+  void registerDependencies({required Injector injector}) =>
+      injector..registerFactory<OnboardingCubit>(
+        () => OnboardingCubit(settingsRepository: injector.get<SettingsRepository>()),
+      );
 }

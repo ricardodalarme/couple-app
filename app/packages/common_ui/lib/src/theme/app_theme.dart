@@ -5,12 +5,6 @@ import 'package:flutter/material.dart' show ThemeData;
 abstract final class AppTheme {
   static const _extensions = [Typography()];
 
-  static final light = ThemeData(
-    brightness: Brightness.light,
-    extensions: _extensions,
-  );
-  static final dark = ThemeData(
-    brightness: Brightness.dark,
-    extensions: _extensions,
-  );
+  static final light = ThemeData(brightness: Brightness.light, extensions: _extensions);
+  static final dark = ThemeData(brightness: Brightness.dark, extensions: _extensions);
 }

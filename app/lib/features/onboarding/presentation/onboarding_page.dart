@@ -13,10 +13,7 @@ class OnboardingPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AppInjector.instance.get<OnboardingCubit>(),
-      child: this,
-    );
+    return BlocProvider(create: (_) => AppInjector.instance.get<OnboardingCubit>(), child: this);
   }
 
   @override
@@ -29,12 +26,10 @@ class OnboardingPage extends StatelessWidget implements AutoRouteWrapper {
           const Gap(Spacings.xxlarge),
           Expanded(
             child: PageView.builder(
-              onPageChanged: (index) =>
-                  context.read<OnboardingCubit>().onPageChanged(index),
+              onPageChanged: (index) => context.read<OnboardingCubit>().onPageChanged(index),
               itemCount: context.l10n.onboarding.pages.length,
               itemBuilder: (context, index) {
-                final OnboardingPageData page =
-                    context.l10n.onboarding.pages[index];
+                final OnboardingPageData page = context.l10n.onboarding.pages[index];
 
                 return Padding(
                   padding: const EdgeInsets.all(Spacings.xxlarge),
@@ -58,10 +53,11 @@ class OnboardingPage extends StatelessWidget implements AutoRouteWrapper {
             ),
           ),
           BlocBuilder<OnboardingCubit, int>(
-            builder: (context, state) => PageIndicatorWidget(
-              current: state,
-              totalPages: context.l10n.onboarding.pages.length,
-            ),
+            builder:
+                (context, state) => PageIndicatorWidget(
+                  current: state,
+                  totalPages: context.l10n.onboarding.pages.length,
+                ),
           ),
           const Gap(Spacings.xlarge),
           Padding(

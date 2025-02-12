@@ -3,10 +3,9 @@ import 'package:quickstart_flutter_bloc/features/settings/domain/models/settings
 import 'package:quickstart_flutter_bloc/features/settings/domain/repositories/settings_repository.dart';
 
 class OnboardingCubit extends Cubit<int> {
-  OnboardingCubit({
-    required SettingsRepository settingsRepository,
-  })  : _settingsRepository = settingsRepository,
-        super(0);
+  OnboardingCubit({required SettingsRepository settingsRepository})
+    : _settingsRepository = settingsRepository,
+      super(0);
 
   final SettingsRepository _settingsRepository;
 

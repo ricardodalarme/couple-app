@@ -13,8 +13,7 @@ class SettingsPage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (_) =>
-          AppInjector.instance.get<SettingsBloc>()..add(const SettingsOpened()),
+      create: (_) => AppInjector.instance.get<SettingsBloc>()..add(const SettingsOpened()),
       child: this,
     );
   }
@@ -25,11 +24,7 @@ class SettingsPage extends StatelessWidget implements AutoRouteWrapper {
       title: context.l10n.settings.title,
       body: const Padding(
         padding: EdgeInsets.all(Spacings.large),
-        child: Column(
-          children: [
-            _BiometricsOption(),
-          ],
-        ),
+        child: Column(children: [_BiometricsOption()]),
       ),
     );
   }
@@ -41,13 +36,14 @@ class _BiometricsOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsBloc, SettingsState>(
-      builder: (context, state) => SettingsOption(
-        text: context.l10n.settings.optionBiometrics,
-        value: state.settings.useBiometrics,
-        onChanged: (value) => context
-            .read<SettingsBloc>()
-            .add(SettingsUseBiometricsChangedEvent(value)),
-      ),
+      builder:
+          (context, state) => SettingsOption(
+            text: context.l10n.settings.optionBiometrics,
+            value: state.settings.useBiometrics,
+            onChanged:
+                (value) =>
+                    context.read<SettingsBloc>().add(SettingsUseBiometricsChangedEvent(value)),
+          ),
     );
   }
 }

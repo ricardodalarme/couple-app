@@ -6,13 +6,10 @@ class PasswordInput extends FormzInput<String, PasswordValidationError> {
   const PasswordInput.pure() : super.pure('');
   const PasswordInput.dirty([super.value = '']) : super.dirty();
 
-  static final _passwordRegExp =
-      RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
+  static final _passwordRegExp = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
 
   @override
   PasswordValidationError? validator(String? value) {
-    return _passwordRegExp.hasMatch(value ?? '')
-        ? null
-        : PasswordValidationError.weak;
+    return _passwordRegExp.hasMatch(value ?? '') ? null : PasswordValidationError.weak;
   }
 }

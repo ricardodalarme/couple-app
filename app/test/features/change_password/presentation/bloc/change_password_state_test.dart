@@ -16,22 +16,27 @@ void main() {
       );
     });
 
-    test('returns object with updated submission when submission is passed',
-        () {
-      expect(
-        const ChangePasswordState().copyWith(submission: Success(null)),
-        const ChangePasswordState(submission: Success(null)),
-      );
-    });
+    test(
+      'returns object with updated submission when submission is passed',
+      () {
+        expect(
+          const ChangePasswordState().copyWith(submission: Success(null)),
+          const ChangePasswordState(submission: Success(null)),
+        );
+      },
+    );
 
     test(
-        'returns object with updated currentPassword when currentPassword is passed',
-        () {
-      expect(
-        const ChangePasswordState().copyWith(currentPassword: currentPassword),
-        const ChangePasswordState(currentPassword: currentPassword),
-      );
-    });
+      'returns object with updated currentPassword when currentPassword is passed',
+      () {
+        expect(
+          const ChangePasswordState().copyWith(
+            currentPassword: currentPassword,
+          ),
+          const ChangePasswordState(currentPassword: currentPassword),
+        );
+      },
+    );
 
     test('returns object with updated password when valid is passed', () {
       expect(
@@ -41,12 +46,15 @@ void main() {
     });
 
     test(
-        'returns object with updated confirmedPassword when confirmedPassword is passed',
-        () {
-      expect(
-        const ChangePasswordState().copyWith(confirmPassword: confirmPassword),
-        const ChangePasswordState(confirmPassword: confirmPassword),
-      );
-    });
+      'returns object with updated confirmedPassword when confirmedPassword is passed',
+      () {
+        expect(
+          const ChangePasswordState().copyWith(
+            confirmPassword: confirmPassword,
+          ),
+          const ChangePasswordState(confirmPassword: confirmPassword),
+        );
+      },
+    );
   });
 }

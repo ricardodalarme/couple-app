@@ -15,6 +15,9 @@ analyzer:
     - "**.g.dart"
     - "**/generated/**.dart"
 
+formatter:
+  page_width: 100
+
 linter:
   rules:
     - always_declare_return_types

@@ -2,9 +2,8 @@ import 'package:quickstart_flutter_bloc/features/signup/data/data_sources/signup
 import 'package:quickstart_flutter_bloc/features/signup/domain/repositories/signup_repository.dart';
 
 class SignupRepositoryImpl implements SignupRepository {
-  const SignupRepositoryImpl({
-    required SignupDataSource signupDataSource,
-  }) : _signupDataSource = signupDataSource;
+  const SignupRepositoryImpl({required SignupDataSource signupDataSource})
+    : _signupDataSource = signupDataSource;
 
   final SignupDataSource _signupDataSource;
 

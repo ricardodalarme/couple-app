@@ -9,15 +9,13 @@ void main() {
     await tester.pumpApp(
       Scaffold(
         body: Builder(
-          builder: (context) => ElevatedButton(
-            onPressed: () {
-              context.showSnackBar(
-                message: 'Success Message',
-                type: SnackBarType.success,
-              );
-            },
-            child: const Text('Show SnackBar'),
-          ),
+          builder:
+              (context) => ElevatedButton(
+                onPressed: () {
+                  context.showSnackBar(message: 'Success Message', type: SnackBarType.success);
+                },
+                child: const Text('Show SnackBar'),
+              ),
         ),
       ),
     );
@@ -33,15 +31,13 @@ void main() {
     await tester.pumpApp(
       Scaffold(
         body: Builder(
-          builder: (context) => ElevatedButton(
-            onPressed: () {
-              context.showSnackBar(
-                message: 'Error Message',
-                type: SnackBarType.error,
-              );
-            },
-            child: const Text('Show SnackBar'),
-          ),
+          builder:
+              (context) => ElevatedButton(
+                onPressed: () {
+                  context.showSnackBar(message: 'Error Message', type: SnackBarType.error);
+                },
+                child: const Text('Show SnackBar'),
+              ),
         ),
       ),
     );

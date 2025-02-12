@@ -16,10 +16,7 @@ void main() {
     });
 
     test('Register and get lazy singleton', () {
-      appInjector.registerLazySingleton<String>(
-        () => 'LazyTestString',
-        instanceName: 'lazyTest',
-      );
+      appInjector.registerLazySingleton<String>(() => 'LazyTestString', instanceName: 'lazyTest');
       final String result = appInjector.get<String>(instanceName: 'lazyTest');
       expect(result, 'LazyTestString');
     });
@@ -34,10 +31,7 @@ void main() {
       appInjector
         ..registerSingleton<int>(42, instanceName: 'testUnregister')
         ..unregister<int>(instanceName: 'testUnregister');
-      expect(
-        () => appInjector.get<int>(instanceName: 'testUnregister'),
-        throwsStateError,
-      );
+      expect(() => appInjector.get<int>(instanceName: 'testUnregister'), throwsStateError);
     });
   });
 }

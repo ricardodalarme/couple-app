@@ -13,8 +13,9 @@ void main() {
 
   setUp(() {
     authenticationRepository = MockAuthenticationRepository();
-    when(() => authenticationRepository.isAuthenticated)
-        .thenAnswer((_) => Stream.value(false));
+    when(
+      () => authenticationRepository.isAuthenticated,
+    ).thenAnswer((_) => Stream.value(false));
     bloc = AppBloc(authenticationRepository: authenticationRepository);
   });
 

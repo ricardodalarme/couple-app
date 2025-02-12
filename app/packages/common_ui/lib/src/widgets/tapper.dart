@@ -23,11 +23,7 @@ class Tapper extends StatelessWidget {
       borderRadius: borderRadius ?? BorderRadius.zero,
       child: Material(
         color: backgroundColor,
-        child: InkWell(
-          splashColor: rippleColor,
-          onTap: onTap,
-          child: child,
-        ),
+        child: InkWell(splashColor: rippleColor, onTap: onTap, child: child),
       ),
     );
   }

@@ -43,9 +43,7 @@ Future<void> bootstrap(Widget Function() builder) async {
 }
 
 Future<void> _setupFirebase() async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 }
 
 void _setupBloc() {
@@ -53,8 +51,7 @@ void _setupBloc() {
 }
 
 Future<void> _configureCrashReportService() async {
-  final CrashReportService crashReportService =
-      AppInjector.instance.get<CrashReportService>();
+  final CrashReportService crashReportService = AppInjector.instance.get<CrashReportService>();
 
   await crashReportService.setCrashlyticsCollectionEnabled(true);
   FlutterError.onError = crashReportService.recordFlutterFatalError;
@@ -80,8 +77,7 @@ Future<void> _initializeStorageService() async {
 
 void _checkOnboardingStatus() {
   final RootStackRouter appRouter = AppInjector.instance.get<RootStackRouter>();
-  final SettingsRepository settingsRepository =
-      AppInjector.instance.get<SettingsRepository>();
+  final SettingsRepository settingsRepository = AppInjector.instance.get<SettingsRepository>();
   final SettingsModel settings = settingsRepository.get();
 
   if (!settings.hasOnboarded) {

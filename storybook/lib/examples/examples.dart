@@ -30,11 +30,5 @@ final List<WidgetbookNode> examples = [
       textDividerExample,
     ],
   ),
-  WidgetbookFolder(
-    name: 'Theme',
-    children: [
-      colorsExample,
-      typographyExample,
-    ],
-  ),
+  WidgetbookFolder(name: 'Theme', children: [colorsExample, typographyExample]),
 ];

@@ -14,10 +14,7 @@ void validateResponse(QueryResult response) {
   throw ServerResponseException(code, exception);
 }
 
-D validateResponseData<T, D>(
-  QueryResult<T> response, {
-  required D? Function(T?) getData,
-}) {
+D validateResponseData<T, D>(QueryResult<T> response, {required D? Function(T?) getData}) {
   validateResponse(response);
 
   final D? data = getData(response.parsedData);

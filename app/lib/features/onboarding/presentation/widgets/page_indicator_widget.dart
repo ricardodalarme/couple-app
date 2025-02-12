@@ -1,11 +1,7 @@
 import 'package:common_ui/common_ui.dart';
 
 class PageIndicatorWidget extends StatelessWidget {
-  const PageIndicatorWidget({
-    required this.current,
-    required this.totalPages,
-    super.key,
-  });
+  const PageIndicatorWidget({required this.current, required this.totalPages, super.key});
 
   final int current;
   final int totalPages;
@@ -27,9 +23,7 @@ class PageIndicatorWidget extends StatelessWidget {
           height: _indicatorSize,
           width: current == index ? _indicatorSelectedSize : _indicatorSize,
           decoration: BoxDecoration(
-            color: current == index
-                ? context.colors.primary
-                : context.colors.onSurfaceVariant,
+            color: current == index ? context.colors.primary : context.colors.onSurfaceVariant,
             borderRadius: BorderRadius.circular(_indicatorRadius),
           ),
         ),

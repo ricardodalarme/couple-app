@@ -10,9 +10,7 @@ abstract interface class AnalyticsService {
 
 class AnalyticsServiceImpl implements AnalyticsService {
   factory AnalyticsServiceImpl([FirebaseAnalytics? firebaseAnalytics]) {
-    return AnalyticsServiceImpl._(
-      firebaseAnalytics ?? FirebaseAnalytics.instance,
-    );
+    return AnalyticsServiceImpl._(firebaseAnalytics ?? FirebaseAnalytics.instance);
   }
 
   const AnalyticsServiceImpl._(this._firebaseAnalytics);
@@ -26,10 +24,7 @@ class AnalyticsServiceImpl implements AnalyticsService {
 
   Future<void> _logEventAsync(AnalyticsEvent event) async {
     try {
-      await _firebaseAnalytics.logEvent(
-        name: event.name,
-        parameters: event.parameters,
-      );
+      await _firebaseAnalytics.logEvent(name: event.name, parameters: event.parameters);
     } catch (error, stackTrace) {
       log('Failed to log event: $event', error: error, stackTrace: stackTrace);
     }

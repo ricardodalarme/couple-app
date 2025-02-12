@@ -2,12 +2,7 @@ import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart' show InkWell, Material, Tooltip;
 
 class CircleIconButton extends StatelessWidget {
-  const CircleIconButton({
-    required this.label,
-    required this.icon,
-    required this.onTap,
-    super.key,
-  });
+  const CircleIconButton({required this.label, required this.icon, required this.onTap, super.key});
 
   final String label;
   final IconData icon;
@@ -27,10 +22,7 @@ class CircleIconButton extends StatelessWidget {
               customBorder: const CircleBorder(),
               child: Padding(
                 padding: const EdgeInsets.all(Spacings.xlarge),
-                child: Icon(
-                  icon,
-                  color: context.colors.onSurfaceVariant,
-                ),
+                child: Icon(icon, color: context.colors.onSurfaceVariant),
               ),
             ),
           ),

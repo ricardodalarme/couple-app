@@ -7,20 +7,19 @@ import 'package:quickstart_flutter_bloc/features/change_password/presentation/bl
 
 class ChangePasswordInjectionModule implements InjectionModule {
   @override
-  void registerDependencies({required Injector injector}) => injector
-    ..registerLazySingleton<ChangePasswordDataSource>(
-      () => ChangePasswordDataSourceImpl(
-        graphlQLClient: injector.get<GQLClient>(),
-      ),
-    )
-    ..registerLazySingleton<ChangePasswordRepository>(
-      () => ChangePasswordRepositoryImpl(
-        changePasswordDataSource: injector.get<ChangePasswordDataSource>(),
-      ),
-    )
-    ..registerFactory<ChangePasswordBloc>(
-      () => ChangePasswordBloc(
-        changePasswordRepository: injector.get<ChangePasswordRepository>(),
-      ),
-    );
+  void registerDependencies({required Injector injector}) =>
+      injector
+        ..registerLazySingleton<ChangePasswordDataSource>(
+          () => ChangePasswordDataSourceImpl(graphlQLClient: injector.get<GQLClient>()),
+        )
+        ..registerLazySingleton<ChangePasswordRepository>(
+          () => ChangePasswordRepositoryImpl(
+            changePasswordDataSource: injector.get<ChangePasswordDataSource>(),
+          ),
+        )
+        ..registerFactory<ChangePasswordBloc>(
+          () => ChangePasswordBloc(
+            changePasswordRepository: injector.get<ChangePasswordRepository>(),
+          ),
+        );
 }

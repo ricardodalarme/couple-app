@@ -3,11 +3,7 @@ import 'package:common_ui/src/tokens/spacings.dart';
 import 'package:flutter/widgets.dart';
 
 class Divider extends StatelessWidget {
-  const Divider({
-    this.startMargin = Spacings.none,
-    this.endMargin = Spacings.none,
-    super.key,
-  });
+  const Divider({this.startMargin = Spacings.none, this.endMargin = Spacings.none, super.key});
 
   final double startMargin;
   final double endMargin;
@@ -19,12 +15,7 @@ class Divider extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: startMargin, bottom: endMargin),
       decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: context.colors.onSurface,
-            width: _borderWidth,
-          ),
-        ),
+        border: Border(bottom: BorderSide(color: context.colors.onSurface, width: _borderWidth)),
       ),
     );
   }

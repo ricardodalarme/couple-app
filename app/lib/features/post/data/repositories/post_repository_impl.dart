@@ -8,25 +8,17 @@ class PostRepositoryImpl implements PostRepository {
   PostRepositoryImpl({
     required PostDataSource postDataSource,
     required Mapper<QueryGetPostspostsnodesPost, PostModel> mapper,
-  })  : _postDataSource = postDataSource,
-        _mapper = mapper;
+  }) : _postDataSource = postDataSource,
+       _mapper = mapper;
 
   final PostDataSource _postDataSource;
   final Mapper<QueryGetPostspostsnodesPost, PostModel> _mapper;
 
   @override
-  Future<List<PostModel>> getPosts({
-    int? first,
-    String? after,
-  }) async {
-    final QueryGetPostsposts result = await _postDataSource.getPosts(
-      first: first,
-      after: after,
-    );
-    final List<PostModel> parsedResult = result.nodes
-        .whereType<QueryGetPostspostsnodesPost>()
-        .map(_mapper.map)
-        .toList();
+  Future<List<PostModel>> getPosts({int? first, String? after}) async {
+    final QueryGetPostsposts result = await _postDataSource.getPosts(first: first, after: after);
+    final List<PostModel> parsedResult =
+        result.nodes.whereType<QueryGetPostspostsnodesPost>().map(_mapper.map).toList();
 
     return parsedResult;
   }

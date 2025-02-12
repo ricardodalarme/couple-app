@@ -28,18 +28,12 @@ void main() {
 
     group('track', () {
       test('tracks event successfully', () {
-        const event = AnalyticsEvent(
-          'TestEvent',
-          parameters: {'test-key': 'mock-id'},
-        );
+        const event = AnalyticsEvent('TestEvent', parameters: {'test-key': 'mock-id'});
 
         analyticsService.logEvent(event);
 
         verify(
-          () => firebaseAnalytics.logEvent(
-            name: event.name,
-            parameters: event.parameters,
-          ),
+          () => firebaseAnalytics.logEvent(name: event.name, parameters: event.parameters),
         ).called(1);
       });
 
@@ -53,22 +47,13 @@ void main() {
 
         const event = AnalyticsEvent(
           'event1',
-          parameters: <String, Object>{
-            'property1': 'value1',
-            'property2': 'value2',
-          },
+          parameters: <String, Object>{'property1': 'value1', 'property2': 'value2'},
         );
 
-        expect(
-          () => analyticsService.logEvent(event),
-          returnsNormally,
-        );
+        expect(() => analyticsService.logEvent(event), returnsNormally);
 
         verify(
-          () => firebaseAnalytics.logEvent(
-            name: event.name,
-            parameters: event.parameters,
-          ),
+          () => firebaseAnalytics.logEvent(name: event.name, parameters: event.parameters),
         ).called(1);
       });
     });

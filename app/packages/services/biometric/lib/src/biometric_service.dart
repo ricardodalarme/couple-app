@@ -7,9 +7,7 @@ abstract interface class BiometricService {
 
 class BiometricServiceImpl implements BiometricService {
   factory BiometricServiceImpl([LocalAuthentication? localAuthentication]) {
-    return BiometricServiceImpl._(
-      localAuthentication ?? LocalAuthentication(),
-    );
+    return BiometricServiceImpl._(localAuthentication ?? LocalAuthentication());
   }
 
   const BiometricServiceImpl._(this._localAuthentication);
@@ -24,10 +22,7 @@ class BiometricServiceImpl implements BiometricService {
   }) async {
     return _localAuthentication.authenticate(
       localizedReason: reason,
-      options: AuthenticationOptions(
-        biometricOnly: biometricOnly,
-        stickyAuth: stickyAuth,
-      ),
+      options: AuthenticationOptions(biometricOnly: biometricOnly, stickyAuth: stickyAuth),
     );
   }
 

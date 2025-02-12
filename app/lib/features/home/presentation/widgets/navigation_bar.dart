@@ -1,12 +1,8 @@
-import 'package:flutter/material.dart'
-    show NavigationBar, NavigationDestination;
+import 'package:flutter/material.dart' show NavigationBar, NavigationDestination;
 import 'package:flutter/widgets.dart';
 
 class NavBarItem {
-  const NavBarItem({
-    required this.icon,
-    required this.label,
-  });
+  const NavBarItem({required this.icon, required this.label});
 
   final IconData icon;
   final String label;
@@ -29,14 +25,10 @@ class NavBar extends StatelessWidget {
     return NavigationBar(
       selectedIndex: currentIndex,
       onDestinationSelected: onDestinationSelected,
-      destinations: items
-          .map(
-            (item) => NavigationDestination(
-              icon: Icon(item.icon),
-              label: item.label,
-            ),
-          )
-          .toList(),
+      destinations:
+          items
+              .map((item) => NavigationDestination(icon: Icon(item.icon), label: item.label))
+              .toList(),
     );
   }
 }

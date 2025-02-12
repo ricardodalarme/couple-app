@@ -14,8 +14,7 @@ class PostPage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (_) =>
-          AppInjector.instance.get<PostBloc>()..add(const PostFetched()),
+      create: (_) => AppInjector.instance.get<PostBloc>()..add(const PostFetched()),
       child: this,
     );
   }
@@ -25,18 +24,18 @@ class PostPage extends StatelessWidget implements AutoRouteWrapper {
     return BaseView(
       title: context.l10n.post.title,
       body: BlocBuilder<PostBloc, PostState>(
-        builder: (context, state) => switch (state.posts) {
-          Initial() => const SizedBox.shrink(),
-          Success(:final List<PostModel> value) => _PostSuccess(posts: value),
-          Loading() => const LoadingIndicator(),
-          Failure() => ErrorIndicator(
-              title: context.l10n.common.genericError,
-              buttonText: context.l10n.common.retry,
-              message: context.l10n.post.textFailure,
-              onButtonPressed: () =>
-                  context.read<PostBloc>().add(const PostFetched()),
-            ),
-        },
+        builder:
+            (context, state) => switch (state.posts) {
+              Initial() => const SizedBox.shrink(),
+              Success(:final List<PostModel> value) => _PostSuccess(posts: value),
+              Loading() => const LoadingIndicator(),
+              Failure() => ErrorIndicator(
+                title: context.l10n.common.genericError,
+                buttonText: context.l10n.common.retry,
+                message: context.l10n.post.textFailure,
+                onButtonPressed: () => context.read<PostBloc>().add(const PostFetched()),
+              ),
+            },
       ),
     );
   }
@@ -54,10 +53,8 @@ class _PostSuccess extends StatelessWidget {
       child: ListView.builder(
         padding: const EdgeInsets.all(Spacings.large),
         itemCount: posts.length,
-        itemBuilder: (context, index) => PostCard(
-          key: ValueKey(posts[index].id),
-          post: posts[index],
-        ),
+        itemBuilder:
+            (context, index) => PostCard(key: ValueKey(posts[index].id), post: posts[index]),
       ),
     );
   }

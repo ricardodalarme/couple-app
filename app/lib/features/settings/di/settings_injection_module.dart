@@ -11,30 +11,21 @@ import 'package:quickstart_flutter_bloc/features/settings/presentation/bloc/sett
 
 class SettingsInjectionModule implements InjectionModule {
   @override
-  void registerDependencies({required Injector injector}) => injector
-    ..registerLazySingleton<SettingsLocalDataSource>(
-      () => SettingsLocalDataSourceImpl(
-        storage: injector.get<PersistentStorageService>(),
-      ),
-    )
-    ..registerFactory<Mapper<SettingsLocal, SettingsModel>>(
-      SettingsLocalToModelMapper.new,
-    )
-    ..registerFactory<Mapper<SettingsModel, SettingsLocal>>(
-      SettingsModelToLocalMapper.new,
-    )
-    ..registerLazySingleton<SettingsRepository>(
-      () => SettingsRepositoryImpl(
-        localDataSource: injector.get<SettingsLocalDataSource>(),
-        settingsLocalToModelMapper:
-            injector.get<Mapper<SettingsLocal, SettingsModel>>(),
-        settingsModelToLocalMapper:
-            injector.get<Mapper<SettingsModel, SettingsLocal>>(),
-      ),
-    )
-    ..registerFactory<SettingsBloc>(
-      () => SettingsBloc(
-        settingsRepository: injector.get<SettingsRepository>(),
-      ),
-    );
+  void registerDependencies({required Injector injector}) =>
+      injector
+        ..registerLazySingleton<SettingsLocalDataSource>(
+          () => SettingsLocalDataSourceImpl(storage: injector.get<PersistentStorageService>()),
+        )
+        ..registerFactory<Mapper<SettingsLocal, SettingsModel>>(SettingsLocalToModelMapper.new)
+        ..registerFactory<Mapper<SettingsModel, SettingsLocal>>(SettingsModelToLocalMapper.new)
+        ..registerLazySingleton<SettingsRepository>(
+          () => SettingsRepositoryImpl(
+            localDataSource: injector.get<SettingsLocalDataSource>(),
+            settingsLocalToModelMapper: injector.get<Mapper<SettingsLocal, SettingsModel>>(),
+            settingsModelToLocalMapper: injector.get<Mapper<SettingsModel, SettingsLocal>>(),
+          ),
+        )
+        ..registerFactory<SettingsBloc>(
+          () => SettingsBloc(settingsRepository: injector.get<SettingsRepository>()),
+        );
 }

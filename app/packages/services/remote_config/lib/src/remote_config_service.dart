@@ -12,12 +12,9 @@ abstract interface class RemoteConfigService {
 }
 
 class RemoteConfigServiceImpl implements RemoteConfigService {
-  factory RemoteConfigServiceImpl([
-    FirebaseRemoteConfig? firebaseRemoteConfig,
-  ]) {
-    return RemoteConfigServiceImpl._(
-      firebaseRemoteConfig ?? FirebaseRemoteConfig.instance,
-    ).._initialize();
+  factory RemoteConfigServiceImpl([FirebaseRemoteConfig? firebaseRemoteConfig]) {
+    return RemoteConfigServiceImpl._(firebaseRemoteConfig ?? FirebaseRemoteConfig.instance)
+      .._initialize();
   }
 
   const RemoteConfigServiceImpl._(this._firebaseRemoteConfig);

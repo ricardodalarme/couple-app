@@ -2,9 +2,8 @@ import 'package:quickstart_flutter_bloc/features/change_password/data/data_sourc
 import 'package:quickstart_flutter_bloc/features/change_password/domain/repositories/change_password_repository.dart';
 
 class ChangePasswordRepositoryImpl implements ChangePasswordRepository {
-  const ChangePasswordRepositoryImpl({
-    required ChangePasswordDataSource changePasswordDataSource,
-  }) : _changePasswordDataSource = changePasswordDataSource;
+  const ChangePasswordRepositoryImpl({required ChangePasswordDataSource changePasswordDataSource})
+    : _changePasswordDataSource = changePasswordDataSource;
 
   final ChangePasswordDataSource _changePasswordDataSource;
 

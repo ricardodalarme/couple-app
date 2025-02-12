@@ -7,12 +7,10 @@ import 'package:quickstart_flutter_bloc/features/change_password/domain/reposito
 part 'change_password_event.dart';
 part 'change_password_state.dart';
 
-class ChangePasswordBloc
-    extends Bloc<ChangePasswordEvent, ChangePasswordState> {
-  ChangePasswordBloc({
-    required ChangePasswordRepository changePasswordRepository,
-  })  : _changePasswordRepository = changePasswordRepository,
-        super(const ChangePasswordState()) {
+class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState> {
+  ChangePasswordBloc({required ChangePasswordRepository changePasswordRepository})
+    : _changePasswordRepository = changePasswordRepository,
+      super(const ChangePasswordState()) {
     on<ChangePasswordCurrentPasswordChanged>(_onCurrentPasswordChanged);
     on<ChangePasswordNewPasswordChanged>(_onNewPasswordChanged);
     on<ChangePasswordConfirmPasswordChanged>(_onConfirmPasswordChanged);
@@ -25,11 +23,7 @@ class ChangePasswordBloc
     ChangePasswordCurrentPasswordChanged event,
     Emitter<ChangePasswordState> emit,
   ) {
-    emit(
-      state.copyWith(
-        currentPassword: NonEmptyInput.dirty(event.currentPassword),
-      ),
-    );
+    emit(state.copyWith(currentPassword: NonEmptyInput.dirty(event.currentPassword)));
   }
 
   void _onNewPasswordChanged(

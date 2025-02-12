@@ -11,10 +11,7 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView(
       title: context.l10n.search.title,
-      body: const Padding(
-        padding: EdgeInsets.all(Spacings.medium),
-        child: SearchTextField(),
-      ),
+      body: const Padding(padding: EdgeInsets.all(Spacings.medium), child: SearchTextField()),
     );
   }
 }

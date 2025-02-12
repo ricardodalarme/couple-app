@@ -14,13 +14,8 @@ class NotFoundPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              context.l10n.notFound.title,
-              style: context.typography.titleLarge,
-            ),
-            Text(
-              context.l10n.notFound.description,
-            ),
+            Text(context.l10n.notFound.title, style: context.typography.titleLarge),
+            Text(context.l10n.notFound.description),
             const Gap(Spacings.xxlarge),
             BaseButton(
               text: context.l10n.notFound.buttonBack,

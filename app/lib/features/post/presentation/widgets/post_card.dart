@@ -6,10 +6,7 @@ const _profilePictureSize = 40.0;
 const _bodyMaxLines = 7;
 
 class PostCard extends StatelessWidget {
-  const PostCard({
-    required this.post,
-    super.key,
-  });
+  const PostCard({required this.post, super.key});
 
   final PostModel post;
 
@@ -17,20 +14,10 @@ class PostCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        leading: ProfilePicture(
-          photoUrl: post.authorImageUrl,
-          size: _profilePictureSize,
-        ),
+        leading: ProfilePicture(photoUrl: post.authorImageUrl, size: _profilePictureSize),
         isThreeLine: true,
-        title: Text(
-          post.title,
-          style: context.typography.titleSmall,
-        ),
-        subtitle: Text(
-          post.body,
-          maxLines: _bodyMaxLines,
-          overflow: TextOverflow.ellipsis,
-        ),
+        title: Text(post.title, style: context.typography.titleSmall),
+        subtitle: Text(post.body, maxLines: _bodyMaxLines, overflow: TextOverflow.ellipsis),
       ),
     );
   }

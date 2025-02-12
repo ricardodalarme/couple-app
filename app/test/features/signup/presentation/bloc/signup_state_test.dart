@@ -7,9 +7,7 @@ void main() {
   const username = NonEmptyInput.dirty('username');
   const email = EmailInput.dirty('email');
   const password = PasswordInput.dirty('password');
-  const confirmPassword = ConfirmedPasswordInput.dirty(
-    password: 'password',
-  );
+  const confirmPassword = ConfirmedPasswordInput.dirty(password: 'password');
 
   group('SignupState', () {
     test('returns same object when no properties are passed', () {
@@ -45,12 +43,13 @@ void main() {
     });
 
     test(
-        'returns object with updated confirmPassword when confirmPassword is passed',
-        () {
-      expect(
-        const SignupState().copyWith(confirmPassword: confirmPassword),
-        const SignupState(confirmPassword: confirmPassword),
-      );
-    });
+      'returns object with updated confirmPassword when confirmPassword is passed',
+      () {
+        expect(
+          const SignupState().copyWith(confirmPassword: confirmPassword),
+          const SignupState(confirmPassword: confirmPassword),
+        );
+      },
+    );
   });
 }

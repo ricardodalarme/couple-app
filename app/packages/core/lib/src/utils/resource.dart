@@ -27,9 +27,7 @@ final class Success<S> extends Resource<S> {
 
   @override
   bool operator ==(Object other) =>
-      other is Success &&
-      other.runtimeType == runtimeType &&
-      other.value == value;
+      other is Success && other.runtimeType == runtimeType && other.value == value;
 
   @override
   int get hashCode => value.hashCode;
@@ -40,17 +38,15 @@ final class Failure extends Resource<Never> {
   const Failure(this.exception);
 
   factory Failure.fromObject(Object object) => switch (object) {
-        LocalizedException() => Failure(object),
-        _ => const Failure(UnknownException()),
-      };
+    LocalizedException() => Failure(object),
+    _ => const Failure(UnknownException()),
+  };
 
   final LocalizedException exception;
 
   @override
   bool operator ==(Object other) =>
-      other is Failure &&
-      other.runtimeType == runtimeType &&
-      other.exception == exception;
+      other is Failure && other.runtimeType == runtimeType && other.exception == exception;
 
   @override
   int get hashCode => exception.hashCode;

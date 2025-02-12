@@ -19,10 +19,7 @@ class SettingsOption extends StatelessWidget {
       children: [
         Text(text),
         const Gap(Spacings.medium),
-        BaseSwitch(
-          value: value,
-          onChanged: onChanged,
-        ),
+        BaseSwitch(value: value, onChanged: onChanged),
       ],
     );
   }

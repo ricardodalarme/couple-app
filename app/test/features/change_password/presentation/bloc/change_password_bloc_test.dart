@@ -40,41 +40,49 @@ void main() {
     blocTest<ChangePasswordBloc, ChangePasswordState>(
       'emits [ChangePasswordState] when [ChangePasswordCurrentPasswordChanged] is added',
       build: () => changePasswordBloc,
-      act: (bloc) =>
-          bloc.add(const ChangePasswordCurrentPasswordChanged('password')),
-      expect: () => [
-        const ChangePasswordState(
-          currentPassword: NonEmptyInput.dirty('password'),
-        ),
-      ],
+      act:
+          (bloc) =>
+              bloc.add(const ChangePasswordCurrentPasswordChanged('password')),
+      expect:
+          () => [
+            const ChangePasswordState(
+              currentPassword: NonEmptyInput.dirty('password'),
+            ),
+          ],
     );
 
     blocTest<ChangePasswordBloc, ChangePasswordState>(
       'emits [ChangePasswordState] when [ChangePasswordNewPasswordChanged] is added',
       build: () => changePasswordBloc,
-      act: (bloc) =>
-          bloc.add(const ChangePasswordNewPasswordChanged('password')),
-      expect: () => [
-        const ChangePasswordState(
-          password: PasswordInput.dirty('password'),
-          confirmPassword: ConfirmedPasswordInput.pure(
-            password: 'password',
-          ),
-        ),
-      ],
+      act:
+          (bloc) =>
+              bloc.add(const ChangePasswordNewPasswordChanged('password')),
+      expect:
+          () => [
+            const ChangePasswordState(
+              password: PasswordInput.dirty('password'),
+              confirmPassword: ConfirmedPasswordInput.pure(
+                password: 'password',
+              ),
+            ),
+          ],
     );
 
     blocTest<ChangePasswordBloc, ChangePasswordState>(
       'emits [ChangePasswordState] when [ChangePasswordConfirmPasswordChanged] is added',
       build: () => changePasswordBloc,
-      act: (bloc) =>
-          bloc.add(const ChangePasswordConfirmPasswordChanged('password')),
-      expect: () => [
-        const ChangePasswordState(
-          confirmPassword:
-              ConfirmedPasswordInput.dirty(password: '', value: 'password'),
-        ),
-      ],
+      act:
+          (bloc) =>
+              bloc.add(const ChangePasswordConfirmPasswordChanged('password')),
+      expect:
+          () => [
+            const ChangePasswordState(
+              confirmPassword: ConfirmedPasswordInput.dirty(
+                password: '',
+                value: 'password',
+              ),
+            ),
+          ],
     );
   });
 }

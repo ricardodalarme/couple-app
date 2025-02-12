@@ -1,13 +1,8 @@
 import 'package:common_ui/common_ui.dart';
-import 'package:flutter/material.dart'
-    show IconButton, Icons, SearchBar, WidgetStatePropertyAll;
+import 'package:flutter/material.dart' show IconButton, Icons, SearchBar, WidgetStatePropertyAll;
 
 class SearchTextField extends StatefulWidget {
-  const SearchTextField({
-    super.key,
-    this.onChanged,
-    this.onSubmitted,
-  });
+  const SearchTextField({super.key, this.onChanged, this.onSubmitted});
 
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
@@ -25,16 +20,8 @@ class _SearchTextFieldState extends State<SearchTextField> {
       controller: _controller,
       onSubmitted: widget.onSubmitted,
       shadowColor: const WidgetStatePropertyAll<Color>(Colors.transparent),
-      leading: const Padding(
-        padding: EdgeInsets.all(Spacings.small),
-        child: Icon(Icons.search),
-      ),
-      trailing: [
-        IconButton(
-          onPressed: _controller.clear,
-          icon: const Icon(Icons.clear),
-        ),
-      ],
+      leading: const Padding(padding: EdgeInsets.all(Spacings.small), child: Icon(Icons.search)),
+      trailing: [IconButton(onPressed: _controller.clear, icon: const Icon(Icons.clear))],
     );
   }
 }

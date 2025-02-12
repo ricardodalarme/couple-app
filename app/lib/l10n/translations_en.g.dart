@@ -37,8 +37,6 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final Translations _root = this; // ignore: unused_field
 
 	// Translations
-	late final TranslationsMissingTranslationsEn missingTranslations = TranslationsMissingTranslationsEn.internal(_root);
-	late final TranslationsUnusedTranslationsEn unusedTranslations = TranslationsUnusedTranslationsEn.internal(_root);
 	late final TranslationsChangePasswordEn changePassword = TranslationsChangePasswordEn.internal(_root);
 	late final TranslationsCommonEn common = TranslationsCommonEn.internal(_root);
 	late final TranslationsEditProfileEn editProfile = TranslationsEditProfileEn.internal(_root);
@@ -53,27 +51,6 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final TranslationsSettingsEn settings = TranslationsSettingsEn.internal(_root);
 	late final TranslationsSignupEn signup = TranslationsSignupEn.internal(_root);
 	late final TranslationsTermsEn terms = TranslationsTermsEn.internal(_root);
-}
-
-// Path: missingTranslations
-class TranslationsMissingTranslationsEn {
-	TranslationsMissingTranslationsEn.internal(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-	late final TranslationsMissingTranslationsPtEn pt = TranslationsMissingTranslationsPtEn.internal(_root);
-}
-
-// Path: unusedTranslations
-class TranslationsUnusedTranslationsEn {
-	TranslationsUnusedTranslationsEn.internal(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-	late final TranslationsUnusedTranslationsEnEn en = TranslationsUnusedTranslationsEnEn.internal(_root);
-	late final TranslationsUnusedTranslationsPtEn pt = TranslationsUnusedTranslationsPtEn.internal(_root);
 }
 
 // Path: changePassword
@@ -313,33 +290,6 @@ class TranslationsTermsEn {
 
 	// Translations
 	String get title => 'Terms';
-}
-
-// Path: missingTranslations.pt
-class TranslationsMissingTranslationsPtEn {
-	TranslationsMissingTranslationsPtEn.internal(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-}
-
-// Path: unusedTranslations.en
-class TranslationsUnusedTranslationsEnEn {
-	TranslationsUnusedTranslationsEnEn.internal(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-}
-
-// Path: unusedTranslations.pt
-class TranslationsUnusedTranslationsPtEn {
-	TranslationsUnusedTranslationsPtEn.internal(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
 }
 
 // Path: onboarding.pages.0

@@ -2,10 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebView extends StatefulWidget {
-  const WebView({
-    required this.url,
-    super.key,
-  });
+  const WebView({required this.url, super.key});
 
   final String url;
 
@@ -24,8 +21,6 @@ class _WebViewState extends State<WebView> {
 
   @override
   Widget build(BuildContext context) {
-    return WebViewWidget(
-      controller: _controller,
-    );
+    return WebViewWidget(controller: _controller);
   }
 }

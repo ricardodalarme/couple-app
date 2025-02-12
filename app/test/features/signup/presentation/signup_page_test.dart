@@ -21,10 +21,7 @@ void main() {
 
     testWidgets('renders page', (tester) async {
       await tester.pumpApp(
-        BlocProvider.value(
-          value: signupBloc,
-          child: const SignUpPage(),
-        ),
+        BlocProvider.value(value: signupBloc, child: const SignUpPage()),
       );
 
       expect(find.byType(SignUpPage), findsOneWidget);

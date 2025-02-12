@@ -6,42 +6,15 @@ import 'package:flutter/painting.dart';
 @immutable
 class Typography extends ThemeExtension<Typography> {
   const Typography({
-    this.titleLarge = const TextStyle(
-      fontSize: FontSizes.xxxlarge,
-      fontWeight: FontWeight.bold,
-    ),
-    this.titleMedium = const TextStyle(
-      fontSize: FontSizes.xxlarge,
-      fontWeight: FontWeight.bold,
-    ),
-    this.titleSmall = const TextStyle(
-      fontSize: FontSizes.xlarge,
-      fontWeight: FontWeight.bold,
-    ),
-    this.bodyLarge = const TextStyle(
-      fontSize: FontSizes.large,
-      fontWeight: FontWeight.normal,
-    ),
-    this.bodyMedium = const TextStyle(
-      fontSize: FontSizes.medium,
-      fontWeight: FontWeight.normal,
-    ),
-    this.bodySmall = const TextStyle(
-      fontSize: FontSizes.small,
-      fontWeight: FontWeight.normal,
-    ),
-    this.labelLarge = const TextStyle(
-      fontSize: FontSizes.large,
-      fontWeight: FontWeight.w500,
-    ),
-    this.labelMedium = const TextStyle(
-      fontSize: FontSizes.medium,
-      fontWeight: FontWeight.w500,
-    ),
-    this.labelSmall = const TextStyle(
-      fontSize: FontSizes.small,
-      fontWeight: FontWeight.w500,
-    ),
+    this.titleLarge = const TextStyle(fontSize: FontSizes.xxxlarge, fontWeight: FontWeight.bold),
+    this.titleMedium = const TextStyle(fontSize: FontSizes.xxlarge, fontWeight: FontWeight.bold),
+    this.titleSmall = const TextStyle(fontSize: FontSizes.xlarge, fontWeight: FontWeight.bold),
+    this.bodyLarge = const TextStyle(fontSize: FontSizes.large, fontWeight: FontWeight.normal),
+    this.bodyMedium = const TextStyle(fontSize: FontSizes.medium, fontWeight: FontWeight.normal),
+    this.bodySmall = const TextStyle(fontSize: FontSizes.small, fontWeight: FontWeight.normal),
+    this.labelLarge = const TextStyle(fontSize: FontSizes.large, fontWeight: FontWeight.w500),
+    this.labelMedium = const TextStyle(fontSize: FontSizes.medium, fontWeight: FontWeight.w500),
+    this.labelSmall = const TextStyle(fontSize: FontSizes.small, fontWeight: FontWeight.w500),
   });
 
   final TextStyle titleLarge;
@@ -80,10 +53,7 @@ class Typography extends ThemeExtension<Typography> {
   }
 
   @override
-  ThemeExtension<Typography> lerp(
-    covariant ThemeExtension<Typography>? other,
-    double t,
-  ) {
+  ThemeExtension<Typography> lerp(covariant ThemeExtension<Typography>? other, double t) {
     if (other is! Typography) {
       return this;
     }

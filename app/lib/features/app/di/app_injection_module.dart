@@ -4,10 +4,8 @@ import 'package:quickstart_flutter_bloc/features/authentication/domain/repositor
 
 class AppInjectionModule implements InjectionModule {
   @override
-  void registerDependencies({required Injector injector}) => injector
-    ..registerFactory<AppBloc>(
-      () => AppBloc(
-        authenticationRepository: injector.get<AuthenticationRepository>(),
-      ),
-    );
+  void registerDependencies({required Injector injector}) =>
+      injector..registerFactory<AppBloc>(
+        () => AppBloc(authenticationRepository: injector.get<AuthenticationRepository>()),
+      );
 }

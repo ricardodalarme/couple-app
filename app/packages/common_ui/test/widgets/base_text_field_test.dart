@@ -6,9 +6,7 @@ import '../test_helpers/pump_app.dart';
 void main() {
   group('BaseTextField', () {
     testWidgets('renders widget', (tester) async {
-      await tester.pumpApp(
-        const BaseTextField(text: 'Text'),
-      );
+      await tester.pumpApp(const BaseTextField(text: 'Text'));
       await tester.pump();
 
       expect(find.byType(BaseTextField), findsOneWidget);

@@ -13,10 +13,7 @@ class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AppInjector.instance.get<EditProfileBloc>(),
-      child: this,
-    );
+    return BlocProvider(create: (_) => AppInjector.instance.get<EditProfileBloc>(), child: this);
   }
 
   @override
@@ -24,8 +21,7 @@ class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
     return BaseView(
       title: context.l10n.editProfile.title,
       body: BlocListener<EditProfileBloc, EditProfileState>(
-        listenWhen: (previous, current) =>
-            previous.submission != current.submission,
+        listenWhen: (previous, current) => previous.submission != current.submission,
         listener: _handleStatus,
         child: const Center(
           child: SingleChildScrollView(
@@ -58,8 +54,7 @@ class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
         );
       case Failure(:final LocalizedException exception):
         context.showSnackBar(
-          message: context.l10n.editProfile.errors
-              .selectOrFallback(exception.l10nKey),
+          message: context.l10n.editProfile.errors.selectOrFallback(exception.l10nKey),
           type: SnackBarType.error,
         );
       default:
@@ -75,16 +70,15 @@ class _FirstNameTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<EditProfileBloc, EditProfileState>(
       buildWhen: (previous, current) => previous.firstName != current.firstName,
-      builder: (context, state) => BaseTextField(
-        text: state.firstName.value,
-        label: context.l10n.common.firstName,
-        errorText: context.l10n.editProfile
-            .firstNameErrors[state.firstName.displayError?.name],
-        textInputAction: TextInputAction.next,
-        onChanged: (value) => context
-            .read<EditProfileBloc>()
-            .add(EditProfileFirstNameChanged(value)),
-      ),
+      builder:
+          (context, state) => BaseTextField(
+            text: state.firstName.value,
+            label: context.l10n.common.firstName,
+            errorText: context.l10n.editProfile.firstNameErrors[state.firstName.displayError?.name],
+            textInputAction: TextInputAction.next,
+            onChanged:
+                (value) => context.read<EditProfileBloc>().add(EditProfileFirstNameChanged(value)),
+          ),
     );
   }
 }
@@ -96,16 +90,15 @@ class _LastNameTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<EditProfileBloc, EditProfileState>(
       buildWhen: (previous, current) => previous.lastName != current.lastName,
-      builder: (context, state) => BaseTextField(
-        text: state.lastName.value,
-        label: context.l10n.common.lastName,
-        errorText: context
-            .l10n.editProfile.lastNameErrors[state.lastName.displayError?.name],
-        textInputAction: TextInputAction.next,
-        onChanged: (value) => context
-            .read<EditProfileBloc>()
-            .add(EditProfileLastNameChanged(value)),
-      ),
+      builder:
+          (context, state) => BaseTextField(
+            text: state.lastName.value,
+            label: context.l10n.common.lastName,
+            errorText: context.l10n.editProfile.lastNameErrors[state.lastName.displayError?.name],
+            textInputAction: TextInputAction.next,
+            onChanged:
+                (value) => context.read<EditProfileBloc>().add(EditProfileLastNameChanged(value)),
+          ),
     );
   }
 }
@@ -117,17 +110,16 @@ class _EmailTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<EditProfileBloc, EditProfileState>(
       buildWhen: (previous, current) => previous.email != current.email,
-      builder: (context, state) => BaseTextField(
-        text: state.email.value,
-        label: context.l10n.common.email,
-        errorText: context
-            .l10n.editProfile.emailErrors[state.email.displayError?.name],
-        textInputAction: TextInputAction.done,
-        onSubmitted: (_) =>
-            context.read<EditProfileBloc>().add(const EditProfileSubmitted()),
-        onChanged: (value) =>
-            context.read<EditProfileBloc>().add(EditProfileEmailChanged(value)),
-      ),
+      builder:
+          (context, state) => BaseTextField(
+            text: state.email.value,
+            label: context.l10n.common.email,
+            errorText: context.l10n.editProfile.emailErrors[state.email.displayError?.name],
+            textInputAction: TextInputAction.done,
+            onSubmitted: (_) => context.read<EditProfileBloc>().add(const EditProfileSubmitted()),
+            onChanged:
+                (value) => context.read<EditProfileBloc>().add(EditProfileEmailChanged(value)),
+          ),
     );
   }
 }
@@ -138,13 +130,13 @@ class _SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<EditProfileBloc, EditProfileState>(
-      builder: (context, state) => BaseButton(
-        text: context.l10n.common.save,
-        isLoading: state.submission.isLoading,
-        isEnabled: state.isValid,
-        onPressed: () =>
-            context.read<EditProfileBloc>().add(const EditProfileSubmitted()),
-      ),
+      builder:
+          (context, state) => BaseButton(
+            text: context.l10n.common.save,
+            isLoading: state.submission.isLoading,
+            isEnabled: state.isValid,
+            onPressed: () => context.read<EditProfileBloc>().add(const EditProfileSubmitted()),
+          ),
     );
   }
 }

@@ -15,12 +15,7 @@ enum ButtonProvider {
 const double _buttonMaxWidth = 220;
 
 class SignInButton extends StatelessWidget {
-  const SignInButton(
-    this.button, {
-    required this.text,
-    required this.onPressed,
-    super.key,
-  });
+  const SignInButton(this.button, {required this.text, required this.onPressed, super.key});
 
   final String Function(ButtonProvider) text;
   final VoidCallback onPressed;
@@ -32,29 +27,25 @@ class SignInButton extends StatelessWidget {
 
     return switch (button) {
       ButtonProvider.google => SignInButtonBuilder(
-          key: const Key('Google'),
-          text: buttonText,
-          icon: Container(
-            padding: const EdgeInsets.all(4),
-            color: Colors.white,
-            child: Assets.logos.google.svg(
-              height: 24,
-            ),
-          ),
-          backgroundColor: const Color(0xFF4285F4),
-          iconPadding: const EdgeInsets.fromLTRB(2, 0, 4, 0),
-          onPressed: onPressed,
+        key: const Key('Google'),
+        text: buttonText,
+        icon: Container(
+          padding: const EdgeInsets.all(4),
+          color: Colors.white,
+          child: Assets.logos.google.svg(height: 24),
         ),
+        backgroundColor: const Color(0xFF4285F4),
+        iconPadding: const EdgeInsets.fromLTRB(2, 0, 4, 0),
+        onPressed: onPressed,
+      ),
       ButtonProvider.facebook => SignInButtonBuilder(
-          key: const Key('Facebook'),
-          text: buttonText,
-          icon: Assets.logos.facebook.svg(
-            height: 30,
-          ),
-          backgroundColor: const Color(0xFF1877f2),
-          iconPadding: const EdgeInsets.symmetric(horizontal: 4),
-          onPressed: onPressed,
-        )
+        key: const Key('Facebook'),
+        text: buttonText,
+        icon: Assets.logos.facebook.svg(height: 30),
+        backgroundColor: const Color(0xFF1877f2),
+        iconPadding: const EdgeInsets.symmetric(horizontal: 4),
+        onPressed: onPressed,
+      ),
     };
   }
 }
@@ -70,10 +61,7 @@ class SignInButtonBuilder extends StatelessWidget {
     this.innerPadding,
     this.height,
     this.maxWidth = _buttonMaxWidth,
-    this.textStyle = const TextStyle(
-      fontWeight: FontWeight.w600,
-      color: Colors.white,
-    ),
+    this.textStyle = const TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
   });
 
   final String text;
@@ -98,18 +86,11 @@ class SignInButtonBuilder extends StatelessWidget {
         constraints: BoxConstraints(maxWidth: maxWidth),
         child: Row(
           children: [
-            Padding(
-              padding: iconPadding ?? const EdgeInsets.symmetric(horizontal: 8),
-              child: icon,
-            ),
+            Padding(padding: iconPadding ?? const EdgeInsets.symmetric(horizontal: 8), child: icon),
             Expanded(
               child: Padding(
                 padding: innerPadding ?? const EdgeInsets.all(4),
-                child: Text(
-                  text,
-                  style: textStyle,
-                  maxLines: 1,
-                ),
+                child: Text(text, style: textStyle, maxLines: 1),
               ),
             ),
           ],

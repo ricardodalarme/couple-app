@@ -8,10 +8,9 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc({
-    required AuthenticationRepository authenticationRepository,
-  })  : _authenticationRepository = authenticationRepository,
-        super(const LoginState()) {
+  LoginBloc({required AuthenticationRepository authenticationRepository})
+    : _authenticationRepository = authenticationRepository,
+      super(const LoginState()) {
     on<LoginUsernameChanged>(_onUsernameChanged);
     on<LoginPasswordChanged>(_onPasswordChanged);
     on<LoginSubmitted>(_onSubmitted);
@@ -21,28 +20,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   final AuthenticationRepository _authenticationRepository;
 
-  void _onUsernameChanged(
-    LoginUsernameChanged event,
-    Emitter<LoginState> emit,
-  ) {
-    emit(
-      state.copyWith(username: NonEmptyInput.dirty(event.username)),
-    );
+  void _onUsernameChanged(LoginUsernameChanged event, Emitter<LoginState> emit) {
+    emit(state.copyWith(username: NonEmptyInput.dirty(event.username)));
   }
 
-  void _onPasswordChanged(
-    LoginPasswordChanged event,
-    Emitter<LoginState> emit,
-  ) {
-    emit(
-      state.copyWith(password: NonEmptyInput.dirty(event.password)),
-    );
+  void _onPasswordChanged(LoginPasswordChanged event, Emitter<LoginState> emit) {
+    emit(state.copyWith(password: NonEmptyInput.dirty(event.password)));
   }
 
-  Future<void> _onSubmitted(
-    LoginSubmitted event,
-    Emitter<LoginState> emit,
-  ) async {
+  Future<void> _onSubmitted(LoginSubmitted event, Emitter<LoginState> emit) async {
     if (state.isNotValid) return;
 
     emit(state.copyWith(login: const Loading()));

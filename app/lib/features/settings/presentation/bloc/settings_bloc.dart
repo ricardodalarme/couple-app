@@ -7,22 +7,16 @@ part 'settings_event.dart';
 part 'settings_state.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
-  SettingsBloc({
-    required SettingsRepository settingsRepository,
-  })  : _settingsRepository = settingsRepository,
-        super(const SettingsState()) {
+  SettingsBloc({required SettingsRepository settingsRepository})
+    : _settingsRepository = settingsRepository,
+      super(const SettingsState()) {
     on<SettingsOpened>(_onSettingsOpened);
-    on<SettingsUseBiometricsChangedEvent>(
-      _onSettingsUseBiometricsChanged,
-    );
+    on<SettingsUseBiometricsChangedEvent>(_onSettingsUseBiometricsChanged);
   }
 
   final SettingsRepository _settingsRepository;
 
-  void _onSettingsOpened(
-    SettingsOpened event,
-    Emitter<SettingsState> emit,
-  ) {
+  void _onSettingsOpened(SettingsOpened event, Emitter<SettingsState> emit) {
     final SettingsModel settings = _settingsRepository.get();
     emit(state.copyWith(settings: settings));
   }
@@ -31,9 +25,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     SettingsUseBiometricsChangedEvent event,
     Emitter<SettingsState> emit,
   ) async {
-    final SettingsModel newSettings = state.settings.copyWith(
-      useBiometrics: event.value,
-    );
+    final SettingsModel newSettings = state.settings.copyWith(useBiometrics: event.value);
 
     emit(state.copyWith(settings: newSettings));
     await _settingsRepository.save(newSettings);

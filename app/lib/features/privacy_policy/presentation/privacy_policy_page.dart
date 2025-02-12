@@ -12,9 +12,7 @@ class PrivacyPolicyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView(
       title: context.l10n.privacyPolicy.title,
-      body: const WebView(
-        url: _privacyPolicyUrl,
-      ),
+      body: const WebView(url: _privacyPolicyUrl),
     );
   }
 }

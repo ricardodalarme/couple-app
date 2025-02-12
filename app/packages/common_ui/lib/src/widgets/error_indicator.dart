@@ -20,22 +20,11 @@ class ErrorIndicator extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: context.typography.titleMedium,
-          ),
+          Text(title, textAlign: TextAlign.center, style: context.typography.titleMedium),
           const Gap(Spacings.medium),
-          Text(
-            message,
-            textAlign: TextAlign.center,
-            style: context.typography.bodyMedium,
-          ),
+          Text(message, textAlign: TextAlign.center, style: context.typography.bodyMedium),
           const Gap(Spacings.large),
-          BaseButton(
-            text: buttonText,
-            onPressed: onButtonPressed,
-          ),
+          BaseButton(text: buttonText, onPressed: onButtonPressed),
         ],
       ),
     );

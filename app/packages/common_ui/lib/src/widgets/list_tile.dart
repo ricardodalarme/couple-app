@@ -1,12 +1,7 @@
 import 'package:common_ui/common_ui.dart';
 
 class ListTile extends StatelessWidget {
-  const ListTile({
-    required this.title,
-    required this.leading,
-    required this.onTap,
-    super.key,
-  });
+  const ListTile({required this.title, required this.leading, required this.onTap, super.key});
 
   final String title;
   final Widget leading;
@@ -23,19 +18,11 @@ class ListTile extends StatelessWidget {
         child: Row(
           children: [
             IconTheme(
-              data: IconThemeData(
-                color: context.colors.onSurface,
-                size: _iconSize,
-              ),
+              data: IconThemeData(color: context.colors.onSurface, size: _iconSize),
               child: leading,
             ),
             const Gap(Spacings.large),
-            Expanded(
-              child: Text(
-                title,
-                style: context.typography.labelMedium,
-              ),
-            ),
+            Expanded(child: Text(title, style: context.typography.labelMedium)),
           ],
         ),
       ),

@@ -10,9 +10,7 @@ class TermsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView(
       title: context.l10n.terms.title,
-      body: Center(
-        child: Text(context.l10n.terms.title),
-      ),
+      body: Center(child: Text(context.l10n.terms.title)),
     );
   }
 }

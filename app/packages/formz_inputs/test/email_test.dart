@@ -28,8 +28,7 @@ void main() {
       for (final email in validEmails) {
         final emailInput = EmailInput.dirty(email);
 
-        final EmailValidationError? validationError =
-            emailInput.validator(emailInput.value);
+        final EmailValidationError? validationError = emailInput.validator(emailInput.value);
 
         expect(validationError, isNull);
       }

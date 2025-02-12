@@ -21,10 +21,7 @@ void main() {
 
     testWidgets('renders page', (tester) async {
       await tester.pumpApp(
-        BlocProvider.value(
-          value: settingsBloc,
-          child: const SettingsPage(),
-        ),
+        BlocProvider.value(value: settingsBloc, child: const SettingsPage()),
       );
       await tester.pump();
 

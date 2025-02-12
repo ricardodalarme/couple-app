@@ -10,9 +10,7 @@ abstract interface class GQLClient {
 }
 
 class GQLClientImpl implements GQLClient {
-  factory GQLClientImpl({
-    required SecureStorageService storage,
-  }) {
+  factory GQLClientImpl({required SecureStorageService storage}) {
     final httpLink = HttpLink(
       Config.serverUrl,
       serializer: const RequestSerializerWithCompressor(),

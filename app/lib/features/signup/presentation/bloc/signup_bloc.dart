@@ -12,9 +12,9 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
   SignupBloc({
     required SignupRepository signupRepository,
     required AuthenticationRepository authenticationRepository,
-  })  : _signupRepository = signupRepository,
-        _authenticationRepository = authenticationRepository,
-        super(const SignupState()) {
+  }) : _signupRepository = signupRepository,
+       _authenticationRepository = authenticationRepository,
+       super(const SignupState()) {
     on<SignupUsernameChanged>(_onUsernameChanged);
     on<SignupEmailChanged>(_onEmailChanged);
     on<SignupPasswordChanged>(_onPasswordChanged);
@@ -25,28 +25,15 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
   final SignupRepository _signupRepository;
   final AuthenticationRepository _authenticationRepository;
 
-  void _onUsernameChanged(
-    SignupUsernameChanged event,
-    Emitter<SignupState> emit,
-  ) {
-    emit(
-      state.copyWith(username: NonEmptyInput.dirty(event.username)),
-    );
+  void _onUsernameChanged(SignupUsernameChanged event, Emitter<SignupState> emit) {
+    emit(state.copyWith(username: NonEmptyInput.dirty(event.username)));
   }
 
-  void _onEmailChanged(
-    SignupEmailChanged event,
-    Emitter<SignupState> emit,
-  ) {
-    emit(
-      state.copyWith(email: EmailInput.dirty(event.email)),
-    );
+  void _onEmailChanged(SignupEmailChanged event, Emitter<SignupState> emit) {
+    emit(state.copyWith(email: EmailInput.dirty(event.email)));
   }
 
-  void _onPasswordChanged(
-    SignupPasswordChanged event,
-    Emitter<SignupState> emit,
-  ) {
+  void _onPasswordChanged(SignupPasswordChanged event, Emitter<SignupState> emit) {
     emit(
       state.copyWith(
         password: PasswordInput.dirty(event.password),
@@ -58,10 +45,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     );
   }
 
-  void _onConfirmPasswordChanged(
-    SignupConfirmPasswordChanged event,
-    Emitter<SignupState> emit,
-  ) {
+  void _onConfirmPasswordChanged(SignupConfirmPasswordChanged event, Emitter<SignupState> emit) {
     emit(
       state.copyWith(
         confirmPassword: ConfirmedPasswordInput.dirty(
@@ -72,10 +56,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     );
   }
 
-  Future<void> _onSubmitted(
-    SignupSubmitted event,
-    Emitter<SignupState> emit,
-  ) async {
+  Future<void> _onSubmitted(SignupSubmitted event, Emitter<SignupState> emit) async {
     if (state.isNotValid) return;
 
     emit(state.copyWith(submission: const Loading()));

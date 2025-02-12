@@ -3,29 +3,20 @@ import 'package:quickstart_flutter_bloc/features/_shared/data/data_sources/gener
 import 'package:quickstart_flutter_bloc/features/forgot_password/data/data_sources/mutations/generated/ResetPassword.graphql.dart';
 
 abstract interface class ForgotPasswordDataSource {
-  Future<void> forgotPassword({
-    required String email,
-  });
+  Future<void> forgotPassword({required String email});
 }
 
 class ForgotPasswordDataSourceImpl implements ForgotPasswordDataSource {
-  const ForgotPasswordDataSourceImpl({
-    required GQLClient graphlQLClient,
-  }) : _client = graphlQLClient;
+  const ForgotPasswordDataSourceImpl({required GQLClient graphlQLClient})
+    : _client = graphlQLClient;
 
   final GQLClient _client;
 
   @override
-  Future<void> forgotPassword({
-    required String email,
-  }) async {
-    final input = InputResetPasswordInput(
-      email: email,
-    );
+  Future<void> forgotPassword({required String email}) async {
+    final input = InputResetPasswordInput(email: email);
     final QueryResult<MutationResetPassword> response = await _client.mutate(
-      OptionsMutationResetPassword(
-        variables: VariablesMutationResetPassword(input: input),
-      ),
+      OptionsMutationResetPassword(variables: VariablesMutationResetPassword(input: input)),
     );
 
     return validateResponse(response);

@@ -14,8 +14,7 @@ void main() {
     test('should have dirty constructor with specified value', () {
       const password = 'password';
       const value = 'dirty_value';
-      const confirmedPassword =
-          ConfirmedPasswordInput.dirty(password: password, value: value);
+      const confirmedPassword = ConfirmedPasswordInput.dirty(password: password, value: value);
 
       expect(confirmedPassword.value, equals(value));
       expect(confirmedPassword.password, equals(password));
@@ -23,11 +22,11 @@ void main() {
 
     test('should return null if value matches the password', () {
       const password = 'password';
-      const confirmedPassword =
-          ConfirmedPasswordInput.dirty(password: password, value: password);
+      const confirmedPassword = ConfirmedPasswordInput.dirty(password: password, value: password);
 
-      final ConfirmedPasswordValidationError? validationError =
-          confirmedPassword.validator(confirmedPassword.value);
+      final ConfirmedPasswordValidationError? validationError = confirmedPassword.validator(
+        confirmedPassword.value,
+      );
 
       expect(validationError, isNull);
     });
@@ -39,8 +38,9 @@ void main() {
         value: 'wrong_password',
       );
 
-      final ConfirmedPasswordValidationError? validationError =
-          confirmedPassword.validator(confirmedPassword.value);
+      final ConfirmedPasswordValidationError? validationError = confirmedPassword.validator(
+        confirmedPassword.value,
+      );
 
       expect(validationError, equals(ConfirmedPasswordValidationError.invalid));
     });

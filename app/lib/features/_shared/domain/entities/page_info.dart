@@ -14,10 +14,5 @@ class PageInfo with EquatableMixin {
   final bool? hasPreviousPage;
 
   @override
-  List<Object?> get props => [
-        startCursor,
-        endCursor,
-        hasNextPage,
-        hasPreviousPage,
-      ];
+  List<Object?> get props => [startCursor, endCursor, hasNextPage, hasPreviousPage];
 }

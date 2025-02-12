@@ -13,9 +13,7 @@ abstract interface class SignupDataSource {
 }
 
 class SignupDataSourceImpl implements SignupDataSource {
-  const SignupDataSourceImpl({
-    required GQLClient graphlQLClient,
-  }) : _client = graphlQLClient;
+  const SignupDataSourceImpl({required GQLClient graphlQLClient}) : _client = graphlQLClient;
 
   final GQLClient _client;
 
@@ -35,9 +33,7 @@ class SignupDataSourceImpl implements SignupDataSource {
       lastName: lastName,
     );
     final QueryResult<MutationCreateUser> response = await _client.mutate(
-      OptionsMutationCreateUser(
-        variables: VariablesMutationCreateUser(input: input),
-      ),
+      OptionsMutationCreateUser(variables: VariablesMutationCreateUser(input: input)),
     );
 
     return validateResponse(response);

@@ -17,8 +17,9 @@ void main() {
 
     setUp(() {
       changePasswordBloc = MockChangePasswordBloc();
-      when(() => changePasswordBloc.state)
-          .thenReturn(const ChangePasswordState());
+      when(
+        () => changePasswordBloc.state,
+      ).thenReturn(const ChangePasswordState());
     });
 
     testWidgets('renders page', (tester) async {

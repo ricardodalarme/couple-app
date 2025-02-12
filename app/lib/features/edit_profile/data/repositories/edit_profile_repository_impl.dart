@@ -2,9 +2,8 @@ import 'package:quickstart_flutter_bloc/features/edit_profile/data/data_sources/
 import 'package:quickstart_flutter_bloc/features/edit_profile/domain/repositories/edit_profile_repository.dart';
 
 class EditProfileRepositoryImpl implements EditProfileRepository {
-  const EditProfileRepositoryImpl({
-    required EditProfileDataSource editProfileDataSource,
-  }) : _editProfileDataSource = editProfileDataSource;
+  const EditProfileRepositoryImpl({required EditProfileDataSource editProfileDataSource})
+    : _editProfileDataSource = editProfileDataSource;
 
   final EditProfileDataSource _editProfileDataSource;
 
@@ -14,10 +13,6 @@ class EditProfileRepositoryImpl implements EditProfileRepository {
     required String lastName,
     required String email,
   }) async {
-    await _editProfileDataSource.updateUser(
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-    );
+    await _editProfileDataSource.updateUser(firstName: firstName, lastName: lastName, email: email);
   }
 }

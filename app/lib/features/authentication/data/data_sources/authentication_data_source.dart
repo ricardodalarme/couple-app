@@ -10,9 +10,8 @@ abstract interface class AuthenticationDataSource {
 }
 
 class AuthenticationDataSourceImpl implements AuthenticationDataSource {
-  const AuthenticationDataSourceImpl({
-    required GQLClient graphlQLClient,
-  }) : _client = graphlQLClient;
+  const AuthenticationDataSourceImpl({required GQLClient graphlQLClient})
+    : _client = graphlQLClient;
 
   final GQLClient _client;
 
@@ -21,21 +20,11 @@ class AuthenticationDataSourceImpl implements AuthenticationDataSource {
     required String username,
     required String password,
   }) async {
-    final input = InputLoginInput(
-      username: username,
-      password: password,
-    );
+    final input = InputLoginInput(username: username, password: password);
     final QueryResult<MutationLogin> response = await _client.mutate(
-      OptionsMutationLogin(
-        variables: VariablesMutationLogin(
-          credentials: input,
-        ),
-      ),
+      OptionsMutationLogin(variables: VariablesMutationLogin(credentials: input)),
     );
 
-    return validateResponseData(
-      response,
-      getData: (data) => data?.login,
-    );
+    return validateResponseData(response, getData: (data) => data?.login);
   }
 }

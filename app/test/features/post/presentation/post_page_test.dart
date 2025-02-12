@@ -20,10 +20,7 @@ void main() {
 
     testWidgets('renders page', (tester) async {
       await tester.pumpApp(
-        BlocProvider.value(
-          value: postBloc,
-          child: const PostPage(),
-        ),
+        BlocProvider.value(value: postBloc, child: const PostPage()),
       );
       await tester.pump();
 

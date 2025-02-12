@@ -32,10 +32,8 @@ final class SignupState with EquatableMixin, FormzMixin {
   }
 
   @override
-  List<FormzInput<dynamic, dynamic>> get inputs =>
-      [username, email, password, confirmPassword];
+  List<FormzInput<dynamic, dynamic>> get inputs => [username, email, password, confirmPassword];
 
   @override
-  List<Object?> get props =>
-      [username, email, password, confirmPassword, submission];
+  List<Object?> get props => [username, email, password, confirmPassword, submission];
 }

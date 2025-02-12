@@ -7,17 +7,12 @@ import '../../../../test_helpers/pump_app.dart';
 
 void main() {
   group('PostCard', () {
-    testWidgets('PostCard should display correct information',
-        (WidgetTester tester) async {
-      const post = PostModel(
-        id: '1',
-        title: 'Test Title',
-        body: 'Test Body',
-      );
+    testWidgets('PostCard should display correct information', (
+      WidgetTester tester,
+    ) async {
+      const post = PostModel(id: '1', title: 'Test Title', body: 'Test Body');
 
-      await tester.pumpApp(
-        const PostCard(post: post),
-      );
+      await tester.pumpApp(const PostCard(post: post));
 
       expect(find.byType(ProfilePicture), findsOneWidget);
 

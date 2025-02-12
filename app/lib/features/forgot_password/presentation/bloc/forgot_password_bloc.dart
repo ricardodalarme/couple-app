@@ -7,27 +7,18 @@ import 'package:quickstart_flutter_bloc/features/forgot_password/domain/reposito
 part 'forgot_password_event.dart';
 part 'forgot_password_state.dart';
 
-class ForgotPasswordBloc
-    extends Bloc<ForgotPasswordEvent, ForgotPasswordState> {
-  ForgotPasswordBloc({
-    required ForgotPasswordRepository forgotPasswordRepository,
-  })  : _forgotPasswordRepository = forgotPasswordRepository,
-        super(const ForgotPasswordState()) {
+class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> {
+  ForgotPasswordBloc({required ForgotPasswordRepository forgotPasswordRepository})
+    : _forgotPasswordRepository = forgotPasswordRepository,
+      super(const ForgotPasswordState()) {
     on<ForgotPasswordEmailChanged>(_onEmailChanged);
     on<ForgotPasswordSubmitted>(_onSubmitted);
   }
 
   final ForgotPasswordRepository _forgotPasswordRepository;
 
-  void _onEmailChanged(
-    ForgotPasswordEmailChanged event,
-    Emitter<ForgotPasswordState> emit,
-  ) {
-    emit(
-      state.copyWith(
-        email: EmailInput.dirty(event.email),
-      ),
-    );
+  void _onEmailChanged(ForgotPasswordEmailChanged event, Emitter<ForgotPasswordState> emit) {
+    emit(state.copyWith(email: EmailInput.dirty(event.email)));
   }
 
   Future<void> _onSubmitted(
@@ -39,9 +30,7 @@ class ForgotPasswordBloc
     emit(state.copyWith(submission: const Loading()));
 
     try {
-      await _forgotPasswordRepository.forgotPassword(
-        email: state.email.value,
-      );
+      await _forgotPasswordRepository.forgotPassword(email: state.email.value);
 
       emit(state.copyWith(submission: const Success(null)));
     } catch (exception) {

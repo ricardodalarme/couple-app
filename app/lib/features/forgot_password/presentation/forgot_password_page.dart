@@ -13,10 +13,7 @@ class ForgotPasswordPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AppInjector.instance.get<ForgotPasswordBloc>(),
-      child: this,
-    );
+    return BlocProvider(create: (_) => AppInjector.instance.get<ForgotPasswordBloc>(), child: this);
   }
 
   @override
@@ -24,8 +21,7 @@ class ForgotPasswordPage extends StatelessWidget implements AutoRouteWrapper {
     return BaseView(
       title: context.l10n.forgotPassword.title,
       body: BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
-        listenWhen: (previous, current) =>
-            previous.submission != current.submission,
+        listenWhen: (previous, current) => previous.submission != current.submission,
         listener: _handleStatus,
         child: Center(
           child: SingleChildScrollView(
@@ -59,8 +55,7 @@ class ForgotPasswordPage extends StatelessWidget implements AutoRouteWrapper {
         );
       case Failure(:final LocalizedException exception):
         context.showSnackBar(
-          message: context.l10n.forgotPassword.errors
-              .selectOrFallback(exception.l10nKey),
+          message: context.l10n.forgotPassword.errors.selectOrFallback(exception.l10nKey),
           type: SnackBarType.error,
         );
       default:
@@ -76,20 +71,19 @@ class _EmailTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
       buildWhen: (previous, current) => previous.email != current.email,
-      builder: (context, state) => BaseTextField(
-        text: state.email.value,
-        keyboardType: TextInputType.emailAddress,
-        label: context.l10n.common.email,
-        errorText: context
-            .l10n.forgotPassword.emailErrors[state.email.displayError?.name],
-        textInputAction: TextInputAction.done,
-        onChanged: (value) => context
-            .read<ForgotPasswordBloc>()
-            .add(ForgotPasswordEmailChanged(value)),
-        onSubmitted: (_) => context
-            .read<ForgotPasswordBloc>()
-            .add(const ForgotPasswordSubmitted()),
-      ),
+      builder:
+          (context, state) => BaseTextField(
+            text: state.email.value,
+            keyboardType: TextInputType.emailAddress,
+            label: context.l10n.common.email,
+            errorText: context.l10n.forgotPassword.emailErrors[state.email.displayError?.name],
+            textInputAction: TextInputAction.done,
+            onChanged:
+                (value) =>
+                    context.read<ForgotPasswordBloc>().add(ForgotPasswordEmailChanged(value)),
+            onSubmitted:
+                (_) => context.read<ForgotPasswordBloc>().add(const ForgotPasswordSubmitted()),
+          ),
     );
   }
 }
@@ -100,14 +94,14 @@ class _SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
-      builder: (context, state) => BaseButton(
-        text: context.l10n.common.send,
-        isEnabled: state.isValid,
-        isLoading: state.submission.isLoading,
-        onPressed: () => context
-            .read<ForgotPasswordBloc>()
-            .add(const ForgotPasswordSubmitted()),
-      ),
+      builder:
+          (context, state) => BaseButton(
+            text: context.l10n.common.send,
+            isEnabled: state.isValid,
+            isLoading: state.submission.isLoading,
+            onPressed:
+                () => context.read<ForgotPasswordBloc>().add(const ForgotPasswordSubmitted()),
+          ),
     );
   }
 }

@@ -9,10 +9,7 @@ final class ForgotPasswordState with EquatableMixin, FormzMixin {
   final EmailInput email;
   final Resource<void> submission;
 
-  ForgotPasswordState copyWith({
-    EmailInput? email,
-    Resource<void>? submission,
-  }) {
+  ForgotPasswordState copyWith({EmailInput? email, Resource<void>? submission}) {
     return ForgotPasswordState(
       email: email ?? this.email,
       submission: submission ?? this.submission,

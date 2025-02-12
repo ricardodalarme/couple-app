@@ -11,9 +11,9 @@ class SettingsRepositoryImpl implements SettingsRepository {
     required SettingsLocalDataSource localDataSource,
     required Mapper<SettingsLocal, SettingsModel> settingsLocalToModelMapper,
     required Mapper<SettingsModel, SettingsLocal> settingsModelToLocalMapper,
-  })  : _localDataSource = localDataSource,
-        _settingsLocalToModelMapper = settingsLocalToModelMapper,
-        _settingsModelToLocalMapper = settingsModelToLocalMapper;
+  }) : _localDataSource = localDataSource,
+       _settingsLocalToModelMapper = settingsLocalToModelMapper,
+       _settingsModelToLocalMapper = settingsModelToLocalMapper;
 
   final SettingsLocalDataSource _localDataSource;
   final Mapper<SettingsLocal, SettingsModel> _settingsLocalToModelMapper;

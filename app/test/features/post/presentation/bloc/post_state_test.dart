@@ -4,13 +4,7 @@ import 'package:quickstart_flutter_bloc/features/post/domain/models/post_model.d
 import 'package:quickstart_flutter_bloc/features/post/presentation/bloc/post_bloc.dart';
 
 void main() {
-  const posts = [
-    PostModel(
-      id: '1',
-      title: 'title',
-      body: 'body',
-    ),
-  ];
+  const posts = [PostModel(id: '1', title: 'title', body: 'body')];
 
   group('PostState', () {
     test('returns same object when no properties are passed', () {

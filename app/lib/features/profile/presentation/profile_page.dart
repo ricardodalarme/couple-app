@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
-import 'package:flutter/material.dart'
-    show IconButton, Icons, showModalBottomSheet;
+import 'package:flutter/material.dart' show IconButton, Icons, showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/app/bloc/app_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/profile/presentation/widgets/image_picker_modal.dart';
@@ -51,8 +50,7 @@ class ProfilePage extends StatelessWidget {
               ListTile(
                 title: context.l10n.profile.buttonLogout,
                 leading: const Icon(Icons.logout),
-                onTap: () =>
-                    context.read<AppBloc>().add(const AppLogoutRequested()),
+                onTap: () => context.read<AppBloc>().add(const AppLogoutRequested()),
               ),
             ],
           ),
@@ -71,10 +69,7 @@ class _ProfilePictureWithSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const ProfilePicture(
-          photoUrl: null,
-          size: _profilePictureSize,
-        ),
+        const ProfilePicture(photoUrl: null, size: _profilePictureSize),
         Positioned(
           bottom: 0,
           right: 0,
@@ -82,18 +77,16 @@ class _ProfilePictureWithSelect extends StatelessWidget {
             decoration: BoxDecoration(
               color: context.colors.secondaryContainer,
               shape: BoxShape.circle,
-              border: Border.all(
-                color: context.colors.surface,
-                width: 2,
-              ),
+              border: Border.all(color: context.colors.surface, width: 2),
             ),
             child: IconButton(
               color: context.colors.onSecondaryContainer,
               tooltip: context.l10n.profile.buttonChangePicture,
-              onPressed: () async => showModalBottomSheet(
-                context: context,
-                builder: (_) => const ImagePickerModal(),
-              ),
+              onPressed:
+                  () async => showModalBottomSheet(
+                    context: context,
+                    builder: (_) => const ImagePickerModal(),
+                  ),
               icon: const Icon(Icons.camera_alt),
             ),
           ),

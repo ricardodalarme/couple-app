@@ -7,18 +7,14 @@ import '../test_helpers/pump_app.dart';
 void main() {
   group('PasswordTextField', () {
     testWidgets('renders widget', (tester) async {
-      await tester.pumpApp(
-        const PasswordTextField(text: 'Password'),
-      );
+      await tester.pumpApp(const PasswordTextField(text: 'Password'));
       await tester.pump();
 
       expect(find.byType(PasswordTextField), findsOneWidget);
     });
 
     testWidgets('change obscureText state on suffixIcon press', (tester) async {
-      await tester.pumpApp(
-        const PasswordTextField(text: 'Password'),
-      );
+      await tester.pumpApp(const PasswordTextField(text: 'Password'));
       await tester.pump();
 
       expect(find.byIcon(Icons.visibility), findsOneWidget);

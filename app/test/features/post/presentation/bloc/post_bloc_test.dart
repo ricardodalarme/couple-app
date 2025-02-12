@@ -21,12 +21,7 @@ void main() {
     });
 
     test('initial state is correct', () {
-      expect(
-        postBloc.state,
-        const PostState(
-          posts: Loading(),
-        ),
-      );
+      expect(postBloc.state, const PostState(posts: Loading()));
     });
   });
 }

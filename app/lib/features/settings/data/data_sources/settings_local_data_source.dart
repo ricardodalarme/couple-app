@@ -10,9 +10,7 @@ abstract interface class SettingsLocalDataSource {
 }
 
 class SettingsLocalDataSourceImpl implements SettingsLocalDataSource {
-  SettingsLocalDataSourceImpl({
-    required PersistentStorageService storage,
-  }) : _storage = storage;
+  SettingsLocalDataSourceImpl({required PersistentStorageService storage}) : _storage = storage;
 
   final PersistentStorageService _storage;
 
@@ -31,8 +29,7 @@ class SettingsLocalDataSourceImpl implements SettingsLocalDataSource {
     final String? settingsLocalMapInString = _storage.readString(key: _key);
 
     if (settingsLocalMapInString != null) {
-      final settingsLocalMap =
-          jsonDecode(settingsLocalMapInString) as Map<String, dynamic>;
+      final settingsLocalMap = jsonDecode(settingsLocalMapInString) as Map<String, dynamic>;
       return SettingsLocal.fromMap(settingsLocalMap);
     }
 
