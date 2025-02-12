@@ -15,11 +15,7 @@ class BiometricServiceImpl implements BiometricService {
   final LocalAuthentication _localAuthentication;
 
   @override
-  Future<bool> authenticate(
-    String reason, {
-    bool stickyAuth = true,
-    bool biometricOnly = true,
-  }) async {
+  Future<bool> authenticate(String reason, {bool stickyAuth = true, bool biometricOnly = true}) {
     return _localAuthentication.authenticate(
       localizedReason: reason,
       options: AuthenticationOptions(biometricOnly: biometricOnly, stickyAuth: stickyAuth),
@@ -27,7 +23,7 @@ class BiometricServiceImpl implements BiometricService {
   }
 
   @override
-  Future<bool> isDeviceSupported() async {
+  Future<bool> isDeviceSupported() {
     return _localAuthentication.isDeviceSupported();
   }
 }

@@ -62,12 +62,12 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   }
 
   @override
-  Future<void> logInWithGoogle() async {
+  Future<void> logInWithGoogle() {
     throw UnimplementedError();
   }
 
   @override
-  Future<void> logInWithFacebook() async {
+  Future<void> logInWithFacebook() {
     throw UnimplementedError();
   }
 

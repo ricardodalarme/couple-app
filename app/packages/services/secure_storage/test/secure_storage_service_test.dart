@@ -54,7 +54,7 @@ void main() {
     });
 
     group('write', () {
-      test('completes when FlutterSecureStorage completes', () async {
+      test('completes when FlutterSecureStorage completes', () {
         when(
           () => flutterSecureStorage.write(key: any(named: 'key'), value: any(named: 'value')),
         ).thenAnswer((_) => Future.value());
@@ -74,7 +74,7 @@ void main() {
     });
 
     group('delete', () {
-      test('completes when FlutterSecureStorage completes', () async {
+      test('completes when FlutterSecureStorage completes', () {
         when(
           () => flutterSecureStorage.delete(key: any(named: 'key')),
         ).thenAnswer((_) => Future.value());
@@ -92,7 +92,7 @@ void main() {
     });
 
     group('clear', () {
-      test('completes when FlutterSecureStorage completes', () async {
+      test('completes when FlutterSecureStorage completes', () {
         when(() => flutterSecureStorage.deleteAll()).thenAnswer((_) => Future.value());
         expect(secureStorage.clear(), completes);
       });

@@ -83,7 +83,7 @@ class _ProfilePictureWithSelect extends StatelessWidget {
               color: context.colors.onSecondaryContainer,
               tooltip: context.l10n.profile.buttonChangePicture,
               onPressed:
-                  () async => showModalBottomSheet(
+                  () => showModalBottomSheet<void>(
                     context: context,
                     builder: (_) => const ImagePickerModal(),
                   ),
