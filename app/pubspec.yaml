@@ -9,7 +9,7 @@ environment:
 dependencies:
   analytics_service:
     path: ./packages/services/analytics
-  auto_route: ^9.3.0+1
+  auto_route: ^10.0.0
   biometric_service:
     path: ./packages/services/biometric
   common_ui:
@@ -35,11 +35,11 @@ dependencies:
     path: ./packages/services/remote_config
   secure_storage_service:
     path: ./packages/services/secure_storage
-  slang: ^4.4.1
-  slang_flutter: ^4.4.0
+  slang: ^4.5.0
+  slang_flutter: ^4.5.0
 
 dev_dependencies:
-  auto_route_generator: ^9.3.1
+  auto_route_generator: ^10.0.1
   bloc_test: ^10.0.0
   flutter_test:
     sdk: flutter
