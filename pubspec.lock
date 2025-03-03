@@ -782,10 +782,10 @@ packages:
     dependency: transitive
     description:
       name: graphql_codegen
-      sha256: cfdae81c64bcf3ac5a6f2429b4f53f0a25a553bde638148b142b062d34eaf74f
+      sha256: "386c974d4b1f2f553ed27c48bcb7b71ebda4677e942ca750fb53b9525b74b229"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.1"
+    version: "1.2.2"
   graphql_query_compress:
     dependency: transitive
     description:
