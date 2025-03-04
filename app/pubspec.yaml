@@ -9,7 +9,7 @@ environment:
 dependencies:
   analytics_service:
     path: ./packages/services/analytics
-  auto_route: ^10.0.0
+  auto_route: ^10.0.1
   biometric_service:
     path: ./packages/services/biometric
   common_ui:
