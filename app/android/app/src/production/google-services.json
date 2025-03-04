@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "731036601810",
     "project_id": "qs-flutter-production",
-    "storage_bucket": "qs-flutter-production.appspot.com"
+    "storage_bucket": "qs-flutter-production.firebasestorage.app"
   },
   "client": [
     {

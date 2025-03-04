@@ -2,9 +2,28 @@
   "project_info": {
     "project_number": "221476091197",
     "project_id": "qs-flutter-development",
-    "storage_bucket": "qs-flutter-development.appspot.com"
+    "storage_bucket": "qs-flutter-development.firebasestorage.app"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221476091197:android:a852bf87e5c8785ea40154",
+        "android_client_info": {
+          "package_name": "com.profusion.quickstart_flutter_bloc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs-HK3JU_bv-vA_1MphhQHb0pX-IfS3aE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:221476091197:android:0243b8c1441c3e5ba40154",
