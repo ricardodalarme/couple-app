@@ -32,7 +32,7 @@ android {
 
     defaultConfig {
         applicationId = "com.profusion.quickstart_flutter_bloc"
-        minSdk = flutter.minSdkVersion
+        minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
