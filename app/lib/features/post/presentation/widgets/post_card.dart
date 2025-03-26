@@ -1,6 +1,6 @@
 import 'package:common_ui/common_ui.dart' hide ListTile;
 import 'package:flutter/material.dart' show Card, ListTile;
-import 'package:quickstart_flutter_bloc/features/post/domain/models/post_model.dart';
+import 'package:quickstart_flutter_bloc/features/post/data/models/post.dart';
 
 const _profilePictureSize = 40.0;
 const _bodyMaxLines = 7;
@@ -8,7 +8,7 @@ const _bodyMaxLines = 7;
 class PostCard extends StatelessWidget {
   const PostCard({required this.post, super.key});
 
-  final PostModel post;
+  final Post post;
 
   @override
   Widget build(BuildContext context) {

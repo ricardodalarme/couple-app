@@ -3,7 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz_inputs/formz_inputs.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:quickstart_flutter_bloc/features/change_password/domain/repositories/change_password_repository.dart';
+import 'package:quickstart_flutter_bloc/features/change_password/data/repositories/change_password_repository.dart';
 import 'package:quickstart_flutter_bloc/features/change_password/presentation/bloc/change_password_bloc.dart';
 
 class MockChangePasswordRepository extends Mock

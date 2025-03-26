@@ -1,22 +1,13 @@
 import 'package:core/core.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/models/token_local.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/data/models/token.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
 
-abstract interface class TokenLocalDataSource {
-  Future<void> save(TokenLocal token);
-
-  Future<TokenLocal?> get();
-
-  Future<void> delete();
-}
-
-class TokenLocalDataSourceImpl implements TokenLocalDataSource {
-  TokenLocalDataSourceImpl({required SecureStorageService storage}) : _storage = storage;
+class TokenLocalDataSource {
+  TokenLocalDataSource({required SecureStorageService storage}) : _storage = storage;
 
   final SecureStorageService _storage;
 
-  @override
-  Future<void> save(TokenLocal token) async {
+  Future<void> save(Token token) async {
     await _storage.write(key: StorageKeys.accessToken, value: token.token);
     await _storage.write(
       key: StorageKeys.accessTokenExpiresIn,
@@ -24,8 +15,7 @@ class TokenLocalDataSourceImpl implements TokenLocalDataSource {
     );
   }
 
-  @override
-  Future<TokenLocal?> get() async {
+  Future<Token?> get() async {
     final String? token = await _storage.read(key: StorageKeys.accessToken);
     final String? expiresIn = await _storage.read(key: StorageKeys.accessTokenExpiresIn);
 
@@ -33,10 +23,9 @@ class TokenLocalDataSourceImpl implements TokenLocalDataSource {
       return null;
     }
 
-    return TokenLocal(token: token, expires: DateTime.parse(expiresIn));
+    return Token(token: token, expires: DateTime.parse(expiresIn));
   }
 
-  @override
   Future<void> delete() async {
     await _storage.delete(key: StorageKeys.accessToken);
     await _storage.delete(key: StorageKeys.accessTokenExpiresIn);

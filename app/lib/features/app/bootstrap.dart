@@ -9,17 +9,17 @@ import 'package:persistent_storage_service/persistent_storage_service.dart';
 import 'package:quickstart_flutter_bloc/features/_shared/di/shared_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/app/di/app_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/app/observers/bloc_observer.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/di/authentication_injection_module.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/domain/repositories/authentication_repository.dart';
 import 'package:quickstart_flutter_bloc/features/change_password/di/change_password_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/edit_profile/di/edit_profile_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/forgot_password/di/forgot_password_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/login/di/login_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/onboarding/di/onboarding_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/post/di/post_injection_module.dart';
+import 'package:quickstart_flutter_bloc/features/settings/data/models/settings.dart';
+import 'package:quickstart_flutter_bloc/features/settings/data/repositories/settings_repository.dart';
 import 'package:quickstart_flutter_bloc/features/settings/di/settings_injection_module.dart';
-import 'package:quickstart_flutter_bloc/features/settings/domain/models/settings_model.dart';
-import 'package:quickstart_flutter_bloc/features/settings/domain/repositories/settings_repository.dart';
 import 'package:quickstart_flutter_bloc/features/signup/di/signup_injection_module.dart';
 import 'package:quickstart_flutter_bloc/firebase_options.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
@@ -78,7 +78,7 @@ Future<void> _initializeStorageService() async {
 void _checkOnboardingStatus() {
   final RootStackRouter appRouter = AppInjector.instance.get<RootStackRouter>();
   final SettingsRepository settingsRepository = AppInjector.instance.get<SettingsRepository>();
-  final SettingsModel settings = settingsRepository.get();
+  final Settings settings = settingsRepository.get();
 
   if (!settings.hasOnboarded) {
     appRouter.replaceAll([const OnboardingRoute()]);

@@ -1,10 +1,10 @@
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quickstart_flutter_bloc/features/post/domain/models/post_model.dart';
+import 'package:quickstart_flutter_bloc/features/post/data/models/post.dart';
 import 'package:quickstart_flutter_bloc/features/post/presentation/bloc/post_bloc.dart';
 
 void main() {
-  const posts = [PostModel(id: '1', title: 'title', body: 'body')];
+  const posts = [Post(id: '1', title: 'title', body: 'body')];
 
   group('PostState', () {
     test('returns same object when no properties are passed', () {

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-final class PostModel with EquatableMixin {
-  const PostModel({required this.id, required this.title, required this.body, this.authorImageUrl});
+final class Post with EquatableMixin {
+  const Post({required this.id, required this.title, required this.body, this.authorImageUrl});
 
   final String id;
   final String title;

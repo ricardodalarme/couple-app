@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quickstart_flutter_bloc/features/settings/domain/models/settings_model.dart';
-import 'package:quickstart_flutter_bloc/features/settings/domain/repositories/settings_repository.dart';
+import 'package:quickstart_flutter_bloc/features/settings/data/models/settings.dart';
+import 'package:quickstart_flutter_bloc/features/settings/data/repositories/settings_repository.dart';
 
 part 'settings_event.dart';
 part 'settings_state.dart';
@@ -17,7 +17,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final SettingsRepository _settingsRepository;
 
   void _onSettingsOpened(SettingsOpened event, Emitter<SettingsState> emit) {
-    final SettingsModel settings = _settingsRepository.get();
+    final Settings settings = _settingsRepository.get();
     emit(state.copyWith(settings: settings));
   }
 
@@ -25,7 +25,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     SettingsUseBiometricsChangedEvent event,
     Emitter<SettingsState> emit,
   ) async {
-    final SettingsModel newSettings = state.settings.copyWith(useBiometrics: event.value);
+    final Settings newSettings = state.settings.copyWith(useBiometrics: event.value);
 
     emit(state.copyWith(settings: newSettings));
     await _settingsRepository.save(newSettings);

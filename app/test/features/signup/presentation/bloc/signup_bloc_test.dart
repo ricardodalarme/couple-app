@@ -3,8 +3,8 @@ import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz_inputs/formz_inputs.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/domain/repositories/authentication_repository.dart';
-import 'package:quickstart_flutter_bloc/features/signup/domain/repositories/signup_repository.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:quickstart_flutter_bloc/features/signup/data/repositories/signup_repository.dart';
 import 'package:quickstart_flutter_bloc/features/signup/presentation/bloc/signup_bloc.dart';
 
 class MockSignupRepository extends Mock implements SignupRepository {}

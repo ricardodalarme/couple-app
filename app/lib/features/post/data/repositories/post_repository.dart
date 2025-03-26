@@ -1,23 +1,21 @@
 import 'package:core/core.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/data_sources/post_data_source.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/data_sources/queries/generated/GetPosts.graphql.dart';
-import 'package:quickstart_flutter_bloc/features/post/domain/models/post_model.dart';
-import 'package:quickstart_flutter_bloc/features/post/domain/repositories/post_repository.dart';
+import 'package:quickstart_flutter_bloc/features/post/data/models/post.dart';
 
-class PostRepositoryImpl implements PostRepository {
-  PostRepositoryImpl({
+class PostRepository {
+  PostRepository({
     required PostDataSource postDataSource,
-    required Mapper<QueryGetPostspostsnodesPost, PostModel> mapper,
+    required Mapper<QueryGetPostspostsnodesPost, Post> mapper,
   }) : _postDataSource = postDataSource,
        _mapper = mapper;
 
   final PostDataSource _postDataSource;
-  final Mapper<QueryGetPostspostsnodesPost, PostModel> _mapper;
+  final Mapper<QueryGetPostspostsnodesPost, Post> _mapper;
 
-  @override
-  Future<List<PostModel>> getPosts({int? first, String? after}) async {
+  Future<List<Post>> getPosts({int? first, String? after}) async {
     final QueryGetPostsposts result = await _postDataSource.getPosts(first: first, after: after);
-    final List<PostModel> parsedResult =
+    final List<Post> parsedResult =
         result.nodes.whereType<QueryGetPostspostsnodesPost>().map(_mapper.map).toList();
 
     return parsedResult;

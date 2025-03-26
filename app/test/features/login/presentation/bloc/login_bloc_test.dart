@@ -3,7 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz_inputs/formz_inputs.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/domain/repositories/authentication_repository.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:quickstart_flutter_bloc/features/login/presentation/bloc/login_bloc.dart';
 
 class MockAuthenticationRepository extends Mock

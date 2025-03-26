@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:quickstart_flutter_bloc/features/post/domain/repositories/post_repository.dart';
+import 'package:quickstart_flutter_bloc/features/post/data/repositories/post_repository.dart';
 import 'package:quickstart_flutter_bloc/features/post/presentation/bloc/post_bloc.dart';
 
 class MockPostRepository extends Mock implements PostRepository {}

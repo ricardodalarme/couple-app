@@ -2,8 +2,8 @@ import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz_inputs/formz_inputs.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/domain/repositories/authentication_repository.dart';
-import 'package:quickstart_flutter_bloc/features/signup/domain/repositories/signup_repository.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:quickstart_flutter_bloc/features/signup/data/repositories/signup_repository.dart';
 
 part 'signup_event.dart';
 part 'signup_state.dart';

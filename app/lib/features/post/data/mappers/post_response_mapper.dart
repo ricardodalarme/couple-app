@@ -1,11 +1,11 @@
 import 'package:core/core.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/data_sources/queries/generated/GetPosts.graphql.dart';
-import 'package:quickstart_flutter_bloc/features/post/domain/models/post_model.dart';
+import 'package:quickstart_flutter_bloc/features/post/data/models/post.dart';
 
-final class PostResponseMapper implements Mapper<QueryGetPostspostsnodesPost, PostModel> {
+final class PostResponseMapper implements Mapper<QueryGetPostspostsnodesPost, Post> {
   @override
-  PostModel map(QueryGetPostspostsnodesPost input) {
-    return PostModel(
+  Post map(QueryGetPostspostsnodesPost input) {
+    return Post(
       id: input.id,
       title: input.title,
       body: input.body,

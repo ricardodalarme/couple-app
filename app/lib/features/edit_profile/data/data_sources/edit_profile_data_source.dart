@@ -2,20 +2,11 @@ import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/_shared/data/data_sources/generated/schema.graphql.dart';
 import 'package:quickstart_flutter_bloc/features/edit_profile/data/data_sources/mutations/generated/UpdateUser.graphql.dart';
 
-abstract interface class EditProfileDataSource {
-  Future<void> updateUser({
-    required String? email,
-    required String? firstName,
-    required String? lastName,
-  });
-}
-
-class EditProfileDataSourceImpl implements EditProfileDataSource {
-  const EditProfileDataSourceImpl({required GQLClient graphlQLClient}) : _client = graphlQLClient;
+class EditProfileDataSource {
+  const EditProfileDataSource({required GQLClient graphlQLClient}) : _client = graphlQLClient;
 
   final GQLClient _client;
 
-  @override
   Future<void> updateUser({
     required String? email,
     required String? firstName,

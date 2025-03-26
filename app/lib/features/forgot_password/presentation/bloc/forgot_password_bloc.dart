@@ -2,7 +2,7 @@ import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz_inputs/formz_inputs.dart';
-import 'package:quickstart_flutter_bloc/features/forgot_password/domain/repositories/forgot_password_repository.dart';
+import 'package:quickstart_flutter_bloc/features/forgot_password/data/repositories/forgot_password_repository.dart';
 
 part 'forgot_password_event.dart';
 part 'forgot_password_state.dart';

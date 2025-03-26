@@ -2,7 +2,7 @@ import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz_inputs/formz_inputs.dart';
-import 'package:quickstart_flutter_bloc/features/change_password/domain/repositories/change_password_repository.dart';
+import 'package:quickstart_flutter_bloc/features/change_password/data/repositories/change_password_repository.dart';
 
 part 'change_password_event.dart';
 part 'change_password_state.dart';

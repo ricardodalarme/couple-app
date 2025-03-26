@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 
-final class TokenLocal with EquatableMixin {
-  const TokenLocal({required this.expires, required this.token});
+final class Token with EquatableMixin {
+  const Token({required this.expires, required this.token});
 
-  TokenLocal.fromMap(Map<String, dynamic> map)
+  Token.fromMap(Map<String, dynamic> map)
     : expires = DateTime.parse(map['expires'] as String),
       token = map['token'] as String;
 

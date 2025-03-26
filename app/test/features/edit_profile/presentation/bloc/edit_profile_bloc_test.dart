@@ -3,7 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz_inputs/formz_inputs.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:quickstart_flutter_bloc/features/edit_profile/domain/repositories/edit_profile_repository.dart';
+import 'package:quickstart_flutter_bloc/features/edit_profile/data/repositories/edit_profile_repository.dart';
 import 'package:quickstart_flutter_bloc/features/edit_profile/presentation/bloc/edit_profile_bloc.dart';
 
 class MockEditProfileRepository extends Mock implements EditProfileRepository {}
