@@ -10,6 +10,7 @@ targets:
           clients:
             - graphql
           disableCopyWithGeneration: true
+          generatedFileHeader: "// dart format off\n"
           namingSeparator: ""
           outputDirectory: generated
           scalars:

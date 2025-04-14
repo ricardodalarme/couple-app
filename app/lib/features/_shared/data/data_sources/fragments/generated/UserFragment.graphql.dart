@@ -1,3 +1,4 @@
+// dart format off
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 

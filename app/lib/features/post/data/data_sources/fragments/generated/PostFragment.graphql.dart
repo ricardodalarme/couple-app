@@ -1,3 +1,4 @@
+// dart format off
 import '../../../../../_shared/data/data_sources/fragments/generated/UserFragment.graphql.dart';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;

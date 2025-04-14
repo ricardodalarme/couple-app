@@ -1,3 +1,4 @@
+// dart format off
 class InputAppFilterInput {
   factory InputAppFilterInput({String? clientId}) => InputAppFilterInput._({
         if (clientId != null) r'clientId': clientId,
