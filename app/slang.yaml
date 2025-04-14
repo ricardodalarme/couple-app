@@ -1,5 +1,8 @@
 base_locale: en
 fallback_strategy: base_locale
+format:
+  enabled: true
+  width: 100
 input_directory: lib/l10n
 input_file_pattern: .json
 key_case: camel
