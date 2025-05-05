@@ -22,7 +22,7 @@ dependencies:
   firebase_core: ^3.13.0
   flutter:
     sdk: flutter
-  flutter_bloc: ^9.1.0
+  flutter_bloc: ^9.1.1
   flutter_localizations:
     sdk: flutter
   formz_inputs:
