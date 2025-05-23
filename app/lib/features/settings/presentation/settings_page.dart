@@ -36,14 +36,12 @@ class _BiometricsOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsBloc, SettingsState>(
-      builder:
-          (context, state) => SettingsOption(
-            text: context.l10n.settings.optionBiometrics,
-            value: state.settings.useBiometrics,
-            onChanged:
-                (value) =>
-                    context.read<SettingsBloc>().add(SettingsUseBiometricsChangedEvent(value)),
-          ),
+      builder: (context, state) => SettingsOption(
+        text: context.l10n.settings.optionBiometrics,
+        value: state.settings.useBiometrics,
+        onChanged: (value) =>
+            context.read<SettingsBloc>().add(SettingsUseBiometricsChangedEvent(value)),
+      ),
     );
   }
 }

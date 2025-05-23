@@ -13,16 +13,15 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: const [PostRoute(), SearchRoute(), ProfileRoute()],
-      bottomNavigationBuilder:
-          (_, tabsRouter) => NavBar(
-            currentIndex: tabsRouter.activeIndex,
-            onDestinationSelected: tabsRouter.setActiveIndex,
-            items: [
-              NavBarItem(icon: Icons.home_rounded, label: context.l10n.post.title),
-              NavBarItem(icon: Icons.search_rounded, label: context.l10n.search.title),
-              NavBarItem(icon: Icons.person, label: context.l10n.profile.title),
-            ],
-          ),
+      bottomNavigationBuilder: (_, tabsRouter) => NavBar(
+        currentIndex: tabsRouter.activeIndex,
+        onDestinationSelected: tabsRouter.setActiveIndex,
+        items: [
+          NavBarItem(icon: Icons.home_rounded, label: context.l10n.post.title),
+          NavBarItem(icon: Icons.search_rounded, label: context.l10n.search.title),
+          NavBarItem(icon: Icons.person, label: context.l10n.profile.title),
+        ],
+      ),
     );
   }
 }

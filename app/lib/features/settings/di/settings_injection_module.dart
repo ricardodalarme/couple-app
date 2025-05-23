@@ -6,15 +6,14 @@ import 'package:quickstart_flutter_bloc/features/settings/presentation/bloc/sett
 
 class SettingsInjectionModule implements InjectionModule {
   @override
-  void registerDependencies({required Injector injector}) =>
-      injector
-        ..registerLazySingleton<SettingsLocalDataSource>(
-          () => SettingsLocalDataSource(storage: injector.get<PersistentStorageService>()),
-        )
-        ..registerLazySingleton<SettingsRepository>(
-          () => SettingsRepository(localDataSource: injector.get<SettingsLocalDataSource>()),
-        )
-        ..registerFactory<SettingsBloc>(
-          () => SettingsBloc(settingsRepository: injector.get<SettingsRepository>()),
-        );
+  void registerDependencies({required Injector injector}) => injector
+    ..registerLazySingleton<SettingsLocalDataSource>(
+      () => SettingsLocalDataSource(storage: injector.get<PersistentStorageService>()),
+    )
+    ..registerLazySingleton<SettingsRepository>(
+      () => SettingsRepository(localDataSource: injector.get<SettingsLocalDataSource>()),
+    )
+    ..registerFactory<SettingsBloc>(
+      () => SettingsBloc(settingsRepository: injector.get<SettingsRepository>()),
+    );
 }

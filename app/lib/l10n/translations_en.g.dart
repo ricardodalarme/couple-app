@@ -155,8 +155,12 @@ class TranslationsLoginEn {
   String get buttonLogin => 'Login';
   String get buttonForgotPassword => 'Forgot password?';
   String buttonSignInWith({required Object provider}) => 'Sign in with ${provider}';
-  TextSpan buttonNewAccount({required InlineSpanBuilder signUp}) =>
-      TextSpan(children: [const TextSpan(text: 'Don\'t have an account? '), signUp('Sign up')]);
+  TextSpan buttonNewAccount({required InlineSpanBuilder signUp}) => TextSpan(
+    children: [
+      const TextSpan(text: 'Don\'t have an account? '),
+      signUp('Sign up'),
+    ],
+  );
   String get dividerOr => 'OR';
   Map<String, String> get usernameErrors => {'empty': 'Username is required'};
   Map<String, String> get passwordErrors => {'empty': 'Password is required'};
@@ -400,7 +404,10 @@ extension on Translations {
         return ({required Object provider}) => 'Sign in with ${provider}';
       case 'login.buttonNewAccount':
         return ({required InlineSpanBuilder signUp}) => TextSpan(
-          children: [const TextSpan(text: 'Don\'t have an account? '), signUp('Sign up')],
+          children: [
+            const TextSpan(text: 'Don\'t have an account? '),
+            signUp('Sign up'),
+          ],
         );
       case 'login.dividerOr':
         return 'OR';

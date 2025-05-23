@@ -82,11 +82,10 @@ class _ProfilePictureWithSelect extends StatelessWidget {
             child: IconButton(
               color: context.colors.onSecondaryContainer,
               tooltip: context.l10n.profile.buttonChangePicture,
-              onPressed:
-                  () => showModalBottomSheet<void>(
-                    context: context,
-                    builder: (_) => const ImagePickerModal(),
-                  ),
+              onPressed: () => showModalBottomSheet<void>(
+                context: context,
+                builder: (_) => const ImagePickerModal(),
+              ),
               icon: const Icon(Icons.camera_alt),
             ),
           ),

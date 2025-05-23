@@ -4,10 +4,9 @@ import 'package:widgetbook/widgetbook.dart';
 
 final WidgetbookNode listTileExample = WidgetbookUseCase(
   name: 'ListTile',
-  builder:
-      (context) => ListTile(
-        title: context.knobs.string(label: 'Title', initialValue: 'List Tile'),
-        leading: const Icon(Icons.person),
-        onTap: () => context.showSnackBar(message: 'Click success'),
-      ),
+  builder: (context) => ListTile(
+    title: context.knobs.string(label: 'Title', initialValue: 'List Tile'),
+    leading: const Icon(Icons.person),
+    onTap: () => context.showSnackBar(message: 'Click success'),
+  ),
 );

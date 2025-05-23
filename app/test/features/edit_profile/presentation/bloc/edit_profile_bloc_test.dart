@@ -40,29 +40,28 @@ void main() {
       'emits [EditProfileState] when [EditProfileFirstNameChanged] is added',
       build: () => editProfileBloc,
       act: (bloc) => bloc.add(const EditProfileFirstNameChanged('John')),
-      expect:
-          () => [
-            const EditProfileState(firstName: NonEmptyInput.dirty('John')),
-          ],
+      expect: () => [
+        const EditProfileState(firstName: NonEmptyInput.dirty('John')),
+      ],
     );
 
     blocTest<EditProfileBloc, EditProfileState>(
       'emits [EditProfileState] when [EditProfileLastNameChanged] is added',
       build: () => editProfileBloc,
       act: (bloc) => bloc.add(const EditProfileLastNameChanged('Doe')),
-      expect:
-          () => [const EditProfileState(lastName: NonEmptyInput.dirty('Doe'))],
+      expect: () => [
+        const EditProfileState(lastName: NonEmptyInput.dirty('Doe')),
+      ],
     );
 
     blocTest<EditProfileBloc, EditProfileState>(
       'emits [EditProfileState] when [EditProfileEmailChanged] is added',
       build: () => editProfileBloc,
-      act:
-          (bloc) => bloc.add(const EditProfileEmailChanged('john@example.com')),
-      expect:
-          () => [
-            const EditProfileState(email: EmailInput.dirty('john@example.com')),
-          ],
+      act: (bloc) =>
+          bloc.add(const EditProfileEmailChanged('john@example.com')),
+      expect: () => [
+        const EditProfileState(email: EmailInput.dirty('john@example.com')),
+      ],
     );
   });
 }

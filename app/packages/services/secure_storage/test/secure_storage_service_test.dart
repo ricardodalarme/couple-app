@@ -56,14 +56,20 @@ void main() {
     group('write', () {
       test('completes when FlutterSecureStorage completes', () {
         when(
-          () => flutterSecureStorage.write(key: any(named: 'key'), value: any(named: 'value')),
+          () => flutterSecureStorage.write(
+            key: any(named: 'key'),
+            value: any(named: 'value'),
+          ),
         ).thenAnswer((_) => Future.value());
         expect(secureStorage.write(key: mockKey, value: mockValue), completes);
       });
 
       test('throws SecureStorageException when FlutterSecureStorage fails', () async {
         when(
-          () => flutterSecureStorage.write(key: any(named: 'key'), value: any(named: 'value')),
+          () => flutterSecureStorage.write(
+            key: any(named: 'key'),
+            value: any(named: 'value'),
+          ),
         ).thenThrow(mockException);
         try {
           await secureStorage.write(key: mockKey, value: mockValue);

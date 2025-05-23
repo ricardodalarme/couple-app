@@ -55,25 +55,23 @@ void main() {
       'emits [SignupState] when [SignupEmailChanged] is added',
       build: () => signupBloc,
       act: (bloc) => bloc.add(const SignupEmailChanged('john@example.com')),
-      expect:
-          () => [
-            const SignupState(email: EmailInput.dirty('john@example.com')),
-          ],
+      expect: () => [
+        const SignupState(email: EmailInput.dirty('john@example.com')),
+      ],
     );
 
     blocTest<SignupBloc, SignupState>(
       'emits [SignupState] when [SignupConfirmPasswordChanged] is added',
       build: () => signupBloc,
       act: (bloc) => bloc.add(const SignupConfirmPasswordChanged('password')),
-      expect:
-          () => [
-            const SignupState(
-              confirmPassword: ConfirmedPasswordInput.dirty(
-                password: '',
-                value: 'password',
-              ),
-            ),
-          ],
+      expect: () => [
+        const SignupState(
+          confirmPassword: ConfirmedPasswordInput.dirty(
+            password: '',
+            value: 'password',
+          ),
+        ),
+      ],
     );
   });
 }

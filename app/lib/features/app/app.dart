@@ -20,24 +20,23 @@ class App extends StatelessWidget {
       create: (_) => AppInjector.instance.get<AppBloc>(),
       child: TranslationProvider(
         child: Builder(
-          builder:
-              (context) => BlocListener<AppBloc, AppState>(
-                listenWhen: (previous, current) => previous.status != current.status,
-                listener: _onStatusChanged,
-                child: MaterialApp.router(
-                  onGenerateTitle: (context) => context.l10n.common.appName,
-                  theme: AppTheme.light,
-                  darkTheme: AppTheme.dark,
-                  routerConfig: appRouter.config(navigatorObservers: () => [AppRouterObserver()]),
-                  locale: TranslationProvider.of(context).flutterLocale,
-                  localizationsDelegates: const [
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalCupertinoLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                  ],
-                  supportedLocales: AppLocaleUtils.supportedLocales,
-                ),
-              ),
+          builder: (context) => BlocListener<AppBloc, AppState>(
+            listenWhen: (previous, current) => previous.status != current.status,
+            listener: _onStatusChanged,
+            child: MaterialApp.router(
+              onGenerateTitle: (context) => context.l10n.common.appName,
+              theme: AppTheme.light,
+              darkTheme: AppTheme.dark,
+              routerConfig: appRouter.config(navigatorObservers: () => [AppRouterObserver()]),
+              locale: TranslationProvider.of(context).flutterLocale,
+              localizationsDelegates: const [
+                GlobalMaterialLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              supportedLocales: AppLocaleUtils.supportedLocales,
+            ),
+          ),
         ),
       ),
     );

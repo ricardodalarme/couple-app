@@ -71,19 +71,16 @@ class _EmailTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
       buildWhen: (previous, current) => previous.email != current.email,
-      builder:
-          (context, state) => BaseTextField(
-            text: state.email.value,
-            keyboardType: TextInputType.emailAddress,
-            label: context.l10n.common.email,
-            errorText: context.l10n.forgotPassword.emailErrors[state.email.displayError?.name],
-            textInputAction: TextInputAction.done,
-            onChanged:
-                (value) =>
-                    context.read<ForgotPasswordBloc>().add(ForgotPasswordEmailChanged(value)),
-            onSubmitted:
-                (_) => context.read<ForgotPasswordBloc>().add(const ForgotPasswordSubmitted()),
-          ),
+      builder: (context, state) => BaseTextField(
+        text: state.email.value,
+        keyboardType: TextInputType.emailAddress,
+        label: context.l10n.common.email,
+        errorText: context.l10n.forgotPassword.emailErrors[state.email.displayError?.name],
+        textInputAction: TextInputAction.done,
+        onChanged: (value) =>
+            context.read<ForgotPasswordBloc>().add(ForgotPasswordEmailChanged(value)),
+        onSubmitted: (_) => context.read<ForgotPasswordBloc>().add(const ForgotPasswordSubmitted()),
+      ),
     );
   }
 }
@@ -94,14 +91,12 @@ class _SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
-      builder:
-          (context, state) => BaseButton(
-            text: context.l10n.common.send,
-            isEnabled: state.isValid,
-            isLoading: state.submission.isLoading,
-            onPressed:
-                () => context.read<ForgotPasswordBloc>().add(const ForgotPasswordSubmitted()),
-          ),
+      builder: (context, state) => BaseButton(
+        text: context.l10n.common.send,
+        isEnabled: state.isValid,
+        isLoading: state.submission.isLoading,
+        onPressed: () => context.read<ForgotPasswordBloc>().add(const ForgotPasswordSubmitted()),
+      ),
     );
   }
 }

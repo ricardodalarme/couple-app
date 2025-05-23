@@ -69,16 +69,14 @@ class _UsernameTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SignupBloc, SignupState>(
       buildWhen: (previous, current) => previous.username != current.username,
-      builder:
-          (context, state) => BaseTextField(
-            text: state.username.value,
-            label: context.l10n.common.username,
-            errorText: context.l10n.signup.usernameErrors[state.username.displayError?.name],
-            onChanged:
-                (username) => context.read<SignupBloc>().add(SignupUsernameChanged(username)),
-            keyboardType: TextInputType.name,
-            textInputAction: TextInputAction.next,
-          ),
+      builder: (context, state) => BaseTextField(
+        text: state.username.value,
+        label: context.l10n.common.username,
+        errorText: context.l10n.signup.usernameErrors[state.username.displayError?.name],
+        onChanged: (username) => context.read<SignupBloc>().add(SignupUsernameChanged(username)),
+        keyboardType: TextInputType.name,
+        textInputAction: TextInputAction.next,
+      ),
     );
   }
 }
@@ -90,15 +88,14 @@ class _EmailTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SignupBloc, SignupState>(
       buildWhen: (previous, current) => previous.email != current.email,
-      builder:
-          (context, state) => BaseTextField(
-            text: state.email.value,
-            label: context.l10n.common.email,
-            errorText: context.l10n.signup.emailErrors[state.email.displayError?.name],
-            onChanged: (email) => context.read<SignupBloc>().add(SignupEmailChanged(email)),
-            keyboardType: TextInputType.emailAddress,
-            textInputAction: TextInputAction.next,
-          ),
+      builder: (context, state) => BaseTextField(
+        text: state.email.value,
+        label: context.l10n.common.email,
+        errorText: context.l10n.signup.emailErrors[state.email.displayError?.name],
+        onChanged: (email) => context.read<SignupBloc>().add(SignupEmailChanged(email)),
+        keyboardType: TextInputType.emailAddress,
+        textInputAction: TextInputAction.next,
+      ),
     );
   }
 }
@@ -110,15 +107,13 @@ class _PasswordTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SignupBloc, SignupState>(
       buildWhen: (previous, current) => previous.password != current.password,
-      builder:
-          (context, state) => PasswordTextField(
-            text: state.password.value,
-            label: context.l10n.common.password,
-            errorText: context.l10n.signup.passwordErrors[state.password.displayError?.name],
-            onChanged:
-                (password) => context.read<SignupBloc>().add(SignupPasswordChanged(password)),
-            textInputAction: TextInputAction.next,
-          ),
+      builder: (context, state) => PasswordTextField(
+        text: state.password.value,
+        label: context.l10n.common.password,
+        errorText: context.l10n.signup.passwordErrors[state.password.displayError?.name],
+        onChanged: (password) => context.read<SignupBloc>().add(SignupPasswordChanged(password)),
+        textInputAction: TextInputAction.next,
+      ),
     );
   }
 }
@@ -130,18 +125,16 @@ class _ConfirmPasswordTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SignupBloc, SignupState>(
       buildWhen: (previous, current) => previous.confirmPassword != current.confirmPassword,
-      builder:
-          (context, state) => PasswordTextField(
-            text: state.confirmPassword.value,
-            label: context.l10n.signup.labelConfirmPassword,
-            errorText:
-                context.l10n.signup.confirmPasswordErrors[state.confirmPassword.displayError?.name],
-            onChanged:
-                (password) =>
-                    context.read<SignupBloc>().add(SignupConfirmPasswordChanged(password)),
-            textInputAction: TextInputAction.done,
-            onSubmitted: (_) => context.read<SignupBloc>().add(const SignupSubmitted()),
-          ),
+      builder: (context, state) => PasswordTextField(
+        text: state.confirmPassword.value,
+        label: context.l10n.signup.labelConfirmPassword,
+        errorText:
+            context.l10n.signup.confirmPasswordErrors[state.confirmPassword.displayError?.name],
+        onChanged: (password) =>
+            context.read<SignupBloc>().add(SignupConfirmPasswordChanged(password)),
+        textInputAction: TextInputAction.done,
+        onSubmitted: (_) => context.read<SignupBloc>().add(const SignupSubmitted()),
+      ),
     );
   }
 }
@@ -152,13 +145,12 @@ class _SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignupBloc, SignupState>(
-      builder:
-          (context, state) => BaseButton(
-            text: context.l10n.signup.buttonSubmit,
-            isLoading: state.submission.isLoading,
-            isEnabled: state.isValid,
-            onPressed: () => context.read<SignupBloc>().add(const SignupSubmitted()),
-          ),
+      builder: (context, state) => BaseButton(
+        text: context.l10n.signup.buttonSubmit,
+        isLoading: state.submission.isLoading,
+        isEnabled: state.isValid,
+        onPressed: () => context.read<SignupBloc>().add(const SignupSubmitted()),
+      ),
     );
   }
 }

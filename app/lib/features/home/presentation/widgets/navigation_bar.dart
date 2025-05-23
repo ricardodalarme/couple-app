@@ -25,10 +25,9 @@ class NavBar extends StatelessWidget {
     return NavigationBar(
       selectedIndex: currentIndex,
       onDestinationSelected: onDestinationSelected,
-      destinations:
-          items
-              .map((item) => NavigationDestination(icon: Icon(item.icon), label: item.label))
-              .toList(),
+      destinations: items
+          .map((item) => NavigationDestination(icon: Icon(item.icon), label: item.label))
+          .toList(),
     );
   }
 }

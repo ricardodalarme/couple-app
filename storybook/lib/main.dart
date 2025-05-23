@@ -13,9 +13,8 @@ class WidgetbookApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Widgetbook(
-      appBuilder:
-          (BuildContext context, Widget child) =>
-              MaterialApp(debugShowCheckedModeBanner: false, home: Scaffold(body: child)),
+      appBuilder: (BuildContext context, Widget child) =>
+          MaterialApp(debugShowCheckedModeBanner: false, home: Scaffold(body: child)),
       addons: addons,
       directories: examples,
     );

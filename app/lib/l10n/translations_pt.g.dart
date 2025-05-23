@@ -196,8 +196,12 @@ class _TranslationsLoginPt extends TranslationsLoginEn {
   @override
   String buttonSignInWith({required Object provider}) => 'Continue com ${provider}';
   @override
-  TextSpan buttonNewAccount({required InlineSpanBuilder signUp}) =>
-      TextSpan(children: [const TextSpan(text: 'Não tem uma conta? '), signUp('Cadastre-se')]);
+  TextSpan buttonNewAccount({required InlineSpanBuilder signUp}) => TextSpan(
+    children: [
+      const TextSpan(text: 'Não tem uma conta? '),
+      signUp('Cadastre-se'),
+    ],
+  );
   @override
   String get dividerOr => 'OU';
   @override
@@ -483,7 +487,10 @@ extension on TranslationsPt {
         return ({required Object provider}) => 'Continue com ${provider}';
       case 'login.buttonNewAccount':
         return ({required InlineSpanBuilder signUp}) => TextSpan(
-          children: [const TextSpan(text: 'Não tem uma conta? '), signUp('Cadastre-se')],
+          children: [
+            const TextSpan(text: 'Não tem uma conta? '),
+            signUp('Cadastre-se'),
+          ],
         );
       case 'login.dividerOr':
         return 'OU';

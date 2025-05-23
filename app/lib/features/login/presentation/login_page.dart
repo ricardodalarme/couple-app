@@ -79,15 +79,14 @@ class _UsernameTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) => previous.username != current.username,
-      builder:
-          (context, state) => BaseTextField(
-            text: state.username.value,
-            label: context.l10n.common.username,
-            errorText: context.l10n.login.usernameErrors[state.username.displayError?.name],
-            onChanged: (username) => context.read<LoginBloc>().add(LoginUsernameChanged(username)),
-            keyboardType: TextInputType.text,
-            textInputAction: TextInputAction.next,
-          ),
+      builder: (context, state) => BaseTextField(
+        text: state.username.value,
+        label: context.l10n.common.username,
+        errorText: context.l10n.login.usernameErrors[state.username.displayError?.name],
+        onChanged: (username) => context.read<LoginBloc>().add(LoginUsernameChanged(username)),
+        keyboardType: TextInputType.text,
+        textInputAction: TextInputAction.next,
+      ),
     );
   }
 }
@@ -99,15 +98,14 @@ class _PasswordTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) => previous.password != current.password,
-      builder:
-          (context, state) => PasswordTextField(
-            text: state.password.value,
-            errorText: context.l10n.login.passwordErrors[state.password.displayError?.name],
-            onChanged: (password) => context.read<LoginBloc>().add(LoginPasswordChanged(password)),
-            label: context.l10n.common.password,
-            textInputAction: TextInputAction.done,
-            onSubmitted: (_) => context.read<LoginBloc>().add(const LoginSubmitted()),
-          ),
+      builder: (context, state) => PasswordTextField(
+        text: state.password.value,
+        errorText: context.l10n.login.passwordErrors[state.password.displayError?.name],
+        onChanged: (password) => context.read<LoginBloc>().add(LoginPasswordChanged(password)),
+        label: context.l10n.common.password,
+        textInputAction: TextInputAction.done,
+        onSubmitted: (_) => context.read<LoginBloc>().add(const LoginSubmitted()),
+      ),
     );
   }
 }
@@ -118,13 +116,12 @@ class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
-      builder:
-          (context, state) => BaseButton(
-            text: context.l10n.login.buttonLogin,
-            isLoading: state.login.isLoading,
-            isEnabled: state.isValid,
-            onPressed: () => context.read<LoginBloc>().add(const LoginSubmitted()),
-          ),
+      builder: (context, state) => BaseButton(
+        text: context.l10n.login.buttonLogin,
+        isLoading: state.login.isLoading,
+        isEnabled: state.isValid,
+        onPressed: () => context.read<LoginBloc>().add(const LoginSubmitted()),
+      ),
     );
   }
 }
@@ -162,8 +159,10 @@ class _SignupButton extends StatelessWidget {
       },
       child: Text.rich(
         context.l10n.login.buttonNewAccount(
-          signUp:
-              (text) => TextSpan(text: text, style: const TextStyle(fontWeight: FontWeight.bold)),
+          signUp: (text) => TextSpan(
+            text: text,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     );

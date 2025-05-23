@@ -62,15 +62,15 @@ Future<void> _configureCrashReportService() async {
 }
 
 Future<void> _checkAuthenticationStatus() async {
-  final AuthenticationRepository authenticationRepository =
-      AppInjector.instance.get<AuthenticationRepository>();
+  final AuthenticationRepository authenticationRepository = AppInjector.instance
+      .get<AuthenticationRepository>();
 
   await authenticationRepository.checkAuthenticationStatus();
 }
 
 Future<void> _initializeStorageService() async {
-  final PersistentStorageService persistentStorageService =
-      AppInjector.instance.get<PersistentStorageService>();
+  final PersistentStorageService persistentStorageService = AppInjector.instance
+      .get<PersistentStorageService>();
 
   await persistentStorageService.initialize();
 }

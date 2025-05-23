@@ -53,11 +53,10 @@ class OnboardingPage extends StatelessWidget implements AutoRouteWrapper {
             ),
           ),
           BlocBuilder<OnboardingCubit, int>(
-            builder:
-                (context, state) => PageIndicatorWidget(
-                  current: state,
-                  totalPages: context.l10n.onboarding.pages.length,
-                ),
+            builder: (context, state) => PageIndicatorWidget(
+              current: state,
+              totalPages: context.l10n.onboarding.pages.length,
+            ),
           ),
           const Gap(Spacings.xlarge),
           Padding(

@@ -9,17 +9,16 @@ import 'package:quickstart_flutter_bloc/features/post/presentation/bloc/post_blo
 
 class PostInjectionModule implements InjectionModule {
   @override
-  void registerDependencies({required Injector injector}) =>
-      injector
-        ..registerLazySingleton<PostDataSource>(
-          () => PostDataSource(graphlQLClient: injector.get<GQLClient>()),
-        )
-        ..registerFactory<Mapper<QueryGetPostspostsnodesPost, Post>>(PostResponseMapper.new)
-        ..registerLazySingleton<PostRepository>(
-          () => PostRepository(
-            postDataSource: injector.get<PostDataSource>(),
-            mapper: injector.get<Mapper<QueryGetPostspostsnodesPost, Post>>(),
-          ),
-        )
-        ..registerFactory<PostBloc>(() => PostBloc(postRepository: injector.get<PostRepository>()));
+  void registerDependencies({required Injector injector}) => injector
+    ..registerLazySingleton<PostDataSource>(
+      () => PostDataSource(graphlQLClient: injector.get<GQLClient>()),
+    )
+    ..registerFactory<Mapper<QueryGetPostspostsnodesPost, Post>>(PostResponseMapper.new)
+    ..registerLazySingleton<PostRepository>(
+      () => PostRepository(
+        postDataSource: injector.get<PostDataSource>(),
+        mapper: injector.get<Mapper<QueryGetPostspostsnodesPost, Post>>(),
+      ),
+    )
+    ..registerFactory<PostBloc>(() => PostBloc(postRepository: injector.get<PostRepository>()));
 }

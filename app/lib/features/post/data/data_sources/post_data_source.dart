@@ -8,7 +8,9 @@ class PostDataSource {
 
   Future<QueryGetPostsposts> getPosts({int? first, String? after}) async {
     final QueryResult<QueryGetPosts> response = await _client.query(
-      OptionsQueryGetPosts(variables: VariablesQueryGetPosts(first: first, after: after)),
+      OptionsQueryGetPosts(
+        variables: VariablesQueryGetPosts(first: first, after: after),
+      ),
     );
 
     return validateResponseData(response, getData: (data) => data?.posts);

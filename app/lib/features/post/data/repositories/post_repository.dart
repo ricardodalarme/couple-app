@@ -15,8 +15,10 @@ class PostRepository {
 
   Future<List<Post>> getPosts({int? first, String? after}) async {
     final QueryGetPostsposts result = await _postDataSource.getPosts(first: first, after: after);
-    final List<Post> parsedResult =
-        result.nodes.whereType<QueryGetPostspostsnodesPost>().map(_mapper.map).toList();
+    final List<Post> parsedResult = result.nodes
+        .whereType<QueryGetPostspostsnodesPost>()
+        .map(_mapper.map)
+        .toList();
 
     return parsedResult;
   }
