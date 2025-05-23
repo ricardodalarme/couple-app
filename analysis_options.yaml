@@ -170,6 +170,7 @@ linter:
     - unnecessary_const
     - unnecessary_constructor_name
     - unnecessary_getters_setters
+    - unnecessary_ignore
     - unnecessary_lambdas
     - unnecessary_late
     - unnecessary_library_name
@@ -199,6 +200,7 @@ linter:
     - use_is_even_rather_than_modulo
     - use_key_in_widget_constructors
     - use_named_constants
+    - use_null_aware_elements
     - use_raw_strings
     - use_rethrow_when_possible
     - use_setters_to_change_properties
