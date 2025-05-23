@@ -40,7 +40,7 @@ melos:
       description: Get all dependencies.
 
     upgrade:
-      run: flutter pub upgrade
+      run: flutter pub upgrade --major-versions
       description: Upgrade all dependencies.
 
     lint:
