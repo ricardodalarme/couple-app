@@ -21,7 +21,6 @@ import 'package:quickstart_flutter_bloc/features/settings/data/models/settings.d
 import 'package:quickstart_flutter_bloc/features/settings/data/repositories/settings_repository.dart';
 import 'package:quickstart_flutter_bloc/features/settings/di/settings_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/signup/di/signup_injection_module.dart';
-import 'package:quickstart_flutter_bloc/firebase_options.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 import 'package:quickstart_flutter_bloc/routes/app_router.dart';
 
@@ -43,7 +42,7 @@ Future<void> bootstrap(Widget Function() builder) async {
 }
 
 Future<void> _setupFirebase() async {
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp();
 }
 
 void _setupBloc() {
