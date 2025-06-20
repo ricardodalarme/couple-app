@@ -4,12 +4,12 @@ publish_to: "none"
 version: 0.1.1+3
 
 environment:
-  sdk: ">=3.8.0 <4.0.0"
+  sdk: ^3.8.1
 
 dependencies:
   analytics_service:
     path: ./packages/services/analytics
-  auto_route: ^10.0.1
+  auto_route: ^10.1.0+1
   biometric_service:
     path: ./packages/services/biometric
   common_ui:
@@ -19,7 +19,7 @@ dependencies:
   crash_report_service:
     path: ./packages/services/crash_report
   equatable: ^2.0.7
-  firebase_core: ^3.13.1
+  firebase_core: ^3.14.0
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
@@ -35,12 +35,15 @@ dependencies:
     path: ./packages/services/remote_config
   secure_storage_service:
     path: ./packages/services/secure_storage
-  slang: ^4.7.1
+  slang: ^4.7.2
   slang_flutter: ^4.7.0
 
 dev_dependencies:
-  auto_route_generator: ^10.0.1
+  auto_route_generator: ^10.2.3
   bloc_test: ^10.0.0
+  build_runner: ^2.5.3
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.6
   flutter_test:
     sdk: flutter
   graphql_codegen: ^1.2.3

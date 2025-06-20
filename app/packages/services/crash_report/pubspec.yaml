@@ -3,11 +3,11 @@ resolution: workspace
 publish_to: "none"
 
 environment:
-  sdk: ">=3.8.0 <4.0.0"
+  sdk: ^3.8.1
   flutter: ">=1.17.0"
 
 dependencies:
-  firebase_crashlytics: ^4.3.6
+  firebase_crashlytics: ^4.3.7
   flutter:
     sdk: flutter
 

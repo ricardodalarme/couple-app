@@ -2,8 +2,8 @@ name: monorepo
 publish_to: "none"
 
 environment:
-  sdk: ">=3.8.0 <4.0.0"
-  flutter: 3.32.0
+  sdk: ^3.8.1
+  flutter: 3.32.4
 
 workspace:
   - app
@@ -20,12 +20,9 @@ workspace:
   - app/packages/services/secure_storage
 
 dev_dependencies:
-  build_runner: ^2.4.15
-  flutter_launcher_icons: ^0.14.3
-  flutter_native_splash: ^2.4.6
   husky: ^0.1.7
   melos: ^7.0.0-dev.9
-  very_good_cli: ^0.25.0
+  very_good_cli: ^0.26.1
 
 melos:
   command:
@@ -90,21 +87,22 @@ melos:
       run: melos exec -c 1 -- flutter pub run build_runner build --delete-conflicting-outputs
       description: Run build_runner to generate files.
       packageFilters:
-        scope:
-          - quickstart_flutter_bloc
-          - common_ui
+        dependsOn:
+          - build_runner
 
     splash_screen:
       exec: flutter pub run flutter_native_splash:create
       description: Update the app splash screen.
       packageFilters:
-        scope: quickstart_flutter_bloc
+        dependsOn:
+          - flutter_native_splash
 
     launcher_icon:
       exec: flutter pub run flutter_launcher_icons:main
       description: Update the app launcher icon.
       packageFilters:
-        scope: quickstart_flutter_bloc
+        dependsOn:
+          - flutter_launcher_icons
 
     build:android-dev:
       exec: flutter build appbundle --flavor development --dart-define-from-file ../.env.development

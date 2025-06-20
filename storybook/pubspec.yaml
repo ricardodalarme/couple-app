@@ -4,14 +4,14 @@ publish_to: "none"
 version: 1.0.0
 
 environment:
-  sdk: ">=3.8.0 <4.0.0"
+  sdk: ^3.8.1
 
 dependencies:
   common_ui:
     path: ../app/packages/common_ui
   flutter:
     sdk: flutter
-  widgetbook: ^3.14.2
+  widgetbook: ^3.14.3
 
 flutter:
   uses-material-design: true
