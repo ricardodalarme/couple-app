@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
-import 'package:quickstart_flutter_bloc/routes/app_router.dart';
+import 'package:quickstart_flutter_bloc/router/app_router.dart';
 
 @RoutePage()
 class NotFoundPage extends StatelessWidget {

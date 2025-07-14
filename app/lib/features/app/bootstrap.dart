@@ -22,7 +22,7 @@ import 'package:quickstart_flutter_bloc/features/settings/data/repositories/sett
 import 'package:quickstart_flutter_bloc/features/settings/di/settings_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/signup/di/signup_injection_module.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
-import 'package:quickstart_flutter_bloc/routes/app_router.dart';
+import 'package:quickstart_flutter_bloc/router/app_router.dart';
 
 Future<void> bootstrap(Widget Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();

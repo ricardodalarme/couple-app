@@ -3,7 +3,7 @@ import 'package:flutter/material.dart' show Icons;
 import 'package:flutter/widgets.dart';
 import 'package:quickstart_flutter_bloc/features/home/presentation/widgets/navigation_bar.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
-import 'package:quickstart_flutter_bloc/routes/app_router.dart';
+import 'package:quickstart_flutter_bloc/router/app_router.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {

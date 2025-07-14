@@ -7,7 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:quickstart_flutter_bloc/features/app/bloc/app_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/app/observers/router_observer.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
-import 'package:quickstart_flutter_bloc/routes/app_router.dart';
+import 'package:quickstart_flutter_bloc/router/app_router.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

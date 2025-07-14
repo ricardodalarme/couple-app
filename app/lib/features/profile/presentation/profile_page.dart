@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/app/bloc/app_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/profile/presentation/widgets/image_picker_modal.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
-import 'package:quickstart_flutter_bloc/routes/app_router.dart';
+import 'package:quickstart_flutter_bloc/router/app_router.dart';
 
 @RoutePage()
 class ProfilePage extends StatelessWidget {
