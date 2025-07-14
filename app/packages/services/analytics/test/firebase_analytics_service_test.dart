@@ -5,6 +5,16 @@ import 'package:mocktail/mocktail.dart';
 
 class MockFirebaseAnalytics extends Mock implements FirebaseAnalytics {}
 
+class FakeAnalyticsEvent extends Fake implements AnalyticsEvent {
+  FakeAnalyticsEvent(this.name, {this.parameters});
+
+  @override
+  final String name;
+
+  @override
+  final Map<String, Object>? parameters;
+}
+
 void main() {
   group('AnalyticsService', () {
     late FirebaseAnalytics firebaseAnalytics;
@@ -12,7 +22,7 @@ void main() {
 
     setUp(() {
       firebaseAnalytics = MockFirebaseAnalytics();
-      analyticsService = AnalyticsServiceImpl(firebaseAnalytics);
+      analyticsService = FirebaseAnalyticsService(firebaseAnalytics);
 
       when(
         () => firebaseAnalytics.logEvent(
@@ -28,7 +38,7 @@ void main() {
 
     group('track', () {
       test('tracks event successfully', () {
-        const event = AnalyticsEvent('TestEvent', parameters: {'test-key': 'mock-id'});
+        final event = FakeAnalyticsEvent('TestEvent', parameters: {'test-key': 'mock-id'});
 
         analyticsService.logEvent(event);
 
@@ -45,7 +55,7 @@ void main() {
           ),
         ).thenThrow(Exception());
 
-        const event = AnalyticsEvent(
+        final event = FakeAnalyticsEvent(
           'event1',
           parameters: <String, Object>{'property1': 'value1', 'property2': 'value2'},
         );

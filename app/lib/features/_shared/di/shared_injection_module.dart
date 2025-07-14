@@ -9,6 +9,8 @@ import 'package:quickstart_flutter_bloc/features/_shared/data/data_sources/fragm
 import 'package:quickstart_flutter_bloc/features/_shared/data/mappers/page_info_response_mapper.dart';
 import 'package:quickstart_flutter_bloc/features/_shared/data/models/page_info.dart';
 import 'package:quickstart_flutter_bloc/router/app_router.dart';
+import 'package:quickstart_flutter_bloc/router/observers/analytics_router_observer.dart';
+import 'package:quickstart_flutter_bloc/router/observers/log_router_observer.dart';
 import 'package:remote_config_service/remote_config_service.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
 
@@ -16,13 +18,17 @@ class SharedInjectionModule implements InjectionModule {
   @override
   void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<RootStackRouter>(AppRouter.new)
+    ..registerLazySingleton(LogRouterObserver.new)
+    ..registerLazySingleton<AnalyticsRouterObserver>(
+      () => AnalyticsRouterObserver(analyticsService: injector.get<AnalyticsService>()),
+    )
     ..registerLazySingleton<SecureStorageService>(SecureStorageServiceImpl.new)
     ..registerLazySingleton<PersistentStorageService>(PersistentStorageServiceImpl.new)
     ..registerLazySingleton<GQLClient>(
       () => GQLClientImpl(storage: injector.get<SecureStorageService>()),
     )
     ..registerLazySingleton<RestClient>(RestClientImpl.new)
-    ..registerLazySingleton<AnalyticsService>(AnalyticsServiceImpl.new)
+    ..registerLazySingleton<AnalyticsService>(FirebaseAnalyticsService.new)
     ..registerLazySingleton<RemoteConfigService>(RemoteConfigServiceImpl.new)
     ..registerLazySingleton<CrashReportService>(CrashReportServiceImpl.new)
     ..registerLazySingleton<BiometricService>(BiometricServiceImpl.new)
