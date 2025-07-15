@@ -4,11 +4,9 @@ import 'package:crash_report_service/crash_report_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_storage_service/persistent_storage_service.dart';
 import 'package:quickstart_flutter_bloc/features/_shared/di/shared_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/app/di/app_injection_module.dart';
-import 'package:quickstart_flutter_bloc/features/app/observers/bloc_observer.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/di/authentication_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/change_password/di/change_password_injection_module.dart';
@@ -35,7 +33,6 @@ Future<void> bootstrap(Widget Function() builder) async {
     _configureCrashReportService(),
     _initializeStorageService(),
   ]);
-  _setupBloc();
   _checkOnboardingStatus();
 
   runApp(builder());
@@ -43,10 +40,6 @@ Future<void> bootstrap(Widget Function() builder) async {
 
 Future<void> _setupFirebase() async {
   await Firebase.initializeApp();
-}
-
-void _setupBloc() {
-  Bloc.observer = AppBlocObserver();
 }
 
 Future<void> _configureCrashReportService() async {
