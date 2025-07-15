@@ -46,7 +46,7 @@ dev_dependencies:
   flutter_native_splash: ^2.4.6
   flutter_test:
     sdk: flutter
-  graphql_codegen: ^1.2.3
+  graphql_codegen: ^1.2.4
   mocktail: ^1.0.4
 
 flutter:
