@@ -29,10 +29,11 @@ class AuthenticationRepository {
 
   Future<void> checkAuthenticationStatus() async {
     final Token? token = await _tokenLocalDataSource.get();
-    _authenticationStreamController.add(!_hasTokenExpired(token));
+    final bool isAuthenticated = token != null && !_hasTokenExpired(token);
+    _authenticationStreamController.add(isAuthenticated);
   }
 
-  bool _hasTokenExpired(Token? token) => token == null || token.expires.isBefore(DateTime.now());
+  bool _hasTokenExpired(Token token) => token.expires.isBefore(DateTime.now());
 
   Future<void> logInWithUsernameAndPassword({
     required String username,

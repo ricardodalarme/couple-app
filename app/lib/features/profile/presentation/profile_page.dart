@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart' show IconButton, Icons, showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quickstart_flutter_bloc/features/app/bloc/app_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/app/presentation/bloc/app_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/profile/presentation/widgets/image_picker_modal.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 import 'package:quickstart_flutter_bloc/router/app_router.dart';

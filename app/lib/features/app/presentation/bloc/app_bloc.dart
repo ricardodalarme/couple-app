@@ -13,6 +13,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       super(const AppState.unauthenticated()) {
     on<AppStatusChanged>(_onStatusChanged);
     on<AppLogoutRequested>(_onLogoutRequested);
+    on<AppInitialized>(_onAppInitialized);
 
     _authenticationRepository.isAuthenticated.listen(_statusChanged);
   }
@@ -20,6 +21,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   final AuthenticationRepository _authenticationRepository;
 
   void _statusChanged(bool isAuthenticated) => add(AppStatusChanged(isAuthenticated));
+
+  Future<void> _onAppInitialized(AppInitialized event, Emitter<AppState> emit) async {
+    await _authenticationRepository.checkAuthenticationStatus();
+  }
 
   void _onStatusChanged(AppStatusChanged event, Emitter<AppState> emit) {
     if (event.isAuthenticated) {

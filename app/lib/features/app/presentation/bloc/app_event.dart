@@ -4,6 +4,10 @@ sealed class AppEvent {
   const AppEvent();
 }
 
+final class AppInitialized extends AppEvent {
+  const AppInitialized();
+}
+
 final class AppStatusChanged extends AppEvent {
   const AppStatusChanged(this.isAuthenticated);
 
