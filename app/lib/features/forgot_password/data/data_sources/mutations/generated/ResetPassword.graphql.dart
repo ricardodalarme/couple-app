@@ -1,30 +1,25 @@
-// dart format off
+// dart format width=100
 import '../../../../../_shared/data/data_sources/generated/schema.graphql.dart';
 import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationResetPassword {
-  factory VariablesMutationResetPassword(
-          {required InputResetPasswordInput input}) =>
-      VariablesMutationResetPassword._({
-        r'input': input,
-      });
+  factory VariablesMutationResetPassword({required InputResetPasswordInput input}) =>
+      VariablesMutationResetPassword._({r'input': input});
 
   VariablesMutationResetPassword._(this._$data);
 
   factory VariablesMutationResetPassword.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$input = data['input'];
-    result$data['input'] =
-        InputResetPasswordInput.fromJson((l$input as Map<String, dynamic>));
+    result$data['input'] = InputResetPasswordInput.fromJson((l$input as Map<String, dynamic>));
     return VariablesMutationResetPassword._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  InputResetPasswordInput get input =>
-      (_$data['input'] as InputResetPasswordInput);
+  InputResetPasswordInput get input => (_$data['input'] as InputResetPasswordInput);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -38,8 +33,7 @@ class VariablesMutationResetPassword {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! VariablesMutationResetPassword ||
-        runtimeType != other.runtimeType) {
+    if (other is! VariablesMutationResetPassword || runtimeType != other.runtimeType) {
       return false;
     }
     final l$input = input;
@@ -58,10 +52,7 @@ class VariablesMutationResetPassword {
 }
 
 class MutationResetPassword {
-  MutationResetPassword({
-    this.resetPassword,
-    this.$__typename = 'Mutation',
-  });
+  MutationResetPassword({this.resetPassword, this.$__typename = 'Mutation'});
 
   factory MutationResetPassword.fromJson(Map<String, dynamic> json) {
     final l$resetPassword = json['resetPassword'];
@@ -69,8 +60,7 @@ class MutationResetPassword {
     return MutationResetPassword(
       resetPassword: l$resetPassword == null
           ? null
-          : MutationResetPasswordresetPassword.fromJson(
-              (l$resetPassword as Map<String, dynamic>)),
+          : MutationResetPasswordresetPassword.fromJson((l$resetPassword as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -92,10 +82,7 @@ class MutationResetPassword {
   int get hashCode {
     final l$resetPassword = resetPassword;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$resetPassword,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$resetPassword, l$$__typename]);
   }
 
   @override
@@ -120,63 +107,62 @@ class MutationResetPassword {
   }
 }
 
-const documentNodeMutationResetPassword = DocumentNode(definitions: [
-  OperationDefinitionNode(
-    type: OperationType.mutation,
-    name: NameNode(value: 'ResetPassword'),
-    variableDefinitions: [
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'input')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'ResetPasswordInput'),
-          isNonNull: true,
+const documentNodeMutationResetPassword = DocumentNode(
+  definitions: [
+    OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'ResetPassword'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'input')),
+          type: NamedTypeNode(name: NameNode(value: 'ResetPasswordInput'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
         ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      )
-    ],
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-        name: NameNode(value: 'resetPassword'),
-        alias: null,
-        arguments: [
-          ArgumentNode(
-            name: NameNode(value: 'input'),
-            value: VariableNode(name: NameNode(value: 'input')),
-          )
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(
+        selections: [
+          FieldNode(
+            name: NameNode(value: 'resetPassword'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'input'),
+                value: VariableNode(name: NameNode(value: 'input')),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
           FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
             directives: [],
             selectionSet: null,
-          )
-        ]),
+          ),
+        ],
       ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-    ]),
-  ),
-]);
-MutationResetPassword _parserFnMutationResetPassword(
-        Map<String, dynamic> data) =>
-    MutationResetPassword.fromJson(data);
-typedef OnMutationCompletedMutationResetPassword = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  MutationResetPassword?,
+    ),
+  ],
 );
+MutationResetPassword _parserFnMutationResetPassword(Map<String, dynamic> data) =>
+    MutationResetPassword.fromJson(data);
+typedef OnMutationCompletedMutationResetPassword =
+    FutureOr<void> Function(Map<String, dynamic>?, MutationResetPassword?);
 
-class OptionsMutationResetPassword
-    extends graphql.MutationOptions<MutationResetPassword> {
+class OptionsMutationResetPassword extends graphql.MutationOptions<MutationResetPassword> {
   OptionsMutationResetPassword({
     String? operationName,
     required VariablesMutationResetPassword variables,
@@ -189,40 +175,37 @@ class OptionsMutationResetPassword
     OnMutationCompletedMutationResetPassword? onCompleted,
     graphql.OnMutationUpdate<MutationResetPassword>? update,
     graphql.OnError? onError,
-  })  : onCompletedWithParsed = onCompleted,
-        super(
-          variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          onCompleted: onCompleted == null
-              ? null
-              : (data) => onCompleted(
-                    data,
-                    data == null ? null : _parserFnMutationResetPassword(data),
-                  ),
-          update: update,
-          onError: onError,
-          document: documentNodeMutationResetPassword,
-          parserFn: _parserFnMutationResetPassword,
-        );
+  }) : onCompletedWithParsed = onCompleted,
+       super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         onCompleted: onCompleted == null
+             ? null
+             : (data) =>
+                   onCompleted(data, data == null ? null : _parserFnMutationResetPassword(data)),
+         update: update,
+         onError: onError,
+         document: documentNodeMutationResetPassword,
+         parserFn: _parserFnMutationResetPassword,
+       );
 
   final OnMutationCompletedMutationResetPassword? onCompletedWithParsed;
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
-        onCompletedWithParsed,
-      ];
+    ...super.onCompleted == null
+        ? super.properties
+        : super.properties.where((property) => property != onCompleted),
+    onCompletedWithParsed,
+  ];
 }
 
-class WatchOptionsMutationResetPassword
-    extends graphql.WatchQueryOptions<MutationResetPassword> {
+class WatchOptionsMutationResetPassword extends graphql.WatchQueryOptions<MutationResetPassword> {
   WatchOptionsMutationResetPassword({
     String? operationName,
     required VariablesMutationResetPassword variables,
@@ -237,40 +220,38 @@ class WatchOptionsMutationResetPassword
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-          variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          document: documentNodeMutationResetPassword,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
-          parserFn: _parserFnMutationResetPassword,
-        );
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         document: documentNodeMutationResetPassword,
+         pollInterval: pollInterval,
+         eagerlyFetchResults: eagerlyFetchResults,
+         carryForwardDataOnException: carryForwardDataOnException,
+         fetchResults: fetchResults,
+         parserFn: _parserFnMutationResetPassword,
+       );
 }
 
 extension ClientExtensionMutationResetPassword on graphql.GraphQLClient {
   Future<graphql.QueryResult<MutationResetPassword>> mutateResetPassword(
-          OptionsMutationResetPassword options) async =>
-      await this.mutate(options);
+    OptionsMutationResetPassword options,
+  ) async => await this.mutate(options);
+
   graphql.ObservableQuery<MutationResetPassword> watchMutationResetPassword(
-          WatchOptionsMutationResetPassword options) =>
-      this.watchMutation(options);
+    WatchOptionsMutationResetPassword options,
+  ) => this.watchMutation(options);
 }
 
 class MutationResetPasswordresetPassword {
-  MutationResetPasswordresetPassword(
-      {this.$__typename = 'ResetPasswordPayload'});
+  MutationResetPasswordresetPassword({this.$__typename = 'ResetPasswordPayload'});
 
-  factory MutationResetPasswordresetPassword.fromJson(
-      Map<String, dynamic> json) {
+  factory MutationResetPasswordresetPassword.fromJson(Map<String, dynamic> json) {
     final l$$__typename = json['__typename'];
-    return MutationResetPasswordresetPassword(
-        $__typename: (l$$__typename as String));
+    return MutationResetPasswordresetPassword($__typename: (l$$__typename as String));
   }
 
   final String $__typename;
@@ -293,8 +274,7 @@ class MutationResetPasswordresetPassword {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationResetPasswordresetPassword ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationResetPasswordresetPassword || runtimeType != other.runtimeType) {
       return false;
     }
     final l$$__typename = $__typename;

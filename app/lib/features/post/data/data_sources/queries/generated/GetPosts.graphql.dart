@@ -1,4 +1,4 @@
-// dart format off
+// dart format width=100
 import '../../../../../_shared/data/data_sources/fragments/generated/PageInfoFragment.graphql.dart';
 import '../../../../../_shared/data/data_sources/fragments/generated/UserFragment.graphql.dart';
 import '../../fragments/generated/PostFragment.graphql.dart';
@@ -7,14 +7,10 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesQueryGetPosts {
-  factory VariablesQueryGetPosts({
-    int? first,
-    String? after,
-  }) =>
-      VariablesQueryGetPosts._({
-        if (first != null) r'first': first,
-        if (after != null) r'after': after,
-      });
+  factory VariablesQueryGetPosts({int? first, String? after}) => VariablesQueryGetPosts._({
+    if (first != null) r'first': first,
+    if (after != null) r'after': after,
+  });
 
   VariablesQueryGetPosts._(this._$data);
 
@@ -89,10 +85,7 @@ class VariablesQueryGetPosts {
 }
 
 class QueryGetPosts {
-  QueryGetPosts({
-    this.posts,
-    this.$__typename = 'Query',
-  });
+  QueryGetPosts({this.posts, this.$__typename = 'Query'});
 
   factory QueryGetPosts.fromJson(Map<String, dynamic> json) {
     final l$posts = json['posts'];
@@ -122,10 +115,7 @@ class QueryGetPosts {
   int get hashCode {
     final l$posts = posts;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$posts,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$posts, l$$__typename]);
   }
 
   @override
@@ -150,84 +140,95 @@ class QueryGetPosts {
   }
 }
 
-const documentNodeQueryGetPosts = DocumentNode(definitions: [
-  OperationDefinitionNode(
-    type: OperationType.query,
-    name: NameNode(value: 'GetPosts'),
-    variableDefinitions: [
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'first')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'Int'),
-          isNonNull: false,
+const documentNodeQueryGetPosts = DocumentNode(
+  definitions: [
+    OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'GetPosts'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'first')),
+          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
         ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'after')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'String'),
-          isNonNull: false,
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'after')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
         ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-    ],
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-        name: NameNode(value: 'posts'),
-        alias: null,
-        arguments: [
-          ArgumentNode(
-            name: NameNode(value: 'first'),
-            value: VariableNode(name: NameNode(value: 'first')),
-          ),
-          ArgumentNode(
-            name: NameNode(value: 'after'),
-            value: VariableNode(name: NameNode(value: 'after')),
-          ),
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(
+        selections: [
           FieldNode(
-            name: NameNode(value: 'pageInfo'),
+            name: NameNode(value: 'posts'),
             alias: null,
-            arguments: [],
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'first'),
+                value: VariableNode(name: NameNode(value: 'first')),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'after'),
+                value: VariableNode(name: NameNode(value: 'after')),
+              ),
+            ],
             directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FragmentSpreadNode(
-                name: NameNode(value: 'PageInfoFragment'),
-                directives: [],
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
-            name: NameNode(value: 'nodes'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FragmentSpreadNode(
-                name: NameNode(value: 'PostFragment'),
-                directives: [],
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'pageInfo'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FragmentSpreadNode(
+                        name: NameNode(value: 'PageInfoFragment'),
+                        directives: [],
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
+                ),
+                FieldNode(
+                  name: NameNode(value: 'nodes'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FragmentSpreadNode(
+                        name: NameNode(value: 'PostFragment'),
+                        directives: [],
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -236,27 +237,17 @@ const documentNodeQueryGetPosts = DocumentNode(definitions: [
             directives: [],
             selectionSet: null,
           ),
-        ]),
+        ],
       ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-    ]),
-  ),
-  fragmentDefinitionPageInfoFragment,
-  fragmentDefinitionPostFragment,
-  fragmentDefinitionUserFragment,
-]);
-QueryGetPosts _parserFnQueryGetPosts(Map<String, dynamic> data) =>
-    QueryGetPosts.fromJson(data);
-typedef OnQueryCompleteQueryGetPosts = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  QueryGetPosts?,
+    ),
+    fragmentDefinitionPageInfoFragment,
+    fragmentDefinitionPostFragment,
+    fragmentDefinitionUserFragment,
+  ],
 );
+QueryGetPosts _parserFnQueryGetPosts(Map<String, dynamic> data) => QueryGetPosts.fromJson(data);
+typedef OnQueryCompleteQueryGetPosts =
+    FutureOr<void> Function(Map<String, dynamic>?, QueryGetPosts?);
 
 class OptionsQueryGetPosts extends graphql.QueryOptions<QueryGetPosts> {
   OptionsQueryGetPosts({
@@ -271,40 +262,36 @@ class OptionsQueryGetPosts extends graphql.QueryOptions<QueryGetPosts> {
     graphql.Context? context,
     OnQueryCompleteQueryGetPosts? onComplete,
     graphql.OnQueryError? onError,
-  })  : onCompleteWithParsed = onComplete,
-        super(
-          variables: variables?.toJson() ?? {},
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
-          onComplete: onComplete == null
-              ? null
-              : (data) => onComplete(
-                    data,
-                    data == null ? null : _parserFnQueryGetPosts(data),
-                  ),
-          onError: onError,
-          document: documentNodeQueryGetPosts,
-          parserFn: _parserFnQueryGetPosts,
-        );
+  }) : onCompleteWithParsed = onComplete,
+       super(
+         variables: variables?.toJson() ?? {},
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         pollInterval: pollInterval,
+         context: context,
+         onComplete: onComplete == null
+             ? null
+             : (data) => onComplete(data, data == null ? null : _parserFnQueryGetPosts(data)),
+         onError: onError,
+         document: documentNodeQueryGetPosts,
+         parserFn: _parserFnQueryGetPosts,
+       );
 
   final OnQueryCompleteQueryGetPosts? onCompleteWithParsed;
 
   @override
   List<Object?> get properties => [
-        ...super.onComplete == null
-            ? super.properties
-            : super.properties.where((property) => property != onComplete),
-        onCompleteWithParsed,
-      ];
+    ...super.onComplete == null
+        ? super.properties
+        : super.properties.where((property) => property != onComplete),
+    onCompleteWithParsed,
+  ];
 }
 
-class WatchOptionsQueryGetPosts
-    extends graphql.WatchQueryOptions<QueryGetPosts> {
+class WatchOptionsQueryGetPosts extends graphql.WatchQueryOptions<QueryGetPosts> {
   WatchOptionsQueryGetPosts({
     String? operationName,
     VariablesQueryGetPosts? variables,
@@ -319,20 +306,20 @@ class WatchOptionsQueryGetPosts
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-          variables: variables?.toJson() ?? {},
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          document: documentNodeQueryGetPosts,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
-          parserFn: _parserFnQueryGetPosts,
-        );
+         variables: variables?.toJson() ?? {},
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         document: documentNodeQueryGetPosts,
+         pollInterval: pollInterval,
+         eagerlyFetchResults: eagerlyFetchResults,
+         carryForwardDataOnException: carryForwardDataOnException,
+         fetchResults: fetchResults,
+         parserFn: _parserFnQueryGetPosts,
+       );
 }
 
 class FetchMoreOptionsQueryGetPosts extends graphql.FetchMoreOptions {
@@ -340,36 +327,33 @@ class FetchMoreOptionsQueryGetPosts extends graphql.FetchMoreOptions {
     required graphql.UpdateQuery updateQuery,
     VariablesQueryGetPosts? variables,
   }) : super(
-          updateQuery: updateQuery,
-          variables: variables?.toJson() ?? {},
-          document: documentNodeQueryGetPosts,
-        );
+         updateQuery: updateQuery,
+         variables: variables?.toJson() ?? {},
+         document: documentNodeQueryGetPosts,
+       );
 }
 
 extension ClientExtensionQueryGetPosts on graphql.GraphQLClient {
-  Future<graphql.QueryResult<QueryGetPosts>> queryGetPosts(
-          [OptionsQueryGetPosts? options]) async =>
+  Future<graphql.QueryResult<QueryGetPosts>> queryGetPosts([OptionsQueryGetPosts? options]) async =>
       await this.query(options ?? OptionsQueryGetPosts());
-  graphql.ObservableQuery<QueryGetPosts> watchQueryGetPosts(
-          [WatchOptionsQueryGetPosts? options]) =>
+
+  graphql.ObservableQuery<QueryGetPosts> watchQueryGetPosts([WatchOptionsQueryGetPosts? options]) =>
       this.watchQuery(options ?? WatchOptionsQueryGetPosts());
+
   void writeQueryGetPosts({
     required QueryGetPosts data,
     VariablesQueryGetPosts? variables,
     bool broadcast = true,
-  }) =>
-      this.writeQuery(
-        graphql.Request(
-          operation: graphql.Operation(document: documentNodeQueryGetPosts),
-          variables: variables?.toJson() ?? const {},
-        ),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
-  QueryGetPosts? readQueryGetPosts({
-    VariablesQueryGetPosts? variables,
-    bool optimistic = true,
-  }) {
+  }) => this.writeQuery(
+    graphql.Request(
+      operation: graphql.Operation(document: documentNodeQueryGetPosts),
+      variables: variables?.toJson() ?? const {},
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
+
+  QueryGetPosts? readQueryGetPosts({VariablesQueryGetPosts? variables, bool optimistic = true}) {
     final result = this.readQuery(
       graphql.Request(
         operation: graphql.Operation(document: documentNodeQueryGetPosts),
@@ -393,11 +377,9 @@ class QueryGetPostsposts {
     final l$nodes = json['nodes'];
     final l$$__typename = json['__typename'];
     return QueryGetPostsposts(
-      pageInfo: FragmentPageInfoFragment.fromJson(
-          (l$pageInfo as Map<String, dynamic>)),
+      pageInfo: FragmentPageInfoFragment.fromJson((l$pageInfo as Map<String, dynamic>)),
       nodes: (l$nodes as List<dynamic>)
-          .map((e) =>
-              QueryGetPostspostsnodes.fromJson((e as Map<String, dynamic>)))
+          .map((e) => QueryGetPostspostsnodes.fromJson((e as Map<String, dynamic>)))
           .toList(),
       $__typename: (l$$__typename as String),
     );
@@ -425,11 +407,7 @@ class QueryGetPostsposts {
     final l$pageInfo = pageInfo;
     final l$nodes = nodes;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$pageInfo,
-      Object.hashAll(l$nodes.map((v) => v)),
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$pageInfo, Object.hashAll(l$nodes.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -559,8 +537,7 @@ extension UtilityExtensionQueryGetPostspostsnodes on QueryGetPostspostsnodes {
   }
 }
 
-class QueryGetPostspostsnodesPost
-    implements FragmentPostFragment, QueryGetPostspostsnodes {
+class QueryGetPostspostsnodesPost implements FragmentPostFragment, QueryGetPostspostsnodes {
   QueryGetPostspostsnodesPost({
     required this.id,
     required this.title,
@@ -579,8 +556,7 @@ class QueryGetPostspostsnodesPost
       id: (l$id as String),
       title: (l$title as String),
       body: (l$body as String),
-      createdBy:
-          FragmentUserFragment.fromJson((l$createdBy as Map<String, dynamic>)),
+      createdBy: FragmentUserFragment.fromJson((l$createdBy as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -617,13 +593,7 @@ class QueryGetPostspostsnodesPost
     final l$body = body;
     final l$createdBy = createdBy;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$title,
-      l$body,
-      l$createdBy,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$id, l$title, l$body, l$createdBy, l$$__typename]);
   }
 
   @override
@@ -631,8 +601,7 @@ class QueryGetPostspostsnodesPost
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryGetPostspostsnodesPost ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryGetPostspostsnodesPost || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -667,11 +636,9 @@ class QueryGetPostspostsnodesPost
 class QueryGetPostspostsnodesRemovedPost implements QueryGetPostspostsnodes {
   QueryGetPostspostsnodesRemovedPost({this.$__typename = 'RemovedPost'});
 
-  factory QueryGetPostspostsnodesRemovedPost.fromJson(
-      Map<String, dynamic> json) {
+  factory QueryGetPostspostsnodesRemovedPost.fromJson(Map<String, dynamic> json) {
     final l$$__typename = json['__typename'];
-    return QueryGetPostspostsnodesRemovedPost(
-        $__typename: (l$$__typename as String));
+    return QueryGetPostspostsnodesRemovedPost($__typename: (l$$__typename as String));
   }
 
   final String $__typename;
@@ -694,8 +661,7 @@ class QueryGetPostspostsnodesRemovedPost implements QueryGetPostspostsnodes {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryGetPostspostsnodesRemovedPost ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryGetPostspostsnodesRemovedPost || runtimeType != other.runtimeType) {
       return false;
     }
     final l$$__typename = $__typename;

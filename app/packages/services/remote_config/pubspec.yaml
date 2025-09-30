@@ -3,11 +3,11 @@ resolution: workspace
 publish_to: "none"
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.9.2
   flutter: ">=1.17.0"
 
 dependencies:
-  firebase_remote_config: ^5.4.7
+  firebase_remote_config: ^6.0.2
   flutter:
     sdk: flutter
 

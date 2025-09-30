@@ -3,13 +3,13 @@ resolution: workspace
 publish_to: "none"
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.9.2
 
 dependencies:
   core:
     path: ../core
-  dio: ^5.8.0+1
-  graphql: ^5.2.1
+  dio: ^5.9.0
+  graphql: ^5.2.2
   graphql_query_compress: ^1.0.0
   secure_storage_service:
     path: ../services/secure_storage

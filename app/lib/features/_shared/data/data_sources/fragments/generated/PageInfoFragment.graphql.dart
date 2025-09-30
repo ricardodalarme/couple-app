@@ -1,4 +1,4 @@
-// dart format off
+// dart format width=100
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
@@ -72,8 +72,7 @@ class FragmentPageInfoFragment {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! FragmentPageInfoFragment ||
-        runtimeType != other.runtimeType) {
+    if (other is! FragmentPageInfoFragment || runtimeType != other.runtimeType) {
       return false;
     }
     final l$hasNextPage = hasNextPage;
@@ -108,70 +107,70 @@ class FragmentPageInfoFragment {
 const fragmentDefinitionPageInfoFragment = FragmentDefinitionNode(
   name: NameNode(value: 'PageInfoFragment'),
   typeCondition: TypeConditionNode(
-      on: NamedTypeNode(
-    name: NameNode(value: 'PageInfo'),
-    isNonNull: false,
-  )),
+    on: NamedTypeNode(name: NameNode(value: 'PageInfo'), isNonNull: false),
+  ),
   directives: [],
-  selectionSet: SelectionSetNode(selections: [
-    FieldNode(
-      name: NameNode(value: 'hasNextPage'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: 'hasPreviousPage'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: 'startCursor'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: 'endCursor'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: '__typename'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-  ]),
+  selectionSet: SelectionSetNode(
+    selections: [
+      FieldNode(
+        name: NameNode(value: 'hasNextPage'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'hasPreviousPage'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'startCursor'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'endCursor'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ],
+  ),
 );
-const documentNodeFragmentPageInfoFragment = DocumentNode(definitions: [
-  fragmentDefinitionPageInfoFragment,
-]);
+const documentNodeFragmentPageInfoFragment = DocumentNode(
+  definitions: [fragmentDefinitionPageInfoFragment],
+);
 
 extension ClientExtensionFragmentPageInfoFragment on graphql.GraphQLClient {
   void writeFragmentPageInfoFragment({
     required FragmentPageInfoFragment data,
     required Map<String, dynamic> idFields,
     bool broadcast = true,
-  }) =>
-      this.writeFragment(
-        graphql.FragmentRequest(
-          idFields: idFields,
-          fragment: const graphql.Fragment(
-            fragmentName: 'PageInfoFragment',
-            document: documentNodeFragmentPageInfoFragment,
-          ),
-        ),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
+  }) => this.writeFragment(
+    graphql.FragmentRequest(
+      idFields: idFields,
+      fragment: const graphql.Fragment(
+        fragmentName: 'PageInfoFragment',
+        document: documentNodeFragmentPageInfoFragment,
+      ),
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
+
   FragmentPageInfoFragment? readFragmentPageInfoFragment({
     required Map<String, dynamic> idFields,
     bool optimistic = true,

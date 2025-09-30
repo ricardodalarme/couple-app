@@ -1,8 +1,7 @@
-// dart format off
+// dart format width=100
 class InputAppFilterInput {
-  factory InputAppFilterInput({String? clientId}) => InputAppFilterInput._({
-        if (clientId != null) r'clientId': clientId,
-      });
+  factory InputAppFilterInput({String? clientId}) =>
+      InputAppFilterInput._({if (clientId != null) r'clientId': clientId});
 
   InputAppFilterInput._(this._$data);
 
@@ -38,8 +37,7 @@ class InputAppFilterInput {
     }
     final l$clientId = clientId;
     final lOther$clientId = other.clientId;
-    if (_$data.containsKey('clientId') !=
-        other._$data.containsKey('clientId')) {
+    if (_$data.containsKey('clientId') != other._$data.containsKey('clientId')) {
       return false;
     }
     if (l$clientId != lOther$clientId) {
@@ -51,8 +49,7 @@ class InputAppFilterInput {
   @override
   int get hashCode {
     final l$clientId = clientId;
-    return Object.hashAll(
-        [_$data.containsKey('clientId') ? l$clientId : const {}]);
+    return Object.hashAll([_$data.containsKey('clientId') ? l$clientId : const {}]);
   }
 }
 
@@ -61,22 +58,21 @@ class InputChannelMessagesStatisticsFilterInput {
     DateTime? beginDate,
     String? channel,
     DateTime? finalDate,
-  }) =>
-      InputChannelMessagesStatisticsFilterInput._({
-        if (beginDate != null) r'beginDate': beginDate,
-        if (channel != null) r'channel': channel,
-        if (finalDate != null) r'finalDate': finalDate,
-      });
+  }) => InputChannelMessagesStatisticsFilterInput._({
+    if (beginDate != null) r'beginDate': beginDate,
+    if (channel != null) r'channel': channel,
+    if (finalDate != null) r'finalDate': finalDate,
+  });
 
   InputChannelMessagesStatisticsFilterInput._(this._$data);
 
-  factory InputChannelMessagesStatisticsFilterInput.fromJson(
-      Map<String, dynamic> data) {
+  factory InputChannelMessagesStatisticsFilterInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     if (data.containsKey('beginDate')) {
       final l$beginDate = data['beginDate'];
-      result$data['beginDate'] =
-          l$beginDate == null ? null : DateTime.parse((l$beginDate as String));
+      result$data['beginDate'] = l$beginDate == null
+          ? null
+          : DateTime.parse((l$beginDate as String));
     }
     if (data.containsKey('channel')) {
       final l$channel = data['channel'];
@@ -84,8 +80,9 @@ class InputChannelMessagesStatisticsFilterInput {
     }
     if (data.containsKey('finalDate')) {
       final l$finalDate = data['finalDate'];
-      result$data['finalDate'] =
-          l$finalDate == null ? null : DateTime.parse((l$finalDate as String));
+      result$data['finalDate'] = l$finalDate == null
+          ? null
+          : DateTime.parse((l$finalDate as String));
     }
     return InputChannelMessagesStatisticsFilterInput._(result$data);
   }
@@ -120,14 +117,12 @@ class InputChannelMessagesStatisticsFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputChannelMessagesStatisticsFilterInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputChannelMessagesStatisticsFilterInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$beginDate = beginDate;
     final lOther$beginDate = other.beginDate;
-    if (_$data.containsKey('beginDate') !=
-        other._$data.containsKey('beginDate')) {
+    if (_$data.containsKey('beginDate') != other._$data.containsKey('beginDate')) {
       return false;
     }
     if (l$beginDate != lOther$beginDate) {
@@ -143,8 +138,7 @@ class InputChannelMessagesStatisticsFilterInput {
     }
     final l$finalDate = finalDate;
     final lOther$finalDate = other.finalDate;
-    if (_$data.containsKey('finalDate') !=
-        other._$data.containsKey('finalDate')) {
+    if (_$data.containsKey('finalDate') != other._$data.containsKey('finalDate')) {
       return false;
     }
     if (l$finalDate != lOther$finalDate) {
@@ -172,23 +166,22 @@ class InputUserBiasedMessagesFilterInput {
     String? channel,
     DateTime? finalDate,
     required String userName,
-  }) =>
-      InputUserBiasedMessagesFilterInput._({
-        if (beginDate != null) r'beginDate': beginDate,
-        if (channel != null) r'channel': channel,
-        if (finalDate != null) r'finalDate': finalDate,
-        r'userName': userName,
-      });
+  }) => InputUserBiasedMessagesFilterInput._({
+    if (beginDate != null) r'beginDate': beginDate,
+    if (channel != null) r'channel': channel,
+    if (finalDate != null) r'finalDate': finalDate,
+    r'userName': userName,
+  });
 
   InputUserBiasedMessagesFilterInput._(this._$data);
 
-  factory InputUserBiasedMessagesFilterInput.fromJson(
-      Map<String, dynamic> data) {
+  factory InputUserBiasedMessagesFilterInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     if (data.containsKey('beginDate')) {
       final l$beginDate = data['beginDate'];
-      result$data['beginDate'] =
-          l$beginDate == null ? null : DateTime.parse((l$beginDate as String));
+      result$data['beginDate'] = l$beginDate == null
+          ? null
+          : DateTime.parse((l$beginDate as String));
     }
     if (data.containsKey('channel')) {
       final l$channel = data['channel'];
@@ -196,8 +189,9 @@ class InputUserBiasedMessagesFilterInput {
     }
     if (data.containsKey('finalDate')) {
       final l$finalDate = data['finalDate'];
-      result$data['finalDate'] =
-          l$finalDate == null ? null : DateTime.parse((l$finalDate as String));
+      result$data['finalDate'] = l$finalDate == null
+          ? null
+          : DateTime.parse((l$finalDate as String));
     }
     final l$userName = data['userName'];
     result$data['userName'] = (l$userName as String);
@@ -238,14 +232,12 @@ class InputUserBiasedMessagesFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputUserBiasedMessagesFilterInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputUserBiasedMessagesFilterInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$beginDate = beginDate;
     final lOther$beginDate = other.beginDate;
-    if (_$data.containsKey('beginDate') !=
-        other._$data.containsKey('beginDate')) {
+    if (_$data.containsKey('beginDate') != other._$data.containsKey('beginDate')) {
       return false;
     }
     if (l$beginDate != lOther$beginDate) {
@@ -261,8 +253,7 @@ class InputUserBiasedMessagesFilterInput {
     }
     final l$finalDate = finalDate;
     final lOther$finalDate = other.finalDate;
-    if (_$data.containsKey('finalDate') !=
-        other._$data.containsKey('finalDate')) {
+    if (_$data.containsKey('finalDate') != other._$data.containsKey('finalDate')) {
       return false;
     }
     if (l$finalDate != lOther$finalDate) {
@@ -297,23 +288,22 @@ class InputUserMessagesStatisticsFilterInput {
     String? channel,
     DateTime? finalDate,
     required String userName,
-  }) =>
-      InputUserMessagesStatisticsFilterInput._({
-        if (beginDate != null) r'beginDate': beginDate,
-        if (channel != null) r'channel': channel,
-        if (finalDate != null) r'finalDate': finalDate,
-        r'userName': userName,
-      });
+  }) => InputUserMessagesStatisticsFilterInput._({
+    if (beginDate != null) r'beginDate': beginDate,
+    if (channel != null) r'channel': channel,
+    if (finalDate != null) r'finalDate': finalDate,
+    r'userName': userName,
+  });
 
   InputUserMessagesStatisticsFilterInput._(this._$data);
 
-  factory InputUserMessagesStatisticsFilterInput.fromJson(
-      Map<String, dynamic> data) {
+  factory InputUserMessagesStatisticsFilterInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     if (data.containsKey('beginDate')) {
       final l$beginDate = data['beginDate'];
-      result$data['beginDate'] =
-          l$beginDate == null ? null : DateTime.parse((l$beginDate as String));
+      result$data['beginDate'] = l$beginDate == null
+          ? null
+          : DateTime.parse((l$beginDate as String));
     }
     if (data.containsKey('channel')) {
       final l$channel = data['channel'];
@@ -321,8 +311,9 @@ class InputUserMessagesStatisticsFilterInput {
     }
     if (data.containsKey('finalDate')) {
       final l$finalDate = data['finalDate'];
-      result$data['finalDate'] =
-          l$finalDate == null ? null : DateTime.parse((l$finalDate as String));
+      result$data['finalDate'] = l$finalDate == null
+          ? null
+          : DateTime.parse((l$finalDate as String));
     }
     final l$userName = data['userName'];
     result$data['userName'] = (l$userName as String);
@@ -363,14 +354,12 @@ class InputUserMessagesStatisticsFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputUserMessagesStatisticsFilterInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputUserMessagesStatisticsFilterInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$beginDate = beginDate;
     final lOther$beginDate = other.beginDate;
-    if (_$data.containsKey('beginDate') !=
-        other._$data.containsKey('beginDate')) {
+    if (_$data.containsKey('beginDate') != other._$data.containsKey('beginDate')) {
       return false;
     }
     if (l$beginDate != lOther$beginDate) {
@@ -386,8 +375,7 @@ class InputUserMessagesStatisticsFilterInput {
     }
     final l$finalDate = finalDate;
     final lOther$finalDate = other.finalDate;
-    if (_$data.containsKey('finalDate') !=
-        other._$data.containsKey('finalDate')) {
+    if (_$data.containsKey('finalDate') != other._$data.containsKey('finalDate')) {
       return false;
     }
     if (l$finalDate != lOther$finalDate) {
@@ -423,14 +411,13 @@ class InputTermVersionFilterInput {
     InputStringFilterInput? description,
     InputStringFilterInput? title,
     List<String>? versions,
-  }) =>
-      InputTermVersionFilterInput._({
-        if (body != null) r'body': body,
-        if (createdAt != null) r'createdAt': createdAt,
-        if (description != null) r'description': description,
-        if (title != null) r'title': title,
-        if (versions != null) r'versions': versions,
-      });
+  }) => InputTermVersionFilterInput._({
+    if (body != null) r'body': body,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (description != null) r'description': description,
+    if (title != null) r'title': title,
+    if (versions != null) r'versions': versions,
+  });
 
   InputTermVersionFilterInput._(this._$data);
 
@@ -446,15 +433,13 @@ class InputTermVersionFilterInput {
       final l$createdAt = data['createdAt'];
       result$data['createdAt'] = l$createdAt == null
           ? null
-          : InputDateTimeFilterInput.fromJson(
-              (l$createdAt as Map<String, dynamic>));
+          : InputDateTimeFilterInput.fromJson((l$createdAt as Map<String, dynamic>));
     }
     if (data.containsKey('description')) {
       final l$description = data['description'];
       result$data['description'] = l$description == null
           ? null
-          : InputStringFilterInput.fromJson(
-              (l$description as Map<String, dynamic>));
+          : InputStringFilterInput.fromJson((l$description as Map<String, dynamic>));
     }
     if (data.containsKey('title')) {
       final l$title = data['title'];
@@ -464,25 +449,20 @@ class InputTermVersionFilterInput {
     }
     if (data.containsKey('versions')) {
       final l$versions = data['versions'];
-      result$data['versions'] =
-          (l$versions as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['versions'] = (l$versions as List<dynamic>?)?.map((e) => (e as String)).toList();
     }
     return InputTermVersionFilterInput._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  InputStringFilterInput? get body =>
-      (_$data['body'] as InputStringFilterInput?);
+  InputStringFilterInput? get body => (_$data['body'] as InputStringFilterInput?);
 
-  InputDateTimeFilterInput? get createdAt =>
-      (_$data['createdAt'] as InputDateTimeFilterInput?);
+  InputDateTimeFilterInput? get createdAt => (_$data['createdAt'] as InputDateTimeFilterInput?);
 
-  InputStringFilterInput? get description =>
-      (_$data['description'] as InputStringFilterInput?);
+  InputStringFilterInput? get description => (_$data['description'] as InputStringFilterInput?);
 
-  InputStringFilterInput? get title =>
-      (_$data['title'] as InputStringFilterInput?);
+  InputStringFilterInput? get title => (_$data['title'] as InputStringFilterInput?);
 
   List<String>? get versions => (_$data['versions'] as List<String>?);
 
@@ -516,8 +496,7 @@ class InputTermVersionFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputTermVersionFilterInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputTermVersionFilterInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$body = body;
@@ -530,8 +509,7 @@ class InputTermVersionFilterInput {
     }
     final l$createdAt = createdAt;
     final lOther$createdAt = other.createdAt;
-    if (_$data.containsKey('createdAt') !=
-        other._$data.containsKey('createdAt')) {
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
       return false;
     }
     if (l$createdAt != lOther$createdAt) {
@@ -539,8 +517,7 @@ class InputTermVersionFilterInput {
     }
     final l$description = description;
     final lOther$description = other.description;
-    if (_$data.containsKey('description') !=
-        other._$data.containsKey('description')) {
+    if (_$data.containsKey('description') != other._$data.containsKey('description')) {
       return false;
     }
     if (l$description != lOther$description) {
@@ -556,8 +533,7 @@ class InputTermVersionFilterInput {
     }
     final l$versions = versions;
     final lOther$versions = other.versions;
-    if (_$data.containsKey('versions') !=
-        other._$data.containsKey('versions')) {
+    if (_$data.containsKey('versions') != other._$data.containsKey('versions')) {
       return false;
     }
     if (l$versions != null && lOther$versions != null) {
@@ -591,8 +567,8 @@ class InputTermVersionFilterInput {
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('versions')
           ? l$versions == null
-              ? null
-              : Object.hashAll(l$versions.map((v) => v))
+                ? null
+                : Object.hashAll(l$versions.map((v) => v))
           : const {},
     ]);
   }
@@ -604,13 +580,12 @@ class InputStringFilterInput {
     String? endsWith,
     String? equals,
     String? startsWith,
-  }) =>
-      InputStringFilterInput._({
-        if (contains != null) r'contains': contains,
-        if (endsWith != null) r'endsWith': endsWith,
-        if (equals != null) r'equals': equals,
-        if (startsWith != null) r'startsWith': startsWith,
-      });
+  }) => InputStringFilterInput._({
+    if (contains != null) r'contains': contains,
+    if (endsWith != null) r'endsWith': endsWith,
+    if (equals != null) r'equals': equals,
+    if (startsWith != null) r'startsWith': startsWith,
+  });
 
   InputStringFilterInput._(this._$data);
 
@@ -676,8 +651,7 @@ class InputStringFilterInput {
     }
     final l$contains = contains;
     final lOther$contains = other.contains;
-    if (_$data.containsKey('contains') !=
-        other._$data.containsKey('contains')) {
+    if (_$data.containsKey('contains') != other._$data.containsKey('contains')) {
       return false;
     }
     if (l$contains != lOther$contains) {
@@ -685,8 +659,7 @@ class InputStringFilterInput {
     }
     final l$endsWith = endsWith;
     final lOther$endsWith = other.endsWith;
-    if (_$data.containsKey('endsWith') !=
-        other._$data.containsKey('endsWith')) {
+    if (_$data.containsKey('endsWith') != other._$data.containsKey('endsWith')) {
       return false;
     }
     if (l$endsWith != lOther$endsWith) {
@@ -702,8 +675,7 @@ class InputStringFilterInput {
     }
     final l$startsWith = startsWith;
     final lOther$startsWith = other.startsWith;
-    if (_$data.containsKey('startsWith') !=
-        other._$data.containsKey('startsWith')) {
+    if (_$data.containsKey('startsWith') != other._$data.containsKey('startsWith')) {
       return false;
     }
     if (l$startsWith != lOther$startsWith) {
@@ -735,16 +707,14 @@ class InputDateTimeFilterInput {
     DateTime? greaterThanOrEqual,
     DateTime? lessThan,
     DateTime? lessThanOrEqual,
-  }) =>
-      InputDateTimeFilterInput._({
-        if (between != null) r'between': between,
-        if (equals != null) r'equals': equals,
-        if (greaterThan != null) r'greaterThan': greaterThan,
-        if (greaterThanOrEqual != null)
-          r'greaterThanOrEqual': greaterThanOrEqual,
-        if (lessThan != null) r'lessThan': lessThan,
-        if (lessThanOrEqual != null) r'lessThanOrEqual': lessThanOrEqual,
-      });
+  }) => InputDateTimeFilterInput._({
+    if (between != null) r'between': between,
+    if (equals != null) r'equals': equals,
+    if (greaterThan != null) r'greaterThan': greaterThan,
+    if (greaterThanOrEqual != null) r'greaterThanOrEqual': greaterThanOrEqual,
+    if (lessThan != null) r'lessThan': lessThan,
+    if (lessThanOrEqual != null) r'lessThanOrEqual': lessThanOrEqual,
+  });
 
   InputDateTimeFilterInput._(this._$data);
 
@@ -754,13 +724,11 @@ class InputDateTimeFilterInput {
       final l$between = data['between'];
       result$data['between'] = l$between == null
           ? null
-          : InputDateTimeRangeFilterInput.fromJson(
-              (l$between as Map<String, dynamic>));
+          : InputDateTimeRangeFilterInput.fromJson((l$between as Map<String, dynamic>));
     }
     if (data.containsKey('equals')) {
       final l$equals = data['equals'];
-      result$data['equals'] =
-          l$equals == null ? null : DateTime.parse((l$equals as String));
+      result$data['equals'] = l$equals == null ? null : DateTime.parse((l$equals as String));
     }
     if (data.containsKey('greaterThan')) {
       final l$greaterThan = data['greaterThan'];
@@ -776,8 +744,7 @@ class InputDateTimeFilterInput {
     }
     if (data.containsKey('lessThan')) {
       final l$lessThan = data['lessThan'];
-      result$data['lessThan'] =
-          l$lessThan == null ? null : DateTime.parse((l$lessThan as String));
+      result$data['lessThan'] = l$lessThan == null ? null : DateTime.parse((l$lessThan as String));
     }
     if (data.containsKey('lessThanOrEqual')) {
       final l$lessThanOrEqual = data['lessThanOrEqual'];
@@ -797,8 +764,7 @@ class InputDateTimeFilterInput {
 
   DateTime? get greaterThan => (_$data['greaterThan'] as DateTime?);
 
-  DateTime? get greaterThanOrEqual =>
-      (_$data['greaterThanOrEqual'] as DateTime?);
+  DateTime? get greaterThanOrEqual => (_$data['greaterThanOrEqual'] as DateTime?);
 
   DateTime? get lessThan => (_$data['lessThan'] as DateTime?);
 
@@ -820,8 +786,7 @@ class InputDateTimeFilterInput {
     }
     if (_$data.containsKey('greaterThanOrEqual')) {
       final l$greaterThanOrEqual = greaterThanOrEqual;
-      result$data['greaterThanOrEqual'] =
-          l$greaterThanOrEqual?.toIso8601String();
+      result$data['greaterThanOrEqual'] = l$greaterThanOrEqual?.toIso8601String();
     }
     if (_$data.containsKey('lessThan')) {
       final l$lessThan = lessThan;
@@ -839,8 +804,7 @@ class InputDateTimeFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputDateTimeFilterInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputDateTimeFilterInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$between = between;
@@ -861,8 +825,7 @@ class InputDateTimeFilterInput {
     }
     final l$greaterThan = greaterThan;
     final lOther$greaterThan = other.greaterThan;
-    if (_$data.containsKey('greaterThan') !=
-        other._$data.containsKey('greaterThan')) {
+    if (_$data.containsKey('greaterThan') != other._$data.containsKey('greaterThan')) {
       return false;
     }
     if (l$greaterThan != lOther$greaterThan) {
@@ -879,8 +842,7 @@ class InputDateTimeFilterInput {
     }
     final l$lessThan = lessThan;
     final lOther$lessThan = other.lessThan;
-    if (_$data.containsKey('lessThan') !=
-        other._$data.containsKey('lessThan')) {
+    if (_$data.containsKey('lessThan') != other._$data.containsKey('lessThan')) {
       return false;
     }
     if (l$lessThan != lOther$lessThan) {
@@ -888,8 +850,7 @@ class InputDateTimeFilterInput {
     }
     final l$lessThanOrEqual = lessThanOrEqual;
     final lOther$lessThanOrEqual = other.lessThanOrEqual;
-    if (_$data.containsKey('lessThanOrEqual') !=
-        other._$data.containsKey('lessThanOrEqual')) {
+    if (_$data.containsKey('lessThanOrEqual') != other._$data.containsKey('lessThanOrEqual')) {
       return false;
     }
     if (l$lessThanOrEqual != lOther$lessThanOrEqual) {
@@ -910,9 +871,7 @@ class InputDateTimeFilterInput {
       _$data.containsKey('between') ? l$between : const {},
       _$data.containsKey('equals') ? l$equals : const {},
       _$data.containsKey('greaterThan') ? l$greaterThan : const {},
-      _$data.containsKey('greaterThanOrEqual')
-          ? l$greaterThanOrEqual
-          : const {},
+      _$data.containsKey('greaterThanOrEqual') ? l$greaterThanOrEqual : const {},
       _$data.containsKey('lessThan') ? l$lessThan : const {},
       _$data.containsKey('lessThanOrEqual') ? l$lessThanOrEqual : const {},
     ]);
@@ -920,10 +879,7 @@ class InputDateTimeFilterInput {
 }
 
 class InputDateTimeRangeFilterInput {
-  factory InputDateTimeRangeFilterInput({
-    DateTime? end,
-    DateTime? start,
-  }) =>
+  factory InputDateTimeRangeFilterInput({DateTime? end, DateTime? start}) =>
       InputDateTimeRangeFilterInput._({
         if (end != null) r'end': end,
         if (start != null) r'start': start,
@@ -935,13 +891,11 @@ class InputDateTimeRangeFilterInput {
     final result$data = <String, dynamic>{};
     if (data.containsKey('end')) {
       final l$end = data['end'];
-      result$data['end'] =
-          l$end == null ? null : DateTime.parse((l$end as String));
+      result$data['end'] = l$end == null ? null : DateTime.parse((l$end as String));
     }
     if (data.containsKey('start')) {
       final l$start = data['start'];
-      result$data['start'] =
-          l$start == null ? null : DateTime.parse((l$start as String));
+      result$data['start'] = l$start == null ? null : DateTime.parse((l$start as String));
     }
     return InputDateTimeRangeFilterInput._(result$data);
   }
@@ -970,8 +924,7 @@ class InputDateTimeRangeFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputDateTimeRangeFilterInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputDateTimeRangeFilterInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$end = end;
@@ -1008,19 +961,14 @@ class InputTermVersionOrderInput {
   factory InputTermVersionOrderInput({
     required EnumOrderableTermVersionFields field,
     required EnumOrderInput type,
-  }) =>
-      InputTermVersionOrderInput._({
-        r'field': field,
-        r'type': type,
-      });
+  }) => InputTermVersionOrderInput._({r'field': field, r'type': type});
 
   InputTermVersionOrderInput._(this._$data);
 
   factory InputTermVersionOrderInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$field = data['field'];
-    result$data['field'] =
-        fromJsonEnumOrderableTermVersionFields((l$field as String));
+    result$data['field'] = fromJsonEnumOrderableTermVersionFields((l$field as String));
     final l$type = data['type'];
     result$data['type'] = fromJsonEnumOrderInput((l$type as String));
     return InputTermVersionOrderInput._(result$data);
@@ -1028,8 +976,7 @@ class InputTermVersionOrderInput {
 
   Map<String, dynamic> _$data;
 
-  EnumOrderableTermVersionFields get field =>
-      (_$data['field'] as EnumOrderableTermVersionFields);
+  EnumOrderableTermVersionFields get field => (_$data['field'] as EnumOrderableTermVersionFields);
 
   EnumOrderInput get type => (_$data['type'] as EnumOrderInput);
 
@@ -1047,8 +994,7 @@ class InputTermVersionOrderInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputTermVersionOrderInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputTermVersionOrderInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$field = field;
@@ -1068,33 +1014,27 @@ class InputTermVersionOrderInput {
   int get hashCode {
     final l$field = field;
     final l$type = type;
-    return Object.hashAll([
-      l$field,
-      l$type,
-    ]);
+    return Object.hashAll([l$field, l$type]);
   }
 }
 
 class InputUserOrganizationEdgeFilterInput {
-  factory InputUserOrganizationEdgeFilterInput(
-          {EnumUserOrganizationEdgeStatus? userOrganizationEdgeStatus}) =>
-      InputUserOrganizationEdgeFilterInput._({
-        if (userOrganizationEdgeStatus != null)
-          r'userOrganizationEdgeStatus': userOrganizationEdgeStatus,
-      });
+  factory InputUserOrganizationEdgeFilterInput({
+    EnumUserOrganizationEdgeStatus? userOrganizationEdgeStatus,
+  }) => InputUserOrganizationEdgeFilterInput._({
+    if (userOrganizationEdgeStatus != null)
+      r'userOrganizationEdgeStatus': userOrganizationEdgeStatus,
+  });
 
   InputUserOrganizationEdgeFilterInput._(this._$data);
 
-  factory InputUserOrganizationEdgeFilterInput.fromJson(
-      Map<String, dynamic> data) {
+  factory InputUserOrganizationEdgeFilterInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     if (data.containsKey('userOrganizationEdgeStatus')) {
       final l$userOrganizationEdgeStatus = data['userOrganizationEdgeStatus'];
-      result$data['userOrganizationEdgeStatus'] =
-          l$userOrganizationEdgeStatus == null
-              ? null
-              : fromJsonEnumUserOrganizationEdgeStatus(
-                  (l$userOrganizationEdgeStatus as String));
+      result$data['userOrganizationEdgeStatus'] = l$userOrganizationEdgeStatus == null
+          ? null
+          : fromJsonEnumUserOrganizationEdgeStatus((l$userOrganizationEdgeStatus as String));
     }
     return InputUserOrganizationEdgeFilterInput._(result$data);
   }
@@ -1108,11 +1048,9 @@ class InputUserOrganizationEdgeFilterInput {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('userOrganizationEdgeStatus')) {
       final l$userOrganizationEdgeStatus = userOrganizationEdgeStatus;
-      result$data['userOrganizationEdgeStatus'] =
-          l$userOrganizationEdgeStatus == null
-              ? null
-              : toJsonEnumUserOrganizationEdgeStatus(
-                  l$userOrganizationEdgeStatus);
+      result$data['userOrganizationEdgeStatus'] = l$userOrganizationEdgeStatus == null
+          ? null
+          : toJsonEnumUserOrganizationEdgeStatus(l$userOrganizationEdgeStatus);
     }
     return result$data;
   }
@@ -1122,8 +1060,7 @@ class InputUserOrganizationEdgeFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputUserOrganizationEdgeFilterInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputUserOrganizationEdgeFilterInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$userOrganizationEdgeStatus = userOrganizationEdgeStatus;
@@ -1142,9 +1079,7 @@ class InputUserOrganizationEdgeFilterInput {
   int get hashCode {
     final l$userOrganizationEdgeStatus = userOrganizationEdgeStatus;
     return Object.hashAll([
-      _$data.containsKey('userOrganizationEdgeStatus')
-          ? l$userOrganizationEdgeStatus
-          : const {}
+      _$data.containsKey('userOrganizationEdgeStatus') ? l$userOrganizationEdgeStatus : const {},
     ]);
   }
 }
@@ -1157,16 +1092,14 @@ class InputOrganizationFilterInput {
     EnumOrganizationStatus? status,
     List<String>? tags,
     InputStringFilterInput? tradingName,
-  }) =>
-      InputOrganizationFilterInput._({
-        if (corporateTaxpayerRegistry != null)
-          r'corporateTaxpayerRegistry': corporateTaxpayerRegistry,
-        if (email != null) r'email': email,
-        if (name != null) r'name': name,
-        if (status != null) r'status': status,
-        if (tags != null) r'tags': tags,
-        if (tradingName != null) r'tradingName': tradingName,
-      });
+  }) => InputOrganizationFilterInput._({
+    if (corporateTaxpayerRegistry != null) r'corporateTaxpayerRegistry': corporateTaxpayerRegistry,
+    if (email != null) r'email': email,
+    if (name != null) r'name': name,
+    if (status != null) r'status': status,
+    if (tags != null) r'tags': tags,
+    if (tradingName != null) r'tradingName': tradingName,
+  });
 
   InputOrganizationFilterInput._(this._$data);
 
@@ -1174,11 +1107,9 @@ class InputOrganizationFilterInput {
     final result$data = <String, dynamic>{};
     if (data.containsKey('corporateTaxpayerRegistry')) {
       final l$corporateTaxpayerRegistry = data['corporateTaxpayerRegistry'];
-      result$data['corporateTaxpayerRegistry'] =
-          l$corporateTaxpayerRegistry == null
-              ? null
-              : InputStringFilterInput.fromJson(
-                  (l$corporateTaxpayerRegistry as Map<String, dynamic>));
+      result$data['corporateTaxpayerRegistry'] = l$corporateTaxpayerRegistry == null
+          ? null
+          : InputStringFilterInput.fromJson((l$corporateTaxpayerRegistry as Map<String, dynamic>));
     }
     if (data.containsKey('email')) {
       final l$email = data['email'];
@@ -1200,15 +1131,13 @@ class InputOrganizationFilterInput {
     }
     if (data.containsKey('tags')) {
       final l$tags = data['tags'];
-      result$data['tags'] =
-          (l$tags as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['tags'] = (l$tags as List<dynamic>?)?.map((e) => (e as String)).toList();
     }
     if (data.containsKey('tradingName')) {
       final l$tradingName = data['tradingName'];
       result$data['tradingName'] = l$tradingName == null
           ? null
-          : InputStringFilterInput.fromJson(
-              (l$tradingName as Map<String, dynamic>));
+          : InputStringFilterInput.fromJson((l$tradingName as Map<String, dynamic>));
     }
     return InputOrganizationFilterInput._(result$data);
   }
@@ -1218,26 +1147,21 @@ class InputOrganizationFilterInput {
   InputStringFilterInput? get corporateTaxpayerRegistry =>
       (_$data['corporateTaxpayerRegistry'] as InputStringFilterInput?);
 
-  InputStringFilterInput? get email =>
-      (_$data['email'] as InputStringFilterInput?);
+  InputStringFilterInput? get email => (_$data['email'] as InputStringFilterInput?);
 
-  InputStringFilterInput? get name =>
-      (_$data['name'] as InputStringFilterInput?);
+  InputStringFilterInput? get name => (_$data['name'] as InputStringFilterInput?);
 
-  EnumOrganizationStatus? get status =>
-      (_$data['status'] as EnumOrganizationStatus?);
+  EnumOrganizationStatus? get status => (_$data['status'] as EnumOrganizationStatus?);
 
   List<String>? get tags => (_$data['tags'] as List<String>?);
 
-  InputStringFilterInput? get tradingName =>
-      (_$data['tradingName'] as InputStringFilterInput?);
+  InputStringFilterInput? get tradingName => (_$data['tradingName'] as InputStringFilterInput?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('corporateTaxpayerRegistry')) {
       final l$corporateTaxpayerRegistry = corporateTaxpayerRegistry;
-      result$data['corporateTaxpayerRegistry'] =
-          l$corporateTaxpayerRegistry?.toJson();
+      result$data['corporateTaxpayerRegistry'] = l$corporateTaxpayerRegistry?.toJson();
     }
     if (_$data.containsKey('email')) {
       final l$email = email;
@@ -1249,8 +1173,7 @@ class InputOrganizationFilterInput {
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] =
-          l$status == null ? null : toJsonEnumOrganizationStatus(l$status);
+      result$data['status'] = l$status == null ? null : toJsonEnumOrganizationStatus(l$status);
     }
     if (_$data.containsKey('tags')) {
       final l$tags = tags;
@@ -1268,8 +1191,7 @@ class InputOrganizationFilterInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputOrganizationFilterInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputOrganizationFilterInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$corporateTaxpayerRegistry = corporateTaxpayerRegistry;
@@ -1326,8 +1248,7 @@ class InputOrganizationFilterInput {
     }
     final l$tradingName = tradingName;
     final lOther$tradingName = other.tradingName;
-    if (_$data.containsKey('tradingName') !=
-        other._$data.containsKey('tradingName')) {
+    if (_$data.containsKey('tradingName') != other._$data.containsKey('tradingName')) {
       return false;
     }
     if (l$tradingName != lOther$tradingName) {
@@ -1345,16 +1266,14 @@ class InputOrganizationFilterInput {
     final l$tags = tags;
     final l$tradingName = tradingName;
     return Object.hashAll([
-      _$data.containsKey('corporateTaxpayerRegistry')
-          ? l$corporateTaxpayerRegistry
-          : const {},
+      _$data.containsKey('corporateTaxpayerRegistry') ? l$corporateTaxpayerRegistry : const {},
       _$data.containsKey('email') ? l$email : const {},
       _$data.containsKey('name') ? l$name : const {},
       _$data.containsKey('status') ? l$status : const {},
       _$data.containsKey('tags')
           ? l$tags == null
-              ? null
-              : Object.hashAll(l$tags.map((v) => v))
+                ? null
+                : Object.hashAll(l$tags.map((v) => v))
           : const {},
       _$data.containsKey('tradingName') ? l$tradingName : const {},
     ]);
@@ -1365,19 +1284,14 @@ class InputOrganizationOrderInput {
   factory InputOrganizationOrderInput({
     required EnumOrderableOrganizationFields field,
     required EnumOrderInput type,
-  }) =>
-      InputOrganizationOrderInput._({
-        r'field': field,
-        r'type': type,
-      });
+  }) => InputOrganizationOrderInput._({r'field': field, r'type': type});
 
   InputOrganizationOrderInput._(this._$data);
 
   factory InputOrganizationOrderInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$field = data['field'];
-    result$data['field'] =
-        fromJsonEnumOrderableOrganizationFields((l$field as String));
+    result$data['field'] = fromJsonEnumOrderableOrganizationFields((l$field as String));
     final l$type = data['type'];
     result$data['type'] = fromJsonEnumOrderInput((l$type as String));
     return InputOrganizationOrderInput._(result$data);
@@ -1385,8 +1299,7 @@ class InputOrganizationOrderInput {
 
   Map<String, dynamic> _$data;
 
-  EnumOrderableOrganizationFields get field =>
-      (_$data['field'] as EnumOrderableOrganizationFields);
+  EnumOrderableOrganizationFields get field => (_$data['field'] as EnumOrderableOrganizationFields);
 
   EnumOrderInput get type => (_$data['type'] as EnumOrderInput);
 
@@ -1404,8 +1317,7 @@ class InputOrganizationOrderInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputOrganizationOrderInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputOrganizationOrderInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$field = field;
@@ -1425,18 +1337,13 @@ class InputOrganizationOrderInput {
   int get hashCode {
     final l$field = field;
     final l$type = type;
-    return Object.hashAll([
-      l$field,
-      l$type,
-    ]);
+    return Object.hashAll([l$field, l$type]);
   }
 }
 
 class InputPostFilterInput {
   factory InputPostFilterInput({List<String>? organizations}) =>
-      InputPostFilterInput._({
-        if (organizations != null) r'organizations': organizations,
-      });
+      InputPostFilterInput._({if (organizations != null) r'organizations': organizations});
 
   InputPostFilterInput._(this._$data);
 
@@ -1474,8 +1381,7 @@ class InputPostFilterInput {
     }
     final l$organizations = organizations;
     final lOther$organizations = other.organizations;
-    if (_$data.containsKey('organizations') !=
-        other._$data.containsKey('organizations')) {
+    if (_$data.containsKey('organizations') != other._$data.containsKey('organizations')) {
       return false;
     }
     if (l$organizations != null && lOther$organizations != null) {
@@ -1501,9 +1407,9 @@ class InputPostFilterInput {
     return Object.hashAll([
       _$data.containsKey('organizations')
           ? l$organizations == null
-              ? null
-              : Object.hashAll(l$organizations.map((v) => v))
-          : const {}
+                ? null
+                : Object.hashAll(l$organizations.map((v) => v))
+          : const {},
     ]);
   }
 }
@@ -1513,12 +1419,11 @@ class InputTermFilterInput {
     InputStringFilterInput? description,
     List<String>? tags,
     InputStringFilterInput? title,
-  }) =>
-      InputTermFilterInput._({
-        if (description != null) r'description': description,
-        if (tags != null) r'tags': tags,
-        if (title != null) r'title': title,
-      });
+  }) => InputTermFilterInput._({
+    if (description != null) r'description': description,
+    if (tags != null) r'tags': tags,
+    if (title != null) r'title': title,
+  });
 
   InputTermFilterInput._(this._$data);
 
@@ -1528,13 +1433,11 @@ class InputTermFilterInput {
       final l$description = data['description'];
       result$data['description'] = l$description == null
           ? null
-          : InputStringFilterInput.fromJson(
-              (l$description as Map<String, dynamic>));
+          : InputStringFilterInput.fromJson((l$description as Map<String, dynamic>));
     }
     if (data.containsKey('tags')) {
       final l$tags = data['tags'];
-      result$data['tags'] =
-          (l$tags as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['tags'] = (l$tags as List<dynamic>?)?.map((e) => (e as String)).toList();
     }
     if (data.containsKey('title')) {
       final l$title = data['title'];
@@ -1547,13 +1450,11 @@ class InputTermFilterInput {
 
   Map<String, dynamic> _$data;
 
-  InputStringFilterInput? get description =>
-      (_$data['description'] as InputStringFilterInput?);
+  InputStringFilterInput? get description => (_$data['description'] as InputStringFilterInput?);
 
   List<String>? get tags => (_$data['tags'] as List<String>?);
 
-  InputStringFilterInput? get title =>
-      (_$data['title'] as InputStringFilterInput?);
+  InputStringFilterInput? get title => (_$data['title'] as InputStringFilterInput?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -1582,8 +1483,7 @@ class InputTermFilterInput {
     }
     final l$description = description;
     final lOther$description = other.description;
-    if (_$data.containsKey('description') !=
-        other._$data.containsKey('description')) {
+    if (_$data.containsKey('description') != other._$data.containsKey('description')) {
       return false;
     }
     if (l$description != lOther$description) {
@@ -1628,8 +1528,8 @@ class InputTermFilterInput {
       _$data.containsKey('description') ? l$description : const {},
       _$data.containsKey('tags')
           ? l$tags == null
-              ? null
-              : Object.hashAll(l$tags.map((v) => v))
+                ? null
+                : Object.hashAll(l$tags.map((v) => v))
           : const {},
       _$data.containsKey('title') ? l$title : const {},
     ]);
@@ -1640,11 +1540,7 @@ class InputTermOrderInput {
   factory InputTermOrderInput({
     required EnumOrderableTermFields field,
     required EnumOrderInput type,
-  }) =>
-      InputTermOrderInput._({
-        r'field': field,
-        r'type': type,
-      });
+  }) => InputTermOrderInput._({r'field': field, r'type': type});
 
   InputTermOrderInput._(this._$data);
 
@@ -1659,8 +1555,7 @@ class InputTermOrderInput {
 
   Map<String, dynamic> _$data;
 
-  EnumOrderableTermFields get field =>
-      (_$data['field'] as EnumOrderableTermFields);
+  EnumOrderableTermFields get field => (_$data['field'] as EnumOrderableTermFields);
 
   EnumOrderInput get type => (_$data['type'] as EnumOrderInput);
 
@@ -1698,10 +1593,7 @@ class InputTermOrderInput {
   int get hashCode {
     final l$field = field;
     final l$type = type;
-    return Object.hashAll([
-      l$field,
-      l$type,
-    ]);
+    return Object.hashAll([l$field, l$type]);
   }
 }
 
@@ -1710,12 +1602,11 @@ class InputUserFilterInput {
     InputStringFilterInput? email,
     InputStringFilterInput? name,
     InputStringFilterInput? username,
-  }) =>
-      InputUserFilterInput._({
-        if (email != null) r'email': email,
-        if (name != null) r'name': name,
-        if (username != null) r'username': username,
-      });
+  }) => InputUserFilterInput._({
+    if (email != null) r'email': email,
+    if (name != null) r'name': name,
+    if (username != null) r'username': username,
+  });
 
   InputUserFilterInput._(this._$data);
 
@@ -1737,22 +1628,18 @@ class InputUserFilterInput {
       final l$username = data['username'];
       result$data['username'] = l$username == null
           ? null
-          : InputStringFilterInput.fromJson(
-              (l$username as Map<String, dynamic>));
+          : InputStringFilterInput.fromJson((l$username as Map<String, dynamic>));
     }
     return InputUserFilterInput._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  InputStringFilterInput? get email =>
-      (_$data['email'] as InputStringFilterInput?);
+  InputStringFilterInput? get email => (_$data['email'] as InputStringFilterInput?);
 
-  InputStringFilterInput? get name =>
-      (_$data['name'] as InputStringFilterInput?);
+  InputStringFilterInput? get name => (_$data['name'] as InputStringFilterInput?);
 
-  InputStringFilterInput? get username =>
-      (_$data['username'] as InputStringFilterInput?);
+  InputStringFilterInput? get username => (_$data['username'] as InputStringFilterInput?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -1797,8 +1684,7 @@ class InputUserFilterInput {
     }
     final l$username = username;
     final lOther$username = other.username;
-    if (_$data.containsKey('username') !=
-        other._$data.containsKey('username')) {
+    if (_$data.containsKey('username') != other._$data.containsKey('username')) {
       return false;
     }
     if (l$username != lOther$username) {
@@ -1825,12 +1711,11 @@ class InputWebhookFilterInput {
     bool? active,
     List<EnumSubscribableEvents>? events,
     InputStringFilterInput? name,
-  }) =>
-      InputWebhookFilterInput._({
-        if (active != null) r'active': active,
-        if (events != null) r'events': events,
-        if (name != null) r'name': name,
-      });
+  }) => InputWebhookFilterInput._({
+    if (active != null) r'active': active,
+    if (events != null) r'events': events,
+    if (name != null) r'name': name,
+  });
 
   InputWebhookFilterInput._(this._$data);
 
@@ -1859,11 +1744,9 @@ class InputWebhookFilterInput {
 
   bool? get active => (_$data['active'] as bool?);
 
-  List<EnumSubscribableEvents>? get events =>
-      (_$data['events'] as List<EnumSubscribableEvents>?);
+  List<EnumSubscribableEvents>? get events => (_$data['events'] as List<EnumSubscribableEvents>?);
 
-  InputStringFilterInput? get name =>
-      (_$data['name'] as InputStringFilterInput?);
+  InputStringFilterInput? get name => (_$data['name'] as InputStringFilterInput?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -1873,8 +1756,7 @@ class InputWebhookFilterInput {
     }
     if (_$data.containsKey('events')) {
       final l$events = events;
-      result$data['events'] =
-          l$events?.map((e) => toJsonEnumSubscribableEvents(e)).toList();
+      result$data['events'] = l$events?.map((e) => toJsonEnumSubscribableEvents(e)).toList();
     }
     if (_$data.containsKey('name')) {
       final l$name = name;
@@ -1938,8 +1820,8 @@ class InputWebhookFilterInput {
       _$data.containsKey('active') ? l$active : const {},
       _$data.containsKey('events')
           ? l$events == null
-              ? null
-              : Object.hashAll(l$events.map((v) => v))
+                ? null
+                : Object.hashAll(l$events.map((v) => v))
           : const {},
       _$data.containsKey('name') ? l$name : const {},
     ]);
@@ -1948,9 +1830,7 @@ class InputWebhookFilterInput {
 
 class InputActivateUserInput {
   factory InputActivateUserInput({required String userId}) =>
-      InputActivateUserInput._({
-        r'userId': userId,
-      });
+      InputActivateUserInput._({r'userId': userId});
 
   InputActivateUserInput._(this._$data);
 
@@ -1999,16 +1879,14 @@ class InputAddOrUpdateUserProfilePictureInput {
   factory InputAddOrUpdateUserProfilePictureInput({
     required String profilePicture,
     String? userId,
-  }) =>
-      InputAddOrUpdateUserProfilePictureInput._({
-        r'profilePicture': profilePicture,
-        if (userId != null) r'userId': userId,
-      });
+  }) => InputAddOrUpdateUserProfilePictureInput._({
+    r'profilePicture': profilePicture,
+    if (userId != null) r'userId': userId,
+  });
 
   InputAddOrUpdateUserProfilePictureInput._(this._$data);
 
-  factory InputAddOrUpdateUserProfilePictureInput.fromJson(
-      Map<String, dynamic> data) {
+  factory InputAddOrUpdateUserProfilePictureInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$profilePicture = data['profilePicture'];
     result$data['profilePicture'] = (l$profilePicture as String);
@@ -2041,8 +1919,7 @@ class InputAddOrUpdateUserProfilePictureInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputAddOrUpdateUserProfilePictureInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputAddOrUpdateUserProfilePictureInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$profilePicture = profilePicture;
@@ -2065,10 +1942,7 @@ class InputAddOrUpdateUserProfilePictureInput {
   int get hashCode {
     final l$profilePicture = profilePicture;
     final l$userId = userId;
-    return Object.hashAll([
-      l$profilePicture,
-      _$data.containsKey('userId') ? l$userId : const {},
-    ]);
+    return Object.hashAll([l$profilePicture, _$data.containsKey('userId') ? l$userId : const {}]);
   }
 }
 
@@ -2077,12 +1951,11 @@ class InputAddUserToOrganizationInput {
     required String organizationId,
     EnumUserOrganizationRole? role,
     required String userId,
-  }) =>
-      InputAddUserToOrganizationInput._({
-        r'organizationId': organizationId,
-        if (role != null) r'role': role,
-        r'userId': userId,
-      });
+  }) => InputAddUserToOrganizationInput._({
+    r'organizationId': organizationId,
+    if (role != null) r'role': role,
+    r'userId': userId,
+  });
 
   InputAddUserToOrganizationInput._(this._$data);
 
@@ -2092,8 +1965,7 @@ class InputAddUserToOrganizationInput {
     result$data['organizationId'] = (l$organizationId as String);
     if (data.containsKey('role')) {
       final l$role = data['role'];
-      result$data['role'] =
-          fromJsonEnumUserOrganizationRole((l$role as String));
+      result$data['role'] = fromJsonEnumUserOrganizationRole((l$role as String));
     }
     final l$userId = data['userId'];
     result$data['userId'] = (l$userId as String);
@@ -2104,8 +1976,7 @@ class InputAddUserToOrganizationInput {
 
   String get organizationId => (_$data['organizationId'] as String);
 
-  EnumUserOrganizationRole? get role =>
-      (_$data['role'] as EnumUserOrganizationRole?);
+  EnumUserOrganizationRole? get role => (_$data['role'] as EnumUserOrganizationRole?);
 
   String get userId => (_$data['userId'] as String);
 
@@ -2115,8 +1986,7 @@ class InputAddUserToOrganizationInput {
     result$data['organizationId'] = l$organizationId;
     if (_$data.containsKey('role')) {
       final l$role = role;
-      result$data['role'] =
-          toJsonEnumUserOrganizationRole((l$role as EnumUserOrganizationRole));
+      result$data['role'] = toJsonEnumUserOrganizationRole((l$role as EnumUserOrganizationRole));
     }
     final l$userId = userId;
     result$data['userId'] = l$userId;
@@ -2128,8 +1998,7 @@ class InputAddUserToOrganizationInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputAddUserToOrganizationInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputAddUserToOrganizationInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$organizationId = organizationId;
@@ -2171,15 +2040,11 @@ class InputAgreeOrDisagreeToTermVersionInput {
     required bool agree,
     required String termVersionId,
   }) =>
-      InputAgreeOrDisagreeToTermVersionInput._({
-        r'agree': agree,
-        r'termVersionId': termVersionId,
-      });
+      InputAgreeOrDisagreeToTermVersionInput._({r'agree': agree, r'termVersionId': termVersionId});
 
   InputAgreeOrDisagreeToTermVersionInput._(this._$data);
 
-  factory InputAgreeOrDisagreeToTermVersionInput.fromJson(
-      Map<String, dynamic> data) {
+  factory InputAgreeOrDisagreeToTermVersionInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$agree = data['agree'];
     result$data['agree'] = (l$agree as bool);
@@ -2208,8 +2073,7 @@ class InputAgreeOrDisagreeToTermVersionInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputAgreeOrDisagreeToTermVersionInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputAgreeOrDisagreeToTermVersionInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$agree = agree;
@@ -2229,10 +2093,7 @@ class InputAgreeOrDisagreeToTermVersionInput {
   int get hashCode {
     final l$agree = agree;
     final l$termVersionId = termVersionId;
-    return Object.hashAll([
-      l$agree,
-      l$termVersionId,
-    ]);
+    return Object.hashAll([l$agree, l$termVersionId]);
   }
 }
 
@@ -2241,25 +2102,22 @@ class InputChangeOrganizationStatusInput {
     required String ifMatchesETag,
     required String organizationId,
     required EnumOrganizationStatus status,
-  }) =>
-      InputChangeOrganizationStatusInput._({
-        r'ifMatchesETag': ifMatchesETag,
-        r'organizationId': organizationId,
-        r'status': status,
-      });
+  }) => InputChangeOrganizationStatusInput._({
+    r'ifMatchesETag': ifMatchesETag,
+    r'organizationId': organizationId,
+    r'status': status,
+  });
 
   InputChangeOrganizationStatusInput._(this._$data);
 
-  factory InputChangeOrganizationStatusInput.fromJson(
-      Map<String, dynamic> data) {
+  factory InputChangeOrganizationStatusInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$ifMatchesETag = data['ifMatchesETag'];
     result$data['ifMatchesETag'] = (l$ifMatchesETag as String);
     final l$organizationId = data['organizationId'];
     result$data['organizationId'] = (l$organizationId as String);
     final l$status = data['status'];
-    result$data['status'] =
-        fromJsonEnumOrganizationStatus((l$status as String));
+    result$data['status'] = fromJsonEnumOrganizationStatus((l$status as String));
     return InputChangeOrganizationStatusInput._(result$data);
   }
 
@@ -2269,8 +2127,7 @@ class InputChangeOrganizationStatusInput {
 
   String get organizationId => (_$data['organizationId'] as String);
 
-  EnumOrganizationStatus get status =>
-      (_$data['status'] as EnumOrganizationStatus);
+  EnumOrganizationStatus get status => (_$data['status'] as EnumOrganizationStatus);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -2288,8 +2145,7 @@ class InputChangeOrganizationStatusInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputChangeOrganizationStatusInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputChangeOrganizationStatusInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$ifMatchesETag = ifMatchesETag;
@@ -2315,23 +2171,13 @@ class InputChangeOrganizationStatusInput {
     final l$ifMatchesETag = ifMatchesETag;
     final l$organizationId = organizationId;
     final l$status = status;
-    return Object.hashAll([
-      l$ifMatchesETag,
-      l$organizationId,
-      l$status,
-    ]);
+    return Object.hashAll([l$ifMatchesETag, l$organizationId, l$status]);
   }
 }
 
 class InputChangePasswordInput {
-  factory InputChangePasswordInput({
-    required String newPassword,
-    required String oldPassword,
-  }) =>
-      InputChangePasswordInput._({
-        r'newPassword': newPassword,
-        r'oldPassword': oldPassword,
-      });
+  factory InputChangePasswordInput({required String newPassword, required String oldPassword}) =>
+      InputChangePasswordInput._({r'newPassword': newPassword, r'oldPassword': oldPassword});
 
   InputChangePasswordInput._(this._$data);
 
@@ -2364,8 +2210,7 @@ class InputChangePasswordInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputChangePasswordInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputChangePasswordInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$newPassword = newPassword;
@@ -2385,10 +2230,7 @@ class InputChangePasswordInput {
   int get hashCode {
     final l$newPassword = newPassword;
     final l$oldPassword = oldPassword;
-    return Object.hashAll([
-      l$newPassword,
-      l$oldPassword,
-    ]);
+    return Object.hashAll([l$newPassword, l$oldPassword]);
   }
 }
 
@@ -2397,23 +2239,20 @@ class InputChangeUserOrganizationEdgeStatusInput {
     required String organizationId,
     required EnumUserOrganizationEdgeStatus status,
     required String userId,
-  }) =>
-      InputChangeUserOrganizationEdgeStatusInput._({
-        r'organizationId': organizationId,
-        r'status': status,
-        r'userId': userId,
-      });
+  }) => InputChangeUserOrganizationEdgeStatusInput._({
+    r'organizationId': organizationId,
+    r'status': status,
+    r'userId': userId,
+  });
 
   InputChangeUserOrganizationEdgeStatusInput._(this._$data);
 
-  factory InputChangeUserOrganizationEdgeStatusInput.fromJson(
-      Map<String, dynamic> data) {
+  factory InputChangeUserOrganizationEdgeStatusInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$organizationId = data['organizationId'];
     result$data['organizationId'] = (l$organizationId as String);
     final l$status = data['status'];
-    result$data['status'] =
-        fromJsonEnumUserOrganizationEdgeStatus((l$status as String));
+    result$data['status'] = fromJsonEnumUserOrganizationEdgeStatus((l$status as String));
     final l$userId = data['userId'];
     result$data['userId'] = (l$userId as String);
     return InputChangeUserOrganizationEdgeStatusInput._(result$data);
@@ -2423,8 +2262,7 @@ class InputChangeUserOrganizationEdgeStatusInput {
 
   String get organizationId => (_$data['organizationId'] as String);
 
-  EnumUserOrganizationEdgeStatus get status =>
-      (_$data['status'] as EnumUserOrganizationEdgeStatus);
+  EnumUserOrganizationEdgeStatus get status => (_$data['status'] as EnumUserOrganizationEdgeStatus);
 
   String get userId => (_$data['userId'] as String);
 
@@ -2444,8 +2282,7 @@ class InputChangeUserOrganizationEdgeStatusInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputChangeUserOrganizationEdgeStatusInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputChangeUserOrganizationEdgeStatusInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$organizationId = organizationId;
@@ -2471,11 +2308,7 @@ class InputChangeUserOrganizationEdgeStatusInput {
     final l$organizationId = organizationId;
     final l$status = status;
     final l$userId = userId;
-    return Object.hashAll([
-      l$organizationId,
-      l$status,
-      l$userId,
-    ]);
+    return Object.hashAll([l$organizationId, l$status, l$userId]);
   }
 }
 
@@ -2485,13 +2318,12 @@ class InputCreateAppInput {
     required bool enabled,
     required String name,
     required List<String> redirectURL,
-  }) =>
-      InputCreateAppInput._({
-        r'description': description,
-        r'enabled': enabled,
-        r'name': name,
-        r'redirectURL': redirectURL,
-      });
+  }) => InputCreateAppInput._({
+    r'description': description,
+    r'enabled': enabled,
+    r'name': name,
+    r'redirectURL': redirectURL,
+  });
 
   InputCreateAppInput._(this._$data);
 
@@ -2504,8 +2336,9 @@ class InputCreateAppInput {
     final l$name = data['name'];
     result$data['name'] = (l$name as String);
     final l$redirectURL = data['redirectURL'];
-    result$data['redirectURL'] =
-        (l$redirectURL as List<dynamic>).map((e) => (e as String)).toList();
+    result$data['redirectURL'] = (l$redirectURL as List<dynamic>)
+        .map((e) => (e as String))
+        .toList();
     return InputCreateAppInput._(result$data);
   }
 
@@ -2596,26 +2429,24 @@ class InputCreateOrganizationInput {
     required EnumOrganizationStatus status,
     required List<String> tags,
     required String tradingName,
-  }) =>
-      InputCreateOrganizationInput._({
-        r'corporateTaxpayerRegistry': corporateTaxpayerRegistry,
-        r'description': description,
-        r'email': email,
-        if (logo != null) r'logo': logo,
-        r'name': name,
-        if (role != null) r'role': role,
-        r'status': status,
-        r'tags': tags,
-        r'tradingName': tradingName,
-      });
+  }) => InputCreateOrganizationInput._({
+    r'corporateTaxpayerRegistry': corporateTaxpayerRegistry,
+    r'description': description,
+    r'email': email,
+    if (logo != null) r'logo': logo,
+    r'name': name,
+    if (role != null) r'role': role,
+    r'status': status,
+    r'tags': tags,
+    r'tradingName': tradingName,
+  });
 
   InputCreateOrganizationInput._(this._$data);
 
   factory InputCreateOrganizationInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$corporateTaxpayerRegistry = data['corporateTaxpayerRegistry'];
-    result$data['corporateTaxpayerRegistry'] =
-        (l$corporateTaxpayerRegistry as String);
+    result$data['corporateTaxpayerRegistry'] = (l$corporateTaxpayerRegistry as String);
     final l$description = data['description'];
     result$data['description'] = (l$description as String);
     final l$email = data['email'];
@@ -2628,15 +2459,12 @@ class InputCreateOrganizationInput {
     result$data['name'] = (l$name as String);
     if (data.containsKey('role')) {
       final l$role = data['role'];
-      result$data['role'] =
-          fromJsonEnumUserOrganizationRole((l$role as String));
+      result$data['role'] = fromJsonEnumUserOrganizationRole((l$role as String));
     }
     final l$status = data['status'];
-    result$data['status'] =
-        fromJsonEnumOrganizationStatus((l$status as String));
+    result$data['status'] = fromJsonEnumOrganizationStatus((l$status as String));
     final l$tags = data['tags'];
-    result$data['tags'] =
-        (l$tags as List<dynamic>).map((e) => (e as String)).toList();
+    result$data['tags'] = (l$tags as List<dynamic>).map((e) => (e as String)).toList();
     final l$tradingName = data['tradingName'];
     result$data['tradingName'] = (l$tradingName as String);
     return InputCreateOrganizationInput._(result$data);
@@ -2644,8 +2472,7 @@ class InputCreateOrganizationInput {
 
   Map<String, dynamic> _$data;
 
-  String get corporateTaxpayerRegistry =>
-      (_$data['corporateTaxpayerRegistry'] as String);
+  String get corporateTaxpayerRegistry => (_$data['corporateTaxpayerRegistry'] as String);
 
   String get description => (_$data['description'] as String);
 
@@ -2655,11 +2482,9 @@ class InputCreateOrganizationInput {
 
   String get name => (_$data['name'] as String);
 
-  EnumUserOrganizationRole? get role =>
-      (_$data['role'] as EnumUserOrganizationRole?);
+  EnumUserOrganizationRole? get role => (_$data['role'] as EnumUserOrganizationRole?);
 
-  EnumOrganizationStatus get status =>
-      (_$data['status'] as EnumOrganizationStatus);
+  EnumOrganizationStatus get status => (_$data['status'] as EnumOrganizationStatus);
 
   List<String> get tags => (_$data['tags'] as List<String>);
 
@@ -2681,8 +2506,7 @@ class InputCreateOrganizationInput {
     result$data['name'] = l$name;
     if (_$data.containsKey('role')) {
       final l$role = role;
-      result$data['role'] =
-          toJsonEnumUserOrganizationRole((l$role as EnumUserOrganizationRole));
+      result$data['role'] = toJsonEnumUserOrganizationRole((l$role as EnumUserOrganizationRole));
     }
     final l$status = status;
     result$data['status'] = toJsonEnumOrganizationStatus(l$status);
@@ -2698,8 +2522,7 @@ class InputCreateOrganizationInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputCreateOrganizationInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputCreateOrganizationInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$corporateTaxpayerRegistry = corporateTaxpayerRegistry;
@@ -2794,13 +2617,12 @@ class InputCreatePostInput {
     List<String>? images,
     String? organizationId,
     required String title,
-  }) =>
-      InputCreatePostInput._({
-        r'body': body,
-        if (images != null) r'images': images,
-        if (organizationId != null) r'organizationId': organizationId,
-        r'title': title,
-      });
+  }) => InputCreatePostInput._({
+    r'body': body,
+    if (images != null) r'images': images,
+    if (organizationId != null) r'organizationId': organizationId,
+    r'title': title,
+  });
 
   InputCreatePostInput._(this._$data);
 
@@ -2810,8 +2632,7 @@ class InputCreatePostInput {
     result$data['body'] = (l$body as String);
     if (data.containsKey('images')) {
       final l$images = data['images'];
-      result$data['images'] =
-          (l$images as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['images'] = (l$images as List<dynamic>?)?.map((e) => (e as String)).toList();
     }
     if (data.containsKey('organizationId')) {
       final l$organizationId = data['organizationId'];
@@ -2883,8 +2704,7 @@ class InputCreatePostInput {
     }
     final l$organizationId = organizationId;
     final lOther$organizationId = other.organizationId;
-    if (_$data.containsKey('organizationId') !=
-        other._$data.containsKey('organizationId')) {
+    if (_$data.containsKey('organizationId') != other._$data.containsKey('organizationId')) {
       return false;
     }
     if (l$organizationId != lOther$organizationId) {
@@ -2908,8 +2728,8 @@ class InputCreatePostInput {
       l$body,
       _$data.containsKey('images')
           ? l$images == null
-              ? null
-              : Object.hashAll(l$images.map((v) => v))
+                ? null
+                : Object.hashAll(l$images.map((v) => v))
           : const {},
       _$data.containsKey('organizationId') ? l$organizationId : const {},
       l$title,
@@ -2921,22 +2741,18 @@ class InputCreateTermInput {
   factory InputCreateTermInput({
     required InputTermInput term,
     required InputTermVersionInput termVersion,
-  }) =>
-      InputCreateTermInput._({
-        r'term': term,
-        r'termVersion': termVersion,
-      });
+  }) => InputCreateTermInput._({r'term': term, r'termVersion': termVersion});
 
   InputCreateTermInput._(this._$data);
 
   factory InputCreateTermInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$term = data['term'];
-    result$data['term'] =
-        InputTermInput.fromJson((l$term as Map<String, dynamic>));
+    result$data['term'] = InputTermInput.fromJson((l$term as Map<String, dynamic>));
     final l$termVersion = data['termVersion'];
-    result$data['termVersion'] =
-        InputTermVersionInput.fromJson((l$termVersion as Map<String, dynamic>));
+    result$data['termVersion'] = InputTermVersionInput.fromJson(
+      (l$termVersion as Map<String, dynamic>),
+    );
     return InputCreateTermInput._(result$data);
   }
 
@@ -2944,8 +2760,7 @@ class InputCreateTermInput {
 
   InputTermInput get term => (_$data['term'] as InputTermInput);
 
-  InputTermVersionInput get termVersion =>
-      (_$data['termVersion'] as InputTermVersionInput);
+  InputTermVersionInput get termVersion => (_$data['termVersion'] as InputTermVersionInput);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -2981,10 +2796,7 @@ class InputCreateTermInput {
   int get hashCode {
     final l$term = term;
     final l$termVersion = termVersion;
-    return Object.hashAll([
-      l$term,
-      l$termVersion,
-    ]);
+    return Object.hashAll([l$term, l$termVersion]);
   }
 }
 
@@ -2993,12 +2805,11 @@ class InputTermInput {
     required String description,
     List<String>? tags,
     required String title,
-  }) =>
-      InputTermInput._({
-        r'description': description,
-        if (tags != null) r'tags': tags,
-        r'title': title,
-      });
+  }) => InputTermInput._({
+    r'description': description,
+    if (tags != null) r'tags': tags,
+    r'title': title,
+  });
 
   InputTermInput._(this._$data);
 
@@ -3008,8 +2819,7 @@ class InputTermInput {
     result$data['description'] = (l$description as String);
     if (data.containsKey('tags')) {
       final l$tags = data['tags'];
-      result$data['tags'] =
-          (l$tags as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['tags'] = (l$tags as List<dynamic>?)?.map((e) => (e as String)).toList();
     }
     final l$title = data['title'];
     result$data['title'] = (l$title as String);
@@ -3086,8 +2896,8 @@ class InputTermInput {
       l$description,
       _$data.containsKey('tags')
           ? l$tags == null
-              ? null
-              : Object.hashAll(l$tags.map((v) => v))
+                ? null
+                : Object.hashAll(l$tags.map((v) => v))
           : const {},
       l$title,
     ]);
@@ -3099,12 +2909,7 @@ class InputTermVersionInput {
     required String body,
     required String description,
     required String version,
-  }) =>
-      InputTermVersionInput._({
-        r'body': body,
-        r'description': description,
-        r'version': version,
-      });
+  }) => InputTermVersionInput._({r'body': body, r'description': description, r'version': version});
 
   InputTermVersionInput._(this._$data);
 
@@ -3169,11 +2974,7 @@ class InputTermVersionInput {
     final l$body = body;
     final l$description = description;
     final l$version = version;
-    return Object.hashAll([
-      l$body,
-      l$description,
-      l$version,
-    ]);
+    return Object.hashAll([l$body, l$description, l$version]);
   }
 }
 
@@ -3183,13 +2984,12 @@ class InputCreateTermVersionInput {
     required String description,
     required String termId,
     required String version,
-  }) =>
-      InputCreateTermVersionInput._({
-        r'body': body,
-        r'description': description,
-        r'termId': termId,
-        r'version': version,
-      });
+  }) => InputCreateTermVersionInput._({
+    r'body': body,
+    r'description': description,
+    r'termId': termId,
+    r'version': version,
+  });
 
   InputCreateTermVersionInput._(this._$data);
 
@@ -3234,8 +3034,7 @@ class InputCreateTermVersionInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputCreateTermVersionInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputCreateTermVersionInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$body = body;
@@ -3267,12 +3066,7 @@ class InputCreateTermVersionInput {
     final l$description = description;
     final l$termId = termId;
     final l$version = version;
-    return Object.hashAll([
-      l$body,
-      l$description,
-      l$termId,
-      l$version,
-    ]);
+    return Object.hashAll([l$body, l$description, l$termId, l$version]);
   }
 }
 
@@ -3285,16 +3079,15 @@ class InputCreateUserInput {
     required String password,
     List<String>? requiredActions,
     required String username,
-  }) =>
-      InputCreateUserInput._({
-        r'email': email,
-        if (enabled != null) r'enabled': enabled,
-        if (firstName != null) r'firstName': firstName,
-        if (lastName != null) r'lastName': lastName,
-        r'password': password,
-        if (requiredActions != null) r'requiredActions': requiredActions,
-        r'username': username,
-      });
+  }) => InputCreateUserInput._({
+    r'email': email,
+    if (enabled != null) r'enabled': enabled,
+    if (firstName != null) r'firstName': firstName,
+    if (lastName != null) r'lastName': lastName,
+    r'password': password,
+    if (requiredActions != null) r'requiredActions': requiredActions,
+    r'username': username,
+  });
 
   InputCreateUserInput._(this._$data);
 
@@ -3339,8 +3132,7 @@ class InputCreateUserInput {
 
   String get password => (_$data['password'] as String);
 
-  List<String>? get requiredActions =>
-      (_$data['requiredActions'] as List<String>?);
+  List<String>? get requiredActions => (_$data['requiredActions'] as List<String>?);
 
   String get username => (_$data['username'] as String);
 
@@ -3364,8 +3156,7 @@ class InputCreateUserInput {
     result$data['password'] = l$password;
     if (_$data.containsKey('requiredActions')) {
       final l$requiredActions = requiredActions;
-      result$data['requiredActions'] =
-          l$requiredActions?.map((e) => e).toList();
+      result$data['requiredActions'] = l$requiredActions?.map((e) => e).toList();
     }
     final l$username = username;
     result$data['username'] = l$username;
@@ -3395,8 +3186,7 @@ class InputCreateUserInput {
     }
     final l$firstName = firstName;
     final lOther$firstName = other.firstName;
-    if (_$data.containsKey('firstName') !=
-        other._$data.containsKey('firstName')) {
+    if (_$data.containsKey('firstName') != other._$data.containsKey('firstName')) {
       return false;
     }
     if (l$firstName != lOther$firstName) {
@@ -3404,8 +3194,7 @@ class InputCreateUserInput {
     }
     final l$lastName = lastName;
     final lOther$lastName = other.lastName;
-    if (_$data.containsKey('lastName') !=
-        other._$data.containsKey('lastName')) {
+    if (_$data.containsKey('lastName') != other._$data.containsKey('lastName')) {
       return false;
     }
     if (l$lastName != lOther$lastName) {
@@ -3418,8 +3207,7 @@ class InputCreateUserInput {
     }
     final l$requiredActions = requiredActions;
     final lOther$requiredActions = other.requiredActions;
-    if (_$data.containsKey('requiredActions') !=
-        other._$data.containsKey('requiredActions')) {
+    if (_$data.containsKey('requiredActions') != other._$data.containsKey('requiredActions')) {
       return false;
     }
     if (l$requiredActions != null && lOther$requiredActions != null) {
@@ -3461,8 +3249,8 @@ class InputCreateUserInput {
       l$password,
       _$data.containsKey('requiredActions')
           ? l$requiredActions == null
-              ? null
-              : Object.hashAll(l$requiredActions.map((v) => v))
+                ? null
+                : Object.hashAll(l$requiredActions.map((v) => v))
           : const {},
       l$username,
     ]);
@@ -3471,9 +3259,7 @@ class InputCreateUserInput {
 
 class InputDeactivateUserInput {
   factory InputDeactivateUserInput({required String userId}) =>
-      InputDeactivateUserInput._({
-        r'userId': userId,
-      });
+      InputDeactivateUserInput._({r'userId': userId});
 
   InputDeactivateUserInput._(this._$data);
 
@@ -3500,8 +3286,7 @@ class InputDeactivateUserInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputDeactivateUserInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputDeactivateUserInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$userId = userId;
@@ -3521,9 +3306,7 @@ class InputDeactivateUserInput {
 
 class InputDeleteOrganizationInput {
   factory InputDeleteOrganizationInput({required String organizationId}) =>
-      InputDeleteOrganizationInput._({
-        r'organizationId': organizationId,
-      });
+      InputDeleteOrganizationInput._({r'organizationId': organizationId});
 
   InputDeleteOrganizationInput._(this._$data);
 
@@ -3550,8 +3333,7 @@ class InputDeleteOrganizationInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputDeleteOrganizationInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputDeleteOrganizationInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$organizationId = organizationId;
@@ -3570,14 +3352,8 @@ class InputDeleteOrganizationInput {
 }
 
 class InputLoginInput {
-  factory InputLoginInput({
-    required String password,
-    required String username,
-  }) =>
-      InputLoginInput._({
-        r'password': password,
-        r'username': username,
-      });
+  factory InputLoginInput({required String password, required String username}) =>
+      InputLoginInput._({r'password': password, r'username': username});
 
   InputLoginInput._(this._$data);
 
@@ -3630,18 +3406,13 @@ class InputLoginInput {
   int get hashCode {
     final l$password = password;
     final l$username = username;
-    return Object.hashAll([
-      l$password,
-      l$username,
-    ]);
+    return Object.hashAll([l$password, l$username]);
   }
 }
 
 class InputModerateTextInput {
   factory InputModerateTextInput({required String message}) =>
-      InputModerateTextInput._({
-        r'message': message,
-      });
+      InputModerateTextInput._({r'message': message});
 
   InputModerateTextInput._(this._$data);
 
@@ -3690,11 +3461,10 @@ class InputPublishTermVersionInput {
   factory InputPublishTermVersionInput({
     required String ifMatchesETag,
     required String termVersionId,
-  }) =>
-      InputPublishTermVersionInput._({
-        r'ifMatchesETag': ifMatchesETag,
-        r'termVersionId': termVersionId,
-      });
+  }) => InputPublishTermVersionInput._({
+    r'ifMatchesETag': ifMatchesETag,
+    r'termVersionId': termVersionId,
+  });
 
   InputPublishTermVersionInput._(this._$data);
 
@@ -3727,8 +3497,7 @@ class InputPublishTermVersionInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputPublishTermVersionInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputPublishTermVersionInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$ifMatchesETag = ifMatchesETag;
@@ -3748,17 +3517,12 @@ class InputPublishTermVersionInput {
   int get hashCode {
     final l$ifMatchesETag = ifMatchesETag;
     final l$termVersionId = termVersionId;
-    return Object.hashAll([
-      l$ifMatchesETag,
-      l$termVersionId,
-    ]);
+    return Object.hashAll([l$ifMatchesETag, l$termVersionId]);
   }
 }
 
 class InputRefreshInput {
-  factory InputRefreshInput({required String token}) => InputRefreshInput._({
-        r'token': token,
-      });
+  factory InputRefreshInput({required String token}) => InputRefreshInput._({r'token': token});
 
   InputRefreshInput._(this._$data);
 
@@ -3809,13 +3573,12 @@ class InputRegisterWebhookInput {
     required InputWebhookConfigInput config,
     required List<EnumSubscribableEvents> events,
     required String name,
-  }) =>
-      InputRegisterWebhookInput._({
-        r'active': active,
-        r'config': config,
-        r'events': events,
-        r'name': name,
-      });
+  }) => InputRegisterWebhookInput._({
+    r'active': active,
+    r'config': config,
+    r'events': events,
+    r'name': name,
+  });
 
   InputRegisterWebhookInput._(this._$data);
 
@@ -3824,8 +3587,7 @@ class InputRegisterWebhookInput {
     final l$active = data['active'];
     result$data['active'] = (l$active as bool);
     final l$config = data['config'];
-    result$data['config'] =
-        InputWebhookConfigInput.fromJson((l$config as Map<String, dynamic>));
+    result$data['config'] = InputWebhookConfigInput.fromJson((l$config as Map<String, dynamic>));
     final l$events = data['events'];
     result$data['events'] = (l$events as List<dynamic>)
         .map((e) => fromJsonEnumSubscribableEvents((e as String)))
@@ -3839,11 +3601,9 @@ class InputRegisterWebhookInput {
 
   bool get active => (_$data['active'] as bool);
 
-  InputWebhookConfigInput get config =>
-      (_$data['config'] as InputWebhookConfigInput);
+  InputWebhookConfigInput get config => (_$data['config'] as InputWebhookConfigInput);
 
-  List<EnumSubscribableEvents> get events =>
-      (_$data['events'] as List<EnumSubscribableEvents>);
+  List<EnumSubscribableEvents> get events => (_$data['events'] as List<EnumSubscribableEvents>);
 
   String get name => (_$data['name'] as String);
 
@@ -3854,8 +3614,7 @@ class InputRegisterWebhookInput {
     final l$config = config;
     result$data['config'] = l$config.toJson();
     final l$events = events;
-    result$data['events'] =
-        l$events.map((e) => toJsonEnumSubscribableEvents(e)).toList();
+    result$data['events'] = l$events.map((e) => toJsonEnumSubscribableEvents(e)).toList();
     final l$name = name;
     result$data['name'] = l$name;
     return result$data;
@@ -3866,8 +3625,7 @@ class InputRegisterWebhookInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputRegisterWebhookInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputRegisterWebhookInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$active = active;
@@ -3906,12 +3664,7 @@ class InputRegisterWebhookInput {
     final l$config = config;
     final l$events = events;
     final l$name = name;
-    return Object.hashAll([
-      l$active,
-      l$config,
-      Object.hashAll(l$events.map((v) => v)),
-      l$name,
-    ]);
+    return Object.hashAll([l$active, l$config, Object.hashAll(l$events.map((v) => v)), l$name]);
   }
 }
 
@@ -3919,19 +3672,14 @@ class InputWebhookConfigInput {
   factory InputWebhookConfigInput({
     required EnumWebhookRequestMethod method,
     required String url,
-  }) =>
-      InputWebhookConfigInput._({
-        r'method': method,
-        r'url': url,
-      });
+  }) => InputWebhookConfigInput._({r'method': method, r'url': url});
 
   InputWebhookConfigInput._(this._$data);
 
   factory InputWebhookConfigInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$method = data['method'];
-    result$data['method'] =
-        fromJsonEnumWebhookRequestMethod((l$method as String));
+    result$data['method'] = fromJsonEnumWebhookRequestMethod((l$method as String));
     final l$url = data['url'];
     result$data['url'] = (l$url as String);
     return InputWebhookConfigInput._(result$data);
@@ -3939,8 +3687,7 @@ class InputWebhookConfigInput {
 
   Map<String, dynamic> _$data;
 
-  EnumWebhookRequestMethod get method =>
-      (_$data['method'] as EnumWebhookRequestMethod);
+  EnumWebhookRequestMethod get method => (_$data['method'] as EnumWebhookRequestMethod);
 
   String get url => (_$data['url'] as String);
 
@@ -3978,22 +3725,13 @@ class InputWebhookConfigInput {
   int get hashCode {
     final l$method = method;
     final l$url = url;
-    return Object.hashAll([
-      l$method,
-      l$url,
-    ]);
+    return Object.hashAll([l$method, l$url]);
   }
 }
 
 class InputRemovePostInput {
-  factory InputRemovePostInput({
-    required String id,
-    required String reason,
-  }) =>
-      InputRemovePostInput._({
-        r'id': id,
-        r'reason': reason,
-      });
+  factory InputRemovePostInput({required String id, required String reason}) =>
+      InputRemovePostInput._({r'id': id, r'reason': reason});
 
   InputRemovePostInput._(this._$data);
 
@@ -4046,10 +3784,7 @@ class InputRemovePostInput {
   int get hashCode {
     final l$id = id;
     final l$reason = reason;
-    return Object.hashAll([
-      l$id,
-      l$reason,
-    ]);
+    return Object.hashAll([l$id, l$reason]);
   }
 }
 
@@ -4057,16 +3792,14 @@ class InputRemoveUserFromOrganizationInput {
   factory InputRemoveUserFromOrganizationInput({
     required String organizationId,
     required String userId,
-  }) =>
-      InputRemoveUserFromOrganizationInput._({
-        r'organizationId': organizationId,
-        r'userId': userId,
-      });
+  }) => InputRemoveUserFromOrganizationInput._({
+    r'organizationId': organizationId,
+    r'userId': userId,
+  });
 
   InputRemoveUserFromOrganizationInput._(this._$data);
 
-  factory InputRemoveUserFromOrganizationInput.fromJson(
-      Map<String, dynamic> data) {
+  factory InputRemoveUserFromOrganizationInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$organizationId = data['organizationId'];
     result$data['organizationId'] = (l$organizationId as String);
@@ -4095,8 +3828,7 @@ class InputRemoveUserFromOrganizationInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputRemoveUserFromOrganizationInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputRemoveUserFromOrganizationInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$organizationId = organizationId;
@@ -4116,18 +3848,13 @@ class InputRemoveUserFromOrganizationInput {
   int get hashCode {
     final l$organizationId = organizationId;
     final l$userId = userId;
-    return Object.hashAll([
-      l$organizationId,
-      l$userId,
-    ]);
+    return Object.hashAll([l$organizationId, l$userId]);
   }
 }
 
 class InputResetPasswordInput {
   factory InputResetPasswordInput({required String email}) =>
-      InputResetPasswordInput._({
-        r'email': email,
-      });
+      InputResetPasswordInput._({r'email': email});
 
   InputResetPasswordInput._(this._$data);
 
@@ -4173,10 +3900,7 @@ class InputResetPasswordInput {
 }
 
 class InputRestorePostInput {
-  factory InputRestorePostInput({required String id}) =>
-      InputRestorePostInput._({
-        r'id': id,
-      });
+  factory InputRestorePostInput({required String id}) => InputRestorePostInput._({r'id': id});
 
   InputRestorePostInput._(this._$data);
 
@@ -4226,37 +3950,32 @@ class InputTriggerWebhookEvent {
     required EnumSubscribableEvents triggerEvent,
     required String webhookId,
     required Map<String, dynamic> webhookJsonData,
-  }) =>
-      InputTriggerWebhookEvent._({
-        r'triggerEvent': triggerEvent,
-        r'webhookId': webhookId,
-        r'webhookJsonData': webhookJsonData,
-      });
+  }) => InputTriggerWebhookEvent._({
+    r'triggerEvent': triggerEvent,
+    r'webhookId': webhookId,
+    r'webhookJsonData': webhookJsonData,
+  });
 
   InputTriggerWebhookEvent._(this._$data);
 
   factory InputTriggerWebhookEvent.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$triggerEvent = data['triggerEvent'];
-    result$data['triggerEvent'] =
-        fromJsonEnumSubscribableEvents((l$triggerEvent as String));
+    result$data['triggerEvent'] = fromJsonEnumSubscribableEvents((l$triggerEvent as String));
     final l$webhookId = data['webhookId'];
     result$data['webhookId'] = (l$webhookId as String);
     final l$webhookJsonData = data['webhookJsonData'];
-    result$data['webhookJsonData'] =
-        (l$webhookJsonData as Map<String, dynamic>);
+    result$data['webhookJsonData'] = (l$webhookJsonData as Map<String, dynamic>);
     return InputTriggerWebhookEvent._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  EnumSubscribableEvents get triggerEvent =>
-      (_$data['triggerEvent'] as EnumSubscribableEvents);
+  EnumSubscribableEvents get triggerEvent => (_$data['triggerEvent'] as EnumSubscribableEvents);
 
   String get webhookId => (_$data['webhookId'] as String);
 
-  Map<String, dynamic> get webhookJsonData =>
-      (_$data['webhookJsonData'] as Map<String, dynamic>);
+  Map<String, dynamic> get webhookJsonData => (_$data['webhookJsonData'] as Map<String, dynamic>);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -4274,8 +3993,7 @@ class InputTriggerWebhookEvent {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputTriggerWebhookEvent ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputTriggerWebhookEvent || runtimeType != other.runtimeType) {
       return false;
     }
     final l$triggerEvent = triggerEvent;
@@ -4301,11 +4019,7 @@ class InputTriggerWebhookEvent {
     final l$triggerEvent = triggerEvent;
     final l$webhookId = webhookId;
     final l$webhookJsonData = webhookJsonData;
-    return Object.hashAll([
-      l$triggerEvent,
-      l$webhookId,
-      l$webhookJsonData,
-    ]);
+    return Object.hashAll([l$triggerEvent, l$webhookId, l$webhookJsonData]);
   }
 }
 
@@ -4321,20 +4035,18 @@ class InputUpdateOrganizationInput {
     EnumOrganizationStatus? status,
     List<String>? tags,
     String? tradingName,
-  }) =>
-      InputUpdateOrganizationInput._({
-        if (corporateTaxpayerRegistry != null)
-          r'corporateTaxpayerRegistry': corporateTaxpayerRegistry,
-        if (description != null) r'description': description,
-        if (email != null) r'email': email,
-        r'ifMatchesETag': ifMatchesETag,
-        if (logo != null) r'logo': logo,
-        if (name != null) r'name': name,
-        r'organizationId': organizationId,
-        if (status != null) r'status': status,
-        if (tags != null) r'tags': tags,
-        if (tradingName != null) r'tradingName': tradingName,
-      });
+  }) => InputUpdateOrganizationInput._({
+    if (corporateTaxpayerRegistry != null) r'corporateTaxpayerRegistry': corporateTaxpayerRegistry,
+    if (description != null) r'description': description,
+    if (email != null) r'email': email,
+    r'ifMatchesETag': ifMatchesETag,
+    if (logo != null) r'logo': logo,
+    if (name != null) r'name': name,
+    r'organizationId': organizationId,
+    if (status != null) r'status': status,
+    if (tags != null) r'tags': tags,
+    if (tradingName != null) r'tradingName': tradingName,
+  });
 
   InputUpdateOrganizationInput._(this._$data);
 
@@ -4342,8 +4054,7 @@ class InputUpdateOrganizationInput {
     final result$data = <String, dynamic>{};
     if (data.containsKey('corporateTaxpayerRegistry')) {
       final l$corporateTaxpayerRegistry = data['corporateTaxpayerRegistry'];
-      result$data['corporateTaxpayerRegistry'] =
-          (l$corporateTaxpayerRegistry as String?);
+      result$data['corporateTaxpayerRegistry'] = (l$corporateTaxpayerRegistry as String?);
     }
     if (data.containsKey('description')) {
       final l$description = data['description'];
@@ -4373,8 +4084,7 @@ class InputUpdateOrganizationInput {
     }
     if (data.containsKey('tags')) {
       final l$tags = data['tags'];
-      result$data['tags'] =
-          (l$tags as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['tags'] = (l$tags as List<dynamic>?)?.map((e) => (e as String)).toList();
     }
     if (data.containsKey('tradingName')) {
       final l$tradingName = data['tradingName'];
@@ -4385,8 +4095,7 @@ class InputUpdateOrganizationInput {
 
   Map<String, dynamic> _$data;
 
-  String? get corporateTaxpayerRegistry =>
-      (_$data['corporateTaxpayerRegistry'] as String?);
+  String? get corporateTaxpayerRegistry => (_$data['corporateTaxpayerRegistry'] as String?);
 
   String? get description => (_$data['description'] as String?);
 
@@ -4400,8 +4109,7 @@ class InputUpdateOrganizationInput {
 
   String get organizationId => (_$data['organizationId'] as String);
 
-  EnumOrganizationStatus? get status =>
-      (_$data['status'] as EnumOrganizationStatus?);
+  EnumOrganizationStatus? get status => (_$data['status'] as EnumOrganizationStatus?);
 
   List<String>? get tags => (_$data['tags'] as List<String>?);
 
@@ -4435,8 +4143,7 @@ class InputUpdateOrganizationInput {
     result$data['organizationId'] = l$organizationId;
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] =
-          l$status == null ? null : toJsonEnumOrganizationStatus(l$status);
+      result$data['status'] = l$status == null ? null : toJsonEnumOrganizationStatus(l$status);
     }
     if (_$data.containsKey('tags')) {
       final l$tags = tags;
@@ -4454,8 +4161,7 @@ class InputUpdateOrganizationInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputUpdateOrganizationInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputUpdateOrganizationInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$corporateTaxpayerRegistry = corporateTaxpayerRegistry;
@@ -4469,8 +4175,7 @@ class InputUpdateOrganizationInput {
     }
     final l$description = description;
     final lOther$description = other.description;
-    if (_$data.containsKey('description') !=
-        other._$data.containsKey('description')) {
+    if (_$data.containsKey('description') != other._$data.containsKey('description')) {
       return false;
     }
     if (l$description != lOther$description) {
@@ -4539,8 +4244,7 @@ class InputUpdateOrganizationInput {
     }
     final l$tradingName = tradingName;
     final lOther$tradingName = other.tradingName;
-    if (_$data.containsKey('tradingName') !=
-        other._$data.containsKey('tradingName')) {
+    if (_$data.containsKey('tradingName') != other._$data.containsKey('tradingName')) {
       return false;
     }
     if (l$tradingName != lOther$tradingName) {
@@ -4562,9 +4266,7 @@ class InputUpdateOrganizationInput {
     final l$tags = tags;
     final l$tradingName = tradingName;
     return Object.hashAll([
-      _$data.containsKey('corporateTaxpayerRegistry')
-          ? l$corporateTaxpayerRegistry
-          : const {},
+      _$data.containsKey('corporateTaxpayerRegistry') ? l$corporateTaxpayerRegistry : const {},
       _$data.containsKey('description') ? l$description : const {},
       _$data.containsKey('email') ? l$email : const {},
       l$ifMatchesETag,
@@ -4574,8 +4276,8 @@ class InputUpdateOrganizationInput {
       _$data.containsKey('status') ? l$status : const {},
       _$data.containsKey('tags')
           ? l$tags == null
-              ? null
-              : Object.hashAll(l$tags.map((v) => v))
+                ? null
+                : Object.hashAll(l$tags.map((v) => v))
           : const {},
       _$data.containsKey('tradingName') ? l$tradingName : const {},
     ]);
@@ -4589,14 +4291,13 @@ class InputUpdateTermVersionInput {
     required String ifMatchesETag,
     required String termVersionId,
     String? version,
-  }) =>
-      InputUpdateTermVersionInput._({
-        if (body != null) r'body': body,
-        if (description != null) r'description': description,
-        r'ifMatchesETag': ifMatchesETag,
-        r'termVersionId': termVersionId,
-        if (version != null) r'version': version,
-      });
+  }) => InputUpdateTermVersionInput._({
+    if (body != null) r'body': body,
+    if (description != null) r'description': description,
+    r'ifMatchesETag': ifMatchesETag,
+    r'termVersionId': termVersionId,
+    if (version != null) r'version': version,
+  });
 
   InputUpdateTermVersionInput._(this._$data);
 
@@ -4659,8 +4360,7 @@ class InputUpdateTermVersionInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! InputUpdateTermVersionInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! InputUpdateTermVersionInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$body = body;
@@ -4673,8 +4373,7 @@ class InputUpdateTermVersionInput {
     }
     final l$description = description;
     final lOther$description = other.description;
-    if (_$data.containsKey('description') !=
-        other._$data.containsKey('description')) {
+    if (_$data.containsKey('description') != other._$data.containsKey('description')) {
       return false;
     }
     if (l$description != lOther$description) {
@@ -4724,13 +4423,12 @@ class InputUpdateUserInput {
     String? firstName,
     String? lastName,
     String? userId,
-  }) =>
-      InputUpdateUserInput._({
-        if (email != null) r'email': email,
-        if (firstName != null) r'firstName': firstName,
-        if (lastName != null) r'lastName': lastName,
-        if (userId != null) r'userId': userId,
-      });
+  }) => InputUpdateUserInput._({
+    if (email != null) r'email': email,
+    if (firstName != null) r'firstName': firstName,
+    if (lastName != null) r'lastName': lastName,
+    if (userId != null) r'userId': userId,
+  });
 
   InputUpdateUserInput._(this._$data);
 
@@ -4804,8 +4502,7 @@ class InputUpdateUserInput {
     }
     final l$firstName = firstName;
     final lOther$firstName = other.firstName;
-    if (_$data.containsKey('firstName') !=
-        other._$data.containsKey('firstName')) {
+    if (_$data.containsKey('firstName') != other._$data.containsKey('firstName')) {
       return false;
     }
     if (l$firstName != lOther$firstName) {
@@ -4813,8 +4510,7 @@ class InputUpdateUserInput {
     }
     final l$lastName = lastName;
     final lOther$lastName = other.lastName;
-    if (_$data.containsKey('lastName') !=
-        other._$data.containsKey('lastName')) {
+    if (_$data.containsKey('lastName') != other._$data.containsKey('lastName')) {
       return false;
     }
     if (l$lastName != lOther$lastName) {
@@ -4866,8 +4562,7 @@ enum EnumCategoryNameType {
   WAR_CONFLICT,
   $unknown;
 
-  factory EnumCategoryNameType.fromJson(String value) =>
-      fromJsonEnumCategoryNameType(value);
+  factory EnumCategoryNameType.fromJson(String value) => fromJsonEnumCategoryNameType(value);
 
   String toJson() => toJsonEnumCategoryNameType(this);
 }
@@ -4963,8 +4658,7 @@ enum EnumHomeElementTextKind {
   h6,
   $unknown;
 
-  factory EnumHomeElementTextKind.fromJson(String value) =>
-      fromJsonEnumHomeElementTextKind(value);
+  factory EnumHomeElementTextKind.fromJson(String value) => fromJsonEnumHomeElementTextKind(value);
 
   String toJson() => toJsonEnumHomeElementTextKind(this);
 }
@@ -5047,8 +4741,7 @@ String toJsonEnumOrderableTermVersionFields(EnumOrderableTermVersionFields e) {
   }
 }
 
-EnumOrderableTermVersionFields fromJsonEnumOrderableTermVersionFields(
-    String value) {
+EnumOrderableTermVersionFields fromJsonEnumOrderableTermVersionFields(String value) {
   switch (value) {
     case r'BODY':
       return EnumOrderableTermVersionFields.BODY;
@@ -5076,8 +4769,7 @@ enum EnumOrderInput {
   DESC,
   $unknown;
 
-  factory EnumOrderInput.fromJson(String value) =>
-      fromJsonEnumOrderInput(value);
+  factory EnumOrderInput.fromJson(String value) => fromJsonEnumOrderInput(value);
 
   String toJson() => toJsonEnumOrderInput(this);
 }
@@ -5109,8 +4801,7 @@ enum EnumOrganizationStatus {
   INACTIVE,
   $unknown;
 
-  factory EnumOrganizationStatus.fromJson(String value) =>
-      fromJsonEnumOrganizationStatus(value);
+  factory EnumOrganizationStatus.fromJson(String value) => fromJsonEnumOrganizationStatus(value);
 
   String toJson() => toJsonEnumOrganizationStatus(this);
 }
@@ -5159,8 +4850,7 @@ String toJsonEnumUserOrganizationEdgeStatus(EnumUserOrganizationEdgeStatus e) {
   }
 }
 
-EnumUserOrganizationEdgeStatus fromJsonEnumUserOrganizationEdgeStatus(
-    String value) {
+EnumUserOrganizationEdgeStatus fromJsonEnumUserOrganizationEdgeStatus(String value) {
   switch (value) {
     case r'ACTIVE':
       return EnumUserOrganizationEdgeStatus.ACTIVE;
@@ -5221,8 +4911,7 @@ enum EnumOrderableOrganizationFields {
   String toJson() => toJsonEnumOrderableOrganizationFields(this);
 }
 
-String toJsonEnumOrderableOrganizationFields(
-    EnumOrderableOrganizationFields e) {
+String toJsonEnumOrderableOrganizationFields(EnumOrderableOrganizationFields e) {
   switch (e) {
     case EnumOrderableOrganizationFields.CORPORATE_TAXPAYER_REGISTRY:
       return r'CORPORATE_TAXPAYER_REGISTRY';
@@ -5245,8 +4934,7 @@ String toJsonEnumOrderableOrganizationFields(
   }
 }
 
-EnumOrderableOrganizationFields fromJsonEnumOrderableOrganizationFields(
-    String value) {
+EnumOrderableOrganizationFields fromJsonEnumOrderableOrganizationFields(String value) {
   switch (value) {
     case r'CORPORATE_TAXPAYER_REGISTRY':
       return EnumOrderableOrganizationFields.CORPORATE_TAXPAYER_REGISTRY;
@@ -5275,8 +4963,7 @@ enum EnumVideoStatus {
   READY,
   $unknown;
 
-  factory EnumVideoStatus.fromJson(String value) =>
-      fromJsonEnumVideoStatus(value);
+  factory EnumVideoStatus.fromJson(String value) => fromJsonEnumVideoStatus(value);
 
   String toJson() => toJsonEnumVideoStatus(this);
 }
@@ -5314,8 +5001,7 @@ enum EnumOrderableTermFields {
   TITLE,
   $unknown;
 
-  factory EnumOrderableTermFields.fromJson(String value) =>
-      fromJsonEnumOrderableTermFields(value);
+  factory EnumOrderableTermFields.fromJson(String value) => fromJsonEnumOrderableTermFields(value);
 
   String toJson() => toJsonEnumOrderableTermFields(this);
 }
@@ -5355,8 +5041,7 @@ enum EnumSubscribableEvents {
   REMOVE_USER_FROM_ORGANIZATION,
   $unknown;
 
-  factory EnumSubscribableEvents.fromJson(String value) =>
-      fromJsonEnumSubscribableEvents(value);
+  factory EnumSubscribableEvents.fromJson(String value) => fromJsonEnumSubscribableEvents(value);
 
   String toJson() => toJsonEnumSubscribableEvents(this);
 }
@@ -5427,8 +5112,7 @@ enum Enum__TypeKind {
   NON_NULL,
   $unknown;
 
-  factory Enum__TypeKind.fromJson(String value) =>
-      fromJsonEnum__TypeKind(value);
+  factory Enum__TypeKind.fromJson(String value) => fromJsonEnum__TypeKind(value);
 
   String toJson() => toJsonEnum__TypeKind(this);
 }
@@ -5501,8 +5185,7 @@ enum Enum__DirectiveLocation {
   INPUT_FIELD_DEFINITION,
   $unknown;
 
-  factory Enum__DirectiveLocation.fromJson(String value) =>
-      fromJsonEnum__DirectiveLocation(value);
+  factory Enum__DirectiveLocation.fromJson(String value) => fromJsonEnum__DirectiveLocation(value);
 
   String toJson() => toJsonEnum__DirectiveLocation(this);
 }
@@ -5608,8 +5291,7 @@ enum EnumForeignNodeIdValidateDirectivePolicy {
   String toJson() => toJsonEnumForeignNodeIdValidateDirectivePolicy(this);
 }
 
-String toJsonEnumForeignNodeIdValidateDirectivePolicy(
-    EnumForeignNodeIdValidateDirectivePolicy e) {
+String toJsonEnumForeignNodeIdValidateDirectivePolicy(EnumForeignNodeIdValidateDirectivePolicy e) {
   switch (e) {
     case EnumForeignNodeIdValidateDirectivePolicy.RESOLVER:
       return r'RESOLVER';
@@ -5620,8 +5302,9 @@ String toJsonEnumForeignNodeIdValidateDirectivePolicy(
   }
 }
 
-EnumForeignNodeIdValidateDirectivePolicy
-    fromJsonEnumForeignNodeIdValidateDirectivePolicy(String value) {
+EnumForeignNodeIdValidateDirectivePolicy fromJsonEnumForeignNodeIdValidateDirectivePolicy(
+  String value,
+) {
   switch (value) {
     case r'RESOLVER':
       return EnumForeignNodeIdValidateDirectivePolicy.RESOLVER;
@@ -5643,8 +5326,7 @@ enum EnumHasPermissionsDirectivePolicy {
   String toJson() => toJsonEnumHasPermissionsDirectivePolicy(this);
 }
 
-String toJsonEnumHasPermissionsDirectivePolicy(
-    EnumHasPermissionsDirectivePolicy e) {
+String toJsonEnumHasPermissionsDirectivePolicy(EnumHasPermissionsDirectivePolicy e) {
   switch (e) {
     case EnumHasPermissionsDirectivePolicy.RESOLVER:
       return r'RESOLVER';
@@ -5655,8 +5337,7 @@ String toJsonEnumHasPermissionsDirectivePolicy(
   }
 }
 
-EnumHasPermissionsDirectivePolicy fromJsonEnumHasPermissionsDirectivePolicy(
-    String value) {
+EnumHasPermissionsDirectivePolicy fromJsonEnumHasPermissionsDirectivePolicy(String value) {
   switch (value) {
     case r'RESOLVER':
       return EnumHasPermissionsDirectivePolicy.RESOLVER;
@@ -5678,8 +5359,7 @@ enum EnumListLengthValidateDirectivePolicy {
   String toJson() => toJsonEnumListLengthValidateDirectivePolicy(this);
 }
 
-String toJsonEnumListLengthValidateDirectivePolicy(
-    EnumListLengthValidateDirectivePolicy e) {
+String toJsonEnumListLengthValidateDirectivePolicy(EnumListLengthValidateDirectivePolicy e) {
   switch (e) {
     case EnumListLengthValidateDirectivePolicy.RESOLVER:
       return r'RESOLVER';
@@ -5690,8 +5370,7 @@ String toJsonEnumListLengthValidateDirectivePolicy(
   }
 }
 
-EnumListLengthValidateDirectivePolicy
-    fromJsonEnumListLengthValidateDirectivePolicy(String value) {
+EnumListLengthValidateDirectivePolicy fromJsonEnumListLengthValidateDirectivePolicy(String value) {
   switch (value) {
     case r'RESOLVER':
       return EnumListLengthValidateDirectivePolicy.RESOLVER;
@@ -5713,8 +5392,7 @@ enum EnumPatternValidateDirectivePolicy {
   String toJson() => toJsonEnumPatternValidateDirectivePolicy(this);
 }
 
-String toJsonEnumPatternValidateDirectivePolicy(
-    EnumPatternValidateDirectivePolicy e) {
+String toJsonEnumPatternValidateDirectivePolicy(EnumPatternValidateDirectivePolicy e) {
   switch (e) {
     case EnumPatternValidateDirectivePolicy.RESOLVER:
       return r'RESOLVER';
@@ -5725,8 +5403,7 @@ String toJsonEnumPatternValidateDirectivePolicy(
   }
 }
 
-EnumPatternValidateDirectivePolicy fromJsonEnumPatternValidateDirectivePolicy(
-    String value) {
+EnumPatternValidateDirectivePolicy fromJsonEnumPatternValidateDirectivePolicy(String value) {
   switch (value) {
     case r'RESOLVER':
       return EnumPatternValidateDirectivePolicy.RESOLVER;
@@ -5748,8 +5425,7 @@ enum EnumRangeValidateDirectivePolicy {
   String toJson() => toJsonEnumRangeValidateDirectivePolicy(this);
 }
 
-String toJsonEnumRangeValidateDirectivePolicy(
-    EnumRangeValidateDirectivePolicy e) {
+String toJsonEnumRangeValidateDirectivePolicy(EnumRangeValidateDirectivePolicy e) {
   switch (e) {
     case EnumRangeValidateDirectivePolicy.RESOLVER:
       return r'RESOLVER';
@@ -5760,8 +5436,7 @@ String toJsonEnumRangeValidateDirectivePolicy(
   }
 }
 
-EnumRangeValidateDirectivePolicy fromJsonEnumRangeValidateDirectivePolicy(
-    String value) {
+EnumRangeValidateDirectivePolicy fromJsonEnumRangeValidateDirectivePolicy(String value) {
   switch (value) {
     case r'RESOLVER':
       return EnumRangeValidateDirectivePolicy.RESOLVER;
@@ -5783,8 +5458,7 @@ enum EnumSelfNodeIdValidateDirectivePolicy {
   String toJson() => toJsonEnumSelfNodeIdValidateDirectivePolicy(this);
 }
 
-String toJsonEnumSelfNodeIdValidateDirectivePolicy(
-    EnumSelfNodeIdValidateDirectivePolicy e) {
+String toJsonEnumSelfNodeIdValidateDirectivePolicy(EnumSelfNodeIdValidateDirectivePolicy e) {
   switch (e) {
     case EnumSelfNodeIdValidateDirectivePolicy.RESOLVER:
       return r'RESOLVER';
@@ -5795,8 +5469,7 @@ String toJsonEnumSelfNodeIdValidateDirectivePolicy(
   }
 }
 
-EnumSelfNodeIdValidateDirectivePolicy
-    fromJsonEnumSelfNodeIdValidateDirectivePolicy(String value) {
+EnumSelfNodeIdValidateDirectivePolicy fromJsonEnumSelfNodeIdValidateDirectivePolicy(String value) {
   switch (value) {
     case r'RESOLVER':
       return EnumSelfNodeIdValidateDirectivePolicy.RESOLVER;
@@ -5818,8 +5491,7 @@ enum EnumStringLengthValidateDirectivePolicy {
   String toJson() => toJsonEnumStringLengthValidateDirectivePolicy(this);
 }
 
-String toJsonEnumStringLengthValidateDirectivePolicy(
-    EnumStringLengthValidateDirectivePolicy e) {
+String toJsonEnumStringLengthValidateDirectivePolicy(EnumStringLengthValidateDirectivePolicy e) {
   switch (e) {
     case EnumStringLengthValidateDirectivePolicy.RESOLVER:
       return r'RESOLVER';
@@ -5830,8 +5502,9 @@ String toJsonEnumStringLengthValidateDirectivePolicy(
   }
 }
 
-EnumStringLengthValidateDirectivePolicy
-    fromJsonEnumStringLengthValidateDirectivePolicy(String value) {
+EnumStringLengthValidateDirectivePolicy fromJsonEnumStringLengthValidateDirectivePolicy(
+  String value,
+) {
   switch (value) {
     case r'RESOLVER':
       return EnumStringLengthValidateDirectivePolicy.RESOLVER;
@@ -5856,12 +5529,6 @@ const possibleTypesMap = <String, Set<String>>{
     'Webhook',
   },
   'HomeElement': {'HomeElementText'},
-  'PostOwner': {
-    'Organization',
-    'User',
-  },
-  'MaybePost': {
-    'Post',
-    'RemovedPost',
-  },
+  'PostOwner': {'Organization', 'User'},
+  'MaybePost': {'Post', 'RemovedPost'},
 };

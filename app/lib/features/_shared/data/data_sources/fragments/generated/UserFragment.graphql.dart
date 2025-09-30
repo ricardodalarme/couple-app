@@ -1,4 +1,4 @@
-// dart format off
+// dart format width=100
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
@@ -26,8 +26,7 @@ class FragmentUserFragment {
       email: (l$email as String),
       profilePicture: l$profilePicture == null
           ? null
-          : FragmentUserFragmentprofilePicture.fromJson(
-              (l$profilePicture as Map<String, dynamic>)),
+          : FragmentUserFragmentprofilePicture.fromJson((l$profilePicture as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -69,14 +68,7 @@ class FragmentUserFragment {
     final l$email = email;
     final l$profilePicture = profilePicture;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$username,
-      l$email,
-      l$profilePicture,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$id, l$name, l$username, l$email, l$profilePicture, l$$__typename]);
   }
 
   @override
@@ -124,92 +116,94 @@ class FragmentUserFragment {
 const fragmentDefinitionUserFragment = FragmentDefinitionNode(
   name: NameNode(value: 'UserFragment'),
   typeCondition: TypeConditionNode(
-      on: NamedTypeNode(
-    name: NameNode(value: 'User'),
-    isNonNull: false,
-  )),
+    on: NamedTypeNode(name: NameNode(value: 'User'), isNonNull: false),
+  ),
   directives: [],
-  selectionSet: SelectionSetNode(selections: [
-    FieldNode(
-      name: NameNode(value: 'id'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: 'name'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: 'username'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: 'email'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: 'profilePicture'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-          name: NameNode(value: 'url'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
+  selectionSet: SelectionSetNode(
+    selections: [
+      FieldNode(
+        name: NameNode(value: 'id'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'name'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'username'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'email'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'profilePicture'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(
+          selections: [
+            FieldNode(
+              name: NameNode(value: 'url'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ],
         ),
-        FieldNode(
-          name: NameNode(value: '__typename'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-      ]),
-    ),
-    FieldNode(
-      name: NameNode(value: '__typename'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-  ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ],
+  ),
 );
-const documentNodeFragmentUserFragment = DocumentNode(definitions: [
-  fragmentDefinitionUserFragment,
-]);
+const documentNodeFragmentUserFragment = DocumentNode(
+  definitions: [fragmentDefinitionUserFragment],
+);
 
 extension ClientExtensionFragmentUserFragment on graphql.GraphQLClient {
   void writeFragmentUserFragment({
     required FragmentUserFragment data,
     required Map<String, dynamic> idFields,
     bool broadcast = true,
-  }) =>
-      this.writeFragment(
-        graphql.FragmentRequest(
-          idFields: idFields,
-          fragment: const graphql.Fragment(
-            fragmentName: 'UserFragment',
-            document: documentNodeFragmentUserFragment,
-          ),
-        ),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
+  }) => this.writeFragment(
+    graphql.FragmentRequest(
+      idFields: idFields,
+      fragment: const graphql.Fragment(
+        fragmentName: 'UserFragment',
+        document: documentNodeFragmentUserFragment,
+      ),
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
+
   FragmentUserFragment? readFragmentUserFragment({
     required Map<String, dynamic> idFields,
     bool optimistic = true,
@@ -229,13 +223,9 @@ extension ClientExtensionFragmentUserFragment on graphql.GraphQLClient {
 }
 
 class FragmentUserFragmentprofilePicture {
-  FragmentUserFragmentprofilePicture({
-    required this.url,
-    this.$__typename = 'Download',
-  });
+  FragmentUserFragmentprofilePicture({required this.url, this.$__typename = 'Download'});
 
-  factory FragmentUserFragmentprofilePicture.fromJson(
-      Map<String, dynamic> json) {
+  factory FragmentUserFragmentprofilePicture.fromJson(Map<String, dynamic> json) {
     final l$url = json['url'];
     final l$$__typename = json['__typename'];
     return FragmentUserFragmentprofilePicture(
@@ -261,10 +251,7 @@ class FragmentUserFragmentprofilePicture {
   int get hashCode {
     final l$url = url;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$url,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$url, l$$__typename]);
   }
 
   @override
@@ -272,8 +259,7 @@ class FragmentUserFragmentprofilePicture {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! FragmentUserFragmentprofilePicture ||
-        runtimeType != other.runtimeType) {
+    if (other is! FragmentUserFragmentprofilePicture || runtimeType != other.runtimeType) {
       return false;
     }
     final l$url = url;

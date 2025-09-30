@@ -10,11 +10,14 @@ final WidgetbookNode baseTextFieldExample = WidgetbookUseCase(
     autocorrect: context.knobs.boolean(label: 'Autocorrect', initialValue: true),
     enableSuggestions: context.knobs.boolean(label: 'Enable suggestions', initialValue: true),
     obscureText: context.knobs.boolean(label: 'Obscure text'),
-    textInputAction: context.knobs.listOrNull(
+    textInputAction: context.knobs.objectOrNull.dropdown(
       label: 'Text input action',
       options: TextInputAction.values,
     ),
-    keyboardType: context.knobs.listOrNull(label: 'Keyboard type', options: TextInputType.values),
+    keyboardType: context.knobs.objectOrNull.dropdown(
+      label: 'Keyboard type',
+      options: TextInputType.values,
+    ),
     onSubmitted: (value) => context.showSnackBar(message: 'Submitted "$value"'),
   ),
 );

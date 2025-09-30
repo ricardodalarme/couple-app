@@ -15,7 +15,9 @@ class Divider extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: startMargin, bottom: endMargin),
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: context.colors.onSurface, width: _borderWidth)),
+        border: Border(
+          bottom: BorderSide(color: context.colors.onSurface, width: _borderWidth),
+        ),
       ),
     );
   }

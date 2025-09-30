@@ -1,13 +1,9 @@
-// dart format off
+// dart format width=100
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class FragmentTokenFragment {
-  FragmentTokenFragment({
-    required this.expires,
-    required this.token,
-    this.$__typename = 'Token',
-  });
+  FragmentTokenFragment({required this.expires, required this.token, this.$__typename = 'Token'});
 
   factory FragmentTokenFragment.fromJson(Map<String, dynamic> json) {
     final l$expires = json['expires'];
@@ -42,11 +38,7 @@ class FragmentTokenFragment {
     final l$expires = expires;
     final l$token = token;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$expires,
-      l$token,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$expires, l$token, l$$__typename]);
   }
 
   @override
@@ -79,56 +71,56 @@ class FragmentTokenFragment {
 const fragmentDefinitionTokenFragment = FragmentDefinitionNode(
   name: NameNode(value: 'TokenFragment'),
   typeCondition: TypeConditionNode(
-      on: NamedTypeNode(
-    name: NameNode(value: 'Token'),
-    isNonNull: false,
-  )),
+    on: NamedTypeNode(name: NameNode(value: 'Token'), isNonNull: false),
+  ),
   directives: [],
-  selectionSet: SelectionSetNode(selections: [
-    FieldNode(
-      name: NameNode(value: 'expires'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: 'token'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: '__typename'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-  ]),
+  selectionSet: SelectionSetNode(
+    selections: [
+      FieldNode(
+        name: NameNode(value: 'expires'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'token'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ],
+  ),
 );
-const documentNodeFragmentTokenFragment = DocumentNode(definitions: [
-  fragmentDefinitionTokenFragment,
-]);
+const documentNodeFragmentTokenFragment = DocumentNode(
+  definitions: [fragmentDefinitionTokenFragment],
+);
 
 extension ClientExtensionFragmentTokenFragment on graphql.GraphQLClient {
   void writeFragmentTokenFragment({
     required FragmentTokenFragment data,
     required Map<String, dynamic> idFields,
     bool broadcast = true,
-  }) =>
-      this.writeFragment(
-        graphql.FragmentRequest(
-          idFields: idFields,
-          fragment: const graphql.Fragment(
-            fragmentName: 'TokenFragment',
-            document: documentNodeFragmentTokenFragment,
-          ),
-        ),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
+  }) => this.writeFragment(
+    graphql.FragmentRequest(
+      idFields: idFields,
+      fragment: const graphql.Fragment(
+        fragmentName: 'TokenFragment',
+        document: documentNodeFragmentTokenFragment,
+      ),
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
+
   FragmentTokenFragment? readFragmentTokenFragment({
     required Map<String, dynamic> idFields,
     bool optimistic = true,

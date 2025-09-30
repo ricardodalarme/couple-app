@@ -16,18 +16,17 @@ class ProfilePicture extends StatelessWidget {
     return CircleAvatar(
       radius: size / 2,
       backgroundColor: context.colors.secondary,
-      child:
-          photoUrl != null
-              ? ClipOval(
-                child: CachedNetworkImage(
-                  imageUrl: photoUrl!,
-                  width: size,
-                  height: size,
-                  fit: BoxFit.cover,
-                  errorWidget: (context, url, error) => fallbackAvatar,
-                ),
-              )
-              : fallbackAvatar,
+      child: photoUrl != null
+          ? ClipOval(
+              child: CachedNetworkImage(
+                imageUrl: photoUrl!,
+                width: size,
+                height: size,
+                fit: BoxFit.cover,
+                errorWidget: (context, url, error) => fallbackAvatar,
+              ),
+            )
+          : fallbackAvatar,
     );
   }
 }

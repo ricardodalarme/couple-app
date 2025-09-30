@@ -7,7 +7,7 @@ final WidgetbookNode passwordTextFieldExample = WidgetbookUseCase(
   builder: (context) => PasswordTextField(
     text: context.knobs.string(label: 'Text'),
     label: context.knobs.string(label: 'Label', initialValue: 'Password'),
-    textInputAction: context.knobs.listOrNull(
+    textInputAction: context.knobs.objectOrNull.dropdown(
       label: 'Text input action',
       options: TextInputAction.values,
     ),

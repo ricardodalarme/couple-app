@@ -81,11 +81,22 @@ class TranslationsChangePasswordEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'Change Password'
   String get title => 'Change Password';
+
+  /// en: 'Current Password'
   String get labelCurrentPassword => 'Current Password';
+
+  /// en: 'New Password'
   String get labelNewPassword => 'New Password';
+
+  /// en: 'Confirm Password'
   String get labelConfirmPassword => 'Confirm Password';
+
+  /// en: 'Password changed successfully'
   String get messageSuccess => 'Password changed successfully';
+
   Map<String, String> get currentPasswordErrors => {'empty': 'Current password is required'};
   Map<String, String> get newPasswordErrors => {
     'weak':
@@ -102,15 +113,35 @@ class TranslationsCommonEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'Flutter Bloc Starter'
   String get appName => 'Flutter Bloc Starter';
+
+  /// en: 'Send'
   String get send => 'Send';
+
+  /// en: 'Save'
   String get save => 'Save';
+
+  /// en: 'Retry'
   String get retry => 'Retry';
+
+  /// en: 'Username'
   String get username => 'Username';
+
+  /// en: 'Email'
   String get email => 'Email';
+
+  /// en: 'Password'
   String get password => 'Password';
+
+  /// en: 'First Name'
   String get firstName => 'First Name';
+
+  /// en: 'Last Name'
   String get lastName => 'Last Name';
+
+  /// en: 'Something went wrong'
   String get genericError => 'Something went wrong';
 }
 
@@ -121,8 +152,13 @@ class TranslationsEditProfileEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'Edit Profile'
   String get title => 'Edit Profile';
+
+  /// en: 'Profile updated successfully'
   String get messageSuccess => 'Profile updated successfully';
+
   Map<String, String> get firstNameErrors => {'empty': 'First name is required'};
   Map<String, String> get lastNameErrors => {'empty': 'Last name is required'};
   Map<String, String> get emailErrors => {'invalid': 'Email is invalid'};
@@ -136,10 +172,17 @@ class TranslationsForgotPasswordEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'Recover Password'
   String get title => 'Recover Password';
+
+  /// en: 'Enter your email address and we'll send you a link to reset your password.'
   String get description =>
       'Enter your email address and we\'ll send you a link to reset your password.';
+
+  /// en: 'We've sent you an email with a link to reset your password.'
   String get messageSuccess => 'We\'ve sent you an email with a link to reset your password.';
+
   Map<String, String> get emailErrors => {'invalid': 'Invalid email'};
   Map<String, String> get errors => {'other': _root.common.genericError};
 }
@@ -151,17 +194,30 @@ class TranslationsLoginEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'Login'
   String get title => 'Login';
+
+  /// en: 'Login'
   String get buttonLogin => 'Login';
+
+  /// en: 'Forgot password?'
   String get buttonForgotPassword => 'Forgot password?';
+
+  /// en: 'Sign in with {provider}'
   String buttonSignInWith({required Object provider}) => 'Sign in with ${provider}';
+
+  /// en: 'Don't have an account? {signUp(Sign up)}'
   TextSpan buttonNewAccount({required InlineSpanBuilder signUp}) => TextSpan(
     children: [
       const TextSpan(text: 'Don\'t have an account? '),
       signUp('Sign up'),
     ],
   );
+
+  /// en: 'OR'
   String get dividerOr => 'OR';
+
   Map<String, String> get usernameErrors => {'empty': 'Username is required'};
   Map<String, String> get passwordErrors => {'empty': 'Password is required'};
   Map<String, String> get errors => {
@@ -177,8 +233,14 @@ class TranslationsNotFoundEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: '404'
   String get title => '404';
+
+  /// en: 'Page not found'
   String get description => 'Page not found';
+
+  /// en: 'Go back home'
   String get buttonBack => 'Go back home';
 }
 
@@ -194,6 +256,8 @@ class TranslationsOnboardingEn {
     TranslationsOnboarding$pages$0i1$En.internal(_root),
     TranslationsOnboarding$pages$0i2$En.internal(_root),
   ];
+
+  /// en: 'Get started'
   String get doneButton => 'Get started';
 }
 
@@ -204,7 +268,11 @@ class TranslationsPostEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'Feed'
   String get title => 'Feed';
+
+  /// en: 'Failed to load feed.'
   String get textFailure => 'Failed to load feed.';
 }
 
@@ -215,6 +283,8 @@ class TranslationsPrivacyPolicyEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'Privacy Policy'
   String get title => 'Privacy Policy';
 }
 
@@ -225,15 +295,35 @@ class TranslationsProfileEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'Profile'
   String get title => 'Profile';
+
+  /// en: 'Edit Profile'
   String get buttonEditProfile => 'Edit Profile';
+
+  /// en: 'Change Password'
   String get buttonChangePassword => 'Change Password';
+
+  /// en: 'Settings'
   String get buttonSettings => 'Settings';
+
+  /// en: 'Privacy Policy'
   String get buttonPrivacyPolicy => 'Privacy Policy';
+
+  /// en: 'Terms'
   String get buttonTerms => 'Terms';
+
+  /// en: 'Logout'
   String get buttonLogout => 'Logout';
+
+  /// en: 'Change Picture'
   String get buttonChangePicture => 'Change Picture';
+
+  /// en: 'Camera'
   String get buttonPickImageFromCamera => 'Camera';
+
+  /// en: 'Gallery'
   String get buttonPickImageFromGallery => 'Gallery';
 }
 
@@ -244,6 +334,8 @@ class TranslationsSearchEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'Search'
   String get title => 'Search';
 }
 
@@ -254,7 +346,11 @@ class TranslationsSettingsEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'Settings'
   String get title => 'Settings';
+
+  /// en: 'Biometrics'
   String get optionBiometrics => 'Biometrics';
 }
 
@@ -265,9 +361,16 @@ class TranslationsSignupEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'Sign Up'
   String get title => 'Sign Up';
+
+  /// en: 'Confirm Password'
   String get labelConfirmPassword => 'Confirm Password';
+
+  /// en: 'Sign Up'
   String get buttonSubmit => 'Sign Up';
+
   Map<String, String> get usernameErrors => {'empty': 'Username is required'};
   Map<String, String> get emailErrors => {'invalid': 'Email is invalid'};
   Map<String, String> get passwordErrors => {
@@ -285,6 +388,8 @@ class TranslationsTermsEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'Terms'
   String get title => 'Terms';
 }
 
@@ -295,8 +400,12 @@ class TranslationsOnboarding$pages$0i0$En with OnboardingPageData {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'Welcome!'
   @override
   String get title => 'Welcome!';
+
+  /// en: 'Welcome to QuickStart Flutter'
   @override
   String get message => 'Welcome to QuickStart Flutter';
 }
@@ -308,8 +417,12 @@ class TranslationsOnboarding$pages$0i1$En with OnboardingPageData {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'What is QuickStart Flutter?'
   @override
   String get title => 'What is QuickStart Flutter?';
+
+  /// en: 'QuickStart Flutter is a project to speed up the bootstrapping of new Flutter projects. It already comes with a series of features ready to use, such as internationalization, themes, routes, state management, among others.'
   @override
   String get message =>
       'QuickStart Flutter is a project to speed up the bootstrapping of new Flutter projects. It already comes with a series of features ready to use, such as internationalization, themes, routes, state management, among others.';
@@ -322,8 +435,12 @@ class TranslationsOnboarding$pages$0i2$En with OnboardingPageData {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// en: 'Let's get started?'
   @override
   String get title => 'Let\'s get started?';
+
+  /// en: 'Ready to explore everything QuickStart Flutter has to offer? Let's get started!'
   @override
   String get message =>
       'Ready to explore everything QuickStart Flutter has to offer? Let\'s get started!';

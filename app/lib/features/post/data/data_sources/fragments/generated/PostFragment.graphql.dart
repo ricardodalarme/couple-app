@@ -1,4 +1,4 @@
-// dart format off
+// dart format width=100
 import '../../../../../_shared/data/data_sources/fragments/generated/UserFragment.graphql.dart';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -22,8 +22,7 @@ class FragmentPostFragment {
       id: (l$id as String),
       title: (l$title as String),
       body: (l$body as String),
-      createdBy:
-          FragmentUserFragment.fromJson((l$createdBy as Map<String, dynamic>)),
+      createdBy: FragmentUserFragment.fromJson((l$createdBy as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -60,13 +59,7 @@ class FragmentPostFragment {
     final l$body = body;
     final l$createdBy = createdBy;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$title,
-      l$body,
-      l$createdBy,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$id, l$title, l$body, l$createdBy, l$$__typename]);
   }
 
   @override
@@ -109,83 +102,84 @@ class FragmentPostFragment {
 const fragmentDefinitionPostFragment = FragmentDefinitionNode(
   name: NameNode(value: 'PostFragment'),
   typeCondition: TypeConditionNode(
-      on: NamedTypeNode(
-    name: NameNode(value: 'Post'),
-    isNonNull: false,
-  )),
+    on: NamedTypeNode(name: NameNode(value: 'Post'), isNonNull: false),
+  ),
   directives: [],
-  selectionSet: SelectionSetNode(selections: [
-    FieldNode(
-      name: NameNode(value: 'id'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: 'title'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: 'body'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: 'createdBy'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FragmentSpreadNode(
-          name: NameNode(value: 'UserFragment'),
-          directives: [],
+  selectionSet: SelectionSetNode(
+    selections: [
+      FieldNode(
+        name: NameNode(value: 'id'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'title'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'body'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'createdBy'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(
+          selections: [
+            FragmentSpreadNode(
+              name: NameNode(value: 'UserFragment'),
+              directives: [],
+            ),
+            FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ],
         ),
-        FieldNode(
-          name: NameNode(value: '__typename'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-      ]),
-    ),
-    FieldNode(
-      name: NameNode(value: '__typename'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-  ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ],
+  ),
 );
-const documentNodeFragmentPostFragment = DocumentNode(definitions: [
-  fragmentDefinitionPostFragment,
-  fragmentDefinitionUserFragment,
-]);
+const documentNodeFragmentPostFragment = DocumentNode(
+  definitions: [fragmentDefinitionPostFragment, fragmentDefinitionUserFragment],
+);
 
 extension ClientExtensionFragmentPostFragment on graphql.GraphQLClient {
   void writeFragmentPostFragment({
     required FragmentPostFragment data,
     required Map<String, dynamic> idFields,
     bool broadcast = true,
-  }) =>
-      this.writeFragment(
-        graphql.FragmentRequest(
-          idFields: idFields,
-          fragment: const graphql.Fragment(
-            fragmentName: 'PostFragment',
-            document: documentNodeFragmentPostFragment,
-          ),
-        ),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
+  }) => this.writeFragment(
+    graphql.FragmentRequest(
+      idFields: idFields,
+      fragment: const graphql.Fragment(
+        fragmentName: 'PostFragment',
+        document: documentNodeFragmentPostFragment,
+      ),
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
+
   FragmentPostFragment? readFragmentPostFragment({
     required Map<String, dynamic> idFields,
     bool optimistic = true,

@@ -1,4 +1,4 @@
-// dart format off
+// dart format width=100
 import '../../../../../_shared/data/data_sources/generated/schema.graphql.dart';
 import 'dart:async';
 import 'package:gql/ast.dart';
@@ -6,17 +6,14 @@ import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationUpdateUser {
   factory VariablesMutationUpdateUser({required InputUpdateUserInput input}) =>
-      VariablesMutationUpdateUser._({
-        r'input': input,
-      });
+      VariablesMutationUpdateUser._({r'input': input});
 
   VariablesMutationUpdateUser._(this._$data);
 
   factory VariablesMutationUpdateUser.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$input = data['input'];
-    result$data['input'] =
-        InputUpdateUserInput.fromJson((l$input as Map<String, dynamic>));
+    result$data['input'] = InputUpdateUserInput.fromJson((l$input as Map<String, dynamic>));
     return VariablesMutationUpdateUser._(result$data);
   }
 
@@ -36,8 +33,7 @@ class VariablesMutationUpdateUser {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! VariablesMutationUpdateUser ||
-        runtimeType != other.runtimeType) {
+    if (other is! VariablesMutationUpdateUser || runtimeType != other.runtimeType) {
       return false;
     }
     final l$input = input;
@@ -56,10 +52,7 @@ class VariablesMutationUpdateUser {
 }
 
 class MutationUpdateUser {
-  MutationUpdateUser({
-    this.updateUser,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateUser({this.updateUser, this.$__typename = 'Mutation'});
 
   factory MutationUpdateUser.fromJson(Map<String, dynamic> json) {
     final l$updateUser = json['updateUser'];
@@ -67,8 +60,7 @@ class MutationUpdateUser {
     return MutationUpdateUser(
       updateUser: l$updateUser == null
           ? null
-          : MutationUpdateUserupdateUser.fromJson(
-              (l$updateUser as Map<String, dynamic>)),
+          : MutationUpdateUserupdateUser.fromJson((l$updateUser as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -90,10 +82,7 @@ class MutationUpdateUser {
   int get hashCode {
     final l$updateUser = updateUser;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$updateUser,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$updateUser, l$$__typename]);
   }
 
   @override
@@ -118,62 +107,62 @@ class MutationUpdateUser {
   }
 }
 
-const documentNodeMutationUpdateUser = DocumentNode(definitions: [
-  OperationDefinitionNode(
-    type: OperationType.mutation,
-    name: NameNode(value: 'UpdateUser'),
-    variableDefinitions: [
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'input')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'UpdateUserInput'),
-          isNonNull: true,
+const documentNodeMutationUpdateUser = DocumentNode(
+  definitions: [
+    OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'UpdateUser'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'input')),
+          type: NamedTypeNode(name: NameNode(value: 'UpdateUserInput'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
         ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      )
-    ],
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-        name: NameNode(value: 'updateUser'),
-        alias: null,
-        arguments: [
-          ArgumentNode(
-            name: NameNode(value: 'input'),
-            value: VariableNode(name: NameNode(value: 'input')),
-          )
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(
+        selections: [
+          FieldNode(
+            name: NameNode(value: 'updateUser'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'input'),
+                value: VariableNode(name: NameNode(value: 'input')),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
           FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
             directives: [],
             selectionSet: null,
-          )
-        ]),
+          ),
+        ],
       ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-    ]),
-  ),
-]);
+    ),
+  ],
+);
 MutationUpdateUser _parserFnMutationUpdateUser(Map<String, dynamic> data) =>
     MutationUpdateUser.fromJson(data);
-typedef OnMutationCompletedMutationUpdateUser = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  MutationUpdateUser?,
-);
+typedef OnMutationCompletedMutationUpdateUser =
+    FutureOr<void> Function(Map<String, dynamic>?, MutationUpdateUser?);
 
-class OptionsMutationUpdateUser
-    extends graphql.MutationOptions<MutationUpdateUser> {
+class OptionsMutationUpdateUser extends graphql.MutationOptions<MutationUpdateUser> {
   OptionsMutationUpdateUser({
     String? operationName,
     required VariablesMutationUpdateUser variables,
@@ -186,40 +175,36 @@ class OptionsMutationUpdateUser
     OnMutationCompletedMutationUpdateUser? onCompleted,
     graphql.OnMutationUpdate<MutationUpdateUser>? update,
     graphql.OnError? onError,
-  })  : onCompletedWithParsed = onCompleted,
-        super(
-          variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          onCompleted: onCompleted == null
-              ? null
-              : (data) => onCompleted(
-                    data,
-                    data == null ? null : _parserFnMutationUpdateUser(data),
-                  ),
-          update: update,
-          onError: onError,
-          document: documentNodeMutationUpdateUser,
-          parserFn: _parserFnMutationUpdateUser,
-        );
+  }) : onCompletedWithParsed = onCompleted,
+       super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         onCompleted: onCompleted == null
+             ? null
+             : (data) => onCompleted(data, data == null ? null : _parserFnMutationUpdateUser(data)),
+         update: update,
+         onError: onError,
+         document: documentNodeMutationUpdateUser,
+         parserFn: _parserFnMutationUpdateUser,
+       );
 
   final OnMutationCompletedMutationUpdateUser? onCompletedWithParsed;
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
-        onCompletedWithParsed,
-      ];
+    ...super.onCompleted == null
+        ? super.properties
+        : super.properties.where((property) => property != onCompleted),
+    onCompletedWithParsed,
+  ];
 }
 
-class WatchOptionsMutationUpdateUser
-    extends graphql.WatchQueryOptions<MutationUpdateUser> {
+class WatchOptionsMutationUpdateUser extends graphql.WatchQueryOptions<MutationUpdateUser> {
   WatchOptionsMutationUpdateUser({
     String? operationName,
     required VariablesMutationUpdateUser variables,
@@ -234,29 +219,30 @@ class WatchOptionsMutationUpdateUser
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-          variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          document: documentNodeMutationUpdateUser,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
-          parserFn: _parserFnMutationUpdateUser,
-        );
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         document: documentNodeMutationUpdateUser,
+         pollInterval: pollInterval,
+         eagerlyFetchResults: eagerlyFetchResults,
+         carryForwardDataOnException: carryForwardDataOnException,
+         fetchResults: fetchResults,
+         parserFn: _parserFnMutationUpdateUser,
+       );
 }
 
 extension ClientExtensionMutationUpdateUser on graphql.GraphQLClient {
   Future<graphql.QueryResult<MutationUpdateUser>> mutateUpdateUser(
-          OptionsMutationUpdateUser options) async =>
-      await this.mutate(options);
+    OptionsMutationUpdateUser options,
+  ) async => await this.mutate(options);
+
   graphql.ObservableQuery<MutationUpdateUser> watchMutationUpdateUser(
-          WatchOptionsMutationUpdateUser options) =>
-      this.watchMutation(options);
+    WatchOptionsMutationUpdateUser options,
+  ) => this.watchMutation(options);
 }
 
 class MutationUpdateUserupdateUser {
@@ -287,8 +273,7 @@ class MutationUpdateUserupdateUser {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateUserupdateUser ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationUpdateUserupdateUser || runtimeType != other.runtimeType) {
       return false;
     }
     final l$$__typename = $__typename;

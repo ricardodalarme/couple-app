@@ -1,4 +1,4 @@
-// dart format off
+// dart format width=100
 import '../../../../../_shared/data/data_sources/generated/schema.graphql.dart';
 import 'dart:async';
 import 'package:gql/ast.dart';
@@ -6,17 +6,14 @@ import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationCreateUser {
   factory VariablesMutationCreateUser({required InputCreateUserInput input}) =>
-      VariablesMutationCreateUser._({
-        r'input': input,
-      });
+      VariablesMutationCreateUser._({r'input': input});
 
   VariablesMutationCreateUser._(this._$data);
 
   factory VariablesMutationCreateUser.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$input = data['input'];
-    result$data['input'] =
-        InputCreateUserInput.fromJson((l$input as Map<String, dynamic>));
+    result$data['input'] = InputCreateUserInput.fromJson((l$input as Map<String, dynamic>));
     return VariablesMutationCreateUser._(result$data);
   }
 
@@ -36,8 +33,7 @@ class VariablesMutationCreateUser {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! VariablesMutationCreateUser ||
-        runtimeType != other.runtimeType) {
+    if (other is! VariablesMutationCreateUser || runtimeType != other.runtimeType) {
       return false;
     }
     final l$input = input;
@@ -56,10 +52,7 @@ class VariablesMutationCreateUser {
 }
 
 class MutationCreateUser {
-  MutationCreateUser({
-    this.createUser,
-    this.$__typename = 'Mutation',
-  });
+  MutationCreateUser({this.createUser, this.$__typename = 'Mutation'});
 
   factory MutationCreateUser.fromJson(Map<String, dynamic> json) {
     final l$createUser = json['createUser'];
@@ -67,8 +60,7 @@ class MutationCreateUser {
     return MutationCreateUser(
       createUser: l$createUser == null
           ? null
-          : MutationCreateUsercreateUser.fromJson(
-              (l$createUser as Map<String, dynamic>)),
+          : MutationCreateUsercreateUser.fromJson((l$createUser as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -90,10 +82,7 @@ class MutationCreateUser {
   int get hashCode {
     final l$createUser = createUser;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$createUser,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$createUser, l$$__typename]);
   }
 
   @override
@@ -118,62 +107,62 @@ class MutationCreateUser {
   }
 }
 
-const documentNodeMutationCreateUser = DocumentNode(definitions: [
-  OperationDefinitionNode(
-    type: OperationType.mutation,
-    name: NameNode(value: 'CreateUser'),
-    variableDefinitions: [
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'input')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'CreateUserInput'),
-          isNonNull: true,
+const documentNodeMutationCreateUser = DocumentNode(
+  definitions: [
+    OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'CreateUser'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'input')),
+          type: NamedTypeNode(name: NameNode(value: 'CreateUserInput'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
         ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      )
-    ],
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-        name: NameNode(value: 'createUser'),
-        alias: null,
-        arguments: [
-          ArgumentNode(
-            name: NameNode(value: 'input'),
-            value: VariableNode(name: NameNode(value: 'input')),
-          )
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(
+        selections: [
+          FieldNode(
+            name: NameNode(value: 'createUser'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'input'),
+                value: VariableNode(name: NameNode(value: 'input')),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
           FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
             directives: [],
             selectionSet: null,
-          )
-        ]),
+          ),
+        ],
       ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-    ]),
-  ),
-]);
+    ),
+  ],
+);
 MutationCreateUser _parserFnMutationCreateUser(Map<String, dynamic> data) =>
     MutationCreateUser.fromJson(data);
-typedef OnMutationCompletedMutationCreateUser = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  MutationCreateUser?,
-);
+typedef OnMutationCompletedMutationCreateUser =
+    FutureOr<void> Function(Map<String, dynamic>?, MutationCreateUser?);
 
-class OptionsMutationCreateUser
-    extends graphql.MutationOptions<MutationCreateUser> {
+class OptionsMutationCreateUser extends graphql.MutationOptions<MutationCreateUser> {
   OptionsMutationCreateUser({
     String? operationName,
     required VariablesMutationCreateUser variables,
@@ -186,40 +175,36 @@ class OptionsMutationCreateUser
     OnMutationCompletedMutationCreateUser? onCompleted,
     graphql.OnMutationUpdate<MutationCreateUser>? update,
     graphql.OnError? onError,
-  })  : onCompletedWithParsed = onCompleted,
-        super(
-          variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          onCompleted: onCompleted == null
-              ? null
-              : (data) => onCompleted(
-                    data,
-                    data == null ? null : _parserFnMutationCreateUser(data),
-                  ),
-          update: update,
-          onError: onError,
-          document: documentNodeMutationCreateUser,
-          parserFn: _parserFnMutationCreateUser,
-        );
+  }) : onCompletedWithParsed = onCompleted,
+       super(
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         onCompleted: onCompleted == null
+             ? null
+             : (data) => onCompleted(data, data == null ? null : _parserFnMutationCreateUser(data)),
+         update: update,
+         onError: onError,
+         document: documentNodeMutationCreateUser,
+         parserFn: _parserFnMutationCreateUser,
+       );
 
   final OnMutationCompletedMutationCreateUser? onCompletedWithParsed;
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
-        onCompletedWithParsed,
-      ];
+    ...super.onCompleted == null
+        ? super.properties
+        : super.properties.where((property) => property != onCompleted),
+    onCompletedWithParsed,
+  ];
 }
 
-class WatchOptionsMutationCreateUser
-    extends graphql.WatchQueryOptions<MutationCreateUser> {
+class WatchOptionsMutationCreateUser extends graphql.WatchQueryOptions<MutationCreateUser> {
   WatchOptionsMutationCreateUser({
     String? operationName,
     required VariablesMutationCreateUser variables,
@@ -234,29 +219,30 @@ class WatchOptionsMutationCreateUser
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-          variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          document: documentNodeMutationCreateUser,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
-          parserFn: _parserFnMutationCreateUser,
-        );
+         variables: variables.toJson(),
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         document: documentNodeMutationCreateUser,
+         pollInterval: pollInterval,
+         eagerlyFetchResults: eagerlyFetchResults,
+         carryForwardDataOnException: carryForwardDataOnException,
+         fetchResults: fetchResults,
+         parserFn: _parserFnMutationCreateUser,
+       );
 }
 
 extension ClientExtensionMutationCreateUser on graphql.GraphQLClient {
   Future<graphql.QueryResult<MutationCreateUser>> mutateCreateUser(
-          OptionsMutationCreateUser options) async =>
-      await this.mutate(options);
+    OptionsMutationCreateUser options,
+  ) async => await this.mutate(options);
+
   graphql.ObservableQuery<MutationCreateUser> watchMutationCreateUser(
-          WatchOptionsMutationCreateUser options) =>
-      this.watchMutation(options);
+    WatchOptionsMutationCreateUser options,
+  ) => this.watchMutation(options);
 }
 
 class MutationCreateUsercreateUser {
@@ -287,8 +273,7 @@ class MutationCreateUsercreateUser {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationCreateUsercreateUser ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationCreateUsercreateUser || runtimeType != other.runtimeType) {
       return false;
     }
     final l$$__typename = $__typename;
