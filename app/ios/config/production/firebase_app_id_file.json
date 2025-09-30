@@ -1,6 +1,0 @@
-{
-  "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:731036601810:ios:15c315d8b8f8694fa68c0b",
-  "FIREBASE_PROJECT_ID": "qs-flutter-production",
-  "GCM_SENDER_ID": "731036601810"
-}

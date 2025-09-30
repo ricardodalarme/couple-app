@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -155,7 +155,7 @@
 				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
-				B51146BF2D7781A9004D4FF1 /* Copy Firebase files to the correct location */,
+				B51146BF2D7781A9004D4FF1 /* Copy Firebase file to the correct location */,
 				97C146EC1CF9000F007C117D /* Resources */,
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
@@ -269,7 +269,7 @@
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n";
 		};
-		B51146BF2D7781A9004D4FF1 /* Copy Firebase files to the correct location */ = {
+		B51146BF2D7781A9004D4FF1 /* Copy Firebase file to the correct location */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -278,14 +278,14 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy Firebase files to the correct location";
+			name = "Copy Firebase file to the correct location";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Function to copy a file to a destination directory\n# Usage: copyFile <file_name> <destination_dir>\ncopyFile() {\n    local file_name=$1\n    local destination_dir=$2\n\n    # Construct the full paths\n    source_path=\"${ENVIRONMENT_DIR}/${file_name}\"\n    destination_path=\"${destination_dir}/${file_name}\"\n\n    # Check if the file exists\n    echo \"Looking for ${file_name} in ${source_path}\"\n    if [ ! -f $source_path ]; then\n        echo \"No ${file_name} found. Please ensure it's in the proper directory.\"\n        exit 1\n    fi\n\n    # Copy the file to the destination\n    echo \"Will copy ${file_name} to final destination: ${destination_path}\"\n    cp \"${source_path}\" \"${destination_path}\"\n}\n\n# Regex to extract the scheme name from the Build Configuration\nif [[ $CONFIGURATION =~ -([^-]*)$ ]]; then\n    environment=${BASH_REMATCH[1]}\nfi\n\necho $environment\n\nENVIRONMENT_DIR=${PROJECT_DIR}/config/${environment}\n\n## Copy Firebase config files\ncopyFile \"GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\"\ncopyFile \"firebase_app_id_file.json\" \"${PROJECT_DIR}\"\n";
+			shellScript = "# Function to copy a file to a destination directory\n# Usage: copyFile <file_name> <destination_dir>\ncopyFile() {\n    local file_name=$1\n    local destination_dir=$2\n\n    # Construct the full paths\n    source_path=\"${ENVIRONMENT_DIR}/${file_name}\"\n    destination_path=\"${destination_dir}/${file_name}\"\n\n    # Check if the file exists\n    echo \"Looking for ${file_name} in ${source_path}\"\n    if [ ! -f $source_path ]; then\n        echo \"No ${file_name} found. Please ensure it's in the proper directory.\"\n        exit 1\n    fi\n\n    # Copy the file to the destination\n    echo \"Will copy ${file_name} to final destination: ${destination_path}\"\n    cp \"${source_path}\" \"${destination_path}\"\n}\n\n# Regex to extract the scheme name from the Build Configuration\nif [[ $CONFIGURATION =~ -([^-]*)$ ]]; then\n    environment=${BASH_REMATCH[1]}\nfi\n\necho $environment\n\nENVIRONMENT_DIR=${PROJECT_DIR}/config/${environment}\n\n# Copy Firebase config file\ncopyFile \"GoogleService-Info.plist\" \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\"\n";
 		};
 		B51146C02D77830E004D4FF1 /* [firebase_crashlytics] Crashlytics Upload Symbols */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -298,8 +298,8 @@
 				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
 				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
 				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
 				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
-				"$(PROJECT_DIR)/firebase_app_id_file.json",
 			);
 			name = "[firebase_crashlytics] Crashlytics Upload Symbols";
 			outputFileListPaths = (
@@ -308,7 +308,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Cannot use \"BUILD_DIR%/Build/*\" as per Firebase documentation, it points to \"flutter-project/build/ios/*\" path which doesn't have run script\nDERIVED_DATA_PATH=$(echo \"$BUILD_ROOT\" | sed -E 's|(.*DerivedData/[^/]+).*|\\1|')\nPATH_TO_CRASHLYTICS_UPLOAD_SCRIPT=\"${DERIVED_DATA_PATH}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n\n# Command to upload symbols script used to upload symbols to Firebase server\n\"${PATH_TO_CRASHLYTICS_UPLOAD_SCRIPT}\" --flutter-project \"$PROJECT_DIR/firebase_app_id_file.json\"\n";
+			shellScript = "# Regex to extract the environment from the Build Configuration (e.g. Release-prod -> \"prod\")\nif [[ \"${CONFIGURATION}\" =~ -([^-]*)$ ]]; then\n    environment=${BASH_REMATCH[1]}\nfi\n\necho \"ℹ️ Environment: ${environment}\"\n\nGSP_PATH=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleService-Info.plist\"\n\nif [ ! -f \"${GSP_PATH}\" ]; then\n    echo \"❌ Missing GoogleService-Info.plist at ${GSP_PATH}\"\n    exit 1\nfi\n\necho \"ℹ️ Google Services Path: ${GSP_PATH}\"\n\n# Command to upload symbols script used to upload symbols to Firebase server\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\" --build-phase --debug --google-service-plist \"${GSP_PATH}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
