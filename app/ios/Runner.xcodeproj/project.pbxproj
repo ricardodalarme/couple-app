@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -308,7 +308,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Regex to extract the environment from the Build Configuration (e.g. Release-prod -> \"prod\")\nif [[ \"${CONFIGURATION}\" =~ -([^-]*)$ ]]; then\n    environment=${BASH_REMATCH[1]}\nfi\n\necho \"ℹ️ Environment: ${environment}\"\n\nGSP_PATH=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleService-Info.plist\"\n\nif [ ! -f \"${GSP_PATH}\" ]; then\n    echo \"❌ Missing GoogleService-Info.plist at ${GSP_PATH}\"\n    exit 1\nfi\n\necho \"ℹ️ Google Services Path: ${GSP_PATH}\"\n\n# Command to upload symbols script used to upload symbols to Firebase server\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\" --build-phase --debug --google-service-plist \"${GSP_PATH}\"\n";
+			shellScript = "# Regex to extract the environment from the Build Configuration (e.g. Release-prod -> \"prod\")\nif [[ \"${CONFIGURATION}\" =~ -([^-]*)$ ]]; then\n    environment=${BASH_REMATCH[1]}\nfi\n\necho \"ℹ️ Environment: ${environment}\"\n\nGSP_PATH=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleService-Info.plist\"\n\nif [ ! -f \"${GSP_PATH}\" ]; then\n    echo \"❌ Missing GoogleService-Info.plist at ${GSP_PATH}\"\n    exit 1\nfi\n\necho \"ℹ️ Google Services Path: ${GSP_PATH}\"\n\n# Cannot use \"BUILD_DIR%/Build/*\" as per Firebase documentation, it points to \"flutter-project/build/ios/*\" path which doesn't have run script\nDERIVED_DATA_PATH=$(echo \"$BUILD_ROOT\" | sed -E 's|(.*DerivedData/[^/]+).*|\\1|')\nPATH_TO_CRASHLYTICS_UPLOAD_SCRIPT=\"${DERIVED_DATA_PATH}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n\n# Command to upload symbols script used to upload symbols to Firebase server\n\"${PATH_TO_CRASHLYTICS_UPLOAD_SCRIPT}\" --build-phase --debug --google-service-plist \"${GSP_PATH}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
