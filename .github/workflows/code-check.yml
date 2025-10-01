@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: profusion/check-pr-commits-authors-action@main
         with:
-          EMAIL_PATTERN: ^.*@profusion\.com$
+          EMAIL_PATTERN: ^.*@profusion\.mobi$
           IGNORED_EMAIL_PATTERN: ^.*dependabot\[bot\]@users\.noreply\.github\.com # ignore dependabot
 
   test:
