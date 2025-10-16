@@ -1,4 +1,4 @@
-import 'package:formz_inputs/formz_inputs.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:test/test.dart';
 
 void main() {

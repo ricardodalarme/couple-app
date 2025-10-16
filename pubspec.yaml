@@ -10,7 +10,7 @@ workspace:
   - storybook
   - app/packages/common_ui
   - app/packages/core
-  - app/packages/formz_inputs
+  - app/packages/form_inputs
   - app/packages/network
   - app/packages/services/analytics
   - app/packages/services/biometric

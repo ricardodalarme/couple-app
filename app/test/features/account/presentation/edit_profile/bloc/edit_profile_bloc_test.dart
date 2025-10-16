@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:formz_inputs/formz_inputs.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:quickstart_flutter_bloc/features/account/data/repositories/account_repository.dart';
 import 'package:quickstart_flutter_bloc/features/account/presentation/edit_profile/bloc/edit_profile_bloc.dart';

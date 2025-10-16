@@ -53,7 +53,7 @@ updates:
       prefix: "chore"
       include: "scope"
   - package-ecosystem: "pub"
-    directory: "/app/packages/formz_inputs/"
+    directory: "/app/packages/form_inputs/"
     schedule:
       interval: "weekly"
     labels:

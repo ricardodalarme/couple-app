@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz_inputs/formz_inputs.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:quickstart_flutter_bloc/features/account/data/repositories/account_repository.dart';
 
 part 'edit_profile_event.dart';

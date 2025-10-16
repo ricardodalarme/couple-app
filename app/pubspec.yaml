@@ -25,8 +25,8 @@ dependencies:
   flutter_bloc: ^9.1.1
   flutter_localizations:
     sdk: flutter
-  formz_inputs:
-    path: ./packages/formz_inputs
+  form_inputs:
+    path: ./packages/form_inputs
   network:
     path: ./packages/network
   persistent_storage_service:
