@@ -5,9 +5,6 @@ import 'package:core/core.dart';
 import 'package:crash_report_service/crash_report_service.dart';
 import 'package:network/network.dart';
 import 'package:persistent_storage_service/persistent_storage_service.dart';
-import 'package:quickstart_flutter_bloc/features/_shared/data/data_sources/fragments/generated/PageInfoFragment.graphql.dart';
-import 'package:quickstart_flutter_bloc/features/_shared/data/mappers/page_info_response_mapper.dart';
-import 'package:quickstart_flutter_bloc/features/_shared/data/models/page_info.dart';
 import 'package:quickstart_flutter_bloc/router/app_router.dart';
 import 'package:quickstart_flutter_bloc/router/observers/analytics_router_observer.dart';
 import 'package:quickstart_flutter_bloc/router/observers/log_router_observer.dart';
@@ -31,6 +28,5 @@ class SharedInjectionModule implements InjectionModule {
     ..registerLazySingleton<AnalyticsService>(FirebaseAnalyticsService.new)
     ..registerLazySingleton<RemoteConfigService>(RemoteConfigServiceImpl.new)
     ..registerLazySingleton<CrashReportService>(CrashReportServiceImpl.new)
-    ..registerLazySingleton<BiometricService>(BiometricServiceImpl.new)
-    ..registerFactory<Mapper<FragmentPageInfoFragment, PageInfo>>(PageInfoResponseMapper.new);
+    ..registerLazySingleton<BiometricService>(BiometricServiceImpl.new);
 }

@@ -1,23 +1,20 @@
 import 'dart:async';
 
-import 'package:core/core.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/authentication_data_source.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/mutations/generated/Login.graphql.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/token_local_data_source.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/data/mappers/login_response_mapper.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/models/token.dart';
 
 class AuthenticationRepository {
   AuthenticationRepository({
     required AuthenticationDataSource loginDataSource,
     required TokenLocalDataSource tokenLocalDataSource,
-    required Mapper<MutationLoginlogin, Token> tokenLocalMapper,
   }) : _authenticationDataSource = loginDataSource,
-       _tokenLocalDataSource = tokenLocalDataSource,
-       _tokenLocalMapper = tokenLocalMapper;
+       _tokenLocalDataSource = tokenLocalDataSource;
 
   final AuthenticationDataSource _authenticationDataSource;
   final TokenLocalDataSource _tokenLocalDataSource;
-  final Mapper<MutationLoginlogin, Token> _tokenLocalMapper;
 
   final StreamController<bool> _authenticationStreamController = StreamController<bool>.broadcast();
 
@@ -43,8 +40,7 @@ class AuthenticationRepository {
       final MutationLoginlogin response = await _authenticationDataSource
           .logInWithUsernameAndPassword(username: username, password: password);
 
-      final Token localToken = _tokenLocalMapper.map(response);
-      await _tokenLocalDataSource.save(localToken);
+      await _tokenLocalDataSource.save(response.toModel());
 
       _authenticationStreamController.add(true);
     } catch (_) {

@@ -5,5 +5,4 @@ export 'src/exceptions/localized_exception.dart';
 export 'src/exceptions/unknown_exception.dart';
 export 'src/storage/storage_keys.dart';
 export 'src/utils/config.dart';
-export 'src/utils/mapper.dart';
 export 'src/utils/resource.dart';

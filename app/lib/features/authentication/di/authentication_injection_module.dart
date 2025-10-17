@@ -1,10 +1,7 @@
 import 'package:core/core.dart';
 import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/authentication_data_source.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/mutations/generated/Login.graphql.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/token_local_data_source.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/data/mappers/login_response_to_token_mapper.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/data/models/token.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/presentation/forgot_password/bloc/forgot_password_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/bloc/login_bloc.dart';
@@ -20,10 +17,8 @@ class AuthenticationInjectionModule implements InjectionModule {
     ..registerLazySingleton<TokenLocalDataSource>(
       () => TokenLocalDataSource(storage: injector.get<SecureStorageService>()),
     )
-    ..registerFactory<Mapper<MutationLoginlogin, Token>>(LoginResponseToTokenMapper.new)
     ..registerLazySingleton<AuthenticationRepository>(
       () => AuthenticationRepository(
-        tokenLocalMapper: injector.get<Mapper<MutationLoginlogin, Token>>(),
         loginDataSource: injector.get<AuthenticationDataSource>(),
         tokenLocalDataSource: injector.get<TokenLocalDataSource>(),
       ),
