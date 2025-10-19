@@ -12,7 +12,7 @@ import 'package:quickstart_flutter_bloc/features/post/presentation/list/posts_li
 import 'package:quickstart_flutter_bloc/features/privacy_policy/presentation/privacy_policy_page.dart';
 import 'package:quickstart_flutter_bloc/features/search/presentation/search_page.dart';
 import 'package:quickstart_flutter_bloc/features/settings/presentation/settings_page.dart';
-import 'package:quickstart_flutter_bloc/features/term/presentation/terms_page.dart';
+import 'package:quickstart_flutter_bloc/features/term/presentation/list/terms_list_page.dart';
 
 part 'app_router.gr.dart';
 

@@ -223,7 +223,7 @@ class _TranslationsTermsPt extends TranslationsTermsEn {
 
   // Translations
   @override
-  String get title => 'Termos';
+  late final _TranslationsTermsListPt list = _TranslationsTermsListPt._(_root);
 }
 
 // Path: account.profile
@@ -462,6 +462,17 @@ class _TranslationsPostListPt extends TranslationsPostListEn {
   String get textFailure => 'Falha ao carregar o feed.';
 }
 
+// Path: terms.list
+class _TranslationsTermsListPt extends TranslationsTermsListEn {
+  _TranslationsTermsListPt._(TranslationsPt root) : this._root = root, super.internal(root);
+
+  final TranslationsPt _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Termos';
+}
+
 /// The flat map containing all translations for locale <pt>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 /// Note: We use a HashMap because Dart seems to be unable to compile large switch statements.
@@ -563,7 +574,7 @@ extension on TranslationsPt {
     map['search.title'] = 'Pesquisar';
     map['settings.title'] = 'Configurações';
     map['settings.optionBiometrics'] = 'Biometria';
-    map['terms.title'] = 'Termos';
+    map['terms.list.title'] = 'Termos';
 
     _map = map;
     return map;

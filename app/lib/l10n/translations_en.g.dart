@@ -228,9 +228,7 @@ class TranslationsTermsEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
-
-  /// en: 'Terms'
-  String get title => 'Terms';
+  late final TranslationsTermsListEn list = TranslationsTermsListEn.internal(_root);
 }
 
 // Path: account.profile
@@ -480,6 +478,18 @@ class TranslationsPostListEn {
   String get textFailure => 'Failed to load feed.';
 }
 
+// Path: terms.list
+class TranslationsTermsListEn {
+  TranslationsTermsListEn.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Terms'
+  String get title => 'Terms';
+}
+
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 /// Note: We use a HashMap because Dart seems to be unable to compile large switch statements.
@@ -581,7 +591,7 @@ extension on Translations {
     map['search.title'] = 'Search';
     map['settings.title'] = 'Settings';
     map['settings.optionBiometrics'] = 'Biometrics';
-    map['terms.title'] = 'Terms';
+    map['terms.list.title'] = 'Terms';
 
     _map = map;
     return map;

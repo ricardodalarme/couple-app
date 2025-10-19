@@ -219,7 +219,7 @@ class SignUpRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [TermsPage]
+/// [TermsListPage]
 class TermsRoute extends PageRouteInfo<void> {
   const TermsRoute({List<PageRouteInfo>? children})
     : super(TermsRoute.name, initialChildren: children);
@@ -229,7 +229,7 @@ class TermsRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const TermsPage();
+      return const TermsListPage();
     },
   );
 }
