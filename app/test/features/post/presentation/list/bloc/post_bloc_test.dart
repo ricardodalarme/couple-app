@@ -2,26 +2,26 @@ import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/repositories/post_repository.dart';
-import 'package:quickstart_flutter_bloc/features/post/presentation/bloc/post_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/post/presentation/list/bloc/posts_list_bloc.dart';
 
 class MockPostRepository extends Mock implements PostRepository {}
 
 void main() {
-  group('PostBloc', () {
+  group('PostsListBloc', () {
     late PostRepository postRepository;
-    late PostBloc postBloc;
+    late PostsListBloc postsListBloc;
 
     setUp(() {
       postRepository = MockPostRepository();
-      postBloc = PostBloc(postRepository: postRepository);
+      postsListBloc = PostsListBloc(postRepository: postRepository);
     });
 
     tearDown(() {
-      postBloc.close();
+      postsListBloc.close();
     });
 
     test('initial state is correct', () {
-      expect(postBloc.state, const PostState(posts: Loading()));
+      expect(postsListBloc.state, const PostsListState(posts: Loading()));
     });
   });
 }

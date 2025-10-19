@@ -8,7 +8,7 @@ import 'package:quickstart_flutter_bloc/features/authentication/presentation/sig
 import 'package:quickstart_flutter_bloc/features/home/presentation/home_page.dart';
 import 'package:quickstart_flutter_bloc/features/not_found/presentation/not_found_page.dart';
 import 'package:quickstart_flutter_bloc/features/onboarding/presentation/onboarding_page.dart';
-import 'package:quickstart_flutter_bloc/features/post/presentation/post_page.dart';
+import 'package:quickstart_flutter_bloc/features/post/presentation/list/posts_list_page.dart';
 import 'package:quickstart_flutter_bloc/features/privacy_policy/presentation/privacy_policy_page.dart';
 import 'package:quickstart_flutter_bloc/features/search/presentation/search_page.dart';
 import 'package:quickstart_flutter_bloc/features/settings/presentation/settings_page.dart';
@@ -27,7 +27,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       page: HomeRoute.page,
       children: [
-        AutoRoute(page: PostRoute.page, initial: true),
+        AutoRoute(page: PostsListRoute.page, initial: true),
         AutoRoute(page: SearchRoute.page),
         AutoRoute(page: ProfileRoute.page),
       ],

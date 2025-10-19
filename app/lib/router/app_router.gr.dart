@@ -123,17 +123,17 @@ class OnboardingRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [PostPage]
-class PostRoute extends PageRouteInfo<void> {
-  const PostRoute({List<PageRouteInfo>? children})
-    : super(PostRoute.name, initialChildren: children);
+/// [PostsListPage]
+class PostsListRoute extends PageRouteInfo<void> {
+  const PostsListRoute({List<PageRouteInfo>? children})
+    : super(PostsListRoute.name, initialChildren: children);
 
-  static const String name = 'PostRoute';
+  static const String name = 'PostsListRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return WrappedRoute(child: const PostPage());
+      return WrappedRoute(child: const PostsListPage());
     },
   );
 }

@@ -5,7 +5,7 @@ import 'package:quickstart_flutter_bloc/features/post/data/data_sources/queries/
 import 'package:quickstart_flutter_bloc/features/post/data/mappers/post_response_mapper.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/models/post.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/repositories/post_repository.dart';
-import 'package:quickstart_flutter_bloc/features/post/presentation/bloc/post_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/post/presentation/list/bloc/posts_list_bloc.dart';
 
 class PostInjectionModule implements InjectionModule {
   @override
@@ -20,5 +20,7 @@ class PostInjectionModule implements InjectionModule {
         mapper: injector.get<Mapper<QueryGetPostspostsnodesPost, Post>>(),
       ),
     )
-    ..registerFactory<PostBloc>(() => PostBloc(postRepository: injector.get<PostRepository>()));
+    ..registerFactory<PostsListBloc>(
+      () => PostsListBloc(postRepository: injector.get<PostRepository>()),
+    );
 }

@@ -1,4 +1,6 @@
 {
-  "title": "Feed",
-  "textFailure": "Falha ao carregar o feed."
+  "list": {
+    "title": "Feed",
+    "textFailure": "Falha ao carregar o feed."
+  }
 }

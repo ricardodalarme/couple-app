@@ -179,12 +179,7 @@ class TranslationsPostEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
-
-  /// en: 'Feed'
-  String get title => 'Feed';
-
-  /// en: 'Failed to load feed.'
-  String get textFailure => 'Failed to load feed.';
+  late final TranslationsPostListEn list = TranslationsPostListEn.internal(_root);
 }
 
 // Path: privacyPolicy
@@ -470,6 +465,21 @@ class TranslationsOnboarding$pages$0i2$En with OnboardingPageData {
       'Ready to explore everything QuickStart Flutter has to offer? Let\'s get started!';
 }
 
+// Path: post.list
+class TranslationsPostListEn {
+  TranslationsPostListEn.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Feed'
+  String get title => 'Feed';
+
+  /// en: 'Failed to load feed.'
+  String get textFailure => 'Failed to load feed.';
+}
+
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 /// Note: We use a HashMap because Dart seems to be unable to compile large switch statements.
@@ -565,8 +575,8 @@ extension on Translations {
     map['onboarding.pages.2.message'] =
         'Ready to explore everything QuickStart Flutter has to offer? Let\'s get started!';
     map['onboarding.doneButton'] = 'Get started';
-    map['post.title'] = 'Feed';
-    map['post.textFailure'] = 'Failed to load feed.';
+    map['post.list.title'] = 'Feed';
+    map['post.list.textFailure'] = 'Failed to load feed.';
     map['privacyPolicy.title'] = 'Privacy Policy';
     map['search.title'] = 'Search';
     map['settings.title'] = 'Settings';

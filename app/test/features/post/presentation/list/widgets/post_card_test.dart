@@ -1,9 +1,9 @@
 import 'package:common_ui/common_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/models/post.dart';
-import 'package:quickstart_flutter_bloc/features/post/presentation/widgets/post_card.dart';
+import 'package:quickstart_flutter_bloc/features/post/presentation/list/widgets/post_card.dart';
 
-import '../../../../test_helpers/pump_app.dart';
+import '../../../../../test_helpers/pump_app.dart';
 
 void main() {
   group('PostCard', () {

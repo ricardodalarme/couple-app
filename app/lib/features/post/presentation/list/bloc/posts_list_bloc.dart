@@ -4,19 +4,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/models/post.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/repositories/post_repository.dart';
 
-part 'post_event.dart';
-part 'post_state.dart';
+part 'posts_list_event.dart';
+part 'posts_list_state.dart';
 
-class PostBloc extends Bloc<PostEvent, PostState> {
-  PostBloc({required PostRepository postRepository})
+class PostsListBloc extends Bloc<PostsListEvent, PostsListState> {
+  PostsListBloc({required PostRepository postRepository})
     : _postRepository = postRepository,
-      super(const PostState()) {
-    on<PostFetched>(_onPostFetched);
+      super(const PostsListState()) {
+    on<PostsListFetched>(_onPostsListFetched);
   }
 
   final PostRepository _postRepository;
 
-  Future<void> _onPostFetched(PostFetched event, Emitter<PostState> emit) async {
+  Future<void> _onPostsListFetched(PostsListFetched event, Emitter<PostsListState> emit) async {
     emit(state.copyWith(posts: const Loading()));
 
     try {
