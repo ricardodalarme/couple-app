@@ -6,6 +6,9 @@ import 'package:quickstart_flutter_bloc/features/authentication/data/data_source
 import 'package:quickstart_flutter_bloc/features/authentication/data/mappers/login_response_to_token_mapper.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/models/token.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/forgot_password/bloc/forgot_password_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/bloc/login_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/signup/bloc/signup_bloc.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
 
 class AuthenticationInjectionModule implements InjectionModule {
@@ -24,5 +27,14 @@ class AuthenticationInjectionModule implements InjectionModule {
         loginDataSource: injector.get<AuthenticationDataSource>(),
         tokenLocalDataSource: injector.get<TokenLocalDataSource>(),
       ),
+    )
+    ..registerFactory<LoginBloc>(
+      () => LoginBloc(authenticationRepository: injector.get<AuthenticationRepository>()),
+    )
+    ..registerFactory<SignupBloc>(
+      () => SignupBloc(authenticationRepository: injector.get<AuthenticationRepository>()),
+    )
+    ..registerFactory<ForgotPasswordBloc>(
+      () => ForgotPasswordBloc(authenticationRepository: injector.get<AuthenticationRepository>()),
     );
 }

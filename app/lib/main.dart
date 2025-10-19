@@ -11,14 +11,11 @@ import 'package:quickstart_flutter_bloc/features/app/di/app_injection_module.dar
 import 'package:quickstart_flutter_bloc/features/authentication/di/authentication_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/change_password/di/change_password_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/edit_profile/di/edit_profile_injection_module.dart';
-import 'package:quickstart_flutter_bloc/features/forgot_password/di/forgot_password_injection_module.dart';
-import 'package:quickstart_flutter_bloc/features/login/di/login_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/onboarding/di/onboarding_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/post/di/post_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/settings/data/models/settings.dart';
 import 'package:quickstart_flutter_bloc/features/settings/data/repositories/settings_repository.dart';
 import 'package:quickstart_flutter_bloc/features/settings/di/settings_injection_module.dart';
-import 'package:quickstart_flutter_bloc/features/signup/di/signup_injection_module.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 import 'package:quickstart_flutter_bloc/router/app_router.dart';
 
@@ -72,9 +69,6 @@ void _registerModules() {
     AppInjectionModule(),
     AuthenticationInjectionModule(),
     OnboardingInjectionModule(),
-    LoginInjectionModule(),
-    SignupInjectionModule(),
-    ForgotPasswordInjectionModule(),
     EditProfileInjectionModule(),
     ChangePasswordInjectionModule(),
     PostInjectionModule(),

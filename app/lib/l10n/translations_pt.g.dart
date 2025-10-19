@@ -51,15 +51,13 @@ class TranslationsPt extends Translations {
 
   // Translations
   @override
+  late final _TranslationsAuthenticationPt authentication = _TranslationsAuthenticationPt._(_root);
+  @override
   late final _TranslationsChangePasswordPt changePassword = _TranslationsChangePasswordPt._(_root);
   @override
   late final _TranslationsCommonPt common = _TranslationsCommonPt._(_root);
   @override
   late final _TranslationsEditProfilePt editProfile = _TranslationsEditProfilePt._(_root);
-  @override
-  late final _TranslationsForgotPasswordPt forgotPassword = _TranslationsForgotPasswordPt._(_root);
-  @override
-  late final _TranslationsLoginPt login = _TranslationsLoginPt._(_root);
   @override
   late final _TranslationsNotFoundPt notFound = _TranslationsNotFoundPt._(_root);
   @override
@@ -75,9 +73,25 @@ class TranslationsPt extends Translations {
   @override
   late final _TranslationsSettingsPt settings = _TranslationsSettingsPt._(_root);
   @override
-  late final _TranslationsSignupPt signup = _TranslationsSignupPt._(_root);
-  @override
   late final _TranslationsTermsPt terms = _TranslationsTermsPt._(_root);
+}
+
+// Path: authentication
+class _TranslationsAuthenticationPt extends TranslationsAuthenticationEn {
+  _TranslationsAuthenticationPt._(TranslationsPt root) : this._root = root, super.internal(root);
+
+  final TranslationsPt _root; // ignore: unused_field
+
+  // Translations
+  @override
+  late final _TranslationsAuthenticationLoginPt login = _TranslationsAuthenticationLoginPt._(_root);
+  @override
+  late final _TranslationsAuthenticationSignupPt signup = _TranslationsAuthenticationSignupPt._(
+    _root,
+  );
+  @override
+  late final _TranslationsAuthenticationForgotPasswordPt forgotPassword =
+      _TranslationsAuthenticationForgotPasswordPt._(_root);
 }
 
 // Path: changePassword
@@ -158,61 +172,6 @@ class _TranslationsEditProfilePt extends TranslationsEditProfileEn {
   Map<String, String> get emailErrors => {'invalid': 'Email inválido'};
   @override
   Map<String, String> get errors => {'other': _root.common.genericError};
-}
-
-// Path: forgotPassword
-class _TranslationsForgotPasswordPt extends TranslationsForgotPasswordEn {
-  _TranslationsForgotPasswordPt._(TranslationsPt root) : this._root = root, super.internal(root);
-
-  final TranslationsPt _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Recuperar Senha';
-  @override
-  String get description =>
-      'Digite seu email e enviaremos um link para você redefinir a sua senha.';
-  @override
-  String get messageSuccess => 'Enviamos um email com um link para você redefinir a sua senha.';
-  @override
-  Map<String, String> get emailErrors => {'invalid': 'Email inválido'};
-  @override
-  Map<String, String> get errors => {'other': _root.common.genericError};
-}
-
-// Path: login
-class _TranslationsLoginPt extends TranslationsLoginEn {
-  _TranslationsLoginPt._(TranslationsPt root) : this._root = root, super.internal(root);
-
-  final TranslationsPt _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Entrar';
-  @override
-  String get buttonLogin => 'Entrar';
-  @override
-  String get buttonForgotPassword => 'Esqueceu a senha?';
-  @override
-  String buttonSignInWith({required Object provider}) => 'Continue com ${provider}';
-  @override
-  TextSpan buttonNewAccount({required InlineSpanBuilder signUp}) => TextSpan(
-    children: [
-      const TextSpan(text: 'Não tem uma conta? '),
-      signUp('Cadastre-se'),
-    ],
-  );
-  @override
-  String get dividerOr => 'OU';
-  @override
-  Map<String, String> get usernameErrors => {'empty': 'O nome de usuário é obrigatório'};
-  @override
-  Map<String, String> get passwordErrors => {'empty': 'A senha é obrigatória'};
-  @override
-  Map<String, String> get errors => {
-    'BAD_USER_INPUT': 'Usuário ou senha inválidos',
-    'other': _root.common.genericError,
-  };
 }
 
 // Path: notFound
@@ -324,9 +283,59 @@ class _TranslationsSettingsPt extends TranslationsSettingsEn {
   String get optionBiometrics => 'Biometria';
 }
 
-// Path: signup
-class _TranslationsSignupPt extends TranslationsSignupEn {
-  _TranslationsSignupPt._(TranslationsPt root) : this._root = root, super.internal(root);
+// Path: terms
+class _TranslationsTermsPt extends TranslationsTermsEn {
+  _TranslationsTermsPt._(TranslationsPt root) : this._root = root, super.internal(root);
+
+  final TranslationsPt _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Termos';
+}
+
+// Path: authentication.login
+class _TranslationsAuthenticationLoginPt extends TranslationsAuthenticationLoginEn {
+  _TranslationsAuthenticationLoginPt._(TranslationsPt root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsPt _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Entrar';
+  @override
+  String get buttonLogin => 'Entrar';
+  @override
+  String get buttonForgotPassword => 'Esqueceu a senha?';
+  @override
+  String buttonSignInWith({required Object provider}) => 'Continue com ${provider}';
+  @override
+  TextSpan buttonNewAccount({required InlineSpanBuilder signUp}) => TextSpan(
+    children: [
+      const TextSpan(text: 'Não tem uma conta? '),
+      signUp('Cadastre-se'),
+    ],
+  );
+  @override
+  String get dividerOr => 'OU';
+  @override
+  Map<String, String> get usernameErrors => {'empty': 'O nome de usuário é obrigatório'};
+  @override
+  Map<String, String> get passwordErrors => {'empty': 'A senha é obrigatória'};
+  @override
+  Map<String, String> get errors => {
+    'BAD_USER_INPUT': 'Usuário ou senha inválidos',
+    'other': _root.common.genericError,
+  };
+}
+
+// Path: authentication.signup
+class _TranslationsAuthenticationSignupPt extends TranslationsAuthenticationSignupEn {
+  _TranslationsAuthenticationSignupPt._(TranslationsPt root)
+    : this._root = root,
+      super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
@@ -351,15 +360,27 @@ class _TranslationsSignupPt extends TranslationsSignupEn {
   Map<String, String> get errors => {'other': _root.common.genericError};
 }
 
-// Path: terms
-class _TranslationsTermsPt extends TranslationsTermsEn {
-  _TranslationsTermsPt._(TranslationsPt root) : this._root = root, super.internal(root);
+// Path: authentication.forgotPassword
+class _TranslationsAuthenticationForgotPasswordPt
+    extends TranslationsAuthenticationForgotPasswordEn {
+  _TranslationsAuthenticationForgotPasswordPt._(TranslationsPt root)
+    : this._root = root,
+      super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
   // Translations
   @override
-  String get title => 'Termos';
+  String get title => 'Recuperar Senha';
+  @override
+  String get description =>
+      'Digite seu email e enviaremos um link para você redefinir a sua senha.';
+  @override
+  String get messageSuccess => 'Enviamos um email com um link para você redefinir a sua senha.';
+  @override
+  Map<String, String> get emailErrors => {'invalid': 'Email inválido'};
+  @override
+  Map<String, String> get errors => {'other': _root.common.genericError};
 }
 
 // Path: onboarding.pages.0
@@ -426,6 +447,39 @@ extension on TranslationsPt {
   /// Initializes the flat map and returns it.
   Map<String, dynamic> _initFlatMap() {
     final map = <String, dynamic>{};
+    map['authentication.login.title'] = 'Entrar';
+    map['authentication.login.buttonLogin'] = 'Entrar';
+    map['authentication.login.buttonForgotPassword'] = 'Esqueceu a senha?';
+    map['authentication.login.buttonSignInWith'] = ({required Object provider}) =>
+        'Continue com ${provider}';
+    map['authentication.login.buttonNewAccount'] = ({required InlineSpanBuilder signUp}) =>
+        TextSpan(
+          children: [
+            const TextSpan(text: 'Não tem uma conta? '),
+            signUp('Cadastre-se'),
+          ],
+        );
+    map['authentication.login.dividerOr'] = 'OU';
+    map['authentication.login.usernameErrors.empty'] = 'O nome de usuário é obrigatório';
+    map['authentication.login.passwordErrors.empty'] = 'A senha é obrigatória';
+    map['authentication.login.errors.BAD_USER_INPUT'] = 'Usuário ou senha inválidos';
+    map['authentication.login.errors.other'] = _root.common.genericError;
+    map['authentication.signup.title'] = 'Registrar';
+    map['authentication.signup.labelConfirmPassword'] = 'Confirmar Senha';
+    map['authentication.signup.buttonSubmit'] = 'Registrar';
+    map['authentication.signup.usernameErrors.empty'] = 'Nome de usuário é obrigatório';
+    map['authentication.signup.emailErrors.invalid'] = 'Email é inválido';
+    map['authentication.signup.passwordErrors.weak'] =
+        'Senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número';
+    map['authentication.signup.confirmPasswordErrors.invalid'] = 'Senhas não coincidem';
+    map['authentication.signup.errors.other'] = _root.common.genericError;
+    map['authentication.forgotPassword.title'] = 'Recuperar Senha';
+    map['authentication.forgotPassword.description'] =
+        'Digite seu email e enviaremos um link para você redefinir a sua senha.';
+    map['authentication.forgotPassword.messageSuccess'] =
+        'Enviamos um email com um link para você redefinir a sua senha.';
+    map['authentication.forgotPassword.emailErrors.invalid'] = 'Email inválido';
+    map['authentication.forgotPassword.errors.other'] = _root.common.genericError;
     map['changePassword.title'] = 'Alterar Senha';
     map['changePassword.labelCurrentPassword'] = 'Senha Atual';
     map['changePassword.labelNewPassword'] = 'Nova Senha';
@@ -452,28 +506,6 @@ extension on TranslationsPt {
     map['editProfile.lastNameErrors.empty'] = 'Sobrenome é obrigatório';
     map['editProfile.emailErrors.invalid'] = 'Email inválido';
     map['editProfile.errors.other'] = _root.common.genericError;
-    map['forgotPassword.title'] = 'Recuperar Senha';
-    map['forgotPassword.description'] =
-        'Digite seu email e enviaremos um link para você redefinir a sua senha.';
-    map['forgotPassword.messageSuccess'] =
-        'Enviamos um email com um link para você redefinir a sua senha.';
-    map['forgotPassword.emailErrors.invalid'] = 'Email inválido';
-    map['forgotPassword.errors.other'] = _root.common.genericError;
-    map['login.title'] = 'Entrar';
-    map['login.buttonLogin'] = 'Entrar';
-    map['login.buttonForgotPassword'] = 'Esqueceu a senha?';
-    map['login.buttonSignInWith'] = ({required Object provider}) => 'Continue com ${provider}';
-    map['login.buttonNewAccount'] = ({required InlineSpanBuilder signUp}) => TextSpan(
-      children: [
-        const TextSpan(text: 'Não tem uma conta? '),
-        signUp('Cadastre-se'),
-      ],
-    );
-    map['login.dividerOr'] = 'OU';
-    map['login.usernameErrors.empty'] = 'O nome de usuário é obrigatório';
-    map['login.passwordErrors.empty'] = 'A senha é obrigatória';
-    map['login.errors.BAD_USER_INPUT'] = 'Usuário ou senha inválidos';
-    map['login.errors.other'] = _root.common.genericError;
     map['notFound.title'] = '404';
     map['notFound.description'] = 'Página não encontrada';
     map['notFound.buttonBack'] = 'Voltar para página inicial';
@@ -502,15 +534,6 @@ extension on TranslationsPt {
     map['search.title'] = 'Pesquisar';
     map['settings.title'] = 'Configurações';
     map['settings.optionBiometrics'] = 'Biometria';
-    map['signup.title'] = 'Registrar';
-    map['signup.labelConfirmPassword'] = 'Confirmar Senha';
-    map['signup.buttonSubmit'] = 'Registrar';
-    map['signup.usernameErrors.empty'] = 'Nome de usuário é obrigatório';
-    map['signup.emailErrors.invalid'] = 'Email é inválido';
-    map['signup.passwordErrors.weak'] =
-        'Senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número';
-    map['signup.confirmPasswordErrors.invalid'] = 'Senhas não coincidem';
-    map['signup.errors.other'] = _root.common.genericError;
     map['terms.title'] = 'Termos';
 
     _map = map;

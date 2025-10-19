@@ -52,15 +52,14 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
       Translations(meta: meta ?? this.$meta);
 
   // Translations
+  late final TranslationsAuthenticationEn authentication = TranslationsAuthenticationEn.internal(
+    _root,
+  );
   late final TranslationsChangePasswordEn changePassword = TranslationsChangePasswordEn.internal(
     _root,
   );
   late final TranslationsCommonEn common = TranslationsCommonEn.internal(_root);
   late final TranslationsEditProfileEn editProfile = TranslationsEditProfileEn.internal(_root);
-  late final TranslationsForgotPasswordEn forgotPassword = TranslationsForgotPasswordEn.internal(
-    _root,
-  );
-  late final TranslationsLoginEn login = TranslationsLoginEn.internal(_root);
   late final TranslationsNotFoundEn notFound = TranslationsNotFoundEn.internal(_root);
   late final TranslationsOnboardingEn onboarding = TranslationsOnboardingEn.internal(_root);
   late final TranslationsPostEn post = TranslationsPostEn.internal(_root);
@@ -70,8 +69,23 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
   late final TranslationsProfileEn profile = TranslationsProfileEn.internal(_root);
   late final TranslationsSearchEn search = TranslationsSearchEn.internal(_root);
   late final TranslationsSettingsEn settings = TranslationsSettingsEn.internal(_root);
-  late final TranslationsSignupEn signup = TranslationsSignupEn.internal(_root);
   late final TranslationsTermsEn terms = TranslationsTermsEn.internal(_root);
+}
+
+// Path: authentication
+class TranslationsAuthenticationEn {
+  TranslationsAuthenticationEn.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+  late final TranslationsAuthenticationLoginEn login = TranslationsAuthenticationLoginEn.internal(
+    _root,
+  );
+  late final TranslationsAuthenticationSignupEn signup =
+      TranslationsAuthenticationSignupEn.internal(_root);
+  late final TranslationsAuthenticationForgotPasswordEn forgotPassword =
+      TranslationsAuthenticationForgotPasswordEn.internal(_root);
 }
 
 // Path: changePassword
@@ -163,67 +177,6 @@ class TranslationsEditProfileEn {
   Map<String, String> get lastNameErrors => {'empty': 'Last name is required'};
   Map<String, String> get emailErrors => {'invalid': 'Email is invalid'};
   Map<String, String> get errors => {'other': _root.common.genericError};
-}
-
-// Path: forgotPassword
-class TranslationsForgotPasswordEn {
-  TranslationsForgotPasswordEn.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// en: 'Recover Password'
-  String get title => 'Recover Password';
-
-  /// en: 'Enter your email address and we'll send you a link to reset your password.'
-  String get description =>
-      'Enter your email address and we\'ll send you a link to reset your password.';
-
-  /// en: 'We've sent you an email with a link to reset your password.'
-  String get messageSuccess => 'We\'ve sent you an email with a link to reset your password.';
-
-  Map<String, String> get emailErrors => {'invalid': 'Invalid email'};
-  Map<String, String> get errors => {'other': _root.common.genericError};
-}
-
-// Path: login
-class TranslationsLoginEn {
-  TranslationsLoginEn.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// en: 'Login'
-  String get title => 'Login';
-
-  /// en: 'Login'
-  String get buttonLogin => 'Login';
-
-  /// en: 'Forgot password?'
-  String get buttonForgotPassword => 'Forgot password?';
-
-  /// en: 'Sign in with {provider}'
-  String buttonSignInWith({required Object provider}) => 'Sign in with ${provider}';
-
-  /// en: 'Don't have an account? {signUp(Sign up)}'
-  TextSpan buttonNewAccount({required InlineSpanBuilder signUp}) => TextSpan(
-    children: [
-      const TextSpan(text: 'Don\'t have an account? '),
-      signUp('Sign up'),
-    ],
-  );
-
-  /// en: 'OR'
-  String get dividerOr => 'OR';
-
-  Map<String, String> get usernameErrors => {'empty': 'Username is required'};
-  Map<String, String> get passwordErrors => {'empty': 'Password is required'};
-  Map<String, String> get errors => {
-    'BAD_USER_INPUT': 'Username or password is incorrect',
-    'other': _root.common.genericError,
-  };
 }
 
 // Path: notFound
@@ -354,9 +307,60 @@ class TranslationsSettingsEn {
   String get optionBiometrics => 'Biometrics';
 }
 
-// Path: signup
-class TranslationsSignupEn {
-  TranslationsSignupEn.internal(this._root);
+// Path: terms
+class TranslationsTermsEn {
+  TranslationsTermsEn.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Terms'
+  String get title => 'Terms';
+}
+
+// Path: authentication.login
+class TranslationsAuthenticationLoginEn {
+  TranslationsAuthenticationLoginEn.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Login'
+  String get title => 'Login';
+
+  /// en: 'Login'
+  String get buttonLogin => 'Login';
+
+  /// en: 'Forgot password?'
+  String get buttonForgotPassword => 'Forgot password?';
+
+  /// en: 'Sign in with {provider}'
+  String buttonSignInWith({required Object provider}) => 'Sign in with ${provider}';
+
+  /// en: 'Don't have an account? {signUp(Sign up)}'
+  TextSpan buttonNewAccount({required InlineSpanBuilder signUp}) => TextSpan(
+    children: [
+      const TextSpan(text: 'Don\'t have an account? '),
+      signUp('Sign up'),
+    ],
+  );
+
+  /// en: 'OR'
+  String get dividerOr => 'OR';
+
+  Map<String, String> get usernameErrors => {'empty': 'Username is required'};
+  Map<String, String> get passwordErrors => {'empty': 'Password is required'};
+  Map<String, String> get errors => {
+    'BAD_USER_INPUT': 'Username or password is incorrect',
+    'other': _root.common.genericError,
+  };
+}
+
+// Path: authentication.signup
+class TranslationsAuthenticationSignupEn {
+  TranslationsAuthenticationSignupEn.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -381,16 +385,26 @@ class TranslationsSignupEn {
   Map<String, String> get errors => {'other': _root.common.genericError};
 }
 
-// Path: terms
-class TranslationsTermsEn {
-  TranslationsTermsEn.internal(this._root);
+// Path: authentication.forgotPassword
+class TranslationsAuthenticationForgotPasswordEn {
+  TranslationsAuthenticationForgotPasswordEn.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
   // Translations
 
-  /// en: 'Terms'
-  String get title => 'Terms';
+  /// en: 'Recover Password'
+  String get title => 'Recover Password';
+
+  /// en: 'Enter your email address and we'll send you a link to reset your password.'
+  String get description =>
+      'Enter your email address and we\'ll send you a link to reset your password.';
+
+  /// en: 'We've sent you an email with a link to reset your password.'
+  String get messageSuccess => 'We\'ve sent you an email with a link to reset your password.';
+
+  Map<String, String> get emailErrors => {'invalid': 'Invalid email'};
+  Map<String, String> get errors => {'other': _root.common.genericError};
 }
 
 // Path: onboarding.pages.0
@@ -460,6 +474,39 @@ extension on Translations {
   /// Initializes the flat map and returns it.
   Map<String, dynamic> _initFlatMap() {
     final map = <String, dynamic>{};
+    map['authentication.login.title'] = 'Login';
+    map['authentication.login.buttonLogin'] = 'Login';
+    map['authentication.login.buttonForgotPassword'] = 'Forgot password?';
+    map['authentication.login.buttonSignInWith'] = ({required Object provider}) =>
+        'Sign in with ${provider}';
+    map['authentication.login.buttonNewAccount'] = ({required InlineSpanBuilder signUp}) =>
+        TextSpan(
+          children: [
+            const TextSpan(text: 'Don\'t have an account? '),
+            signUp('Sign up'),
+          ],
+        );
+    map['authentication.login.dividerOr'] = 'OR';
+    map['authentication.login.usernameErrors.empty'] = 'Username is required';
+    map['authentication.login.passwordErrors.empty'] = 'Password is required';
+    map['authentication.login.errors.BAD_USER_INPUT'] = 'Username or password is incorrect';
+    map['authentication.login.errors.other'] = _root.common.genericError;
+    map['authentication.signup.title'] = 'Sign Up';
+    map['authentication.signup.labelConfirmPassword'] = 'Confirm Password';
+    map['authentication.signup.buttonSubmit'] = 'Sign Up';
+    map['authentication.signup.usernameErrors.empty'] = 'Username is required';
+    map['authentication.signup.emailErrors.invalid'] = 'Email is invalid';
+    map['authentication.signup.passwordErrors.weak'] =
+        'Password must be at least 8 characters long and contain at least one letter and one number';
+    map['authentication.signup.confirmPasswordErrors.invalid'] = 'Passwords do not match';
+    map['authentication.signup.errors.other'] = _root.common.genericError;
+    map['authentication.forgotPassword.title'] = 'Recover Password';
+    map['authentication.forgotPassword.description'] =
+        'Enter your email address and we\'ll send you a link to reset your password.';
+    map['authentication.forgotPassword.messageSuccess'] =
+        'We\'ve sent you an email with a link to reset your password.';
+    map['authentication.forgotPassword.emailErrors.invalid'] = 'Invalid email';
+    map['authentication.forgotPassword.errors.other'] = _root.common.genericError;
     map['changePassword.title'] = 'Change Password';
     map['changePassword.labelCurrentPassword'] = 'Current Password';
     map['changePassword.labelNewPassword'] = 'New Password';
@@ -486,28 +533,6 @@ extension on Translations {
     map['editProfile.lastNameErrors.empty'] = 'Last name is required';
     map['editProfile.emailErrors.invalid'] = 'Email is invalid';
     map['editProfile.errors.other'] = _root.common.genericError;
-    map['forgotPassword.title'] = 'Recover Password';
-    map['forgotPassword.description'] =
-        'Enter your email address and we\'ll send you a link to reset your password.';
-    map['forgotPassword.messageSuccess'] =
-        'We\'ve sent you an email with a link to reset your password.';
-    map['forgotPassword.emailErrors.invalid'] = 'Invalid email';
-    map['forgotPassword.errors.other'] = _root.common.genericError;
-    map['login.title'] = 'Login';
-    map['login.buttonLogin'] = 'Login';
-    map['login.buttonForgotPassword'] = 'Forgot password?';
-    map['login.buttonSignInWith'] = ({required Object provider}) => 'Sign in with ${provider}';
-    map['login.buttonNewAccount'] = ({required InlineSpanBuilder signUp}) => TextSpan(
-      children: [
-        const TextSpan(text: 'Don\'t have an account? '),
-        signUp('Sign up'),
-      ],
-    );
-    map['login.dividerOr'] = 'OR';
-    map['login.usernameErrors.empty'] = 'Username is required';
-    map['login.passwordErrors.empty'] = 'Password is required';
-    map['login.errors.BAD_USER_INPUT'] = 'Username or password is incorrect';
-    map['login.errors.other'] = _root.common.genericError;
     map['notFound.title'] = '404';
     map['notFound.description'] = 'Page not found';
     map['notFound.buttonBack'] = 'Go back home';
@@ -536,15 +561,6 @@ extension on Translations {
     map['search.title'] = 'Search';
     map['settings.title'] = 'Settings';
     map['settings.optionBiometrics'] = 'Biometrics';
-    map['signup.title'] = 'Sign Up';
-    map['signup.labelConfirmPassword'] = 'Confirm Password';
-    map['signup.buttonSubmit'] = 'Sign Up';
-    map['signup.usernameErrors.empty'] = 'Username is required';
-    map['signup.emailErrors.invalid'] = 'Email is invalid';
-    map['signup.passwordErrors.weak'] =
-        'Password must be at least 8 characters long and contain at least one letter and one number';
-    map['signup.confirmPasswordErrors.invalid'] = 'Passwords do not match';
-    map['signup.errors.other'] = _root.common.genericError;
     map['terms.title'] = 'Terms';
 
     _map = map;

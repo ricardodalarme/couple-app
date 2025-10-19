@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/forgot_password/forgot_password_page.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/login_page.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/signup/signup_page.dart';
 import 'package:quickstart_flutter_bloc/features/change_password/presentation/change_password_page.dart';
 import 'package:quickstart_flutter_bloc/features/edit_profile/presentation/edit_profile_page.dart';
-import 'package:quickstart_flutter_bloc/features/forgot_password/presentation/forgot_password_page.dart';
 import 'package:quickstart_flutter_bloc/features/home/presentation/home_page.dart';
-import 'package:quickstart_flutter_bloc/features/login/presentation/login_page.dart';
 import 'package:quickstart_flutter_bloc/features/not_found/presentation/not_found_page.dart';
 import 'package:quickstart_flutter_bloc/features/onboarding/presentation/onboarding_page.dart';
 import 'package:quickstart_flutter_bloc/features/post/presentation/post_page.dart';
@@ -11,7 +12,6 @@ import 'package:quickstart_flutter_bloc/features/privacy_policy/presentation/pri
 import 'package:quickstart_flutter_bloc/features/profile/presentation/profile_page.dart';
 import 'package:quickstart_flutter_bloc/features/search/presentation/search_page.dart';
 import 'package:quickstart_flutter_bloc/features/settings/presentation/settings_page.dart';
-import 'package:quickstart_flutter_bloc/features/signup/presentation/signup_page.dart';
 import 'package:quickstart_flutter_bloc/features/term/presentation/terms_page.dart';
 
 part 'app_router.gr.dart';

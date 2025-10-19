@@ -1,0 +1,51 @@
+{
+  "login": {
+    "title": "Login",
+    "buttonLogin": "Login",
+    "buttonForgotPassword": "Forgot password?",
+    "buttonSignInWith": "Sign in with {provider}",
+    "buttonNewAccount(rich)": "Don't have an account? {signUp(Sign up)}",
+    "dividerOr": "OR",
+    "usernameErrors(map)": {
+      "empty": "Username is required"
+    },
+    "passwordErrors(map)": {
+      "empty": "Password is required"
+    },
+    "errors(map)": {
+      "BAD_USER_INPUT": "Username or password is incorrect",
+      "other": "@:common.genericError"
+    }
+  },
+  "signup": {
+    "title": "Sign Up",
+    "labelConfirmPassword": "Confirm Password",
+    "buttonSubmit": "Sign Up",
+    "usernameErrors(map)": {
+      "empty": "Username is required"
+    },
+    "emailErrors(map)": {
+      "invalid": "Email is invalid"
+    },
+    "passwordErrors(map)": {
+      "weak": "Password must be at least 8 characters long and contain at least one letter and one number"
+    },
+    "confirmPasswordErrors(map)": {
+      "invalid": "Passwords do not match"
+    },
+    "errors(map)": {
+      "other": "@:common.genericError"
+    }
+  },
+  "forgotPassword": {
+    "title": "Recover Password",
+    "description": "Enter your email address and we'll send you a link to reset your password.",
+    "messageSuccess": "We've sent you an email with a link to reset your password.",
+    "emailErrors(map)": {
+      "invalid": "Invalid email"
+    },
+    "errors(map)": {
+      "other": "@:common.genericError"
+    }
+  }
+}

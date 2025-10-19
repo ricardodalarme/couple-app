@@ -11,11 +11,11 @@ class AuthenticationRepository {
     required AuthenticationDataSource loginDataSource,
     required TokenLocalDataSource tokenLocalDataSource,
     required Mapper<MutationLoginlogin, Token> tokenLocalMapper,
-  }) : _loginDataSource = loginDataSource,
+  }) : _authenticationDataSource = loginDataSource,
        _tokenLocalDataSource = tokenLocalDataSource,
        _tokenLocalMapper = tokenLocalMapper;
 
-  final AuthenticationDataSource _loginDataSource;
+  final AuthenticationDataSource _authenticationDataSource;
   final TokenLocalDataSource _tokenLocalDataSource;
   final Mapper<MutationLoginlogin, Token> _tokenLocalMapper;
 
@@ -40,10 +40,8 @@ class AuthenticationRepository {
     required String password,
   }) async {
     try {
-      final MutationLoginlogin response = await _loginDataSource.logInWithUsernameAndPassword(
-        username: username,
-        password: password,
-      );
+      final MutationLoginlogin response = await _authenticationDataSource
+          .logInWithUsernameAndPassword(username: username, password: password);
 
       final Token localToken = _tokenLocalMapper.map(response);
       await _tokenLocalDataSource.save(localToken);
@@ -67,5 +65,25 @@ class AuthenticationRepository {
   Future<void> logOut() async {
     _authenticationStreamController.add(false);
     await _tokenLocalDataSource.delete();
+  }
+
+  Future<void> signup({
+    required String username,
+    required String email,
+    required String password,
+    String? firstName,
+    String? lastName,
+  }) async {
+    await _authenticationDataSource.signup(
+      username: username,
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+    );
+  }
+
+  Future<void> resetPassword({required String email}) async {
+    await _authenticationDataSource.resetPassword(email: email);
   }
 }
