@@ -7,10 +7,9 @@ import 'package:flutter/widgets.dart';
 import 'package:persistent_storage_service/persistent_storage_service.dart';
 import 'package:quickstart_flutter_bloc/app.dart';
 import 'package:quickstart_flutter_bloc/features/_shared/di/shared_injection_module.dart';
+import 'package:quickstart_flutter_bloc/features/account/di/account_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/app/di/app_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/di/authentication_injection_module.dart';
-import 'package:quickstart_flutter_bloc/features/change_password/di/change_password_injection_module.dart';
-import 'package:quickstart_flutter_bloc/features/edit_profile/di/edit_profile_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/onboarding/di/onboarding_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/post/di/post_injection_module.dart';
 import 'package:quickstart_flutter_bloc/features/settings/data/models/settings.dart';
@@ -69,8 +68,7 @@ void _registerModules() {
     AppInjectionModule(),
     AuthenticationInjectionModule(),
     OnboardingInjectionModule(),
-    EditProfileInjectionModule(),
-    ChangePasswordInjectionModule(),
+    AccountInjectionModule(),
     PostInjectionModule(),
     SettingsInjectionModule(),
   ];

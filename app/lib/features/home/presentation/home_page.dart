@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
         items: [
           NavBarItem(icon: Icons.home_rounded, label: context.l10n.post.title),
           NavBarItem(icon: Icons.search_rounded, label: context.l10n.search.title),
-          NavBarItem(icon: Icons.person, label: context.l10n.profile.title),
+          NavBarItem(icon: Icons.person, label: context.l10n.account.profile.title),
         ],
       ),
     );

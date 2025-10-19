@@ -1,0 +1,49 @@
+{
+  "profile": {
+    "title": "Profile",
+    "buttonEditProfile": "Edit Profile",
+    "buttonChangePassword": "Change Password",
+    "buttonSettings": "Settings",
+    "buttonPrivacyPolicy": "Privacy Policy",
+    "buttonTerms": "Terms",
+    "buttonLogout": "Logout",
+    "buttonChangePicture": "Change Picture",
+    "buttonPickImageFromCamera": "Camera",
+    "buttonPickImageFromGallery": "Gallery"
+  },
+  "editProfile": {
+    "title": "Edit Profile",
+    "messageSuccess": "Profile updated successfully",
+    "firstNameErrors(map)": {
+      "empty": "First name is required"
+    },
+    "lastNameErrors(map)": {
+      "empty": "Last name is required"
+    },
+    "emailErrors(map)": {
+      "invalid": "Email is invalid"
+    },
+    "errors(map)": {
+      "other": "@:common.genericError"
+    }
+  },
+  "changePassword": {
+    "title": "Change Password",
+    "labelCurrentPassword": "Current Password",
+    "labelNewPassword": "New Password",
+    "labelConfirmPassword": "Confirm Password",
+    "messageSuccess": "Password changed successfully",
+    "currentPasswordErrors(map)": {
+      "empty": "Current password is required"
+    },
+    "newPasswordErrors(map)": {
+      "weak": "New password must be at least 8 characters long and contain at least one letter and one number"
+    },
+    "confirmPasswordErrors(map)": {
+      "invalid": "Passwords do not match"
+    },
+    "errors(map)": {
+      "other": "@:common.genericError"
+    }
+  }
+}

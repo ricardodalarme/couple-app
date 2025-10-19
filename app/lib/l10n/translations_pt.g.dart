@@ -51,13 +51,11 @@ class TranslationsPt extends Translations {
 
   // Translations
   @override
+  late final _TranslationsAccountPt account = _TranslationsAccountPt._(_root);
+  @override
   late final _TranslationsAuthenticationPt authentication = _TranslationsAuthenticationPt._(_root);
   @override
-  late final _TranslationsChangePasswordPt changePassword = _TranslationsChangePasswordPt._(_root);
-  @override
   late final _TranslationsCommonPt common = _TranslationsCommonPt._(_root);
-  @override
-  late final _TranslationsEditProfilePt editProfile = _TranslationsEditProfilePt._(_root);
   @override
   late final _TranslationsNotFoundPt notFound = _TranslationsNotFoundPt._(_root);
   @override
@@ -67,13 +65,29 @@ class TranslationsPt extends Translations {
   @override
   late final _TranslationsPrivacyPolicyPt privacyPolicy = _TranslationsPrivacyPolicyPt._(_root);
   @override
-  late final _TranslationsProfilePt profile = _TranslationsProfilePt._(_root);
-  @override
   late final _TranslationsSearchPt search = _TranslationsSearchPt._(_root);
   @override
   late final _TranslationsSettingsPt settings = _TranslationsSettingsPt._(_root);
   @override
   late final _TranslationsTermsPt terms = _TranslationsTermsPt._(_root);
+}
+
+// Path: account
+class _TranslationsAccountPt extends TranslationsAccountEn {
+  _TranslationsAccountPt._(TranslationsPt root) : this._root = root, super.internal(root);
+
+  final TranslationsPt _root; // ignore: unused_field
+
+  // Translations
+  @override
+  late final _TranslationsAccountProfilePt profile = _TranslationsAccountProfilePt._(_root);
+  @override
+  late final _TranslationsAccountEditProfilePt editProfile = _TranslationsAccountEditProfilePt._(
+    _root,
+  );
+  @override
+  late final _TranslationsAccountChangePasswordPt changePassword =
+      _TranslationsAccountChangePasswordPt._(_root);
 }
 
 // Path: authentication
@@ -92,36 +106,6 @@ class _TranslationsAuthenticationPt extends TranslationsAuthenticationEn {
   @override
   late final _TranslationsAuthenticationForgotPasswordPt forgotPassword =
       _TranslationsAuthenticationForgotPasswordPt._(_root);
-}
-
-// Path: changePassword
-class _TranslationsChangePasswordPt extends TranslationsChangePasswordEn {
-  _TranslationsChangePasswordPt._(TranslationsPt root) : this._root = root, super.internal(root);
-
-  final TranslationsPt _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Alterar Senha';
-  @override
-  String get labelCurrentPassword => 'Senha Atual';
-  @override
-  String get labelNewPassword => 'Nova Senha';
-  @override
-  String get labelConfirmPassword => 'Confirmar Senha';
-  @override
-  String get messageSuccess => 'Senha alterada com sucesso!';
-  @override
-  Map<String, String> get currentPasswordErrors => {'empty': 'Senha atual é obrigatória'};
-  @override
-  Map<String, String> get newPasswordErrors => {
-    'weak':
-        'A nova senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número',
-  };
-  @override
-  Map<String, String> get confirmPasswordErrors => {'invalid': 'As senhas não coincidem'};
-  @override
-  Map<String, String> get errors => {'other': _root.common.genericError};
 }
 
 // Path: common
@@ -151,27 +135,6 @@ class _TranslationsCommonPt extends TranslationsCommonEn {
   String get lastName => 'Sobrenome';
   @override
   String get genericError => 'Algo deu errado';
-}
-
-// Path: editProfile
-class _TranslationsEditProfilePt extends TranslationsEditProfileEn {
-  _TranslationsEditProfilePt._(TranslationsPt root) : this._root = root, super.internal(root);
-
-  final TranslationsPt _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Editar Perfil';
-  @override
-  String get messageSuccess => 'Perfil editado com sucesso!';
-  @override
-  Map<String, String> get firstNameErrors => {'empty': 'Nome é obrigatório'};
-  @override
-  Map<String, String> get lastNameErrors => {'empty': 'Sobrenome é obrigatório'};
-  @override
-  Map<String, String> get emailErrors => {'invalid': 'Email inválido'};
-  @override
-  Map<String, String> get errors => {'other': _root.common.genericError};
 }
 
 // Path: notFound
@@ -230,35 +193,6 @@ class _TranslationsPrivacyPolicyPt extends TranslationsPrivacyPolicyEn {
   String get title => 'Politíca de Privacidade';
 }
 
-// Path: profile
-class _TranslationsProfilePt extends TranslationsProfileEn {
-  _TranslationsProfilePt._(TranslationsPt root) : this._root = root, super.internal(root);
-
-  final TranslationsPt _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Perfil';
-  @override
-  String get buttonEditProfile => 'Editar Perfil';
-  @override
-  String get buttonChangePassword => 'Alterar Senha';
-  @override
-  String get buttonSettings => 'Configurações';
-  @override
-  String get buttonPrivacyPolicy => 'Política de Privacidade';
-  @override
-  String get buttonTerms => 'Termos';
-  @override
-  String get buttonLogout => 'Sair';
-  @override
-  String get buttonChangePicture => 'Alterar Foto';
-  @override
-  String get buttonPickImageFromCamera => 'Câmera';
-  @override
-  String get buttonPickImageFromGallery => 'Galeria';
-}
-
 // Path: search
 class _TranslationsSearchPt extends TranslationsSearchEn {
   _TranslationsSearchPt._(TranslationsPt root) : this._root = root, super.internal(root);
@@ -292,6 +226,90 @@ class _TranslationsTermsPt extends TranslationsTermsEn {
   // Translations
   @override
   String get title => 'Termos';
+}
+
+// Path: account.profile
+class _TranslationsAccountProfilePt extends TranslationsAccountProfileEn {
+  _TranslationsAccountProfilePt._(TranslationsPt root) : this._root = root, super.internal(root);
+
+  final TranslationsPt _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Perfil';
+  @override
+  String get buttonEditProfile => 'Editar Perfil';
+  @override
+  String get buttonChangePassword => 'Alterar Senha';
+  @override
+  String get buttonSettings => 'Configurações';
+  @override
+  String get buttonPrivacyPolicy => 'Política de Privacidade';
+  @override
+  String get buttonTerms => 'Termos';
+  @override
+  String get buttonLogout => 'Sair';
+  @override
+  String get buttonChangePicture => 'Alterar Foto';
+  @override
+  String get buttonPickImageFromCamera => 'Câmera';
+  @override
+  String get buttonPickImageFromGallery => 'Galeria';
+}
+
+// Path: account.editProfile
+class _TranslationsAccountEditProfilePt extends TranslationsAccountEditProfileEn {
+  _TranslationsAccountEditProfilePt._(TranslationsPt root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsPt _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Editar Perfil';
+  @override
+  String get messageSuccess => 'Perfil editado com sucesso!';
+  @override
+  Map<String, String> get firstNameErrors => {'empty': 'Nome é obrigatório'};
+  @override
+  Map<String, String> get lastNameErrors => {'empty': 'Sobrenome é obrigatório'};
+  @override
+  Map<String, String> get emailErrors => {'invalid': 'Email inválido'};
+  @override
+  Map<String, String> get errors => {'other': _root.common.genericError};
+}
+
+// Path: account.changePassword
+class _TranslationsAccountChangePasswordPt extends TranslationsAccountChangePasswordEn {
+  _TranslationsAccountChangePasswordPt._(TranslationsPt root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsPt _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Alterar Senha';
+  @override
+  String get labelCurrentPassword => 'Senha Atual';
+  @override
+  String get labelNewPassword => 'Nova Senha';
+  @override
+  String get labelConfirmPassword => 'Confirmar Senha';
+  @override
+  String get messageSuccess => 'Senha alterada com sucesso!';
+  @override
+  Map<String, String> get currentPasswordErrors => {'empty': 'Senha atual é obrigatória'};
+  @override
+  Map<String, String> get newPasswordErrors => {
+    'weak':
+        'A nova senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número',
+  };
+  @override
+  Map<String, String> get confirmPasswordErrors => {'invalid': 'As senhas não coincidem'};
+  @override
+  Map<String, String> get errors => {'other': _root.common.genericError};
 }
 
 // Path: authentication.login
@@ -447,6 +465,32 @@ extension on TranslationsPt {
   /// Initializes the flat map and returns it.
   Map<String, dynamic> _initFlatMap() {
     final map = <String, dynamic>{};
+    map['account.profile.title'] = 'Perfil';
+    map['account.profile.buttonEditProfile'] = 'Editar Perfil';
+    map['account.profile.buttonChangePassword'] = 'Alterar Senha';
+    map['account.profile.buttonSettings'] = 'Configurações';
+    map['account.profile.buttonPrivacyPolicy'] = 'Política de Privacidade';
+    map['account.profile.buttonTerms'] = 'Termos';
+    map['account.profile.buttonLogout'] = 'Sair';
+    map['account.profile.buttonChangePicture'] = 'Alterar Foto';
+    map['account.profile.buttonPickImageFromCamera'] = 'Câmera';
+    map['account.profile.buttonPickImageFromGallery'] = 'Galeria';
+    map['account.editProfile.title'] = 'Editar Perfil';
+    map['account.editProfile.messageSuccess'] = 'Perfil editado com sucesso!';
+    map['account.editProfile.firstNameErrors.empty'] = 'Nome é obrigatório';
+    map['account.editProfile.lastNameErrors.empty'] = 'Sobrenome é obrigatório';
+    map['account.editProfile.emailErrors.invalid'] = 'Email inválido';
+    map['account.editProfile.errors.other'] = _root.common.genericError;
+    map['account.changePassword.title'] = 'Alterar Senha';
+    map['account.changePassword.labelCurrentPassword'] = 'Senha Atual';
+    map['account.changePassword.labelNewPassword'] = 'Nova Senha';
+    map['account.changePassword.labelConfirmPassword'] = 'Confirmar Senha';
+    map['account.changePassword.messageSuccess'] = 'Senha alterada com sucesso!';
+    map['account.changePassword.currentPasswordErrors.empty'] = 'Senha atual é obrigatória';
+    map['account.changePassword.newPasswordErrors.weak'] =
+        'A nova senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número';
+    map['account.changePassword.confirmPasswordErrors.invalid'] = 'As senhas não coincidem';
+    map['account.changePassword.errors.other'] = _root.common.genericError;
     map['authentication.login.title'] = 'Entrar';
     map['authentication.login.buttonLogin'] = 'Entrar';
     map['authentication.login.buttonForgotPassword'] = 'Esqueceu a senha?';
@@ -480,16 +524,6 @@ extension on TranslationsPt {
         'Enviamos um email com um link para você redefinir a sua senha.';
     map['authentication.forgotPassword.emailErrors.invalid'] = 'Email inválido';
     map['authentication.forgotPassword.errors.other'] = _root.common.genericError;
-    map['changePassword.title'] = 'Alterar Senha';
-    map['changePassword.labelCurrentPassword'] = 'Senha Atual';
-    map['changePassword.labelNewPassword'] = 'Nova Senha';
-    map['changePassword.labelConfirmPassword'] = 'Confirmar Senha';
-    map['changePassword.messageSuccess'] = 'Senha alterada com sucesso!';
-    map['changePassword.currentPasswordErrors.empty'] = 'Senha atual é obrigatória';
-    map['changePassword.newPasswordErrors.weak'] =
-        'A nova senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número';
-    map['changePassword.confirmPasswordErrors.invalid'] = 'As senhas não coincidem';
-    map['changePassword.errors.other'] = _root.common.genericError;
     map['common.appName'] = 'Flutter Bloc Starter';
     map['common.send'] = 'Enviar';
     map['common.save'] = 'Salvar';
@@ -500,12 +534,6 @@ extension on TranslationsPt {
     map['common.firstName'] = 'Nome';
     map['common.lastName'] = 'Sobrenome';
     map['common.genericError'] = 'Algo deu errado';
-    map['editProfile.title'] = 'Editar Perfil';
-    map['editProfile.messageSuccess'] = 'Perfil editado com sucesso!';
-    map['editProfile.firstNameErrors.empty'] = 'Nome é obrigatório';
-    map['editProfile.lastNameErrors.empty'] = 'Sobrenome é obrigatório';
-    map['editProfile.emailErrors.invalid'] = 'Email inválido';
-    map['editProfile.errors.other'] = _root.common.genericError;
     map['notFound.title'] = '404';
     map['notFound.description'] = 'Página não encontrada';
     map['notFound.buttonBack'] = 'Voltar para página inicial';
@@ -521,16 +549,6 @@ extension on TranslationsPt {
     map['post.title'] = 'Feed';
     map['post.textFailure'] = 'Falha ao carregar o feed.';
     map['privacyPolicy.title'] = 'Politíca de Privacidade';
-    map['profile.title'] = 'Perfil';
-    map['profile.buttonEditProfile'] = 'Editar Perfil';
-    map['profile.buttonChangePassword'] = 'Alterar Senha';
-    map['profile.buttonSettings'] = 'Configurações';
-    map['profile.buttonPrivacyPolicy'] = 'Política de Privacidade';
-    map['profile.buttonTerms'] = 'Termos';
-    map['profile.buttonLogout'] = 'Sair';
-    map['profile.buttonChangePicture'] = 'Alterar Foto';
-    map['profile.buttonPickImageFromCamera'] = 'Câmera';
-    map['profile.buttonPickImageFromGallery'] = 'Galeria';
     map['search.title'] = 'Pesquisar';
     map['settings.title'] = 'Configurações';
     map['settings.optionBiometrics'] = 'Biometria';

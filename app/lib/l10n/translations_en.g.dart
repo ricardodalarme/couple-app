@@ -52,24 +52,34 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
       Translations(meta: meta ?? this.$meta);
 
   // Translations
+  late final TranslationsAccountEn account = TranslationsAccountEn.internal(_root);
   late final TranslationsAuthenticationEn authentication = TranslationsAuthenticationEn.internal(
     _root,
   );
-  late final TranslationsChangePasswordEn changePassword = TranslationsChangePasswordEn.internal(
-    _root,
-  );
   late final TranslationsCommonEn common = TranslationsCommonEn.internal(_root);
-  late final TranslationsEditProfileEn editProfile = TranslationsEditProfileEn.internal(_root);
   late final TranslationsNotFoundEn notFound = TranslationsNotFoundEn.internal(_root);
   late final TranslationsOnboardingEn onboarding = TranslationsOnboardingEn.internal(_root);
   late final TranslationsPostEn post = TranslationsPostEn.internal(_root);
   late final TranslationsPrivacyPolicyEn privacyPolicy = TranslationsPrivacyPolicyEn.internal(
     _root,
   );
-  late final TranslationsProfileEn profile = TranslationsProfileEn.internal(_root);
   late final TranslationsSearchEn search = TranslationsSearchEn.internal(_root);
   late final TranslationsSettingsEn settings = TranslationsSettingsEn.internal(_root);
   late final TranslationsTermsEn terms = TranslationsTermsEn.internal(_root);
+}
+
+// Path: account
+class TranslationsAccountEn {
+  TranslationsAccountEn.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+  late final TranslationsAccountProfileEn profile = TranslationsAccountProfileEn.internal(_root);
+  late final TranslationsAccountEditProfileEn editProfile =
+      TranslationsAccountEditProfileEn.internal(_root);
+  late final TranslationsAccountChangePasswordEn changePassword =
+      TranslationsAccountChangePasswordEn.internal(_root);
 }
 
 // Path: authentication
@@ -86,38 +96,6 @@ class TranslationsAuthenticationEn {
       TranslationsAuthenticationSignupEn.internal(_root);
   late final TranslationsAuthenticationForgotPasswordEn forgotPassword =
       TranslationsAuthenticationForgotPasswordEn.internal(_root);
-}
-
-// Path: changePassword
-class TranslationsChangePasswordEn {
-  TranslationsChangePasswordEn.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// en: 'Change Password'
-  String get title => 'Change Password';
-
-  /// en: 'Current Password'
-  String get labelCurrentPassword => 'Current Password';
-
-  /// en: 'New Password'
-  String get labelNewPassword => 'New Password';
-
-  /// en: 'Confirm Password'
-  String get labelConfirmPassword => 'Confirm Password';
-
-  /// en: 'Password changed successfully'
-  String get messageSuccess => 'Password changed successfully';
-
-  Map<String, String> get currentPasswordErrors => {'empty': 'Current password is required'};
-  Map<String, String> get newPasswordErrors => {
-    'weak':
-        'New password must be at least 8 characters long and contain at least one letter and one number',
-  };
-  Map<String, String> get confirmPasswordErrors => {'invalid': 'Passwords do not match'};
-  Map<String, String> get errors => {'other': _root.common.genericError};
 }
 
 // Path: common
@@ -157,26 +135,6 @@ class TranslationsCommonEn {
 
   /// en: 'Something went wrong'
   String get genericError => 'Something went wrong';
-}
-
-// Path: editProfile
-class TranslationsEditProfileEn {
-  TranslationsEditProfileEn.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// en: 'Edit Profile'
-  String get title => 'Edit Profile';
-
-  /// en: 'Profile updated successfully'
-  String get messageSuccess => 'Profile updated successfully';
-
-  Map<String, String> get firstNameErrors => {'empty': 'First name is required'};
-  Map<String, String> get lastNameErrors => {'empty': 'Last name is required'};
-  Map<String, String> get emailErrors => {'invalid': 'Email is invalid'};
-  Map<String, String> get errors => {'other': _root.common.genericError};
 }
 
 // Path: notFound
@@ -241,45 +199,6 @@ class TranslationsPrivacyPolicyEn {
   String get title => 'Privacy Policy';
 }
 
-// Path: profile
-class TranslationsProfileEn {
-  TranslationsProfileEn.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// en: 'Profile'
-  String get title => 'Profile';
-
-  /// en: 'Edit Profile'
-  String get buttonEditProfile => 'Edit Profile';
-
-  /// en: 'Change Password'
-  String get buttonChangePassword => 'Change Password';
-
-  /// en: 'Settings'
-  String get buttonSettings => 'Settings';
-
-  /// en: 'Privacy Policy'
-  String get buttonPrivacyPolicy => 'Privacy Policy';
-
-  /// en: 'Terms'
-  String get buttonTerms => 'Terms';
-
-  /// en: 'Logout'
-  String get buttonLogout => 'Logout';
-
-  /// en: 'Change Picture'
-  String get buttonChangePicture => 'Change Picture';
-
-  /// en: 'Camera'
-  String get buttonPickImageFromCamera => 'Camera';
-
-  /// en: 'Gallery'
-  String get buttonPickImageFromGallery => 'Gallery';
-}
-
 // Path: search
 class TranslationsSearchEn {
   TranslationsSearchEn.internal(this._root);
@@ -317,6 +236,97 @@ class TranslationsTermsEn {
 
   /// en: 'Terms'
   String get title => 'Terms';
+}
+
+// Path: account.profile
+class TranslationsAccountProfileEn {
+  TranslationsAccountProfileEn.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Profile'
+  String get title => 'Profile';
+
+  /// en: 'Edit Profile'
+  String get buttonEditProfile => 'Edit Profile';
+
+  /// en: 'Change Password'
+  String get buttonChangePassword => 'Change Password';
+
+  /// en: 'Settings'
+  String get buttonSettings => 'Settings';
+
+  /// en: 'Privacy Policy'
+  String get buttonPrivacyPolicy => 'Privacy Policy';
+
+  /// en: 'Terms'
+  String get buttonTerms => 'Terms';
+
+  /// en: 'Logout'
+  String get buttonLogout => 'Logout';
+
+  /// en: 'Change Picture'
+  String get buttonChangePicture => 'Change Picture';
+
+  /// en: 'Camera'
+  String get buttonPickImageFromCamera => 'Camera';
+
+  /// en: 'Gallery'
+  String get buttonPickImageFromGallery => 'Gallery';
+}
+
+// Path: account.editProfile
+class TranslationsAccountEditProfileEn {
+  TranslationsAccountEditProfileEn.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Edit Profile'
+  String get title => 'Edit Profile';
+
+  /// en: 'Profile updated successfully'
+  String get messageSuccess => 'Profile updated successfully';
+
+  Map<String, String> get firstNameErrors => {'empty': 'First name is required'};
+  Map<String, String> get lastNameErrors => {'empty': 'Last name is required'};
+  Map<String, String> get emailErrors => {'invalid': 'Email is invalid'};
+  Map<String, String> get errors => {'other': _root.common.genericError};
+}
+
+// Path: account.changePassword
+class TranslationsAccountChangePasswordEn {
+  TranslationsAccountChangePasswordEn.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Change Password'
+  String get title => 'Change Password';
+
+  /// en: 'Current Password'
+  String get labelCurrentPassword => 'Current Password';
+
+  /// en: 'New Password'
+  String get labelNewPassword => 'New Password';
+
+  /// en: 'Confirm Password'
+  String get labelConfirmPassword => 'Confirm Password';
+
+  /// en: 'Password changed successfully'
+  String get messageSuccess => 'Password changed successfully';
+
+  Map<String, String> get currentPasswordErrors => {'empty': 'Current password is required'};
+  Map<String, String> get newPasswordErrors => {
+    'weak':
+        'New password must be at least 8 characters long and contain at least one letter and one number',
+  };
+  Map<String, String> get confirmPasswordErrors => {'invalid': 'Passwords do not match'};
+  Map<String, String> get errors => {'other': _root.common.genericError};
 }
 
 // Path: authentication.login
@@ -474,6 +484,32 @@ extension on Translations {
   /// Initializes the flat map and returns it.
   Map<String, dynamic> _initFlatMap() {
     final map = <String, dynamic>{};
+    map['account.profile.title'] = 'Profile';
+    map['account.profile.buttonEditProfile'] = 'Edit Profile';
+    map['account.profile.buttonChangePassword'] = 'Change Password';
+    map['account.profile.buttonSettings'] = 'Settings';
+    map['account.profile.buttonPrivacyPolicy'] = 'Privacy Policy';
+    map['account.profile.buttonTerms'] = 'Terms';
+    map['account.profile.buttonLogout'] = 'Logout';
+    map['account.profile.buttonChangePicture'] = 'Change Picture';
+    map['account.profile.buttonPickImageFromCamera'] = 'Camera';
+    map['account.profile.buttonPickImageFromGallery'] = 'Gallery';
+    map['account.editProfile.title'] = 'Edit Profile';
+    map['account.editProfile.messageSuccess'] = 'Profile updated successfully';
+    map['account.editProfile.firstNameErrors.empty'] = 'First name is required';
+    map['account.editProfile.lastNameErrors.empty'] = 'Last name is required';
+    map['account.editProfile.emailErrors.invalid'] = 'Email is invalid';
+    map['account.editProfile.errors.other'] = _root.common.genericError;
+    map['account.changePassword.title'] = 'Change Password';
+    map['account.changePassword.labelCurrentPassword'] = 'Current Password';
+    map['account.changePassword.labelNewPassword'] = 'New Password';
+    map['account.changePassword.labelConfirmPassword'] = 'Confirm Password';
+    map['account.changePassword.messageSuccess'] = 'Password changed successfully';
+    map['account.changePassword.currentPasswordErrors.empty'] = 'Current password is required';
+    map['account.changePassword.newPasswordErrors.weak'] =
+        'New password must be at least 8 characters long and contain at least one letter and one number';
+    map['account.changePassword.confirmPasswordErrors.invalid'] = 'Passwords do not match';
+    map['account.changePassword.errors.other'] = _root.common.genericError;
     map['authentication.login.title'] = 'Login';
     map['authentication.login.buttonLogin'] = 'Login';
     map['authentication.login.buttonForgotPassword'] = 'Forgot password?';
@@ -507,16 +543,6 @@ extension on Translations {
         'We\'ve sent you an email with a link to reset your password.';
     map['authentication.forgotPassword.emailErrors.invalid'] = 'Invalid email';
     map['authentication.forgotPassword.errors.other'] = _root.common.genericError;
-    map['changePassword.title'] = 'Change Password';
-    map['changePassword.labelCurrentPassword'] = 'Current Password';
-    map['changePassword.labelNewPassword'] = 'New Password';
-    map['changePassword.labelConfirmPassword'] = 'Confirm Password';
-    map['changePassword.messageSuccess'] = 'Password changed successfully';
-    map['changePassword.currentPasswordErrors.empty'] = 'Current password is required';
-    map['changePassword.newPasswordErrors.weak'] =
-        'New password must be at least 8 characters long and contain at least one letter and one number';
-    map['changePassword.confirmPasswordErrors.invalid'] = 'Passwords do not match';
-    map['changePassword.errors.other'] = _root.common.genericError;
     map['common.appName'] = 'Flutter Bloc Starter';
     map['common.send'] = 'Send';
     map['common.save'] = 'Save';
@@ -527,12 +553,6 @@ extension on Translations {
     map['common.firstName'] = 'First Name';
     map['common.lastName'] = 'Last Name';
     map['common.genericError'] = 'Something went wrong';
-    map['editProfile.title'] = 'Edit Profile';
-    map['editProfile.messageSuccess'] = 'Profile updated successfully';
-    map['editProfile.firstNameErrors.empty'] = 'First name is required';
-    map['editProfile.lastNameErrors.empty'] = 'Last name is required';
-    map['editProfile.emailErrors.invalid'] = 'Email is invalid';
-    map['editProfile.errors.other'] = _root.common.genericError;
     map['notFound.title'] = '404';
     map['notFound.description'] = 'Page not found';
     map['notFound.buttonBack'] = 'Go back home';
@@ -548,16 +568,6 @@ extension on Translations {
     map['post.title'] = 'Feed';
     map['post.textFailure'] = 'Failed to load feed.';
     map['privacyPolicy.title'] = 'Privacy Policy';
-    map['profile.title'] = 'Profile';
-    map['profile.buttonEditProfile'] = 'Edit Profile';
-    map['profile.buttonChangePassword'] = 'Change Password';
-    map['profile.buttonSettings'] = 'Settings';
-    map['profile.buttonPrivacyPolicy'] = 'Privacy Policy';
-    map['profile.buttonTerms'] = 'Terms';
-    map['profile.buttonLogout'] = 'Logout';
-    map['profile.buttonChangePicture'] = 'Change Picture';
-    map['profile.buttonPickImageFromCamera'] = 'Camera';
-    map['profile.buttonPickImageFromGallery'] = 'Gallery';
     map['search.title'] = 'Search';
     map['settings.title'] = 'Settings';
     map['settings.optionBiometrics'] = 'Biometrics';
