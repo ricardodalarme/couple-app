@@ -17,6 +17,7 @@ class WidgetbookApp extends StatelessWidget {
           MaterialApp(debugShowCheckedModeBanner: false, home: Scaffold(body: child)),
       addons: addons,
       directories: examples,
+      home: const SizedBox.shrink(),
     );
   }
 }
