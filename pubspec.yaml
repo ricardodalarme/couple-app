@@ -62,38 +62,28 @@ melos:
       run: dart run very_good_cli:very_good test -r -- --no-pub
       description: Run all tests available.
 
-    pod:update:
-      exec: cd ios && pod update
-      description: Install iOS dependencies.
-      packageFilters:
-        scope:
-          - quickstart_flutter_bloc
-
     # App commands
     l10n:
-      exec: dart run slang && dart format lib/l10n/translations.g.dart
+      exec: dart run slang
       description: Generate localization files.
       packageFilters:
-        scope:
-          - quickstart_flutter_bloc
+        dependsOn: slang
 
     l10n:analyze:
       exec: dart run slang analyze --full --exit-if-changed
       description: Analyze localization files.
       packageFilters:
-        scope: quickstart_flutter_bloc
+        dependsOn: slang
 
     gen:
       run: melos gen:single --no-select
       description: Run build_runner in all packages.
 
     gen:single:
-      run: melos exec -c 1 -- flutter pub run build_runner build --delete-conflicting-outputs
+      run: melos exec -c 1 -- dart run build_runner build --delete-conflicting-outputs
       description: Run build_runner to generate files.
       packageFilters:
-        dependsOn:
-          - build_runner
-
+        dependsOn: build_runner
     splash_screen:
       exec: flutter pub run flutter_native_splash:create
       description: Update the app splash screen.
