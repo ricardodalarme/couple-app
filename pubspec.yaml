@@ -21,8 +21,8 @@ workspace:
 
 dev_dependencies:
   husky: ^0.1.7
-  melos: ^7.1.1
-  very_good_cli: ^0.27.0
+  melos: ^7.2.0
+  very_good_cli: ^0.28.0
 
 melos:
   command:

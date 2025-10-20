@@ -412,168 +412,108 @@ class _TranslationsOnboarding$pages$0i2$Pt extends TranslationsOnboarding$pages$
       'Pronto para explorar tudo o que o QuickStart Flutter tem a oferecer? Vamos começar!';
 }
 
-/// Flat map(s) containing all translations.
+/// The flat map containing all translations for locale <pt>.
 /// Only for edge cases! For simple maps, use the map function of this library.
+/// Note: We use a HashMap because Dart seems to be unable to compile large switch statements.
+Map<String, dynamic>? _map;
+
 extension on TranslationsPt {
   dynamic _flatMapFunction(String path) {
-    switch (path) {
-      case 'changePassword.title':
-        return 'Alterar Senha';
-      case 'changePassword.labelCurrentPassword':
-        return 'Senha Atual';
-      case 'changePassword.labelNewPassword':
-        return 'Nova Senha';
-      case 'changePassword.labelConfirmPassword':
-        return 'Confirmar Senha';
-      case 'changePassword.messageSuccess':
-        return 'Senha alterada com sucesso!';
-      case 'changePassword.currentPasswordErrors.empty':
-        return 'Senha atual é obrigatória';
-      case 'changePassword.newPasswordErrors.weak':
-        return 'A nova senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número';
-      case 'changePassword.confirmPasswordErrors.invalid':
-        return 'As senhas não coincidem';
-      case 'changePassword.errors.other':
-        return _root.common.genericError;
-      case 'common.appName':
-        return 'Flutter Bloc Starter';
-      case 'common.send':
-        return 'Enviar';
-      case 'common.save':
-        return 'Salvar';
-      case 'common.retry':
-        return 'Tentar novamente';
-      case 'common.email':
-        return 'Email';
-      case 'common.username':
-        return 'Usuário';
-      case 'common.password':
-        return 'Senha';
-      case 'common.firstName':
-        return 'Nome';
-      case 'common.lastName':
-        return 'Sobrenome';
-      case 'common.genericError':
-        return 'Algo deu errado';
-      case 'editProfile.title':
-        return 'Editar Perfil';
-      case 'editProfile.messageSuccess':
-        return 'Perfil editado com sucesso!';
-      case 'editProfile.firstNameErrors.empty':
-        return 'Nome é obrigatório';
-      case 'editProfile.lastNameErrors.empty':
-        return 'Sobrenome é obrigatório';
-      case 'editProfile.emailErrors.invalid':
-        return 'Email inválido';
-      case 'editProfile.errors.other':
-        return _root.common.genericError;
-      case 'forgotPassword.title':
-        return 'Recuperar Senha';
-      case 'forgotPassword.description':
-        return 'Digite seu email e enviaremos um link para você redefinir a sua senha.';
-      case 'forgotPassword.messageSuccess':
-        return 'Enviamos um email com um link para você redefinir a sua senha.';
-      case 'forgotPassword.emailErrors.invalid':
-        return 'Email inválido';
-      case 'forgotPassword.errors.other':
-        return _root.common.genericError;
-      case 'login.title':
-        return 'Entrar';
-      case 'login.buttonLogin':
-        return 'Entrar';
-      case 'login.buttonForgotPassword':
-        return 'Esqueceu a senha?';
-      case 'login.buttonSignInWith':
-        return ({required Object provider}) => 'Continue com ${provider}';
-      case 'login.buttonNewAccount':
-        return ({required InlineSpanBuilder signUp}) => TextSpan(
-          children: [
-            const TextSpan(text: 'Não tem uma conta? '),
-            signUp('Cadastre-se'),
-          ],
-        );
-      case 'login.dividerOr':
-        return 'OU';
-      case 'login.usernameErrors.empty':
-        return 'O nome de usuário é obrigatório';
-      case 'login.passwordErrors.empty':
-        return 'A senha é obrigatória';
-      case 'login.errors.BAD_USER_INPUT':
-        return 'Usuário ou senha inválidos';
-      case 'login.errors.other':
-        return _root.common.genericError;
-      case 'notFound.title':
-        return '404';
-      case 'notFound.description':
-        return 'Página não encontrada';
-      case 'notFound.buttonBack':
-        return 'Voltar para página inicial';
-      case 'onboarding.pages.0.title':
-        return 'Bem vindo!';
-      case 'onboarding.pages.0.message':
-        return 'Seja muito bem vindo ao QuickStart Flutter';
-      case 'onboarding.pages.1.title':
-        return 'O que é o QuickStart Flutter?';
-      case 'onboarding.pages.1.message':
-        return 'O QuickStart Flutter é um projeto para agilizar o bootstrapping de novos projetos Flutter. Ele já vem com uma série de funcionalidades prontas para uso, como internacionalização, temas, rotas, gerenciamento de estado, entre outros.';
-      case 'onboarding.pages.2.title':
-        return 'Vamos começar?';
-      case 'onboarding.pages.2.message':
-        return 'Pronto para explorar tudo o que o QuickStart Flutter tem a oferecer? Vamos começar!';
-      case 'onboarding.doneButton':
-        return 'Começar';
-      case 'post.title':
-        return 'Feed';
-      case 'post.textFailure':
-        return 'Falha ao carregar o feed.';
-      case 'privacyPolicy.title':
-        return 'Politíca de Privacidade';
-      case 'profile.title':
-        return 'Perfil';
-      case 'profile.buttonEditProfile':
-        return 'Editar Perfil';
-      case 'profile.buttonChangePassword':
-        return 'Alterar Senha';
-      case 'profile.buttonSettings':
-        return 'Configurações';
-      case 'profile.buttonPrivacyPolicy':
-        return 'Política de Privacidade';
-      case 'profile.buttonTerms':
-        return 'Termos';
-      case 'profile.buttonLogout':
-        return 'Sair';
-      case 'profile.buttonChangePicture':
-        return 'Alterar Foto';
-      case 'profile.buttonPickImageFromCamera':
-        return 'Câmera';
-      case 'profile.buttonPickImageFromGallery':
-        return 'Galeria';
-      case 'search.title':
-        return 'Pesquisar';
-      case 'settings.title':
-        return 'Configurações';
-      case 'settings.optionBiometrics':
-        return 'Biometria';
-      case 'signup.title':
-        return 'Registrar';
-      case 'signup.labelConfirmPassword':
-        return 'Confirmar Senha';
-      case 'signup.buttonSubmit':
-        return 'Registrar';
-      case 'signup.usernameErrors.empty':
-        return 'Nome de usuário é obrigatório';
-      case 'signup.emailErrors.invalid':
-        return 'Email é inválido';
-      case 'signup.passwordErrors.weak':
-        return 'Senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número';
-      case 'signup.confirmPasswordErrors.invalid':
-        return 'Senhas não coincidem';
-      case 'signup.errors.other':
-        return _root.common.genericError;
-      case 'terms.title':
-        return 'Termos';
-      default:
-        return null;
-    }
+    final map = _map ?? _initFlatMap();
+    return map[path];
+  }
+
+  /// Initializes the flat map and returns it.
+  Map<String, dynamic> _initFlatMap() {
+    final map = <String, dynamic>{};
+    map['changePassword.title'] = 'Alterar Senha';
+    map['changePassword.labelCurrentPassword'] = 'Senha Atual';
+    map['changePassword.labelNewPassword'] = 'Nova Senha';
+    map['changePassword.labelConfirmPassword'] = 'Confirmar Senha';
+    map['changePassword.messageSuccess'] = 'Senha alterada com sucesso!';
+    map['changePassword.currentPasswordErrors.empty'] = 'Senha atual é obrigatória';
+    map['changePassword.newPasswordErrors.weak'] =
+        'A nova senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número';
+    map['changePassword.confirmPasswordErrors.invalid'] = 'As senhas não coincidem';
+    map['changePassword.errors.other'] = _root.common.genericError;
+    map['common.appName'] = 'Flutter Bloc Starter';
+    map['common.send'] = 'Enviar';
+    map['common.save'] = 'Salvar';
+    map['common.retry'] = 'Tentar novamente';
+    map['common.email'] = 'Email';
+    map['common.username'] = 'Usuário';
+    map['common.password'] = 'Senha';
+    map['common.firstName'] = 'Nome';
+    map['common.lastName'] = 'Sobrenome';
+    map['common.genericError'] = 'Algo deu errado';
+    map['editProfile.title'] = 'Editar Perfil';
+    map['editProfile.messageSuccess'] = 'Perfil editado com sucesso!';
+    map['editProfile.firstNameErrors.empty'] = 'Nome é obrigatório';
+    map['editProfile.lastNameErrors.empty'] = 'Sobrenome é obrigatório';
+    map['editProfile.emailErrors.invalid'] = 'Email inválido';
+    map['editProfile.errors.other'] = _root.common.genericError;
+    map['forgotPassword.title'] = 'Recuperar Senha';
+    map['forgotPassword.description'] =
+        'Digite seu email e enviaremos um link para você redefinir a sua senha.';
+    map['forgotPassword.messageSuccess'] =
+        'Enviamos um email com um link para você redefinir a sua senha.';
+    map['forgotPassword.emailErrors.invalid'] = 'Email inválido';
+    map['forgotPassword.errors.other'] = _root.common.genericError;
+    map['login.title'] = 'Entrar';
+    map['login.buttonLogin'] = 'Entrar';
+    map['login.buttonForgotPassword'] = 'Esqueceu a senha?';
+    map['login.buttonSignInWith'] = ({required Object provider}) => 'Continue com ${provider}';
+    map['login.buttonNewAccount'] = ({required InlineSpanBuilder signUp}) => TextSpan(
+      children: [
+        const TextSpan(text: 'Não tem uma conta? '),
+        signUp('Cadastre-se'),
+      ],
+    );
+    map['login.dividerOr'] = 'OU';
+    map['login.usernameErrors.empty'] = 'O nome de usuário é obrigatório';
+    map['login.passwordErrors.empty'] = 'A senha é obrigatória';
+    map['login.errors.BAD_USER_INPUT'] = 'Usuário ou senha inválidos';
+    map['login.errors.other'] = _root.common.genericError;
+    map['notFound.title'] = '404';
+    map['notFound.description'] = 'Página não encontrada';
+    map['notFound.buttonBack'] = 'Voltar para página inicial';
+    map['onboarding.pages.0.title'] = 'Bem vindo!';
+    map['onboarding.pages.0.message'] = 'Seja muito bem vindo ao QuickStart Flutter';
+    map['onboarding.pages.1.title'] = 'O que é o QuickStart Flutter?';
+    map['onboarding.pages.1.message'] =
+        'O QuickStart Flutter é um projeto para agilizar o bootstrapping de novos projetos Flutter. Ele já vem com uma série de funcionalidades prontas para uso, como internacionalização, temas, rotas, gerenciamento de estado, entre outros.';
+    map['onboarding.pages.2.title'] = 'Vamos começar?';
+    map['onboarding.pages.2.message'] =
+        'Pronto para explorar tudo o que o QuickStart Flutter tem a oferecer? Vamos começar!';
+    map['onboarding.doneButton'] = 'Começar';
+    map['post.title'] = 'Feed';
+    map['post.textFailure'] = 'Falha ao carregar o feed.';
+    map['privacyPolicy.title'] = 'Politíca de Privacidade';
+    map['profile.title'] = 'Perfil';
+    map['profile.buttonEditProfile'] = 'Editar Perfil';
+    map['profile.buttonChangePassword'] = 'Alterar Senha';
+    map['profile.buttonSettings'] = 'Configurações';
+    map['profile.buttonPrivacyPolicy'] = 'Política de Privacidade';
+    map['profile.buttonTerms'] = 'Termos';
+    map['profile.buttonLogout'] = 'Sair';
+    map['profile.buttonChangePicture'] = 'Alterar Foto';
+    map['profile.buttonPickImageFromCamera'] = 'Câmera';
+    map['profile.buttonPickImageFromGallery'] = 'Galeria';
+    map['search.title'] = 'Pesquisar';
+    map['settings.title'] = 'Configurações';
+    map['settings.optionBiometrics'] = 'Biometria';
+    map['signup.title'] = 'Registrar';
+    map['signup.labelConfirmPassword'] = 'Confirmar Senha';
+    map['signup.buttonSubmit'] = 'Registrar';
+    map['signup.usernameErrors.empty'] = 'Nome de usuário é obrigatório';
+    map['signup.emailErrors.invalid'] = 'Email é inválido';
+    map['signup.passwordErrors.weak'] =
+        'Senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número';
+    map['signup.confirmPasswordErrors.invalid'] = 'Senhas não coincidem';
+    map['signup.errors.other'] = _root.common.genericError;
+    map['terms.title'] = 'Termos';
+
+    _map = map;
+    return map;
   }
 }

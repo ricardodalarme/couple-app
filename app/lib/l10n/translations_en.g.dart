@@ -446,168 +446,108 @@ class TranslationsOnboarding$pages$0i2$En with OnboardingPageData {
       'Ready to explore everything QuickStart Flutter has to offer? Let\'s get started!';
 }
 
-/// Flat map(s) containing all translations.
+/// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
+/// Note: We use a HashMap because Dart seems to be unable to compile large switch statements.
+Map<String, dynamic>? _map;
+
 extension on Translations {
   dynamic _flatMapFunction(String path) {
-    switch (path) {
-      case 'changePassword.title':
-        return 'Change Password';
-      case 'changePassword.labelCurrentPassword':
-        return 'Current Password';
-      case 'changePassword.labelNewPassword':
-        return 'New Password';
-      case 'changePassword.labelConfirmPassword':
-        return 'Confirm Password';
-      case 'changePassword.messageSuccess':
-        return 'Password changed successfully';
-      case 'changePassword.currentPasswordErrors.empty':
-        return 'Current password is required';
-      case 'changePassword.newPasswordErrors.weak':
-        return 'New password must be at least 8 characters long and contain at least one letter and one number';
-      case 'changePassword.confirmPasswordErrors.invalid':
-        return 'Passwords do not match';
-      case 'changePassword.errors.other':
-        return _root.common.genericError;
-      case 'common.appName':
-        return 'Flutter Bloc Starter';
-      case 'common.send':
-        return 'Send';
-      case 'common.save':
-        return 'Save';
-      case 'common.retry':
-        return 'Retry';
-      case 'common.username':
-        return 'Username';
-      case 'common.email':
-        return 'Email';
-      case 'common.password':
-        return 'Password';
-      case 'common.firstName':
-        return 'First Name';
-      case 'common.lastName':
-        return 'Last Name';
-      case 'common.genericError':
-        return 'Something went wrong';
-      case 'editProfile.title':
-        return 'Edit Profile';
-      case 'editProfile.messageSuccess':
-        return 'Profile updated successfully';
-      case 'editProfile.firstNameErrors.empty':
-        return 'First name is required';
-      case 'editProfile.lastNameErrors.empty':
-        return 'Last name is required';
-      case 'editProfile.emailErrors.invalid':
-        return 'Email is invalid';
-      case 'editProfile.errors.other':
-        return _root.common.genericError;
-      case 'forgotPassword.title':
-        return 'Recover Password';
-      case 'forgotPassword.description':
-        return 'Enter your email address and we\'ll send you a link to reset your password.';
-      case 'forgotPassword.messageSuccess':
-        return 'We\'ve sent you an email with a link to reset your password.';
-      case 'forgotPassword.emailErrors.invalid':
-        return 'Invalid email';
-      case 'forgotPassword.errors.other':
-        return _root.common.genericError;
-      case 'login.title':
-        return 'Login';
-      case 'login.buttonLogin':
-        return 'Login';
-      case 'login.buttonForgotPassword':
-        return 'Forgot password?';
-      case 'login.buttonSignInWith':
-        return ({required Object provider}) => 'Sign in with ${provider}';
-      case 'login.buttonNewAccount':
-        return ({required InlineSpanBuilder signUp}) => TextSpan(
-          children: [
-            const TextSpan(text: 'Don\'t have an account? '),
-            signUp('Sign up'),
-          ],
-        );
-      case 'login.dividerOr':
-        return 'OR';
-      case 'login.usernameErrors.empty':
-        return 'Username is required';
-      case 'login.passwordErrors.empty':
-        return 'Password is required';
-      case 'login.errors.BAD_USER_INPUT':
-        return 'Username or password is incorrect';
-      case 'login.errors.other':
-        return _root.common.genericError;
-      case 'notFound.title':
-        return '404';
-      case 'notFound.description':
-        return 'Page not found';
-      case 'notFound.buttonBack':
-        return 'Go back home';
-      case 'onboarding.pages.0.title':
-        return 'Welcome!';
-      case 'onboarding.pages.0.message':
-        return 'Welcome to QuickStart Flutter';
-      case 'onboarding.pages.1.title':
-        return 'What is QuickStart Flutter?';
-      case 'onboarding.pages.1.message':
-        return 'QuickStart Flutter is a project to speed up the bootstrapping of new Flutter projects. It already comes with a series of features ready to use, such as internationalization, themes, routes, state management, among others.';
-      case 'onboarding.pages.2.title':
-        return 'Let\'s get started?';
-      case 'onboarding.pages.2.message':
-        return 'Ready to explore everything QuickStart Flutter has to offer? Let\'s get started!';
-      case 'onboarding.doneButton':
-        return 'Get started';
-      case 'post.title':
-        return 'Feed';
-      case 'post.textFailure':
-        return 'Failed to load feed.';
-      case 'privacyPolicy.title':
-        return 'Privacy Policy';
-      case 'profile.title':
-        return 'Profile';
-      case 'profile.buttonEditProfile':
-        return 'Edit Profile';
-      case 'profile.buttonChangePassword':
-        return 'Change Password';
-      case 'profile.buttonSettings':
-        return 'Settings';
-      case 'profile.buttonPrivacyPolicy':
-        return 'Privacy Policy';
-      case 'profile.buttonTerms':
-        return 'Terms';
-      case 'profile.buttonLogout':
-        return 'Logout';
-      case 'profile.buttonChangePicture':
-        return 'Change Picture';
-      case 'profile.buttonPickImageFromCamera':
-        return 'Camera';
-      case 'profile.buttonPickImageFromGallery':
-        return 'Gallery';
-      case 'search.title':
-        return 'Search';
-      case 'settings.title':
-        return 'Settings';
-      case 'settings.optionBiometrics':
-        return 'Biometrics';
-      case 'signup.title':
-        return 'Sign Up';
-      case 'signup.labelConfirmPassword':
-        return 'Confirm Password';
-      case 'signup.buttonSubmit':
-        return 'Sign Up';
-      case 'signup.usernameErrors.empty':
-        return 'Username is required';
-      case 'signup.emailErrors.invalid':
-        return 'Email is invalid';
-      case 'signup.passwordErrors.weak':
-        return 'Password must be at least 8 characters long and contain at least one letter and one number';
-      case 'signup.confirmPasswordErrors.invalid':
-        return 'Passwords do not match';
-      case 'signup.errors.other':
-        return _root.common.genericError;
-      case 'terms.title':
-        return 'Terms';
-      default:
-        return null;
-    }
+    final map = _map ?? _initFlatMap();
+    return map[path];
+  }
+
+  /// Initializes the flat map and returns it.
+  Map<String, dynamic> _initFlatMap() {
+    final map = <String, dynamic>{};
+    map['changePassword.title'] = 'Change Password';
+    map['changePassword.labelCurrentPassword'] = 'Current Password';
+    map['changePassword.labelNewPassword'] = 'New Password';
+    map['changePassword.labelConfirmPassword'] = 'Confirm Password';
+    map['changePassword.messageSuccess'] = 'Password changed successfully';
+    map['changePassword.currentPasswordErrors.empty'] = 'Current password is required';
+    map['changePassword.newPasswordErrors.weak'] =
+        'New password must be at least 8 characters long and contain at least one letter and one number';
+    map['changePassword.confirmPasswordErrors.invalid'] = 'Passwords do not match';
+    map['changePassword.errors.other'] = _root.common.genericError;
+    map['common.appName'] = 'Flutter Bloc Starter';
+    map['common.send'] = 'Send';
+    map['common.save'] = 'Save';
+    map['common.retry'] = 'Retry';
+    map['common.username'] = 'Username';
+    map['common.email'] = 'Email';
+    map['common.password'] = 'Password';
+    map['common.firstName'] = 'First Name';
+    map['common.lastName'] = 'Last Name';
+    map['common.genericError'] = 'Something went wrong';
+    map['editProfile.title'] = 'Edit Profile';
+    map['editProfile.messageSuccess'] = 'Profile updated successfully';
+    map['editProfile.firstNameErrors.empty'] = 'First name is required';
+    map['editProfile.lastNameErrors.empty'] = 'Last name is required';
+    map['editProfile.emailErrors.invalid'] = 'Email is invalid';
+    map['editProfile.errors.other'] = _root.common.genericError;
+    map['forgotPassword.title'] = 'Recover Password';
+    map['forgotPassword.description'] =
+        'Enter your email address and we\'ll send you a link to reset your password.';
+    map['forgotPassword.messageSuccess'] =
+        'We\'ve sent you an email with a link to reset your password.';
+    map['forgotPassword.emailErrors.invalid'] = 'Invalid email';
+    map['forgotPassword.errors.other'] = _root.common.genericError;
+    map['login.title'] = 'Login';
+    map['login.buttonLogin'] = 'Login';
+    map['login.buttonForgotPassword'] = 'Forgot password?';
+    map['login.buttonSignInWith'] = ({required Object provider}) => 'Sign in with ${provider}';
+    map['login.buttonNewAccount'] = ({required InlineSpanBuilder signUp}) => TextSpan(
+      children: [
+        const TextSpan(text: 'Don\'t have an account? '),
+        signUp('Sign up'),
+      ],
+    );
+    map['login.dividerOr'] = 'OR';
+    map['login.usernameErrors.empty'] = 'Username is required';
+    map['login.passwordErrors.empty'] = 'Password is required';
+    map['login.errors.BAD_USER_INPUT'] = 'Username or password is incorrect';
+    map['login.errors.other'] = _root.common.genericError;
+    map['notFound.title'] = '404';
+    map['notFound.description'] = 'Page not found';
+    map['notFound.buttonBack'] = 'Go back home';
+    map['onboarding.pages.0.title'] = 'Welcome!';
+    map['onboarding.pages.0.message'] = 'Welcome to QuickStart Flutter';
+    map['onboarding.pages.1.title'] = 'What is QuickStart Flutter?';
+    map['onboarding.pages.1.message'] =
+        'QuickStart Flutter is a project to speed up the bootstrapping of new Flutter projects. It already comes with a series of features ready to use, such as internationalization, themes, routes, state management, among others.';
+    map['onboarding.pages.2.title'] = 'Let\'s get started?';
+    map['onboarding.pages.2.message'] =
+        'Ready to explore everything QuickStart Flutter has to offer? Let\'s get started!';
+    map['onboarding.doneButton'] = 'Get started';
+    map['post.title'] = 'Feed';
+    map['post.textFailure'] = 'Failed to load feed.';
+    map['privacyPolicy.title'] = 'Privacy Policy';
+    map['profile.title'] = 'Profile';
+    map['profile.buttonEditProfile'] = 'Edit Profile';
+    map['profile.buttonChangePassword'] = 'Change Password';
+    map['profile.buttonSettings'] = 'Settings';
+    map['profile.buttonPrivacyPolicy'] = 'Privacy Policy';
+    map['profile.buttonTerms'] = 'Terms';
+    map['profile.buttonLogout'] = 'Logout';
+    map['profile.buttonChangePicture'] = 'Change Picture';
+    map['profile.buttonPickImageFromCamera'] = 'Camera';
+    map['profile.buttonPickImageFromGallery'] = 'Gallery';
+    map['search.title'] = 'Search';
+    map['settings.title'] = 'Settings';
+    map['settings.optionBiometrics'] = 'Biometrics';
+    map['signup.title'] = 'Sign Up';
+    map['signup.labelConfirmPassword'] = 'Confirm Password';
+    map['signup.buttonSubmit'] = 'Sign Up';
+    map['signup.usernameErrors.empty'] = 'Username is required';
+    map['signup.emailErrors.invalid'] = 'Email is invalid';
+    map['signup.passwordErrors.weak'] =
+        'Password must be at least 8 characters long and contain at least one letter and one number';
+    map['signup.confirmPasswordErrors.invalid'] = 'Passwords do not match';
+    map['signup.errors.other'] = _root.common.genericError;
+    map['terms.title'] = 'Terms';
+
+    _map = map;
+    return map;
   }
 }
