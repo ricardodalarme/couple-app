@@ -25,6 +25,10 @@ dev_dependencies:
   very_good_cli: ^0.28.0
 
 melos:
+  ide:
+    intellij:
+      enabled: false
+
   command:
     bootstrap:
       hooks:
