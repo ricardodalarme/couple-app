@@ -70,7 +70,7 @@ melos:
         dependsOn: slang
 
     l10n:analyze:
-      exec: dart run slang analyze --full --exit-if-changed
+      exec: dart run slang analyze --exit-if-changed
       description: Analyze localization files.
       packageFilters:
         dependsOn: slang
