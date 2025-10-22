@@ -36,7 +36,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: EditProfileRoute.page),
     AutoRoute(page: ChangePasswordRoute.page),
     AutoRoute(page: PrivacyPolicyRoute.page),
-    AutoRoute(page: TermsRoute.page),
+    AutoRoute(page: TermsListRoute.page),
     AutoRoute(path: '*', page: NotFoundRoute.page),
   ];
 }

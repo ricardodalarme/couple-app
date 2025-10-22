@@ -47,7 +47,7 @@ class ProfilePage extends StatelessWidget {
               ListTile(
                 title: l10n.buttonTerms,
                 leading: const Icon(Icons.description),
-                onTap: () => context.pushRoute(const TermsRoute()),
+                onTap: () => context.pushRoute(const TermsListRoute()),
               ),
               ListTile(
                 title: l10n.buttonLogout,

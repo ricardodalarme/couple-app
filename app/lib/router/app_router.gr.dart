@@ -220,11 +220,11 @@ class SignUpRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [TermsListPage]
-class TermsRoute extends PageRouteInfo<void> {
-  const TermsRoute({List<PageRouteInfo>? children})
-    : super(TermsRoute.name, initialChildren: children);
+class TermsListRoute extends PageRouteInfo<void> {
+  const TermsListRoute({List<PageRouteInfo>? children})
+    : super(TermsListRoute.name, initialChildren: children);
 
-  static const String name = 'TermsRoute';
+  static const String name = 'TermsListRoute';
 
   static PageInfo page = PageInfo(
     name,
