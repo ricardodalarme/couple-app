@@ -51,3 +51,11 @@ run_tests() {
     return 1
   fi
 }
+
+check_staged_files() {
+  STAGED_FILES="$(git diff --cached --diff-filter=ACMR --oneline --name-only --relative)"
+  if [ -z "$STAGED_FILES" ]; then
+    echo "No files changed, nothing to check"
+    return 1
+  fi
+}

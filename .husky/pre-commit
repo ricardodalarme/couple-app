@@ -3,6 +3,6 @@
 # shellcheck source=scripts/git/scripts
 source "$(dirname "$0")"/scripts
 
+check_staged_files
 check_flutter_installed
-check_localization_files
 run_lint
