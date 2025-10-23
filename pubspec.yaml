@@ -11,6 +11,7 @@ workspace:
   - app/packages/common_ui
   - app/packages/core
   - app/packages/form_inputs
+  - app/packages/formatters
   - app/packages/network
   - app/packages/services/analytics
   - app/packages/services/biometric
