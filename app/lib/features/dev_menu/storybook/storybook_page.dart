@@ -24,8 +24,7 @@ class StorybookPage extends StatelessWidget {
     return BaseView(
       hasSafeArea: false,
       body: Widgetbook(
-        appBuilder: (BuildContext context, Widget child) =>
-            MaterialApp(debugShowCheckedModeBanner: false, home: child),
+        appBuilder: (_, Widget child) => Scaffold(body: child),
         addons: _addons,
         directories: examples,
         home: const SizedBox.shrink(),
