@@ -769,10 +769,10 @@ packages:
     dependency: transitive
     description:
       name: graphql
-      sha256: "2011435a7fea92fff5b02c77550a54f89427a3c33c92cd2fccfd3aa87ed3727d"
+      sha256: "297a1680520e7b4d3c5784cfcea11a16d599702911b74a8ab50857c6d58741b9"
       url: "https://pub.dev"
     source: hosted
-    version: "5.2.2"
+    version: "5.2.3"
   graphql_codegen:
     dependency: transitive
     description:
@@ -805,14 +805,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-  hive:
+  hive_ce:
     dependency: transitive
     description:
-      name: hive
-      sha256: "8dcf6db979d7933da8217edcec84e9df1bdb4e4edc7fc77dbd5aa74356d6d941"
+      name: hive_ce
+      sha256: e3a9d2608350ca5ae1fcaa594bbc24c443cf8e67cd16b89ec258fb0bcccb0847
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.3"
+    version: "2.15.0"
   hotreloader:
     dependency: transitive
     description:
@@ -901,6 +901,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  isolate_channel:
+    dependency: transitive
+    description:
+      name: isolate_channel
+      sha256: f3d36f783b301e6b312c3450eeb2656b0e7d1db81331af2a151d9083a3f6b18d
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.2+1"
   js:
     dependency: transitive
     description:
