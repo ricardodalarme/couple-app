@@ -39,8 +39,7 @@ dependencies:
     path: ../packages/services/secure_storage
   slang: ^4.9.1
   slang_flutter: ^4.9.0
-  storybook:
-    path: ../storybook
+  widgetbook: ^3.18.0
 
 dev_dependencies:
   auto_route_generator: ^10.2.5

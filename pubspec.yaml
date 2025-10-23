@@ -7,7 +7,6 @@ environment:
 
 workspace:
   - app
-  - storybook
   - packages/common_ui
   - packages/core
   - packages/form_inputs

@@ -126,13 +126,3 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-
-  - package-ecosystem: "pub"
-    directory: "/storybook/"
-    schedule:
-      interval: "weekly"
-    labels:
-      - ":package: dependencies"
-    commit-message:
-      prefix: "chore"
-      include: "scope"

@@ -9,7 +9,6 @@ import 'package:quickstart_flutter_bloc/features/authentication/presentation/log
 import 'package:quickstart_flutter_bloc/l10n/l10n_map_extension.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 import 'package:quickstart_flutter_bloc/router/app_router.dart';
-import 'package:storybook/main.dart';
 
 @RoutePage()
 class LoginPage extends StatelessWidget implements AutoRouteWrapper {
@@ -57,7 +56,7 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
                 const _SignupButton(),
                 if (kDebugMode)
                   TextButton(
-                    onPressed: () => context.router.pushWidget(const WidgetbookApp()),
+                    onPressed: () => context.router.push(const StorybookRoute()),
                     child: Text(l10n.buttonDevMenu),
                   ),
               ],
