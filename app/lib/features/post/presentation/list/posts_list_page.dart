@@ -50,14 +50,11 @@ class _PostsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BasePullToRefresh(
-      onRefresh: () => context.read<PostsListBloc>().add(const PostsListFetched()),
-      child: ListView.builder(
-        padding: const EdgeInsets.all(Spacings.large),
-        itemCount: posts.length,
-        itemBuilder: (context, index) =>
-            PostCard(key: ValueKey(posts[index].id), post: posts[index]),
-      ),
+    return BaseListView(
+      onRefresh: () async => context.read<PostsListBloc>().add(const PostsListFetched()),
+      padding: const EdgeInsets.all(Spacings.large),
+      itemCount: posts.length,
+      itemBuilder: (_, index) => PostCard(key: ValueKey(posts[index].id), post: posts[index]),
     );
   }
 }

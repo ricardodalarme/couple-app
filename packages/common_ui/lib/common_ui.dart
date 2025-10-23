@@ -6,6 +6,7 @@ export 'package:gap/gap.dart';
 export 'src/components/base_button.dart';
 export 'src/components/base_divider.dart';
 export 'src/components/base_list_tile.dart';
+export 'src/components/base_list_view.dart';
 export 'src/components/base_loading_indicator.dart';
 export 'src/components/base_password_text_field.dart';
 export 'src/components/base_pull_to_refresh.dart';
