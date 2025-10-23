@@ -219,22 +219,6 @@ class SignUpRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [StorybookPage]
-class StorybookRoute extends PageRouteInfo<void> {
-  const StorybookRoute({List<PageRouteInfo>? children})
-    : super(StorybookRoute.name, initialChildren: children);
-
-  static const String name = 'StorybookRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const StorybookPage();
-    },
-  );
-}
-
-/// generated route for
 /// [TermsListPage]
 class TermsListRoute extends PageRouteInfo<void> {
   const TermsListRoute({List<PageRouteInfo>? children})

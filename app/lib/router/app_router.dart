@@ -5,7 +5,6 @@ import 'package:quickstart_flutter_bloc/features/account/presentation/profile/pr
 import 'package:quickstart_flutter_bloc/features/authentication/presentation/forgot_password/forgot_password_page.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/login_page.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/presentation/signup/signup_page.dart';
-import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/storybook_page.dart';
 import 'package:quickstart_flutter_bloc/features/home/presentation/home_page.dart';
 import 'package:quickstart_flutter_bloc/features/not_found/presentation/not_found_page.dart';
 import 'package:quickstart_flutter_bloc/features/onboarding/presentation/onboarding_page.dart';
@@ -21,7 +20,6 @@ part 'app_router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: StorybookRoute.page),
     AutoRoute(page: OnboardingRoute.page),
     AutoRoute(page: LoginRoute.page, initial: true),
     AutoRoute(page: SignUpRoute.page),

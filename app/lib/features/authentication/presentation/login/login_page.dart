@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/bloc/login_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/widgets/sign_in_button.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/widgets/text_divider.dart';
+import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/storybook_page.dart';
 import 'package:quickstart_flutter_bloc/l10n/l10n_map_extension.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 import 'package:quickstart_flutter_bloc/router/app_router.dart';
@@ -58,7 +59,7 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
                 const _SignupButton(),
                 if (kDebugMode)
                   TextButton(
-                    onPressed: () => context.router.push(const StorybookRoute()),
+                    onPressed: () => context.router.pushWidget(const StorybookPage()),
                     child: Text(l10n.buttonDevMenu),
                   ),
               ],
