@@ -350,6 +350,9 @@ class TranslationsAuthenticationLoginEn {
     ],
   );
 
+  /// en: 'Open DevMenu'
+  String get buttonDevMenu => 'Open DevMenu';
+
   /// en: 'OR'
   String get dividerOr => 'OR';
 
@@ -542,6 +545,7 @@ extension on Translations {
             signUp('Sign up'),
           ],
         );
+    map['authentication.login.buttonDevMenu'] = 'Open DevMenu';
     map['authentication.login.dividerOr'] = 'OR';
     map['authentication.login.usernameErrors.empty'] = 'Username is required';
     map['authentication.login.passwordErrors.empty'] = 'Password is required';

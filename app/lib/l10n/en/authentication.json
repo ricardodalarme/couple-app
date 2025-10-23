@@ -5,6 +5,7 @@
     "buttonForgotPassword": "Forgot password?",
     "buttonSignInWith": "Sign in with {provider}",
     "buttonNewAccount(rich)": "Don't have an account? {signUp(Sign up)}",
+    "buttonDevMenu": "Open DevMenu",
     "dividerOr": "OR",
     "usernameErrors(map)": {
       "empty": "Username is required"

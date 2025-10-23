@@ -335,6 +335,8 @@ class _TranslationsAuthenticationLoginPt extends TranslationsAuthenticationLogin
     ],
   );
   @override
+  String get buttonDevMenu => 'Abrir DevMenu';
+  @override
   String get dividerOr => 'OU';
   @override
   Map<String, String> get usernameErrors => {'empty': 'O nome de usuário é obrigatório'};
@@ -525,6 +527,7 @@ extension on TranslationsPt {
             signUp('Cadastre-se'),
           ],
         );
+    map['authentication.login.buttonDevMenu'] = 'Abrir DevMenu';
     map['authentication.login.dividerOr'] = 'OU';
     map['authentication.login.usernameErrors.empty'] = 'O nome de usuário é obrigatório';
     map['authentication.login.passwordErrors.empty'] = 'A senha é obrigatória';

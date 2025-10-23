@@ -5,6 +5,7 @@
     "buttonForgotPassword": "Esqueceu a senha?",
     "buttonSignInWith": "Continue com {provider}",
     "buttonNewAccount(rich)": "Não tem uma conta? {signUp(Cadastre-se)}",
+    "buttonDevMenu": "Abrir DevMenu",
     "dividerOr": "OU",
     "usernameErrors(map)": {
       "empty": "O nome de usuário é obrigatório"

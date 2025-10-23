@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' show TextButton;
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:quickstart_flutter_bloc/features/authentication/presentation/log
 import 'package:quickstart_flutter_bloc/l10n/l10n_map_extension.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 import 'package:quickstart_flutter_bloc/router/app_router.dart';
+import 'package:storybook/main.dart';
 
 @RoutePage()
 class LoginPage extends StatelessWidget implements AutoRouteWrapper {
@@ -53,6 +55,11 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
                 ),
                 const _SignInWithThirdPartyButtons(),
                 const _SignupButton(),
+                if (kDebugMode)
+                  TextButton(
+                    onPressed: () => context.router.pushWidget(const WidgetbookApp()),
+                    child: Text(l10n.buttonDevMenu),
+                  ),
               ],
             ),
           ),
