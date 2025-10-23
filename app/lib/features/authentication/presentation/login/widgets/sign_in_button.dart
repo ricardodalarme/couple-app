@@ -1,7 +1,5 @@
-import 'package:common_ui/src/generated/assets.gen.dart';
-import 'package:common_ui/src/tokens/colors.dart';
+import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart' show MaterialButton;
-import 'package:flutter/widgets.dart';
 
 enum ButtonProvider {
   google('Google'),

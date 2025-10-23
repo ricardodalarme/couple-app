@@ -1,7 +1,8 @@
 import 'package:common_ui/common_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/widgets/text_divider.dart';
 
-import '../test_helpers/pump_app.dart';
+import '../../../../../../packages/common_ui/test/test_helpers/pump_app.dart';
 
 void main() {
   group('TextDivider', () {
@@ -23,7 +24,7 @@ void main() {
       await tester.pumpApp(const TextDivider('Divider'));
       await tester.pump();
 
-      expect(find.byType(Divider), findsNWidgets(2));
+      expect(find.byType(BaseDivider), findsNWidgets(2));
     });
   });
 }

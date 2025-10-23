@@ -1,10 +1,10 @@
-import 'package:common_ui/src/widgets/sign_in_button.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/widgets/sign_in_button.dart';
 
-import '../test_helpers/pump_app.dart';
+import '../../../../../test_helpers/pump_app.dart';
 
 void main() {
-  group('BaseTextField', () {
+  group('SignInButton', () {
     testWidgets('renders widget with facebook provider', (tester) async {
       await tester.pumpApp(
         SignInButton(

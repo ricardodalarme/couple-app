@@ -1,4 +1,4 @@
-import 'package:common_ui/common_ui.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/widgets/text_divider.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 final WidgetbookNode textDividerExample = WidgetbookUseCase(

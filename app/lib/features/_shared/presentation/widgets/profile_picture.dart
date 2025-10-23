@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:common_ui/src/theme/theme_extensions.dart';
+import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart' show CircleAvatar, Icons;
-import 'package:flutter/widgets.dart';
 
 class ProfilePicture extends StatelessWidget {
   const ProfilePicture({required this.photoUrl, required this.size, super.key});

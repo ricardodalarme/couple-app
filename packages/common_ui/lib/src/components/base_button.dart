@@ -43,7 +43,7 @@ class _LoadingIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxHeight: _loadingSize, maxWidth: _loadingSize),
-      child: const LoadingIndicator(strokeWidth: _loadingStrokeWidth, color: Colors.white),
+      child: const BaseLoadingIndicator(strokeWidth: _loadingStrokeWidth, color: Colors.white),
     );
   }
 }

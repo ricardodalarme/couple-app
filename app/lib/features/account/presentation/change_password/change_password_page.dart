@@ -73,7 +73,7 @@ class _CurrentPasswordTextField extends StatelessWidget {
 
     return BlocBuilder<ChangePasswordBloc, ChangePasswordState>(
       buildWhen: (previous, current) => previous.currentPassword != current.currentPassword,
-      builder: (context, state) => PasswordTextField(
+      builder: (context, state) => BasePasswordTextField(
         text: state.currentPassword.value,
         errorText: l10n.currentPasswordErrors[state.currentPassword.displayError?.name],
         onChanged: (password) =>
@@ -94,7 +94,7 @@ class _NewPasswordTextField extends StatelessWidget {
 
     return BlocBuilder<ChangePasswordBloc, ChangePasswordState>(
       buildWhen: (previous, current) => previous.password != current.password,
-      builder: (context, state) => PasswordTextField(
+      builder: (context, state) => BasePasswordTextField(
         text: state.password.value,
         errorText: l10n.newPasswordErrors[state.password.displayError?.name],
         onChanged: (password) =>
@@ -115,7 +115,7 @@ class _ConfirmPasswordTextField extends StatelessWidget {
 
     return BlocBuilder<ChangePasswordBloc, ChangePasswordState>(
       buildWhen: (previous, current) => previous.confirmPassword != current.confirmPassword,
-      builder: (context, state) => PasswordTextField(
+      builder: (context, state) => BasePasswordTextField(
         text: state.confirmPassword.value,
         errorText: l10n.confirmPasswordErrors[state.confirmPassword.displayError?.name],
         onChanged: (password) =>

@@ -1,7 +1,7 @@
 import 'package:common_ui/common_ui.dart';
 
-class ListTile extends StatelessWidget {
-  const ListTile({required this.title, required this.leading, required this.onTap, super.key});
+class BaseListTile extends StatelessWidget {
+  const BaseListTile({required this.title, required this.leading, required this.onTap, super.key});
 
   final String title;
   final Widget leading;
@@ -11,7 +11,7 @@ class ListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Tapper(
+    return BaseTapper(
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.all(Spacings.large),

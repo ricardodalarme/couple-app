@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' show RefreshIndicator;
 import 'package:flutter/widgets.dart';
 
-class PullToRefresh extends StatelessWidget {
-  const PullToRefresh({required this.onRefresh, required this.child, super.key});
+class BasePullToRefresh extends StatelessWidget {
+  const BasePullToRefresh({required this.onRefresh, required this.child, super.key});
 
   final VoidCallback onRefresh;
   final Widget child;

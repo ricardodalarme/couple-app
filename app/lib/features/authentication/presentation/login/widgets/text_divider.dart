@@ -9,12 +9,12 @@ class TextDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Expanded(child: Divider()),
+        const Expanded(child: BaseDivider()),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Spacings.medium),
           child: Text(text, style: context.typography.bodySmall),
         ),
-        const Expanded(child: Divider()),
+        const Expanded(child: BaseDivider()),
       ],
     );
   }

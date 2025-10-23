@@ -1,16 +1,16 @@
 import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/base_button_example.dart';
+import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/base_divider_example.dart';
+import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/base_list_tile_example.dart';
+import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/base_loading_indicator_example.dart';
+import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/base_password_text_field_example.dart';
 import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/base_snack_bar_example.dart';
 import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/base_text_field_example.dart';
-import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/divider_example.dart';
-import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/error_indicator_example.dart';
-import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/list_tile_example.dart';
-import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/loading_indicator_example.dart';
-import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/password_text_field_example.dart';
-import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/profile_picture_example.dart';
-import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/sign_in_button_example.dart';
-import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/text_divider_example.dart';
 import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/theme/colors_example.dart';
 import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/theme/typography_example.dart';
+import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/widgets/error_indicator_example.dart';
+import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/widgets/profile_picture_example.dart';
+import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/widgets/sign_in_button_example.dart';
+import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/widgets/text_divider_example.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 final List<WidgetbookNode> examples = [
@@ -18,13 +18,18 @@ final List<WidgetbookNode> examples = [
     name: 'Components',
     children: [
       baseButtonExample,
+      baseDividerExample,
+      baseListTileExample,
+      baseLoadingIndicatorExample,
+      basePasswordTextFieldExample,
       baseSnackBarExample,
       baseTextFieldExample,
-      dividerExample,
+    ],
+  ),
+  WidgetbookFolder(
+    name: 'Widgets',
+    children: [
       errorIndicatorExample,
-      listTileExample,
-      loadingIndicatorExample,
-      passwordTextFieldExample,
       profilePictureExample,
       signInButtonExample,
       textDividerExample,

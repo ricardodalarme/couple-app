@@ -2,8 +2,8 @@ import 'package:common_ui/src/theme/theme_extensions.dart';
 import 'package:common_ui/src/tokens/spacings.dart';
 import 'package:flutter/widgets.dart';
 
-class Divider extends StatelessWidget {
-  const Divider({this.startMargin = Spacings.none, this.endMargin = Spacings.none, super.key});
+class BaseDivider extends StatelessWidget {
+  const BaseDivider({this.startMargin = Spacings.none, this.endMargin = Spacings.none, super.key});
 
   final double startMargin;
   final double endMargin;

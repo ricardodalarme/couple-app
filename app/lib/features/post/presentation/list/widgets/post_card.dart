@@ -1,5 +1,6 @@
-import 'package:common_ui/common_ui.dart' hide ListTile;
+import 'package:common_ui/common_ui.dart' hide BaseListTile;
 import 'package:flutter/material.dart' show Card, ListTile;
+import 'package:quickstart_flutter_bloc/features/_shared/presentation/widgets/profile_picture.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/models/post.dart';
 
 const _profilePictureSize = 40.0;

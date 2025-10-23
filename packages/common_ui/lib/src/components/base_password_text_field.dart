@@ -1,10 +1,10 @@
-import 'package:common_ui/src/widgets/base_text_field.dart';
+import 'package:common_ui/src/components/base_text_field.dart';
 import 'package:flutter/material.dart' show IconButton, Icons;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-class PasswordTextField extends StatefulWidget {
-  const PasswordTextField({
+class BasePasswordTextField extends StatefulWidget {
+  const BasePasswordTextField({
     required this.text,
     this.label,
     this.onChanged,
@@ -22,10 +22,10 @@ class PasswordTextField extends StatefulWidget {
   final void Function(String)? onSubmitted;
 
   @override
-  State<PasswordTextField> createState() => _PasswordTextFieldState();
+  State<BasePasswordTextField> createState() => _BasePasswordTextFieldState();
 }
 
-class _PasswordTextFieldState extends State<PasswordTextField> {
+class _BasePasswordTextFieldState extends State<BasePasswordTextField> {
   bool _obscureText = true;
 
   @override

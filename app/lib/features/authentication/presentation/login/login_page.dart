@@ -6,6 +6,8 @@ import 'package:flutter/material.dart' show TextButton;
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/bloc/login_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/widgets/sign_in_button.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/widgets/text_divider.dart';
 import 'package:quickstart_flutter_bloc/l10n/l10n_map_extension.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 import 'package:quickstart_flutter_bloc/router/app_router.dart';
@@ -112,7 +114,7 @@ class _PasswordTextField extends StatelessWidget {
 
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) => previous.password != current.password,
-      builder: (context, state) => PasswordTextField(
+      builder: (context, state) => BasePasswordTextField(
         text: state.password.value,
         errorText: l10n.passwordErrors[state.password.displayError?.name],
         onChanged: (password) => context.read<LoginBloc>().add(LoginPasswordChanged(password)),

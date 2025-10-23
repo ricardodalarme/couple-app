@@ -12,6 +12,7 @@ dependencies:
   auto_route: ^10.2.0
   biometric_service:
     path: ../packages/services/biometric
+  cached_network_image: ^3.4.1
   common_ui:
     path: ../packages/common_ui
   core:
@@ -39,6 +40,7 @@ dependencies:
     path: ../packages/services/secure_storage
   slang: ^4.9.1
   slang_flutter: ^4.9.0
+  webview_flutter: ^4.13.0
   widgetbook: ^3.18.0
 
 dev_dependencies:

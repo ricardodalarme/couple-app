@@ -1,4 +1,4 @@
-import 'package:common_ui/src/widgets/base_button.dart';
+import 'package:common_ui/src/components/base_button.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../test_helpers/pump_app.dart';

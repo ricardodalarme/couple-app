@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart' show IconButton, Icons, showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/_shared/presentation/widgets/profile_picture.dart';
 import 'package:quickstart_flutter_bloc/features/account/presentation/profile/widgets/image_picker_modal.dart';
 import 'package:quickstart_flutter_bloc/features/app/presentation/bloc/app_bloc.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
@@ -24,32 +25,32 @@ class ProfilePage extends StatelessWidget {
             children: [
               const _ProfilePictureWithSelect(),
               const Gap(Spacings.xxlarge),
-              ListTile(
+              BaseListTile(
                 title: l10n.buttonEditProfile,
                 leading: const Icon(Icons.person),
                 onTap: () => context.pushRoute(const EditProfileRoute()),
               ),
-              ListTile(
+              BaseListTile(
                 title: l10n.buttonChangePassword,
                 leading: const Icon(Icons.lock),
                 onTap: () => context.pushRoute(const ChangePasswordRoute()),
               ),
-              ListTile(
+              BaseListTile(
                 title: l10n.buttonSettings,
                 leading: const Icon(Icons.settings),
                 onTap: () => context.pushRoute(const SettingsRoute()),
               ),
-              ListTile(
+              BaseListTile(
                 title: l10n.buttonPrivacyPolicy,
                 leading: const Icon(Icons.privacy_tip),
                 onTap: () => context.pushRoute(const PrivacyPolicyRoute()),
               ),
-              ListTile(
+              BaseListTile(
                 title: l10n.buttonTerms,
                 leading: const Icon(Icons.description),
                 onTap: () => context.pushRoute(const TermsListRoute()),
               ),
-              ListTile(
+              BaseListTile(
                 title: l10n.buttonLogout,
                 leading: const Icon(Icons.logout),
                 onTap: () => context.read<AppBloc>().add(const AppLogoutRequested()),
