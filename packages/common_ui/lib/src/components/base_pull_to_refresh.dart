@@ -9,6 +9,6 @@ class BasePullToRefresh extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(onRefresh: () async => onRefresh, child: child);
+    return RefreshIndicator(onRefresh: () async => onRefresh(), child: child);
   }
 }
