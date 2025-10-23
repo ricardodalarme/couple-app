@@ -27,6 +27,8 @@ dependencies:
     sdk: flutter
   form_inputs:
     path: ./packages/form_inputs
+  formatters:
+    path: ./packages/formatters
   network:
     path: ./packages/network
   persistent_storage_service:
