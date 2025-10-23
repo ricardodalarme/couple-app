@@ -8,17 +8,17 @@ environment:
 workspace:
   - app
   - storybook
-  - app/packages/common_ui
-  - app/packages/core
-  - app/packages/form_inputs
-  - app/packages/formatters
-  - app/packages/network
-  - app/packages/services/analytics
-  - app/packages/services/biometric
-  - app/packages/services/crash_report
-  - app/packages/services/persistent_storage
-  - app/packages/services/remote_config
-  - app/packages/services/secure_storage
+  - packages/common_ui
+  - packages/core
+  - packages/form_inputs
+  - packages/formatters
+  - packages/network
+  - packages/services/analytics
+  - packages/services/biometric
+  - packages/services/crash_report
+  - packages/services/persistent_storage
+  - packages/services/remote_config
+  - packages/services/secure_storage
 
 dev_dependencies:
   husky: ^0.1.7

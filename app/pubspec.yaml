@@ -8,16 +8,16 @@ environment:
 
 dependencies:
   analytics_service:
-    path: ./packages/services/analytics
+    path: ../packages/services/analytics
   auto_route: ^10.2.0
   biometric_service:
-    path: ./packages/services/biometric
+    path: ../packages/services/biometric
   common_ui:
-    path: ./packages/common_ui
+    path: ../packages/common_ui
   core:
-    path: ./packages/core
+    path: ../packages/core
   crash_report_service:
-    path: ./packages/services/crash_report
+    path: ../packages/services/crash_report
   equatable: ^2.0.7
   firebase_core: ^4.2.0
   flutter:
@@ -26,17 +26,17 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   form_inputs:
-    path: ./packages/form_inputs
+    path: ../packages/form_inputs
   formatters:
-    path: ./packages/formatters
+    path: ../packages/formatters
   network:
-    path: ./packages/network
+    path: ../packages/network
   persistent_storage_service:
-    path: ./packages/services/persistent_storage
+    path: ../packages/services/persistent_storage
   remote_config_service:
-    path: ./packages/services/remote_config
+    path: ../packages/services/remote_config
   secure_storage_service:
-    path: ./packages/services/secure_storage
+    path: ../packages/services/secure_storage
   slang: ^4.9.1
   slang_flutter: ^4.9.0
 

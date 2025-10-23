@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   common_ui:
-    path: ../app/packages/common_ui
+    path: ../packages/common_ui
   flutter:
     sdk: flutter
   widgetbook: ^3.18.0
