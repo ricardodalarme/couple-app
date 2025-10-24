@@ -5,11 +5,11 @@ import 'package:widgetbook/widgetbook.dart';
 final WidgetbookNode baseTextFieldExample = WidgetbookUseCase(
   name: 'BaseTextField',
   builder: (context) => BaseTextField(
+    type: context.knobs.object.dropdown(label: 'Type', options: BaseTextFieldType.values),
     text: context.knobs.string(label: 'Text'),
     label: context.knobs.string(label: 'Label', initialValue: 'Label'),
     autocorrect: context.knobs.boolean(label: 'Autocorrect', initialValue: true),
     enableSuggestions: context.knobs.boolean(label: 'Enable suggestions', initialValue: true),
-    obscureText: context.knobs.boolean(label: 'Obscure text'),
     textInputAction: context.knobs.objectOrNull.dropdown(
       label: 'Text input action',
       options: TextInputAction.values,

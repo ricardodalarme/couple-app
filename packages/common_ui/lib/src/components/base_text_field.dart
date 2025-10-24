@@ -1,25 +1,25 @@
-import 'package:flutter/material.dart' show InputDecoration, TextField;
+import 'package:flutter/material.dart' show IconButton, Icons, InputDecoration, TextField;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-const _errorMaxLines = 2;
+enum BaseTextFieldType { text, password }
 
 class BaseTextField extends StatefulWidget {
   const BaseTextField({
     required this.text,
     super.key,
+    this.type = BaseTextFieldType.text,
     this.label,
     this.errorText,
     this.autocorrect = true,
     this.enableSuggestions = true,
-    this.obscureText = false,
     this.onChanged,
     this.textInputAction,
     this.onSubmitted,
     this.keyboardType,
-    this.suffixIcon,
   });
 
+  final BaseTextFieldType type;
   final String text;
   final String? label;
   final String? errorText;
@@ -28,8 +28,6 @@ class BaseTextField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final bool autocorrect;
   final bool enableSuggestions;
-  final bool obscureText;
-  final Widget? suffixIcon;
   final void Function(String)? onSubmitted;
 
   @override
@@ -38,6 +36,10 @@ class BaseTextField extends StatefulWidget {
 
 class _BaseTextFieldState extends State<BaseTextField> {
   late TextEditingController _controller;
+  bool _obscureText = true;
+
+  static const _obscureTextIconSize = 20.0;
+  static const _errorMaxLines = 2;
 
   @override
   void initState() {
@@ -55,22 +57,44 @@ class _BaseTextFieldState extends State<BaseTextField> {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TextField(
       controller: _controller,
       autocorrect: widget.autocorrect,
       decoration: InputDecoration(
         labelText: widget.label,
-        suffixIcon: widget.suffixIcon,
+        suffixIcon: _effectiveSuffixIcon,
         errorText: widget.errorText,
         errorMaxLines: _errorMaxLines,
       ),
       enableSuggestions: widget.enableSuggestions,
-      obscureText: widget.obscureText,
+      obscureText: _effectiveObscureText,
       onChanged: widget.onChanged,
       onSubmitted: widget.onSubmitted,
       textInputAction: widget.textInputAction,
       keyboardType: widget.keyboardType,
     );
   }
+
+  Widget? get _effectiveSuffixIcon => switch (widget.type) {
+    BaseTextFieldType.password => IconButton(
+      icon: Icon(
+        _obscureText ? Icons.visibility : Icons.visibility_off,
+        size: _obscureTextIconSize,
+      ),
+      onPressed: () => setState(() => _obscureText = !_obscureText),
+    ),
+    _ => null,
+  };
+
+  bool get _effectiveObscureText => switch (widget.type) {
+    BaseTextFieldType.password => _obscureText,
+    _ => false,
+  };
 }

@@ -115,7 +115,8 @@ class _PasswordTextField extends StatelessWidget {
 
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) => previous.password != current.password,
-      builder: (context, state) => BasePasswordTextField(
+      builder: (context, state) => BaseTextField(
+        type: BaseTextFieldType.password,
         text: state.password.value,
         errorText: l10n.passwordErrors[state.password.displayError?.name],
         onChanged: (password) => context.read<LoginBloc>().add(LoginPasswordChanged(password)),

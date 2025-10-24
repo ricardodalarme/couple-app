@@ -2,7 +2,6 @@ import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/com
 import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/base_divider_example.dart';
 import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/base_list_tile_example.dart';
 import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/base_loading_indicator_example.dart';
-import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/base_password_text_field_example.dart';
 import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/base_snack_bar_example.dart';
 import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/components/base_text_field_example.dart';
 import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/theme/colors_example.dart';
@@ -21,7 +20,6 @@ final List<WidgetbookNode> examples = [
       baseDividerExample,
       baseListTileExample,
       baseLoadingIndicatorExample,
-      basePasswordTextFieldExample,
       baseSnackBarExample,
       baseTextFieldExample,
     ],

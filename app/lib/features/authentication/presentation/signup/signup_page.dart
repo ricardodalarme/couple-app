@@ -117,7 +117,8 @@ class _PasswordTextField extends StatelessWidget {
 
     return BlocBuilder<SignupBloc, SignupState>(
       buildWhen: (previous, current) => previous.password != current.password,
-      builder: (context, state) => BasePasswordTextField(
+      builder: (context, state) => BaseTextField(
+        type: BaseTextFieldType.password,
         text: state.password.value,
         label: context.l10n.common.password,
         errorText: l10n.passwordErrors[state.password.displayError?.name],
@@ -137,7 +138,8 @@ class _ConfirmPasswordTextField extends StatelessWidget {
 
     return BlocBuilder<SignupBloc, SignupState>(
       buildWhen: (previous, current) => previous.confirmPassword != current.confirmPassword,
-      builder: (context, state) => BasePasswordTextField(
+      builder: (context, state) => BaseTextField(
+        type: BaseTextFieldType.password,
         text: state.confirmPassword.value,
         label: l10n.labelConfirmPassword,
         errorText: l10n.confirmPasswordErrors[state.confirmPassword.displayError?.name],
