@@ -7,6 +7,6 @@ final WidgetbookNode baseButtonExample = WidgetbookUseCase(
     text: context.knobs.string(label: 'Text', initialValue: 'Example'),
     isEnabled: context.knobs.boolean(label: 'Enabled', initialValue: true),
     isLoading: context.knobs.boolean(label: 'Loading'),
-    onPressed: () => context.showSnackBar(message: 'Click success'),
+    onPressed: () => context.showSnackBar('Click success'),
   ),
 );

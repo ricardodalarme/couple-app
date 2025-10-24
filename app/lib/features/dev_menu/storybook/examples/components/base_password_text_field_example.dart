@@ -11,6 +11,6 @@ final WidgetbookNode basePasswordTextFieldExample = WidgetbookUseCase(
       label: 'Text input action',
       options: TextInputAction.values,
     ),
-    onSubmitted: (value) => context.showSnackBar(message: 'Submitted "$value"'),
+    onSubmitted: (value) => context.showSnackBar('Submitted "$value"'),
   ),
 );

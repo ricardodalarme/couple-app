@@ -7,6 +7,6 @@ final WidgetbookNode baseListTileExample = WidgetbookUseCase(
   builder: (context) => BaseListTile(
     title: context.knobs.string(label: 'Title', initialValue: 'List Tile'),
     leading: const Icon(Icons.person),
-    onTap: () => context.showSnackBar(message: 'Click success'),
+    onTap: () => context.showSnackBar('Click success'),
   ),
 );

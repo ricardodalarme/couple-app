@@ -6,7 +6,7 @@ final WidgetbookNode baseSnackBarExample = WidgetbookUseCase(
   builder: (context) => BaseButton(
     text: 'Show SnackBar',
     onPressed: () => context.showSnackBar(
-      message: context.knobs.string(label: 'Message', initialValue: 'Example'),
+      context.knobs.string(label: 'Message', initialValue: 'Example'),
       type: context.knobs.object.dropdown(label: 'Type', options: SnackBarType.values),
     ),
   ),

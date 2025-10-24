@@ -52,10 +52,10 @@ class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
     switch (state.submission) {
       case Success():
         context.router.maybePop();
-        context.showSnackBar(message: l10n.messageSuccess, type: SnackBarType.success);
+        context.showSnackBar(l10n.messageSuccess, type: SnackBarType.success);
       case Failure(:final LocalizedException exception):
         context.showSnackBar(
-          message: l10n.errors.selectOrFallback(exception.l10nKey),
+          l10n.errors.selectOrFallback(exception.l10nKey),
           type: SnackBarType.error,
         );
       default:

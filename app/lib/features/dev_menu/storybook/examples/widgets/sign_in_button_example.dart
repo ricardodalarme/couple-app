@@ -8,6 +8,6 @@ final WidgetbookNode signInButtonExample = WidgetbookUseCase(
     context.knobs.object.dropdown(label: 'Provider', options: ButtonProvider.values),
     text: (provider) =>
         'Sign in with ${provider.name.characters.first.toUpperCase() + provider.name.substring(1)}',
-    onPressed: () => context.showSnackBar(message: 'Click success'),
+    onPressed: () => context.showSnackBar('Click success'),
   ),
 );

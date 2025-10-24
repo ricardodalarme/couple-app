@@ -18,6 +18,6 @@ final WidgetbookNode baseTextFieldExample = WidgetbookUseCase(
       label: 'Keyboard type',
       options: TextInputType.values,
     ),
-    onSubmitted: (value) => context.showSnackBar(message: 'Submitted "$value"'),
+    onSubmitted: (value) => context.showSnackBar('Submitted "$value"'),
   ),
 );

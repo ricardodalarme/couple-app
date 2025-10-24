@@ -8,6 +8,6 @@ final WidgetbookNode errorIndicatorExample = WidgetbookUseCase(
     title: 'Something went wrong',
     message: 'Please try again later',
     buttonText: 'Retry',
-    onButtonPressed: () => context.showSnackBar(message: 'Click success'),
+    onButtonPressed: () => context.showSnackBar('Click success'),
   ),
 );

@@ -12,7 +12,7 @@ void main() {
           body: Builder(
             builder: (context) => ElevatedButton(
               onPressed: () {
-                context.showSnackBar(message: 'Success Message', type: SnackBarType.success);
+                context.showSnackBar('Success Message', type: SnackBarType.success);
               },
               child: const Text('Show SnackBar'),
             ),
@@ -33,7 +33,7 @@ void main() {
           body: Builder(
             builder: (context) => ElevatedButton(
               onPressed: () {
-                context.showSnackBar(message: 'Error Message', type: SnackBarType.error);
+                context.showSnackBar('Error Message', type: SnackBarType.error);
               },
               child: const Text('Show SnackBar'),
             ),
