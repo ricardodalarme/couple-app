@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
-import 'package:flutter/material.dart' show IconButton, Icons, showModalBottomSheet;
+import 'package:flutter/material.dart' show Icons, showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/_shared/presentation/widgets/profile_picture.dart';
 import 'package:quickstart_flutter_bloc/features/account/presentation/profile/widgets/image_picker_modal.dart';
@@ -84,7 +84,7 @@ class _ProfilePictureWithSelect extends StatelessWidget {
               shape: BoxShape.circle,
               border: Border.all(color: context.colors.surface, width: 2),
             ),
-            child: IconButton(
+            child: BaseIconButton(
               color: context.colors.onSecondaryContainer,
               tooltip: l10n.buttonChangePicture,
               onPressed: () => showModalBottomSheet<void>(

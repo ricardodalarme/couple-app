@@ -55,6 +55,7 @@ class _PostsListWidget extends StatelessWidget {
       padding: const EdgeInsets.all(Spacings.large),
       itemCount: posts.length,
       itemBuilder: (_, index) => PostCard(key: ValueKey(posts[index].id), post: posts[index]),
+      separator: const Gap(Spacings.medium),
     );
   }
 }

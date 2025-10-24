@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart' show Icons;
-import 'package:flutter/widgets.dart';
-import 'package:quickstart_flutter_bloc/features/home/presentation/widgets/navigation_bar.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 import 'package:quickstart_flutter_bloc/router/app_router.dart';
 
@@ -13,13 +12,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: const [PostsListRoute(), SearchRoute(), ProfileRoute()],
-      bottomNavigationBuilder: (_, tabsRouter) => NavBar(
-        currentIndex: tabsRouter.activeIndex,
+      bottomNavigationBuilder: (_, tabsRouter) => BaseNavigationBar(
+        selectedIndex: tabsRouter.activeIndex,
         onDestinationSelected: tabsRouter.setActiveIndex,
         items: [
-          NavBarItem(icon: Icons.home_rounded, label: context.l10n.post.list.title),
-          NavBarItem(icon: Icons.search_rounded, label: context.l10n.search.title),
-          NavBarItem(icon: Icons.person, label: context.l10n.account.profile.title),
+          BaseNavigationBarItem(icon: Icons.home_rounded, label: context.l10n.post.list.title),
+          BaseNavigationBarItem(icon: Icons.search_rounded, label: context.l10n.search.title),
+          BaseNavigationBarItem(icon: Icons.person, label: context.l10n.account.profile.title),
         ],
       ),
     );

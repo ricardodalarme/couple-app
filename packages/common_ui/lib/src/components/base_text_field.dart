@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart' show IconButton, Icons, InputDecoration, TextField;
+import 'package:common_ui/src/components/base_icon_button.dart';
+import 'package:flutter/material.dart' show Icons, InputDecoration, TextField;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
@@ -83,7 +84,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
   }
 
   Widget? get _effectiveSuffixIcon => switch (widget.type) {
-    BaseTextFieldType.password => IconButton(
+    BaseTextFieldType.password => BaseIconButton(
       icon: Icon(
         _obscureText ? Icons.visibility : Icons.visibility_off,
         size: _obscureTextIconSize,
