@@ -3,6 +3,10 @@
 # shellcheck source=scripts/git/scripts
 source "$(dirname "$0")"/scripts
 
+set +e
+
 check_staged_files
-check_flutter_installed
-run_lint
+if [ $? -eq 0 ]; then
+  check_flutter_installed
+  run_lint
+fi
