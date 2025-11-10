@@ -18,7 +18,7 @@ class BaseListTile extends StatelessWidget {
         child: Row(
           children: [
             IconTheme(
-              data: IconThemeData(color: context.colors.onSurface, size: _iconSize),
+              data: IconThemeData(color: context.palette.onBackground, size: _iconSize),
               child: leading,
             ),
             const Gap(Spacings.large),

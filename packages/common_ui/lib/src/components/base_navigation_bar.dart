@@ -1,3 +1,4 @@
+import 'package:common_ui/src/theme/theme_extensions.dart';
 import 'package:flutter/material.dart' show NavigationBar, NavigationDestination;
 import 'package:flutter/widgets.dart';
 
@@ -24,6 +25,7 @@ class BaseNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return NavigationBar(
       onDestinationSelected: onDestinationSelected,
+      indicatorColor: context.palette.primary,
       selectedIndex: selectedIndex,
       destinations: items
           .map((item) => NavigationDestination(icon: Icon(item.icon), label: item.label))

@@ -80,12 +80,12 @@ class _ProfilePictureWithSelect extends StatelessWidget {
           right: 0,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: context.colors.secondaryContainer,
+              color: context.palette.container,
               shape: BoxShape.circle,
-              border: Border.all(color: context.colors.surface, width: 2),
+              border: Border.all(color: context.palette.onContainer, width: 2),
             ),
             child: BaseIconButton(
-              color: context.colors.onSecondaryContainer,
+              color: context.palette.onContainer,
               tooltip: l10n.buttonChangePicture,
               onPressed: () => showModalBottomSheet<void>(
                 context: context,

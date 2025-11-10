@@ -1,3 +1,4 @@
+import 'package:common_ui/src/theme/theme_extensions.dart';
 import 'package:flutter/material.dart' show AppBar, Scaffold;
 import 'package:flutter/widgets.dart';
 
@@ -20,6 +21,7 @@ class BaseView extends StatelessWidget {
     final Widget body = hasSafeArea ? SafeArea(child: this.body) : this.body;
 
     return Scaffold(
+      backgroundColor: context.palette.background,
       appBar: hasAppBar ? AppBar(title: title != null ? Text(title!) : null) : null,
       body: body,
     );

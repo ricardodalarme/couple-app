@@ -6,9 +6,9 @@ enum SnackBarType { info, success, error }
 extension ContextSnackBarExtension on BuildContext {
   void showSnackBar(String message, {SnackBarType type = SnackBarType.info}) {
     final Color backgroudColor = switch (type) {
-      SnackBarType.info => colors.inverseSurface,
-      SnackBarType.success => Colors.green400,
-      SnackBarType.error => Colors.red400,
+      SnackBarType.info => palette.container,
+      SnackBarType.success => palette.success,
+      SnackBarType.error => palette.error,
     };
     final baseSnackBar = SnackBar(content: Text(message), backgroundColor: backgroudColor);
     ScaffoldMessenger.of(this).showSnackBar(baseSnackBar);

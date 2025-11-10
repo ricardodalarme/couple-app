@@ -23,7 +23,7 @@ class PageIndicatorWidget extends StatelessWidget {
           height: _indicatorSize,
           width: current == index ? _indicatorSelectedSize : _indicatorSize,
           decoration: BoxDecoration(
-            color: current == index ? context.colors.primary : context.colors.onSurfaceVariant,
+            color: current == index ? context.palette.primary : context.palette.onBackground,
             borderRadius: BorderRadius.circular(_indicatorRadius),
           ),
         ),

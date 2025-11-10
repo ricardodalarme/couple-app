@@ -27,6 +27,7 @@ class BaseButton extends StatelessWidget {
       width: double.infinity,
       child: FilledButton(
         onPressed: callback,
+        style: FilledButton.styleFrom(backgroundColor: context.palette.primary),
         child: isLoading ? const _LoadingIndicator() : Text(text),
       ),
     );
@@ -43,7 +44,10 @@ class _LoadingIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxHeight: _loadingSize, maxWidth: _loadingSize),
-      child: const BaseLoadingIndicator(strokeWidth: _loadingStrokeWidth, color: Colors.white),
+      child: BaseLoadingIndicator(
+        strokeWidth: _loadingStrokeWidth,
+        color: context.palette.onPrimary,
+      ),
     );
   }
 }

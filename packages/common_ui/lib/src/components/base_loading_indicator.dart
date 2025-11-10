@@ -1,3 +1,4 @@
+import 'package:common_ui/src/theme/theme_extensions.dart';
 import 'package:flutter/material.dart' show CircularProgressIndicator;
 import 'package:flutter/widgets.dart';
 
@@ -10,7 +11,10 @@ class BaseLoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: CircularProgressIndicator(strokeWidth: strokeWidth, color: color),
+      child: CircularProgressIndicator(
+        color: color ?? context.palette.primary,
+        strokeWidth: strokeWidth,
+      ),
     );
   }
 }

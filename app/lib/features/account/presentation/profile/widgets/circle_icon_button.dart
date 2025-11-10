@@ -15,14 +15,14 @@ class CircleIconButton extends StatelessWidget {
       child: Column(
         children: [
           Material(
-            color: context.colors.surfaceContainerHighest,
+            color: context.palette.container,
             shape: const CircleBorder(),
             child: InkWell(
               onTap: onTap,
               customBorder: const CircleBorder(),
               child: Padding(
                 padding: const EdgeInsets.all(Spacings.xlarge),
-                child: Icon(icon, color: context.colors.onSurfaceVariant),
+                child: Icon(icon, color: context.palette.onContainer),
               ),
             ),
           ),

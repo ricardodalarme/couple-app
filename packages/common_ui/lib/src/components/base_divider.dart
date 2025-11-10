@@ -16,7 +16,7 @@ class BaseDivider extends StatelessWidget {
       margin: EdgeInsets.only(top: startMargin, bottom: endMargin),
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: context.colors.onSurface, width: _borderWidth),
+          bottom: BorderSide(color: context.palette.onBackground, width: _borderWidth),
         ),
       ),
     );

@@ -17,7 +17,7 @@ class BaseCard extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(Borders.large),
       child: ColoredBox(
-        color: context.colors.primaryContainer,
+        color: context.palette.container,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

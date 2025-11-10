@@ -1,7 +1,7 @@
-import 'package:common_ui/src/components/base_icon_button.dart';
+import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart' show Icons, InputDecoration, TextField;
+import 'package:flutter/material.dart' show InputDecoration, TextField, UnderlineInputBorder;
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 enum BaseTextFieldType { text, password }
 
@@ -73,6 +73,11 @@ class _BaseTextFieldState extends State<BaseTextField> {
         suffixIcon: _effectiveSuffixIcon,
         errorText: widget.errorText,
         errorMaxLines: _errorMaxLines,
+        labelStyle: TextStyle(color: context.palette.primary),
+        enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: context.palette.primary)),
+        focusColor: context.palette.primary,
+        fillColor: context.palette.primary,
+        focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: context.palette.primary)),
       ),
       enableSuggestions: widget.enableSuggestions,
       obscureText: _effectiveObscureText,

@@ -10,11 +10,11 @@ class ProfilePicture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fallbackAvatar = Icon(Icons.person, size: size, color: context.colors.onSurface);
+    final fallbackAvatar = Icon(Icons.person, size: size, color: context.palette.onContainer);
 
     return CircleAvatar(
       radius: size / 2,
-      backgroundColor: context.colors.secondary,
+      backgroundColor: context.palette.container,
       child: photoUrl != null
           ? ClipOval(
               child: CachedNetworkImage(
