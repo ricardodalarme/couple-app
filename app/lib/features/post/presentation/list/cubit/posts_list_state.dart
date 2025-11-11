@@ -1,4 +1,4 @@
-part of 'posts_list_bloc.dart';
+part of 'posts_list_cubit.dart';
 
 final class PostsListState with EquatableMixin {
   const PostsListState({this.posts = const Loading()});

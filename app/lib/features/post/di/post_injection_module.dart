@@ -2,7 +2,7 @@ import 'package:core/core.dart';
 import 'package:network/network.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/data_sources/post_data_source.dart';
 import 'package:quickstart_flutter_bloc/features/post/data/repositories/post_repository.dart';
-import 'package:quickstart_flutter_bloc/features/post/presentation/list/bloc/posts_list_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/post/presentation/list/cubit/posts_list_cubit.dart';
 
 class PostInjectionModule implements InjectionModule {
   @override
@@ -13,7 +13,7 @@ class PostInjectionModule implements InjectionModule {
     ..registerLazySingleton<PostRepository>(
       () => PostRepository(postDataSource: injector.get<PostDataSource>()),
     )
-    ..registerFactory<PostsListBloc>(
-      () => PostsListBloc(postRepository: injector.get<PostRepository>()),
+    ..registerFactory<PostsListCubit>(
+      () => PostsListCubit(postRepository: injector.get<PostRepository>()),
     );
 }
