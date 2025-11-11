@@ -1,4 +1,4 @@
-part of 'settings_bloc.dart';
+part of 'settings_cubit.dart';
 
 final class SettingsState with EquatableMixin {
   const SettingsState({this.settings = const Settings.empty()});
