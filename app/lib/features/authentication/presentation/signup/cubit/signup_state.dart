@@ -1,4 +1,4 @@
-part of 'signup_bloc.dart';
+part of 'signup_cubit.dart';
 
 final class SignupState with EquatableMixin, FormzMixin {
   const SignupState({

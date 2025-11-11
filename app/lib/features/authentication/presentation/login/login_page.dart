@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' show TextButton;
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/bloc/login_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/cubit/login_cubit.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/widgets/sign_in_button.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/widgets/text_divider.dart';
 import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/storybook_page.dart';
@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(create: (_) => AppInjector.instance.get<LoginBloc>(), child: this);
+    return BlocProvider(create: (_) => AppInjector.instance.get<LoginCubit>(), child: this);
   }
 
   @override
@@ -28,7 +28,7 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
 
     return BaseView(
       title: l10n.title,
-      body: BlocListener<LoginBloc, LoginState>(
+      body: BlocListener<LoginCubit, LoginState>(
         listenWhen: (previous, current) => previous.login != current.login,
         listener: _handleStatus,
         child: Center(
@@ -92,13 +92,13 @@ class _UsernameTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     final TranslationsAuthenticationLoginEn l10n = context.l10n.authentication.login;
 
-    return BlocBuilder<LoginBloc, LoginState>(
+    return BlocBuilder<LoginCubit, LoginState>(
       buildWhen: (previous, current) => previous.username != current.username,
       builder: (context, state) => BaseTextField(
         text: state.username.value,
         label: context.l10n.common.username,
         errorText: l10n.usernameErrors[state.username.displayError?.name],
-        onChanged: (username) => context.read<LoginBloc>().add(LoginUsernameChanged(username)),
+        onChanged: context.read<LoginCubit>().onUsernameChanged,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
       ),
@@ -113,16 +113,16 @@ class _PasswordTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     final TranslationsAuthenticationLoginEn l10n = context.l10n.authentication.login;
 
-    return BlocBuilder<LoginBloc, LoginState>(
+    return BlocBuilder<LoginCubit, LoginState>(
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) => BaseTextField(
         type: BaseTextFieldType.password,
         text: state.password.value,
         errorText: l10n.passwordErrors[state.password.displayError?.name],
-        onChanged: (password) => context.read<LoginBloc>().add(LoginPasswordChanged(password)),
+        onChanged: context.read<LoginCubit>().onPasswordChanged,
         label: context.l10n.common.password,
         textInputAction: TextInputAction.done,
-        onSubmitted: (_) => context.read<LoginBloc>().add(const LoginSubmitted()),
+        onSubmitted: (_) => context.read<LoginCubit>().onSubmit(),
       ),
     );
   }
@@ -135,12 +135,12 @@ class _LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final TranslationsAuthenticationLoginEn l10n = context.l10n.authentication.login;
 
-    return BlocBuilder<LoginBloc, LoginState>(
+    return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) => BaseButton(
         text: l10n.buttonLogin,
         isLoading: state.login.isLoading,
         isEnabled: state.isValid,
-        onPressed: () => context.read<LoginBloc>().add(const LoginSubmitted()),
+        onPressed: context.read<LoginCubit>().onSubmit,
       ),
     );
   }
@@ -158,12 +158,12 @@ class _SignInWithThirdPartyButtons extends StatelessWidget {
         SignInButton(
           ButtonProvider.google,
           text: (provider) => l10n.buttonSignInWith(provider: provider.text),
-          onPressed: () => context.read<LoginBloc>().add(const LoginWithGoogleSubmitted()),
+          onPressed: context.read<LoginCubit>().onLoginWithGoogle,
         ),
         SignInButton(
           ButtonProvider.facebook,
           text: (provider) => l10n.buttonSignInWith(provider: provider.text),
-          onPressed: () => context.read<LoginBloc>().add(const LoginWithFacebookSubmitted()),
+          onPressed: context.read<LoginCubit>().onLoginWithFacebook,
         ),
       ],
     );

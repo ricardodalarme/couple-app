@@ -4,31 +4,31 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/presentation/signup/bloc/signup_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/signup/cubit/signup_cubit.dart';
 
 class MockAuthenticationRepository extends Mock
     implements AuthenticationRepository {}
 
 void main() {
-  group('SignupBloc', () {
+  group('SignupCubit', () {
     late AuthenticationRepository authenticationRepository;
-    late SignupBloc signupBloc;
+    late SignupCubit signupCubit;
 
     setUp(() {
       authenticationRepository = MockAuthenticationRepository();
 
-      signupBloc = SignupBloc(
+      signupCubit = SignupCubit(
         authenticationRepository: authenticationRepository,
       );
     });
 
     tearDown(() {
-      signupBloc.close();
+      signupCubit.close();
     });
 
     test('initial state is correct', () {
       expect(
-        signupBloc.state,
+        signupCubit.state,
         const SignupState(
           email: EmailInput.pure(),
           password: PasswordInput.pure(),
@@ -38,26 +38,26 @@ void main() {
       );
     });
 
-    blocTest<SignupBloc, SignupState>(
-      'emits [SignupState] when [SignupUsernameChanged] is added',
-      build: () => signupBloc,
-      act: (bloc) => bloc.add(const SignupUsernameChanged('john')),
+    blocTest<SignupCubit, SignupState>(
+      'emits [SignupState] when onUsernameChanged is called',
+      build: () => signupCubit,
+      act: (cubit) => cubit.onUsernameChanged('john'),
       expect: () => [const SignupState(username: NonEmptyInput.dirty('john'))],
     );
 
-    blocTest<SignupBloc, SignupState>(
-      'emits [SignupState] when [SignupEmailChanged] is added',
-      build: () => signupBloc,
-      act: (bloc) => bloc.add(const SignupEmailChanged('john@example.com')),
+    blocTest<SignupCubit, SignupState>(
+      'emits [SignupState] when onEmailChanged is called',
+      build: () => signupCubit,
+      act: (cubit) => cubit.onEmailChanged('john@example.com'),
       expect: () => [
         const SignupState(email: EmailInput.dirty('john@example.com')),
       ],
     );
 
-    blocTest<SignupBloc, SignupState>(
-      'emits [SignupState] when [SignupConfirmPasswordChanged] is added',
-      build: () => signupBloc,
-      act: (bloc) => bloc.add(const SignupConfirmPasswordChanged('password')),
+    blocTest<SignupCubit, SignupState>(
+      'emits [SignupState] when onConfirmPasswordChanged is called',
+      build: () => signupCubit,
+      act: (cubit) => cubit.onConfirmPasswordChanged('password'),
       expect: () => [
         const SignupState(
           confirmPassword: ConfirmedPasswordInput.dirty(

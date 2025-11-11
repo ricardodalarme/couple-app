@@ -4,27 +4,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/repositories/authentication_repository.dart';
 
-part 'forgot_password_event.dart';
 part 'forgot_password_state.dart';
 
-class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> {
-  ForgotPasswordBloc({required AuthenticationRepository authenticationRepository})
+class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
+  ForgotPasswordCubit({required AuthenticationRepository authenticationRepository})
     : _authenticationRepository = authenticationRepository,
-      super(const ForgotPasswordState()) {
-    on<ForgotPasswordEmailChanged>(_onEmailChanged);
-    on<ForgotPasswordSubmitted>(_onSubmitted);
-  }
+      super(const ForgotPasswordState());
 
   final AuthenticationRepository _authenticationRepository;
 
-  void _onEmailChanged(ForgotPasswordEmailChanged event, Emitter<ForgotPasswordState> emit) {
-    emit(state.copyWith(email: EmailInput.dirty(event.email)));
+  void onEmailChanged(String email) {
+    emit(state.copyWith(email: EmailInput.dirty(email)));
   }
 
-  Future<void> _onSubmitted(
-    ForgotPasswordSubmitted event,
-    Emitter<ForgotPasswordState> emit,
-  ) async {
+  Future<void> onSubmit() async {
     if (state.isNotValid) return;
 
     emit(state.copyWith(submission: const Loading()));

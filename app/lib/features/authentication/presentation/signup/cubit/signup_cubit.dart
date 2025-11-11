@@ -4,54 +4,47 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/repositories/authentication_repository.dart';
 
-part 'signup_event.dart';
 part 'signup_state.dart';
 
-class SignupBloc extends Bloc<SignupEvent, SignupState> {
-  SignupBloc({required AuthenticationRepository authenticationRepository})
+class SignupCubit extends Cubit<SignupState> {
+  SignupCubit({required AuthenticationRepository authenticationRepository})
     : _authenticationRepository = authenticationRepository,
-      super(const SignupState()) {
-    on<SignupUsernameChanged>(_onUsernameChanged);
-    on<SignupEmailChanged>(_onEmailChanged);
-    on<SignupPasswordChanged>(_onPasswordChanged);
-    on<SignupConfirmPasswordChanged>(_onConfirmPasswordChanged);
-    on<SignupSubmitted>(_onSubmitted);
-  }
+      super(const SignupState());
 
   final AuthenticationRepository _authenticationRepository;
 
-  void _onUsernameChanged(SignupUsernameChanged event, Emitter<SignupState> emit) {
-    emit(state.copyWith(username: NonEmptyInput.dirty(event.username)));
+  void onUsernameChanged(String username) {
+    emit(state.copyWith(username: NonEmptyInput.dirty(username)));
   }
 
-  void _onEmailChanged(SignupEmailChanged event, Emitter<SignupState> emit) {
-    emit(state.copyWith(email: EmailInput.dirty(event.email)));
+  void onEmailChanged(String email) {
+    emit(state.copyWith(email: EmailInput.dirty(email)));
   }
 
-  void _onPasswordChanged(SignupPasswordChanged event, Emitter<SignupState> emit) {
+  void onPasswordChanged(String password) {
     emit(
       state.copyWith(
-        password: PasswordInput.dirty(event.password),
+        password: PasswordInput.dirty(password),
         confirmPassword: ConfirmedPasswordInput.pure(
-          password: event.password,
+          password: password,
           value: state.confirmPassword.value,
         ),
       ),
     );
   }
 
-  void _onConfirmPasswordChanged(SignupConfirmPasswordChanged event, Emitter<SignupState> emit) {
+  void onConfirmPasswordChanged(String confirmPassword) {
     emit(
       state.copyWith(
         confirmPassword: ConfirmedPasswordInput.dirty(
           password: state.password.value,
-          value: event.confirmPassword,
+          value: confirmPassword,
         ),
       ),
     );
   }
 
-  Future<void> _onSubmitted(SignupSubmitted event, Emitter<SignupState> emit) async {
+  Future<void> onSubmit() async {
     if (state.isNotValid) return;
 
     emit(state.copyWith(submission: const Loading()));

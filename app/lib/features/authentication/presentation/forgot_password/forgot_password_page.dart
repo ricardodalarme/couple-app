@@ -3,7 +3,7 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/presentation/forgot_password/bloc/forgot_password_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/forgot_password/cubit/forgot_password_cubit.dart';
 import 'package:quickstart_flutter_bloc/l10n/l10n_map_extension.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 
@@ -13,7 +13,10 @@ class ForgotPasswordPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(create: (_) => AppInjector.instance.get<ForgotPasswordBloc>(), child: this);
+    return BlocProvider(
+      create: (_) => AppInjector.instance.get<ForgotPasswordCubit>(),
+      child: this,
+    );
   }
 
   @override
@@ -23,7 +26,7 @@ class ForgotPasswordPage extends StatelessWidget implements AutoRouteWrapper {
 
     return BaseView(
       title: l10n.title,
-      body: BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
+      body: BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
         listenWhen: (previous, current) => previous.submission != current.submission,
         listener: _handleStatus,
         child: Center(
@@ -75,7 +78,7 @@ class _EmailTextField extends StatelessWidget {
     final TranslationsAuthenticationForgotPasswordEn l10n =
         context.l10n.authentication.forgotPassword;
 
-    return BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+    return BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) => BaseTextField(
         text: state.email.value,
@@ -83,9 +86,8 @@ class _EmailTextField extends StatelessWidget {
         label: context.l10n.common.email,
         errorText: l10n.emailErrors[state.email.displayError?.name],
         textInputAction: TextInputAction.done,
-        onChanged: (value) =>
-            context.read<ForgotPasswordBloc>().add(ForgotPasswordEmailChanged(value)),
-        onSubmitted: (_) => context.read<ForgotPasswordBloc>().add(const ForgotPasswordSubmitted()),
+        onChanged: context.read<ForgotPasswordCubit>().onEmailChanged,
+        onSubmitted: (_) => context.read<ForgotPasswordCubit>().onSubmit(),
       ),
     );
   }
@@ -96,12 +98,12 @@ class _SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+    return BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
       builder: (context, state) => BaseButton(
         text: context.l10n.common.send,
         isEnabled: state.isValid,
         isLoading: state.submission.isLoading,
-        onPressed: () => context.read<ForgotPasswordBloc>().add(const ForgotPasswordSubmitted()),
+        onPressed: context.read<ForgotPasswordCubit>().onSubmit,
       ),
     );
   }

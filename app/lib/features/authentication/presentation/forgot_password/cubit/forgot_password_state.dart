@@ -1,4 +1,4 @@
-part of 'forgot_password_bloc.dart';
+part of 'forgot_password_cubit.dart';
 
 final class ForgotPasswordState with EquatableMixin, FormzMixin {
   const ForgotPasswordState({

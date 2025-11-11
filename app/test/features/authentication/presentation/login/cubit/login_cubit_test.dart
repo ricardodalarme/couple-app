@@ -4,28 +4,30 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/bloc/login_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/cubit/login_cubit.dart';
 
 class MockAuthenticationRepository extends Mock
     implements AuthenticationRepository {}
 
 void main() {
-  group('LoginBloc', () {
+  group('LoginCubit', () {
     late AuthenticationRepository authenticationRepository;
-    late LoginBloc loginBloc;
+    late LoginCubit loginCubit;
 
     setUp(() {
       authenticationRepository = MockAuthenticationRepository();
-      loginBloc = LoginBloc(authenticationRepository: authenticationRepository);
+      loginCubit = LoginCubit(
+        authenticationRepository: authenticationRepository,
+      );
     });
 
     tearDown(() {
-      loginBloc.close();
+      loginCubit.close();
     });
 
     test('initial state is correct', () {
       expect(
-        loginBloc.state,
+        loginCubit.state,
         const LoginState(
           username: NonEmptyInput.pure(),
           password: NonEmptyInput.pure(),
@@ -34,17 +36,17 @@ void main() {
       );
     });
 
-    blocTest<LoginBloc, LoginState>(
-      'emits [LoginState] when [LoginUsernameChanged] is added',
-      build: () => loginBloc,
-      act: (bloc) => bloc.add(const LoginUsernameChanged('john')),
+    blocTest<LoginCubit, LoginState>(
+      'emits [LoginState] when onUsernameChanged is called',
+      build: () => loginCubit,
+      act: (cubit) => cubit.onUsernameChanged('john'),
       expect: () => [const LoginState(username: NonEmptyInput.dirty('john'))],
     );
 
-    blocTest<LoginBloc, LoginState>(
-      'emits [LoginState] when [LoginPasswordChanged] is added',
-      build: () => loginBloc,
-      act: (bloc) => bloc.add(const LoginPasswordChanged('password')),
+    blocTest<LoginCubit, LoginState>(
+      'emits [LoginState] when onPasswordChanged is called',
+      build: () => loginCubit,
+      act: (cubit) => cubit.onPasswordChanged('password'),
       expect: () => [
         const LoginState(password: NonEmptyInput.dirty('password')),
       ],

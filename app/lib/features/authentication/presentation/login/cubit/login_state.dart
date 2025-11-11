@@ -1,4 +1,4 @@
-part of 'login_bloc.dart';
+part of 'login_cubit.dart';
 
 final class LoginState with EquatableMixin, FormzMixin {
   const LoginState({
