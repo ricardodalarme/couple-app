@@ -4,61 +4,43 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:quickstart_flutter_bloc/features/account/data/repositories/account_repository.dart';
 
-part 'change_password_event.dart';
 part 'change_password_state.dart';
 
-class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState> {
-  ChangePasswordBloc({required AccountRepository accountRepository})
+class ChangePasswordCubit extends Cubit<ChangePasswordState> {
+  ChangePasswordCubit({required AccountRepository accountRepository})
     : _accountRepository = accountRepository,
-      super(const ChangePasswordState()) {
-    on<ChangePasswordCurrentPasswordChanged>(_onCurrentPasswordChanged);
-    on<ChangePasswordNewPasswordChanged>(_onNewPasswordChanged);
-    on<ChangePasswordConfirmPasswordChanged>(_onConfirmPasswordChanged);
-    on<ChangePasswordSubmitted>(_onSubmitted);
-  }
+      super(const ChangePasswordState());
 
   final AccountRepository _accountRepository;
 
-  void _onCurrentPasswordChanged(
-    ChangePasswordCurrentPasswordChanged event,
-    Emitter<ChangePasswordState> emit,
-  ) {
-    emit(state.copyWith(currentPassword: NonEmptyInput.dirty(event.currentPassword)));
+  void onCurrentPasswordChanged(String currentPassword) {
+    emit(state.copyWith(currentPassword: NonEmptyInput.dirty(currentPassword)));
   }
 
-  void _onNewPasswordChanged(
-    ChangePasswordNewPasswordChanged event,
-    Emitter<ChangePasswordState> emit,
-  ) {
+  void onNewPasswordChanged(String newPassword) {
     emit(
       state.copyWith(
-        password: PasswordInput.dirty(event.password),
+        password: PasswordInput.dirty(newPassword),
         confirmPassword: ConfirmedPasswordInput.pure(
-          password: event.password,
+          password: newPassword,
           value: state.confirmPassword.value,
         ),
       ),
     );
   }
 
-  void _onConfirmPasswordChanged(
-    ChangePasswordConfirmPasswordChanged event,
-    Emitter<ChangePasswordState> emit,
-  ) {
+  void onConfirmPasswordChanged(String confirmPassword) {
     emit(
       state.copyWith(
         confirmPassword: ConfirmedPasswordInput.dirty(
           password: state.password.value,
-          value: event.confirmPassword,
+          value: confirmPassword,
         ),
       ),
     );
   }
 
-  Future<void> _onSubmitted(
-    ChangePasswordSubmitted event,
-    Emitter<ChangePasswordState> emit,
-  ) async {
+  Future<void> onSubmit() async {
     if (state.isNotValid) return;
 
     emit(state.copyWith(submission: const Loading()));

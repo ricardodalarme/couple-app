@@ -2,30 +2,29 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:quickstart_flutter_bloc/features/account/presentation/change_password/bloc/change_password_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/account/presentation/change_password/change_password_page.dart';
+import 'package:quickstart_flutter_bloc/features/account/presentation/change_password/cubit/change_password_cubit.dart';
 
 import '../../../../test_helpers/pump_app.dart';
 
-class MockChangePasswordBloc
-    extends MockBloc<ChangePasswordEvent, ChangePasswordState>
-    implements ChangePasswordBloc {}
+class MockChangePasswordCubit extends MockCubit<ChangePasswordState>
+    implements ChangePasswordCubit {}
 
 void main() {
   group('ChangePasswordPage', () {
-    late ChangePasswordBloc changePasswordBloc;
+    late ChangePasswordCubit changePasswordCubit;
 
     setUp(() {
-      changePasswordBloc = MockChangePasswordBloc();
+      changePasswordCubit = MockChangePasswordCubit();
       when(
-        () => changePasswordBloc.state,
+        () => changePasswordCubit.state,
       ).thenReturn(const ChangePasswordState());
     });
 
     testWidgets('renders page', (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
-          value: changePasswordBloc,
+          value: changePasswordCubit,
           child: const ChangePasswordPage(),
         ),
       );

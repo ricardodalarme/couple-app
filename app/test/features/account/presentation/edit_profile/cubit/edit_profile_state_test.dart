@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
-import 'package:quickstart_flutter_bloc/features/account/presentation/edit_profile/bloc/edit_profile_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/account/presentation/edit_profile/cubit/edit_profile_cubit.dart';
 
 void main() {
   const email = EmailInput.dirty('email');

@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
-import 'package:quickstart_flutter_bloc/features/account/presentation/change_password/bloc/change_password_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/account/presentation/change_password/cubit/change_password_cubit.dart';
 
 void main() {
   const currentPassword = NonEmptyInput.dirty('password');

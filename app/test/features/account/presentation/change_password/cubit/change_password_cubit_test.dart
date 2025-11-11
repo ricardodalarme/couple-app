@@ -4,29 +4,29 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:quickstart_flutter_bloc/features/account/data/repositories/account_repository.dart';
-import 'package:quickstart_flutter_bloc/features/account/presentation/change_password/bloc/change_password_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/account/presentation/change_password/cubit/change_password_cubit.dart';
 
 class MockAccountRepository extends Mock implements AccountRepository {}
 
 void main() {
-  group('ChangePasswordBloc', () {
+  group('ChangePasswordCubit', () {
     late AccountRepository accountRepository;
-    late ChangePasswordBloc changePasswordBloc;
+    late ChangePasswordCubit changePasswordCubit;
 
     setUp(() {
       accountRepository = MockAccountRepository();
-      changePasswordBloc = ChangePasswordBloc(
+      changePasswordCubit = ChangePasswordCubit(
         accountRepository: accountRepository,
       );
     });
 
     tearDown(() {
-      changePasswordBloc.close();
+      changePasswordCubit.close();
     });
 
     test('initial state is correct', () {
       expect(
-        changePasswordBloc.state,
+        changePasswordCubit.state,
         const ChangePasswordState(
           currentPassword: NonEmptyInput.pure(),
           password: PasswordInput.pure(),
@@ -36,11 +36,10 @@ void main() {
       );
     });
 
-    blocTest<ChangePasswordBloc, ChangePasswordState>(
-      'emits [ChangePasswordState] when [ChangePasswordCurrentPasswordChanged] is added',
-      build: () => changePasswordBloc,
-      act: (bloc) =>
-          bloc.add(const ChangePasswordCurrentPasswordChanged('password')),
+    blocTest<ChangePasswordCubit, ChangePasswordState>(
+      'emits [ChangePasswordState] when onCurrentPasswordChanged is called',
+      build: () => changePasswordCubit,
+      act: (cubit) => cubit.onCurrentPasswordChanged('password'),
       expect: () => [
         const ChangePasswordState(
           currentPassword: NonEmptyInput.dirty('password'),
@@ -48,11 +47,10 @@ void main() {
       ],
     );
 
-    blocTest<ChangePasswordBloc, ChangePasswordState>(
-      'emits [ChangePasswordState] when [ChangePasswordNewPasswordChanged] is added',
-      build: () => changePasswordBloc,
-      act: (bloc) =>
-          bloc.add(const ChangePasswordNewPasswordChanged('password')),
+    blocTest<ChangePasswordCubit, ChangePasswordState>(
+      'emits [ChangePasswordState] when onNewPasswordChanged is called',
+      build: () => changePasswordCubit,
+      act: (cubit) => cubit.onNewPasswordChanged('password'),
       expect: () => [
         const ChangePasswordState(
           password: PasswordInput.dirty('password'),
@@ -61,11 +59,10 @@ void main() {
       ],
     );
 
-    blocTest<ChangePasswordBloc, ChangePasswordState>(
-      'emits [ChangePasswordState] when [ChangePasswordConfirmPasswordChanged] is added',
-      build: () => changePasswordBloc,
-      act: (bloc) =>
-          bloc.add(const ChangePasswordConfirmPasswordChanged('password')),
+    blocTest<ChangePasswordCubit, ChangePasswordState>(
+      'emits [ChangePasswordState] when onConfirmPasswordChanged is called',
+      build: () => changePasswordCubit,
+      act: (cubit) => cubit.onConfirmPasswordChanged('password'),
       expect: () => [
         const ChangePasswordState(
           confirmPassword: ConfirmedPasswordInput.dirty(
