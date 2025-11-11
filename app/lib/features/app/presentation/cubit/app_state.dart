@@ -1,4 +1,4 @@
-part of 'app_bloc.dart';
+part of 'app_cubit.dart';
 
 enum AppStatus { authenticated, unauthenticated }
 

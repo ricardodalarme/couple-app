@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quickstart_flutter_bloc/features/app/presentation/bloc/app_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/app/presentation/cubit/app_cubit.dart';
 
 void main() {
   group('AppState', () {

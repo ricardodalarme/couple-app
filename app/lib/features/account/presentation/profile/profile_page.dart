@@ -4,7 +4,7 @@ import 'package:flutter/material.dart' show Icons, showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickstart_flutter_bloc/features/_shared/presentation/widgets/profile_picture.dart';
 import 'package:quickstart_flutter_bloc/features/account/presentation/profile/widgets/image_picker_modal.dart';
-import 'package:quickstart_flutter_bloc/features/app/presentation/bloc/app_bloc.dart';
+import 'package:quickstart_flutter_bloc/features/app/presentation/cubit/app_cubit.dart';
 import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 import 'package:quickstart_flutter_bloc/router/app_router.dart';
 
@@ -53,7 +53,7 @@ class ProfilePage extends StatelessWidget {
               BaseListTile(
                 title: l10n.buttonLogout,
                 leading: const Icon(Icons.logout),
-                onTap: () => context.read<AppBloc>().add(const AppLogoutRequested()),
+                onTap: context.read<AppCubit>().logout,
               ),
             ],
           ),
