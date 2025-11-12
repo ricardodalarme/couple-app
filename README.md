@@ -20,7 +20,7 @@ Base repository for application using Flutter + Bloc
 
 ## Motivation
 
-A template to build multiplatform mobile projects in Flutter. [Bloc](https://pub.dev/packages/flutter_bloc) is used to manage the application state.
+A template to build multiplatform mobile projects in Flutter. The Cubit class from [flutter_bloc](https://pub.dev/packages/flutter_bloc) is used to manage the application state.
 
 ## Setup
 
