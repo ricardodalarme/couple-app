@@ -9,7 +9,7 @@ part of 'translations.g.dart';
 // Path: <root>
 typedef TranslationsEn = Translations; // ignore: unused_element
 
-class Translations implements BaseTranslations<AppLocale, Translations> {
+class Translations with BaseTranslations<AppLocale, Translations> {
   /// Returns the current translations of the given [context].
   ///
   /// Usage:
@@ -495,109 +495,101 @@ class TranslationsTermsListEn {
 
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
-/// Note: We use a HashMap because Dart seems to be unable to compile large switch statements.
-Map<String, dynamic>? _map;
-
+///
+/// The Dart AOT compiler has issues with very large switch statements,
+/// so the map is split into smaller functions (512 entries each).
 extension on Translations {
   dynamic _flatMapFunction(String path) {
-    final map = _map ?? _initFlatMap();
-    return map[path];
-  }
-
-  /// Initializes the flat map and returns it.
-  Map<String, dynamic> _initFlatMap() {
-    final map = <String, dynamic>{};
-    map['account.profile.title'] = 'Profile';
-    map['account.profile.buttonEditProfile'] = 'Edit Profile';
-    map['account.profile.buttonChangePassword'] = 'Change Password';
-    map['account.profile.buttonSettings'] = 'Settings';
-    map['account.profile.buttonPrivacyPolicy'] = 'Privacy Policy';
-    map['account.profile.buttonTerms'] = 'Terms';
-    map['account.profile.buttonLogout'] = 'Logout';
-    map['account.profile.buttonChangePicture'] = 'Change Picture';
-    map['account.profile.buttonPickImageFromCamera'] = 'Camera';
-    map['account.profile.buttonPickImageFromGallery'] = 'Gallery';
-    map['account.editProfile.title'] = 'Edit Profile';
-    map['account.editProfile.messageSuccess'] = 'Profile updated successfully';
-    map['account.editProfile.firstNameErrors.empty'] = 'First name is required';
-    map['account.editProfile.lastNameErrors.empty'] = 'Last name is required';
-    map['account.editProfile.emailErrors.invalid'] = 'Email is invalid';
-    map['account.editProfile.errors.other'] = _root.common.genericError;
-    map['account.changePassword.title'] = 'Change Password';
-    map['account.changePassword.labelCurrentPassword'] = 'Current Password';
-    map['account.changePassword.labelNewPassword'] = 'New Password';
-    map['account.changePassword.labelConfirmPassword'] = 'Confirm Password';
-    map['account.changePassword.messageSuccess'] = 'Password changed successfully';
-    map['account.changePassword.currentPasswordErrors.empty'] = 'Current password is required';
-    map['account.changePassword.newPasswordErrors.weak'] =
-        'New password must be at least 8 characters long and contain at least one letter and one number';
-    map['account.changePassword.confirmPasswordErrors.invalid'] = 'Passwords do not match';
-    map['account.changePassword.errors.other'] = _root.common.genericError;
-    map['authentication.login.title'] = 'Login';
-    map['authentication.login.buttonLogin'] = 'Login';
-    map['authentication.login.buttonForgotPassword'] = 'Forgot password?';
-    map['authentication.login.buttonSignInWith'] = ({required Object provider}) =>
-        'Sign in with ${provider}';
-    map['authentication.login.buttonNewAccount'] = ({required InlineSpanBuilder signUp}) =>
-        TextSpan(
-          children: [
-            const TextSpan(text: 'Don\'t have an account? '),
-            signUp('Sign up'),
-          ],
-        );
-    map['authentication.login.buttonDevMenu'] = 'Open DevMenu';
-    map['authentication.login.dividerOr'] = 'OR';
-    map['authentication.login.usernameErrors.empty'] = 'Username is required';
-    map['authentication.login.passwordErrors.empty'] = 'Password is required';
-    map['authentication.login.errors.BAD_USER_INPUT'] = 'Username or password is incorrect';
-    map['authentication.login.errors.other'] = _root.common.genericError;
-    map['authentication.signup.title'] = 'Sign Up';
-    map['authentication.signup.labelConfirmPassword'] = 'Confirm Password';
-    map['authentication.signup.buttonSubmit'] = 'Sign Up';
-    map['authentication.signup.usernameErrors.empty'] = 'Username is required';
-    map['authentication.signup.emailErrors.invalid'] = 'Email is invalid';
-    map['authentication.signup.passwordErrors.weak'] =
-        'Password must be at least 8 characters long and contain at least one letter and one number';
-    map['authentication.signup.confirmPasswordErrors.invalid'] = 'Passwords do not match';
-    map['authentication.signup.errors.other'] = _root.common.genericError;
-    map['authentication.forgotPassword.title'] = 'Recover Password';
-    map['authentication.forgotPassword.description'] =
-        'Enter your email address and we\'ll send you a link to reset your password.';
-    map['authentication.forgotPassword.messageSuccess'] =
-        'We\'ve sent you an email with a link to reset your password.';
-    map['authentication.forgotPassword.emailErrors.invalid'] = 'Invalid email';
-    map['authentication.forgotPassword.errors.other'] = _root.common.genericError;
-    map['common.appName'] = 'Flutter Bloc Starter';
-    map['common.send'] = 'Send';
-    map['common.save'] = 'Save';
-    map['common.retry'] = 'Retry';
-    map['common.username'] = 'Username';
-    map['common.email'] = 'Email';
-    map['common.password'] = 'Password';
-    map['common.firstName'] = 'First Name';
-    map['common.lastName'] = 'Last Name';
-    map['common.genericError'] = 'Something went wrong';
-    map['notFound.title'] = '404';
-    map['notFound.description'] = 'Page not found';
-    map['notFound.buttonBack'] = 'Go back home';
-    map['onboarding.pages.0.title'] = 'Welcome!';
-    map['onboarding.pages.0.message'] = 'Welcome to QuickStart Flutter';
-    map['onboarding.pages.1.title'] = 'What is QuickStart Flutter?';
-    map['onboarding.pages.1.message'] =
-        'QuickStart Flutter is a project to speed up the bootstrapping of new Flutter projects. It already comes with a series of features ready to use, such as internationalization, themes, routes, state management, among others.';
-    map['onboarding.pages.2.title'] = 'Let\'s get started?';
-    map['onboarding.pages.2.message'] =
-        'Ready to explore everything QuickStart Flutter has to offer? Let\'s get started!';
-    map['onboarding.doneButton'] = 'Get started';
-    map['post.list.title'] = 'Feed';
-    map['post.list.textFailure'] = 'Failed to load feed.';
-    map['privacyPolicy.title'] = 'Privacy Policy';
-    map['search.title'] = 'Search';
-    map['settings.title'] = 'Settings';
-    map['settings.optionBiometrics'] = 'Biometrics';
-    map['terms.list.title'] = 'Terms';
-
-    _map = map;
-    return map;
+    return switch (path) {
+      'account.profile.title' => 'Profile',
+      'account.profile.buttonEditProfile' => 'Edit Profile',
+      'account.profile.buttonChangePassword' => 'Change Password',
+      'account.profile.buttonSettings' => 'Settings',
+      'account.profile.buttonPrivacyPolicy' => 'Privacy Policy',
+      'account.profile.buttonTerms' => 'Terms',
+      'account.profile.buttonLogout' => 'Logout',
+      'account.profile.buttonChangePicture' => 'Change Picture',
+      'account.profile.buttonPickImageFromCamera' => 'Camera',
+      'account.profile.buttonPickImageFromGallery' => 'Gallery',
+      'account.editProfile.title' => 'Edit Profile',
+      'account.editProfile.messageSuccess' => 'Profile updated successfully',
+      'account.editProfile.firstNameErrors.empty' => 'First name is required',
+      'account.editProfile.lastNameErrors.empty' => 'Last name is required',
+      'account.editProfile.emailErrors.invalid' => 'Email is invalid',
+      'account.editProfile.errors.other' => _root.common.genericError,
+      'account.changePassword.title' => 'Change Password',
+      'account.changePassword.labelCurrentPassword' => 'Current Password',
+      'account.changePassword.labelNewPassword' => 'New Password',
+      'account.changePassword.labelConfirmPassword' => 'Confirm Password',
+      'account.changePassword.messageSuccess' => 'Password changed successfully',
+      'account.changePassword.currentPasswordErrors.empty' => 'Current password is required',
+      'account.changePassword.newPasswordErrors.weak' =>
+        'New password must be at least 8 characters long and contain at least one letter and one number',
+      'account.changePassword.confirmPasswordErrors.invalid' => 'Passwords do not match',
+      'account.changePassword.errors.other' => _root.common.genericError,
+      'authentication.login.title' => 'Login',
+      'authentication.login.buttonLogin' => 'Login',
+      'authentication.login.buttonForgotPassword' => 'Forgot password?',
+      'authentication.login.buttonSignInWith' =>
+        ({required Object provider}) => 'Sign in with ${provider}',
+      'authentication.login.buttonNewAccount' => ({required InlineSpanBuilder signUp}) => TextSpan(
+        children: [
+          const TextSpan(text: 'Don\'t have an account? '),
+          signUp('Sign up'),
+        ],
+      ),
+      'authentication.login.buttonDevMenu' => 'Open DevMenu',
+      'authentication.login.dividerOr' => 'OR',
+      'authentication.login.usernameErrors.empty' => 'Username is required',
+      'authentication.login.passwordErrors.empty' => 'Password is required',
+      'authentication.login.errors.BAD_USER_INPUT' => 'Username or password is incorrect',
+      'authentication.login.errors.other' => _root.common.genericError,
+      'authentication.signup.title' => 'Sign Up',
+      'authentication.signup.labelConfirmPassword' => 'Confirm Password',
+      'authentication.signup.buttonSubmit' => 'Sign Up',
+      'authentication.signup.usernameErrors.empty' => 'Username is required',
+      'authentication.signup.emailErrors.invalid' => 'Email is invalid',
+      'authentication.signup.passwordErrors.weak' =>
+        'Password must be at least 8 characters long and contain at least one letter and one number',
+      'authentication.signup.confirmPasswordErrors.invalid' => 'Passwords do not match',
+      'authentication.signup.errors.other' => _root.common.genericError,
+      'authentication.forgotPassword.title' => 'Recover Password',
+      'authentication.forgotPassword.description' =>
+        'Enter your email address and we\'ll send you a link to reset your password.',
+      'authentication.forgotPassword.messageSuccess' =>
+        'We\'ve sent you an email with a link to reset your password.',
+      'authentication.forgotPassword.emailErrors.invalid' => 'Invalid email',
+      'authentication.forgotPassword.errors.other' => _root.common.genericError,
+      'common.appName' => 'Flutter Bloc Starter',
+      'common.send' => 'Send',
+      'common.save' => 'Save',
+      'common.retry' => 'Retry',
+      'common.username' => 'Username',
+      'common.email' => 'Email',
+      'common.password' => 'Password',
+      'common.firstName' => 'First Name',
+      'common.lastName' => 'Last Name',
+      'common.genericError' => 'Something went wrong',
+      'notFound.title' => '404',
+      'notFound.description' => 'Page not found',
+      'notFound.buttonBack' => 'Go back home',
+      'onboarding.pages.0.title' => 'Welcome!',
+      'onboarding.pages.0.message' => 'Welcome to QuickStart Flutter',
+      'onboarding.pages.1.title' => 'What is QuickStart Flutter?',
+      'onboarding.pages.1.message' =>
+        'QuickStart Flutter is a project to speed up the bootstrapping of new Flutter projects. It already comes with a series of features ready to use, such as internationalization, themes, routes, state management, among others.',
+      'onboarding.pages.2.title' => 'Let\'s get started?',
+      'onboarding.pages.2.message' =>
+        'Ready to explore everything QuickStart Flutter has to offer? Let\'s get started!',
+      'onboarding.doneButton' => 'Get started',
+      'post.list.title' => 'Feed',
+      'post.list.textFailure' => 'Failed to load feed.',
+      'privacyPolicy.title' => 'Privacy Policy',
+      'search.title' => 'Search',
+      'settings.title' => 'Settings',
+      'settings.optionBiometrics' => 'Biometrics',
+      'terms.list.title' => 'Terms',
+      _ => null,
+    };
   }
 }

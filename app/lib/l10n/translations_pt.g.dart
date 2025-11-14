@@ -10,7 +10,7 @@ import 'package:slang/generated.dart';
 import 'translations.g.dart';
 
 // Path: <root>
-class TranslationsPt extends Translations {
+class TranslationsPt extends Translations with BaseTranslations<AppLocale, Translations> {
   /// You can call this constructor and build your own translation instance of this locale.
   /// Constructing via the enum [AppLocale.build] is preferred.
   TranslationsPt({
@@ -477,109 +477,101 @@ class _TranslationsTermsListPt extends TranslationsTermsListEn {
 
 /// The flat map containing all translations for locale <pt>.
 /// Only for edge cases! For simple maps, use the map function of this library.
-/// Note: We use a HashMap because Dart seems to be unable to compile large switch statements.
-Map<String, dynamic>? _map;
-
+///
+/// The Dart AOT compiler has issues with very large switch statements,
+/// so the map is split into smaller functions (512 entries each).
 extension on TranslationsPt {
   dynamic _flatMapFunction(String path) {
-    final map = _map ?? _initFlatMap();
-    return map[path];
-  }
-
-  /// Initializes the flat map and returns it.
-  Map<String, dynamic> _initFlatMap() {
-    final map = <String, dynamic>{};
-    map['account.profile.title'] = 'Perfil';
-    map['account.profile.buttonEditProfile'] = 'Editar Perfil';
-    map['account.profile.buttonChangePassword'] = 'Alterar Senha';
-    map['account.profile.buttonSettings'] = 'Configurações';
-    map['account.profile.buttonPrivacyPolicy'] = 'Política de Privacidade';
-    map['account.profile.buttonTerms'] = 'Termos';
-    map['account.profile.buttonLogout'] = 'Sair';
-    map['account.profile.buttonChangePicture'] = 'Alterar Foto';
-    map['account.profile.buttonPickImageFromCamera'] = 'Câmera';
-    map['account.profile.buttonPickImageFromGallery'] = 'Galeria';
-    map['account.editProfile.title'] = 'Editar Perfil';
-    map['account.editProfile.messageSuccess'] = 'Perfil editado com sucesso!';
-    map['account.editProfile.firstNameErrors.empty'] = 'Nome é obrigatório';
-    map['account.editProfile.lastNameErrors.empty'] = 'Sobrenome é obrigatório';
-    map['account.editProfile.emailErrors.invalid'] = 'Email inválido';
-    map['account.editProfile.errors.other'] = _root.common.genericError;
-    map['account.changePassword.title'] = 'Alterar Senha';
-    map['account.changePassword.labelCurrentPassword'] = 'Senha Atual';
-    map['account.changePassword.labelNewPassword'] = 'Nova Senha';
-    map['account.changePassword.labelConfirmPassword'] = 'Confirmar Senha';
-    map['account.changePassword.messageSuccess'] = 'Senha alterada com sucesso!';
-    map['account.changePassword.currentPasswordErrors.empty'] = 'Senha atual é obrigatória';
-    map['account.changePassword.newPasswordErrors.weak'] =
-        'A nova senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número';
-    map['account.changePassword.confirmPasswordErrors.invalid'] = 'As senhas não coincidem';
-    map['account.changePassword.errors.other'] = _root.common.genericError;
-    map['authentication.login.title'] = 'Entrar';
-    map['authentication.login.buttonLogin'] = 'Entrar';
-    map['authentication.login.buttonForgotPassword'] = 'Esqueceu a senha?';
-    map['authentication.login.buttonSignInWith'] = ({required Object provider}) =>
-        'Continue com ${provider}';
-    map['authentication.login.buttonNewAccount'] = ({required InlineSpanBuilder signUp}) =>
-        TextSpan(
-          children: [
-            const TextSpan(text: 'Não tem uma conta? '),
-            signUp('Cadastre-se'),
-          ],
-        );
-    map['authentication.login.buttonDevMenu'] = 'Abrir DevMenu';
-    map['authentication.login.dividerOr'] = 'OU';
-    map['authentication.login.usernameErrors.empty'] = 'O nome de usuário é obrigatório';
-    map['authentication.login.passwordErrors.empty'] = 'A senha é obrigatória';
-    map['authentication.login.errors.BAD_USER_INPUT'] = 'Usuário ou senha inválidos';
-    map['authentication.login.errors.other'] = _root.common.genericError;
-    map['authentication.signup.title'] = 'Registrar';
-    map['authentication.signup.labelConfirmPassword'] = 'Confirmar Senha';
-    map['authentication.signup.buttonSubmit'] = 'Registrar';
-    map['authentication.signup.usernameErrors.empty'] = 'Nome de usuário é obrigatório';
-    map['authentication.signup.emailErrors.invalid'] = 'Email é inválido';
-    map['authentication.signup.passwordErrors.weak'] =
-        'Senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número';
-    map['authentication.signup.confirmPasswordErrors.invalid'] = 'Senhas não coincidem';
-    map['authentication.signup.errors.other'] = _root.common.genericError;
-    map['authentication.forgotPassword.title'] = 'Recuperar Senha';
-    map['authentication.forgotPassword.description'] =
-        'Digite seu email e enviaremos um link para você redefinir a sua senha.';
-    map['authentication.forgotPassword.messageSuccess'] =
-        'Enviamos um email com um link para você redefinir a sua senha.';
-    map['authentication.forgotPassword.emailErrors.invalid'] = 'Email inválido';
-    map['authentication.forgotPassword.errors.other'] = _root.common.genericError;
-    map['common.appName'] = 'Flutter Bloc Starter';
-    map['common.send'] = 'Enviar';
-    map['common.save'] = 'Salvar';
-    map['common.retry'] = 'Tentar novamente';
-    map['common.email'] = 'Email';
-    map['common.username'] = 'Usuário';
-    map['common.password'] = 'Senha';
-    map['common.firstName'] = 'Nome';
-    map['common.lastName'] = 'Sobrenome';
-    map['common.genericError'] = 'Algo deu errado';
-    map['notFound.title'] = '404';
-    map['notFound.description'] = 'Página não encontrada';
-    map['notFound.buttonBack'] = 'Voltar para página inicial';
-    map['onboarding.pages.0.title'] = 'Bem vindo!';
-    map['onboarding.pages.0.message'] = 'Seja muito bem vindo ao QuickStart Flutter';
-    map['onboarding.pages.1.title'] = 'O que é o QuickStart Flutter?';
-    map['onboarding.pages.1.message'] =
-        'O QuickStart Flutter é um projeto para agilizar o bootstrapping de novos projetos Flutter. Ele já vem com uma série de funcionalidades prontas para uso, como internacionalização, temas, rotas, gerenciamento de estado, entre outros.';
-    map['onboarding.pages.2.title'] = 'Vamos começar?';
-    map['onboarding.pages.2.message'] =
-        'Pronto para explorar tudo o que o QuickStart Flutter tem a oferecer? Vamos começar!';
-    map['onboarding.doneButton'] = 'Começar';
-    map['post.list.title'] = 'Feed';
-    map['post.list.textFailure'] = 'Falha ao carregar o feed.';
-    map['privacyPolicy.title'] = 'Politíca de Privacidade';
-    map['search.title'] = 'Pesquisar';
-    map['settings.title'] = 'Configurações';
-    map['settings.optionBiometrics'] = 'Biometria';
-    map['terms.list.title'] = 'Termos';
-
-    _map = map;
-    return map;
+    return switch (path) {
+      'account.profile.title' => 'Perfil',
+      'account.profile.buttonEditProfile' => 'Editar Perfil',
+      'account.profile.buttonChangePassword' => 'Alterar Senha',
+      'account.profile.buttonSettings' => 'Configurações',
+      'account.profile.buttonPrivacyPolicy' => 'Política de Privacidade',
+      'account.profile.buttonTerms' => 'Termos',
+      'account.profile.buttonLogout' => 'Sair',
+      'account.profile.buttonChangePicture' => 'Alterar Foto',
+      'account.profile.buttonPickImageFromCamera' => 'Câmera',
+      'account.profile.buttonPickImageFromGallery' => 'Galeria',
+      'account.editProfile.title' => 'Editar Perfil',
+      'account.editProfile.messageSuccess' => 'Perfil editado com sucesso!',
+      'account.editProfile.firstNameErrors.empty' => 'Nome é obrigatório',
+      'account.editProfile.lastNameErrors.empty' => 'Sobrenome é obrigatório',
+      'account.editProfile.emailErrors.invalid' => 'Email inválido',
+      'account.editProfile.errors.other' => _root.common.genericError,
+      'account.changePassword.title' => 'Alterar Senha',
+      'account.changePassword.labelCurrentPassword' => 'Senha Atual',
+      'account.changePassword.labelNewPassword' => 'Nova Senha',
+      'account.changePassword.labelConfirmPassword' => 'Confirmar Senha',
+      'account.changePassword.messageSuccess' => 'Senha alterada com sucesso!',
+      'account.changePassword.currentPasswordErrors.empty' => 'Senha atual é obrigatória',
+      'account.changePassword.newPasswordErrors.weak' =>
+        'A nova senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número',
+      'account.changePassword.confirmPasswordErrors.invalid' => 'As senhas não coincidem',
+      'account.changePassword.errors.other' => _root.common.genericError,
+      'authentication.login.title' => 'Entrar',
+      'authentication.login.buttonLogin' => 'Entrar',
+      'authentication.login.buttonForgotPassword' => 'Esqueceu a senha?',
+      'authentication.login.buttonSignInWith' =>
+        ({required Object provider}) => 'Continue com ${provider}',
+      'authentication.login.buttonNewAccount' => ({required InlineSpanBuilder signUp}) => TextSpan(
+        children: [
+          const TextSpan(text: 'Não tem uma conta? '),
+          signUp('Cadastre-se'),
+        ],
+      ),
+      'authentication.login.buttonDevMenu' => 'Abrir DevMenu',
+      'authentication.login.dividerOr' => 'OU',
+      'authentication.login.usernameErrors.empty' => 'O nome de usuário é obrigatório',
+      'authentication.login.passwordErrors.empty' => 'A senha é obrigatória',
+      'authentication.login.errors.BAD_USER_INPUT' => 'Usuário ou senha inválidos',
+      'authentication.login.errors.other' => _root.common.genericError,
+      'authentication.signup.title' => 'Registrar',
+      'authentication.signup.labelConfirmPassword' => 'Confirmar Senha',
+      'authentication.signup.buttonSubmit' => 'Registrar',
+      'authentication.signup.usernameErrors.empty' => 'Nome de usuário é obrigatório',
+      'authentication.signup.emailErrors.invalid' => 'Email é inválido',
+      'authentication.signup.passwordErrors.weak' =>
+        'Senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número',
+      'authentication.signup.confirmPasswordErrors.invalid' => 'Senhas não coincidem',
+      'authentication.signup.errors.other' => _root.common.genericError,
+      'authentication.forgotPassword.title' => 'Recuperar Senha',
+      'authentication.forgotPassword.description' =>
+        'Digite seu email e enviaremos um link para você redefinir a sua senha.',
+      'authentication.forgotPassword.messageSuccess' =>
+        'Enviamos um email com um link para você redefinir a sua senha.',
+      'authentication.forgotPassword.emailErrors.invalid' => 'Email inválido',
+      'authentication.forgotPassword.errors.other' => _root.common.genericError,
+      'common.appName' => 'Flutter Bloc Starter',
+      'common.send' => 'Enviar',
+      'common.save' => 'Salvar',
+      'common.retry' => 'Tentar novamente',
+      'common.email' => 'Email',
+      'common.username' => 'Usuário',
+      'common.password' => 'Senha',
+      'common.firstName' => 'Nome',
+      'common.lastName' => 'Sobrenome',
+      'common.genericError' => 'Algo deu errado',
+      'notFound.title' => '404',
+      'notFound.description' => 'Página não encontrada',
+      'notFound.buttonBack' => 'Voltar para página inicial',
+      'onboarding.pages.0.title' => 'Bem vindo!',
+      'onboarding.pages.0.message' => 'Seja muito bem vindo ao QuickStart Flutter',
+      'onboarding.pages.1.title' => 'O que é o QuickStart Flutter?',
+      'onboarding.pages.1.message' =>
+        'O QuickStart Flutter é um projeto para agilizar o bootstrapping de novos projetos Flutter. Ele já vem com uma série de funcionalidades prontas para uso, como internacionalização, temas, rotas, gerenciamento de estado, entre outros.',
+      'onboarding.pages.2.title' => 'Vamos começar?',
+      'onboarding.pages.2.message' =>
+        'Pronto para explorar tudo o que o QuickStart Flutter tem a oferecer? Vamos começar!',
+      'onboarding.doneButton' => 'Começar',
+      'post.list.title' => 'Feed',
+      'post.list.textFailure' => 'Falha ao carregar o feed.',
+      'privacyPolicy.title' => 'Politíca de Privacidade',
+      'search.title' => 'Pesquisar',
+      'settings.title' => 'Configurações',
+      'settings.optionBiometrics' => 'Biometria',
+      'terms.list.title' => 'Termos',
+      _ => null,
+    };
   }
 }
