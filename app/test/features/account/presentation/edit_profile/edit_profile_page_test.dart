@@ -7,8 +7,7 @@ import 'package:quickstart_flutter_bloc/features/account/presentation/edit_profi
 
 import '../../../../test_helpers/pump_app.dart';
 
-class MockEditProfileCubit extends MockCubit<EditProfileState>
-    implements EditProfileCubit {}
+class MockEditProfileCubit extends MockCubit<EditProfileState> implements EditProfileCubit {}
 
 void main() {
   group('EditProfilePage', () {
@@ -21,10 +20,7 @@ void main() {
 
     testWidgets('renders page', (tester) async {
       await tester.pumpApp(
-        BlocProvider.value(
-          value: editProfileCubit,
-          child: const EditProfilePage(),
-        ),
+        BlocProvider.value(value: editProfileCubit, child: const EditProfilePage()),
       );
       await tester.pump();
 

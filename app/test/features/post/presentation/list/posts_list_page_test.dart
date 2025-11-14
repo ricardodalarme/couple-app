@@ -7,8 +7,7 @@ import 'package:quickstart_flutter_bloc/features/post/presentation/list/posts_li
 
 import '../../../../test_helpers/pump_app.dart';
 
-class MockPostsListCubit extends MockCubit<PostsListState>
-    implements PostsListCubit {}
+class MockPostsListCubit extends MockCubit<PostsListState> implements PostsListCubit {}
 
 void main() {
   group('PostsListPage', () {
@@ -20,9 +19,7 @@ void main() {
     });
 
     testWidgets('renders page', (tester) async {
-      await tester.pumpApp(
-        BlocProvider.value(value: postsListCubit, child: const PostsListPage()),
-      );
+      await tester.pumpApp(BlocProvider.value(value: postsListCubit, child: const PostsListPage()));
       await tester.pump();
 
       expect(find.byType(PostsListPage), findsOneWidget);

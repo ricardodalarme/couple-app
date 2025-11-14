@@ -4,8 +4,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:quickstart_flutter_bloc/features/app/presentation/cubit/app_cubit.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/repositories/authentication_repository.dart';
 
-class MockAuthenticationRepository extends Mock
-    implements AuthenticationRepository {}
+class MockAuthenticationRepository extends Mock implements AuthenticationRepository {}
 
 void main() {
   late AuthenticationRepository authenticationRepository;
@@ -13,9 +12,7 @@ void main() {
 
   setUp(() {
     authenticationRepository = MockAuthenticationRepository();
-    when(
-      () => authenticationRepository.isAuthenticated,
-    ).thenAnswer((_) => Stream.value(false));
+    when(() => authenticationRepository.isAuthenticated).thenAnswer((_) => Stream.value(false));
     cubit = AppCubit(authenticationRepository: authenticationRepository);
   });
 
@@ -53,7 +50,7 @@ void main() {
       build: () {
         final repo = MockAuthenticationRepository();
         when(() => repo.isAuthenticated).thenAnswer((_) => Stream.value(false));
-        when(() => repo.logOut()).thenAnswer((_) async {});
+        when(repo.logOut).thenAnswer((_) async {});
         return AppCubit(authenticationRepository: repo);
       },
       act: (cubit) => cubit.logout(),

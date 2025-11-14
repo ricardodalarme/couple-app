@@ -16,17 +16,12 @@ void main() {
 
     setUp(() {
       changePasswordCubit = MockChangePasswordCubit();
-      when(
-        () => changePasswordCubit.state,
-      ).thenReturn(const ChangePasswordState());
+      when(() => changePasswordCubit.state).thenReturn(const ChangePasswordState());
     });
 
     testWidgets('renders page', (tester) async {
       await tester.pumpApp(
-        BlocProvider.value(
-          value: changePasswordCubit,
-          child: const ChangePasswordPage(),
-        ),
+        BlocProvider.value(value: changePasswordCubit, child: const ChangePasswordPage()),
       );
       await tester.pump();
 

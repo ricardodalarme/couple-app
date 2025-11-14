@@ -13,21 +13,15 @@ void main() {
       expect(const EditProfileState().copyWith(), const EditProfileState());
     });
 
-    test(
-      'returns object with updated submission when submission is passed',
-      () {
-        expect(
-          const EditProfileState().copyWith(submission: Success(null)),
-          const EditProfileState(submission: Success(null)),
-        );
-      },
-    );
+    test('returns object with updated submission when submission is passed', () {
+      expect(
+        const EditProfileState().copyWith(submission: const Success(null)),
+        const EditProfileState(submission: Success(null)),
+      );
+    });
 
     test('returns object with updated email when email is passed', () {
-      expect(
-        const EditProfileState().copyWith(email: email),
-        const EditProfileState(email: email),
-      );
+      expect(const EditProfileState().copyWith(email: email), const EditProfileState(email: email));
     });
 
     test('returns object with updated firstName when firstName is passed', () {

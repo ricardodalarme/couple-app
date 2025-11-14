@@ -19,9 +19,7 @@ void main() {
     });
 
     testWidgets('renders page', (tester) async {
-      await tester.pumpApp(
-        BlocProvider.value(value: appCubit, child: const ProfilePage()),
-      );
+      await tester.pumpApp(BlocProvider.value(value: appCubit, child: const ProfilePage()));
       await tester.pump();
 
       expect(find.byType(ProfilePage), findsOneWidget);

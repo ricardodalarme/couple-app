@@ -6,8 +6,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/presentation/signup/cubit/signup_cubit.dart';
 
-class MockAuthenticationRepository extends Mock
-    implements AuthenticationRepository {}
+class MockAuthenticationRepository extends Mock implements AuthenticationRepository {}
 
 void main() {
   group('SignupCubit', () {
@@ -17,9 +16,7 @@ void main() {
     setUp(() {
       authenticationRepository = MockAuthenticationRepository();
 
-      signupCubit = SignupCubit(
-        authenticationRepository: authenticationRepository,
-      );
+      signupCubit = SignupCubit(authenticationRepository: authenticationRepository);
     });
 
     tearDown(() {
@@ -49,9 +46,7 @@ void main() {
       'emits [SignupState] when onEmailChanged is called',
       build: () => signupCubit,
       act: (cubit) => cubit.onEmailChanged('john@example.com'),
-      expect: () => [
-        const SignupState(email: EmailInput.dirty('john@example.com')),
-      ],
+      expect: () => [const SignupState(email: EmailInput.dirty('john@example.com'))],
     );
 
     blocTest<SignupCubit, SignupState>(
@@ -60,10 +55,7 @@ void main() {
       act: (cubit) => cubit.onConfirmPasswordChanged('password'),
       expect: () => [
         const SignupState(
-          confirmPassword: ConfirmedPasswordInput.dirty(
-            password: '',
-            value: 'password',
-          ),
+          confirmPassword: ConfirmedPasswordInput.dirty(password: '', value: 'password'),
         ),
       ],
     );

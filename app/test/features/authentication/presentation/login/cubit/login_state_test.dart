@@ -14,23 +14,17 @@ void main() {
 
     test('returns object with updated status when status is passed', () {
       expect(
-        const LoginState().copyWith(login: Success(null)),
+        const LoginState().copyWith(login: const Success(null)),
         const LoginState(login: Success(null)),
       );
     });
 
     test('returns object with updated username when username is passed', () {
-      expect(
-        const LoginState().copyWith(username: username),
-        const LoginState(username: username),
-      );
+      expect(const LoginState().copyWith(username: username), const LoginState(username: username));
     });
 
     test('returns object with updated password when password is passed', () {
-      expect(
-        const LoginState().copyWith(password: password),
-        const LoginState(password: password),
-      );
+      expect(const LoginState().copyWith(password: password), const LoginState(password: password));
     });
   });
 }

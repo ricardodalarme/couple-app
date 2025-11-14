@@ -7,9 +7,7 @@ import '../../../../../test_helpers/pump_app.dart';
 
 void main() {
   group('PostCard', () {
-    testWidgets('PostCard should display correct information', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('PostCard should display correct information', (WidgetTester tester) async {
       const post = Post(id: '1', title: 'Test Title', body: 'Test Body');
 
       await tester.pumpApp(const PostCard(post: post));

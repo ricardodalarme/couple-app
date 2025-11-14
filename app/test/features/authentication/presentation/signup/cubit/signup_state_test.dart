@@ -16,7 +16,7 @@ void main() {
 
     test('returns object with updated status when status is passed', () {
       expect(
-        const SignupState().copyWith(submission: Success(null)),
+        const SignupState().copyWith(submission: const Success(null)),
         const SignupState(submission: Success(null)),
       );
     });
@@ -29,10 +29,7 @@ void main() {
     });
 
     test('returns object with updated email when email is passed', () {
-      expect(
-        const SignupState().copyWith(email: email),
-        const SignupState(email: email),
-      );
+      expect(const SignupState().copyWith(email: email), const SignupState(email: email));
     });
 
     test('returns object with updated password when password is passed', () {
@@ -42,14 +39,11 @@ void main() {
       );
     });
 
-    test(
-      'returns object with updated confirmPassword when confirmPassword is passed',
-      () {
-        expect(
-          const SignupState().copyWith(confirmPassword: confirmPassword),
-          const SignupState(confirmPassword: confirmPassword),
-        );
-      },
-    );
+    test('returns object with updated confirmPassword when confirmPassword is passed', () {
+      expect(
+        const SignupState().copyWith(confirmPassword: confirmPassword),
+        const SignupState(confirmPassword: confirmPassword),
+      );
+    });
   });
 }

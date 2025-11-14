@@ -38,27 +38,21 @@ void main() {
       'emits [EditProfileState] when onFirstNameChanged is called',
       build: () => editProfileCubit,
       act: (cubit) => cubit.onFirstNameChanged('John'),
-      expect: () => [
-        const EditProfileState(firstName: NonEmptyInput.dirty('John')),
-      ],
+      expect: () => [const EditProfileState(firstName: NonEmptyInput.dirty('John'))],
     );
 
     blocTest<EditProfileCubit, EditProfileState>(
       'emits [EditProfileState] when onLastNameChanged is called',
       build: () => editProfileCubit,
       act: (cubit) => cubit.onLastNameChanged('Doe'),
-      expect: () => [
-        const EditProfileState(lastName: NonEmptyInput.dirty('Doe')),
-      ],
+      expect: () => [const EditProfileState(lastName: NonEmptyInput.dirty('Doe'))],
     );
 
     blocTest<EditProfileCubit, EditProfileState>(
       'emits [EditProfileState] when onEmailChanged is called',
       build: () => editProfileCubit,
       act: (cubit) => cubit.onEmailChanged('john@example.com'),
-      expect: () => [
-        const EditProfileState(email: EmailInput.dirty('john@example.com')),
-      ],
+      expect: () => [const EditProfileState(email: EmailInput.dirty('john@example.com'))],
     );
   });
 }

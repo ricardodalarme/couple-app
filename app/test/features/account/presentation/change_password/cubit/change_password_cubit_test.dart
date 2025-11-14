@@ -15,9 +15,7 @@ void main() {
 
     setUp(() {
       accountRepository = MockAccountRepository();
-      changePasswordCubit = ChangePasswordCubit(
-        accountRepository: accountRepository,
-      );
+      changePasswordCubit = ChangePasswordCubit(accountRepository: accountRepository);
     });
 
     tearDown(() {
@@ -40,11 +38,7 @@ void main() {
       'emits [ChangePasswordState] when onCurrentPasswordChanged is called',
       build: () => changePasswordCubit,
       act: (cubit) => cubit.onCurrentPasswordChanged('password'),
-      expect: () => [
-        const ChangePasswordState(
-          currentPassword: NonEmptyInput.dirty('password'),
-        ),
-      ],
+      expect: () => [const ChangePasswordState(currentPassword: NonEmptyInput.dirty('password'))],
     );
 
     blocTest<ChangePasswordCubit, ChangePasswordState>(
@@ -65,10 +59,7 @@ void main() {
       act: (cubit) => cubit.onConfirmPasswordChanged('password'),
       expect: () => [
         const ChangePasswordState(
-          confirmPassword: ConfirmedPasswordInput.dirty(
-            password: '',
-            value: 'password',
-          ),
+          confirmPassword: ConfirmedPasswordInput.dirty(password: '', value: 'password'),
         ),
       ],
     );
