@@ -9,7 +9,7 @@ environment:
 dependencies:
   analytics_service:
     path: ../packages/services/analytics
-  auto_route: ^11.0.0
+  auto_route: ^11.1.0
   biometric_service:
     path: ../packages/services/biometric
   cached_network_image: ^3.4.1
@@ -20,7 +20,7 @@ dependencies:
   crash_report_service:
     path: ../packages/services/crash_report
   equatable: ^2.0.7
-  firebase_core: ^4.2.1
+  firebase_core: ^4.3.0
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
@@ -38,13 +38,13 @@ dependencies:
     path: ../packages/services/remote_config
   secure_storage_service:
     path: ../packages/services/secure_storage
-  slang: ^4.11.0
+  slang: ^4.11.1
   slang_flutter: ^4.11.0
   webview_flutter: ^4.13.0
-  widgetbook: ^3.20.1
+  widgetbook: ^3.20.2
 
 dev_dependencies:
-  auto_route_generator: ^10.3.1
+  auto_route_generator: ^10.4.0
   bloc_test: ^10.0.0
   build_runner: ^2.10.4
   flutter_launcher_icons: ^0.14.4
