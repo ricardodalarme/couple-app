@@ -187,6 +187,7 @@ linter:
     - unnecessary_string_interpolations
     - unnecessary_this
     - unnecessary_to_list_in_spreads
+    - unnecessary_unawaited
     - unnecessary_underscores
     - unrelated_type_equality_checks
     - unsafe_variance
