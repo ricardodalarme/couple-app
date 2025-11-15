@@ -80,10 +80,11 @@ melos:
       description: Run build_runner in all packages.
 
     gen:single:
-      run: melos exec -c 1 -- dart run build_runner build --delete-conflicting-outputs
+      run: melos exec -c 1 -- dart run build_runner build --delete-conflicting-outputs --force-aot
       description: Run build_runner to generate files.
       packageFilters:
         dependsOn: build_runner
+
     splash_screen:
       exec: flutter pub run flutter_native_splash:create
       description: Update the app splash screen.
