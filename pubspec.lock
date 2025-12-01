@@ -77,18 +77,18 @@ packages:
     dependency: transitive
     description:
       name: auto_route
-      sha256: "9303e105233e596c63a9b81560a10dc834ac602134ba95780f030dbbc520c855"
+      sha256: "6d3ccc11b520b6eff0ab5a2c3d1c43c46d1486249cc746c4bb14486d876e8b43"
       url: "https://pub.dev"
     source: hosted
-    version: "10.2.3"
+    version: "10.3.0"
   auto_route_generator:
     dependency: transitive
     description:
       name: auto_route_generator
-      sha256: "4d78093dc102eef57c9d53e43454d735f1552039dc9c595ef8cfc7445d9017f2"
+      sha256: a84dcd972e3e38c8925cca2669faa8112a79db9b5d726e0fb8d4ea15ced095fb
       url: "https://pub.dev"
     source: hosted
-    version: "10.2.6"
+    version: "10.3.1"
   bloc:
     dependency: transitive
     description:
@@ -1876,4 +1876,4 @@ packages:
     version: "2.2.2"
 sdks:
   dart: ">=3.10.1 <4.0.0"
-  flutter: "3.38.3"
+  flutter: ">=3.38.3"
