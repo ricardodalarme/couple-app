@@ -6,7 +6,7 @@ environment:
   sdk: ^3.10.0
 
 dependencies:
-  get_it: ^9.1.0
+  get_it: ^9.2.0
   meta: any
 
 dev_dependencies:
