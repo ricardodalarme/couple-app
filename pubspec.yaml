@@ -2,8 +2,8 @@ name: monorepo
 publish_to: "none"
 
 environment:
-  sdk: ^3.10.1
-  flutter: 3.38.3
+  sdk: ^3.10.4
+  flutter: 3.38.5
 
 workspace:
   - app
