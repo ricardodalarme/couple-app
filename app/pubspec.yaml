@@ -9,7 +9,7 @@ environment:
 dependencies:
   analytics_service:
     path: ../packages/services/analytics
-  auto_route: ^10.2.3
+  auto_route: ^11.0.0
   biometric_service:
     path: ../packages/services/biometric
   cached_network_image: ^3.4.1
