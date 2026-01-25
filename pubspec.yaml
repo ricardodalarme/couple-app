@@ -3,7 +3,7 @@ publish_to: "none"
 
 environment:
   sdk: ^3.10.4
-  flutter: 3.38.5
+  flutter: 3.38.7
 
 workspace:
   - app
@@ -21,7 +21,7 @@ workspace:
 
 dev_dependencies:
   husky: ^0.1.7
-  melos: ^7.3.0
+  melos: ^7.4.0
   very_good_cli: ^0.28.0
 
 melos:
@@ -76,14 +76,8 @@ melos:
         dependsOn: slang
 
     gen:
-      run: melos gen:single --no-select
+      run: dart run build_runner build --delete-conflicting-outputs --force-aot --workspace
       description: Run build_runner in all packages.
-
-    gen:single:
-      run: melos exec -c 1 -- dart run build_runner build --delete-conflicting-outputs --force-aot
-      description: Run build_runner to generate files.
-      packageFilters:
-        dependsOn: build_runner
 
     splash_screen:
       exec: flutter pub run flutter_native_splash:create
