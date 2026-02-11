@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' show ThemeMode;
 import 'package:flutter/widgets.dart';
 
-class ThemeProvider extends StatefulWidget {
-  const ThemeProvider({required this.child, super.key});
+class ThemeModeProvider extends StatefulWidget {
+  const ThemeModeProvider({required this.child, super.key});
 
   final Widget child;
 
@@ -14,10 +14,10 @@ class ThemeProvider extends StatefulWidget {
   }
 
   @override
-  State<ThemeProvider> createState() => _ThemeProviderState();
+  State<ThemeModeProvider> createState() => _ThemeModeProviderState();
 }
 
-class _ThemeProviderState extends State<ThemeProvider> {
+class _ThemeModeProviderState extends State<ThemeModeProvider> {
   ThemeMode _themeMode = ThemeMode.system;
 
   void _setThemeMode(ThemeMode mode) {

@@ -21,13 +21,13 @@ class App extends StatelessWidget {
     ];
 
     return TranslationProvider(
-      child: ThemeProvider(
+      child: ThemeModeProvider(
         child: Builder(
           builder: (context) => MaterialApp.router(
             onGenerateTitle: (context) => context.l10n.common.appName,
             theme: AppTheme.light,
             darkTheme: AppTheme.dark,
-            themeMode: ThemeProvider.of(context).themeMode,
+            themeMode: ThemeModeProvider.of(context).themeMode,
             routerConfig: appRouter.config(navigatorObservers: () => navigatorObservers),
             locale: TranslationProvider.of(context).flutterLocale,
             localizationsDelegates: const [

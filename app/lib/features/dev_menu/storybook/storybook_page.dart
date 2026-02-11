@@ -21,11 +21,12 @@ class StorybookPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView(
       hasSafeArea: false,
+      title: 'Storybook',
       body: Widgetbook(
-        appBuilder: (_, Widget child) => Scaffold(body: child),
+        appBuilder: (_, child) => Scaffold(body: child),
         addons: _addons,
         directories: examples,
-        home: const SizedBox.shrink(),
+        home: Center(child: Text('Welcome to Storybook!', style: context.typography.titleSmall)),
       ),
     );
   }
