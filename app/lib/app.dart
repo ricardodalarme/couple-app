@@ -21,20 +21,23 @@ class App extends StatelessWidget {
     ];
 
     return TranslationProvider(
-      child: Builder(
-        builder: (context) => MaterialApp.router(
-          onGenerateTitle: (context) => context.l10n.common.appName,
-          theme: AppTheme.light,
-          darkTheme: AppTheme.dark,
-          routerConfig: appRouter.config(navigatorObservers: () => navigatorObservers),
-          locale: TranslationProvider.of(context).flutterLocale,
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          supportedLocales: AppLocaleUtils.supportedLocales,
-          builder: (_, child) => AppStatusWrapperWidget(child: child ?? const SizedBox.shrink()),
+      child: ThemeProvider(
+        child: Builder(
+          builder: (context) => MaterialApp.router(
+            onGenerateTitle: (context) => context.l10n.common.appName,
+            theme: AppTheme.light,
+            darkTheme: AppTheme.dark,
+            themeMode: ThemeProvider.of(context).themeMode,
+            routerConfig: appRouter.config(navigatorObservers: () => navigatorObservers),
+            locale: TranslationProvider.of(context).flutterLocale,
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
+            supportedLocales: AppLocaleUtils.supportedLocales,
+            builder: (_, child) => AppStatusWrapperWidget(child: child ?? const SizedBox.shrink()),
+          ),
         ),
       ),
     );
