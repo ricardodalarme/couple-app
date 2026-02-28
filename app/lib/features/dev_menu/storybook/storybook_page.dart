@@ -19,10 +19,14 @@ class StorybookPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final InheritedThemeProvider themeProvider = ThemeModeProvider.of(context);
+    final ThemeMode currentThemeMode = themeProvider.themeMode;
+
     return BaseView(
       hasSafeArea: false,
       title: 'Storybook',
       body: Widgetbook(
+        themeMode: currentThemeMode,
         appBuilder: (_, child) => Scaffold(body: child),
         addons: _addons,
         directories: examples,
