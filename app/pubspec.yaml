@@ -38,7 +38,7 @@ dependencies:
     path: ../packages/services/remote_config
   secure_storage_service:
     path: ../packages/services/secure_storage
-  slang: ^4.12.1
+  slang: ^4.13.0
   slang_flutter: ^4.12.1
   webview_flutter: ^4.13.1
   widgetbook: ^3.22.0
