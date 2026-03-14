@@ -12,6 +12,8 @@ import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
 class PostsListPage extends StatelessWidget implements AutoRouteWrapper {
   const PostsListPage({super.key});
 
+  static final List<Post> _skeletonPosts = List.filled(6, Post.fake);
+
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
@@ -30,7 +32,7 @@ class PostsListPage extends StatelessWidget implements AutoRouteWrapper {
         builder: (context, state) => switch (state.posts) {
           Initial() => const SizedBox.shrink(),
           Success(:final List<Post> value) => _PostsListWidget(posts: value),
-          Loading() => const BaseLoadingIndicator(),
+          Loading() => Skeletonizer(child: _PostsListWidget(posts: _skeletonPosts)),
           Failure() => ErrorIndicator(
             title: context.l10n.common.genericError,
             buttonText: context.l10n.common.retry,

@@ -12,8 +12,6 @@ runs:
 
     - name: Install melos
       uses: bluefireteam/melos-action@v3
-      with:
-        run-bootstrap: false
 
     - name: Generate env
       shell: bash
