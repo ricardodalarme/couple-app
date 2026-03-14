@@ -2,6 +2,7 @@ library;
 
 export 'package:flutter/widgets.dart';
 export 'package:gap/gap.dart';
+export 'package:skeletonizer/skeletonizer.dart';
 
 export 'src/components/base_button.dart';
 export 'src/components/base_card.dart';
