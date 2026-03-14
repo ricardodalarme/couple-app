@@ -19,21 +19,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check-commits-authors:
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: read
-    if: github.event.pull_request.draft == false || github.event_name == 'push'
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: profusion/check-pr-commits-authors-action@main
-        with:
-          EMAIL_PATTERN: ^.*@profusion\.mobi$
-          IGNORED_EMAIL_PATTERN: ^.*dependabot\[bot\]@users\.noreply\.github\.com # ignore dependabot
-
   test:
-    needs: check-commits-authors
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -45,7 +31,6 @@ jobs:
         run: melos test
 
   lint:
-    needs: check-commits-authors
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
