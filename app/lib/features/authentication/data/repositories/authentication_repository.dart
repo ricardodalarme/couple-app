@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:logger/logger.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/authentication_data_source.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/mutations/generated/Login.graphql.dart';
 import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/token_local_data_source.dart';
@@ -13,6 +14,7 @@ class AuthenticationRepository {
   }) : _authenticationDataSource = loginDataSource,
        _tokenLocalDataSource = tokenLocalDataSource;
 
+  final Logger _logger = Logger('AuthRepository');
   final AuthenticationDataSource _authenticationDataSource;
   final TokenLocalDataSource _tokenLocalDataSource;
 
@@ -37,13 +39,16 @@ class AuthenticationRepository {
     required String password,
   }) async {
     try {
+      _logger.info('Attempting login for user: $username');
+
       final MutationLoginlogin response = await _authenticationDataSource
           .logInWithUsernameAndPassword(username: username, password: password);
 
       await _tokenLocalDataSource.save(response.toModel());
 
       _authenticationStreamController.add(true);
-    } catch (_) {
+    } catch (e, stack) {
+      _logger.error('Failed to log in user: $username', error: e, stackTrace: stack);
       _authenticationStreamController.add(false);
       await _tokenLocalDataSource.delete();
       rethrow;
