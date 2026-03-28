@@ -19,6 +19,8 @@ dependencies:
     path: ../packages/core
   crash_report_service:
     path: ../packages/services/crash_report
+  device_info_service:
+    path: ../packages/services/device_info
   equatable: ^2.0.8
   firebase_core: ^4.6.0
   flutter:
