@@ -2,8 +2,8 @@ name: monorepo
 publish_to: "none"
 
 environment:
-  sdk: ^3.11.0
-  flutter: 3.41.4
+  sdk: ^3.11.4
+  flutter: 3.41.6
 
 workspace:
   - app
@@ -21,7 +21,7 @@ workspace:
 
 dev_dependencies:
   husky: ^0.1.7
-  melos: ^7.4.1
+  melos: ^7.5.0
   very_good_cli: ^1.1.0
 
 melos:
