@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:formatters/formatters.dart';
+import 'package:logger/logger.dart';
 import 'package:persistent_storage_service/persistent_storage_service.dart';
 import 'package:quickstart_flutter_bloc/app.dart';
 import 'package:quickstart_flutter_bloc/features/_shared/di/shared_injection_module.dart';
@@ -21,6 +22,9 @@ import 'package:quickstart_flutter_bloc/router/app_router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  Logger.level = kDebugMode ? LogLevel.ALL : LogLevel.WARNING;
+
   _setupLocale();
 
   await _setupFirebase();

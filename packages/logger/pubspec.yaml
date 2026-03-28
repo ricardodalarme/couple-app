@@ -1,0 +1,9 @@
+name: logger
+resolution: workspace
+publish_to: "none"
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  logging: ^1.3.0

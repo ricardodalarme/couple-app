@@ -32,6 +32,8 @@ dependencies:
     path: ../packages/form_inputs
   formatters:
     path: ../packages/formatters
+  logger:
+    path: ../packages/logger
   network:
     path: ../packages/network
   persistent_storage_service:
