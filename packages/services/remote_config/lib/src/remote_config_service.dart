@@ -1,23 +1,13 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:remote_config_service/src/exceptions.dart';
 
-abstract interface class RemoteConfigService {
-  bool getBool(String key);
-
-  int getInt(String key);
-
-  double getDouble(String key);
-
-  String getString(String key);
-}
-
-class RemoteConfigServiceImpl implements RemoteConfigService {
-  factory RemoteConfigServiceImpl([FirebaseRemoteConfig? firebaseRemoteConfig]) {
-    return RemoteConfigServiceImpl._(firebaseRemoteConfig ?? FirebaseRemoteConfig.instance)
+class RemoteConfigService {
+  factory RemoteConfigService([FirebaseRemoteConfig? firebaseRemoteConfig]) {
+    return RemoteConfigService._(firebaseRemoteConfig ?? FirebaseRemoteConfig.instance)
       .._initialize();
   }
 
-  const RemoteConfigServiceImpl._(this._firebaseRemoteConfig);
+  const RemoteConfigService._(this._firebaseRemoteConfig);
 
   final FirebaseRemoteConfig _firebaseRemoteConfig;
 
@@ -36,22 +26,23 @@ class RemoteConfigServiceImpl implements RemoteConfigService {
     }
   }
 
-  @override
+  Map<String, String> getAll() {
+    final Map<String, RemoteConfigValue> all = _firebaseRemoteConfig.getAll();
+    return all.map((key, value) => MapEntry(key, value.asString()));
+  }
+
   bool getBool(String key) {
     return _firebaseRemoteConfig.getBool(key);
   }
 
-  @override
   double getDouble(String key) {
     return _firebaseRemoteConfig.getDouble(key);
   }
 
-  @override
   int getInt(String key) {
     return _firebaseRemoteConfig.getInt(key);
   }
 
-  @override
   String getString(String key) {
     return _firebaseRemoteConfig.getString(key);
   }

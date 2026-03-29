@@ -8,6 +8,7 @@ class BaseView extends StatelessWidget {
     this.hasAppBar = true,
     this.hasSafeArea = true,
     this.title,
+    this.actions,
     super.key,
   });
 
@@ -15,6 +16,7 @@ class BaseView extends StatelessWidget {
   final bool hasAppBar;
   final bool hasSafeArea;
   final Widget body;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,9 @@ class BaseView extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: context.palette.background,
-      appBar: hasAppBar ? AppBar(title: title != null ? Text(title!) : null) : null,
+      appBar: hasAppBar
+          ? AppBar(title: title != null ? Text(title!) : null, actions: actions)
+          : null,
       body: body,
     );
   }
