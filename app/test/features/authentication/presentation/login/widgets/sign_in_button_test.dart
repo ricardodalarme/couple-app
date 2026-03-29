@@ -1,5 +1,5 @@
+import 'package:flutter_bloc_starter/features/authentication/presentation/login/widgets/sign_in_button.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/widgets/sign_in_button.dart';
 
 import '../../../../../test_helpers/pump_app.dart';
 

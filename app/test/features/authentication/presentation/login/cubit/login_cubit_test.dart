@@ -1,10 +1,10 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:flutter_bloc_starter/features/authentication/presentation/login/cubit/login_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/cubit/login_cubit.dart';
 
 class MockAuthenticationRepository extends Mock implements AuthenticationRepository {}
 

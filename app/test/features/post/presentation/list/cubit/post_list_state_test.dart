@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
+import 'package:flutter_bloc_starter/features/post/presentation/list/cubit/posts_list_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quickstart_flutter_bloc/features/post/data/models/post.dart';
-import 'package:quickstart_flutter_bloc/features/post/presentation/list/cubit/posts_list_cubit.dart';
 
 void main() {
   const posts = [Post(id: '1', title: 'title', body: 'body')];

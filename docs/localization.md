@@ -1,6 +1,5 @@
 # Localization Guide
 
-
 - [Overview](#overview)
 - [File Structure](#file-structure)
 - [Generating Translations](#generating-translations)
@@ -10,7 +9,6 @@
   - [2. Prefix Keys with the Component Type](#2-prefix-keys-with-the-component-type)
   - [Defining a Map](#defining-a-map)
   - [Helper for Safe Access](#helper-for-safe-access)
-
 
 ## Overview
 
@@ -32,8 +30,8 @@ All translation files are located in `/lib/l10n/`. Each language has its own dir
       └── profile.json
 ```
 
-  - **Feature-specific files**: `login.json`, `profile.json`, etc., contain translations for a single feature.
-  - **Shared file**: `common.json` contains translations used across multiple features (e.g., "Save", "Cancel", "Email").
+- **Feature-specific files**: `login.json`, `profile.json`, etc., contain translations for a single feature.
+- **Shared file**: `common.json` contains translations used across multiple features (e.g., "Save", "Cancel", "Email").
 
 ## Generating Translations
 
@@ -50,7 +48,7 @@ This command executes the Slang builder and updates the generated file at `lib/l
 To use a translation, access the `l10n` object from the `BuildContext`. Slang provides a convenient extension for this.
 
 ```dart
-import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -85,8 +83,8 @@ The filename itself provides the primary context (e.g., `login`, `profile`). Key
 ```json
 // login.json (BAD EXAMPLE)
 {
-  "loginTextTitle": "Welcome Back",       // Redundant, "login" is in the filename
-  "loginButtonSubmit": "Login"          // Redundant
+  "loginTextTitle": "Welcome Back", // Redundant, "login" is in the filename
+  "loginButtonSubmit": "Login" // Redundant
 }
 ```
 
@@ -98,12 +96,12 @@ The pattern is: `componentType` + `Context` + `Purpose`.
 
 **Examples:**
 
-  - `buttonSubmit`
-  - `textFieldNameLabel`
-  - `textFieldEmailHint`
-  - `dialogConfirmTitle`
-  - `textWelcome`
-  - `labelSessionExpires`
+- `buttonSubmit`
+- `textFieldNameLabel`
+- `textFieldEmailHint`
+- `dialogConfirmTitle`
+- `textWelcome`
+- `labelSessionExpires`
 
 For sets of related values, like validation errors or enum states, use Slang's map feature. This is useful when the key you need to look up is determined at runtime.
 
@@ -127,14 +125,13 @@ In your JSON file, add `(map)` to the key name.
 To safely handle cases where a key might not exist, use the provided `selectOrFallback` extension method. It falls back to the `other` key if the provided key is not found.
 
 ```dart
-import 'package:quickstart_flutter_bloc/l10n/l10n_map_extension.dart';
+import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 
 // errorCode is a variable, e.g., "invalidEmail" or "someOtherError"
 String errorMessage = context.l10n.profile.validationErrors.selectOrFallback(errorCode);
 ```
 
-  - If `errorCode` is `"invalidEmail"`, it returns `"Please enter a valid email address."`.
-  - If `errorCode` is `"something_else"`, it returns `"An unknown error occurred."` (the value of the `other` key).
-
+- If `errorCode` is `"invalidEmail"`, it returns `"Please enter a valid email address."`.
+- If `errorCode` is `"something_else"`, it returns `"An unknown error occurred."` (the value of the `other` key).
 
 > For more information, refer to the [Slang documentation](https://pub.dev/packages/slang).

@@ -1,9 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/settings/presentation/cubit/settings_cubit.dart';
+import 'package:flutter_bloc_starter/features/settings/presentation/settings_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:quickstart_flutter_bloc/features/settings/presentation/cubit/settings_cubit.dart';
-import 'package:quickstart_flutter_bloc/features/settings/presentation/settings_page.dart';
 
 import '../../../test_helpers/pump_app.dart';
 

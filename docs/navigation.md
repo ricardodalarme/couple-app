@@ -1,7 +1,7 @@
 # Navigation
 
 - [Overview](#overview)
-- [Why auto\_route?](#why-auto_route)
+- [Why auto_route?](#why-auto_route)
 - [File Structure](#file-structure)
 - [Generating Route Classes](#generating-route-classes)
 - [Common Use Cases](#common-use-cases)
@@ -61,7 +61,7 @@ class ExamplePage extends StatelessWidget {
 2. **Add the route to `app_router.dart`:**
 
 ```dart
-import 'package:quickstart_flutter_bloc/features/example/presentation/example_page.dart';
+import 'package:flutter_bloc_starter/features/example/presentation/example_page.dart';
 // ... other imports ...
 
 @AutoRouterConfig()
@@ -87,7 +87,7 @@ This will create an `ExampleRoute` class in `app_router.gr.dart`.
 Use the generated route class to navigate:
 
 ```dart
-import 'package:quickstart_flutter_bloc/routes/app_router.dart';
+import 'package:flutter_bloc_starter/routes/app_router.dart';
 
 context.pushRoute(ExampleRoute());
 ```

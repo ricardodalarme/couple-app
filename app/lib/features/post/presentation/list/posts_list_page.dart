@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quickstart_flutter_bloc/features/_shared/presentation/widgets/error_indicator.dart';
-import 'package:quickstart_flutter_bloc/features/post/data/models/post.dart';
-import 'package:quickstart_flutter_bloc/features/post/presentation/list/cubit/posts_list_cubit.dart';
-import 'package:quickstart_flutter_bloc/features/post/presentation/list/widgets/post_card.dart';
-import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/error_indicator.dart';
+import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
+import 'package:flutter_bloc_starter/features/post/presentation/list/cubit/posts_list_cubit.dart';
+import 'package:flutter_bloc_starter/features/post/presentation/list/widgets/post_card.dart';
+import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
 class PostsListPage extends StatelessWidget implements AutoRouteWrapper {

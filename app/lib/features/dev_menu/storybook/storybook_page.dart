@@ -1,6 +1,6 @@
 import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart' hide Colors;
-import 'package:quickstart_flutter_bloc/features/dev_menu/storybook/examples/examples.dart';
+import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/examples.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 class StorybookPage extends StatelessWidget {

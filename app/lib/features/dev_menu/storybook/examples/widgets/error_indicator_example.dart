@@ -1,5 +1,5 @@
 import 'package:common_ui/common_ui.dart';
-import 'package:quickstart_flutter_bloc/features/_shared/presentation/widgets/error_indicator.dart';
+import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/error_indicator.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 final WidgetbookNode errorIndicatorExample = WidgetbookUseCase(

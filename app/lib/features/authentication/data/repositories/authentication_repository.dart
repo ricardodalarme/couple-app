@@ -1,11 +1,11 @@
 import 'dart:async';
 
+import 'package:flutter_bloc_starter/features/authentication/data/data_sources/authentication_data_source.dart';
+import 'package:flutter_bloc_starter/features/authentication/data/data_sources/mutations/generated/Login.graphql.dart';
+import 'package:flutter_bloc_starter/features/authentication/data/data_sources/token_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/authentication/data/mappers/login_response_mapper.dart';
+import 'package:flutter_bloc_starter/features/authentication/data/models/token.dart';
 import 'package:logger/logger.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/authentication_data_source.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/mutations/generated/Login.graphql.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/token_local_data_source.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/data/mappers/login_response_mapper.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/data/models/token.dart';
 
 class AuthenticationRepository {
   AuthenticationRepository({

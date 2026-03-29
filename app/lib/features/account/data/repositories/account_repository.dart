@@ -1,5 +1,5 @@
+import 'package:flutter_bloc_starter/features/account/data/data_sources/account_data_source.dart';
 import 'package:logger/logger.dart';
-import 'package:quickstart_flutter_bloc/features/account/data/data_sources/account_data_source.dart';
 
 class AccountRepository {
   AccountRepository({required AccountDataSource accountDataSource})

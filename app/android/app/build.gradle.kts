@@ -17,7 +17,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.profusion.quickstart_flutter_bloc"
+    namespace = "com.ricardodalarme.flutter_bloc_starter"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -31,7 +31,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.profusion.quickstart_flutter_bloc"
+        applicationId = "com.ricardodalarme.flutter_bloc_starter"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

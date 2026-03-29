@@ -1,8 +1,8 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/generated/schema.graphql.dart';
+import 'package:flutter_bloc_starter/features/authentication/data/data_sources/mutations/generated/CreateUser.graphql.dart';
+import 'package:flutter_bloc_starter/features/authentication/data/data_sources/mutations/generated/Login.graphql.dart';
+import 'package:flutter_bloc_starter/features/authentication/data/data_sources/mutations/generated/ResetPassword.graphql.dart';
 import 'package:network/network.dart';
-import 'package:quickstart_flutter_bloc/features/_shared/data/data_sources/generated/schema.graphql.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/mutations/generated/CreateUser.graphql.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/mutations/generated/Login.graphql.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/data/data_sources/mutations/generated/ResetPassword.graphql.dart';
 
 class AuthenticationDataSource {
   const AuthenticationDataSource({required GQLClient graphlQLClient}) : _client = graphlQLClient;

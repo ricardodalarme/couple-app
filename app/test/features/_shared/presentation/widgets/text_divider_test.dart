@@ -1,6 +1,6 @@
 import 'package:common_ui/common_ui.dart';
+import 'package:flutter_bloc_starter/features/authentication/presentation/login/widgets/text_divider.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/widgets/text_divider.dart';
 
 import '../../../../../../packages/common_ui/test/test_helpers/pump_app.dart';
 

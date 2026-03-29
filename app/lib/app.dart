@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart' show MaterialApp;
+import 'package:flutter_bloc_starter/features/app/presentation/widgets/app_status_wrapper_widget.dart';
+import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/observers/analytics_router_observer.dart';
+import 'package:flutter_bloc_starter/router/observers/log_router_observer.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:quickstart_flutter_bloc/features/app/presentation/widgets/app_status_wrapper_widget.dart';
-import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
-import 'package:quickstart_flutter_bloc/router/observers/analytics_router_observer.dart';
-import 'package:quickstart_flutter_bloc/router/observers/log_router_observer.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

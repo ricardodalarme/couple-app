@@ -1,4 +1,4 @@
-import 'package:quickstart_flutter_bloc/features/_shared/presentation/widgets/profile_picture.dart';
+import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/profile_picture.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 final WidgetbookNode profilePictureExample = WidgetbookUseCase(

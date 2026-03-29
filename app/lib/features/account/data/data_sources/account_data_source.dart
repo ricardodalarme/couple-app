@@ -1,7 +1,7 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/generated/schema.graphql.dart';
+import 'package:flutter_bloc_starter/features/account/data/data_sources/mutations/generated/ChangePassword.graphql.dart';
+import 'package:flutter_bloc_starter/features/account/data/data_sources/mutations/generated/UpdateUser.graphql.dart';
 import 'package:network/network.dart';
-import 'package:quickstart_flutter_bloc/features/_shared/data/data_sources/generated/schema.graphql.dart';
-import 'package:quickstart_flutter_bloc/features/account/data/data_sources/mutations/generated/ChangePassword.graphql.dart';
-import 'package:quickstart_flutter_bloc/features/account/data/data_sources/mutations/generated/UpdateUser.graphql.dart';
 
 class AccountDataSource {
   const AccountDataSource({required GQLClient graphlQLClient}) : _client = graphlQLClient;

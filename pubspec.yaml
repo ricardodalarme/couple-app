@@ -104,14 +104,14 @@ melos:
       description: (DEV) Build the Android app.
       packageFilters:
         scope:
-          - quickstart_flutter_bloc
+          - flutter_bloc_starter
 
     build:android-prd:
       exec: flutter build appbundle --flavor production --dart-define-from-file ../.env.production
       description: (PRD) Build the Android app.
       packageFilters:
         scope:
-          - quickstart_flutter_bloc
+          - flutter_bloc_starter
 
     # Git commands
     hooks:

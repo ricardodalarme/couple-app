@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart' show Icons;
-import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
-import 'package:quickstart_flutter_bloc/router/app_router.dart';
+import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {

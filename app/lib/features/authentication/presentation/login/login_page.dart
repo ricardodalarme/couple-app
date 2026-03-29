@@ -5,13 +5,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' show TextButton;
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/cubit/login_cubit.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/widgets/sign_in_button.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/presentation/login/widgets/text_divider.dart';
-import 'package:quickstart_flutter_bloc/features/dev_menu/dev_menu_page.dart';
-import 'package:quickstart_flutter_bloc/l10n/l10n_map_extension.dart';
-import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
-import 'package:quickstart_flutter_bloc/router/app_router.dart';
+import 'package:flutter_bloc_starter/features/authentication/presentation/login/cubit/login_cubit.dart';
+import 'package:flutter_bloc_starter/features/authentication/presentation/login/widgets/sign_in_button.dart';
+import 'package:flutter_bloc_starter/features/authentication/presentation/login/widgets/text_divider.dart';
+import 'package:flutter_bloc_starter/features/dev_menu/dev_menu_page.dart';
+import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
+import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 @RoutePage()
 class LoginPage extends StatelessWidget implements AutoRouteWrapper {

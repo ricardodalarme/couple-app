@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/authentication/presentation/signup/cubit/signup_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/presentation/signup/cubit/signup_cubit.dart';
 
 void main() {
   const username = NonEmptyInput.dirty('username');

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
 import 'package:persistent_storage_service/persistent_storage_service.dart';
-import 'package:quickstart_flutter_bloc/features/settings/data/models/settings.dart';
 
 class SettingsLocalDataSource {
   SettingsLocalDataSource({required PersistentStorageService storage}) : _storage = storage;

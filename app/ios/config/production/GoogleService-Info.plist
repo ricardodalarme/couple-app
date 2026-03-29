@@ -3,17 +3,17 @@
 <plist version="1.0">
 	<dict>
 		<key>API_KEY</key>
-		<string>AIzaSyCZMzuEs_pojUM3JxIe6IwR-igFwg2CnPs</string>
+		<string>AIzaSyDmhhf2YsTymwlR5RtY4CfM576Qa4MQZtY</string>
 		<key>GCM_SENDER_ID</key>
-		<string>731036601810</string>
+		<string>981634080311</string>
 		<key>PLIST_VERSION</key>
 		<string>1</string>
 		<key>BUNDLE_ID</key>
-		<string>com.profusion.quickstartFlutterBloc</string>
+		<string>com.ricardodalarme.flutterBlocStarter</string>
 		<key>PROJECT_ID</key>
-		<string>qs-flutter-production</string>
+		<string>flutter-bloc-starter---prd</string>
 		<key>STORAGE_BUCKET</key>
-		<string>qs-flutter-production.firebasestorage.app</string>
+		<string>flutter-bloc-starter---prd.firebasestorage.app</string>
 		<key>IS_ADS_ENABLED</key>
 		<false></false>
 		<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 		<key>IS_SIGNIN_ENABLED</key>
 		<true></true>
 		<key>GOOGLE_APP_ID</key>
-		<string>1:731036601810:ios:15c315d8b8f8694fa68c0b</string>
+		<string>1:981634080311:ios:4d76a8868a6061610829b2</string>
 	</dict>
 </plist>

@@ -1,5 +1,5 @@
+import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/profile_picture.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quickstart_flutter_bloc/features/_shared/presentation/widgets/profile_picture.dart';
 
 import '../../../../test_helpers/pump_app.dart';
 

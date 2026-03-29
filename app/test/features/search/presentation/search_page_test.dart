@@ -1,5 +1,5 @@
+import 'package:flutter_bloc_starter/features/search/presentation/search_page.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quickstart_flutter_bloc/features/search/presentation/search_page.dart';
 
 import '../../../test_helpers/pump_app.dart';
 

@@ -1,9 +1,9 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/account/data/data_sources/account_data_source.dart';
+import 'package:flutter_bloc_starter/features/account/data/repositories/account_repository.dart';
+import 'package:flutter_bloc_starter/features/account/presentation/change_password/cubit/change_password_cubit.dart';
+import 'package:flutter_bloc_starter/features/account/presentation/edit_profile/cubit/edit_profile_cubit.dart';
 import 'package:network/network.dart';
-import 'package:quickstart_flutter_bloc/features/account/data/data_sources/account_data_source.dart';
-import 'package:quickstart_flutter_bloc/features/account/data/repositories/account_repository.dart';
-import 'package:quickstart_flutter_bloc/features/account/presentation/change_password/cubit/change_password_cubit.dart';
-import 'package:quickstart_flutter_bloc/features/account/presentation/edit_profile/cubit/edit_profile_cubit.dart';
 
 class AccountInjectionModule implements InjectionModule {
   @override

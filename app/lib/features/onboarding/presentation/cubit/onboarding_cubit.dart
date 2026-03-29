@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quickstart_flutter_bloc/features/settings/data/models/settings.dart';
-import 'package:quickstart_flutter_bloc/features/settings/data/repositories/settings_repository.dart';
+import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
+import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 
 class OnboardingCubit extends Cubit<int> {
   OnboardingCubit({required SettingsRepository settingsRepository})

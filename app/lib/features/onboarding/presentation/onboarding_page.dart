@@ -2,10 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quickstart_flutter_bloc/features/onboarding/presentation/cubit/onboarding_cubit.dart';
-import 'package:quickstart_flutter_bloc/features/onboarding/presentation/widgets/page_indicator_widget.dart';
-import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
-import 'package:quickstart_flutter_bloc/router/app_router.dart';
+import 'package:flutter_bloc_starter/features/onboarding/presentation/cubit/onboarding_cubit.dart';
+import 'package:flutter_bloc_starter/features/onboarding/presentation/widgets/page_indicator_widget.dart';
+import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 @RoutePage()
 class OnboardingPage extends StatelessWidget implements AutoRouteWrapper {

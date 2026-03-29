@@ -1,5 +1,5 @@
-import 'package:quickstart_flutter_bloc/features/post/data/data_sources/queries/generated/GetPosts.graphql.dart';
-import 'package:quickstart_flutter_bloc/features/post/data/models/post.dart';
+import 'package:flutter_bloc_starter/features/post/data/data_sources/queries/generated/GetPosts.graphql.dart';
+import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
 
 extension PostResponseMapper on QueryGetPostspostsnodesPost {
   Post toModel() {

@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:quickstart_flutter_bloc/features/authentication/data/models/token.dart';
+import 'package:flutter_bloc_starter/features/authentication/data/models/token.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
 
 class TokenLocalDataSource {

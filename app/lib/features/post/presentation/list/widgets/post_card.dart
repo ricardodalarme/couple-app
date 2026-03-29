@@ -1,6 +1,6 @@
 import 'package:common_ui/common_ui.dart' hide BaseListTile;
-import 'package:quickstart_flutter_bloc/features/_shared/presentation/widgets/profile_picture.dart';
-import 'package:quickstart_flutter_bloc/features/post/data/models/post.dart';
+import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/profile_picture.dart';
+import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
 
 class PostCard extends StatelessWidget {
   const PostCard({required this.post, super.key});

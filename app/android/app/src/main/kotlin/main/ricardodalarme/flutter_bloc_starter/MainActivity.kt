@@ -1,4 +1,4 @@
-package com.profusion.quickstart_flutter_bloc
+package com.ricardodalarme.flutter_bloc_starter
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

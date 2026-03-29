@@ -1,5 +1,5 @@
+import 'package:flutter_bloc_starter/features/post/data/data_sources/queries/generated/GetPosts.graphql.dart';
 import 'package:network/network.dart';
-import 'package:quickstart_flutter_bloc/features/post/data/data_sources/queries/generated/GetPosts.graphql.dart';
 
 class PostDataSource {
   PostDataSource({required GQLClient graphlQLClient}) : _client = graphlQLClient;

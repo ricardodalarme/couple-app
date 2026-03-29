@@ -3,9 +3,9 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quickstart_flutter_bloc/features/account/presentation/change_password/cubit/change_password_cubit.dart';
-import 'package:quickstart_flutter_bloc/l10n/l10n_map_extension.dart';
-import 'package:quickstart_flutter_bloc/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/features/account/presentation/change_password/cubit/change_password_cubit.dart';
+import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
+import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
 class ChangePasswordPage extends StatelessWidget implements AutoRouteWrapper {

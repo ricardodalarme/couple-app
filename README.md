@@ -1,6 +1,6 @@
-# Quickstart Flutter Bloc
+# Flutter Bloc Starter
 
-[![Code Check](https://github.com/profusion/quickstart-flutter-bloc/actions/workflows/code-check.yml/badge.svg)](https://github.com/profusion/quickstart-flutter-bloc/actions/workflows/code-check.yml)
+[![Code Check](https://github.com/ricardodalarme/quickstart-flutter-bloc/actions/workflows/code-check.yml/badge.svg)](https://github.com/ricardodalarme/quickstart-flutter-bloc/actions/workflows/code-check.yml)
 
 Base repository for application using Flutter + Bloc
 
@@ -44,9 +44,9 @@ dart pub global activate melos
 
 ### Bootstrap
 
-To get started, you will need to install the dependencies and the Git Hooks. 
+To get started, you will need to install the dependencies and the Git Hooks.
 
-Git Hooks are shell scripts that run automatically before or after Git executes an important command, such as *Commit* or *Push*.
+Git Hooks are shell scripts that run automatically before or after Git executes an important command, such as _Commit_ or _Push_.
 
 Fortunately, Melos has a command that does this for us. To install the dependencies and Git Hooks, run the following command:
 
@@ -73,7 +73,7 @@ Now everything is set. Let's run it!
 
 ## Documentation
 
-- [Contributing](https://github.com/profusion/quickstart-flutter-bloc/wiki/Contributing)
-- [Code Guidelines](https://github.com/profusion/quickstart-flutter-bloc/wiki/Code-Guidelines)
-- [Environment Variables](https://github.com/profusion/quickstart-flutter-bloc/wiki/Environment-Variables)
-- [Troubleshooting](https://github.com/profusion/quickstart-flutter-bloc/wiki/Troubleshooting)
+- [Contributing](https://github.com/ricardodalarme/quickstart-flutter-bloc/wiki/Contributing)
+- [Code Guidelines](https://github.com/ricardodalarme/quickstart-flutter-bloc/wiki/Code-Guidelines)
+- [Environment Variables](https://github.com/ricardodalarme/quickstart-flutter-bloc/wiki/Environment-Variables)
+- [Troubleshooting](https://github.com/ricardodalarme/quickstart-flutter-bloc/wiki/Troubleshooting)

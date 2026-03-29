@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quickstart_flutter_bloc/features/post/data/models/post.dart';
-import 'package:quickstart_flutter_bloc/features/post/data/repositories/post_repository.dart';
+import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
+import 'package:flutter_bloc_starter/features/post/data/repositories/post_repository.dart';
 
 part 'posts_list_state.dart';
 
