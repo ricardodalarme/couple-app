@@ -9,15 +9,15 @@ workspace:
   - app
   - packages/common_ui
   - packages/core
-  - packages/logger
   - packages/form_inputs
   - packages/formatters
+  - packages/logger
   - packages/network
   - packages/services/analytics
   - packages/services/biometric
   - packages/services/crash_report
   - packages/services/device_info
-  - packages/services/persistent_storage
+  - packages/services/preferences
   - packages/services/remote_config
   - packages/services/secure_storage
 

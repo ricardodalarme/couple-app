@@ -2,13 +2,13 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/settings/data/data_sources/settings_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/cubit/settings_cubit.dart';
-import 'package:persistent_storage_service/persistent_storage_service.dart';
+import 'package:preferences_service/preferences_service.dart';
 
 class SettingsInjectionModule implements InjectionModule {
   @override
   void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<SettingsLocalDataSource>(
-      () => SettingsLocalDataSource(storage: injector.get<PersistentStorageService>()),
+      () => SettingsLocalDataSource(preferencesService: injector.get<PreferencesService>()),
     )
     ..registerLazySingleton<SettingsRepository>(
       () => SettingsRepository(localDataSource: injector.get<SettingsLocalDataSource>()),

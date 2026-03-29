@@ -18,7 +18,7 @@ import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 import 'package:formatters/formatters.dart';
 import 'package:logger/logger.dart';
-import 'package:persistent_storage_service/persistent_storage_service.dart';
+import 'package:preferences_service/preferences_service.dart';
 
 final _logger = Logger('Bootstrap');
 
@@ -64,10 +64,9 @@ Future<void> _configureCrashReportService() async {
 Future<void> _initializeStorageService() async {
   _logger.info('Initializing Persistent Storage Service');
 
-  final PersistentStorageService persistentStorageService = AppInjector.instance
-      .get<PersistentStorageService>();
+  final PreferencesService preferencesService = AppInjector.instance.get<PreferencesService>();
 
-  await persistentStorageService.initialize();
+  await preferencesService.initialize();
 }
 
 void _setupLocale() {

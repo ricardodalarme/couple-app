@@ -8,7 +8,7 @@ import 'package:flutter_bloc_starter/router/app_router.dart';
 import 'package:flutter_bloc_starter/router/observers/analytics_router_observer.dart';
 import 'package:flutter_bloc_starter/router/observers/log_router_observer.dart';
 import 'package:network/network.dart';
-import 'package:persistent_storage_service/persistent_storage_service.dart';
+import 'package:preferences_service/preferences_service.dart';
 import 'package:remote_config_service/remote_config_service.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
 
@@ -21,7 +21,7 @@ class SharedInjectionModule implements InjectionModule {
       () => AnalyticsRouterObserver(analyticsService: injector.get<AnalyticsService>()),
     )
     ..registerLazySingleton<SecureStorageService>(SecureStorageServiceImpl.new)
-    ..registerLazySingleton<PersistentStorageService>(PersistentStorageServiceImpl.new)
+    ..registerLazySingleton<PreferencesService>(PreferencesServiceImpl.new)
     ..registerLazySingleton<GQLClient>(
       () => GQLClientImpl(storage: injector.get<SecureStorageService>()),
     )

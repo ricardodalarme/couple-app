@@ -36,8 +36,8 @@ dependencies:
     path: ../packages/logger
   network:
     path: ../packages/network
-  persistent_storage_service:
-    path: ../packages/services/persistent_storage
+  preferences_service:
+    path: ../packages/services/preferences
   remote_config_service:
     path: ../packages/services/remote_config
   secure_storage_service:

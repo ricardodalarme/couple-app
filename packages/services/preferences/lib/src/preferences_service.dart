@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract interface class PersistentStorageService {
+abstract interface class PreferencesService {
   Future<void> initialize();
   String? readString({required String key});
   Future<void> writeString({required String key, required String value});
@@ -10,8 +10,8 @@ abstract interface class PersistentStorageService {
   Future<void> clear();
 }
 
-class PersistentStorageServiceImpl implements PersistentStorageService {
-  PersistentStorageServiceImpl();
+class PreferencesServiceImpl implements PreferencesService {
+  PreferencesServiceImpl();
 
   late final SharedPreferences _sharedPreferences;
 

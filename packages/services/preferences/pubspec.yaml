@@ -1,4 +1,4 @@
-name: persistent_storage_service
+name: preferences_service
 resolution: workspace
 publish_to: none
 

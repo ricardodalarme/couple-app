@@ -100,7 +100,7 @@ updates:
       prefix: "chore"
       include: "scope"
   - package-ecosystem: "pub"
-    directory: "/app/packages/services/persistent_storage/"
+    directory: "/app/packages/services/preferences/"
     schedule:
       interval: "weekly"
     labels:
