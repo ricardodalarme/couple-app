@@ -1,128 +1,210 @@
 version: 2
 updates:
-  # Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: "weekly"
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      github-actions:
+        patterns:
+          - "*"
     labels:
       - ":package: dependencies"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-
-  # Root
-  - package-ecosystem: "pub"
-    directory: "/"
+  - package-ecosystem: pub
+    directory: /app
     schedule:
-      interval: "weekly"
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      app-pub:
+        patterns:
+          - "*"
     labels:
       - ":package: dependencies"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-
-  # App
-  - package-ecosystem: "pub"
-    directory: "/app/"
+  - package-ecosystem: pub
+    directory: /packages/common_ui
     schedule:
-      interval: "weekly"
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-common-ui-pub:
+        patterns:
+          - "*"
     labels:
       - ":package: dependencies"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-
-  # Packages
-  - package-ecosystem: "pub"
-    directory: "/app/packages/common_ui/"
+  - package-ecosystem: pub
+    directory: /packages/core
     schedule:
-      interval: "weekly"
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-core-pub:
+        patterns:
+          - "*"
     labels:
       - ":package: dependencies"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-  - package-ecosystem: "pub"
-    directory: "/app/packages/core/"
+  - package-ecosystem: pub
+    directory: /packages/form_inputs
     schedule:
-      interval: "weekly"
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-form-inputs-pub:
+        patterns:
+          - "*"
     labels:
       - ":package: dependencies"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-  - package-ecosystem: "pub"
-    directory: "/app/packages/form_inputs/"
+  - package-ecosystem: pub
+    directory: /packages/formatters
     schedule:
-      interval: "weekly"
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-formatters-pub:
+        patterns:
+          - "*"
     labels:
       - ":package: dependencies"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-  - package-ecosystem: "pub"
-    directory: "/app/packages/network/"
+  - package-ecosystem: pub
+    directory: /packages/logger
     schedule:
-      interval: "weekly"
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-logger-pub:
+        patterns:
+          - "*"
     labels:
       - ":package: dependencies"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-
-  # Services
-  - package-ecosystem: "pub"
-    directory: "/app/packages/services/analytics/"
+  - package-ecosystem: pub
+    directory: /packages/network
     schedule:
-      interval: "weekly"
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-network-pub:
+        patterns:
+          - "*"
     labels:
       - ":package: dependencies"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-  - package-ecosystem: "pub"
-    directory: "/app/packages/services/biometric/"
+  - package-ecosystem: pub
+    directory: /packages/services/analytics
     schedule:
-      interval: "weekly"
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-analytics-pub:
+        patterns:
+          - "*"
     labels:
       - ":package: dependencies"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-  - package-ecosystem: "pub"
-    directory: "/app/packages/services/crash_report/"
+  - package-ecosystem: pub
+    directory: /packages/services/biometric
     schedule:
-      interval: "weekly"
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-biometric-pub:
+        patterns:
+          - "*"
     labels:
       - ":package: dependencies"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-  - package-ecosystem: "pub"
-    directory: "/app/packages/services/preferences/"
+  - package-ecosystem: pub
+    directory: /packages/services/crash_report
     schedule:
-      interval: "weekly"
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-crash-report-pub:
+        patterns:
+          - "*"
     labels:
       - ":package: dependencies"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-  - package-ecosystem: "pub"
-    directory: "/app/packages/services/remote_config/"
+  - package-ecosystem: pub
+    directory: /packages/services/device_info
     schedule:
-      interval: "weekly"
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-device-info-pub:
+        patterns:
+          - "*"
     labels:
       - ":package: dependencies"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-  - package-ecosystem: "pub"
-    directory: "/app/packages/services/secure_storage/"
+  - package-ecosystem: pub
+    directory: /packages/services/preferences
     schedule:
-      interval: "weekly"
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-preferences-pub:
+        patterns:
+          - "*"
     labels:
       - ":package: dependencies"
+  - package-ecosystem: pub
+    directory: /packages/services/remote_config
+    schedule:
+      interval: weekly
     commit-message:
-      prefix: "chore"
-      include: "scope"
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-remote-config-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
+    directory: /packages/services/secure_storage
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-secure-storage-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      root-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
