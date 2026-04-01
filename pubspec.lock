@@ -366,10 +366,10 @@ packages:
     dependency: transitive
     description:
       name: device_info_plus
-      sha256: "4df8babf73058181227e18b08e6ea3520cf5fc5d796888d33b7cb0f33f984b7c"
+      sha256: b4fed1b2835da9d670d7bed7db79ae2a94b0f5ad6312268158a9b5479abbacdd
       url: "https://pub.dev"
     source: hosted
-    version: "12.3.0"
+    version: "12.4.0"
   device_info_plus_platform_interface:
     dependency: transitive
     description:
@@ -1791,10 +1791,10 @@ packages:
     dependency: "direct dev"
     description:
       name: very_good_cli
-      sha256: "7dac489eb422240e2bcd2c087a8d11bb93d9547b2b2fe107983385f4e0e2abb0"
+      sha256: "5dc7d54ba188402f973545a8345b448473bc99af8059e499fef12703b888c9bc"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.1"
   very_good_test_runner:
     dependency: transitive
     description:
@@ -1965,4 +1965,4 @@ packages:
     version: "2.1.0"
 sdks:
   dart: ">=3.11.4 <4.0.0"
-  flutter: "3.41.6"
+  flutter: ">=3.41.6"
