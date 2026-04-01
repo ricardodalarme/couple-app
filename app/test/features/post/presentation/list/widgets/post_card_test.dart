@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/profile_picture.dart';
+import 'package:common_ui/src/components/base_avatar.dart';
 import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
 import 'package:flutter_bloc_starter/features/post/presentation/list/widgets/post_card.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,7 +12,7 @@ void main() {
 
       await tester.pumpApp(const PostCard(post: post));
 
-      expect(find.byType(ProfilePicture), findsOneWidget);
+      expect(find.byType(BaseAvatar), findsOneWidget);
 
       expect(find.text('Test Title'), findsOneWidget);
       expect(find.text('Test Body'), findsOneWidget);

@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/components/base_avatar_example.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/components/base_button_example.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/components/base_card_example.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/components/base_divider_example.dart';
@@ -11,7 +12,6 @@ import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/compon
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/theme/colors_example.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/theme/typography_example.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/widgets/error_indicator_example.dart';
-import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/widgets/profile_picture_example.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/widgets/sign_in_button_example.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/widgets/text_divider_example.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -20,6 +20,7 @@ final List<WidgetbookNode> examples = [
   WidgetbookFolder(
     name: 'Components',
     children: [
+      baseAvatarExample,
       baseButtonExample,
       baseCardExample,
       baseDividerExample,
@@ -34,12 +35,7 @@ final List<WidgetbookNode> examples = [
   ),
   WidgetbookFolder(
     name: 'Widgets',
-    children: [
-      errorIndicatorExample,
-      profilePictureExample,
-      signInButtonExample,
-      textDividerExample,
-    ],
+    children: [errorIndicatorExample, signInButtonExample, textDividerExample],
   ),
   WidgetbookFolder(name: 'Theme', children: [colorsExample, typographyExample]),
 ];

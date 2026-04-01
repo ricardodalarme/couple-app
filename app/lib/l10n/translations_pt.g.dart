@@ -328,12 +328,7 @@ class _TranslationsAuthenticationLoginPt extends TranslationsAuthenticationLogin
   @override
   String buttonSignInWith({required Object provider}) => 'Continue com ${provider}';
   @override
-  TextSpan buttonNewAccount({required InlineSpanBuilder signUp}) => TextSpan(
-    children: [
-      const TextSpan(text: 'Não tem uma conta? '),
-      signUp('Cadastre-se'),
-    ],
-  );
+  String get buttonNewAccount => 'Não tem uma conta? Cadastre-se';
   @override
   String get buttonDevMenu => 'Abrir DevMenu';
   @override
@@ -514,12 +509,7 @@ extension on TranslationsPt {
       'authentication.login.buttonForgotPassword' => 'Esqueceu a senha?',
       'authentication.login.buttonSignInWith' =>
         ({required Object provider}) => 'Continue com ${provider}',
-      'authentication.login.buttonNewAccount' => ({required InlineSpanBuilder signUp}) => TextSpan(
-        children: [
-          const TextSpan(text: 'Não tem uma conta? '),
-          signUp('Cadastre-se'),
-        ],
-      ),
+      'authentication.login.buttonNewAccount' => 'Não tem uma conta? Cadastre-se',
       'authentication.login.buttonDevMenu' => 'Abrir DevMenu',
       'authentication.login.dividerOr' => 'OU',
       'authentication.login.usernameErrors.empty' => 'O nome de usuário é obrigatório',

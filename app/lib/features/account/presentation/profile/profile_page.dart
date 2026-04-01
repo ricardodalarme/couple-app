@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
-import 'package:flutter/material.dart' show Icons, showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/profile_picture.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/profile/widgets/image_picker_modal.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -74,7 +72,7 @@ class _ProfilePictureWithSelect extends StatelessWidget {
 
     return Stack(
       children: [
-        const ProfilePicture(photoUrl: null, size: _profilePictureSize),
+        const BaseAvatar(photoUrl: null, size: _profilePictureSize),
         Positioned(
           bottom: 0,
           right: 0,
@@ -87,10 +85,7 @@ class _ProfilePictureWithSelect extends StatelessWidget {
             child: BaseIconButton(
               color: context.palette.onContainer,
               tooltip: l10n.buttonChangePicture,
-              onPressed: () => showModalBottomSheet<void>(
-                context: context,
-                builder: (_) => const ImagePickerModal(),
-              ),
+              onPressed: () => context.showBottomSheet<void>((_) => const ImagePickerModal()),
               icon: const Icon(Icons.camera_alt),
             ),
           ),

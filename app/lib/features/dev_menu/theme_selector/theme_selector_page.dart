@@ -1,5 +1,4 @@
 import 'package:common_ui/common_ui.dart';
-import 'package:flutter/material.dart';
 
 class ThemeSelectorPage extends StatelessWidget {
   const ThemeSelectorPage({super.key});
@@ -16,7 +15,7 @@ class ThemeSelectorPage extends StatelessWidget {
         onChanged: (mode) => themeProvider.setThemeMode(mode!),
         child: ListView(
           children: ThemeMode.values
-              .map((mode) => RadioListTile<ThemeMode>(value: mode, title: Text(mode.name)))
+              .map((mode) => BaseRadioListTile(value: mode, title: mode.name))
               .toList(),
         ),
       ),

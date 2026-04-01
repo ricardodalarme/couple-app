@@ -4,18 +4,20 @@ import 'package:flutter/widgets.dart';
 class BaseTapper extends StatelessWidget {
   const BaseTapper({
     required this.child,
-    required this.onTap,
+    this.onTap,
     this.borderRadius,
     this.backgroundColor,
     this.rippleColor,
+    this.shape,
     super.key,
   });
 
   final Widget child;
-  final GestureTapCallback onTap;
+  final GestureTapCallback? onTap;
   final BorderRadiusGeometry? borderRadius;
   final Color? backgroundColor;
   final Color? rippleColor;
+  final ShapeBorder? shape;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,8 @@ class BaseTapper extends StatelessWidget {
       borderRadius: borderRadius ?? BorderRadius.zero,
       child: Material(
         color: backgroundColor,
-        child: InkWell(splashColor: rippleColor, onTap: onTap, child: child),
+        shape: shape,
+        child: InkWell(splashColor: rippleColor, customBorder: shape, onTap: onTap, child: child),
       ),
     );
   }

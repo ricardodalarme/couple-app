@@ -1,6 +1,5 @@
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
-import 'package:flutter/material.dart';
 import 'package:remote_config_service/remote_config_service.dart';
 
 class RemoteConfigPage extends StatefulWidget {
@@ -28,7 +27,7 @@ class _RemoteConfigPageState extends State<RemoteConfigPage> {
     return BaseView(
       title: 'Remote Config',
       actions: [
-        IconButton(
+        BaseIconButton(
           icon: const Icon(Icons.refresh),
           tooltip: 'Refresh',
           onPressed: () => setState(_loadRemoteConfigs),
@@ -41,7 +40,7 @@ class _RemoteConfigPageState extends State<RemoteConfigPage> {
               itemBuilder: (_, index) {
                 final String key = _remoteConfigs.keys.elementAt(index);
                 final String value = _remoteConfigs[key]!;
-                return ListTile(title: Text(key), subtitle: Text(value));
+                return BaseListTile(title: key, subtitle: value);
               },
             ),
     );

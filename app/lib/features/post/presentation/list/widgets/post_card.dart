@@ -1,5 +1,4 @@
 import 'package:common_ui/common_ui.dart' hide BaseListTile;
-import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/profile_picture.dart';
 import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
 
 class PostCard extends StatelessWidget {
@@ -13,7 +12,7 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseCard(
-      leading: ProfilePicture(photoUrl: post.authorImageUrl, size: _profilePictureSize),
+      leading: BaseAvatar(photoUrl: post.authorImageUrl, size: _profilePictureSize),
       title: post.title,
       child: Text(post.body, maxLines: _bodyMaxLines, overflow: TextOverflow.ellipsis),
     );

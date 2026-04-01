@@ -13,6 +13,10 @@ class ThemeModeProvider extends StatefulWidget {
     return result!;
   }
 
+  static InheritedThemeProvider? maybeOf(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<InheritedThemeProvider>();
+  }
+
   @override
   State<ThemeModeProvider> createState() => _ThemeModeProviderState();
 }

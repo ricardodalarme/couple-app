@@ -342,13 +342,8 @@ class TranslationsAuthenticationLoginEn {
   /// en: 'Sign in with {provider}'
   String buttonSignInWith({required Object provider}) => 'Sign in with ${provider}';
 
-  /// en: 'Don't have an account? {signUp(Sign up)}'
-  TextSpan buttonNewAccount({required InlineSpanBuilder signUp}) => TextSpan(
-    children: [
-      const TextSpan(text: 'Don\'t have an account? '),
-      signUp('Sign up'),
-    ],
-  );
+  /// en: 'Don't have an account? Sign up'
+  String get buttonNewAccount => 'Don\'t have an account? Sign up';
 
   /// en: 'Open DevMenu'
   String get buttonDevMenu => 'Open DevMenu';
@@ -532,12 +527,7 @@ extension on Translations {
       'authentication.login.buttonForgotPassword' => 'Forgot password?',
       'authentication.login.buttonSignInWith' =>
         ({required Object provider}) => 'Sign in with ${provider}',
-      'authentication.login.buttonNewAccount' => ({required InlineSpanBuilder signUp}) => TextSpan(
-        children: [
-          const TextSpan(text: 'Don\'t have an account? '),
-          signUp('Sign up'),
-        ],
-      ),
+      'authentication.login.buttonNewAccount' => 'Don\'t have an account? Sign up',
       'authentication.login.buttonDevMenu' => 'Open DevMenu',
       'authentication.login.dividerOr' => 'OR',
       'authentication.login.usernameErrors.empty' => 'Username is required',

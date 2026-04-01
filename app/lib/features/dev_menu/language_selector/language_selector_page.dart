@@ -1,5 +1,4 @@
 import 'package:common_ui/common_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 class LanguageSelectorPage extends StatelessWidget {
@@ -18,7 +17,7 @@ class LanguageSelectorPage extends StatelessWidget {
           children: AppLocale.values
               .map(
                 (locale) =>
-                    RadioListTile(value: locale.languageCode, title: Text(locale.languageCode)),
+                    BaseRadioListTile(value: locale.languageCode, title: locale.languageCode),
               )
               .toList(),
         ),

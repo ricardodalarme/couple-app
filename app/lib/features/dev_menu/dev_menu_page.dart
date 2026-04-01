@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
-import 'package:flutter/material.dart' hide Colors;
 import 'package:flutter_bloc_starter/features/dev_menu/device_info/device_info_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/language_selector/language_selector_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/remote_config/remote_config_page.dart';
@@ -16,24 +15,24 @@ class DevMenuPage extends StatelessWidget {
       title: 'Developer Menu',
       body: ListView(
         children: [
-          ListTile(
-            title: const Text('Storybook'),
+          BaseListTile(
+            title: 'Storybook',
             onTap: () => context.router.pushWidget(const StorybookPage()),
           ),
-          ListTile(
-            title: const Text('Language Selector'),
+          BaseListTile(
+            title: 'Language Selector',
             onTap: () => context.router.pushWidget(const LanguageSelectorPage()),
           ),
-          ListTile(
-            title: const Text('Theme Selector'),
+          BaseListTile(
+            title: 'Theme Selector',
             onTap: () => context.router.pushWidget(const ThemeSelectorPage()),
           ),
-          ListTile(
-            title: const Text('Device Info'),
+          BaseListTile(
+            title: 'Device Info',
             onTap: () => context.router.pushWidget(const DeviceInfoPage()),
           ),
-          ListTile(
-            title: const Text('Remote Config'),
+          BaseListTile(
+            title: 'Remote Config',
             onTap: () => context.router.pushWidget(const RemoteConfigPage()),
           ),
         ],

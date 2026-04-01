@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart' show TextButton;
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/login/cubit/login_cubit.dart';
@@ -42,11 +41,11 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
                 const _PasswordTextField(),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: TextButton(
+                  child: BaseTextButton(
+                    text: l10n.buttonForgotPassword,
                     onPressed: () {
                       context.pushRoute(const ForgotPasswordRoute());
                     },
-                    child: Text(l10n.buttonForgotPassword),
                   ),
                 ),
                 const Gap(Spacings.small),
@@ -56,11 +55,12 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
                   child: TextDivider(l10n.dividerOr),
                 ),
                 const _SignInWithThirdPartyButtons(),
+                const Gap(Spacings.small),
                 const _SignupButton(),
                 if (kDebugMode)
-                  TextButton(
+                  BaseTextButton(
+                    text: l10n.buttonDevMenu,
                     onPressed: () => context.router.pushWidget(const DevMenuPage()),
-                    child: Text(l10n.buttonDevMenu),
                   ),
               ],
             ),
@@ -154,6 +154,7 @@ class _SignInWithThirdPartyButtons extends StatelessWidget {
     final TranslationsAuthenticationLoginEn l10n = context.l10n.authentication.login;
 
     return Column(
+      spacing: Spacings.small,
       children: [
         SignInButton(
           ButtonProvider.google,
@@ -177,16 +178,9 @@ class _SignupButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final TranslationsAuthenticationLoginEn l10n = context.l10n.authentication.login;
 
-    return TextButton(
+    return BaseTextButton(
+      text: l10n.buttonNewAccount,
       onPressed: () => context.pushRoute(const SignUpRoute()),
-      child: Text.rich(
-        l10n.buttonNewAccount(
-          signUp: (text) => TextSpan(
-            text: text,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
     );
   }
 }

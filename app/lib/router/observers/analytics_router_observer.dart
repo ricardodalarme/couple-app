@@ -1,6 +1,6 @@
 import 'package:analytics_service/analytics_service.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class AnalyticsRouterObserver extends AutoRouterObserver {
   AnalyticsRouterObserver({required this.analyticsService});

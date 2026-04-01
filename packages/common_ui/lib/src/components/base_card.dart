@@ -1,8 +1,7 @@
 import 'package:common_ui/src/components/base_divider.dart';
-import 'package:common_ui/src/theme/theme_extensions.dart';
+import 'package:common_ui/src/extensions/build_context_extension.dart';
 import 'package:common_ui/src/tokens/borders.dart';
 import 'package:common_ui/src/tokens/spacings.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class BaseCard extends StatelessWidget {

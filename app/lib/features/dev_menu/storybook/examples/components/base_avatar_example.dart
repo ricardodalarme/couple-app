@@ -1,9 +1,9 @@
-import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/profile_picture.dart';
+import 'package:common_ui/common_ui.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-final WidgetbookNode profilePictureExample = WidgetbookUseCase(
-  name: 'ProfilePicture',
-  builder: (context) => ProfilePicture(
+final WidgetbookNode baseAvatarExample = WidgetbookUseCase(
+  name: 'BaseAvatar',
+  builder: (context) => BaseAvatar(
     photoUrl: context.knobs.string(label: 'Photo url', initialValue: 'https://picsum.photos/200'),
     size: context.knobs.double.slider(label: 'Size', initialValue: 200, max: 500),
   ),

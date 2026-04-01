@@ -1,5 +1,4 @@
 import 'package:common_ui/common_ui.dart';
-import 'package:flutter/material.dart' show MaterialButton;
 
 enum ButtonProvider {
   google('Google'),
@@ -11,6 +10,7 @@ enum ButtonProvider {
 }
 
 const double _buttonMaxWidth = 220;
+const double _defaultButtonHeight = 36;
 
 class SignInButton extends StatelessWidget {
   const SignInButton(this.button, {required this.text, required this.onPressed, super.key});
@@ -74,24 +74,28 @@ class SignInButtonBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
+    return BaseTapper(
       key: key,
-      height: height,
-      padding: EdgeInsets.zero,
-      color: backgroundColor,
-      onPressed: onPressed,
+      onTap: onPressed,
+      backgroundColor: backgroundColor,
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: maxWidth),
-        child: Row(
-          children: [
-            Padding(padding: iconPadding ?? const EdgeInsets.symmetric(horizontal: 8), child: icon),
-            Expanded(
-              child: Padding(
-                padding: innerPadding ?? const EdgeInsets.all(4),
-                child: Text(text, style: textStyle, maxLines: 1),
+        constraints: BoxConstraints(maxWidth: maxWidth, minHeight: height ?? _defaultButtonHeight),
+        child: SizedBox(
+          height: height,
+          child: Row(
+            children: [
+              Padding(
+                padding: iconPadding ?? const EdgeInsets.symmetric(horizontal: 8),
+                child: icon,
               ),
-            ),
-          ],
+              Expanded(
+                child: Padding(
+                  padding: innerPadding ?? const EdgeInsets.all(4),
+                  child: Text(text, style: textStyle, maxLines: 1),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

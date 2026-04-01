@@ -1,4 +1,4 @@
-import 'package:common_ui/src/theme/theme_extensions.dart';
+import 'package:common_ui/src/extensions/build_context_extension.dart';
 import 'package:common_ui/src/tokens/spacings.dart';
 import 'package:flutter/widgets.dart';
 

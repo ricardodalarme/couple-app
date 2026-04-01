@@ -4,7 +4,7 @@
     "buttonLogin": "Login",
     "buttonForgotPassword": "Forgot password?",
     "buttonSignInWith": "Sign in with {provider}",
-    "buttonNewAccount(rich)": "Don't have an account? {signUp(Sign up)}",
+    "buttonNewAccount": "Don't have an account? Sign up",
     "buttonDevMenu": "Open DevMenu",
     "dividerOr": "OR",
     "usernameErrors(map)": {

@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
-import 'package:flutter/material.dart' show MaterialApp;
 import 'package:flutter_bloc_starter/features/app/presentation/widgets/app_status_wrapper_widget.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/observers/analytics_router_observer.dart';
@@ -23,11 +22,8 @@ class App extends StatelessWidget {
     return TranslationProvider(
       child: ThemeModeProvider(
         child: Builder(
-          builder: (context) => MaterialApp.router(
+          builder: (context) => BaseApp.router(
             onGenerateTitle: (context) => context.l10n.common.appName,
-            theme: AppTheme.light,
-            darkTheme: AppTheme.dark,
-            themeMode: ThemeModeProvider.of(context).themeMode,
             routerConfig: appRouter.config(navigatorObservers: () => navigatorObservers),
             locale: TranslationProvider.of(context).flutterLocale,
             localizationsDelegates: const [
