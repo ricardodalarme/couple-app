@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/login/cubit/login_cubit.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/login/widgets/sign_in_button.dart';
-import 'package:flutter_bloc_starter/features/authentication/presentation/login/widgets/text_divider.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/dev_menu_page.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -50,9 +49,10 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
                 ),
                 const Gap(Spacings.small),
                 const _LoginButton(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: Spacings.large),
-                  child: TextDivider(l10n.dividerOr),
+                BaseDivider.text(
+                  text: l10n.dividerOr,
+                  startMargin: Spacings.large,
+                  endMargin: Spacings.large,
                 ),
                 const _SignInWithThirdPartyButtons(),
                 const Gap(Spacings.small),

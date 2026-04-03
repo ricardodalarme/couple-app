@@ -13,7 +13,6 @@ import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/theme/
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/theme/typography_example.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/widgets/error_indicator_example.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/widgets/sign_in_button_example.dart';
-import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/widgets/text_divider_example.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 final List<WidgetbookNode> examples = [
@@ -33,9 +32,6 @@ final List<WidgetbookNode> examples = [
       baseTooltipExample,
     ],
   ),
-  WidgetbookFolder(
-    name: 'Widgets',
-    children: [errorIndicatorExample, signInButtonExample, textDividerExample],
-  ),
+  WidgetbookFolder(name: 'Widgets', children: [errorIndicatorExample, signInButtonExample]),
   WidgetbookFolder(name: 'Theme', children: [colorsExample, typographyExample]),
 ];
