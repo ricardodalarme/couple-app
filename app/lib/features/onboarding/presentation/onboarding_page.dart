@@ -63,9 +63,9 @@ class OnboardingPage extends StatelessWidget implements AutoRouteWrapper {
             padding: const EdgeInsets.all(Spacings.large),
             child: BaseButton(
               text: context.l10n.onboarding.doneButton,
-              onPressed: () {
-                context.read<OnboardingCubit>().onCompleted();
-                context.router.replace(const LoginRoute());
+              onPressed: () async {
+                await context.read<OnboardingCubit>().onCompleted();
+                if (context.mounted) await context.router.replace(const LoginRoute());
               },
             ),
           ),

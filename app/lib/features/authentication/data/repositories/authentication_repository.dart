@@ -9,10 +9,8 @@ class AuthenticationRepository {
   final Logger _logger = Logger('AuthRepository');
   final AuthenticationService _authenticationService;
 
-  Stream<bool> get isAuthenticated async* {
-    yield _authenticationService.isAuthenticated;
-    yield* _authenticationService.authStateChanges;
-  }
+  bool get isAuthenticated => _authenticationService.isAuthenticated;
+  Stream<bool> get isAuthenticatedStream => _authenticationService.authStateChanges;
 
   String? getAccessToken() => _authenticationService.currentSession?.accessToken;
 

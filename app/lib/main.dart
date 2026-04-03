@@ -1,5 +1,4 @@
 import 'package:authentication_service/authentication_service.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:crash_report_service/crash_report_service.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -9,14 +8,12 @@ import 'package:flutter_bloc_starter/app.dart';
 import 'package:flutter_bloc_starter/features/_shared/di/shared_injection_module.dart';
 import 'package:flutter_bloc_starter/features/account/di/account_injection_module.dart';
 import 'package:flutter_bloc_starter/features/app/di/app_injection_module.dart';
+import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
 import 'package:flutter_bloc_starter/features/authentication/di/authentication_injection_module.dart';
 import 'package:flutter_bloc_starter/features/onboarding/di/onboarding_injection_module.dart';
 import 'package:flutter_bloc_starter/features/post/di/post_injection_module.dart';
-import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/di/settings_injection_module.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 import 'package:formatters/formatters.dart';
 import 'package:logger/logger.dart';
 import 'package:preferences_service/preferences_service.dart';
@@ -37,7 +34,8 @@ Future<void> main() async {
     _initializeStorageService(),
     _initializeAuthenticationService(),
   ]);
-  _checkOnboardingStatus();
+
+  _initializeAppCubit();
 
   runApp(const App());
 }
@@ -93,14 +91,8 @@ void _setupLocale() {
   LocaleSettings.useDeviceLocaleSync();
 }
 
-void _checkOnboardingStatus() {
-  final RootStackRouter appRouter = AppInjector.instance.get<RootStackRouter>();
-  final SettingsRepository settingsRepository = AppInjector.instance.get<SettingsRepository>();
-  final Settings settings = settingsRepository.get();
-
-  if (!settings.hasOnboarded) {
-    appRouter.replaceAll([const OnboardingRoute()]);
-  }
+void _initializeAppCubit() {
+  AppInjector.instance.get<AppCubit>().initialize();
 }
 
 void _registerModules() {

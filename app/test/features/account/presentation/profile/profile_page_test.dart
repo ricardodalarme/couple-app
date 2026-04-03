@@ -15,7 +15,7 @@ void main() {
 
     setUp(() {
       appCubit = MockAppCubit();
-      when(() => appCubit.state).thenReturn(const AppState.authenticated());
+      when(() => appCubit.state).thenReturn(AppState.unauthenticated);
     });
 
     testWidgets('renders page', (tester) async {
