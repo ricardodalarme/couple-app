@@ -1,6 +1,9 @@
 {
   "list": {
     "title": "Feed",
-    "textFailure": "Falha ao carregar o feed."
+    "textFailure": "Falha ao carregar o feed.",
+    "emptyIndicator": {
+      "title": "Nenhum post encontrado"
+    }
   }
 }

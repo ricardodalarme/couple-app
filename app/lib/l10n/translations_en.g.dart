@@ -474,6 +474,9 @@ class TranslationsPostListEn {
 
   /// en: 'Failed to load feed.'
   String get textFailure => 'Failed to load feed.';
+
+  late final TranslationsPostListEmptyIndicatorEn emptyIndicator =
+      TranslationsPostListEmptyIndicatorEn.internal(_root);
 }
 
 // Path: terms.list
@@ -486,6 +489,18 @@ class TranslationsTermsListEn {
 
   /// en: 'Terms'
   String get title => 'Terms';
+}
+
+// Path: post.list.emptyIndicator
+class TranslationsPostListEmptyIndicatorEn {
+  TranslationsPostListEmptyIndicatorEn.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'No posts found'
+  String get title => 'No posts found';
 }
 
 /// The flat map containing all translations for locale <en>.
@@ -574,6 +589,7 @@ extension on Translations {
       'onboarding.doneButton' => 'Get started',
       'post.list.title' => 'Feed',
       'post.list.textFailure' => 'Failed to load feed.',
+      'post.list.emptyIndicator.title' => 'No posts found',
       'privacyPolicy.title' => 'Privacy Policy',
       'search.title' => 'Search',
       'settings.title' => 'Settings',

@@ -457,6 +457,9 @@ class _TranslationsPostListPt extends TranslationsPostListEn {
   String get title => 'Feed';
   @override
   String get textFailure => 'Falha ao carregar o feed.';
+  @override
+  late final _TranslationsPostListEmptyIndicatorPt emptyIndicator =
+      _TranslationsPostListEmptyIndicatorPt._(_root);
 }
 
 // Path: terms.list
@@ -468,6 +471,19 @@ class _TranslationsTermsListPt extends TranslationsTermsListEn {
   // Translations
   @override
   String get title => 'Termos';
+}
+
+// Path: post.list.emptyIndicator
+class _TranslationsPostListEmptyIndicatorPt extends TranslationsPostListEmptyIndicatorEn {
+  _TranslationsPostListEmptyIndicatorPt._(TranslationsPt root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsPt _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Nenhum post encontrado';
 }
 
 /// The flat map containing all translations for locale <pt>.
@@ -556,6 +572,7 @@ extension on TranslationsPt {
       'onboarding.doneButton' => 'Começar',
       'post.list.title' => 'Feed',
       'post.list.textFailure' => 'Falha ao carregar o feed.',
+      'post.list.emptyIndicator.title' => 'Nenhum post encontrado',
       'privacyPolicy.title' => 'Politíca de Privacidade',
       'search.title' => 'Pesquisar',
       'settings.title' => 'Configurações',

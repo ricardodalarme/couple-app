@@ -9,6 +9,7 @@ class BaseListView extends StatelessWidget {
     this.padding = EdgeInsets.zero,
     this.separator,
     this.controller,
+    this.emptyBuilder,
     super.key,
   });
 
@@ -18,10 +19,29 @@ class BaseListView extends StatelessWidget {
   final Widget? separator;
   final Future<void> Function()? onRefresh;
   final ScrollController? controller;
+  final WidgetBuilder? emptyBuilder;
 
   @override
   Widget build(BuildContext context) {
+    if (itemCount == 0 && emptyBuilder != null) {
+      return onRefresh == null
+          ? emptyBuilder!(context)
+          : BasePullToRefresh(onRefresh: onRefresh!, child: _buildRefreshableEmpty(context));
+    }
+
     return onRefresh == null ? _buildListView() : _buildRefreshableListView();
+  }
+
+  Widget _buildRefreshableEmpty(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) => SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: constraints.maxHeight),
+          child: emptyBuilder!(context),
+        ),
+      ),
+    );
   }
 
   Widget _buildListView() {

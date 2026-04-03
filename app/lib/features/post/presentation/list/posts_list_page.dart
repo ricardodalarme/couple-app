@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/empty_indicator.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/error_indicator.dart';
 import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
 import 'package:flutter_bloc_starter/features/post/presentation/list/cubit/posts_list_cubit.dart';
@@ -52,10 +53,13 @@ class _PostsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TranslationsPostListEn l10n = context.l10n.post.list;
+
     return BaseListView(
       onRefresh: context.read<PostsListCubit>().getPosts,
       padding: const EdgeInsets.all(Spacings.large),
       itemCount: posts.length,
+      emptyBuilder: (_) => EmptyIndicator(title: l10n.emptyIndicator.title),
       itemBuilder: (_, index) => PostCard(key: ValueKey(posts[index].id), post: posts[index]),
       separator: const Gap(Spacings.medium),
     );
