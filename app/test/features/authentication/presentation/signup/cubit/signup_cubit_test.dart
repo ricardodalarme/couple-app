@@ -36,13 +36,6 @@ void main() {
     });
 
     blocTest<SignupCubit, SignupState>(
-      'emits [SignupState] when onUsernameChanged is called',
-      build: () => signupCubit,
-      act: (cubit) => cubit.onUsernameChanged('john'),
-      expect: () => [const SignupState(username: NonEmptyInput.dirty('john'))],
-    );
-
-    blocTest<SignupCubit, SignupState>(
       'emits [SignupState] when onEmailChanged is called',
       build: () => signupCubit,
       act: (cubit) => cubit.onEmailChanged('john@example.com'),

@@ -3,7 +3,7 @@ export 'src/di/injection_module.dart';
 export 'src/di/injector.dart';
 export 'src/exceptions/localized_exception.dart';
 export 'src/exceptions/unknown_exception.dart';
-export 'src/storage/storage_keys.dart';
+export 'src/extensions/exception_extension.dart';
 export 'src/utils/callback_debouncer.dart';
 export 'src/utils/config.dart';
 export 'src/utils/resource.dart';

@@ -24,6 +24,15 @@
       "invalid": "Email is invalid"
     },
     "errors(map)": {
+      "invalid_email": "Email is invalid",
+      "email_address_invalid": "Email is invalid",
+      "email_already_in_use": "This email is already in use",
+      "email_exists": "This email is already in use",
+      "user_sso_managed": "This account is managed by your company login and profile details cannot be changed here",
+      "validation_failed": "Some fields are invalid. Please review and try again",
+      "over_request_rate_limit": "Too many requests. Please wait a moment and try again",
+      "request_timeout": "Request timed out. Please try again",
+      "unexpected_failure": "Service is temporarily unavailable. Please try again",
       "other": "@:common.genericError"
     }
   },
@@ -43,6 +52,15 @@
       "invalid": "Passwords do not match"
     },
     "errors(map)": {
+      "wrong_current_password": "Current password is incorrect",
+      "invalid_credentials": "Current password is incorrect",
+      "same_password": "New password must be different from your current password",
+      "weak_password": "New password is too weak",
+      "reauthentication_needed": "Please reauthenticate before changing your password",
+      "user_not_found": "Your user session is no longer valid. Please sign in again",
+      "over_request_rate_limit": "Too many requests. Please wait a moment and try again",
+      "request_timeout": "Request timed out. Please try again",
+      "unexpected_failure": "Service is temporarily unavailable. Please try again",
       "other": "@:common.genericError"
     }
   }

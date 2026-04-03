@@ -26,7 +26,7 @@ void main() {
       expect(
         loginCubit.state,
         const LoginState(
-          username: NonEmptyInput.pure(),
+          email: EmailInput.pure(),
           password: NonEmptyInput.pure(),
           login: Initial(),
         ),
@@ -34,10 +34,10 @@ void main() {
     });
 
     blocTest<LoginCubit, LoginState>(
-      'emits [LoginState] when onUsernameChanged is called',
+      'emits [LoginState] when onEmailChanged is called',
       build: () => loginCubit,
-      act: (cubit) => cubit.onUsernameChanged('john'),
-      expect: () => [const LoginState(username: NonEmptyInput.dirty('john'))],
+      act: (cubit) => cubit.onEmailChanged('john@example.com'),
+      expect: () => [const LoginState(email: EmailInput.dirty('john@example.com'))],
     );
 
     blocTest<LoginCubit, LoginState>(

@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 void main() {
-  const username = NonEmptyInput.dirty('username');
+  const email = EmailInput.dirty('john@example.com');
   const password = NonEmptyInput.dirty('password');
 
   group('LoginState', () {
@@ -19,8 +19,8 @@ void main() {
       );
     });
 
-    test('returns object with updated username when username is passed', () {
-      expect(const LoginState().copyWith(username: username), const LoginState(username: username));
+    test('returns object with updated email when email is passed', () {
+      expect(const LoginState().copyWith(email: email), const LoginState(email: email));
     });
 
     test('returns object with updated password when password is passed', () {

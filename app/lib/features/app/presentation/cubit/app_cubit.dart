@@ -10,10 +10,13 @@ class AppCubit extends Cubit<AppState> {
   AppCubit({required AuthenticationRepository authenticationRepository})
     : _authenticationRepository = authenticationRepository,
       super(const AppState.unauthenticated()) {
-    _authenticationRepository.isAuthenticated.listen(_onStatusChanged);
+    _authStateChangesSubscription = _authenticationRepository.isAuthenticated.listen(
+      _onStatusChanged,
+    );
   }
 
   final AuthenticationRepository _authenticationRepository;
+  late final StreamSubscription<bool> _authStateChangesSubscription;
 
   void _onStatusChanged(bool isAuthenticated) {
     if (isAuthenticated) {
@@ -23,17 +26,13 @@ class AppCubit extends Cubit<AppState> {
     }
   }
 
-  Future<void> initialize() async {
-    await _authenticationRepository.checkAuthenticationStatus();
-  }
-
   Future<void> logout() async {
     await _authenticationRepository.logOut();
   }
 
   @override
   Future<void> close() async {
-    _authenticationRepository.dispose();
+    await _authStateChangesSubscription.cancel();
     await super.close();
   }
 }

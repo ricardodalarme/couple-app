@@ -1,4 +1,0 @@
-fragment TokenFragment on Token {
-  expires
-  token
-}

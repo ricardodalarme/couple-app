@@ -27,14 +27,14 @@ class $AssetsImagesGen {
 class $AssetsLogosGen {
   const $AssetsLogosGen();
 
-  /// File path: assets/logos/facebook.svg
-  SvgGenImage get facebook => const SvgGenImage('assets/logos/facebook.svg');
+  /// File path: assets/logos/apple.svg
+  SvgGenImage get apple => const SvgGenImage('assets/logos/apple.svg');
 
   /// File path: assets/logos/google.svg
   SvgGenImage get google => const SvgGenImage('assets/logos/google.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [facebook, google];
+  List<SvgGenImage> get values => [apple, google];
 }
 
 class Assets {

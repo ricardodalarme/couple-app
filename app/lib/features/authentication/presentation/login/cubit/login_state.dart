@@ -2,26 +2,26 @@ part of 'login_cubit.dart';
 
 final class LoginState with EquatableMixin, FormzMixin {
   const LoginState({
-    this.username = const NonEmptyInput.pure(),
+    this.email = const EmailInput.pure(),
     this.password = const NonEmptyInput.pure(),
     this.login = const Initial(),
   });
 
-  final NonEmptyInput username;
+  final EmailInput email;
   final NonEmptyInput password;
   final Resource<void> login;
 
-  LoginState copyWith({NonEmptyInput? username, NonEmptyInput? password, Resource<void>? login}) {
+  LoginState copyWith({EmailInput? email, NonEmptyInput? password, Resource<void>? login}) {
     return LoginState(
-      username: username ?? this.username,
+      email: email ?? this.email,
       password: password ?? this.password,
       login: login ?? this.login,
     );
   }
 
   @override
-  List<FormzInput<dynamic, dynamic>> get inputs => [username, password];
+  List<FormzInput<dynamic, dynamic>> get inputs => [email, password];
 
   @override
-  List<Object?> get props => [username, password, login];
+  List<Object?> get props => [email, password, login];
 }

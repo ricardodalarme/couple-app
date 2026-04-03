@@ -9,6 +9,8 @@ environment:
 dependencies:
   analytics_service:
     path: ../packages/services/analytics
+  authentication_service:
+    path: ../packages/services/authentication
   auto_route: ^11.1.0
   biometric_service:
     path: ../packages/services/biometric

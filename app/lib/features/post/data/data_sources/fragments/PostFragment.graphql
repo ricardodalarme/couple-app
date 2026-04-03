@@ -1,8 +1,6 @@
-fragment PostFragment on Post {
+fragment PostFragment on posts {
   id
   title
-  body
-  createdBy {
-    ...UserFragment
-  }
+  content
+  author_image_url
 }

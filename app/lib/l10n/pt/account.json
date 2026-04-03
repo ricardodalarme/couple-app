@@ -24,6 +24,10 @@
       "invalid": "Email inválido"
     },
     "errors(map)": {
+      "invalid_email": "Email inválido",
+      "email_address_invalid": "Email inválido",
+      "email_already_in_use": "Este email já está em uso",
+      "email_exists": "Este email já está em uso",
       "other": "@:common.genericError"
     }
   },
@@ -43,6 +47,10 @@
       "invalid": "As senhas não coincidem"
     },
     "errors(map)": {
+      "wrong_current_password": "A senha atual está incorreta",
+      "invalid_credentials": "A senha atual está incorreta",
+      "same_password": "A nova senha deve ser diferente da senha atual",
+      "weak_password": "A nova senha é muito fraca",
       "other": "@:common.genericError"
     }
   }

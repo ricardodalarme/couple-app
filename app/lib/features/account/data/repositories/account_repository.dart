@@ -1,12 +1,13 @@
-import 'package:flutter_bloc_starter/features/account/data/data_sources/account_data_source.dart';
+import 'package:authentication_service/authentication_service.dart';
+import 'package:core/core.dart';
 import 'package:logger/logger.dart';
 
 class AccountRepository {
-  AccountRepository({required AccountDataSource accountDataSource})
-    : _accountDataSource = accountDataSource;
+  AccountRepository({required AuthenticationService authenticationService})
+    : _authenticationService = authenticationService;
 
   final Logger _logger = Logger('AccountRepository');
-  final AccountDataSource _accountDataSource;
+  final AuthenticationService _authenticationService;
 
   Future<void> updateProfile({
     required String firstName,
@@ -15,8 +16,15 @@ class AccountRepository {
   }) async {
     _logger.info('Updating profile for $email');
     try {
-      await _accountDataSource.updateUser(firstName: firstName, lastName: lastName, email: email);
+      await _authenticationService.updateProfile(
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+      );
       _logger.info('Profile updated for $email');
+    } on AuthenticationException catch (exception, stack) {
+      _logger.error('Failed to update profile', error: exception, stackTrace: stack);
+      throw _toLocalizedException(exception);
     } catch (e, stack) {
       _logger.error('Failed to update profile', error: e, stackTrace: stack);
       rethrow;
@@ -29,14 +37,21 @@ class AccountRepository {
   }) async {
     _logger.info('Changing password');
     try {
-      await _accountDataSource.changePassword(
+      await _authenticationService.changePassword(
         currentPassword: currentPassword,
         newPassword: newPassword,
       );
       _logger.info('Password changed successfully');
+    } on AuthenticationException catch (exception, stack) {
+      _logger.error('Failed to change password', error: exception, stackTrace: stack);
+      throw _toLocalizedException(exception);
     } catch (e, stack) {
       _logger.error('Failed to change password', error: e, stackTrace: stack);
       rethrow;
     }
+  }
+
+  LocalizedException _toLocalizedException(AuthenticationException exception) {
+    return LocalizedException(l10nKey: exception.code);
   }
 }

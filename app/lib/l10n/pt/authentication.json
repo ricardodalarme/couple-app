@@ -7,14 +7,16 @@
     "buttonNewAccount": "Não tem uma conta? Cadastre-se",
     "buttonDevMenu": "Abrir DevMenu",
     "dividerOr": "OU",
-    "usernameErrors(map)": {
-      "empty": "O nome de usuário é obrigatório"
+    "emailErrors(map)": {
+      "invalid": "Email é inválido"
     },
     "passwordErrors(map)": {
       "empty": "A senha é obrigatória"
     },
     "errors(map)": {
-      "BAD_USER_INPUT": "Usuário ou senha inválidos",
+      "invalid_credentials": "Email ou senha inválidos",
+      "email_not_confirmed": "Confirme seu email antes de entrar",
+      "user_banned": "Sua conta está temporariamente indisponível",
       "other": "@:common.genericError"
     }
   },
@@ -22,9 +24,6 @@
     "title": "Registrar",
     "labelConfirmPassword": "Confirmar Senha",
     "buttonSubmit": "Registrar",
-    "usernameErrors(map)": {
-      "empty": "Nome de usuário é obrigatório"
-    },
     "emailErrors(map)": {
       "invalid": "Email é inválido"
     },
@@ -35,6 +34,10 @@
       "invalid": "Senhas não coincidem"
     },
     "errors(map)": {
+      "user_already_registered": "Este email já está cadastrado",
+      "user_already_exists": "Este email já está cadastrado",
+      "weak_password": "Senha muito fraca",
+      "email_address_invalid": "Email é inválido",
       "other": "@:common.genericError"
     }
   },

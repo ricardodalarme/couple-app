@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/authentication/presentation/shared/widgets/social_button.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/signup/cubit/signup_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -20,27 +22,32 @@ class SignUpPage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget build(BuildContext context) {
     final TranslationsAuthenticationSignupEn l10n = context.l10n.authentication.signup;
+    final TranslationsAuthenticationLoginEn loginL10n = context.l10n.authentication.login;
 
     return BaseView(
       title: l10n.title,
       body: BlocListener<SignupCubit, SignupState>(
         listenWhen: (previous, current) => previous.submission != current.submission,
         listener: _handleStatus,
-        child: const Center(
+        child: Center(
           child: SingleChildScrollView(
-            padding: EdgeInsets.all(Spacings.large),
+            padding: const EdgeInsets.all(Spacings.large),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _UsernameTextField(),
-                Gap(Spacings.medium),
-                _EmailTextField(),
-                Gap(Spacings.medium),
-                _PasswordTextField(),
-                Gap(Spacings.medium),
-                _ConfirmPasswordTextField(),
-                Gap(Spacings.large),
-                _SubmitButton(),
+                const _EmailTextField(),
+                const Gap(Spacings.medium),
+                const _PasswordTextField(),
+                const Gap(Spacings.medium),
+                const _ConfirmPasswordTextField(),
+                const Gap(Spacings.large),
+                const _SubmitButton(),
+                BaseDivider.text(
+                  text: loginL10n.dividerOr,
+                  startMargin: Spacings.large,
+                  endMargin: Spacings.large,
+                ),
+                _SignInWithThirdPartyButtons(loginL10n: loginL10n),
               ],
             ),
           ),
@@ -63,27 +70,6 @@ class SignUpPage extends StatelessWidget implements AutoRouteWrapper {
       default:
         break;
     }
-  }
-}
-
-class _UsernameTextField extends StatelessWidget {
-  const _UsernameTextField();
-
-  @override
-  Widget build(BuildContext context) {
-    final TranslationsAuthenticationSignupEn l10n = context.l10n.authentication.signup;
-
-    return BlocBuilder<SignupCubit, SignupState>(
-      buildWhen: (previous, current) => previous.username != current.username,
-      builder: (context, state) => BaseTextField(
-        text: state.username.value,
-        label: context.l10n.common.username,
-        errorText: l10n.usernameErrors[state.username.displayError?.name],
-        onChanged: context.read<SignupCubit>().onUsernameChanged,
-        keyboardType: TextInputType.name,
-        textInputAction: TextInputAction.next,
-      ),
-    );
   }
 }
 
@@ -165,6 +151,32 @@ class _SubmitButton extends StatelessWidget {
         isEnabled: state.isValid,
         onPressed: context.read<SignupCubit>().onSubmit,
       ),
+    );
+  }
+}
+
+class _SignInWithThirdPartyButtons extends StatelessWidget {
+  const _SignInWithThirdPartyButtons({required this.loginL10n});
+
+  final TranslationsAuthenticationLoginEn loginL10n;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      spacing: Spacings.small,
+      children: [
+        SocialButton(
+          ButtonProvider.google,
+          text: (provider) => loginL10n.buttonSignInWith(provider: provider.text),
+          onPressed: context.read<SignupCubit>().onSignInWithGoogle,
+        ),
+        if (defaultTargetPlatform == TargetPlatform.iOS)
+          SocialButton(
+            ButtonProvider.apple,
+            text: (provider) => loginL10n.buttonSignInWith(provider: provider.text),
+            onPressed: context.read<SignupCubit>().onSignInWithApple,
+          ),
+      ],
     );
   }
 }

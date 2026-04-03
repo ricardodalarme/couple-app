@@ -1,26 +1,26 @@
-import 'package:flutter_bloc_starter/features/authentication/presentation/login/widgets/sign_in_button.dart';
+import 'package:flutter_bloc_starter/features/authentication/presentation/shared/widgets/social_button.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../../test_helpers/pump_app.dart';
 
 void main() {
-  group('SignInButton', () {
-    testWidgets('renders widget with facebook provider', (tester) async {
+  group(SocialButton, () {
+    testWidgets('renders widget with apple provider', (tester) async {
       await tester.pumpApp(
-        SignInButton(
-          ButtonProvider.facebook,
+        SocialButton(
+          ButtonProvider.apple,
           text: (provider) => 'Sign in with ${provider.name}',
           onPressed: () {},
         ),
       );
       await tester.pump();
 
-      expect(find.byType(SignInButton), findsOneWidget);
+      expect(find.byType(SocialButton), findsOneWidget);
     });
 
     testWidgets('renders widget with google provider', (tester) async {
       await tester.pumpApp(
-        SignInButton(
+        SocialButton(
           ButtonProvider.google,
           text: (provider) => 'Sign in with ${provider.name}',
           onPressed: () {},
@@ -28,7 +28,7 @@ void main() {
       );
       await tester.pump();
 
-      expect(find.byType(SignInButton), findsOneWidget);
+      expect(find.byType(SocialButton), findsOneWidget);
     });
   });
 }

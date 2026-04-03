@@ -13,7 +13,7 @@ class AppStatusWrapperWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => AppInjector.instance.get<AppCubit>()..initialize(),
+      create: (_) => AppInjector.instance.get<AppCubit>(),
       child: BlocListener<AppCubit, AppState>(
         listenWhen: (previous, current) => previous.status != current.status,
         listener: _onStatusChanged,

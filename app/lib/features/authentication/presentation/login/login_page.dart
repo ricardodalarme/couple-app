@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/login/cubit/login_cubit.dart';
-import 'package:flutter_bloc_starter/features/authentication/presentation/login/widgets/sign_in_button.dart';
+import 'package:flutter_bloc_starter/features/authentication/presentation/shared/widgets/social_button.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/dev_menu_page.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const _UsernameTextField(),
+                const _EmailTextField(),
                 const Gap(Spacings.medium),
                 const _PasswordTextField(),
                 Align(
@@ -85,21 +85,21 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
   }
 }
 
-class _UsernameTextField extends StatelessWidget {
-  const _UsernameTextField();
+class _EmailTextField extends StatelessWidget {
+  const _EmailTextField();
 
   @override
   Widget build(BuildContext context) {
     final TranslationsAuthenticationLoginEn l10n = context.l10n.authentication.login;
 
     return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) => previous.username != current.username,
+      buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) => BaseTextField(
-        text: state.username.value,
-        label: context.l10n.common.username,
-        errorText: l10n.usernameErrors[state.username.displayError?.name],
-        onChanged: context.read<LoginCubit>().onUsernameChanged,
-        keyboardType: TextInputType.text,
+        text: state.email.value,
+        label: context.l10n.common.email,
+        errorText: l10n.emailErrors[state.email.displayError?.name],
+        onChanged: context.read<LoginCubit>().onEmailChanged,
+        keyboardType: TextInputType.emailAddress,
         textInputAction: TextInputAction.next,
       ),
     );
@@ -156,16 +156,17 @@ class _SignInWithThirdPartyButtons extends StatelessWidget {
     return Column(
       spacing: Spacings.small,
       children: [
-        SignInButton(
+        SocialButton(
           ButtonProvider.google,
           text: (provider) => l10n.buttonSignInWith(provider: provider.text),
           onPressed: context.read<LoginCubit>().onLoginWithGoogle,
         ),
-        SignInButton(
-          ButtonProvider.facebook,
-          text: (provider) => l10n.buttonSignInWith(provider: provider.text),
-          onPressed: context.read<LoginCubit>().onLoginWithFacebook,
-        ),
+        if (defaultTargetPlatform == TargetPlatform.iOS)
+          SocialButton(
+            ButtonProvider.apple,
+            text: (provider) => l10n.buttonSignInWith(provider: provider.text),
+            onPressed: context.read<LoginCubit>().onLoginWithApple,
+          ),
       ],
     );
   }

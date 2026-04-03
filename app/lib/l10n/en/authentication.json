@@ -7,14 +7,16 @@
     "buttonNewAccount": "Don't have an account? Sign up",
     "buttonDevMenu": "Open DevMenu",
     "dividerOr": "OR",
-    "usernameErrors(map)": {
-      "empty": "Username is required"
+    "emailErrors(map)": {
+      "invalid": "Email is invalid"
     },
     "passwordErrors(map)": {
       "empty": "Password is required"
     },
     "errors(map)": {
-      "BAD_USER_INPUT": "Username or password is incorrect",
+      "invalid_credentials": "Email or password is incorrect",
+      "email_not_confirmed": "Please confirm your email before signing in",
+      "user_banned": "Your account is temporarily unavailable",
       "other": "@:common.genericError"
     }
   },
@@ -22,9 +24,6 @@
     "title": "Sign Up",
     "labelConfirmPassword": "Confirm Password",
     "buttonSubmit": "Sign Up",
-    "usernameErrors(map)": {
-      "empty": "Username is required"
-    },
     "emailErrors(map)": {
       "invalid": "Email is invalid"
     },
@@ -35,6 +34,10 @@
       "invalid": "Passwords do not match"
     },
     "errors(map)": {
+      "user_already_registered": "This email is already registered",
+      "user_already_exists": "This email is already registered",
+      "weak_password": "Password must be stronger",
+      "email_address_invalid": "Email is invalid",
       "other": "@:common.genericError"
     }
   },

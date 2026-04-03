@@ -275,7 +275,13 @@ class _TranslationsAccountEditProfilePt extends TranslationsAccountEditProfileEn
   @override
   Map<String, String> get emailErrors => {'invalid': 'Email inválido'};
   @override
-  Map<String, String> get errors => {'other': _root.common.genericError};
+  Map<String, String> get errors => {
+    'invalid_email': 'Email inválido',
+    'email_address_invalid': 'Email inválido',
+    'email_already_in_use': 'Este email já está em uso',
+    'email_exists': 'Este email já está em uso',
+    'other': _root.common.genericError,
+  };
 }
 
 // Path: account.changePassword
@@ -307,7 +313,13 @@ class _TranslationsAccountChangePasswordPt extends TranslationsAccountChangePass
   @override
   Map<String, String> get confirmPasswordErrors => {'invalid': 'As senhas não coincidem'};
   @override
-  Map<String, String> get errors => {'other': _root.common.genericError};
+  Map<String, String> get errors => {
+    'wrong_current_password': 'A senha atual está incorreta',
+    'invalid_credentials': 'A senha atual está incorreta',
+    'same_password': 'A nova senha deve ser diferente da senha atual',
+    'weak_password': 'A nova senha é muito fraca',
+    'other': _root.common.genericError,
+  };
 }
 
 // Path: authentication.login
@@ -334,12 +346,14 @@ class _TranslationsAuthenticationLoginPt extends TranslationsAuthenticationLogin
   @override
   String get dividerOr => 'OU';
   @override
-  Map<String, String> get usernameErrors => {'empty': 'O nome de usuário é obrigatório'};
+  Map<String, String> get emailErrors => {'invalid': 'Email é inválido'};
   @override
   Map<String, String> get passwordErrors => {'empty': 'A senha é obrigatória'};
   @override
   Map<String, String> get errors => {
-    'BAD_USER_INPUT': 'Usuário ou senha inválidos',
+    'invalid_credentials': 'Email ou senha inválidos',
+    'email_not_confirmed': 'Confirme seu email antes de entrar',
+    'user_banned': 'Sua conta está temporariamente indisponível',
     'other': _root.common.genericError,
   };
 }
@@ -360,8 +374,6 @@ class _TranslationsAuthenticationSignupPt extends TranslationsAuthenticationSign
   @override
   String get buttonSubmit => 'Registrar';
   @override
-  Map<String, String> get usernameErrors => {'empty': 'Nome de usuário é obrigatório'};
-  @override
   Map<String, String> get emailErrors => {'invalid': 'Email é inválido'};
   @override
   Map<String, String> get passwordErrors => {
@@ -370,7 +382,13 @@ class _TranslationsAuthenticationSignupPt extends TranslationsAuthenticationSign
   @override
   Map<String, String> get confirmPasswordErrors => {'invalid': 'Senhas não coincidem'};
   @override
-  Map<String, String> get errors => {'other': _root.common.genericError};
+  Map<String, String> get errors => {
+    'user_already_registered': 'Este email já está cadastrado',
+    'user_already_exists': 'Este email já está cadastrado',
+    'weak_password': 'Senha muito fraca',
+    'email_address_invalid': 'Email é inválido',
+    'other': _root.common.genericError,
+  };
 }
 
 // Path: authentication.forgotPassword
@@ -509,6 +527,10 @@ extension on TranslationsPt {
       'account.editProfile.firstNameErrors.empty' => 'Nome é obrigatório',
       'account.editProfile.lastNameErrors.empty' => 'Sobrenome é obrigatório',
       'account.editProfile.emailErrors.invalid' => 'Email inválido',
+      'account.editProfile.errors.invalid_email' => 'Email inválido',
+      'account.editProfile.errors.email_address_invalid' => 'Email inválido',
+      'account.editProfile.errors.email_already_in_use' => 'Este email já está em uso',
+      'account.editProfile.errors.email_exists' => 'Este email já está em uso',
       'account.editProfile.errors.other' => _root.common.genericError,
       'account.changePassword.title' => 'Alterar Senha',
       'account.changePassword.labelCurrentPassword' => 'Senha Atual',
@@ -519,6 +541,11 @@ extension on TranslationsPt {
       'account.changePassword.newPasswordErrors.weak' =>
         'A nova senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número',
       'account.changePassword.confirmPasswordErrors.invalid' => 'As senhas não coincidem',
+      'account.changePassword.errors.wrong_current_password' => 'A senha atual está incorreta',
+      'account.changePassword.errors.invalid_credentials' => 'A senha atual está incorreta',
+      'account.changePassword.errors.same_password' =>
+        'A nova senha deve ser diferente da senha atual',
+      'account.changePassword.errors.weak_password' => 'A nova senha é muito fraca',
       'account.changePassword.errors.other' => _root.common.genericError,
       'authentication.login.title' => 'Entrar',
       'authentication.login.buttonLogin' => 'Entrar',
@@ -528,18 +555,23 @@ extension on TranslationsPt {
       'authentication.login.buttonNewAccount' => 'Não tem uma conta? Cadastre-se',
       'authentication.login.buttonDevMenu' => 'Abrir DevMenu',
       'authentication.login.dividerOr' => 'OU',
-      'authentication.login.usernameErrors.empty' => 'O nome de usuário é obrigatório',
+      'authentication.login.emailErrors.invalid' => 'Email é inválido',
       'authentication.login.passwordErrors.empty' => 'A senha é obrigatória',
-      'authentication.login.errors.BAD_USER_INPUT' => 'Usuário ou senha inválidos',
+      'authentication.login.errors.invalid_credentials' => 'Email ou senha inválidos',
+      'authentication.login.errors.email_not_confirmed' => 'Confirme seu email antes de entrar',
+      'authentication.login.errors.user_banned' => 'Sua conta está temporariamente indisponível',
       'authentication.login.errors.other' => _root.common.genericError,
       'authentication.signup.title' => 'Registrar',
       'authentication.signup.labelConfirmPassword' => 'Confirmar Senha',
       'authentication.signup.buttonSubmit' => 'Registrar',
-      'authentication.signup.usernameErrors.empty' => 'Nome de usuário é obrigatório',
       'authentication.signup.emailErrors.invalid' => 'Email é inválido',
       'authentication.signup.passwordErrors.weak' =>
         'Senha deve ter pelo menos 8 caracteres e conter pelo menos uma letra e um número',
       'authentication.signup.confirmPasswordErrors.invalid' => 'Senhas não coincidem',
+      'authentication.signup.errors.user_already_registered' => 'Este email já está cadastrado',
+      'authentication.signup.errors.user_already_exists' => 'Este email já está cadastrado',
+      'authentication.signup.errors.weak_password' => 'Senha muito fraca',
+      'authentication.signup.errors.email_address_invalid' => 'Email é inválido',
       'authentication.signup.errors.other' => _root.common.genericError,
       'authentication.forgotPassword.title' => 'Recuperar Senha',
       'authentication.forgotPassword.description' =>

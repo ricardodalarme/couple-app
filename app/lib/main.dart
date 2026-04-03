@@ -1,3 +1,4 @@
+import 'package:authentication_service/authentication_service.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:crash_report_service/crash_report_service.dart';
@@ -31,7 +32,11 @@ Future<void> main() async {
 
   await _setupFirebase();
   _registerModules();
-  await Future.wait([_configureCrashReportService(), _initializeStorageService()]);
+  await Future.wait([
+    _configureCrashReportService(),
+    _initializeStorageService(),
+    _initializeAuthenticationService(),
+  ]);
   _checkOnboardingStatus();
 
   runApp(const App());
@@ -67,6 +72,15 @@ Future<void> _initializeStorageService() async {
   final PreferencesService preferencesService = AppInjector.instance.get<PreferencesService>();
 
   await preferencesService.initialize();
+}
+
+Future<void> _initializeAuthenticationService() async {
+  _logger.info('Initializing Authentication Service');
+
+  final AuthenticationService authenticationService = AppInjector.instance
+      .get<AuthenticationService>();
+
+  await authenticationService.initialize(url: Config.supabaseUrl, anonKey: Config.supabaseAnonKey);
 }
 
 void _setupLocale() {

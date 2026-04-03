@@ -1,27 +1,16 @@
+import 'package:authentication_service/authentication_service.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/data_sources/authentication_data_source.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/data_sources/token_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/forgot_password/cubit/forgot_password_cubit.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/login/cubit/login_cubit.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/signup/cubit/signup_cubit.dart';
-import 'package:network/network.dart';
-import 'package:secure_storage_service/secure_storage_service.dart';
 
 class AuthenticationInjectionModule implements InjectionModule {
   @override
   void registerDependencies({required Injector injector}) => injector
-    ..registerLazySingleton<AuthenticationDataSource>(
-      () => AuthenticationDataSource(graphlQLClient: injector.get<GQLClient>()),
-    )
-    ..registerLazySingleton<TokenLocalDataSource>(
-      () => TokenLocalDataSource(storage: injector.get<SecureStorageService>()),
-    )
+    ..registerLazySingleton<AuthenticationService>(AuthenticationService.new)
     ..registerLazySingleton<AuthenticationRepository>(
-      () => AuthenticationRepository(
-        loginDataSource: injector.get<AuthenticationDataSource>(),
-        tokenLocalDataSource: injector.get<TokenLocalDataSource>(),
-      ),
+      () => AuthenticationRepository(authenticationService: injector.get<AuthenticationService>()),
     )
     ..registerFactory<LoginCubit>(
       () => LoginCubit(authenticationRepository: injector.get<AuthenticationRepository>()),

@@ -1,5 +1,4 @@
 // dart format width=100
-import '../../../../../_shared/data/data_sources/fragments/generated/UserFragment.graphql.dart';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
@@ -7,22 +6,22 @@ class FragmentPostFragment {
   FragmentPostFragment({
     required this.id,
     required this.title,
-    required this.body,
-    required this.createdBy,
-    this.$__typename = 'Post',
+    required this.content,
+    this.author_image_url,
+    this.$__typename = 'posts',
   });
 
   factory FragmentPostFragment.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
-    final l$body = json['body'];
-    final l$createdBy = json['createdBy'];
+    final l$content = json['content'];
+    final l$author_image_url = json['author_image_url'];
     final l$$__typename = json['__typename'];
     return FragmentPostFragment(
       id: (l$id as String),
       title: (l$title as String),
-      body: (l$body as String),
-      createdBy: FragmentUserFragment.fromJson((l$createdBy as Map<String, dynamic>)),
+      content: (l$content as String),
+      author_image_url: (l$author_image_url as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -31,9 +30,9 @@ class FragmentPostFragment {
 
   final String title;
 
-  final String body;
+  final String content;
 
-  final FragmentUserFragment createdBy;
+  final String? author_image_url;
 
   final String $__typename;
 
@@ -43,10 +42,10 @@ class FragmentPostFragment {
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
-    final l$body = body;
-    _resultData['body'] = l$body;
-    final l$createdBy = createdBy;
-    _resultData['createdBy'] = l$createdBy.toJson();
+    final l$content = content;
+    _resultData['content'] = l$content;
+    final l$author_image_url = author_image_url;
+    _resultData['author_image_url'] = l$author_image_url;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -56,10 +55,10 @@ class FragmentPostFragment {
   int get hashCode {
     final l$id = id;
     final l$title = title;
-    final l$body = body;
-    final l$createdBy = createdBy;
+    final l$content = content;
+    final l$author_image_url = author_image_url;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$title, l$body, l$createdBy, l$$__typename]);
+    return Object.hashAll([l$id, l$title, l$content, l$author_image_url, l$$__typename]);
   }
 
   @override
@@ -80,14 +79,14 @@ class FragmentPostFragment {
     if (l$title != lOther$title) {
       return false;
     }
-    final l$body = body;
-    final lOther$body = other.body;
-    if (l$body != lOther$body) {
+    final l$content = content;
+    final lOther$content = other.content;
+    if (l$content != lOther$content) {
       return false;
     }
-    final l$createdBy = createdBy;
-    final lOther$createdBy = other.createdBy;
-    if (l$createdBy != lOther$createdBy) {
+    final l$author_image_url = author_image_url;
+    final lOther$author_image_url = other.author_image_url;
+    if (l$author_image_url != lOther$author_image_url) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -102,7 +101,7 @@ class FragmentPostFragment {
 const fragmentDefinitionPostFragment = FragmentDefinitionNode(
   name: NameNode(value: 'PostFragment'),
   typeCondition: TypeConditionNode(
-    on: NamedTypeNode(name: NameNode(value: 'Post'), isNonNull: false),
+    on: NamedTypeNode(name: NameNode(value: 'posts'), isNonNull: false),
   ),
   directives: [],
   selectionSet: SelectionSetNode(
@@ -122,32 +121,18 @@ const fragmentDefinitionPostFragment = FragmentDefinitionNode(
         selectionSet: null,
       ),
       FieldNode(
-        name: NameNode(value: 'body'),
+        name: NameNode(value: 'content'),
         alias: null,
         arguments: [],
         directives: [],
         selectionSet: null,
       ),
       FieldNode(
-        name: NameNode(value: 'createdBy'),
+        name: NameNode(value: 'author_image_url'),
         alias: null,
         arguments: [],
         directives: [],
-        selectionSet: SelectionSetNode(
-          selections: [
-            FragmentSpreadNode(
-              name: NameNode(value: 'UserFragment'),
-              directives: [],
-            ),
-            FieldNode(
-              name: NameNode(value: '__typename'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null,
-            ),
-          ],
-        ),
+        selectionSet: null,
       ),
       FieldNode(
         name: NameNode(value: '__typename'),
@@ -160,7 +145,7 @@ const fragmentDefinitionPostFragment = FragmentDefinitionNode(
   ),
 );
 const documentNodeFragmentPostFragment = DocumentNode(
-  definitions: [fragmentDefinitionPostFragment, fragmentDefinitionUserFragment],
+  definitions: [fragmentDefinitionPostFragment],
 );
 
 extension ClientExtensionFragmentPostFragment on graphql.GraphQLClient {

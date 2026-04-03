@@ -4,8 +4,8 @@ import 'package:graphql/client.dart' as graphql;
 
 class FragmentPageInfoFragment {
   FragmentPageInfoFragment({
-    this.hasNextPage,
-    this.hasPreviousPage,
+    required this.hasNextPage,
+    required this.hasPreviousPage,
     this.startCursor,
     this.endCursor,
     this.$__typename = 'PageInfo',
@@ -18,17 +18,17 @@ class FragmentPageInfoFragment {
     final l$endCursor = json['endCursor'];
     final l$$__typename = json['__typename'];
     return FragmentPageInfoFragment(
-      hasNextPage: (l$hasNextPage as bool?),
-      hasPreviousPage: (l$hasPreviousPage as bool?),
+      hasNextPage: (l$hasNextPage as bool),
+      hasPreviousPage: (l$hasPreviousPage as bool),
       startCursor: (l$startCursor as String?),
       endCursor: (l$endCursor as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool? hasNextPage;
+  final bool hasNextPage;
 
-  final bool? hasPreviousPage;
+  final bool hasPreviousPage;
 
   final String? startCursor;
 

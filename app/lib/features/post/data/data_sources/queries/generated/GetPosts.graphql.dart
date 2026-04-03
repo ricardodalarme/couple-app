@@ -1,6 +1,4 @@
 // dart format width=100
-import '../../../../../_shared/data/data_sources/fragments/generated/PageInfoFragment.graphql.dart';
-import '../../../../../_shared/data/data_sources/fragments/generated/UserFragment.graphql.dart';
 import '../../fragments/generated/PostFragment.graphql.dart';
 import 'dart:async';
 import 'package:gql/ast.dart';
@@ -85,27 +83,27 @@ class VariablesQueryGetPosts {
 }
 
 class QueryGetPosts {
-  QueryGetPosts({this.posts, this.$__typename = 'Query'});
+  QueryGetPosts({this.postsCollection, this.$__typename = 'Query'});
 
   factory QueryGetPosts.fromJson(Map<String, dynamic> json) {
-    final l$posts = json['posts'];
+    final l$postsCollection = json['postsCollection'];
     final l$$__typename = json['__typename'];
     return QueryGetPosts(
-      posts: l$posts == null
+      postsCollection: l$postsCollection == null
           ? null
-          : QueryGetPostsposts.fromJson((l$posts as Map<String, dynamic>)),
+          : QueryGetPostspostsCollection.fromJson((l$postsCollection as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryGetPostsposts? posts;
+  final QueryGetPostspostsCollection? postsCollection;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$posts = posts;
-    _resultData['posts'] = l$posts?.toJson();
+    final l$postsCollection = postsCollection;
+    _resultData['postsCollection'] = l$postsCollection?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -113,9 +111,9 @@ class QueryGetPosts {
 
   @override
   int get hashCode {
-    final l$posts = posts;
+    final l$postsCollection = postsCollection;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$posts, l$$__typename]);
+    return Object.hashAll([l$postsCollection, l$$__typename]);
   }
 
   @override
@@ -126,9 +124,9 @@ class QueryGetPosts {
     if (other is! QueryGetPosts || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$posts = posts;
-    final lOther$posts = other.posts;
-    if (l$posts != lOther$posts) {
+    final l$postsCollection = postsCollection;
+    final lOther$postsCollection = other.postsCollection;
+    if (l$postsCollection != lOther$postsCollection) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -154,7 +152,7 @@ const documentNodeQueryGetPosts = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'after')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'Cursor'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -163,7 +161,7 @@ const documentNodeQueryGetPosts = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'posts'),
+            name: NameNode(value: 'postsCollection'),
             alias: null,
             arguments: [
               ArgumentNode(
@@ -174,41 +172,52 @@ const documentNodeQueryGetPosts = DocumentNode(
                 name: NameNode(value: 'after'),
                 value: VariableNode(name: NameNode(value: 'after')),
               ),
+              ArgumentNode(
+                name: NameNode(value: 'orderBy'),
+                value: ListValueNode(
+                  values: [
+                    ObjectValueNode(
+                      fields: [
+                        ObjectFieldNode(
+                          name: NameNode(value: 'id'),
+                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'pageInfo'),
+                  name: NameNode(value: 'edges'),
                   alias: null,
                   arguments: [],
                   directives: [],
                   selectionSet: SelectionSetNode(
                     selections: [
-                      FragmentSpreadNode(
-                        name: NameNode(value: 'PageInfoFragment'),
-                        directives: [],
-                      ),
                       FieldNode(
-                        name: NameNode(value: '__typename'),
+                        name: NameNode(value: 'node'),
                         alias: null,
                         arguments: [],
                         directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
-                ),
-                FieldNode(
-                  name: NameNode(value: 'nodes'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FragmentSpreadNode(
-                        name: NameNode(value: 'PostFragment'),
-                        directives: [],
+                        selectionSet: SelectionSetNode(
+                          selections: [
+                            FragmentSpreadNode(
+                              name: NameNode(value: 'PostFragment'),
+                              directives: [],
+                            ),
+                            FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                          ],
+                        ),
                       ),
                       FieldNode(
                         name: NameNode(value: '__typename'),
@@ -240,9 +249,7 @@ const documentNodeQueryGetPosts = DocumentNode(
         ],
       ),
     ),
-    fragmentDefinitionPageInfoFragment,
     fragmentDefinitionPostFragment,
-    fragmentDefinitionUserFragment,
   ],
 );
 QueryGetPosts _parserFnQueryGetPosts(Map<String, dynamic> data) => QueryGetPosts.fromJson(data);
@@ -365,38 +372,28 @@ extension ClientExtensionQueryGetPosts on graphql.GraphQLClient {
   }
 }
 
-class QueryGetPostsposts {
-  QueryGetPostsposts({
-    required this.pageInfo,
-    required this.nodes,
-    this.$__typename = 'PostConnection',
-  });
+class QueryGetPostspostsCollection {
+  QueryGetPostspostsCollection({required this.edges, this.$__typename = 'postsConnection'});
 
-  factory QueryGetPostsposts.fromJson(Map<String, dynamic> json) {
-    final l$pageInfo = json['pageInfo'];
-    final l$nodes = json['nodes'];
+  factory QueryGetPostspostsCollection.fromJson(Map<String, dynamic> json) {
+    final l$edges = json['edges'];
     final l$$__typename = json['__typename'];
-    return QueryGetPostsposts(
-      pageInfo: FragmentPageInfoFragment.fromJson((l$pageInfo as Map<String, dynamic>)),
-      nodes: (l$nodes as List<dynamic>)
-          .map((e) => QueryGetPostspostsnodes.fromJson((e as Map<String, dynamic>)))
+    return QueryGetPostspostsCollection(
+      edges: (l$edges as List<dynamic>)
+          .map((e) => QueryGetPostspostsCollectionedges.fromJson((e as Map<String, dynamic>)))
           .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final FragmentPageInfoFragment pageInfo;
-
-  final List<QueryGetPostspostsnodes> nodes;
+  final List<QueryGetPostspostsCollectionedges> edges;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$pageInfo = pageInfo;
-    _resultData['pageInfo'] = l$pageInfo.toJson();
-    final l$nodes = nodes;
-    _resultData['nodes'] = l$nodes.map((e) => e.toJson()).toList();
+    final l$edges = edges;
+    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -404,10 +401,9 @@ class QueryGetPostsposts {
 
   @override
   int get hashCode {
-    final l$pageInfo = pageInfo;
-    final l$nodes = nodes;
+    final l$edges = edges;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$pageInfo, Object.hashAll(l$nodes.map((v) => v)), l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -415,23 +411,18 @@ class QueryGetPostsposts {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryGetPostsposts || runtimeType != other.runtimeType) {
+    if (other is! QueryGetPostspostsCollection || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$pageInfo = pageInfo;
-    final lOther$pageInfo = other.pageInfo;
-    if (l$pageInfo != lOther$pageInfo) {
+    final l$edges = edges;
+    final lOther$edges = other.edges;
+    if (l$edges.length != lOther$edges.length) {
       return false;
     }
-    final l$nodes = nodes;
-    final lOther$nodes = other.nodes;
-    if (l$nodes.length != lOther$nodes.length) {
-      return false;
-    }
-    for (int i = 0; i < l$nodes.length; i++) {
-      final l$nodes$entry = l$nodes[i];
-      final lOther$nodes$entry = lOther$nodes[i];
-      if (l$nodes$entry != lOther$nodes$entry) {
+    for (int i = 0; i < l$edges.length; i++) {
+      final l$edges$entry = l$edges[i];
+      final lOther$edges$entry = lOther$edges[i];
+      if (l$edges$entry != lOther$edges$entry) {
         return false;
       }
     }
@@ -444,143 +435,26 @@ class QueryGetPostsposts {
   }
 }
 
-class QueryGetPostspostsnodes {
-  QueryGetPostspostsnodes({required this.$__typename});
+class QueryGetPostspostsCollectionedges {
+  QueryGetPostspostsCollectionedges({required this.node, this.$__typename = 'postsEdge'});
 
-  factory QueryGetPostspostsnodes.fromJson(Map<String, dynamic> json) {
-    switch (json["__typename"] as String) {
-      case "Post":
-        return QueryGetPostspostsnodesPost.fromJson(json);
-
-      case "RemovedPost":
-        return QueryGetPostspostsnodesRemovedPost.fromJson(json);
-
-      default:
-        final l$$__typename = json['__typename'];
-        return QueryGetPostspostsnodes($__typename: (l$$__typename as String));
-    }
-  }
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGetPostspostsnodes || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtensionQueryGetPostspostsnodes on QueryGetPostspostsnodes {
-  _T when<_T>({
-    required _T Function(QueryGetPostspostsnodesPost) post,
-    required _T Function(QueryGetPostspostsnodesRemovedPost) removedPost,
-    required _T Function() orElse,
-  }) {
-    switch ($__typename) {
-      case "Post":
-        return post(this as QueryGetPostspostsnodesPost);
-
-      case "RemovedPost":
-        return removedPost(this as QueryGetPostspostsnodesRemovedPost);
-
-      default:
-        return orElse();
-    }
-  }
-
-  _T maybeWhen<_T>({
-    _T Function(QueryGetPostspostsnodesPost)? post,
-    _T Function(QueryGetPostspostsnodesRemovedPost)? removedPost,
-    required _T Function() orElse,
-  }) {
-    switch ($__typename) {
-      case "Post":
-        if (post != null) {
-          return post(this as QueryGetPostspostsnodesPost);
-        } else {
-          return orElse();
-        }
-
-      case "RemovedPost":
-        if (removedPost != null) {
-          return removedPost(this as QueryGetPostspostsnodesRemovedPost);
-        } else {
-          return orElse();
-        }
-
-      default:
-        return orElse();
-    }
-  }
-}
-
-class QueryGetPostspostsnodesPost implements FragmentPostFragment, QueryGetPostspostsnodes {
-  QueryGetPostspostsnodesPost({
-    required this.id,
-    required this.title,
-    required this.body,
-    required this.createdBy,
-    this.$__typename = 'Post',
-  });
-
-  factory QueryGetPostspostsnodesPost.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$title = json['title'];
-    final l$body = json['body'];
-    final l$createdBy = json['createdBy'];
+  factory QueryGetPostspostsCollectionedges.fromJson(Map<String, dynamic> json) {
+    final l$node = json['node'];
     final l$$__typename = json['__typename'];
-    return QueryGetPostspostsnodesPost(
-      id: (l$id as String),
-      title: (l$title as String),
-      body: (l$body as String),
-      createdBy: FragmentUserFragment.fromJson((l$createdBy as Map<String, dynamic>)),
+    return QueryGetPostspostsCollectionedges(
+      node: FragmentPostFragment.fromJson((l$node as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String id;
-
-  final String title;
-
-  final String body;
-
-  final FragmentUserFragment createdBy;
+  final FragmentPostFragment node;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$body = body;
-    _resultData['body'] = l$body;
-    final l$createdBy = createdBy;
-    _resultData['createdBy'] = l$createdBy.toJson();
+    final l$node = node;
+    _resultData['node'] = l$node.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -588,12 +462,9 @@ class QueryGetPostspostsnodesPost implements FragmentPostFragment, QueryGetPosts
 
   @override
   int get hashCode {
-    final l$id = id;
-    final l$title = title;
-    final l$body = body;
-    final l$createdBy = createdBy;
+    final l$node = node;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$title, l$body, l$createdBy, l$$__typename]);
+    return Object.hashAll([l$node, l$$__typename]);
   }
 
   @override
@@ -601,67 +472,12 @@ class QueryGetPostspostsnodesPost implements FragmentPostFragment, QueryGetPosts
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryGetPostspostsnodesPost || runtimeType != other.runtimeType) {
+    if (other is! QueryGetPostspostsCollectionedges || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$body = body;
-    final lOther$body = other.body;
-    if (l$body != lOther$body) {
-      return false;
-    }
-    final l$createdBy = createdBy;
-    final lOther$createdBy = other.createdBy;
-    if (l$createdBy != lOther$createdBy) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryGetPostspostsnodesRemovedPost implements QueryGetPostspostsnodes {
-  QueryGetPostspostsnodesRemovedPost({this.$__typename = 'RemovedPost'});
-
-  factory QueryGetPostspostsnodesRemovedPost.fromJson(Map<String, dynamic> json) {
-    final l$$__typename = json['__typename'];
-    return QueryGetPostspostsnodesRemovedPost($__typename: (l$$__typename as String));
-  }
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGetPostspostsnodesRemovedPost || runtimeType != other.runtimeType) {
+    final l$node = node;
+    final lOther$node = other.node;
+    if (l$node != lOther$node) {
       return false;
     }
     final l$$__typename = $__typename;

@@ -1,2951 +1,474 @@
-type Query {
-  """
-  Query that finds apps and return them.
-  """
-  apps(after: String, filter: AppFilterInput, first: Int): AppConnection
+"""A high precision floating point value represented as a string"""
+scalar BigFloat
 
-  dummyModeratedTexts: [ModeratedText!]!
-
-  dummyNotificationsQuery: Int!
-
-  dummyQuery: Int!
-
-  elastic: Elastic
-
-  home: Home!
-
-  """
-  Query that returns the user associated with the given access token in the
-  Authorization header.
-  """
-  me: User @deprecated(reason: "preferred way is to use `viewer`")
-
-  node(id: ID!): Node
-
-  """
-  Query that finds organizations and return them.
-  """
-  organizations(
-    after: String
-    before: String
-    filter: OrganizationFilterInput
-    first: Int
-    last: Int
-    order: [OrganizationOrderInput!]
-  ): OrganizationConnection
-
-  """
-  Query that finds and return a list of playlists
-  """
-  playlists: PlaylistConnection
-
-  """
-  Query that finds and return a list of paginated posts
-  """
-  posts(after: String, filter: PostFilterInput, first: Int): PostConnection
-
-  """
-  Query that lists existing terms and optionally filter by title, content
-  or tags in order to fetch its id, which can be used elsewhere in the app.
-
-  If both params are empty, all terms will be returned paginated.
-  It serves as the entry point for all the Terms Services.
-
-  The user must have the `terms-read` permission in order to see the
-  `Term` attributes.
-
-  See example [GetPaginatedTerms](docs/design/0001-terms-GetPaginatedTerms.gql)
-  """
-  terms(
-    after: String
-    filter: TermFilterInput
-    first: Int
-    order: [TermOrderInput!]
-  ): TermConnection
-
-  """
-  This query will try to to find the user with the email given in the argument
-  .
-
-  Requires permissions: `users-read`
-  """
-  user(email: String!): User
-
-  """
-  Query that gets all available users.
-
-  Requires permissions: `users-read`
-  """
-  users(after: String, filter: UserFilterInput, first: Int): UserConnection
-
-  """
-  Query that finds and return a list of videos
-  """
-  videos: VideoConnection
-
-  """
-  Query that returns the user and their permissions with the given access token
-  in the Authorization header.
-  """
-  viewer: ViewerPayload
-
-  """
-  Query that finds webhooks and returns them.
-  """
-  webhooks(
-    after: String
-    filter: WebhookFilterInput
-    first: Int
-  ): WebhookConnection!
+"""
+Boolean expression comparing fields on type "BigFloat"
+"""
+input BigFloatFilter {
+  eq: BigFloat
+  gt: BigFloat
+  gte: BigFloat
+  in: [BigFloat!]
+  is: FilterIs
+  lt: BigFloat
+  lte: BigFloat
+  neq: BigFloat
 }
 
 """
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+Boolean expression comparing fields on type "BigFloatList"
 """
-scalar String
+input BigFloatListFilter {
+  containedBy: [BigFloat!]
+  contains: [BigFloat!]
+  eq: [BigFloat!]
+  is: FilterIs
+  overlaps: [BigFloat!]
+}
+
+"""An arbitrary size integer represented as a string"""
+scalar BigInt
 
 """
-Input in a `App` connection to filter apps, according to each field.
+Boolean expression comparing fields on type "BigInt"
 """
-input AppFilterInput {
-  """
-  If given (non-null), filter is applied to app's clientId.
-  """
-  clientId: String
+input BigIntFilter {
+  eq: BigInt
+  gt: BigInt
+  gte: BigInt
+  in: [BigInt!]
+  is: FilterIs
+  lt: BigInt
+  lte: BigInt
+  neq: BigInt
 }
 
 """
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+Boolean expression comparing fields on type "BigIntList"
 """
-scalar Int
-
-"""
-Type responsible for `App` connection and pagination
-"""
-type AppConnection {
-  nodes: [App!]!
-
-  pageInfo: PageInfo!
+input BigIntListFilter {
+  containedBy: [BigInt!]
+  contains: [BigInt!]
+  eq: [BigInt!]
+  is: FilterIs
+  overlaps: [BigInt!]
 }
 
 """
-Type associated with all `App` related info
-
-
-You need the `apps-read` permission to read a given
-app, otherwise a forbidden error will be thrown.
+Boolean expression comparing fields on type "Boolean"
 """
-type App implements Node {
-  """
-  Field that holds the app's description.
-  """
-  description: String
+input BooleanFilter {
+  eq: Boolean
+  is: FilterIs
+}
 
-  """
-  Field that indicates if an app is enabled or not.
-  """
-  enabled: Boolean
+"""
+Boolean expression comparing fields on type "BooleanList"
+"""
+input BooleanListFilter {
+  containedBy: [Boolean!]
+  contains: [Boolean!]
+  eq: [Boolean!]
+  is: FilterIs
+  overlaps: [Boolean!]
+}
 
-  """
-  Field that holds the apps' unique identifier.
-  """
-  id: ID!
+"""
+An opaque string using for tracking a position in results during pagination
+"""
+scalar Cursor
 
-  """
-  Field that holds the app's name.
-  """
-  name: String
+"""A date without time information"""
+scalar Date
 
-  """
-  Field that holds a list of urls to be redirected.
-  """
-  redirectURL: [String!]
+"""
+Boolean expression comparing fields on type "Date"
+"""
+input DateFilter {
+  eq: Date
+  gt: Date
+  gte: Date
+  in: [Date!]
+  is: FilterIs
+  lt: Date
+  lte: Date
+  neq: Date
+}
+
+"""
+Boolean expression comparing fields on type "DateList"
+"""
+input DateListFilter {
+  containedBy: [Date!]
+  contains: [Date!]
+  eq: [Date!]
+  is: FilterIs
+  overlaps: [Date!]
+}
+
+"""A date and time"""
+scalar Datetime
+
+"""
+Boolean expression comparing fields on type "Datetime"
+"""
+input DatetimeFilter {
+  eq: Datetime
+  gt: Datetime
+  gte: Datetime
+  in: [Datetime!]
+  is: FilterIs
+  lt: Datetime
+  lte: Datetime
+  neq: Datetime
+}
+
+"""
+Boolean expression comparing fields on type "DatetimeList"
+"""
+input DatetimeListFilter {
+  containedBy: [Datetime!]
+  contains: [Datetime!]
+  eq: [Datetime!]
+  is: FilterIs
+  overlaps: [Datetime!]
+}
+
+enum FilterIs {
+  NULL
+  NOT_NULL
+}
+
+"""
+Boolean expression comparing fields on type "Float"
+"""
+input FloatFilter {
+  eq: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  is: FilterIs
+  lt: Float
+  lte: Float
+  neq: Float
+}
+
+"""
+Boolean expression comparing fields on type "FloatList"
+"""
+input FloatListFilter {
+  containedBy: [Float!]
+  contains: [Float!]
+  eq: [Float!]
+  is: FilterIs
+  overlaps: [Float!]
+}
+
+"""
+Boolean expression comparing fields on type "ID"
+"""
+input IDFilter {
+  eq: ID
+}
+
+"""
+Boolean expression comparing fields on type "Int"
+"""
+input IntFilter {
+  eq: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  is: FilterIs
+  lt: Int
+  lte: Int
+  neq: Int
+}
+
+"""
+Boolean expression comparing fields on type "IntList"
+"""
+input IntListFilter {
+  containedBy: [Int!]
+  contains: [Int!]
+  eq: [Int!]
+  is: FilterIs
+  overlaps: [Int!]
+}
+
+"""A Javascript Object Notation value serialized as a string"""
+scalar JSON
+
+"""The root type for creating and mutating data"""
+type Mutation {
+  """Deletes zero or more records from the `posts` collection"""
+  deleteFrompostsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: postsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): postsDeleteResponse!
+
+  """Adds one or more `posts` records to the collection"""
+  insertIntopostsCollection(objects: [postsInsertInput!]!): postsInsertResponse
+
+  """Updates zero or more records in the `posts` collection"""
+  updatepostsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: postsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: postsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): postsUpdateResponse!
 }
 
 interface Node {
-  id: ID!
+  """Retrieves a record by `ID`"""
+  nodeId: ID!
 }
 
-"""
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
-"""
-scalar ID
+"""Any type not handled by the type system"""
+scalar Opaque
 
 """
-The `Boolean` scalar type represents `true` or `false`.
+Boolean expression comparing fields on type "Opaque"
 """
-scalar Boolean
+input OpaqueFilter {
+  eq: Opaque
+  is: FilterIs
+}
+
+"""Defines a per-field sorting order"""
+enum OrderByDirection {
+  """Ascending order, nulls first"""
+  AscNullsFirst
+
+  """Ascending order, nulls last"""
+  AscNullsLast
+
+  """Descending order, nulls first"""
+  DescNullsFirst
+
+  """Descending order, nulls last"""
+  DescNullsLast
+}
 
 type PageInfo {
   endCursor: String
-
-  hasNextPage: Boolean
-
-  hasPreviousPage: Boolean
-
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
   startCursor: String
 }
 
-type ModeratedText {
-  message: String!
-
-  moderationCategories: [ClassificationCategory!]!
-}
-
-type ClassificationCategory {
-  """
-  Confidence score between 0.00 and 1.00, reflecting the likelihood of the input or response belonging to a given category.
-  """
-  confidence: Float!
-
-  name: CategoryNameType!
-}
-
-"""
-The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
-"""
-scalar Float
-
-enum CategoryNameType {
-  DEATH_HARM_TRAGEDY
-
-  DEFAULT
-
-  DEROGATORY
-
-  FINANCE
-
-  FIREARMS_WEAPONS
-
-  HEALTH
-
-  ILLICIT_DRUGS
-
-  INSULT
-
-  LEGAL
-
-  POLITICS
-
-  PROFANITY
-
-  PUBLIC_SAFETY
-
-  RELIGION_BELIEF
-
-  SEXUAL
-
-  TOXIC
-
-  VIOLENT
-
-  WAR_CONFLICT
-}
-
-type Elastic {
-  channelMessagesStatistics(
-    input: ChannelMessagesStatisticsFilterInput!
-  ): MessageStatistics
-
-  userBiasedMessages(input: UserBiasedMessagesFilterInput!): [Message!]
-
-  userMessagesStatistics(
-    input: UserMessagesStatisticsFilterInput!
-  ): MessageStatistics
-}
-
-input ChannelMessagesStatisticsFilterInput {
-  beginDate: DateTime
-
-  channel: String
-
-  finalDate: DateTime
-}
-
-"""
-A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
-"""
-scalar DateTime
-
-type MessageStatistics {
-  numberOfInadequateMessages: Int!
-
-  numberOfMessages: Int!
-}
-
-input UserBiasedMessagesFilterInput {
-  beginDate: DateTime
-
-  channel: String
-
-  finalDate: DateTime
-
-  userName: String!
-}
-
-type Message {
-  channel: String!
-
-  date: DateTime!
-
-  userName: String!
-}
-
-input UserMessagesStatisticsFilterInput {
-  beginDate: DateTime
-
-  channel: String
-
-  finalDate: DateTime
-
-  userName: String!
-}
-
-type Home {
-  elements: [HomeElement!]!
-}
-
-union HomeElement = HomeElementText
-
-type HomeElementText {
-  id: String!
-
-  kind: HomeElementTextKind
-
-  value: String!
-}
-
-enum HomeElementTextKind {
-  h1
-
-  h2
-
-  h3
-
-  h4
-
-  h5
-
-  h6
-}
-
-"""
-Type assigned to the user entity, holds all information related to a user.
-
-Has permissions: `users-read`.
-"""
-type User implements Node {
-  """
-  This field returns all agreed terms that a user has ever agreed to.
-
-  Requires the `terms-agreements-read` permission.
-
-  Can be used in conjunction with the login mutation to immediately login and
-  get all agreed terms, similar to
-  [LoginAndGetPendingTerms](docs/design/0000-user-LoginAndGetPendingTerms.gql)
-  """
-  agreedTerms(after: String, first: Int): TermVersionAgreementConnection
-
-  """
-  String that holds an user's email
-  """
-  email: String!
-
-  """
-  Nullable string that can hold an user's first name
-  """
-  firstName: String
-
-  """
-  An user's unique identifier
-  """
-  id: ID!
-
-  """
-  This field returns the last version of a given term that a user has agreed to.
-
-  Requires the `terms-agreements-read` permission.
-  """
-  lastAgreedTermVersion(termId: ID!): TermVersionAgreement
-
-  """
-  Nullable string that can hold an user's last name
-  """
-  lastName: String
-
-  """
-  Nullable string that can hold an user's full name
-  """
-  name: String
-
-  """
-  The organizations that the user belongs to.
-  """
-  organizations(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): OrganizationEdgeConnection
-
-  """
-  This field returns all of latest published the term versions that the user
-  still hasn't agreed to.
-
-  Requires the `terms-agreements-read` permission.
-  """
-  pendingAgreements(after: String, first: Int): TermVersionConnection
-
-  """
-  The list of posts created by the user.
-  """
-  posts: [Post!]
-
-  """
-  String that holds an user's profile picture
-  """
-  profilePicture: Download
-
-  """
-  String that holds an user's username
-  """
-  username: String!
-}
-
-"""
-Type responsible for `TermVersionAgreement` connection and pagination
-"""
-type TermVersionAgreementConnection {
-  nodes: [TermVersionAgreement!]!
-
-  pageInfo: PageInfo!
-
-  totalCount: Int!
-}
-
-"""
-Type associated with all info related to a agreed term
-"""
-type TermVersionAgreement implements Node {
-  """
-  Field that says whether it was agreed or declined
-  """
-  agreed: Boolean!
-
-  """
-  Field that holds the date on which this term's version was agreed to.
-  """
-  agreedAt: DateTime!
-
-  """
-  Field that holds the unique identifier for this type
-  """
-  id: ID!
-
-  """
-  Field that holds the term that this agreed version belongs to.
-  """
-  term: Term!
-
-  """
-  Nullable field that can hold the user that agreed to this term.
-  """
-  user: User
-
-  """
-  Field that holds the version of the agreed term.
-  """
-  version: TermVersion!
-}
-
-"""
-Type associated with all `Term` related info, the user must have permission
-`terms-read` to access its information
-"""
-type Term implements Node {
-  """
-  Given a `userId`, this nullable field holds the all the agreed term
-  versions that a user has ever agreed to. If no userId is passed, the id used
-  is going to be the one that belongs to whomever made the request.
-
-  You need at least the `terms-agreements-read` permission to read this
-  field, otherwise a forbidden error will will be thrown.
-
-  You also need the `terms-agreements-read-given-user` to read a given
-  user's agreements, otherwise a forbidden error will be thrown.
-  """
-  agreedVersions(
-    after: String
-    first: Int
-    userId: ID
-  ): TermVersionAgreementConnection
-
-  """
-  Field that holds the term's description.
-  """
-  description: String!
-
-  """
-  Field that holds the term's unique identifier.
-  """
-  id: ID!
-
-  """
-  Given a `userId`, this nullable field holds the **last** term version
-  that the user has agreed to.
-
-  If no `userId` is passed through the arguments, the `userId` used
-  is going to be the one that belongs to whomever made the request.
-
-  This version might not be the latest version, in which case one might
-  prompt the user to agree to the latest one with the
-  `latestPublishedVersion` field.
-
-  You need at least the `terms-agreements-read` permission to read this
-  field.
-
-  You also need the `terms-agreements-read-given-user` to read a given
-  user's agreements, otherwise a forbidden error will be thrown.
-  """
-  lastAgreement(userId: ID): TermVersionAgreement
-
-  """
-  This nullable field holds the latest version released for a term.
-
-  Even though a term can have multiple versions, only one of them can be the
-  latest.
-  """
-  latestPublishedVersion: TermVersion
-
-  """
-  Given a `userId`, this nullable field holds the latest version pending
-  term that the user has to agree to, if there is any.
-
-  If no `userId` is passed through the arguments or the user doesn't have
-  the `terms-agreements-read` permission, the `userId` used is going to
-  be the one that belongs to whomever made the request.
-  """
-  pendingAgreement(userId: ID): TermVersion
-
-  """
-  Nullable Field that can hold the term's tags if they have any.
-  """
-  tags: [String!]
-
-  """
-  Field that holds the term's title.
-
-  A term's title is unique.
-  """
+type posts implements Node {
+  """Globally Unique Record Identifier"""
+  nodeId: ID!
+  id: UUID!
+  content: String!
   title: String!
+  author_image_url: String
+}
+
+type postsConnection {
+  edges: [postsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type postsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [posts!]!
+}
+
+type postsEdge {
+  cursor: String!
+  node: posts!
+}
+
+input postsFilter {
+  id: UUIDFilter
+  content: StringFilter
+  title: StringFilter
+  author_image_url: StringFilter
+  nodeId: IDFilter
 
   """
-  A term can have multiple versions, this field holds a connection to all
-  `TermVersion` objects a term can have. If the user has the
-  `terms-update` permission it will be able to see also draft versions.
+  Returns true only if all its inner filters are true, otherwise returns false
   """
-  versions(
-    after: String
-    filter: TermVersionFilterInput
+  and: [postsFilter!]
+
+  """
+  Returns true if at least one of its inner filters is true, otherwise returns false
+  """
+  or: [postsFilter!]
+
+  """Negates a filter"""
+  not: postsFilter
+}
+
+input postsInsertInput {
+  id: UUID
+  content: String
+  title: String
+  author_image_url: String
+}
+
+type postsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [posts!]!
+}
+
+input postsOrderBy {
+  id: OrderByDirection
+  content: OrderByDirection
+  title: OrderByDirection
+  author_image_url: OrderByDirection
+}
+
+input postsUpdateInput {
+  id: UUID
+  content: String
+  title: String
+  author_image_url: String
+}
+
+type postsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [posts!]!
+}
+
+"""The root type for querying data"""
+type Query {
+  """Retrieve a record by its `ID`"""
+  node(
+    """The record's `ID`"""
+    nodeId: ID!
+  ): Node
+
+  """A pagable collection of type `posts`"""
+  postsCollection(
+    """Query the first `n` records in the collection"""
     first: Int
-    order: [TermVersionOrderInput!]
-  ): TermVersionConnection
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: postsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [postsOrderBy!]
+  ): postsConnection
 }
 
 """
-Type associated with all info of a term's version, the user must have
-permission `terms-read` to access its information
+Boolean expression comparing fields on type "String"
 """
-type TermVersion implements Node {
-  """
-  Field that holds the body of a term's version.
-  """
-  body: String!
-
-  """
-  Field that indicates when a term version was created.
-  """
-  createdAt: DateTime!
-
-  """
-  Field that holds the description of the term's version.
-  """
-  description: String!
-
-  """
-  Field that holds the latest [ETag](https://en.wikipedia.org/wiki/HTTP_ETag).
-
-  This helps prevent mid-air collisions, as well as allows caches to be more
-  efficient and saves bandwidth.
-
-  To edit a unpublished term version or publish one, a `ifMatchesETag`
-  variable needs to be sent. The variable needs to be the same as this ETag,
-  otherwise an error will be returned to user.
-  """
-  etag: String!
-
-  """
-  Field that holds an unique identifier of the term's version.
-  """
-  id: ID!
-
-  """
-  Field that indicates if a term was published or not.
-
-  Published versions can't be modified or deleted.
-  """
-  isPublished: Boolean!
-
-  """
-  Field that holds the term that this version belongs to.
-  """
-  term: Term!
-
-  """
-  Field that indicates when a term version was last updated.
-  """
-  updatedAt: DateTime!
-
-  """
-  Field that holds a human understandable string that identifies the
-  version.
-
-  This version is unique.
-  """
-  version: String!
-}
-
-"""
-Input in a `TermVersion` connection to filter versions, according to each
-field.
-
-Each filter element will be filtered with an `AND` operation, and each
-filter element option will filter using an `OR` operation, for example:
-
-```
-{
-  "title": {
-    "contains": "Policy",
-    "startWith": "New",
-  },
-  "description": {
-    "contains": "denied"
-  }
-}
-```
-
-This will search for a `TermVersion` with title containing "Policy" or
-starting with "New" that also has a description containing "denied".
-"""
-input TermVersionFilterInput {
-  """
-  If given (non-null), filter is applied to term version's body.
-  """
-  body: StringFilterInput
-
-  """
-  If given (non-null), filter is applied to term version's createdAt.
-  """
-  createdAt: DateTimeFilterInput
-
-  """
-  If given (non-null), filter is applied to term version's description.
-  """
-  description: StringFilterInput
-
-  """
-  If given (non-null), filter is applied to term's title.
-  """
-  title: StringFilterInput
-
-  """
-  If given, the term versions should match exactly (case sensitive, full
-  match) the given strings. If more than one version is given, the term must
-  contain one of them (OR behavior).
-  """
-  versions: [String!]
-}
-
-input StringFilterInput {
-  contains: String
-
-  endsWith: String
-
-  equals: String
-
+input StringFilter {
+  eq: String
+  gt: String
+  gte: String
+  ilike: String
+  in: [String!]
+  iregex: String
+  is: FilterIs
+  like: String
+  lt: String
+  lte: String
+  neq: String
+  regex: String
   startsWith: String
 }
 
-input DateTimeFilterInput {
-  between: DateTimeRangeFilterInput
-
-  equals: DateTime
-
-  greaterThan: DateTime
-
-  greaterThanOrEqual: DateTime
-
-  lessThan: DateTime
-
-  lessThanOrEqual: DateTime
-}
-
-input DateTimeRangeFilterInput {
-  end: DateTime
-
-  start: DateTime
-}
-
-"""
-Input in a `Term` connection to order terms, according to each field.
-
-Each element will be ordered with an `ASC` or `DESC`, for example:
-
-```
-{
-  "order": [
-    { "ID": "ASC" },
-    { "CREATED_AT": "DESC" }
-  ]
-}
-```
-
-This will order the query by "id" in a ascending order and after that, order
-by "description" in a descending order.
-"""
-input TermVersionOrderInput {
-  """
-  Field which will be ordered
-  """
-  field: OrderableTermVersionFields!
-
-  """
-  Order (ASC or DESC) which will be applied
-  """
-  type: OrderInput!
-}
-
-"""
-Enum containing all orderable fields from TermVersion
-"""
-enum OrderableTermVersionFields {
-  BODY
-
-  CREATED_AT
-
-  DESCRIPTION
-
-  ETAG
-
-  ID
-
-  IS_PUBLISHED
-
-  UPDATED_AT
-
-  VERSION
-}
-
-enum OrderInput {
-  ASC
-
-  DESC
-}
-
-"""
-Type responsible for `TermVersion` connection and pagination
-"""
-type TermVersionConnection {
-  nodes: [TermVersion!]!
-
-  pageInfo: PageInfo!
-
-  totalCount: Int!
-}
-
-"""
-Type responsible for `userOrganizationEdge` connection and pagination
-"""
-type OrganizationEdgeConnection {
-  nodes: [UserOrganizationEdge!]!
-
-  pageInfo: PageInfo!
-
-  totalCount: Int!
-}
-
-"""
-Type associated with all relations between a user and its related organizations.
-
-The user-organization relation have cardinality many-to-many.
-"""
-type UserOrganizationEdge {
-  """
-  Field that holds the organization's reference.
-  """
-  organization: Organization!
-
-  """
-  Field that holds the user's role at organization.
-  """
-  role: UserOrganizationRole!
-
-  """
-  Field that holds the userOrganizationstatus's status.
-  """
-  status: UserOrganizationEdgeStatus!
-
-  """
-  Field that holds the user's reference.
-  """
-  user: User!
-}
-
-"""
-Type associated with all `Organization` related info
-
-
-You need the `organizations-read` permission to read a given
-organization, otherwise a forbidden error will be thrown.
-"""
-type Organization implements Node {
-  """
-  Field that holds the organization's corporate taxpayer registry.
-  """
-  corporateTaxpayerRegistry: String!
-
-  """
-  Field that holds the organization's description.
-  """
-  description: String
-
-  """
-  Field that holds the organization's email.
-  """
-  email: String
-
-  """
-  Field that holds the latest [ETag](https://en.wikipedia.org/wiki/HTTP_ETag).
-
-  This helps prevent mid-air collisions, as well as allows caches to be more
-  efficient and saves bandwidth.
-
-  To update a given organization, a `ifMatchesETag` variable needs to be
-  sent. The variable needs to be the same as this ETag, otherwise an error
-  will be returned to user.
-  """
-  etag: String
-
-  """
-  Field that holds the organizations' unique identifier.
-  """
-  id: ID!
-
-  """
-  field that holds organization logo information
-  """
-  logo(disposition: String): Download
-
-  """
-  Field that holds the name of the organization
-  """
-  name: String
-
-  """
-  Field that holds the organization's status.
-  """
-  status: OrganizationStatus!
-
-  """
-  Field that holds the organization's tags.
-  """
-  tags: [String!]
-
-  """
-  Field that holds the organization's trading name.
-  """
-  tradingName: String
-
-  """
-  Field that holds the organization's users.
-
-  Use the mutations `addUserToOrganization` and
-  `removeUserFromOrganization` to add or remove a user from a organization
-  """
-  users(
-    after: String
-    filter: UserOrganizationEdgeFilterInput
-    first: Int
-  ): OrganizationEdgeConnection
-}
-
-type Download {
-  encoding: String
-
-  filename: String!
-
-  lastModified: DateTime!
-
-  mimetype: String!
-
-  size: Int!
-
-  url: String!
-}
-
-"""
-Enumeration that describes the organization's status.
-"""
-enum OrganizationStatus {
-  ACTIVE
-
-  INACTIVE
-}
-
-"""
-Input that holds basic information about userOrganizationEdge's filter.
-
-Used to pass an filter in a query.
-"""
-input UserOrganizationEdgeFilterInput {
-  """
-  This field defaults to `UserOrganizationEdgeStatus.ACTIVE`.
-  If not given (non-null), filter is applied to the userOrganizationEdge's status.
-  If explicitly sent as null, this filter is not applied.
-  """
-  userOrganizationEdgeStatus: UserOrganizationEdgeStatus = ACTIVE
-}
-
-"""
-Enumeration that describes the userOrganizationEdge's status.
-"""
-enum UserOrganizationEdgeStatus {
-  ACTIVE
-
-  INACTIVE
-}
-
-"""
-Enumeration that describes the user's role at organization.
-"""
-enum UserOrganizationRole {
-  ADMIN
-
-  USER
-}
-
-type Post implements Node {
-  """
-  Field that holds the post's body.
-  """
-  body: String!
-
-  """
-  Field that holds the post's creation date.
-  """
-  createdAt: DateTime!
-
-  """
-  Field that holds the post's user.
-  """
-  createdBy: User!
-
-  """
-  Fields that holds post's deleted date.
-  """
-  deletedAt: DateTime
-
-  """
-  Field that holds the post's unique identifier.
-  """
-  id: ID!
-
-  """
-  Field that holds post's images information.
-  """
-  images(disposition: String): [Download!]!
-
-  """
-  Field that holds the post's owner (user or organization)
-  """
-  owner: PostOwner!
-
-  """
-  Field that holds post's reason given for being removed.
-  """
-  removalReason: String
-
-  """
-  Field that holds the post's title.
-  """
-  title: String!
-}
-
-union PostOwner = Organization | User
-
-input OrganizationFilterInput {
-  """
-  If given (non-null), filter is applied to the organization's corporate
-  taxpayer registry.
-  """
-  corporateTaxpayerRegistry: StringFilterInput
-
-  """
-  If given (non-null), filter is applied to the organization's email.
-  """
-  email: StringFilterInput
-
-  """
-  If given (non-null), filter is applied to the name of the organization
-  """
-  name: StringFilterInput
-
-  """
-  This field defaults to `OrganizationStatus.ACTIVE`.
-  If not given (non-null), filter is applied to the organization's status.
-  If explicitly sent as null, this filter is not applied.
-  """
-  status: OrganizationStatus = ACTIVE
-
-  """
-  If given, the organization tags should match exactly (case sensitive, full
-  match) the given strings. If more than one tag is given, the organization
-  must contain all of them (AND behavior).
-  """
-  tags: [String!]
-
-  """
-  If given (non-null), filter is applied to the organization's trading name.
-  """
-  tradingName: StringFilterInput
-}
-
-"""
-Input in a `Organization` connection to order organizations, according to
-each field.
-
-Each element will be ordered with an `ASC` or `DESC`, for example:
-
-```
-{
-  "order": [
-    { "ID": "ASC" },
-    { "DESCRIPTION": "DESC" }
-  ]
-}
-```
-
-This will order the query by "id" in a ascending order and after that, order
-by "description" in a descending order.
-"""
-input OrganizationOrderInput {
-  """
-  Field which will be ordered
-  """
-  field: OrderableOrganizationFields!
-
-  """
-  Order (ASC or DESC) which will be applied
-  """
-  type: OrderInput!
-}
-
-"""
-Enum containing all orderable fields from Organization
-"""
-enum OrderableOrganizationFields {
-  CORPORATE_TAXPAYER_REGISTRY
-
-  DESCRIPTION
-
-  EMAIL
-
-  ETAG
-
-  ID
-
-  NAME
-
-  TAGS
-
-  TRADING_NAME
-}
-
-"""
-Type responsible for `Organization` connection and pagination
-"""
-type OrganizationConnection {
-  nodes: [Organization!]!
-
-  pageInfo: PageInfo!
-
-  totalCount: Int!
-}
-
-type PlaylistConnection {
-  nodes: [Playlist!]
-}
-
-"""
-Schema that holds all information related to a playlist.
-"""
-type Playlist implements Node {
-  """
-  An playlist's unique identifier
-  """
-  id: ID!
-
-  """
-  Field that holds the playlist's name
-  """
-  name: String!
-
-  """
-  Field that holds the playlist's videos
-  """
-  videos: [Video!]
-}
-
-"""
-Type assigned to the user entity, holds all information related to a video.
-"""
-type Video implements Node {
-  """
-  Field that holds the video's asset saved in CDN service.
-  """
-  asset: Asset
-
-  """
-  Field that holds the video's creation date.
-  """
-  createdAt: DateTime!
-
-  """
-  Nullable string that can hold a video's description
-  """
-  description: String
-
-  """
-  An video's unique identifier
-  """
-  id: ID!
-
-  """
-  Nullable string that can hold a video's name
-  """
-  name: String
-
-  """
-  Field that holds the uploaded video ID
-  """
-  uploadId: String!
-}
-
-"""
-Type that holds all video's fields that are provided by CDN.
-"""
-type Asset {
-  """
-  Nullable number that can hold a video's duration
-  """
-  duration: Float
-
-  """
-  Field that holds the video's processing status.
-  """
-  status: VideoStatus!
-
-  """
-  Field that generates an authenticated url for the user to consume the video.
-  Will only return a value if `status` = READY.
-  """
-  url: AuthenticatedUrl
-}
-
-enum VideoStatus {
-  ERROR
-
-  PROCESSING
-
-  READY
-}
-
-type AuthenticatedUrl {
-  """
-  Field that holds the video's expiration date time.
-  """
-  expirationDateTime: DateTime
-
-  """
-  Field that holds the video's hls url.
-  """
-  hls_url: String!
-}
-
-input PostFilterInput {
-  """
-  If given (non-null), filter is applied to the organization the posts belong
-  to.
-  """
-  organizations: [ID!]
-}
-
-type PostConnection {
-  nodes: [MaybePost!]!
-
-  pageInfo: PageInfo!
-
-  totalCount: Int!
-}
-
-union MaybePost = Post | RemovedPost
-
-type RemovedPost {
-  """
-  Fields that references post's deleted date.
-  """
-  deletedAt: DateTime!
-
-  """
-  Field that references the post's unique identifier.
-  """
-  id: ID!
-
-  """
-  Field that references post's removal reason.
-  """
-  removalReason: String!
-}
-
-"""
-Input in a `Term` connection to filter terms, according to each field.
-
-Each filter element will be filtered with an `AND` operation, and each
-filter element option will filter using an `OR` operation, for example:
-
-```
-{
-  "title": {
-    "contains": "Policy",
-    "startWith": "New",
-  },
-  "description": {
-    "contains": "denied"
-  }
-}
-```
-
-This will search for a `Term` with title containing "Policy" or starting
-with "New" that also has a description containing "denied".
-"""
-input TermFilterInput {
-  """
-  If given (non-null), filter is applied to term's description.
-  """
-  description: StringFilterInput
-
-  """
-  If given, the term tags should match exactly (case sensitive, full match)
-  the given strings. If more than one tag is given, the term must contain
-  all of them (AND behavior).
-  """
-  tags: [String!]
-
-  """
-  If given (non-null), filter is applied to term's title.
-  """
-  title: StringFilterInput
-}
-
-"""
-Input in a `Term` connection to order terms, according to each field.
-
-Each element will be ordered with an `ASC` or `DESC`, for example:
-
-```
-{
-  "order": [
-    { "ID": "ASC" },
-    { "DESCRIPTION": "DESC" }
-  ]
-}
-```
-
-This will order the query by "id" in a ascending order and after that, order
-by "description" in a descending order.
-"""
-input TermOrderInput {
-  """
-  Field which will be ordered
-  """
-  field: OrderableTermFields!
-
-  """
-  Order (ASC or DESC) which will be applied
-  """
-  type: OrderInput!
-}
-
-"""
-Enum containing all orderable fields from Term
-"""
-enum OrderableTermFields {
-  DESCRIPTION
-
-  ID
-
-  TAGS
-
-  TITLE
-}
-
-"""
-Type used for term pagination.
-"""
-type TermConnection {
-  nodes: [Term!]!
-
-  pageInfo: PageInfo!
-
-  totalCount: Int!
-}
-
-input UserFilterInput {
-  email: StringFilterInput
-
-  name: StringFilterInput
-
-  username: StringFilterInput
-}
-
-"""
-Type associated with User pagination
-"""
-type UserConnection {
-  nodes: [User!]
-
-  pageInfo: PageInfo!
-
-  totalCount: Int!
-}
-
-type VideoConnection {
-  nodes: [Video!]
-}
-
-type ViewerPayload {
-  permissions: [String!]
-
-  user: User
-}
-
-input WebhookFilterInput {
-  """
-  If given (non-null), filter is applied to the webhook's status.
-  """
-  active: Boolean
-
-  """
-  If given (non-null), filter is applied to the webhook's event.
-  """
-  events: [SubscribableEvents!]
-
-  """
-  If given (non-null), filter is applied to the webhook's title.
-  """
-  name: StringFilterInput
-}
-
-"""
-Enumeration that describes the subscrible events.
-"""
-enum SubscribableEvents {
-  ADD_USER_TO_ORGANIZATION
-
-  REMOVE_USER_FROM_ORGANIZATION
-}
-
-"""
-Type used for webhook pagination.
-"""
-type WebhookConnection {
-  nodes: [Webhook!]!
-
-  pageInfo: PageInfo!
-
-  totalCount: Int!
-}
-
-"""
-Type associated with all `Webhook` related info.
-"""
-type Webhook implements Node {
-  """
-  Field that holds webhook's status.
-  """
-  active: Boolean!
-
-  """
-  Field that holds webhook's configuration
-  """
-  config: WebhookConfig!
-
-  """
-  Field that holds webhook's events.
-  """
-  events: [SubscribableEvents!]!
-
-  """
-  Field that holds webhook's id
-  """
-  id: ID!
-
-  """
-  Field that holds webhook's name.
-  """
-  name: String!
-}
-
-"""
-Type associated to relation between a server and a HTTP server.
-"""
-type WebhookConfig {
-  """
-  Field that holds webhook's method.
-  """
-  method: WebhookRequestMethod!
-
-  """
-  Field that holds HTTP server's url.
-  """
-  url: String!
-}
-
-"""
-Enumeration that describes the webhook's method.
-"""
-enum WebhookRequestMethod {
-  POST
-
-  PUT
-}
-
-type Mutation {
-  """
-  Mutation that activates a specific user.
-
-  Requires permissions: `activate-user`
-  """
-  activateUser(input: ActivateUserInput!): ActivateUserPayload
-
-  """
-  Mutation used to add or update a user profile picture.
-
-  If the logged don't have the "user-profile-picture-update" permission it can
-  only be able to change its on profile picture.
-
-  If AddOrUpdateUserProfilePictureInput.userId is null we assume the user
-  wants to change its own profile picture.
-  """
-  addOrUpdateUserProfilePicture(
-    input: AddOrUpdateUserProfilePictureInput!
-  ): AddOrUpdateUserProfilePicturePayload
-
-  """
-  Mutation that adds a user to an organization.
-
-  In order to create a connection between a user and a organization, the
-  `user-organization-add` permission is required.
-  """
-  addUserToOrganization(
-    input: AddUserToOrganizationInput!
-  ): AddUserToOrganizationPayload
-
-  """
-  Mutation that enables a user to agree or disagree to the latest version that is pending.
-
-  When mutation occurs and `termVersionId` is not the latest version,
-  the mutation fails and returns an error to the requester, the app must be
-  updated to show to the user that he needs to agree with the latest version.
-
-  To agree to the latest version, one needs to send `termVersionId`,
-  previously fetched with `GetPendingAgreement`. An user can only agree
-  to a published version.
-
-  The user must have the `terms-agreement-create` permission.
-  """
-  agreeOrDisagreeToTermVersion(
-    input: AgreeOrDisagreeToTermVersionInput!
-  ): AgreeOrDisagreeToTermVersionPayload
-
-  """
-  Mutation that updates a organization's status.
-
-  In order to update a organization's status,
-  `organizations-update` permission is required.
-  """
-  changeOrganizationStatus(
-    input: ChangeOrganizationStatusInput!
-  ): ChangeOrganizationStatusPayload
-
-  """
-  Mutation that changes the logged user's password.
-  """
-  changePassword(input: ChangePasswordInput!): ChangePasswordPayload
-
-  changeUserOrganizationEdgeStatus(
-    input: ChangeUserOrganizationEdgeStatusInput!
-  ): UserOrganizationEdgePayload
-
-  """
-  Mutation that creates a new app.
-
-  In order to create the app, the `apps-create` permission
-  is required.
-  """
-  createApp(input: CreateAppInput!): CreateAppPayload
-
-  """
-  Mutation that creates a new organization.
-
-  In order to create the organization, the `organizations-create` permission
-  is required.
-  """
-  createOrganization(input: CreateOrganizationInput!): CreateOrganizationPayload
-
-  """
-  Mutation that adds a post.
-  """
-  createPost(input: CreatePostInput!): CreatePostPayload
-
-  """
-  Mutation creates a new term. The newly created term must have an unique
-  title and will have an auto-generated termId. An initial version must be
-  provided alongside the newly created term, it will be a draft
-  (`isPublished: false`) and will also have an auto-generated
-  `termVersionId`.
-
-  The user must have `terms-create` permission in order to create new
-  terms.
-
-  See example [CreateTerm](docs/design/0001-terms-CreateTerm.gql)
-  """
-  createTerm(input: CreateTermInput!): CreateTermPayload
-
-  """
-  Given a previously fetched term, this mutation creates a new version for it.
-
-  This new term version will be created unpublished (draft or
-  `isPublished: false`), and the version field must be unique for that
-  term, otherwise, the mutation fails and an error will be returned.
-
-  The requester must have the permission `terms-create` to create a new
-  term version.
-
-  See example [CreateTermVersion](docs/design/0001-terms-CreateTermVersion.gql)
-  """
-  createTermVersion(input: CreateTermVersionInput!): CreateTermVersionPayload
-
-  """
-  Mutation that creates an user.
-  """
-  createUser(input: CreateUserInput!): CreateUserPayload
-
-  """
-  Mutation that deactivate a specific user.
-
-  Requires permissions: `deactivate-user`
-  """
-  deactivateUser(input: DeactivateUserInput!): DeactivateUserPayload
-
-  """
-  Mutation that deletes an existing organization.
-
-  In order to delete the organization, the `organizations-delete` permission
-  is required.
-  """
-  deleteOrganization(input: DeleteOrganizationInput!): DeleteOrganizationPayload
-
-  """
-  Mutation used to log in.
-
-  Authenticates the user, returning the access token and the logged in
-  User object.
-
-  The login can be done using one of two methods: oauth (OAuthv2) and basic
-  (username and password), which will return an access token that is valid
-  until expires.
-
-  There is no logout method, only forget about the token (stop using it,
-  delete from persistent storage) and let it expire.
-
-  To refresh the token, use the refreshToken mutation.
-
-  A common use case is to retrieve the user information once logs in and
-  eventually some other information, such as pending agreements. This can be
-  fetched directly [from the mutation](docs/design/0001-terms-AgreeToTermVersion.gql)
-  """
-  login(credentials: LoginInput!): Login
-
-  """
-  Mutation used to logout out of the system.
-
-  Given authentication, this mutation will log the user out of the
-  server, revoking the refresh token given.
-
-  Returns True, if the logout was successful.
-
-  To regain access to the server, one must use the login mutation once more.
-  """
-  logout(refreshToken: String!): Boolean!
-
-  moderateText(input: ModerateTextInput!): ModeratedTextPayload
-
-  """
-  This mutation publishes a term version, given a previously fetched draft
-  term version.
-
-  Needs to send `ifMatchesETag` to avoid mid-air collisions, otherwise,
-  an error will be returned to user, informing him that permission is not
-  accepted or the version term has been modified.
-
-  Once published that version cannot be edited or unpublished. If changes are
-  needed, a new version must be created and published.
-
-  The requester must have the permissions `terms-publish` and
-  `terms-update`.
-
-  See example [PublishTermVersion](docs/design/0001-terms-PublishTermVersion.gql)
-  """
-  publishTermVersion(input: PublishTermVersionInput!): PublishTermVersionPayload
-
-  """
-  Mutation used to refresh a login, without having to use user credentials
-  again.
-
-  Authenticates the user one more time, returning a new access token, refresh
-  token and the logged in User object. The refresh token used in this mutation
-  will be revoked after its use. Use the new refresh token given by the
-  mutation if the login needs to be refreshed again.
-
-  After logging out, the refresh token associated with to the current access
-  token will also be revoked.
-  """
-  refreshToken(tokenInfo: RefreshInput!): Login
-
-  """
-  Mutation that registers a webhook.
-  """
-  registerWebhook(input: RegisterWebhookInput!): RegisterWebhookPayload
-
-  """
-  Mutation that removes an existing post.
-
-  In order to remove the post, the `posts-remove` permission
-  is required.
-  """
-  removePost(input: RemovePostInput!): RemovePostPayload
-
-  """
-  Mutation that removes a user to an organization.
-
-  In order to remove a connection between a user and a organization, the
-  `user-organization-remove` permission is required.
-  """
-  removeUserFromOrganization(
-    input: RemoveUserFromOrganizationInput!
-  ): RemoveUserFromOrganizationPayload
-
-  """
-  Mutation that sends a reset password email to the email sent on the input, if
-  it is registered.
-  """
-  resetPassword(input: ResetPasswordInput!): ResetPasswordPayload
-
-  """
-  Mutation that restore a removed post.
-  """
-  restorePost(input: RestorePostInput!): RestorePostPayload
-
-  """
-  Mutation that triggers a webhook
-  """
-  triggerWebhook(input: TriggerWebhookEvent!): TriggerWebhookPayload
-
-  """
-  Mutation that updates an existing organization.
-
-  In order to update the organization, the `organizations-update` permission
-  is required.
-  """
-  updateOrganization(input: UpdateOrganizationInput!): UpdateOrganizationPayload
-
-  """
-  This mutation can update a term's version, given a draft term version
-  previously fetched with `GetPaginatedTermVersionsByTerm` or
-  `{ node(id) }` and a `ifMatchesETag` to avoid mid-air collisions.
-  Otherwise, an error will be returned to user, informing him that
-  something when wrong.
-
-  The requester must have the permission `terms-update`.
-
-  See example [UpdateTermVersion](docs/design/0001-terms-UpdateTermVersion.gql)
-  """
-  updateTermVersion(input: UpdateTermVersionInput!): UpdateTermVersionPayload
-
-  """
-  Mutation that updates a specific user.
-
-  Requires permissions: `users-update`
-  """
-  updateUser(input: UpdateUserInput!): UpdateUserPayload
-}
-
-"""
-Input used to update user status given its id.
-"""
-input ActivateUserInput {
-  """
-  Not nullable field that indicates which user should be activated.
-  """
-  userId: ID!
-}
-
-"""
-This is the result of `activeUser` mutation.
-"""
-type ActivateUserPayload {
-  """
-  The message to be displayed to the user.
-  """
-  result: String!
-}
-
-"""
-This input holds info for adding or updating a user profile picture,
-using user ID and the uploaded profile picture
-"""
-input AddOrUpdateUserProfilePictureInput {
-  """
-  The photo to be added/updated.
-  """
-  profilePicture: Upload!
-
-  """
-  Field that indicates which user have the photo added/updated.
-  If `null` the logged user's photo will be added/updated.
-  """
-  userId: ID
-}
-
-"""
-The `Upload` scalar type represents a file upload.
-"""
-scalar Upload
-
-type AddOrUpdateUserProfilePicturePayload {
-  user: User!
-}
-
-"""
-Input used to create a connection between an user and a organization.
-"""
-input AddUserToOrganizationInput {
-  organizationId: ID!
-
-  role: UserOrganizationRole! = USER
-
-  userId: ID!
-}
-
-"""
-Result of the `addUserToOrganization` mutation.
-"""
-type AddUserToOrganizationPayload {
-  userOrganization: UserOrganizationEdge!
-}
-
-"""
-Input used to agree or disagree to a term's version.
-"""
-input AgreeOrDisagreeToTermVersionInput {
-  """
-  Field that says whether the Term should be agreed to or declined.
-  """
-  agree: Boolean!
-
-  """
-  Field that holds the unique identifier for the term version that is being
-  agreed or disagreed.
-  """
-  termVersionId: ID!
-}
-
-"""
-Result of the `agreeOrDisagreeToTermVersion()` mutation with the `TermVersion`
-accepted by the user.
-"""
-type AgreeOrDisagreeToTermVersionPayload {
-  termAgreement: TermVersionAgreement!
-}
-
-"""
-Input used to update organization's status.
-"""
-input ChangeOrganizationStatusInput {
-  """
-  String that is used to prevent mid-air collisions. To successfully update an
-  organization, this field **has to be the same** as the `etag` field of
-  the organization that is being updated.
-  If this condition is not met, an error will be returned.
-  """
-  ifMatchesETag: String!
-
-  """
-  Field that indicates what Organization should have its status changed.
-  """
-  organizationId: ID!
-
-  """
-  Field that indicates if an organization is active or inactive
-  """
-  status: OrganizationStatus!
-}
-
-"""
-Result of the `changeOrganizationStatus` mutation.
-"""
-type ChangeOrganizationStatusPayload {
-  organization: Organization!
-}
-
-"""
-Input used to update the logged user's password
-"""
-input ChangePasswordInput {
-  """
-  The user's desired new password
-  """
-  newPassword: String!
-
-  """
-  The user's current password
-  """
-  oldPassword: String!
-}
-
-"""
-Type returned by the mutation `changePassword`
-"""
-type ChangePasswordPayload {
-  user: User!
-}
-
-"""
-Input used to change an userOrganizationEdge's status.
-"""
-input ChangeUserOrganizationEdgeStatusInput {
-  organizationId: ID!
-
-  status: UserOrganizationEdgeStatus!
-
-  userId: ID!
-}
-
-type UserOrganizationEdgePayload {
-  userOrganizationEdge: UserOrganizationEdge!
-}
-
-"""
-Input that holds basic information about an app.
-
-Used to create an `App`.
-"""
-input CreateAppInput {
-  """
-  Field that holds the app's description.
-  """
-  description: String!
-
-  """
-  Field that indicates if an app is enabled or not.
-  """
-  enabled: Boolean!
-
-  """
-  Field that holds the app's name.
-  """
-  name: String!
-
-  """
-  Field that holds a list of urls to be redirected.
-  """
-  redirectURL: [String!]!
-}
-
-"""
-This is the result of `createApp()` and contains the reference.
-to the new `App`.
-"""
-type CreateAppPayload {
-  app: App!
-}
-
-"""
-Input that holds basic information about an organization.
-
-Used to create an `Organization`.
-"""
-input CreateOrganizationInput {
-  """
-  Field that holds the organization's corporate taxpayer registry.
-  """
-  corporateTaxpayerRegistry: String!
-
-  """
-  Field that holds the organization's description.
-  """
-  description: String!
-
-  """
-  Field that holds the organization's email.
-  """
-  email: String!
-
-  """
-  Field that holds the organization's logo.
-  """
-  logo: Upload
-
-  """
-  Field that holds the name of the organization.
-  """
-  name: String!
-
-  """
-  Field that provides the user's role within the organizations he's creating.
-  Defaults to ADMIN.
-  """
-  role: UserOrganizationRole! = ADMIN
-
-  """
-  Field that holds the organization's status.
-  """
-  status: OrganizationStatus!
-
-  """
-  Field that holds the organization's tags.
-  """
-  tags: [String!]!
-
-  """
-  Field that holds the organization's trading name.
-  """
-  tradingName: String!
-}
-
-"""
-This is the result of `createOrganization()` and contains the reference.
-to the new `Organization`.
-"""
-type CreateOrganizationPayload {
-  organization: Organization!
-}
-
-"""
-Input used to create a post.
-"""
-input CreatePostInput {
-  """
-  Field that holds the post's body.
-  """
-  body: String!
-
-  """
-  Field that holds the post's images.
-  """
-  images: [Upload!]
-
-  organizationId: ID
-
-  """
-  Field that holds the post's title.
-  """
-  title: String!
-}
-
-"""
-Result of the `createPost` mutation.
-"""
-type CreatePostPayload {
-  post: Post!
-}
-
-"""
-Creates a new `Term` and its first initial `TermVersion`. The created
-version is a draft (unpublished) and may be edited with
-`updateTermVersion()` until it's final, by then one should publish it
-with `publishTermVersion()`.
-"""
-input CreateTermInput {
-  term: TermInput!
-
-  termVersion: TermVersionInput!
-}
-
-"""
-Input that holds basic information about a term.
-
-Used to create a `Term`.
-"""
-input TermInput {
-  """
-  Field that holds the description of a term.
-  """
-  description: String!
-
-  """
-  Nullable field that can hold the tags of a term.
-  """
-  tags: [String!]
-
-  """
-  Field that holds the title of a term.
-  """
-  title: String!
-}
-
-"""
-Input that holds basic information about a term's version.
-
-Used to create a `TermVersion`.
-"""
-input TermVersionInput {
-  """
-  Field that holds the body of a term's version.
-  """
-  body: String!
-
-  """
-  Field that holds the description of a term's version.
-  """
-  description: String!
-
-  """
-  Field that holds the human understandable string version of a term.
-  """
-  version: String!
-}
-
-"""
-This is the result of the `createTerm()` mutation and contains the
-reference to the new `Term` and also its initial `TermVersion`. The
-created version is a draft (unpublished) and may be edited with
-`updateTermVersion()` until it's final, by then one should publish it
-with `publishTermVersion()`.
-"""
-type CreateTermPayload {
-  term: Term!
-
-  termVersion: TermVersion!
-}
-
-"""
-Input used to a create term's version.
-"""
-input CreateTermVersionInput {
-  """
-  Field that holds the body of this new version.
-  """
-  body: String!
-
-  """
-  Field that holds the description of this new version.
-  """
-  description: String!
-
-  """
-  Field that indicates to what term this version belongs to.
-  """
-  termId: ID!
-
-  """
-  Field that holds the human understandable string of this new version.
-  """
-  version: String!
-}
-
-"""
-Result of the `createTermVersion()` mutation. The newly created version is
-draft (unpublished) and may be updated with `updateTermVersion()` until it's
-published with `publishTermVersion()`.
-"""
-type CreateTermVersionPayload {
-  termVersion: TermVersion!
-}
-
-"""
-Input used to create a user.
-Username must be unique.
-"""
-input CreateUserInput {
-  """
-  Non-Nullable string that holds an user's email
-  """
-  email: String!
-
-  """
-  Non-Nullable boolean that holds whether the user is enabled
-  the default value is true for created User information
-  can be used as valid credentials
-  """
-  enabled: Boolean! = true
-
-  """
-  Nullable string that can hold an user's first name
-  """
-  firstName: String
-
-  """
-  Nullable string that can hold an user's last name
-  """
-  lastName: String
-
-  """
-  Non-Nullable string that holds an user's password
-  """
-  password: String!
-
-  """
-  Nullable string array that can hold user's required actions
-  """
-  requiredActions: [String!]
-
-  """
-  Non-Nullable string that holds an user's username
-  """
-  username: String!
-}
-
-"""
-This is the result of the `createUser()` mutation and contains the
-created user's id.
-"""
-type CreateUserPayload {
-  id: ID!
-}
-
-"""
-Input used to update user status given its id.
-"""
-input DeactivateUserInput {
-  """
-  Not nullable field that indicates which user should be deactivated.
-  """
-  userId: ID!
-}
-
-"""
-This is the result of `deactivateUser` mutation.
-"""
-type DeactivateUserPayload {
-  """
-  The message to be displayed to the user.
-  """
-  result: String!
-}
-
-"""
-Input used to delete an organization.
-"""
-input DeleteOrganizationInput {
-  """
-  Field that indicates what organization should be deleted.
-  """
-  organizationId: ID!
-}
-
-"""
-Result of the `deleteOrganization()` mutation.
-"""
-type DeleteOrganizationPayload {
-  organization: Organization!
-}
-
-"""
-This input holds info for a basic login, using username and password.
-"""
-input LoginInput {
-  """
-  String that has the password for the user trying to log in.
-  """
-  password: String!
-
-  """
-  String that has the username for the user trying to log in.
-  """
-  username: String!
-}
-
-"""
-Type associated with the login query, has values from a successful login
-"""
-type Login {
-  """
-  Token that holds a valid auth token.
-  """
-  accessToken: Token!
-
-  """
-  Token that holds a valid auth refresh token.
-  """
-  refreshToken: Token!
-
-  """
-  Field that will have a User, if one is requested and found.
-  """
-  user: User!
-}
-
-"""
-Type associated with the login query, has values from a successful login
-"""
-type Token {
-  """
-  ISO date string that indicates when the given token is going to expire.
-  """
-  expires: DateTime!
-
-  """
-  String that holds a valid auth token.
-
-  It should be sent in the next HTTP requests as
-  `Authorization: Bearer {token}`
-  """
-  token: String!
-}
-
-input ModerateTextInput {
-  """
-  Field that holds the message from slack
-  """
-  message: String!
-}
-
-type ModeratedTextPayload {
-  moderatedText: ModeratedText!
-}
-
-"""
-Input that is used to publish a term's version
-"""
-input PublishTermVersionInput {
-  """
-  String that is used to prevent mid-air collisions. To successfully publish a
-  term's version, this field **has to be the same** as the `etag` field of
-  the term's version being updated.
-
-  If this condition is not met, an error will be returned.
-  """
-  ifMatchesETag: String!
-
-  """
-  Field that holds a `TermVersion` unique identifier
-  """
-  termVersionId: ID!
-}
-
-"""
-Result of the `publishTermVersion()` mutation. The published version is
-no longer a draft and can't be updated with `updateTermVersion()`
-anymore.
-"""
-type PublishTermVersionPayload {
-  termVersion: TermVersion!
-}
-
-"""
-This input is used to refresh a Login
-"""
-input RefreshInput {
-  """
-  Refresh token generated by a Login or another refreshToken mutation
-  """
-  token: String!
-}
-
-"""
-Input used to register a webhook.
-"""
-input RegisterWebhookInput {
-  """
-  Field that holds webhook's status.
-  """
-  active: Boolean!
-
-  """
-  Field that holds webhook's configuration.
-  """
-  config: WebhookConfigInput!
-
-  """
-  Field that holds webhook's events.
-  """
-  events: [SubscribableEvents!]!
-
-  """
-  Field that holds webhook's name.
-  """
-  name: String!
-}
-
-"""
-Input used to register a webhook configuration.
-"""
-input WebhookConfigInput {
-  """
-  Field that holds webhook's method.
-  """
-  method: WebhookRequestMethod!
-
-  """
-  Field that holds http server's url.
-  """
-  url: String!
-}
-
-"""
-Result of `registerWebhook` mutation.
-"""
-type RegisterWebhookPayload {
-  webhook: Webhook!
-}
-
-"""
-Input used to remove a post.
-"""
-input RemovePostInput {
-  """
-  Field that indicates what post should be removed.
-  """
-  id: ID!
-
-  """
-  Field that holds reason of post removal
-  """
-  reason: String!
-}
-
-"""
-Result of the `removePost()` mutation.
-"""
-type RemovePostPayload {
-  post: RemovedPost!
-}
-
-"""
-Input used to remove a connection between an user and a organization
-"""
-input RemoveUserFromOrganizationInput {
-  organizationId: ID!
-
-  userId: ID!
-}
-
-"""
-Result of the `removeUserFromOrganization` mutation.
-"""
-type RemoveUserFromOrganizationPayload {
-  userOrganization: UserOrganizationEdge
-}
-
-"""
-Input used to send an email to a user given it's id
-"""
-input ResetPasswordInput {
-  """
-  Field that indicates the email of the user whose password must be reset.
-  A link to reset the password will be sent to the informed email (if the user exists)
-  """
-  email: String!
-}
-
-"""
-This is the result of `resetPassword`.
-"""
-type ResetPasswordPayload {
-  """
-  The message to be displayed to the user. It will be localized based on the input's
-  locale
-  """
-  result: String!
-}
-
-"""
-Input used to restore a post.
-"""
-input RestorePostInput {
-  """
-  Field that indicates which post should be restored.
-  """
-  id: ID!
-}
-
-"""
-Result of the `restorePost()` mutation.
-"""
-type RestorePostPayload {
-  post: Post!
-}
-
-"""
-Input used to trigger a webhook
-"""
-input TriggerWebhookEvent {
-  """
-  Field that holds the event that trigger webhook
-  """
-  triggerEvent: SubscribableEvents!
-
-  """
-  Field that holds webhook's id
-  """
-  webhookId: ID!
-
-  """
-  Field that holds Json data to be send as body of HTTP request
-  """
-  webhookJsonData: JSONObject!
-}
-
-"""
-The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSONObject
-
-"""
-Result of `triggerWebhook` mutation.
-"""
-type TriggerWebhookPayload {
-  webhook: Webhook!
-}
-
-"""
-Input used to update an organization.
-"""
-input UpdateOrganizationInput {
-  """
-  If given (non-null), updates the organization's corporate taxpayer registry.
-  """
-  corporateTaxpayerRegistry: String
-
-  """
-  If given (non-null), updates the organization's description.
-  """
-  description: String
-
-  """
-  If given (non-null), updates the organization's email.
-  """
-  email: String
-
-  """
-  String that is used to prevent mid-air collisions. To successfully update an
-  organization, this field **has to be the same** as the `etag` field of
-  the organization that is being updated.
-
-  If this condition is not met, an error will be returned.
-  """
-  ifMatchesETag: String!
-
-  """
-  If given (non-null), updates the organization's logo.
-  """
-  logo: Upload
-
-  """
-  If given (non-null), updates the name of the organization.
-  """
-  name: String
-
-  """
-  Field that indicates what organization should be updated.
-  """
-  organizationId: ID!
-
-  """
-  If given (non-null), updates the organization's status.
-  """
-  status: OrganizationStatus
-
-  """
-  If given (non-null), updates the organization's tags.
-  """
-  tags: [String!]
-
-  """
-  If given (non-null), updates the organization's trading name.
-  """
-  tradingName: String
-}
-
-"""
-Result of the `updateOrganization()` mutation.
-"""
-type UpdateOrganizationPayload {
-  organization: Organization!
-}
-
-"""
-Input used to update a term version.
-
-Published versions cannot be updated.
-"""
-input UpdateTermVersionInput {
-  """
-  If given (non-null), updates the version's body.
-  """
-  body: String
-
-  """
-  If given (non-null), updates the version's description.
-  """
-  description: String
-
-  """
-  String that is used to prevent mid-air collisions. To successfully update a
-  term's version, this field **has to be the same** as the `etag` field of
-  the term's version being updated.
-
-  If this condition is not met, an error will be returned.
-  """
-  ifMatchesETag: String!
-
-  """
-  Field that indicates to what term version should be updated.
-  """
-  termVersionId: ID!
-
-  """
-  If given (non-null), updates the version's version.
-  """
-  version: String
-}
-
-"""
-Result of the `updateTermVersion()` mutation. The updated version is
-draft (unpublished) and may be updated with `updateTermVersion()` again
-until it's published with `publishTermVersion()`.
-"""
-type UpdateTermVersionPayload {
-  termVersion: TermVersion!
-}
-
-"""
-Input used to update a user given its id.
-Cannot update username because keycloak does not support it.
-"""
-input UpdateUserInput {
-  """
-  Nullable string that holds an user's email
-  """
-  email: String
-
-  """
-  Nullable string that can hold an user's first name
-  """
-  firstName: String
-
-  """
-  Nullable string that can hold an user's last name
-  """
-  lastName: String
-
-  """
-  Field that indicates which user should be updated.
-  If `null` the logged user will be updated.
-  """
-  userId: ID
-}
-
-"""
-This is the result of the `updateUser()` mutation and contains the
-updated User.
 """
-type UpdateUserPayload {
-  user: User!
-}
-
-"""
-A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.
-"""
-type __Schema {
-  """
-  A list of all types supported by this server.
-  """
-  types: [__Type!]!
-
-  """
-  The type that query operations will be rooted at.
-  """
-  queryType: __Type!
-
-  """
-  If this server supports mutation, the type that mutation operations will be rooted at.
-  """
-  mutationType: __Type
-
-  """
-  If this server support subscription, the type that subscription operations will be rooted at.
-  """
-  subscriptionType: __Type
-
-  """
-  A list of all directives supported by this server.
-  """
-  directives: [__Directive!]!
-}
-
-"""
-The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
-
-Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name and description, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+Boolean expression comparing fields on type "StringList"
 """
-type __Type {
-  kind: __TypeKind!
-
-  name: String
-
-  description: String
-
-  fields(includeDeprecated: Boolean = false): [__Field!]
-
-  interfaces: [__Type!]
-
-  possibleTypes: [__Type!]
-
-  enumValues(includeDeprecated: Boolean = false): [__EnumValue!]
-
-  inputFields: [__InputValue!]
-
-  ofType: __Type
+input StringListFilter {
+  containedBy: [String!]
+  contains: [String!]
+  eq: [String!]
+  is: FilterIs
+  overlaps: [String!]
 }
-
-"""
-An enum describing what kind of type a given `__Type` is.
-"""
-enum __TypeKind {
-  """
-  Indicates this type is a scalar.
-  """
-  SCALAR
-
-  """
-  Indicates this type is an object. `fields` and `interfaces` are valid fields.
-  """
-  OBJECT
 
-  """
-  Indicates this type is an interface. `fields` and `possibleTypes` are valid fields.
-  """
-  INTERFACE
+"""A time without date information"""
+scalar Time
 
-  """
-  Indicates this type is a union. `possibleTypes` is a valid field.
-  """
-  UNION
-
-  """
-  Indicates this type is an enum. `enumValues` is a valid field.
-  """
-  ENUM
-
-  """
-  Indicates this type is an input object. `inputFields` is a valid field.
-  """
-  INPUT_OBJECT
-
-  """
-  Indicates this type is a list. `ofType` is a valid field.
-  """
-  LIST
-
-  """
-  Indicates this type is a non-null. `ofType` is a valid field.
-  """
-  NON_NULL
-}
-
 """
-Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type.
+Boolean expression comparing fields on type "Time"
 """
-type __Field {
-  name: String!
-
-  description: String
-
-  args: [__InputValue!]!
-
-  type: __Type!
-
-  isDeprecated: Boolean!
-
-  deprecationReason: String
+input TimeFilter {
+  eq: Time
+  gt: Time
+  gte: Time
+  in: [Time!]
+  is: FilterIs
+  lt: Time
+  lte: Time
+  neq: Time
 }
 
 """
-Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value.
+Boolean expression comparing fields on type "TimeList"
 """
-type __InputValue {
-  name: String!
-
-  description: String
-
-  type: __Type!
-
-  """
-  A GraphQL-formatted string representing the default value for this input value.
-  """
-  defaultValue: String
+input TimeListFilter {
+  containedBy: [Time!]
+  contains: [Time!]
+  eq: [Time!]
+  is: FilterIs
+  overlaps: [Time!]
 }
-
-"""
-One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string.
-"""
-type __EnumValue {
-  name: String!
-
-  description: String
 
-  isDeprecated: Boolean!
-
-  deprecationReason: String
-}
+"""A universally unique identifier"""
+scalar UUID
 
 """
-A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.
-
-In some cases, you need to provide options to alter GraphQL's execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.
+Boolean expression comparing fields on type "UUID"
 """
-type __Directive {
-  name: String!
-
-  description: String
-
-  locations: [__DirectiveLocation!]!
-
-  args: [__InputValue!]!
+input UUIDFilter {
+  eq: UUID
+  in: [UUID!]
+  is: FilterIs
+  neq: UUID
 }
 
 """
-A Directive can be adjacent to many parts of the GraphQL language, a __DirectiveLocation describes one such possible adjacencies.
+Boolean expression comparing fields on type "UUIDList"
 """
-enum __DirectiveLocation {
-  """
-  Location adjacent to a query operation.
-  """
-  QUERY
-
-  """
-  Location adjacent to a mutation operation.
-  """
-  MUTATION
-
-  """
-  Location adjacent to a subscription operation.
-  """
-  SUBSCRIPTION
-
-  """
-  Location adjacent to a field.
-  """
-  FIELD
-
-  """
-  Location adjacent to a fragment definition.
-  """
-  FRAGMENT_DEFINITION
-
-  """
-  Location adjacent to a fragment spread.
-  """
-  FRAGMENT_SPREAD
-
-  """
-  Location adjacent to an inline fragment.
-  """
-  INLINE_FRAGMENT
-
-  """
-  Location adjacent to a variable definition.
-  """
-  VARIABLE_DEFINITION
-
-  """
-  Location adjacent to a schema definition.
-  """
-  SCHEMA
-
-  """
-  Location adjacent to a scalar definition.
-  """
-  SCALAR
-
-  """
-  Location adjacent to an object type definition.
-  """
-  OBJECT
-
-  """
-  Location adjacent to a field definition.
-  """
-  FIELD_DEFINITION
-
-  """
-  Location adjacent to an argument definition.
-  """
-  ARGUMENT_DEFINITION
-
-  """
-  Location adjacent to an interface definition.
-  """
-  INTERFACE
-
-  """
-  Location adjacent to a union definition.
-  """
-  UNION
-
-  """
-  Location adjacent to an enum definition.
-  """
-  ENUM
-
-  """
-  Location adjacent to an enum value definition.
-  """
-  ENUM_VALUE
-
-  """
-  Location adjacent to an input object type definition.
-  """
-  INPUT_OBJECT
-
-  """
-  Location adjacent to an input object field definition.
-  """
-  INPUT_FIELD_DEFINITION
-}
-
-enum ForeignNodeIdValidateDirectivePolicy {
-  """
-  Field resolver is responsible to evaluate it using `validationErrors` injected in GraphQLResolverInfo
-  """
-  RESOLVER
-
-  """
-  Field resolver is not called if occurs a validation error, it throws `UserInputError`
-  """
-  THROW
-}
-
-enum HasPermissionsDirectivePolicy {
-  """
-  Field resolver is responsible to evaluate it using `missingPermissions` injected argument
-  """
-  RESOLVER
-
-  """
-  Field resolver is not called if permissions are missing, it throws `ForbiddenError`
-  """
-  THROW
-}
-
-enum ListLengthValidateDirectivePolicy {
-  """
-  Field resolver is responsible to evaluate it using `validationErrors` injected in GraphQLResolverInfo
-  """
-  RESOLVER
-
-  """
-  Field resolver is not called if occurs a validation error, it throws `UserInputError`
-  """
-  THROW
-}
-
-enum PatternValidateDirectivePolicy {
-  """
-  Field resolver is responsible to evaluate it using `validationErrors` injected in GraphQLResolverInfo
-  """
-  RESOLVER
-
-  """
-  Field resolver is not called if occurs a validation error, it throws `UserInputError`
-  """
-  THROW
-}
-
-enum RangeValidateDirectivePolicy {
-  """
-  Field resolver is responsible to evaluate it using `validationErrors` injected in GraphQLResolverInfo
-  """
-  RESOLVER
-
-  """
-  Field resolver is not called if occurs a validation error, it throws `UserInputError`
-  """
-  THROW
-}
-
-enum SelfNodeIdValidateDirectivePolicy {
-  """
-  Field resolver is responsible to evaluate it using `validationErrors` injected in GraphQLResolverInfo
-  """
-  RESOLVER
-
-  """
-  Field resolver is not called if occurs a validation error, it throws `UserInputError`
-  """
-  THROW
+input UUIDListFilter {
+  containedBy: [UUID!]
+  contains: [UUID!]
+  eq: [UUID!]
+  is: FilterIs
+  overlaps: [UUID!]
 }
-
-enum StringLengthValidateDirectivePolicy {
-  """
-  Field resolver is responsible to evaluate it using `validationErrors` injected in GraphQLResolverInfo
-  """
-  RESOLVER
-
-  """
-  Field resolver is not called if occurs a validation error, it throws `UserInputError`
-  """
-  THROW
-}
-
-"""
-Directs the executor to skip this field or fragment when the `if` argument is true.
-"""
-directive @skip(
-  "Skipped when true."
-  if: Boolean!
-) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
-
-"""
-Directs the executor to include this field or fragment only when the `if` argument is true.
-"""
-directive @include(
-  "Included when true."
-  if: Boolean!
-) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
-
-"""
-Marks an element of a GraphQL schema as no longer supported.
-"""
-directive @deprecated(
-  "Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted using the Markdown syntax (as specified by [CommonMark](https://commonmark.org/)."
-  reason: String = "No longer supported"
-) on FIELD_DEFINITION | ENUM_VALUE
 
-schema {
-  query: Query
-  mutation: Mutation
-}

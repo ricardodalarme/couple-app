@@ -287,7 +287,19 @@ class TranslationsAccountEditProfileEn {
   Map<String, String> get firstNameErrors => {'empty': 'First name is required'};
   Map<String, String> get lastNameErrors => {'empty': 'Last name is required'};
   Map<String, String> get emailErrors => {'invalid': 'Email is invalid'};
-  Map<String, String> get errors => {'other': _root.common.genericError};
+  Map<String, String> get errors => {
+    'invalid_email': 'Email is invalid',
+    'email_address_invalid': 'Email is invalid',
+    'email_already_in_use': 'This email is already in use',
+    'email_exists': 'This email is already in use',
+    'user_sso_managed':
+        'This account is managed by your company login and profile details cannot be changed here',
+    'validation_failed': 'Some fields are invalid. Please review and try again',
+    'over_request_rate_limit': 'Too many requests. Please wait a moment and try again',
+    'request_timeout': 'Request timed out. Please try again',
+    'unexpected_failure': 'Service is temporarily unavailable. Please try again',
+    'other': _root.common.genericError,
+  };
 }
 
 // Path: account.changePassword
@@ -319,7 +331,18 @@ class TranslationsAccountChangePasswordEn {
         'New password must be at least 8 characters long and contain at least one letter and one number',
   };
   Map<String, String> get confirmPasswordErrors => {'invalid': 'Passwords do not match'};
-  Map<String, String> get errors => {'other': _root.common.genericError};
+  Map<String, String> get errors => {
+    'wrong_current_password': 'Current password is incorrect',
+    'invalid_credentials': 'Current password is incorrect',
+    'same_password': 'New password must be different from your current password',
+    'weak_password': 'New password is too weak',
+    'reauthentication_needed': 'Please reauthenticate before changing your password',
+    'user_not_found': 'Your user session is no longer valid. Please sign in again',
+    'over_request_rate_limit': 'Too many requests. Please wait a moment and try again',
+    'request_timeout': 'Request timed out. Please try again',
+    'unexpected_failure': 'Service is temporarily unavailable. Please try again',
+    'other': _root.common.genericError,
+  };
 }
 
 // Path: authentication.login
@@ -351,10 +374,12 @@ class TranslationsAuthenticationLoginEn {
   /// en: 'OR'
   String get dividerOr => 'OR';
 
-  Map<String, String> get usernameErrors => {'empty': 'Username is required'};
+  Map<String, String> get emailErrors => {'invalid': 'Email is invalid'};
   Map<String, String> get passwordErrors => {'empty': 'Password is required'};
   Map<String, String> get errors => {
-    'BAD_USER_INPUT': 'Username or password is incorrect',
+    'invalid_credentials': 'Email or password is incorrect',
+    'email_not_confirmed': 'Please confirm your email before signing in',
+    'user_banned': 'Your account is temporarily unavailable',
     'other': _root.common.genericError,
   };
 }
@@ -376,14 +401,19 @@ class TranslationsAuthenticationSignupEn {
   /// en: 'Sign Up'
   String get buttonSubmit => 'Sign Up';
 
-  Map<String, String> get usernameErrors => {'empty': 'Username is required'};
   Map<String, String> get emailErrors => {'invalid': 'Email is invalid'};
   Map<String, String> get passwordErrors => {
     'weak':
         'Password must be at least 8 characters long and contain at least one letter and one number',
   };
   Map<String, String> get confirmPasswordErrors => {'invalid': 'Passwords do not match'};
-  Map<String, String> get errors => {'other': _root.common.genericError};
+  Map<String, String> get errors => {
+    'user_already_registered': 'This email is already registered',
+    'user_already_exists': 'This email is already registered',
+    'weak_password': 'Password must be stronger',
+    'email_address_invalid': 'Email is invalid',
+    'other': _root.common.genericError,
+  };
 }
 
 // Path: authentication.forgotPassword
@@ -526,6 +556,19 @@ extension on Translations {
       'account.editProfile.firstNameErrors.empty' => 'First name is required',
       'account.editProfile.lastNameErrors.empty' => 'Last name is required',
       'account.editProfile.emailErrors.invalid' => 'Email is invalid',
+      'account.editProfile.errors.invalid_email' => 'Email is invalid',
+      'account.editProfile.errors.email_address_invalid' => 'Email is invalid',
+      'account.editProfile.errors.email_already_in_use' => 'This email is already in use',
+      'account.editProfile.errors.email_exists' => 'This email is already in use',
+      'account.editProfile.errors.user_sso_managed' =>
+        'This account is managed by your company login and profile details cannot be changed here',
+      'account.editProfile.errors.validation_failed' =>
+        'Some fields are invalid. Please review and try again',
+      'account.editProfile.errors.over_request_rate_limit' =>
+        'Too many requests. Please wait a moment and try again',
+      'account.editProfile.errors.request_timeout' => 'Request timed out. Please try again',
+      'account.editProfile.errors.unexpected_failure' =>
+        'Service is temporarily unavailable. Please try again',
       'account.editProfile.errors.other' => _root.common.genericError,
       'account.changePassword.title' => 'Change Password',
       'account.changePassword.labelCurrentPassword' => 'Current Password',
@@ -536,6 +579,20 @@ extension on Translations {
       'account.changePassword.newPasswordErrors.weak' =>
         'New password must be at least 8 characters long and contain at least one letter and one number',
       'account.changePassword.confirmPasswordErrors.invalid' => 'Passwords do not match',
+      'account.changePassword.errors.wrong_current_password' => 'Current password is incorrect',
+      'account.changePassword.errors.invalid_credentials' => 'Current password is incorrect',
+      'account.changePassword.errors.same_password' =>
+        'New password must be different from your current password',
+      'account.changePassword.errors.weak_password' => 'New password is too weak',
+      'account.changePassword.errors.reauthentication_needed' =>
+        'Please reauthenticate before changing your password',
+      'account.changePassword.errors.user_not_found' =>
+        'Your user session is no longer valid. Please sign in again',
+      'account.changePassword.errors.over_request_rate_limit' =>
+        'Too many requests. Please wait a moment and try again',
+      'account.changePassword.errors.request_timeout' => 'Request timed out. Please try again',
+      'account.changePassword.errors.unexpected_failure' =>
+        'Service is temporarily unavailable. Please try again',
       'account.changePassword.errors.other' => _root.common.genericError,
       'authentication.login.title' => 'Login',
       'authentication.login.buttonLogin' => 'Login',
@@ -545,18 +602,24 @@ extension on Translations {
       'authentication.login.buttonNewAccount' => 'Don\'t have an account? Sign up',
       'authentication.login.buttonDevMenu' => 'Open DevMenu',
       'authentication.login.dividerOr' => 'OR',
-      'authentication.login.usernameErrors.empty' => 'Username is required',
+      'authentication.login.emailErrors.invalid' => 'Email is invalid',
       'authentication.login.passwordErrors.empty' => 'Password is required',
-      'authentication.login.errors.BAD_USER_INPUT' => 'Username or password is incorrect',
+      'authentication.login.errors.invalid_credentials' => 'Email or password is incorrect',
+      'authentication.login.errors.email_not_confirmed' =>
+        'Please confirm your email before signing in',
+      'authentication.login.errors.user_banned' => 'Your account is temporarily unavailable',
       'authentication.login.errors.other' => _root.common.genericError,
       'authentication.signup.title' => 'Sign Up',
       'authentication.signup.labelConfirmPassword' => 'Confirm Password',
       'authentication.signup.buttonSubmit' => 'Sign Up',
-      'authentication.signup.usernameErrors.empty' => 'Username is required',
       'authentication.signup.emailErrors.invalid' => 'Email is invalid',
       'authentication.signup.passwordErrors.weak' =>
         'Password must be at least 8 characters long and contain at least one letter and one number',
       'authentication.signup.confirmPasswordErrors.invalid' => 'Passwords do not match',
+      'authentication.signup.errors.user_already_registered' => 'This email is already registered',
+      'authentication.signup.errors.user_already_exists' => 'This email is already registered',
+      'authentication.signup.errors.weak_password' => 'Password must be stronger',
+      'authentication.signup.errors.email_address_invalid' => 'Email is invalid',
       'authentication.signup.errors.other' => _root.common.genericError,
       'authentication.forgotPassword.title' => 'Recover Password',
       'authentication.forgotPassword.description' =>

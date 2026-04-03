@@ -13,8 +13,8 @@ class LoginCubit extends Cubit<LoginState> {
 
   final AuthenticationRepository _authenticationRepository;
 
-  void onUsernameChanged(String username) {
-    emit(state.copyWith(username: NonEmptyInput.dirty(username)));
+  void onEmailChanged(String email) {
+    emit(state.copyWith(email: EmailInput.dirty(email)));
   }
 
   void onPasswordChanged(String password) {
@@ -27,8 +27,8 @@ class LoginCubit extends Cubit<LoginState> {
     emit(state.copyWith(login: const Loading()));
 
     try {
-      await _authenticationRepository.logInWithUsernameAndPassword(
-        username: state.username.value,
+      await _authenticationRepository.logInWithEmailAndPassword(
+        email: state.email.value,
         password: state.password.value,
       );
 
@@ -40,10 +40,26 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> onLoginWithGoogle() async {
-    await _authenticationRepository.logInWithGoogle();
+    emit(state.copyWith(login: const Loading()));
+
+    try {
+      await _authenticationRepository.logInWithGoogle();
+      emit(state.copyWith(login: const Success(null)));
+    } catch (exception) {
+      emit(state.copyWith(login: Failure.fromObject(exception)));
+      emit(state.copyWith(login: const Initial()));
+    }
   }
 
-  Future<void> onLoginWithFacebook() async {
-    await _authenticationRepository.logInWithFacebook();
+  Future<void> onLoginWithApple() async {
+    emit(state.copyWith(login: const Loading()));
+
+    try {
+      await _authenticationRepository.logInWithApple();
+      emit(state.copyWith(login: const Success(null)));
+    } catch (exception) {
+      emit(state.copyWith(login: Failure.fromObject(exception)));
+      emit(state.copyWith(login: const Initial()));
+    }
   }
 }

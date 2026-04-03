@@ -1,30 +1,28 @@
-import 'package:core/core.dart';
 import 'package:graphql/client.dart';
 import 'package:graphql_query_compress/graphql_query_compress.dart';
-import 'package:secure_storage_service/secure_storage_service.dart';
 
-abstract interface class GQLClient {
-  Future<QueryResult<T>> query<T>(QueryOptions<T> options);
-  ObservableQuery<T> watchQuery<T>(WatchQueryOptions<T> options);
-  Future<QueryResult<T>> mutate<T>(MutationOptions<T> options);
-}
-
-class GQLClientImpl implements GQLClient {
-  factory GQLClientImpl({required SecureStorageService storage}) {
+class GQLClient {
+  factory GQLClient({
+    required String serverUrl,
+    String? Function()? tokenCallback,
+    Map<String, String> defaultHeaders = const {},
+  }) {
     final httpLink = HttpLink(
-      Config.serverUrl,
+      serverUrl,
+      defaultHeaders: defaultHeaders,
       serializer: const RequestSerializerWithCompressor(),
     );
+
     final authLink = AuthLink(
-      getToken: () async {
-        final String? token = await storage.read(key: StorageKeys.accessToken);
-        if (token == null) return null;
-        return 'Bearer $token';
+      getToken: () {
+        final String? accessToken = tokenCallback?.call();
+        if (accessToken == null || accessToken.isEmpty) return null;
+        return 'Bearer $accessToken';
       },
     );
     final link = Link.from([authLink, httpLink]);
 
-    return GQLClientImpl._(
+    return GQLClient._(
       GraphQLClient(
         cache: GraphQLCache(),
         link: link,
@@ -39,21 +37,18 @@ class GQLClientImpl implements GQLClient {
     );
   }
 
-  const GQLClientImpl._(this._client);
+  const GQLClient._(this._client);
 
   final GraphQLClient _client;
 
-  @override
   Future<QueryResult<T>> query<T>(QueryOptions<T> options) {
     return _client.query(options);
   }
 
-  @override
   Future<QueryResult<T>> mutate<T>(MutationOptions<T> options) {
     return _client.mutate(options);
   }
 
-  @override
   ObservableQuery<T> watchQuery<T>(WatchQueryOptions<T> options) {
     return _client.watchQuery(options);
   }

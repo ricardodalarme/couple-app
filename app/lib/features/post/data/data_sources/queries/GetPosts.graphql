@@ -1,10 +1,13 @@
-query GetPosts($first: Int, $after: String) {
-  posts(first: $first, after: $after) {
-    pageInfo {
-      ...PageInfoFragment
-    }
-    nodes {
-      ...PostFragment
+query GetPosts($first: Int, $after: Cursor) {
+  postsCollection(
+    first: $first
+    after: $after
+    orderBy: [{ id: DescNullsLast }]
+  ) {
+    edges {
+      node {
+        ...PostFragment
+      }
     }
   }
 }
