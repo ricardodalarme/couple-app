@@ -6,7 +6,7 @@ class LanguageSelectorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Locale currentLocale = Localizations.localeOf(context);
+    final currentLocale = Localizations.localeOf(context);
 
     return BaseView(
       title: 'Language Selector',

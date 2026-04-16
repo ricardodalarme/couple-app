@@ -3,12 +3,12 @@ import 'package:network/src/exceptions/no_data_exception.dart';
 import 'package:network/src/exceptions/server_response_exception.dart';
 
 void validateResponse(QueryResult response) {
-  final OperationException? exception = response.exception;
+  final exception = response.exception;
   if (exception == null) {
     return;
   }
 
-  final GraphQLError? firstError = exception.graphqlErrors.firstOrNull;
+  final firstError = exception.graphqlErrors.firstOrNull;
   final code = firstError?.extensions?['code']?.toString();
 
   throw ServerResponseException(code, exception);
@@ -17,7 +17,7 @@ void validateResponse(QueryResult response) {
 D validateResponseData<T, D>(QueryResult<T> response, {required D? Function(T?) getData}) {
   validateResponse(response);
 
-  final D? data = getData(response.parsedData);
+  final data = getData(response.parsedData);
   if (data == null) {
     throw const NoDataException();
   }

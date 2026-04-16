@@ -25,7 +25,7 @@ class PostsListPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsPostListEn l10n = context.l10n.post.list;
+    final l10n = context.l10n.post.list;
 
     return BaseView(
       title: l10n.title,
@@ -53,7 +53,7 @@ class _PostsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsPostListEn l10n = context.l10n.post.list;
+    final l10n = context.l10n.post.list;
 
     return BaseListView(
       onRefresh: context.read<PostsListCubit>().getPosts,

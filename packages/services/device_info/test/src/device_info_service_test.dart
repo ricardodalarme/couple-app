@@ -42,7 +42,7 @@ void main() {
 
       when(() => mockPlugin.iosInfo).thenAnswer((_) async => mockIos);
 
-      final DeviceInfo result = await service.getDeviceInfo();
+      final result = await service.getDeviceInfo();
 
       expect(result.deviceId, 'ios-123');
       expect(result.manufacturer, 'Apple');
@@ -69,7 +69,7 @@ void main() {
 
       when(() => mockPlugin.androidInfo).thenAnswer((_) async => mockAndroid);
 
-      final DeviceInfo result = await service.getDeviceInfo();
+      final result = await service.getDeviceInfo();
 
       expect(result.deviceId, 'android-456');
       expect(result.manufacturer, 'Google');

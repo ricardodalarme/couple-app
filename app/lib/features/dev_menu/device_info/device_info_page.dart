@@ -33,7 +33,7 @@ class _DeviceInfoPageState extends State<DeviceInfoPage> {
             return const Center(child: Text('No device info available'));
           }
 
-          final DeviceInfo info = snapshot.data!;
+          final info = snapshot.data!;
           return ListView(
             children: [
               BaseListTile(title: 'Device ID', subtitle: info.deviceId ?? '-'),

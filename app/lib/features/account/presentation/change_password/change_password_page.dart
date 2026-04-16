@@ -21,7 +21,7 @@ class ChangePasswordPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAccountChangePasswordEn l10n = context.l10n.account.changePassword;
+    final l10n = context.l10n.account.changePassword;
 
     return BaseView(
       title: l10n.title,
@@ -50,7 +50,7 @@ class ChangePasswordPage extends StatelessWidget implements AutoRouteWrapper {
   }
 
   void _handleStatus(BuildContext context, ChangePasswordState state) {
-    final TranslationsAccountChangePasswordEn l10n = context.l10n.account.changePassword;
+    final l10n = context.l10n.account.changePassword;
 
     switch (state.submission) {
       case Success():
@@ -72,7 +72,7 @@ class _CurrentPasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAccountChangePasswordEn l10n = context.l10n.account.changePassword;
+    final l10n = context.l10n.account.changePassword;
 
     return BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
       buildWhen: (previous, current) => previous.currentPassword != current.currentPassword,
@@ -93,7 +93,7 @@ class _NewPasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAccountChangePasswordEn l10n = context.l10n.account.changePassword;
+    final l10n = context.l10n.account.changePassword;
 
     return BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
       buildWhen: (previous, current) => previous.password != current.password,
@@ -114,7 +114,7 @@ class _ConfirmPasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAccountChangePasswordEn l10n = context.l10n.account.changePassword;
+    final l10n = context.l10n.account.changePassword;
 
     return BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
       buildWhen: (previous, current) => previous.confirmPassword != current.confirmPassword,

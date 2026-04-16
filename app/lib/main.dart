@@ -48,7 +48,7 @@ Future<void> _setupFirebase() async {
 Future<void> _configureCrashReportService() async {
   _logger.info('Configuring Crash Report Service');
 
-  final CrashReportService crashReportService = AppInjector.instance.get<CrashReportService>();
+  final crashReportService = AppInjector.instance.get<CrashReportService>();
 
   await crashReportService.setCrashlyticsCollectionEnabled(true);
 
@@ -67,7 +67,7 @@ Future<void> _configureCrashReportService() async {
 Future<void> _initializeStorageService() async {
   _logger.info('Initializing Persistent Storage Service');
 
-  final PreferencesService preferencesService = AppInjector.instance.get<PreferencesService>();
+  final preferencesService = AppInjector.instance.get<PreferencesService>();
 
   await preferencesService.initialize();
 }
@@ -75,8 +75,7 @@ Future<void> _initializeStorageService() async {
 Future<void> _initializeAuthenticationService() async {
   _logger.info('Initializing Authentication Service');
 
-  final AuthenticationService authenticationService = AppInjector.instance
-      .get<AuthenticationService>();
+  final authenticationService = AppInjector.instance.get<AuthenticationService>();
 
   await authenticationService.initialize(url: Config.supabaseUrl, anonKey: Config.supabaseAnonKey);
 }
@@ -108,7 +107,7 @@ void _registerModules() {
     SettingsInjectionModule(),
   ];
 
-  final Injector injector = AppInjector.instance;
+  final injector = AppInjector.instance;
 
   for (final injectionModule in injectionModules) {
     injectionModule.registerDependencies(injector: injector);

@@ -15,7 +15,7 @@ class GQLClient {
 
     final authLink = AuthLink(
       getToken: () {
-        final String? accessToken = tokenCallback?.call();
+        final accessToken = tokenCallback?.call();
         if (accessToken == null || accessToken.isEmpty) return null;
         return 'Bearer $accessToken';
       },

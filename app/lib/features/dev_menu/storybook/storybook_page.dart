@@ -20,7 +20,7 @@ class StorybookPage extends StatelessWidget {
       body: ThemeModeProvider(
         child: Builder(
           builder: (context) {
-            final ThemeMode currentThemeMode = ThemeModeProvider.of(context).themeMode;
+            final currentThemeMode = ThemeModeProvider.of(context).themeMode;
 
             return Widgetbook(
               themeMode: currentThemeMode,

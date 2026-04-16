@@ -18,7 +18,7 @@ class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAccountEditProfileEn l10n = context.l10n.account.editProfile;
+    final l10n = context.l10n.account.editProfile;
 
     return BaseView(
       title: l10n.title,
@@ -47,7 +47,7 @@ class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
   }
 
   void _handleStatus(BuildContext context, EditProfileState state) {
-    final TranslationsAccountEditProfileEn l10n = context.l10n.account.editProfile;
+    final l10n = context.l10n.account.editProfile;
 
     switch (state.submission) {
       case Success():
@@ -69,7 +69,7 @@ class _FirstNameTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAccountEditProfileEn l10n = context.l10n.account.editProfile;
+    final l10n = context.l10n.account.editProfile;
 
     return BlocBuilder<EditProfileCubit, EditProfileState>(
       buildWhen: (previous, current) => previous.firstName != current.firstName,
@@ -89,7 +89,7 @@ class _LastNameTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAccountEditProfileEn l10n = context.l10n.account.editProfile;
+    final l10n = context.l10n.account.editProfile;
 
     return BlocBuilder<EditProfileCubit, EditProfileState>(
       buildWhen: (previous, current) => previous.lastName != current.lastName,
@@ -109,7 +109,7 @@ class _EmailTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAccountEditProfileEn l10n = context.l10n.account.editProfile;
+    final l10n = context.l10n.account.editProfile;
 
     return BlocBuilder<EditProfileCubit, EditProfileState>(
       buildWhen: (previous, current) => previous.email != current.email,

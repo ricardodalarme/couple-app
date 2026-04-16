@@ -21,8 +21,7 @@ class ForgotPasswordPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAuthenticationForgotPasswordEn l10n =
-        context.l10n.authentication.forgotPassword;
+    final l10n = context.l10n.authentication.forgotPassword;
 
     return BaseView(
       title: l10n.title,
@@ -53,8 +52,7 @@ class ForgotPasswordPage extends StatelessWidget implements AutoRouteWrapper {
   }
 
   void _handleStatus(BuildContext context, ForgotPasswordState state) {
-    final TranslationsAuthenticationForgotPasswordEn l10n =
-        context.l10n.authentication.forgotPassword;
+    final l10n = context.l10n.authentication.forgotPassword;
 
     switch (state.submission) {
       case Success():
@@ -75,8 +73,7 @@ class _EmailTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAuthenticationForgotPasswordEn l10n =
-        context.l10n.authentication.forgotPassword;
+    final l10n = context.l10n.authentication.forgotPassword;
 
     return BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
       buildWhen: (previous, current) => previous.email != current.email,

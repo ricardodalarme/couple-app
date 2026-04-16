@@ -41,7 +41,7 @@ class _ThemeModeSyncState extends State<_ThemeModeSync> {
   }
 
   void _syncThemeMode() {
-    final InheritedThemeProvider provider = ThemeModeProvider.of(context);
+    final provider = ThemeModeProvider.of(context);
 
     if (provider.themeMode != widget.themeMode) {
       WidgetsBinding.instance.addPostFrameCallback((_) {

@@ -17,7 +17,7 @@ class PostsListCubit extends Cubit<PostsListState> {
     emit(state.copyWith(posts: const Loading()));
 
     try {
-      final List<Post> posts = await _postRepository.getPosts();
+      final posts = await _postRepository.getPosts();
       emit(state.copyWith(posts: Success(posts)));
     } catch (exception) {
       emit(state.copyWith(posts: Failure.fromObject(exception)));

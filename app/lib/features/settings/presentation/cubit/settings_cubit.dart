@@ -13,12 +13,12 @@ class SettingsCubit extends Cubit<SettingsState> {
   final SettingsRepository _settingsRepository;
 
   void opened() {
-    final Settings settings = _settingsRepository.get();
+    final settings = _settingsRepository.get();
     emit(state.copyWith(settings: settings));
   }
 
   Future<void> onUseBiometricsChanged(bool value) async {
-    final Settings newSettings = state.settings.copyWith(useBiometrics: value);
+    final newSettings = state.settings.copyWith(useBiometrics: value);
 
     emit(state.copyWith(settings: newSettings));
     await _settingsRepository.save(newSettings);

@@ -9,7 +9,7 @@ class AnalyticsRouterObserver extends AutoRouterObserver {
 
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    final String? routeName = route.settings.name;
+    final routeName = route.settings.name;
     if (routeName != null) {
       analyticsService.logScreenView(screenName: routeName);
     }

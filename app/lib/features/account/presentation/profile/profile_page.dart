@@ -12,7 +12,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAccountProfileEn l10n = context.l10n.account.profile;
+    final l10n = context.l10n.account.profile;
 
     return BaseView(
       title: l10n.title,
@@ -68,7 +68,7 @@ class _ProfilePictureWithSelect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAccountProfileEn l10n = context.l10n.account.profile;
+    final l10n = context.l10n.account.profile;
 
     return Stack(
       children: [

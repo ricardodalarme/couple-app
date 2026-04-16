@@ -24,9 +24,7 @@ void main() {
       const password = 'password';
       const confirmedPassword = ConfirmedPasswordInput.dirty(password: password, value: password);
 
-      final ConfirmedPasswordValidationError? validationError = confirmedPassword.validator(
-        confirmedPassword.value,
-      );
+      final validationError = confirmedPassword.validator(confirmedPassword.value);
 
       expect(validationError, isNull);
     });
@@ -38,9 +36,7 @@ void main() {
         value: 'wrong_password',
       );
 
-      final ConfirmedPasswordValidationError? validationError = confirmedPassword.validator(
-        confirmedPassword.value,
-      );
+      final validationError = confirmedPassword.validator(confirmedPassword.value);
 
       expect(validationError, equals(ConfirmedPasswordValidationError.invalid));
     });

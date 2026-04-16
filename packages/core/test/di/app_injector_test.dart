@@ -11,19 +11,19 @@ void main() {
 
     test('Register and get singleton', () {
       appInjector.registerSingleton<String>('TestString', instanceName: 'test');
-      final String result = appInjector.get<String>(instanceName: 'test');
+      final result = appInjector.get<String>(instanceName: 'test');
       expect(result, 'TestString');
     });
 
     test('Register and get lazy singleton', () {
       appInjector.registerLazySingleton<String>(() => 'LazyTestString', instanceName: 'lazyTest');
-      final String result = appInjector.get<String>(instanceName: 'lazyTest');
+      final result = appInjector.get<String>(instanceName: 'lazyTest');
       expect(result, 'LazyTestString');
     });
 
     test('Register and get factory', () {
       appInjector.registerFactory<int>(() => 42, instanceName: 'testFactory');
-      final int result = appInjector.get<int>(instanceName: 'testFactory');
+      final result = appInjector.get<int>(instanceName: 'testFactory');
       expect(result, 42);
     });
 

@@ -62,7 +62,7 @@ class BaseApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeMode? themeMode = ThemeModeProvider.maybeOf(context)?.themeMode;
+    final themeMode = ThemeModeProvider.maybeOf(context)?.themeMode;
 
     return _buildMaterialApp(themeMode);
   }

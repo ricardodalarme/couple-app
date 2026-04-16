@@ -8,7 +8,7 @@ class TermsListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsTermsListEn l10n = context.l10n.terms.list;
+    final l10n = context.l10n.terms.list;
 
     return BaseView(
       title: l10n.title,

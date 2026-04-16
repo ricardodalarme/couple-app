@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:dio/dio.dart';
 
 abstract interface class RestClient {
@@ -10,15 +9,8 @@ abstract interface class RestClient {
 }
 
 class RestClientImpl implements RestClient {
-  factory RestClientImpl() {
-    return RestClientImpl._(
-      Dio(
-        BaseOptions(
-          // ignore: avoid_redundant_argument_values
-          baseUrl: Config.restServerUrl,
-        ),
-      ),
-    );
+  factory RestClientImpl({required String baseUrl}) {
+    return RestClientImpl._(Dio(BaseOptions(baseUrl: baseUrl)));
   }
 
   const RestClientImpl._(this._client);

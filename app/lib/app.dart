@@ -14,10 +14,10 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Injector injector = AppInjector.instance;
-    final AppCubit appCubit = injector.get<AppCubit>();
-    final RootStackRouter appRouter = injector.get<RootStackRouter>();
-    final List<NavigatorObserver> navigatorObservers = [
+    final injector = AppInjector.instance;
+    final appCubit = injector.get<AppCubit>();
+    final appRouter = injector.get<RootStackRouter>();
+    final navigatorObservers = <NavigatorObserver>[
       injector.get<LogRouterObserver>(),
       injector.get<AnalyticsRouterObserver>(),
     ];
@@ -59,13 +59,13 @@ class App extends StatelessWidget {
   };
 
   DeepLink _deepLinkBuilder(PlatformDeepLink deepLink) {
-    final AppCubit appCubit = AppInjector.instance.get<AppCubit>();
+    final appCubit = AppInjector.instance.get<AppCubit>();
     return deepLink.initial ? DeepLink.single(_resolveRouteForState(appCubit.state)) : deepLink;
   }
 
   void _onAppStateChanged(AppState state) {
-    final RootStackRouter appRouter = AppInjector.instance.get<RootStackRouter>();
-    final PageRouteInfo<void> resolvedRoute = _resolveRouteForState(state);
+    final appRouter = AppInjector.instance.get<RootStackRouter>();
+    final resolvedRoute = _resolveRouteForState(state);
     appRouter.replaceAll([resolvedRoute]);
   }
 }

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 
 part 'app_state.dart';
@@ -32,7 +31,7 @@ class AppCubit extends Cubit<AppState> {
   }
 
   void initialize() {
-    final Settings settings = _settingsRepository.get();
+    final settings = _settingsRepository.get();
     if (!settings.hasOnboarded) return emit(AppState.onboarding);
     if (!_authenticationRepository.isAuthenticated) return emit(AppState.unauthenticated);
     return emit(AppState.authenticated);

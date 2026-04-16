@@ -61,8 +61,8 @@ class _InfiniteListViewWidgetState extends State<InfiniteListViewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final int effectiveItemCount = widget.itemCount + (widget.isLoading ? 1 : 0);
-    final int lastItemIndex = effectiveItemCount - 1;
+    final effectiveItemCount = widget.itemCount + (widget.isLoading ? 1 : 0);
+    final lastItemIndex = effectiveItemCount - 1;
 
     return BaseListView(
       padding: widget.padding,

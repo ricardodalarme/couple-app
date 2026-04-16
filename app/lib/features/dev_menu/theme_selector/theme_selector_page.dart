@@ -5,8 +5,8 @@ class ThemeSelectorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final InheritedThemeProvider themeProvider = ThemeModeProvider.of(context);
-    final ThemeMode currentThemeMode = themeProvider.themeMode;
+    final themeProvider = ThemeModeProvider.of(context);
+    final currentThemeMode = themeProvider.themeMode;
 
     return BaseView(
       title: 'Theme Selector',

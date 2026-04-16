@@ -30,7 +30,7 @@ void main() {
         when(
           () => flutterSecureStorage.read(key: any(named: 'key')),
         ).thenAnswer((_) => Future.value(mockValue));
-        final String? actual = await secureStorage.read(key: mockKey);
+        final actual = await secureStorage.read(key: mockKey);
         expect(actual, mockValue);
       });
 
@@ -38,7 +38,7 @@ void main() {
         when(
           () => flutterSecureStorage.read(key: any(named: 'key')),
         ).thenAnswer((_) => Future<String?>.value());
-        final String? actual = await secureStorage.read(key: mockKey);
+        final actual = await secureStorage.read(key: mockKey);
         expect(actual, isNull);
       });
 

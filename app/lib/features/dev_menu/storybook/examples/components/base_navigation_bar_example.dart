@@ -4,7 +4,7 @@ import 'package:widgetbook/widgetbook.dart';
 final WidgetbookNode baseNavigationBarExample = WidgetbookUseCase(
   name: 'BaseNavigationBar',
   builder: (context) {
-    final int selectedIndex = context.knobs.int.slider(label: 'Selected Index', max: 2);
+    final selectedIndex = context.knobs.int.slider(label: 'Selected Index', max: 2);
 
     return BaseNavigationBar(
       selectedIndex: selectedIndex,

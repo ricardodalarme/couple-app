@@ -11,7 +11,7 @@ class DeviceInfoService {
   Future<DeviceInfo> getDeviceInfo() async {
     switch (defaultTargetPlatform) {
       case TargetPlatform.iOS:
-        final IosDeviceInfo iosInfo = await _deviceInfoPlugin.iosInfo;
+        final iosInfo = await _deviceInfoPlugin.iosInfo;
         return DeviceInfo(
           deviceId: iosInfo.identifierForVendor,
           osName: iosInfo.systemName,
@@ -25,7 +25,7 @@ class DeviceInfoService {
           freeDiskSize: iosInfo.freeDiskSize,
         );
       case TargetPlatform.android:
-        final AndroidDeviceInfo androidInfo = await _deviceInfoPlugin.androidInfo;
+        final androidInfo = await _deviceInfoPlugin.androidInfo;
         return DeviceInfo(
           deviceId: androidInfo.id,
           osName: 'Android',

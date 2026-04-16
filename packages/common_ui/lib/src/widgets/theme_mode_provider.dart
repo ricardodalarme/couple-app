@@ -7,8 +7,7 @@ class ThemeModeProvider extends StatefulWidget {
   final Widget child;
 
   static InheritedThemeProvider of(BuildContext context) {
-    final InheritedThemeProvider? result = context
-        .dependOnInheritedWidgetOfExactType<InheritedThemeProvider>();
+    final result = context.dependOnInheritedWidgetOfExactType<InheritedThemeProvider>();
     assert(result != null, 'No ThemeProvider found in context');
     return result!;
   }

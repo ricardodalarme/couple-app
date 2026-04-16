@@ -1,5 +1,4 @@
 import 'package:common_ui/common_ui.dart';
-import 'package:common_ui/src/theme/palette.dart';
 
 class BaseListTile extends StatelessWidget {
   const BaseListTile({
@@ -21,8 +20,8 @@ class BaseListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Palette palette = context.palette;
-    final Typography typography = context.typography;
+    final palette = context.palette;
+    final typography = context.typography;
 
     return BaseTapper(
       onTap: onTap,

@@ -20,7 +20,7 @@ class SocialButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String buttonText = text(button);
+    final buttonText = text(button);
 
     return switch (button) {
       ButtonProvider.google => _SignInButtonBuilder(

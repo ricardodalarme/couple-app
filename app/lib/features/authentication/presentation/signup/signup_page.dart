@@ -21,8 +21,8 @@ class SignUpPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAuthenticationSignupEn l10n = context.l10n.authentication.signup;
-    final TranslationsAuthenticationLoginEn loginL10n = context.l10n.authentication.login;
+    final l10n = context.l10n.authentication.signup;
+    final loginL10n = context.l10n.authentication.login;
 
     return BaseView(
       title: l10n.title,
@@ -57,7 +57,7 @@ class SignUpPage extends StatelessWidget implements AutoRouteWrapper {
   }
 
   void _handleStatus(BuildContext context, SignupState state) {
-    final TranslationsAuthenticationSignupEn l10n = context.l10n.authentication.signup;
+    final l10n = context.l10n.authentication.signup;
 
     switch (state.submission) {
       case Success():
@@ -78,7 +78,7 @@ class _EmailTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAuthenticationSignupEn l10n = context.l10n.authentication.signup;
+    final l10n = context.l10n.authentication.signup;
 
     return BlocBuilder<SignupCubit, SignupState>(
       buildWhen: (previous, current) => previous.email != current.email,
@@ -99,7 +99,7 @@ class _PasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAuthenticationSignupEn l10n = context.l10n.authentication.signup;
+    final l10n = context.l10n.authentication.signup;
 
     return BlocBuilder<SignupCubit, SignupState>(
       buildWhen: (previous, current) => previous.password != current.password,
@@ -120,7 +120,7 @@ class _ConfirmPasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAuthenticationSignupEn l10n = context.l10n.authentication.signup;
+    final l10n = context.l10n.authentication.signup;
 
     return BlocBuilder<SignupCubit, SignupState>(
       buildWhen: (previous, current) => previous.confirmPassword != current.confirmPassword,
@@ -142,7 +142,7 @@ class _SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAuthenticationSignupEn l10n = context.l10n.authentication.signup;
+    final l10n = context.l10n.authentication.signup;
 
     return BlocBuilder<SignupCubit, SignupState>(
       builder: (context, state) => BaseButton(

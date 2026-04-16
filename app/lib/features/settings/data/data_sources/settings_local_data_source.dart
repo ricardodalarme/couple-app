@@ -12,14 +12,14 @@ class SettingsLocalDataSource {
   static const _key = 'settings';
 
   Future<void> save(Settings settings) async {
-    final Map<String, dynamic> settingsLocalMap = settings.toMap();
-    final String settingsLocalMapInString = jsonEncode(settingsLocalMap);
+    final settingsLocalMap = settings.toMap();
+    final settingsLocalMapInString = jsonEncode(settingsLocalMap);
 
     await _preferencesService.writeString(key: _key, value: settingsLocalMapInString);
   }
 
   Settings? get() {
-    final String? settingsLocalMapInString = _preferencesService.readString(key: _key);
+    final settingsLocalMapInString = _preferencesService.readString(key: _key);
 
     if (settingsLocalMapInString != null) {
       final settingsLocalMap = jsonDecode(settingsLocalMapInString) as Map<String, dynamic>;

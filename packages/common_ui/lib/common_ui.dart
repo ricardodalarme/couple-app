@@ -1,5 +1,3 @@
-library;
-
 export 'package:flutter/material.dart' show Icons, ThemeMode;
 export 'package:flutter/widgets.dart';
 export 'package:gap/gap.dart';

@@ -8,9 +8,9 @@ final class MockException extends LocalizedException {
 void main() {
   group('Resource', () {
     test('Success equality', () {
-      const Success<String> success1 = Success('value');
-      const Success<String> success2 = Success('value');
-      const Success<String> success3 = Success('different_value');
+      const success1 = Success<String>('value');
+      const success2 = Success<String>('value');
+      const success3 = Success<String>('different_value');
 
       expect(success1, equals(success2));
       expect(success1, isNot(equals(success3)));

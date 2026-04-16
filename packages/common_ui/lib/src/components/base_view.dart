@@ -21,7 +21,7 @@ class BaseView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget body = hasSafeArea ? SafeArea(child: this.body) : this.body;
+    final body = hasSafeArea ? SafeArea(child: this.body) : this.body;
 
     return Scaffold(
       backgroundColor: context.palette.background,

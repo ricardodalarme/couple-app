@@ -30,7 +30,7 @@ class SharedInjectionModule implements InjectionModule {
         defaultHeaders: {'apikey': Config.serverApiKey},
       ),
     )
-    ..registerLazySingleton<RestClient>(RestClientImpl.new)
+    ..registerLazySingleton<RestClient>(() => RestClientImpl(baseUrl: Config.restServerUrl))
     ..registerLazySingleton<AnalyticsService>(FirebaseAnalyticsService.new)
     ..registerLazySingleton<RemoteConfigService>(RemoteConfigService.new)
     ..registerLazySingleton<CrashReportService>(CrashReportServiceImpl.new)

@@ -7,7 +7,7 @@ class PostDataSource {
   final GQLClient _client;
 
   Future<QueryGetPostspostsCollection> getPosts({int? first, String? after}) async {
-    final QueryResult<QueryGetPosts> response = await _client.query(
+    final response = await _client.query(
       OptionsQueryGetPosts(
         variables: VariablesQueryGetPosts(first: first, after: after),
       ),

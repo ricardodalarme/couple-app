@@ -8,7 +8,7 @@ class ImagePickerModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAccountProfileEn l10n = context.l10n.account.profile;
+    final l10n = context.l10n.account.profile;
 
     return SafeArea(
       child: Padding(

@@ -5,7 +5,7 @@ enum SnackBarType { info, success, error }
 
 extension ContextSnackBarExtension on BuildContext {
   void showSnackBar(String message, {SnackBarType type = SnackBarType.info}) {
-    final Color backgroudColor = switch (type) {
+    final backgroudColor = switch (type) {
       SnackBarType.info => palette.container,
       SnackBarType.success => palette.success,
       SnackBarType.error => palette.error,

@@ -38,8 +38,8 @@ class _RemoteConfigPageState extends State<RemoteConfigPage> {
           : ListView.builder(
               itemCount: _remoteConfigs.length,
               itemBuilder: (_, index) {
-                final String key = _remoteConfigs.keys.elementAt(index);
-                final String value = _remoteConfigs[key]!;
+                final key = _remoteConfigs.keys.elementAt(index);
+                final value = _remoteConfigs[key]!;
                 return BaseListTile(title: key, subtitle: value);
               },
             ),

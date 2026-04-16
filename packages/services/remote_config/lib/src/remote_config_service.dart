@@ -27,7 +27,7 @@ class RemoteConfigService {
   }
 
   Map<String, String> getAll() {
-    final Map<String, RemoteConfigValue> all = _firebaseRemoteConfig.getAll();
+    final all = _firebaseRemoteConfig.getAll();
     return all.map((key, value) => MapEntry(key, value.asString()));
   }
 

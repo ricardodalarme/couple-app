@@ -1,5 +1,4 @@
 import 'package:flutter_bloc_starter/features/post/data/data_sources/post_data_source.dart';
-import 'package:flutter_bloc_starter/features/post/data/data_sources/queries/generated/GetPosts.graphql.dart';
 import 'package:flutter_bloc_starter/features/post/data/mappers/post_response_mapper.dart';
 import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
 import 'package:logger/logger.dart';
@@ -13,12 +12,9 @@ class PostRepository {
   Future<List<Post>> getPosts({int? first, String? after}) async {
     _logger.info('Fetching posts first=$first after=$after');
     try {
-      final QueryGetPostspostsCollection result = await _postDataSource.getPosts(
-        first: first,
-        after: after,
-      );
+      final result = await _postDataSource.getPosts(first: first, after: after);
 
-      final List<Post> posts = result.edges.map((edge) => edge.node.toModel()).toList();
+      final posts = result.edges.map((edge) => edge.node.toModel()).toList();
 
       _logger.trace('Fetched ${posts.length} posts');
       return posts;

@@ -66,7 +66,7 @@ class AuthenticationService {
     required String newPassword,
   }) async {
     try {
-      final String? email = _auth.currentUser?.email;
+      final email = _auth.currentUser?.email;
       if (email == null || email.isEmpty) {
         throw const AuthenticationException(code: 'user_not_found');
       }

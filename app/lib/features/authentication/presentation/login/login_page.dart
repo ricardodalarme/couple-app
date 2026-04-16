@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAuthenticationLoginEn l10n = context.l10n.authentication.login;
+    final l10n = context.l10n.authentication.login;
 
     return BaseView(
       title: l10n.title,
@@ -71,7 +71,7 @@ class LoginPage extends StatelessWidget implements AutoRouteWrapper {
   }
 
   void _handleStatus(BuildContext context, LoginState state) {
-    final TranslationsAuthenticationLoginEn l10n = context.l10n.authentication.login;
+    final l10n = context.l10n.authentication.login;
 
     switch (state.login) {
       case Failure(:final LocalizedException exception):
@@ -90,7 +90,7 @@ class _EmailTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAuthenticationLoginEn l10n = context.l10n.authentication.login;
+    final l10n = context.l10n.authentication.login;
 
     return BlocBuilder<LoginCubit, LoginState>(
       buildWhen: (previous, current) => previous.email != current.email,
@@ -111,7 +111,7 @@ class _PasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAuthenticationLoginEn l10n = context.l10n.authentication.login;
+    final l10n = context.l10n.authentication.login;
 
     return BlocBuilder<LoginCubit, LoginState>(
       buildWhen: (previous, current) => previous.password != current.password,
@@ -133,7 +133,7 @@ class _LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAuthenticationLoginEn l10n = context.l10n.authentication.login;
+    final l10n = context.l10n.authentication.login;
 
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) => BaseButton(
@@ -151,7 +151,7 @@ class _SignInWithThirdPartyButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAuthenticationLoginEn l10n = context.l10n.authentication.login;
+    final l10n = context.l10n.authentication.login;
 
     return Column(
       spacing: Spacings.small,
@@ -177,7 +177,7 @@ class _SignupButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TranslationsAuthenticationLoginEn l10n = context.l10n.authentication.login;
+    final l10n = context.l10n.authentication.login;
 
     return BaseTextButton(
       text: l10n.buttonNewAccount,

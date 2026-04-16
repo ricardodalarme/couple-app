@@ -3,14 +3,15 @@ import 'package:intl/intl.dart';
 abstract final class NumberFormatters {
   const NumberFormatters._();
 
-  /// Formats [amount] as a decimal string using the specified [locale].
-  ///
-  /// **Examples:**
-  /// ```
-  /// NumberFormatters.decimal(0);                  // "0.00"
-  /// NumberFormatters.decimal(0.00009);            // "0.01"
-  /// NumberFormatters.decimal(1000, locale: 'en_US'); // "1,000.00"
-  /// ```
+  /// Formats [value] as an integer string using the specified [locale]
+  /// (e.g., "1,234" in en_US locale).
+  static String integer(int value, {String? locale}) {
+    final numberFormat = NumberFormat.decimalPattern(locale)..maximumFractionDigits = 0;
+    return numberFormat.format(value);
+  }
+
+  /// Formats [amount] as a decimal string using the specified [locale]
+  /// (e.g., "1,234.56" in en_US locale).
   static String decimal(num amount, {int fractionDigits = 2, String? locale}) {
     final numberFormat = NumberFormat.decimalPattern(locale)
       ..maximumFractionDigits = fractionDigits
@@ -18,13 +19,7 @@ abstract final class NumberFormatters {
     return numberFormat.format(amount);
   }
 
-  /// Formats [value] as a percentage string.
-  ///
-  /// **Examples:**
-  /// ```
-  /// NumberFormatters.percentage(0);       // "0.00%"
-  /// NumberFormatters.percentage(10.00009); // "10.01%"
-  /// ```
+  /// Formats [value] as a percentage string (e.g., "10.00%").
   static String percentage(num value, {int fractionDigits = 2, String? locale}) {
     return '${decimal(value, fractionDigits: fractionDigits, locale: locale)}%';
   }

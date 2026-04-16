@@ -12,8 +12,8 @@ class SettingsRepository {
   final SettingsLocalDataSource _localDataSource;
 
   Settings get() {
-    final Settings? settings = _localDataSource.get();
-    final Settings result = settings ?? const Settings.empty();
+    final settings = _localDataSource.get();
+    final result = settings ?? const Settings.empty();
     _logger.trace('Loaded settings: $result');
     return result;
   }
