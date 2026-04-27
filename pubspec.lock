@@ -173,10 +173,10 @@ packages:
     dependency: transitive
     description:
       name: build_runner
-      sha256: "521daf8d189deb79ba474e43a696b41c49fb3987818dbacf3308f1e03673a75e"
+      sha256: "22fdcc3cfeb9d974d7408718c4be15ec5e9b1b350088f3a6c88f154e74dd700d"
       url: "https://pub.dev"
     source: hosted
-    version: "2.13.1"
+    version: "2.14.1"
   built_collection:
     dependency: transitive
     description:
@@ -595,18 +595,18 @@ packages:
     dependency: transitive
     description:
       name: flutter_gen_core
-      sha256: "454ec926fd0758667615942032e1e5308d240e309627bdf3f2bf55b17d54b23e"
+      sha256: "1413fbd0b67f76ac17800989013438caec3b64564c9ffd1eea6cd7e170d9b0e5"
       url: "https://pub.dev"
     source: hosted
-    version: "5.14.0"
+    version: "5.14.1"
   flutter_gen_runner:
     dependency: transitive
     description:
       name: flutter_gen_runner
-      sha256: "2c926ab58103ea483963df9a000031e11958c7f4d1065ab021adc6829d9f6ddc"
+      sha256: db00922dd5f4c1aa33aeab7f74117f1cd224e7a1e8bea1e312b8d09b8101a909
       url: "https://pub.dev"
     source: hosted
-    version: "5.14.0"
+    version: "5.14.1"
   flutter_launcher_icons:
     dependency: transitive
     description:
