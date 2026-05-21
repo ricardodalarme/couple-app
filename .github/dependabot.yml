@@ -118,6 +118,19 @@ updates:
     labels:
       - ":package: dependencies"
   - package-ecosystem: pub
+    directory: /packages/services/authentication
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-authentication-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
     directory: /packages/services/biometric
     schedule:
       interval: weekly
