@@ -87,7 +87,7 @@ melos:
         dependsOn: slang
 
     gen:
-      run: dart run build_runner build --delete-conflicting-outputs --force-aot --workspace
+      run: dart run build_runner build --workspace
       description: Run build_runner in all packages.
 
     splash_screen:
