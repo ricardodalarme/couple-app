@@ -7,9 +7,8 @@ import 'package:form_inputs/form_inputs.dart';
 part 'forgot_password_state.dart';
 
 class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
-  ForgotPasswordCubit({required AuthenticationRepository authenticationRepository})
-    : _authenticationRepository = authenticationRepository,
-      super(const ForgotPasswordState());
+  ForgotPasswordCubit({required this._authenticationRepository})
+    : super(const ForgotPasswordState());
 
   final AuthenticationRepository _authenticationRepository;
 

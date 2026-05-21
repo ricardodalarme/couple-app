@@ -7,9 +7,7 @@ import 'package:form_inputs/form_inputs.dart';
 part 'change_password_state.dart';
 
 class ChangePasswordCubit extends Cubit<ChangePasswordState> {
-  ChangePasswordCubit({required AccountRepository accountRepository})
-    : _accountRepository = accountRepository,
-      super(const ChangePasswordState());
+  ChangePasswordCubit({required this._accountRepository}) : super(const ChangePasswordState());
 
   final AccountRepository _accountRepository;
 

@@ -7,12 +7,8 @@ import 'package:flutter_bloc_starter/features/settings/data/repositories/setting
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
-  AppCubit({
-    required AuthenticationRepository authenticationRepository,
-    required SettingsRepository settingsRepository,
-  }) : _authenticationRepository = authenticationRepository,
-       _settingsRepository = settingsRepository,
-       super(AppState.unauthenticated) {
+  AppCubit({required this._authenticationRepository, required this._settingsRepository})
+    : super(AppState.unauthenticated) {
     _authStateChangesSubscription = _authenticationRepository.isAuthenticatedStream.listen(
       _onStatusChanged,
     );

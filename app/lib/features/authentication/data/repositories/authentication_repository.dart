@@ -3,8 +3,7 @@ import 'package:core/core.dart';
 import 'package:logger/logger.dart';
 
 class AuthenticationRepository {
-  AuthenticationRepository({required AuthenticationService authenticationService})
-    : _authenticationService = authenticationService;
+  AuthenticationRepository({required this._authenticationService});
 
   final Logger _logger = Logger('AuthRepository');
   final AuthenticationService _authenticationService;

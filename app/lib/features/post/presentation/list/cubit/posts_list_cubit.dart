@@ -7,9 +7,7 @@ import 'package:flutter_bloc_starter/features/post/data/repositories/post_reposi
 part 'posts_list_state.dart';
 
 class PostsListCubit extends Cubit<PostsListState> {
-  PostsListCubit({required PostRepository postRepository})
-    : _postRepository = postRepository,
-      super(const PostsListState());
+  PostsListCubit({required this._postRepository}) : super(const PostsListState());
 
   final PostRepository _postRepository;
 

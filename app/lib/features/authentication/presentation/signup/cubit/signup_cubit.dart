@@ -7,9 +7,7 @@ import 'package:form_inputs/form_inputs.dart';
 part 'signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
-  SignupCubit({required AuthenticationRepository authenticationRepository})
-    : _authenticationRepository = authenticationRepository,
-      super(const SignupState());
+  SignupCubit({required this._authenticationRepository}) : super(const SignupState());
 
   final AuthenticationRepository _authenticationRepository;
 

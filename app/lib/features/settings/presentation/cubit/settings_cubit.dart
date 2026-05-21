@@ -6,9 +6,7 @@ import 'package:flutter_bloc_starter/features/settings/data/repositories/setting
 part 'settings_state.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
-  SettingsCubit({required SettingsRepository settingsRepository})
-    : _settingsRepository = settingsRepository,
-      super(const SettingsState());
+  SettingsCubit({required this._settingsRepository}) : super(const SettingsState());
 
   final SettingsRepository _settingsRepository;
 

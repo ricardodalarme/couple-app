@@ -5,8 +5,7 @@ import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart
 import 'package:logger/logger.dart';
 
 class SettingsRepository {
-  SettingsRepository({required SettingsLocalDataSource localDataSource})
-    : _localDataSource = localDataSource;
+  SettingsRepository({required this._localDataSource});
 
   final Logger _logger = Logger('SettingsRepository');
   final SettingsLocalDataSource _localDataSource;

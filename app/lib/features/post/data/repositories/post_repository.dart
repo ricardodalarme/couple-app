@@ -4,7 +4,7 @@ import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
 import 'package:logger/logger.dart';
 
 class PostRepository {
-  PostRepository({required PostDataSource postDataSource}) : _postDataSource = postDataSource;
+  PostRepository({required this._postDataSource});
 
   final Logger _logger = Logger('PostRepository');
   final PostDataSource _postDataSource;

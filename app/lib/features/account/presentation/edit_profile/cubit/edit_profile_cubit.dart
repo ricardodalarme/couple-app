@@ -7,9 +7,7 @@ import 'package:form_inputs/form_inputs.dart';
 part 'edit_profile_state.dart';
 
 class EditProfileCubit extends Cubit<EditProfileState> {
-  EditProfileCubit({required AccountRepository accountRepository})
-    : _accountRepository = accountRepository,
-      super(const EditProfileState());
+  EditProfileCubit({required this._accountRepository}) : super(const EditProfileState());
 
   final AccountRepository _accountRepository;
 
