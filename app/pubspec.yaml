@@ -44,7 +44,7 @@ dependencies:
     path: ../packages/services/remote_config
   secure_storage_service:
     path: ../packages/services/secure_storage
-  slang: ^4.14.0
+  slang: ^4.15.0
   slang_flutter: ^4.14.0
   webview_flutter: ^4.13.1
   widgetbook: ^3.23.0
@@ -54,7 +54,7 @@ dev_dependencies:
   bloc_test: ^10.0.0
   build_runner: ^2.15.0
   flutter_launcher_icons: ^0.14.4
-  flutter_native_splash: ^2.4.7
+  flutter_native_splash: ^2.4.8
   flutter_test:
     sdk: flutter
   graphql_codegen: ^3.0.1
