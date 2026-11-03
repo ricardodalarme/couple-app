@@ -6,8 +6,8 @@ import 'package:logging/logging.dart' as ext;
 typedef LogLevel = ext.Level;
 
 /// A logger utility.
-class Logger {
-  Logger(String name) {
+class Logger(String name) {
+  this {
     _ensureConfigured();
     _logger = ext.Logger(name);
   }

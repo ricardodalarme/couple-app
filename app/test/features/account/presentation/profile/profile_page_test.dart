@@ -7,7 +7,7 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../../test_helpers/pump_app.dart';
 
-class MockAppCubit extends MockCubit<AppState> implements AppCubit {}
+class MockAppCubit() extends MockCubit<AppState> implements AppCubit;
 
 void main() {
   group('ProfilePage', () {

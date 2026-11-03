@@ -6,9 +6,7 @@ import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 const _privacyPolicyUrl = 'https://www.example.com';
 
 @RoutePage()
-class PrivacyPolicyPage extends StatelessWidget {
-  const PrivacyPolicyPage({super.key});
-
+class const PrivacyPolicyPage({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView(

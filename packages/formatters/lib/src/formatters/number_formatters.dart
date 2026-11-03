@@ -1,8 +1,6 @@
 import 'package:intl/intl.dart';
 
-abstract final class NumberFormatters {
-  const NumberFormatters._();
-
+abstract final class const NumberFormatters._() {
   /// Formats [value] as an integer string using the specified [locale]
   /// (e.g., "1,234" in en_US locale).
   static String integer(int value, {String? locale}) {

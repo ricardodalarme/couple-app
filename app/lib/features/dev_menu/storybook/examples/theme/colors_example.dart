@@ -22,12 +22,7 @@ final WidgetbookNode colorsExample = WidgetbookUseCase(
   ),
 );
 
-class _ColorBox extends StatelessWidget {
-  const _ColorBox(this.name, this.color);
-
-  final String name;
-  final Color color;
-
+class const _ColorBox(final String name, final Color color) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

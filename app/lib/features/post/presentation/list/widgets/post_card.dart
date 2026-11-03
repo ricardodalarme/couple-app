@@ -1,11 +1,7 @@
 import 'package:common_ui/common_ui.dart' hide BaseListTile;
 import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
 
-class PostCard extends StatelessWidget {
-  const PostCard({required this.post, super.key});
-
-  final Post post;
-
+class const PostCard({required final Post post, super.key}) extends StatelessWidget {
   static const _profilePictureSize = 38.0;
   static const _bodyMaxLines = 7;
 

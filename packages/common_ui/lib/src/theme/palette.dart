@@ -5,7 +5,7 @@ import 'package:flutter/painting.dart';
 
 @immutable
 class Palette extends ThemeExtension<Palette> {
-  const Palette.light({
+  const new light({
     this.primary = Colors.blue400,
     this.onPrimary = Colors.white,
     this.secondary = Colors.green400,
@@ -20,7 +20,7 @@ class Palette extends ThemeExtension<Palette> {
     this.onError = Colors.white,
   });
 
-  const Palette.dark({
+  const new dark({
     this.primary = Colors.blue400,
     this.onPrimary = Colors.white,
     this.secondary = Colors.green400,
@@ -35,7 +35,7 @@ class Palette extends ThemeExtension<Palette> {
     this.onError = Colors.white,
   });
 
-  const Palette._({
+  const new _({
     required this.primary,
     required this.onPrimary,
     required this.secondary,

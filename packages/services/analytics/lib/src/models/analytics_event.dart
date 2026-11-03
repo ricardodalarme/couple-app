@@ -1,7 +1,3 @@
-abstract class AnalyticsEvent {
-  const AnalyticsEvent(this.name);
-
-  final String name;
-
+abstract class const AnalyticsEvent(final String name) {
   Map<String, Object>? get parameters => null;
 }

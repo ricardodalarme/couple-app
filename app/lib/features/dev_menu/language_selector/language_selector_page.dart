@@ -1,9 +1,7 @@
 import 'package:common_ui/common_ui.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
-class LanguageSelectorPage extends StatelessWidget {
-  const LanguageSelectorPage({super.key});
-
+class const LanguageSelectorPage({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final currentLocale = Localizations.localeOf(context);

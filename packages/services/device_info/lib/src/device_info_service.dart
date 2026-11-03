@@ -2,11 +2,8 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:device_info_service/src/device_info.dart';
 import 'package:flutter/foundation.dart'; // Replaces dart:io
 
-class DeviceInfoService {
-  DeviceInfoService({DeviceInfoPlugin? deviceInfoPlugin})
-    : _deviceInfoPlugin = deviceInfoPlugin ?? DeviceInfoPlugin();
-
-  final DeviceInfoPlugin _deviceInfoPlugin;
+class DeviceInfoService({DeviceInfoPlugin? deviceInfoPlugin}) {
+  final DeviceInfoPlugin _deviceInfoPlugin = deviceInfoPlugin ?? DeviceInfoPlugin();
 
   Future<DeviceInfo> getDeviceInfo() async {
     switch (defaultTargetPlatform) {

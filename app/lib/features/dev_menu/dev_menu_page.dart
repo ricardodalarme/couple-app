@@ -6,9 +6,7 @@ import 'package:flutter_bloc_starter/features/dev_menu/remote_config/remote_conf
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/storybook_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/theme_selector/theme_selector_page.dart';
 
-class DevMenuPage extends StatelessWidget {
-  const DevMenuPage({super.key});
-
+class const DevMenuPage({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView(

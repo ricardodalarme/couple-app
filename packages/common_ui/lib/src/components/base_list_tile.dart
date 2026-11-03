@@ -1,21 +1,13 @@
 import 'package:common_ui/common_ui.dart';
 
-class BaseListTile extends StatelessWidget {
-  const BaseListTile({
-    required this.title,
-    this.onTap,
-    this.leading,
-    this.subtitle,
-    this.trailing,
-    super.key,
-  });
-
-  final String title;
-  final String? subtitle;
-  final Widget? leading;
-  final Widget? trailing;
-  final VoidCallback? onTap;
-
+class const BaseListTile({
+  required final String title,
+  final VoidCallback? onTap,
+  final Widget? leading,
+  final String? subtitle,
+  final Widget? trailing,
+  super.key,
+}) extends StatelessWidget {
   static const double _iconSize = 22;
 
   @override

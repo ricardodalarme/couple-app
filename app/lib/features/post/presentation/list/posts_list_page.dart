@@ -10,9 +10,7 @@ import 'package:flutter_bloc_starter/features/post/presentation/list/widgets/pos
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
-class PostsListPage extends StatelessWidget implements AutoRouteWrapper {
-  const PostsListPage({super.key});
-
+class const PostsListPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   static final List<Post> _skeletonPosts = List.filled(6, Post.fake);
 
   @override
@@ -46,11 +44,7 @@ class PostsListPage extends StatelessWidget implements AutoRouteWrapper {
   }
 }
 
-class _PostsListWidget extends StatelessWidget {
-  const _PostsListWidget({required this.posts});
-
-  final List<Post> posts;
-
+class const _PostsListWidget({required final List<Post> posts}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.post.list;

@@ -1,10 +1,12 @@
 import 'package:formz/formz.dart';
 
-enum NonEmptyValidationError { empty }
+enum NonEmptyValidationError() {
+  empty,
+}
 
 class NonEmptyInput extends FormzInput<String, NonEmptyValidationError> {
-  const NonEmptyInput.pure({String value = ''}) : super.pure(value);
-  const NonEmptyInput.dirty(super.value) : super.dirty();
+  const new pure({String value = ''}) : super.pure(value);
+  const new dirty(super.value) : super.dirty();
 
   @override
   NonEmptyValidationError? validator(String value) {

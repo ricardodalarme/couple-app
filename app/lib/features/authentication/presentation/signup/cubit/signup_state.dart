@@ -1,18 +1,11 @@
 part of 'signup_cubit.dart';
 
-final class SignupState with Equatable, FormzMixin {
-  const SignupState({
-    this.email = const EmailInput.pure(),
-    this.password = const PasswordInput.pure(),
-    this.confirmPassword = const ConfirmedPasswordInput.pure(),
-    this.submission = const Initial(),
-  });
-
-  final EmailInput email;
-  final PasswordInput password;
-  final ConfirmedPasswordInput confirmPassword;
-  final Resource<void> submission;
-
+final class const SignupState({
+  final EmailInput email = const EmailInput.pure(),
+  final PasswordInput password = const PasswordInput.pure(),
+  final ConfirmedPasswordInput confirmPassword = const ConfirmedPasswordInput.pure(),
+  final Resource<void> submission = const Initial(),
+}) with Equatable, FormzMixin {
   SignupState copyWith({
     EmailInput? email,
     PasswordInput? password,

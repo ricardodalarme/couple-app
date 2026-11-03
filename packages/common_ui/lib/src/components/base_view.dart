@@ -3,22 +3,14 @@ import 'package:common_ui/src/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart' show Scaffold;
 import 'package:flutter/widgets.dart';
 
-class BaseView extends StatelessWidget {
-  const BaseView({
-    required this.body,
-    this.hasAppBar = true,
-    this.hasSafeArea = true,
-    this.title,
-    this.actions,
-    super.key,
-  });
-
-  final String? title;
-  final bool hasAppBar;
-  final bool hasSafeArea;
-  final Widget body;
-  final List<Widget>? actions;
-
+class const BaseView({
+  required final Widget body,
+  final bool hasAppBar = true,
+  final bool hasSafeArea = true,
+  final String? title,
+  final List<Widget>? actions,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final body = hasSafeArea ? SafeArea(child: this.body) : this.body;

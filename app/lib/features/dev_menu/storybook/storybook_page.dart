@@ -3,9 +3,7 @@ import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/exampl
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/theme_mode_addon.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-class StorybookPage extends StatelessWidget {
-  const StorybookPage({super.key});
-
+class const StorybookPage({super.key}) extends StatelessWidget {
   static final List<WidgetbookAddon<dynamic>> _addons = [
     StorybookThemeModeAddon(),
     TextScaleAddon(),

@@ -1,20 +1,13 @@
 import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart' show FilledButton;
 
-class BaseButton extends StatelessWidget {
-  const BaseButton({
-    required this.text,
-    required this.onPressed,
-    this.isLoading = false,
-    this.isEnabled = true,
-    super.key,
-  });
-
-  final String text;
-  final bool isLoading;
-  final bool isEnabled;
-  final VoidCallback onPressed;
-
+class const BaseButton({
+  required final String text,
+  required final VoidCallback onPressed,
+  final bool isLoading = false,
+  final bool isEnabled = true,
+  super.key,
+}) extends StatelessWidget {
   VoidCallback? get callback {
     if (!isEnabled) return null;
     if (isLoading) return () {};
@@ -34,9 +27,7 @@ class BaseButton extends StatelessWidget {
   }
 }
 
-class _LoadingIndicator extends StatelessWidget {
-  const _LoadingIndicator();
-
+class const _LoadingIndicator() extends StatelessWidget {
   static const _loadingSize = 24.0;
   static const _loadingStrokeWidth = 2.0;
 

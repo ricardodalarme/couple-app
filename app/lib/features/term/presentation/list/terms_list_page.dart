@@ -3,9 +3,7 @@ import 'package:common_ui/common_ui.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
-class TermsListPage extends StatelessWidget {
-  const TermsListPage({super.key});
-
+class const TermsListPage({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.terms.list;

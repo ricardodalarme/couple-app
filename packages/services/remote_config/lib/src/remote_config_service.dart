@@ -1,15 +1,11 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:remote_config_service/src/exceptions.dart';
 
-class RemoteConfigService {
-  factory RemoteConfigService([FirebaseRemoteConfig? firebaseRemoteConfig]) {
+class const RemoteConfigService._(final FirebaseRemoteConfig _firebaseRemoteConfig) {
+  factory([FirebaseRemoteConfig? firebaseRemoteConfig]) {
     return RemoteConfigService._(firebaseRemoteConfig ?? FirebaseRemoteConfig.instance)
       .._initialize();
   }
-
-  const RemoteConfigService._(this._firebaseRemoteConfig);
-
-  final FirebaseRemoteConfig _firebaseRemoteConfig;
 
   Future<void> _initialize() async {
     await _firebaseRemoteConfig.setConfigSettings(

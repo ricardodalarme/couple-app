@@ -1,8 +1,8 @@
 import 'package:common_ui/common_ui.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-class StorybookThemeModeAddon extends ThemeAddon<ThemeMode> {
-  StorybookThemeModeAddon()
+class StorybookThemeModeAddon() extends ThemeAddon<ThemeMode> {
+  this
     : super(
         themes: const [
           WidgetbookTheme(name: 'System', data: ThemeMode.system),
@@ -15,17 +15,13 @@ class StorybookThemeModeAddon extends ThemeAddon<ThemeMode> {
       );
 }
 
-class _ThemeModeSync extends StatefulWidget {
-  const _ThemeModeSync({required this.themeMode, required this.child});
-
-  final ThemeMode themeMode;
-  final Widget child;
-
+class const _ThemeModeSync({required final ThemeMode themeMode, required final Widget child})
+    extends StatefulWidget {
   @override
   State<_ThemeModeSync> createState() => _ThemeModeSyncState();
 }
 
-class _ThemeModeSyncState extends State<_ThemeModeSync> {
+class _ThemeModeSyncState() extends State<_ThemeModeSync> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();

@@ -4,9 +4,7 @@ import 'package:flutter_bloc_starter/features/search/presentation/widgets/search
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
-class SearchPage extends StatelessWidget {
-  const SearchPage({super.key});
-
+class const SearchPage({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView(

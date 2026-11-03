@@ -4,13 +4,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class _MockDeviceInfoPlugin extends Mock implements DeviceInfoPlugin {}
+class _MockDeviceInfoPlugin() extends Mock implements DeviceInfoPlugin;
 
-class _MockIosDeviceInfo extends Mock implements IosDeviceInfo {}
+class _MockIosDeviceInfo() extends Mock implements IosDeviceInfo;
 
-class _MockAndroidDeviceInfo extends Mock implements AndroidDeviceInfo {}
+class _MockAndroidDeviceInfo() extends Mock implements AndroidDeviceInfo;
 
-class _MockAndroidBuildVersion extends Mock implements AndroidBuildVersion {}
+class _MockAndroidBuildVersion() extends Mock implements AndroidBuildVersion;
 
 void main() {
   group(DeviceInfoService, () {

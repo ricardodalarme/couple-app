@@ -3,39 +3,29 @@ import 'package:flutter/material.dart' show Icons, InputDecoration, TextField;
 import 'package:flutter/material.dart' show InputDecoration, TextField, UnderlineInputBorder;
 import 'package:flutter/services.dart';
 
-enum BaseTextFieldType { text, password }
+enum BaseTextFieldType() {
+  text,
+  password,
+}
 
-class BaseTextField extends StatefulWidget {
-  const BaseTextField({
-    required this.text,
-    super.key,
-    this.type = BaseTextFieldType.text,
-    this.label,
-    this.errorText,
-    this.autocorrect = true,
-    this.enableSuggestions = true,
-    this.onChanged,
-    this.textInputAction,
-    this.onSubmitted,
-    this.keyboardType,
-  });
-
-  final BaseTextFieldType type;
-  final String text;
-  final String? label;
-  final String? errorText;
-  final TextInputAction? textInputAction;
-  final TextInputType? keyboardType;
-  final ValueChanged<String>? onChanged;
-  final bool autocorrect;
-  final bool enableSuggestions;
-  final void Function(String)? onSubmitted;
-
+class const BaseTextField({
+  required final String text,
+  super.key,
+  final BaseTextFieldType type = BaseTextFieldType.text,
+  final String? label,
+  final String? errorText,
+  final bool autocorrect = true,
+  final bool enableSuggestions = true,
+  final ValueChanged<String>? onChanged,
+  final TextInputAction? textInputAction,
+  final void Function(String)? onSubmitted,
+  final TextInputType? keyboardType,
+}) extends StatefulWidget {
   @override
   State<BaseTextField> createState() => _BaseTextFieldState();
 }
 
-class _BaseTextFieldState extends State<BaseTextField> {
+class _BaseTextFieldState() extends State<BaseTextField> {
   late TextEditingController _controller;
   bool _obscureText = true;
 

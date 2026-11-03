@@ -4,13 +4,12 @@ import 'package:common_ui/src/tokens/borders.dart';
 import 'package:common_ui/src/tokens/spacings.dart';
 import 'package:flutter/widgets.dart';
 
-class BaseCard extends StatelessWidget {
-  const BaseCard({required this.child, this.title, this.leading, super.key});
-
-  final String? title;
-  final Widget? leading;
-  final Widget child;
-
+class const BaseCard({
+  required final Widget child,
+  final String? title,
+  final Widget? leading,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(

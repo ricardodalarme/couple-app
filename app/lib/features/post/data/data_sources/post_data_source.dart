@@ -1,10 +1,8 @@
 import 'package:flutter_bloc_starter/features/post/data/data_sources/queries/generated/GetPosts.graphql.dart';
 import 'package:network/network.dart';
 
-class PostDataSource {
-  PostDataSource({required GQLClient graphlQLClient}) : _client = graphlQLClient;
-
-  final GQLClient _client;
+class PostDataSource({required GQLClient graphlQLClient}) {
+  final GQLClient _client = graphlQLClient;
 
   Future<QueryGetPostspostsCollection> getPosts({int? first, String? after}) async {
     final response = await _client.query(

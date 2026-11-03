@@ -1,4 +1,1 @@
-class SecureStorageException implements Exception {
-  const SecureStorageException(this.error);
-  final Object error;
-}
+class const SecureStorageException(final Object error) implements Exception;

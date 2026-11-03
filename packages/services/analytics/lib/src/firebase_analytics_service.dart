@@ -4,11 +4,8 @@ import 'dart:developer';
 import 'package:analytics_service/analytics_service.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
-class FirebaseAnalyticsService implements AnalyticsService {
-  FirebaseAnalyticsService([FirebaseAnalytics? firebaseAnalytics])
-    : _firebaseAnalytics = firebaseAnalytics ?? FirebaseAnalytics.instance;
-
-  final FirebaseAnalytics _firebaseAnalytics;
+class FirebaseAnalyticsService([FirebaseAnalytics? firebaseAnalytics]) implements AnalyticsService {
+  final FirebaseAnalytics _firebaseAnalytics = firebaseAnalytics ?? FirebaseAnalytics.instance;
 
   @override
   void logEvent(AnalyticsEvent event) {

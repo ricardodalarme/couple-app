@@ -1,7 +1,11 @@
 import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart' show ScaffoldMessenger, SnackBar;
 
-enum SnackBarType { info, success, error }
+enum SnackBarType() {
+  info,
+  success,
+  error,
+}
 
 extension ContextSnackBarExtension on BuildContext {
   void showSnackBar(String message, {SnackBarType type = SnackBarType.info}) {

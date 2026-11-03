@@ -3,11 +3,7 @@ import 'dart:convert';
 import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
 import 'package:preferences_service/preferences_service.dart';
 
-class SettingsLocalDataSource {
-  SettingsLocalDataSource({required this._preferencesService});
-
-  final PreferencesService _preferencesService;
-
+class SettingsLocalDataSource({required final PreferencesService _preferencesService}) {
   static const _key = 'settings';
 
   Future<void> save(Settings settings) async {

@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockAuthenticationRepository extends Mock implements AuthenticationRepository {}
+class MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
 
 void main() {
   group('LoginCubit', () {

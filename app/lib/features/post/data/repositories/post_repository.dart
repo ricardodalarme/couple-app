@@ -3,12 +3,8 @@ import 'package:flutter_bloc_starter/features/post/data/mappers/post_response_ma
 import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
 import 'package:logger/logger.dart';
 
-class PostRepository {
-  PostRepository({required this._postDataSource});
-
+class PostRepository({required final PostDataSource _postDataSource}) {
   final Logger _logger = Logger('PostRepository');
-  final PostDataSource _postDataSource;
-
   Future<List<Post>> getPosts({int? first, String? after}) async {
     _logger.info('Fetching posts first=$first after=$after');
     try {

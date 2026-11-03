@@ -1,16 +1,14 @@
 import 'package:authentication_service/src/exceptions.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class AuthenticationService {
-  AuthenticationService();
-
+class AuthenticationService() {
   GoTrueClient get _auth => Supabase.instance.client.auth;
 
   Session? get currentSession => _auth.currentSession;
 
   Future<void> initialize({required String url, required String anonKey}) async {
     if (url.isEmpty || anonKey.isEmpty) {
-      throw const AuthenticationException(code: 'invalid_configuration');
+      throw AuthenticationException(code: 'invalid_configuration');
     }
 
     await Supabase.initialize(url: url, publishableKey: anonKey);
@@ -68,7 +66,7 @@ class AuthenticationService {
     try {
       final email = _auth.currentUser?.email;
       if (email == null || email.isEmpty) {
-        throw const AuthenticationException(code: 'user_not_found');
+        throw AuthenticationException(code: 'user_not_found');
       }
 
       await _auth.signInWithPassword(email: email, password: currentPassword);

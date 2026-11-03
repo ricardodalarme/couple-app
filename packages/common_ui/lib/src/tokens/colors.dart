@@ -1,6 +1,6 @@
 import 'package:flutter/rendering.dart';
 
-abstract final class Colors {
+abstract final class Colors() {
   // Base colors
   static const transparent = Color(0x00000000);
   static const white = Color(0xFFFFFFFF);

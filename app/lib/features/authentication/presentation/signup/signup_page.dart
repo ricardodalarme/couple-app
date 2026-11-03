@@ -11,9 +11,7 @@ import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
 @RoutePage()
-class SignUpPage extends StatelessWidget implements AutoRouteWrapper {
-  const SignUpPage({super.key});
-
+class const SignUpPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(create: (_) => AppInjector.instance.get<SignupCubit>(), child: this);
@@ -73,9 +71,7 @@ class SignUpPage extends StatelessWidget implements AutoRouteWrapper {
   }
 }
 
-class _EmailTextField extends StatelessWidget {
-  const _EmailTextField();
-
+class const _EmailTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.signup;
@@ -94,9 +90,7 @@ class _EmailTextField extends StatelessWidget {
   }
 }
 
-class _PasswordTextField extends StatelessWidget {
-  const _PasswordTextField();
-
+class const _PasswordTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.signup;
@@ -115,9 +109,7 @@ class _PasswordTextField extends StatelessWidget {
   }
 }
 
-class _ConfirmPasswordTextField extends StatelessWidget {
-  const _ConfirmPasswordTextField();
-
+class const _ConfirmPasswordTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.signup;
@@ -137,9 +129,7 @@ class _ConfirmPasswordTextField extends StatelessWidget {
   }
 }
 
-class _SubmitButton extends StatelessWidget {
-  const _SubmitButton();
-
+class const _SubmitButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.signup;
@@ -155,11 +145,9 @@ class _SubmitButton extends StatelessWidget {
   }
 }
 
-class _SignInWithThirdPartyButtons extends StatelessWidget {
-  const _SignInWithThirdPartyButtons({required this.loginL10n});
-
-  final TranslationsAuthenticationLoginEn loginL10n;
-
+class const _SignInWithThirdPartyButtons({
+  required final TranslationsAuthenticationLoginEn loginL10n,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(

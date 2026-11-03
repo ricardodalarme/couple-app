@@ -1,11 +1,7 @@
 import 'package:common_ui/common_ui.dart';
 
-class EmptyIndicator extends StatelessWidget {
-  const EmptyIndicator({required this.title, super.key, this.description});
-
-  final String title;
-  final String? description;
-
+class const EmptyIndicator({required final String title, super.key, final String? description})
+    extends StatelessWidget {
   static const double _imageSize = 200;
 
   @override

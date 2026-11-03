@@ -13,7 +13,7 @@ import 'package:preferences_service/preferences_service.dart';
 import 'package:remote_config_service/remote_config_service.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
 
-class SharedInjectionModule implements InjectionModule {
+class SharedInjectionModule() implements InjectionModule {
   @override
   void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<RootStackRouter>(AppRouter.new)

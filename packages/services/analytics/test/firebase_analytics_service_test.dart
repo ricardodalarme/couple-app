@@ -3,17 +3,12 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockFirebaseAnalytics extends Mock implements FirebaseAnalytics {}
+class MockFirebaseAnalytics() extends Mock implements FirebaseAnalytics;
 
-class FakeAnalyticsEvent extends Fake implements AnalyticsEvent {
-  FakeAnalyticsEvent(this.name, {this.parameters});
-
-  @override
-  final String name;
-
-  @override
-  final Map<String, Object>? parameters;
-}
+class FakeAnalyticsEvent(
+  @override final String name, {
+  @override final Map<String, Object>? parameters,
+}) extends Fake implements AnalyticsEvent;
 
 void main() {
   group('AnalyticsService', () {

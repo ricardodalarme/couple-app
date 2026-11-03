@@ -7,9 +7,7 @@ import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
 @RoutePage()
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
+class const ProfilePage({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.account.profile;
@@ -61,9 +59,7 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
-class _ProfilePictureWithSelect extends StatelessWidget {
-  const _ProfilePictureWithSelect();
-
+class const _ProfilePictureWithSelect() extends StatelessWidget {
   static const _profilePictureSize = 150.0;
 
   @override

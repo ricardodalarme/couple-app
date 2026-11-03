@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract interface class PreferencesService {
+abstract interface class PreferencesService() {
   Future<void> initialize();
   String? readString({required String key});
   Future<void> writeString({required String key, required String value});
@@ -10,9 +10,7 @@ abstract interface class PreferencesService {
   Future<void> clear();
 }
 
-class PreferencesServiceImpl implements PreferencesService {
-  PreferencesServiceImpl();
-
+class PreferencesServiceImpl() implements PreferencesService {
   late final SharedPreferences _sharedPreferences;
 
   @override

@@ -7,7 +7,7 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../../test_helpers/pump_app.dart';
 
-class MockLoginCubit extends MockCubit<LoginState> implements LoginCubit {}
+class MockLoginCubit() extends MockCubit<LoginState> implements LoginCubit;
 
 void main() {
   group('LoginPage', () {

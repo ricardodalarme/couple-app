@@ -1,8 +1,8 @@
 import 'package:graphql/client.dart';
 import 'package:graphql_query_compress/graphql_query_compress.dart';
 
-class GQLClient {
-  factory GQLClient({
+class const GQLClient._(final GraphQLClient _client) {
+  factory({
     required String serverUrl,
     String? Function()? tokenCallback,
     Map<String, String> defaultHeaders = const {},
@@ -36,10 +36,6 @@ class GQLClient {
       ),
     );
   }
-
-  const GQLClient._(this._client);
-
-  final GraphQLClient _client;
 
   Future<QueryResult<T>> query<T>(QueryOptions<T> options) {
     return _client.query(options);

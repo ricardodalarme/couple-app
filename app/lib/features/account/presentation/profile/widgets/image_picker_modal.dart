@@ -3,9 +3,7 @@ import 'package:common_ui/common_ui.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/profile/widgets/circle_icon_button.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
-class ImagePickerModal extends StatelessWidget {
-  const ImagePickerModal({super.key});
-
+class const ImagePickerModal({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.account.profile;

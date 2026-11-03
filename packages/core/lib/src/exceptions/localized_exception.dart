@@ -1,5 +1,1 @@
-base class LocalizedException implements Exception {
-  const LocalizedException({required this.l10nKey});
-
-  final String l10nKey;
-}
+base class const LocalizedException({required final String l10nKey}) implements Exception;

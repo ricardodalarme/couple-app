@@ -3,10 +3,10 @@ import 'package:common_ui/src/tokens/spacings.dart';
 import 'package:flutter/widgets.dart';
 
 class BaseDivider extends StatelessWidget {
-  const BaseDivider({this.startMargin = Spacings.none, this.endMargin = Spacings.none, super.key})
+  const new({this.startMargin = Spacings.none, this.endMargin = Spacings.none, super.key})
     : text = null;
 
-  const BaseDivider.text({
+  const new text({
     required String this.text,
     this.startMargin = Spacings.none,
     this.endMargin = Spacings.none,
@@ -27,9 +27,7 @@ class BaseDivider extends StatelessWidget {
 }
 
 @visibleForTesting
-class BaseDividerLine extends StatelessWidget {
-  const BaseDividerLine({super.key});
-
+class const BaseDividerLine({super.key}) extends StatelessWidget {
   static const double _borderWidth = 0;
 
   @override
@@ -44,11 +42,7 @@ class BaseDividerLine extends StatelessWidget {
   }
 }
 
-class _BaseDividerWithText extends StatelessWidget {
-  const _BaseDividerWithText({required this.text});
-
-  final String text;
-
+class const _BaseDividerWithText({required final String text}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(

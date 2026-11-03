@@ -7,8 +7,9 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../../test_helpers/pump_app.dart';
 
-class MockChangePasswordCubit extends MockCubit<ChangePasswordState>
-    implements ChangePasswordCubit {}
+class MockChangePasswordCubit()
+    extends MockCubit<ChangePasswordState>
+    implements ChangePasswordCubit;
 
 void main() {
   group('ChangePasswordPage', () {

@@ -1,11 +1,7 @@
 import 'package:common_ui/common_ui.dart';
 
-class FeedbackIndicator extends StatelessWidget {
-  const FeedbackIndicator({required this.title, super.key, this.message});
-
-  final String title;
-  final String? message;
-
+class const FeedbackIndicator({required final String title, super.key, final String? message})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(

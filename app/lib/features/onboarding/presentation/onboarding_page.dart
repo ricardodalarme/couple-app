@@ -8,9 +8,7 @@ import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
 @RoutePage()
-class OnboardingPage extends StatelessWidget implements AutoRouteWrapper {
-  const OnboardingPage({super.key});
-
+class const OnboardingPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(create: (_) => AppInjector.instance.get<OnboardingCubit>(), child: this);

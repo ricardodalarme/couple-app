@@ -1,4 +1,4 @@
-abstract final class FontSizes {
+abstract final class FontSizes() {
   static const double xsmall = 10;
   static const double small = 12;
   static const double medium = 14;

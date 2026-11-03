@@ -4,7 +4,7 @@ import 'package:flutter_bloc_starter/features/post/presentation/list/cubit/posts
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockPostRepository extends Mock implements PostRepository {}
+class MockPostRepository() extends Mock implements PostRepository;
 
 void main() {
   group('PostsListCubit', () {

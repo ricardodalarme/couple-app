@@ -7,9 +7,7 @@ import 'package:flutter_bloc_starter/features/settings/presentation/widgets/sett
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
-class SettingsPage extends StatelessWidget implements AutoRouteWrapper {
-  const SettingsPage({super.key});
-
+class const SettingsPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
@@ -30,9 +28,7 @@ class SettingsPage extends StatelessWidget implements AutoRouteWrapper {
   }
 }
 
-class _BiometricsOption extends StatelessWidget {
-  const _BiometricsOption();
-
+class const _BiometricsOption() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsCubit, SettingsState>(

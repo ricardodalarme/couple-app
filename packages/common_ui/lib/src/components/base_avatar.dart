@@ -1,12 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:common_ui/common_ui.dart';
 
-class BaseAvatar extends StatelessWidget {
-  const BaseAvatar({required this.photoUrl, required this.size, super.key});
-
-  final String? photoUrl;
-  final double size;
-
+class const BaseAvatar({required final String? photoUrl, required final double size, super.key})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fallbackAvatar = Icon(Icons.person, size: size, color: context.palette.onContainer);

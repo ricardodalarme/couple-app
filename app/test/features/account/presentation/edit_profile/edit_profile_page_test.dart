@@ -7,7 +7,7 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../../test_helpers/pump_app.dart';
 
-class MockEditProfileCubit extends MockCubit<EditProfileState> implements EditProfileCubit {}
+class MockEditProfileCubit() extends MockCubit<EditProfileState> implements EditProfileCubit;
 
 void main() {
   group('EditProfilePage', () {

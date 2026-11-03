@@ -6,10 +6,9 @@ import 'package:form_inputs/form_inputs.dart';
 
 part 'change_password_state.dart';
 
-class ChangePasswordCubit extends Cubit<ChangePasswordState> {
-  ChangePasswordCubit({required this._accountRepository}) : super(const ChangePasswordState());
-
-  final AccountRepository _accountRepository;
+class ChangePasswordCubit({required final AccountRepository _accountRepository})
+    extends Cubit<ChangePasswordState> {
+  this : super(const ChangePasswordState());
 
   void onCurrentPasswordChanged(String currentPassword) {
     emit(state.copyWith(currentPassword: NonEmptyInput.dirty(currentPassword)));

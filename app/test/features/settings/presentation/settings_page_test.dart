@@ -7,7 +7,7 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../test_helpers/pump_app.dart';
 
-class MockSettingsCubit extends MockCubit<SettingsState> implements SettingsCubit {}
+class MockSettingsCubit() extends MockCubit<SettingsState> implements SettingsCubit;
 
 void main() {
   group('SettingsPage', () {

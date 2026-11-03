@@ -5,7 +5,7 @@ import 'package:flutter_bloc_starter/features/authentication/presentation/forgot
 import 'package:flutter_bloc_starter/features/authentication/presentation/login/cubit/login_cubit.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/signup/cubit/signup_cubit.dart';
 
-class AuthenticationInjectionModule implements InjectionModule {
+class AuthenticationInjectionModule() implements InjectionModule {
   @override
   void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<AuthenticationService>(AuthenticationService.new)

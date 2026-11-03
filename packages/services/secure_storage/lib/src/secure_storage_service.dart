@@ -1,19 +1,16 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:secure_storage_service/src/secure_storage_exception.dart';
 
-abstract interface class SecureStorageService {
+abstract interface class SecureStorageService() {
   Future<String?> read({required String key});
   Future<void> write({required String key, required String value});
   Future<void> delete({required String key});
   Future<void> clear();
 }
 
-class SecureStorageServiceImpl implements SecureStorageService {
-  const SecureStorageServiceImpl([FlutterSecureStorage? secureStorage])
-    : _secureStorage = secureStorage ?? const FlutterSecureStorage();
-
-  final FlutterSecureStorage _secureStorage;
-
+class const SecureStorageServiceImpl([
+  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage(),
+]) implements SecureStorageService {
   @override
   Future<String?> read({required String key}) async {
     try {

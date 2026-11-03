@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart' show AppBar, kToolbarHeight;
 import 'package:flutter/widgets.dart';
 
-class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const BaseAppBar({super.key, this.title, this.actions});
-
-  final String? title;
-  final List<Widget>? actions;
-
+class const BaseAppBar({super.key, final String? title, final List<Widget>? actions})
+    extends StatelessWidget
+    implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 

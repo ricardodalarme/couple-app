@@ -2,14 +2,12 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:device_info_service/device_info_service.dart';
 
-class DeviceInfoPage extends StatefulWidget {
-  const DeviceInfoPage({super.key});
-
+class const DeviceInfoPage({super.key}) extends StatefulWidget {
   @override
   State<DeviceInfoPage> createState() => _DeviceInfoPageState();
 }
 
-class _DeviceInfoPageState extends State<DeviceInfoPage> {
+class _DeviceInfoPageState() extends State<DeviceInfoPage> {
   late Future<DeviceInfo> _deviceInfoFuture;
 
   @override

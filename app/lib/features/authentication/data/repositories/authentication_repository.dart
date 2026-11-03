@@ -2,12 +2,8 @@ import 'package:authentication_service/authentication_service.dart';
 import 'package:core/core.dart';
 import 'package:logger/logger.dart';
 
-class AuthenticationRepository {
-  AuthenticationRepository({required this._authenticationService});
-
+class AuthenticationRepository({required final AuthenticationService _authenticationService}) {
   final Logger _logger = Logger('AuthRepository');
-  final AuthenticationService _authenticationService;
-
   bool get isAuthenticated => _authenticationService.isAuthenticated;
   Stream<bool> get isAuthenticatedStream => _authenticationService.authStateChanges;
 

@@ -4,9 +4,7 @@ import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
 @RoutePage()
-class NotFoundPage extends StatelessWidget {
-  const NotFoundPage({super.key});
-
+class const NotFoundPage({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView(

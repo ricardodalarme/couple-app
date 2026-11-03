@@ -1,8 +1,6 @@
 import 'package:intl/intl.dart';
 
-abstract final class CurrencyFormatters {
-  const CurrencyFormatters._();
-
+abstract final class const CurrencyFormatters._() {
   /// Formats [amount] as a currency string using the specified [locale] (e.g., "R$ 1.234,56"
   /// for "pt_BR" or "$1,234.56" for "en_US") and [name] (e.g., "USD", "EUR").
   static String simple(num amount, {String? name, int decimalDigits = 2, String? locale}) =>

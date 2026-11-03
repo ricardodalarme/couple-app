@@ -1,18 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-class PageInfo with Equatable {
-  const PageInfo({
-    required this.startCursor,
-    required this.endCursor,
-    required this.hasNextPage,
-    required this.hasPreviousPage,
-  });
-
-  final String? startCursor;
-  final String? endCursor;
-  final bool? hasNextPage;
-  final bool? hasPreviousPage;
-
+class const PageInfo({
+  required final String? startCursor,
+  required final String? endCursor,
+  required final bool? hasNextPage,
+  required final bool? hasPreviousPage,
+}) with Equatable {
   @override
   List<Object?> get props => [startCursor, endCursor, hasNextPage, hasPreviousPage];
 }

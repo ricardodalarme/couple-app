@@ -1,8 +1,6 @@
-final class AuthenticationException implements Exception {
-  const AuthenticationException({String? code}) : code = code ?? 'auth_error';
-
-  final String code;
+final class AuthenticationException({String? code}) implements Exception {
+  final String code = code ?? 'auth_error';
 
   @override
-  String toString() => 'AuthenticationServiceException(code: $code)';
+  String toString() => 'AuthenticationException(code: $code)';
 }

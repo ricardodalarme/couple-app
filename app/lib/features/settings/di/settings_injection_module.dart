@@ -4,7 +4,7 @@ import 'package:flutter_bloc_starter/features/settings/data/repositories/setting
 import 'package:flutter_bloc_starter/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:preferences_service/preferences_service.dart';
 
-class SettingsInjectionModule implements InjectionModule {
+class SettingsInjectionModule() implements InjectionModule {
   @override
   void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<SettingsLocalDataSource>(

@@ -2,7 +2,7 @@ import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart' show MaterialApp;
 
 class BaseApp extends StatelessWidget {
-  const BaseApp({
+  const new({
     this.home,
     this.supportedLocales = const <Locale>[Locale('en', 'US')],
     this.onGenerateTitle,
@@ -12,7 +12,7 @@ class BaseApp extends StatelessWidget {
     super.key,
   }) : routerConfig = null;
 
-  const BaseApp.router({
+  const new router({
     required this.routerConfig,
     this.supportedLocales = const <Locale>[Locale('en', 'US')],
     this.onGenerateTitle,

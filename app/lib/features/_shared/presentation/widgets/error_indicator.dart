@@ -1,19 +1,12 @@
 import 'package:common_ui/common_ui.dart';
 
-class ErrorIndicator extends StatelessWidget {
-  const ErrorIndicator({
-    required this.title,
-    required this.message,
-    required this.buttonText,
-    required this.onButtonPressed,
-    super.key,
-  });
-
-  final String title;
-  final String message;
-  final String buttonText;
-  final VoidCallback onButtonPressed;
-
+class const ErrorIndicator({
+  required final String title,
+  required final String message,
+  required final String buttonText,
+  required final VoidCallback onButtonPressed,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(

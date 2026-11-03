@@ -6,10 +6,9 @@ import 'package:form_inputs/form_inputs.dart';
 
 part 'signup_state.dart';
 
-class SignupCubit extends Cubit<SignupState> {
-  SignupCubit({required this._authenticationRepository}) : super(const SignupState());
-
-  final AuthenticationRepository _authenticationRepository;
+class SignupCubit({required final AuthenticationRepository _authenticationRepository})
+    extends Cubit<SignupState> {
+  this : super(const SignupState());
 
   void onEmailChanged(String email) {
     emit(state.copyWith(email: EmailInput.dirty(email)));

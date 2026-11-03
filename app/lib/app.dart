@@ -9,9 +9,7 @@ import 'package:flutter_bloc_starter/router/observers/analytics_router_observer.
 import 'package:flutter_bloc_starter/router/observers/log_router_observer.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-class App extends StatelessWidget {
-  const App({super.key});
-
+class const App({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final injector = AppInjector.instance;

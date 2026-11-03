@@ -7,7 +7,7 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../../test_helpers/pump_app.dart';
 
-class MockPostsListCubit extends MockCubit<PostsListState> implements PostsListCubit {}
+class MockPostsListCubit() extends MockCubit<PostsListState> implements PostsListCubit;
 
 void main() {
   group('PostsListPage', () {

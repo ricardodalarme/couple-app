@@ -1,6 +1,6 @@
 import 'package:local_auth/local_auth.dart';
 
-abstract interface class BiometricService {
+abstract interface class BiometricService() {
   Future<bool> authenticate(
     String reason, {
     bool persistAcrossBackgrounding,
@@ -11,14 +11,11 @@ abstract interface class BiometricService {
   Future<bool> isDeviceSupported();
 }
 
-class BiometricServiceImpl implements BiometricService {
-  factory BiometricServiceImpl([LocalAuthentication? localAuthentication]) {
+class const BiometricServiceImpl._(final LocalAuthentication _localAuthentication)
+    implements BiometricService {
+  factory([LocalAuthentication? localAuthentication]) {
     return BiometricServiceImpl._(localAuthentication ?? LocalAuthentication());
   }
-
-  const BiometricServiceImpl._(this._localAuthentication);
-
-  final LocalAuthentication _localAuthentication;
 
   @override
   Future<bool> authenticate(

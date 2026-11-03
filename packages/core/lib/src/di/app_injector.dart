@@ -1,9 +1,7 @@
 import 'package:core/core.dart';
 import 'package:get_it/get_it.dart';
 
-final class AppInjector implements Injector {
-  AppInjector._();
-
+final class AppInjector._() implements Injector {
   final GetIt _getIt = GetIt.instance;
 
   static Injector? _internal;

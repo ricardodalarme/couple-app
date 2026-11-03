@@ -2,14 +2,12 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:remote_config_service/remote_config_service.dart';
 
-class RemoteConfigPage extends StatefulWidget {
-  const RemoteConfigPage({super.key});
-
+class const RemoteConfigPage({super.key}) extends StatefulWidget {
   @override
   State<RemoteConfigPage> createState() => _RemoteConfigPageState();
 }
 
-class _RemoteConfigPageState extends State<RemoteConfigPage> {
+class _RemoteConfigPageState() extends State<RemoteConfigPage> {
   Map<String, String> _remoteConfigs = {};
 
   @override

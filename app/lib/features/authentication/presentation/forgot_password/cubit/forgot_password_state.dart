@@ -1,14 +1,9 @@
 part of 'forgot_password_cubit.dart';
 
-final class ForgotPasswordState with Equatable, FormzMixin {
-  const ForgotPasswordState({
-    this.email = const EmailInput.pure(),
-    this.submission = const Initial(),
-  });
-
-  final EmailInput email;
-  final Resource<void> submission;
-
+final class const ForgotPasswordState({
+  final EmailInput email = const EmailInput.pure(),
+  final Resource<void> submission = const Initial(),
+}) with Equatable, FormzMixin {
   ForgotPasswordState copyWith({EmailInput? email, Resource<void>? submission}) {
     return ForgotPasswordState(
       email: email ?? this.email,

@@ -1,9 +1,6 @@
 import 'dart:async';
 
-class CallbackDebouncer {
-  CallbackDebouncer(this._delay);
-
-  final Duration _delay;
+class CallbackDebouncer(final Duration _delay) {
   Timer? _timer;
 
   void call(void Function() callback) {

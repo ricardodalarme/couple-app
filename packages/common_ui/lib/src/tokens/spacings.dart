@@ -1,5 +1,5 @@
 /// Default Spacing in App UI.
-abstract final class Spacings {
+abstract final class Spacings() {
   /// The default unit of spacing
   static const double _spaceUnit = 16;
 

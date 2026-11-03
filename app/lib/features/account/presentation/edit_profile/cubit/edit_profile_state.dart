@@ -1,18 +1,11 @@
 part of 'edit_profile_cubit.dart';
 
-final class EditProfileState with Equatable, FormzMixin {
-  const EditProfileState({
-    this.submission = const Initial(),
-    this.firstName = const NonEmptyInput.pure(),
-    this.lastName = const NonEmptyInput.pure(),
-    this.email = const EmailInput.pure(),
-  });
-
-  final Resource<void> submission;
-  final NonEmptyInput firstName;
-  final NonEmptyInput lastName;
-  final EmailInput email;
-
+final class const EditProfileState({
+  final Resource<void> submission = const Initial(),
+  final NonEmptyInput firstName = const NonEmptyInput.pure(),
+  final NonEmptyInput lastName = const NonEmptyInput.pure(),
+  final EmailInput email = const EmailInput.pure(),
+}) with Equatable, FormzMixin {
   EditProfileState copyWith({
     Resource<void>? submission,
     NonEmptyInput? firstName,

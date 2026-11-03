@@ -6,10 +6,9 @@ import 'package:form_inputs/form_inputs.dart';
 
 part 'edit_profile_state.dart';
 
-class EditProfileCubit extends Cubit<EditProfileState> {
-  EditProfileCubit({required this._accountRepository}) : super(const EditProfileState());
-
-  final AccountRepository _accountRepository;
+class EditProfileCubit({required final AccountRepository _accountRepository})
+    extends Cubit<EditProfileState> {
+  this : super(const EditProfileState());
 
   void onFirstNameChanged(String firstName) {
     emit(state.copyWith(firstName: NonEmptyInput.dirty(firstName)));

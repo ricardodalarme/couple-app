@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart' show InkWell, Material;
 import 'package:flutter/widgets.dart';
 
-class BaseTapper extends StatelessWidget {
-  const BaseTapper({
-    required this.child,
-    this.onTap,
-    this.borderRadius,
-    this.backgroundColor,
-    this.rippleColor,
-    this.shape,
-    super.key,
-  });
-
-  final Widget child;
-  final GestureTapCallback? onTap;
-  final BorderRadiusGeometry? borderRadius;
-  final Color? backgroundColor;
-  final Color? rippleColor;
-  final ShapeBorder? shape;
-
+class const BaseTapper({
+  required final Widget child,
+  final GestureTapCallback? onTap,
+  final BorderRadiusGeometry? borderRadius,
+  final Color? backgroundColor,
+  final Color? rippleColor,
+  final ShapeBorder? shape,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(

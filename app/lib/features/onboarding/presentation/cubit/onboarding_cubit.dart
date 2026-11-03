@@ -1,10 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 
-class OnboardingCubit extends Cubit<int> {
-  OnboardingCubit({required this._settingsRepository}) : super(0);
-
-  final SettingsRepository _settingsRepository;
+class OnboardingCubit({required final SettingsRepository _settingsRepository}) extends Cubit<int> {
+  this : super(0);
 
   void onPageChanged(int page) => emit(page);
 

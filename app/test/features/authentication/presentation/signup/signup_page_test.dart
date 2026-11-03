@@ -7,7 +7,7 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../../test_helpers/pump_app.dart';
 
-class MockSignupCubit extends MockCubit<SignupState> implements SignupCubit {}
+class MockSignupCubit() extends MockCubit<SignupState> implements SignupCubit;
 
 void main() {
   group('SignUpPage', () {

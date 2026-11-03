@@ -1,3 +1,3 @@
-class RemoteConfigException implements Exception {}
+class RemoteConfigException() implements Exception;
 
-class CannotFetchRemoteConfigDataExcpetion extends RemoteConfigException {}
+class CannotFetchRemoteConfigDataExcpetion() extends RemoteConfigException;

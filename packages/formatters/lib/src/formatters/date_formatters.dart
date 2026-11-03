@@ -1,8 +1,6 @@
 import 'package:intl/intl.dart';
 
-abstract final class DateFormatters {
-  const DateFormatters._();
-
+abstract final class const DateFormatters._() {
   /// Formats [date] as a short date string (e.g., "10/23/2025").
   static String shortDate(DateTime date, {String? locale}) => DateFormat.yMd(locale).format(date);
 

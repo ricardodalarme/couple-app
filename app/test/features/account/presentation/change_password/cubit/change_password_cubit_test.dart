@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockAccountRepository extends Mock implements AccountRepository {}
+class MockAccountRepository() extends Mock implements AccountRepository;
 
 void main() {
   group('ChangePasswordCubit', () {

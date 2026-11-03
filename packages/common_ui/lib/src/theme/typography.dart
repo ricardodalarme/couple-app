@@ -4,29 +4,44 @@ import 'package:flutter/material.dart' show ThemeExtension;
 import 'package:flutter/painting.dart';
 
 @immutable
-class Typography extends ThemeExtension<Typography> {
-  const Typography({
-    this.titleLarge = const TextStyle(fontSize: FontSizes.xxxlarge, fontWeight: FontWeight.bold),
-    this.titleMedium = const TextStyle(fontSize: FontSizes.xxlarge, fontWeight: FontWeight.bold),
-    this.titleSmall = const TextStyle(fontSize: FontSizes.xlarge, fontWeight: FontWeight.bold),
-    this.bodyLarge = const TextStyle(fontSize: FontSizes.large, fontWeight: FontWeight.normal),
-    this.bodyMedium = const TextStyle(fontSize: FontSizes.medium, fontWeight: FontWeight.normal),
-    this.bodySmall = const TextStyle(fontSize: FontSizes.small, fontWeight: FontWeight.normal),
-    this.labelLarge = const TextStyle(fontSize: FontSizes.large, fontWeight: FontWeight.w500),
-    this.labelMedium = const TextStyle(fontSize: FontSizes.medium, fontWeight: FontWeight.w500),
-    this.labelSmall = const TextStyle(fontSize: FontSizes.small, fontWeight: FontWeight.w500),
-  });
-
-  final TextStyle titleLarge;
-  final TextStyle titleMedium;
-  final TextStyle titleSmall;
-  final TextStyle bodyLarge;
-  final TextStyle bodyMedium;
-  final TextStyle bodySmall;
-  final TextStyle labelLarge;
-  final TextStyle labelMedium;
-  final TextStyle labelSmall;
-
+class const Typography({
+  final TextStyle titleLarge = const TextStyle(
+    fontSize: FontSizes.xxxlarge,
+    fontWeight: FontWeight.bold,
+  ),
+  final TextStyle titleMedium = const TextStyle(
+    fontSize: FontSizes.xxlarge,
+    fontWeight: FontWeight.bold,
+  ),
+  final TextStyle titleSmall = const TextStyle(
+    fontSize: FontSizes.xlarge,
+    fontWeight: FontWeight.bold,
+  ),
+  final TextStyle bodyLarge = const TextStyle(
+    fontSize: FontSizes.large,
+    fontWeight: FontWeight.normal,
+  ),
+  final TextStyle bodyMedium = const TextStyle(
+    fontSize: FontSizes.medium,
+    fontWeight: FontWeight.normal,
+  ),
+  final TextStyle bodySmall = const TextStyle(
+    fontSize: FontSizes.small,
+    fontWeight: FontWeight.normal,
+  ),
+  final TextStyle labelLarge = const TextStyle(
+    fontSize: FontSizes.large,
+    fontWeight: FontWeight.w500,
+  ),
+  final TextStyle labelMedium = const TextStyle(
+    fontSize: FontSizes.medium,
+    fontWeight: FontWeight.w500,
+  ),
+  final TextStyle labelSmall = const TextStyle(
+    fontSize: FontSizes.small,
+    fontWeight: FontWeight.w500,
+  ),
+}) extends ThemeExtension<Typography> {
   @override
   ThemeExtension<Typography> copyWith({
     TextStyle? titleLarge,

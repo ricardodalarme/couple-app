@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart' show ThemeMode;
 import 'package:flutter/widgets.dart';
 
-class ThemeModeProvider extends StatefulWidget {
-  const ThemeModeProvider({required this.child, super.key});
-
-  final Widget child;
-
+class const ThemeModeProvider({required final Widget child, super.key}) extends StatefulWidget {
   static InheritedThemeProvider of(BuildContext context) {
     final result = context.dependOnInheritedWidgetOfExactType<InheritedThemeProvider>();
     assert(result != null, 'No ThemeProvider found in context');
@@ -20,7 +16,7 @@ class ThemeModeProvider extends StatefulWidget {
   State<ThemeModeProvider> createState() => _ThemeModeProviderState();
 }
 
-class _ThemeModeProviderState extends State<ThemeModeProvider> {
+class _ThemeModeProviderState() extends State<ThemeModeProvider> {
   ThemeMode _themeMode = ThemeMode.system;
 
   void _setThemeMode(ThemeMode mode) {
@@ -39,17 +35,12 @@ class _ThemeModeProviderState extends State<ThemeModeProvider> {
   }
 }
 
-class InheritedThemeProvider extends InheritedWidget {
-  const InheritedThemeProvider({
-    required this.themeMode,
-    required this.setThemeMode,
-    required super.child,
-    super.key,
-  });
-
-  final ThemeMode themeMode;
-  final void Function(ThemeMode) setThemeMode;
-
+class const InheritedThemeProvider({
+  required final ThemeMode themeMode,
+  required final void Function(ThemeMode) setThemeMode,
+  required super.child,
+  super.key,
+}) extends InheritedWidget {
   @override
   bool updateShouldNotify(InheritedThemeProvider oldWidget) {
     return themeMode != oldWidget.themeMode;

@@ -1,17 +1,11 @@
 import 'package:common_ui/common_ui.dart';
 
-class SettingsOption extends StatelessWidget {
-  const SettingsOption({
-    required this.text,
-    required this.value,
-    required this.onChanged,
-    super.key,
-  });
-
-  final String text;
-  final bool value;
-  final ValueChanged<bool> onChanged;
-
+class const SettingsOption({
+  required final String text,
+  required final bool value,
+  required final ValueChanged<bool> onChanged,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(

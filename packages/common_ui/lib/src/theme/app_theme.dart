@@ -3,7 +3,7 @@ import 'package:common_ui/src/theme/typography.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' show ColorScheme, ThemeData;
 
-abstract final class AppTheme {
+abstract final class AppTheme() {
   static const _typography = Typography();
   static const _lightPalette = Palette.light();
   static const _darkPalette = Palette.dark();

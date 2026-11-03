@@ -2,12 +2,8 @@ import 'package:authentication_service/authentication_service.dart';
 import 'package:core/core.dart';
 import 'package:logger/logger.dart';
 
-class AccountRepository {
-  AccountRepository({required this._authenticationService});
-
+class AccountRepository({required final AuthenticationService _authenticationService}) {
   final Logger _logger = Logger('AccountRepository');
-  final AuthenticationService _authenticationService;
-
   Future<void> updateProfile({
     required String firstName,
     required String lastName,

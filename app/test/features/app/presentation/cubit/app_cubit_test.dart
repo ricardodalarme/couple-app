@@ -6,9 +6,9 @@ import 'package:flutter_bloc_starter/features/settings/data/repositories/setting
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class _MockAuthenticationRepository extends Mock implements AuthenticationRepository {}
+class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
 
-class _MockSettingsRepository extends Mock implements SettingsRepository {}
+class _MockSettingsRepository() extends Mock implements SettingsRepository;
 
 void main() {
   late AuthenticationRepository authenticationRepository;

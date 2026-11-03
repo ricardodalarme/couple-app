@@ -6,11 +6,9 @@ import 'package:form_inputs/form_inputs.dart';
 
 part 'forgot_password_state.dart';
 
-class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
-  ForgotPasswordCubit({required this._authenticationRepository})
-    : super(const ForgotPasswordState());
-
-  final AuthenticationRepository _authenticationRepository;
+class ForgotPasswordCubit({required final AuthenticationRepository _authenticationRepository})
+    extends Cubit<ForgotPasswordState> {
+  this : super(const ForgotPasswordState());
 
   void onEmailChanged(String email) {
     emit(state.copyWith(email: EmailInput.dirty(email)));

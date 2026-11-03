@@ -1,35 +1,23 @@
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 
-class InfiniteListViewWidget extends StatefulWidget {
-  const InfiniteListViewWidget({
-    required this.itemCount,
-    required this.onFetchData,
-    required this.itemBuilder,
-    required this.hasNextPage,
-    required this.isLoading,
-    this.debounceDuration = const Duration(milliseconds: 100),
-    this.onRefresh,
-    this.padding,
-    this.separator,
-    super.key,
-  });
-
-  final Duration debounceDuration;
-  final int itemCount;
-  final bool isLoading;
-  final bool hasNextPage;
-  final VoidCallback onFetchData;
-  final Future<void> Function()? onRefresh;
-  final EdgeInsets? padding;
-  final Widget? separator;
-  final Widget Function(BuildContext context, int index) itemBuilder;
-
+class const InfiniteListViewWidget({
+  required final int itemCount,
+  required final VoidCallback onFetchData,
+  required final Widget Function(BuildContext context, int index) itemBuilder,
+  required final bool hasNextPage,
+  required final bool isLoading,
+  final Duration debounceDuration = const Duration(milliseconds: 100),
+  final Future<void> Function()? onRefresh,
+  final EdgeInsets? padding,
+  final Widget? separator,
+  super.key,
+}) extends StatefulWidget {
   @override
   State<InfiniteListViewWidget> createState() => _InfiniteListViewWidgetState();
 }
 
-class _InfiniteListViewWidgetState extends State<InfiniteListViewWidget> {
+class _InfiniteListViewWidgetState() extends State<InfiniteListViewWidget> {
   late final CallbackDebouncer debounce;
 
   int? _lastFetchedIndex;

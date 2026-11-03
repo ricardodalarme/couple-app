@@ -8,9 +8,7 @@ import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
-class ForgotPasswordPage extends StatelessWidget implements AutoRouteWrapper {
-  const ForgotPasswordPage({super.key});
-
+class const ForgotPasswordPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
@@ -68,9 +66,7 @@ class ForgotPasswordPage extends StatelessWidget implements AutoRouteWrapper {
   }
 }
 
-class _EmailTextField extends StatelessWidget {
-  const _EmailTextField();
-
+class const _EmailTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.forgotPassword;
@@ -90,9 +86,7 @@ class _EmailTextField extends StatelessWidget {
   }
 }
 
-class _SubmitButton extends StatelessWidget {
-  const _SubmitButton();
-
+class const _SubmitButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(

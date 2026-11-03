@@ -4,7 +4,7 @@ import 'package:flutter_bloc_starter/features/post/data/repositories/post_reposi
 import 'package:flutter_bloc_starter/features/post/presentation/list/cubit/posts_list_cubit.dart';
 import 'package:network/network.dart';
 
-class PostInjectionModule implements InjectionModule {
+class PostInjectionModule() implements InjectionModule {
   @override
   void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<PostDataSource>(

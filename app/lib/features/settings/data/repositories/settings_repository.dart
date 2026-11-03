@@ -4,12 +4,8 @@ import 'package:flutter_bloc_starter/features/settings/data/data_sources/setting
 import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
 import 'package:logger/logger.dart';
 
-class SettingsRepository {
-  SettingsRepository({required this._localDataSource});
-
+class SettingsRepository({required final SettingsLocalDataSource _localDataSource}) {
   final Logger _logger = Logger('SettingsRepository');
-  final SettingsLocalDataSource _localDataSource;
-
   Settings get() {
     final settings = _localDataSource.get();
     final result = settings ?? const Settings.empty();

@@ -1,8 +1,6 @@
 import 'package:common_ui/common_ui.dart';
 
-class ThemeSelectorPage extends StatelessWidget {
-  const ThemeSelectorPage({super.key});
-
+class const ThemeSelectorPage({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = ThemeModeProvider.of(context);

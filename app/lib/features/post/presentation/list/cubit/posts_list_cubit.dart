@@ -6,10 +6,9 @@ import 'package:flutter_bloc_starter/features/post/data/repositories/post_reposi
 
 part 'posts_list_state.dart';
 
-class PostsListCubit extends Cubit<PostsListState> {
-  PostsListCubit({required this._postRepository}) : super(const PostsListState());
-
-  final PostRepository _postRepository;
+class PostsListCubit({required final PostRepository _postRepository})
+    extends Cubit<PostsListState> {
+  this : super(const PostsListState());
 
   Future<void> getPosts() async {
     emit(state.copyWith(posts: const Loading()));

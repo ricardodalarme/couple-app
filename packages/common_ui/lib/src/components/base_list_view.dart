@@ -1,26 +1,16 @@
 import 'package:common_ui/src/components/base_pull_to_refresh.dart';
 import 'package:flutter/widgets.dart';
 
-class BaseListView extends StatelessWidget {
-  const BaseListView({
-    required this.itemCount,
-    required this.itemBuilder,
-    this.onRefresh,
-    this.padding = EdgeInsets.zero,
-    this.separator,
-    this.controller,
-    this.emptyBuilder,
-    super.key,
-  });
-
-  final EdgeInsets? padding;
-  final int itemCount;
-  final Widget? Function(BuildContext, int) itemBuilder;
-  final Widget? separator;
-  final Future<void> Function()? onRefresh;
-  final ScrollController? controller;
-  final WidgetBuilder? emptyBuilder;
-
+class const BaseListView({
+  required final int itemCount,
+  required final Widget? Function(BuildContext, int) itemBuilder,
+  final Future<void> Function()? onRefresh,
+  final EdgeInsets? padding = EdgeInsets.zero,
+  final Widget? separator,
+  final ScrollController? controller,
+  final WidgetBuilder? emptyBuilder,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (itemCount == 0 && emptyBuilder != null) {

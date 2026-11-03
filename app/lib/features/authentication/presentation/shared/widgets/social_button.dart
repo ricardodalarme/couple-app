@@ -1,21 +1,16 @@
 import 'package:common_ui/common_ui.dart';
 
-enum ButtonProvider {
+enum ButtonProvider(final String text) {
   google('Google'),
-  apple('Apple');
-
-  const ButtonProvider(this.text);
-
-  final String text;
+  apple('Apple'),
 }
 
-class SocialButton extends StatelessWidget {
-  const SocialButton(this.button, {required this.text, required this.onPressed, super.key});
-
-  final String Function(ButtonProvider) text;
-  final VoidCallback onPressed;
-  final ButtonProvider button;
-
+class const SocialButton(
+  final ButtonProvider button, {
+  required final String Function(ButtonProvider) text,
+  required final VoidCallback onPressed,
+  super.key,
+}) extends StatelessWidget {
   static const double _iconSize = 24;
 
   @override
@@ -49,22 +44,14 @@ class SocialButton extends StatelessWidget {
   }
 }
 
-class _SignInButtonBuilder extends StatelessWidget {
-  const _SignInButtonBuilder({
-    required this.backgroundColor,
-    required this.onPressed,
-    required this.text,
-    required this.icon,
-    super.key,
-    this.iconPadding,
-  });
-
-  final String text;
-  final Widget icon;
-  final Color backgroundColor;
-  final EdgeInsets? iconPadding;
-  final VoidCallback onPressed;
-
+class const _SignInButtonBuilder({
+  required final Color backgroundColor,
+  required final VoidCallback onPressed,
+  required final String text,
+  required final Widget icon,
+  super.key,
+  final EdgeInsets? iconPadding,
+}) extends StatelessWidget {
   static const double _buttonMaxWidth = 220;
   static const double _buttonHeight = 36;
 

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-abstract interface class RestClient {
+abstract interface class RestClient() {
   Future<Response<T>> get<T>(String path, {Object? data, Map<String, dynamic>? queryParameters});
   Future<Response<T>> put<T>(String path, {Object? data, Map<String, dynamic>? queryParameters});
   Future<Response<T>> post<T>(String path, {Object? data, Map<String, dynamic>? queryParameters});
@@ -8,14 +8,10 @@ abstract interface class RestClient {
   Future<Response<T>> delete<T>(String path, {Object? data, Map<String, dynamic>? queryParameters});
 }
 
-class RestClientImpl implements RestClient {
-  factory RestClientImpl({required String baseUrl}) {
+class const RestClientImpl._(final Dio _client) implements RestClient {
+  factory({required String baseUrl}) {
     return RestClientImpl._(Dio(BaseOptions(baseUrl: baseUrl)));
   }
-
-  const RestClientImpl._(this._client);
-
-  final Dio _client;
 
   @override
   Future<Response<T>> get<T>(String path, {Object? data, Map<String, dynamic>? queryParameters}) {

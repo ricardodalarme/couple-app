@@ -1,12 +1,11 @@
 import 'package:common_ui/common_ui.dart';
 
-class CircleIconButton extends StatelessWidget {
-  const CircleIconButton({required this.label, required this.icon, required this.onTap, super.key});
-
-  final String label;
-  final IconData icon;
-  final VoidCallback onTap;
-
+class const CircleIconButton({
+  required final String label,
+  required final IconData icon,
+  required final VoidCallback onTap,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseTooltip(

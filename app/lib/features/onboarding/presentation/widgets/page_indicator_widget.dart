@@ -1,11 +1,10 @@
 import 'package:common_ui/common_ui.dart';
 
-class PageIndicatorWidget extends StatelessWidget {
-  const PageIndicatorWidget({required this.current, required this.totalPages, super.key});
-
-  final int current;
-  final int totalPages;
-
+class const PageIndicatorWidget({
+  required final int current,
+  required final int totalPages,
+  super.key,
+}) extends StatelessWidget {
   static const double _indicatorSize = 8;
   static const double _indicatorSelectedSize = 24;
   static const double _indicatorRadius = 4;
