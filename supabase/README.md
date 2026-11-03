@@ -71,6 +71,14 @@ project. Local GraphQL is `http://127.0.0.1:55321/graphql/v1`.
 - Producers insert with the service role (or a security-definer function).
 - `supabase/tests/notifications_test.sql` covers the table, policies, and indexes.
 
+`public.device_tokens` is backend-only. The app registers an FCM installation
+through `register_device_token`; it never reads or writes the token table.
+`supabase/tests/device_tokens_test.sql` covers the table and functions.
+
+Push delivery still requires a server sender. Configure the FCM sender and an
+APNs key in the Firebase console; the iOS app must have the Push Notifications
+capability enabled in Xcode.
+
 To create a local test notification for an existing auth user:
 
 ```bash

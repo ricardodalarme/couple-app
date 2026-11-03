@@ -60,4 +60,34 @@ class NotificationsRepository({required final NotificationsDataSource _notificat
       rethrow;
     }
   }
+
+  Future<void> registerDeviceToken({
+    required String token,
+    required String platform,
+    String? appVersion,
+  }) async {
+    _logger.info('Registering device token platform=$platform');
+
+    try {
+      await _notificationsDataSource.registerDeviceToken(
+        token: token,
+        platform: platform,
+        appVersion: appVersion,
+      );
+    } catch (e, stack) {
+      _logger.error('Failed to register device token', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  Future<void> unregisterDeviceToken({required String token}) async {
+    _logger.info('Unregistering device token');
+
+    try {
+      await _notificationsDataSource.unregisterDeviceToken(token: token);
+    } catch (e, stack) {
+      _logger.error('Failed to unregister device token', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
 }

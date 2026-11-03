@@ -40,6 +40,8 @@ dependencies:
     path: ../packages/logger
   network:
     path: ../packages/network
+  notification_service:
+    path: ../packages/services/notification
   permission_service:
     path: ../packages/services/permission
   preferences_service:

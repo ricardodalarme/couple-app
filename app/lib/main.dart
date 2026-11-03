@@ -12,6 +12,7 @@ import 'package:flutter_bloc_starter/features/app/di/app_injection_module.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/observers/bloc_error_observer.dart';
 import 'package:flutter_bloc_starter/features/authentication/di/authentication_injection_module.dart';
+import 'package:flutter_bloc_starter/features/notifications/data/services/push_token_registrar.dart';
 import 'package:flutter_bloc_starter/features/notifications/di/notifications_injection_module.dart';
 import 'package:flutter_bloc_starter/features/onboarding/di/onboarding_injection_module.dart';
 import 'package:flutter_bloc_starter/features/post/di/post_injection_module.dart';
@@ -19,6 +20,7 @@ import 'package:flutter_bloc_starter/features/settings/di/settings_injection_mod
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:formatters/formatters.dart';
 import 'package:logger/logger.dart';
+import 'package:notification_service/notification_service.dart';
 import 'package:preferences_service/preferences_service.dart';
 
 final _logger = Logger('Bootstrap');
@@ -31,6 +33,7 @@ Future<void> main() async {
   _setupLocale();
 
   await _setupFirebase();
+  _setupNotifications();
   _registerModules();
   await Future.wait([
     _configureCrashReportService(),
@@ -38,6 +41,7 @@ Future<void> main() async {
     _initializeAuthenticationService(),
   ]);
   _setupBloc();
+  await _initializePushNotifications();
   _initializeAppCubit();
 
   runApp(const App());
@@ -46,6 +50,11 @@ Future<void> main() async {
 Future<void> _setupFirebase() async {
   _logger.info('Initializing Firebase');
   await Firebase.initializeApp();
+}
+
+void _setupNotifications() {
+  _logger.info('Registering notification background handler');
+  registerNotificationBackgroundHandler();
 }
 
 Future<void> _configureCrashReportService() async {
@@ -95,6 +104,11 @@ void _setupLocale() {
 
 void _initializeAppCubit() {
   AppInjector.instance.get<AppCubit>().initialize();
+}
+
+Future<void> _initializePushNotifications() async {
+  _logger.info('Initializing push notification registration');
+  await AppInjector.instance.get<PushTokenRegistrar>().initialize();
 }
 
 void _setupBloc() {

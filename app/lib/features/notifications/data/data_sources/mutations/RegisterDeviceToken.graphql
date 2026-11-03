@@ -1,0 +1,8 @@
+mutation RegisterDeviceToken($token: String!, $platform: String!, $appVersion: String) {
+  register_device_token(p_token: $token, p_platform: $platform, p_app_version: $appVersion) {
+    id
+    token
+    platform
+    last_seen_at
+  }
+}

@@ -77,9 +77,12 @@ using (true);
 - The local config sets `auto_expose_new_tables = false`, but hosted projects may
   still auto-expose new tables. Revoke broad grants explicitly.
 
-The starter also has a private `notifications` inbox:
-- `authenticated` can select its own rows and update only `read_at`.
-- `anon` has no access; clients never insert notifications.
+The starter also has a private notification inbox and push-token backend:
+- `authenticated` can select its own notifications and update only `read_at`.
+- `device_tokens` is backend-only; clients never read or write the table.
+- `register_device_token` / `unregister_device_token` are security-definer RPCs
+  keyed to `auth.uid()`. Push tokens are registered from the app after auth.
+- `anon` has no access; clients never insert notifications or tokens.
 - Notifications are created server-side with the service role or a
   security-definer function, never from the app.
 

@@ -174,6 +174,11 @@ allows them; use the body only for initializers and behavior.
 - **Notifications are backend-created.** `authenticated` can select its own rows
   and update only `read_at`; `anon` has no access and clients never insert
   notifications. Producers use the service role or a security-definer function.
+- **Push tokens are backend-only.** `device_tokens` has no client grants; the app
+  registers its FCM installation through `register_device_token` and removes it
+  through `unregister_device_token`. `NotificationService` wraps FCM and registers
+  tokens after auth. iOS still needs the Push Notifications capability and an
+  APNs key in Firebase; the app does not auto-prompt for notification permission.
 - **Refresh the GraphQL snapshot after a schema change**: `melos graphql:schema`
   then `melos gen`. The snapshot is generated from the linked project as the
   `authenticated` role; never hand-edit it.

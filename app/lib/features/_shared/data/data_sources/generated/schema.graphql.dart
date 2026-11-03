@@ -2058,6 +2058,1132 @@ class InputDatetimeListFilter {
   }
 }
 
+class Inputdevice_tokensFilter {
+  factory Inputdevice_tokensFilter({
+    InputUUIDFilter? id,
+    InputUUIDFilter? user_id,
+    InputStringFilter? token,
+    InputStringFilter? platform,
+    InputStringFilter? app_version,
+    InputDatetimeFilter? last_seen_at,
+    InputDatetimeFilter? invalidated_at,
+    InputDatetimeFilter? created_at,
+    InputDatetimeFilter? updated_at,
+    InputIDFilter? nodeId,
+    List<Inputdevice_tokensFilter>? and,
+    List<Inputdevice_tokensFilter>? or,
+    Inputdevice_tokensFilter? not,
+  }) => Inputdevice_tokensFilter._({
+    if (id != null) r'id': id,
+    if (user_id != null) r'user_id': user_id,
+    if (token != null) r'token': token,
+    if (platform != null) r'platform': platform,
+    if (app_version != null) r'app_version': app_version,
+    if (last_seen_at != null) r'last_seen_at': last_seen_at,
+    if (invalidated_at != null) r'invalidated_at': invalidated_at,
+    if (created_at != null) r'created_at': created_at,
+    if (updated_at != null) r'updated_at': updated_at,
+    if (nodeId != null) r'nodeId': nodeId,
+    if (and != null) r'and': and,
+    if (or != null) r'or': or,
+    if (not != null) r'not': not,
+  });
+
+  Inputdevice_tokensFilter._(this._$data);
+
+  factory Inputdevice_tokensFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : InputUUIDFilter.fromJson((l$id as Map<String, dynamic>));
+    }
+    if (data.containsKey('user_id')) {
+      final l$user_id = data['user_id'];
+      result$data['user_id'] = l$user_id == null
+          ? null
+          : InputUUIDFilter.fromJson((l$user_id as Map<String, dynamic>));
+    }
+    if (data.containsKey('token')) {
+      final l$token = data['token'];
+      result$data['token'] = l$token == null
+          ? null
+          : InputStringFilter.fromJson((l$token as Map<String, dynamic>));
+    }
+    if (data.containsKey('platform')) {
+      final l$platform = data['platform'];
+      result$data['platform'] = l$platform == null
+          ? null
+          : InputStringFilter.fromJson((l$platform as Map<String, dynamic>));
+    }
+    if (data.containsKey('app_version')) {
+      final l$app_version = data['app_version'];
+      result$data['app_version'] = l$app_version == null
+          ? null
+          : InputStringFilter.fromJson((l$app_version as Map<String, dynamic>));
+    }
+    if (data.containsKey('last_seen_at')) {
+      final l$last_seen_at = data['last_seen_at'];
+      result$data['last_seen_at'] = l$last_seen_at == null
+          ? null
+          : InputDatetimeFilter.fromJson((l$last_seen_at as Map<String, dynamic>));
+    }
+    if (data.containsKey('invalidated_at')) {
+      final l$invalidated_at = data['invalidated_at'];
+      result$data['invalidated_at'] = l$invalidated_at == null
+          ? null
+          : InputDatetimeFilter.fromJson((l$invalidated_at as Map<String, dynamic>));
+    }
+    if (data.containsKey('created_at')) {
+      final l$created_at = data['created_at'];
+      result$data['created_at'] = l$created_at == null
+          ? null
+          : InputDatetimeFilter.fromJson((l$created_at as Map<String, dynamic>));
+    }
+    if (data.containsKey('updated_at')) {
+      final l$updated_at = data['updated_at'];
+      result$data['updated_at'] = l$updated_at == null
+          ? null
+          : InputDatetimeFilter.fromJson((l$updated_at as Map<String, dynamic>));
+    }
+    if (data.containsKey('nodeId')) {
+      final l$nodeId = data['nodeId'];
+      result$data['nodeId'] = l$nodeId == null
+          ? null
+          : InputIDFilter.fromJson((l$nodeId as Map<String, dynamic>));
+    }
+    if (data.containsKey('and')) {
+      final l$and = data['and'];
+      result$data['and'] = (l$and as List<dynamic>?)
+          ?.map((e) => Inputdevice_tokensFilter.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('or')) {
+      final l$or = data['or'];
+      result$data['or'] = (l$or as List<dynamic>?)
+          ?.map((e) => Inputdevice_tokensFilter.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('not')) {
+      final l$not = data['not'];
+      result$data['not'] = l$not == null
+          ? null
+          : Inputdevice_tokensFilter.fromJson((l$not as Map<String, dynamic>));
+    }
+    return Inputdevice_tokensFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputUUIDFilter? get id => (_$data['id'] as InputUUIDFilter?);
+
+  InputUUIDFilter? get user_id => (_$data['user_id'] as InputUUIDFilter?);
+
+  InputStringFilter? get token => (_$data['token'] as InputStringFilter?);
+
+  InputStringFilter? get platform => (_$data['platform'] as InputStringFilter?);
+
+  InputStringFilter? get app_version => (_$data['app_version'] as InputStringFilter?);
+
+  InputDatetimeFilter? get last_seen_at => (_$data['last_seen_at'] as InputDatetimeFilter?);
+
+  InputDatetimeFilter? get invalidated_at => (_$data['invalidated_at'] as InputDatetimeFilter?);
+
+  InputDatetimeFilter? get created_at => (_$data['created_at'] as InputDatetimeFilter?);
+
+  InputDatetimeFilter? get updated_at => (_$data['updated_at'] as InputDatetimeFilter?);
+
+  InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
+
+  List<Inputdevice_tokensFilter>? get and => (_$data['and'] as List<Inputdevice_tokensFilter>?);
+
+  List<Inputdevice_tokensFilter>? get or => (_$data['or'] as List<Inputdevice_tokensFilter>?);
+
+  Inputdevice_tokensFilter? get not => (_$data['not'] as Inputdevice_tokensFilter?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id?.toJson();
+    }
+    if (_$data.containsKey('user_id')) {
+      final l$user_id = user_id;
+      result$data['user_id'] = l$user_id?.toJson();
+    }
+    if (_$data.containsKey('token')) {
+      final l$token = token;
+      result$data['token'] = l$token?.toJson();
+    }
+    if (_$data.containsKey('platform')) {
+      final l$platform = platform;
+      result$data['platform'] = l$platform?.toJson();
+    }
+    if (_$data.containsKey('app_version')) {
+      final l$app_version = app_version;
+      result$data['app_version'] = l$app_version?.toJson();
+    }
+    if (_$data.containsKey('last_seen_at')) {
+      final l$last_seen_at = last_seen_at;
+      result$data['last_seen_at'] = l$last_seen_at?.toJson();
+    }
+    if (_$data.containsKey('invalidated_at')) {
+      final l$invalidated_at = invalidated_at;
+      result$data['invalidated_at'] = l$invalidated_at?.toJson();
+    }
+    if (_$data.containsKey('created_at')) {
+      final l$created_at = created_at;
+      result$data['created_at'] = l$created_at?.toJson();
+    }
+    if (_$data.containsKey('updated_at')) {
+      final l$updated_at = updated_at;
+      result$data['updated_at'] = l$updated_at?.toJson();
+    }
+    if (_$data.containsKey('nodeId')) {
+      final l$nodeId = nodeId;
+      result$data['nodeId'] = l$nodeId?.toJson();
+    }
+    if (_$data.containsKey('and')) {
+      final l$and = and;
+      result$data['and'] = l$and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('or')) {
+      final l$or = or;
+      result$data['or'] = l$or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('not')) {
+      final l$not = not;
+      result$data['not'] = l$not?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputdevice_tokensFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$user_id = user_id;
+    final lOther$user_id = other.user_id;
+    if (_$data.containsKey('user_id') != other._$data.containsKey('user_id')) {
+      return false;
+    }
+    if (l$user_id != lOther$user_id) {
+      return false;
+    }
+    final l$token = token;
+    final lOther$token = other.token;
+    if (_$data.containsKey('token') != other._$data.containsKey('token')) {
+      return false;
+    }
+    if (l$token != lOther$token) {
+      return false;
+    }
+    final l$platform = platform;
+    final lOther$platform = other.platform;
+    if (_$data.containsKey('platform') != other._$data.containsKey('platform')) {
+      return false;
+    }
+    if (l$platform != lOther$platform) {
+      return false;
+    }
+    final l$app_version = app_version;
+    final lOther$app_version = other.app_version;
+    if (_$data.containsKey('app_version') != other._$data.containsKey('app_version')) {
+      return false;
+    }
+    if (l$app_version != lOther$app_version) {
+      return false;
+    }
+    final l$last_seen_at = last_seen_at;
+    final lOther$last_seen_at = other.last_seen_at;
+    if (_$data.containsKey('last_seen_at') != other._$data.containsKey('last_seen_at')) {
+      return false;
+    }
+    if (l$last_seen_at != lOther$last_seen_at) {
+      return false;
+    }
+    final l$invalidated_at = invalidated_at;
+    final lOther$invalidated_at = other.invalidated_at;
+    if (_$data.containsKey('invalidated_at') != other._$data.containsKey('invalidated_at')) {
+      return false;
+    }
+    if (l$invalidated_at != lOther$invalidated_at) {
+      return false;
+    }
+    final l$created_at = created_at;
+    final lOther$created_at = other.created_at;
+    if (_$data.containsKey('created_at') != other._$data.containsKey('created_at')) {
+      return false;
+    }
+    if (l$created_at != lOther$created_at) {
+      return false;
+    }
+    final l$updated_at = updated_at;
+    final lOther$updated_at = other.updated_at;
+    if (_$data.containsKey('updated_at') != other._$data.containsKey('updated_at')) {
+      return false;
+    }
+    if (l$updated_at != lOther$updated_at) {
+      return false;
+    }
+    final l$nodeId = nodeId;
+    final lOther$nodeId = other.nodeId;
+    if (_$data.containsKey('nodeId') != other._$data.containsKey('nodeId')) {
+      return false;
+    }
+    if (l$nodeId != lOther$nodeId) {
+      return false;
+    }
+    final l$and = and;
+    final lOther$and = other.and;
+    if (_$data.containsKey('and') != other._$data.containsKey('and')) {
+      return false;
+    }
+    if (l$and != null && lOther$and != null) {
+      if (l$and.length != lOther$and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$and.length; i++) {
+        final l$and$entry = l$and[i];
+        final lOther$and$entry = lOther$and[i];
+        if (l$and$entry != lOther$and$entry) {
+          return false;
+        }
+      }
+    } else if (l$and != lOther$and) {
+      return false;
+    }
+    final l$or = or;
+    final lOther$or = other.or;
+    if (_$data.containsKey('or') != other._$data.containsKey('or')) {
+      return false;
+    }
+    if (l$or != null && lOther$or != null) {
+      if (l$or.length != lOther$or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$or.length; i++) {
+        final l$or$entry = l$or[i];
+        final lOther$or$entry = lOther$or[i];
+        if (l$or$entry != lOther$or$entry) {
+          return false;
+        }
+      }
+    } else if (l$or != lOther$or) {
+      return false;
+    }
+    final l$not = not;
+    final lOther$not = other.not;
+    if (_$data.containsKey('not') != other._$data.containsKey('not')) {
+      return false;
+    }
+    if (l$not != lOther$not) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$user_id = user_id;
+    final l$token = token;
+    final l$platform = platform;
+    final l$app_version = app_version;
+    final l$last_seen_at = last_seen_at;
+    final l$invalidated_at = invalidated_at;
+    final l$created_at = created_at;
+    final l$updated_at = updated_at;
+    final l$nodeId = nodeId;
+    final l$and = and;
+    final l$or = or;
+    final l$not = not;
+    return Object.hashAll([
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('user_id') ? l$user_id : const {},
+      _$data.containsKey('token') ? l$token : const {},
+      _$data.containsKey('platform') ? l$platform : const {},
+      _$data.containsKey('app_version') ? l$app_version : const {},
+      _$data.containsKey('last_seen_at') ? l$last_seen_at : const {},
+      _$data.containsKey('invalidated_at') ? l$invalidated_at : const {},
+      _$data.containsKey('created_at') ? l$created_at : const {},
+      _$data.containsKey('updated_at') ? l$updated_at : const {},
+      _$data.containsKey('nodeId') ? l$nodeId : const {},
+      _$data.containsKey('and')
+          ? l$and == null
+                ? null
+                : Object.hashAll(l$and.map((v) => v))
+          : const {},
+      _$data.containsKey('or')
+          ? l$or == null
+                ? null
+                : Object.hashAll(l$or.map((v) => v))
+          : const {},
+      _$data.containsKey('not') ? l$not : const {},
+    ]);
+  }
+}
+
+class Inputdevice_tokensInsertInput {
+  factory Inputdevice_tokensInsertInput({
+    String? id,
+    String? user_id,
+    String? token,
+    String? platform,
+    String? app_version,
+    DateTime? last_seen_at,
+    DateTime? invalidated_at,
+    DateTime? created_at,
+    DateTime? updated_at,
+  }) => Inputdevice_tokensInsertInput._({
+    if (id != null) r'id': id,
+    if (user_id != null) r'user_id': user_id,
+    if (token != null) r'token': token,
+    if (platform != null) r'platform': platform,
+    if (app_version != null) r'app_version': app_version,
+    if (last_seen_at != null) r'last_seen_at': last_seen_at,
+    if (invalidated_at != null) r'invalidated_at': invalidated_at,
+    if (created_at != null) r'created_at': created_at,
+    if (updated_at != null) r'updated_at': updated_at,
+  });
+
+  Inputdevice_tokensInsertInput._(this._$data);
+
+  factory Inputdevice_tokensInsertInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('user_id')) {
+      final l$user_id = data['user_id'];
+      result$data['user_id'] = (l$user_id as String?);
+    }
+    if (data.containsKey('token')) {
+      final l$token = data['token'];
+      result$data['token'] = (l$token as String?);
+    }
+    if (data.containsKey('platform')) {
+      final l$platform = data['platform'];
+      result$data['platform'] = (l$platform as String?);
+    }
+    if (data.containsKey('app_version')) {
+      final l$app_version = data['app_version'];
+      result$data['app_version'] = (l$app_version as String?);
+    }
+    if (data.containsKey('last_seen_at')) {
+      final l$last_seen_at = data['last_seen_at'];
+      result$data['last_seen_at'] = l$last_seen_at == null
+          ? null
+          : DateTime.parse((l$last_seen_at as String));
+    }
+    if (data.containsKey('invalidated_at')) {
+      final l$invalidated_at = data['invalidated_at'];
+      result$data['invalidated_at'] = l$invalidated_at == null
+          ? null
+          : DateTime.parse((l$invalidated_at as String));
+    }
+    if (data.containsKey('created_at')) {
+      final l$created_at = data['created_at'];
+      result$data['created_at'] = l$created_at == null
+          ? null
+          : DateTime.parse((l$created_at as String));
+    }
+    if (data.containsKey('updated_at')) {
+      final l$updated_at = data['updated_at'];
+      result$data['updated_at'] = l$updated_at == null
+          ? null
+          : DateTime.parse((l$updated_at as String));
+    }
+    return Inputdevice_tokensInsertInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get id => (_$data['id'] as String?);
+
+  String? get user_id => (_$data['user_id'] as String?);
+
+  String? get token => (_$data['token'] as String?);
+
+  String? get platform => (_$data['platform'] as String?);
+
+  String? get app_version => (_$data['app_version'] as String?);
+
+  DateTime? get last_seen_at => (_$data['last_seen_at'] as DateTime?);
+
+  DateTime? get invalidated_at => (_$data['invalidated_at'] as DateTime?);
+
+  DateTime? get created_at => (_$data['created_at'] as DateTime?);
+
+  DateTime? get updated_at => (_$data['updated_at'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('user_id')) {
+      final l$user_id = user_id;
+      result$data['user_id'] = l$user_id;
+    }
+    if (_$data.containsKey('token')) {
+      final l$token = token;
+      result$data['token'] = l$token;
+    }
+    if (_$data.containsKey('platform')) {
+      final l$platform = platform;
+      result$data['platform'] = l$platform;
+    }
+    if (_$data.containsKey('app_version')) {
+      final l$app_version = app_version;
+      result$data['app_version'] = l$app_version;
+    }
+    if (_$data.containsKey('last_seen_at')) {
+      final l$last_seen_at = last_seen_at;
+      result$data['last_seen_at'] = l$last_seen_at?.toIso8601String();
+    }
+    if (_$data.containsKey('invalidated_at')) {
+      final l$invalidated_at = invalidated_at;
+      result$data['invalidated_at'] = l$invalidated_at?.toIso8601String();
+    }
+    if (_$data.containsKey('created_at')) {
+      final l$created_at = created_at;
+      result$data['created_at'] = l$created_at?.toIso8601String();
+    }
+    if (_$data.containsKey('updated_at')) {
+      final l$updated_at = updated_at;
+      result$data['updated_at'] = l$updated_at?.toIso8601String();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputdevice_tokensInsertInput || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$user_id = user_id;
+    final lOther$user_id = other.user_id;
+    if (_$data.containsKey('user_id') != other._$data.containsKey('user_id')) {
+      return false;
+    }
+    if (l$user_id != lOther$user_id) {
+      return false;
+    }
+    final l$token = token;
+    final lOther$token = other.token;
+    if (_$data.containsKey('token') != other._$data.containsKey('token')) {
+      return false;
+    }
+    if (l$token != lOther$token) {
+      return false;
+    }
+    final l$platform = platform;
+    final lOther$platform = other.platform;
+    if (_$data.containsKey('platform') != other._$data.containsKey('platform')) {
+      return false;
+    }
+    if (l$platform != lOther$platform) {
+      return false;
+    }
+    final l$app_version = app_version;
+    final lOther$app_version = other.app_version;
+    if (_$data.containsKey('app_version') != other._$data.containsKey('app_version')) {
+      return false;
+    }
+    if (l$app_version != lOther$app_version) {
+      return false;
+    }
+    final l$last_seen_at = last_seen_at;
+    final lOther$last_seen_at = other.last_seen_at;
+    if (_$data.containsKey('last_seen_at') != other._$data.containsKey('last_seen_at')) {
+      return false;
+    }
+    if (l$last_seen_at != lOther$last_seen_at) {
+      return false;
+    }
+    final l$invalidated_at = invalidated_at;
+    final lOther$invalidated_at = other.invalidated_at;
+    if (_$data.containsKey('invalidated_at') != other._$data.containsKey('invalidated_at')) {
+      return false;
+    }
+    if (l$invalidated_at != lOther$invalidated_at) {
+      return false;
+    }
+    final l$created_at = created_at;
+    final lOther$created_at = other.created_at;
+    if (_$data.containsKey('created_at') != other._$data.containsKey('created_at')) {
+      return false;
+    }
+    if (l$created_at != lOther$created_at) {
+      return false;
+    }
+    final l$updated_at = updated_at;
+    final lOther$updated_at = other.updated_at;
+    if (_$data.containsKey('updated_at') != other._$data.containsKey('updated_at')) {
+      return false;
+    }
+    if (l$updated_at != lOther$updated_at) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$user_id = user_id;
+    final l$token = token;
+    final l$platform = platform;
+    final l$app_version = app_version;
+    final l$last_seen_at = last_seen_at;
+    final l$invalidated_at = invalidated_at;
+    final l$created_at = created_at;
+    final l$updated_at = updated_at;
+    return Object.hashAll([
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('user_id') ? l$user_id : const {},
+      _$data.containsKey('token') ? l$token : const {},
+      _$data.containsKey('platform') ? l$platform : const {},
+      _$data.containsKey('app_version') ? l$app_version : const {},
+      _$data.containsKey('last_seen_at') ? l$last_seen_at : const {},
+      _$data.containsKey('invalidated_at') ? l$invalidated_at : const {},
+      _$data.containsKey('created_at') ? l$created_at : const {},
+      _$data.containsKey('updated_at') ? l$updated_at : const {},
+    ]);
+  }
+}
+
+class Inputdevice_tokensOrderBy {
+  factory Inputdevice_tokensOrderBy({
+    EnumOrderByDirection? id,
+    EnumOrderByDirection? user_id,
+    EnumOrderByDirection? token,
+    EnumOrderByDirection? platform,
+    EnumOrderByDirection? app_version,
+    EnumOrderByDirection? last_seen_at,
+    EnumOrderByDirection? invalidated_at,
+    EnumOrderByDirection? created_at,
+    EnumOrderByDirection? updated_at,
+  }) => Inputdevice_tokensOrderBy._({
+    if (id != null) r'id': id,
+    if (user_id != null) r'user_id': user_id,
+    if (token != null) r'token': token,
+    if (platform != null) r'platform': platform,
+    if (app_version != null) r'app_version': app_version,
+    if (last_seen_at != null) r'last_seen_at': last_seen_at,
+    if (invalidated_at != null) r'invalidated_at': invalidated_at,
+    if (created_at != null) r'created_at': created_at,
+    if (updated_at != null) r'updated_at': updated_at,
+  });
+
+  Inputdevice_tokensOrderBy._(this._$data);
+
+  factory Inputdevice_tokensOrderBy.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null ? null : fromJsonEnumOrderByDirection((l$id as String));
+    }
+    if (data.containsKey('user_id')) {
+      final l$user_id = data['user_id'];
+      result$data['user_id'] = l$user_id == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$user_id as String));
+    }
+    if (data.containsKey('token')) {
+      final l$token = data['token'];
+      result$data['token'] = l$token == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$token as String));
+    }
+    if (data.containsKey('platform')) {
+      final l$platform = data['platform'];
+      result$data['platform'] = l$platform == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$platform as String));
+    }
+    if (data.containsKey('app_version')) {
+      final l$app_version = data['app_version'];
+      result$data['app_version'] = l$app_version == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$app_version as String));
+    }
+    if (data.containsKey('last_seen_at')) {
+      final l$last_seen_at = data['last_seen_at'];
+      result$data['last_seen_at'] = l$last_seen_at == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$last_seen_at as String));
+    }
+    if (data.containsKey('invalidated_at')) {
+      final l$invalidated_at = data['invalidated_at'];
+      result$data['invalidated_at'] = l$invalidated_at == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$invalidated_at as String));
+    }
+    if (data.containsKey('created_at')) {
+      final l$created_at = data['created_at'];
+      result$data['created_at'] = l$created_at == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$created_at as String));
+    }
+    if (data.containsKey('updated_at')) {
+      final l$updated_at = data['updated_at'];
+      result$data['updated_at'] = l$updated_at == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$updated_at as String));
+    }
+    return Inputdevice_tokensOrderBy._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumOrderByDirection? get id => (_$data['id'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get user_id => (_$data['user_id'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get token => (_$data['token'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get platform => (_$data['platform'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get app_version => (_$data['app_version'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get last_seen_at => (_$data['last_seen_at'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get invalidated_at => (_$data['invalidated_at'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get created_at => (_$data['created_at'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get updated_at => (_$data['updated_at'] as EnumOrderByDirection?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id == null ? null : toJsonEnumOrderByDirection(l$id);
+    }
+    if (_$data.containsKey('user_id')) {
+      final l$user_id = user_id;
+      result$data['user_id'] = l$user_id == null ? null : toJsonEnumOrderByDirection(l$user_id);
+    }
+    if (_$data.containsKey('token')) {
+      final l$token = token;
+      result$data['token'] = l$token == null ? null : toJsonEnumOrderByDirection(l$token);
+    }
+    if (_$data.containsKey('platform')) {
+      final l$platform = platform;
+      result$data['platform'] = l$platform == null ? null : toJsonEnumOrderByDirection(l$platform);
+    }
+    if (_$data.containsKey('app_version')) {
+      final l$app_version = app_version;
+      result$data['app_version'] = l$app_version == null
+          ? null
+          : toJsonEnumOrderByDirection(l$app_version);
+    }
+    if (_$data.containsKey('last_seen_at')) {
+      final l$last_seen_at = last_seen_at;
+      result$data['last_seen_at'] = l$last_seen_at == null
+          ? null
+          : toJsonEnumOrderByDirection(l$last_seen_at);
+    }
+    if (_$data.containsKey('invalidated_at')) {
+      final l$invalidated_at = invalidated_at;
+      result$data['invalidated_at'] = l$invalidated_at == null
+          ? null
+          : toJsonEnumOrderByDirection(l$invalidated_at);
+    }
+    if (_$data.containsKey('created_at')) {
+      final l$created_at = created_at;
+      result$data['created_at'] = l$created_at == null
+          ? null
+          : toJsonEnumOrderByDirection(l$created_at);
+    }
+    if (_$data.containsKey('updated_at')) {
+      final l$updated_at = updated_at;
+      result$data['updated_at'] = l$updated_at == null
+          ? null
+          : toJsonEnumOrderByDirection(l$updated_at);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputdevice_tokensOrderBy || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$user_id = user_id;
+    final lOther$user_id = other.user_id;
+    if (_$data.containsKey('user_id') != other._$data.containsKey('user_id')) {
+      return false;
+    }
+    if (l$user_id != lOther$user_id) {
+      return false;
+    }
+    final l$token = token;
+    final lOther$token = other.token;
+    if (_$data.containsKey('token') != other._$data.containsKey('token')) {
+      return false;
+    }
+    if (l$token != lOther$token) {
+      return false;
+    }
+    final l$platform = platform;
+    final lOther$platform = other.platform;
+    if (_$data.containsKey('platform') != other._$data.containsKey('platform')) {
+      return false;
+    }
+    if (l$platform != lOther$platform) {
+      return false;
+    }
+    final l$app_version = app_version;
+    final lOther$app_version = other.app_version;
+    if (_$data.containsKey('app_version') != other._$data.containsKey('app_version')) {
+      return false;
+    }
+    if (l$app_version != lOther$app_version) {
+      return false;
+    }
+    final l$last_seen_at = last_seen_at;
+    final lOther$last_seen_at = other.last_seen_at;
+    if (_$data.containsKey('last_seen_at') != other._$data.containsKey('last_seen_at')) {
+      return false;
+    }
+    if (l$last_seen_at != lOther$last_seen_at) {
+      return false;
+    }
+    final l$invalidated_at = invalidated_at;
+    final lOther$invalidated_at = other.invalidated_at;
+    if (_$data.containsKey('invalidated_at') != other._$data.containsKey('invalidated_at')) {
+      return false;
+    }
+    if (l$invalidated_at != lOther$invalidated_at) {
+      return false;
+    }
+    final l$created_at = created_at;
+    final lOther$created_at = other.created_at;
+    if (_$data.containsKey('created_at') != other._$data.containsKey('created_at')) {
+      return false;
+    }
+    if (l$created_at != lOther$created_at) {
+      return false;
+    }
+    final l$updated_at = updated_at;
+    final lOther$updated_at = other.updated_at;
+    if (_$data.containsKey('updated_at') != other._$data.containsKey('updated_at')) {
+      return false;
+    }
+    if (l$updated_at != lOther$updated_at) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$user_id = user_id;
+    final l$token = token;
+    final l$platform = platform;
+    final l$app_version = app_version;
+    final l$last_seen_at = last_seen_at;
+    final l$invalidated_at = invalidated_at;
+    final l$created_at = created_at;
+    final l$updated_at = updated_at;
+    return Object.hashAll([
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('user_id') ? l$user_id : const {},
+      _$data.containsKey('token') ? l$token : const {},
+      _$data.containsKey('platform') ? l$platform : const {},
+      _$data.containsKey('app_version') ? l$app_version : const {},
+      _$data.containsKey('last_seen_at') ? l$last_seen_at : const {},
+      _$data.containsKey('invalidated_at') ? l$invalidated_at : const {},
+      _$data.containsKey('created_at') ? l$created_at : const {},
+      _$data.containsKey('updated_at') ? l$updated_at : const {},
+    ]);
+  }
+}
+
+class Inputdevice_tokensUpdateInput {
+  factory Inputdevice_tokensUpdateInput({
+    String? id,
+    String? user_id,
+    String? token,
+    String? platform,
+    String? app_version,
+    DateTime? last_seen_at,
+    DateTime? invalidated_at,
+    DateTime? created_at,
+    DateTime? updated_at,
+  }) => Inputdevice_tokensUpdateInput._({
+    if (id != null) r'id': id,
+    if (user_id != null) r'user_id': user_id,
+    if (token != null) r'token': token,
+    if (platform != null) r'platform': platform,
+    if (app_version != null) r'app_version': app_version,
+    if (last_seen_at != null) r'last_seen_at': last_seen_at,
+    if (invalidated_at != null) r'invalidated_at': invalidated_at,
+    if (created_at != null) r'created_at': created_at,
+    if (updated_at != null) r'updated_at': updated_at,
+  });
+
+  Inputdevice_tokensUpdateInput._(this._$data);
+
+  factory Inputdevice_tokensUpdateInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('user_id')) {
+      final l$user_id = data['user_id'];
+      result$data['user_id'] = (l$user_id as String?);
+    }
+    if (data.containsKey('token')) {
+      final l$token = data['token'];
+      result$data['token'] = (l$token as String?);
+    }
+    if (data.containsKey('platform')) {
+      final l$platform = data['platform'];
+      result$data['platform'] = (l$platform as String?);
+    }
+    if (data.containsKey('app_version')) {
+      final l$app_version = data['app_version'];
+      result$data['app_version'] = (l$app_version as String?);
+    }
+    if (data.containsKey('last_seen_at')) {
+      final l$last_seen_at = data['last_seen_at'];
+      result$data['last_seen_at'] = l$last_seen_at == null
+          ? null
+          : DateTime.parse((l$last_seen_at as String));
+    }
+    if (data.containsKey('invalidated_at')) {
+      final l$invalidated_at = data['invalidated_at'];
+      result$data['invalidated_at'] = l$invalidated_at == null
+          ? null
+          : DateTime.parse((l$invalidated_at as String));
+    }
+    if (data.containsKey('created_at')) {
+      final l$created_at = data['created_at'];
+      result$data['created_at'] = l$created_at == null
+          ? null
+          : DateTime.parse((l$created_at as String));
+    }
+    if (data.containsKey('updated_at')) {
+      final l$updated_at = data['updated_at'];
+      result$data['updated_at'] = l$updated_at == null
+          ? null
+          : DateTime.parse((l$updated_at as String));
+    }
+    return Inputdevice_tokensUpdateInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get id => (_$data['id'] as String?);
+
+  String? get user_id => (_$data['user_id'] as String?);
+
+  String? get token => (_$data['token'] as String?);
+
+  String? get platform => (_$data['platform'] as String?);
+
+  String? get app_version => (_$data['app_version'] as String?);
+
+  DateTime? get last_seen_at => (_$data['last_seen_at'] as DateTime?);
+
+  DateTime? get invalidated_at => (_$data['invalidated_at'] as DateTime?);
+
+  DateTime? get created_at => (_$data['created_at'] as DateTime?);
+
+  DateTime? get updated_at => (_$data['updated_at'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('user_id')) {
+      final l$user_id = user_id;
+      result$data['user_id'] = l$user_id;
+    }
+    if (_$data.containsKey('token')) {
+      final l$token = token;
+      result$data['token'] = l$token;
+    }
+    if (_$data.containsKey('platform')) {
+      final l$platform = platform;
+      result$data['platform'] = l$platform;
+    }
+    if (_$data.containsKey('app_version')) {
+      final l$app_version = app_version;
+      result$data['app_version'] = l$app_version;
+    }
+    if (_$data.containsKey('last_seen_at')) {
+      final l$last_seen_at = last_seen_at;
+      result$data['last_seen_at'] = l$last_seen_at?.toIso8601String();
+    }
+    if (_$data.containsKey('invalidated_at')) {
+      final l$invalidated_at = invalidated_at;
+      result$data['invalidated_at'] = l$invalidated_at?.toIso8601String();
+    }
+    if (_$data.containsKey('created_at')) {
+      final l$created_at = created_at;
+      result$data['created_at'] = l$created_at?.toIso8601String();
+    }
+    if (_$data.containsKey('updated_at')) {
+      final l$updated_at = updated_at;
+      result$data['updated_at'] = l$updated_at?.toIso8601String();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputdevice_tokensUpdateInput || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$user_id = user_id;
+    final lOther$user_id = other.user_id;
+    if (_$data.containsKey('user_id') != other._$data.containsKey('user_id')) {
+      return false;
+    }
+    if (l$user_id != lOther$user_id) {
+      return false;
+    }
+    final l$token = token;
+    final lOther$token = other.token;
+    if (_$data.containsKey('token') != other._$data.containsKey('token')) {
+      return false;
+    }
+    if (l$token != lOther$token) {
+      return false;
+    }
+    final l$platform = platform;
+    final lOther$platform = other.platform;
+    if (_$data.containsKey('platform') != other._$data.containsKey('platform')) {
+      return false;
+    }
+    if (l$platform != lOther$platform) {
+      return false;
+    }
+    final l$app_version = app_version;
+    final lOther$app_version = other.app_version;
+    if (_$data.containsKey('app_version') != other._$data.containsKey('app_version')) {
+      return false;
+    }
+    if (l$app_version != lOther$app_version) {
+      return false;
+    }
+    final l$last_seen_at = last_seen_at;
+    final lOther$last_seen_at = other.last_seen_at;
+    if (_$data.containsKey('last_seen_at') != other._$data.containsKey('last_seen_at')) {
+      return false;
+    }
+    if (l$last_seen_at != lOther$last_seen_at) {
+      return false;
+    }
+    final l$invalidated_at = invalidated_at;
+    final lOther$invalidated_at = other.invalidated_at;
+    if (_$data.containsKey('invalidated_at') != other._$data.containsKey('invalidated_at')) {
+      return false;
+    }
+    if (l$invalidated_at != lOther$invalidated_at) {
+      return false;
+    }
+    final l$created_at = created_at;
+    final lOther$created_at = other.created_at;
+    if (_$data.containsKey('created_at') != other._$data.containsKey('created_at')) {
+      return false;
+    }
+    if (l$created_at != lOther$created_at) {
+      return false;
+    }
+    final l$updated_at = updated_at;
+    final lOther$updated_at = other.updated_at;
+    if (_$data.containsKey('updated_at') != other._$data.containsKey('updated_at')) {
+      return false;
+    }
+    if (l$updated_at != lOther$updated_at) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$user_id = user_id;
+    final l$token = token;
+    final l$platform = platform;
+    final l$app_version = app_version;
+    final l$last_seen_at = last_seen_at;
+    final l$invalidated_at = invalidated_at;
+    final l$created_at = created_at;
+    final l$updated_at = updated_at;
+    return Object.hashAll([
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('user_id') ? l$user_id : const {},
+      _$data.containsKey('token') ? l$token : const {},
+      _$data.containsKey('platform') ? l$platform : const {},
+      _$data.containsKey('app_version') ? l$app_version : const {},
+      _$data.containsKey('last_seen_at') ? l$last_seen_at : const {},
+      _$data.containsKey('invalidated_at') ? l$invalidated_at : const {},
+      _$data.containsKey('created_at') ? l$created_at : const {},
+      _$data.containsKey('updated_at') ? l$updated_at : const {},
+    ]);
+  }
+}
+
 class InputFloatFilter {
   factory InputFloatFilter({
     double? eq,
@@ -6259,5 +7385,5 @@ Enum__DirectiveLocation fromJsonEnum__DirectiveLocation(String value) {
 }
 
 const possibleTypesMap = <String, Set<String>>{
-  'Node': {'notifications', 'posts'},
+  'Node': {'device_tokens', 'notifications', 'posts'},
 };

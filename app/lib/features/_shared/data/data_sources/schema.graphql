@@ -134,6 +134,116 @@ input DatetimeListFilter {
   overlaps: [Datetime!]
 }
 
+type device_tokens implements Node {
+  """Globally Unique Record Identifier"""
+  nodeId: ID!
+  id: UUID!
+  user_id: UUID!
+  token: String!
+  platform: String!
+  app_version: String
+  last_seen_at: Datetime!
+  invalidated_at: Datetime
+  created_at: Datetime!
+  updated_at: Datetime!
+}
+
+type device_tokensConnection {
+  edges: [device_tokensEdge!]!
+  pageInfo: PageInfo!
+}
+
+type device_tokensDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [device_tokens!]!
+}
+
+type device_tokensEdge {
+  cursor: String!
+  node: device_tokens!
+}
+
+input device_tokensFilter {
+  id: UUIDFilter
+  user_id: UUIDFilter
+  token: StringFilter
+  platform: StringFilter
+  app_version: StringFilter
+  last_seen_at: DatetimeFilter
+  invalidated_at: DatetimeFilter
+  created_at: DatetimeFilter
+  updated_at: DatetimeFilter
+  nodeId: IDFilter
+
+  """
+  Returns true only if all its inner filters are true, otherwise returns false
+  """
+  and: [device_tokensFilter!]
+
+  """
+  Returns true if at least one of its inner filters is true, otherwise returns false
+  """
+  or: [device_tokensFilter!]
+
+  """Negates a filter"""
+  not: device_tokensFilter
+}
+
+input device_tokensInsertInput {
+  id: UUID
+  user_id: UUID
+  token: String
+  platform: String
+  app_version: String
+  last_seen_at: Datetime
+  invalidated_at: Datetime
+  created_at: Datetime
+  updated_at: Datetime
+}
+
+type device_tokensInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [device_tokens!]!
+}
+
+input device_tokensOrderBy {
+  id: OrderByDirection
+  user_id: OrderByDirection
+  token: OrderByDirection
+  platform: OrderByDirection
+  app_version: OrderByDirection
+  last_seen_at: OrderByDirection
+  invalidated_at: OrderByDirection
+  created_at: OrderByDirection
+  updated_at: OrderByDirection
+}
+
+input device_tokensUpdateInput {
+  id: UUID
+  user_id: UUID
+  token: String
+  platform: String
+  app_version: String
+  last_seen_at: Datetime
+  invalidated_at: Datetime
+  created_at: Datetime
+  updated_at: Datetime
+}
+
+type device_tokensUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [device_tokens!]!
+}
+
 enum FilterIs {
   NULL
   NOT_NULL
@@ -201,6 +311,17 @@ scalar JSON
 
 """The root type for creating and mutating data"""
 type Mutation {
+  """Deletes zero or more records from the `device_tokens` collection"""
+  deleteFromdevice_tokensCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: device_tokensFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): device_tokensDeleteResponse!
+
   """Deletes zero or more records from the `notifications` collection"""
   deleteFromnotificationsCollection(
     """Restricts the mutation's impact to records matching the criteria"""
@@ -223,11 +344,32 @@ type Mutation {
     atMost: Int! = 1
   ): postsDeleteResponse!
 
+  """Adds one or more `device_tokens` records to the collection"""
+  insertIntodevice_tokensCollection(objects: [device_tokensInsertInput!]!): device_tokensInsertResponse
+
   """Adds one or more `notifications` records to the collection"""
   insertIntonotificationsCollection(objects: [notificationsInsertInput!]!): notificationsInsertResponse
 
   """Adds one or more `posts` records to the collection"""
   insertIntopostsCollection(objects: [postsInsertInput!]!): postsInsertResponse
+  register_device_token(p_token: String!, p_platform: String!, p_app_version: String): device_tokens
+  unregister_device_token(p_token: String!): device_tokens
+
+  """Updates zero or more records in the `device_tokens` collection"""
+  updatedevice_tokensCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: device_tokensUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: device_tokensFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): device_tokensUpdateResponse!
 
   """Updates zero or more records in the `notifications` collection"""
   updatenotificationsCollection(
@@ -490,6 +632,32 @@ type postsUpdateResponse {
 
 """The root type for querying data"""
 type Query {
+  """A pagable collection of type `device_tokens`"""
+  device_tokensCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: device_tokensFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [device_tokensOrderBy!]
+  ): device_tokensConnection
+
   """Retrieve a record by its `ID`"""
   node(
     """The record's `ID`"""
