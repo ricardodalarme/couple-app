@@ -1,6 +1,8 @@
 // dart format width=100
 import '../../fragments/generated/PostFragment.graphql.dart';
+
 import 'dart:async';
+
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
@@ -253,8 +255,10 @@ const documentNodeQueryGetPosts = DocumentNode(
   ],
 );
 QueryGetPosts _parserFnQueryGetPosts(Map<String, dynamic> data) => QueryGetPosts.fromJson(data);
-typedef OnQueryCompleteQueryGetPosts =
-    FutureOr<void> Function(Map<String, dynamic>?, QueryGetPosts?);
+typedef OnQueryCompleteQueryGetPosts = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  QueryGetPosts?,
+);
 
 class OptionsQueryGetPosts extends graphql.QueryOptions<QueryGetPosts> {
   OptionsQueryGetPosts({

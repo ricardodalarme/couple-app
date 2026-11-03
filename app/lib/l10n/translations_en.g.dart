@@ -327,8 +327,7 @@ class TranslationsAccountChangePasswordEn {
 
   Map<String, String> get currentPasswordErrors => {'empty': 'Current password is required'};
   Map<String, String> get newPasswordErrors => {
-    'weak':
-        'New password must be at least 8 characters long and contain at least one letter and one number',
+    'weak': 'New password must be at least 8 characters long and contain at least one letter and one number',
   };
   Map<String, String> get confirmPasswordErrors => {'invalid': 'Passwords do not match'};
   Map<String, String> get errors => {
@@ -403,8 +402,7 @@ class TranslationsAuthenticationSignupEn {
 
   Map<String, String> get emailErrors => {'invalid': 'Email is invalid'};
   Map<String, String> get passwordErrors => {
-    'weak':
-        'Password must be at least 8 characters long and contain at least one letter and one number',
+    'weak': 'Password must be at least 8 characters long and contain at least one letter and one number',
   };
   Map<String, String> get confirmPasswordErrors => {'invalid': 'Passwords do not match'};
   Map<String, String> get errors => {
@@ -576,8 +574,7 @@ extension on Translations {
       'account.changePassword.labelConfirmPassword' => 'Confirm Password',
       'account.changePassword.messageSuccess' => 'Password changed successfully',
       'account.changePassword.currentPasswordErrors.empty' => 'Current password is required',
-      'account.changePassword.newPasswordErrors.weak' =>
-        'New password must be at least 8 characters long and contain at least one letter and one number',
+      'account.changePassword.newPasswordErrors.weak' => 'New password must be at least 8 characters long and contain at least one letter and one number',
       'account.changePassword.confirmPasswordErrors.invalid' => 'Passwords do not match',
       'account.changePassword.errors.wrong_current_password' => 'Current password is incorrect',
       'account.changePassword.errors.invalid_credentials' => 'Current password is incorrect',
@@ -597,8 +594,9 @@ extension on Translations {
       'authentication.login.title' => 'Login',
       'authentication.login.buttonLogin' => 'Login',
       'authentication.login.buttonForgotPassword' => 'Forgot password?',
-      'authentication.login.buttonSignInWith' =>
-        ({required Object provider}) => 'Sign in with ${provider}',
+      'authentication.login.buttonSignInWith' => ({
+        required Object provider,
+      }) => 'Sign in with ${provider}',
       'authentication.login.buttonNewAccount' => 'Don\'t have an account? Sign up',
       'authentication.login.buttonDevMenu' => 'Open DevMenu',
       'authentication.login.dividerOr' => 'OR',
@@ -613,8 +611,7 @@ extension on Translations {
       'authentication.signup.labelConfirmPassword' => 'Confirm Password',
       'authentication.signup.buttonSubmit' => 'Sign Up',
       'authentication.signup.emailErrors.invalid' => 'Email is invalid',
-      'authentication.signup.passwordErrors.weak' =>
-        'Password must be at least 8 characters long and contain at least one letter and one number',
+      'authentication.signup.passwordErrors.weak' => 'Password must be at least 8 characters long and contain at least one letter and one number',
       'authentication.signup.confirmPasswordErrors.invalid' => 'Passwords do not match',
       'authentication.signup.errors.user_already_registered' => 'This email is already registered',
       'authentication.signup.errors.user_already_exists' => 'This email is already registered',
@@ -644,8 +641,7 @@ extension on Translations {
       'onboarding.pages.0.title' => 'Welcome!',
       'onboarding.pages.0.message' => 'Welcome to QuickStart Flutter',
       'onboarding.pages.1.title' => 'What is QuickStart Flutter?',
-      'onboarding.pages.1.message' =>
-        'QuickStart Flutter is a project to speed up the bootstrapping of new Flutter projects. It already comes with a series of features ready to use, such as internationalization, themes, routes, state management, among others.',
+      'onboarding.pages.1.message' => 'QuickStart Flutter is a project to speed up the bootstrapping of new Flutter projects. It already comes with a series of features ready to use, such as internationalization, themes, routes, state management, among others.',
       'onboarding.pages.2.title' => 'Let\'s get started?',
       'onboarding.pages.2.message' =>
         'Ready to explore everything QuickStart Flutter has to offer? Let\'s get started!',

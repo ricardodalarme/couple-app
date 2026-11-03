@@ -27,17 +27,15 @@ void main() {
 
     group('read', () {
       test('returns value when FlutterSecureStorage returns successfully', () async {
-        when(
-          () => flutterSecureStorage.read(key: any(named: 'key')),
-        ).thenAnswer((_) => Future.value(mockValue));
+        when(() => flutterSecureStorage.read(key: any(named: 'key')))
+            .thenAnswer((_) => Future.value(mockValue));
         final actual = await secureStorage.read(key: mockKey);
         expect(actual, mockValue);
       });
 
       test('returns null when FlutterSecureStorage returns null', () async {
-        when(
-          () => flutterSecureStorage.read(key: any(named: 'key')),
-        ).thenAnswer((_) => Future<String?>.value());
+        when(() => flutterSecureStorage.read(key: any(named: 'key')))
+            .thenAnswer((_) => Future<String?>.value());
         final actual = await secureStorage.read(key: mockKey);
         expect(actual, isNull);
       });
@@ -81,9 +79,8 @@ void main() {
 
     group('delete', () {
       test('completes when FlutterSecureStorage completes', () {
-        when(
-          () => flutterSecureStorage.delete(key: any(named: 'key')),
-        ).thenAnswer((_) => Future.value());
+        when(() => flutterSecureStorage.delete(key: any(named: 'key')))
+            .thenAnswer((_) => Future.value());
         expect(secureStorage.delete(key: mockKey), completes);
       });
 

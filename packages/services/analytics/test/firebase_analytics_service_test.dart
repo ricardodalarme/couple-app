@@ -42,9 +42,8 @@ void main() {
 
         analyticsService.logEvent(event);
 
-        verify(
-          () => firebaseAnalytics.logEvent(name: event.name, parameters: event.parameters),
-        ).called(1);
+        verify(() => firebaseAnalytics.logEvent(name: event.name, parameters: event.parameters))
+            .called(1);
       });
 
       test('do not throw exception when logEvent throws exception', () {
@@ -62,9 +61,8 @@ void main() {
 
         expect(() => analyticsService.logEvent(event), returnsNormally);
 
-        verify(
-          () => firebaseAnalytics.logEvent(name: event.name, parameters: event.parameters),
-        ).called(1);
+        verify(() => firebaseAnalytics.logEvent(name: event.name, parameters: event.parameters))
+            .called(1);
       });
     });
   });

@@ -18,13 +18,11 @@ void main() {
     authenticationRepository = _MockAuthenticationRepository();
     settingsRepository = _MockSettingsRepository();
 
-    when(
-      () => authenticationRepository.isAuthenticatedStream,
-    ).thenAnswer((_) => Stream.value(false));
+    when(() => authenticationRepository.isAuthenticatedStream)
+        .thenAnswer((_) => Stream.value(false));
     when(() => authenticationRepository.isAuthenticated).thenReturn(false);
-    when(
-      () => settingsRepository.get(),
-    ).thenReturn(const Settings(hasOnboarded: true, useBiometrics: false));
+    when(() => settingsRepository.get())
+        .thenReturn(const Settings(hasOnboarded: true, useBiometrics: false));
   });
 
   group('AppCubit', () {
@@ -73,9 +71,8 @@ void main() {
 
         when(() => repo.isAuthenticated).thenReturn(false);
         when(() => repo.isAuthenticatedStream).thenAnswer((_) => const Stream<bool>.empty());
-        when(
-          settingsRepo.get,
-        ).thenReturn(const Settings(hasOnboarded: false, useBiometrics: false));
+        when(settingsRepo.get)
+            .thenReturn(const Settings(hasOnboarded: false, useBiometrics: false));
 
         return AppCubit(authenticationRepository: repo, settingsRepository: settingsRepo);
       },
@@ -103,9 +100,8 @@ void main() {
       'calls logOut on logout',
       build: () {
         when(() => authenticationRepository.isAuthenticated).thenReturn(false);
-        when(
-          () => authenticationRepository.isAuthenticatedStream,
-        ).thenAnswer((_) => Stream.value(false));
+        when(() => authenticationRepository.isAuthenticatedStream)
+            .thenAnswer((_) => Stream.value(false));
         when(authenticationRepository.logOut).thenAnswer((_) async {});
 
         return AppCubit(

@@ -7,6 +7,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:slang/generated.dart';
+
 import 'translations.g.dart';
 
 // Path: <root>
@@ -550,8 +551,9 @@ extension on TranslationsPt {
       'authentication.login.title' => 'Entrar',
       'authentication.login.buttonLogin' => 'Entrar',
       'authentication.login.buttonForgotPassword' => 'Esqueceu a senha?',
-      'authentication.login.buttonSignInWith' =>
-        ({required Object provider}) => 'Continue com ${provider}',
+      'authentication.login.buttonSignInWith' => ({
+        required Object provider,
+      }) => 'Continue com ${provider}',
       'authentication.login.buttonNewAccount' => 'Não tem uma conta? Cadastre-se',
       'authentication.login.buttonDevMenu' => 'Abrir DevMenu',
       'authentication.login.dividerOr' => 'OU',
@@ -596,8 +598,7 @@ extension on TranslationsPt {
       'onboarding.pages.0.title' => 'Bem vindo!',
       'onboarding.pages.0.message' => 'Seja muito bem vindo ao QuickStart Flutter',
       'onboarding.pages.1.title' => 'O que é o QuickStart Flutter?',
-      'onboarding.pages.1.message' =>
-        'O QuickStart Flutter é um projeto para agilizar o bootstrapping de novos projetos Flutter. Ele já vem com uma série de funcionalidades prontas para uso, como internacionalização, temas, rotas, gerenciamento de estado, entre outros.',
+      'onboarding.pages.1.message' => 'O QuickStart Flutter é um projeto para agilizar o bootstrapping de novos projetos Flutter. Ele já vem com uma série de funcionalidades prontas para uso, como internacionalização, temas, rotas, gerenciamento de estado, entre outros.',
       'onboarding.pages.2.title' => 'Vamos começar?',
       'onboarding.pages.2.message' =>
         'Pronto para explorar tudo o que o QuickStart Flutter tem a oferecer? Vamos começar!',
