@@ -1,6 +1,6 @@
 part of 'change_password_cubit.dart';
 
-final class ChangePasswordState with EquatableMixin, FormzMixin {
+final class ChangePasswordState with Equatable, FormzMixin {
   const ChangePasswordState({
     this.currentPassword = const NonEmptyInput.pure(),
     this.password = const PasswordInput.pure(),

@@ -7,7 +7,7 @@ environment:
   flutter: ^3.47.9
 
 dependencies:
-  firebase_analytics: ^12.4.2
+  firebase_analytics: ^13.0.1
   flutter:
     sdk: flutter
 

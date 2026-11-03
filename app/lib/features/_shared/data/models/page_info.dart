@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class PageInfo with EquatableMixin {
+class PageInfo with Equatable {
   const PageInfo({
     required this.startCursor,
     required this.endCursor,

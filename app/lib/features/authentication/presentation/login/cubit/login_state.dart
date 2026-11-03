@@ -1,6 +1,6 @@
 part of 'login_cubit.dart';
 
-final class LoginState with EquatableMixin, FormzMixin {
+final class LoginState with Equatable, FormzMixin {
   const LoginState({
     this.email = const EmailInput.pure(),
     this.password = const NonEmptyInput.pure(),

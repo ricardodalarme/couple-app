@@ -13,7 +13,7 @@ class AuthenticationService {
       throw const AuthenticationException(code: 'invalid_configuration');
     }
 
-    await Supabase.initialize(url: url, anonKey: anonKey);
+    await Supabase.initialize(url: url, publishableKey: anonKey);
   }
 
   bool get isAuthenticated => currentSession?.isExpired == false;

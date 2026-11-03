@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-final class Settings with EquatableMixin {
+final class Settings with Equatable {
   const Settings({required this.hasOnboarded, required this.useBiometrics});
 
   const Settings.empty() : hasOnboarded = false, useBiometrics = false;

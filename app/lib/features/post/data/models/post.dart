@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-final class Post with EquatableMixin {
+final class Post with Equatable {
   const Post({required this.id, required this.title, required this.body, this.authorImageUrl});
 
   final String id;

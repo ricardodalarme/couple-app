@@ -1,6 +1,6 @@
 part of 'edit_profile_cubit.dart';
 
-final class EditProfileState with EquatableMixin, FormzMixin {
+final class EditProfileState with Equatable, FormzMixin {
   const EditProfileState({
     this.submission = const Initial(),
     this.firstName = const NonEmptyInput.pure(),

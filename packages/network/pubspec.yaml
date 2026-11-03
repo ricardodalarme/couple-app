@@ -8,7 +8,7 @@ environment:
 dependencies:
   core:
     path: ../core
-  dio: ^5.9.2
+  dio: ^5.11.1
   graphql: ^5.2.4
   graphql_query_compress: ^1.0.0
   secure_storage_service:

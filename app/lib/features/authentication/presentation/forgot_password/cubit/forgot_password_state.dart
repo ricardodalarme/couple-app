@@ -1,6 +1,6 @@
 part of 'forgot_password_cubit.dart';
 
-final class ForgotPasswordState with EquatableMixin, FormzMixin {
+final class ForgotPasswordState with Equatable, FormzMixin {
   const ForgotPasswordState({
     this.email = const EmailInput.pure(),
     this.submission = const Initial(),
