@@ -48,6 +48,8 @@ dependencies:
     path: ../packages/services/preferences
   remote_config_service:
     path: ../packages/services/remote_config
+  review_service:
+    path: ../packages/services/review
   secure_storage_service:
     path: ../packages/services/secure_storage
   share_service:
