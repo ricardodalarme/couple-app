@@ -53,11 +53,11 @@ dev_dependencies:
   auto_route_generator: ^10.4.0
   bloc_test: ^10.0.0
   build_runner: ^2.15.0
-  flutter_launcher_icons: ^0.14.4
   flutter_native_splash: ^2.4.8
   flutter_test:
     sdk: flutter
   graphql_codegen: ^3.0.1
+  icons_launcher: ^3.1.0
   mocktail: ^1.0.5
 
 flutter:

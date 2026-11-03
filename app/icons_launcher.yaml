@@ -1,0 +1,17 @@
+icons_launcher:
+  # A command-line tool which simplifies the task of updating your Flutter app's
+  # launcher icon. Customize the parameters below, and run the following command
+  # from the app directory:
+  # dart run icons_launcher:create
+
+  # The location of the icon image file which you want to use as the app launcher icon
+  image_path: "assets/images/icon.png"
+
+  # Platforms to generate launcher icons for. Enable any additional platforms
+  # (macos, windows, web, linux) if they are added to the project later.
+  platforms:
+    android:
+      enable: true
+
+    ios:
+      enable: true

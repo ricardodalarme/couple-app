@@ -98,11 +98,11 @@ melos:
           - flutter_native_splash
 
     launcher_icon:
-      exec: flutter pub run flutter_launcher_icons:main
+      exec: dart run icons_launcher:create
       description: Update the app launcher icon.
       packageFilters:
         dependsOn:
-          - flutter_launcher_icons
+          - icons_launcher
 
     build:android-dev:
       exec: flutter build appbundle --flavor development --dart-define-from-file ../.env.development
