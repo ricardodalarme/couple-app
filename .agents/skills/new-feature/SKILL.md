@@ -25,7 +25,10 @@ have run:
 6. Tests in `app/test/features/<feature>/`
 7. Storybook example for any reusable widget
    (`app/lib/features/dev_menu/storybook/`)
-8. `melos analyze` and `melos test` pass
+8. A new `_shared` widget ships with a widget test under
+   `app/test/features/_shared/` **and** a Storybook example under
+   `app/lib/features/dev_menu/storybook/examples/widgets/`
+9. `melos analyze` and `melos test` pass
 
 ## Step 1 — Choose the shape
 
@@ -136,7 +139,8 @@ final class const PostsListState({final Resource<List<Post>> posts = const Loadi
 
 ## Step 4 — Page + widgets
 
-Follow `async-state` for state rendering and `design-system` for UI.
+Follow `async-state` for state rendering and `design-system` for UI. A read slot
+is rendered by `SkeletonizerResourceWidget`, not by a hand-written `switch`:
 
 ```dart
 // presentation/list/posts_list_page.dart
@@ -155,32 +159,46 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.posts.list;
+    final posts = context.select((PostsListCubit cubit) => cubit.state.posts);
 
     return BaseView(
       title: l10n.title,
-      body: BlocBuilder<PostsListCubit, PostsListState>(
-        builder: (context, state) => switch (state.posts) {
-          Initial() => const SizedBox.shrink(),
-          Success(:final List<Post> value) => _PostsListWidget(posts: value),
-          Loading() => Skeletonizer(child: _PostsListWidget(posts: _skeletonPosts)),
-          Failure() => ErrorIndicator(
-            title: context.l10n.common.genericError,
-            buttonText: context.l10n.common.retry,
-            message: l10n.textFailure,
-            onButtonPressed: context.read<PostsListCubit>().getPosts,
-          ),
-        },
+      body: SkeletonizerResourceWidget<List<Post>>(
+        posts,
+        fakeValue: _skeletonPosts,
+        successBuilder: (posts) => _PostsListWidget(posts: posts),
+        failureBuilder: (exception) => ErrorIndicator(
+          title: context.l10n.common.genericError,
+          buttonText: context.l10n.common.retry,
+          message: l10n.textFailure,
+          onButtonPressed: context.read<PostsListCubit>().getPosts,
+        ),
       ),
     );
   }
 }
 ```
 
+- `SkeletonizerResourceWidget`
+  (`app/lib/features/_shared/presentation/widgets/skeletonizer_resource_widget.dart`)
+  is the default renderer for a read slot: `Initial` → `SizedBox.shrink()`,
+  `Loading` → `Skeletonizer` over `successBuilder(fakeValue)`, `Success` →
+  `successBuilder(value)`, `Failure` → `failureBuilder(exception)`. Use a manual
+  `switch` over the `Resource` only for a one-off case that genuinely does not
+  fit, and say why in the page.
+- `fakeValue` is what `successBuilder` receives while loading, so it must be
+  structurally representative (`Post.fake`, `List.filled(6, Post.fake)`). A fake
+  with a different shape makes the skeleton jump when the data lands.
+- `failureBuilder` receives the `LocalizedException`; build `ErrorIndicator`
+  there, and point its retry at the cubit method that produced the failure.
+- Do not wrap the widget in another `Skeletonizer`, and do not add an
+  `isRefreshing` flag — the widget keeps the last `Success` on screen while a
+  refresh is loading.
 - Split the body into `_PrivateWidget` classes so each one selects only the
   state slice it needs.
 - Use `BaseListView` for lists (it handles empty state and pull-to-refresh) and
   `EmptyIndicator` for honest empty states. Never render invented records.
-- The `fake` model is only used inside `Skeletonizer` while loading.
+- The `fake` model is only used inside the skeleton while loading.
 
 ## Step 5 — DI module
 
@@ -234,6 +252,11 @@ Follow `testing`. Minimum:
 - `app/test/features/posts/presentation/list/cubit/posts_list_state_test.dart`
 - `app/test/features/posts/presentation/list/posts_list_page_test.dart`
 
+A new or changed widget under `features/_shared/presentation/widgets/` also needs
+its own widget test at `app/test/features/_shared/...` plus a Storybook example
+at `app/lib/features/dev_menu/storybook/examples/widgets/`, registered in
+`examples/examples.dart` (see `storybook`).
+
 ## Step 9 — Verify
 
 ```bash
@@ -251,8 +274,8 @@ melos test         # or: cd app && flutter test test/features/posts
 - `account` — profile pages and form-driven cubits.
 - `settings` — local preference-backed state.
 - `home` — the three-tab shell.
-- `_shared` — shared patterns (`EmptyIndicator`, `ErrorIndicator`,
-  `FeedbackIndicator`, `InfiniteListViewWidget`).
+- `_shared` — shared patterns (`SkeletonizerResourceWidget`, `EmptyIndicator`,
+  `ErrorIndicator`, `FeedbackIndicator`, `InfiniteListViewWidget`).
 
 ## Gotchas
 

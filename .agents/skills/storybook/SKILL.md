@@ -28,6 +28,7 @@ app/lib/features/dev_menu/storybook/
     │   └── base_tooltip_example.dart
     ├── widgets/
     │   ├── error_indicator_example.dart
+    │   ├── skeletonizer_resource_widget_example.dart
     │   └── social_button_example.dart
     └── theme/
         ├── colors_example.dart
@@ -35,11 +36,11 @@ app/lib/features/dev_menu/storybook/
 ```
 
 Anything in `packages/common_ui` that is a reusable design-system component should
-have an example. Shared app widgets (`ErrorIndicator` from
-`app/lib/features/_shared`, `SocialButton` from a feature's
-`presentation/shared/widgets`) get one too. Categories in use: `Components`
-(common_ui `Base*`), `Widgets` (shared app widgets), `Theme` (colors and
-typography).
+have an example. Shared app widgets (`ErrorIndicator` and
+`SkeletonizerResourceWidget` from `app/lib/features/_shared`, `SocialButton` from
+a feature's `presentation/shared/widgets`) get one too. Categories in use:
+`Components` (common_ui `Base*`), `Widgets` (shared app widgets), `Theme` (colors
+and typography).
 
 ## Add an example
 
@@ -100,7 +101,11 @@ do:
 
 Expose the props worth eyeballing, not every parameter. Keep examples static and
 self-contained: **no cubits, no DI, no network** — use local callbacks and
-`context.showSnackBar('Click success')` (from `BaseSnackBar`) for feedback.
+`context.showSnackBar('Click success')` (from `BaseSnackBar`) for feedback. The
+`SkeletonizerResourceWidget` example
+(`examples/widgets/skeletonizer_resource_widget_example.dart`) does this with a
+state knob that switches `Initial`/`Loading`/`Success`/`Failure` and a fake list
+for the loading skeleton.
 
 ## Addons available in every example
 

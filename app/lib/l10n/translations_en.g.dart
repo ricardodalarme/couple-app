@@ -28,7 +28,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
          overrides == null,
          'Set "translation_overrides: true" in order to enable this feature.',
        ),
-       $meta =
+       _meta =
            meta ??
            TranslationMetadata(
              locale: AppLocale.en,
@@ -36,15 +36,16 @@ class Translations with BaseTranslations<AppLocale, Translations> {
              cardinalResolver: cardinalResolver,
              ordinalResolver: ordinalResolver,
            ) {
-    $meta.setFlatMapFunction(_flatMapFunction);
+    _meta.setFlatMapFunction(_flatMapFunction);
   }
 
   /// Metadata for the translations of <en>.
+  final TranslationMetadata<AppLocale, Translations> _meta;
   @override
-  final TranslationMetadata<AppLocale, Translations> $meta;
+  TranslationMetadata<AppLocale, Translations> get $meta => _meta;
 
   /// Access flat map
-  dynamic operator [](String key) => $meta.getTranslation(key);
+  dynamic operator [](String key) => _meta.getTranslation(key);
 
   late final Translations _root = this; // ignore: unused_field
 
@@ -52,55 +53,55 @@ class Translations with BaseTranslations<AppLocale, Translations> {
       Translations(meta: meta ?? this.$meta);
 
   // Translations
-  late final TranslationsAccountEn account = TranslationsAccountEn.internal(_root);
-  late final TranslationsAuthenticationEn authentication = TranslationsAuthenticationEn.internal(
+  late final Translations$account$en account = Translations$account$en.internal(_root);
+  late final Translations$authentication$en authentication =
+      Translations$authentication$en.internal(_root);
+  late final Translations$common$en common = Translations$common$en.internal(_root);
+  late final Translations$notFound$en notFound = Translations$notFound$en.internal(_root);
+  late final Translations$onboarding$en onboarding = Translations$onboarding$en.internal(_root);
+  late final Translations$post$en post = Translations$post$en.internal(_root);
+  late final Translations$privacyPolicy$en privacyPolicy = Translations$privacyPolicy$en.internal(
     _root,
   );
-  late final TranslationsCommonEn common = TranslationsCommonEn.internal(_root);
-  late final TranslationsNotFoundEn notFound = TranslationsNotFoundEn.internal(_root);
-  late final TranslationsOnboardingEn onboarding = TranslationsOnboardingEn.internal(_root);
-  late final TranslationsPostEn post = TranslationsPostEn.internal(_root);
-  late final TranslationsPrivacyPolicyEn privacyPolicy = TranslationsPrivacyPolicyEn.internal(
-    _root,
-  );
-  late final TranslationsSearchEn search = TranslationsSearchEn.internal(_root);
-  late final TranslationsSettingsEn settings = TranslationsSettingsEn.internal(_root);
-  late final TranslationsTermsEn terms = TranslationsTermsEn.internal(_root);
+  late final Translations$search$en search = Translations$search$en.internal(_root);
+  late final Translations$settings$en settings = Translations$settings$en.internal(_root);
+  late final Translations$terms$en terms = Translations$terms$en.internal(_root);
 }
 
 // Path: account
-class TranslationsAccountEn {
-  TranslationsAccountEn.internal(this._root);
+class Translations$account$en {
+  Translations$account$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
   // Translations
-  late final TranslationsAccountProfileEn profile = TranslationsAccountProfileEn.internal(_root);
-  late final TranslationsAccountEditProfileEn editProfile =
-      TranslationsAccountEditProfileEn.internal(_root);
-  late final TranslationsAccountChangePasswordEn changePassword =
-      TranslationsAccountChangePasswordEn.internal(_root);
+  late final Translations$account$profile$en profile = Translations$account$profile$en.internal(
+    _root,
+  );
+  late final Translations$account$editProfile$en editProfile =
+      Translations$account$editProfile$en.internal(_root);
+  late final Translations$account$changePassword$en changePassword =
+      Translations$account$changePassword$en.internal(_root);
 }
 
 // Path: authentication
-class TranslationsAuthenticationEn {
-  TranslationsAuthenticationEn.internal(this._root);
+class Translations$authentication$en {
+  Translations$authentication$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
   // Translations
-  late final TranslationsAuthenticationLoginEn login = TranslationsAuthenticationLoginEn.internal(
-    _root,
-  );
-  late final TranslationsAuthenticationSignupEn signup =
-      TranslationsAuthenticationSignupEn.internal(_root);
-  late final TranslationsAuthenticationForgotPasswordEn forgotPassword =
-      TranslationsAuthenticationForgotPasswordEn.internal(_root);
+  late final Translations$authentication$login$en login =
+      Translations$authentication$login$en.internal(_root);
+  late final Translations$authentication$signup$en signup =
+      Translations$authentication$signup$en.internal(_root);
+  late final Translations$authentication$forgotPassword$en forgotPassword =
+      Translations$authentication$forgotPassword$en.internal(_root);
 }
 
 // Path: common
-class TranslationsCommonEn {
-  TranslationsCommonEn.internal(this._root);
+class Translations$common$en {
+  Translations$common$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -117,6 +118,9 @@ class TranslationsCommonEn {
 
   /// en: 'Retry'
   String get retry => 'Retry';
+
+  /// en: 'Loading'
+  String get loading => 'Loading';
 
   /// en: 'Username'
   String get username => 'Username';
@@ -138,8 +142,8 @@ class TranslationsCommonEn {
 }
 
 // Path: notFound
-class TranslationsNotFoundEn {
-  TranslationsNotFoundEn.internal(this._root);
+class Translations$notFound$en {
+  Translations$notFound$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -156,16 +160,16 @@ class TranslationsNotFoundEn {
 }
 
 // Path: onboarding
-class TranslationsOnboardingEn {
-  TranslationsOnboardingEn.internal(this._root);
+class Translations$onboarding$en {
+  Translations$onboarding$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
   // Translations
   List<OnboardingPageData> get pages => [
-    TranslationsOnboarding$pages$0i0$En.internal(_root),
-    TranslationsOnboarding$pages$0i1$En.internal(_root),
-    TranslationsOnboarding$pages$0i2$En.internal(_root),
+    Translations$onboarding$pages$0$en.internal(_root),
+    Translations$onboarding$pages$1$en.internal(_root),
+    Translations$onboarding$pages$2$en.internal(_root),
   ];
 
   /// en: 'Get started'
@@ -173,18 +177,18 @@ class TranslationsOnboardingEn {
 }
 
 // Path: post
-class TranslationsPostEn {
-  TranslationsPostEn.internal(this._root);
+class Translations$post$en {
+  Translations$post$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
   // Translations
-  late final TranslationsPostListEn list = TranslationsPostListEn.internal(_root);
+  late final Translations$post$list$en list = Translations$post$list$en.internal(_root);
 }
 
 // Path: privacyPolicy
-class TranslationsPrivacyPolicyEn {
-  TranslationsPrivacyPolicyEn.internal(this._root);
+class Translations$privacyPolicy$en {
+  Translations$privacyPolicy$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -195,8 +199,8 @@ class TranslationsPrivacyPolicyEn {
 }
 
 // Path: search
-class TranslationsSearchEn {
-  TranslationsSearchEn.internal(this._root);
+class Translations$search$en {
+  Translations$search$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -207,8 +211,8 @@ class TranslationsSearchEn {
 }
 
 // Path: settings
-class TranslationsSettingsEn {
-  TranslationsSettingsEn.internal(this._root);
+class Translations$settings$en {
+  Translations$settings$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -222,18 +226,18 @@ class TranslationsSettingsEn {
 }
 
 // Path: terms
-class TranslationsTermsEn {
-  TranslationsTermsEn.internal(this._root);
+class Translations$terms$en {
+  Translations$terms$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
   // Translations
-  late final TranslationsTermsListEn list = TranslationsTermsListEn.internal(_root);
+  late final Translations$terms$list$en list = Translations$terms$list$en.internal(_root);
 }
 
 // Path: account.profile
-class TranslationsAccountProfileEn {
-  TranslationsAccountProfileEn.internal(this._root);
+class Translations$account$profile$en {
+  Translations$account$profile$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -271,8 +275,8 @@ class TranslationsAccountProfileEn {
 }
 
 // Path: account.editProfile
-class TranslationsAccountEditProfileEn {
-  TranslationsAccountEditProfileEn.internal(this._root);
+class Translations$account$editProfile$en {
+  Translations$account$editProfile$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -303,8 +307,8 @@ class TranslationsAccountEditProfileEn {
 }
 
 // Path: account.changePassword
-class TranslationsAccountChangePasswordEn {
-  TranslationsAccountChangePasswordEn.internal(this._root);
+class Translations$account$changePassword$en {
+  Translations$account$changePassword$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -345,8 +349,8 @@ class TranslationsAccountChangePasswordEn {
 }
 
 // Path: authentication.login
-class TranslationsAuthenticationLoginEn {
-  TranslationsAuthenticationLoginEn.internal(this._root);
+class Translations$authentication$login$en {
+  Translations$authentication$login$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -384,8 +388,8 @@ class TranslationsAuthenticationLoginEn {
 }
 
 // Path: authentication.signup
-class TranslationsAuthenticationSignupEn {
-  TranslationsAuthenticationSignupEn.internal(this._root);
+class Translations$authentication$signup$en {
+  Translations$authentication$signup$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -415,8 +419,8 @@ class TranslationsAuthenticationSignupEn {
 }
 
 // Path: authentication.forgotPassword
-class TranslationsAuthenticationForgotPasswordEn {
-  TranslationsAuthenticationForgotPasswordEn.internal(this._root);
+class Translations$authentication$forgotPassword$en {
+  Translations$authentication$forgotPassword$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -437,8 +441,8 @@ class TranslationsAuthenticationForgotPasswordEn {
 }
 
 // Path: onboarding.pages.0
-class TranslationsOnboarding$pages$0i0$En with OnboardingPageData {
-  TranslationsOnboarding$pages$0i0$En.internal(this._root);
+class Translations$onboarding$pages$0$en with OnboardingPageData {
+  Translations$onboarding$pages$0$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -454,8 +458,8 @@ class TranslationsOnboarding$pages$0i0$En with OnboardingPageData {
 }
 
 // Path: onboarding.pages.1
-class TranslationsOnboarding$pages$0i1$En with OnboardingPageData {
-  TranslationsOnboarding$pages$0i1$En.internal(this._root);
+class Translations$onboarding$pages$1$en with OnboardingPageData {
+  Translations$onboarding$pages$1$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -472,8 +476,8 @@ class TranslationsOnboarding$pages$0i1$En with OnboardingPageData {
 }
 
 // Path: onboarding.pages.2
-class TranslationsOnboarding$pages$0i2$En with OnboardingPageData {
-  TranslationsOnboarding$pages$0i2$En.internal(this._root);
+class Translations$onboarding$pages$2$en with OnboardingPageData {
+  Translations$onboarding$pages$2$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -490,8 +494,8 @@ class TranslationsOnboarding$pages$0i2$En with OnboardingPageData {
 }
 
 // Path: post.list
-class TranslationsPostListEn {
-  TranslationsPostListEn.internal(this._root);
+class Translations$post$list$en {
+  Translations$post$list$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -503,13 +507,13 @@ class TranslationsPostListEn {
   /// en: 'Failed to load feed.'
   String get textFailure => 'Failed to load feed.';
 
-  late final TranslationsPostListEmptyIndicatorEn emptyIndicator =
-      TranslationsPostListEmptyIndicatorEn.internal(_root);
+  late final Translations$post$list$emptyIndicator$en emptyIndicator =
+      Translations$post$list$emptyIndicator$en.internal(_root);
 }
 
 // Path: terms.list
-class TranslationsTermsListEn {
-  TranslationsTermsListEn.internal(this._root);
+class Translations$terms$list$en {
+  Translations$terms$list$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -520,8 +524,8 @@ class TranslationsTermsListEn {
 }
 
 // Path: post.list.emptyIndicator
-class TranslationsPostListEmptyIndicatorEn {
-  TranslationsPostListEmptyIndicatorEn.internal(this._root);
+class Translations$post$list$emptyIndicator$en {
+  Translations$post$list$emptyIndicator$en.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -629,6 +633,7 @@ extension on Translations {
       'common.send' => 'Send',
       'common.save' => 'Save',
       'common.retry' => 'Retry',
+      'common.loading' => 'Loading',
       'common.username' => 'Username',
       'common.email' => 'Email',
       'common.password' => 'Password',

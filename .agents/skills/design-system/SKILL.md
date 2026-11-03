@@ -40,7 +40,7 @@ fast filter, not the test. The test is below.
 | --- | --- | --- | --- | --- |
 | 1 | **Foundation** | Design decisions as data - colour, type, spacing, radius, timing, breakpoints - plus the theme that installs them | `packages/common_ui/lib/src/tokens`, `.../theme` | `Spacings`, `Borders`, `Durations`, `Breakpoints`, `FontSizes`, `Palette`, `Typography`, `AppTheme` |
 | 2 | **Components** | Domain-blind **building blocks**: one element that owns a visual role and/or an interaction + accessibility contract | `packages/common_ui/lib/src/components/base_*.dart` | `Base*` |
-| 3 | **Patterns** (shared widgets) | **Recipes** that arrange components to solve a recurring scenario | `app/lib/features/_shared/presentation/widgets/` | no `Base*` (`EmptyIndicator`, `ErrorIndicator`, `InfiniteListViewWidget`) |
+| 3 | **Patterns** (shared widgets) | **Recipes** that arrange components to solve a recurring scenario | `app/lib/features/_shared/presentation/widgets/` | no `Base*` (`EmptyIndicator`, `ErrorIndicator`, `InfiniteListViewWidget`, `SkeletonizerResourceWidget`) |
 | 4 | **Feature widgets** | UI owned by a single feature | `app/lib/features/<feature>/presentation/**` | feature-named or private |
 
 The app shell (`BaseApp`, `BaseView`, `BaseAppBar`) still lives in `components/`:
@@ -114,6 +114,7 @@ wrapper that adds neither behaviour nor a token-backed visual role.
 | `ErrorIndicator` | **Pattern** | Encodes failure plus a retry action |
 | `FeedbackIndicator` | **Pattern** | Encodes a centred title/message outcome with no asset |
 | `InfiniteListViewWidget` | **Pattern** | Encodes the paginated-list scroll scenario |
+| `SkeletonizerResourceWidget` | **Pattern** | Encodes the loading/success/failure resource scenario with a fake value and semantics |
 | `WebView` | **Pattern** | Wraps a third-party web view with app-level policy |
 
 Dialog and sheet surfaces stay inside their component (`BaseBottomSheet`), not as
@@ -203,7 +204,8 @@ Shapes worth knowing:
 - `BaseApp(home:)` / `BaseApp.router(routerConfig:)` - installs `AppTheme.light` and `AppTheme.dark`.
 
 Shared patterns currently in `app/lib/features/_shared/presentation/widgets/`:
-`EmptyIndicator` `ErrorIndicator` `FeedbackIndicator` `InfiniteListViewWidget` `WebView`.
+`EmptyIndicator` `ErrorIndicator` `FeedbackIndicator` `InfiniteListViewWidget`
+`SkeletonizerResourceWidget` `WebView`.
 The Storybook registry also carries a `SocialButton` example from the
 authentication feature - a feature widget, not a pattern.
 

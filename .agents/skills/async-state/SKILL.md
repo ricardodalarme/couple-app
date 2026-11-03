@@ -1,6 +1,6 @@
 ---
 name: async-state
-description: Implement Cubit state management in this app with the sealed Resource pattern (Initial/Loading/Success/Failure), one-shot Future repository reads, Equatable part-file state classes, Skeletonizer loading states built from a model fake, private rebuilding widgets that read narrow slices with context.select/context.read, and BlocListener side effects. Use when creating or editing a Cubit or its state, wiring loading/error/empty states, adding skeleton loaders, showing a failure SnackBar, or whenever code mentions Resource, emit, Success, Failure, Skeletonizer, or posts.
+description: Implement Cubit state management in this app with the sealed Resource pattern (Initial/Loading/Success/Failure), one-shot Future repository reads, Equatable part-file state classes, read slots rendered by SkeletonizerResourceWidget (skeleton from a model fake, ErrorIndicator on failure), private rebuilding widgets that read narrow slices with context.select/context.read, and BlocListener side effects. Use when creating or editing a Cubit or its state, wiring loading/error/empty states, adding skeleton loaders, showing a failure SnackBar, or whenever code mentions Resource, emit, Success, Failure, SkeletonizerResourceWidget, Skeletonizer, or posts.
 ---
 
 # Async state in the app
@@ -21,11 +21,11 @@ read:
 PostsListPage.wrappedRoute → BlocProvider(create: () => injector.get<PostsListCubit>()..getPosts())
    → cubit.getPosts(): emit Loading → await repo.getPosts() → emit Success(list)
                                                           catch → emit Failure.fromObject(e)
-   → BlocBuilder + switch over state.posts
+   → SkeletonizerResourceWidget<List<Post>>(posts, fakeValue, successBuilder, failureBuilder)
         Initial  → SizedBox.shrink()
-        Loading  → Skeletonizer(child: list built from Post.fake)
-        Success  → real list (BaseListView, EmptyIndicator when empty)
-        Failure  → ErrorIndicator with retry calling the same method
+        Loading  → Skeletonizer(successBuilder(fakeValue))  (reuses the last Success on refresh)
+        Success  → successBuilder(value)                    (BaseListView, EmptyIndicator when empty)
+        Failure  → failureBuilder(exception)                (ErrorIndicator with retry)
 
 action / form submit:
 page → cubit.submit(): emit <slot> Loading → await repo → emit Success
@@ -39,9 +39,11 @@ page → cubit.submit(): emit <slot> Loading → await repo → emit Success
 exported by `package:core/core.dart`:
 
 - `Initial()` — nothing requested, or reset after a handled result. Default for
-  **action / form slots**. Pages render it as `SizedBox.shrink()`.
+  **action / form slots**. `SkeletonizerResourceWidget` renders it as
+  `SizedBox.shrink()`.
 - `Loading()` — in flight. Default for **read slots**, so the skeleton is the
   first frame instead of a flash of empty content.
+  `SkeletonizerResourceWidget` turns it into a skeleton over the fake value.
 - `Success<S>(value)` — the value.
 - `Failure(exception)` — build it with `Failure.fromObject(exception)`; it keeps
   the exception only when it is a `LocalizedException`, otherwise it wraps
@@ -188,9 +190,9 @@ Rules:
 
 ## Page consumption
 
-The page creates the cubit in `wrappedRoute` (see `routing`), then switches over
-the resource. Real code from
-`app/lib/features/post/presentation/list/posts_list_page.dart`:
+The page creates the cubit in `wrappedRoute` (see `routing`) and hands the read
+slot to `SkeletonizerResourceWidget`, which owns every `Resource` branch. Real
+code from `app/lib/features/post/presentation/list/posts_list_page.dart`:
 
 ```dart
 @RoutePage()
@@ -208,43 +210,56 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.post.list;
+    final posts = context.select((PostsListCubit cubit) => cubit.state.posts);
 
     return BaseView(
       title: l10n.title,
-      body: BlocBuilder<PostsListCubit, PostsListState>(
-        builder: (context, state) => switch (state.posts) {
-          Initial() => const SizedBox.shrink(),
-          Success(:final List<Post> value) => _PostsListWidget(posts: value),
-          Loading() => Skeletonizer(child: _PostsListWidget(posts: _skeletonPosts)),
-          Failure() => ErrorIndicator(
-            title: context.l10n.common.genericError,
-            buttonText: context.l10n.common.retry,
-            message: l10n.textFailure,
-            onButtonPressed: context.read<PostsListCubit>().getPosts,
-          ),
-        },
+      body: SkeletonizerResourceWidget<List<Post>>(
+        posts,
+        fakeValue: _skeletonPosts,
+        successBuilder: (posts) => _PostsListWidget(posts: posts),
+        failureBuilder: (exception) => ErrorIndicator(
+          title: context.l10n.common.genericError,
+          buttonText: context.l10n.common.retry,
+          message: l10n.textFailure,
+          onButtonPressed: context.read<PostsListCubit>().getPosts,
+        ),
       ),
     );
   }
 }
 ```
 
-- `switch` over the sealed `Resource` is exhaustive, so every slot must be
-  handled and no `default` is needed.
-- `Loading` renders the **same widget** as `Success` wrapped in `Skeletonizer`,
-  fed by a fake list. Do not build a different loading layout.
-- Models expose `static const Post fake` (`app/lib/features/post/data/models/post.dart`);
-  for lists use `List.filled(n, Post.fake)` as a `static` on the page so it is
-  allocated once.
-- `Initial` only appears if a read slot defaults to `Initial` — read slots
-  default to `Loading`, so the branch exists to keep the switch honest.
-- `Failure` uses `ErrorIndicator` from
-  `app/lib/features/_shared/presentation/widgets/error_indicator.dart`
-  (`title`, `message`, `buttonText`, `onButtonPressed`). The retry callback is
-  the same cubit method that produced the failure.
-- Localize the message with
+- The page does **not** switch over the `Resource`. `SkeletonizerResourceWidget`
+  (`app/lib/features/_shared/presentation/widgets/skeletonizer_resource_widget.dart`)
+  is the default renderer for a read slot and handles every branch:
+  `Initial` → `SizedBox.shrink()`, `Loading` → `Skeletonizer` over
+  `successBuilder(fakeValue)`, `Success` → `successBuilder(value)`, `Failure` →
+  `failureBuilder(exception)`.
+- `fakeValue` is passed to `successBuilder` while loading, so it must be
+  structurally representative of the real value: a single model
+  (`Post.fake`) or a list of them (`List.filled(6, Post.fake)`). Keep the list on
+  the page as a `static final` so it is allocated once. A fake with a different
+  shape produces a skeleton that jumps when the data arrives.
+- Do not wrap the widget in another `Skeletonizer`; it already applies one while
+  loading. Nested skeletonizers double the shimmer and break the loading
+  semantics.
+- `failureBuilder` receives the `LocalizedException`, so build `ErrorIndicator`
+  from `app/lib/features/_shared/presentation/widgets/error_indicator.dart`
+  (`title`, `message`, `buttonText`, `onButtonPressed`) inside it. The retry
+  callback is the same cubit method that produced the failure.
+- While loading, the widget wraps the content in
+  `Semantics(liveRegion: true, label: context.l10n.common.loading)` and excludes
+  the fake content from semantics. Do not re-announce loading from the page.
+- The widget keeps the last `Success` value as the skeleton input when the slot
+  goes back to `Loading`, so a refresh keeps the current content on screen
+  instead of flashing a skeleton. Do not add a separate "refreshing" state or an
+  `isRefreshing` flag for that.
+- `context.select` selects only the resource slot, so the page rebuilds when the
+  slot changes and not on unrelated cubit state.
+- Localize a feature-specific message with
   `context.l10n.<feature>.<scope>.errors.selectOrFallback(exception.l10nKey)`
-  when a feature has an error map; otherwise use a generic failure string.
+  when the feature has an error map; otherwise use a generic failure string.
   Never show `exception.l10nKey` or `exception.toString()`.
 - The list itself is `BaseListView`
   (`packages/common_ui/lib/src/components/base_list_view.dart`), which wires
@@ -295,6 +310,10 @@ class const _RetryButton({required final String label}) extends StatelessWidget 
 - `context.select((Cubit c) => c.state.<narrow slice>)` rebuilds only that widget
   when the slice changes. Select a value (`is Failure`, `posts.isLoading`), not
   the whole state.
+- The page selects the whole read slot
+  (`cubit.state.posts`) and passes it to `SkeletonizerResourceWidget`; the
+  widgets built by `successBuilder` select narrower slices of their own and never
+  the slot again.
 - When a widget genuinely needs the full state, use
   `BlocBuilder(buildWhen: (previous, current) => previous.<field> != current.<field>)`,
   as the login form widgets do for each text field.
@@ -353,6 +372,14 @@ void _handleStatus(BuildContext context, LoginState state) {
 
 ## Gotchas
 
+- **`SkeletonizerResourceWidget` renders the read slot.** Do not hand-write a
+  `switch` over the `Resource` and do not wrap the widget in another
+  `Skeletonizer`; it already owns `Initial`/`Loading`/`Success`/`Failure`.
+- **`fakeValue` must match the real shape.** It is passed to `successBuilder`
+  while loading, so a list slot needs a list of model fakes, not one model.
+- **A refresh is not a new state.** The widget reuses the last `Success` value as
+  the skeleton input while the slot is `Loading`; do not add an `isRefreshing`
+  flag or a separate refreshing state.
 - **`Initial` vs `Loading` in the read slot.** A read that starts as `Initial`
   flashes blank; start as `Loading`. `Initial` is for actions and forms.
 - **`Failure` is the error UI.** Nothing else needs to be set on failure, and

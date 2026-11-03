@@ -62,7 +62,8 @@ app/lib/
 
 The canonical feature is `post`: a GraphQL read with `PostDataSource`,
 `PostRepository`, `PostsListCubit`, `PostsListState`, and a page that renders the
-`Resource` state with `Skeletonizer`, `EmptyIndicator`, and `ErrorIndicator`.
+`Resource` state with `SkeletonizerResourceWidget` plus `EmptyIndicator` and
+`ErrorIndicator`.
 
 ### Navigation shell
 
@@ -93,9 +94,10 @@ and `BaseNavigationBar`:
   model; the repository wraps a one-shot GraphQL query in `validateResponseData`.
   There is no `watchX`/stream convention in the current app.
 - **UI**: pages are `@RoutePage()` + `AutoRouteWrapper`, create their cubit in
-  `wrappedRoute`, render state with a Dart `switch` over the `Resource` (or
-  `BlocBuilder`), and split UI into private widgets that read narrow slices with
-  `context.select`.
+  `wrappedRoute`, render read slots with `SkeletonizerResourceWidget` (a fake
+  value plus success and failure builders), and split UI into private widgets
+  that read narrow slices with `context.select`. Use a manual `switch` over the
+  `Resource` only for one-off cases.
 - **DI**: one `InjectionModule` per feature, registered in
   `main.dart::_registerModules()`; data sources/repositories/services are lazy
   singletons, cubits are factories.

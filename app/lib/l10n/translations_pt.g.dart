@@ -23,7 +23,7 @@ class TranslationsPt extends Translations with BaseTranslations<AppLocale, Trans
          overrides == null,
          'Set "translation_overrides: true" in order to enable this feature.',
        ),
-       $meta =
+       _meta =
            meta ??
            TranslationMetadata(
              locale: AppLocale.pt,
@@ -32,17 +32,17 @@ class TranslationsPt extends Translations with BaseTranslations<AppLocale, Trans
              ordinalResolver: ordinalResolver,
            ),
        super(cardinalResolver: cardinalResolver, ordinalResolver: ordinalResolver) {
-    super.$meta.setFlatMapFunction($meta.getTranslation); // copy base translations to super.$meta
-    $meta.setFlatMapFunction(_flatMapFunction);
+    _meta.setFlatMapFunction(_flatMapFunction);
   }
 
   /// Metadata for the translations of <pt>.
+  final TranslationMetadata<AppLocale, Translations> _meta;
   @override
-  final TranslationMetadata<AppLocale, Translations> $meta;
+  TranslationMetadata<AppLocale, Translations> get $meta => _meta;
 
   /// Access flat map
   @override
-  dynamic operator [](String key) => $meta.getTranslation(key) ?? super.$meta.getTranslation(key);
+  dynamic operator [](String key) => _meta.getTranslation(key) ?? super[key];
 
   late final TranslationsPt _root = this; // ignore: unused_field
 
@@ -52,66 +52,68 @@ class TranslationsPt extends Translations with BaseTranslations<AppLocale, Trans
 
   // Translations
   @override
-  late final _TranslationsAccountPt account = _TranslationsAccountPt._(_root);
+  late final _Translations$account$pt account = _Translations$account$pt._(_root);
   @override
-  late final _TranslationsAuthenticationPt authentication = _TranslationsAuthenticationPt._(_root);
+  late final _Translations$authentication$pt authentication = _Translations$authentication$pt._(
+    _root,
+  );
   @override
-  late final _TranslationsCommonPt common = _TranslationsCommonPt._(_root);
+  late final _Translations$common$pt common = _Translations$common$pt._(_root);
   @override
-  late final _TranslationsNotFoundPt notFound = _TranslationsNotFoundPt._(_root);
+  late final _Translations$notFound$pt notFound = _Translations$notFound$pt._(_root);
   @override
-  late final _TranslationsOnboardingPt onboarding = _TranslationsOnboardingPt._(_root);
+  late final _Translations$onboarding$pt onboarding = _Translations$onboarding$pt._(_root);
   @override
-  late final _TranslationsPostPt post = _TranslationsPostPt._(_root);
+  late final _Translations$post$pt post = _Translations$post$pt._(_root);
   @override
-  late final _TranslationsPrivacyPolicyPt privacyPolicy = _TranslationsPrivacyPolicyPt._(_root);
+  late final _Translations$privacyPolicy$pt privacyPolicy = _Translations$privacyPolicy$pt._(_root);
   @override
-  late final _TranslationsSearchPt search = _TranslationsSearchPt._(_root);
+  late final _Translations$search$pt search = _Translations$search$pt._(_root);
   @override
-  late final _TranslationsSettingsPt settings = _TranslationsSettingsPt._(_root);
+  late final _Translations$settings$pt settings = _Translations$settings$pt._(_root);
   @override
-  late final _TranslationsTermsPt terms = _TranslationsTermsPt._(_root);
+  late final _Translations$terms$pt terms = _Translations$terms$pt._(_root);
 }
 
 // Path: account
-class _TranslationsAccountPt extends TranslationsAccountEn {
-  _TranslationsAccountPt._(TranslationsPt root) : this._root = root, super.internal(root);
+class _Translations$account$pt extends Translations$account$en {
+  _Translations$account$pt._(TranslationsPt root) : this._root = root, super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
   // Translations
   @override
-  late final _TranslationsAccountProfilePt profile = _TranslationsAccountProfilePt._(_root);
+  late final _Translations$account$profile$pt profile = _Translations$account$profile$pt._(_root);
   @override
-  late final _TranslationsAccountEditProfilePt editProfile = _TranslationsAccountEditProfilePt._(
-    _root,
-  );
+  late final _Translations$account$editProfile$pt editProfile =
+      _Translations$account$editProfile$pt._(_root);
   @override
-  late final _TranslationsAccountChangePasswordPt changePassword =
-      _TranslationsAccountChangePasswordPt._(_root);
+  late final _Translations$account$changePassword$pt changePassword =
+      _Translations$account$changePassword$pt._(_root);
 }
 
 // Path: authentication
-class _TranslationsAuthenticationPt extends TranslationsAuthenticationEn {
-  _TranslationsAuthenticationPt._(TranslationsPt root) : this._root = root, super.internal(root);
+class _Translations$authentication$pt extends Translations$authentication$en {
+  _Translations$authentication$pt._(TranslationsPt root) : this._root = root, super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
   // Translations
   @override
-  late final _TranslationsAuthenticationLoginPt login = _TranslationsAuthenticationLoginPt._(_root);
-  @override
-  late final _TranslationsAuthenticationSignupPt signup = _TranslationsAuthenticationSignupPt._(
+  late final _Translations$authentication$login$pt login = _Translations$authentication$login$pt._(
     _root,
   );
   @override
-  late final _TranslationsAuthenticationForgotPasswordPt forgotPassword =
-      _TranslationsAuthenticationForgotPasswordPt._(_root);
+  late final _Translations$authentication$signup$pt signup =
+      _Translations$authentication$signup$pt._(_root);
+  @override
+  late final _Translations$authentication$forgotPassword$pt forgotPassword =
+      _Translations$authentication$forgotPassword$pt._(_root);
 }
 
 // Path: common
-class _TranslationsCommonPt extends TranslationsCommonEn {
-  _TranslationsCommonPt._(TranslationsPt root) : this._root = root, super.internal(root);
+class _Translations$common$pt extends Translations$common$en {
+  _Translations$common$pt._(TranslationsPt root) : this._root = root, super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
@@ -124,6 +126,8 @@ class _TranslationsCommonPt extends TranslationsCommonEn {
   String get save => 'Salvar';
   @override
   String get retry => 'Tentar novamente';
+  @override
+  String get loading => 'Carregando';
   @override
   String get email => 'Email';
   @override
@@ -139,8 +143,8 @@ class _TranslationsCommonPt extends TranslationsCommonEn {
 }
 
 // Path: notFound
-class _TranslationsNotFoundPt extends TranslationsNotFoundEn {
-  _TranslationsNotFoundPt._(TranslationsPt root) : this._root = root, super.internal(root);
+class _Translations$notFound$pt extends Translations$notFound$en {
+  _Translations$notFound$pt._(TranslationsPt root) : this._root = root, super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
@@ -154,36 +158,36 @@ class _TranslationsNotFoundPt extends TranslationsNotFoundEn {
 }
 
 // Path: onboarding
-class _TranslationsOnboardingPt extends TranslationsOnboardingEn {
-  _TranslationsOnboardingPt._(TranslationsPt root) : this._root = root, super.internal(root);
+class _Translations$onboarding$pt extends Translations$onboarding$en {
+  _Translations$onboarding$pt._(TranslationsPt root) : this._root = root, super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
   // Translations
   @override
   List<OnboardingPageData> get pages => [
-    _TranslationsOnboarding$pages$0i0$Pt._(_root),
-    _TranslationsOnboarding$pages$0i1$Pt._(_root),
-    _TranslationsOnboarding$pages$0i2$Pt._(_root),
+    _Translations$onboarding$pages$0$pt._(_root),
+    _Translations$onboarding$pages$1$pt._(_root),
+    _Translations$onboarding$pages$2$pt._(_root),
   ];
   @override
   String get doneButton => 'Começar';
 }
 
 // Path: post
-class _TranslationsPostPt extends TranslationsPostEn {
-  _TranslationsPostPt._(TranslationsPt root) : this._root = root, super.internal(root);
+class _Translations$post$pt extends Translations$post$en {
+  _Translations$post$pt._(TranslationsPt root) : this._root = root, super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
   // Translations
   @override
-  late final _TranslationsPostListPt list = _TranslationsPostListPt._(_root);
+  late final _Translations$post$list$pt list = _Translations$post$list$pt._(_root);
 }
 
 // Path: privacyPolicy
-class _TranslationsPrivacyPolicyPt extends TranslationsPrivacyPolicyEn {
-  _TranslationsPrivacyPolicyPt._(TranslationsPt root) : this._root = root, super.internal(root);
+class _Translations$privacyPolicy$pt extends Translations$privacyPolicy$en {
+  _Translations$privacyPolicy$pt._(TranslationsPt root) : this._root = root, super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
@@ -193,8 +197,8 @@ class _TranslationsPrivacyPolicyPt extends TranslationsPrivacyPolicyEn {
 }
 
 // Path: search
-class _TranslationsSearchPt extends TranslationsSearchEn {
-  _TranslationsSearchPt._(TranslationsPt root) : this._root = root, super.internal(root);
+class _Translations$search$pt extends Translations$search$en {
+  _Translations$search$pt._(TranslationsPt root) : this._root = root, super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
@@ -204,8 +208,8 @@ class _TranslationsSearchPt extends TranslationsSearchEn {
 }
 
 // Path: settings
-class _TranslationsSettingsPt extends TranslationsSettingsEn {
-  _TranslationsSettingsPt._(TranslationsPt root) : this._root = root, super.internal(root);
+class _Translations$settings$pt extends Translations$settings$en {
+  _Translations$settings$pt._(TranslationsPt root) : this._root = root, super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
@@ -217,19 +221,19 @@ class _TranslationsSettingsPt extends TranslationsSettingsEn {
 }
 
 // Path: terms
-class _TranslationsTermsPt extends TranslationsTermsEn {
-  _TranslationsTermsPt._(TranslationsPt root) : this._root = root, super.internal(root);
+class _Translations$terms$pt extends Translations$terms$en {
+  _Translations$terms$pt._(TranslationsPt root) : this._root = root, super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
   // Translations
   @override
-  late final _TranslationsTermsListPt list = _TranslationsTermsListPt._(_root);
+  late final _Translations$terms$list$pt list = _Translations$terms$list$pt._(_root);
 }
 
 // Path: account.profile
-class _TranslationsAccountProfilePt extends TranslationsAccountProfileEn {
-  _TranslationsAccountProfilePt._(TranslationsPt root) : this._root = root, super.internal(root);
+class _Translations$account$profile$pt extends Translations$account$profile$en {
+  _Translations$account$profile$pt._(TranslationsPt root) : this._root = root, super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
@@ -257,8 +261,8 @@ class _TranslationsAccountProfilePt extends TranslationsAccountProfileEn {
 }
 
 // Path: account.editProfile
-class _TranslationsAccountEditProfilePt extends TranslationsAccountEditProfileEn {
-  _TranslationsAccountEditProfilePt._(TranslationsPt root)
+class _Translations$account$editProfile$pt extends Translations$account$editProfile$en {
+  _Translations$account$editProfile$pt._(TranslationsPt root)
     : this._root = root,
       super.internal(root);
 
@@ -286,8 +290,8 @@ class _TranslationsAccountEditProfilePt extends TranslationsAccountEditProfileEn
 }
 
 // Path: account.changePassword
-class _TranslationsAccountChangePasswordPt extends TranslationsAccountChangePasswordEn {
-  _TranslationsAccountChangePasswordPt._(TranslationsPt root)
+class _Translations$account$changePassword$pt extends Translations$account$changePassword$en {
+  _Translations$account$changePassword$pt._(TranslationsPt root)
     : this._root = root,
       super.internal(root);
 
@@ -324,8 +328,8 @@ class _TranslationsAccountChangePasswordPt extends TranslationsAccountChangePass
 }
 
 // Path: authentication.login
-class _TranslationsAuthenticationLoginPt extends TranslationsAuthenticationLoginEn {
-  _TranslationsAuthenticationLoginPt._(TranslationsPt root)
+class _Translations$authentication$login$pt extends Translations$authentication$login$en {
+  _Translations$authentication$login$pt._(TranslationsPt root)
     : this._root = root,
       super.internal(root);
 
@@ -360,8 +364,8 @@ class _TranslationsAuthenticationLoginPt extends TranslationsAuthenticationLogin
 }
 
 // Path: authentication.signup
-class _TranslationsAuthenticationSignupPt extends TranslationsAuthenticationSignupEn {
-  _TranslationsAuthenticationSignupPt._(TranslationsPt root)
+class _Translations$authentication$signup$pt extends Translations$authentication$signup$en {
+  _Translations$authentication$signup$pt._(TranslationsPt root)
     : this._root = root,
       super.internal(root);
 
@@ -393,9 +397,9 @@ class _TranslationsAuthenticationSignupPt extends TranslationsAuthenticationSign
 }
 
 // Path: authentication.forgotPassword
-class _TranslationsAuthenticationForgotPasswordPt
-    extends TranslationsAuthenticationForgotPasswordEn {
-  _TranslationsAuthenticationForgotPasswordPt._(TranslationsPt root)
+class _Translations$authentication$forgotPassword$pt
+    extends Translations$authentication$forgotPassword$en {
+  _Translations$authentication$forgotPassword$pt._(TranslationsPt root)
     : this._root = root,
       super.internal(root);
 
@@ -416,9 +420,9 @@ class _TranslationsAuthenticationForgotPasswordPt
 }
 
 // Path: onboarding.pages.0
-class _TranslationsOnboarding$pages$0i0$Pt extends TranslationsOnboarding$pages$0i0$En
+class _Translations$onboarding$pages$0$pt extends Translations$onboarding$pages$0$en
     with OnboardingPageData {
-  _TranslationsOnboarding$pages$0i0$Pt._(TranslationsPt root)
+  _Translations$onboarding$pages$0$pt._(TranslationsPt root)
     : this._root = root,
       super.internal(root);
 
@@ -432,9 +436,9 @@ class _TranslationsOnboarding$pages$0i0$Pt extends TranslationsOnboarding$pages$
 }
 
 // Path: onboarding.pages.1
-class _TranslationsOnboarding$pages$0i1$Pt extends TranslationsOnboarding$pages$0i1$En
+class _Translations$onboarding$pages$1$pt extends Translations$onboarding$pages$1$en
     with OnboardingPageData {
-  _TranslationsOnboarding$pages$0i1$Pt._(TranslationsPt root)
+  _Translations$onboarding$pages$1$pt._(TranslationsPt root)
     : this._root = root,
       super.internal(root);
 
@@ -449,9 +453,9 @@ class _TranslationsOnboarding$pages$0i1$Pt extends TranslationsOnboarding$pages$
 }
 
 // Path: onboarding.pages.2
-class _TranslationsOnboarding$pages$0i2$Pt extends TranslationsOnboarding$pages$0i2$En
+class _Translations$onboarding$pages$2$pt extends Translations$onboarding$pages$2$en
     with OnboardingPageData {
-  _TranslationsOnboarding$pages$0i2$Pt._(TranslationsPt root)
+  _Translations$onboarding$pages$2$pt._(TranslationsPt root)
     : this._root = root,
       super.internal(root);
 
@@ -466,8 +470,8 @@ class _TranslationsOnboarding$pages$0i2$Pt extends TranslationsOnboarding$pages$
 }
 
 // Path: post.list
-class _TranslationsPostListPt extends TranslationsPostListEn {
-  _TranslationsPostListPt._(TranslationsPt root) : this._root = root, super.internal(root);
+class _Translations$post$list$pt extends Translations$post$list$en {
+  _Translations$post$list$pt._(TranslationsPt root) : this._root = root, super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
@@ -477,13 +481,13 @@ class _TranslationsPostListPt extends TranslationsPostListEn {
   @override
   String get textFailure => 'Falha ao carregar o feed.';
   @override
-  late final _TranslationsPostListEmptyIndicatorPt emptyIndicator =
-      _TranslationsPostListEmptyIndicatorPt._(_root);
+  late final _Translations$post$list$emptyIndicator$pt emptyIndicator =
+      _Translations$post$list$emptyIndicator$pt._(_root);
 }
 
 // Path: terms.list
-class _TranslationsTermsListPt extends TranslationsTermsListEn {
-  _TranslationsTermsListPt._(TranslationsPt root) : this._root = root, super.internal(root);
+class _Translations$terms$list$pt extends Translations$terms$list$en {
+  _Translations$terms$list$pt._(TranslationsPt root) : this._root = root, super.internal(root);
 
   final TranslationsPt _root; // ignore: unused_field
 
@@ -493,8 +497,8 @@ class _TranslationsTermsListPt extends TranslationsTermsListEn {
 }
 
 // Path: post.list.emptyIndicator
-class _TranslationsPostListEmptyIndicatorPt extends TranslationsPostListEmptyIndicatorEn {
-  _TranslationsPostListEmptyIndicatorPt._(TranslationsPt root)
+class _Translations$post$list$emptyIndicator$pt extends Translations$post$list$emptyIndicator$en {
+  _Translations$post$list$emptyIndicator$pt._(TranslationsPt root)
     : this._root = root,
       super.internal(root);
 
@@ -586,6 +590,7 @@ extension on TranslationsPt {
       'common.send' => 'Enviar',
       'common.save' => 'Salvar',
       'common.retry' => 'Tentar novamente',
+      'common.loading' => 'Carregando',
       'common.email' => 'Email',
       'common.username' => 'Usuário',
       'common.password' => 'Senha',

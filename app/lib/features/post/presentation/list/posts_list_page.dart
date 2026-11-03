@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/empty_indicator.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/error_indicator.dart';
+import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/skeletonizer_resource_widget.dart';
 import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
 import 'package:flutter_bloc_starter/features/post/presentation/list/cubit/posts_list_cubit.dart';
 import 'package:flutter_bloc_starter/features/post/presentation/list/widgets/post_card.dart';
@@ -24,21 +25,20 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.post.list;
+    final posts = context.select((PostsListCubit cubit) => cubit.state.posts);
 
     return BaseView(
       title: l10n.title,
-      body: BlocBuilder<PostsListCubit, PostsListState>(
-        builder: (context, state) => switch (state.posts) {
-          Initial() => const SizedBox.shrink(),
-          Success(:final List<Post> value) => _PostsListWidget(posts: value),
-          Loading() => Skeletonizer(child: _PostsListWidget(posts: _skeletonPosts)),
-          Failure() => ErrorIndicator(
-            title: context.l10n.common.genericError,
-            buttonText: context.l10n.common.retry,
-            message: l10n.textFailure,
-            onButtonPressed: context.read<PostsListCubit>().getPosts,
-          ),
-        },
+      body: SkeletonizerResourceWidget<List<Post>>(
+        posts,
+        fakeValue: _skeletonPosts,
+        successBuilder: (posts) => _PostsListWidget(posts: posts),
+        failureBuilder: (exception) => ErrorIndicator(
+          title: context.l10n.common.genericError,
+          buttonText: context.l10n.common.retry,
+          message: l10n.textFailure,
+          onButtonPressed: context.read<PostsListCubit>().getPosts,
+        ),
       ),
     );
   }

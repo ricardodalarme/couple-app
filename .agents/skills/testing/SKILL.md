@@ -16,6 +16,7 @@ app/test/features/post/presentation/list/cubit/post_list_cubit_test.dart
 app/test/features/post/presentation/list/cubit/post_list_state_test.dart
 app/test/features/post/presentation/list/posts_list_page_test.dart
 app/test/features/post/presentation/list/widgets/post_card_test.dart
+app/test/features/_shared/presentation/widgets/skeletonizer_resource_widget_test.dart
 ```
 
 ## Commands
@@ -205,6 +206,71 @@ void main() {
   });
 }
 ```
+
+## Resource widget test
+
+`SkeletonizerResourceWidget<T>` collapses the four `Resource` cases into one
+widget, so a widget test covers each case by pumping a different resource. It
+lives at
+`app/test/features/_shared/presentation/widgets/skeletonizer_resource_widget_test.dart`.
+
+```dart
+import 'package:common_ui/common_ui.dart';
+import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/skeletonizer_resource_widget.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+import '../../../../test_helpers/pump_app.dart';
+
+void main() {
+  const fake = ['fake item'];
+  const failure = LocalizedException(l10nKey: 'other');
+
+  SkeletonizerResourceWidget<List<String>> build(Resource<List<String>> resource) {
+    return SkeletonizerResourceWidget<List<String>>(
+      resource,
+      fakeValue: fake,
+      successBuilder: (value) => Text('items: ${value.length}'),
+      failureBuilder: (exception) => Text('failed: ${exception.l10nKey}'),
+    );
+  }
+
+  testWidgets('renders real content on Success', (tester) async {
+    await tester.pumpApp(build(const Success(['a', 'b'])));
+
+    expect(find.text('items: 2'), findsOneWidget);
+  });
+
+  testWidgets('renders the failure builder on Failure', (tester) async {
+    await tester.pumpApp(build(const Failure(failure)));
+
+    expect(find.text('failed: other'), findsOneWidget);
+  });
+
+  testWidgets('renders the fake value under Skeletonizer on Loading', (tester) async {
+    await tester.pumpApp(build(const Loading()));
+
+    expect(tester.widget<Skeletonizer>(find.byType(Skeletonizer)).enabled, isTrue);
+    expect(find.text('items: 1'), findsOneWidget);
+  });
+
+  testWidgets('renders nothing on Initial', (tester) async {
+    await tester.pumpApp(build(const Initial()));
+
+    expect(find.byType(Text), findsNothing);
+  });
+}
+```
+
+- Assert the builder output by text or type; the fake value only appears while
+  loading, and `Success` must show the real value. `Skeletonizer` wraps both, so
+  check its `enabled` flag rather than only its presence.
+- Loading content is a live region: wrap the assertions in
+  `final handle = tester.ensureSemantics();` … `handle.dispose();` and match the
+  semantics label (`context.l10n.common.loading`) when you need to lock the
+  announcement. The four visual state assertions above are the minimum.
+- `Skeletonizer` shimmer animates while enabled, so use `pumpApp` without
+  `pumpAndSettle`.
 
 ## Package tests
 

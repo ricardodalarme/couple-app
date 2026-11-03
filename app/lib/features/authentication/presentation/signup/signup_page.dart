@@ -45,7 +45,7 @@ class const SignUpPage({super.key}) extends StatelessWidget implements AutoRoute
                   startMargin: Spacings.large,
                   endMargin: Spacings.large,
                 ),
-                _SignInWithThirdPartyButtons(loginL10n: loginL10n),
+                const _SignInWithThirdPartyButtons(),
               ],
             ),
           ),
@@ -145,11 +145,11 @@ class const _SubmitButton() extends StatelessWidget {
   }
 }
 
-class const _SignInWithThirdPartyButtons({
-  required final TranslationsAuthenticationLoginEn loginL10n,
-}) extends StatelessWidget {
+class const _SignInWithThirdPartyButtons() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final loginL10n = context.l10n.authentication.login;
+
     return Column(
       spacing: Spacings.small,
       children: [
