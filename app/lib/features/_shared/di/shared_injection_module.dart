@@ -5,6 +5,7 @@ import 'package:connectivity_service/connectivity_service.dart';
 import 'package:core/core.dart';
 import 'package:crash_report_service/crash_report_service.dart';
 import 'package:device_info_service/device_info_service.dart';
+import 'package:file_picker_service/file_picker_service.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 import 'package:flutter_bloc_starter/router/observers/analytics_router_observer.dart';
@@ -43,6 +44,7 @@ class SharedInjectionModule() implements InjectionModule {
     ..registerLazySingleton<ReviewService>(ReviewService.new)
     ..registerLazySingleton<CrashReportService>(CrashReportServiceImpl.new)
     ..registerLazySingleton<DeviceInfoService>(DeviceInfoService.new)
+    ..registerLazySingleton<FilePickerService>(FilePickerService.new)
     ..registerLazySingleton<PerformanceService>(FirebasePerformanceService.new)
     ..registerLazySingleton<PermissionService>(PermissionService.new)
     ..registerLazySingleton<NotificationService>(NotificationService.new)

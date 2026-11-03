@@ -1,0 +1,17 @@
+name: file_picker_service
+resolution: workspace
+publish_to: "none"
+
+environment:
+  sdk: ^3.13.7
+  flutter: ^3.47.9
+
+dependencies:
+  file_picker: ^13.3.2
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.5

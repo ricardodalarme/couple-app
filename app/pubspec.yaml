@@ -26,6 +26,8 @@ dependencies:
   device_info_service:
     path: ../packages/services/device_info
   equatable: ^2.1.0
+  file_picker_service:
+    path: ../packages/services/file_picker
   firebase_core: ^5.1.0
   flutter:
     sdk: flutter
