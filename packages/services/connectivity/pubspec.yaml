@@ -1,0 +1,18 @@
+name: connectivity_service
+resolution: workspace
+publish_to: "none"
+
+environment:
+  sdk: ^3.13.7
+  flutter: ^3.47.9
+
+dependencies:
+  connectivity_plus: ^7.3.1
+  flutter:
+    sdk: flutter
+  internet_connection_checker_plus: ^3.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.5
