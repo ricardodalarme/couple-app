@@ -90,6 +90,13 @@ melos:
       run: dart run build_runner build --workspace
       description: Run build_runner in all packages.
 
+    graphql:schema:
+      run: |
+        . ./.env.development
+        get-graphql-schema "$SERVER_URL" --header "apikey=$SERVER_API_KEY" \
+          > app/lib/features/_shared/data/data_sources/schema.graphql
+      description: Download the GraphQL schema from the configured Supabase endpoint.
+
     splash_screen:
       exec: flutter pub run flutter_native_splash:create
       description: Update the app splash screen.

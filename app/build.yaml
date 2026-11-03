@@ -14,7 +14,26 @@ targets:
           namingSeparator: ""
           outputDirectory: generated
           scalars:
-            DateTime:
+            BigFloat:
+              type: double
+              fromJsonFunctionName: double.parse
+              toJsonFunctionName: ((v) => "$v")
+            BigInt:
+              type: BigInt
+              fromJsonFunctionName: BigInt.parse
+              toJsonFunctionName: ((v) => "$v")
+            Date:
               type: DateTime
-            JSONObject:
-              type: Map<String, dynamic>
+            Datetime:
+              type: DateTime
+            JSON:
+              type: dynamic
+              fromJsonFunctionName: jsonDecode
+              toJsonFunctionName: jsonEncode
+              import: dart:convert
+            Opaque:
+              type: Object
+            Time:
+              type: String
+            UUID:
+              type: String

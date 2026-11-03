@@ -5,8 +5,10 @@ Flutter monorepo template for **Flutter Bloc Starter**. The app lives in `app/`
 with pub workspaces.
 
 This is a generic starter, not a product repository. There is no product
-blueprint, brand book, or backend database project in this repo. When a
-requirement is unclear, ask instead of inventing product behavior.
+blueprint or brand book in this repo. The backend is a schema-first Supabase
+project under `supabase/` with `pg_graphql`; the starter's domain is deliberately
+small (a public `posts` feed). When a requirement is unclear, ask instead of
+inventing product behavior.
 
 Before working in an area, load the matching skill in `.agents/skills/` — the
 skills contain the full conventions, templates, and gotchas. This file is the
@@ -33,14 +35,41 @@ Agent-Skills-compatible tool can load them.
 Melos config is the `melos:` key in the **root `pubspec.yaml`** — there is no
 `melos.yaml`. Generated files are committed; CI does not run codegen.
 
+### Supabase
+
+| Command | What it does |
+| --- | --- |
+| `supabase link --project-ref rqrntvjatuwbmostkpao` | One-time link to the starter project |
+| `supabase start` / `supabase stop` | Start/stop the local stack (ports `553xx`) |
+| `supabase db reset --local` | Replay migrations + seed into the local database |
+| `supabase test db` | Run the pgTAP tests in `supabase/tests/` |
+| `supabase db push --remote --include-all` | Apply committed migrations to the linked project |
+| `melos graphql:schema` | Download the GraphQL SDL from the configured Supabase endpoint |
+
+`melos graphql:schema` runs an inline shell command in the root
+`pubspec.yaml`. It reads `SERVER_URL` and `SERVER_API_KEY` from
+`.env.development` and calls the npm `get-graphql-schema` CLI. Install it
+globally with `npm install -g get-graphql-schema@2.1.2`.
+
+`supabase db schema declarative sync` is local-only and requires Docker. When
+Docker is unavailable, edit the declarative schema and migration together and
+keep them in sync.
+
 ## Repository layout
 
 ```text
 app/          # Flutter app, package flutter_bloc_starter
 packages/     # core, network, common_ui, form_inputs, formatters, logger, services/*
+supabase/     # schema-first database, migrations, seed, pgTAP tests
 docs/         # contributing, dependency injection, localization, navigation notes
 .agents/      # skills (SKILL.md) and agent instructions
 ```
+
+Firebase client configuration is committed per flavor:
+`app/android/app/src/{development,production}/google-services.json` and
+`app/ios/config/{development,production}/GoogleService-Info.plist`. Keep those
+files aligned with the Firebase dev and production projects; `main.dart`
+initializes Firebase through the native flavor config.
 
 ## App architecture
 
@@ -135,6 +164,15 @@ allows them; use the body only for initializers and behavior.
   features add their own `queries/` and `fragments/` files under
   `data/data_sources/`. `RestClient` exists for REST integrations; prefer
   GraphQL for feature reads unless the API requires REST.
+- **`supabase/schemas/` is the database source of truth.** Edit the declarative
+  schema first, generate/review a migration, and keep the two together. The
+  starter's `posts` table is public-read only; new tables need explicit grants
+  and RLS policies.
+- **Refresh the GraphQL snapshot after a schema change**: `melos graphql:schema`
+  then `melos gen`. The snapshot is generated from the linked project as the
+  `authenticated` role; never hand-edit it.
+- **Never put a `service_role` or secret key in the app.** Use the project's
+  publishable key for `SERVER_API_KEY` and `SUPABASE_ANON_KEY`.
 - **Codegen owns generated types.** Run `melos gen` after editing a `.graphql`
   file. Never edit `generated/` by hand.
 - Data sources are concrete classes that call `GQLClient` from
@@ -146,10 +184,10 @@ allows them; use the body only for initializers and behavior.
   repository-interface layer.
 - **No invented server data.** Empty, loading, and unavailable states are
   honest. `Model.fake` values exist only as skeleton placeholders behind
-  `Skeletonizer`; never render them as real records.
-- A feature that needs a new backend surface must use the schema snapshot and
-  the existing GraphQL conventions. Ask before inventing a new table, query, or
-  mutation.
+  `Skeletonizer`; never render them as real records. `supabase/seed.sql` is
+  development-only.
+- A feature that needs a new backend surface edits `supabase/schemas/` and adds a
+  migration first. Ask before inventing a new table, query, or mutation.
 
 ## Design system
 
@@ -234,3 +272,4 @@ declaration it sits on, never the app that uses it.
 | `storybook`            | Widgetbook (Storybook) examples for components/widgets                                                                 |
 | `design-system`        | Any UI, styling, tokens, `common_ui`, colors/typography; component-vs-pattern boundary, `Base*` naming, library audits |
 | `package`              | New workspace package or third-party SDK wrapper                                                                       |
+| `supabase`             | Schema-first changes, migrations, RLS/grants, pgTAP, pg_graphql, GraphQL snapshot refresh                              |

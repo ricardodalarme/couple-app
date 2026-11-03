@@ -199,39 +199,6 @@ input IntListFilter {
 """A Javascript Object Notation value serialized as a string"""
 scalar JSON
 
-"""The root type for creating and mutating data"""
-type Mutation {
-  """Deletes zero or more records from the `posts` collection"""
-  deleteFrompostsCollection(
-    """Restricts the mutation's impact to records matching the criteria"""
-    filter: postsFilter
-
-    """
-    The maximum number of records in the collection permitted to be affected
-    """
-    atMost: Int! = 1
-  ): postsDeleteResponse!
-
-  """Adds one or more `posts` records to the collection"""
-  insertIntopostsCollection(objects: [postsInsertInput!]!): postsInsertResponse
-
-  """Updates zero or more records in the `posts` collection"""
-  updatepostsCollection(
-    """
-    Fields that are set will be updated for all records matching the `filter`
-    """
-    set: postsUpdateInput!
-
-    """Restricts the mutation's impact to records matching the criteria"""
-    filter: postsFilter
-
-    """
-    The maximum number of records in the collection permitted to be affected
-    """
-    atMost: Int! = 1
-  ): postsUpdateResponse!
-}
-
 interface Node {
   """Retrieves a record by `ID`"""
   nodeId: ID!
@@ -284,14 +251,6 @@ type postsConnection {
   pageInfo: PageInfo!
 }
 
-type postsDeleteResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [posts!]!
-}
-
 type postsEdge {
   cursor: String!
   node: posts!
@@ -318,41 +277,11 @@ input postsFilter {
   not: postsFilter
 }
 
-input postsInsertInput {
-  id: UUID
-  content: String
-  title: String
-  author_image_url: String
-}
-
-type postsInsertResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [posts!]!
-}
-
 input postsOrderBy {
   id: OrderByDirection
   content: OrderByDirection
   title: OrderByDirection
   author_image_url: OrderByDirection
-}
-
-input postsUpdateInput {
-  id: UUID
-  content: String
-  title: String
-  author_image_url: String
-}
-
-type postsUpdateResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [posts!]!
 }
 
 """The root type for querying data"""

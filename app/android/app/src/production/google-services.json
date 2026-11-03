@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "731036601810",
-    "project_id": "qs-flutter-production",
-    "storage_bucket": "qs-flutter-production.firebasestorage.app"
+    "project_number": "981634080311",
+    "project_id": "flutter-bloc-starter---prd",
+    "storage_bucket": "flutter-bloc-starter---prd.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:731036601810:android:df2b6a2d66ba2361a68c0b",
+        "mobilesdk_app_id": "1:981634080311:android:533ed44c6e0b1de00829b2",
         "android_client_info": {
-          "package_name": "com.profusion.quickstart_flutter_bloc"
+          "package_name": "com.ricardodalarme.flutter_bloc_starter"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD1dfrVPNdFVN4AObmLd2wQQCJW4Z3faxs"
+          "current_key": "AIzaSyCt7zL5IXp-MI9euTRApP5cRweeBgGGUoc"
         }
       ],
       "services": {

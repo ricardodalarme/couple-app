@@ -1,14 +1,14 @@
 // dart format width=100
 class InputBigFloatFilter {
   factory InputBigFloatFilter({
-    String? eq,
-    String? gt,
-    String? gte,
-    List<String>? $in,
+    double? eq,
+    double? gt,
+    double? gte,
+    List<double>? $in,
     EnumFilterIs? $is,
-    String? lt,
-    String? lte,
-    String? neq,
+    double? lt,
+    double? lte,
+    double? neq,
   }) => InputBigFloatFilter._({
     if (eq != null) r'eq': eq,
     if (gt != null) r'gt': gt,
@@ -26,19 +26,19 @@ class InputBigFloatFilter {
     final result$data = <String, dynamic>{};
     if (data.containsKey('eq')) {
       final l$eq = data['eq'];
-      result$data['eq'] = (l$eq as String?);
+      result$data['eq'] = l$eq == null ? null : double.parse(l$eq);
     }
     if (data.containsKey('gt')) {
       final l$gt = data['gt'];
-      result$data['gt'] = (l$gt as String?);
+      result$data['gt'] = l$gt == null ? null : double.parse(l$gt);
     }
     if (data.containsKey('gte')) {
       final l$gte = data['gte'];
-      result$data['gte'] = (l$gte as String?);
+      result$data['gte'] = l$gte == null ? null : double.parse(l$gte);
     }
     if (data.containsKey('in')) {
       final l$$in = data['in'];
-      result$data['in'] = (l$$in as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['in'] = (l$$in as List<dynamic>?)?.map((e) => double.parse(e)).toList();
     }
     if (data.containsKey('is')) {
       final l$$is = data['is'];
@@ -46,54 +46,54 @@ class InputBigFloatFilter {
     }
     if (data.containsKey('lt')) {
       final l$lt = data['lt'];
-      result$data['lt'] = (l$lt as String?);
+      result$data['lt'] = l$lt == null ? null : double.parse(l$lt);
     }
     if (data.containsKey('lte')) {
       final l$lte = data['lte'];
-      result$data['lte'] = (l$lte as String?);
+      result$data['lte'] = l$lte == null ? null : double.parse(l$lte);
     }
     if (data.containsKey('neq')) {
       final l$neq = data['neq'];
-      result$data['neq'] = (l$neq as String?);
+      result$data['neq'] = l$neq == null ? null : double.parse(l$neq);
     }
     return InputBigFloatFilter._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String? get eq => (_$data['eq'] as String?);
+  double? get eq => (_$data['eq'] as double?);
 
-  String? get gt => (_$data['gt'] as String?);
+  double? get gt => (_$data['gt'] as double?);
 
-  String? get gte => (_$data['gte'] as String?);
+  double? get gte => (_$data['gte'] as double?);
 
-  List<String>? get $in => (_$data['in'] as List<String>?);
+  List<double>? get $in => (_$data['in'] as List<double>?);
 
   EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
 
-  String? get lt => (_$data['lt'] as String?);
+  double? get lt => (_$data['lt'] as double?);
 
-  String? get lte => (_$data['lte'] as String?);
+  double? get lte => (_$data['lte'] as double?);
 
-  String? get neq => (_$data['neq'] as String?);
+  double? get neq => (_$data['neq'] as double?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('eq')) {
       final l$eq = eq;
-      result$data['eq'] = l$eq;
+      result$data['eq'] = l$eq == null ? null : ((v) => "$v")(l$eq);
     }
     if (_$data.containsKey('gt')) {
       final l$gt = gt;
-      result$data['gt'] = l$gt;
+      result$data['gt'] = l$gt == null ? null : ((v) => "$v")(l$gt);
     }
     if (_$data.containsKey('gte')) {
       final l$gte = gte;
-      result$data['gte'] = l$gte;
+      result$data['gte'] = l$gte == null ? null : ((v) => "$v")(l$gte);
     }
     if (_$data.containsKey('in')) {
       final l$$in = $in;
-      result$data['in'] = l$$in?.map((e) => e).toList();
+      result$data['in'] = l$$in?.map((e) => ((v) => "$v")(e)).toList();
     }
     if (_$data.containsKey('is')) {
       final l$$is = $is;
@@ -101,15 +101,15 @@ class InputBigFloatFilter {
     }
     if (_$data.containsKey('lt')) {
       final l$lt = lt;
-      result$data['lt'] = l$lt;
+      result$data['lt'] = l$lt == null ? null : ((v) => "$v")(l$lt);
     }
     if (_$data.containsKey('lte')) {
       final l$lte = lte;
-      result$data['lte'] = l$lte;
+      result$data['lte'] = l$lte == null ? null : ((v) => "$v")(l$lte);
     }
     if (_$data.containsKey('neq')) {
       final l$neq = neq;
-      result$data['neq'] = l$neq;
+      result$data['neq'] = l$neq == null ? null : ((v) => "$v")(l$neq);
     }
     return result$data;
   }
@@ -229,11 +229,11 @@ class InputBigFloatFilter {
 
 class InputBigFloatListFilter {
   factory InputBigFloatListFilter({
-    List<String>? containedBy,
-    List<String>? contains,
-    List<String>? eq,
+    List<double>? containedBy,
+    List<double>? contains,
+    List<double>? eq,
     EnumFilterIs? $is,
-    List<String>? overlaps,
+    List<double>? overlaps,
   }) => InputBigFloatListFilter._({
     if (containedBy != null) r'containedBy': containedBy,
     if (contains != null) r'contains': contains,
@@ -249,16 +249,18 @@ class InputBigFloatListFilter {
     if (data.containsKey('containedBy')) {
       final l$containedBy = data['containedBy'];
       result$data['containedBy'] = (l$containedBy as List<dynamic>?)
-          ?.map((e) => (e as String))
+          ?.map((e) => double.parse(e))
           .toList();
     }
     if (data.containsKey('contains')) {
       final l$contains = data['contains'];
-      result$data['contains'] = (l$contains as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['contains'] = (l$contains as List<dynamic>?)
+          ?.map((e) => double.parse(e))
+          .toList();
     }
     if (data.containsKey('eq')) {
       final l$eq = data['eq'];
-      result$data['eq'] = (l$eq as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['eq'] = (l$eq as List<dynamic>?)?.map((e) => double.parse(e)).toList();
     }
     if (data.containsKey('is')) {
       final l$$is = data['is'];
@@ -266,36 +268,38 @@ class InputBigFloatListFilter {
     }
     if (data.containsKey('overlaps')) {
       final l$overlaps = data['overlaps'];
-      result$data['overlaps'] = (l$overlaps as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['overlaps'] = (l$overlaps as List<dynamic>?)
+          ?.map((e) => double.parse(e))
+          .toList();
     }
     return InputBigFloatListFilter._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  List<String>? get containedBy => (_$data['containedBy'] as List<String>?);
+  List<double>? get containedBy => (_$data['containedBy'] as List<double>?);
 
-  List<String>? get contains => (_$data['contains'] as List<String>?);
+  List<double>? get contains => (_$data['contains'] as List<double>?);
 
-  List<String>? get eq => (_$data['eq'] as List<String>?);
+  List<double>? get eq => (_$data['eq'] as List<double>?);
 
   EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
 
-  List<String>? get overlaps => (_$data['overlaps'] as List<String>?);
+  List<double>? get overlaps => (_$data['overlaps'] as List<double>?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('containedBy')) {
       final l$containedBy = containedBy;
-      result$data['containedBy'] = l$containedBy?.map((e) => e).toList();
+      result$data['containedBy'] = l$containedBy?.map((e) => ((v) => "$v")(e)).toList();
     }
     if (_$data.containsKey('contains')) {
       final l$contains = contains;
-      result$data['contains'] = l$contains?.map((e) => e).toList();
+      result$data['contains'] = l$contains?.map((e) => ((v) => "$v")(e)).toList();
     }
     if (_$data.containsKey('eq')) {
       final l$eq = eq;
-      result$data['eq'] = l$eq?.map((e) => e).toList();
+      result$data['eq'] = l$eq?.map((e) => ((v) => "$v")(e)).toList();
     }
     if (_$data.containsKey('is')) {
       final l$$is = $is;
@@ -303,7 +307,7 @@ class InputBigFloatListFilter {
     }
     if (_$data.containsKey('overlaps')) {
       final l$overlaps = overlaps;
-      result$data['overlaps'] = l$overlaps?.map((e) => e).toList();
+      result$data['overlaps'] = l$overlaps?.map((e) => ((v) => "$v")(e)).toList();
     }
     return result$data;
   }
@@ -438,14 +442,14 @@ class InputBigFloatListFilter {
 
 class InputBigIntFilter {
   factory InputBigIntFilter({
-    String? eq,
-    String? gt,
-    String? gte,
-    List<String>? $in,
+    BigInt? eq,
+    BigInt? gt,
+    BigInt? gte,
+    List<BigInt>? $in,
     EnumFilterIs? $is,
-    String? lt,
-    String? lte,
-    String? neq,
+    BigInt? lt,
+    BigInt? lte,
+    BigInt? neq,
   }) => InputBigIntFilter._({
     if (eq != null) r'eq': eq,
     if (gt != null) r'gt': gt,
@@ -463,19 +467,19 @@ class InputBigIntFilter {
     final result$data = <String, dynamic>{};
     if (data.containsKey('eq')) {
       final l$eq = data['eq'];
-      result$data['eq'] = (l$eq as String?);
+      result$data['eq'] = l$eq == null ? null : BigInt.parse(l$eq);
     }
     if (data.containsKey('gt')) {
       final l$gt = data['gt'];
-      result$data['gt'] = (l$gt as String?);
+      result$data['gt'] = l$gt == null ? null : BigInt.parse(l$gt);
     }
     if (data.containsKey('gte')) {
       final l$gte = data['gte'];
-      result$data['gte'] = (l$gte as String?);
+      result$data['gte'] = l$gte == null ? null : BigInt.parse(l$gte);
     }
     if (data.containsKey('in')) {
       final l$$in = data['in'];
-      result$data['in'] = (l$$in as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['in'] = (l$$in as List<dynamic>?)?.map((e) => BigInt.parse(e)).toList();
     }
     if (data.containsKey('is')) {
       final l$$is = data['is'];
@@ -483,54 +487,54 @@ class InputBigIntFilter {
     }
     if (data.containsKey('lt')) {
       final l$lt = data['lt'];
-      result$data['lt'] = (l$lt as String?);
+      result$data['lt'] = l$lt == null ? null : BigInt.parse(l$lt);
     }
     if (data.containsKey('lte')) {
       final l$lte = data['lte'];
-      result$data['lte'] = (l$lte as String?);
+      result$data['lte'] = l$lte == null ? null : BigInt.parse(l$lte);
     }
     if (data.containsKey('neq')) {
       final l$neq = data['neq'];
-      result$data['neq'] = (l$neq as String?);
+      result$data['neq'] = l$neq == null ? null : BigInt.parse(l$neq);
     }
     return InputBigIntFilter._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String? get eq => (_$data['eq'] as String?);
+  BigInt? get eq => (_$data['eq'] as BigInt?);
 
-  String? get gt => (_$data['gt'] as String?);
+  BigInt? get gt => (_$data['gt'] as BigInt?);
 
-  String? get gte => (_$data['gte'] as String?);
+  BigInt? get gte => (_$data['gte'] as BigInt?);
 
-  List<String>? get $in => (_$data['in'] as List<String>?);
+  List<BigInt>? get $in => (_$data['in'] as List<BigInt>?);
 
   EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
 
-  String? get lt => (_$data['lt'] as String?);
+  BigInt? get lt => (_$data['lt'] as BigInt?);
 
-  String? get lte => (_$data['lte'] as String?);
+  BigInt? get lte => (_$data['lte'] as BigInt?);
 
-  String? get neq => (_$data['neq'] as String?);
+  BigInt? get neq => (_$data['neq'] as BigInt?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('eq')) {
       final l$eq = eq;
-      result$data['eq'] = l$eq;
+      result$data['eq'] = l$eq == null ? null : ((v) => "$v")(l$eq);
     }
     if (_$data.containsKey('gt')) {
       final l$gt = gt;
-      result$data['gt'] = l$gt;
+      result$data['gt'] = l$gt == null ? null : ((v) => "$v")(l$gt);
     }
     if (_$data.containsKey('gte')) {
       final l$gte = gte;
-      result$data['gte'] = l$gte;
+      result$data['gte'] = l$gte == null ? null : ((v) => "$v")(l$gte);
     }
     if (_$data.containsKey('in')) {
       final l$$in = $in;
-      result$data['in'] = l$$in?.map((e) => e).toList();
+      result$data['in'] = l$$in?.map((e) => ((v) => "$v")(e)).toList();
     }
     if (_$data.containsKey('is')) {
       final l$$is = $is;
@@ -538,15 +542,15 @@ class InputBigIntFilter {
     }
     if (_$data.containsKey('lt')) {
       final l$lt = lt;
-      result$data['lt'] = l$lt;
+      result$data['lt'] = l$lt == null ? null : ((v) => "$v")(l$lt);
     }
     if (_$data.containsKey('lte')) {
       final l$lte = lte;
-      result$data['lte'] = l$lte;
+      result$data['lte'] = l$lte == null ? null : ((v) => "$v")(l$lte);
     }
     if (_$data.containsKey('neq')) {
       final l$neq = neq;
-      result$data['neq'] = l$neq;
+      result$data['neq'] = l$neq == null ? null : ((v) => "$v")(l$neq);
     }
     return result$data;
   }
@@ -666,11 +670,11 @@ class InputBigIntFilter {
 
 class InputBigIntListFilter {
   factory InputBigIntListFilter({
-    List<String>? containedBy,
-    List<String>? contains,
-    List<String>? eq,
+    List<BigInt>? containedBy,
+    List<BigInt>? contains,
+    List<BigInt>? eq,
     EnumFilterIs? $is,
-    List<String>? overlaps,
+    List<BigInt>? overlaps,
   }) => InputBigIntListFilter._({
     if (containedBy != null) r'containedBy': containedBy,
     if (contains != null) r'contains': contains,
@@ -686,16 +690,18 @@ class InputBigIntListFilter {
     if (data.containsKey('containedBy')) {
       final l$containedBy = data['containedBy'];
       result$data['containedBy'] = (l$containedBy as List<dynamic>?)
-          ?.map((e) => (e as String))
+          ?.map((e) => BigInt.parse(e))
           .toList();
     }
     if (data.containsKey('contains')) {
       final l$contains = data['contains'];
-      result$data['contains'] = (l$contains as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['contains'] = (l$contains as List<dynamic>?)
+          ?.map((e) => BigInt.parse(e))
+          .toList();
     }
     if (data.containsKey('eq')) {
       final l$eq = data['eq'];
-      result$data['eq'] = (l$eq as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['eq'] = (l$eq as List<dynamic>?)?.map((e) => BigInt.parse(e)).toList();
     }
     if (data.containsKey('is')) {
       final l$$is = data['is'];
@@ -703,36 +709,38 @@ class InputBigIntListFilter {
     }
     if (data.containsKey('overlaps')) {
       final l$overlaps = data['overlaps'];
-      result$data['overlaps'] = (l$overlaps as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['overlaps'] = (l$overlaps as List<dynamic>?)
+          ?.map((e) => BigInt.parse(e))
+          .toList();
     }
     return InputBigIntListFilter._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  List<String>? get containedBy => (_$data['containedBy'] as List<String>?);
+  List<BigInt>? get containedBy => (_$data['containedBy'] as List<BigInt>?);
 
-  List<String>? get contains => (_$data['contains'] as List<String>?);
+  List<BigInt>? get contains => (_$data['contains'] as List<BigInt>?);
 
-  List<String>? get eq => (_$data['eq'] as List<String>?);
+  List<BigInt>? get eq => (_$data['eq'] as List<BigInt>?);
 
   EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
 
-  List<String>? get overlaps => (_$data['overlaps'] as List<String>?);
+  List<BigInt>? get overlaps => (_$data['overlaps'] as List<BigInt>?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('containedBy')) {
       final l$containedBy = containedBy;
-      result$data['containedBy'] = l$containedBy?.map((e) => e).toList();
+      result$data['containedBy'] = l$containedBy?.map((e) => ((v) => "$v")(e)).toList();
     }
     if (_$data.containsKey('contains')) {
       final l$contains = contains;
-      result$data['contains'] = l$contains?.map((e) => e).toList();
+      result$data['contains'] = l$contains?.map((e) => ((v) => "$v")(e)).toList();
     }
     if (_$data.containsKey('eq')) {
       final l$eq = eq;
-      result$data['eq'] = l$eq?.map((e) => e).toList();
+      result$data['eq'] = l$eq?.map((e) => ((v) => "$v")(e)).toList();
     }
     if (_$data.containsKey('is')) {
       final l$$is = $is;
@@ -740,7 +748,7 @@ class InputBigIntListFilter {
     }
     if (_$data.containsKey('overlaps')) {
       final l$overlaps = overlaps;
-      result$data['overlaps'] = l$overlaps?.map((e) => e).toList();
+      result$data['overlaps'] = l$overlaps?.map((e) => ((v) => "$v")(e)).toList();
     }
     return result$data;
   }
@@ -1160,14 +1168,14 @@ class InputBooleanListFilter {
 
 class InputDateFilter {
   factory InputDateFilter({
-    String? eq,
-    String? gt,
-    String? gte,
-    List<String>? $in,
+    DateTime? eq,
+    DateTime? gt,
+    DateTime? gte,
+    List<DateTime>? $in,
     EnumFilterIs? $is,
-    String? lt,
-    String? lte,
-    String? neq,
+    DateTime? lt,
+    DateTime? lte,
+    DateTime? neq,
   }) => InputDateFilter._({
     if (eq != null) r'eq': eq,
     if (gt != null) r'gt': gt,
@@ -1185,19 +1193,21 @@ class InputDateFilter {
     final result$data = <String, dynamic>{};
     if (data.containsKey('eq')) {
       final l$eq = data['eq'];
-      result$data['eq'] = (l$eq as String?);
+      result$data['eq'] = l$eq == null ? null : DateTime.parse((l$eq as String));
     }
     if (data.containsKey('gt')) {
       final l$gt = data['gt'];
-      result$data['gt'] = (l$gt as String?);
+      result$data['gt'] = l$gt == null ? null : DateTime.parse((l$gt as String));
     }
     if (data.containsKey('gte')) {
       final l$gte = data['gte'];
-      result$data['gte'] = (l$gte as String?);
+      result$data['gte'] = l$gte == null ? null : DateTime.parse((l$gte as String));
     }
     if (data.containsKey('in')) {
       final l$$in = data['in'];
-      result$data['in'] = (l$$in as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => DateTime.parse((e as String)))
+          .toList();
     }
     if (data.containsKey('is')) {
       final l$$is = data['is'];
@@ -1205,54 +1215,54 @@ class InputDateFilter {
     }
     if (data.containsKey('lt')) {
       final l$lt = data['lt'];
-      result$data['lt'] = (l$lt as String?);
+      result$data['lt'] = l$lt == null ? null : DateTime.parse((l$lt as String));
     }
     if (data.containsKey('lte')) {
       final l$lte = data['lte'];
-      result$data['lte'] = (l$lte as String?);
+      result$data['lte'] = l$lte == null ? null : DateTime.parse((l$lte as String));
     }
     if (data.containsKey('neq')) {
       final l$neq = data['neq'];
-      result$data['neq'] = (l$neq as String?);
+      result$data['neq'] = l$neq == null ? null : DateTime.parse((l$neq as String));
     }
     return InputDateFilter._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String? get eq => (_$data['eq'] as String?);
+  DateTime? get eq => (_$data['eq'] as DateTime?);
 
-  String? get gt => (_$data['gt'] as String?);
+  DateTime? get gt => (_$data['gt'] as DateTime?);
 
-  String? get gte => (_$data['gte'] as String?);
+  DateTime? get gte => (_$data['gte'] as DateTime?);
 
-  List<String>? get $in => (_$data['in'] as List<String>?);
+  List<DateTime>? get $in => (_$data['in'] as List<DateTime>?);
 
   EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
 
-  String? get lt => (_$data['lt'] as String?);
+  DateTime? get lt => (_$data['lt'] as DateTime?);
 
-  String? get lte => (_$data['lte'] as String?);
+  DateTime? get lte => (_$data['lte'] as DateTime?);
 
-  String? get neq => (_$data['neq'] as String?);
+  DateTime? get neq => (_$data['neq'] as DateTime?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('eq')) {
       final l$eq = eq;
-      result$data['eq'] = l$eq;
+      result$data['eq'] = l$eq?.toIso8601String();
     }
     if (_$data.containsKey('gt')) {
       final l$gt = gt;
-      result$data['gt'] = l$gt;
+      result$data['gt'] = l$gt?.toIso8601String();
     }
     if (_$data.containsKey('gte')) {
       final l$gte = gte;
-      result$data['gte'] = l$gte;
+      result$data['gte'] = l$gte?.toIso8601String();
     }
     if (_$data.containsKey('in')) {
       final l$$in = $in;
-      result$data['in'] = l$$in?.map((e) => e).toList();
+      result$data['in'] = l$$in?.map((e) => e.toIso8601String()).toList();
     }
     if (_$data.containsKey('is')) {
       final l$$is = $is;
@@ -1260,15 +1270,15 @@ class InputDateFilter {
     }
     if (_$data.containsKey('lt')) {
       final l$lt = lt;
-      result$data['lt'] = l$lt;
+      result$data['lt'] = l$lt?.toIso8601String();
     }
     if (_$data.containsKey('lte')) {
       final l$lte = lte;
-      result$data['lte'] = l$lte;
+      result$data['lte'] = l$lte?.toIso8601String();
     }
     if (_$data.containsKey('neq')) {
       final l$neq = neq;
-      result$data['neq'] = l$neq;
+      result$data['neq'] = l$neq?.toIso8601String();
     }
     return result$data;
   }
@@ -1388,11 +1398,11 @@ class InputDateFilter {
 
 class InputDateListFilter {
   factory InputDateListFilter({
-    List<String>? containedBy,
-    List<String>? contains,
-    List<String>? eq,
+    List<DateTime>? containedBy,
+    List<DateTime>? contains,
+    List<DateTime>? eq,
     EnumFilterIs? $is,
-    List<String>? overlaps,
+    List<DateTime>? overlaps,
   }) => InputDateListFilter._({
     if (containedBy != null) r'containedBy': containedBy,
     if (contains != null) r'contains': contains,
@@ -1408,16 +1418,20 @@ class InputDateListFilter {
     if (data.containsKey('containedBy')) {
       final l$containedBy = data['containedBy'];
       result$data['containedBy'] = (l$containedBy as List<dynamic>?)
-          ?.map((e) => (e as String))
+          ?.map((e) => DateTime.parse((e as String)))
           .toList();
     }
     if (data.containsKey('contains')) {
       final l$contains = data['contains'];
-      result$data['contains'] = (l$contains as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['contains'] = (l$contains as List<dynamic>?)
+          ?.map((e) => DateTime.parse((e as String)))
+          .toList();
     }
     if (data.containsKey('eq')) {
       final l$eq = data['eq'];
-      result$data['eq'] = (l$eq as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['eq'] = (l$eq as List<dynamic>?)
+          ?.map((e) => DateTime.parse((e as String)))
+          .toList();
     }
     if (data.containsKey('is')) {
       final l$$is = data['is'];
@@ -1425,36 +1439,38 @@ class InputDateListFilter {
     }
     if (data.containsKey('overlaps')) {
       final l$overlaps = data['overlaps'];
-      result$data['overlaps'] = (l$overlaps as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['overlaps'] = (l$overlaps as List<dynamic>?)
+          ?.map((e) => DateTime.parse((e as String)))
+          .toList();
     }
     return InputDateListFilter._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  List<String>? get containedBy => (_$data['containedBy'] as List<String>?);
+  List<DateTime>? get containedBy => (_$data['containedBy'] as List<DateTime>?);
 
-  List<String>? get contains => (_$data['contains'] as List<String>?);
+  List<DateTime>? get contains => (_$data['contains'] as List<DateTime>?);
 
-  List<String>? get eq => (_$data['eq'] as List<String>?);
+  List<DateTime>? get eq => (_$data['eq'] as List<DateTime>?);
 
   EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
 
-  List<String>? get overlaps => (_$data['overlaps'] as List<String>?);
+  List<DateTime>? get overlaps => (_$data['overlaps'] as List<DateTime>?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('containedBy')) {
       final l$containedBy = containedBy;
-      result$data['containedBy'] = l$containedBy?.map((e) => e).toList();
+      result$data['containedBy'] = l$containedBy?.map((e) => e.toIso8601String()).toList();
     }
     if (_$data.containsKey('contains')) {
       final l$contains = contains;
-      result$data['contains'] = l$contains?.map((e) => e).toList();
+      result$data['contains'] = l$contains?.map((e) => e.toIso8601String()).toList();
     }
     if (_$data.containsKey('eq')) {
       final l$eq = eq;
-      result$data['eq'] = l$eq?.map((e) => e).toList();
+      result$data['eq'] = l$eq?.map((e) => e.toIso8601String()).toList();
     }
     if (_$data.containsKey('is')) {
       final l$$is = $is;
@@ -1462,7 +1478,7 @@ class InputDateListFilter {
     }
     if (_$data.containsKey('overlaps')) {
       final l$overlaps = overlaps;
-      result$data['overlaps'] = l$overlaps?.map((e) => e).toList();
+      result$data['overlaps'] = l$overlaps?.map((e) => e.toIso8601String()).toList();
     }
     return result$data;
   }
@@ -1597,14 +1613,14 @@ class InputDateListFilter {
 
 class InputDatetimeFilter {
   factory InputDatetimeFilter({
-    String? eq,
-    String? gt,
-    String? gte,
-    List<String>? $in,
+    DateTime? eq,
+    DateTime? gt,
+    DateTime? gte,
+    List<DateTime>? $in,
     EnumFilterIs? $is,
-    String? lt,
-    String? lte,
-    String? neq,
+    DateTime? lt,
+    DateTime? lte,
+    DateTime? neq,
   }) => InputDatetimeFilter._({
     if (eq != null) r'eq': eq,
     if (gt != null) r'gt': gt,
@@ -1622,19 +1638,21 @@ class InputDatetimeFilter {
     final result$data = <String, dynamic>{};
     if (data.containsKey('eq')) {
       final l$eq = data['eq'];
-      result$data['eq'] = (l$eq as String?);
+      result$data['eq'] = l$eq == null ? null : DateTime.parse((l$eq as String));
     }
     if (data.containsKey('gt')) {
       final l$gt = data['gt'];
-      result$data['gt'] = (l$gt as String?);
+      result$data['gt'] = l$gt == null ? null : DateTime.parse((l$gt as String));
     }
     if (data.containsKey('gte')) {
       final l$gte = data['gte'];
-      result$data['gte'] = (l$gte as String?);
+      result$data['gte'] = l$gte == null ? null : DateTime.parse((l$gte as String));
     }
     if (data.containsKey('in')) {
       final l$$in = data['in'];
-      result$data['in'] = (l$$in as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => DateTime.parse((e as String)))
+          .toList();
     }
     if (data.containsKey('is')) {
       final l$$is = data['is'];
@@ -1642,54 +1660,54 @@ class InputDatetimeFilter {
     }
     if (data.containsKey('lt')) {
       final l$lt = data['lt'];
-      result$data['lt'] = (l$lt as String?);
+      result$data['lt'] = l$lt == null ? null : DateTime.parse((l$lt as String));
     }
     if (data.containsKey('lte')) {
       final l$lte = data['lte'];
-      result$data['lte'] = (l$lte as String?);
+      result$data['lte'] = l$lte == null ? null : DateTime.parse((l$lte as String));
     }
     if (data.containsKey('neq')) {
       final l$neq = data['neq'];
-      result$data['neq'] = (l$neq as String?);
+      result$data['neq'] = l$neq == null ? null : DateTime.parse((l$neq as String));
     }
     return InputDatetimeFilter._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String? get eq => (_$data['eq'] as String?);
+  DateTime? get eq => (_$data['eq'] as DateTime?);
 
-  String? get gt => (_$data['gt'] as String?);
+  DateTime? get gt => (_$data['gt'] as DateTime?);
 
-  String? get gte => (_$data['gte'] as String?);
+  DateTime? get gte => (_$data['gte'] as DateTime?);
 
-  List<String>? get $in => (_$data['in'] as List<String>?);
+  List<DateTime>? get $in => (_$data['in'] as List<DateTime>?);
 
   EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
 
-  String? get lt => (_$data['lt'] as String?);
+  DateTime? get lt => (_$data['lt'] as DateTime?);
 
-  String? get lte => (_$data['lte'] as String?);
+  DateTime? get lte => (_$data['lte'] as DateTime?);
 
-  String? get neq => (_$data['neq'] as String?);
+  DateTime? get neq => (_$data['neq'] as DateTime?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('eq')) {
       final l$eq = eq;
-      result$data['eq'] = l$eq;
+      result$data['eq'] = l$eq?.toIso8601String();
     }
     if (_$data.containsKey('gt')) {
       final l$gt = gt;
-      result$data['gt'] = l$gt;
+      result$data['gt'] = l$gt?.toIso8601String();
     }
     if (_$data.containsKey('gte')) {
       final l$gte = gte;
-      result$data['gte'] = l$gte;
+      result$data['gte'] = l$gte?.toIso8601String();
     }
     if (_$data.containsKey('in')) {
       final l$$in = $in;
-      result$data['in'] = l$$in?.map((e) => e).toList();
+      result$data['in'] = l$$in?.map((e) => e.toIso8601String()).toList();
     }
     if (_$data.containsKey('is')) {
       final l$$is = $is;
@@ -1697,15 +1715,15 @@ class InputDatetimeFilter {
     }
     if (_$data.containsKey('lt')) {
       final l$lt = lt;
-      result$data['lt'] = l$lt;
+      result$data['lt'] = l$lt?.toIso8601String();
     }
     if (_$data.containsKey('lte')) {
       final l$lte = lte;
-      result$data['lte'] = l$lte;
+      result$data['lte'] = l$lte?.toIso8601String();
     }
     if (_$data.containsKey('neq')) {
       final l$neq = neq;
-      result$data['neq'] = l$neq;
+      result$data['neq'] = l$neq?.toIso8601String();
     }
     return result$data;
   }
@@ -1825,11 +1843,11 @@ class InputDatetimeFilter {
 
 class InputDatetimeListFilter {
   factory InputDatetimeListFilter({
-    List<String>? containedBy,
-    List<String>? contains,
-    List<String>? eq,
+    List<DateTime>? containedBy,
+    List<DateTime>? contains,
+    List<DateTime>? eq,
     EnumFilterIs? $is,
-    List<String>? overlaps,
+    List<DateTime>? overlaps,
   }) => InputDatetimeListFilter._({
     if (containedBy != null) r'containedBy': containedBy,
     if (contains != null) r'contains': contains,
@@ -1845,16 +1863,20 @@ class InputDatetimeListFilter {
     if (data.containsKey('containedBy')) {
       final l$containedBy = data['containedBy'];
       result$data['containedBy'] = (l$containedBy as List<dynamic>?)
-          ?.map((e) => (e as String))
+          ?.map((e) => DateTime.parse((e as String)))
           .toList();
     }
     if (data.containsKey('contains')) {
       final l$contains = data['contains'];
-      result$data['contains'] = (l$contains as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['contains'] = (l$contains as List<dynamic>?)
+          ?.map((e) => DateTime.parse((e as String)))
+          .toList();
     }
     if (data.containsKey('eq')) {
       final l$eq = data['eq'];
-      result$data['eq'] = (l$eq as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['eq'] = (l$eq as List<dynamic>?)
+          ?.map((e) => DateTime.parse((e as String)))
+          .toList();
     }
     if (data.containsKey('is')) {
       final l$$is = data['is'];
@@ -1862,36 +1884,38 @@ class InputDatetimeListFilter {
     }
     if (data.containsKey('overlaps')) {
       final l$overlaps = data['overlaps'];
-      result$data['overlaps'] = (l$overlaps as List<dynamic>?)?.map((e) => (e as String)).toList();
+      result$data['overlaps'] = (l$overlaps as List<dynamic>?)
+          ?.map((e) => DateTime.parse((e as String)))
+          .toList();
     }
     return InputDatetimeListFilter._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  List<String>? get containedBy => (_$data['containedBy'] as List<String>?);
+  List<DateTime>? get containedBy => (_$data['containedBy'] as List<DateTime>?);
 
-  List<String>? get contains => (_$data['contains'] as List<String>?);
+  List<DateTime>? get contains => (_$data['contains'] as List<DateTime>?);
 
-  List<String>? get eq => (_$data['eq'] as List<String>?);
+  List<DateTime>? get eq => (_$data['eq'] as List<DateTime>?);
 
   EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
 
-  List<String>? get overlaps => (_$data['overlaps'] as List<String>?);
+  List<DateTime>? get overlaps => (_$data['overlaps'] as List<DateTime>?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('containedBy')) {
       final l$containedBy = containedBy;
-      result$data['containedBy'] = l$containedBy?.map((e) => e).toList();
+      result$data['containedBy'] = l$containedBy?.map((e) => e.toIso8601String()).toList();
     }
     if (_$data.containsKey('contains')) {
       final l$contains = contains;
-      result$data['contains'] = l$contains?.map((e) => e).toList();
+      result$data['contains'] = l$contains?.map((e) => e.toIso8601String()).toList();
     }
     if (_$data.containsKey('eq')) {
       final l$eq = eq;
-      result$data['eq'] = l$eq?.map((e) => e).toList();
+      result$data['eq'] = l$eq?.map((e) => e.toIso8601String()).toList();
     }
     if (_$data.containsKey('is')) {
       final l$$is = $is;
@@ -1899,7 +1923,7 @@ class InputDatetimeListFilter {
     }
     if (_$data.containsKey('overlaps')) {
       final l$overlaps = overlaps;
-      result$data['overlaps'] = l$overlaps?.map((e) => e).toList();
+      result$data['overlaps'] = l$overlaps?.map((e) => e.toIso8601String()).toList();
     }
     return result$data;
   }
@@ -2964,7 +2988,7 @@ class InputIntListFilter {
 }
 
 class InputOpaqueFilter {
-  factory InputOpaqueFilter({String? eq, EnumFilterIs? $is}) =>
+  factory InputOpaqueFilter({Object? eq, EnumFilterIs? $is}) =>
       InputOpaqueFilter._({if (eq != null) r'eq': eq, if ($is != null) r'is': $is});
 
   InputOpaqueFilter._(this._$data);
@@ -2973,7 +2997,7 @@ class InputOpaqueFilter {
     final result$data = <String, dynamic>{};
     if (data.containsKey('eq')) {
       final l$eq = data['eq'];
-      result$data['eq'] = (l$eq as String?);
+      result$data['eq'] = (l$eq as Object?);
     }
     if (data.containsKey('is')) {
       final l$$is = data['is'];
@@ -2984,7 +3008,7 @@ class InputOpaqueFilter {
 
   Map<String, dynamic> _$data;
 
-  String? get eq => (_$data['eq'] as String?);
+  Object? get eq => (_$data['eq'] as Object?);
 
   EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
 
@@ -3298,131 +3322,6 @@ class InputpostsFilter {
   }
 }
 
-class InputpostsInsertInput {
-  factory InputpostsInsertInput({
-    String? id,
-    String? content,
-    String? title,
-    String? author_image_url,
-  }) => InputpostsInsertInput._({
-    if (id != null) r'id': id,
-    if (content != null) r'content': content,
-    if (title != null) r'title': title,
-    if (author_image_url != null) r'author_image_url': author_image_url,
-  });
-
-  InputpostsInsertInput._(this._$data);
-
-  factory InputpostsInsertInput.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = (l$id as String?);
-    }
-    if (data.containsKey('content')) {
-      final l$content = data['content'];
-      result$data['content'] = (l$content as String?);
-    }
-    if (data.containsKey('title')) {
-      final l$title = data['title'];
-      result$data['title'] = (l$title as String?);
-    }
-    if (data.containsKey('author_image_url')) {
-      final l$author_image_url = data['author_image_url'];
-      result$data['author_image_url'] = (l$author_image_url as String?);
-    }
-    return InputpostsInsertInput._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  String? get id => (_$data['id'] as String?);
-
-  String? get content => (_$data['content'] as String?);
-
-  String? get title => (_$data['title'] as String?);
-
-  String? get author_image_url => (_$data['author_image_url'] as String?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id;
-    }
-    if (_$data.containsKey('content')) {
-      final l$content = content;
-      result$data['content'] = l$content;
-    }
-    if (_$data.containsKey('title')) {
-      final l$title = title;
-      result$data['title'] = l$title;
-    }
-    if (_$data.containsKey('author_image_url')) {
-      final l$author_image_url = author_image_url;
-      result$data['author_image_url'] = l$author_image_url;
-    }
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! InputpostsInsertInput || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$content = content;
-    final lOther$content = other.content;
-    if (_$data.containsKey('content') != other._$data.containsKey('content')) {
-      return false;
-    }
-    if (l$content != lOther$content) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (_$data.containsKey('title') != other._$data.containsKey('title')) {
-      return false;
-    }
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$author_image_url = author_image_url;
-    final lOther$author_image_url = other.author_image_url;
-    if (_$data.containsKey('author_image_url') != other._$data.containsKey('author_image_url')) {
-      return false;
-    }
-    if (l$author_image_url != lOther$author_image_url) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$content = content;
-    final l$title = title;
-    final l$author_image_url = author_image_url;
-    return Object.hashAll([
-      _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('content') ? l$content : const {},
-      _$data.containsKey('title') ? l$title : const {},
-      _$data.containsKey('author_image_url') ? l$author_image_url : const {},
-    ]);
-  }
-}
-
 class InputpostsOrderBy {
   factory InputpostsOrderBy({
     EnumOrderByDirection? id,
@@ -3505,131 +3404,6 @@ class InputpostsOrderBy {
       return true;
     }
     if (other is! InputpostsOrderBy || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$content = content;
-    final lOther$content = other.content;
-    if (_$data.containsKey('content') != other._$data.containsKey('content')) {
-      return false;
-    }
-    if (l$content != lOther$content) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (_$data.containsKey('title') != other._$data.containsKey('title')) {
-      return false;
-    }
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$author_image_url = author_image_url;
-    final lOther$author_image_url = other.author_image_url;
-    if (_$data.containsKey('author_image_url') != other._$data.containsKey('author_image_url')) {
-      return false;
-    }
-    if (l$author_image_url != lOther$author_image_url) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$content = content;
-    final l$title = title;
-    final l$author_image_url = author_image_url;
-    return Object.hashAll([
-      _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('content') ? l$content : const {},
-      _$data.containsKey('title') ? l$title : const {},
-      _$data.containsKey('author_image_url') ? l$author_image_url : const {},
-    ]);
-  }
-}
-
-class InputpostsUpdateInput {
-  factory InputpostsUpdateInput({
-    String? id,
-    String? content,
-    String? title,
-    String? author_image_url,
-  }) => InputpostsUpdateInput._({
-    if (id != null) r'id': id,
-    if (content != null) r'content': content,
-    if (title != null) r'title': title,
-    if (author_image_url != null) r'author_image_url': author_image_url,
-  });
-
-  InputpostsUpdateInput._(this._$data);
-
-  factory InputpostsUpdateInput.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = (l$id as String?);
-    }
-    if (data.containsKey('content')) {
-      final l$content = data['content'];
-      result$data['content'] = (l$content as String?);
-    }
-    if (data.containsKey('title')) {
-      final l$title = data['title'];
-      result$data['title'] = (l$title as String?);
-    }
-    if (data.containsKey('author_image_url')) {
-      final l$author_image_url = data['author_image_url'];
-      result$data['author_image_url'] = (l$author_image_url as String?);
-    }
-    return InputpostsUpdateInput._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  String? get id => (_$data['id'] as String?);
-
-  String? get content => (_$data['content'] as String?);
-
-  String? get title => (_$data['title'] as String?);
-
-  String? get author_image_url => (_$data['author_image_url'] as String?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id;
-    }
-    if (_$data.containsKey('content')) {
-      final l$content = content;
-      result$data['content'] = l$content;
-    }
-    if (_$data.containsKey('title')) {
-      final l$title = title;
-      result$data['title'] = l$title;
-    }
-    if (_$data.containsKey('author_image_url')) {
-      final l$author_image_url = author_image_url;
-      result$data['author_image_url'] = l$author_image_url;
-    }
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! InputpostsUpdateInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

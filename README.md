@@ -71,6 +71,14 @@ Now everything is set. Let's run it!
 - In the target selector, select a device for running the app.
 - Click the run icon in the toolbar, or invoke the menu item Run > Run.
 
+## Backend
+
+- **Supabase** — schema-first database, migrations, seed, and pgTAP tests live in
+  [`supabase/`](supabase/README.md). The app reads `posts` through `pg_graphql`.
+- **Firebase** — dev and production client configs are committed per flavor under
+  `app/android/app/src/{development,production}` and
+  `app/ios/config/{development,production}`.
+
 ## Documentation
 
 - [Contributing](https://github.com/ricardodalarme/quickstart-flutter-bloc/wiki/Contributing)
