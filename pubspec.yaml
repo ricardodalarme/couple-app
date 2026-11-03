@@ -19,6 +19,7 @@ workspace:
   - packages/services/connectivity
   - packages/services/crash_report
   - packages/services/device_info
+  - packages/services/permission
   - packages/services/preferences
   - packages/services/remote_config
   - packages/services/secure_storage

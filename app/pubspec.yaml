@@ -40,6 +40,8 @@ dependencies:
     path: ../packages/logger
   network:
     path: ../packages/network
+  permission_service:
+    path: ../packages/services/permission
   preferences_service:
     path: ../packages/services/preferences
   remote_config_service:
