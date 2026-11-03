@@ -1,7 +1,7 @@
 import 'package:common_ui/common_ui.dart';
-import 'package:flutter/material.dart' show Icons, InputDecoration, TextField;
-import 'package:flutter/material.dart' show InputDecoration, TextField, UnderlineInputBorder;
 import 'package:flutter/services.dart';
+import 'package:material_ui/material_ui.dart'
+    show Icons, InputDecoration, TextField, UnderlineInputBorder;
 
 enum BaseTextFieldType() {
   text,

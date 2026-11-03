@@ -1,7 +1,7 @@
 import 'package:common_ui/src/theme/palette.dart';
 import 'package:common_ui/src/theme/typography.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart' show ColorScheme, ThemeData;
+import 'package:material_ui/material_ui.dart' show ColorScheme, ThemeData;
 
 abstract final class AppTheme() {
   static const _typography = Typography();

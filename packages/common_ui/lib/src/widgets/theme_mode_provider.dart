@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart' show ThemeMode;
 import 'package:flutter/widgets.dart';
+import 'package:material_ui/material_ui.dart' show ThemeMode;
 
 class const ThemeModeProvider({required final Widget child, super.key}) extends StatefulWidget {
   static InheritedThemeProvider of(BuildContext context) {

@@ -1,6 +1,6 @@
 import 'package:common_ui/src/components/base_text_field.dart';
-import 'package:flutter/material.dart' show Icons;
 import 'package:flutter_test/flutter_test.dart';
+import 'package:material_ui/material_ui.dart' show Icons;
 
 import '../test_helpers/pump_app.dart';
 

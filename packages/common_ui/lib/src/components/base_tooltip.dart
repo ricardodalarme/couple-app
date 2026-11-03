@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart' show Tooltip, TooltipTriggerMode;
 import 'package:flutter/widgets.dart';
+import 'package:material_ui/material_ui.dart' show Tooltip, TooltipTriggerMode;
 
 class const BaseTooltip({required final String text, required final Widget child, super.key})
     extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:common_ui/common_ui.dart';
-import 'package:flutter/material.dart' show FilledButton;
+import 'package:material_ui/material_ui.dart' show FilledButton;
 
 class const BaseButton({
   required final String text,

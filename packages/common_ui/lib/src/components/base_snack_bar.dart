@@ -1,5 +1,5 @@
 import 'package:common_ui/common_ui.dart';
-import 'package:flutter/material.dart' show ScaffoldMessenger, SnackBar;
+import 'package:material_ui/material_ui.dart' show ScaffoldMessenger, SnackBar;
 
 enum SnackBarType() {
   info,

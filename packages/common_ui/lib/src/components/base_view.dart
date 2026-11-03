@@ -1,7 +1,7 @@
 import 'package:common_ui/src/components/base_app_bar.dart';
 import 'package:common_ui/src/extensions/build_context_extension.dart';
-import 'package:flutter/material.dart' show Scaffold;
 import 'package:flutter/widgets.dart';
+import 'package:material_ui/material_ui.dart' show Scaffold;
 
 class const BaseView({
   required final Widget body,

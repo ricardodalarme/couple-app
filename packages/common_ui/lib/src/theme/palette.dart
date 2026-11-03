@@ -1,7 +1,7 @@
 import 'package:common_ui/src/tokens/colors.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart' show ThemeExtension;
 import 'package:flutter/painting.dart';
+import 'package:material_ui/material_ui.dart' show ThemeExtension;
 
 @immutable
 class Palette extends ThemeExtension<Palette> {

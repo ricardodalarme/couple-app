@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart' show AppBar, kToolbarHeight;
 import 'package:flutter/widgets.dart';
+import 'package:material_ui/material_ui.dart' show AppBar, kToolbarHeight;
 
 class const BaseAppBar({super.key, final String? title, final List<Widget>? actions})
     extends StatelessWidget

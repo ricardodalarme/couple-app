@@ -1,5 +1,5 @@
 import 'package:common_ui/common_ui.dart';
-import 'package:flutter/material.dart' show MaterialApp;
+import 'package:material_ui/material_ui.dart' show MaterialApp;
 
 class BaseApp extends StatelessWidget {
   const new({

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart' show RefreshIndicator;
 import 'package:flutter/widgets.dart';
+import 'package:material_ui/material_ui.dart' show RefreshIndicator;
 
 class const BasePullToRefresh({
   required final VoidCallback onRefresh,

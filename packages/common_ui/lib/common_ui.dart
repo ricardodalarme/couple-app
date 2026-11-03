@@ -1,6 +1,6 @@
-export 'package:flutter/material.dart' show Icons, ThemeMode;
 export 'package:flutter/widgets.dart';
 export 'package:gap/gap.dart';
+export 'package:material_ui/material_ui.dart' show Icons, ThemeMode;
 export 'package:skeletonizer/skeletonizer.dart';
 
 export 'src/components/base_app.dart';

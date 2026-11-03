@@ -1,6 +1,6 @@
 import 'package:common_ui/src/extensions/build_context_extension.dart';
-import 'package:flutter/material.dart' show NavigationBar, NavigationDestination;
 import 'package:flutter/widgets.dart';
+import 'package:material_ui/material_ui.dart' show NavigationBar, NavigationDestination;
 
 class const BaseNavigationBarItem({required final IconData icon, required final String label});
 

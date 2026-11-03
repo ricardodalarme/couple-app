@@ -1,6 +1,7 @@
 import 'package:common_ui/src/components/base_snack_bar.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:material_ui/material_ui.dart'
+    show Builder, ElevatedButton, Scaffold, SnackBar, Text;
 
 import '../test_helpers/pump_app.dart';
 

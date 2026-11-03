@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart' show Switch;
 import 'package:flutter/widgets.dart';
+import 'package:material_ui/material_ui.dart' show Switch;
 
 class const BaseSwitch({
   required final bool value,

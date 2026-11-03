@@ -16,20 +16,11 @@ class const StorybookPage({super.key}) extends StatelessWidget {
       hasSafeArea: false,
       title: 'Storybook',
       body: ThemeModeProvider(
-        child: Builder(
-          builder: (context) {
-            final currentThemeMode = ThemeModeProvider.of(context).themeMode;
-
-            return Widgetbook(
-              themeMode: currentThemeMode,
-              appBuilder: (_, child) => BaseApp(home: BaseView(hasAppBar: false, body: child)),
-              addons: _addons,
-              directories: examples,
-              home: Center(
-                child: Text('Welcome to Storybook!', style: context.typography.titleSmall),
-              ),
-            );
-          },
+        child: Widgetbook(
+          appBuilder: (_, child) => BaseApp(home: BaseView(hasAppBar: false, body: child)),
+          addons: _addons,
+          directories: examples,
+          home: Center(child: Text('Welcome to Storybook!', style: context.typography.titleSmall)),
         ),
       ),
     );
