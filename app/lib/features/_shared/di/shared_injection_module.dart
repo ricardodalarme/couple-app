@@ -14,6 +14,7 @@ import 'package:permission_service/permission_service.dart';
 import 'package:preferences_service/preferences_service.dart';
 import 'package:remote_config_service/remote_config_service.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
+import 'package:share_service/share_service.dart';
 
 class SharedInjectionModule() implements InjectionModule {
   @override
@@ -38,6 +39,7 @@ class SharedInjectionModule() implements InjectionModule {
     ..registerLazySingleton<CrashReportService>(CrashReportServiceImpl.new)
     ..registerLazySingleton<DeviceInfoService>(DeviceInfoService.new)
     ..registerLazySingleton<PermissionService>(PermissionService.new)
+    ..registerLazySingleton<ShareService>(ShareService.new)
     ..registerLazySingleton<ConnectivityService>(InternetConnectivityService.new)
     ..registerLazySingleton<BiometricService>(BiometricServiceImpl.new);
 }

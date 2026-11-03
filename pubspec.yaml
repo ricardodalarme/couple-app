@@ -23,6 +23,7 @@ workspace:
   - packages/services/preferences
   - packages/services/remote_config
   - packages/services/secure_storage
+  - packages/services/share
 
 dev_dependencies:
   dependabot_gen:
