@@ -4,4 +4,8 @@ abstract interface class Config() {
   static const String restServerUrl = String.fromEnvironment('REST_SERVER_URL');
   static const String supabaseUrl = String.fromEnvironment('SUPABASE_URL');
   static const String supabaseAnonKey = String.fromEnvironment('SUPABASE_ANON_KEY');
+  static const String revenueCatIosApiKey = String.fromEnvironment('REVENUECAT_IOS_API_KEY');
+  static const String revenueCatAndroidApiKey = String.fromEnvironment(
+    'REVENUECAT_ANDROID_API_KEY',
+  );
 }

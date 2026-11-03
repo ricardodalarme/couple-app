@@ -14,6 +14,7 @@ import 'package:notification_service/notification_service.dart';
 import 'package:performance_service/performance_service.dart';
 import 'package:permission_service/permission_service.dart';
 import 'package:preferences_service/preferences_service.dart';
+import 'package:purchase_service/purchase_service.dart';
 import 'package:remote_config_service/remote_config_service.dart';
 import 'package:review_service/review_service.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
@@ -45,6 +46,12 @@ class SharedInjectionModule() implements InjectionModule {
     ..registerLazySingleton<PerformanceService>(FirebasePerformanceService.new)
     ..registerLazySingleton<PermissionService>(PermissionService.new)
     ..registerLazySingleton<NotificationService>(NotificationService.new)
+    ..registerLazySingleton<PurchaseService>(
+      () => PurchaseService(
+        iosApiKey: Config.revenueCatIosApiKey,
+        androidApiKey: Config.revenueCatAndroidApiKey,
+      ),
+    )
     ..registerLazySingleton<ShareService>(ShareService.new)
     ..registerLazySingleton<ConnectivityService>(InternetConnectivityService.new)
     ..registerLazySingleton<BiometricService>(BiometricServiceImpl.new);

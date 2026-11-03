@@ -48,6 +48,8 @@ dependencies:
     path: ../packages/services/permission
   preferences_service:
     path: ../packages/services/preferences
+  purchase_service:
+    path: ../packages/services/purchase
   remote_config_service:
     path: ../packages/services/remote_config
   review_service:

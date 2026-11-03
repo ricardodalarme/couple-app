@@ -1,0 +1,13 @@
+name: purchase_service
+resolution: workspace
+publish_to: "none"
+
+environment:
+  sdk: ^3.13.7
+  flutter: ^3.47.9
+
+dependencies:
+  flutter:
+    sdk: flutter
+  purchases_flutter: ^11.0.0
+  purchases_ui_flutter: ^11.0.0
