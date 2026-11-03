@@ -199,9 +199,175 @@ input IntListFilter {
 """A Javascript Object Notation value serialized as a string"""
 scalar JSON
 
+"""The root type for creating and mutating data"""
+type Mutation {
+  """Deletes zero or more records from the `notifications` collection"""
+  deleteFromnotificationsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: notificationsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): notificationsDeleteResponse!
+
+  """Deletes zero or more records from the `posts` collection"""
+  deleteFrompostsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: postsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): postsDeleteResponse!
+
+  """Adds one or more `notifications` records to the collection"""
+  insertIntonotificationsCollection(objects: [notificationsInsertInput!]!): notificationsInsertResponse
+
+  """Adds one or more `posts` records to the collection"""
+  insertIntopostsCollection(objects: [postsInsertInput!]!): postsInsertResponse
+
+  """Updates zero or more records in the `notifications` collection"""
+  updatenotificationsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: notificationsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: notificationsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): notificationsUpdateResponse!
+
+  """Updates zero or more records in the `posts` collection"""
+  updatepostsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: postsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: postsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): postsUpdateResponse!
+}
+
 interface Node {
   """Retrieves a record by `ID`"""
   nodeId: ID!
+}
+
+type notifications implements Node {
+  """Globally Unique Record Identifier"""
+  nodeId: ID!
+  id: UUID!
+  recipient_id: UUID!
+  kind: String!
+  title: String!
+  body: String
+  data: JSON!
+  read_at: Datetime
+  created_at: Datetime!
+}
+
+type notificationsConnection {
+  edges: [notificationsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type notificationsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [notifications!]!
+}
+
+type notificationsEdge {
+  cursor: String!
+  node: notifications!
+}
+
+input notificationsFilter {
+  id: UUIDFilter
+  recipient_id: UUIDFilter
+  kind: StringFilter
+  title: StringFilter
+  body: StringFilter
+  read_at: DatetimeFilter
+  created_at: DatetimeFilter
+  nodeId: IDFilter
+
+  """
+  Returns true only if all its inner filters are true, otherwise returns false
+  """
+  and: [notificationsFilter!]
+
+  """
+  Returns true if at least one of its inner filters is true, otherwise returns false
+  """
+  or: [notificationsFilter!]
+
+  """Negates a filter"""
+  not: notificationsFilter
+}
+
+input notificationsInsertInput {
+  id: UUID
+  recipient_id: UUID
+  kind: String
+  title: String
+  body: String
+  data: JSON
+  read_at: Datetime
+  created_at: Datetime
+}
+
+type notificationsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [notifications!]!
+}
+
+input notificationsOrderBy {
+  id: OrderByDirection
+  recipient_id: OrderByDirection
+  kind: OrderByDirection
+  title: OrderByDirection
+  body: OrderByDirection
+  read_at: OrderByDirection
+  created_at: OrderByDirection
+}
+
+input notificationsUpdateInput {
+  id: UUID
+  recipient_id: UUID
+  kind: String
+  title: String
+  body: String
+  data: JSON
+  read_at: Datetime
+  created_at: Datetime
+}
+
+type notificationsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [notifications!]!
 }
 
 """Any type not handled by the type system"""
@@ -251,6 +417,14 @@ type postsConnection {
   pageInfo: PageInfo!
 }
 
+type postsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [posts!]!
+}
+
 type postsEdge {
   cursor: String!
   node: posts!
@@ -277,11 +451,41 @@ input postsFilter {
   not: postsFilter
 }
 
+input postsInsertInput {
+  id: UUID
+  content: String
+  title: String
+  author_image_url: String
+}
+
+type postsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [posts!]!
+}
+
 input postsOrderBy {
   id: OrderByDirection
   content: OrderByDirection
   title: OrderByDirection
   author_image_url: OrderByDirection
+}
+
+input postsUpdateInput {
+  id: UUID
+  content: String
+  title: String
+  author_image_url: String
+}
+
+type postsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [posts!]!
 }
 
 """The root type for querying data"""
@@ -291,6 +495,32 @@ type Query {
     """The record's `ID`"""
     nodeId: ID!
   ): Node
+
+  """A pagable collection of type `notifications`"""
+  notificationsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: notificationsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [notificationsOrderBy!]
+  ): notificationsConnection
 
   """A pagable collection of type `posts`"""
   postsCollection(

@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/empty_indicator.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/error_indicator.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/skeletonizer_resource_widget.dart';
+import 'package:flutter_bloc_starter/features/notifications/presentation/badge/cubit/notifications_badge_cubit.dart';
+import 'package:flutter_bloc_starter/features/notifications/presentation/badge/widgets/notifications_bell_button.dart';
 import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
 import 'package:flutter_bloc_starter/features/post/presentation/list/cubit/posts_list_cubit.dart';
 import 'package:flutter_bloc_starter/features/post/presentation/list/widgets/post_card.dart';
@@ -16,8 +18,13 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AppInjector.instance.get<PostsListCubit>()..getPosts(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => AppInjector.instance.get<PostsListCubit>()..getPosts()),
+        BlocProvider(
+          create: (_) => AppInjector.instance.get<NotificationsBadgeCubit>()..getHasUnread(),
+        ),
+      ],
       child: this,
     );
   }
@@ -29,6 +36,7 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
 
     return BaseView(
       title: l10n.title,
+      actions: const [NotificationsBellButton()],
       body: SkeletonizerResourceWidget<List<Post>>(
         posts,
         fakeValue: _skeletonPosts,

@@ -7,6 +7,7 @@ import 'package:flutter_bloc_starter/features/authentication/presentation/login/
 import 'package:flutter_bloc_starter/features/authentication/presentation/signup/signup_page.dart';
 import 'package:flutter_bloc_starter/features/home/presentation/home_page.dart';
 import 'package:flutter_bloc_starter/features/not_found/presentation/not_found_page.dart';
+import 'package:flutter_bloc_starter/features/notifications/presentation/inbox/notifications_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/onboarding_page.dart';
 import 'package:flutter_bloc_starter/features/post/presentation/list/posts_list_page.dart';
 import 'package:flutter_bloc_starter/features/privacy_policy/presentation/privacy_policy_page.dart';
@@ -32,6 +33,7 @@ class AppRouter() extends RootStackRouter {
         AutoRoute(page: ProfileRoute.page),
       ],
     ),
+    AutoRoute(page: NotificationsRoute.page),
     AutoRoute(page: SettingsRoute.page),
     AutoRoute(page: EditProfileRoute.page),
     AutoRoute(page: ChangePasswordRoute.page),

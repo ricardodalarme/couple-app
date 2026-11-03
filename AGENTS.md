@@ -49,7 +49,9 @@ Melos config is the `melos:` key in the **root `pubspec.yaml`** — there is no
 `melos graphql:schema` runs an inline shell command in the root
 `pubspec.yaml`. It reads `SERVER_URL` and `SERVER_API_KEY` from
 `.env.development` and calls the npm `get-graphql-schema` CLI. Install it
-globally with `npm install -g get-graphql-schema@2.1.2`.
+globally with `npm install -g get-graphql-schema@2.1.2`. For schemas with
+authenticated-only tables (notifications), also set `SCHEMA_AUTH_TOKEN` to a
+service-role token; the script sends it as a Bearer header.
 
 `supabase db schema declarative sync` is local-only and requires Docker. When
 Docker is unavailable, edit the declarative schema and migration together and
@@ -92,7 +94,8 @@ app/lib/
 The canonical feature is `post`: a GraphQL read with `PostDataSource`,
 `PostRepository`, `PostsListCubit`, `PostsListState`, and a page that renders the
 `Resource` state with `SkeletonizerResourceWidget` plus `EmptyIndicator` and
-`ErrorIndicator`.
+`ErrorIndicator`. `notifications` follows the same one-shot pattern with a
+separate unread badge cubit.
 
 ### Navigation shell
 
@@ -107,8 +110,8 @@ and `BaseNavigationBar`:
 - Adding a tab requires both a child `AutoRoute` under `HomeRoute` and an entry
   in `HomePage`'s `AutoTabsScaffold.routes`; keep the two lists in sync.
 - All other pages (`Login`, `SignUp`, `Settings`, `EditProfile`,
-  `ChangePassword`, `PrivacyPolicy`, `TermsList`, `NotFound`) are flat root
-  routes.
+  `ChangePassword`, `Notifications`, `PrivacyPolicy`, `TermsList`, `NotFound`)
+  are flat root routes.
 
 ### State, UI, DI
 
@@ -168,6 +171,9 @@ allows them; use the body only for initializers and behavior.
   schema first, generate/review a migration, and keep the two together. The
   starter's `posts` table is public-read only; new tables need explicit grants
   and RLS policies.
+- **Notifications are backend-created.** `authenticated` can select its own rows
+  and update only `read_at`; `anon` has no access and clients never insert
+  notifications. Producers use the service role or a security-definer function.
 - **Refresh the GraphQL snapshot after a schema change**: `melos graphql:schema`
   then `melos gen`. The snapshot is generated from the linked project as the
   `authenticated` role; never hand-edit it.

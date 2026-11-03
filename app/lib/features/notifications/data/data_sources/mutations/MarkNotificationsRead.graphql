@@ -1,0 +1,9 @@
+mutation MarkNotificationsRead($ids: [UUID!]!, $readAt: Datetime!) {
+  updatenotificationsCollection(
+    filter: { id: { in: $ids }, read_at: { is: NULL } }
+    set: { read_at: $readAt }
+    atMost: 50
+  ) {
+    affectedCount
+  }
+}

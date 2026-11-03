@@ -37,9 +37,7 @@ class $AssetsLogosGen {
   List<SvgGenImage> get values => [apple, google];
 }
 
-class Assets {
-  const Assets._();
-
+abstract final class Assets {
   static const String package = 'common_ui';
 
   static const $AssetsImagesGen images = $AssetsImagesGen();

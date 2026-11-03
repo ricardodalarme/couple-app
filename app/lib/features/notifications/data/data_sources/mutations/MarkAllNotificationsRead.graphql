@@ -1,0 +1,9 @@
+mutation MarkAllNotificationsRead($readAt: Datetime!) {
+  updatenotificationsCollection(
+    filter: { read_at: { is: NULL } }
+    set: { read_at: $readAt }
+    atMost: 1000
+  ) {
+    affectedCount
+  }
+}

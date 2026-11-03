@@ -1,0 +1,13 @@
+{
+  "title": "Notifications",
+  "markAllRead": "Mark all as read",
+  "textFailure": "Failed to load notifications.",
+  "emptyTitle": "No notifications yet",
+  "emptyDescription": "Updates and activity will appear here.",
+  "semanticsUnread": "Unread",
+  "badgeTooltip": "Notifications",
+  "errors(map)": {
+    "serverError": "Something went wrong. Try again.",
+    "other": "@:common.genericError"
+  }
+}

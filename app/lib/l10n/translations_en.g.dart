@@ -58,6 +58,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
       Translations$authentication$en.internal(_root);
   late final Translations$common$en common = Translations$common$en.internal(_root);
   late final Translations$notFound$en notFound = Translations$notFound$en.internal(_root);
+  late final Translations$notifications$en notifications = Translations$notifications$en.internal(
+    _root,
+  );
   late final Translations$onboarding$en onboarding = Translations$onboarding$en.internal(_root);
   late final Translations$post$en post = Translations$post$en.internal(_root);
   late final Translations$privacyPolicy$en privacyPolicy = Translations$privacyPolicy$en.internal(
@@ -157,6 +160,41 @@ class Translations$notFound$en {
 
   /// en: 'Go back home'
   String get buttonBack => 'Go back home';
+}
+
+// Path: notifications
+class Translations$notifications$en {
+  Translations$notifications$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Notifications'
+  String get title => 'Notifications';
+
+  /// en: 'Mark all as read'
+  String get markAllRead => 'Mark all as read';
+
+  /// en: 'Failed to load notifications.'
+  String get textFailure => 'Failed to load notifications.';
+
+  /// en: 'No notifications yet'
+  String get emptyTitle => 'No notifications yet';
+
+  /// en: 'Updates and activity will appear here.'
+  String get emptyDescription => 'Updates and activity will appear here.';
+
+  /// en: 'Unread'
+  String get semanticsUnread => 'Unread';
+
+  /// en: 'Notifications'
+  String get badgeTooltip => 'Notifications';
+
+  Map<String, String> get errors => {
+    'serverError': 'Something went wrong. Try again.',
+    'other': _root.common.genericError,
+  };
 }
 
 // Path: onboarding
@@ -643,6 +681,15 @@ extension on Translations {
       'notFound.title' => '404',
       'notFound.description' => 'Page not found',
       'notFound.buttonBack' => 'Go back home',
+      'notifications.title' => 'Notifications',
+      'notifications.markAllRead' => 'Mark all as read',
+      'notifications.textFailure' => 'Failed to load notifications.',
+      'notifications.emptyTitle' => 'No notifications yet',
+      'notifications.emptyDescription' => 'Updates and activity will appear here.',
+      'notifications.semanticsUnread' => 'Unread',
+      'notifications.badgeTooltip' => 'Notifications',
+      'notifications.errors.serverError' => 'Something went wrong. Try again.',
+      'notifications.errors.other' => _root.common.genericError,
       'onboarding.pages.0.title' => 'Welcome!',
       'onboarding.pages.0.message' => 'Welcome to QuickStart Flutter',
       'onboarding.pages.1.title' => 'What is QuickStart Flutter?',

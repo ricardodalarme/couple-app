@@ -77,6 +77,12 @@ using (true);
 - The local config sets `auto_expose_new_tables = false`, but hosted projects may
   still auto-expose new tables. Revoke broad grants explicitly.
 
+The starter also has a private `notifications` inbox:
+- `authenticated` can select its own rows and update only `read_at`.
+- `anon` has no access; clients never insert notifications.
+- Notifications are created server-side with the service role or a
+  security-definer function, never from the app.
+
 Do not put a `service_role` or secret key in the app. `SERVER_API_KEY` and
 `SUPABASE_ANON_KEY` use the project's publishable key.
 
@@ -92,9 +98,9 @@ caller can select are exposed automatically; the starter's query is
   `SERVER_URL`/`SERVER_API_KEY` from `.env.development` and calls the npm
   `get-graphql-schema` CLI. Install it with
   `npm install -g get-graphql-schema@2.1.2`.
-  It uses the publishable/anon role; edit the inline command to add an
-  `Authorization` header with a user JWT if the schema needs authenticated-only
-  types.
+  It uses the publishable/anon role by default; set `SCHEMA_AUTH_TOKEN` to a
+  service-role token when the schema includes authenticated-only tables such as
+  notifications.
 - Never hand-edit the snapshot or `*.graphql.dart` generated files.
 - After a schema change: `melos graphql:schema` then `melos gen`.
 - Feature queries/fragments belong in

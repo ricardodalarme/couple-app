@@ -10,6 +10,7 @@ import 'package:flutter_bloc_starter/features/account/di/account_injection_modul
 import 'package:flutter_bloc_starter/features/app/di/app_injection_module.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
 import 'package:flutter_bloc_starter/features/authentication/di/authentication_injection_module.dart';
+import 'package:flutter_bloc_starter/features/notifications/di/notifications_injection_module.dart';
 import 'package:flutter_bloc_starter/features/onboarding/di/onboarding_injection_module.dart';
 import 'package:flutter_bloc_starter/features/post/di/post_injection_module.dart';
 import 'package:flutter_bloc_starter/features/settings/di/settings_injection_module.dart';
@@ -105,6 +106,7 @@ void _registerModules() {
     AccountInjectionModule(),
     PostInjectionModule(),
     SettingsInjectionModule(),
+    NotificationsInjectionModule(),
   ];
 
   final injector = AppInjector.instance;

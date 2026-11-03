@@ -1,4 +1,6 @@
 // dart format width=100
+import 'dart:convert';
+
 class InputBigFloatFilter {
   factory InputBigFloatFilter({
     double? eq,
@@ -2987,6 +2989,974 @@ class InputIntListFilter {
   }
 }
 
+class InputnotificationsFilter {
+  factory InputnotificationsFilter({
+    InputUUIDFilter? id,
+    InputUUIDFilter? recipient_id,
+    InputStringFilter? kind,
+    InputStringFilter? title,
+    InputStringFilter? body,
+    InputDatetimeFilter? read_at,
+    InputDatetimeFilter? created_at,
+    InputIDFilter? nodeId,
+    List<InputnotificationsFilter>? and,
+    List<InputnotificationsFilter>? or,
+    InputnotificationsFilter? not,
+  }) => InputnotificationsFilter._({
+    if (id != null) r'id': id,
+    if (recipient_id != null) r'recipient_id': recipient_id,
+    if (kind != null) r'kind': kind,
+    if (title != null) r'title': title,
+    if (body != null) r'body': body,
+    if (read_at != null) r'read_at': read_at,
+    if (created_at != null) r'created_at': created_at,
+    if (nodeId != null) r'nodeId': nodeId,
+    if (and != null) r'and': and,
+    if (or != null) r'or': or,
+    if (not != null) r'not': not,
+  });
+
+  InputnotificationsFilter._(this._$data);
+
+  factory InputnotificationsFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : InputUUIDFilter.fromJson((l$id as Map<String, dynamic>));
+    }
+    if (data.containsKey('recipient_id')) {
+      final l$recipient_id = data['recipient_id'];
+      result$data['recipient_id'] = l$recipient_id == null
+          ? null
+          : InputUUIDFilter.fromJson((l$recipient_id as Map<String, dynamic>));
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = l$kind == null
+          ? null
+          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
+    }
+    if (data.containsKey('title')) {
+      final l$title = data['title'];
+      result$data['title'] = l$title == null
+          ? null
+          : InputStringFilter.fromJson((l$title as Map<String, dynamic>));
+    }
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = l$body == null
+          ? null
+          : InputStringFilter.fromJson((l$body as Map<String, dynamic>));
+    }
+    if (data.containsKey('read_at')) {
+      final l$read_at = data['read_at'];
+      result$data['read_at'] = l$read_at == null
+          ? null
+          : InputDatetimeFilter.fromJson((l$read_at as Map<String, dynamic>));
+    }
+    if (data.containsKey('created_at')) {
+      final l$created_at = data['created_at'];
+      result$data['created_at'] = l$created_at == null
+          ? null
+          : InputDatetimeFilter.fromJson((l$created_at as Map<String, dynamic>));
+    }
+    if (data.containsKey('nodeId')) {
+      final l$nodeId = data['nodeId'];
+      result$data['nodeId'] = l$nodeId == null
+          ? null
+          : InputIDFilter.fromJson((l$nodeId as Map<String, dynamic>));
+    }
+    if (data.containsKey('and')) {
+      final l$and = data['and'];
+      result$data['and'] = (l$and as List<dynamic>?)
+          ?.map((e) => InputnotificationsFilter.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('or')) {
+      final l$or = data['or'];
+      result$data['or'] = (l$or as List<dynamic>?)
+          ?.map((e) => InputnotificationsFilter.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('not')) {
+      final l$not = data['not'];
+      result$data['not'] = l$not == null
+          ? null
+          : InputnotificationsFilter.fromJson((l$not as Map<String, dynamic>));
+    }
+    return InputnotificationsFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputUUIDFilter? get id => (_$data['id'] as InputUUIDFilter?);
+
+  InputUUIDFilter? get recipient_id => (_$data['recipient_id'] as InputUUIDFilter?);
+
+  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
+
+  InputStringFilter? get title => (_$data['title'] as InputStringFilter?);
+
+  InputStringFilter? get body => (_$data['body'] as InputStringFilter?);
+
+  InputDatetimeFilter? get read_at => (_$data['read_at'] as InputDatetimeFilter?);
+
+  InputDatetimeFilter? get created_at => (_$data['created_at'] as InputDatetimeFilter?);
+
+  InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
+
+  List<InputnotificationsFilter>? get and => (_$data['and'] as List<InputnotificationsFilter>?);
+
+  List<InputnotificationsFilter>? get or => (_$data['or'] as List<InputnotificationsFilter>?);
+
+  InputnotificationsFilter? get not => (_$data['not'] as InputnotificationsFilter?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id?.toJson();
+    }
+    if (_$data.containsKey('recipient_id')) {
+      final l$recipient_id = recipient_id;
+      result$data['recipient_id'] = l$recipient_id?.toJson();
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind?.toJson();
+    }
+    if (_$data.containsKey('title')) {
+      final l$title = title;
+      result$data['title'] = l$title?.toJson();
+    }
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body?.toJson();
+    }
+    if (_$data.containsKey('read_at')) {
+      final l$read_at = read_at;
+      result$data['read_at'] = l$read_at?.toJson();
+    }
+    if (_$data.containsKey('created_at')) {
+      final l$created_at = created_at;
+      result$data['created_at'] = l$created_at?.toJson();
+    }
+    if (_$data.containsKey('nodeId')) {
+      final l$nodeId = nodeId;
+      result$data['nodeId'] = l$nodeId?.toJson();
+    }
+    if (_$data.containsKey('and')) {
+      final l$and = and;
+      result$data['and'] = l$and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('or')) {
+      final l$or = or;
+      result$data['or'] = l$or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('not')) {
+      final l$not = not;
+      result$data['not'] = l$not?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputnotificationsFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$recipient_id = recipient_id;
+    final lOther$recipient_id = other.recipient_id;
+    if (_$data.containsKey('recipient_id') != other._$data.containsKey('recipient_id')) {
+      return false;
+    }
+    if (l$recipient_id != lOther$recipient_id) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (_$data.containsKey('title') != other._$data.containsKey('title')) {
+      return false;
+    }
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$read_at = read_at;
+    final lOther$read_at = other.read_at;
+    if (_$data.containsKey('read_at') != other._$data.containsKey('read_at')) {
+      return false;
+    }
+    if (l$read_at != lOther$read_at) {
+      return false;
+    }
+    final l$created_at = created_at;
+    final lOther$created_at = other.created_at;
+    if (_$data.containsKey('created_at') != other._$data.containsKey('created_at')) {
+      return false;
+    }
+    if (l$created_at != lOther$created_at) {
+      return false;
+    }
+    final l$nodeId = nodeId;
+    final lOther$nodeId = other.nodeId;
+    if (_$data.containsKey('nodeId') != other._$data.containsKey('nodeId')) {
+      return false;
+    }
+    if (l$nodeId != lOther$nodeId) {
+      return false;
+    }
+    final l$and = and;
+    final lOther$and = other.and;
+    if (_$data.containsKey('and') != other._$data.containsKey('and')) {
+      return false;
+    }
+    if (l$and != null && lOther$and != null) {
+      if (l$and.length != lOther$and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$and.length; i++) {
+        final l$and$entry = l$and[i];
+        final lOther$and$entry = lOther$and[i];
+        if (l$and$entry != lOther$and$entry) {
+          return false;
+        }
+      }
+    } else if (l$and != lOther$and) {
+      return false;
+    }
+    final l$or = or;
+    final lOther$or = other.or;
+    if (_$data.containsKey('or') != other._$data.containsKey('or')) {
+      return false;
+    }
+    if (l$or != null && lOther$or != null) {
+      if (l$or.length != lOther$or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$or.length; i++) {
+        final l$or$entry = l$or[i];
+        final lOther$or$entry = lOther$or[i];
+        if (l$or$entry != lOther$or$entry) {
+          return false;
+        }
+      }
+    } else if (l$or != lOther$or) {
+      return false;
+    }
+    final l$not = not;
+    final lOther$not = other.not;
+    if (_$data.containsKey('not') != other._$data.containsKey('not')) {
+      return false;
+    }
+    if (l$not != lOther$not) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$recipient_id = recipient_id;
+    final l$kind = kind;
+    final l$title = title;
+    final l$body = body;
+    final l$read_at = read_at;
+    final l$created_at = created_at;
+    final l$nodeId = nodeId;
+    final l$and = and;
+    final l$or = or;
+    final l$not = not;
+    return Object.hashAll([
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('recipient_id') ? l$recipient_id : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('title') ? l$title : const {},
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('read_at') ? l$read_at : const {},
+      _$data.containsKey('created_at') ? l$created_at : const {},
+      _$data.containsKey('nodeId') ? l$nodeId : const {},
+      _$data.containsKey('and')
+          ? l$and == null
+                ? null
+                : Object.hashAll(l$and.map((v) => v))
+          : const {},
+      _$data.containsKey('or')
+          ? l$or == null
+                ? null
+                : Object.hashAll(l$or.map((v) => v))
+          : const {},
+      _$data.containsKey('not') ? l$not : const {},
+    ]);
+  }
+}
+
+class InputnotificationsInsertInput {
+  factory InputnotificationsInsertInput({
+    String? id,
+    String? recipient_id,
+    String? kind,
+    String? title,
+    String? body,
+    dynamic? data,
+    DateTime? read_at,
+    DateTime? created_at,
+  }) => InputnotificationsInsertInput._({
+    if (id != null) r'id': id,
+    if (recipient_id != null) r'recipient_id': recipient_id,
+    if (kind != null) r'kind': kind,
+    if (title != null) r'title': title,
+    if (body != null) r'body': body,
+    if (data != null) r'data': data,
+    if (read_at != null) r'read_at': read_at,
+    if (created_at != null) r'created_at': created_at,
+  });
+
+  InputnotificationsInsertInput._(this._$data);
+
+  factory InputnotificationsInsertInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('recipient_id')) {
+      final l$recipient_id = data['recipient_id'];
+      result$data['recipient_id'] = (l$recipient_id as String?);
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = (l$kind as String?);
+    }
+    if (data.containsKey('title')) {
+      final l$title = data['title'];
+      result$data['title'] = (l$title as String?);
+    }
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = (l$body as String?);
+    }
+    if (data.containsKey('data')) {
+      final l$data = data['data'];
+      result$data['data'] = l$data == null ? null : jsonDecode(l$data);
+    }
+    if (data.containsKey('read_at')) {
+      final l$read_at = data['read_at'];
+      result$data['read_at'] = l$read_at == null ? null : DateTime.parse((l$read_at as String));
+    }
+    if (data.containsKey('created_at')) {
+      final l$created_at = data['created_at'];
+      result$data['created_at'] = l$created_at == null
+          ? null
+          : DateTime.parse((l$created_at as String));
+    }
+    return InputnotificationsInsertInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get id => (_$data['id'] as String?);
+
+  String? get recipient_id => (_$data['recipient_id'] as String?);
+
+  String? get kind => (_$data['kind'] as String?);
+
+  String? get title => (_$data['title'] as String?);
+
+  String? get body => (_$data['body'] as String?);
+
+  dynamic? get data => (_$data['data'] as dynamic?);
+
+  DateTime? get read_at => (_$data['read_at'] as DateTime?);
+
+  DateTime? get created_at => (_$data['created_at'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('recipient_id')) {
+      final l$recipient_id = recipient_id;
+      result$data['recipient_id'] = l$recipient_id;
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind;
+    }
+    if (_$data.containsKey('title')) {
+      final l$title = title;
+      result$data['title'] = l$title;
+    }
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body;
+    }
+    if (_$data.containsKey('data')) {
+      final l$data = data;
+      result$data['data'] = l$data == null ? null : jsonEncode(l$data);
+    }
+    if (_$data.containsKey('read_at')) {
+      final l$read_at = read_at;
+      result$data['read_at'] = l$read_at?.toIso8601String();
+    }
+    if (_$data.containsKey('created_at')) {
+      final l$created_at = created_at;
+      result$data['created_at'] = l$created_at?.toIso8601String();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputnotificationsInsertInput || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$recipient_id = recipient_id;
+    final lOther$recipient_id = other.recipient_id;
+    if (_$data.containsKey('recipient_id') != other._$data.containsKey('recipient_id')) {
+      return false;
+    }
+    if (l$recipient_id != lOther$recipient_id) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (_$data.containsKey('title') != other._$data.containsKey('title')) {
+      return false;
+    }
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$data = data;
+    final lOther$data = other.data;
+    if (_$data.containsKey('data') != other._$data.containsKey('data')) {
+      return false;
+    }
+    if (l$data != lOther$data) {
+      return false;
+    }
+    final l$read_at = read_at;
+    final lOther$read_at = other.read_at;
+    if (_$data.containsKey('read_at') != other._$data.containsKey('read_at')) {
+      return false;
+    }
+    if (l$read_at != lOther$read_at) {
+      return false;
+    }
+    final l$created_at = created_at;
+    final lOther$created_at = other.created_at;
+    if (_$data.containsKey('created_at') != other._$data.containsKey('created_at')) {
+      return false;
+    }
+    if (l$created_at != lOther$created_at) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$recipient_id = recipient_id;
+    final l$kind = kind;
+    final l$title = title;
+    final l$body = body;
+    final l$data = data;
+    final l$read_at = read_at;
+    final l$created_at = created_at;
+    return Object.hashAll([
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('recipient_id') ? l$recipient_id : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('title') ? l$title : const {},
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('data') ? l$data : const {},
+      _$data.containsKey('read_at') ? l$read_at : const {},
+      _$data.containsKey('created_at') ? l$created_at : const {},
+    ]);
+  }
+}
+
+class InputnotificationsOrderBy {
+  factory InputnotificationsOrderBy({
+    EnumOrderByDirection? id,
+    EnumOrderByDirection? recipient_id,
+    EnumOrderByDirection? kind,
+    EnumOrderByDirection? title,
+    EnumOrderByDirection? body,
+    EnumOrderByDirection? read_at,
+    EnumOrderByDirection? created_at,
+  }) => InputnotificationsOrderBy._({
+    if (id != null) r'id': id,
+    if (recipient_id != null) r'recipient_id': recipient_id,
+    if (kind != null) r'kind': kind,
+    if (title != null) r'title': title,
+    if (body != null) r'body': body,
+    if (read_at != null) r'read_at': read_at,
+    if (created_at != null) r'created_at': created_at,
+  });
+
+  InputnotificationsOrderBy._(this._$data);
+
+  factory InputnotificationsOrderBy.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null ? null : fromJsonEnumOrderByDirection((l$id as String));
+    }
+    if (data.containsKey('recipient_id')) {
+      final l$recipient_id = data['recipient_id'];
+      result$data['recipient_id'] = l$recipient_id == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$recipient_id as String));
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = l$kind == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$kind as String));
+    }
+    if (data.containsKey('title')) {
+      final l$title = data['title'];
+      result$data['title'] = l$title == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$title as String));
+    }
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = l$body == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$body as String));
+    }
+    if (data.containsKey('read_at')) {
+      final l$read_at = data['read_at'];
+      result$data['read_at'] = l$read_at == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$read_at as String));
+    }
+    if (data.containsKey('created_at')) {
+      final l$created_at = data['created_at'];
+      result$data['created_at'] = l$created_at == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$created_at as String));
+    }
+    return InputnotificationsOrderBy._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumOrderByDirection? get id => (_$data['id'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get recipient_id => (_$data['recipient_id'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get kind => (_$data['kind'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get title => (_$data['title'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get body => (_$data['body'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get read_at => (_$data['read_at'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get created_at => (_$data['created_at'] as EnumOrderByDirection?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id == null ? null : toJsonEnumOrderByDirection(l$id);
+    }
+    if (_$data.containsKey('recipient_id')) {
+      final l$recipient_id = recipient_id;
+      result$data['recipient_id'] = l$recipient_id == null
+          ? null
+          : toJsonEnumOrderByDirection(l$recipient_id);
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumOrderByDirection(l$kind);
+    }
+    if (_$data.containsKey('title')) {
+      final l$title = title;
+      result$data['title'] = l$title == null ? null : toJsonEnumOrderByDirection(l$title);
+    }
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body == null ? null : toJsonEnumOrderByDirection(l$body);
+    }
+    if (_$data.containsKey('read_at')) {
+      final l$read_at = read_at;
+      result$data['read_at'] = l$read_at == null ? null : toJsonEnumOrderByDirection(l$read_at);
+    }
+    if (_$data.containsKey('created_at')) {
+      final l$created_at = created_at;
+      result$data['created_at'] = l$created_at == null
+          ? null
+          : toJsonEnumOrderByDirection(l$created_at);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputnotificationsOrderBy || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$recipient_id = recipient_id;
+    final lOther$recipient_id = other.recipient_id;
+    if (_$data.containsKey('recipient_id') != other._$data.containsKey('recipient_id')) {
+      return false;
+    }
+    if (l$recipient_id != lOther$recipient_id) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (_$data.containsKey('title') != other._$data.containsKey('title')) {
+      return false;
+    }
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$read_at = read_at;
+    final lOther$read_at = other.read_at;
+    if (_$data.containsKey('read_at') != other._$data.containsKey('read_at')) {
+      return false;
+    }
+    if (l$read_at != lOther$read_at) {
+      return false;
+    }
+    final l$created_at = created_at;
+    final lOther$created_at = other.created_at;
+    if (_$data.containsKey('created_at') != other._$data.containsKey('created_at')) {
+      return false;
+    }
+    if (l$created_at != lOther$created_at) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$recipient_id = recipient_id;
+    final l$kind = kind;
+    final l$title = title;
+    final l$body = body;
+    final l$read_at = read_at;
+    final l$created_at = created_at;
+    return Object.hashAll([
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('recipient_id') ? l$recipient_id : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('title') ? l$title : const {},
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('read_at') ? l$read_at : const {},
+      _$data.containsKey('created_at') ? l$created_at : const {},
+    ]);
+  }
+}
+
+class InputnotificationsUpdateInput {
+  factory InputnotificationsUpdateInput({
+    String? id,
+    String? recipient_id,
+    String? kind,
+    String? title,
+    String? body,
+    dynamic? data,
+    DateTime? read_at,
+    DateTime? created_at,
+  }) => InputnotificationsUpdateInput._({
+    if (id != null) r'id': id,
+    if (recipient_id != null) r'recipient_id': recipient_id,
+    if (kind != null) r'kind': kind,
+    if (title != null) r'title': title,
+    if (body != null) r'body': body,
+    if (data != null) r'data': data,
+    if (read_at != null) r'read_at': read_at,
+    if (created_at != null) r'created_at': created_at,
+  });
+
+  InputnotificationsUpdateInput._(this._$data);
+
+  factory InputnotificationsUpdateInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('recipient_id')) {
+      final l$recipient_id = data['recipient_id'];
+      result$data['recipient_id'] = (l$recipient_id as String?);
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = (l$kind as String?);
+    }
+    if (data.containsKey('title')) {
+      final l$title = data['title'];
+      result$data['title'] = (l$title as String?);
+    }
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = (l$body as String?);
+    }
+    if (data.containsKey('data')) {
+      final l$data = data['data'];
+      result$data['data'] = l$data == null ? null : jsonDecode(l$data);
+    }
+    if (data.containsKey('read_at')) {
+      final l$read_at = data['read_at'];
+      result$data['read_at'] = l$read_at == null ? null : DateTime.parse((l$read_at as String));
+    }
+    if (data.containsKey('created_at')) {
+      final l$created_at = data['created_at'];
+      result$data['created_at'] = l$created_at == null
+          ? null
+          : DateTime.parse((l$created_at as String));
+    }
+    return InputnotificationsUpdateInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get id => (_$data['id'] as String?);
+
+  String? get recipient_id => (_$data['recipient_id'] as String?);
+
+  String? get kind => (_$data['kind'] as String?);
+
+  String? get title => (_$data['title'] as String?);
+
+  String? get body => (_$data['body'] as String?);
+
+  dynamic? get data => (_$data['data'] as dynamic?);
+
+  DateTime? get read_at => (_$data['read_at'] as DateTime?);
+
+  DateTime? get created_at => (_$data['created_at'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('recipient_id')) {
+      final l$recipient_id = recipient_id;
+      result$data['recipient_id'] = l$recipient_id;
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind;
+    }
+    if (_$data.containsKey('title')) {
+      final l$title = title;
+      result$data['title'] = l$title;
+    }
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body;
+    }
+    if (_$data.containsKey('data')) {
+      final l$data = data;
+      result$data['data'] = l$data == null ? null : jsonEncode(l$data);
+    }
+    if (_$data.containsKey('read_at')) {
+      final l$read_at = read_at;
+      result$data['read_at'] = l$read_at?.toIso8601String();
+    }
+    if (_$data.containsKey('created_at')) {
+      final l$created_at = created_at;
+      result$data['created_at'] = l$created_at?.toIso8601String();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputnotificationsUpdateInput || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$recipient_id = recipient_id;
+    final lOther$recipient_id = other.recipient_id;
+    if (_$data.containsKey('recipient_id') != other._$data.containsKey('recipient_id')) {
+      return false;
+    }
+    if (l$recipient_id != lOther$recipient_id) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (_$data.containsKey('title') != other._$data.containsKey('title')) {
+      return false;
+    }
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$data = data;
+    final lOther$data = other.data;
+    if (_$data.containsKey('data') != other._$data.containsKey('data')) {
+      return false;
+    }
+    if (l$data != lOther$data) {
+      return false;
+    }
+    final l$read_at = read_at;
+    final lOther$read_at = other.read_at;
+    if (_$data.containsKey('read_at') != other._$data.containsKey('read_at')) {
+      return false;
+    }
+    if (l$read_at != lOther$read_at) {
+      return false;
+    }
+    final l$created_at = created_at;
+    final lOther$created_at = other.created_at;
+    if (_$data.containsKey('created_at') != other._$data.containsKey('created_at')) {
+      return false;
+    }
+    if (l$created_at != lOther$created_at) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$recipient_id = recipient_id;
+    final l$kind = kind;
+    final l$title = title;
+    final l$body = body;
+    final l$data = data;
+    final l$read_at = read_at;
+    final l$created_at = created_at;
+    return Object.hashAll([
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('recipient_id') ? l$recipient_id : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('title') ? l$title : const {},
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('data') ? l$data : const {},
+      _$data.containsKey('read_at') ? l$read_at : const {},
+      _$data.containsKey('created_at') ? l$created_at : const {},
+    ]);
+  }
+}
+
 class InputOpaqueFilter {
   factory InputOpaqueFilter({Object? eq, EnumFilterIs? $is}) =>
       InputOpaqueFilter._({if (eq != null) r'eq': eq, if ($is != null) r'is': $is});
@@ -3322,6 +4292,131 @@ class InputpostsFilter {
   }
 }
 
+class InputpostsInsertInput {
+  factory InputpostsInsertInput({
+    String? id,
+    String? content,
+    String? title,
+    String? author_image_url,
+  }) => InputpostsInsertInput._({
+    if (id != null) r'id': id,
+    if (content != null) r'content': content,
+    if (title != null) r'title': title,
+    if (author_image_url != null) r'author_image_url': author_image_url,
+  });
+
+  InputpostsInsertInput._(this._$data);
+
+  factory InputpostsInsertInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('content')) {
+      final l$content = data['content'];
+      result$data['content'] = (l$content as String?);
+    }
+    if (data.containsKey('title')) {
+      final l$title = data['title'];
+      result$data['title'] = (l$title as String?);
+    }
+    if (data.containsKey('author_image_url')) {
+      final l$author_image_url = data['author_image_url'];
+      result$data['author_image_url'] = (l$author_image_url as String?);
+    }
+    return InputpostsInsertInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get id => (_$data['id'] as String?);
+
+  String? get content => (_$data['content'] as String?);
+
+  String? get title => (_$data['title'] as String?);
+
+  String? get author_image_url => (_$data['author_image_url'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('content')) {
+      final l$content = content;
+      result$data['content'] = l$content;
+    }
+    if (_$data.containsKey('title')) {
+      final l$title = title;
+      result$data['title'] = l$title;
+    }
+    if (_$data.containsKey('author_image_url')) {
+      final l$author_image_url = author_image_url;
+      result$data['author_image_url'] = l$author_image_url;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputpostsInsertInput || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$content = content;
+    final lOther$content = other.content;
+    if (_$data.containsKey('content') != other._$data.containsKey('content')) {
+      return false;
+    }
+    if (l$content != lOther$content) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (_$data.containsKey('title') != other._$data.containsKey('title')) {
+      return false;
+    }
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$author_image_url = author_image_url;
+    final lOther$author_image_url = other.author_image_url;
+    if (_$data.containsKey('author_image_url') != other._$data.containsKey('author_image_url')) {
+      return false;
+    }
+    if (l$author_image_url != lOther$author_image_url) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$content = content;
+    final l$title = title;
+    final l$author_image_url = author_image_url;
+    return Object.hashAll([
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('content') ? l$content : const {},
+      _$data.containsKey('title') ? l$title : const {},
+      _$data.containsKey('author_image_url') ? l$author_image_url : const {},
+    ]);
+  }
+}
+
 class InputpostsOrderBy {
   factory InputpostsOrderBy({
     EnumOrderByDirection? id,
@@ -3404,6 +4499,131 @@ class InputpostsOrderBy {
       return true;
     }
     if (other is! InputpostsOrderBy || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$content = content;
+    final lOther$content = other.content;
+    if (_$data.containsKey('content') != other._$data.containsKey('content')) {
+      return false;
+    }
+    if (l$content != lOther$content) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (_$data.containsKey('title') != other._$data.containsKey('title')) {
+      return false;
+    }
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$author_image_url = author_image_url;
+    final lOther$author_image_url = other.author_image_url;
+    if (_$data.containsKey('author_image_url') != other._$data.containsKey('author_image_url')) {
+      return false;
+    }
+    if (l$author_image_url != lOther$author_image_url) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$content = content;
+    final l$title = title;
+    final l$author_image_url = author_image_url;
+    return Object.hashAll([
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('content') ? l$content : const {},
+      _$data.containsKey('title') ? l$title : const {},
+      _$data.containsKey('author_image_url') ? l$author_image_url : const {},
+    ]);
+  }
+}
+
+class InputpostsUpdateInput {
+  factory InputpostsUpdateInput({
+    String? id,
+    String? content,
+    String? title,
+    String? author_image_url,
+  }) => InputpostsUpdateInput._({
+    if (id != null) r'id': id,
+    if (content != null) r'content': content,
+    if (title != null) r'title': title,
+    if (author_image_url != null) r'author_image_url': author_image_url,
+  });
+
+  InputpostsUpdateInput._(this._$data);
+
+  factory InputpostsUpdateInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('content')) {
+      final l$content = data['content'];
+      result$data['content'] = (l$content as String?);
+    }
+    if (data.containsKey('title')) {
+      final l$title = data['title'];
+      result$data['title'] = (l$title as String?);
+    }
+    if (data.containsKey('author_image_url')) {
+      final l$author_image_url = data['author_image_url'];
+      result$data['author_image_url'] = (l$author_image_url as String?);
+    }
+    return InputpostsUpdateInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get id => (_$data['id'] as String?);
+
+  String? get content => (_$data['content'] as String?);
+
+  String? get title => (_$data['title'] as String?);
+
+  String? get author_image_url => (_$data['author_image_url'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('content')) {
+      final l$content = content;
+      result$data['content'] = l$content;
+    }
+    if (_$data.containsKey('title')) {
+      final l$title = title;
+      result$data['title'] = l$title;
+    }
+    if (_$data.containsKey('author_image_url')) {
+      final l$author_image_url = author_image_url;
+      result$data['author_image_url'] = l$author_image_url;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputpostsUpdateInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -5039,5 +6259,5 @@ Enum__DirectiveLocation fromJsonEnum__DirectiveLocation(String value) {
 }
 
 const possibleTypesMap = <String, Set<String>>{
-  'Node': {'posts'},
+  'Node': {'notifications', 'posts'},
 };

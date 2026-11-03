@@ -9,6 +9,7 @@ alter table public.posts enable row level security;
 
 revoke all on table public.posts from anon, authenticated;
 grant select on table public.posts to anon, authenticated;
+grant all on table public.posts to service_role;
 
 create policy posts_select_all
 on public.posts

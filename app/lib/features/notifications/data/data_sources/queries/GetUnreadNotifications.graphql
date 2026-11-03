@@ -1,0 +1,12 @@
+query GetUnreadNotifications {
+  notificationsCollection(filter: { read_at: { is: NULL } }, first: 1) {
+    edges {
+      node {
+        id
+      }
+    }
+    pageInfo {
+      hasNextPage
+    }
+  }
+}

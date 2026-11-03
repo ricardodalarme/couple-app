@@ -62,6 +62,8 @@ class TranslationsPt extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$notFound$pt notFound = _Translations$notFound$pt._(_root);
   @override
+  late final _Translations$notifications$pt notifications = _Translations$notifications$pt._(_root);
+  @override
   late final _Translations$onboarding$pt onboarding = _Translations$onboarding$pt._(_root);
   @override
   late final _Translations$post$pt post = _Translations$post$pt._(_root);
@@ -155,6 +157,34 @@ class _Translations$notFound$pt extends Translations$notFound$en {
   String get description => 'Página não encontrada';
   @override
   String get buttonBack => 'Voltar para página inicial';
+}
+
+// Path: notifications
+class _Translations$notifications$pt extends Translations$notifications$en {
+  _Translations$notifications$pt._(TranslationsPt root) : this._root = root, super.internal(root);
+
+  final TranslationsPt _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Notificações';
+  @override
+  String get markAllRead => 'Marcar todas como lidas';
+  @override
+  String get textFailure => 'Falha ao carregar as notificações.';
+  @override
+  String get emptyTitle => 'Nenhuma notificação ainda';
+  @override
+  String get emptyDescription => 'Atualizações e atividades aparecerão aqui.';
+  @override
+  String get semanticsUnread => 'Não lida';
+  @override
+  String get badgeTooltip => 'Notificações';
+  @override
+  Map<String, String> get errors => {
+    'serverError': 'Algo deu errado. Tente novamente.',
+    'other': _root.common.genericError,
+  };
 }
 
 // Path: onboarding
@@ -600,6 +630,15 @@ extension on TranslationsPt {
       'notFound.title' => '404',
       'notFound.description' => 'Página não encontrada',
       'notFound.buttonBack' => 'Voltar para página inicial',
+      'notifications.title' => 'Notificações',
+      'notifications.markAllRead' => 'Marcar todas como lidas',
+      'notifications.textFailure' => 'Falha ao carregar as notificações.',
+      'notifications.emptyTitle' => 'Nenhuma notificação ainda',
+      'notifications.emptyDescription' => 'Atualizações e atividades aparecerão aqui.',
+      'notifications.semanticsUnread' => 'Não lida',
+      'notifications.badgeTooltip' => 'Notificações',
+      'notifications.errors.serverError' => 'Algo deu errado. Tente novamente.',
+      'notifications.errors.other' => _root.common.genericError,
       'onboarding.pages.0.title' => 'Bem vindo!',
       'onboarding.pages.0.message' => 'Seja muito bem vindo ao QuickStart Flutter',
       'onboarding.pages.1.title' => 'O que é o QuickStart Flutter?',

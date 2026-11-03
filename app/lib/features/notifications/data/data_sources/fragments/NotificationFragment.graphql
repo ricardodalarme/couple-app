@@ -1,0 +1,9 @@
+fragment NotificationFragment on notifications {
+  id
+  kind
+  title
+  body
+  data
+  read_at
+  created_at
+}

@@ -48,9 +48,9 @@ supabase test db
 
 `melos graphql:schema` runs an inline shell command in the root `pubspec.yaml`.
 It reads `SERVER_URL` and `SERVER_API_KEY` from `.env.development` and invokes
-`get-graphql-schema` with the publishable key. Edit the inline command to add an
-`Authorization` header with a user JWT if a schema needs authenticated-only
-types.
+`get-graphql-schema` with the publishable key. For authenticated-only tables,
+also set `SCHEMA_AUTH_TOKEN` to a service-role token; the command sends it as a
+Bearer header. Edit the inline command to add another header if needed.
 
 `supabase db schema declarative sync` is local-only and requires Docker. When
 Docker is unavailable, edit the schema and migration together, apply the
@@ -61,6 +61,26 @@ migration through the Supabase MCP/CLI, and keep them in sync.
 This checkout uses `553xx` ports (`55321` API, `55322` database, `55323` Studio,
 `55324` SMTP, `55327` analytics) so it can run beside another local Supabase
 project. Local GraphQL is `http://127.0.0.1:55321/graphql/v1`.
+
+## Notifications
+
+`public.notifications` is a private inbox:
+
+- `authenticated` can select its own rows and update only `read_at`.
+- `anon` has no access; clients never insert notifications.
+- Producers insert with the service role (or a security-definer function).
+- `supabase/tests/notifications_test.sql` covers the table, policies, and indexes.
+
+To create a local test notification for an existing auth user:
+
+```bash
+supabase db query --local "
+insert into public.notifications (recipient_id, kind, title, body)
+select id, 'system', 'Test notification', 'Created from the local database'
+from auth.users
+limit 1;
+"
+```
 
 ## Client configuration
 

@@ -1,0 +1,13 @@
+{
+  "title": "Notificações",
+  "markAllRead": "Marcar todas como lidas",
+  "textFailure": "Falha ao carregar as notificações.",
+  "emptyTitle": "Nenhuma notificação ainda",
+  "emptyDescription": "Atualizações e atividades aparecerão aqui.",
+  "semanticsUnread": "Não lida",
+  "badgeTooltip": "Notificações",
+  "errors(map)": {
+    "serverError": "Algo deu errado. Tente novamente.",
+    "other": "@:common.genericError"
+  }
+}
