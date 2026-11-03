@@ -4,11 +4,13 @@ import 'package:crash_report_service/crash_report_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/app.dart';
 import 'package:flutter_bloc_starter/features/_shared/di/shared_injection_module.dart';
 import 'package:flutter_bloc_starter/features/account/di/account_injection_module.dart';
 import 'package:flutter_bloc_starter/features/app/di/app_injection_module.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
+import 'package:flutter_bloc_starter/features/app/presentation/observers/bloc_error_observer.dart';
 import 'package:flutter_bloc_starter/features/authentication/di/authentication_injection_module.dart';
 import 'package:flutter_bloc_starter/features/notifications/di/notifications_injection_module.dart';
 import 'package:flutter_bloc_starter/features/onboarding/di/onboarding_injection_module.dart';
@@ -35,7 +37,7 @@ Future<void> main() async {
     _initializeStorageService(),
     _initializeAuthenticationService(),
   ]);
-
+  _setupBloc();
   _initializeAppCubit();
 
   runApp(const App());
@@ -93,6 +95,12 @@ void _setupLocale() {
 
 void _initializeAppCubit() {
   AppInjector.instance.get<AppCubit>().initialize();
+}
+
+void _setupBloc() {
+  final crashReportService = AppInjector.instance.get<CrashReportService>();
+
+  Bloc.observer = BlocErrorObserver(crashReportService: crashReportService);
 }
 
 void _registerModules() {
