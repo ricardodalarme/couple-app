@@ -50,12 +50,7 @@ class const OnboardingPage({super.key}) extends StatelessWidget implements AutoR
               },
             ),
           ),
-          BlocBuilder<OnboardingCubit, int>(
-            builder: (context, state) => PageIndicatorWidget(
-              current: state,
-              totalPages: context.l10n.onboarding.pages.length,
-            ),
-          ),
+          const _PageIndicator(),
           const Gap(Spacings.xlarge),
           Padding(
             padding: const EdgeInsets.all(Spacings.large),
@@ -69,6 +64,18 @@ class const OnboardingPage({super.key}) extends StatelessWidget implements AutoR
           ),
         ],
       ),
+    );
+  }
+}
+
+class const _PageIndicator() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final currentPage = context.select((OnboardingCubit cubit) => cubit.state);
+
+    return PageIndicatorWidget(
+      current: currentPage,
+      totalPages: context.l10n.onboarding.pages.length,
     );
   }
 }

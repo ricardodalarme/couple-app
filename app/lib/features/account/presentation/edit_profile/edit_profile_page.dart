@@ -66,16 +66,14 @@ class const _FirstNameTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.account.editProfile;
+    final firstName = context.select((EditProfileCubit cubit) => cubit.state.firstName);
 
-    return BlocBuilder<EditProfileCubit, EditProfileState>(
-      buildWhen: (previous, current) => previous.firstName != current.firstName,
-      builder: (context, state) => BaseTextField(
-        text: state.firstName.value,
-        label: context.l10n.common.firstName,
-        errorText: l10n.firstNameErrors[state.firstName.displayError?.name],
-        textInputAction: TextInputAction.next,
-        onChanged: context.read<EditProfileCubit>().onFirstNameChanged,
-      ),
+    return BaseTextField(
+      text: firstName.value,
+      label: context.l10n.common.firstName,
+      errorText: l10n.firstNameErrors[firstName.displayError?.name],
+      textInputAction: TextInputAction.next,
+      onChanged: context.read<EditProfileCubit>().onFirstNameChanged,
     );
   }
 }
@@ -84,16 +82,14 @@ class const _LastNameTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.account.editProfile;
+    final lastName = context.select((EditProfileCubit cubit) => cubit.state.lastName);
 
-    return BlocBuilder<EditProfileCubit, EditProfileState>(
-      buildWhen: (previous, current) => previous.lastName != current.lastName,
-      builder: (context, state) => BaseTextField(
-        text: state.lastName.value,
-        label: context.l10n.common.lastName,
-        errorText: l10n.lastNameErrors[state.lastName.displayError?.name],
-        textInputAction: TextInputAction.next,
-        onChanged: context.read<EditProfileCubit>().onLastNameChanged,
-      ),
+    return BaseTextField(
+      text: lastName.value,
+      label: context.l10n.common.lastName,
+      errorText: l10n.lastNameErrors[lastName.displayError?.name],
+      textInputAction: TextInputAction.next,
+      onChanged: context.read<EditProfileCubit>().onLastNameChanged,
     );
   }
 }
@@ -102,17 +98,15 @@ class const _EmailTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.account.editProfile;
+    final email = context.select((EditProfileCubit cubit) => cubit.state.email);
 
-    return BlocBuilder<EditProfileCubit, EditProfileState>(
-      buildWhen: (previous, current) => previous.email != current.email,
-      builder: (context, state) => BaseTextField(
-        text: state.email.value,
-        label: context.l10n.common.email,
-        errorText: l10n.emailErrors[state.email.displayError?.name],
-        textInputAction: TextInputAction.done,
-        onSubmitted: (_) => context.read<EditProfileCubit>().onSubmit(),
-        onChanged: context.read<EditProfileCubit>().onEmailChanged,
-      ),
+    return BaseTextField(
+      text: email.value,
+      label: context.l10n.common.email,
+      errorText: l10n.emailErrors[email.displayError?.name],
+      textInputAction: TextInputAction.done,
+      onSubmitted: (_) => context.read<EditProfileCubit>().onSubmit(),
+      onChanged: context.read<EditProfileCubit>().onEmailChanged,
     );
   }
 }
@@ -120,13 +114,14 @@ class const _EmailTextField() extends StatelessWidget {
 class const _SubmitButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EditProfileCubit, EditProfileState>(
-      builder: (context, state) => BaseButton(
-        text: context.l10n.common.save,
-        isLoading: state.submission.isLoading,
-        isEnabled: state.isValid,
-        onPressed: context.read<EditProfileCubit>().onSubmit,
-      ),
+    final submission = context.select((EditProfileCubit cubit) => cubit.state.submission);
+    final isValid = context.select((EditProfileCubit cubit) => cubit.state.isValid);
+
+    return BaseButton(
+      text: context.l10n.common.save,
+      isLoading: submission.isLoading,
+      isEnabled: isValid,
+      onPressed: context.read<EditProfileCubit>().onSubmit,
     );
   }
 }

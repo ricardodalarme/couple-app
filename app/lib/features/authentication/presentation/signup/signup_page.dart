@@ -75,17 +75,15 @@ class const _EmailTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.signup;
+    final email = context.select((SignupCubit cubit) => cubit.state.email);
 
-    return BlocBuilder<SignupCubit, SignupState>(
-      buildWhen: (previous, current) => previous.email != current.email,
-      builder: (context, state) => BaseTextField(
-        text: state.email.value,
-        label: context.l10n.common.email,
-        errorText: l10n.emailErrors[state.email.displayError?.name],
-        onChanged: context.read<SignupCubit>().onEmailChanged,
-        keyboardType: TextInputType.emailAddress,
-        textInputAction: TextInputAction.next,
-      ),
+    return BaseTextField(
+      text: email.value,
+      label: context.l10n.common.email,
+      errorText: l10n.emailErrors[email.displayError?.name],
+      onChanged: context.read<SignupCubit>().onEmailChanged,
+      keyboardType: TextInputType.emailAddress,
+      textInputAction: TextInputAction.next,
     );
   }
 }
@@ -94,17 +92,15 @@ class const _PasswordTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.signup;
+    final password = context.select((SignupCubit cubit) => cubit.state.password);
 
-    return BlocBuilder<SignupCubit, SignupState>(
-      buildWhen: (previous, current) => previous.password != current.password,
-      builder: (context, state) => BaseTextField(
-        type: BaseTextFieldType.password,
-        text: state.password.value,
-        label: context.l10n.common.password,
-        errorText: l10n.passwordErrors[state.password.displayError?.name],
-        onChanged: context.read<SignupCubit>().onPasswordChanged,
-        textInputAction: TextInputAction.next,
-      ),
+    return BaseTextField(
+      type: BaseTextFieldType.password,
+      text: password.value,
+      label: context.l10n.common.password,
+      errorText: l10n.passwordErrors[password.displayError?.name],
+      onChanged: context.read<SignupCubit>().onPasswordChanged,
+      textInputAction: TextInputAction.next,
     );
   }
 }
@@ -113,18 +109,16 @@ class const _ConfirmPasswordTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.signup;
+    final confirmPassword = context.select((SignupCubit cubit) => cubit.state.confirmPassword);
 
-    return BlocBuilder<SignupCubit, SignupState>(
-      buildWhen: (previous, current) => previous.confirmPassword != current.confirmPassword,
-      builder: (context, state) => BaseTextField(
-        type: BaseTextFieldType.password,
-        text: state.confirmPassword.value,
-        label: l10n.labelConfirmPassword,
-        errorText: l10n.confirmPasswordErrors[state.confirmPassword.displayError?.name],
-        onChanged: context.read<SignupCubit>().onConfirmPasswordChanged,
-        textInputAction: TextInputAction.done,
-        onSubmitted: (_) => context.read<SignupCubit>().onSubmit(),
-      ),
+    return BaseTextField(
+      type: BaseTextFieldType.password,
+      text: confirmPassword.value,
+      label: l10n.labelConfirmPassword,
+      errorText: l10n.confirmPasswordErrors[confirmPassword.displayError?.name],
+      onChanged: context.read<SignupCubit>().onConfirmPasswordChanged,
+      textInputAction: TextInputAction.done,
+      onSubmitted: (_) => context.read<SignupCubit>().onSubmit(),
     );
   }
 }
@@ -133,14 +127,14 @@ class const _SubmitButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.signup;
+    final submission = context.select((SignupCubit cubit) => cubit.state.submission);
+    final isValid = context.select((SignupCubit cubit) => cubit.state.isValid);
 
-    return BlocBuilder<SignupCubit, SignupState>(
-      builder: (context, state) => BaseButton(
-        text: l10n.buttonSubmit,
-        isLoading: state.submission.isLoading,
-        isEnabled: state.isValid,
-        onPressed: context.read<SignupCubit>().onSubmit,
-      ),
+    return BaseButton(
+      text: l10n.buttonSubmit,
+      isLoading: submission.isLoading,
+      isEnabled: isValid,
+      onPressed: context.read<SignupCubit>().onSubmit,
     );
   }
 }

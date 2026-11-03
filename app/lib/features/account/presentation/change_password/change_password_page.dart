@@ -69,17 +69,17 @@ class const _CurrentPasswordTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.account.changePassword;
+    final currentPassword = context.select(
+      (ChangePasswordCubit cubit) => cubit.state.currentPassword,
+    );
 
-    return BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
-      buildWhen: (previous, current) => previous.currentPassword != current.currentPassword,
-      builder: (context, state) => BaseTextField(
-        type: BaseTextFieldType.password,
-        text: state.currentPassword.value,
-        errorText: l10n.currentPasswordErrors[state.currentPassword.displayError?.name],
-        onChanged: context.read<ChangePasswordCubit>().onCurrentPasswordChanged,
-        label: l10n.labelCurrentPassword,
-        textInputAction: TextInputAction.next,
-      ),
+    return BaseTextField(
+      type: BaseTextFieldType.password,
+      text: currentPassword.value,
+      errorText: l10n.currentPasswordErrors[currentPassword.displayError?.name],
+      onChanged: context.read<ChangePasswordCubit>().onCurrentPasswordChanged,
+      label: l10n.labelCurrentPassword,
+      textInputAction: TextInputAction.next,
     );
   }
 }
@@ -88,17 +88,15 @@ class const _NewPasswordTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.account.changePassword;
+    final password = context.select((ChangePasswordCubit cubit) => cubit.state.password);
 
-    return BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
-      buildWhen: (previous, current) => previous.password != current.password,
-      builder: (context, state) => BaseTextField(
-        type: BaseTextFieldType.password,
-        text: state.password.value,
-        errorText: l10n.newPasswordErrors[state.password.displayError?.name],
-        onChanged: context.read<ChangePasswordCubit>().onNewPasswordChanged,
-        label: l10n.labelNewPassword,
-        textInputAction: TextInputAction.next,
-      ),
+    return BaseTextField(
+      type: BaseTextFieldType.password,
+      text: password.value,
+      errorText: l10n.newPasswordErrors[password.displayError?.name],
+      onChanged: context.read<ChangePasswordCubit>().onNewPasswordChanged,
+      label: l10n.labelNewPassword,
+      textInputAction: TextInputAction.next,
     );
   }
 }
@@ -107,19 +105,19 @@ class const _ConfirmPasswordTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.account.changePassword;
+    final confirmPassword = context.select(
+      (ChangePasswordCubit cubit) => cubit.state.confirmPassword,
+    );
 
-    return BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
-      buildWhen: (previous, current) => previous.confirmPassword != current.confirmPassword,
-      builder: (context, state) => BaseTextField(
-        type: BaseTextFieldType.password,
-        text: state.confirmPassword.value,
-        errorText: l10n.confirmPasswordErrors[state.confirmPassword.displayError?.name],
-        onChanged: (password) =>
-            context.read<ChangePasswordCubit>().onConfirmPasswordChanged(password),
-        label: l10n.labelConfirmPassword,
-        textInputAction: TextInputAction.done,
-        onSubmitted: (_) => context.read<ChangePasswordCubit>().onSubmit(),
-      ),
+    return BaseTextField(
+      type: BaseTextFieldType.password,
+      text: confirmPassword.value,
+      errorText: l10n.confirmPasswordErrors[confirmPassword.displayError?.name],
+      onChanged: (password) =>
+          context.read<ChangePasswordCubit>().onConfirmPasswordChanged(password),
+      label: l10n.labelConfirmPassword,
+      textInputAction: TextInputAction.done,
+      onSubmitted: (_) => context.read<ChangePasswordCubit>().onSubmit(),
     );
   }
 }
@@ -127,13 +125,14 @@ class const _ConfirmPasswordTextField() extends StatelessWidget {
 class const _SubmitButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
-      builder: (context, state) => BaseButton(
-        text: context.l10n.common.save,
-        isLoading: state.submission.isLoading,
-        isEnabled: state.isValid,
-        onPressed: context.read<ChangePasswordCubit>().onSubmit,
-      ),
+    final submission = context.select((ChangePasswordCubit cubit) => cubit.state.submission);
+    final isValid = context.select((ChangePasswordCubit cubit) => cubit.state.isValid);
+
+    return BaseButton(
+      text: context.l10n.common.save,
+      isLoading: submission.isLoading,
+      isEnabled: isValid,
+      onPressed: context.read<ChangePasswordCubit>().onSubmit,
     );
   }
 }

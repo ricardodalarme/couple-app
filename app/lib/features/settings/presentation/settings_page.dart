@@ -31,12 +31,14 @@ class const SettingsPage({super.key}) extends StatelessWidget implements AutoRou
 class const _BiometricsOption() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingsCubit, SettingsState>(
-      builder: (context, state) => SettingsOption(
-        text: context.l10n.settings.optionBiometrics,
-        value: state.settings.useBiometrics,
-        onChanged: context.read<SettingsCubit>().onUseBiometricsChanged,
-      ),
+    final useBiometrics = context.select(
+      (SettingsCubit cubit) => cubit.state.settings.useBiometrics,
+    );
+
+    return SettingsOption(
+      text: context.l10n.settings.optionBiometrics,
+      value: useBiometrics,
+      onChanged: context.read<SettingsCubit>().onUseBiometricsChanged,
     );
   }
 }

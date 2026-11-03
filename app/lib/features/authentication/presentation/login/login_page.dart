@@ -87,17 +87,15 @@ class const _EmailTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.login;
+    final email = context.select((LoginCubit cubit) => cubit.state.email);
 
-    return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) => previous.email != current.email,
-      builder: (context, state) => BaseTextField(
-        text: state.email.value,
-        label: context.l10n.common.email,
-        errorText: l10n.emailErrors[state.email.displayError?.name],
-        onChanged: context.read<LoginCubit>().onEmailChanged,
-        keyboardType: TextInputType.emailAddress,
-        textInputAction: TextInputAction.next,
-      ),
+    return BaseTextField(
+      text: email.value,
+      label: context.l10n.common.email,
+      errorText: l10n.emailErrors[email.displayError?.name],
+      onChanged: context.read<LoginCubit>().onEmailChanged,
+      keyboardType: TextInputType.emailAddress,
+      textInputAction: TextInputAction.next,
     );
   }
 }
@@ -106,18 +104,16 @@ class const _PasswordTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.login;
+    final password = context.select((LoginCubit cubit) => cubit.state.password);
 
-    return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) => previous.password != current.password,
-      builder: (context, state) => BaseTextField(
-        type: BaseTextFieldType.password,
-        text: state.password.value,
-        errorText: l10n.passwordErrors[state.password.displayError?.name],
-        onChanged: context.read<LoginCubit>().onPasswordChanged,
-        label: context.l10n.common.password,
-        textInputAction: TextInputAction.done,
-        onSubmitted: (_) => context.read<LoginCubit>().onSubmit(),
-      ),
+    return BaseTextField(
+      type: BaseTextFieldType.password,
+      text: password.value,
+      errorText: l10n.passwordErrors[password.displayError?.name],
+      onChanged: context.read<LoginCubit>().onPasswordChanged,
+      label: context.l10n.common.password,
+      textInputAction: TextInputAction.done,
+      onSubmitted: (_) => context.read<LoginCubit>().onSubmit(),
     );
   }
 }
@@ -126,14 +122,14 @@ class const _LoginButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.login;
+    final login = context.select((LoginCubit cubit) => cubit.state.login);
+    final isValid = context.select((LoginCubit cubit) => cubit.state.isValid);
 
-    return BlocBuilder<LoginCubit, LoginState>(
-      builder: (context, state) => BaseButton(
-        text: l10n.buttonLogin,
-        isLoading: state.login.isLoading,
-        isEnabled: state.isValid,
-        onPressed: context.read<LoginCubit>().onSubmit,
-      ),
+    return BaseButton(
+      text: l10n.buttonLogin,
+      isLoading: login.isLoading,
+      isEnabled: isValid,
+      onPressed: context.read<LoginCubit>().onSubmit,
     );
   }
 }

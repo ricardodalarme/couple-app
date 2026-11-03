@@ -195,7 +195,9 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
   `isRefreshing` flag — the widget keeps the last `Success` on screen while a
   refresh is loading.
 - Split the body into `_PrivateWidget` classes so each one selects only the
-  state slice it needs.
+  state slice it needs with `context.select`. Do not add `BlocBuilder`,
+  `BlocSelector`, or `buildWhen`; use `context.select` for every state read and
+  `context.read` for actions.
 - Use `BaseListView` for lists (it handles empty state and pull-to-refresh) and
   `EmptyIndicator` for honest empty states. Never render invented records.
 - The `fake` model is only used inside the skeleton while loading.

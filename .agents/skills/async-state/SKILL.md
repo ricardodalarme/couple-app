@@ -310,14 +310,25 @@ class const _RetryButton({required final String label}) extends StatelessWidget 
 - `context.select((Cubit c) => c.state.<narrow slice>)` rebuilds only that widget
   when the slice changes. Select a value (`is Failure`, `posts.isLoading`), not
   the whole state.
+- Use `context.select` for **every** state read in a widget. Do not add
+  `BlocBuilder`, `BlocSelector`, or `buildWhen` anywhere in `app/lib`; those
+  rebuild more than the slice and duplicate what `context.select` already does.
+  Form fields select their own field:
+
+  ```dart
+  final currentPassword = context.select(
+    (ChangePasswordCubit cubit) => cubit.state.currentPassword,
+  );
+  ```
+
+- If one widget needs several slices, call `context.select` once per slice (or
+  select a record); do not fall back to `BlocBuilder`.
 - The page selects the whole read slot
   (`cubit.state.posts`) and passes it to `SkeletonizerResourceWidget`; the
   widgets built by `successBuilder` select narrower slices of their own and never
   the slot again.
-- When a widget genuinely needs the full state, use
-  `BlocBuilder(buildWhen: (previous, current) => previous.<field> != current.<field>)`,
-  as the login form widgets do for each text field.
-- `context.read<Cubit>()` for callbacks; it does not subscribe.
+- `context.read<Cubit>()` for callbacks; it does not subscribe. `BlocListener`
+  remains the tool for side effects (SnackBars, navigation), never for rebuilds.
 - Private widgets are classes
   (`class const _PostsListWidget({required final List<Post> posts}) extends StatelessWidget`),
   not `Builder` lambdas or `build` helper methods.

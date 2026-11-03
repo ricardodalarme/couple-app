@@ -3,7 +3,12 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/skeletonizer_resource_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-enum _ResourceState() { initial, loading, success, failure }
+enum _ResourceState() {
+  initial,
+  loading,
+  success,
+  failure,
+}
 
 final WidgetbookNode skeletonizerResourceWidgetExample = WidgetbookUseCase(
   name: 'SkeletonizerResourceWidget',

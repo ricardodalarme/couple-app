@@ -96,8 +96,9 @@ and `BaseNavigationBar`:
 - **UI**: pages are `@RoutePage()` + `AutoRouteWrapper`, create their cubit in
   `wrappedRoute`, render read slots with `SkeletonizerResourceWidget` (a fake
   value plus success and failure builders), and split UI into private widgets
-  that read narrow slices with `context.select`. Use a manual `switch` over the
-  `Resource` only for one-off cases.
+  that read narrow slices with `context.select`. Use `context.select` for state
+  reads — do not add `BlocBuilder`, `BlocSelector`, or `buildWhen`. Use a manual
+  `switch` over the `Resource` only for one-off cases.
 - **DI**: one `InjectionModule` per feature, registered in
   `main.dart::_registerModules()`; data sources/repositories/services are lazy
   singletons, cubits are factories.
@@ -191,6 +192,9 @@ the token constants (`Spacings`, `Borders`, `Durations`, `Breakpoints`,
 9. Use Dart primary constructors everywhere (see §State, UI, DI → Constructors).
    Do not add a separate constructor body just to assign fields.
 10. Imports are always `package:` imports, never relative package imports.
+11. Read widget state with `context.select` and act with `context.read`. Do not
+    add `BlocBuilder`, `BlocSelector`, or `buildWhen` anywhere in `app/lib`;
+    `BlocListener` is only for side effects.
 
 ## Comments
 

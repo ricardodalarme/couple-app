@@ -70,18 +70,16 @@ class const _EmailTextField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.forgotPassword;
+    final email = context.select((ForgotPasswordCubit cubit) => cubit.state.email);
 
-    return BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
-      buildWhen: (previous, current) => previous.email != current.email,
-      builder: (context, state) => BaseTextField(
-        text: state.email.value,
-        keyboardType: TextInputType.emailAddress,
-        label: context.l10n.common.email,
-        errorText: l10n.emailErrors[state.email.displayError?.name],
-        textInputAction: TextInputAction.done,
-        onChanged: context.read<ForgotPasswordCubit>().onEmailChanged,
-        onSubmitted: (_) => context.read<ForgotPasswordCubit>().onSubmit(),
-      ),
+    return BaseTextField(
+      text: email.value,
+      keyboardType: TextInputType.emailAddress,
+      label: context.l10n.common.email,
+      errorText: l10n.emailErrors[email.displayError?.name],
+      textInputAction: TextInputAction.done,
+      onChanged: context.read<ForgotPasswordCubit>().onEmailChanged,
+      onSubmitted: (_) => context.read<ForgotPasswordCubit>().onSubmit(),
     );
   }
 }
@@ -89,13 +87,14 @@ class const _EmailTextField() extends StatelessWidget {
 class const _SubmitButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
-      builder: (context, state) => BaseButton(
-        text: context.l10n.common.send,
-        isEnabled: state.isValid,
-        isLoading: state.submission.isLoading,
-        onPressed: context.read<ForgotPasswordCubit>().onSubmit,
-      ),
+    final submission = context.select((ForgotPasswordCubit cubit) => cubit.state.submission);
+    final isValid = context.select((ForgotPasswordCubit cubit) => cubit.state.isValid);
+
+    return BaseButton(
+      text: context.l10n.common.send,
+      isEnabled: isValid,
+      isLoading: submission.isLoading,
+      onPressed: context.read<ForgotPasswordCubit>().onSubmit,
     );
   }
 }
