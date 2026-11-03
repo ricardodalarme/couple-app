@@ -11,6 +11,7 @@ import 'package:flutter_bloc_starter/router/observers/analytics_router_observer.
 import 'package:flutter_bloc_starter/router/observers/log_router_observer.dart';
 import 'package:network/network.dart';
 import 'package:notification_service/notification_service.dart';
+import 'package:performance_service/performance_service.dart';
 import 'package:permission_service/permission_service.dart';
 import 'package:preferences_service/preferences_service.dart';
 import 'package:remote_config_service/remote_config_service.dart';
@@ -41,6 +42,7 @@ class SharedInjectionModule() implements InjectionModule {
     ..registerLazySingleton<ReviewService>(ReviewService.new)
     ..registerLazySingleton<CrashReportService>(CrashReportServiceImpl.new)
     ..registerLazySingleton<DeviceInfoService>(DeviceInfoService.new)
+    ..registerLazySingleton<PerformanceService>(FirebasePerformanceService.new)
     ..registerLazySingleton<PermissionService>(PermissionService.new)
     ..registerLazySingleton<NotificationService>(NotificationService.new)
     ..registerLazySingleton<ShareService>(ShareService.new)

@@ -42,6 +42,8 @@ dependencies:
     path: ../packages/network
   notification_service:
     path: ../packages/services/notification
+  performance_service:
+    path: ../packages/services/performance
   permission_service:
     path: ../packages/services/permission
   preferences_service:
