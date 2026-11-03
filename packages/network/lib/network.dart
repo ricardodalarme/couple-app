@@ -1,4 +1,7 @@
-export 'package:graphql/client.dart' show QueryResult;
+export 'package:dio/dio.dart' show DioException, Options, Response, ResponseBody, ResponseType;
+export 'package:gql/language.dart';
+export 'package:graphql/client.dart'
+    show FetchPolicy, MutationOptions, QueryOptions, QueryResult, WatchQueryOptions;
 
 export 'src/exceptions/no_data_exception.dart';
 export 'src/exceptions/server_response_exception.dart';

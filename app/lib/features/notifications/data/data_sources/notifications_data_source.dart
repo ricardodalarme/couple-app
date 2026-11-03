@@ -2,8 +2,6 @@ import 'package:flutter_bloc_starter/features/notifications/data/data_sources/mu
 import 'package:flutter_bloc_starter/features/notifications/data/data_sources/mutations/generated/MarkNotificationsRead.graphql.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/data_sources/queries/generated/GetNotifications.graphql.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/data_sources/queries/generated/GetUnreadNotifications.graphql.dart';
-// ignore: depend_on_referenced_packages, `network` re-exports only QueryResult from graphql
-import 'package:graphql/client.dart' show FetchPolicy;
 import 'package:network/network.dart';
 
 class NotificationsDataSource({required GQLClient graphQLClient}) {
