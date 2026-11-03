@@ -85,6 +85,8 @@ class Translations$account$en {
       Translations$account$editProfile$en.internal(_root);
   late final Translations$account$changePassword$en changePassword =
       Translations$account$changePassword$en.internal(_root);
+  late final Translations$account$deleteAccount$en deleteAccount =
+      Translations$account$deleteAccount$en.internal(_root);
 }
 
 // Path: authentication
@@ -386,6 +388,38 @@ class Translations$account$changePassword$en {
   };
 }
 
+// Path: account.deleteAccount
+class Translations$account$deleteAccount$en {
+  Translations$account$deleteAccount$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Delete Account'
+  String get title => 'Delete Account';
+
+  /// en: 'This permanently deletes your account and its data. This action cannot be undone.'
+  String get warning =>
+      'This permanently deletes your account and its data. This action cannot be undone.';
+
+  /// en: 'Delete Account'
+  String get buttonDelete => 'Delete Account';
+
+  /// en: 'Cancel'
+  String get buttonCancel => 'Cancel';
+
+  /// en: 'Your account has been deleted.'
+  String get messageSuccess => 'Your account has been deleted.';
+
+  Map<String, String> get errors => {
+    'account_deletion_failed': 'We couldn\'t delete your account. Try again.',
+    'deletion_failed': 'We couldn\'t delete your account. Try again.',
+    'not_authenticated': 'Your session expired. Sign in again.',
+    'other': _root.common.genericError,
+  };
+}
+
 // Path: authentication.login
 class Translations$authentication$login$en {
   Translations$authentication$login$en.internal(this._root);
@@ -633,6 +667,18 @@ extension on Translations {
       'account.changePassword.errors.unexpected_failure' =>
         'Service is temporarily unavailable. Please try again',
       'account.changePassword.errors.other' => _root.common.genericError,
+      'account.deleteAccount.title' => 'Delete Account',
+      'account.deleteAccount.warning' =>
+        'This permanently deletes your account and its data. This action cannot be undone.',
+      'account.deleteAccount.buttonDelete' => 'Delete Account',
+      'account.deleteAccount.buttonCancel' => 'Cancel',
+      'account.deleteAccount.messageSuccess' => 'Your account has been deleted.',
+      'account.deleteAccount.errors.account_deletion_failed' =>
+        'We couldn\'t delete your account. Try again.',
+      'account.deleteAccount.errors.deletion_failed' =>
+        'We couldn\'t delete your account. Try again.',
+      'account.deleteAccount.errors.not_authenticated' => 'Your session expired. Sign in again.',
+      'account.deleteAccount.errors.other' => _root.common.genericError,
       'authentication.login.title' => 'Login',
       'authentication.login.buttonLogin' => 'Login',
       'authentication.login.buttonForgotPassword' => 'Forgot password?',

@@ -46,6 +46,20 @@ class AccountRepository({required final AuthenticationService _authenticationSer
     }
   }
 
+  Future<void> deleteAccount() async {
+    _logger.info('Deleting account');
+    try {
+      await _authenticationService.deleteAccount();
+      _logger.info('Account deleted');
+    } on AuthenticationException catch (exception, stack) {
+      _logger.error('Failed to delete account', error: exception, stackTrace: stack);
+      throw _toLocalizedException(exception);
+    } catch (e, stack) {
+      _logger.error('Failed to delete account', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
   LocalizedException _toLocalizedException(AuthenticationException exception) {
     return LocalizedException(l10nKey: exception.code);
   }

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/widgets/settings_option.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 @RoutePage()
 class const SettingsPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
@@ -22,8 +23,19 @@ class const SettingsPage({super.key}) extends StatelessWidget implements AutoRou
       title: context.l10n.settings.title,
       body: const Padding(
         padding: EdgeInsets.all(Spacings.large),
-        child: Column(children: [_BiometricsOption()]),
+        child: Column(children: [_BiometricsOption(), Gap(Spacings.large), _DeleteAccountTile()]),
       ),
+    );
+  }
+}
+
+class const _DeleteAccountTile() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BaseListTile(
+      title: context.l10n.account.deleteAccount.title,
+      leading: const Icon(Icons.delete_forever),
+      onTap: () => context.pushRoute(const DeleteAccountRoute()),
     );
   }
 }

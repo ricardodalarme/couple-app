@@ -53,5 +53,18 @@
       "weak_password": "A nova senha é muito fraca",
       "other": "@:common.genericError"
     }
+  },
+  "deleteAccount": {
+    "title": "Excluir conta",
+    "warning": "Isso exclui permanentemente sua conta e seus dados. Esta ação não pode ser desfeita.",
+    "buttonDelete": "Excluir conta",
+    "buttonCancel": "Cancelar",
+    "messageSuccess": "Sua conta foi excluída.",
+    "errors(map)": {
+      "account_deletion_failed": "Não foi possível excluir sua conta. Tente novamente.",
+      "deletion_failed": "Não foi possível excluir sua conta. Tente novamente.",
+      "not_authenticated": "Sua sessão expirou. Entre novamente.",
+      "other": "@:common.genericError"
+    }
   }
 }

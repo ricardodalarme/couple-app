@@ -63,5 +63,18 @@
       "unexpected_failure": "Service is temporarily unavailable. Please try again",
       "other": "@:common.genericError"
     }
+  },
+  "deleteAccount": {
+    "title": "Delete Account",
+    "warning": "This permanently deletes your account and its data. This action cannot be undone.",
+    "buttonDelete": "Delete Account",
+    "buttonCancel": "Cancel",
+    "messageSuccess": "Your account has been deleted.",
+    "errors(map)": {
+      "account_deletion_failed": "We couldn't delete your account. Try again.",
+      "deletion_failed": "We couldn't delete your account. Try again.",
+      "not_authenticated": "Your session expired. Sign in again.",
+      "other": "@:common.genericError"
+    }
   }
 }

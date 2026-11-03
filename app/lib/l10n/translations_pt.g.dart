@@ -92,6 +92,9 @@ class _Translations$account$pt extends Translations$account$en {
   @override
   late final _Translations$account$changePassword$pt changePassword =
       _Translations$account$changePassword$pt._(_root);
+  @override
+  late final _Translations$account$deleteAccount$pt deleteAccount =
+      _Translations$account$deleteAccount$pt._(_root);
 }
 
 // Path: authentication
@@ -357,6 +360,35 @@ class _Translations$account$changePassword$pt extends Translations$account$chang
   };
 }
 
+// Path: account.deleteAccount
+class _Translations$account$deleteAccount$pt extends Translations$account$deleteAccount$en {
+  _Translations$account$deleteAccount$pt._(TranslationsPt root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsPt _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Excluir conta';
+  @override
+  String get warning =>
+      'Isso exclui permanentemente sua conta e seus dados. Esta ação não pode ser desfeita.';
+  @override
+  String get buttonDelete => 'Excluir conta';
+  @override
+  String get buttonCancel => 'Cancelar';
+  @override
+  String get messageSuccess => 'Sua conta foi excluída.';
+  @override
+  Map<String, String> get errors => {
+    'account_deletion_failed': 'Não foi possível excluir sua conta. Tente novamente.',
+    'deletion_failed': 'Não foi possível excluir sua conta. Tente novamente.',
+    'not_authenticated': 'Sua sessão expirou. Entre novamente.',
+    'other': _root.common.genericError,
+  };
+}
+
 // Path: authentication.login
 class _Translations$authentication$login$pt extends Translations$authentication$login$en {
   _Translations$authentication$login$pt._(TranslationsPt root)
@@ -582,6 +614,18 @@ extension on TranslationsPt {
         'A nova senha deve ser diferente da senha atual',
       'account.changePassword.errors.weak_password' => 'A nova senha é muito fraca',
       'account.changePassword.errors.other' => _root.common.genericError,
+      'account.deleteAccount.title' => 'Excluir conta',
+      'account.deleteAccount.warning' =>
+        'Isso exclui permanentemente sua conta e seus dados. Esta ação não pode ser desfeita.',
+      'account.deleteAccount.buttonDelete' => 'Excluir conta',
+      'account.deleteAccount.buttonCancel' => 'Cancelar',
+      'account.deleteAccount.messageSuccess' => 'Sua conta foi excluída.',
+      'account.deleteAccount.errors.account_deletion_failed' =>
+        'Não foi possível excluir sua conta. Tente novamente.',
+      'account.deleteAccount.errors.deletion_failed' =>
+        'Não foi possível excluir sua conta. Tente novamente.',
+      'account.deleteAccount.errors.not_authenticated' => 'Sua sessão expirou. Entre novamente.',
+      'account.deleteAccount.errors.other' => _root.common.genericError,
       'authentication.login.title' => 'Entrar',
       'authentication.login.buttonLogin' => 'Entrar',
       'authentication.login.buttonForgotPassword' => 'Esqueceu a senha?',
