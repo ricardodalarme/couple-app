@@ -1,17 +1,17 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:secure_storage_service/src/secure_storage_exception.dart';
 
-abstract interface class SecureStorageService() {
-  Future<String?> read({required String key});
-  Future<void> write({required String key, required String value});
-  Future<void> delete({required String key});
-  Future<void> clear();
-}
+class SecureStorageService([FlutterSecureStorage? secureStorage]) {
+  final FlutterSecureStorage _secureStorage = secureStorage ?? const FlutterSecureStorage();
 
-class const SecureStorageServiceImpl([
-  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage(),
-]) implements SecureStorageService {
-  @override
+  Future<Map<String, String>> readAll() async {
+    try {
+      return await _secureStorage.readAll();
+    } on Exception catch (error, stackTrace) {
+      Error.throwWithStackTrace(SecureStorageException(error), stackTrace);
+    }
+  }
+
   Future<String?> read({required String key}) async {
     try {
       return await _secureStorage.read(key: key);
@@ -20,7 +20,6 @@ class const SecureStorageServiceImpl([
     }
   }
 
-  @override
   Future<void> write({required String key, required String value}) async {
     try {
       await _secureStorage.write(key: key, value: value);
@@ -29,7 +28,6 @@ class const SecureStorageServiceImpl([
     }
   }
 
-  @override
   Future<void> delete({required String key}) async {
     try {
       await _secureStorage.delete(key: key);
@@ -38,7 +36,6 @@ class const SecureStorageServiceImpl([
     }
   }
 
-  @override
   Future<void> clear() async {
     try {
       await _secureStorage.deleteAll();

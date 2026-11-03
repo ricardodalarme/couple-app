@@ -21,7 +21,7 @@ class SharedInjectionModule() implements InjectionModule {
     ..registerLazySingleton<AnalyticsRouterObserver>(
       () => AnalyticsRouterObserver(analyticsService: injector.get<AnalyticsService>()),
     )
-    ..registerLazySingleton<SecureStorageService>(SecureStorageServiceImpl.new)
+    ..registerLazySingleton<SecureStorageService>(SecureStorageService.new)
     ..registerLazySingleton<PreferencesService>(PreferencesService.new)
     ..registerLazySingleton<GQLClient>(
       () => GQLClient(

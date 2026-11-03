@@ -12,16 +12,16 @@ void main() {
 
   group('SecureStorage', () {
     late FlutterSecureStorage flutterSecureStorage;
-    late SecureStorageServiceImpl secureStorage;
+    late SecureStorageService secureStorage;
 
     setUp(() {
       flutterSecureStorage = MockFlutterSecureStorage();
-      secureStorage = SecureStorageServiceImpl(flutterSecureStorage);
+      secureStorage = SecureStorageService(flutterSecureStorage);
     });
 
     group('constructor', () {
       test('defaults to internal FlutterSecureStorage if none is provided', () {
-        expect(() => const SecureStorageServiceImpl(), isNot(throwsA(isA<Exception>())));
+        expect(SecureStorageService.new, isNot(throwsA(isA<Exception>())));
       });
     });
 

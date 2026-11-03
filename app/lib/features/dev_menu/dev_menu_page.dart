@@ -4,6 +4,7 @@ import 'package:flutter_bloc_starter/features/dev_menu/device_info/device_info_p
 import 'package:flutter_bloc_starter/features/dev_menu/language_selector/language_selector_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/preferences/preferences_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/remote_config/remote_config_page.dart';
+import 'package:flutter_bloc_starter/features/dev_menu/secure_storage/secure_storage_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/storybook_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/theme_selector/theme_selector_page.dart';
 
@@ -37,6 +38,10 @@ class const DevMenuPage({super.key}) extends StatelessWidget {
           BaseListTile(
             title: 'Preferences',
             onTap: () => context.router.pushWidget(const PreferencesPage()),
+          ),
+          BaseListTile(
+            title: 'Secure Storage',
+            onTap: () => context.router.pushWidget(const SecureStoragePage()),
           ),
         ],
       ),
