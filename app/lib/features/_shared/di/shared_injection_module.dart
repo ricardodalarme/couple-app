@@ -7,6 +7,7 @@ import 'package:crash_report_service/crash_report_service.dart';
 import 'package:device_info_service/device_info_service.dart';
 import 'package:file_picker_service/file_picker_service.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:flutter_bloc_starter/infrastructure/config/env_variables.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 import 'package:flutter_bloc_starter/router/observers/analytics_router_observer.dart';
 import 'package:flutter_bloc_starter/router/observers/log_router_observer.dart';
@@ -33,12 +34,12 @@ class SharedInjectionModule() implements InjectionModule {
     ..registerLazySingleton<PreferencesService>(PreferencesService.new)
     ..registerLazySingleton<GQLClient>(
       () => GQLClient(
-        serverUrl: Config.serverUrl,
+        serverUrl: EnvVariables.serverUrl,
         tokenCallback: injector.get<AuthenticationRepository>().getAccessToken,
-        defaultHeaders: {'apikey': Config.serverApiKey},
+        defaultHeaders: {'apikey': EnvVariables.serverApiKey},
       ),
     )
-    ..registerLazySingleton<RestClient>(() => RestClientImpl(baseUrl: Config.restServerUrl))
+    ..registerLazySingleton<RestClient>(() => RestClientImpl(baseUrl: EnvVariables.restServerUrl))
     ..registerLazySingleton<AnalyticsService>(FirebaseAnalyticsService.new)
     ..registerLazySingleton<RemoteConfigService>(RemoteConfigService.new)
     ..registerLazySingleton<ReviewService>(ReviewService.new)
@@ -50,8 +51,8 @@ class SharedInjectionModule() implements InjectionModule {
     ..registerLazySingleton<NotificationService>(NotificationService.new)
     ..registerLazySingleton<PurchaseService>(
       () => PurchaseService(
-        iosApiKey: Config.revenueCatIosApiKey,
-        androidApiKey: Config.revenueCatAndroidApiKey,
+        iosApiKey: EnvVariables.revenueCatIosApiKey,
+        androidApiKey: EnvVariables.revenueCatAndroidApiKey,
       ),
     )
     ..registerLazySingleton<ShareService>(ShareService.new)

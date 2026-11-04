@@ -1,4 +1,4 @@
-abstract interface class Config() {
+abstract interface class EnvVariables() {
   static const String serverUrl = String.fromEnvironment('SERVER_URL');
   static const String serverApiKey = String.fromEnvironment('SERVER_API_KEY');
   static const String restServerUrl = String.fromEnvironment('REST_SERVER_URL');
