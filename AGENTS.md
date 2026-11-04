@@ -70,14 +70,16 @@ docs/         # contributing, dependency injection, localization, navigation not
 Firebase client configuration is committed per flavor:
 `app/android/app/src/{development,production}/google-services.json` and
 `app/ios/config/{development,production}/GoogleService-Info.plist`. Keep those
-files aligned with the Firebase dev and production projects; `main.dart`
-initializes Firebase through the native flavor config.
+files aligned with the Firebase dev and production projects; the startup
+initializers initialize Firebase through the native flavor config.
 
 ## App architecture
 
 ```text
 app/lib/
-├── main.dart              # DI module registration, service init, runApp
+├── main.dart              # entrypoint, DI registration, startup pipeline, runApp
+├── infrastructure/        # app-wide technical concerns
+│   └── initializers/      # startup steps ordered by declared dependencies
 ├── app.dart               # root widget + AppCubit routing
 ├── features/<feature>/    # feature-first
 │   ├── di/<feature>_injection_module.dart
@@ -134,6 +136,10 @@ and `BaseNavigationBar`:
 - **DI**: one `InjectionModule` per feature, registered in
   `main.dart::_registerModules()`; data sources/repositories/services are lazy
   singletons, cubits are factories.
+- **Startup**: initialization steps are `Initializer`s under
+  `app/lib/infrastructure/initializers/`, ordered by their declared
+  dependencies. `main.dart` composes and runs the pipeline; add new startup
+  work as an initializer, not inline in `main.dart`.
 - **Errors**: `LocalizedException(l10nKey:)` from data layers, shown via
   `context.l10n.<namespace>.<errors>.selectOrFallback(exception.l10nKey)`.
 - **Tests**: `app/test` mirrors `app/lib`; `blocTest` + `mocktail` + `pumpApp`.

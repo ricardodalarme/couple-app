@@ -1,6 +1,6 @@
 ---
 name: dependency-injection
-description: Register and consume dependencies in this app through the core Injector/InjectionModule abstraction over get_it — create a feature DI module, choose lifetimes (registerSingleton, registerLazySingleton, registerFactory), add the module to main.dart, resolve cubits in a page's wrappedRoute, and debug "not registered" errors. Use when adding a service, repository, data source, or cubit that needs construction, wiring or reordering DI modules, or when a page cannot resolve its cubit.
+description: Register and consume dependencies in this app through the core Injector/InjectionModule abstraction over get_it — create a feature DI module, choose lifetimes (registerSingleton, registerLazySingleton, registerFactory), add the module to `main.dart::_registerModules()`, resolve cubits in a page's wrappedRoute, and debug "not registered" errors. Use when adding a service, repository, data source, or cubit that needs construction, wiring or reordering DI modules, or when a page cannot resolve its cubit.
 ---
 
 # Dependency injection in the app
@@ -53,8 +53,6 @@ Modules are listed in `app/lib/main.dart::_registerModules()`:
 
 ```dart
 void _registerModules() {
-  _logger.info('Registering dependency injection modules');
-
   final injectionModules = <InjectionModule>[
     SharedInjectionModule(),
     AppInjectionModule(),
@@ -161,7 +159,8 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
 **Inside an injection module** — `injector.get<T>()`, as shown in the template.
 
 **Outside a widget or module** — `AppInjector.instance.get<T>()`, for example
-`main.dart` resolving `CrashReportService` or `AppCubit` during bootstrap.
+an initializer under `app/lib/infrastructure/initializers/` resolving
+`CrashReportService` or `AppCubit` during startup.
 
 **In tests** — never initialize the injector. Construct the cubit with mock
 dependencies and provide it with `BlocProvider.value`:
@@ -177,7 +176,7 @@ await tester.pumpApp(
 
 ## Gotchas
 
-- **A module that is not in `main.dart` does not exist.** The failure is a
+- **A module that is not in `_registerModules()` does not exist.** The failure is a
   runtime "Object/factory with type X is not registered" when the page opens, not
   a compile error.
 - **`SharedInjectionModule` must be registered first.** Feature modules resolve
@@ -199,7 +198,7 @@ await tester.pumpApp(
   and the interface-to-implementation choice.
 - **Do not resolve dependencies in `build`.** A widget that calls
   `AppInjector.instance.get` on every rebuild re-resolves factories and creates
-  throwaway objects. Resolve in `wrappedRoute`, `main.dart`, or a module.
+  throwaway objects. Resolve in `wrappedRoute`, a startup initializer, or a module.
 - **Do not make a page cubit a singleton.** Shared cubits leak state between
   visits and are never disposed; only `AppCubit` is app-wide.
 - **Keep imports `package:`-prefixed** (`package:flutter_bloc_starter/...`), as

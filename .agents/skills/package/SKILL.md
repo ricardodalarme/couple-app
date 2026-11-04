@@ -197,9 +197,10 @@ Rules that apply to both:
 ..registerLazySingleton<SecureStorageService>(SecureStorageServiceImpl.new)
 ```
 
-2. If the SDK needs startup initialization, add it to `app/lib/main.dart` next to
-   the existing calls (`preferencesService.initialize()`, …), inside the
-   `Future.wait([...])` block when it is independent.
+2. If the SDK needs startup initialization, add an `Initializer` under
+   `app/lib/infrastructure/initializers/` and list it in the pipeline in
+   `app/lib/main.dart`. DI is registered before the pipeline, so resolve
+   services from `AppInjector`.
 3. Consume the service with constructor injection in data sources, repositories,
    and cubits — never import the SDK in the app.
 

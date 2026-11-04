@@ -18,7 +18,7 @@ A feature is only complete when all of these exist and `melos gen` / `melos l10n
 have run:
 
 1. `data/` — data sources, models, mappers, repository (only if it touches data)
-2. `di/<feature>_injection_module.dart` — registered **and** added to `main.dart`
+2. `di/<feature>_injection_module.dart` — registered **and** added to `main.dart::_registerModules()`
 3. `presentation/` — page(s) with `@RoutePage()` + cubit(s)
 4. Route registered in `app/lib/router/app_router.dart`
 5. l10n keys in `app/lib/l10n/en/<feature>.json` (plus the `pt/` sibling)
@@ -224,7 +224,8 @@ class PostInjectionModule() implements InjectionModule {
 ```
 
 Then **add `PostInjectionModule()` to the `injectionModules` list in
-`app/lib/main.dart`** — forgetting this causes a runtime "not registered" error.
+`app/lib/main.dart::_registerModules()`** — forgetting this causes a
+runtime "not registered" error.
 
 ## Step 6 — Route
 

@@ -27,8 +27,7 @@ class NotificationService({
 
   NotificationDelay get _delayFor => _delay ?? Future<void>.delayed;
 
-  bool get _usesApns =>
-      defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS;
+  bool get _usesApns => defaultTargetPlatform == .iOS || defaultTargetPlatform == .macOS;
 
   /// Registers the app instance with Firebase Cloud Messaging.
   ///
