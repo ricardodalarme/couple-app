@@ -11,6 +11,6 @@ class PostDataSource({required GQLClient graphlQLClient}) {
       ),
     );
 
-    return validateResponseData(response, getData: (data) => data?.postsCollection);
+    return validateResponseData(response, getData: (data) => data.postsCollection);
   }
 }

@@ -19,7 +19,7 @@ class NotificationsDataSource({required GQLClient graphQLClient}) {
       ),
     );
 
-    return validateResponseData(response, getData: (data) => data?.notificationsCollection);
+    return validateResponseData(response, getData: (data) => data.notificationsCollection);
   }
 
   Future<QueryGetUnreadNotificationsnotificationsCollection> getUnreadNotifications() async {
@@ -27,7 +27,7 @@ class NotificationsDataSource({required GQLClient graphQLClient}) {
       OptionsQueryGetUnreadNotifications(fetchPolicy: FetchPolicy.networkOnly),
     );
 
-    return validateResponseData(response, getData: (data) => data?.notificationsCollection);
+    return validateResponseData(response, getData: (data) => data.notificationsCollection);
   }
 
   Future<MutationMarkNotificationsReadupdatenotificationsCollection> markRead({
@@ -39,7 +39,7 @@ class NotificationsDataSource({required GQLClient graphQLClient}) {
       ),
     );
 
-    return validateResponseData(response, getData: (data) => data?.updatenotificationsCollection);
+    return validateResponseData(response, getData: (data) => data.updatenotificationsCollection);
   }
 
   Future<MutationMarkAllNotificationsReadupdatenotificationsCollection> markAllRead() async {
@@ -49,7 +49,7 @@ class NotificationsDataSource({required GQLClient graphQLClient}) {
       ),
     );
 
-    return validateResponseData(response, getData: (data) => data?.updatenotificationsCollection);
+    return validateResponseData(response, getData: (data) => data.updatenotificationsCollection);
   }
 
   Future<MutationRegisterDeviceTokenregister_device_token> registerDeviceToken({
@@ -67,7 +67,7 @@ class NotificationsDataSource({required GQLClient graphQLClient}) {
       ),
     );
 
-    return validateResponseData(response, getData: (data) => data?.register_device_token);
+    return validateResponseData(response, getData: (data) => data.register_device_token);
   }
 
   Future<MutationUnregisterDeviceTokenunregister_device_token?> unregisterDeviceToken({
@@ -79,6 +79,6 @@ class NotificationsDataSource({required GQLClient graphQLClient}) {
       ),
     );
 
-    return validateResponseData(response, getData: (data) => data?.unregister_device_token);
+    return validateResponseData(response, getData: (data) => data.unregister_device_token);
   }
 }
