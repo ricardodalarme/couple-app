@@ -1,3 +1,4 @@
+import 'package:authentication_service/src/current_user.dart';
 import 'package:authentication_service/src/exceptions.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -5,6 +6,21 @@ class AuthenticationService() {
   GoTrueClient get _auth => Supabase.instance.client.auth;
 
   Session? get currentSession => _auth.currentSession;
+
+  /// The signed-in user's profile fields, or null when signed out.
+  CurrentUser? get currentUser {
+    final user = _auth.currentUser;
+    if (user == null) return null;
+
+    final metadata = user.userMetadata ?? const <String, dynamic>{};
+    return CurrentUser(
+      email: user.email ?? '',
+      firstName: _metadataString(metadata['first_name']),
+      lastName: _metadataString(metadata['last_name']),
+    );
+  }
+
+  String _metadataString(Object? value) => value is String ? value : '';
 
   Future<void> initialize({required String url, required String anonKey}) async {
     if (url.isEmpty || anonKey.isEmpty) {

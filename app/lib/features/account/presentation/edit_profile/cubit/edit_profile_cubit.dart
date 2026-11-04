@@ -10,6 +10,23 @@ class EditProfileCubit({required final AccountRepository _accountRepository})
     extends Cubit<EditProfileState> {
   this : super(const EditProfileState());
 
+  void loadCurrentUser() {
+    final user = _accountRepository.currentUser;
+    if (user == null) return;
+
+    emit(
+      state.copyWith(
+        firstName: user.firstName.isEmpty
+            ? const NonEmptyInput.pure()
+            : NonEmptyInput.dirty(user.firstName),
+        lastName: user.lastName.isEmpty
+            ? const NonEmptyInput.pure()
+            : NonEmptyInput.dirty(user.lastName),
+        email: user.email.isEmpty ? const EmailInput.pure() : EmailInput.dirty(user.email),
+      ),
+    );
+  }
+
   void onFirstNameChanged(String firstName) {
     emit(state.copyWith(firstName: NonEmptyInput.dirty(firstName)));
   }

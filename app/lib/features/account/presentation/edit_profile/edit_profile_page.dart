@@ -11,7 +11,10 @@ import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 class const EditProfilePage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(create: (_) => AppInjector.instance.get<EditProfileCubit>(), child: this);
+    return BlocProvider(
+      create: (_) => AppInjector.instance.get<EditProfileCubit>()..loadCurrentUser(),
+      child: this,
+    );
   }
 
   @override

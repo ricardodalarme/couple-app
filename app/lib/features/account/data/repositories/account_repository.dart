@@ -4,6 +4,10 @@ import 'package:logger/logger.dart';
 
 class AccountRepository({required final AuthenticationService _authenticationService}) {
   final Logger _logger = Logger('AccountRepository');
+
+  /// The signed-in user's profile fields, or null when signed out.
+  CurrentUser? get currentUser => _authenticationService.currentUser;
+
   Future<void> updateProfile({
     required String firstName,
     required String lastName,
