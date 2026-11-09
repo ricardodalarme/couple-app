@@ -9,6 +9,8 @@ workspace:
   - app
   - packages/common_ui
   - packages/core
+  - packages/ui
+  - packages/ui/tool
   - packages/form_inputs
   - packages/formatters
   - packages/logger

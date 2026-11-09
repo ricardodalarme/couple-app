@@ -1,5 +1,5 @@
 import 'package:common_ui/common_ui.dart';
-import 'package:material_ui/material_ui.dart' show MaterialApp;
+import 'package:material_ui/material_ui.dart' show MaterialApp, ThemeData;
 
 class BaseApp extends StatelessWidget {
   const new({
@@ -9,6 +9,8 @@ class BaseApp extends StatelessWidget {
     this.locale,
     this.localizationsDelegates,
     this.builder,
+    this.theme,
+    this.darkTheme,
     super.key,
   }) : routerConfig = null;
 
@@ -19,6 +21,8 @@ class BaseApp extends StatelessWidget {
     this.locale,
     this.localizationsDelegates,
     this.builder,
+    this.theme,
+    this.darkTheme,
     super.key,
   }) : home = null;
 
@@ -29,12 +33,14 @@ class BaseApp extends StatelessWidget {
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
   final Iterable<Locale> supportedLocales;
   final Widget Function(BuildContext, Widget?)? builder;
+  final ThemeData? theme;
+  final ThemeData? darkTheme;
 
   Widget _buildMaterialApp(ThemeMode? themeMode) {
     if (routerConfig != null) {
       return MaterialApp.router(
-        theme: AppTheme.light,
-        darkTheme: AppTheme.dark,
+        theme: theme ?? AppTheme.light,
+        darkTheme: darkTheme ?? AppTheme.dark,
         themeMode: themeMode,
         onGenerateTitle: onGenerateTitle,
         routerConfig: routerConfig,
@@ -47,8 +53,8 @@ class BaseApp extends StatelessWidget {
     }
 
     return MaterialApp(
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
+      theme: theme ?? AppTheme.light,
+      darkTheme: darkTheme ?? AppTheme.dark,
       themeMode: themeMode,
       onGenerateTitle: onGenerateTitle,
       locale: locale,

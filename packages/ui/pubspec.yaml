@@ -1,0 +1,29 @@
+name: ui
+resolution: workspace
+publish_to: "none"
+
+environment:
+  sdk: ^3.13.7
+  flutter: ^3.47.9
+
+dependencies:
+  cached_network_image_ce: ^4.13.1
+  flutter:
+    sdk: flutter
+  flutter_svg: ^2.3.2
+  material_ui: ^1.10.0
+  skeletonizer: ^3.0.0
+  webview_flutter: ^4.14.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  fonts:
+    - family: Caveat
+      fonts:
+        - asset: assets/fonts/Caveat-Variable.ttf
+    - family: AppIcons
+      fonts:
+        - asset: assets/fonts/app_icons.ttf

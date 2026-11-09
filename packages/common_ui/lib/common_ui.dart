@@ -33,6 +33,7 @@ export 'src/components/base_view.dart';
 export 'src/extensions/build_context_extension.dart';
 export 'src/generated/assets.gen.dart';
 export 'src/theme/app_theme.dart';
+export 'src/theme/palette.dart';
 export 'src/theme/typography.dart';
 export 'src/tokens/borders.dart';
 export 'src/tokens/breakpoints.dart';

@@ -20,4 +20,11 @@ class SettingsCubit({required final SettingsRepository _settingsRepository})
     emit(state.copyWith(settings: newSettings));
     await _settingsRepository.save(newSettings);
   }
+
+  Future<void> onThemeVariantChanged(String variant) async {
+    final newSettings = state.settings.copyWith(themeVariant: variant);
+
+    emit(state.copyWith(settings: newSettings));
+    await _settingsRepository.save(newSettings);
+  }
 }
