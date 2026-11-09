@@ -7,7 +7,6 @@ environment:
 
 workspace:
   - app
-  - packages/common_ui
   - packages/core
   - packages/ui
   - packages/ui/tool

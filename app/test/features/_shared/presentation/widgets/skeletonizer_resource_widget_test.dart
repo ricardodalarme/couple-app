@@ -1,8 +1,8 @@
-import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/skeletonizer_resource_widget.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:ui/ui.dart';
 
 import '../../../../test_helpers/pump_app.dart';
 

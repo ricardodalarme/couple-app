@@ -14,7 +14,6 @@ class const LooseListTilePage({super.key}) extends StatelessWidget {
             icon: AppIcons.lock,
             showsChevron: true,
             isLoose: true,
-            showsDivider: false,
             onTap: () {},
           ),
         ),

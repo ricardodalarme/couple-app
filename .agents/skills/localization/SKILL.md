@@ -124,9 +124,9 @@ the pattern for server or validation codes whose key is only known at runtime:
 errorText: context.l10n.authentication.login.emailErrors[errorKey],
 
 // exceptions (l10nKey comes from LocalizedException)
-context.showSnackBar(
+BaseToast.show(
+  context,
   context.l10n.post.createErrors.selectOrFallback(exception.l10nKey),
-  type: SnackBarType.error,
 );
 ```
 
@@ -248,12 +248,12 @@ Text.rich(
   context.l10n.authentication.signup.termsNotice(
     tos: (text) => TextSpan(
       text: text,
-      style: TextStyle(color: context.palette.primary),
+      style: TextStyle(color: context.colors.actionPrimary),
       recognizer: TapGestureRecognizer()..onTap = openTerms,
     ),
     privacy: (text) => TextSpan(
       text: text,
-      style: TextStyle(color: context.palette.primary),
+      style: TextStyle(color: context.colors.actionPrimary),
       recognizer: TapGestureRecognizer()..onTap = openPrivacy,
     ),
   ),

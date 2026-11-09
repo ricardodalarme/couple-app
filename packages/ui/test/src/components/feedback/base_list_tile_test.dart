@@ -19,7 +19,23 @@ Widget _host(Widget child, {double width = 350}) {
   );
 }
 
+Finder _divider() => find.byWidgetPredicate(
+  (widget) => widget is Positioned && widget.top == 0 && widget.left == AppSpace.s16,
+);
+
 void main() {
+  testWidgets('draws no divider by default', (tester) async {
+    await tester.pumpWidget(_host(const BaseListTile(title: 'Profile')));
+
+    expect(_divider(), findsNothing);
+  });
+
+  testWidgets('draws a divider when asked', (tester) async {
+    await tester.pumpWidget(_host(const BaseListTile(title: 'Profile', showsDivider: true)));
+
+    expect(_divider(), findsOneWidget);
+  });
+
   testWidgets('the list tile keeps the value next to the chevron at the right', (tester) async {
     await tester.pumpWidget(
       _host(
@@ -28,7 +44,6 @@ void main() {
           icon: AppIcons.bell,
           value: 'On',
           showsChevron: true,
-          showsDivider: false,
         ),
       ),
     );
@@ -55,7 +70,6 @@ void main() {
                 subtitle: 'Marina',
                 icon: AppIcons.user_filled,
                 showsChevron: true,
-                showsDivider: false,
               ),
               BaseListTile(
                 title: 'Card day',

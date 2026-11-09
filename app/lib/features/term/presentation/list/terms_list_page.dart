@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:common_ui/common_ui.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:ui/ui.dart';
 
 @RoutePage()
 class const TermsListPage({super.key}) extends StatelessWidget {
@@ -9,8 +9,8 @@ class const TermsListPage({super.key}) extends StatelessWidget {
     final l10n = context.l10n.terms.list;
 
     return BaseView(
-      title: l10n.title,
-      body: Center(child: Text(l10n.title)),
+      appBar: BaseAppBar(title: l10n.title),
+      body: BaseStackedContent(body: Text(l10n.title, style: context.text.body)),
     );
   }
 }

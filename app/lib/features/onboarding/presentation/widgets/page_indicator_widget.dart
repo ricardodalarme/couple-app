@@ -1,32 +1,28 @@
-import 'package:common_ui/common_ui.dart';
+import 'package:ui/ui.dart';
 
 class const PageIndicatorWidget({
   required final int current,
   required final int totalPages,
   super.key,
 }) extends StatelessWidget {
-  static const double _indicatorSize = 8;
-  static const double _indicatorSelectedSize = 24;
-  static const double _indicatorRadius = 4;
-  static const Duration _animationDuration = Duration(milliseconds: 300);
-
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(
-        totalPages,
-        (index) => AnimatedContainer(
-          duration: _animationDuration,
-          margin: const EdgeInsets.symmetric(horizontal: Spacings.xsmall),
-          height: _indicatorSize,
-          width: current == index ? _indicatorSelectedSize : _indicatorSize,
+      children: List.generate(totalPages, (index) {
+        final isSelected = current == index;
+
+        return AnimatedContainer(
+          duration: context.motionDuration(AppMotion.base),
+          margin: const EdgeInsets.symmetric(horizontal: AppSpace.s4),
+          height: AppSpace.s8,
+          width: isSelected ? AppSpace.s24 : AppSpace.s8,
           decoration: BoxDecoration(
-            color: current == index ? context.palette.primary : context.palette.onBackground,
-            borderRadius: BorderRadius.circular(_indicatorRadius),
+            color: isSelected ? context.colors.accentLabel : context.colors.iconMuted,
+            borderRadius: BorderRadius.circular(AppRadius.pill),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }

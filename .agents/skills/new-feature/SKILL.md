@@ -162,16 +162,17 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
     final posts = context.select((PostsListCubit cubit) => cubit.state.posts);
 
     return BaseView(
-      title: l10n.title,
+      appBar: BaseAppBar(title: l10n.title),
       body: SkeletonizerResourceWidget<List<Post>>(
         posts,
         fakeValue: _skeletonPosts,
         successBuilder: (posts) => _PostsListWidget(posts: posts),
-        failureBuilder: (exception) => ErrorIndicator(
+        failureBuilder: (exception) => BaseEmptyState(
           title: context.l10n.common.genericError,
-          buttonText: context.l10n.common.retry,
-          message: l10n.textFailure,
-          onButtonPressed: context.read<PostsListCubit>().getPosts,
+          text: l10n.textFailure,
+          actionText: context.l10n.common.retry,
+          onAction: context.read<PostsListCubit>().getPosts,
+          face: FaceKind.sad,
         ),
       ),
     );
@@ -189,8 +190,9 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
 - `fakeValue` is what `successBuilder` receives while loading, so it must be
   structurally representative (`Post.fake`, `List.filled(6, Post.fake)`). A fake
   with a different shape makes the skeleton jump when the data lands.
-- `failureBuilder` receives the `LocalizedException`; build `ErrorIndicator`
-  there, and point its retry at the cubit method that produced the failure.
+- `failureBuilder` receives the `LocalizedException`; build a `BaseEmptyState`
+  there (`face: FaceKind.sad`), and point its retry at the cubit method that
+  produced the failure.
 - Do not wrap the widget in another `Skeletonizer`, and do not add an
   `isRefreshing` flag — the widget keeps the last `Success` on screen while a
   refresh is loading.
@@ -198,8 +200,9 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
   state slice it needs with `context.select`. Do not add `BlocBuilder`,
   `BlocSelector`, or `buildWhen`; use `context.select` for every state read and
   `context.read` for actions.
-- Use `BaseListView` for lists (it handles empty state and pull-to-refresh) and
-  `EmptyIndicator` for honest empty states. Never render invented records.
+- Use `InfiniteListView` for lists (it owns pull-to-refresh and the pagination
+  trigger; handle zero items with a single `BaseEmptyState` row). Never render
+  invented records.
 - The `fake` model is only used inside the skeleton while loading.
 
 ## Step 5 — DI module
@@ -238,7 +241,7 @@ AutoRoute(page: PostsListPage.page),
 inside the appropriate parent `AutoRoute(children: [...])`, then run `melos gen`.
 The tab shell is `HomePage` with `PostsListRoute`, `SearchRoute`, and
 `ProfileRoute` under `HomeRoute`. Adding a tab requires both a child route and a
-`HomePage` `AutoTabsScaffold.routes` entry.
+`HomePage` `AutoTabsRouter.routes` entry.
 
 ## Step 7 — Localization
 
@@ -277,8 +280,7 @@ melos test         # or: cd app && flutter test test/features/posts
 - `account` — profile pages and form-driven cubits.
 - `settings` — local preference-backed state.
 - `home` — the three-tab shell.
-- `_shared` — shared patterns (`SkeletonizerResourceWidget`, `EmptyIndicator`,
-  `ErrorIndicator`, `FeedbackIndicator`, `InfiniteListViewWidget`).
+- `_shared` — shared patterns (`SkeletonizerResourceWidget`).
 
 ## Gotchas
 
@@ -294,8 +296,8 @@ melos test         # or: cd app && flutter test test/features/posts
   (`class const PostCard({required final Post post, super.key})`). Never use the
   old separate constructor-body style.
 - Imports are always `package:` imports.
-- Never import `flutter/material.dart` or `flutter/cupertino.dart` in `app/lib` —
-  use `package:common_ui/common_ui.dart`.
+- Never import `flutter/material.dart`, `flutter/cupertino.dart`, or
+  `material_ui` in `app/lib` — use `package:ui/ui.dart`.
 - Do not use `BlocProvider.value` in app code (tests only). Pages always create
   their cubit in `wrappedRoute`.
 - Do not invent server data. If the service cannot confirm a value, the UI says

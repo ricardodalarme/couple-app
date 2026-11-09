@@ -6,7 +6,8 @@ import 'package:ui/ui.dart';
 /// group's children.
 const String baseListGroupDividerKeyPrefix = 'baseListGroupDivider';
 
-/// Rows joined on a white card, with an optional explanation underneath.
+/// Rows joined on a white card, with a hairline between each pair and an
+/// optional explanation underneath.
 class const BaseListGroup({required final List<Widget> children, final String? footer, super.key})
     extends StatelessWidget {
   @override

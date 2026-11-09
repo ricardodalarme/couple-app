@@ -40,8 +40,7 @@ class _RefreshDemoState() extends State<_RefreshDemo> {
       padding: const EdgeInsets.symmetric(vertical: AppSpace.s8),
       itemCount: _items.length,
       separator: const SizedBox(height: AppSpace.s8),
-      itemBuilder: (_, index) =>
-          BaseListTile(title: _items[index], isLoose: true, showsDivider: false),
+      itemBuilder: (_, index) => BaseListTile(title: _items[index], isLoose: true),
     );
   }
 }

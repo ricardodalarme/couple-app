@@ -7,6 +7,9 @@ const double _minHeight = 60;
 const double _tileSize = 32;
 
 /// One line of a settings, slips or dates list.
+///
+/// Set [showsDivider] for a hairline above the row when stacked tiles sit
+/// outside a `BaseListGroup`, which draws its own separators.
 class const BaseListTile({
   required final String title,
   final String? subtitle,
@@ -20,7 +23,7 @@ class const BaseListTile({
   final bool isLoose = false,
   final VoidCallback? onTap,
   final bool isEnabled = true,
-  final bool showsDivider = true,
+  final bool showsDivider = false,
   super.key,
 }) extends StatelessWidget {
   @override

@@ -1,25 +1,29 @@
 ---
 name: design-system
-description: Build UI in the app with the common_ui starter design system, and decide what belongs in it. Covers the component-vs-pattern boundary (Base* components in packages/common_ui vs shared widgets in app/lib/features/_shared), the real tokens and theme (Spacings, Borders, Durations, Breakpoints, FontSizes, context.palette, context.typography, ThemeModeProvider), placement and promotion rules, and the no-Material-in-app rule. Use whenever writing widgets, layout, or styling in app/lib; when creating, reviewing, promoting, or demoting a reusable widget; when someone proposes a new Base* component; or when the user asks about colors, spacing, theme, dark mode, buttons, cards, or a visual component. NEVER import flutter/material or flutter/cupertino in app code.
+description: Build UI in the app with the ui design system, and decide what belongs in it. Covers the component-vs-pattern boundary (Base* components in packages/ui vs shared widgets in app/lib/features/_shared), the real tokens and theme (AppSpace, AppRadius, AppBorder, AppPalette, AppTypography, AppMotion, context.colors, context.text, AppThemeHost), placement and promotion rules, and the no-Material-in-app rule. Use whenever writing widgets, layout, or styling in app/lib; when creating, reviewing, promoting, or demoting a reusable widget; when someone proposes a new Base* component; or when the user asks about colors, spacing, theme, buttons, cards, icons, or a visual component. NEVER import flutter/material or flutter/cupertino in app code.
 ---
 
 # Design system
 
-`packages/common_ui` is the only UI layer the app may use. Material and Cupertino
-exist **inside that package only**, which keeps the app skinnable and consistent.
+`packages/ui` is the only UI layer the app may use. Material and Cupertino exist
+**inside that package only**, which keeps the app skinnable and consistent.
 
 Read the source before assuming a token or component exists:
 
-- `packages/common_ui/lib/src/tokens/` — spacing, radius, duration, breakpoint, font size, raw colors
-- `packages/common_ui/lib/src/theme/` — `AppTheme`, `Palette`, `Typography`
-- `packages/common_ui/lib/src/components/` — the `Base*` inventory
-- `packages/common_ui/lib/common_ui.dart` — the barrel; if it is not exported there, app code cannot use it
+- `packages/ui/lib/src/tokens/` — space, radius, border, colour, typography, motion, icon size, shadows, stacking
+- `packages/ui/lib/src/theme/` — `AppTheme`, `AppThemeHost` / `AppThemeScope` / `AppThemed`, `AppPressable`
+- `packages/ui/lib/src/components/` — the `Base*` inventory, grouped by role
+- `packages/ui/lib/src/components/navigation/` — page chrome: `BaseAppBar`, `BaseView`, `BaseSheet`, `BaseStepper`, `BaseTabBar`
+- `packages/ui/lib/src/templates/` — the content widgets (`BaseFlowContent`, `BaseStackedContent`, `BaseMomentContent`, `BaseTabContent`) and the modal sheet (`BaseSheetTemplate`)
+- `packages/ui/lib/src/widgets/` — utility widgets (`BaseListView`, `InfiniteListView`, `WebView`)
+- `packages/ui/lib/src/icons/` — `AppIcon` and the generated `AppIcons`
+- `packages/ui/lib/ui.dart` — the barrel; if it is not exported there, app code cannot use it
 
 ---
 
 ## 1. Component vs pattern — what goes where
 
-Every reusable widget lives in exactly one of four layers. Getting the layer
+Every reusable widget lives in exactly one of five layers. Getting the layer
 wrong is what makes a design system rot: recipes masquerade as primitives and the
 component file list becomes an app's junk drawer.
 
@@ -27,24 +31,40 @@ component file list becomes an app's junk drawer.
 
 **A component names one element (a noun). A pattern narrates a situation (a sentence).**
 
-- "an input", "a card", "an avatar", "a divider", "a loading spinner" -> component.
-- "there is nothing here yet - do X", "something failed - retry", "a list that loads more as you scroll" -> pattern.
+- "an input", "a card", "an avatar", "a divider", "a tab bar" -> component.
+- "there is nothing here yet - do X", "something failed - retry", "the page frame", "a toast on top of the current screen" -> pattern.
 
-`BaseCard` is a noun (a surface with slots). `EmptyIndicator` is a sentence
-("nothing here yet"). Since "an empty state" is *also* a noun, the mnemonic is a
-fast filter, not the test. The test is below.
+`BaseSurfaceCard` is a noun (a surface with slots). An empty/error state is a
+sentence ("nothing here yet", "something failed - retry"), which is why the app
+does not keep an `EmptyIndicator`/`ErrorIndicator` pattern: the shipped
+`BaseEmptyState` owns that scenario. Since "an empty state" is *also* a noun, the
+mnemonic is a fast filter, not the test. The test is below.
 
-### The four layers
+### The five layers
 
 | # | Layer | Definition | Home | Naming |
 | --- | --- | --- | --- | --- |
-| 1 | **Foundation** | Design decisions as data - colour, type, spacing, radius, timing, breakpoints - plus the theme that installs them | `packages/common_ui/lib/src/tokens`, `.../theme` | `Spacings`, `Borders`, `Durations`, `Breakpoints`, `FontSizes`, `Palette`, `Typography`, `AppTheme` |
-| 2 | **Components** | Domain-blind **building blocks**: one element that owns a visual role and/or an interaction + accessibility contract | `packages/common_ui/lib/src/components/base_*.dart` | `Base*` |
-| 3 | **Patterns** (shared widgets) | **Recipes** that arrange components to solve a recurring scenario | `app/lib/features/_shared/presentation/widgets/` | no `Base*` (`EmptyIndicator`, `ErrorIndicator`, `InfiniteListViewWidget`, `SkeletonizerResourceWidget`) |
-| 4 | **Feature widgets** | UI owned by a single feature | `app/lib/features/<feature>/presentation/**` | feature-named or private |
+| 1 | **Foundation** | Design decisions as data - colour, type, space, radius, timing, stacking - plus the theme that installs them | `packages/ui/lib/src/tokens`, `.../theme` | `AppSpace`, `AppRadius`, `AppBorder`, `AppPalette`, `AppColors`, `AppTypography`, `AppMotion`, `AppShadows`, `AppTheme` |
+| 2 | **Components** | Domain-blind **building blocks**: one element that owns a visual role and/or an interaction + accessibility contract | `packages/ui/lib/src/components/<group>/base_*.dart` | `Base*` |
+| 3 | **Templates** | Multi-slot screen compositions for a named app moment | `packages/ui/lib/src/templates/` | `Base*Template` |
+| 4 | **Patterns** (shared widgets) | **Recipes** that arrange components to solve a recurring app scenario | `app/lib/features/_shared/presentation/widgets/` | no `Base*` (`SkeletonizerResourceWidget`) |
+| 5 | **Feature widgets** | UI owned by a single feature | `app/lib/features/<feature>/presentation/**` | feature-named or private |
 
-The app shell (`BaseApp`, `BaseView`, `BaseAppBar`) still lives in `components/`:
-it names a noun and owns its own visual contract.
+The root is `BaseApp` / `BaseApp.router` in `packages/ui`: it installs
+`MaterialApp` or `MaterialApp.router`, owns the root `DefaultTextStyle` from
+`context.text.body`, and defaults its localization delegates to
+`GlobalMaterialLocalizations.delegates` from `material_ui` (Material, Cupertino
+and Widgets in one list). It keeps text outside Material surfaces from falling
+back to Flutter's yellow underline style. `app/lib/app.dart` composes
+`AppThemeHost → BaseApp.router`. Every page starts with `BaseView`, the
+padding-free page shell. Its `appBar` slot takes the page header
+(usually `BaseAppBar`) and its `body` slot takes the page content: a `ui`
+content widget for scrolling pages, or the page's own viewport for infinite
+lists, `WebView`, `PageView` and dynamic lists. The barrel re-exports
+`ThemeMode` and `GlobalMaterialLocalizations` from `material_ui`; app code never
+uses Material `Scaffold` or `AppBar`. Modal surfaces use their own static entry
+points: `BaseSheet.show`,
+`BaseConfirmSheet.show`, `BaseDialog.show`, and `BaseToast.show`.
 
 ### The test — a component must pass ALL five
 
@@ -63,8 +83,8 @@ it names a noun and owns its own visual contract.
    `leading`, `title`, `count`). Plain `String` labels are fine; app copy and app
    models are not.
 5. **Token-only, theme-complete.** Built from foundation tokens and
-   `context.palette`/`context.typography`; correct in light and dark, at 200% text
-   scale, and with the platform's reduced-motion setting.
+   `context.colors` / `context.text`; correct in all three light variants, at
+   200% text scale, and with the platform's reduced-motion setting.
 
 - Fail **1 or 4** -> app widget (shared if cross-feature, else feature-local).
 - Fail **2** -> **pattern** in `_shared`.
@@ -74,17 +94,17 @@ it names a noun and owns its own visual contract.
 
 - **Earned.** >=3 *production* call sites across >=2 features (exclude Storybook
   and tests), or it is a standard primitive: button, field, checkbox, radio,
-  switch, select, menu, dialog, sheet, snackbar, tooltip, FAB, tabs, nav bar,
-  progress, avatar, divider, card, badge, tag, list tile. The allow-list says what
-  *may* exist; it is not a claim that it all does.
+  switch, select, menu, dialog, sheet, toast, tooltip, tabs, nav bar, progress,
+  avatar, divider, card, badge, tag, list tile. The allow-list says what *may*
+  exist; it is not a claim that it all does.
 - **Shipped.** Promotion requires a Storybook example and a test; a pure layout
   wrapper may be covered by its consumer.
 
 ### The contract
 
-A `common_ui` component **MUST** be domain-blind, render from slots, implement
-exactly one element, own its states/accessibility/visual role, be theme-complete,
-and ship with docs, a Storybook example, and a test. It **MUST NOT** encode a
+A `ui` component **MUST** be domain-blind, render from slots, implement exactly
+one element, own its states/accessibility/visual role, be theme-complete, and
+ship with docs, a Storybook example, and a test. It **MUST NOT** encode a
 workflow, a screen state, or product copy; compose siblings into a "section" or
 "screen" recipe; exist only to dedupe one or two call sites; duplicate a noun
 another component already owns (merge behind one name with a variant); or be a
@@ -92,11 +112,11 @@ wrapper that adds neither behaviour nor a token-backed visual role.
 
 ### Placement and naming
 
-- `Base*` is reserved for `packages/common_ui/lib/src/components/`.
+- `Base*` is reserved for `packages/ui/lib/src/components/<group>/`.
   App code - including `_shared` - never uses it. **If it is a pattern it must not
   be called `Base*`**; the prefix is the signal that a widget is a primitive.
-- Patterns go to `app/lib/features/_shared/presentation/widgets/` and take a
-  descriptive, non-`Base` name.
+- Patterns go to `app/lib/features/_shared/presentation/widgets/` (or
+  `.../helpers/` for non-widget helpers) and take a descriptive, non-`Base` name.
 - A widget used by one feature stays in `presentation/<sub>/widgets/` until it
   earns promotion.
 
@@ -104,21 +124,18 @@ wrapper that adds neither behaviour nor a token-backed visual role.
 
 | Widget | Verdict | Why |
 | --- | --- | --- |
-| `BaseCard` | Component | Noun: a surface with a `child` slot, a title row and a leading slot |
-| `BaseButton` | Component | Noun: full-width primary action owning loading/disabled behaviour |
-| `BaseAvatar` | Component | Noun: a circular image with an icon fallback |
+| `BaseSurfaceCard` | Component | Noun: a surface with a header and a `child` slot |
+| `BaseButton` | Component | Noun: one action with five weights and loading/disabled behaviour |
+| `BaseAvatar` | Component | Noun: a circular image or initial |
 | `BaseDivider` | Component | Noun: a rule, optionally with a centred label |
 | `BaseListTile` | Component | Noun: a row with leading/title/subtitle/trailing slots |
-| `BaseView` | Component | Noun: the page frame (scaffold, safe area, app bar) |
-| `EmptyIndicator` | **Pattern** | Encodes the no-data screen state: copy plus the placeholder art |
-| `ErrorIndicator` | **Pattern** | Encodes failure plus a retry action |
-| `FeedbackIndicator` | **Pattern** | Encodes a centred title/message outcome with no asset |
-| `InfiniteListViewWidget` | **Pattern** | Encodes the paginated-list scroll scenario |
+| `BaseTabBar` | Component | Noun: the fixed bottom bar with items |
+| `BaseApp` | **Root host** | Installs `MaterialApp`/`.router` and the root `DefaultTextStyle` |
+| `BaseEmptyState` | Component | Noun: the dashed empty/failure invitation with an optional action |
+| `BaseView` | **Page shell** | Page canvas: scaffold, background, safe area and an `appBar`; the body has no padding |
 | `SkeletonizerResourceWidget` | **Pattern** | Encodes the loading/success/failure resource scenario with a fake value and semantics |
-| `WebView` | **Pattern** | Wraps a third-party web view with app-level policy |
-
-Dialog and sheet surfaces stay inside their component (`BaseBottomSheet`), not as
-separate patterns: the component owns the surface.
+| `InfiniteListView` | **Widget** | Pagination + pull-to-refresh utility, not a component noun |
+| `WebView` | **Widget** | Thin utility that loads a URL in the platform web view |
 
 ### Anti-patterns
 
@@ -135,39 +152,46 @@ separate patterns: the component owns the surface.
 
 1. In `app/lib/**`, never import `package:flutter/material.dart` or
    `package:flutter/cupertino.dart`.
-2. Import UI from `package:common_ui/common_ui.dart`. The barrel re-exports
-   `flutter/widgets.dart`, `Icons`/`ThemeMode` from Material, `gap` (`Gap`),
-   `skeletonizer`, every `Base*` component, `Assets.*`, `AppTheme`, `Typography`,
-   `ThemeModeProvider`, and the token constants.
+2. Import UI from `package:ui/ui.dart`. The barrel re-exports
+   `flutter/widgets.dart`, `ThemeMode` and `GlobalMaterialLocalizations` from
+   `material_ui`, `skeletonizer`, `flutter_svg`, `cached_network_image_ce`,
+   every `Base*` component, the templates, the utility widgets,
+   `AppIcon`/`AppIcons`, `AppTheme`, `AppThemeHost`, `AppPressable`, and the
+   token constants. Never import `material_ui`, `flutter_svg`, or
+   `cached_network_image_ce` directly in `app/lib`.
 3. Apply the boundary test (section 1) before creating anything reusable. A
-   **component** goes in `packages/common_ui/lib/src/components/base_<name>.dart`,
-   exported from the barrel, with a Storybook example and a test. A **pattern**
-   goes in `app/lib/features/_shared/presentation/widgets/` and never takes the
-   `Base*` prefix.
-4. Use semantic colors (`context.palette`) and text styles
-   (`context.typography`) - never raw `Color(0xFF...)`, `Colors.*`, or numeric
-   font sizes.
-5. Use token constants for spacing, radii, and timing:
-   `Gap(Spacings.large)`, `Borders.large`, `Durations.fast` - never magic numbers.
+   **component** goes in `packages/ui/lib/src/components/<group>/base_<name>.dart`,
+   exported from that group's barrel, with a Storybook example and a test. A
+   **pattern** goes in `app/lib/features/_shared` and never takes the `Base*`
+   prefix.
+4. Use semantic colors (`context.colors`) and text styles (`context.text`) -
+   never raw `Color(0xFF...)`, `Colors.*`, or numeric font sizes. Brand-only
+   values (the Google blue in `SocialButton`) are named local constants.
+5. Use token constants for spacing, radii, borders, timing and icon sizes:
+   `AppSpace.s16`, `AppRadius.card`, `AppBorder.hair`, `AppMotion.fast`,
+   `AppIconSize.md` - never magic numbers.
 6. Keep a widget feature-local until it earns promotion to a pattern or a component.
-7. Interactive controls are **>=48dp** with a visible focus state in both themes;
-   copy is **sentence case** except micro-labels (eyebrows, badges, tags), which
-   may be uppercase.
+7. Interactive controls are **>=44pt** (`AppIconSize.touch`) with a visible focus
+   state in every variant; copy is **sentence case** except micro-labels
+   (eyebrows, badges, tags), which may be uppercase.
 8. Every class uses a **primary constructor**: the constructor sits in the class
    header with fields declared inline, never a separate body that only assigns
    fields. This covers widgets, cubits, states, pages, and services.
+9. Never hand-edit `packages/ui/lib/src/icons/app_icons.dart`,
+   `packages/ui/assets/fonts/app_icons.ttf`, `packages/ui/icons/`, or
+   `packages/ui/tool/generate_icons.dart`; the icon font is generated.
 
 ## 3. Axis vocabulary — variant / tone / size
 
 There is **no shared tone enum** and no cross-component axis vocabulary in the
-package today. Components stay flat and own whatever enum they need.
+package. Components stay flat and own whatever enum they need.
 
 | Axis | Question it answers | Where it lives | Example in the repo |
 | --- | --- | --- | --- |
-| `variant` | Which skin / emphasis? (same behaviour, same meaning) | a per-component enum | not yet needed |
-| `tone` | What does it mean? (semantic status) | a per-component enum, colours from `context.palette` | `SnackBarType` (`info`, `success`, `error`) |
-| `size` | How big / dense? | a per-component enum or a plain `double` | `BaseAvatar(size: 40)` |
-| state | What is it doing right now? | plain boolean props | `isLoading`, `isEnabled`, `value` |
+| `variant` | Which skin / emphasis? (same behaviour, same meaning) | a per-component enum | `BaseButtonVariant`, `BaseBannerVariant`, `BaseBubbleVariant` |
+| `tone` | What does it mean? (semantic status) | a per-component enum, colours from `AppStatus` / `AppPalette` | `BaseBannerTone` (`BaseTopNotice`) |
+| `size` | How big / dense? | a per-component enum or a plain `double` | `BaseAvatar(size: 40)`, `BaseIconTileSize` |
+| state | What is it doing right now? | plain boolean props | `isLoading`, `isEnabled`, `value`, `isSelected` |
 
 Rules:
 
@@ -175,197 +199,296 @@ Rules:
 - `variant` vs `tone`: colour expressing emphasis -> `variant`; colour expressing
   meaning -> `tone`. They are orthogonal.
 - If a value changes behaviour, it is a different component, not a `variant`.
-- Never a boolean for an axis that can grow (`isOutlined` is a `variant` that has
-  not been named yet); booleans are only genuine on/off state.
+- Never a boolean for an axis that can grow; booleans are only genuine on/off
+  state.
 - New components do not add a `type` enum; name the enum after the axis
   (`BaseButtonVariant`, not `BaseButtonType`). `BaseTextFieldType` is a
-  pre-existing exception in the barrel, not a precedent.
-- Use **dot shorthand** for enum arguments: `type: .password`, `tone: .error`.
+  pre-existing exception, not a precedent.
+- Use **dot shorthand** for enum arguments: `type: .password`, `variant: .error`.
 
 ## 4. Inventory
 
-The inventory is the directory itself: `packages/common_ui/lib/src/components/`.
+The inventory is the directory itself: `packages/ui/lib/src/components/`.
 Read the constructor before using a prop - do not guess.
 
-`BaseApp` `BaseAppBar` `BaseAvatar` `BaseBottomSheet` `BaseButton` `BaseCard`
-`BaseDivider` `BaseIconButton` `BaseListTile` `BaseListView` `BaseLoadingIndicator`
-`BaseNavigationBar` `BasePullToRefresh` `BaseRadioListTile` `BaseSnackBar`
-`BaseSwitch` `BaseTapper` `BaseTextButton` `BaseTextField` `BaseTooltip` `BaseView`
+**Actions:** `BaseButton` (`.primary`, `.secondary`, `.text`, `.destructive`,
+`.compact`), `BaseRoundButton`, `BaseTextLink`
+
+**Input:** `BaseTextField`, `BaseTextArea`, `BaseSelect`, `BaseCheckbox`,
+`BaseRadio`, `BaseOptionTile`, `BaseChoiceChip`, `BaseSegmented`, `BaseSwitch`,
+`BaseSlider`, `BaseDateField`, `BaseCalendarGrid`
+
+**Navigation:** `BaseTabBar` + `BaseTabBarItem`, `BaseAppBar`, `BaseSheet`,
+`BaseStepper`
+
+**Identity:** `BaseAvatar`, `BaseAvatarPair`, `BaseIconTile`,
+`BaseImagePlaceholder`, `BasePlusBadge`
+
+**Surfaces:** `BaseSurfaceCard`, `BaseListCard`, `BaseFeatureCard`,
+`BaseCategoryLabel`, `BaseTag`, `BaseBubble`, `BaseDivider`, `BaseFace`
+
+**Feedback:** `BaseBanner`, `BaseTopNotice`, `BaseDialog`, `BaseConfirmSheet`,
+`BaseToast`, `BaseTooltip`, `BaseRefreshable`, `BaseLoadingDots`,
+`BaseEmptyState`, `BaseListTile`, `BaseListGroup`, `BaseNote`,
+`BaseSectionHeader`
 
 Shapes worth knowing:
 
-- `BaseCard(child:, title:, leading:)` - the workhorse content surface.
-- `BaseButton(text:, onPressed:, isLoading:, isEnabled:)` - full width, filled.
-- `BaseDivider()` / `BaseDivider.text(text: ...)` - unnamed and `.text` constructors.
-- `BaseListTile(title:, subtitle:, leading:, trailing:, onTap:)`.
-- `BaseTextField(text:, label:, errorText:, type:, onChanged:, onSubmitted:)`.
-- `BaseListView(itemCount:, itemBuilder:, separator:, padding:, emptyBuilder:, onRefresh:)`.
-- `context.showSnackBar('...', type: SnackBarType.success)` - an extension exported by the package.
-- `BaseApp(home:)` / `BaseApp.router(routerConfig:)` - installs `AppTheme.light` and `AppTheme.dark`.
+- `BaseButton(text:, onPressed:, variant:)` - full width for `.primary`; use
+  `.secondary` / `.text` / `.compact` for inline actions.
+- `BaseTextField(text:, onChanged:, ...)` and `BaseTextArea(text:, onChanged:, ...)` -
+  pass `text` for a controlled field; a parent rebuild with a different `text`
+  syncs it. Leave `text` null to let the field own its value.
+- `BaseDivider()` / `BaseDivider(label: text)` - no margins; wrap in `Padding`.
+- `BaseListTile(title:, subtitle:, icon:, leading:, value:, showsChevron:,
+  isDestructive:, trailing:, control:, isLoose:, onTap:, showsDivider:)`.
+- `BaseTabBar(items:, currentIndex:, onSelected:)` with `BaseTabBarItem(icon:,
+  label:)`.
+- `BaseSelect(label:, options:, value:, onChanged:, placeholder:, errorText:,
+  isCompact:)` - the 54pt field that opens a sheet; 40pt pill when compact.
+- `BaseTextField` + `BaseSelect` share the `value`/`onChanged` contract.
+- `BaseRefreshable(onRefresh:, child:)` - pull-to-refresh with its own arc
+  ring indicator; use it for network lists, never for forms or sheets.
+- `BaseListView(itemCount:, itemBuilder:, emptyBuilder:, controller:, onRefresh:)`
+  - the default list; `InfiniteListView` only adds pagination.
+- `BaseLoadingDots(dotSize:, gap:, color:, semanticLabel:)` - the general
+  loading animation; `BaseRefreshable` owns its own refresh ring. No
+  `CircularProgressIndicator` or spinner anywhere.
+- `BaseToast(message:, variant:, actionLabel:, onAction:, onDismissed:)` -
+  `neutral` and `error`; app code calls
+  `BaseToast.show(context, message)`, which returns a dismiss callback.
+- `BaseSheet.show(context:, child:, title:, subtitle:, primaryAction:,
+  isDismissible:)` - the modal sheet entry point.
+- `BaseConfirmSheet.show(context:, title:, text:, confirmText:, ...)` and
+  `BaseDialog.show(context:, title:, primaryText:, ...)` - confirmation and
+  decision entry points.
+- `BaseAvatar(initials:, imageUrl:, size:, isPartner:, isEmpty:, hasRing:)` - no
+  person-icon fallback; an empty photo is an empty tinted circle.
+- `BaseOptionTile(title:, support:, leading:, isSelected:, onTap:, control:)` -
+  the radio/checkbox tile; replaces `RadioListTile`.
+- `BaseTag(text:)` - one style; status labels use `BaseCategoryLabel` or
+  `BaseChoiceChip`.
 
-Shared patterns currently in `app/lib/features/_shared/presentation/widgets/`:
-`EmptyIndicator` `ErrorIndicator` `FeedbackIndicator` `InfiniteListViewWidget`
-`SkeletonizerResourceWidget` `WebView`.
-The Storybook registry also carries a `SocialButton` example from the
-authentication feature - a feature widget, not a pattern.
+The shared pattern currently in `app/lib/features/_shared/presentation/widgets/`:
+`SkeletonizerResourceWidget`.
 
 ## 5. Tokens
 
 ```text
-Spacings: none=0, xxxsmall=1, xxsmall=2, xsmall=4, small=8, medium=12,
-          large=16, xlarge=24, xxlarge=40, xxxlarge=64
-Borders (radius): none=0, small=4, medium=8, large=16, xlarge=24
-Durations: fast=100ms, regular=250ms, slow=500ms, xslow=800ms
-Breakpoints: mobile=600, tablet=1024, desktop=1440
-FontSizes: xsmall=10, small=12, medium=14, large=16, xlarge=20, xxlarge=24,
-           xxxlarge=30
+AppSpace: s2 s4 s6 s8 s10 s12 s14 s16 s18 s20 s22 s24 s26 s28 s34 s44 s120
+          screenMargin=20, screenTop=14, sectionGap=28, cardGap=12,
+          footerBottom=34, scrollTail=120, maxContentWidth=560,
+          tabBarHeight=84, minWidth=320, compactWidth=360
+AppRadius: xs=3, sm=7, md=12, lg=14, xl=18, xxl=20, card=28, ring=34,
+           sheet=30, dialog=30, pill=999
+AppBorder: hair=1, inner=1, selected=1.5, dashed=1.5, focus=2,
+           focusOffset=2, error=1.5, dashPattern=[4,3]
+AppMotion: fast=120ms, base=220ms, slow=360ms, reduced=150ms, stagger=80ms,
+           squiggleDraw=400ms; baseCurve, fastCurve; pressedScale=.97
+AppIconSize: xs=15, sm=18, md=20, lg=22, xl=26, touch=44
 ```
 
 What does **not** exist, so do not write it:
 
-- No elevation tokens and no shadow scale - use `Borders` radius plus
-  `context.palette` surfaces for depth.
-- No exported easing or curve tokens and no reduced-motion helper. `src/tokens/`
-  does hold a curve file, but the barrel never exports it and nothing uses it -
-  do not start depending on it. `Durations` is the timing vocabulary, and
-  anything animated must be gated on `MediaQuery.disableAnimationsOf(context)`
-  by hand.
-- No `pill` radius (999) and no `instant` duration.
-- No palette roles beyond the twelve listed in section 6 - there is no outline
-  family, no surface-container ladder, no scrim, and no inverse roles.
-- No configured font families; `Typography` styles carry size and weight only.
-
-`tokens/colors.dart` still holds legacy numbered ramps (`gray50`..`pink900`).
-They exist for source compatibility and are referenced by `Palette` only. App
-code uses `context.palette`, never a ramp value.
+- No dark theme. `AppTheme.light(variant)` is the only theme; `ThemeMode.light`
+  is passed to `MaterialApp`.
+- No `Breakpoints` class. Use `context.isWide` (window width > 600) or
+  `AppSpace.minWidth` / `AppSpace.compactWidth`.
+- No `FontSizes` class. Sizes live in `AppTypography`.
+- No `Colors.*`, `Spacings`, `Borders`, `Durations` or `Gap`; those belonged to
+  the deleted legacy design system.
+- No elevation tokens beyond `AppShadows` (`ring`, `face`, `paper`, `knob`,
+  `selected`). Never a coloured shadow.
+- No arbitrary palette values in app code: `context.colors` is the vocabulary;
+  fixed category/status roles come from `AppPalette` / `AppCategory` /
+  `AppStatus`.
 
 ## 6. Theme access
 
 ```dart
-final palette = context.palette;        // Palette ThemeExtension (semantic colours)
-final typography = context.typography;  // Typography ThemeExtension (text styles)
+final colors = context.colors;   // semantic roles
+final text = context.text;       // type scale
 
-Text('Card title', style: typography.titleSmall.copyWith(color: palette.onContainer));
+Text('Card title', style: text.titleSm.copyWith(color: colors.textPrimary));
 ```
 
-**Palette roles (all of them):** `primary`, `onPrimary`, `secondary`,
-`onSecondary`, `background`, `onBackground`, `container`, `onContainer`,
-`success`, `onSuccess`, `error`, `onError`.
+**Colour roles (all of them):** `bgScreen`, `bgSurface`, `bgRing`, `bgTabBar`,
+`borderDefault`, `borderSelected`, `textPrimary`, `textSecondary`,
+`textPlaceholder`, `textOnAction`, `accentHighlight`, `accentLabel`,
+`accentSoft`, `accentOnSoft`, `washStrong`, `washLight`, `actionPrimary`,
+`actionPrimaryPressed`, `iconDefault`, `iconMuted`, `scrim`.
 
-**Typography roles:** `titleLarge` (30 bold), `titleMedium` (24 bold),
-`titleSmall` (20 bold), `bodyLarge` (16), `bodyMedium` (14), `bodySmall` (12),
-`labelLarge` (16 w500), `labelMedium` (14 w500), `labelSmall` (12 w500).
+**Typography roles:** `display` (34), `titleXl` (30), `titleLg` (28),
+`question` (26), `titleMd` (23), `titleSm` (17), `titleXs` (16),
+`bodyLg` (20), `body` (16), `bodySm` (15), `caption` (13.5), `label` (13),
+`micro` (12), `tab` (10.5), `hand` (Caveat).
 
-Light and dark install the same names with different values (`background` is
-white in light, black in dark; `container` is `gray100`/`gray800`). Components
-must render correctly in both. `context.palette` and `context.typography` are the
-only theme access app code has - `Theme.of(context)` is internal to `common_ui`.
+**Other context helpers:** `context.screenMargin`, `context.isWide`,
+`context.reduceMotion`, `context.motionDuration(duration)`,
+`context.pressScale`.
 
-Theme mode: `ThemeModeProvider` supplies `InheritedThemeProvider` through
-`ThemeModeProvider.of(context)` / `maybeOf(context)`; read `.themeMode` and call
-`.setThemeMode(ThemeMode.dark)`. `BaseApp` reads it and hands it to
-`MaterialApp`, so toggling the mode re-themes the app without touching
-`main.dart`.
+Themes: `AppTheme.light(AppThemeVariant.rose|blue|neutral)`. The active variant
+is read with `AppThemeScope.of(context)` and switched with
+`AppThemeScope.set(context, variant)`; `AppThemeHost` owns the state and
+rebuilds the app. Persist the choice through `SettingsRepository` using
+`Settings.themeVariant` (the dev-menu theme selector is the reference). There is
+no `ThemeModeProvider` and no dark mode.
 
 ## 7. Creating a new component
 
 When no `Base*` component fits:
 
 0. Apply the boundary test (section 1). If it is a scenario recipe (empty,
-   error/retry, cover, section, screen), it is a shared widget in
+   error/retry, page shell, section, screen), it is a shared widget in
    `app/lib/features/_shared` - do not create a `Base*` for it.
-1. File `packages/common_ui/lib/src/components/base_<name>.dart`.
+1. File `packages/ui/lib/src/components/<group>/base_<name>.dart`.
 2. Write the class with a **primary constructor** - the constructor lives in the
-   class header and fields are declared inline as `required final`/`final`. Never
-   add a separate constructor in the class body, and never a body that only
-   assigns fields. Named constructors keep the same header form:
-   `class const BaseTag.subtle({required final String label, super.key}) extends StatelessWidget`.
+   class header and fields are declared inline as `required final`/`final`.
+3. Read `context.colors` / `context.text`; use `AppSpace`, `AppRadius`,
+   `AppBorder`, `AppMotion`, `AppIconSize`, `AppShadows`.
 
 ```dart
-// packages/common_ui/lib/src/components/base_tag.dart
-import 'package:common_ui/src/extensions/build_context_extension.dart';
-import 'package:common_ui/src/tokens/borders.dart';
-import 'package:common_ui/src/tokens/spacings.dart';
-import 'package:flutter/widgets.dart';
+// packages/ui/lib/src/components/surfaces/base_tag.dart
+import 'package:ui/ui.dart';
 
-class const BaseTag({required final String label, super.key}) extends StatelessWidget {
+class const BaseTag({required final String text, super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpace.s12),
       decoration: BoxDecoration(
-        color: context.palette.container,
-        borderRadius: BorderRadius.circular(Borders.small),
+        color: context.colors.bgSurface,
+        borderRadius: BorderRadius.circular(AppRadius.pill),
+        border: AppBorders.hair(context.colors.borderDefault),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: Spacings.small,
-          vertical: Spacings.xxsmall,
-        ),
-        child: Text(label, style: context.typography.labelSmall),
-      ),
+      child: Text(text, style: context.text.label),
     );
   }
 }
 ```
 
-3. Read `context.palette` / `context.typography`; use `Spacings`/`Borders`/
-   `Durations`; use `Gap(Spacings.x)` for gaps inside `Row`/`Column`.
-4. Keep Material imports local to the component file, with `show`:
-   `import 'package:flutter/material.dart' show FilledButton;`.
+4. Keep Material imports local to the component file, with `show:` and only when
+   the component genuinely wraps a Material primitive.
 5. Expose only the axes from section 3, and keep defaults sensible.
 6. Support skeletons where relevant: render from plain `Text` and `Icon` nodes so
    `Skeletonizer` can transform the tree, and let callers build the placeholder
-   list from a model `fake` (see `PostsListPage`).
-7. Export it from `packages/common_ui/lib/common_ui.dart`.
-8. Add a Storybook example in `app/lib/features/dev_menu/storybook/examples/components/`
-   and register it in `examples/examples.dart` under the right folder
-   (`Components`, `Widgets`, `Theme`).
-9. Add a widget test at `packages/common_ui/test/components/base_<name>_test.dart`
-   using `tester.pumpApp(...)` from `../test_helpers/pump_app.dart`.
-10. Verify: `cd packages/common_ui && flutter test`, then `melos analyze` from
-    the repo root. Run `melos lint` before handing off.
+   list from a model `fake`.
+7. Add the file to its group barrel (`components/<group>/<group>.dart`); that
+   barrel is exported by `lib/ui.dart`.
+8. Add a Storybook example under
+   `app/lib/features/dev_menu/storybook/examples/catalog/<category>/` and register
+   it in that category's `*_examples.dart`.
+9. Add a widget test at
+   `packages/ui/test/src/components/<group>/base_<name>_test.dart` using the
+   helpers in `packages/ui/test/helpers/widget_host.dart`.
+10. Verify: `cd packages/ui && flutter analyze --no-pub && flutter test --no-pub`,
+    then `melos analyze` from the repo root.
 
 ## 8. Layout idioms
 
-- Standard screen: `BaseView(title: ..., body: ...)`. It installs the scaffold,
-  safe area, app bar and `palette.background`.
-- Scrollable lists: `BaseListView(itemCount:, itemBuilder:, separator:, padding:,
-  emptyBuilder:, onRefresh:)`. `separator: const Gap(Spacings.medium)` is the
-  idiomatic row gap. `emptyBuilder` handles the zero-item case, and when
-  `onRefresh` is set the empty state stays pull-to-refreshable.
-- Gaps: `Gap(Spacings.x)` inside `Row`/`Column`, or `SizedBox` with only the
-  dimension that matches the flex axis (never both). Page gutters are
-  `EdgeInsets.all(Spacings.large)`; list rows use
-  `EdgeInsets.symmetric(horizontal: Spacings.large, vertical: Spacings.medium)`.
-- Assets: generated accessors from `Assets.*`
-  (`Assets.images.placeholder.svg(width: 200)`). Add files under
-  `packages/common_ui/assets/` and regenerate.
+- Every page starts with `BaseView(appBar: BaseAppBar(...), body: ...)`.
+  It installs the scaffold, background and safe area with no padding; the
+  `appBar` slot owns the header and the `body` slot owns the content. `appBar`
+  defaults to a bare `BaseAppBar`; pass `appBar: null` only when the
+  screen owns the full screen.
+- Scrolling pages use the matching `ui` content widget:
+  `BaseFlowContent` for one-task forms with a fixed footer, `BaseStackedContent`
+  for scrolling content with an optional footer, `BaseMomentContent` for
+  centred outcomes, and `BaseTabContent` only when the page owns its tab bar.
+  `BaseAppBar` adds the back button automatically when the route can pop, so
+  pages pass no `onBack`; use `onClose` only for a modal-style dismissal.
+  `BaseView` handles keyboard insets through `resizeToAvoidBottomInset`.
+- Viewport-owning screens put the viewport directly in `BaseView.body` for
+  infinite lists, `WebView`, `PageView` and dynamic `ListView`s, with the same
+  `BaseAppBar` in `appBar`.
+- Modal sheets keep `BaseSheetTemplate`; it is the sheet surface, not a page.
+- Static lists: `BaseListView(itemCount:, itemBuilder:, onRefresh:, padding:,
+  separator:, controller:, emptyBuilder:, refreshLabel:)`. It owns the empty
+  state (pass one `BaseEmptyState`) and pull-to-refresh.
+- Paginated lists: `InfiniteListView(...)` composes `BaseListView` and adds the
+  loading footer and fetch trigger. Use it only when `hasNextPage` can change;
+  otherwise use `BaseListView` and skip the no-op pagination arguments.
+- Empty and failure states: `BaseEmptyState(title:, text:, actionText:, onAction:,
+  face:)`. Use `FaceKind.sad` and a retry action for a failed read; never
+  reintroduce `EmptyIndicator`/`ErrorIndicator`.
+- Grouped menus: `BaseListGroup(children: [...])` with `BaseListTile` rows
+  (`showsDivider: false`); use `BaseSectionHeader(isLabel: true)` above the group.
+- Resource reads: `SkeletonizerResourceWidget` for a `Resource<T>`; use the
+  `Skeletonizer` re-export from `ui` directly for one-off skeleton states.
+- Text entry: `BaseTextField(text:, label:, errorText:, type:, onChanged:,
+  onSubmitted:, textInputAction:)`; `type: .email` / `.password` / `.inviteCode`.
+- Confirmations: `BaseToast.show(context, message)`; pick
+  `BaseToastVariant.error` for background failures. Never use a spinner: use
+  `BaseLoadingDots` for loading.
+- Modal sheets and dialogs: `BaseSheet.show`, `BaseConfirmSheet.show`,
+  `BaseDialog.show`. Do not call `showModalBottomSheet` or `showDialog`.
+- Gaps: `SizedBox(height:)` inside a Column/list and `SizedBox(width:)` inside a
+  Row. Never `Gap` and never `SizedBox.square`.
+- Page gutters are `AppSpace.screenMargin`; content starts `AppSpace.screenTop`
+  below the safe area; fixed footers sit `AppSpace.footerBottom` from the bottom.
+- Icons: `AppIcon(icon: AppIcons.x, size: AppIconSize.md, semanticLabel: ...)`
+  when the icon carries meaning; a decorative `Icon(AppIcons.x)` is fine. Never
+  `Icons.*`.
+- Assets: move files under `app/assets/images/` or `app/assets/logos/`, declare
+  them in `app/pubspec.yaml`, and render with `SvgPicture.asset(...)` from the
+  `ui` barrel. There is no `Assets.*` codegen in the app.
 
 ## 9. Gotchas
 
-- `Icons`, `ThemeMode` come from the barrel. `TextInputType` and
-  `TextInputAction` come from `package:flutter/services.dart` - no Material import
-  needed for either.
-- Do not hardcode colors, font sizes, radii, or durations - raw ramps in
-  `tokens/colors.dart` are referenced only by `Palette`.
-- Component files inside `common_ui` may import Material/Cupertino; app files may
-  not. The rule is convention, not lint-enforced - reviewers catch it.
-- `BaseButton` is full width (`double.infinity`). Wrap it in a constrained parent
+- `Icons`, `Spacings`, `Borders`, `Durations`, `FontSizes`, `Breakpoints`,
+  `Gap`, `context.palette` and `context.typography` do not exist any more; use
+  `AppIcons`, `AppSpace`, `AppRadius`/`AppBorder`, `AppMotion`,
+  `AppTypography`, `context.isWide`, `SizedBox`, `context.colors`,
+  `context.text`.
+- `ThemeMode` and `GlobalMaterialLocalizations` come from the `ui` barrel.
+  Never use `Scaffold`, `AppBar`, `MaterialApp` or `AutoTabsScaffold` in app
+  files; `BaseView` and `BaseApp` own them.
+- `BaseApp` owns the root `DefaultTextStyle(style: context.text.body)`. Do not
+  add another default text style to every template or widget, and do not add a
+  `Material` wrapper just to fix the yellow fallback underline.
+- Localization is decoupled from `flutter_localizations`: use
+  `GlobalMaterialLocalizations.delegates` from `material_ui`. `BaseApp` supplies
+  it by default; Widgetbook's inner `MaterialApp` sits outside that tree, so its
+  `appBuilder` must wrap examples in `Localizations` with the same delegates.
+- There is no general spinner component. Loading is `BaseLoadingDots`;
+  pull-to-refresh owns its arc ring inside `BaseRefreshable`. Do not
+  reintroduce `CircularProgressIndicator` or `RefreshIndicator`'s spinner.
+- `BaseTextField` is controlled when `text` is supplied and self-managed when it
+  is null. Update a controlled value from `onChanged`; do not reach for a
+  `TextEditingController`.
+- `BaseListTile` draws a divider by default (`showsDivider: true`); pass `false`
+  when the row is not part of a grouped list.
+- `BaseDivider(label:)` has no vertical margins; wrap it in `Padding` when the
+  old `startMargin`/`endMargin` mattered.
+- `BaseNavigationBar`, `BaseAppBar`, `BaseCard`, `BaseIconButton`,
+  `BaseTextButton`, `BaseTapper`, `BaseRadioListTile`, `BaseLoadingIndicator`,
+  `BaseTagVariant` and `BaseTagEmphasis` were removed with the legacy design
+  system. Use `BaseTabBar`, `BaseView`, `BaseSurfaceCard`/`BaseListCard`,
+  `BaseRoundButton`, `BaseTextLink`, `AppPressable`,
+  `AppPressable.semanticLabel`, `BaseOptionTile`, `BaseLoadingDots`,
+  `BaseToast.show`, and `BaseTag(text:)`. `BaseTooltip` is current again.
+- The app no longer has `EmptyIndicator`, `ErrorIndicator`, `FeedbackIndicator`,
+  `SearchTextField`, or `CircleIconButton`. Use `BaseEmptyState` for empty and
+  failure screens, `BaseTextField` for search/text entry, and
+  `BaseListGroup`/`BaseListTile` for row lists.
+- `BaseAvatar` has no person-icon fallback; an empty photo renders an empty
+  tinted circle.
+- `BaseButton.primary` is full width by default; wrap it or use another weight
   when you need an inline button.
-- `BaseTextField` owns its controller: pass `text` and listen to `onChanged`; the
-  widget resyncs when `text` changes. Use `type: .password` for obscured input.
-- `BaseAvatar` requires an explicit `size`; it has no default.
+- Do not hardcode colors, font sizes, radii, or durations - fixed status and
+  category colours come from `AppPalette`, `AppStatus`, and `AppCategory`.
+- Component files inside `packages/ui` may import Material/Cupertino; app files
+  may not. The rule is convention, not lint-enforced - reviewers catch it.
 - A widget used by one feature stays in that feature's `presentation/<sub>/widgets/`.
 
 ## 10. Auditing the library
 
 Run this one component at a time for every
-`packages/common_ui/lib/src/components/base_*.dart`:
+`packages/ui/lib/src/components/<group>/base_*.dart`:
 
 1. Read its public API and behaviour - do not trust the name.
 2. Write the **noun** and the **sentence** descriptions; the one that fits wins.
 3. Run the five checks (section 1); note the **first** failing check.
-4. Record: current path -> verdict (Foundation / Component / Pattern / Feature) ->
-   target path -> target name -> rationale (<= 12 words).
+4. Record: current path -> verdict (Foundation / Component / Template / Pattern / Feature) -> target path -> target name -> rationale (<= 12 words).
 5. When checks 2 or 3 are genuinely ambiguous, mark **borderline** and state both
    readings instead of forcing a call.

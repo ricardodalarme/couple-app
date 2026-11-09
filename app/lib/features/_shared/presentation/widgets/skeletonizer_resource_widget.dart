@@ -1,6 +1,6 @@
-import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:ui/ui.dart';
 
 typedef SuccessBuilder<T> = Widget Function(T value);
 typedef FailureBuilder = Widget Function(LocalizedException exception);

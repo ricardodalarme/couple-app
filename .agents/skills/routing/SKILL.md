@@ -20,24 +20,51 @@ Routes are generated from `@RoutePage()`-annotated widgets under
 
 `HomePage` (`app/lib/features/home/presentation/home_page.dart`) is the only
 shell page. It is annotated `@RoutePage()` and renders three tabs with
-`AutoTabsScaffold` plus the `BaseNavigationBar` primitive:
+`AutoTabsRouter` and the `BaseTabBar` primitive inside `BaseView`:
 
 ```dart
 @RoutePage()
 class const HomePage({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AutoTabsScaffold(
-      animationDuration: Duration.zero,
-      routes: const [PostsListRoute(), SearchRoute(), ProfileRoute()],
-      bottomNavigationBuilder: (_, tabsRouter) => BaseNavigationBar(
-        selectedIndex: tabsRouter.activeIndex,
-        onDestinationSelected: tabsRouter.setActiveIndex,
-        items: [
-          BaseNavigationBarItem(icon: Icons.home_rounded, label: context.l10n.post.list.title),
-          BaseNavigationBarItem(icon: Icons.search_rounded, label: context.l10n.search.title),
-          BaseNavigationBarItem(icon: Icons.person, label: context.l10n.account.profile.title),
-        ],
+    return BaseView(
+      appBar: null,
+      hasSafeArea: false,
+      body: AutoTabsRouter(
+        duration: Duration.zero,
+        routes: const [PostsListRoute(), SearchRoute(), ProfileRoute()],
+        builder: (context, child) {
+          final tabsRouter = AutoTabsRouter.of(context);
+          return Column(
+            children: [
+              Expanded(
+                // The outer BaseView owns keyboard insets and the tab bar owns
+                // the bottom safe area; tab pages must not add either twice.
+                child: MediaQuery.removePadding(
+                  context: context,
+                  removeBottom: true,
+                  child: MediaQuery.removeViewInsets(
+                    context: context,
+                    removeBottom: true,
+                    child: child,
+                  ),
+                ),
+              ),
+              BaseTabBar(
+                currentIndex: tabsRouter.activeIndex,
+                onSelected: tabsRouter.setActiveIndex,
+                items: [
+                  BaseTabBarItem(icon: AppIcons.home, label: context.l10n.post.list.title),
+                  BaseTabBarItem(icon: AppIcons.search, label: context.l10n.search.title),
+                  BaseTabBarItem(
+                    icon: AppIcons.user,
+                    label: context.l10n.account.profile.title,
+                  ),
+                ],
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -59,7 +86,7 @@ AutoRoute(
 
 **Adding a tab takes two edits that must stay in sync**: a child `AutoRoute`
 under `HomeRoute` and a matching entry in `HomePage`'s
-`AutoTabsScaffold.routes` plus its `BaseNavigationBarItem` label. The child list
+`AutoTabsRouter.routes` plus its `BaseTabBarItem` label. The child list
 and the `routes` list have to be in the same order, because
 `tabsRouter.activeIndex` indexes both.
 
@@ -243,9 +270,8 @@ Nested routes allow sub-navigation inside a parent container:
 ### Tab Navigation (AutoTabsRouter)
 
 `AutoTabsRouter` keeps offstage tab state alive, loads tab content lazily, and
-handles tab transitions. `AutoTabsScaffold` (used by `HomePage`) is the
-scaffold-flavored wrapper; reach for the raw router when the shell needs a custom
-layout:
+handles tab transitions. `HomePage` composes the raw router inside `BaseView`;
+use the same pattern when the shell needs a custom layout:
 
 - **Scoped controller access**:
   ```dart
@@ -254,14 +280,13 @@ layout:
     builder: (context, child) {
       final tabsRouter = AutoTabsRouter.of(context);
       return BaseView(
-        hasAppBar: false,
         body: Column(
           children: [
             Expanded(child: child),
-            BaseNavigationBar(
-              selectedIndex: tabsRouter.activeIndex,
-              onDestinationSelected: tabsRouter.setActiveIndex,
-              items: [/* BaseNavigationBarItem entries */],
+            BaseTabBar(
+              currentIndex: tabsRouter.activeIndex,
+              onSelected: tabsRouter.setActiveIndex,
+              items: [/* BaseTabBarItem entries */],
             ),
           ],
         ),
@@ -269,8 +294,10 @@ layout:
     },
   )
   ```
-  `BaseNavigationBar` takes `items` (`List<BaseNavigationBarItem>`, each with an
-  `icon` and a `label`), `selectedIndex`, and `onDestinationSelected`.
+  `BaseTabBar` takes `items` (`List<BaseTabBarItem>`, each with an `icon` and a
+  `label`), `currentIndex`, and `onSelected`. `removeBottom: true` on the page
+  area stops the tab page's `SafeArea` from adding the bottom inset twice; the
+  tab bar owns that inset.
 - **PageView tabs**: `AutoTabsRouter.pageView(routes: [...], builder: ...)` for
   swipeable tab content.
 - **TabBar tabs**: `AutoTabsRouter.tabBar(routes: [...], builder: ...)` when a
@@ -407,10 +434,9 @@ goes through `_deepLinkBuilder`.
 
 - **AutoLeadingButton**: an app-bar leading button that detects whether to pop an
   inner tab, the parent stack, or render nothing. It is a `Widget`, so it goes in
-  an app bar's `leading` slot — but app code cannot import Material, and
-  `BaseAppBar` in `common_ui` currently exposes only `title` and `actions`. Adding
-  a `leading` slot is a component change inside `packages/common_ui`, not an
-  app-level patch.
+  an app bar's `leading` slot. `BaseView` does not expose a `leading` slot;
+  compose the header in the page and pass it as `BaseView.appBar` — never
+  reach into `packages/ui` for a page shell.
 - **AutoBackButton.builder**: custom back button that hands you a nullable
   `leading` widget, so the layout does not jump when nothing can pop.
 - **ActiveGuardObserver**: listen to whether a guard is resolving, for global
@@ -451,9 +477,9 @@ covers almost all forward navigation.
 - Keep the `initial: true` route chain valid: removing it from a nested level
   breaks the stack at startup.
 - The tab routes are children of `HomeRoute`, and `HomePage`'s
-  `AutoTabsScaffold.routes` repeats them. Adding or reordering a tab means
+  `AutoTabsRouter.routes` repeats them. Adding or reordering a tab means
   updating the child `AutoRoute` list, the `routes` list, and the
-  `BaseNavigationBarItem` list together; a drift between them misroutes the
-  selected index.
+  `BaseTabBarItem` list together; a drift between them misroutes the selected
+  index.
 - `wrappedRoute` must return the provider wrapped around `this`; returning a
   rebuilt page instead of `this` breaks the route's state identity.

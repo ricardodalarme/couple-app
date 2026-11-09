@@ -29,7 +29,7 @@ Agent-Skills-compatible tool can load them.
 | `melos format`                                                                           | Format all Dart files (100-col page width)                                         |
 | `cd app && flutter test test/path_test.dart [--plain-name "..."]`                        | Single test file                                                                   |
 | `cd packages/core && dart test`                                                          | Pure-Dart package tests                                                            |
-| `cd packages/common_ui && flutter test`                                                  | Flutter package tests                                                              |
+| `cd packages/ui && flutter test`                                                         | Flutter package tests                                                              |
 | `cd app && flutter run --dart-define-from-file ../.env.development --flavor development` | Run the app (VSCode F5 works too)                                                  |
 
 Melos config is the `melos:` key in the **root `pubspec.yaml`** — there is no
@@ -61,7 +61,7 @@ keep them in sync.
 
 ```text
 app/          # Flutter app, package flutter_bloc_starter
-packages/     # core, network, common_ui, form_inputs, formatters, logger, services/*
+packages/     # core, network, ui, form_inputs, formatters, logger, services/*
 supabase/     # schema-first database, migrations, seed, pgTAP tests
 docs/         # contributing, dependency injection, localization, navigation notes
 .agents/      # skills (SKILL.md) and agent instructions
@@ -95,14 +95,14 @@ app/lib/
 
 The canonical feature is `post`: a GraphQL read with `PostDataSource`,
 `PostRepository`, `PostsListCubit`, `PostsListState`, and a page that renders the
-`Resource` state with `SkeletonizerResourceWidget` plus `EmptyIndicator` and
-`ErrorIndicator`. `notifications` follows the same one-shot pattern with a
+`Resource` state with `SkeletonizerResourceWidget` plus `BaseEmptyState` for
+empty and failure. `notifications` follows the same one-shot pattern with a
 separate unread badge cubit.
 
 ### Navigation shell
 
-The app has three primary tabs, rendered by `HomePage` with `AutoTabsScaffold`
-and `BaseNavigationBar`:
+The app has three primary tabs, rendered by `HomePage` with `AutoTabsRouter`
+and `BaseTabBar`:
 
 **Posts · Search · Profile**
 
@@ -110,7 +110,7 @@ and `BaseNavigationBar`:
   in `app/lib/router/app_router.dart`: `PostsListRoute` (initial), `SearchRoute`,
   and `ProfileRoute`.
 - Adding a tab requires both a child `AutoRoute` under `HomeRoute` and an entry
-  in `HomePage`'s `AutoTabsScaffold.routes`; keep the two lists in sync.
+  in `HomePage`'s `AutoTabsRouter.routes`; keep the two lists in sync.
 - All other pages (`Login`, `SignUp`, `Settings`, `EditProfile`,
   `ChangePassword`, `Notifications`, `PrivacyPolicy`, `TermsList`, `NotFound`)
   are flat root routes.
@@ -132,7 +132,17 @@ and `BaseNavigationBar`:
   value plus success and failure builders), and split UI into private widgets
   that read narrow slices with `context.select`. Use `context.select` for state
   reads — do not add `BlocBuilder`, `BlocSelector`, or `buildWhen`. Use a manual
-  `switch` over the `Resource` only for one-off cases.
+  `switch` over the `Resource` only for one-off cases. Every page starts with
+  `BaseView(appBar: BaseAppBar(...), body: ...)`, the padding-free page
+  shell. `appBar` defaults to a bare `BaseAppBar`, so stack routes get a
+  back button without page code; pass `appBar: null` only when the screen owns
+  the full screen. The body is a `ui` content widget (`BaseFlowContent`,
+  `BaseStackedContent`, `BaseMomentContent`, `BaseTabContent`) for scrolling
+  content, or the page's own viewport (infinite lists, `WebView`, `PageView`,
+  dynamic lists). `BaseAppBar` adds the back button automatically when the
+  route can pop; use `onClose` only for a modal-style dismissal. Text fields
+  use `BaseTextField`/`BaseTextArea` with `text` + `onChanged`, and transient
+  confirmations use `BaseToast.show`.
 - **DI**: one `InjectionModule` per feature, registered in
   `main.dart::_registerModules()`; data sources/repositories/services are lazy
   singletons, cubits are factories.
@@ -208,26 +218,44 @@ allows them; use the body only for initializers and behavior.
 
 ## Design system
 
-`packages/common_ui` is the only UI layer the app may use; Material and Cupertino
-exist inside that package only. There is no separate design-system document in
-this repo — the tokens and components are the source of truth.
+`packages/ui` is the only UI layer the app may use; Material and Cupertino exist
+inside that package only. There is no separate design-system document in this
+repo — the tokens and components are the source of truth.
 
-Use semantic colors (`context.palette`), text styles (`context.typography`), and
-the token constants (`Spacings`, `Borders`, `Durations`, `Breakpoints`,
-`FontSizes`) — never raw colors or magic numbers.
+Import everything UI-related from `package:ui/ui.dart`. The root is
+`BaseApp.router`, which installs `MaterialApp.router`, owns the root
+`DefaultTextStyle`, and defaults to `GlobalMaterialLocalizations.delegates` from
+`material_ui`; the barrel also re-exports `flutter/widgets.dart`, `ThemeMode`,
+`GlobalMaterialLocalizations`, `skeletonizer`, `flutter_svg`,
+`cached_network_image_ce`, the icons, the tokens and the `Base*` components.
+Do not import `flutter_localizations` in app code.
 
-- `packages/common_ui/lib/src/components` holds **domain-blind building-block
-  nouns** (`Base*`).
-- Scenario recipes — empty/error/retry states, section compositions — are
+Use semantic colors (`context.colors`), text styles (`context.text`), and the
+token constants (`AppSpace`, `AppRadius`, `AppBorder`, `AppMotion`,
+`AppIconSize`) — never raw colors or magic numbers.
+
+Loading is `BaseLoadingDots`; pull-to-refresh uses its own arc ring inside
+`BaseRefreshable`. Never use a rounded spinner (`CircularProgressIndicator`,
+`CupertinoActivityIndicator`, or `RefreshIndicator`'s spinner).
+
+- `packages/ui/lib/src/components` holds **domain-blind building-block nouns**
+  (`Base*`).
+- Scenario recipes — resource states, toasts, section compositions — are
   **patterns**: shared widgets in `app/lib/features/_shared`, never `Base*`.
+  The current pattern is `SkeletonizerResourceWidget`. Every page starts with
+  `ui`'s `BaseView(appBar:, body:)`; scrolling content uses the content
+  widgets (`BaseFlowContent`, `BaseStackedContent`, `BaseMomentContent`,
+  `BaseTabContent`) and `BaseEmptyState` for empty and failure states.
 - Apply the `design-system` skill before creating, moving, or promoting any
   reusable widget.
 
 ## Hard rules
 
 1. **Never** import `flutter/material.dart` or `flutter/cupertino.dart` in
-   `app/lib`. Use `package:common_ui/common_ui.dart`; new components go in
-   `packages/common_ui`.
+   `app/lib`. Use `package:ui/ui.dart`; new components go in `packages/ui`.
+   `material_ui` is re-exported from the barrel, never imported directly in
+   `app/lib`. Never use `Scaffold`, `AppBar`, `MaterialApp` or `AutoTabsScaffold`
+   in app code; `BaseView` and `BaseApp` own them.
 2. Cubits, not Blocs. No domain/usecase layer, no repository interfaces, no
    freezed/json_serializable/injectable.
 3. Cubits take no runtime constructor arguments (`Injector` has no
@@ -241,7 +269,7 @@ the token constants (`Spacings`, `Borders`, `Durations`, `Breakpoints`,
 6. Never hand-edit generated files (`*.g.dart`, `*.gr.dart`, `*.graphql.dart`,
    `translations*.dart`). Run `melos gen`/`melos l10n` and commit outputs.
 7. Do not edit `docs/` as part of code tasks.
-8. New `Base*` components go in `packages/common_ui/lib/src/components` with a
+8. New `Base*` components go in `packages/ui/lib/src/components` with a
    Storybook example and a test; scenario recipes go in
    `app/lib/features/_shared` and never take the `Base*` prefix.
 9. Use Dart primary constructors everywhere (see §State, UI, DI → Constructors).
@@ -287,6 +315,6 @@ declaration it sits on, never the app that uses it.
 | `dependency-injection` | Registering/resolving dependencies, DI modules                                                                         |
 | `testing`              | Writing or running tests                                                                                               |
 | `storybook`            | Widgetbook (Storybook) examples for components/widgets                                                                 |
-| `design-system`        | Any UI, styling, tokens, `common_ui`, colors/typography; component-vs-pattern boundary, `Base*` naming, library audits |
+| `design-system`        | Any UI, styling, tokens, `ui`, colors/typography; component-vs-pattern boundary, `Base*` naming, library audits        |
 | `package`              | New workspace package or third-party SDK wrapper                                                                       |
 | `supabase`             | Schema-first changes, migrations, RLS/grants, pgTAP, pg_graphql, GraphQL snapshot refresh                              |

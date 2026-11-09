@@ -1,9 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/empty_indicator.dart';
-import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/error_indicator.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/skeletonizer_resource_widget.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/badge/cubit/notifications_badge_cubit.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/badge/widgets/notifications_bell_button.dart';
@@ -11,6 +8,7 @@ import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
 import 'package:flutter_bloc_starter/features/post/presentation/list/cubit/posts_list_cubit.dart';
 import 'package:flutter_bloc_starter/features/post/presentation/list/widgets/post_card.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:ui/ui.dart';
 
 @RoutePage()
 class const PostsListPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
@@ -35,17 +33,22 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
     final posts = context.select((PostsListCubit cubit) => cubit.state.posts);
 
     return BaseView(
-      title: l10n.title,
-      actions: const [NotificationsBellButton()],
+      appBar: BaseAppBar(title: l10n.title, trailing: const NotificationsBellButton()),
       body: SkeletonizerResourceWidget<List<Post>>(
         posts,
         fakeValue: _skeletonPosts,
         successBuilder: (posts) => _PostsListWidget(posts: posts),
-        failureBuilder: (exception) => ErrorIndicator(
-          title: context.l10n.common.genericError,
-          buttonText: context.l10n.common.retry,
-          message: l10n.textFailure,
-          onButtonPressed: context.read<PostsListCubit>().getPosts,
+        failureBuilder: (_) => Center(
+          child: Padding(
+            padding: const EdgeInsets.all(AppSpace.screenMargin),
+            child: BaseEmptyState(
+              title: context.l10n.common.genericError,
+              text: l10n.textFailure,
+              actionText: context.l10n.common.retry,
+              onAction: context.read<PostsListCubit>().getPosts,
+              face: FaceKind.sad,
+            ),
+          ),
         ),
       ),
     );
@@ -59,11 +62,17 @@ class const _PostsListWidget({required final List<Post> posts}) extends Stateles
 
     return BaseListView(
       onRefresh: context.read<PostsListCubit>().getPosts,
-      padding: const EdgeInsets.all(Spacings.large),
+      padding: const EdgeInsets.fromLTRB(
+        AppSpace.screenMargin,
+        AppSpace.s8,
+        AppSpace.screenMargin,
+        AppSpace.s8,
+      ),
       itemCount: posts.length,
-      emptyBuilder: (_) => EmptyIndicator(title: l10n.emptyIndicator.title),
+      emptyBuilder: (_) =>
+          BaseEmptyState(title: l10n.emptyIndicator.title, text: l10n.emptyIndicator.text),
       itemBuilder: (_, index) => PostCard(key: ValueKey(posts[index].id), post: posts[index]),
-      separator: const Gap(Spacings.medium),
+      separator: const SizedBox(height: AppSpace.s12),
     );
   }
 }

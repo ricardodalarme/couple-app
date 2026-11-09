@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/forgot_password/cubit/forgot_password_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:ui/ui.dart';
 
 @RoutePage()
 class const ForgotPasswordPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
@@ -22,28 +22,14 @@ class const ForgotPasswordPage({super.key}) extends StatelessWidget implements A
     final l10n = context.l10n.authentication.forgotPassword;
 
     return BaseView(
-      title: l10n.title,
       body: BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
         listenWhen: (previous, current) => previous.submission != current.submission,
         listener: _handleStatus,
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(Spacings.large),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  l10n.description,
-                  textAlign: TextAlign.center,
-                  style: context.typography.labelLarge,
-                ),
-                const Gap(Spacings.xlarge),
-                const _EmailTextField(),
-                const Gap(Spacings.large),
-                const _SubmitButton(),
-              ],
-            ),
-          ),
+        child: BaseFlowContent(
+          heading: l10n.title,
+          subtitle: l10n.description,
+          content: const _EmailTextField(),
+          primaryAction: const _SubmitButton(),
         ),
       ),
     );
@@ -54,12 +40,9 @@ class const ForgotPasswordPage({super.key}) extends StatelessWidget implements A
 
     switch (state.submission) {
       case Success():
-        context.showSnackBar(l10n.messageSuccess, type: SnackBarType.success);
+        BaseToast.show(context, l10n.messageSuccess);
       case Failure(:final LocalizedException exception):
-        context.showSnackBar(
-          l10n.errors.selectOrFallback(exception.l10nKey),
-          type: SnackBarType.error,
-        );
+        BaseToast.show(context, l10n.errors.selectOrFallback(exception.l10nKey));
       default:
         break;
     }
@@ -73,8 +56,8 @@ class const _EmailTextField() extends StatelessWidget {
     final email = context.select((ForgotPasswordCubit cubit) => cubit.state.email);
 
     return BaseTextField(
+      type: BaseTextFieldType.email,
       text: email.value,
-      keyboardType: TextInputType.emailAddress,
       label: context.l10n.common.email,
       errorText: l10n.emailErrors[email.displayError?.name],
       textInputAction: TextInputAction.done,

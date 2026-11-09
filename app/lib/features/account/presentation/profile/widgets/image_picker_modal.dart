@@ -1,38 +1,25 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:common_ui/common_ui.dart';
-import 'package:flutter_bloc_starter/features/account/presentation/profile/widgets/circle_icon_button.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:ui/ui.dart';
 
 class const ImagePickerModal({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.account.profile;
 
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.only(top: Spacings.xxlarge, bottom: Spacings.large),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CircleIconButton(
-                  label: l10n.buttonPickImageFromCamera,
-                  icon: Icons.camera_alt,
-                  onTap: () => context.maybePop(),
-                ),
-                const Gap(Spacings.medium),
-                CircleIconButton(
-                  label: l10n.buttonPickImageFromGallery,
-                  icon: Icons.photo_library,
-                  onTap: () => context.maybePop(),
-                ),
-              ],
-            ),
-          ],
+    return BaseListGroup(
+      children: [
+        BaseListTile(
+          title: l10n.buttonPickImageFromCamera,
+          icon: AppIcons.camera,
+          onTap: () => context.maybePop(),
         ),
-      ),
+        BaseListTile(
+          title: l10n.buttonPickImageFromGallery,
+          icon: AppIcons.image,
+          onTap: () => context.maybePop(),
+        ),
+      ],
     );
   }
 }

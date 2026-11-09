@@ -1,7 +1,7 @@
-import 'package:common_ui/src/components/base_avatar.dart';
 import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
 import 'package:flutter_bloc_starter/features/post/presentation/list/widgets/post_card.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:ui/ui.dart';
 
 import '../../../../../test_helpers/pump_app.dart';
 

@@ -20,54 +20,17 @@ class const SettingsPage({super.key}) extends StatelessWidget implements AutoRou
   Widget build(BuildContext context) {
     final l10n = context.l10n.settings;
 
-    return ColoredBox(
-      color: context.colors.bgScreen,
-      child: SafeArea(
-        child: Column(
+    return BaseView(
+      appBar: BaseAppBar(title: l10n.title),
+      body: BaseStackedContent(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(
-                AppSpace.screenMargin,
-                AppSpace.s8,
-                AppSpace.screenMargin,
-                AppSpace.s8,
-              ),
-              child: BaseFlowHeader(title: l10n.title, onBack: () => context.router.maybePop()),
-            ),
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.fromLTRB(
-                  AppSpace.screenMargin,
-                  AppSpace.s8,
-                  AppSpace.screenMargin,
-                  AppSpace.s34,
-                ),
-                children: const [
-                  _SettingsGroup(children: <Widget>[_BiometricsRow(), _DeleteAccountRow()]),
-                ],
-              ),
-            ),
+            BaseSectionHeader(title: l10n.sectionAccount, isLabel: true),
+            const SizedBox(height: AppSpace.s12),
+            const BaseListGroup(children: <Widget>[_BiometricsRow(), _DeleteAccountRow()]),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class const _SettingsGroup({required final List<Widget> children}) extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final radius = BorderRadius.circular(AppRadius.xxl);
-
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: context.colors.bgSurface,
-        borderRadius: radius,
-        border: AppBorders.hair(context.colors.borderDefault),
-      ),
-      child: ClipRRect(
-        borderRadius: radius,
-        child: Column(children: children),
       ),
     );
   }
@@ -83,9 +46,9 @@ class const _BiometricsRow() extends StatelessWidget {
     return BaseListTile(
       title: context.l10n.settings.optionBiometrics,
       icon: AppIcons.shield,
-      showsDivider: false,
-      trailing: BaseSwitch(
+      control: BaseSwitch(
         value: useBiometrics,
+        semanticLabel: context.l10n.settings.optionBiometrics,
         onChanged: context.read<SettingsCubit>().onUseBiometricsChanged,
       ),
     );

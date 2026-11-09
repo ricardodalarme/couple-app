@@ -27,14 +27,14 @@ updates:
     labels:
       - ":package: dependencies"
   - package-ecosystem: pub
-    directory: /packages/common_ui
+    directory: /packages/ui
     schedule:
       interval: weekly
     commit-message:
       prefix: chore
       include: scope
     groups:
-      packages-common-ui-pub:
+      packages-ui-pub:
         patterns:
           - "*"
     labels:

@@ -1,6 +1,6 @@
-import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:remote_config_service/remote_config_service.dart';
+import 'package:ui/ui.dart';
 
 class const RemoteConfigPage({super.key}) extends StatefulWidget {
   @override
@@ -23,22 +23,34 @@ class _RemoteConfigPageState() extends State<RemoteConfigPage> {
   @override
   Widget build(BuildContext context) {
     return BaseView(
-      title: 'Remote Config',
-      actions: [
-        BaseIconButton(
-          icon: const Icon(Icons.refresh),
-          tooltip: 'Refresh',
+      appBar: BaseAppBar(
+        title: 'Remote Config',
+        trailing: BaseRoundButton(
+          icon: AppIcons.refresh,
+          semanticLabel: 'Refresh',
           onPressed: () => setState(_loadRemoteConfigs),
         ),
-      ],
+      ),
       body: _remoteConfigs.isEmpty
-          ? const Center(child: Text('No remote config data available'))
-          : ListView.builder(
+          ? Center(
+              child: Text(
+                'No remote config data available',
+                style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
+              ),
+            )
+          : ListView.separated(
+              padding: const EdgeInsets.fromLTRB(
+                AppSpace.screenMargin,
+                AppSpace.s8,
+                AppSpace.screenMargin,
+                AppSpace.s8,
+              ),
               itemCount: _remoteConfigs.length,
+              separatorBuilder: (_, _) => const SizedBox(height: AppSpace.s8),
               itemBuilder: (_, index) {
                 final key = _remoteConfigs.keys.elementAt(index);
                 final value = _remoteConfigs[key]!;
-                return BaseListTile(title: key, subtitle: value);
+                return BaseListTile(title: key, subtitle: value, isLoose: true);
               },
             ),
     );

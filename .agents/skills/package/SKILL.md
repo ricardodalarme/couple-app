@@ -14,7 +14,7 @@ directly and the implementation can be swapped.
 | Need | Location | Package name |
 | --- | --- | --- |
 | Shared pure-Dart logic (utils, models, DI contracts) | `packages/<name>/` | `<name>` (e.g. `core`, `network`, `logger`) |
-| Shared Flutter UI | `packages/common_ui` (existing) | `common_ui` |
+| Shared Flutter UI | `packages/ui` (existing) | `ui` |
 | Third-party SDK wrapper | `packages/services/<topic>/` | `<topic>_service` |
 
 Service folders are short (`secure_storage`), package names are suffixed
@@ -63,7 +63,7 @@ Pure-Dart package: drop the `flutter` / `flutter_test` entries and use
 ```yaml
 workspace:
   - app
-  - packages/common_ui
+  - packages/ui
   - packages/core
   # …
   - packages/services/<topic>

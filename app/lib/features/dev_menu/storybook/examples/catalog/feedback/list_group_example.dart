@@ -44,7 +44,6 @@ class _ListGroupDemoState() extends State<_ListGroupDemo> {
                     icon: AppIcons.sun,
                     value: 'Rose',
                     showsChevron: true,
-                    showsDivider: false,
                     onTap: () {},
                   ),
                   BaseListTile(
@@ -88,7 +87,6 @@ class _ListGroupDemoState() extends State<_ListGroupDemo> {
                     title: 'Delete all slips',
                     icon: AppIcons.trash,
                     isDestructive: true,
-                    showsDivider: false,
                     onTap: () {},
                   ),
                 ],

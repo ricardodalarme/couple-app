@@ -3,7 +3,8 @@
     "title": "Feed",
     "textFailure": "Falha ao carregar o feed.",
     "emptyIndicator": {
-      "title": "Nenhum post encontrado"
+      "title": "Nenhum post encontrado",
+      "text": "Novos posts aparecerão aqui."
     }
   }
 }

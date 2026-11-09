@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
@@ -8,9 +7,7 @@ import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 import 'package:flutter_bloc_starter/router/observers/analytics_router_observer.dart';
 import 'package:flutter_bloc_starter/router/observers/log_router_observer.dart';
-import 'package:flutter_bloc_starter/theme/app_theme_bridge.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:ui/ui.dart' show AppThemeHost, AppThemeScope, AppThemeVariant;
+import 'package:ui/ui.dart';
 
 class const App({super.key}) extends StatelessWidget {
   @override
@@ -34,21 +31,15 @@ class const App({super.key}) extends StatelessWidget {
             listener: (_, state) => _onAppStateChanged(state),
             child: Builder(
               builder: (context) {
-                final theme = AppThemeBridge.light(AppThemeScope.of(context));
+                final theme = AppTheme.light(AppThemeScope.of(context));
                 return BaseApp.router(
                   theme: theme,
-                  darkTheme: theme,
                   onGenerateTitle: (context) => context.l10n.common.appName,
                   routerConfig: appRouter.config(
                     navigatorObservers: () => navigatorObservers,
                     deepLinkBuilder: _deepLinkBuilder,
                   ),
                   locale: TranslationProvider.of(context).flutterLocale,
-                  localizationsDelegates: const [
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalCupertinoLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                  ],
                   supportedLocales: AppLocaleUtils.supportedLocales,
                 );
               },

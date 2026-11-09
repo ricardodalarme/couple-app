@@ -31,7 +31,6 @@ final WidgetbookNode tabTemplateExample = WidgetbookComponent(
                     subtitle: 'A note from Marina',
                     icon: AppIcons.mail,
                     showsChevron: true,
-                    showsDivider: false,
                     onTap: () {},
                   ),
                 ],

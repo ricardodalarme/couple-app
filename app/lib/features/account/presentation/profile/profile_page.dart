@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:common_ui/common_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/profile/widgets/image_picker_modal.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
+import 'package:flutter_bloc_starter/features/dev_menu/dev_menu_page.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
+import 'package:ui/ui.dart';
 
 @RoutePage()
 class const ProfilePage({super.key}) extends StatelessWidget {
@@ -13,46 +14,55 @@ class const ProfilePage({super.key}) extends StatelessWidget {
     final l10n = context.l10n.account.profile;
 
     return BaseView(
-      title: l10n.title,
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const _ProfilePictureWithSelect(),
-              const Gap(Spacings.xxlarge),
-              BaseListTile(
-                title: l10n.buttonEditProfile,
-                leading: const Icon(Icons.person),
-                onTap: () => context.pushRoute(const EditProfileRoute()),
+      appBar: BaseAppBar(title: l10n.title),
+      body: BaseStackedContent(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Center(child: _ProfilePictureWithSelect()),
+            const SizedBox(height: AppSpace.s24),
+            BaseListGroup(
+              children: [
+                BaseListTile(
+                  title: l10n.buttonEditProfile,
+                  icon: AppIcons.user,
+                  onTap: () => context.pushRoute(const EditProfileRoute()),
+                ),
+                BaseListTile(
+                  title: l10n.buttonChangePassword,
+                  icon: AppIcons.lock,
+                  onTap: () => context.pushRoute(const ChangePasswordRoute()),
+                ),
+                BaseListTile(
+                  title: l10n.buttonSettings,
+                  icon: AppIcons.settings,
+                  onTap: () => context.pushRoute(const SettingsRoute()),
+                ),
+                BaseListTile(
+                  title: l10n.buttonPrivacyPolicy,
+                  icon: AppIcons.shield,
+                  onTap: () => context.pushRoute(const PrivacyPolicyRoute()),
+                ),
+                BaseListTile(
+                  title: l10n.buttonTerms,
+                  icon: AppIcons.note,
+                  onTap: () => context.pushRoute(const TermsListRoute()),
+                ),
+                BaseListTile(
+                  title: l10n.buttonLogout,
+                  icon: AppIcons.logout,
+                  onTap: context.read<AppCubit>().logout,
+                ),
+              ],
+            ),
+            const SizedBox(height: AppSpace.s24),
+            Center(
+              child: BaseTextLink(
+                text: 'Dev Menu',
+                onPressed: () => context.router.pushWidget(const DevMenuPage()),
               ),
-              BaseListTile(
-                title: l10n.buttonChangePassword,
-                leading: const Icon(Icons.lock),
-                onTap: () => context.pushRoute(const ChangePasswordRoute()),
-              ),
-              BaseListTile(
-                title: l10n.buttonSettings,
-                leading: const Icon(Icons.settings),
-                onTap: () => context.pushRoute(const SettingsRoute()),
-              ),
-              BaseListTile(
-                title: l10n.buttonPrivacyPolicy,
-                leading: const Icon(Icons.privacy_tip),
-                onTap: () => context.pushRoute(const PrivacyPolicyRoute()),
-              ),
-              BaseListTile(
-                title: l10n.buttonTerms,
-                leading: const Icon(Icons.description),
-                onTap: () => context.pushRoute(const TermsListRoute()),
-              ),
-              BaseListTile(
-                title: l10n.buttonLogout,
-                leading: const Icon(Icons.logout),
-                onTap: context.read<AppCubit>().logout,
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -68,21 +78,21 @@ class const _ProfilePictureWithSelect() extends StatelessWidget {
 
     return Stack(
       children: [
-        const BaseAvatar(photoUrl: null, size: _profilePictureSize),
+        const BaseAvatar(size: _profilePictureSize),
         Positioned(
           bottom: 0,
           right: 0,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: context.palette.container,
+              color: context.colors.bgSurface,
               shape: BoxShape.circle,
-              border: Border.all(color: context.palette.onContainer, width: 2),
+              border: Border.all(color: context.colors.textPrimary, width: AppBorder.focus),
             ),
-            child: BaseIconButton(
-              color: context.palette.onContainer,
-              tooltip: l10n.buttonChangePicture,
-              onPressed: () => context.showBottomSheet<void>((_) => const ImagePickerModal()),
-              icon: const Icon(Icons.camera_alt),
+            child: BaseRoundButton(
+              icon: AppIcons.camera,
+              semanticLabel: l10n.buttonChangePicture,
+              onPressed: () =>
+                  BaseSheet.show<void>(context: context, child: const ImagePickerModal()),
             ),
           ),
         ),

@@ -15,9 +15,7 @@ final WidgetbookNode stackedTemplateExample = WidgetbookComponent(
             children: [
               const BaseSectionHeader(title: 'Account', isLabel: true),
               BaseListGroup(
-                children: [
-                  BaseListTile(title: 'Name', value: 'Marina', showsDivider: false, onTap: () {}),
-                ],
+                children: [BaseListTile(title: 'Name', value: 'Marina', onTap: () {})],
               ),
               const SizedBox(height: AppSpace.s24),
               const BaseSectionHeader(title: 'Privacy', isLabel: true),
@@ -34,7 +32,6 @@ final WidgetbookNode stackedTemplateExample = WidgetbookComponent(
                     title: 'Download your data',
                     icon: AppIcons.note,
                     showsChevron: true,
-                    showsDivider: false,
                     onTap: () {},
                   ),
                 ],

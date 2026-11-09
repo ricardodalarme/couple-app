@@ -1,9 +1,9 @@
-import 'package:common_ui/common_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/models/app_notification.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/inbox/cubit/notifications_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:formatters/formatters.dart';
+import 'package:ui/ui.dart';
 
 class const NotificationTile({required final AppNotification notification, super.key})
     extends StatelessWidget {
@@ -14,30 +14,21 @@ class const NotificationTile({required final AppNotification notification, super
     return Semantics(
       label: notification.isUnread ? l10n.semanticsUnread : null,
       child: BaseListTile(
-        leading: _NotificationIcon(kind: notification.kind),
+        icon: _iconFor(notification.kind),
         title: notification.title,
         subtitle: notification.body,
         trailing: _NotificationMeta(notification: notification),
+        isLoose: true,
         onTap: () => context.read<NotificationsCubit>().markRead(notification.id),
       ),
     );
   }
-}
 
-class const _NotificationIcon({required final String kind}) extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final icon = switch (kind) {
-      'post' => Icons.article_outlined,
-      'system' => Icons.info_outline,
-      _ => Icons.notifications_none,
-    };
-
-    return DecoratedBox(
-      decoration: BoxDecoration(color: context.palette.container, shape: BoxShape.circle),
-      child: Padding(padding: const EdgeInsets.all(Spacings.small), child: Icon(icon)),
-    );
-  }
+  IconData _iconFor(String kind) => switch (kind) {
+    'post' => AppIcons.note,
+    'system' => AppIcons.info,
+    _ => AppIcons.bell,
+  };
 }
 
 class const _NotificationMeta({required final AppNotification notification})
@@ -48,10 +39,10 @@ class const _NotificationMeta({required final AppNotification notification})
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        if (notification.isUnread) ...[const _UnreadDot(), const Gap(Spacings.xsmall)],
+        if (notification.isUnread) ...[const _UnreadDot(), const SizedBox(height: AppSpace.s4)],
         Text(
           DateFormatters.shortDateTime(notification.createdAt.toLocal()),
-          style: context.typography.bodySmall,
+          style: context.text.caption.copyWith(color: context.colors.textSecondary),
         ),
       ],
     );
@@ -59,15 +50,13 @@ class const _NotificationMeta({required final AppNotification notification})
 }
 
 class const _UnreadDot() extends StatelessWidget {
-  static const double _size = Spacings.small;
-
   @override
   Widget build(BuildContext context) {
     return Container(
       key: const Key('notification-unread-dot'),
-      width: _size,
-      height: _size,
-      decoration: BoxDecoration(color: context.palette.error, shape: BoxShape.circle),
+      width: AppSpace.s8,
+      height: AppSpace.s8,
+      decoration: BoxDecoration(color: context.colors.accentLabel, shape: BoxShape.circle),
     );
   }
 }

@@ -248,6 +248,9 @@ class Translations$search$en {
 
   /// en: 'Search'
   String get title => 'Search';
+
+  /// en: 'Search'
+  String get fieldSearchHint => 'Search';
 }
 
 // Path: settings
@@ -260,6 +263,9 @@ class Translations$settings$en {
 
   /// en: 'Settings'
   String get title => 'Settings';
+
+  /// en: 'Account'
+  String get sectionAccount => 'Account';
 
   /// en: 'Biometrics'
   String get optionBiometrics => 'Biometrics';
@@ -605,6 +611,9 @@ class Translations$post$list$emptyIndicator$en {
 
   /// en: 'No posts found'
   String get title => 'No posts found';
+
+  /// en: 'New posts will appear here.'
+  String get text => 'New posts will appear here.';
 }
 
 /// The flat map containing all translations for locale <en>.
@@ -747,9 +756,12 @@ extension on Translations {
       'post.list.title' => 'Feed',
       'post.list.textFailure' => 'Failed to load feed.',
       'post.list.emptyIndicator.title' => 'No posts found',
+      'post.list.emptyIndicator.text' => 'New posts will appear here.',
       'privacyPolicy.title' => 'Privacy Policy',
       'search.title' => 'Search',
+      'search.fieldSearchHint' => 'Search',
       'settings.title' => 'Settings',
+      'settings.sectionAccount' => 'Account',
       'settings.optionBiometrics' => 'Biometrics',
       'terms.list.title' => 'Terms',
       _ => null,

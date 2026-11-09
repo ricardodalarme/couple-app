@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +8,7 @@ import 'package:flutter_bloc_starter/features/authentication/presentation/signup
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
+import 'package:ui/ui.dart';
 
 @RoutePage()
 class const SignUpPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
@@ -23,31 +23,27 @@ class const SignUpPage({super.key}) extends StatelessWidget implements AutoRoute
     final loginL10n = context.l10n.authentication.login;
 
     return BaseView(
-      title: l10n.title,
+      appBar: BaseAppBar(title: l10n.title),
       body: BlocListener<SignupCubit, SignupState>(
         listenWhen: (previous, current) => previous.submission != current.submission,
         listener: _handleStatus,
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(Spacings.large),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const _EmailTextField(),
-                const Gap(Spacings.medium),
-                const _PasswordTextField(),
-                const Gap(Spacings.medium),
-                const _ConfirmPasswordTextField(),
-                const Gap(Spacings.large),
-                const _SubmitButton(),
-                BaseDivider.text(
-                  text: loginL10n.dividerOr,
-                  startMargin: Spacings.large,
-                  endMargin: Spacings.large,
-                ),
-                const _SignInWithThirdPartyButtons(),
-              ],
-            ),
+        child: BaseStackedContent(
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const _EmailTextField(),
+              const SizedBox(height: AppSpace.s12),
+              const _PasswordTextField(),
+              const SizedBox(height: AppSpace.s12),
+              const _ConfirmPasswordTextField(),
+              const SizedBox(height: AppSpace.s16),
+              const _SubmitButton(),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: AppSpace.s16),
+                child: BaseDivider(label: loginL10n.dividerOr),
+              ),
+              const _SignInWithThirdPartyButtons(),
+            ],
           ),
         ),
       ),
@@ -61,10 +57,7 @@ class const SignUpPage({super.key}) extends StatelessWidget implements AutoRoute
       case Success():
         context.router.replaceAll([const HomeRoute()]);
       case Failure(:final LocalizedException exception):
-        context.showSnackBar(
-          l10n.errors.selectOrFallback(exception.l10nKey),
-          type: SnackBarType.error,
-        );
+        BaseToast.show(context, l10n.errors.selectOrFallback(exception.l10nKey));
       default:
         break;
     }
@@ -78,11 +71,11 @@ class const _EmailTextField() extends StatelessWidget {
     final email = context.select((SignupCubit cubit) => cubit.state.email);
 
     return BaseTextField(
+      type: BaseTextFieldType.email,
       text: email.value,
       label: context.l10n.common.email,
       errorText: l10n.emailErrors[email.displayError?.name],
       onChanged: context.read<SignupCubit>().onEmailChanged,
-      keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
     );
   }
@@ -145,7 +138,7 @@ class const _SignInWithThirdPartyButtons() extends StatelessWidget {
     final loginL10n = context.l10n.authentication.login;
 
     return Column(
-      spacing: Spacings.small,
+      spacing: AppSpace.s8,
       children: [
         SocialButton(
           ButtonProvider.google,

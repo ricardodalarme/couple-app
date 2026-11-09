@@ -14,9 +14,6 @@ dependencies:
   auto_route: ^11.2.0
   biometric_service:
     path: ../packages/services/biometric
-  cached_network_image: ^4.0.6
-  common_ui:
-    path: ../packages/common_ui
   connectivity_service:
     path: ../packages/services/connectivity
   core:
@@ -32,8 +29,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
-  flutter_localizations:
-    sdk: flutter
   form_inputs:
     path: ../packages/form_inputs
   formatters:
@@ -80,5 +75,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/logos/
   config:
     enable-swift-package-manager: true

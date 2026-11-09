@@ -1,22 +1,36 @@
-import 'package:common_ui/common_ui.dart';
+import 'dart:async';
+
+import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
+import 'package:ui/ui.dart';
 
 class const ThemeSelectorPage({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final themeProvider = ThemeModeProvider.of(context);
-    final currentThemeMode = themeProvider.themeMode;
+    final current = AppThemeScope.of(context);
 
     return BaseView(
-      title: 'Theme Selector',
-      body: RadioGroup(
-        groupValue: currentThemeMode,
-        onChanged: (mode) => themeProvider.setThemeMode(mode!),
-        child: ListView(
-          children: ThemeMode.values
-              .map((mode) => BaseRadioListTile(value: mode, title: mode.name))
-              .toList(),
+      appBar: const BaseAppBar(title: 'Theme Selector'),
+      body: BaseStackedContent(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          spacing: AppSpace.s10,
+          children: [
+            for (final variant in AppThemeVariant.values)
+              BaseOptionTile(
+                title: variant.name,
+                isSelected: variant == current,
+                onTap: () => unawaited(_select(context, variant)),
+              ),
+          ],
         ),
       ),
     );
+  }
+
+  Future<void> _select(BuildContext context, AppThemeVariant variant) async {
+    AppThemeScope.set(context, variant);
+    final repository = AppInjector.instance.get<SettingsRepository>();
+    await repository.save(repository.get().copyWith(themeVariant: variant.name));
   }
 }
