@@ -27,6 +27,22 @@ class AcceptInviteRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [AppPreferencesPage]
+class AppPreferencesRoute extends PageRouteInfo<void> {
+  const AppPreferencesRoute({List<PageRouteInfo>? children})
+    : super(AppPreferencesRoute.name, initialChildren: children);
+
+  static const String name = 'AppPreferencesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AppPreferencesPage();
+    },
+  );
+}
+
+/// generated route for
 /// [BadDayPage]
 class BadDayRoute extends PageRouteInfo<void> {
   const BadDayRoute({List<PageRouteInfo>? children})
@@ -461,6 +477,22 @@ class InviteRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const InvitePage());
+    },
+  );
+}
+
+/// generated route for
+/// [LanguagePage]
+class LanguageRoute extends PageRouteInfo<void> {
+  const LanguageRoute({List<PageRouteInfo>? children})
+    : super(LanguageRoute.name, initialChildren: children);
+
+  static const String name = 'LanguageRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LanguagePage();
     },
   );
 }

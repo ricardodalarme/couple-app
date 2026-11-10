@@ -1,0 +1,17 @@
+{
+  "title": "Preferências do app",
+  "textSizeLabel": "Tamanho do texto",
+  "textSizeSmall": "Pequeno",
+  "textSizeMedium": "Médio",
+  "textSizeLarge": "Grande",
+  "textSizeExtraLarge": "Maior",
+  "reduceMotion": "Reduzir movimento",
+  "highContrast": "Alto contraste",
+  "language": "Idioma",
+  "languagePortuguese": "Português (Brasil)",
+  "languageEnglish": "Inglês",
+  "comingSoon": "Em breve",
+  "languageNote": "O inglês fica completo depois.",
+  "colourInProfile": "A cor do app fica no Perfil.",
+  "saveError": "Não foi possível salvar. Tente novamente."
+}

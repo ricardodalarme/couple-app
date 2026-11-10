@@ -57,6 +57,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$account$pt account = Translations$account$pt.internal(_root);
+  late final Translations$appPreferences$pt appPreferences =
+      Translations$appPreferences$pt.internal(_root);
   late final Translations$authentication$pt authentication =
       Translations$authentication$pt.internal(_root);
   late final Translations$cardView$pt cardView = Translations$cardView$pt.internal(_root);
@@ -248,6 +250,60 @@ class Translations$account$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para concluir agora. Tente de novo.',
   };
+}
+
+// Path: appPreferences
+class Translations$appPreferences$pt {
+  Translations$appPreferences$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Preferências do app'
+  String get title => 'Preferências do app';
+
+  /// pt: 'Tamanho do texto'
+  String get textSizeLabel => 'Tamanho do texto';
+
+  /// pt: 'Pequeno'
+  String get textSizeSmall => 'Pequeno';
+
+  /// pt: 'Médio'
+  String get textSizeMedium => 'Médio';
+
+  /// pt: 'Grande'
+  String get textSizeLarge => 'Grande';
+
+  /// pt: 'Maior'
+  String get textSizeExtraLarge => 'Maior';
+
+  /// pt: 'Reduzir movimento'
+  String get reduceMotion => 'Reduzir movimento';
+
+  /// pt: 'Alto contraste'
+  String get highContrast => 'Alto contraste';
+
+  /// pt: 'Idioma'
+  String get language => 'Idioma';
+
+  /// pt: 'Português (Brasil)'
+  String get languagePortuguese => 'Português (Brasil)';
+
+  /// pt: 'Inglês'
+  String get languageEnglish => 'Inglês';
+
+  /// pt: 'Em breve'
+  String get comingSoon => 'Em breve';
+
+  /// pt: 'O inglês fica completo depois.'
+  String get languageNote => 'O inglês fica completo depois.';
+
+  /// pt: 'A cor do app fica no Perfil.'
+  String get colourInProfile => 'A cor do app fica no Perfil.';
+
+  /// pt: 'Não foi possível salvar. Tente novamente.'
+  String get saveError => 'Não foi possível salvar. Tente novamente.';
 }
 
 // Path: authentication
@@ -2761,6 +2817,15 @@ class Translations$settingsHome$pt {
 
   /// pt: 'Perguntas e contato'
   String get helpStatus => 'Perguntas e contato';
+
+  /// pt: 'Preferências do app'
+  String get appPreferences => 'Preferências do app';
+
+  /// pt: 'Aparência, texto e idioma'
+  String get appPreferencesStatus => 'Aparência, texto e idioma';
+
+  /// pt: 'Idioma'
+  String get language => 'Idioma';
 }
 
 // Path: slipDetail
@@ -4536,6 +4601,21 @@ extension on Translations {
           'account.months.11' => 'dez',
           'account.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'account.errors.other' => 'Não deu para concluir agora. Tente de novo.',
+          'appPreferences.title' => 'Preferências do app',
+          'appPreferences.textSizeLabel' => 'Tamanho do texto',
+          'appPreferences.textSizeSmall' => 'Pequeno',
+          'appPreferences.textSizeMedium' => 'Médio',
+          'appPreferences.textSizeLarge' => 'Grande',
+          'appPreferences.textSizeExtraLarge' => 'Maior',
+          'appPreferences.reduceMotion' => 'Reduzir movimento',
+          'appPreferences.highContrast' => 'Alto contraste',
+          'appPreferences.language' => 'Idioma',
+          'appPreferences.languagePortuguese' => 'Português (Brasil)',
+          'appPreferences.languageEnglish' => 'Inglês',
+          'appPreferences.comingSoon' => 'Em breve',
+          'appPreferences.languageNote' => 'O inglês fica completo depois.',
+          'appPreferences.colourInProfile' => 'A cor do app fica no Perfil.',
+          'appPreferences.saveError' => 'Não foi possível salvar. Tente novamente.',
           'authentication.signInTitle' => 'Entrar',
           'authentication.signInSubtitle' => 'Sem e-mail e senha. Só Apple ou Google.',
           'authentication.signInNote' => 'Entrar leva direto para o seu Hoje.',
@@ -5044,6 +5124,9 @@ extension on Translations {
           'mood.partnerLoving' => ({
             required Object name,
           }) => '${name} está com o coração quentinho hoje',
+          _ => null,
+        } ??
+        switch (path) {
           'mood.partnerPlayful' => ({
             required Object name,
           }) => '${name} está com vontade de brincar hoje',
@@ -5107,9 +5190,6 @@ extension on Translations {
           'notificationPreferences.cardDay' => 'Dia',
           'notificationPreferences.cardHour' => 'Horário',
           'notificationPreferences.days.0' => 'Domingo',
-          _ => null,
-        } ??
-        switch (path) {
           'notificationPreferences.days.1' => 'Segunda',
           'notificationPreferences.days.2' => 'Terça',
           'notificationPreferences.days.3' => 'Quarta',
@@ -5119,9 +5199,6 @@ extension on Translations {
           'notificationPreferences.hourFormat' => ({required Object hour}) => '${hour}:00',
           'notificationPreferences.previewTitle' => 'Como a notificação aparece',
           'notificationPreferences.previewText' => 'Sempre curta e sem detalhes pessoais.',
-          _ => null,
-        } ??
-        switch (path) {
           'notificationPreferences.loadErrorTitle' => 'Não deu para abrir suas preferências',
           'notificationPreferences.loadErrorText' => 'Elas continuam salvas. Tente de novo.',
           'notificationPreferences.errors.RATE_LIMITED' =>
@@ -5646,6 +5723,9 @@ extension on Translations {
           'settingsHome.pendingBannerSimple' => 'Sua conta será apagada em breve.',
           'settingsHome.help' => 'Ajuda e suporte',
           'settingsHome.helpStatus' => 'Perguntas e contato',
+          'settingsHome.appPreferences' => 'Preferências do app',
+          'settingsHome.appPreferencesStatus' => 'Aparência, texto e idioma',
+          'settingsHome.language' => 'Idioma',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -5686,6 +5766,9 @@ extension on Translations {
           'slipDetail.cardOffText' => 'Fica na sua semana e não entra no cartão.',
           'slipDetail.cardOn' => 'Pode entrar no cartão',
           'slipDetail.cardOnText' => 'No domingo você escolhe se ele vai.',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.cardInvisible' => 'Slips invisíveis nunca entram em um cartão.',
           'slipDetail.previewTitle' => 'O que seu par leria',
           'slipDetail.previewText' => 'Se este slip entrar no cartão, é este texto que aparece.',
@@ -5752,9 +5835,6 @@ extension on Translations {
           'slipKind.saved.done' => 'Pronto',
           'slipKind.errors.FREE_LIMIT_REACHED' => 'Você chegou ao limite de slips do plano grátis.',
           'slipKind.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          _ => null,
-        } ??
-        switch (path) {
           'slipKind.errors.other' =>
             'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
           'slipsList.title' => 'Slips',
@@ -5777,9 +5857,6 @@ extension on Translations {
           }) => '${weekday} · ${category}',
           'slipsList.weekdaysShort.0' => 'Seg',
           'slipsList.weekdaysShort.1' => 'Ter',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.weekdaysShort.2' => 'Qua',
           'slipsList.weekdaysShort.3' => 'Qui',
           'slipsList.weekdaysShort.4' => 'Sex',

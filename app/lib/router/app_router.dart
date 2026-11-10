@@ -53,6 +53,8 @@ import 'package:flutter_bloc_starter/features/safety/presentation/neutral/neutra
 import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/safe_mode_page.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/discreet/discreet_page.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/home/settings_home_page.dart';
+import 'package:flutter_bloc_starter/features/settings/presentation/language/language_page.dart';
+import 'package:flutter_bloc_starter/features/settings/presentation/preferences/app_preferences_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/need/need_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/quick_slip_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/slip_detail_page.dart';
@@ -107,6 +109,8 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: ManagePlusRoute.page),
     AutoRoute(page: RestorePurchasesRoute.page),
     AutoRoute(page: SettingsHomeRoute.page),
+    AutoRoute(page: AppPreferencesRoute.page),
+    AutoRoute(page: LanguageRoute.page),
     AutoRoute(page: HelpRoute.page),
     AutoRoute(page: SupportRoute.page),
     AutoRoute(page: DiscreetModeRoute.page),

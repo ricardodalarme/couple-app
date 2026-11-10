@@ -56,6 +56,10 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$account$en account = _Translations$account$en._(_root);
   @override
+  late final _Translations$appPreferences$en appPreferences = _Translations$appPreferences$en._(
+    _root,
+  );
+  @override
   late final _Translations$authentication$en authentication = _Translations$authentication$en._(
     _root,
   );
@@ -267,6 +271,45 @@ class _Translations$account$en extends Translations$account$pt {
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'Could not finish now. Try again.',
   };
+}
+
+// Path: appPreferences
+class _Translations$appPreferences$en extends Translations$appPreferences$pt {
+  _Translations$appPreferences$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'App preferences';
+  @override
+  String get textSizeLabel => 'Text size';
+  @override
+  String get textSizeSmall => 'Small';
+  @override
+  String get textSizeMedium => 'Medium';
+  @override
+  String get textSizeLarge => 'Large';
+  @override
+  String get textSizeExtraLarge => 'Larger';
+  @override
+  String get reduceMotion => 'Reduce motion';
+  @override
+  String get highContrast => 'High contrast';
+  @override
+  String get language => 'Language';
+  @override
+  String get languagePortuguese => 'Portuguese (Brazil)';
+  @override
+  String get languageEnglish => 'English';
+  @override
+  String get comingSoon => 'Coming soon';
+  @override
+  String get languageNote => 'English is finished later.';
+  @override
+  String get colourInProfile => 'The app colour is in Profile.';
+  @override
+  String get saveError => 'Could not save. Try again.';
 }
 
 // Path: authentication
@@ -2256,6 +2299,12 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   String get help => 'Help and support';
   @override
   String get helpStatus => 'FAQ and contact';
+  @override
+  String get appPreferences => 'App preferences';
+  @override
+  String get appPreferencesStatus => 'Appearance, text and language';
+  @override
+  String get language => 'Language';
 }
 
 // Path: slipDetail
@@ -3717,6 +3766,21 @@ extension on TranslationsEn {
           'account.months.11' => 'Dec',
           'account.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'account.errors.other' => 'Could not finish now. Try again.',
+          'appPreferences.title' => 'App preferences',
+          'appPreferences.textSizeLabel' => 'Text size',
+          'appPreferences.textSizeSmall' => 'Small',
+          'appPreferences.textSizeMedium' => 'Medium',
+          'appPreferences.textSizeLarge' => 'Large',
+          'appPreferences.textSizeExtraLarge' => 'Larger',
+          'appPreferences.reduceMotion' => 'Reduce motion',
+          'appPreferences.highContrast' => 'High contrast',
+          'appPreferences.language' => 'Language',
+          'appPreferences.languagePortuguese' => 'Portuguese (Brazil)',
+          'appPreferences.languageEnglish' => 'English',
+          'appPreferences.comingSoon' => 'Coming soon',
+          'appPreferences.languageNote' => 'English is finished later.',
+          'appPreferences.colourInProfile' => 'The app colour is in Profile.',
+          'appPreferences.saveError' => 'Could not save. Try again.',
           'authentication.signInTitle' => 'Sign in',
           'authentication.signInSubtitle' => 'No email and password. Just Apple or Google.',
           'authentication.signInNote' => 'Signing in takes you straight to your Today.',
@@ -4214,6 +4278,9 @@ extension on TranslationsEn {
             required Object name,
           }) => '${name} has a lot on their mind today',
           'mood.partnerLoving' => ({required Object name}) => '${name} is feeling tender today',
+          _ => null,
+        } ??
+        switch (path) {
           'mood.partnerPlayful' => ({required Object name}) => '${name} is in a playful mood today',
           'mood.partnerNeedListen' => 'What helps: just listening.',
           'mood.partnerNeedOpinion' => 'What helps: an opinion.',
@@ -4276,9 +4343,6 @@ extension on TranslationsEn {
           'notificationPreferences.cardDay' => 'Day',
           'notificationPreferences.cardHour' => 'Time',
           'notificationPreferences.days.0' => 'Sunday',
-          _ => null,
-        } ??
-        switch (path) {
           'notificationPreferences.days.1' => 'Monday',
           'notificationPreferences.days.2' => 'Tuesday',
           'notificationPreferences.days.3' => 'Wednesday',
@@ -4288,9 +4352,6 @@ extension on TranslationsEn {
           'notificationPreferences.hourFormat' => ({required Object hour}) => '${hour}:00',
           'notificationPreferences.previewTitle' => 'How a notification looks',
           'notificationPreferences.previewText' => 'Always short, with no personal details.',
-          _ => null,
-        } ??
-        switch (path) {
           'notificationPreferences.loadErrorTitle' => 'Couldn\'t open your preferences',
           'notificationPreferences.loadErrorText' => 'They are still saved. Try again.',
           'notificationPreferences.errors.RATE_LIMITED' =>
@@ -4809,6 +4870,9 @@ extension on TranslationsEn {
           'settingsHome.pendingBannerSimple' => 'Your account will be deleted soon.',
           'settingsHome.help' => 'Help and support',
           'settingsHome.helpStatus' => 'FAQ and contact',
+          'settingsHome.appPreferences' => 'App preferences',
+          'settingsHome.appPreferencesStatus' => 'Appearance, text and language',
+          'settingsHome.language' => 'Language',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -4849,6 +4913,9 @@ extension on TranslationsEn {
           'slipDetail.cardOffText' => 'Stays in your week and does not go in the card.',
           'slipDetail.cardOn' => 'Can go in the card',
           'slipDetail.cardOnText' => 'On Sunday you choose whether it goes.',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.cardInvisible' => 'Invisible slips never go in a card.',
           'slipDetail.previewTitle' => 'What your partner would read',
           'slipDetail.previewText' => 'If this slip goes in the card, this is the text that shows.',
@@ -4916,9 +4983,6 @@ extension on TranslationsEn {
           'slipKind.saved.done' => 'Done',
           'slipKind.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
           'slipKind.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
-          _ => null,
-        } ??
-        switch (path) {
           'slipKind.errors.other' =>
             'Couldn\'t save right now. Your text is still here, try again.',
           'slipsList.title' => 'Slips',
@@ -4941,9 +5005,6 @@ extension on TranslationsEn {
           }) => '${weekday} · ${category}',
           'slipsList.weekdaysShort.0' => 'Mon',
           'slipsList.weekdaysShort.1' => 'Tue',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.weekdaysShort.2' => 'Wed',
           'slipsList.weekdaysShort.3' => 'Thu',
           'slipsList.weekdaysShort.4' => 'Fri',

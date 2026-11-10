@@ -24,5 +24,8 @@
   "pendingAction": "Ver",
   "pendingBannerSimple": "Sua conta será apagada em breve.",
   "help": "Ajuda e suporte",
-  "helpStatus": "Perguntas e contato"
+  "helpStatus": "Perguntas e contato",
+  "appPreferences": "Preferências do app",
+  "appPreferencesStatus": "Aparência, texto e idioma",
+  "language": "Idioma"
 }

@@ -7,8 +7,8 @@ typedef AppThemeData = ThemeData;
 
 /// Builds the three light themes.
 abstract final class AppTheme() {
-  static ThemeData light(AppThemeVariant variant) {
-    final colors = AppColors.forVariant(variant);
+  static ThemeData light(AppThemeVariant variant, {bool highContrast = false}) {
+    final colors = AppColors.forVariant(variant, highContrast: highContrast);
 
     return ThemeData(
       brightness: Brightness.light,

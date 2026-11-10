@@ -24,5 +24,8 @@
   "pendingAction": "See",
   "pendingBannerSimple": "Your account will be deleted soon.",
   "help": "Help and support",
-  "helpStatus": "FAQ and contact"
+  "helpStatus": "FAQ and contact",
+  "appPreferences": "App preferences",
+  "appPreferencesStatus": "Appearance, text and language",
+  "language": "Language"
 }

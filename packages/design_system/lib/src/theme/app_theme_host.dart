@@ -9,6 +9,7 @@ import 'package:material_ui/material_ui.dart' show Theme;
 class const AppThemeHost({
   required final AppThemeVariant initialVariant,
   required final Widget child,
+  final bool highContrast = false,
   super.key,
 }) extends StatefulWidget {
   @override
@@ -31,7 +32,7 @@ class _AppThemeHostState() extends State<AppThemeHost> {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: AppTheme.light(_variant),
+      data: AppTheme.light(_variant, highContrast: widget.highContrast),
       child: AppThemeScope(variant: _variant, onChanged: _setVariant, child: widget.child),
     );
   }

@@ -8,6 +8,10 @@ final class const Settings({
   final String? introPhase,
   final List<String> introGoals = const [],
   final bool introUploaded = false,
+  final double textScale = 1,
+  final bool reduceMotion = false,
+  final bool highContrast = false,
+  final String locale = 'pt',
 }) with Equatable {
   const new empty() : this();
 
@@ -18,6 +22,10 @@ final class const Settings({
     introPhase: map['introPhase'] as String?,
     introGoals: (map['introGoals'] as List<dynamic>?)?.cast<String>() ?? const [],
     introUploaded: map['introUploaded'] as bool? ?? false,
+    textScale: (map['textScale'] as num?)?.toDouble() ?? 1,
+    reduceMotion: map['reduceMotion'] as bool? ?? false,
+    highContrast: map['highContrast'] as bool? ?? false,
+    locale: map['locale'] as String? ?? 'pt',
   );
 
   /// Whether the answers still have to be sent to the server.
@@ -31,6 +39,10 @@ final class const Settings({
     String? introPhase,
     List<String>? introGoals,
     bool? introUploaded,
+    double? textScale,
+    bool? reduceMotion,
+    bool? highContrast,
+    String? locale,
   }) => Settings(
     useBiometrics: useBiometrics ?? this.useBiometrics,
     themeVariant: themeVariant ?? this.themeVariant,
@@ -38,6 +50,10 @@ final class const Settings({
     introPhase: introPhase ?? this.introPhase,
     introGoals: introGoals ?? this.introGoals,
     introUploaded: introUploaded ?? this.introUploaded,
+    textScale: textScale ?? this.textScale,
+    reduceMotion: reduceMotion ?? this.reduceMotion,
+    highContrast: highContrast ?? this.highContrast,
+    locale: locale ?? this.locale,
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -47,6 +63,10 @@ final class const Settings({
     'introPhase': introPhase,
     'introGoals': introGoals,
     'introUploaded': introUploaded,
+    'textScale': textScale,
+    'reduceMotion': reduceMotion,
+    'highContrast': highContrast,
+    'locale': locale,
   };
 
   @override
@@ -57,5 +77,9 @@ final class const Settings({
     introPhase,
     introGoals,
     introUploaded,
+    textScale,
+    reduceMotion,
+    highContrast,
+    locale,
   ];
 }

@@ -10,6 +10,7 @@ import 'package:flutter_bloc_starter/features/settings/data/repositories/discree
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/home/cubit/settings_home_cubit.dart';
+import 'package:flutter_bloc_starter/features/settings/presentation/preferences/cubit/app_preferences_cubit.dart';
 import 'package:preferences_service/preferences_service.dart';
 
 class SettingsInjectionModule() implements InjectionModule {
@@ -42,5 +43,8 @@ class SettingsInjectionModule() implements InjectionModule {
     )
     ..registerLazySingleton<SettingsRepository>(
       () => SettingsRepository(localDataSource: injector.get<SettingsLocalDataSource>()),
+    )
+    ..registerLazySingleton<AppPreferencesCubit>(
+      () => AppPreferencesCubit(repository: injector.get<SettingsRepository>()),
     );
 }
