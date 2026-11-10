@@ -1,6 +1,8 @@
 import 'package:flutter_bloc_starter/features/pairing/data/data_sources/pairing_data_source.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/data_sources/pairing_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/models/active_invite.dart';
+import 'package:flutter_bloc_starter/features/profile/data/mappers/profile_mapper.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:logger/logger.dart';
 
 class PairingRepository({
@@ -30,6 +32,28 @@ class PairingRepository({
       return invite;
     } catch (e, stack) {
       _logger.error('Failed to create an invite', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Whether [code] connected the two people. `false` covers every code that cannot be used.
+  Future<bool> acceptInvite(String code) async {
+    try {
+      final connected = await _pairingDataSource.acceptInvite(code);
+      if (connected) await _localDataSource.clear();
+      return connected;
+    } catch (e, stack) {
+      _logger.error('Failed to accept an invite', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// The connected partner, or `null` when the person is not paired.
+  Future<Profile?> getPartner() async {
+    try {
+      return (await _pairingDataSource.getMyPartner())?.toModel();
+    } catch (e, stack) {
+      _logger.error('Failed to load the partner', error: e, stackTrace: stack);
       rethrow;
     }
   }

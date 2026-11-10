@@ -53,6 +53,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
       Translations(meta: meta ?? this.$meta);
 
   // Translations
+  late final Translations$acceptInvite$pt acceptInvite = Translations$acceptInvite$pt.internal(
+    _root,
+  );
   late final Translations$authentication$pt authentication =
       Translations$authentication$pt.internal(_root);
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
@@ -69,6 +72,49 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$quickSlip$pt quickSlip = Translations$quickSlip$pt.internal(_root);
   late final Translations$tabs$pt tabs = Translations$tabs$pt.internal(_root);
   late final Translations$welcome$pt welcome = Translations$welcome$pt.internal(_root);
+}
+
+// Path: acceptInvite
+class Translations$acceptInvite$pt {
+  Translations$acceptInvite$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Tem um convite?'
+  String get title => 'Tem um convite?';
+
+  /// pt: 'convite'
+  String get titleHighlight => 'convite';
+
+  /// pt: 'Digite o código que a outra pessoa enviou para vocês se conectarem.'
+  String get subtitle => 'Digite o código que a outra pessoa enviou para vocês se conectarem.';
+
+  /// pt: 'Código do convite'
+  String get codeLabel => 'Código do convite';
+
+  /// pt: 'ABCD2345'
+  String get codeHint => 'ABCD2345';
+
+  /// pt: 'Aceitar compartilha cartões e ferramentas. Suas notas privadas continuam privadas.'
+  String get privacyNote =>
+      'Aceitar compartilha cartões e ferramentas. Suas notas privadas continuam privadas.';
+
+  /// pt: 'Aceitar'
+  String get accept => 'Aceitar';
+
+  late final Translations$acceptInvite$connected$pt connected =
+      Translations$acceptInvite$connected$pt.internal(_root);
+  late final Translations$acceptInvite$unusable$pt unusable =
+      Translations$acceptInvite$unusable$pt.internal(_root);
+  Map<String, String> get errors => {
+    'ALREADY_PAIRED': 'Você já está conectado com alguém.',
+    'COUPLE_FULL': 'Esse espaço já tem duas pessoas.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um pouco e tente de novo.',
+    'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
+    'other': 'Não deu para conectar agora. Tente de novo.',
+  };
 }
 
 // Path: authentication
@@ -352,6 +398,9 @@ class Translations$partnerStep$pt {
   /// pt: 'Seus slips ficam só com você'
   String get aloneSupport => 'Seus slips ficam só com você';
 
+  /// pt: 'Tenho um código de convite'
+  String get haveCode => 'Tenho um código de convite';
+
   /// pt: 'Continuar'
   String get continueButton => 'Continuar';
 }
@@ -564,6 +613,52 @@ class Translations$welcome$pt {
   String get debugSignIn => 'Entrar (debug)';
 }
 
+// Path: acceptInvite.connected
+class Translations$acceptInvite$connected$pt {
+  Translations$acceptInvite$connected$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Vocês estão conectados'
+  String get title => 'Vocês estão conectados';
+
+  /// pt: 'conectados'
+  String get titleHighlight => 'conectados';
+
+  /// pt: 'Cartões e ferramentas compartilhadas ativos. Tudo que é privado continua privado.'
+  String get text =>
+      'Cartões e ferramentas compartilhadas ativos. Tudo que é privado continua privado.';
+
+  /// pt: 'Ir para Hoje'
+  String get goToToday => 'Ir para Hoje';
+}
+
+// Path: acceptInvite.unusable
+class Translations$acceptInvite$unusable$pt {
+  Translations$acceptInvite$unusable$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Esse convite é antigo'
+  String get title => 'Esse convite é antigo';
+
+  /// pt: 'antigo'
+  String get titleHighlight => 'antigo';
+
+  /// pt: 'Confira o código ou peça um novo convite para quem convidou.'
+  String get text => 'Confira o código ou peça um novo convite para quem convidou.';
+
+  /// pt: 'Digitar de novo'
+  String get tryAgain => 'Digitar de novo';
+
+  /// pt: 'Fechar'
+  String get close => 'Fechar';
+}
+
 // Path: intro.phase
 class Translations$intro$phase$pt {
   Translations$intro$phase$pt.internal(this._root);
@@ -695,6 +790,32 @@ class Translations$quickSlip$saved$pt {
 extension on Translations {
   dynamic _flatMapFunction(String path) {
     return switch (path) {
+      'acceptInvite.title' => 'Tem um convite?',
+      'acceptInvite.titleHighlight' => 'convite',
+      'acceptInvite.subtitle' =>
+        'Digite o código que a outra pessoa enviou para vocês se conectarem.',
+      'acceptInvite.codeLabel' => 'Código do convite',
+      'acceptInvite.codeHint' => 'ABCD2345',
+      'acceptInvite.privacyNote' =>
+        'Aceitar compartilha cartões e ferramentas. Suas notas privadas continuam privadas.',
+      'acceptInvite.accept' => 'Aceitar',
+      'acceptInvite.connected.title' => 'Vocês estão conectados',
+      'acceptInvite.connected.titleHighlight' => 'conectados',
+      'acceptInvite.connected.text' =>
+        'Cartões e ferramentas compartilhadas ativos. Tudo que é privado continua privado.',
+      'acceptInvite.connected.goToToday' => 'Ir para Hoje',
+      'acceptInvite.unusable.title' => 'Esse convite é antigo',
+      'acceptInvite.unusable.titleHighlight' => 'antigo',
+      'acceptInvite.unusable.text' =>
+        'Confira o código ou peça um novo convite para quem convidou.',
+      'acceptInvite.unusable.tryAgain' => 'Digitar de novo',
+      'acceptInvite.unusable.close' => 'Fechar',
+      'acceptInvite.errors.ALREADY_PAIRED' => 'Você já está conectado com alguém.',
+      'acceptInvite.errors.COUPLE_FULL' => 'Esse espaço já tem duas pessoas.',
+      'acceptInvite.errors.RATE_LIMITED' =>
+        'Muitas tentativas seguidas. Espere um pouco e tente de novo.',
+      'acceptInvite.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
+      'acceptInvite.errors.other' => 'Não deu para conectar agora. Tente de novo.',
       'authentication.signInTitle' => 'Entrar',
       'authentication.signInSubtitle' => 'Sem e-mail e senha. Só Apple ou Google.',
       'authentication.signInNote' => 'Entrar leva direto para o seu Hoje.',
@@ -803,6 +924,7 @@ extension on Translations {
       'partnerStep.inviteSupport' => 'Sua pessoa entra com um código',
       'partnerStep.aloneTitle' => 'Depois, começar sozinho',
       'partnerStep.aloneSupport' => 'Seus slips ficam só com você',
+      'partnerStep.haveCode' => 'Tenho um código de convite',
       'partnerStep.continueButton' => 'Continuar',
       'profileSetup.title' => 'O básico',
       'profileSetup.titleHighlight' => 'básico',

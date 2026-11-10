@@ -28,6 +28,10 @@ class const DevMenuPage({super.key}) extends StatelessWidget {
               onTap: () => context.router.push(const InviteRoute()),
             ),
             BaseListTile(
+              title: 'Accept invite',
+              onTap: () => context.router.push(const AcceptInviteRoute()),
+            ),
+            BaseListTile(
               title: 'Notification permission',
               onTap: () => context.router.push(const NotificationPermissionRoute()),
             ),

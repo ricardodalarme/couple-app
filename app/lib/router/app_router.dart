@@ -12,6 +12,7 @@ import 'package:flutter_bloc_starter/features/onboarding/presentation/goals/intr
 import 'package:flutter_bloc_starter/features/onboarding/presentation/partner/partner_step_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/phase/intro_phase_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/theme/intro_theme_page.dart';
+import 'package:flutter_bloc_starter/features/pairing/presentation/accept/accept_invite_page.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/invite/invite_page.dart';
 import 'package:flutter_bloc_starter/features/profile/presentation/setup/profile_setup_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/quick_slip_page.dart';
@@ -37,6 +38,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: DebugSignInRoute.page),
     AutoRoute(page: ProfileSetupRoute.page),
     AutoRoute(page: InviteRoute.page),
+    AutoRoute(page: AcceptInviteRoute.page),
     AutoRoute(page: QuickSlipRoute.page, fullscreenDialog: true),
     AutoRoute(
       page: HomeRoute.page,

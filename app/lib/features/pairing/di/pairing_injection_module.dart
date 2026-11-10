@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/data_sources/pairing_data_source.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/data_sources/pairing_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:flutter_bloc_starter/features/pairing/presentation/accept/cubit/accept_invite_cubit.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/invite/cubit/invite_cubit.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:network/network.dart';
@@ -21,6 +22,12 @@ class PairingInjectionModule() implements InjectionModule {
       () => PairingRepository(
         pairingDataSource: injector.get<PairingDataSource>(),
         localDataSource: injector.get<PairingLocalDataSource>(),
+      ),
+    )
+    ..registerFactory<AcceptInviteCubit>(
+      () => AcceptInviteCubit(
+        pairingRepository: injector.get<PairingRepository>(),
+        profileRepository: injector.get<ProfileRepository>(),
       ),
     )
     ..registerFactory<InviteCubit>(

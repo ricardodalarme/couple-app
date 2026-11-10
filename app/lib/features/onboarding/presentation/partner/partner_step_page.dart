@@ -58,6 +58,14 @@ class const PartnerStepPage({super.key}) extends StatelessWidget implements Auto
               isSelected: choice == PartnerChoice.alone,
               onTap: () => context.read<PartnerStepCubit>().choose(PartnerChoice.alone),
             ),
+            const SizedBox(height: AppSpace.s12),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: BaseTextLink(
+                text: l10n.haveCode,
+                onPressed: () => context.pushRoute(const AcceptInviteRoute()),
+              ),
+            ),
           ],
         ),
         footer: BaseButton(text: l10n.continueButton, onPressed: next),

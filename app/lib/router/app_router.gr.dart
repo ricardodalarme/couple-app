@@ -11,6 +11,22 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [AcceptInvitePage]
+class AcceptInviteRoute extends PageRouteInfo<void> {
+  const AcceptInviteRoute({List<PageRouteInfo>? children})
+    : super(AcceptInviteRoute.name, initialChildren: children);
+
+  static const String name = 'AcceptInviteRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const AcceptInvitePage());
+    },
+  );
+}
+
+/// generated route for
 /// [DebugSignInPage]
 class DebugSignInRoute extends PageRouteInfo<void> {
   const DebugSignInRoute({List<PageRouteInfo>? children})

@@ -52,6 +52,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 
   // Translations
   @override
+  late final _Translations$acceptInvite$en acceptInvite = _Translations$acceptInvite$en._(_root);
+  @override
   late final _Translations$authentication$en authentication = _Translations$authentication$en._(
     _root,
   );
@@ -78,6 +80,43 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$tabs$en tabs = _Translations$tabs$en._(_root);
   @override
   late final _Translations$welcome$en welcome = _Translations$welcome$en._(_root);
+}
+
+// Path: acceptInvite
+class _Translations$acceptInvite$en extends Translations$acceptInvite$pt {
+  _Translations$acceptInvite$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Got an invite?';
+  @override
+  String get titleHighlight => 'invite';
+  @override
+  String get subtitle => 'Type the code the other person sent so you can connect.';
+  @override
+  String get codeLabel => 'Invite code';
+  @override
+  String get codeHint => 'ABCD2345';
+  @override
+  String get privacyNote => 'Accepting shares cards and tools. Your private notes stay private.';
+  @override
+  String get accept => 'Accept';
+  @override
+  late final _Translations$acceptInvite$connected$en connected =
+      _Translations$acceptInvite$connected$en._(_root);
+  @override
+  late final _Translations$acceptInvite$unusable$en unusable =
+      _Translations$acceptInvite$unusable$en._(_root);
+  @override
+  Map<String, String> get errors => {
+    'ALREADY_PAIRED': 'You are already connected with someone.',
+    'COUPLE_FULL': 'That space already has two people.',
+    'RATE_LIMITED': 'Too many tries in a row. Wait a bit and try again.',
+    'NETWORK': 'No connection. Check your internet and try again.',
+    'other': 'Could not connect right now. Try again.',
+  };
 }
 
 // Path: authentication
@@ -302,6 +341,8 @@ class _Translations$partnerStep$en extends Translations$partnerStep$pt {
   @override
   String get aloneSupport => 'Your slips stay with you only';
   @override
+  String get haveCode => 'I have an invite code';
+  @override
   String get continueButton => 'Continue';
 }
 
@@ -477,6 +518,46 @@ class _Translations$welcome$en extends Translations$welcome$pt {
   String get debugSignIn => 'Sign in (debug)';
 }
 
+// Path: acceptInvite.connected
+class _Translations$acceptInvite$connected$en extends Translations$acceptInvite$connected$pt {
+  _Translations$acceptInvite$connected$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'You are connected';
+  @override
+  String get titleHighlight => 'connected';
+  @override
+  String get text => 'Shared cards and tools are on. Everything private stays private.';
+  @override
+  String get goToToday => 'Go to Today';
+}
+
+// Path: acceptInvite.unusable
+class _Translations$acceptInvite$unusable$en extends Translations$acceptInvite$unusable$pt {
+  _Translations$acceptInvite$unusable$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'That invite is old';
+  @override
+  String get titleHighlight => 'old';
+  @override
+  String get text => 'Check the code or ask for a new invite from whoever invited you.';
+  @override
+  String get tryAgain => 'Type again';
+  @override
+  String get close => 'Close';
+}
+
 // Path: intro.phase
 class _Translations$intro$phase$en extends Translations$intro$phase$pt {
   _Translations$intro$phase$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -586,6 +667,30 @@ class _Translations$quickSlip$saved$en extends Translations$quickSlip$saved$pt {
 extension on TranslationsEn {
   dynamic _flatMapFunction(String path) {
     return switch (path) {
+      'acceptInvite.title' => 'Got an invite?',
+      'acceptInvite.titleHighlight' => 'invite',
+      'acceptInvite.subtitle' => 'Type the code the other person sent so you can connect.',
+      'acceptInvite.codeLabel' => 'Invite code',
+      'acceptInvite.codeHint' => 'ABCD2345',
+      'acceptInvite.privacyNote' =>
+        'Accepting shares cards and tools. Your private notes stay private.',
+      'acceptInvite.accept' => 'Accept',
+      'acceptInvite.connected.title' => 'You are connected',
+      'acceptInvite.connected.titleHighlight' => 'connected',
+      'acceptInvite.connected.text' =>
+        'Shared cards and tools are on. Everything private stays private.',
+      'acceptInvite.connected.goToToday' => 'Go to Today',
+      'acceptInvite.unusable.title' => 'That invite is old',
+      'acceptInvite.unusable.titleHighlight' => 'old',
+      'acceptInvite.unusable.text' =>
+        'Check the code or ask for a new invite from whoever invited you.',
+      'acceptInvite.unusable.tryAgain' => 'Type again',
+      'acceptInvite.unusable.close' => 'Close',
+      'acceptInvite.errors.ALREADY_PAIRED' => 'You are already connected with someone.',
+      'acceptInvite.errors.COUPLE_FULL' => 'That space already has two people.',
+      'acceptInvite.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a bit and try again.',
+      'acceptInvite.errors.NETWORK' => 'No connection. Check your internet and try again.',
+      'acceptInvite.errors.other' => 'Could not connect right now. Try again.',
       'authentication.signInTitle' => 'Sign in',
       'authentication.signInSubtitle' => 'No email and password. Just Apple or Google.',
       'authentication.signInNote' => 'Signing in takes you straight to your Today.',
@@ -693,6 +798,7 @@ extension on TranslationsEn {
       'partnerStep.inviteSupport' => 'Your person joins with a code',
       'partnerStep.aloneTitle' => 'Start on my own for now',
       'partnerStep.aloneSupport' => 'Your slips stay with you only',
+      'partnerStep.haveCode' => 'I have an invite code',
       'partnerStep.continueButton' => 'Continue',
       'profileSetup.title' => 'The basics',
       'profileSetup.titleHighlight' => 'basics',

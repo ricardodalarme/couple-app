@@ -1,0 +1,29 @@
+{
+  "title": "Got an invite?",
+  "titleHighlight": "invite",
+  "subtitle": "Type the code the other person sent so you can connect.",
+  "codeLabel": "Invite code",
+  "codeHint": "ABCD2345",
+  "privacyNote": "Accepting shares cards and tools. Your private notes stay private.",
+  "accept": "Accept",
+  "connected": {
+    "title": "You are connected",
+    "titleHighlight": "connected",
+    "text": "Shared cards and tools are on. Everything private stays private.",
+    "goToToday": "Go to Today"
+  },
+  "unusable": {
+    "title": "That invite is old",
+    "titleHighlight": "old",
+    "text": "Check the code or ask for a new invite from whoever invited you.",
+    "tryAgain": "Type again",
+    "close": "Close"
+  },
+  "errors(map)": {
+    "ALREADY_PAIRED": "You are already connected with someone.",
+    "COUPLE_FULL": "That space already has two people.",
+    "RATE_LIMITED": "Too many tries in a row. Wait a bit and try again.",
+    "NETWORK": "No connection. Check your internet and try again.",
+    "other": "Could not connect right now. Try again."
+  }
+}
