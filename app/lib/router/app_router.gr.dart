@@ -144,6 +144,22 @@ class CardsListRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ConsentsPage]
+class ConsentsRoute extends PageRouteInfo<void> {
+  const ConsentsRoute({List<PageRouteInfo>? children})
+    : super(ConsentsRoute.name, initialChildren: children);
+
+  static const String name = 'ConsentsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const ConsentsPage());
+    },
+  );
+}
+
+/// generated route for
 /// [DateNightPage]
 class DateNightRoute extends PageRouteInfo<void> {
   const DateNightRoute({List<PageRouteInfo>? children})
@@ -565,6 +581,22 @@ class NotificationPreferencesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [OurViewPage]
+class OurViewRoute extends PageRouteInfo<void> {
+  const OurViewRoute({List<PageRouteInfo>? children})
+    : super(OurViewRoute.name, initialChildren: children);
+
+  static const String name = 'OurViewRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const OurViewPage();
+    },
+  );
+}
+
+/// generated route for
 /// [PartnerProfilePage]
 class PartnerProfileRoute extends PageRouteInfo<void> {
   const PartnerProfileRoute({List<PageRouteInfo>? children})
@@ -597,6 +629,22 @@ class PartnerStepRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PartnerViewPage]
+class PartnerViewRoute extends PageRouteInfo<void> {
+  const PartnerViewRoute({List<PageRouteInfo>? children})
+    : super(PartnerViewRoute.name, initialChildren: children);
+
+  static const String name = 'PartnerViewRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PartnerViewPage();
+    },
+  );
+}
+
+/// generated route for
 /// [PausePage]
 class PauseRoute extends PageRouteInfo<void> {
   const PauseRoute({List<PageRouteInfo>? children})
@@ -624,6 +672,22 @@ class PlansRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const PlansPage());
+    },
+  );
+}
+
+/// generated route for
+/// [PrivacyHubPage]
+class PrivacyHubRoute extends PageRouteInfo<void> {
+  const PrivacyHubRoute({List<PageRouteInfo>? children})
+    : super(PrivacyHubRoute.name, initialChildren: children);
+
+  static const String name = 'PrivacyHubRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PrivacyHubPage();
     },
   );
 }

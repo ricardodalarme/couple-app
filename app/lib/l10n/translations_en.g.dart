@@ -106,6 +106,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$plus$en plus = _Translations$plus$en._(_root);
   @override
+  late final _Translations$privacy$en privacy = _Translations$privacy$en._(_root);
+  @override
   late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
   @override
   late final _Translations$quickSlip$en quickSlip = _Translations$quickSlip$en._(_root);
@@ -1223,6 +1225,71 @@ class _Translations$plus$en extends Translations$plus$pt {
   String get errorText => 'Try again in a moment.';
 }
 
+// Path: privacy
+class _Translations$privacy$en extends Translations$privacy$pt {
+  _Translations$privacy$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Privacy and security';
+  @override
+  String get discreetMode => 'Discreet mode';
+  @override
+  String get partnerTitle => 'What your partner sees';
+  @override
+  String get partnerSlips => 'Sent slips';
+  @override
+  String get partnerSlipsText => 'Only what you send';
+  @override
+  String get partnerPrivateSlips => 'Private slips';
+  @override
+  String get partnerTemperature => 'Temperature';
+  @override
+  String get partnerJournal => 'Journal';
+  @override
+  String get partnerPause => 'Pause';
+  @override
+  String get partnerPauseText => 'The message you wrote';
+  @override
+  String get never => 'Never';
+  @override
+  String get partnerNote => 'Whoever makes the data decides who sees it.';
+  @override
+  String get ourTitle => 'What we can see';
+  @override
+  String get ourEncrypted => 'Your content is encrypted in transit.';
+  @override
+  String get ourPrivate => 'The team cannot read your private notes.';
+  @override
+  String get ourAnalytics => 'Analytics: counts only.';
+  @override
+  String get ourPlain => 'This page in plain language.';
+  @override
+  String get consents => 'Consents';
+  @override
+  String get sensitiveData => 'Sensitive data';
+  @override
+  String get analytics => 'Analytics';
+  @override
+  String get marketing => 'Marketing';
+  @override
+  String get ai => 'AI (when available)';
+  @override
+  String get terms => 'Terms';
+  @override
+  String get required => 'Required';
+  @override
+  String get consentsNote => 'Changes apply now.';
+  @override
+  String get saveError => 'Could not save now. Try again.';
+  @override
+  String get errorTitle => 'Could not load the consents';
+  @override
+  String get errorText => 'Try again in a moment.';
+}
+
 // Path: profileSetup
 class _Translations$profileSetup$en extends Translations$profileSetup$pt {
   _Translations$profileSetup$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1596,6 +1663,10 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   String get discreetOn => 'On';
   @override
   String get discreetOff => 'Off';
+  @override
+  String get privacy => 'Privacy and security';
+  @override
+  String get privacyStatus => 'What is shared and consents';
 }
 
 // Path: slipDetail
@@ -3538,6 +3609,37 @@ extension on TranslationsEn {
           'plus.lockText' => 'Available with Plus. Tap to see the plans.',
           'plus.errorTitle' => 'Couldn\'t load',
           'plus.errorText' => 'Try again in a moment.',
+          'privacy.title' => 'Privacy and security',
+          'privacy.discreetMode' => 'Discreet mode',
+          'privacy.partnerTitle' => 'What your partner sees',
+          'privacy.partnerSlips' => 'Sent slips',
+          'privacy.partnerSlipsText' => 'Only what you send',
+          'privacy.partnerPrivateSlips' => 'Private slips',
+          'privacy.partnerTemperature' => 'Temperature',
+          'privacy.partnerJournal' => 'Journal',
+          'privacy.partnerPause' => 'Pause',
+          'privacy.partnerPauseText' => 'The message you wrote',
+          'privacy.never' => 'Never',
+          'privacy.partnerNote' => 'Whoever makes the data decides who sees it.',
+          'privacy.ourTitle' => 'What we can see',
+          'privacy.ourEncrypted' => 'Your content is encrypted in transit.',
+          'privacy.ourPrivate' => 'The team cannot read your private notes.',
+          'privacy.ourAnalytics' => 'Analytics: counts only.',
+          _ => null,
+        } ??
+        switch (path) {
+          'privacy.ourPlain' => 'This page in plain language.',
+          'privacy.consents' => 'Consents',
+          'privacy.sensitiveData' => 'Sensitive data',
+          'privacy.analytics' => 'Analytics',
+          'privacy.marketing' => 'Marketing',
+          'privacy.ai' => 'AI (when available)',
+          'privacy.terms' => 'Terms',
+          'privacy.required' => 'Required',
+          'privacy.consentsNote' => 'Changes apply now.',
+          'privacy.saveError' => 'Could not save now. Try again.',
+          'privacy.errorTitle' => 'Could not load the consents',
+          'privacy.errorText' => 'Try again in a moment.',
           'profileSetup.title' => 'The basics',
           'profileSetup.titleHighlight' => 'basics',
           'profileSetup.subtitle' =>
@@ -3559,9 +3661,6 @@ extension on TranslationsEn {
             required Object year,
           }) => '${month} ${day}, ${year}',
           'profileSetup.months.0' => 'January',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.months.1' => 'February',
           'profileSetup.months.2' => 'March',
           'profileSetup.months.3' => 'April',
@@ -3816,6 +3915,8 @@ extension on TranslationsEn {
           'settingsHome.discreet' => 'Discreet mode',
           'settingsHome.discreetOn' => 'On',
           'settingsHome.discreetOff' => 'Off',
+          'settingsHome.privacy' => 'Privacy and security',
+          'settingsHome.privacyStatus' => 'What is shared and consents',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -4086,6 +4187,9 @@ extension on TranslationsEn {
           'temperature.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'temperature.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
           'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
+          _ => null,
+        } ??
+        switch (path) {
           'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',
           'today.greetingNoName' => 'Hello',
@@ -4141,9 +4245,6 @@ extension on TranslationsEn {
           'today.invitePerson' => 'Invite your person',
           'today.offline' => 'No connection. Showing what was saved.',
           'today.pendingInviteTitle' => 'Invite sent',
-          _ => null,
-        } ??
-        switch (path) {
           'today.pendingInviteText' => 'They have not joined yet. Send again or revoke.',
           'today.pendingInviteAction' => 'See invite',
           'today.answer' => 'Answer',

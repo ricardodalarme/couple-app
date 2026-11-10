@@ -83,6 +83,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$partnerStep$pt partnerStep = Translations$partnerStep$pt.internal(_root);
   late final Translations$pause$pt pause = Translations$pause$pt.internal(_root);
   late final Translations$plus$pt plus = Translations$plus$pt.internal(_root);
+  late final Translations$privacy$pt privacy = Translations$privacy$pt.internal(_root);
   late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
     _root,
   );
@@ -1458,6 +1459,99 @@ class Translations$plus$pt {
   String get errorText => 'Tente de novo daqui a pouco.';
 }
 
+// Path: privacy
+class Translations$privacy$pt {
+  Translations$privacy$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Privacidade e segurança'
+  String get title => 'Privacidade e segurança';
+
+  /// pt: 'Modo discreto'
+  String get discreetMode => 'Modo discreto';
+
+  /// pt: 'O que o parceiro vê'
+  String get partnerTitle => 'O que o parceiro vê';
+
+  /// pt: 'Slips enviados'
+  String get partnerSlips => 'Slips enviados';
+
+  /// pt: 'Só o que você envia'
+  String get partnerSlipsText => 'Só o que você envia';
+
+  /// pt: 'Slips privados'
+  String get partnerPrivateSlips => 'Slips privados';
+
+  /// pt: 'Temperatura'
+  String get partnerTemperature => 'Temperatura';
+
+  /// pt: 'Diário'
+  String get partnerJournal => 'Diário';
+
+  /// pt: 'Pausa'
+  String get partnerPause => 'Pausa';
+
+  /// pt: 'A mensagem que você escreveu'
+  String get partnerPauseText => 'A mensagem que você escreveu';
+
+  /// pt: 'Nunca'
+  String get never => 'Nunca';
+
+  /// pt: 'Quem produz o dado decide quem vê.'
+  String get partnerNote => 'Quem produz o dado decide quem vê.';
+
+  /// pt: 'O que podemos ver'
+  String get ourTitle => 'O que podemos ver';
+
+  /// pt: 'Seu conteúdo é criptografado em trânsito.'
+  String get ourEncrypted => 'Seu conteúdo é criptografado em trânsito.';
+
+  /// pt: 'A equipe não pode ler suas notas privadas.'
+  String get ourPrivate => 'A equipe não pode ler suas notas privadas.';
+
+  /// pt: 'Análises: só contagens.'
+  String get ourAnalytics => 'Análises: só contagens.';
+
+  /// pt: 'Página em linguagem simples.'
+  String get ourPlain => 'Página em linguagem simples.';
+
+  /// pt: 'Consentimentos'
+  String get consents => 'Consentimentos';
+
+  /// pt: 'Dados sensíveis'
+  String get sensitiveData => 'Dados sensíveis';
+
+  /// pt: 'Análises'
+  String get analytics => 'Análises';
+
+  /// pt: 'Marketing'
+  String get marketing => 'Marketing';
+
+  /// pt: 'IA (quando disponível)'
+  String get ai => 'IA (quando disponível)';
+
+  /// pt: 'Termos'
+  String get terms => 'Termos';
+
+  /// pt: 'Obrigatório'
+  String get required => 'Obrigatório';
+
+  /// pt: 'Mudanças valem agora.'
+  String get consentsNote => 'Mudanças valem agora.';
+
+  /// pt: 'Não deu para salvar agora. Tente de novo.'
+  String get saveError => 'Não deu para salvar agora. Tente de novo.';
+
+  /// pt: 'Não deu para carregar os consentimentos'
+  String get errorTitle => 'Não deu para carregar os consentimentos';
+
+  /// pt: 'Tente de novo em instantes.'
+  String get errorText => 'Tente de novo em instantes.';
+}
+
 // Path: profileSetup
 class Translations$profileSetup$pt {
   Translations$profileSetup$pt.internal(this._root);
@@ -1912,6 +2006,12 @@ class Translations$settingsHome$pt {
 
   /// pt: 'Desligado'
   String get discreetOff => 'Desligado';
+
+  /// pt: 'Privacidade e segurança'
+  String get privacy => 'Privacidade e segurança';
+
+  /// pt: 'O que é compartilhado e consentimentos'
+  String get privacyStatus => 'O que é compartilhado e consentimentos';
 }
 
 // Path: slipDetail
@@ -4171,6 +4271,37 @@ extension on Translations {
           'plus.lockText' => 'Disponível no Plus. Toque para ver os planos.',
           'plus.errorTitle' => 'Não deu para carregar',
           'plus.errorText' => 'Tente de novo daqui a pouco.',
+          'privacy.title' => 'Privacidade e segurança',
+          'privacy.discreetMode' => 'Modo discreto',
+          'privacy.partnerTitle' => 'O que o parceiro vê',
+          'privacy.partnerSlips' => 'Slips enviados',
+          'privacy.partnerSlipsText' => 'Só o que você envia',
+          'privacy.partnerPrivateSlips' => 'Slips privados',
+          'privacy.partnerTemperature' => 'Temperatura',
+          'privacy.partnerJournal' => 'Diário',
+          'privacy.partnerPause' => 'Pausa',
+          'privacy.partnerPauseText' => 'A mensagem que você escreveu',
+          'privacy.never' => 'Nunca',
+          'privacy.partnerNote' => 'Quem produz o dado decide quem vê.',
+          'privacy.ourTitle' => 'O que podemos ver',
+          'privacy.ourEncrypted' => 'Seu conteúdo é criptografado em trânsito.',
+          'privacy.ourPrivate' => 'A equipe não pode ler suas notas privadas.',
+          'privacy.ourAnalytics' => 'Análises: só contagens.',
+          _ => null,
+        } ??
+        switch (path) {
+          'privacy.ourPlain' => 'Página em linguagem simples.',
+          'privacy.consents' => 'Consentimentos',
+          'privacy.sensitiveData' => 'Dados sensíveis',
+          'privacy.analytics' => 'Análises',
+          'privacy.marketing' => 'Marketing',
+          'privacy.ai' => 'IA (quando disponível)',
+          'privacy.terms' => 'Termos',
+          'privacy.required' => 'Obrigatório',
+          'privacy.consentsNote' => 'Mudanças valem agora.',
+          'privacy.saveError' => 'Não deu para salvar agora. Tente de novo.',
+          'privacy.errorTitle' => 'Não deu para carregar os consentimentos',
+          'privacy.errorText' => 'Tente de novo em instantes.',
           'profileSetup.title' => 'O básico',
           'profileSetup.titleHighlight' => 'básico',
           'profileSetup.subtitle' =>
@@ -4192,9 +4323,6 @@ extension on Translations {
             required Object year,
           }) => '${day} de ${month} de ${year}',
           'profileSetup.months.0' => 'janeiro',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.months.1' => 'fevereiro',
           'profileSetup.months.2' => 'março',
           'profileSetup.months.3' => 'abril',
@@ -4452,6 +4580,8 @@ extension on Translations {
           'settingsHome.discreet' => 'Modo discreto',
           'settingsHome.discreetOn' => 'Ligado',
           'settingsHome.discreetOff' => 'Desligado',
+          'settingsHome.privacy' => 'Privacidade e segurança',
+          'settingsHome.privacyStatus' => 'O que é compartilhado e consentimentos',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -4723,6 +4853,9 @@ extension on Translations {
           'temperature.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'temperature.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
           'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
+          _ => null,
+        } ??
+        switch (path) {
           'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',
           'today.greetingNoName' => 'Olá',
@@ -4778,9 +4911,6 @@ extension on Translations {
           'today.invitePerson' => 'Convidar sua pessoa',
           'today.offline' => 'Sem conexão. Mostrando o que foi salvo.',
           'today.pendingInviteTitle' => 'Convite enviado',
-          _ => null,
-        } ??
-        switch (path) {
           'today.pendingInviteText' => 'A pessoa ainda não entrou. Reenviar ou revogar.',
           'today.pendingInviteAction' => 'Ver convite',
           'today.answer' => 'Responder',

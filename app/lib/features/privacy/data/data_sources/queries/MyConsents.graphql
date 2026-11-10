@@ -1,0 +1,12 @@
+query MyConsents {
+  consentsCollection(orderBy: [{ createdAt: DescNullsLast }]) {
+    edges {
+      node {
+        kind
+        granted
+        version
+        createdAt
+      }
+    }
+  }
+}

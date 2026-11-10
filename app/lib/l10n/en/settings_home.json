@@ -13,5 +13,7 @@
   "planPlus": "Plus",
   "discreet": "Discreet mode",
   "discreetOn": "On",
-  "discreetOff": "Off"
+  "discreetOff": "Off",
+  "privacy": "Privacy and security",
+  "privacyStatus": "What is shared and consents"
 }

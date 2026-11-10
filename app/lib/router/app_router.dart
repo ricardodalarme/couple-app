@@ -27,6 +27,10 @@ import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/unpair
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/unpair_page.dart';
 import 'package:flutter_bloc_starter/features/partner/presentation/profile/partner_profile_page.dart';
 import 'package:flutter_bloc_starter/features/plus/presentation/plans/plans_page.dart';
+import 'package:flutter_bloc_starter/features/privacy/presentation/consents/consents_page.dart';
+import 'package:flutter_bloc_starter/features/privacy/presentation/hub/privacy_hub_page.dart';
+import 'package:flutter_bloc_starter/features/privacy/presentation/our_view/our_view_page.dart';
+import 'package:flutter_bloc_starter/features/privacy/presentation/partner_view/partner_view_page.dart';
 import 'package:flutter_bloc_starter/features/profile/presentation/setup/profile_setup_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/calm/calm_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/guided/guided_repair_page.dart';
@@ -92,6 +96,10 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: PlansRoute.page),
     AutoRoute(page: SettingsHomeRoute.page),
     AutoRoute(page: DiscreetModeRoute.page),
+    AutoRoute(page: PrivacyHubRoute.page),
+    AutoRoute(page: PartnerViewRoute.page),
+    AutoRoute(page: OurViewRoute.page),
+    AutoRoute(page: ConsentsRoute.page),
     AutoRoute(page: SafeModeRoute.page),
     AutoRoute(page: NeutralRoute.page),
     AutoRoute(page: BadDayRoute.page),
