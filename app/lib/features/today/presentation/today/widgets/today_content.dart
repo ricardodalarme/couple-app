@@ -66,6 +66,18 @@ class const TodayContent({
           ),
           const SizedBox(height: AppSpace.s12),
         ],
+        if (home.unseenSignals > 0) ...[
+          BaseBanner(
+            text: l10n.signalReceived,
+            icon: AppIcons.mail,
+            actionLabel: l10n.signalReceivedAction,
+            onAction: () async {
+              await context.pushRoute(const ReceivedSignalsRoute());
+              if (context.mounted) await context.read<TodayCubit>().load();
+            },
+          ),
+          const SizedBox(height: AppSpace.s12),
+        ],
         if (home.hasPendingInvite) ...[
           BaseBanner(
             title: l10n.pendingInviteTitle,

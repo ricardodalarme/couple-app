@@ -568,6 +568,22 @@ class QuickSlipRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ReceivedSignalsPage]
+class ReceivedSignalsRoute extends PageRouteInfo<void> {
+  const ReceivedSignalsRoute({List<PageRouteInfo>? children})
+    : super(ReceivedSignalsRoute.name, initialChildren: children);
+
+  static const String name = 'ReceivedSignalsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const ReceivedSignalsPage());
+    },
+  );
+}
+
+/// generated route for
 /// [RelationshipPage]
 class RelationshipRoute extends PageRouteInfo<void> {
   const RelationshipRoute({List<PageRouteInfo>? children})

@@ -180,6 +180,13 @@ const documentNodeQueryTodayHome = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'unseenSignals'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: '__typename'),
                   alias: null,
                   arguments: [],
@@ -405,6 +412,7 @@ class QueryTodayHometoday {
     this.pauseIsMine,
     this.pauseReturnAt,
     this.hasPlus,
+    this.unseenSignals,
     this.$__typename = 'TodayState',
   });
 
@@ -420,6 +428,7 @@ class QueryTodayHometoday {
     final l$pauseIsMine = json['pauseIsMine'];
     final l$pauseReturnAt = json['pauseReturnAt'];
     final l$hasPlus = json['hasPlus'];
+    final l$unseenSignals = json['unseenSignals'];
     final l$$__typename = json['__typename'];
     return QueryTodayHometoday(
       isPaired: (l$isPaired as bool?),
@@ -433,6 +442,7 @@ class QueryTodayHometoday {
       pauseIsMine: (l$pauseIsMine as bool?),
       pauseReturnAt: l$pauseReturnAt == null ? null : DateTime.parse((l$pauseReturnAt as String)),
       hasPlus: (l$hasPlus as bool?),
+      unseenSignals: (l$unseenSignals as int?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -458,6 +468,8 @@ class QueryTodayHometoday {
   final DateTime? pauseReturnAt;
 
   final bool? hasPlus;
+
+  final int? unseenSignals;
 
   final String $__typename;
 
@@ -489,6 +501,8 @@ class QueryTodayHometoday {
         : ((v) => v.toUtc().toIso8601String())(l$pauseReturnAt);
     final l$hasPlus = hasPlus;
     _resultData['hasPlus'] = l$hasPlus;
+    final l$unseenSignals = unseenSignals;
+    _resultData['unseenSignals'] = l$unseenSignals;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -507,6 +521,7 @@ class QueryTodayHometoday {
     final l$pauseIsMine = pauseIsMine;
     final l$pauseReturnAt = pauseReturnAt;
     final l$hasPlus = hasPlus;
+    final l$unseenSignals = unseenSignals;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$isPaired,
@@ -520,6 +535,7 @@ class QueryTodayHometoday {
       l$pauseIsMine,
       l$pauseReturnAt,
       l$hasPlus,
+      l$unseenSignals,
       l$$__typename,
     ]);
   }
@@ -585,6 +601,11 @@ class QueryTodayHometoday {
     final l$hasPlus = hasPlus;
     final lOther$hasPlus = other.hasPlus;
     if (l$hasPlus != lOther$hasPlus) {
+      return false;
+    }
+    final l$unseenSignals = unseenSignals;
+    final lOther$unseenSignals = other.unseenSignals;
+    if (l$unseenSignals != lOther$unseenSignals) {
       return false;
     }
     final l$$__typename = $__typename;

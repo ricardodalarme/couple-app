@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/repair_data_source.dart';
 import 'package:flutter_bloc_starter/features/repair/data/models/guided_session.dart';
+import 'package:flutter_bloc_starter/features/repair/data/models/received_signal.dart';
 import 'package:flutter_bloc_starter/features/repair/data/models/repair_path.dart';
 import 'package:logger/logger.dart';
 
@@ -97,6 +98,35 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
       await _dataSource.deleteLearning(id);
     } catch (e, stack) {
       _logger.error('Failed to delete a learning', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// The partner's messages the person has not answered yet, newest first.
+  Future<List<ReceivedSignal>> getReceivedSignals(String recipientId) async {
+    try {
+      return [
+        for (final node in await _dataSource.getReceivedSignals(recipientId))
+          ReceivedSignal(
+            id: node.id,
+            kind: node.kind,
+            createdAt: node.createdAt,
+            value: node.value,
+            body: node.body,
+          ),
+      ];
+    } catch (e, stack) {
+      _logger.error('Failed to read received messages', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Answers a message from the partner; a null [response] only marks it seen.
+  Future<void> respondToSignal({required String signalId, String? response}) async {
+    try {
+      await _dataSource.respondToSignal(signalId: signalId, response: response);
+    } catch (e, stack) {
+      _logger.error('Failed to answer a message', error: e, stackTrace: stack);
       rethrow;
     }
   }

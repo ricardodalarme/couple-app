@@ -1,0 +1,33 @@
+{
+  "kinds(map)": {
+    "repair": "Repair card",
+    "need": "I need…",
+    "miss_us": "Missing you",
+    "hug": "A hug",
+    "distance": "A little distance",
+    "heavy_day": "A heavy day",
+    "good_news": "Good news",
+    "other": ""
+  },
+  "fromPartner": "From your partner",
+  "privateFirst": "Your answer is private first. There is no right or wrong.",
+  "responses(map)": {
+    "talk": "Yes, let's talk",
+    "more_time": "I need a bit more time",
+    "later": "I'll answer later",
+    "other": ""
+  },
+  "seen": "Got it",
+  "doneTitle": "All good",
+  "doneText": "Thanks for reading it calmly.",
+  "emptyTitle": "Nothing new",
+  "emptyText": "When your partner sends something, it shows up here.",
+  "close": "Close",
+  "errorTitle": "Couldn't open this",
+  "errorText": "Nothing was lost. Try again.",
+  "errors(map)": {
+    "NOT_FOUND": "That message isn't here anymore.",
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't answer right now. Try again."
+  }
+}

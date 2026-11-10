@@ -1,0 +1,5 @@
+mutation RespondToSignal($signalId: UUID!, $response: String) {
+  respondToSignal(signalId: $signalId, response: $response) {
+    id
+  }
+}

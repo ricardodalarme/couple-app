@@ -77,6 +77,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$quickSlip$pt quickSlip = Translations$quickSlip$pt.internal(_root);
+  late final Translations$received$pt received = Translations$received$pt.internal(_root);
   late final Translations$reminders$pt reminders = Translations$reminders$pt.internal(_root);
   late final Translations$repair$pt repair = Translations$repair$pt.internal(_root);
   late final Translations$slipDetail$pt slipDetail = Translations$slipDetail$pt.internal(_root);
@@ -973,6 +974,68 @@ class Translations$quickSlip$pt {
   };
 }
 
+// Path: received
+class Translations$received$pt {
+  Translations$received$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+  Map<String, String> get kinds => {
+    'repair': 'Cartão de reparo',
+    'need': 'Preciso de…',
+    'miss_us': 'Saudade',
+    'hug': 'Um abraço',
+    'distance': 'Um pouco de distância',
+    'heavy_day': 'Um dia pesado',
+    'good_news': 'Boa notícia',
+    'other': '',
+  };
+
+  /// pt: 'Do seu par'
+  String get fromPartner => 'Do seu par';
+
+  /// pt: 'Sua resposta é privada primeiro. Não tem certo nem errado.'
+  String get privateFirst => 'Sua resposta é privada primeiro. Não tem certo nem errado.';
+
+  Map<String, String> get responses => {
+    'talk': 'Sim, vamos conversar',
+    'more_time': 'Preciso de mais um tempo',
+    'later': 'Respondo depois',
+    'other': '',
+  };
+
+  /// pt: 'Entendi'
+  String get seen => 'Entendi';
+
+  /// pt: 'Tudo certo'
+  String get doneTitle => 'Tudo certo';
+
+  /// pt: 'Obrigado por ler com calma.'
+  String get doneText => 'Obrigado por ler com calma.';
+
+  /// pt: 'Nada novo'
+  String get emptyTitle => 'Nada novo';
+
+  /// pt: 'Quando seu par mandar algo, aparece aqui.'
+  String get emptyText => 'Quando seu par mandar algo, aparece aqui.';
+
+  /// pt: 'Fechar'
+  String get close => 'Fechar';
+
+  /// pt: 'Não deu para abrir'
+  String get errorTitle => 'Não deu para abrir';
+
+  /// pt: 'Nada se perdeu. Tente de novo.'
+  String get errorText => 'Nada se perdeu. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'NOT_FOUND': 'Essa mensagem não está mais aqui.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para responder agora. Tente de novo.',
+  };
+}
+
 // Path: reminders
 class Translations$reminders$pt {
   Translations$reminders$pt.internal(this._root);
@@ -1686,6 +1749,12 @@ class Translations$today$pt {
 
   /// pt: 'Sem pressa. Não tem nada para fazer agora.'
   String get pausePartnerText => 'Sem pressa. Não tem nada para fazer agora.';
+
+  /// pt: 'Seu par te mandou uma mensagem'
+  String get signalReceived => 'Seu par te mandou uma mensagem';
+
+  /// pt: 'Ver'
+  String get signalReceivedAction => 'Ver';
 
   /// pt: 'Voltar agora'
   String get pauseBack => 'Voltar agora';
@@ -3007,6 +3076,31 @@ extension on Translations {
           'quickSlip.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'quickSlip.errors.other' =>
             'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
+          'received.kinds.repair' => 'Cartão de reparo',
+          'received.kinds.need' => 'Preciso de…',
+          'received.kinds.miss_us' => 'Saudade',
+          'received.kinds.hug' => 'Um abraço',
+          'received.kinds.distance' => 'Um pouco de distância',
+          'received.kinds.heavy_day' => 'Um dia pesado',
+          'received.kinds.good_news' => 'Boa notícia',
+          'received.kinds.other' => '',
+          'received.fromPartner' => 'Do seu par',
+          'received.privateFirst' => 'Sua resposta é privada primeiro. Não tem certo nem errado.',
+          'received.responses.talk' => 'Sim, vamos conversar',
+          'received.responses.more_time' => 'Preciso de mais um tempo',
+          'received.responses.later' => 'Respondo depois',
+          'received.responses.other' => '',
+          'received.seen' => 'Entendi',
+          'received.doneTitle' => 'Tudo certo',
+          'received.doneText' => 'Obrigado por ler com calma.',
+          'received.emptyTitle' => 'Nada novo',
+          'received.emptyText' => 'Quando seu par mandar algo, aparece aqui.',
+          'received.close' => 'Fechar',
+          'received.errorTitle' => 'Não deu para abrir',
+          'received.errorText' => 'Nada se perdeu. Tente de novo.',
+          'received.errors.NOT_FOUND' => 'Essa mensagem não está mais aqui.',
+          'received.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'received.errors.other' => 'Não deu para responder agora. Tente de novo.',
           'reminders.title' => 'Repara',
           'reminders.dailyIdea' => 'Uma ideia pequena para hoje.',
           'reminders.dates' => 'Uma data está chegando.',
@@ -3166,6 +3260,9 @@ extension on Translations {
           'slipDetail.deleted' => 'Slip apagado',
           'slipDetail.notFoundTitle' => 'Este slip não existe mais',
           'slipDetail.notFoundText' => 'Ele pode ter sido apagado.',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.errorTitle' => 'Não deu para abrir este slip',
           'slipDetail.errorText' => 'Ele continua salvo. Tente de novo.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'Este slip não existe mais.',
@@ -3191,9 +3288,6 @@ extension on Translations {
           'slipKind.ifThen.thenLabel' => 'Então…',
           'slipKind.ifThen.thenHint' => 'Ex.: peço um tempo de 10 minutos',
           'slipKind.invisible.title' => 'Coisas que ninguém percebe',
-          _ => null,
-        } ??
-        switch (path) {
           'slipKind.invisible.titleHighlight' => 'ninguém percebe',
           'slipKind.invisible.subtitle' => 'Só para você. Isto nunca vai para o cartão.',
           'slipKind.invisible.hint' => 'Ex.: lembrei da consulta das crianças',
@@ -3477,6 +3571,8 @@ extension on Translations {
           }) => 'Você volta por volta das ${time}. Nada para fazer agora.',
           'today.pausePartnerTitle' => 'Seu par pediu um tempo',
           'today.pausePartnerText' => 'Sem pressa. Não tem nada para fazer agora.',
+          'today.signalReceived' => 'Seu par te mandou uma mensagem',
+          'today.signalReceivedAction' => 'Ver',
           'today.pauseBack' => 'Voltar agora',
           'today.pauseBackRepair' => 'Voltar e fazer um reparo',
           'today.pauseWriteSlip' => 'Anotar um slip',

@@ -98,6 +98,8 @@
   "pauseOwnText": "You're back around {time}. Nothing to do right now.",
   "pausePartnerTitle": "Your partner asked for some space",
   "pausePartnerText": "No rush. There's nothing to do right now.",
+  "signalReceived": "Your partner sent you a message",
+  "signalReceivedAction": "View",
   "pauseBack": "Come back now",
   "pauseBackRepair": "Come back and repair",
   "pauseWriteSlip": "Write a slip"

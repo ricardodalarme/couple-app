@@ -98,6 +98,8 @@
   "pauseOwnText": "Você volta por volta das {time}. Nada para fazer agora.",
   "pausePartnerTitle": "Seu par pediu um tempo",
   "pausePartnerText": "Sem pressa. Não tem nada para fazer agora.",
+  "signalReceived": "Seu par te mandou uma mensagem",
+  "signalReceivedAction": "Ver",
   "pauseBack": "Voltar agora",
   "pauseBackRepair": "Voltar e fazer um reparo",
   "pauseWriteSlip": "Anotar um slip"

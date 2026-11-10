@@ -11,6 +11,7 @@ query TodayHome {
     pauseIsMine
     pauseReturnAt
     hasPlus
+    unseenSignals
   }
   question: dailyContent(kind: "question") {
     slug

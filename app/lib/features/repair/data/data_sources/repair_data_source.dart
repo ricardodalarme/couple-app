@@ -1,6 +1,7 @@
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations/generated/CompleteRepairSession.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations/generated/DeleteLearning.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations/generated/RecordTemperature.graphql.dart';
+import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations/generated/RespondToSignal.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations/generated/SaveLearning.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations/generated/SaveRepairProgress.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations/generated/SendRepairSignal.graphql.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations/generated/StartRepairSession.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/queries/generated/MyLearnings.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/queries/generated/OpenGuidedSession.graphql.dart';
+import 'package:flutter_bloc_starter/features/repair/data/data_sources/queries/generated/ReceivedSignals.graphql.dart';
 import 'package:network/network.dart';
 
 class RepairDataSource({required final GQLClient _client}) {
@@ -108,6 +110,31 @@ class RepairDataSource({required final GQLClient _client}) {
     );
 
     validateResponse(response);
+  }
+
+  Future<List<QueryReceivedSignalssignalsCollectionedgesnode>> getReceivedSignals(
+    String recipientId,
+  ) async {
+    final response = await _client.query(
+      OptionsQueryReceivedSignals(
+        fetchPolicy: FetchPolicy.networkOnly,
+        variables: VariablesQueryReceivedSignals(recipientId: recipientId),
+      ),
+    );
+    final edges = validateResponseData(response, getData: (data) => data.signalsCollection.edges);
+
+    return [for (final edge in edges) edge.node];
+  }
+
+  /// Marks the signal seen and stores the answer, when there is one.
+  Future<void> respondToSignal({required String signalId, String? response}) async {
+    final result = await _client.mutate(
+      OptionsMutationRespondToSignal(
+        variables: VariablesMutationRespondToSignal(signalId: signalId, response: response),
+      ),
+    );
+
+    validateResponse(result);
   }
 
   /// Starts a pause that ends by itself at [returnAt], which the server limits to 24 hours.

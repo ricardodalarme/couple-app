@@ -1,0 +1,33 @@
+{
+  "kinds(map)": {
+    "repair": "Cartão de reparo",
+    "need": "Preciso de…",
+    "miss_us": "Saudade",
+    "hug": "Um abraço",
+    "distance": "Um pouco de distância",
+    "heavy_day": "Um dia pesado",
+    "good_news": "Boa notícia",
+    "other": ""
+  },
+  "fromPartner": "Do seu par",
+  "privateFirst": "Sua resposta é privada primeiro. Não tem certo nem errado.",
+  "responses(map)": {
+    "talk": "Sim, vamos conversar",
+    "more_time": "Preciso de mais um tempo",
+    "later": "Respondo depois",
+    "other": ""
+  },
+  "seen": "Entendi",
+  "doneTitle": "Tudo certo",
+  "doneText": "Obrigado por ler com calma.",
+  "emptyTitle": "Nada novo",
+  "emptyText": "Quando seu par mandar algo, aparece aqui.",
+  "close": "Fechar",
+  "errorTitle": "Não deu para abrir",
+  "errorText": "Nada se perdeu. Tente de novo.",
+  "errors(map)": {
+    "NOT_FOUND": "Essa mensagem não está mais aqui.",
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para responder agora. Tente de novo."
+  }
+}

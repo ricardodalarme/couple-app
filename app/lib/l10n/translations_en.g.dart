@@ -90,6 +90,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$quickSlip$en quickSlip = _Translations$quickSlip$en._(_root);
   @override
+  late final _Translations$received$en received = _Translations$received$en._(_root);
+  @override
   late final _Translations$reminders$en reminders = _Translations$reminders$en._(_root);
   @override
   late final _Translations$repair$en repair = _Translations$repair$en._(_root);
@@ -834,6 +836,59 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   };
 }
 
+// Path: received
+class _Translations$received$en extends Translations$received$pt {
+  _Translations$received$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  Map<String, String> get kinds => {
+    'repair': 'Repair card',
+    'need': 'I need…',
+    'miss_us': 'Missing you',
+    'hug': 'A hug',
+    'distance': 'A little distance',
+    'heavy_day': 'A heavy day',
+    'good_news': 'Good news',
+    'other': '',
+  };
+  @override
+  String get fromPartner => 'From your partner';
+  @override
+  String get privateFirst => 'Your answer is private first. There is no right or wrong.';
+  @override
+  Map<String, String> get responses => {
+    'talk': 'Yes, let\'s talk',
+    'more_time': 'I need a bit more time',
+    'later': 'I\'ll answer later',
+    'other': '',
+  };
+  @override
+  String get seen => 'Got it';
+  @override
+  String get doneTitle => 'All good';
+  @override
+  String get doneText => 'Thanks for reading it calmly.';
+  @override
+  String get emptyTitle => 'Nothing new';
+  @override
+  String get emptyText => 'When your partner sends something, it shows up here.';
+  @override
+  String get close => 'Close';
+  @override
+  String get errorTitle => 'Couldn\'t open this';
+  @override
+  String get errorText => 'Nothing was lost. Try again.';
+  @override
+  Map<String, String> get errors => {
+    'NOT_FOUND': 'That message isn\'t here anymore.',
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t answer right now. Try again.',
+  };
+}
+
 // Path: reminders
 class _Translations$reminders$en extends Translations$reminders$pt {
   _Translations$reminders$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1416,6 +1471,10 @@ class _Translations$today$en extends Translations$today$pt {
   String get pausePartnerTitle => 'Your partner asked for some space';
   @override
   String get pausePartnerText => 'No rush. There\'s nothing to do right now.';
+  @override
+  String get signalReceived => 'Your partner sent you a message';
+  @override
+  String get signalReceivedAction => 'View';
   @override
   String get pauseBack => 'Come back now';
   @override
@@ -2589,6 +2648,31 @@ extension on TranslationsEn {
           'quickSlip.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'quickSlip.errors.other' =>
             'Could not save right now. Your text is still here, try again.',
+          'received.kinds.repair' => 'Repair card',
+          'received.kinds.need' => 'I need…',
+          'received.kinds.miss_us' => 'Missing you',
+          'received.kinds.hug' => 'A hug',
+          'received.kinds.distance' => 'A little distance',
+          'received.kinds.heavy_day' => 'A heavy day',
+          'received.kinds.good_news' => 'Good news',
+          'received.kinds.other' => '',
+          'received.fromPartner' => 'From your partner',
+          'received.privateFirst' => 'Your answer is private first. There is no right or wrong.',
+          'received.responses.talk' => 'Yes, let\'s talk',
+          'received.responses.more_time' => 'I need a bit more time',
+          'received.responses.later' => 'I\'ll answer later',
+          'received.responses.other' => '',
+          'received.seen' => 'Got it',
+          'received.doneTitle' => 'All good',
+          'received.doneText' => 'Thanks for reading it calmly.',
+          'received.emptyTitle' => 'Nothing new',
+          'received.emptyText' => 'When your partner sends something, it shows up here.',
+          'received.close' => 'Close',
+          'received.errorTitle' => 'Couldn\'t open this',
+          'received.errorText' => 'Nothing was lost. Try again.',
+          'received.errors.NOT_FOUND' => 'That message isn\'t here anymore.',
+          'received.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'received.errors.other' => 'Couldn\'t answer right now. Try again.',
           'reminders.title' => 'Repara',
           'reminders.dailyIdea' => 'A small idea for today.',
           'reminders.dates' => 'A date is coming up.',
@@ -2747,6 +2831,9 @@ extension on TranslationsEn {
           'slipDetail.deleted' => 'Slip deleted',
           'slipDetail.notFoundTitle' => 'This slip no longer exists',
           'slipDetail.notFoundText' => 'It may have been deleted.',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.errorTitle' => 'Couldn\'t open this slip',
           'slipDetail.errorText' => 'It is still saved. Try again.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'This slip no longer exists.',
@@ -2772,9 +2859,6 @@ extension on TranslationsEn {
           'slipKind.ifThen.thenLabel' => 'Then…',
           'slipKind.ifThen.thenHint' => 'E.g. I ask for 10 minutes alone',
           'slipKind.invisible.title' => 'Things nobody notices',
-          _ => null,
-        } ??
-        switch (path) {
           'slipKind.invisible.titleHighlight' => 'nobody notices',
           'slipKind.invisible.subtitle' => 'Only for you. This never goes into a card.',
           'slipKind.invisible.hint' => 'E.g. remembered the kids\' appointment',
@@ -3057,6 +3141,8 @@ extension on TranslationsEn {
           }) => 'You\'re back around ${time}. Nothing to do right now.',
           'today.pausePartnerTitle' => 'Your partner asked for some space',
           'today.pausePartnerText' => 'No rush. There\'s nothing to do right now.',
+          'today.signalReceived' => 'Your partner sent you a message',
+          'today.signalReceivedAction' => 'View',
           'today.pauseBack' => 'Come back now',
           'today.pauseBackRepair' => 'Come back and repair',
           'today.pauseWriteSlip' => 'Write a slip',
