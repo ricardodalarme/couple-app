@@ -26,4 +26,20 @@ void main() {
       expect(tester.takeException(), isNull);
     });
   }
+
+  testWidgets('a long label ellipsizes instead of overflowing', (tester) async {
+    await tester.pumpWidget(
+      inputHost(
+        const SizedBox(
+          width: 120,
+          child: BaseChoiceChip(label: 'A very long choice label that cannot fit'),
+        ),
+        variant: AppThemeVariant.rose,
+      ),
+    );
+    await tester.pump();
+
+    expect(tester.takeException(), isNull);
+    expect(find.text('A very long choice label that cannot fit'), findsOneWidget);
+  });
 }

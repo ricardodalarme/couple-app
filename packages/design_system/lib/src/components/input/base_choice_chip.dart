@@ -34,14 +34,16 @@ class const BaseChoiceChip({
             AppIcon(icon: icon!, size: _iconSize, color: ink),
             const SizedBox(width: _iconGap),
           ],
-          Text(
-            label,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: context.text.bodySm.copyWith(
-              fontSize: _textSize,
-              fontWeight: FontWeight.w500,
-              color: ink,
+          Flexible(
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: context.text.bodySm.copyWith(
+                fontSize: _textSize,
+                fontWeight: FontWeight.w500,
+                color: ink,
+              ),
             ),
           ),
         ],
