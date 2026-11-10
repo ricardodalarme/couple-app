@@ -176,6 +176,56 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [IdeaDetailPage]
+class IdeaDetailRoute extends PageRouteInfo<IdeaDetailRouteArgs> {
+  IdeaDetailRoute({String? slug, Key? key, List<PageRouteInfo>? children})
+    : super(
+        IdeaDetailRoute.name,
+        args: IdeaDetailRouteArgs(slug: slug, key: key),
+        rawQueryParams: {'slug': slug},
+        initialChildren: children,
+      );
+
+  static const String name = 'IdeaDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final queryParams = data.queryParams;
+      final args = data.argsAs<IdeaDetailRouteArgs>(
+        orElse: () => IdeaDetailRouteArgs(slug: queryParams.optString('slug')),
+      );
+      return WrappedRoute(
+        child: IdeaDetailPage(slug: args.slug, key: args.key),
+      );
+    },
+  );
+}
+
+class IdeaDetailRouteArgs {
+  const IdeaDetailRouteArgs({this.slug, this.key});
+
+  final String? slug;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'IdeaDetailRouteArgs{slug: $slug, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! IdeaDetailRouteArgs) return false;
+    return slug == other.slug && key == other.key;
+  }
+
+  @override
+  int get hashCode => slug.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [IntroGoalsPage]
 class IntroGoalsRoute extends PageRouteInfo<void> {
   const IntroGoalsRoute({List<PageRouteInfo>? children})

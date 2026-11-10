@@ -114,6 +114,27 @@ const documentNodeQueryMySettings = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'phase'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'goals'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'locale'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: '__typename'),
                   alias: null,
                   arguments: [],
@@ -248,6 +269,9 @@ class QueryMySettingsmySettings {
     this.togetherSince,
     this.onboardedAt,
     required this.shareReadReceipts,
+    this.phase,
+    required this.goals,
+    required this.locale,
     this.$__typename = 'ProfileSettings',
   });
 
@@ -257,6 +281,9 @@ class QueryMySettingsmySettings {
     final l$togetherSince = json['togetherSince'];
     final l$onboardedAt = json['onboardedAt'];
     final l$shareReadReceipts = json['shareReadReceipts'];
+    final l$phase = json['phase'];
+    final l$goals = json['goals'];
+    final l$locale = json['locale'];
     final l$$__typename = json['__typename'];
     return QueryMySettingsmySettings(
       theme: fromJsonEnumAppTheme((l$theme as String)),
@@ -264,6 +291,9 @@ class QueryMySettingsmySettings {
       togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
       onboardedAt: l$onboardedAt == null ? null : DateTime.parse((l$onboardedAt as String)),
       shareReadReceipts: (l$shareReadReceipts as bool),
+      phase: l$phase == null ? null : fromJsonEnumRelationshipPhase((l$phase as String)),
+      goals: (l$goals as List<dynamic>).map((e) => (e as String?)).toList(),
+      locale: (l$locale as String),
       $__typename: (l$$__typename as String),
     );
   }
@@ -277,6 +307,12 @@ class QueryMySettingsmySettings {
   final DateTime? onboardedAt;
 
   final bool shareReadReceipts;
+
+  final EnumRelationshipPhase? phase;
+
+  final List<String?> goals;
+
+  final String locale;
 
   final String $__typename;
 
@@ -294,6 +330,12 @@ class QueryMySettingsmySettings {
     _resultData['onboardedAt'] = l$onboardedAt?.toIso8601String();
     final l$shareReadReceipts = shareReadReceipts;
     _resultData['shareReadReceipts'] = l$shareReadReceipts;
+    final l$phase = phase;
+    _resultData['phase'] = l$phase == null ? null : toJsonEnumRelationshipPhase(l$phase);
+    final l$goals = goals;
+    _resultData['goals'] = l$goals.map((e) => e).toList();
+    final l$locale = locale;
+    _resultData['locale'] = l$locale;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -306,6 +348,9 @@ class QueryMySettingsmySettings {
     final l$togetherSince = togetherSince;
     final l$onboardedAt = onboardedAt;
     final l$shareReadReceipts = shareReadReceipts;
+    final l$phase = phase;
+    final l$goals = goals;
+    final l$locale = locale;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$theme,
@@ -313,6 +358,9 @@ class QueryMySettingsmySettings {
       l$togetherSince,
       l$onboardedAt,
       l$shareReadReceipts,
+      l$phase,
+      Object.hashAll(l$goals.map((v) => v)),
+      l$locale,
       l$$__typename,
     ]);
   }
@@ -348,6 +396,28 @@ class QueryMySettingsmySettings {
     final l$shareReadReceipts = shareReadReceipts;
     final lOther$shareReadReceipts = other.shareReadReceipts;
     if (l$shareReadReceipts != lOther$shareReadReceipts) {
+      return false;
+    }
+    final l$phase = phase;
+    final lOther$phase = other.phase;
+    if (l$phase != lOther$phase) {
+      return false;
+    }
+    final l$goals = goals;
+    final lOther$goals = other.goals;
+    if (l$goals.length != lOther$goals.length) {
+      return false;
+    }
+    for (int i = 0; i < l$goals.length; i++) {
+      final l$goals$entry = l$goals[i];
+      final lOther$goals$entry = lOther$goals[i];
+      if (l$goals$entry != lOther$goals$entry) {
+        return false;
+      }
+    }
+    final l$locale = locale;
+    final lOther$locale = other.locale;
+    if (l$locale != lOther$locale) {
       return false;
     }
     final l$$__typename = $__typename;

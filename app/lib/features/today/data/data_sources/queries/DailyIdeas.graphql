@@ -1,0 +1,21 @@
+query DailyIdeas($locale: String!) {
+  contentItemsCollection(
+    first: 50
+    filter: {
+      kind: { eq: "daily_idea" }
+      locale: { eq: $locale }
+      plusOnly: { eq: false }
+      published: { eq: true }
+    }
+    orderBy: [{ position: AscNullsLast }]
+  ) {
+    edges {
+      node {
+        slug
+        title
+        body
+        tags
+      }
+    }
+  }
+}

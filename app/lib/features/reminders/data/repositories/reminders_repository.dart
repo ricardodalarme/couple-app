@@ -31,6 +31,13 @@ class RemindersRepository({
   Future<void> savePreferences(ReminderPreferences preferences) =>
       _localDataSource.write(preferences);
 
+  /// Remembers a one-off reminder; the next [reschedule] places it.
+  Future<void> addCustomReminder(DateTime at, {required DateTime now}) {
+    final moments = [..._localDataSource.readCustom().where((moment) => moment.isAfter(now)), at];
+
+    return _localDataSource.writeCustom(moments);
+  }
+
   /// Plans the next reminders and replaces the pending ones on the device.
   ///
   /// [dateReminders] are moments for important dates, supplied by the caller. Everything
@@ -50,7 +57,12 @@ class RemindersRepository({
     );
     final plan = planner.plan(
       preferences: getPreferences(),
-      candidates: [...candidatesFor(now), ...dateReminders],
+      candidates: [
+        ...candidatesFor(now),
+        for (final moment in _localDataSource.readCustom())
+          ReminderCandidate(kind: ReminderKind.dailyIdea, at: moment, key: 'custom'),
+        ...dateReminders,
+      ],
       now: now,
     );
     try {

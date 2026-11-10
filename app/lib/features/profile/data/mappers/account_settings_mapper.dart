@@ -10,6 +10,9 @@ extension MySettingsMapper on QueryMySettingsmySettings {
     togetherSince: togetherSince,
     onboardedAt: onboardedAt,
     shareReadReceipts: shareReadReceipts,
+    phase: phase?.toJson(),
+    goals: goals.whereType<String>().toList(),
+    locale: locale,
   );
 }
 

@@ -5,5 +5,8 @@ query MySettings {
     togetherSince
     onboardedAt
     shareReadReceipts
+    phase
+    goals
+    locale
   }
 }

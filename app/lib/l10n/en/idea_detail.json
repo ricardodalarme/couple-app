@@ -1,0 +1,21 @@
+{
+  "label": "Idea of the day",
+  "whyTitle": "Why this idea",
+  "yourPhase": "Your phase",
+  "yourGoal": "Your goal",
+  "willDo": "I will do it",
+  "done": "Noted. Nice!",
+  "another": "Another idea",
+  "later": "Later",
+  "laterTitle": "When should we remind you?",
+  "tonight": "Tonight",
+  "tomorrow": "Tomorrow morning",
+  "weekend": "This weekend",
+  "reminderSet": "Done. We will remind you with a gentle nudge.",
+  "reminderSetNotificationsOff": "Reminder saved. Turn notifications on in settings to receive it.",
+  "reminderError": "Could not save the reminder. Try again.",
+  "emptyTitle": "No ideas right now",
+  "emptyText": "Come back later. In the meantime, note a slip.",
+  "errorTitle": "Could not load the idea",
+  "errorText": "Try again in a moment."
+}

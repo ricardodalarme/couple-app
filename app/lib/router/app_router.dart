@@ -8,6 +8,7 @@ import 'package:flutter_bloc_starter/features/cards/presentation/draft/sunday_ca
 import 'package:flutter_bloc_starter/features/cards/presentation/list/cards_list_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/home/presentation/home/home_page.dart';
+import 'package:flutter_bloc_starter/features/ideas/presentation/detail/idea_detail_page.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/memories_page.dart';
 import 'package:flutter_bloc_starter/features/not_found/presentation/not_found/not_found_page.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/permission/notification_permission_page.dart';
@@ -54,6 +55,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: QuickSlipRoute.page, fullscreenDialog: true),
     AutoRoute(page: SundayCardRoute.page),
     AutoRoute(page: CardsListRoute.page),
+    AutoRoute(page: IdeaDetailRoute.page, path: '/idea'),
     AutoRoute(page: CardDetailRoute.page, path: '/card/:id'),
     AutoRoute(
       page: HomeRoute.page,

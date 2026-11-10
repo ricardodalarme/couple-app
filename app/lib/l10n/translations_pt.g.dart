@@ -62,6 +62,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$cardsList$pt cardsList = Translations$cardsList$pt.internal(_root);
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
+  late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
@@ -376,6 +377,73 @@ class Translations$firstSlip$pt {
 
   /// pt: 'Não deu para guardar agora. Tente de novo.'
   String get saveError => 'Não deu para guardar agora. Tente de novo.';
+}
+
+// Path: ideaDetail
+class Translations$ideaDetail$pt {
+  Translations$ideaDetail$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Ideia do dia'
+  String get label => 'Ideia do dia';
+
+  /// pt: 'Por que esta ideia'
+  String get whyTitle => 'Por que esta ideia';
+
+  /// pt: 'Sua fase'
+  String get yourPhase => 'Sua fase';
+
+  /// pt: 'Seu objetivo'
+  String get yourGoal => 'Seu objetivo';
+
+  /// pt: 'Eu vou fazer'
+  String get willDo => 'Eu vou fazer';
+
+  /// pt: 'Anotado. Que bom!'
+  String get done => 'Anotado. Que bom!';
+
+  /// pt: 'Outra ideia'
+  String get another => 'Outra ideia';
+
+  /// pt: 'Mais tarde'
+  String get later => 'Mais tarde';
+
+  /// pt: 'Quando lembrar?'
+  String get laterTitle => 'Quando lembrar?';
+
+  /// pt: 'Hoje à noite'
+  String get tonight => 'Hoje à noite';
+
+  /// pt: 'Amanhã de manhã'
+  String get tomorrow => 'Amanhã de manhã';
+
+  /// pt: 'No fim de semana'
+  String get weekend => 'No fim de semana';
+
+  /// pt: 'Combinado. Vamos lembrar com um aviso gentil.'
+  String get reminderSet => 'Combinado. Vamos lembrar com um aviso gentil.';
+
+  /// pt: 'Guardamos o lembrete. Ligue as notificações nas configurações para recebê-lo.'
+  String get reminderSetNotificationsOff =>
+      'Guardamos o lembrete. Ligue as notificações nas configurações para recebê-lo.';
+
+  /// pt: 'Não deu para guardar o lembrete. Tente de novo.'
+  String get reminderError => 'Não deu para guardar o lembrete. Tente de novo.';
+
+  /// pt: 'Sem ideias agora'
+  String get emptyTitle => 'Sem ideias agora';
+
+  /// pt: 'Volte mais tarde. Enquanto isso, anote um slip.'
+  String get emptyText => 'Volte mais tarde. Enquanto isso, anote um slip.';
+
+  /// pt: 'Não deu para carregar a ideia'
+  String get errorTitle => 'Não deu para carregar a ideia';
+
+  /// pt: 'Tente de novo em instantes.'
+  String get errorText => 'Tente de novo em instantes.';
 }
 
 // Path: intro
@@ -1689,6 +1757,26 @@ extension on Translations {
       'firstSlip.localNote' => 'Fica salvo só neste celular.',
       'firstSlip.save' => 'Salvar',
       'firstSlip.saveError' => 'Não deu para guardar agora. Tente de novo.',
+      'ideaDetail.label' => 'Ideia do dia',
+      'ideaDetail.whyTitle' => 'Por que esta ideia',
+      'ideaDetail.yourPhase' => 'Sua fase',
+      'ideaDetail.yourGoal' => 'Seu objetivo',
+      'ideaDetail.willDo' => 'Eu vou fazer',
+      'ideaDetail.done' => 'Anotado. Que bom!',
+      'ideaDetail.another' => 'Outra ideia',
+      'ideaDetail.later' => 'Mais tarde',
+      'ideaDetail.laterTitle' => 'Quando lembrar?',
+      'ideaDetail.tonight' => 'Hoje à noite',
+      'ideaDetail.tomorrow' => 'Amanhã de manhã',
+      'ideaDetail.weekend' => 'No fim de semana',
+      'ideaDetail.reminderSet' => 'Combinado. Vamos lembrar com um aviso gentil.',
+      'ideaDetail.reminderSetNotificationsOff' =>
+        'Guardamos o lembrete. Ligue as notificações nas configurações para recebê-lo.',
+      'ideaDetail.reminderError' => 'Não deu para guardar o lembrete. Tente de novo.',
+      'ideaDetail.emptyTitle' => 'Sem ideias agora',
+      'ideaDetail.emptyText' => 'Volte mais tarde. Enquanto isso, anote um slip.',
+      'ideaDetail.errorTitle' => 'Não deu para carregar a ideia',
+      'ideaDetail.errorText' => 'Tente de novo em instantes.',
       'intro.skip' => 'Pular',
       'intro.continueButton' => 'Continuar',
       'intro.phase.title' => 'Onde vocês estão agora?',

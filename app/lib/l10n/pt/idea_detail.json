@@ -1,0 +1,21 @@
+{
+  "label": "Ideia do dia",
+  "whyTitle": "Por que esta ideia",
+  "yourPhase": "Sua fase",
+  "yourGoal": "Seu objetivo",
+  "willDo": "Eu vou fazer",
+  "done": "Anotado. Que bom!",
+  "another": "Outra ideia",
+  "later": "Mais tarde",
+  "laterTitle": "Quando lembrar?",
+  "tonight": "Hoje à noite",
+  "tomorrow": "Amanhã de manhã",
+  "weekend": "No fim de semana",
+  "reminderSet": "Combinado. Vamos lembrar com um aviso gentil.",
+  "reminderSetNotificationsOff": "Guardamos o lembrete. Ligue as notificações nas configurações para recebê-lo.",
+  "reminderError": "Não deu para guardar o lembrete. Tente de novo.",
+  "emptyTitle": "Sem ideias agora",
+  "emptyText": "Volte mais tarde. Enquanto isso, anote um slip.",
+  "errorTitle": "Não deu para carregar a ideia",
+  "errorText": "Tente de novo em instantes."
+}

@@ -106,6 +106,7 @@ class const TodayContent({
             title: idea.title,
             supportText: idea.body,
             face: FaceKind.smile,
+            onTap: () => context.pushRoute(IdeaDetailRoute(slug: idea.slug)),
           ),
         ],
       ],

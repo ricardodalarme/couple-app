@@ -66,6 +66,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$firstSlip$en firstSlip = _Translations$firstSlip$en._(_root);
   @override
+  late final _Translations$ideaDetail$en ideaDetail = _Translations$ideaDetail$en._(_root);
+  @override
   late final _Translations$intro$en intro = _Translations$intro$en._(_root);
   @override
   late final _Translations$invite$en invite = _Translations$invite$en._(_root);
@@ -332,6 +334,54 @@ class _Translations$firstSlip$en extends Translations$firstSlip$pt {
   String get save => 'Save';
   @override
   String get saveError => 'Could not keep it right now. Try again.';
+}
+
+// Path: ideaDetail
+class _Translations$ideaDetail$en extends Translations$ideaDetail$pt {
+  _Translations$ideaDetail$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get label => 'Idea of the day';
+  @override
+  String get whyTitle => 'Why this idea';
+  @override
+  String get yourPhase => 'Your phase';
+  @override
+  String get yourGoal => 'Your goal';
+  @override
+  String get willDo => 'I will do it';
+  @override
+  String get done => 'Noted. Nice!';
+  @override
+  String get another => 'Another idea';
+  @override
+  String get later => 'Later';
+  @override
+  String get laterTitle => 'When should we remind you?';
+  @override
+  String get tonight => 'Tonight';
+  @override
+  String get tomorrow => 'Tomorrow morning';
+  @override
+  String get weekend => 'This weekend';
+  @override
+  String get reminderSet => 'Done. We will remind you with a gentle nudge.';
+  @override
+  String get reminderSetNotificationsOff =>
+      'Reminder saved. Turn notifications on in settings to receive it.';
+  @override
+  String get reminderError => 'Could not save the reminder. Try again.';
+  @override
+  String get emptyTitle => 'No ideas right now';
+  @override
+  String get emptyText => 'Come back later. In the meantime, note a slip.';
+  @override
+  String get errorTitle => 'Could not load the idea';
+  @override
+  String get errorText => 'Try again in a moment.';
 }
 
 // Path: intro
@@ -1417,6 +1467,26 @@ extension on TranslationsEn {
       'firstSlip.localNote' => 'Stays saved on this phone only.',
       'firstSlip.save' => 'Save',
       'firstSlip.saveError' => 'Could not keep it right now. Try again.',
+      'ideaDetail.label' => 'Idea of the day',
+      'ideaDetail.whyTitle' => 'Why this idea',
+      'ideaDetail.yourPhase' => 'Your phase',
+      'ideaDetail.yourGoal' => 'Your goal',
+      'ideaDetail.willDo' => 'I will do it',
+      'ideaDetail.done' => 'Noted. Nice!',
+      'ideaDetail.another' => 'Another idea',
+      'ideaDetail.later' => 'Later',
+      'ideaDetail.laterTitle' => 'When should we remind you?',
+      'ideaDetail.tonight' => 'Tonight',
+      'ideaDetail.tomorrow' => 'Tomorrow morning',
+      'ideaDetail.weekend' => 'This weekend',
+      'ideaDetail.reminderSet' => 'Done. We will remind you with a gentle nudge.',
+      'ideaDetail.reminderSetNotificationsOff' =>
+        'Reminder saved. Turn notifications on in settings to receive it.',
+      'ideaDetail.reminderError' => 'Could not save the reminder. Try again.',
+      'ideaDetail.emptyTitle' => 'No ideas right now',
+      'ideaDetail.emptyText' => 'Come back later. In the meantime, note a slip.',
+      'ideaDetail.errorTitle' => 'Could not load the idea',
+      'ideaDetail.errorText' => 'Try again in a moment.',
       'intro.skip' => 'Skip',
       'intro.continueButton' => 'Continue',
       'intro.phase.title' => 'Where are you two right now?',

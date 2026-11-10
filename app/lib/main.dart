@@ -6,6 +6,7 @@ import 'package:flutter_bloc_starter/features/_shared/di/shared_injection_module
 import 'package:flutter_bloc_starter/features/app/di/app_injection_module.dart';
 import 'package:flutter_bloc_starter/features/authentication/di/authentication_injection_module.dart';
 import 'package:flutter_bloc_starter/features/cards/di/cards_injection_module.dart';
+import 'package:flutter_bloc_starter/features/ideas/di/ideas_injection_module.dart';
 import 'package:flutter_bloc_starter/features/notifications/di/notifications_injection_module.dart';
 import 'package:flutter_bloc_starter/features/onboarding/di/onboarding_injection_module.dart';
 import 'package:flutter_bloc_starter/features/pairing/di/pairing_injection_module.dart';
@@ -38,6 +39,7 @@ void _registerModules() {
     AppInjectionModule(),
     AuthenticationInjectionModule(),
     SettingsInjectionModule(),
+    IdeasInjectionModule(),
     NotificationsInjectionModule(),
     OnboardingInjectionModule(),
     PairingInjectionModule(),

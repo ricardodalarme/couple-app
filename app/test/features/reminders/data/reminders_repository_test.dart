@@ -23,7 +23,10 @@ void main() {
   late RemindersRepository repository;
   List<LocalNotificationRequest>? scheduled;
 
-  setUpAll(() => registerFallbackValue(<LocalNotificationRequest>[]));
+  setUpAll(() {
+    registerFallbackValue(<LocalNotificationRequest>[]);
+    registerFallbackValue(<DateTime>[]);
+  });
 
   setUp(() {
     local = _MockLocal();
@@ -31,6 +34,8 @@ void main() {
     scheduled = null;
     repository = RemindersRepository(localDataSource: local, notificationService: notifications);
     when(() => local.read()).thenReturn(const ReminderPreferences());
+    when(() => local.readCustom()).thenReturn(const []);
+    when(() => local.writeCustom(any())).thenAnswer((_) async {});
     when(() => notifications.replaceAll(any())).thenAnswer((invocation) async {
       scheduled = invocation.positionalArguments.first as List<LocalNotificationRequest>;
     });
@@ -92,6 +97,33 @@ void main() {
       await repository.reschedule(texts: _texts, now: DateTime(2026, 11, 9, 9));
 
       expect(scheduled, isEmpty);
+    });
+
+    test('a custom reminder is placed with the others', () async {
+      when(() => local.readCustom()).thenReturn([DateTime(2026, 11, 10, 20)]);
+
+      await repository.reschedule(texts: _texts, now: DateTime(2026, 11, 9, 9));
+
+      expect(scheduled!.any((request) => request.at == DateTime(2026, 11, 10, 20)), isTrue);
+    });
+
+    test('a custom reminder inside quiet hours moves out of them', () async {
+      when(() => local.readCustom()).thenReturn([DateTime(2026, 11, 10, 23)]);
+
+      await repository.reschedule(texts: _texts, now: DateTime(2026, 11, 9, 9));
+
+      expect(scheduled!.any((request) => request.at == DateTime(2026, 11, 11, 8)), isTrue);
+    });
+
+    test('adding a custom reminder drops the ones already in the past', () async {
+      final now = DateTime(2026, 11, 9, 9);
+      when(() => local.readCustom())
+          .thenReturn([DateTime(2026, 11, 8, 20), DateTime(2026, 11, 12, 20)]);
+
+      await repository.addCustomReminder(DateTime(2026, 11, 10, 9), now: now);
+
+      final saved = verify(() => local.writeCustom(captureAny())).captured.single as List<DateTime>;
+      expect(saved, [DateTime(2026, 11, 12, 20), DateTime(2026, 11, 10, 9)]);
     });
 
     test('a failing device call is reported', () {
