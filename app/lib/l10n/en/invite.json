@@ -1,0 +1,22 @@
+{
+  "title": "Invite {name}",
+  "titleNoName": "Invite your person",
+  "messageIntro": "This message will be sent:",
+  "message": "I started something small for us. To connect in the app, use the code {code}.",
+  "expiryNote": "The invite is valid for {days} days. Only the latest invite you create works.",
+  "share": "Share invite",
+  "copy": "Copy invite",
+  "sentTitle": "Invite sent",
+  "sentHighlight": "sent",
+  "sentText": "{name} has not joined yet. In the meantime you can use the app on your own.",
+  "sentTextNoName": "Your person has not joined yet. In the meantime you can use the app on your own.",
+  "resend": "Send again",
+  "revoke": "Revoke",
+  "errorTitle": "Could not create the invite",
+  "errors(map)": {
+    "ALREADY_PAIRED": "You are already connected with someone.",
+    "RATE_LIMITED": "You created too many invites today. Try again tomorrow.",
+    "NETWORK": "No connection. Check your internet and try again.",
+    "other": "Something went wrong. Try again."
+  }
+}

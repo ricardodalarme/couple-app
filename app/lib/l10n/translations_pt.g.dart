@@ -58,6 +58,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
+  late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
   late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
     _root,
@@ -192,6 +193,68 @@ class Translations$intro$pt {
   late final Translations$intro$phase$pt phase = Translations$intro$phase$pt.internal(_root);
   late final Translations$intro$goals$pt goals = Translations$intro$goals$pt.internal(_root);
   late final Translations$intro$theme$pt theme = Translations$intro$theme$pt.internal(_root);
+}
+
+// Path: invite
+class Translations$invite$pt {
+  Translations$invite$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Convidar {name}'
+  String title({required Object name}) => 'Convidar ${name}';
+
+  /// pt: 'Convidar sua pessoa'
+  String get titleNoName => 'Convidar sua pessoa';
+
+  /// pt: 'Esta mensagem será enviada:'
+  String get messageIntro => 'Esta mensagem será enviada:';
+
+  /// pt: 'Comecei uma coisa pequena para nós. Para nos conectar no app, use o código {code}.'
+  String message({required Object code}) =>
+      'Comecei uma coisa pequena para nós. Para nos conectar no app, use o código ${code}.';
+
+  /// pt: 'O convite vale por {days} dias. Só o último convite criado funciona.'
+  String expiryNote({required Object days}) =>
+      'O convite vale por ${days} dias. Só o último convite criado funciona.';
+
+  /// pt: 'Compartilhar convite'
+  String get share => 'Compartilhar convite';
+
+  /// pt: 'Copiar convite'
+  String get copy => 'Copiar convite';
+
+  /// pt: 'Convite enviado'
+  String get sentTitle => 'Convite enviado';
+
+  /// pt: 'enviado'
+  String get sentHighlight => 'enviado';
+
+  /// pt: '{name} ainda não entrou. Enquanto isso, você pode usar o app sozinho.'
+  String sentText({required Object name}) =>
+      '${name} ainda não entrou. Enquanto isso, você pode usar o app sozinho.';
+
+  /// pt: 'Sua pessoa ainda não entrou. Enquanto isso, você pode usar o app sozinho.'
+  String get sentTextNoName =>
+      'Sua pessoa ainda não entrou. Enquanto isso, você pode usar o app sozinho.';
+
+  /// pt: 'Reenviar'
+  String get resend => 'Reenviar';
+
+  /// pt: 'Revogar'
+  String get revoke => 'Revogar';
+
+  /// pt: 'Não deu para criar o convite'
+  String get errorTitle => 'Não deu para criar o convite';
+
+  Map<String, String> get errors => {
+    'ALREADY_PAIRED': 'Você já está conectado com alguém.',
+    'RATE_LIMITED': 'Você criou muitos convites hoje. Tente de novo amanhã.',
+    'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
+    'other': 'Algo deu errado. Tente de novo.',
+  };
 }
 
 // Path: notFound
@@ -611,6 +674,31 @@ extension on Translations {
       'intro.theme.neutral' => 'Neutro',
       'intro.theme.neutralSupport' => 'Papel e verde',
       'intro.theme.footnote' => 'Dá para trocar depois em Configurações, Aparência.',
+      'invite.title' => ({required Object name}) => 'Convidar ${name}',
+      'invite.titleNoName' => 'Convidar sua pessoa',
+      'invite.messageIntro' => 'Esta mensagem será enviada:',
+      'invite.message' => ({
+        required Object code,
+      }) => 'Comecei uma coisa pequena para nós. Para nos conectar no app, use o código ${code}.',
+      'invite.expiryNote' => ({
+        required Object days,
+      }) => 'O convite vale por ${days} dias. Só o último convite criado funciona.',
+      'invite.share' => 'Compartilhar convite',
+      'invite.copy' => 'Copiar convite',
+      'invite.sentTitle' => 'Convite enviado',
+      'invite.sentHighlight' => 'enviado',
+      'invite.sentText' => ({
+        required Object name,
+      }) => '${name} ainda não entrou. Enquanto isso, você pode usar o app sozinho.',
+      'invite.sentTextNoName' =>
+        'Sua pessoa ainda não entrou. Enquanto isso, você pode usar o app sozinho.',
+      'invite.resend' => 'Reenviar',
+      'invite.revoke' => 'Revogar',
+      'invite.errorTitle' => 'Não deu para criar o convite',
+      'invite.errors.ALREADY_PAIRED' => 'Você já está conectado com alguém.',
+      'invite.errors.RATE_LIMITED' => 'Você criou muitos convites hoje. Tente de novo amanhã.',
+      'invite.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
+      'invite.errors.other' => 'Algo deu errado. Tente de novo.',
       'notFound.title' => '404',
       'notFound.description' => 'Página não encontrada',
       'notFound.buttonBack' => 'Voltar para página inicial',

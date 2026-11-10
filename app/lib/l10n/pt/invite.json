@@ -1,0 +1,22 @@
+{
+  "title": "Convidar {name}",
+  "titleNoName": "Convidar sua pessoa",
+  "messageIntro": "Esta mensagem será enviada:",
+  "message": "Comecei uma coisa pequena para nós. Para nos conectar no app, use o código {code}.",
+  "expiryNote": "O convite vale por {days} dias. Só o último convite criado funciona.",
+  "share": "Compartilhar convite",
+  "copy": "Copiar convite",
+  "sentTitle": "Convite enviado",
+  "sentHighlight": "enviado",
+  "sentText": "{name} ainda não entrou. Enquanto isso, você pode usar o app sozinho.",
+  "sentTextNoName": "Sua pessoa ainda não entrou. Enquanto isso, você pode usar o app sozinho.",
+  "resend": "Reenviar",
+  "revoke": "Revogar",
+  "errorTitle": "Não deu para criar o convite",
+  "errors(map)": {
+    "ALREADY_PAIRED": "Você já está conectado com alguém.",
+    "RATE_LIMITED": "Você criou muitos convites hoje. Tente de novo amanhã.",
+    "NETWORK": "Sem conexão. Confira a internet e tente de novo.",
+    "other": "Algo deu errado. Tente de novo."
+  }
+}

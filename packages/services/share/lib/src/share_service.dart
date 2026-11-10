@@ -18,6 +18,17 @@ class const ShareService({
   TemporaryDirectoryProvider get _temporaryDirectoryProvider =>
       _temporaryDirectory ?? getTemporaryDirectory;
 
+  /// Opens the share sheet with plain [text].
+  ///
+  /// Throws a [ShareException] when the platform share fails.
+  Future<void> shareText({required String text, Rect? sharePositionOrigin}) async {
+    try {
+      await _client.share(ShareParams(text: text, sharePositionOrigin: sharePositionOrigin));
+    } catch (error, stackTrace) {
+      Error.throwWithStackTrace(ShareException(error), stackTrace);
+    }
+  }
+
   /// Opens the share sheet with [file] attached as [mimeType].
   ///
   /// [text] is offered alongside the file where the receiving app supports it.

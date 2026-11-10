@@ -123,6 +123,22 @@ class IntroThemeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [InvitePage]
+class InviteRoute extends PageRouteInfo<void> {
+  const InviteRoute({List<PageRouteInfo>? children})
+    : super(InviteRoute.name, initialChildren: children);
+
+  static const String name = 'InviteRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const InvitePage());
+    },
+  );
+}
+
+/// generated route for
 /// [MemoriesPage]
 class MemoriesRoute extends PageRouteInfo<void> {
   const MemoriesRoute({List<PageRouteInfo>? children})

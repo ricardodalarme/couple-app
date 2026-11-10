@@ -1,0 +1,7 @@
+mutation CreateInvite {
+  createInvite {
+    id
+    code
+    expiresAt
+  }
+}

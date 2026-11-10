@@ -62,6 +62,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$intro$en intro = _Translations$intro$en._(_root);
   @override
+  late final _Translations$invite$en invite = _Translations$invite$en._(_root);
+  @override
   late final _Translations$notFound$en notFound = _Translations$notFound$en._(_root);
   @override
   late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
@@ -173,6 +175,54 @@ class _Translations$intro$en extends Translations$intro$pt {
   late final _Translations$intro$goals$en goals = _Translations$intro$goals$en._(_root);
   @override
   late final _Translations$intro$theme$en theme = _Translations$intro$theme$en._(_root);
+}
+
+// Path: invite
+class _Translations$invite$en extends Translations$invite$pt {
+  _Translations$invite$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String title({required Object name}) => 'Invite ${name}';
+  @override
+  String get titleNoName => 'Invite your person';
+  @override
+  String get messageIntro => 'This message will be sent:';
+  @override
+  String message({required Object code}) =>
+      'I started something small for us. To connect in the app, use the code ${code}.';
+  @override
+  String expiryNote({required Object days}) =>
+      'The invite is valid for ${days} days. Only the latest invite you create works.';
+  @override
+  String get share => 'Share invite';
+  @override
+  String get copy => 'Copy invite';
+  @override
+  String get sentTitle => 'Invite sent';
+  @override
+  String get sentHighlight => 'sent';
+  @override
+  String sentText({required Object name}) =>
+      '${name} has not joined yet. In the meantime you can use the app on your own.';
+  @override
+  String get sentTextNoName =>
+      'Your person has not joined yet. In the meantime you can use the app on your own.';
+  @override
+  String get resend => 'Send again';
+  @override
+  String get revoke => 'Revoke';
+  @override
+  String get errorTitle => 'Could not create the invite';
+  @override
+  Map<String, String> get errors => {
+    'ALREADY_PAIRED': 'You are already connected with someone.',
+    'RATE_LIMITED': 'You created too many invites today. Try again tomorrow.',
+    'NETWORK': 'No connection. Check your internet and try again.',
+    'other': 'Something went wrong. Try again.',
+  };
 }
 
 // Path: notFound
@@ -531,6 +581,31 @@ extension on TranslationsEn {
       'intro.theme.neutral' => 'Neutral',
       'intro.theme.neutralSupport' => 'Paper and green',
       'intro.theme.footnote' => 'You can change it later in Settings, Appearance.',
+      'invite.title' => ({required Object name}) => 'Invite ${name}',
+      'invite.titleNoName' => 'Invite your person',
+      'invite.messageIntro' => 'This message will be sent:',
+      'invite.message' => ({
+        required Object code,
+      }) => 'I started something small for us. To connect in the app, use the code ${code}.',
+      'invite.expiryNote' => ({
+        required Object days,
+      }) => 'The invite is valid for ${days} days. Only the latest invite you create works.',
+      'invite.share' => 'Share invite',
+      'invite.copy' => 'Copy invite',
+      'invite.sentTitle' => 'Invite sent',
+      'invite.sentHighlight' => 'sent',
+      'invite.sentText' => ({
+        required Object name,
+      }) => '${name} has not joined yet. In the meantime you can use the app on your own.',
+      'invite.sentTextNoName' =>
+        'Your person has not joined yet. In the meantime you can use the app on your own.',
+      'invite.resend' => 'Send again',
+      'invite.revoke' => 'Revoke',
+      'invite.errorTitle' => 'Could not create the invite',
+      'invite.errors.ALREADY_PAIRED' => 'You are already connected with someone.',
+      'invite.errors.RATE_LIMITED' => 'You created too many invites today. Try again tomorrow.',
+      'invite.errors.NETWORK' => 'No connection. Check your internet and try again.',
+      'invite.errors.other' => 'Something went wrong. Try again.',
       'notFound.title' => '404',
       'notFound.description' => 'Page not found',
       'notFound.buttonBack' => 'Go back home',

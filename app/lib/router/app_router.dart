@@ -5,6 +5,7 @@ import 'package:flutter_bloc_starter/features/authentication/presentation/welcom
 import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/home/presentation/home/home_page.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/memories_page.dart';
+import 'package:flutter_bloc_starter/features/pairing/presentation/invite/invite_page.dart';
 import 'package:flutter_bloc_starter/features/profile/presentation/setup/profile_setup_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/first_slip/first_slip_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/goals/intro_goals_page.dart';
@@ -31,6 +32,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: ExistingAccountRoute.page),
     AutoRoute(page: DebugSignInRoute.page),
     AutoRoute(page: ProfileSetupRoute.page),
+    AutoRoute(page: InviteRoute.page),
     AutoRoute(page: QuickSlipRoute.page, fullscreenDialog: true),
     AutoRoute(
       page: HomeRoute.page,
