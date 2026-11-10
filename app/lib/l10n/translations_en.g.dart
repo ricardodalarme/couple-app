@@ -1532,27 +1532,6 @@ class _Translations$safety$en extends Translations$safety$pt {
 
   // Translations
   @override
-  String get title => 'Help lines';
-  @override
-  String get subtitle => 'If you don\'t feel safe, someone can listen right now.';
-  @override
-  Map<String, String> get lines => {
-    'cvv': 'CVV',
-    'women': 'Violence against women',
-    'emergency': 'Emergency',
-    'other': '',
-  };
-  @override
-  String get toVerify => 'to be verified';
-  @override
-  String get call => 'Call';
-  @override
-  String get copied => 'Number copied';
-  @override
-  String get privateNote => 'This screen keeps nothing and nothing is sent to anyone.';
-  @override
-  String get safeModeLink => 'Safe mode and quick exit';
-  @override
   String get entry => 'Safety and support';
 }
 
@@ -1568,7 +1547,7 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   @override
   String get safety => 'Safety and support';
   @override
-  String get safetyStatus => 'Help lines, safe mode and quick exit';
+  String get safetyStatus => 'Safe mode and quick exit';
   @override
   String get relationship => 'Relationship';
   @override
@@ -3784,21 +3763,10 @@ extension on TranslationsEn {
           'safeMode.toggleText' => 'When you switch apps, the screen goes blank.',
           'safeMode.localOnly' => 'This stays only on this phone. Nothing is sent or recorded.',
           'safeMode.quickExit' => 'Leave now',
-          'safety.title' => 'Help lines',
-          'safety.subtitle' => 'If you don\'t feel safe, someone can listen right now.',
-          'safety.lines.cvv' => 'CVV',
-          'safety.lines.women' => 'Violence against women',
-          'safety.lines.emergency' => 'Emergency',
-          'safety.lines.other' => '',
-          'safety.toVerify' => 'to be verified',
-          'safety.call' => 'Call',
-          'safety.copied' => 'Number copied',
-          'safety.privateNote' => 'This screen keeps nothing and nothing is sent to anyone.',
-          'safety.safeModeLink' => 'Safe mode and quick exit',
           'safety.entry' => 'Safety and support',
           'settingsHome.title' => 'Settings',
           'settingsHome.safety' => 'Safety and support',
-          'settingsHome.safetyStatus' => 'Help lines, safe mode and quick exit',
+          'settingsHome.safetyStatus' => 'Safe mode and quick exit',
           'settingsHome.relationship' => 'Relationship',
           'settingsHome.connected' => 'You are connected',
           'settingsHome.invitePartner' => 'Invite your partner',
@@ -4131,9 +4099,6 @@ extension on TranslationsEn {
             required Object second,
           }) => '${first} and ${second}',
           'today.invitePerson' => 'Invite your person',
-          _ => null,
-        } ??
-        switch (path) {
           'today.offline' => 'No connection. Showing what was saved.',
           'today.pendingInviteTitle' => 'Invite sent',
           'today.pendingInviteText' => 'They have not joined yet. Send again or revoke.',
@@ -4159,6 +4124,9 @@ extension on TranslationsEn {
                   one: 'Your private slips: 1 this week',
                   other: 'Your private slips: ${count} this week',
                 ),
+          _ => null,
+        } ??
+        switch (path) {
           'today.sundayCardLabel' => 'Sunday card',
           'today.sundayCardTitle' => 'Your card for this week',
           'today.inviteCardLabel' => 'Invite',

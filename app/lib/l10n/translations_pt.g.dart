@@ -1827,34 +1827,6 @@ class Translations$safety$pt {
 
   // Translations
 
-  /// pt: 'Linhas de ajuda'
-  String get title => 'Linhas de ajuda';
-
-  /// pt: 'Se você não se sente seguro, alguém pode ouvir agora.'
-  String get subtitle => 'Se você não se sente seguro, alguém pode ouvir agora.';
-
-  Map<String, String> get lines => {
-    'cvv': 'CVV',
-    'women': 'Violência contra a mulher',
-    'emergency': 'Emergência',
-    'other': '',
-  };
-
-  /// pt: 'a verificar'
-  String get toVerify => 'a verificar';
-
-  /// pt: 'Ligar'
-  String get call => 'Ligar';
-
-  /// pt: 'Número copiado'
-  String get copied => 'Número copiado';
-
-  /// pt: 'Esta tela não guarda nada e nada é enviado a ninguém.'
-  String get privateNote => 'Esta tela não guarda nada e nada é enviado a ninguém.';
-
-  /// pt: 'Modo seguro e saída rápida'
-  String get safeModeLink => 'Modo seguro e saída rápida';
-
   /// pt: 'Segurança e apoio'
   String get entry => 'Segurança e apoio';
 }
@@ -1873,8 +1845,8 @@ class Translations$settingsHome$pt {
   /// pt: 'Segurança e apoio'
   String get safety => 'Segurança e apoio';
 
-  /// pt: 'Linhas de ajuda, modo seguro e saída rápida'
-  String get safetyStatus => 'Linhas de ajuda, modo seguro e saída rápida';
+  /// pt: 'Modo seguro e saída rápida'
+  String get safetyStatus => 'Modo seguro e saída rápida';
 
   /// pt: 'Relacionamento'
   String get relationship => 'Relacionamento';
@@ -4419,21 +4391,10 @@ extension on Translations {
           'safeMode.toggleText' => 'Quando você troca de app, a tela fica em branco.',
           'safeMode.localOnly' => 'Isto fica só neste celular. Nada é enviado nem registrado.',
           'safeMode.quickExit' => 'Sair agora',
-          'safety.title' => 'Linhas de ajuda',
-          'safety.subtitle' => 'Se você não se sente seguro, alguém pode ouvir agora.',
-          'safety.lines.cvv' => 'CVV',
-          'safety.lines.women' => 'Violência contra a mulher',
-          'safety.lines.emergency' => 'Emergência',
-          'safety.lines.other' => '',
-          'safety.toVerify' => 'a verificar',
-          'safety.call' => 'Ligar',
-          'safety.copied' => 'Número copiado',
-          'safety.privateNote' => 'Esta tela não guarda nada e nada é enviado a ninguém.',
-          'safety.safeModeLink' => 'Modo seguro e saída rápida',
           'safety.entry' => 'Segurança e apoio',
           'settingsHome.title' => 'Configurações',
           'settingsHome.safety' => 'Segurança e apoio',
-          'settingsHome.safetyStatus' => 'Linhas de ajuda, modo seguro e saída rápida',
+          'settingsHome.safetyStatus' => 'Modo seguro e saída rápida',
           'settingsHome.relationship' => 'Relacionamento',
           'settingsHome.connected' => 'Vocês estão conectados',
           'settingsHome.invitePartner' => 'Convide seu par',
@@ -4767,9 +4728,6 @@ extension on Translations {
             required Object second,
           }) => '${first} e ${second}',
           'today.invitePerson' => 'Convidar sua pessoa',
-          _ => null,
-        } ??
-        switch (path) {
           'today.offline' => 'Sem conexão. Mostrando o que foi salvo.',
           'today.pendingInviteTitle' => 'Convite enviado',
           'today.pendingInviteText' => 'A pessoa ainda não entrou. Reenviar ou revogar.',
@@ -4795,6 +4753,9 @@ extension on Translations {
                   one: 'Seus slips privados: 1 esta semana',
                   other: 'Seus slips privados: ${count} esta semana',
                 ),
+          _ => null,
+        } ??
+        switch (path) {
           'today.sundayCardLabel' => 'Cartão de domingo',
           'today.sundayCardTitle' => 'Seu cartão desta semana',
           'today.inviteCardLabel' => 'Convite',

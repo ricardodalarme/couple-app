@@ -1,16 +1,3 @@
 {
-  "title": "Help lines",
-  "subtitle": "If you don't feel safe, someone can listen right now.",
-  "lines(map)": {
-    "cvv": "CVV",
-    "women": "Violence against women",
-    "emergency": "Emergency",
-    "other": ""
-  },
-  "toVerify": "to be verified",
-  "call": "Call",
-  "copied": "Number copied",
-  "privateNote": "This screen keeps nothing and nothing is sent to anyone.",
-  "safeModeLink": "Safe mode and quick exit",
   "entry": "Safety and support"
 }

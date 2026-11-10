@@ -36,7 +36,6 @@ import 'package:flutter_bloc_starter/features/repair/presentation/quick_repair/q
 import 'package:flutter_bloc_starter/features/repair/presentation/received/received_signals_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/soft_start/soft_start_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/temperature/temperature_page.dart';
-import 'package:flutter_bloc_starter/features/safety/presentation/help_lines/help_lines_page.dart';
 import 'package:flutter_bloc_starter/features/safety/presentation/neutral/neutral_page.dart';
 import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/safe_mode_page.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/home/settings_home_page.dart';
@@ -90,7 +89,6 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: PartnerProfileRoute.page),
     AutoRoute(page: DatesRoute.page),
     AutoRoute(page: PlansRoute.page),
-    AutoRoute(page: HelpLinesRoute.page),
     AutoRoute(page: SettingsHomeRoute.page),
     AutoRoute(page: SafeModeRoute.page),
     AutoRoute(page: NeutralRoute.page),

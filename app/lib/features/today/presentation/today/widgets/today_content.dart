@@ -61,7 +61,7 @@ class const TodayContent({
             const SizedBox(width: AppSpace.s16),
             BaseTextLink(
               text: context.l10n.safety.entry,
-              onPressed: () => context.pushRoute(const HelpLinesRoute()),
+              onPressed: () => context.pushRoute(const SafeModeRoute()),
             ),
           ],
         ),

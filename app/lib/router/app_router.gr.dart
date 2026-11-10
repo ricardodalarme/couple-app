@@ -256,22 +256,6 @@ class GuidedRepairRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [HelpLinesPage]
-class HelpLinesRoute extends PageRouteInfo<void> {
-  const HelpLinesRoute({List<PageRouteInfo>? children})
-    : super(HelpLinesRoute.name, initialChildren: children);
-
-  static const String name = 'HelpLinesRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const HelpLinesPage());
-    },
-  );
-}
-
-/// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})

@@ -71,7 +71,7 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
               subtitle: l10n.safetyStatus,
               icon: AppIcons.shield,
               showsChevron: true,
-              onTap: () => context.pushRoute(const HelpLinesRoute()),
+              onTap: () => context.pushRoute(const SafeModeRoute()),
             ),
           ],
         ),
