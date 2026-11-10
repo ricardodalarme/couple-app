@@ -50,7 +50,8 @@ enable_manual_linking = false
 
 # Sign-in is Apple and Google only (product decision of 8 Nov). No email/password, no magic link.
 [auth.email]
-enable_signup = false
+enable_signup = true
+enable_confirmations = false
 
 [auth.external.apple]
 enabled = true
