@@ -1,0 +1,5 @@
+mutation DeleteLogisticItem($id: UUID!) {
+  deleteFromLogisticItemsCollection(filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}

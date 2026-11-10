@@ -1,0 +1,20 @@
+{
+  "title": "Logistics",
+  "subtitle": "The practical things, with nobody carrying them alone.",
+  "hint": "E.g. call the plumber",
+  "add": "Add",
+  "me": "Me",
+  "partner": "My partner",
+  "both": "Both of us",
+  "assignMe": "I'll take it",
+  "delete": "Delete",
+  "doneTitle": "Done",
+  "emptyTitle": "Nothing here",
+  "emptyText": "Add something practical you need to sort out.",
+  "errorTitle": "Couldn't load",
+  "errorText": "The list is still saved. Try again.",
+  "errors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't do that right now. Try again."
+  }
+}

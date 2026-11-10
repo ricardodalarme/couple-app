@@ -72,6 +72,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$invite$en invite = _Translations$invite$en._(_root);
   @override
+  late final _Translations$logistics$en logistics = _Translations$logistics$en._(_root);
+  @override
   late final _Translations$need$en need = _Translations$need$en._(_root);
   @override
   late final _Translations$notFound$en notFound = _Translations$notFound$en._(_root);
@@ -465,6 +467,48 @@ class _Translations$invite$en extends Translations$invite$pt {
     'RATE_LIMITED': 'You created too many invites today. Try again tomorrow.',
     'NETWORK': 'No connection. Check your internet and try again.',
     'other': 'Something went wrong. Try again.',
+  };
+}
+
+// Path: logistics
+class _Translations$logistics$en extends Translations$logistics$pt {
+  _Translations$logistics$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Logistics';
+  @override
+  String get subtitle => 'The practical things, with nobody carrying them alone.';
+  @override
+  String get hint => 'E.g. call the plumber';
+  @override
+  String get add => 'Add';
+  @override
+  String get me => 'Me';
+  @override
+  String get partner => 'My partner';
+  @override
+  String get both => 'Both of us';
+  @override
+  String get assignMe => 'I\'ll take it';
+  @override
+  String get delete => 'Delete';
+  @override
+  String get doneTitle => 'Done';
+  @override
+  String get emptyTitle => 'Nothing here';
+  @override
+  String get emptyText => 'Add something practical you need to sort out.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'The list is still saved. Try again.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t do that right now. Try again.',
   };
 }
 
@@ -1228,6 +1272,18 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get soonTitle => 'Under construction';
   @override
   String get soonText => 'This part of the app is still being prepared.';
+  @override
+  String get segmentTogether => 'Together';
+  @override
+  String get segmentForMe => 'For me';
+  @override
+  String get logisticsLabel => 'PRACTICAL';
+  @override
+  String get logisticsTitle => 'Logistics';
+  @override
+  String get logisticsText => 'The practical things, with nobody carrying them alone.';
+  @override
+  String get soloNote => 'When your partner joins, shared things show up here.';
   @override
   String get temperatureLabel => 'BETWEEN YOU';
   @override
@@ -2460,6 +2516,22 @@ extension on TranslationsEn {
           'invite.errors.RATE_LIMITED' => 'You created too many invites today. Try again tomorrow.',
           'invite.errors.NETWORK' => 'No connection. Check your internet and try again.',
           'invite.errors.other' => 'Something went wrong. Try again.',
+          'logistics.title' => 'Logistics',
+          'logistics.subtitle' => 'The practical things, with nobody carrying them alone.',
+          'logistics.hint' => 'E.g. call the plumber',
+          'logistics.add' => 'Add',
+          'logistics.me' => 'Me',
+          'logistics.partner' => 'My partner',
+          'logistics.both' => 'Both of us',
+          'logistics.assignMe' => 'I\'ll take it',
+          'logistics.delete' => 'Delete',
+          'logistics.doneTitle' => 'Done',
+          'logistics.emptyTitle' => 'Nothing here',
+          'logistics.emptyText' => 'Add something practical you need to sort out.',
+          'logistics.errorTitle' => 'Couldn\'t load',
+          'logistics.errorText' => 'The list is still saved. Try again.',
+          'logistics.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'logistics.errors.other' => 'Couldn\'t do that right now. Try again.',
           'need.title' => 'I need…',
           'need.titleHighlight' => 'need',
           'need.subtitle' => 'Pick one thing. Your partner gets a gentle note, no pressure.',
@@ -2815,6 +2887,9 @@ extension on TranslationsEn {
           'slipDetail.cardOnText' => 'On Sunday you choose whether it goes.',
           'slipDetail.cardInvisible' => 'Invisible slips never go in a card.',
           'slipDetail.previewTitle' => 'What your partner would read',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.previewText' => 'If this slip goes in the card, this is the text that shows.',
           'slipDetail.sentNote' => 'This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.',
           'slipDetail.edit' => 'Edit',
@@ -2831,9 +2906,6 @@ extension on TranslationsEn {
           'slipDetail.deleted' => 'Slip deleted',
           'slipDetail.notFoundTitle' => 'This slip no longer exists',
           'slipDetail.notFoundText' => 'It may have been deleted.',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.errorTitle' => 'Couldn\'t open this slip',
           'slipDetail.errorText' => 'It is still saved. Try again.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'This slip no longer exists.',
@@ -2980,6 +3052,12 @@ extension on TranslationsEn {
           'tabs.capture' => 'New slip',
           'tabs.soonTitle' => 'Under construction',
           'tabs.soonText' => 'This part of the app is still being prepared.',
+          'tabs.segmentTogether' => 'Together',
+          'tabs.segmentForMe' => 'For me',
+          'tabs.logisticsLabel' => 'PRACTICAL',
+          'tabs.logisticsTitle' => 'Logistics',
+          'tabs.logisticsText' => 'The practical things, with nobody carrying them alone.',
+          'tabs.soloNote' => 'When your partner joins, shared things show up here.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',
           'tabs.temperatureTitle' => 'How is it between you?',
           'tabs.temperatureText' => 'A private check-in, never a score.',

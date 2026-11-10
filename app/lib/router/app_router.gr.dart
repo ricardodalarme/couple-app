@@ -373,6 +373,22 @@ class LearningRouteArgs {
 }
 
 /// generated route for
+/// [LogisticsPage]
+class LogisticsRoute extends PageRouteInfo<void> {
+  const LogisticsRoute({List<PageRouteInfo>? children})
+    : super(LogisticsRoute.name, initialChildren: children);
+
+  static const String name = 'LogisticsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const LogisticsPage());
+    },
+  );
+}
+
+/// generated route for
 /// [MemoriesPage]
 class MemoriesRoute extends PageRouteInfo<void> {
   const MemoriesRoute({List<PageRouteInfo>? children})
@@ -815,7 +831,7 @@ class TogetherRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const TogetherPage();
+      return WrappedRoute(child: const TogetherPage());
     },
   );
 }

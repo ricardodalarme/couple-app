@@ -1,0 +1,9 @@
+mutation SetLogisticItemAssignee($id: UUID!, $assigneeId: UUID) {
+  updateLogisticItemsCollection(
+    set: { assigneeId: $assigneeId }
+    filter: { id: { eq: $id } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Logística",
+  "subtitle": "As coisas práticas, sem ninguém carregar sozinho.",
+  "hint": "Ex.: ligar para o encanador",
+  "add": "Adicionar",
+  "me": "Eu",
+  "partner": "Meu par",
+  "both": "Nós dois",
+  "assignMe": "Eu cuido",
+  "delete": "Apagar",
+  "doneTitle": "Feitas",
+  "emptyTitle": "Nada por aqui",
+  "emptyText": "Adicione algo prático que vocês precisam resolver.",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "A lista continua salva. Tente de novo.",
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para fazer isso agora. Tente de novo."
+  }
+}

@@ -1,0 +1,5 @@
+query MyCouple {
+  myCouple {
+    id
+  }
+}

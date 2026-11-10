@@ -16,6 +16,7 @@ import 'package:flutter_bloc_starter/features/repair/di/repair_injection_module.
 import 'package:flutter_bloc_starter/features/settings/di/settings_injection_module.dart';
 import 'package:flutter_bloc_starter/features/slips/di/slips_injection_module.dart';
 import 'package:flutter_bloc_starter/features/today/di/today_injection_module.dart';
+import 'package:flutter_bloc_starter/features/together/di/together_injection_module.dart';
 import 'package:flutter_bloc_starter/infrastructure/initializers/initializers.dart';
 import 'package:logger/logger.dart';
 
@@ -48,9 +49,9 @@ void _registerModules() {
     CardsInjectionModule(),
     RemindersInjectionModule(),
     RepairInjectionModule(),
-    RepairInjectionModule(),
     SlipsInjectionModule(),
     TodayInjectionModule(),
+    TogetherInjectionModule(),
   ];
 
   final injector = AppInjector.instance;

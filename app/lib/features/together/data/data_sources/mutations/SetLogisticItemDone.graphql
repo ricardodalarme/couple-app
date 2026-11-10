@@ -1,0 +1,5 @@
+mutation SetLogisticItemDone($id: UUID!, $doneAt: Datetime) {
+  updateLogisticItemsCollection(set: { doneAt: $doneAt }, filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}

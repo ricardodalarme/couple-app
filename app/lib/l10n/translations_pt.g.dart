@@ -65,6 +65,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
+  late final Translations$logistics$pt logistics = Translations$logistics$pt.internal(_root);
   late final Translations$need$pt need = Translations$need$pt.internal(_root);
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
   late final Translations$notificationPermission$pt notificationPermission =
@@ -533,6 +534,62 @@ class Translations$invite$pt {
     'RATE_LIMITED': 'Você criou muitos convites hoje. Tente de novo amanhã.',
     'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
     'other': 'Algo deu errado. Tente de novo.',
+  };
+}
+
+// Path: logistics
+class Translations$logistics$pt {
+  Translations$logistics$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Logística'
+  String get title => 'Logística';
+
+  /// pt: 'As coisas práticas, sem ninguém carregar sozinho.'
+  String get subtitle => 'As coisas práticas, sem ninguém carregar sozinho.';
+
+  /// pt: 'Ex.: ligar para o encanador'
+  String get hint => 'Ex.: ligar para o encanador';
+
+  /// pt: 'Adicionar'
+  String get add => 'Adicionar';
+
+  /// pt: 'Eu'
+  String get me => 'Eu';
+
+  /// pt: 'Meu par'
+  String get partner => 'Meu par';
+
+  /// pt: 'Nós dois'
+  String get both => 'Nós dois';
+
+  /// pt: 'Eu cuido'
+  String get assignMe => 'Eu cuido';
+
+  /// pt: 'Apagar'
+  String get delete => 'Apagar';
+
+  /// pt: 'Feitas'
+  String get doneTitle => 'Feitas';
+
+  /// pt: 'Nada por aqui'
+  String get emptyTitle => 'Nada por aqui';
+
+  /// pt: 'Adicione algo prático que vocês precisam resolver.'
+  String get emptyText => 'Adicione algo prático que vocês precisam resolver.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'A lista continua salva. Tente de novo.'
+  String get errorText => 'A lista continua salva. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
 }
 
@@ -1436,6 +1493,24 @@ class Translations$tabs$pt {
 
   /// pt: 'Esta parte do app ainda está sendo preparada.'
   String get soonText => 'Esta parte do app ainda está sendo preparada.';
+
+  /// pt: 'Juntos'
+  String get segmentTogether => 'Juntos';
+
+  /// pt: 'Para mim'
+  String get segmentForMe => 'Para mim';
+
+  /// pt: 'PRÁTICO'
+  String get logisticsLabel => 'PRÁTICO';
+
+  /// pt: 'Logística'
+  String get logisticsTitle => 'Logística';
+
+  /// pt: 'As coisas práticas, sem ninguém carregar sozinho.'
+  String get logisticsText => 'As coisas práticas, sem ninguém carregar sozinho.';
+
+  /// pt: 'Quando seu par entrar, as coisas compartilhadas aparecem aqui.'
+  String get soloNote => 'Quando seu par entrar, as coisas compartilhadas aparecem aqui.';
 
   /// pt: 'ENTRE VOCÊS'
   String get temperatureLabel => 'ENTRE VOCÊS';
@@ -2889,6 +2964,22 @@ extension on Translations {
           'invite.errors.RATE_LIMITED' => 'Você criou muitos convites hoje. Tente de novo amanhã.',
           'invite.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
           'invite.errors.other' => 'Algo deu errado. Tente de novo.',
+          'logistics.title' => 'Logística',
+          'logistics.subtitle' => 'As coisas práticas, sem ninguém carregar sozinho.',
+          'logistics.hint' => 'Ex.: ligar para o encanador',
+          'logistics.add' => 'Adicionar',
+          'logistics.me' => 'Eu',
+          'logistics.partner' => 'Meu par',
+          'logistics.both' => 'Nós dois',
+          'logistics.assignMe' => 'Eu cuido',
+          'logistics.delete' => 'Apagar',
+          'logistics.doneTitle' => 'Feitas',
+          'logistics.emptyTitle' => 'Nada por aqui',
+          'logistics.emptyText' => 'Adicione algo prático que vocês precisam resolver.',
+          'logistics.errorTitle' => 'Não deu para carregar',
+          'logistics.errorText' => 'A lista continua salva. Tente de novo.',
+          'logistics.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'logistics.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'need.title' => 'Preciso de…',
           'need.titleHighlight' => 'Preciso',
           'need.subtitle' => 'Escolha uma coisa. Seu par recebe um aviso gentil, sem cobrança.',
@@ -3244,6 +3335,9 @@ extension on Translations {
           'slipDetail.cardOnText' => 'No domingo você escolhe se ele vai.',
           'slipDetail.cardInvisible' => 'Slips invisíveis nunca entram em um cartão.',
           'slipDetail.previewTitle' => 'O que seu par leria',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.previewText' => 'Se este slip entrar no cartão, é este texto que aparece.',
           'slipDetail.sentNote' => 'Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.',
           'slipDetail.edit' => 'Editar',
@@ -3260,9 +3354,6 @@ extension on Translations {
           'slipDetail.deleted' => 'Slip apagado',
           'slipDetail.notFoundTitle' => 'Este slip não existe mais',
           'slipDetail.notFoundText' => 'Ele pode ter sido apagado.',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.errorTitle' => 'Não deu para abrir este slip',
           'slipDetail.errorText' => 'Ele continua salvo. Tente de novo.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'Este slip não existe mais.',
@@ -3409,6 +3500,12 @@ extension on Translations {
           'tabs.capture' => 'Novo slip',
           'tabs.soonTitle' => 'Em construção',
           'tabs.soonText' => 'Esta parte do app ainda está sendo preparada.',
+          'tabs.segmentTogether' => 'Juntos',
+          'tabs.segmentForMe' => 'Para mim',
+          'tabs.logisticsLabel' => 'PRÁTICO',
+          'tabs.logisticsTitle' => 'Logística',
+          'tabs.logisticsText' => 'As coisas práticas, sem ninguém carregar sozinho.',
+          'tabs.soloNote' => 'Quando seu par entrar, as coisas compartilhadas aparecem aqui.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
           'tabs.temperatureTitle' => 'Como está entre vocês?',
           'tabs.temperatureText' => 'Um registro privado, sem nota.',

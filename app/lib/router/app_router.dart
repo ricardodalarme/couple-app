@@ -39,6 +39,7 @@ import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/sli
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/slip_kind_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slips/slips_page.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/today_page.dart';
+import 'package:flutter_bloc_starter/features/together/presentation/logistics/logistics_page.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/together/together_page.dart';
 
 part 'app_router.gr.dart';
@@ -71,6 +72,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: CalmRoute.page, fullscreenDialog: true),
     AutoRoute(page: PauseRoute.page, fullscreenDialog: true),
     AutoRoute(page: ReceivedSignalsRoute.page),
+    AutoRoute(page: LogisticsRoute.page),
     AutoRoute(page: GuidedRepairRoute.page, fullscreenDialog: true),
     AutoRoute(page: LearningRoute.page),
     AutoRoute(page: SoftStartRoute.page, fullscreenDialog: true),
