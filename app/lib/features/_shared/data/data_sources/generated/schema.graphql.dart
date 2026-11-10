@@ -496,7 +496,9 @@ class InputAgreementsInsertInput {
     }
     if (_$data.containsKey('reviewOn')) {
       final l$reviewOn = reviewOn;
-      result$data['reviewOn'] = l$reviewOn?.toIso8601String();
+      result$data['reviewOn'] = l$reviewOn == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$reviewOn);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -925,7 +927,9 @@ class InputAgreementsUpdateInput {
     }
     if (_$data.containsKey('reviewOn')) {
       final l$reviewOn = reviewOn;
-      result$data['reviewOn'] = l$reviewOn?.toIso8601String();
+      result$data['reviewOn'] = l$reviewOn == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$reviewOn);
     }
     return result$data;
   }
@@ -3043,7 +3047,9 @@ class InputCapsulesInsertInput {
     }
     if (_$data.containsKey('opensOn')) {
       final l$opensOn = opensOn;
-      result$data['opensOn'] = l$opensOn?.toIso8601String();
+      result$data['opensOn'] = l$opensOn == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$opensOn);
     }
     if (_$data.containsKey('openedAt')) {
       final l$openedAt = openedAt;
@@ -3491,7 +3497,9 @@ class InputCapsulesUpdateInput {
     }
     if (_$data.containsKey('opensOn')) {
       final l$opensOn = opensOn;
-      result$data['opensOn'] = l$opensOn?.toIso8601String();
+      result$data['opensOn'] = l$opensOn == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$opensOn);
     }
     if (_$data.containsKey('openedAt')) {
       final l$openedAt = openedAt;
@@ -6751,7 +6759,9 @@ class InputCheckinAnswersInsertInput {
     }
     if (_$data.containsKey('weekStart')) {
       final l$weekStart = weekStart;
-      result$data['weekStart'] = l$weekStart?.toIso8601String();
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
     }
     if (_$data.containsKey('question')) {
       final l$question = question;
@@ -7203,7 +7213,9 @@ class InputCheckinAnswersUpdateInput {
     }
     if (_$data.containsKey('weekStart')) {
       final l$weekStart = weekStart;
-      result$data['weekStart'] = l$weekStart?.toIso8601String();
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
     }
     if (_$data.containsKey('question')) {
       final l$question = question;
@@ -11108,7 +11120,9 @@ class InputCycleDaysInsertInput {
     }
     if (_$data.containsKey('day')) {
       final l$day = day;
-      result$data['day'] = l$day?.toIso8601String();
+      result$data['day'] = l$day == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$day);
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
@@ -11508,7 +11522,9 @@ class InputCycleDaysUpdateInput {
     }
     if (_$data.containsKey('day')) {
       final l$day = day;
-      result$data['day'] = l$day?.toIso8601String();
+      result$data['day'] = l$day == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$day);
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
@@ -11701,19 +11717,23 @@ class InputDateFilter {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('eq')) {
       final l$eq = eq;
-      result$data['eq'] = l$eq?.toIso8601String();
+      result$data['eq'] = l$eq == null ? null : ((v) => v.toIso8601String().substring(0, 10))(l$eq);
     }
     if (_$data.containsKey('gt')) {
       final l$gt = gt;
-      result$data['gt'] = l$gt?.toIso8601String();
+      result$data['gt'] = l$gt == null ? null : ((v) => v.toIso8601String().substring(0, 10))(l$gt);
     }
     if (_$data.containsKey('gte')) {
       final l$gte = gte;
-      result$data['gte'] = l$gte?.toIso8601String();
+      result$data['gte'] = l$gte == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$gte);
     }
     if (_$data.containsKey('in')) {
       final l$$in = $in;
-      result$data['in'] = l$$in?.map((e) => e.toIso8601String()).toList();
+      result$data['in'] = l$$in
+          ?.map((e) => ((v) => v.toIso8601String().substring(0, 10))(e))
+          .toList();
     }
     if (_$data.containsKey('is')) {
       final l$$is = $is;
@@ -11721,15 +11741,19 @@ class InputDateFilter {
     }
     if (_$data.containsKey('lt')) {
       final l$lt = lt;
-      result$data['lt'] = l$lt?.toIso8601String();
+      result$data['lt'] = l$lt == null ? null : ((v) => v.toIso8601String().substring(0, 10))(l$lt);
     }
     if (_$data.containsKey('lte')) {
       final l$lte = lte;
-      result$data['lte'] = l$lte?.toIso8601String();
+      result$data['lte'] = l$lte == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$lte);
     }
     if (_$data.containsKey('neq')) {
       final l$neq = neq;
-      result$data['neq'] = l$neq?.toIso8601String();
+      result$data['neq'] = l$neq == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$neq);
     }
     return result$data;
   }
@@ -11913,15 +11937,21 @@ class InputDateListFilter {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('containedBy')) {
       final l$containedBy = containedBy;
-      result$data['containedBy'] = l$containedBy?.map((e) => e.toIso8601String()).toList();
+      result$data['containedBy'] = l$containedBy
+          ?.map((e) => ((v) => v.toIso8601String().substring(0, 10))(e))
+          .toList();
     }
     if (_$data.containsKey('contains')) {
       final l$contains = contains;
-      result$data['contains'] = l$contains?.map((e) => e.toIso8601String()).toList();
+      result$data['contains'] = l$contains
+          ?.map((e) => ((v) => v.toIso8601String().substring(0, 10))(e))
+          .toList();
     }
     if (_$data.containsKey('eq')) {
       final l$eq = eq;
-      result$data['eq'] = l$eq?.map((e) => e.toIso8601String()).toList();
+      result$data['eq'] = l$eq
+          ?.map((e) => ((v) => v.toIso8601String().substring(0, 10))(e))
+          .toList();
     }
     if (_$data.containsKey('is')) {
       final l$$is = $is;
@@ -11929,7 +11959,9 @@ class InputDateListFilter {
     }
     if (_$data.containsKey('overlaps')) {
       final l$overlaps = overlaps;
-      result$data['overlaps'] = l$overlaps?.map((e) => e.toIso8601String()).toList();
+      result$data['overlaps'] = l$overlaps
+          ?.map((e) => ((v) => v.toIso8601String().substring(0, 10))(e))
+          .toList();
     }
     return result$data;
   }
@@ -20263,7 +20295,9 @@ class InputIdeaResponsesInsertInput {
     }
     if (_$data.containsKey('day')) {
       final l$day = day;
-      result$data['day'] = l$day?.toIso8601String();
+      result$data['day'] = l$day == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$day);
     }
     if (_$data.containsKey('response')) {
       final l$response = response;
@@ -20665,7 +20699,9 @@ class InputIdeaResponsesUpdateInput {
     }
     if (_$data.containsKey('day')) {
       final l$day = day;
-      result$data['day'] = l$day?.toIso8601String();
+      result$data['day'] = l$day == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$day);
     }
     if (_$data.containsKey('response')) {
       final l$response = response;
@@ -24191,7 +24227,9 @@ class InputJournalEntriesInsertInput {
     }
     if (_$data.containsKey('entryDate')) {
       final l$entryDate = entryDate;
-      result$data['entryDate'] = l$entryDate?.toIso8601String();
+      result$data['entryDate'] = l$entryDate == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$entryDate);
     }
     if (_$data.containsKey('body')) {
       final l$body = body;
@@ -24597,7 +24635,9 @@ class InputJournalEntriesUpdateInput {
     }
     if (_$data.containsKey('entryDate')) {
       final l$entryDate = entryDate;
-      result$data['entryDate'] = l$entryDate?.toIso8601String();
+      result$data['entryDate'] = l$entryDate == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$entryDate);
     }
     if (_$data.containsKey('body')) {
       final l$body = body;
@@ -28810,11 +28850,15 @@ class InputLogisticItemsInsertInput {
     }
     if (_$data.containsKey('dueOn')) {
       final l$dueOn = dueOn;
-      result$data['dueOn'] = l$dueOn?.toIso8601String();
+      result$data['dueOn'] = l$dueOn == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$dueOn);
     }
     if (_$data.containsKey('weekStart')) {
       final l$weekStart = weekStart;
-      result$data['weekStart'] = l$weekStart?.toIso8601String();
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
     }
     if (_$data.containsKey('invisibleWork')) {
       final l$invisibleWork = invisibleWork;
@@ -29404,11 +29448,15 @@ class InputLogisticItemsUpdateInput {
     }
     if (_$data.containsKey('dueOn')) {
       final l$dueOn = dueOn;
-      result$data['dueOn'] = l$dueOn?.toIso8601String();
+      result$data['dueOn'] = l$dueOn == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$dueOn);
     }
     if (_$data.containsKey('weekStart')) {
       final l$weekStart = weekStart;
-      result$data['weekStart'] = l$weekStart?.toIso8601String();
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
     }
     if (_$data.containsKey('invisibleWork')) {
       final l$invisibleWork = invisibleWork;
@@ -30014,7 +30062,9 @@ class InputLogisticsMeetingsInsertInput {
     }
     if (_$data.containsKey('weekStart')) {
       final l$weekStart = weekStart;
-      result$data['weekStart'] = l$weekStart?.toIso8601String();
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
     }
     if (_$data.containsKey('notes')) {
       final l$notes = notes;
@@ -30466,7 +30516,9 @@ class InputLogisticsMeetingsUpdateInput {
     }
     if (_$data.containsKey('weekStart')) {
       final l$weekStart = weekStart;
-      result$data['weekStart'] = l$weekStart?.toIso8601String();
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
     }
     if (_$data.containsKey('notes')) {
       final l$notes = notes;
@@ -32276,7 +32328,9 @@ class InputMemoriesInsertInput {
     }
     if (_$data.containsKey('happenedOn')) {
       final l$happenedOn = happenedOn;
-      result$data['happenedOn'] = l$happenedOn?.toIso8601String();
+      result$data['happenedOn'] = l$happenedOn == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$happenedOn);
     }
     if (_$data.containsKey('datePrecision')) {
       final l$datePrecision = datePrecision;
@@ -32962,7 +33016,9 @@ class InputMemoriesUpdateInput {
     }
     if (_$data.containsKey('happenedOn')) {
       final l$happenedOn = happenedOn;
-      result$data['happenedOn'] = l$happenedOn?.toIso8601String();
+      result$data['happenedOn'] = l$happenedOn == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$happenedOn);
     }
     if (_$data.containsKey('datePrecision')) {
       final l$datePrecision = datePrecision;
@@ -33592,7 +33648,9 @@ class InputMoodsInsertInput {
     }
     if (_$data.containsKey('day')) {
       final l$day = day;
-      result$data['day'] = l$day?.toIso8601String();
+      result$data['day'] = l$day == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$day);
     }
     if (_$data.containsKey('mood')) {
       final l$mood = mood;
@@ -34038,7 +34096,9 @@ class InputMoodsUpdateInput {
     }
     if (_$data.containsKey('day')) {
       final l$day = day;
-      result$data['day'] = l$day?.toIso8601String();
+      result$data['day'] = l$day == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$day);
     }
     if (_$data.containsKey('mood')) {
       final l$mood = mood;
@@ -41119,7 +41179,9 @@ class InputProfileSettingsUpdateInput {
     }
     if (_$data.containsKey('togetherSince')) {
       final l$togetherSince = togetherSince;
-      result$data['togetherSince'] = l$togetherSince?.toIso8601String();
+      result$data['togetherSince'] = l$togetherSince == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
     }
     if (_$data.containsKey('relationshipStatus')) {
       final l$relationshipStatus = relationshipStatus;
@@ -47627,7 +47689,9 @@ class InputRitualLogsInsertInput {
     }
     if (_$data.containsKey('doneOn')) {
       final l$doneOn = doneOn;
-      result$data['doneOn'] = l$doneOn?.toIso8601String();
+      result$data['doneOn'] = l$doneOn == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$doneOn);
     }
     if (_$data.containsKey('skipped')) {
       final l$skipped = skipped;
@@ -47979,7 +48043,9 @@ class InputRitualLogsUpdateInput {
     }
     if (_$data.containsKey('doneOn')) {
       final l$doneOn = doneOn;
-      result$data['doneOn'] = l$doneOn?.toIso8601String();
+      result$data['doneOn'] = l$doneOn == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$doneOn);
     }
     if (_$data.containsKey('skipped')) {
       final l$skipped = skipped;
@@ -49971,7 +50037,9 @@ class InputSavedDateIdeasInsertInput {
     }
     if (_$data.containsKey('plannedFor')) {
       final l$plannedFor = plannedFor;
-      result$data['plannedFor'] = l$plannedFor?.toIso8601String();
+      result$data['plannedFor'] = l$plannedFor == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$plannedFor);
     }
     if (_$data.containsKey('placeName')) {
       final l$placeName = placeName;
@@ -50613,7 +50681,9 @@ class InputSavedDateIdeasUpdateInput {
     }
     if (_$data.containsKey('plannedFor')) {
       final l$plannedFor = plannedFor;
-      result$data['plannedFor'] = l$plannedFor?.toIso8601String();
+      result$data['plannedFor'] = l$plannedFor == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$plannedFor);
     }
     if (_$data.containsKey('placeName')) {
       final l$placeName = placeName;
@@ -53095,7 +53165,9 @@ class InputStoryEventsInsertInput {
     }
     if (_$data.containsKey('happenedOn')) {
       final l$happenedOn = happenedOn;
-      result$data['happenedOn'] = l$happenedOn?.toIso8601String();
+      result$data['happenedOn'] = l$happenedOn == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$happenedOn);
     }
     if (_$data.containsKey('datePrecision')) {
       final l$datePrecision = datePrecision;
@@ -53595,7 +53667,9 @@ class InputStoryEventsUpdateInput {
     }
     if (_$data.containsKey('happenedOn')) {
       final l$happenedOn = happenedOn;
-      result$data['happenedOn'] = l$happenedOn?.toIso8601String();
+      result$data['happenedOn'] = l$happenedOn == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$happenedOn);
     }
     if (_$data.containsKey('datePrecision')) {
       final l$datePrecision = datePrecision;

@@ -1,0 +1,8 @@
+query MySettings {
+  mySettings {
+    theme
+    partnerName
+    togetherSince
+    onboardedAt
+  }
+}

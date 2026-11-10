@@ -1,0 +1,37 @@
+{
+  "title": "The basics",
+  "titleHighlight": "basics",
+  "subtitle": "Used for the words in the app and for the first date of your story.",
+  "nameLabel": "Your name",
+  "nameHint": "Marina",
+  "partnerNameLabel": "Partner's name",
+  "partnerNameHint": "Ricardo",
+  "partnerNameNote": "Your partner's name stays on your account only.",
+  "themeLabel": "Your app colour",
+  "themeRose": "Rose",
+  "themeBlue": "Blue",
+  "themeNeutral": "Neutral",
+  "dateLabel": "When did you start?",
+  "dateHint": "Pick a date",
+  "dateFormat": "{month} {day}, {year}",
+  "months": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ],
+  "continueButton": "Continue",
+  "errors(map)": {
+    "INVALID_DATE": "That date does not look right. Pick one between 1950 and today.",
+    "NETWORK": "No connection. Your answers are still here, try again.",
+    "other": "Could not save right now. Try again."
+  }
+}

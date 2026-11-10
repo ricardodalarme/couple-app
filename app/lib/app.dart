@@ -62,7 +62,8 @@ class const App({super.key}) extends StatelessWidget {
 
   PageRouteInfo<void> _resolveRouteForState(AppState state) => switch (state) {
     .authenticated => const HomeRoute(),
-    .unauthenticated => const WelcomeRoute(),
+    .onboarding => const ProfileSetupRoute(),
+    .unauthenticated || .checking => const WelcomeRoute(),
   };
 
   DeepLink _deepLinkBuilder(PlatformDeepLink deepLink) {
@@ -71,6 +72,8 @@ class const App({super.key}) extends StatelessWidget {
   }
 
   void _onAppStateChanged(AppState state) {
+    if (state == AppState.checking) return;
+
     final appRouter = AppInjector.instance.get<RootStackRouter>();
     final resolvedRoute = _resolveRouteForState(state);
     appRouter.replaceAll([resolvedRoute]);

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
 import 'package:flutter_bloc_starter/infrastructure/initializers/authentication_initializer.dart';
@@ -19,6 +21,6 @@ final class AppCubitInitializer() extends Initializer {
   void initialize() {
     _logger.info('Initializing App Cubit');
 
-    AppInjector.instance.get<AppCubit>().initialize();
+    unawaited(AppInjector.instance.get<AppCubit>().initialize());
   }
 }

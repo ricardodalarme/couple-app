@@ -91,6 +91,22 @@ class NotFoundRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ProfileSetupPage]
+class ProfileSetupRoute extends PageRouteInfo<void> {
+  const ProfileSetupRoute({List<PageRouteInfo>? children})
+    : super(ProfileSetupRoute.name, initialChildren: children);
+
+  static const String name = 'ProfileSetupRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const ProfileSetupPage());
+    },
+  );
+}
+
+/// generated route for
 /// [SignInPage]
 class SignInRoute extends PageRouteInfo<void> {
   const SignInRoute({List<PageRouteInfo>? children})

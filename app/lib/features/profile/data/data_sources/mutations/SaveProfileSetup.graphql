@@ -1,0 +1,23 @@
+mutation SaveProfileSetup(
+  $profileId: UUID!
+  $displayName: String!
+  $theme: AppTheme!
+  $partnerName: String
+  $togetherSince: Date
+  $onboardedAt: Datetime!
+) {
+  updateProfilesCollection(set: { displayName: $displayName }, filter: { id: { eq: $profileId } }) {
+    affectedCount
+  }
+  updateProfileSettingsCollection(
+    set: {
+      theme: $theme
+      partnerName: $partnerName
+      togetherSince: $togetherSince
+      onboardedAt: $onboardedAt
+    }
+    filter: { profileId: { eq: $profileId } }
+  ) {
+    affectedCount
+  }
+}

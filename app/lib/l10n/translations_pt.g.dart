@@ -57,6 +57,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
       Translations$authentication$pt.internal(_root);
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
+  late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
+    _root,
+  );
   late final Translations$tabs$pt tabs = Translations$tabs$pt.internal(_root);
   late final Translations$welcome$pt welcome = Translations$welcome$pt.internal(_root);
 }
@@ -156,6 +159,85 @@ class Translations$notFound$pt {
   String get buttonBack => 'Voltar para página inicial';
 }
 
+// Path: profileSetup
+class Translations$profileSetup$pt {
+  Translations$profileSetup$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'O básico'
+  String get title => 'O básico';
+
+  /// pt: 'básico'
+  String get titleHighlight => 'básico';
+
+  /// pt: 'Usado para as palavras do app e para a primeira data da sua história.'
+  String get subtitle => 'Usado para as palavras do app e para a primeira data da sua história.';
+
+  /// pt: 'Seu nome'
+  String get nameLabel => 'Seu nome';
+
+  /// pt: 'Marina'
+  String get nameHint => 'Marina';
+
+  /// pt: 'Nome do parceiro'
+  String get partnerNameLabel => 'Nome do parceiro';
+
+  /// pt: 'Ricardo'
+  String get partnerNameHint => 'Ricardo';
+
+  /// pt: 'O nome do parceiro fica só na sua conta.'
+  String get partnerNameNote => 'O nome do parceiro fica só na sua conta.';
+
+  /// pt: 'Cor do seu app'
+  String get themeLabel => 'Cor do seu app';
+
+  /// pt: 'Rosa'
+  String get themeRose => 'Rosa';
+
+  /// pt: 'Azul'
+  String get themeBlue => 'Azul';
+
+  /// pt: 'Neutro'
+  String get themeNeutral => 'Neutro';
+
+  /// pt: 'Quando começaram?'
+  String get dateLabel => 'Quando começaram?';
+
+  /// pt: 'Escolha uma data'
+  String get dateHint => 'Escolha uma data';
+
+  /// pt: '{day} de {month} de {year}'
+  String dateFormat({required Object day, required Object month, required Object year}) =>
+      '${day} de ${month} de ${year}';
+
+  List<String> get months => [
+    'janeiro',
+    'fevereiro',
+    'março',
+    'abril',
+    'maio',
+    'junho',
+    'julho',
+    'agosto',
+    'setembro',
+    'outubro',
+    'novembro',
+    'dezembro',
+  ];
+
+  /// pt: 'Continuar'
+  String get continueButton => 'Continuar';
+
+  Map<String, String> get errors => {
+    'INVALID_DATE': 'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
+    'NETWORK': 'Sem conexão. Seus dados continuam aqui, tente de novo.',
+    'other': 'Não deu para salvar agora. Tente de novo.',
+  };
+}
+
 // Path: tabs
 class Translations$tabs$pt {
   Translations$tabs$pt.internal(this._root);
@@ -244,6 +326,43 @@ extension on Translations {
       'notFound.title' => '404',
       'notFound.description' => 'Página não encontrada',
       'notFound.buttonBack' => 'Voltar para página inicial',
+      'profileSetup.title' => 'O básico',
+      'profileSetup.titleHighlight' => 'básico',
+      'profileSetup.subtitle' =>
+        'Usado para as palavras do app e para a primeira data da sua história.',
+      'profileSetup.nameLabel' => 'Seu nome',
+      'profileSetup.nameHint' => 'Marina',
+      'profileSetup.partnerNameLabel' => 'Nome do parceiro',
+      'profileSetup.partnerNameHint' => 'Ricardo',
+      'profileSetup.partnerNameNote' => 'O nome do parceiro fica só na sua conta.',
+      'profileSetup.themeLabel' => 'Cor do seu app',
+      'profileSetup.themeRose' => 'Rosa',
+      'profileSetup.themeBlue' => 'Azul',
+      'profileSetup.themeNeutral' => 'Neutro',
+      'profileSetup.dateLabel' => 'Quando começaram?',
+      'profileSetup.dateHint' => 'Escolha uma data',
+      'profileSetup.dateFormat' => ({
+        required Object day,
+        required Object month,
+        required Object year,
+      }) => '${day} de ${month} de ${year}',
+      'profileSetup.months.0' => 'janeiro',
+      'profileSetup.months.1' => 'fevereiro',
+      'profileSetup.months.2' => 'março',
+      'profileSetup.months.3' => 'abril',
+      'profileSetup.months.4' => 'maio',
+      'profileSetup.months.5' => 'junho',
+      'profileSetup.months.6' => 'julho',
+      'profileSetup.months.7' => 'agosto',
+      'profileSetup.months.8' => 'setembro',
+      'profileSetup.months.9' => 'outubro',
+      'profileSetup.months.10' => 'novembro',
+      'profileSetup.months.11' => 'dezembro',
+      'profileSetup.continueButton' => 'Continuar',
+      'profileSetup.errors.INVALID_DATE' =>
+        'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
+      'profileSetup.errors.NETWORK' => 'Sem conexão. Seus dados continuam aqui, tente de novo.',
+      'profileSetup.errors.other' => 'Não deu para salvar agora. Tente de novo.',
       'tabs.today' => 'Hoje',
       'tabs.slips' => 'Slips',
       'tabs.together' => 'Juntos',

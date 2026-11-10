@@ -60,6 +60,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$notFound$en notFound = _Translations$notFound$en._(_root);
   @override
+  late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
+  @override
   late final _Translations$tabs$en tabs = _Translations$tabs$en._(_root);
   @override
   late final _Translations$welcome$en welcome = _Translations$welcome$en._(_root);
@@ -139,6 +141,69 @@ class _Translations$notFound$en extends Translations$notFound$pt {
   String get buttonBack => 'Go back home';
 }
 
+// Path: profileSetup
+class _Translations$profileSetup$en extends Translations$profileSetup$pt {
+  _Translations$profileSetup$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'The basics';
+  @override
+  String get titleHighlight => 'basics';
+  @override
+  String get subtitle => 'Used for the words in the app and for the first date of your story.';
+  @override
+  String get nameLabel => 'Your name';
+  @override
+  String get nameHint => 'Marina';
+  @override
+  String get partnerNameLabel => 'Partner\'s name';
+  @override
+  String get partnerNameHint => 'Ricardo';
+  @override
+  String get partnerNameNote => 'Your partner\'s name stays on your account only.';
+  @override
+  String get themeLabel => 'Your app colour';
+  @override
+  String get themeRose => 'Rose';
+  @override
+  String get themeBlue => 'Blue';
+  @override
+  String get themeNeutral => 'Neutral';
+  @override
+  String get dateLabel => 'When did you start?';
+  @override
+  String get dateHint => 'Pick a date';
+  @override
+  String dateFormat({required Object month, required Object day, required Object year}) =>
+      '${month} ${day}, ${year}';
+  @override
+  List<String> get months => [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  @override
+  String get continueButton => 'Continue';
+  @override
+  Map<String, String> get errors => {
+    'INVALID_DATE': 'That date does not look right. Pick one between 1950 and today.',
+    'NETWORK': 'No connection. Your answers are still here, try again.',
+    'other': 'Could not save right now. Try again.',
+  };
+}
+
 // Path: tabs
 class _Translations$tabs$en extends Translations$tabs$pt {
   _Translations$tabs$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -214,6 +279,43 @@ extension on TranslationsEn {
       'notFound.title' => '404',
       'notFound.description' => 'Page not found',
       'notFound.buttonBack' => 'Go back home',
+      'profileSetup.title' => 'The basics',
+      'profileSetup.titleHighlight' => 'basics',
+      'profileSetup.subtitle' =>
+        'Used for the words in the app and for the first date of your story.',
+      'profileSetup.nameLabel' => 'Your name',
+      'profileSetup.nameHint' => 'Marina',
+      'profileSetup.partnerNameLabel' => 'Partner\'s name',
+      'profileSetup.partnerNameHint' => 'Ricardo',
+      'profileSetup.partnerNameNote' => 'Your partner\'s name stays on your account only.',
+      'profileSetup.themeLabel' => 'Your app colour',
+      'profileSetup.themeRose' => 'Rose',
+      'profileSetup.themeBlue' => 'Blue',
+      'profileSetup.themeNeutral' => 'Neutral',
+      'profileSetup.dateLabel' => 'When did you start?',
+      'profileSetup.dateHint' => 'Pick a date',
+      'profileSetup.dateFormat' => ({
+        required Object month,
+        required Object day,
+        required Object year,
+      }) => '${month} ${day}, ${year}',
+      'profileSetup.months.0' => 'January',
+      'profileSetup.months.1' => 'February',
+      'profileSetup.months.2' => 'March',
+      'profileSetup.months.3' => 'April',
+      'profileSetup.months.4' => 'May',
+      'profileSetup.months.5' => 'June',
+      'profileSetup.months.6' => 'July',
+      'profileSetup.months.7' => 'August',
+      'profileSetup.months.8' => 'September',
+      'profileSetup.months.9' => 'October',
+      'profileSetup.months.10' => 'November',
+      'profileSetup.months.11' => 'December',
+      'profileSetup.continueButton' => 'Continue',
+      'profileSetup.errors.INVALID_DATE' =>
+        'That date does not look right. Pick one between 1950 and today.',
+      'profileSetup.errors.NETWORK' => 'No connection. Your answers are still here, try again.',
+      'profileSetup.errors.other' => 'Could not save right now. Try again.',
       'tabs.today' => 'Today',
       'tabs.slips' => 'Slips',
       'tabs.together' => 'Together',

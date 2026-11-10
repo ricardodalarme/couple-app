@@ -1,0 +1,37 @@
+{
+  "title": "O básico",
+  "titleHighlight": "básico",
+  "subtitle": "Usado para as palavras do app e para a primeira data da sua história.",
+  "nameLabel": "Seu nome",
+  "nameHint": "Marina",
+  "partnerNameLabel": "Nome do parceiro",
+  "partnerNameHint": "Ricardo",
+  "partnerNameNote": "O nome do parceiro fica só na sua conta.",
+  "themeLabel": "Cor do seu app",
+  "themeRose": "Rosa",
+  "themeBlue": "Azul",
+  "themeNeutral": "Neutro",
+  "dateLabel": "Quando começaram?",
+  "dateHint": "Escolha uma data",
+  "dateFormat": "{day} de {month} de {year}",
+  "months": [
+    "janeiro",
+    "fevereiro",
+    "março",
+    "abril",
+    "maio",
+    "junho",
+    "julho",
+    "agosto",
+    "setembro",
+    "outubro",
+    "novembro",
+    "dezembro"
+  ],
+  "continueButton": "Continuar",
+  "errors(map)": {
+    "INVALID_DATE": "Essa data não parece certa. Escolha uma entre 1950 e hoje.",
+    "NETWORK": "Sem conexão. Seus dados continuam aqui, tente de novo.",
+    "other": "Não deu para salvar agora. Tente de novo."
+  }
+}
