@@ -1,0 +1,31 @@
+{
+  "dateLine": "{weekday}, {month} {day}",
+  "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+  "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "title": "What made you happy?",
+  "titleHighlight": "happy",
+  "subtitle": "One line is enough. 30 seconds.",
+  "hint": "E.g. made coffee before I woke up",
+  "categories(map)": {
+    "said": "Said something",
+    "did": "Did something",
+    "noticed": "Noticed me",
+    "helped": "Helped me",
+    "other": ""
+  },
+  "privacyNote": "It stays private. On Sunday you choose what goes on the card.",
+  "save": "Save",
+  "saved": {
+    "title": "Saved",
+    "added": "Slip added to this week.",
+    "queued": "Saved on this phone. We send it when the connection is back.",
+    "undoHint": "Undo for 30 seconds.",
+    "undo": "Undo",
+    "done": "Done"
+  },
+  "errors(map)": {
+    "FREE_LIMIT_REACHED": "You reached the free plan's slip limit.",
+    "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
+    "other": "Could not save right now. Your text is still here, try again."
+  }
+}

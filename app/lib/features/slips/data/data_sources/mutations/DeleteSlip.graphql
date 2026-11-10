@@ -1,0 +1,3 @@
+mutation DeleteSlip($id: UUID!) {
+  deleteSlip(id: $id)
+}

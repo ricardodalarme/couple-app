@@ -7,6 +7,7 @@ import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
+import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -16,15 +17,19 @@ class _MockProfileRepository() extends Mock implements ProfileRepository;
 
 class _MockSettingsRepository() extends Mock implements SettingsRepository;
 
+class _MockSlipRepository() extends Mock implements SlipRepository;
+
 void main() {
   late AuthenticationRepository authenticationRepository;
   late ProfileRepository profileRepository;
   late SettingsRepository settingsRepository;
+  late SlipRepository slipRepository;
 
   AppCubit build() => AppCubit(
     authenticationRepository: authenticationRepository,
     profileRepository: profileRepository,
     settingsRepository: settingsRepository,
+    slipRepository: slipRepository,
   );
 
   setUpAll(() => registerFallbackValue(const Settings.empty()));
@@ -33,6 +38,8 @@ void main() {
     authenticationRepository = _MockAuthenticationRepository();
     profileRepository = _MockProfileRepository();
     settingsRepository = _MockSettingsRepository();
+    slipRepository = _MockSlipRepository();
+    when(() => slipRepository.flushPending()).thenAnswer((_) async {});
     when(() => authenticationRepository.isAuthenticatedStream)
         .thenAnswer((_) => const Stream.empty());
     when(() => authenticationRepository.isAuthenticated).thenReturn(true);

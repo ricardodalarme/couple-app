@@ -61,6 +61,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
     _root,
   );
+  late final Translations$quickSlip$pt quickSlip = Translations$quickSlip$pt.internal(_root);
   late final Translations$tabs$pt tabs = Translations$tabs$pt.internal(_root);
   late final Translations$welcome$pt welcome = Translations$welcome$pt.internal(_root);
 }
@@ -258,6 +259,78 @@ class Translations$profileSetup$pt {
   };
 }
 
+// Path: quickSlip
+class Translations$quickSlip$pt {
+  Translations$quickSlip$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: '{weekday}, {day} de {month}'
+  String dateLine({required Object weekday, required Object day, required Object month}) =>
+      '${weekday}, ${day} de ${month}';
+
+  List<String> get weekdays => [
+    'segunda',
+    'terça',
+    'quarta',
+    'quinta',
+    'sexta',
+    'sábado',
+    'domingo',
+  ];
+  List<String> get monthsShort => [
+    'jan',
+    'fev',
+    'mar',
+    'abr',
+    'mai',
+    'jun',
+    'jul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dez',
+  ];
+
+  /// pt: 'O que te deixou feliz?'
+  String get title => 'O que te deixou feliz?';
+
+  /// pt: 'feliz'
+  String get titleHighlight => 'feliz';
+
+  /// pt: 'Uma linha basta. 30 segundos.'
+  String get subtitle => 'Uma linha basta. 30 segundos.';
+
+  /// pt: 'Ex.: fez café antes de eu acordar'
+  String get hint => 'Ex.: fez café antes de eu acordar';
+
+  Map<String, String> get categories => {
+    'said': 'Disse algo',
+    'did': 'Fez algo',
+    'noticed': 'Me notou',
+    'helped': 'Me ajudou',
+    'other': '',
+  };
+
+  /// pt: 'Fica privado. No domingo você escolhe o que vai para o cartão.'
+  String get privacyNote => 'Fica privado. No domingo você escolhe o que vai para o cartão.';
+
+  /// pt: 'Salvar'
+  String get save => 'Salvar';
+
+  late final Translations$quickSlip$saved$pt saved = Translations$quickSlip$saved$pt.internal(
+    _root,
+  );
+  Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'Você chegou ao limite de slips do plano grátis.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
+  };
+}
+
 // Path: tabs
 class Translations$tabs$pt {
   Translations$tabs$pt.internal(this._root);
@@ -411,6 +484,33 @@ class Translations$intro$theme$pt {
   String get footnote => 'Dá para trocar depois em Configurações, Aparência.';
 }
 
+// Path: quickSlip.saved
+class Translations$quickSlip$saved$pt {
+  Translations$quickSlip$saved$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Salvo'
+  String get title => 'Salvo';
+
+  /// pt: 'Slip adicionado a esta semana.'
+  String get added => 'Slip adicionado a esta semana.';
+
+  /// pt: 'Salvo neste celular. Enviamos quando a conexão voltar.'
+  String get queued => 'Salvo neste celular. Enviamos quando a conexão voltar.';
+
+  /// pt: 'Desfazer por 30 segundos.'
+  String get undoHint => 'Desfazer por 30 segundos.';
+
+  /// pt: 'Desfazer'
+  String get undo => 'Desfazer';
+
+  /// pt: 'Pronto'
+  String get done => 'Pronto';
+}
+
 /// The flat map containing all translations for locale <pt>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -512,6 +612,51 @@ extension on Translations {
         'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
       'profileSetup.errors.NETWORK' => 'Sem conexão. Seus dados continuam aqui, tente de novo.',
       'profileSetup.errors.other' => 'Não deu para salvar agora. Tente de novo.',
+      'quickSlip.dateLine' => ({
+        required Object weekday,
+        required Object day,
+        required Object month,
+      }) => '${weekday}, ${day} de ${month}',
+      'quickSlip.weekdays.0' => 'segunda',
+      'quickSlip.weekdays.1' => 'terça',
+      'quickSlip.weekdays.2' => 'quarta',
+      'quickSlip.weekdays.3' => 'quinta',
+      'quickSlip.weekdays.4' => 'sexta',
+      'quickSlip.weekdays.5' => 'sábado',
+      'quickSlip.weekdays.6' => 'domingo',
+      'quickSlip.monthsShort.0' => 'jan',
+      'quickSlip.monthsShort.1' => 'fev',
+      'quickSlip.monthsShort.2' => 'mar',
+      'quickSlip.monthsShort.3' => 'abr',
+      'quickSlip.monthsShort.4' => 'mai',
+      'quickSlip.monthsShort.5' => 'jun',
+      'quickSlip.monthsShort.6' => 'jul',
+      'quickSlip.monthsShort.7' => 'ago',
+      'quickSlip.monthsShort.8' => 'set',
+      'quickSlip.monthsShort.9' => 'out',
+      'quickSlip.monthsShort.10' => 'nov',
+      'quickSlip.monthsShort.11' => 'dez',
+      'quickSlip.title' => 'O que te deixou feliz?',
+      'quickSlip.titleHighlight' => 'feliz',
+      'quickSlip.subtitle' => 'Uma linha basta. 30 segundos.',
+      'quickSlip.hint' => 'Ex.: fez café antes de eu acordar',
+      'quickSlip.categories.said' => 'Disse algo',
+      'quickSlip.categories.did' => 'Fez algo',
+      'quickSlip.categories.noticed' => 'Me notou',
+      'quickSlip.categories.helped' => 'Me ajudou',
+      'quickSlip.categories.other' => '',
+      'quickSlip.privacyNote' => 'Fica privado. No domingo você escolhe o que vai para o cartão.',
+      'quickSlip.save' => 'Salvar',
+      'quickSlip.saved.title' => 'Salvo',
+      'quickSlip.saved.added' => 'Slip adicionado a esta semana.',
+      'quickSlip.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
+      'quickSlip.saved.undoHint' => 'Desfazer por 30 segundos.',
+      'quickSlip.saved.undo' => 'Desfazer',
+      'quickSlip.saved.done' => 'Pronto',
+      'quickSlip.errors.FREE_LIMIT_REACHED' => 'Você chegou ao limite de slips do plano grátis.',
+      'quickSlip.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+      'quickSlip.errors.other' =>
+        'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
       'tabs.today' => 'Hoje',
       'tabs.slips' => 'Slips',
       'tabs.together' => 'Juntos',

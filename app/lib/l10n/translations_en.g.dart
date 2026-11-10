@@ -64,6 +64,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
   @override
+  late final _Translations$quickSlip$en quickSlip = _Translations$quickSlip$en._(_root);
+  @override
   late final _Translations$tabs$en tabs = _Translations$tabs$en._(_root);
   @override
   late final _Translations$welcome$en welcome = _Translations$welcome$en._(_root);
@@ -225,6 +227,71 @@ class _Translations$profileSetup$en extends Translations$profileSetup$pt {
   };
 }
 
+// Path: quickSlip
+class _Translations$quickSlip$en extends Translations$quickSlip$pt {
+  _Translations$quickSlip$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String dateLine({required Object weekday, required Object month, required Object day}) =>
+      '${weekday}, ${month} ${day}';
+  @override
+  List<String> get weekdays => [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ];
+  @override
+  List<String> get monthsShort => [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  @override
+  String get title => 'What made you happy?';
+  @override
+  String get titleHighlight => 'happy';
+  @override
+  String get subtitle => 'One line is enough. 30 seconds.';
+  @override
+  String get hint => 'E.g. made coffee before I woke up';
+  @override
+  Map<String, String> get categories => {
+    'said': 'Said something',
+    'did': 'Did something',
+    'noticed': 'Noticed me',
+    'helped': 'Helped me',
+    'other': '',
+  };
+  @override
+  String get privacyNote => 'It stays private. On Sunday you choose what goes on the card.';
+  @override
+  String get save => 'Save';
+  @override
+  late final _Translations$quickSlip$saved$en saved = _Translations$quickSlip$saved$en._(_root);
+  @override
+  Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'You reached the free plan\'s slip limit.',
+    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
+    'other': 'Could not save right now. Your text is still here, try again.',
+  };
+}
+
 // Path: tabs
 class _Translations$tabs$en extends Translations$tabs$pt {
   _Translations$tabs$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -349,6 +416,27 @@ class _Translations$intro$theme$en extends Translations$intro$theme$pt {
   String get footnote => 'You can change it later in Settings, Appearance.';
 }
 
+// Path: quickSlip.saved
+class _Translations$quickSlip$saved$en extends Translations$quickSlip$saved$pt {
+  _Translations$quickSlip$saved$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Saved';
+  @override
+  String get added => 'Slip added to this week.';
+  @override
+  String get queued => 'Saved on this phone. We send it when the connection is back.';
+  @override
+  String get undoHint => 'Undo for 30 seconds.';
+  @override
+  String get undo => 'Undo';
+  @override
+  String get done => 'Done';
+}
+
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -450,6 +538,50 @@ extension on TranslationsEn {
         'That date does not look right. Pick one between 1950 and today.',
       'profileSetup.errors.NETWORK' => 'No connection. Your answers are still here, try again.',
       'profileSetup.errors.other' => 'Could not save right now. Try again.',
+      'quickSlip.dateLine' => ({
+        required Object weekday,
+        required Object month,
+        required Object day,
+      }) => '${weekday}, ${month} ${day}',
+      'quickSlip.weekdays.0' => 'Monday',
+      'quickSlip.weekdays.1' => 'Tuesday',
+      'quickSlip.weekdays.2' => 'Wednesday',
+      'quickSlip.weekdays.3' => 'Thursday',
+      'quickSlip.weekdays.4' => 'Friday',
+      'quickSlip.weekdays.5' => 'Saturday',
+      'quickSlip.weekdays.6' => 'Sunday',
+      'quickSlip.monthsShort.0' => 'Jan',
+      'quickSlip.monthsShort.1' => 'Feb',
+      'quickSlip.monthsShort.2' => 'Mar',
+      'quickSlip.monthsShort.3' => 'Apr',
+      'quickSlip.monthsShort.4' => 'May',
+      'quickSlip.monthsShort.5' => 'Jun',
+      'quickSlip.monthsShort.6' => 'Jul',
+      'quickSlip.monthsShort.7' => 'Aug',
+      'quickSlip.monthsShort.8' => 'Sep',
+      'quickSlip.monthsShort.9' => 'Oct',
+      'quickSlip.monthsShort.10' => 'Nov',
+      'quickSlip.monthsShort.11' => 'Dec',
+      'quickSlip.title' => 'What made you happy?',
+      'quickSlip.titleHighlight' => 'happy',
+      'quickSlip.subtitle' => 'One line is enough. 30 seconds.',
+      'quickSlip.hint' => 'E.g. made coffee before I woke up',
+      'quickSlip.categories.said' => 'Said something',
+      'quickSlip.categories.did' => 'Did something',
+      'quickSlip.categories.noticed' => 'Noticed me',
+      'quickSlip.categories.helped' => 'Helped me',
+      'quickSlip.categories.other' => '',
+      'quickSlip.privacyNote' => 'It stays private. On Sunday you choose what goes on the card.',
+      'quickSlip.save' => 'Save',
+      'quickSlip.saved.title' => 'Saved',
+      'quickSlip.saved.added' => 'Slip added to this week.',
+      'quickSlip.saved.queued' => 'Saved on this phone. We send it when the connection is back.',
+      'quickSlip.saved.undoHint' => 'Undo for 30 seconds.',
+      'quickSlip.saved.undo' => 'Undo',
+      'quickSlip.saved.done' => 'Done',
+      'quickSlip.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
+      'quickSlip.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
+      'quickSlip.errors.other' => 'Could not save right now. Your text is still here, try again.',
       'tabs.today' => 'Today',
       'tabs.slips' => 'Slips',
       'tabs.together' => 'Together',

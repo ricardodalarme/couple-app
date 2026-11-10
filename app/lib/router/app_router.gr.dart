@@ -155,6 +155,22 @@ class ProfileSetupRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [QuickSlipPage]
+class QuickSlipRoute extends PageRouteInfo<void> {
+  const QuickSlipRoute({List<PageRouteInfo>? children})
+    : super(QuickSlipRoute.name, initialChildren: children);
+
+  static const String name = 'QuickSlipRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const QuickSlipPage());
+    },
+  );
+}
+
+/// generated route for
 /// [SignInPage]
 class SignInRoute extends PageRouteInfo<void> {
   const SignInRoute({List<PageRouteInfo>? children})

@@ -10,6 +10,7 @@ import 'package:flutter_bloc_starter/features/onboarding/presentation/goals/intr
 import 'package:flutter_bloc_starter/features/onboarding/presentation/phase/intro_phase_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/theme/intro_theme_page.dart';
 import 'package:flutter_bloc_starter/features/not_found/presentation/not_found/not_found_page.dart';
+import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/quick_slip_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slips/slips_page.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/today_page.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/together/together_page.dart';
@@ -28,6 +29,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: ExistingAccountRoute.page),
     AutoRoute(page: DebugSignInRoute.page),
     AutoRoute(page: ProfileSetupRoute.page),
+    AutoRoute(page: QuickSlipRoute.page, fullscreenDialog: true),
     AutoRoute(
       page: HomeRoute.page,
       children: [

@@ -1,0 +1,5 @@
+mutation SaveSlip($id: UUID!, $body: String!, $createdAt: Datetime) {
+  saveSlip(id: $id, body: $body, createdAt: $createdAt) {
+    id
+  }
+}

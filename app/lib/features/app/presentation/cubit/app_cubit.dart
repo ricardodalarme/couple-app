@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
+import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 
 part 'app_state.dart';
 
@@ -12,6 +13,7 @@ class AppCubit({
   required final AuthenticationRepository _authenticationRepository,
   required final ProfileRepository _profileRepository,
   required final SettingsRepository _settingsRepository,
+  required final SlipRepository _slipRepository,
 }) extends Cubit<AppState> {
   this : super(AppState.unauthenticated) {
     _authStateChangesSubscription = _authenticationRepository.isAuthenticatedStream.listen(
@@ -41,6 +43,7 @@ class AppCubit({
       await _uploadIntroAnswers(profile.id);
       final settings = await _profileRepository.getMySettings();
       await _rememberTheme(settings.theme);
+      unawaited(_slipRepository.flushPending());
       emit(settings.isOnboarded ? AppState.authenticated : AppState.onboarding);
     } on Object {
       // The repository already logged it. Offline people still reach their own space.

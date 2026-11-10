@@ -3,6 +3,7 @@ import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.d
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
+import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 
 class AppInjectionModule() implements InjectionModule {
   @override
@@ -12,6 +13,7 @@ class AppInjectionModule() implements InjectionModule {
           authenticationRepository: injector.get<AuthenticationRepository>(),
           profileRepository: injector.get<ProfileRepository>(),
           settingsRepository: injector.get<SettingsRepository>(),
+          slipRepository: injector.get<SlipRepository>(),
         ),
       );
 }

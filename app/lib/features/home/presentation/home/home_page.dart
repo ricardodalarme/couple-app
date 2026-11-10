@@ -39,7 +39,10 @@ class const HomePage({super.key}) extends StatelessWidget {
               BaseTabBar(
                 currentIndex: activeIndex < _captureIndex ? activeIndex : activeIndex + 1,
                 onSelected: (index) {
-                  if (index == _captureIndex) return;
+                  if (index == _captureIndex) {
+                    context.router.root.push(const QuickSlipRoute());
+                    return;
+                  }
                   tabsRouter.setActiveIndex(index < _captureIndex ? index : index - 1);
                 },
                 items: [

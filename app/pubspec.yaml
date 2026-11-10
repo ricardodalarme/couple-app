@@ -61,6 +61,7 @@ dependencies:
     path: ../packages/services/share
   slang: ^4.19.2
   slang_flutter: ^4.19.0
+  uuid: ^4.6.0
   webview_flutter: ^4.14.1
   widgetbook: ^3.25.0
 

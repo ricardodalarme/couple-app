@@ -1,0 +1,31 @@
+{
+  "dateLine": "{weekday}, {day} de {month}",
+  "weekdays": ["segunda", "terça", "quarta", "quinta", "sexta", "sábado", "domingo"],
+  "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+  "title": "O que te deixou feliz?",
+  "titleHighlight": "feliz",
+  "subtitle": "Uma linha basta. 30 segundos.",
+  "hint": "Ex.: fez café antes de eu acordar",
+  "categories(map)": {
+    "said": "Disse algo",
+    "did": "Fez algo",
+    "noticed": "Me notou",
+    "helped": "Me ajudou",
+    "other": ""
+  },
+  "privacyNote": "Fica privado. No domingo você escolhe o que vai para o cartão.",
+  "save": "Salvar",
+  "saved": {
+    "title": "Salvo",
+    "added": "Slip adicionado a esta semana.",
+    "queued": "Salvo neste celular. Enviamos quando a conexão voltar.",
+    "undoHint": "Desfazer por 30 segundos.",
+    "undo": "Desfazer",
+    "done": "Pronto"
+  },
+  "errors(map)": {
+    "FREE_LIMIT_REACHED": "Você chegou ao limite de slips do plano grátis.",
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para salvar agora. Seu texto continua aqui, tente de novo."
+  }
+}
