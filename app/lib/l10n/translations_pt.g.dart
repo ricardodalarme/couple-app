@@ -1573,6 +1573,9 @@ class Translations$plus$pt {
   /// pt: 'Anual'
   String get yearly => 'Anual';
 
+  /// pt: 'Presente'
+  String get giftPlan => 'Presente';
+
   /// pt: 'Não deu para ver os preços'
   String get storeTitle => 'Não deu para ver os preços';
 
@@ -1612,6 +1615,113 @@ class Translations$plus$pt {
 
   /// pt: 'Tente de novo daqui a pouco.'
   String get errorText => 'Tente de novo daqui a pouco.';
+
+  /// pt: 'Gerenciar Plus'
+  String get manageTitle => 'Gerenciar Plus';
+
+  /// pt: 'Plano'
+  String get planRow => 'Plano';
+
+  /// pt: 'Status'
+  String get statusRow => 'Status';
+
+  /// pt: 'Cobre'
+  String get coversRow => 'Cobre';
+
+  /// pt: 'Você e seu par'
+  String get coversBoth => 'Você e seu par';
+
+  /// pt: 'Seu par'
+  String get coveredByPartner => 'Seu par';
+
+  /// pt: 'Plus ativo'
+  String get plusActive => 'Plus ativo';
+
+  /// pt: 'Ativo'
+  String get statusActive => 'Ativo';
+
+  /// pt: 'Período de teste'
+  String get statusTrialing => 'Período de teste';
+
+  /// pt: 'Pagamento pendente'
+  String get statusGrace => 'Pagamento pendente';
+
+  /// pt: 'Problema no pagamento'
+  String get statusBillingIssue => 'Problema no pagamento';
+
+  /// pt: 'Gerenciar na loja'
+  String get manageInStore => 'Gerenciar na loja';
+
+  /// pt: 'Ver o Plus'
+  String get seePlus => 'Ver o Plus';
+
+  /// pt: 'Gerenciar plano'
+  String get managePlan => 'Gerenciar plano';
+
+  /// pt: 'Restaurar compras'
+  String get restorePurchases => 'Restaurar compras';
+
+  /// pt: 'Seu par cuida desta assinatura.'
+  String get partnerPays => 'Seu par cuida desta assinatura.';
+
+  /// pt: 'Se um dos parceiros cancelar, o Plus termina para os dois, com aviso claro.'
+  String get partnerCancel =>
+      'Se um dos parceiros cancelar, o Plus termina para os dois, com aviso claro.';
+
+  /// pt: 'A loja não abriu'
+  String get storeIssueTitle => 'A loja não abriu';
+
+  /// pt: 'Restaurando compras'
+  String get restoreLoadingTitle => 'Restaurando compras';
+
+  /// pt: 'Isso leva alguns segundos.'
+  String get restoreLoadingText => 'Isso leva alguns segundos.';
+
+  /// pt: 'Compras restauradas'
+  String get restoredTitle => 'Compras restauradas';
+
+  /// pt: 'restauradas'
+  String get restoredHighlight => 'restauradas';
+
+  /// pt: 'Encontramos o seu Plus na loja.'
+  String get restoredText => 'Encontramos o seu Plus na loja.';
+
+  /// pt: 'Encontramos uma compra'
+  String get pendingRestoreTitle => 'Encontramos uma compra';
+
+  /// pt: 'compra'
+  String get pendingRestoreHighlight => 'compra';
+
+  /// pt: 'Pode levar um instante, ou entre com a conta que comprou.'
+  String get pendingRestoreText => 'Pode levar um instante, ou entre com a conta que comprou.';
+
+  /// pt: 'Nada para restaurar'
+  String get nothingTitle => 'Nada para restaurar';
+
+  /// pt: 'restaurar'
+  String get nothingHighlight => 'restaurar';
+
+  /// pt: 'Não encontramos compras ativas nesta loja. Se você assinou com outra conta, entre com ela e tente de novo.'
+  String get nothingText =>
+      'Não encontramos compras ativas nesta loja. Se você assinou com outra conta, entre com ela e tente de novo.';
+
+  /// pt: 'Não deu para restaurar'
+  String get restoreFailedTitle => 'Não deu para restaurar';
+
+  /// pt: 'restaurar'
+  String get restoreFailedHighlight => 'restaurar';
+
+  /// pt: 'Tentar de novo'
+  String get tryAgain => 'Tentar de novo';
+
+  /// pt: 'Pronto'
+  String get done => 'Pronto';
+
+  Map<String, String> get errors => {
+    'storeUnavailable': 'A loja não está disponível neste aparelho agora.',
+    'manageUnavailable': 'Não há uma página da loja para esta assinatura aqui.',
+    'other': 'Não deu para fazer isso agora. Tente de novo.',
+  };
 }
 
 // Path: privacy
@@ -4495,6 +4605,7 @@ extension on Translations {
             'Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.',
           'plus.monthly' => 'Mensal',
           'plus.yearly' => 'Anual',
+          'plus.giftPlan' => 'Presente',
           'plus.storeTitle' => 'Não deu para ver os preços',
           'plus.storeText' => 'A loja não respondeu. Nada foi cobrado. Tente de novo.',
           'plus.subscribe' => 'Assinar',
@@ -4508,6 +4619,46 @@ extension on Translations {
           'plus.lockText' => 'Disponível no Plus. Toque para ver os planos.',
           'plus.errorTitle' => 'Não deu para carregar',
           'plus.errorText' => 'Tente de novo daqui a pouco.',
+          'plus.manageTitle' => 'Gerenciar Plus',
+          'plus.planRow' => 'Plano',
+          'plus.statusRow' => 'Status',
+          'plus.coversRow' => 'Cobre',
+          'plus.coversBoth' => 'Você e seu par',
+          'plus.coveredByPartner' => 'Seu par',
+          'plus.plusActive' => 'Plus ativo',
+          'plus.statusActive' => 'Ativo',
+          'plus.statusTrialing' => 'Período de teste',
+          'plus.statusGrace' => 'Pagamento pendente',
+          'plus.statusBillingIssue' => 'Problema no pagamento',
+          'plus.manageInStore' => 'Gerenciar na loja',
+          'plus.seePlus' => 'Ver o Plus',
+          'plus.managePlan' => 'Gerenciar plano',
+          'plus.restorePurchases' => 'Restaurar compras',
+          _ => null,
+        } ??
+        switch (path) {
+          'plus.partnerPays' => 'Seu par cuida desta assinatura.',
+          'plus.partnerCancel' =>
+            'Se um dos parceiros cancelar, o Plus termina para os dois, com aviso claro.',
+          'plus.storeIssueTitle' => 'A loja não abriu',
+          'plus.restoreLoadingTitle' => 'Restaurando compras',
+          'plus.restoreLoadingText' => 'Isso leva alguns segundos.',
+          'plus.restoredTitle' => 'Compras restauradas',
+          'plus.restoredHighlight' => 'restauradas',
+          'plus.restoredText' => 'Encontramos o seu Plus na loja.',
+          'plus.pendingRestoreTitle' => 'Encontramos uma compra',
+          'plus.pendingRestoreHighlight' => 'compra',
+          'plus.pendingRestoreText' => 'Pode levar um instante, ou entre com a conta que comprou.',
+          'plus.nothingTitle' => 'Nada para restaurar',
+          'plus.nothingHighlight' => 'restaurar',
+          'plus.nothingText' => 'Não encontramos compras ativas nesta loja. Se você assinou com outra conta, entre com ela e tente de novo.',
+          'plus.restoreFailedTitle' => 'Não deu para restaurar',
+          'plus.restoreFailedHighlight' => 'restaurar',
+          'plus.tryAgain' => 'Tentar de novo',
+          'plus.done' => 'Pronto',
+          'plus.errors.storeUnavailable' => 'A loja não está disponível neste aparelho agora.',
+          'plus.errors.manageUnavailable' => 'Não há uma página da loja para esta assinatura aqui.',
+          'plus.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'privacy.title' => 'Privacidade e segurança',
           'privacy.discreetMode' => 'Modo discreto',
           'privacy.partnerTitle' => 'O que o parceiro vê',
@@ -5059,6 +5210,9 @@ extension on Translations {
           'tabs.dayText' => 'O que importa em cada dia.',
           'tabs.plusLabel' => 'PLANO',
           'tabs.plusTitle' => 'Grátis e Plus',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.plusText' => 'O que cada plano inclui, sem pressão.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
           'tabs.temperatureTitle' => 'Como está entre vocês?',

@@ -501,6 +501,22 @@ class LogisticsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ManagePlusPage]
+class ManagePlusRoute extends PageRouteInfo<void> {
+  const ManagePlusRoute({List<PageRouteInfo>? children})
+    : super(ManagePlusRoute.name, initialChildren: children);
+
+  static const String name = 'ManagePlusRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const ManagePlusPage());
+    },
+  );
+}
+
+/// generated route for
 /// [MemoriesPage]
 class MemoriesRoute extends PageRouteInfo<void> {
   const MemoriesRoute({List<PageRouteInfo>? children})
@@ -819,6 +835,22 @@ class RelationshipRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const RelationshipPage());
+    },
+  );
+}
+
+/// generated route for
+/// [RestorePurchasesPage]
+class RestorePurchasesRoute extends PageRouteInfo<void> {
+  const RestorePurchasesRoute({List<PageRouteInfo>? children})
+    : super(RestorePurchasesRoute.name, initialChildren: children);
+
+  static const String name = 'RestorePurchasesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const RestorePurchasesPage());
     },
   );
 }

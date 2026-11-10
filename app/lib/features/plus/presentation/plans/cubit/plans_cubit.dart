@@ -14,9 +14,11 @@ class PlansCubit({required final PlusRepository _plusRepository}) extends Cubit<
     emit(const PlansState());
     try {
       final plus = await _plusRepository.getPlus();
+      if (isClosed) return;
       emit(state.copyWith(plus: Success(plus)));
       if (!plus.hasPlus) await loadPrices();
     } catch (exception) {
+      if (isClosed) return;
       emit(state.copyWith(plus: Failure.fromObject(exception)));
     }
   }
@@ -31,16 +33,21 @@ class PlansCubit({required final PlusRepository _plusRepository}) extends Cubit<
     emit(state.copyWith(purchaseAction: const Loading()));
     try {
       final outcome = await _plusRepository.purchase(id);
+      if (isClosed) return;
       if (outcome == PurchaseOutcome.cancelled) {
         emit(state.copyWith(purchaseAction: const Initial()));
         return;
       }
       emit(state.copyWith(purchaseAction: Success(outcome)));
       if (outcome == PurchaseOutcome.unlocked) {
-        emit(state.copyWith(plus: Success(await _plusRepository.getPlus())));
+        final plus = await _plusRepository.getPlus();
+        if (isClosed) return;
+        emit(state.copyWith(plus: Success(plus)));
       }
     } catch (exception) {
+      if (isClosed) return;
       emit(state.copyWith(purchaseAction: Failure.fromObject(exception)));
+      if (isClosed) return;
       emit(state.copyWith(purchaseAction: const Initial()));
     }
   }
@@ -49,8 +56,11 @@ class PlansCubit({required final PlusRepository _plusRepository}) extends Cubit<
   Future<void> loadPrices() async {
     emit(state.copyWith(prices: const Loading()));
     try {
-      emit(state.copyWith(prices: Success(await _plusRepository.getPrices())));
+      final prices = await _plusRepository.getPrices();
+      if (isClosed) return;
+      emit(state.copyWith(prices: Success(prices)));
     } catch (exception) {
+      if (isClosed) return;
       emit(state.copyWith(prices: Failure.fromObject(exception)));
     }
   }

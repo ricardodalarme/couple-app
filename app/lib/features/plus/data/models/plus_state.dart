@@ -6,6 +6,7 @@ final class const PlusState({
   final bool isPaidByPartner = false,
   final int slipsLeft = 0,
   final int cardsLeft = 0,
+  final String? plan,
   final String? status,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
@@ -15,7 +16,7 @@ final class const PlusState({
   bool get hasBillingProblem => status == 'billing_issue' || status == 'grace';
 
   @override
-  List<Object?> get props => [hasPlus, isPaidByPartner, slipsLeft, cardsLeft, status];
+  List<Object?> get props => [hasPlus, isPaidByPartner, slipsLeft, cardsLeft, plan, status];
 }
 
 /// How a purchase attempt ended.
@@ -28,6 +29,18 @@ enum PurchaseOutcome() {
 
   /// The person backed out; nothing is shown.
   cancelled,
+}
+
+/// What a restore found in the store.
+enum RestoreOutcome() {
+  /// Plus is active on this account.
+  unlocked,
+
+  /// The store has a purchase, but the server has not confirmed it yet.
+  pending,
+
+  /// The store had nothing to restore for this account.
+  nothing,
 }
 
 /// A plan price as the store reports it; the text, currency and taxes are the store's own.

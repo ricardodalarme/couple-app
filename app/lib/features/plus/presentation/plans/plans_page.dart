@@ -7,6 +7,7 @@ import 'package:flutter_bloc_starter/features/_shared/presentation/errors/app_er
 import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
 import 'package:flutter_bloc_starter/features/plus/presentation/plans/cubit/plans_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// Free and Plus side by side, with store prices and no pressure. Safety, pause and unpair are free.
 @RoutePage()
@@ -20,6 +21,7 @@ class const PlansPage({super.key}) extends StatelessWidget implements AutoRouteW
   Widget build(BuildContext context) {
     final l10n = context.l10n.plus;
     final plus = context.select((PlansCubit cubit) => cubit.state.plus);
+    final cubit = context.read<PlansCubit>();
 
     return BaseView(
       body: BlocListener<PlansCubit, PlansState>(
@@ -73,6 +75,29 @@ class const PlansPage({super.key}) extends StatelessWidget implements AutoRouteW
                 if (!value.hasPlus) ...[const SizedBox(height: AppSpace.s20), const _Prices()],
                 const SizedBox(height: AppSpace.s16),
                 BaseNote(text: l10n.alwaysFree),
+                const SizedBox(height: AppSpace.s16),
+                BaseListGroup(
+                  children: [
+                    BaseListTile(
+                      title: l10n.managePlan,
+                      icon: AppIcons.star,
+                      showsChevron: true,
+                      onTap: () async {
+                        await context.pushRoute(const ManagePlusRoute());
+                        if (context.mounted) await cubit.load();
+                      },
+                    ),
+                    BaseListTile(
+                      title: l10n.restorePurchases,
+                      icon: AppIcons.refresh,
+                      showsChevron: true,
+                      onTap: () async {
+                        await context.pushRoute(const RestorePurchasesRoute());
+                        if (context.mounted) await cubit.load();
+                      },
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

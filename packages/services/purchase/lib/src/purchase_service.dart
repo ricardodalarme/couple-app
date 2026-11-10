@@ -68,6 +68,14 @@ class PurchaseService({required final String _iosApiKey, required final String _
     return Purchases.getCustomerInfo();
   }
 
+  /// The store page where the subscription can be managed, or null when the store has none.
+  Future<Uri?> getManagementUrl() async {
+    final info = await getCustomerInfo();
+    final url = info.managementURL;
+
+    return url == null ? null : Uri.tryParse(url);
+  }
+
   /// Stops customer-info updates and closes the stream.
   Future<void> dispose() async {
     if (_isConfigured) {

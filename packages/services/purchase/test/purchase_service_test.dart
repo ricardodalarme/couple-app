@@ -8,6 +8,8 @@ void main() {
     expect(await service.isAvailable(), isFalse);
     expect(service.getPackages(), throwsA(isA<PurchaseUnavailableException>()));
     expect(service.getCustomerInfo(), throwsA(isA<PurchaseUnavailableException>()));
+    expect(service.getManagementUrl(), throwsA(isA<PurchaseUnavailableException>()));
+    expect(service.restorePurchases(), throwsA(isA<PurchaseUnavailableException>()));
   });
 
   test('configuring without a key is a no-op', () async {

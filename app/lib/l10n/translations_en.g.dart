@@ -1316,6 +1316,8 @@ class _Translations$plus$en extends Translations$plus$pt {
   @override
   String get yearly => 'Yearly';
   @override
+  String get giftPlan => 'Gift';
+  @override
   String get storeTitle => 'Couldn\'t load the prices';
   @override
   String get storeText => 'The store didn\'t answer. Nothing was charged. Try again.';
@@ -1342,6 +1344,80 @@ class _Translations$plus$en extends Translations$plus$pt {
   String get errorTitle => 'Couldn\'t load';
   @override
   String get errorText => 'Try again in a moment.';
+  @override
+  String get manageTitle => 'Manage Plus';
+  @override
+  String get planRow => 'Plan';
+  @override
+  String get statusRow => 'Status';
+  @override
+  String get coversRow => 'Covers';
+  @override
+  String get coversBoth => 'You and your partner';
+  @override
+  String get coveredByPartner => 'Your partner';
+  @override
+  String get plusActive => 'Plus active';
+  @override
+  String get statusActive => 'Active';
+  @override
+  String get statusTrialing => 'Trial';
+  @override
+  String get statusGrace => 'Payment pending';
+  @override
+  String get statusBillingIssue => 'Payment problem';
+  @override
+  String get manageInStore => 'Manage in store';
+  @override
+  String get seePlus => 'See Plus';
+  @override
+  String get managePlan => 'Manage plan';
+  @override
+  String get restorePurchases => 'Restore purchases';
+  @override
+  String get partnerPays => 'Your partner looks after this subscription.';
+  @override
+  String get partnerCancel => 'If either partner cancels, Plus ends for both, with a clear notice.';
+  @override
+  String get storeIssueTitle => 'The store didn\'t open';
+  @override
+  String get restoreLoadingTitle => 'Restoring purchases';
+  @override
+  String get restoreLoadingText => 'This takes a few seconds.';
+  @override
+  String get restoredTitle => 'Purchases restored';
+  @override
+  String get restoredHighlight => 'restored';
+  @override
+  String get restoredText => 'We found your Plus in the store.';
+  @override
+  String get pendingRestoreTitle => 'We found a purchase';
+  @override
+  String get pendingRestoreHighlight => 'purchase';
+  @override
+  String get pendingRestoreText =>
+      'It can take a moment, or sign in with the account that bought it.';
+  @override
+  String get nothingTitle => 'Nothing to restore';
+  @override
+  String get nothingHighlight => 'restore';
+  @override
+  String get nothingText =>
+      'We found no active purchases in this store. If you subscribed with another account, sign in with it and try again.';
+  @override
+  String get restoreFailedTitle => 'Couldn\'t restore';
+  @override
+  String get restoreFailedHighlight => 'restore';
+  @override
+  String get tryAgain => 'Try again';
+  @override
+  String get done => 'Done';
+  @override
+  Map<String, String> get errors => {
+    'storeUnavailable': 'The store isn\'t available on this device right now.',
+    'manageUnavailable': 'There\'s no store page for this subscription here.',
+    'other': 'Couldn\'t do that right now. Try again.',
+  };
 }
 
 // Path: privacy
@@ -3790,6 +3866,7 @@ extension on TranslationsEn {
           'plus.plusFeatures' => 'More slips and cards each month and more for both of you, covering you and your partner.',
           'plus.monthly' => 'Monthly',
           'plus.yearly' => 'Yearly',
+          'plus.giftPlan' => 'Gift',
           'plus.storeTitle' => 'Couldn\'t load the prices',
           'plus.storeText' => 'The store didn\'t answer. Nothing was charged. Try again.',
           'plus.subscribe' => 'Subscribe',
@@ -3803,6 +3880,47 @@ extension on TranslationsEn {
           'plus.lockText' => 'Available with Plus. Tap to see the plans.',
           'plus.errorTitle' => 'Couldn\'t load',
           'plus.errorText' => 'Try again in a moment.',
+          'plus.manageTitle' => 'Manage Plus',
+          'plus.planRow' => 'Plan',
+          'plus.statusRow' => 'Status',
+          'plus.coversRow' => 'Covers',
+          'plus.coversBoth' => 'You and your partner',
+          'plus.coveredByPartner' => 'Your partner',
+          'plus.plusActive' => 'Plus active',
+          'plus.statusActive' => 'Active',
+          'plus.statusTrialing' => 'Trial',
+          'plus.statusGrace' => 'Payment pending',
+          'plus.statusBillingIssue' => 'Payment problem',
+          'plus.manageInStore' => 'Manage in store',
+          'plus.seePlus' => 'See Plus',
+          'plus.managePlan' => 'Manage plan',
+          'plus.restorePurchases' => 'Restore purchases',
+          _ => null,
+        } ??
+        switch (path) {
+          'plus.partnerPays' => 'Your partner looks after this subscription.',
+          'plus.partnerCancel' =>
+            'If either partner cancels, Plus ends for both, with a clear notice.',
+          'plus.storeIssueTitle' => 'The store didn\'t open',
+          'plus.restoreLoadingTitle' => 'Restoring purchases',
+          'plus.restoreLoadingText' => 'This takes a few seconds.',
+          'plus.restoredTitle' => 'Purchases restored',
+          'plus.restoredHighlight' => 'restored',
+          'plus.restoredText' => 'We found your Plus in the store.',
+          'plus.pendingRestoreTitle' => 'We found a purchase',
+          'plus.pendingRestoreHighlight' => 'purchase',
+          'plus.pendingRestoreText' =>
+            'It can take a moment, or sign in with the account that bought it.',
+          'plus.nothingTitle' => 'Nothing to restore',
+          'plus.nothingHighlight' => 'restore',
+          'plus.nothingText' => 'We found no active purchases in this store. If you subscribed with another account, sign in with it and try again.',
+          'plus.restoreFailedTitle' => 'Couldn\'t restore',
+          'plus.restoreFailedHighlight' => 'restore',
+          'plus.tryAgain' => 'Try again',
+          'plus.done' => 'Done',
+          'plus.errors.storeUnavailable' => 'The store isn\'t available on this device right now.',
+          'plus.errors.manageUnavailable' => 'There\'s no store page for this subscription here.',
+          'plus.errors.other' => 'Couldn\'t do that right now. Try again.',
           'privacy.title' => 'Privacy and security',
           'privacy.discreetMode' => 'Discreet mode',
           'privacy.partnerTitle' => 'What your partner sees',
@@ -4351,6 +4469,9 @@ extension on TranslationsEn {
           'tabs.dayText' => 'What matters on each day.',
           'tabs.plusLabel' => 'PLAN',
           'tabs.plusTitle' => 'Free and Plus',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.plusText' => 'What each plan includes, no pressure.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',
           'tabs.temperatureTitle' => 'How is it between you?',

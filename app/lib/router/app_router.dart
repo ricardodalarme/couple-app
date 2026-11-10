@@ -27,7 +27,9 @@ import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/breaku
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/unpair_done_page.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/unpair_page.dart';
 import 'package:flutter_bloc_starter/features/partner/presentation/profile/partner_profile_page.dart';
+import 'package:flutter_bloc_starter/features/plus/presentation/manage/manage_plus_page.dart';
 import 'package:flutter_bloc_starter/features/plus/presentation/plans/plans_page.dart';
+import 'package:flutter_bloc_starter/features/plus/presentation/restore/restore_purchases_page.dart';
 import 'package:flutter_bloc_starter/features/privacy/presentation/consents/consents_page.dart';
 import 'package:flutter_bloc_starter/features/privacy/presentation/hub/privacy_hub_page.dart';
 import 'package:flutter_bloc_starter/features/privacy/presentation/our_view/our_view_page.dart';
@@ -95,6 +97,8 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: PartnerProfileRoute.page),
     AutoRoute(page: DatesRoute.page),
     AutoRoute(page: PlansRoute.page),
+    AutoRoute(page: ManagePlusRoute.page),
+    AutoRoute(page: RestorePurchasesRoute.page),
     AutoRoute(page: SettingsHomeRoute.page),
     AutoRoute(page: DiscreetModeRoute.page),
     AutoRoute(page: PrivacyHubRoute.page),
