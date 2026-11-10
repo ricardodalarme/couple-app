@@ -29,7 +29,24 @@ class const SlipDetailContent({super.key}) extends StatelessWidget {
             _Labelled(label: context.l10n.slipDetail.plan, text: slip.planNote!),
           ],
           const SizedBox(height: AppSpace.s24),
-          if (!isEditing) ...[_CardSection(slip: slip), const SizedBox(height: AppSpace.s12)],
+          if (!isEditing) ...[
+            _CardSection(slip: slip),
+            const SizedBox(height: AppSpace.s12),
+            BaseListGroup(
+              children: [
+                BaseListTile(
+                  title: context.l10n.slipDetail.jarTitle,
+                  subtitle: context.l10n.slipDetail.jarText,
+                  control: BaseSwitch(
+                    value: slip.isInJar,
+                    semanticLabel: context.l10n.slipDetail.jarTitle,
+                    onChanged: (value) => context.read<SlipDetailCubit>().setInJar(value: value),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: AppSpace.s12),
+          ],
           if (slip.wasInCard) BaseNote(text: context.l10n.slipDetail.sentNote),
         ],
       ),

@@ -1,0 +1,24 @@
+{
+  "title": "Memórias",
+  "jarLabel": "POTINHO",
+  "jarTitle": "Abrir o potinho",
+  "jarText": "Um slip bom que você guardou, sorteado.",
+  "jarEmpty": "O potinho está vazio. Guarde um slip nele pelos detalhes do slip.",
+  "jarAnother": "Outro",
+  "jarClose": "Fechar",
+  "titleLabel": "Uma memória",
+  "titleHint": "Ex.: nosso primeiro jantar",
+  "bodyHint": "Conte como foi (opcional)",
+  "save": "Guardar memória",
+  "delete": "Apagar",
+  "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+  "dateLine": "{day} {month} {year}",
+  "emptyTitle": "Nenhuma memória ainda",
+  "emptyText": "Guarde momentos que vocês querem rever.",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "Suas memórias continuam salvas. Tente de novo.",
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para fazer isso agora. Seu texto continua aqui."
+  }
+}

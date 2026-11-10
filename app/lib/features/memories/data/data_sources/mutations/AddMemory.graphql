@@ -1,0 +1,15 @@
+mutation AddMemory(
+  $id: UUID!
+  $title: String!
+  $body: String
+  $happenedOn: Date!
+  $coupleId: UUID
+) {
+  insertIntoMemoriesCollection(
+    objects: [
+      { id: $id, title: $title, body: $body, happenedOn: $happenedOn, coupleId: $coupleId }
+    ]
+  ) {
+    affectedCount
+  }
+}

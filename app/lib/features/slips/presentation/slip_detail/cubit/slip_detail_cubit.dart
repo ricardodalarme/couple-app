@@ -46,6 +46,25 @@ class SlipDetailCubit({required final SlipRepository _slipRepository})
     await _update(slip.copyWith(forCard: value));
   }
 
+  /// Puts the slip in the jar of good moments, or takes it out.
+  Future<void> setInJar({required bool value}) async {
+    final slip = state.current;
+    if (slip == null || slip.isInJar == value || state.saveAction.isLoading) return;
+
+    emit(state.copyWith(saveAction: const Loading()));
+    try {
+      await _slipRepository.setInJar(id: slip.id, inJar: value);
+      emit(
+        state.copyWith(
+          slip: Success(slip.copyWith(isInJar: value)),
+          saveAction: const Success(null),
+        ),
+      );
+    } catch (exception) {
+      _fail(exception);
+    }
+  }
+
   Future<void> toggleArchive() async {
     final slip = state.current;
     if (slip == null || state.saveAction.isLoading) return;

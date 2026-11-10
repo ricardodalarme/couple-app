@@ -1,0 +1,12 @@
+query Memories {
+  memoriesCollection(orderBy: [{ happenedOn: DescNullsLast }], first: 200) {
+    edges {
+      node {
+        id
+        title
+        body
+        happenedOn
+      }
+    }
+  }
+}

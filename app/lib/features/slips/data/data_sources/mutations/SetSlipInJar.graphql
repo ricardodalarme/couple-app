@@ -1,0 +1,5 @@
+mutation SetSlipInJar($id: UUID!, $inJar: Boolean!) {
+  setSlipDetails(id: $id, inJar: $inJar) {
+    id
+  }
+}

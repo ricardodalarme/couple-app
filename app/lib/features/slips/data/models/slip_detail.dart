@@ -13,6 +13,7 @@ final class const SlipDetail({
   final String? workArea,
   final bool isArchived = false,
   final bool wasInCard = false,
+  final bool isInJar = false,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
   factory fake() => SlipDetail(
@@ -32,6 +33,7 @@ final class const SlipDetail({
     String? planNote,
     bool? forCard,
     bool? isArchived,
+    bool? isInJar,
   }) => SlipDetail(
     id: id,
     body: body ?? this.body,
@@ -44,6 +46,7 @@ final class const SlipDetail({
     workArea: workArea,
     isArchived: isArchived ?? this.isArchived,
     wasInCard: wasInCard,
+    isInJar: isInJar ?? this.isInJar,
   );
 
   @override
@@ -59,5 +62,6 @@ final class const SlipDetail({
     workArea,
     isArchived,
     wasInCard,
+    isInJar,
   ];
 }

@@ -1,0 +1,24 @@
+{
+  "title": "Memories",
+  "jarLabel": "JAR",
+  "jarTitle": "Open the jar",
+  "jarText": "A good slip you kept, drawn at random.",
+  "jarEmpty": "The jar is empty. Put a slip in it from the slip's details.",
+  "jarAnother": "Another",
+  "jarClose": "Close",
+  "titleLabel": "A memory",
+  "titleHint": "E.g. our first dinner",
+  "bodyHint": "Tell how it went (optional)",
+  "save": "Save memory",
+  "delete": "Delete",
+  "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "dateLine": "{month} {day}, {year}",
+  "emptyTitle": "No memories yet",
+  "emptyText": "Keep moments you want to look back on.",
+  "errorTitle": "Couldn't load",
+  "errorText": "Your memories are still saved. Try again.",
+  "errors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't do that right now. Your text is still here."
+  }
+}

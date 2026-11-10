@@ -4,6 +4,7 @@ import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SaveSlip.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SendSignal.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SetSlipCategory.graphql.dart';
+import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SetSlipInJar.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SetSlipWorkArea.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/queries/generated/MySlips.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/queries/generated/SlipDetail.graphql.dart';
@@ -93,6 +94,16 @@ class SlipDataSource({required final GQLClient _client}) {
     final edges = validateResponseData(response, getData: (data) => data.slipsCollection.edges);
 
     return edges.isEmpty ? null : edges.first.node;
+  }
+
+  Future<void> setInJar({required String id, required bool inJar}) async {
+    final response = await _client.mutate(
+      OptionsMutationSetSlipInJar(
+        variables: VariablesMutationSetSlipInJar(id: id, inJar: inJar),
+      ),
+    );
+
+    validateResponse(response);
   }
 
   Future<void> archiveSlip({required String id, required bool archived}) async {

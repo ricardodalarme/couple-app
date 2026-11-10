@@ -78,6 +78,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$logistics$en logistics = _Translations$logistics$en._(_root);
   @override
+  late final _Translations$memories$en memories = _Translations$memories$en._(_root);
+  @override
   late final _Translations$need$en need = _Translations$need$en._(_root);
   @override
   late final _Translations$notFound$en notFound = _Translations$notFound$en._(_root);
@@ -700,6 +702,70 @@ class _Translations$logistics$en extends Translations$logistics$pt {
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t do that right now. Try again.',
+  };
+}
+
+// Path: memories
+class _Translations$memories$en extends Translations$memories$pt {
+  _Translations$memories$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Memories';
+  @override
+  String get jarLabel => 'JAR';
+  @override
+  String get jarTitle => 'Open the jar';
+  @override
+  String get jarText => 'A good slip you kept, drawn at random.';
+  @override
+  String get jarEmpty => 'The jar is empty. Put a slip in it from the slip\'s details.';
+  @override
+  String get jarAnother => 'Another';
+  @override
+  String get jarClose => 'Close';
+  @override
+  String get titleLabel => 'A memory';
+  @override
+  String get titleHint => 'E.g. our first dinner';
+  @override
+  String get bodyHint => 'Tell how it went (optional)';
+  @override
+  String get save => 'Save memory';
+  @override
+  String get delete => 'Delete';
+  @override
+  List<String> get monthsShort => [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  @override
+  String dateLine({required Object month, required Object day, required Object year}) =>
+      '${month} ${day}, ${year}';
+  @override
+  String get emptyTitle => 'No memories yet';
+  @override
+  String get emptyText => 'Keep moments you want to look back on.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Your memories are still saved. Try again.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t do that right now. Your text is still here.',
   };
 }
 
@@ -1345,6 +1411,10 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   String get feeling => 'How you felt';
   @override
   String get plan => 'Then I…';
+  @override
+  String get jarTitle => 'Keep in the jar';
+  @override
+  String get jarText => 'To open on a bad day. Only you see it.';
   @override
   String get cardTitle => 'Who sees this';
   @override
@@ -2979,6 +3049,41 @@ extension on TranslationsEn {
           'logistics.errorText' => 'The list is still saved. Try again.',
           'logistics.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'logistics.errors.other' => 'Couldn\'t do that right now. Try again.',
+          'memories.title' => 'Memories',
+          'memories.jarLabel' => 'JAR',
+          'memories.jarTitle' => 'Open the jar',
+          'memories.jarText' => 'A good slip you kept, drawn at random.',
+          'memories.jarEmpty' => 'The jar is empty. Put a slip in it from the slip\'s details.',
+          'memories.jarAnother' => 'Another',
+          'memories.jarClose' => 'Close',
+          'memories.titleLabel' => 'A memory',
+          'memories.titleHint' => 'E.g. our first dinner',
+          'memories.bodyHint' => 'Tell how it went (optional)',
+          'memories.save' => 'Save memory',
+          'memories.delete' => 'Delete',
+          'memories.monthsShort.0' => 'Jan',
+          'memories.monthsShort.1' => 'Feb',
+          'memories.monthsShort.2' => 'Mar',
+          'memories.monthsShort.3' => 'Apr',
+          'memories.monthsShort.4' => 'May',
+          'memories.monthsShort.5' => 'Jun',
+          'memories.monthsShort.6' => 'Jul',
+          'memories.monthsShort.7' => 'Aug',
+          'memories.monthsShort.8' => 'Sep',
+          'memories.monthsShort.9' => 'Oct',
+          'memories.monthsShort.10' => 'Nov',
+          'memories.monthsShort.11' => 'Dec',
+          'memories.dateLine' => ({
+            required Object month,
+            required Object day,
+            required Object year,
+          }) => '${month} ${day}, ${year}',
+          'memories.emptyTitle' => 'No memories yet',
+          'memories.emptyText' => 'Keep moments you want to look back on.',
+          'memories.errorTitle' => 'Couldn\'t load',
+          'memories.errorText' => 'Your memories are still saved. Try again.',
+          'memories.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'memories.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
           'need.title' => 'I need…',
           'need.titleHighlight' => 'need',
           'need.subtitle' => 'Pick one thing. Your partner gets a gentle note, no pressure.',
@@ -3192,6 +3297,9 @@ extension on TranslationsEn {
           'received.kinds.miss_us' => 'Missing you',
           'received.kinds.hug' => 'A hug',
           'received.kinds.distance' => 'A little distance',
+          _ => null,
+        } ??
+        switch (path) {
           'received.kinds.heavy_day' => 'A heavy day',
           'received.kinds.good_news' => 'Good news',
           'received.kinds.other' => '',
@@ -3224,9 +3332,6 @@ extension on TranslationsEn {
           'repair.calm.text' => 'There\'s no rush and no timer. Leave whenever you like.',
           'repair.calm.ready' => 'I feel calmer',
           'repair.calm.leave' => 'Leave',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.calm.askPause' => 'Ask my partner for some space',
           'repair.softStart.title' => 'Start softly',
           'repair.softStart.titleHighlight' => 'softly',
@@ -3392,6 +3497,8 @@ extension on TranslationsEn {
           'slipDetail.archived' => 'Archived',
           'slipDetail.feeling' => 'How you felt',
           'slipDetail.plan' => 'Then I…',
+          'slipDetail.jarTitle' => 'Keep in the jar',
+          'slipDetail.jarText' => 'To open on a bad day. Only you see it.',
           'slipDetail.cardTitle' => 'Who sees this',
           'slipDetail.cardOff' => 'Only me',
           'slipDetail.cardOffText' => 'Stays in your week and does not go in the card.',

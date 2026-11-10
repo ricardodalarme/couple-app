@@ -250,6 +250,13 @@ const documentNodeQuerySlipDetail = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
+                              name: NameNode(value: 'inJar'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
                               name: NameNode(value: 'cardItemsCollection'),
                               alias: null,
                               arguments: [
@@ -611,6 +618,7 @@ class QuerySlipDetailslipsCollectionedgesnode {
     this.workArea,
     required this.createdAt,
     this.archivedAt,
+    required this.inJar,
     this.cardItemsCollection,
     this.$__typename = 'Slips',
   });
@@ -626,6 +634,7 @@ class QuerySlipDetailslipsCollectionedgesnode {
     final l$workArea = json['workArea'];
     final l$createdAt = json['createdAt'];
     final l$archivedAt = json['archivedAt'];
+    final l$inJar = json['inJar'];
     final l$cardItemsCollection = json['cardItemsCollection'];
     final l$$__typename = json['__typename'];
     return QuerySlipDetailslipsCollectionedgesnode(
@@ -639,6 +648,7 @@ class QuerySlipDetailslipsCollectionedgesnode {
       workArea: (l$workArea as String?),
       createdAt: DateTime.parse((l$createdAt as String)),
       archivedAt: l$archivedAt == null ? null : DateTime.parse((l$archivedAt as String)),
+      inJar: (l$inJar as bool),
       cardItemsCollection: l$cardItemsCollection == null
           ? null
           : QuerySlipDetailslipsCollectionedgesnodecardItemsCollection.fromJson(
@@ -668,6 +678,8 @@ class QuerySlipDetailslipsCollectionedgesnode {
 
   final DateTime? archivedAt;
 
+  final bool inJar;
+
   final QuerySlipDetailslipsCollectionedgesnodecardItemsCollection? cardItemsCollection;
 
   final String $__typename;
@@ -696,6 +708,8 @@ class QuerySlipDetailslipsCollectionedgesnode {
     _resultData['archivedAt'] = l$archivedAt == null
         ? null
         : ((v) => v.toUtc().toIso8601String())(l$archivedAt);
+    final l$inJar = inJar;
+    _resultData['inJar'] = l$inJar;
     final l$cardItemsCollection = cardItemsCollection;
     _resultData['cardItemsCollection'] = l$cardItemsCollection?.toJson();
     final l$$__typename = $__typename;
@@ -715,6 +729,7 @@ class QuerySlipDetailslipsCollectionedgesnode {
     final l$workArea = workArea;
     final l$createdAt = createdAt;
     final l$archivedAt = archivedAt;
+    final l$inJar = inJar;
     final l$cardItemsCollection = cardItemsCollection;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -728,6 +743,7 @@ class QuerySlipDetailslipsCollectionedgesnode {
       l$workArea,
       l$createdAt,
       l$archivedAt,
+      l$inJar,
       l$cardItemsCollection,
       l$$__typename,
     ]);
@@ -789,6 +805,11 @@ class QuerySlipDetailslipsCollectionedgesnode {
     final l$archivedAt = archivedAt;
     final lOther$archivedAt = other.archivedAt;
     if (l$archivedAt != lOther$archivedAt) {
+      return false;
+    }
+    final l$inJar = inJar;
+    final lOther$inJar = other.inJar;
+    if (l$inJar != lOther$inJar) {
       return false;
     }
     final l$cardItemsCollection = cardItemsCollection;

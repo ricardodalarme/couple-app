@@ -87,6 +87,7 @@ class SlipRepository({
         category: node.category,
         workArea: node.workArea,
         isArchived: node.archivedAt != null,
+        isInJar: node.inJar,
         wasInCard: node.cardItemsCollection?.edges.isNotEmpty ?? false,
       );
     } catch (e, stack) {
@@ -110,6 +111,16 @@ class SlipRepository({
       _changes.add(null);
     } catch (e, stack) {
       _logger.error('Failed to update a slip', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Puts the slip in the jar of good moments, or takes it out.
+  Future<void> setInJar({required String id, required bool inJar}) async {
+    try {
+      await _slipDataSource.setInJar(id: id, inJar: inJar);
+    } catch (e, stack) {
+      _logger.error('Failed to update the jar', error: e, stackTrace: stack);
       rethrow;
     }
   }

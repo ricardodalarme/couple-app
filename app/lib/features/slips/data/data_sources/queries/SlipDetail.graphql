@@ -12,6 +12,7 @@ query SlipDetail($id: UUID!) {
         workArea
         createdAt
         archivedAt
+        inJar
         cardItemsCollection(first: 1) {
           edges {
             node {

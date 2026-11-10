@@ -68,6 +68,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
   late final Translations$logistics$pt logistics = Translations$logistics$pt.internal(_root);
+  late final Translations$memories$pt memories = Translations$memories$pt.internal(_root);
   late final Translations$need$pt need = Translations$need$pt.internal(_root);
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
   late final Translations$notificationPermission$pt notificationPermission =
@@ -818,6 +819,87 @@ class Translations$logistics$pt {
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
+  };
+}
+
+// Path: memories
+class Translations$memories$pt {
+  Translations$memories$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Memórias'
+  String get title => 'Memórias';
+
+  /// pt: 'POTINHO'
+  String get jarLabel => 'POTINHO';
+
+  /// pt: 'Abrir o potinho'
+  String get jarTitle => 'Abrir o potinho';
+
+  /// pt: 'Um slip bom que você guardou, sorteado.'
+  String get jarText => 'Um slip bom que você guardou, sorteado.';
+
+  /// pt: 'O potinho está vazio. Guarde um slip nele pelos detalhes do slip.'
+  String get jarEmpty => 'O potinho está vazio. Guarde um slip nele pelos detalhes do slip.';
+
+  /// pt: 'Outro'
+  String get jarAnother => 'Outro';
+
+  /// pt: 'Fechar'
+  String get jarClose => 'Fechar';
+
+  /// pt: 'Uma memória'
+  String get titleLabel => 'Uma memória';
+
+  /// pt: 'Ex.: nosso primeiro jantar'
+  String get titleHint => 'Ex.: nosso primeiro jantar';
+
+  /// pt: 'Conte como foi (opcional)'
+  String get bodyHint => 'Conte como foi (opcional)';
+
+  /// pt: 'Guardar memória'
+  String get save => 'Guardar memória';
+
+  /// pt: 'Apagar'
+  String get delete => 'Apagar';
+
+  List<String> get monthsShort => [
+    'jan',
+    'fev',
+    'mar',
+    'abr',
+    'mai',
+    'jun',
+    'jul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dez',
+  ];
+
+  /// pt: '{day} {month} {year}'
+  String dateLine({required Object day, required Object month, required Object year}) =>
+      '${day} ${month} ${year}';
+
+  /// pt: 'Nenhuma memória ainda'
+  String get emptyTitle => 'Nenhuma memória ainda';
+
+  /// pt: 'Guarde momentos que vocês querem rever.'
+  String get emptyText => 'Guarde momentos que vocês querem rever.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Suas memórias continuam salvas. Tente de novo.'
+  String get errorText => 'Suas memórias continuam salvas. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para fazer isso agora. Seu texto continua aqui.',
   };
 }
 
@@ -1583,6 +1665,12 @@ class Translations$slipDetail$pt {
 
   /// pt: 'Então eu…'
   String get plan => 'Então eu…';
+
+  /// pt: 'Guardar no potinho'
+  String get jarTitle => 'Guardar no potinho';
+
+  /// pt: 'Para abrir em um dia ruim. Só você vê.'
+  String get jarText => 'Para abrir em um dia ruim. Só você vê.';
 
   /// pt: 'Quem vê isto'
   String get cardTitle => 'Quem vê isto';
@@ -3513,6 +3601,42 @@ extension on Translations {
           'logistics.errorText' => 'A lista continua salva. Tente de novo.',
           'logistics.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'logistics.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'memories.title' => 'Memórias',
+          'memories.jarLabel' => 'POTINHO',
+          'memories.jarTitle' => 'Abrir o potinho',
+          'memories.jarText' => 'Um slip bom que você guardou, sorteado.',
+          'memories.jarEmpty' =>
+            'O potinho está vazio. Guarde um slip nele pelos detalhes do slip.',
+          'memories.jarAnother' => 'Outro',
+          'memories.jarClose' => 'Fechar',
+          'memories.titleLabel' => 'Uma memória',
+          'memories.titleHint' => 'Ex.: nosso primeiro jantar',
+          'memories.bodyHint' => 'Conte como foi (opcional)',
+          'memories.save' => 'Guardar memória',
+          'memories.delete' => 'Apagar',
+          'memories.monthsShort.0' => 'jan',
+          'memories.monthsShort.1' => 'fev',
+          'memories.monthsShort.2' => 'mar',
+          'memories.monthsShort.3' => 'abr',
+          'memories.monthsShort.4' => 'mai',
+          'memories.monthsShort.5' => 'jun',
+          'memories.monthsShort.6' => 'jul',
+          'memories.monthsShort.7' => 'ago',
+          'memories.monthsShort.8' => 'set',
+          'memories.monthsShort.9' => 'out',
+          'memories.monthsShort.10' => 'nov',
+          'memories.monthsShort.11' => 'dez',
+          'memories.dateLine' => ({
+            required Object day,
+            required Object month,
+            required Object year,
+          }) => '${day} ${month} ${year}',
+          'memories.emptyTitle' => 'Nenhuma memória ainda',
+          'memories.emptyText' => 'Guarde momentos que vocês querem rever.',
+          'memories.errorTitle' => 'Não deu para carregar',
+          'memories.errorText' => 'Suas memórias continuam salvas. Tente de novo.',
+          'memories.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'memories.errors.other' => 'Não deu para fazer isso agora. Seu texto continua aqui.',
           'need.title' => 'Preciso de…',
           'need.titleHighlight' => 'Preciso',
           'need.subtitle' => 'Escolha uma coisa. Seu par recebe um aviso gentil, sem cobrança.',
@@ -3728,6 +3852,9 @@ extension on Translations {
           'received.kinds.miss_us' => 'Saudade',
           'received.kinds.hug' => 'Um abraço',
           'received.kinds.distance' => 'Um pouco de distância',
+          _ => null,
+        } ??
+        switch (path) {
           'received.kinds.heavy_day' => 'Um dia pesado',
           'received.kinds.good_news' => 'Boa notícia',
           'received.kinds.other' => '',
@@ -3760,9 +3887,6 @@ extension on Translations {
           'repair.calm.text' => 'Não tem pressa e não tem tempo contado. Saia quando quiser.',
           'repair.calm.ready' => 'Estou mais calmo(a)',
           'repair.calm.leave' => 'Sair',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.calm.askPause' => 'Pedir um tempo ao meu par',
           'repair.softStart.title' => 'Comece com suavidade',
           'repair.softStart.titleHighlight' => 'suavidade',
@@ -3931,6 +4055,8 @@ extension on Translations {
           'slipDetail.archived' => 'Arquivado',
           'slipDetail.feeling' => 'Como você se sentiu',
           'slipDetail.plan' => 'Então eu…',
+          'slipDetail.jarTitle' => 'Guardar no potinho',
+          'slipDetail.jarText' => 'Para abrir em um dia ruim. Só você vê.',
           'slipDetail.cardTitle' => 'Quem vê isto',
           'slipDetail.cardOff' => 'Só eu',
           'slipDetail.cardOffText' => 'Fica na sua semana e não entra no cartão.',
