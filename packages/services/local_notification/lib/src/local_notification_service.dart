@@ -57,12 +57,7 @@ class LocalNotificationService({final FlutterLocalNotificationsPlugin? _plugin})
           body: request.body,
           scheduledDate: tz.TZDateTime.from(request.at, tz.local),
           notificationDetails: const NotificationDetails(
-            android: AndroidNotificationDetails(
-              'reminders',
-              'Reminders',
-              importance: Importance.defaultImportance,
-              priority: Priority.defaultPriority,
-            ),
+            android: AndroidNotificationDetails('reminders', 'Reminders'),
             iOS: DarwinNotificationDetails(),
           ),
           androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,

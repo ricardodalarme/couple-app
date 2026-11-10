@@ -11,8 +11,8 @@ void main() {
   late PlusRepository repository;
 
   const prices = [
-    PlanPrice(id: 'monthly', price: 'R\$ 19,90', isYearly: false),
-    PlanPrice(id: 'annual', price: 'R\$ 149,90', isYearly: true),
+    PlanPrice(id: 'monthly', price: r'R$ 19,90', isYearly: false),
+    PlanPrice(id: 'annual', price: r'R$ 149,90', isYearly: true),
   ];
 
   setUp(() => repository = _MockPlusRepository());
