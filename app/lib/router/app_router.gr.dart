@@ -171,6 +171,22 @@ class NotFoundRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [NotificationPermissionPage]
+class NotificationPermissionRoute extends PageRouteInfo<void> {
+  const NotificationPermissionRoute({List<PageRouteInfo>? children})
+    : super(NotificationPermissionRoute.name, initialChildren: children);
+
+  static const String name = 'NotificationPermissionRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const NotificationPermissionPage());
+    },
+  );
+}
+
+/// generated route for
 /// [PartnerStepPage]
 class PartnerStepRoute extends PageRouteInfo<void> {
   const PartnerStepRoute({List<PageRouteInfo>? children})

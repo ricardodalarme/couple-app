@@ -1,0 +1,14 @@
+{
+  "label": "Lembretes",
+  "title": "Lembretes gentis?",
+  "titleHighlight": "gentis",
+  "pointLimit": "No máximo 1 a 2 por dia.",
+  "pointPrivate": "Nunca mostram nomes na tela bloqueada.",
+  "pointChoice": "Você escolhe o que chega e quando.",
+  "changeLater": "Você pode mudar isso quando quiser.",
+  "notNow": "Agora não",
+  "allow": "Permitir",
+  "offBanner": "Os lembretes estão desligados. Ligue nas configurações.",
+  "openSettings": "Abrir configurações",
+  "close": "Fechar"
+}

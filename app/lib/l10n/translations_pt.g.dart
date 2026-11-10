@@ -60,6 +60,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
+  late final Translations$notificationPermission$pt notificationPermission =
+      Translations$notificationPermission$pt.internal(_root);
   late final Translations$partnerStep$pt partnerStep = Translations$partnerStep$pt.internal(_root);
   late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
     _root,
@@ -274,6 +276,51 @@ class Translations$notFound$pt {
 
   /// pt: 'Voltar para página inicial'
   String get buttonBack => 'Voltar para página inicial';
+}
+
+// Path: notificationPermission
+class Translations$notificationPermission$pt {
+  Translations$notificationPermission$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Lembretes'
+  String get label => 'Lembretes';
+
+  /// pt: 'Lembretes gentis?'
+  String get title => 'Lembretes gentis?';
+
+  /// pt: 'gentis'
+  String get titleHighlight => 'gentis';
+
+  /// pt: 'No máximo 1 a 2 por dia.'
+  String get pointLimit => 'No máximo 1 a 2 por dia.';
+
+  /// pt: 'Nunca mostram nomes na tela bloqueada.'
+  String get pointPrivate => 'Nunca mostram nomes na tela bloqueada.';
+
+  /// pt: 'Você escolhe o que chega e quando.'
+  String get pointChoice => 'Você escolhe o que chega e quando.';
+
+  /// pt: 'Você pode mudar isso quando quiser.'
+  String get changeLater => 'Você pode mudar isso quando quiser.';
+
+  /// pt: 'Agora não'
+  String get notNow => 'Agora não';
+
+  /// pt: 'Permitir'
+  String get allow => 'Permitir';
+
+  /// pt: 'Os lembretes estão desligados. Ligue nas configurações.'
+  String get offBanner => 'Os lembretes estão desligados. Ligue nas configurações.';
+
+  /// pt: 'Abrir configurações'
+  String get openSettings => 'Abrir configurações';
+
+  /// pt: 'Fechar'
+  String get close => 'Fechar';
 }
 
 // Path: partnerStep
@@ -736,6 +783,19 @@ extension on Translations {
       'notFound.title' => '404',
       'notFound.description' => 'Página não encontrada',
       'notFound.buttonBack' => 'Voltar para página inicial',
+      'notificationPermission.label' => 'Lembretes',
+      'notificationPermission.title' => 'Lembretes gentis?',
+      'notificationPermission.titleHighlight' => 'gentis',
+      'notificationPermission.pointLimit' => 'No máximo 1 a 2 por dia.',
+      'notificationPermission.pointPrivate' => 'Nunca mostram nomes na tela bloqueada.',
+      'notificationPermission.pointChoice' => 'Você escolhe o que chega e quando.',
+      'notificationPermission.changeLater' => 'Você pode mudar isso quando quiser.',
+      'notificationPermission.notNow' => 'Agora não',
+      'notificationPermission.allow' => 'Permitir',
+      'notificationPermission.offBanner' =>
+        'Os lembretes estão desligados. Ligue nas configurações.',
+      'notificationPermission.openSettings' => 'Abrir configurações',
+      'notificationPermission.close' => 'Fechar',
       'partnerStep.title' => 'Quer trazer seu parceiro?',
       'partnerStep.titleHighlight' => 'parceiro',
       'partnerStep.subtitle' => 'O app funciona sozinho. Você convida quando quiser.',

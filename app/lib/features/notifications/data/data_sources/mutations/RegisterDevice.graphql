@@ -1,0 +1,3 @@
+mutation RegisterDevice($token: String!, $platform: String!, $label: String) {
+  registerDevice(token: $token, platform: $platform, label: $label)
+}

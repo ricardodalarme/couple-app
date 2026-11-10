@@ -38,10 +38,7 @@ class const FirstSlipPage({super.key}) extends StatelessWidget implements AutoRo
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            BaseTextArea(
-              hint: l10n.hint,
-              onChanged: context.read<FirstSlipCubit>().onTextChanged,
-            ),
+            BaseTextArea(hint: l10n.hint, onChanged: context.read<FirstSlipCubit>().onTextChanged),
             const SizedBox(height: AppSpace.s16),
             BaseNote(text: l10n.localNote),
           ],

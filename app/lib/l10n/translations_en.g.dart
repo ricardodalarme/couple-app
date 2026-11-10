@@ -66,6 +66,9 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$notFound$en notFound = _Translations$notFound$en._(_root);
   @override
+  late final _Translations$notificationPermission$en notificationPermission =
+      _Translations$notificationPermission$en._(_root);
+  @override
   late final _Translations$partnerStep$en partnerStep = _Translations$partnerStep$en._(_root);
   @override
   late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
@@ -240,6 +243,41 @@ class _Translations$notFound$en extends Translations$notFound$pt {
   String get description => 'Page not found';
   @override
   String get buttonBack => 'Go back home';
+}
+
+// Path: notificationPermission
+class _Translations$notificationPermission$en extends Translations$notificationPermission$pt {
+  _Translations$notificationPermission$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get label => 'Reminders';
+  @override
+  String get title => 'Gentle reminders?';
+  @override
+  String get titleHighlight => 'Gentle';
+  @override
+  String get pointLimit => 'At most 1 or 2 a day.';
+  @override
+  String get pointPrivate => 'They never show names on the lock screen.';
+  @override
+  String get pointChoice => 'You choose what arrives and when.';
+  @override
+  String get changeLater => 'You can change this whenever you like.';
+  @override
+  String get notNow => 'Not now';
+  @override
+  String get allow => 'Allow';
+  @override
+  String get offBanner => 'Reminders are off. Turn them on in settings.';
+  @override
+  String get openSettings => 'Open settings';
+  @override
+  String get close => 'Close';
 }
 
 // Path: partnerStep
@@ -636,6 +674,18 @@ extension on TranslationsEn {
       'notFound.title' => '404',
       'notFound.description' => 'Page not found',
       'notFound.buttonBack' => 'Go back home',
+      'notificationPermission.label' => 'Reminders',
+      'notificationPermission.title' => 'Gentle reminders?',
+      'notificationPermission.titleHighlight' => 'Gentle',
+      'notificationPermission.pointLimit' => 'At most 1 or 2 a day.',
+      'notificationPermission.pointPrivate' => 'They never show names on the lock screen.',
+      'notificationPermission.pointChoice' => 'You choose what arrives and when.',
+      'notificationPermission.changeLater' => 'You can change this whenever you like.',
+      'notificationPermission.notNow' => 'Not now',
+      'notificationPermission.allow' => 'Allow',
+      'notificationPermission.offBanner' => 'Reminders are off. Turn them on in settings.',
+      'notificationPermission.openSettings' => 'Open settings',
+      'notificationPermission.close' => 'Close',
       'partnerStep.title' => 'Want to bring your partner?',
       'partnerStep.titleHighlight' => 'partner',
       'partnerStep.subtitle' => 'The app works on your own. Invite whenever you want.',

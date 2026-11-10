@@ -6,6 +6,7 @@ import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_
 import 'package:flutter_bloc_starter/features/home/presentation/home/home_page.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/memories_page.dart';
 import 'package:flutter_bloc_starter/features/not_found/presentation/not_found/not_found_page.dart';
+import 'package:flutter_bloc_starter/features/notifications/presentation/permission/notification_permission_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/first_slip/first_slip_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/goals/intro_goals_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/partner/partner_step_page.dart';
@@ -30,6 +31,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: IntroThemeRoute.page),
     AutoRoute(page: FirstSlipRoute.page),
     AutoRoute(page: PartnerStepRoute.page),
+    AutoRoute(page: NotificationPermissionRoute.page, fullscreenDialog: true),
     AutoRoute(page: SignInRoute.page),
     AutoRoute(page: ExistingAccountRoute.page),
     AutoRoute(page: DebugSignInRoute.page),

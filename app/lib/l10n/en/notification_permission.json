@@ -1,0 +1,14 @@
+{
+  "label": "Reminders",
+  "title": "Gentle reminders?",
+  "titleHighlight": "Gentle",
+  "pointLimit": "At most 1 or 2 a day.",
+  "pointPrivate": "They never show names on the lock screen.",
+  "pointChoice": "You choose what arrives and when.",
+  "changeLater": "You can change this whenever you like.",
+  "notNow": "Not now",
+  "allow": "Allow",
+  "offBanner": "Reminders are off. Turn them on in settings.",
+  "openSettings": "Open settings",
+  "close": "Close"
+}

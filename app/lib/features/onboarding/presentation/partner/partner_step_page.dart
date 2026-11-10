@@ -20,6 +20,7 @@ class const PartnerStepPage({super.key}) extends StatelessWidget implements Auto
 
     Future<void> next() async {
       if (choice == PartnerChoice.invite) await context.pushRoute(const InviteRoute());
+      if (context.mounted) await context.pushRoute(const NotificationPermissionRoute());
       if (context.mounted) context.read<AppCubit>().completeOnboarding();
     }
 
