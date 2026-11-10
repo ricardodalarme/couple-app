@@ -69,7 +69,7 @@ class const _CurrentPasswordTextField() extends StatelessWidget {
     return BaseTextField(
       type: BaseTextFieldType.password,
       text: currentPassword.value,
-      errorText: l10n.currentPasswordErrors[currentPassword.displayError?.name],
+      errorText: l10n.currentPasswordErrors[currentPassword.errorName],
       onChanged: context.read<ChangePasswordCubit>().onCurrentPasswordChanged,
       label: l10n.labelCurrentPassword,
       textInputAction: TextInputAction.next,
@@ -86,7 +86,7 @@ class const _NewPasswordTextField() extends StatelessWidget {
     return BaseTextField(
       type: BaseTextFieldType.password,
       text: password.value,
-      errorText: l10n.newPasswordErrors[password.displayError?.name],
+      errorText: l10n.newPasswordErrors[password.errorName],
       onChanged: context.read<ChangePasswordCubit>().onNewPasswordChanged,
       label: l10n.labelNewPassword,
       textInputAction: TextInputAction.next,
@@ -105,7 +105,7 @@ class const _ConfirmPasswordTextField() extends StatelessWidget {
     return BaseTextField(
       type: BaseTextFieldType.password,
       text: confirmPassword.value,
-      errorText: l10n.confirmPasswordErrors[confirmPassword.displayError?.name],
+      errorText: l10n.confirmPasswordErrors[confirmPassword.errorName],
       onChanged: (password) =>
           context.read<ChangePasswordCubit>().onConfirmPasswordChanged(password),
       label: l10n.labelConfirmPassword,
@@ -119,12 +119,10 @@ class const _SubmitButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final submission = context.select((ChangePasswordCubit cubit) => cubit.state.submission);
-    final isValid = context.select((ChangePasswordCubit cubit) => cubit.state.isValid);
 
     return BaseButton(
       text: context.l10n.common.save,
       isLoading: submission.isLoading,
-      isEnabled: isValid,
       onPressed: context.read<ChangePasswordCubit>().onSubmit,
     );
   }

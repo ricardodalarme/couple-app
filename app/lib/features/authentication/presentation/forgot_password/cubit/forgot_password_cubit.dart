@@ -11,11 +11,11 @@ class ForgotPasswordCubit({required final AuthenticationRepository _authenticati
   this : super(const ForgotPasswordState());
 
   void onEmailChanged(String email) {
-    emit(state.copyWith(email: EmailInput.dirty(email)));
+    emit(state.copyWith(email: FormInput(email)));
   }
 
   Future<void> onSubmit() async {
-    if (state.isNotValid) return;
+    if (!_validateForm()) return;
 
     emit(state.copyWith(submission: const Loading()));
 
@@ -27,5 +27,11 @@ class ForgotPasswordCubit({required final AuthenticationRepository _authenticati
       emit(state.copyWith(submission: Failure.fromObject(exception)));
       emit(state.copyWith(submission: const Initial()));
     }
+  }
+
+  bool _validateForm() {
+    emit(state.copyWith(email: state.email.validate(const EmailValidator())));
+
+    return state.email.isValid;
   }
 }

@@ -1,15 +1,15 @@
 part of 'change_password_cubit.dart';
 
 final class const ChangePasswordState({
-  final NonEmptyInput currentPassword = const NonEmptyInput.pure(),
-  final PasswordInput password = const PasswordInput.pure(),
-  final ConfirmedPasswordInput confirmPassword = const ConfirmedPasswordInput.pure(),
+  final FormInput<String> currentPassword = const FormInput<String>(''),
+  final FormInput<String> password = const FormInput<String>(''),
+  final FormInput<String> confirmPassword = const FormInput<String>(''),
   final Resource<void> submission = const Initial(),
-}) with Equatable, FormzMixin {
+}) with Equatable {
   ChangePasswordState copyWith({
-    NonEmptyInput? currentPassword,
-    PasswordInput? password,
-    ConfirmedPasswordInput? confirmPassword,
+    FormInput<String>? currentPassword,
+    FormInput<String>? password,
+    FormInput<String>? confirmPassword,
     Resource<void>? submission,
   }) {
     return ChangePasswordState(
@@ -19,9 +19,6 @@ final class const ChangePasswordState({
       submission: submission ?? this.submission,
     );
   }
-
-  @override
-  List<FormzInput<dynamic, dynamic>> get inputs => [currentPassword, password, confirmPassword];
 
   @override
   List<Object?> get props => [currentPassword, password, confirmPassword, submission];

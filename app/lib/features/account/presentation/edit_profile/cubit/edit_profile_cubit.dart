@@ -16,31 +16,27 @@ class EditProfileCubit({required final AccountRepository _accountRepository})
 
     emit(
       state.copyWith(
-        firstName: user.firstName.isEmpty
-            ? const NonEmptyInput.pure()
-            : NonEmptyInput.dirty(user.firstName),
-        lastName: user.lastName.isEmpty
-            ? const NonEmptyInput.pure()
-            : NonEmptyInput.dirty(user.lastName),
-        email: user.email.isEmpty ? const EmailInput.pure() : EmailInput.dirty(user.email),
+        firstName: FormInput(user.firstName),
+        lastName: FormInput(user.lastName),
+        email: FormInput(user.email),
       ),
     );
   }
 
   void onFirstNameChanged(String firstName) {
-    emit(state.copyWith(firstName: NonEmptyInput.dirty(firstName)));
+    emit(state.copyWith(firstName: FormInput(firstName)));
   }
 
   void onLastNameChanged(String lastName) {
-    emit(state.copyWith(lastName: NonEmptyInput.dirty(lastName)));
+    emit(state.copyWith(lastName: FormInput(lastName)));
   }
 
   void onEmailChanged(String email) {
-    emit(state.copyWith(email: EmailInput.dirty(email)));
+    emit(state.copyWith(email: FormInput(email)));
   }
 
   Future<void> onSubmit() async {
-    if (state.isNotValid) return;
+    if (!_validateForm()) return;
 
     emit(state.copyWith(submission: const Loading()));
 
@@ -55,5 +51,17 @@ class EditProfileCubit({required final AccountRepository _accountRepository})
       emit(state.copyWith(submission: Failure.fromObject(exception)));
       emit(state.copyWith(submission: const Initial()));
     }
+  }
+
+  bool _validateForm() {
+    emit(
+      state.copyWith(
+        firstName: state.firstName.validate(const NonEmptyValidator()),
+        lastName: state.lastName.validate(const NonEmptyValidator()),
+        email: state.email.validate(const EmailValidator()),
+      ),
+    );
+
+    return state.firstName.isValid && state.lastName.isValid && state.email.isValid;
   }
 }

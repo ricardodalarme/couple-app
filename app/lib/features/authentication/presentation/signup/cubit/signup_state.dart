@@ -1,15 +1,15 @@
 part of 'signup_cubit.dart';
 
 final class const SignupState({
-  final EmailInput email = const EmailInput.pure(),
-  final PasswordInput password = const PasswordInput.pure(),
-  final ConfirmedPasswordInput confirmPassword = const ConfirmedPasswordInput.pure(),
+  final FormInput<String> email = const FormInput<String>(''),
+  final FormInput<String> password = const FormInput<String>(''),
+  final FormInput<String> confirmPassword = const FormInput<String>(''),
   final Resource<void> submission = const Initial(),
-}) with Equatable, FormzMixin {
+}) with Equatable {
   SignupState copyWith({
-    EmailInput? email,
-    PasswordInput? password,
-    ConfirmedPasswordInput? confirmPassword,
+    FormInput<String>? email,
+    FormInput<String>? password,
+    FormInput<String>? confirmPassword,
     Resource<void>? submission,
   }) {
     return SignupState(
@@ -19,9 +19,6 @@ final class const SignupState({
       submission: submission ?? this.submission,
     );
   }
-
-  @override
-  List<FormzInput<dynamic, dynamic>> get inputs => [email, password, confirmPassword];
 
   @override
   List<Object?> get props => [email, password, confirmPassword, submission];

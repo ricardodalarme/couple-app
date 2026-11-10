@@ -86,7 +86,7 @@ class const _EmailTextField() extends StatelessWidget {
       type: BaseTextFieldType.email,
       text: email.value,
       label: context.l10n.common.email,
-      errorText: l10n.emailErrors[email.displayError?.name],
+      errorText: l10n.emailErrors[email.errorName],
       onChanged: context.read<LoginCubit>().onEmailChanged,
       textInputAction: TextInputAction.next,
     );
@@ -102,7 +102,7 @@ class const _PasswordTextField() extends StatelessWidget {
     return BaseTextField(
       type: BaseTextFieldType.password,
       text: password.value,
-      errorText: l10n.passwordErrors[password.displayError?.name],
+      errorText: l10n.passwordErrors[password.errorName],
       onChanged: context.read<LoginCubit>().onPasswordChanged,
       label: context.l10n.common.password,
       textInputAction: TextInputAction.done,
@@ -116,12 +116,10 @@ class const _LoginButton() extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.login;
     final login = context.select((LoginCubit cubit) => cubit.state.login);
-    final isValid = context.select((LoginCubit cubit) => cubit.state.isValid);
 
     return BaseButton(
       text: l10n.buttonLogin,
       isLoading: login.isLoading,
-      isEnabled: isValid,
       onPressed: context.read<LoginCubit>().onSubmit,
     );
   }

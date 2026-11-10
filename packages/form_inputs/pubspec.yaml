@@ -6,7 +6,7 @@ environment:
   sdk: ^3.13.7
 
 dependencies:
-  formz: ^0.8.1
+  equatable: ^2.1.0
 
 dev_dependencies:
   test: ^1.31.1

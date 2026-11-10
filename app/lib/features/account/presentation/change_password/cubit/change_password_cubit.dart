@@ -11,34 +11,24 @@ class ChangePasswordCubit({required final AccountRepository _accountRepository})
   this : super(const ChangePasswordState());
 
   void onCurrentPasswordChanged(String currentPassword) {
-    emit(state.copyWith(currentPassword: NonEmptyInput.dirty(currentPassword)));
+    emit(state.copyWith(currentPassword: FormInput(currentPassword)));
   }
 
   void onNewPasswordChanged(String newPassword) {
     emit(
       state.copyWith(
-        password: PasswordInput.dirty(newPassword),
-        confirmPassword: ConfirmedPasswordInput.pure(
-          password: newPassword,
-          value: state.confirmPassword.value,
-        ),
+        password: FormInput(newPassword),
+        confirmPassword: state.confirmPassword.toPure(),
       ),
     );
   }
 
   void onConfirmPasswordChanged(String confirmPassword) {
-    emit(
-      state.copyWith(
-        confirmPassword: ConfirmedPasswordInput.dirty(
-          password: state.password.value,
-          value: confirmPassword,
-        ),
-      ),
-    );
+    emit(state.copyWith(confirmPassword: FormInput(confirmPassword)));
   }
 
   Future<void> onSubmit() async {
-    if (state.isNotValid) return;
+    if (!_validateForm()) return;
 
     emit(state.copyWith(submission: const Loading()));
 
@@ -52,5 +42,19 @@ class ChangePasswordCubit({required final AccountRepository _accountRepository})
       emit(state.copyWith(submission: Failure.fromObject(exception)));
       emit(state.copyWith(submission: const Initial()));
     }
+  }
+
+  bool _validateForm() {
+    emit(
+      state.copyWith(
+        currentPassword: state.currentPassword.validate(const NonEmptyValidator()),
+        password: state.password.validate(const PasswordValidator()),
+        confirmPassword: state.confirmPassword.validate(
+          ConfirmValueValidator(state.password.value),
+        ),
+      ),
+    );
+
+    return state.currentPassword.isValid && state.password.isValid && state.confirmPassword.isValid;
   }
 }

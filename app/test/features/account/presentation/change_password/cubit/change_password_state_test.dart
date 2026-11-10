@@ -4,9 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 void main() {
-  const currentPassword = NonEmptyInput.dirty('password');
-  const newPassword = PasswordInput.dirty('password');
-  const confirmPassword = ConfirmedPasswordInput.dirty(password: 'password');
+  const currentPassword = FormInput<String>('password');
+  const newPassword = FormInput<String>('password');
+  const confirmPassword = FormInput<String>('password');
 
   group('ChangePasswordState', () {
     test('returns same object when no properties are passed', () {

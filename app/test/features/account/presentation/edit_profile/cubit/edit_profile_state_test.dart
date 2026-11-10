@@ -4,9 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 void main() {
-  const email = EmailInput.dirty('email');
-  const firstName = NonEmptyInput.dirty('firstName');
-  const lastName = NonEmptyInput.dirty('lastName');
+  const email = FormInput<String>('email');
+  const firstName = FormInput<String>('firstName');
+  const lastName = FormInput<String>('lastName');
 
   group('EditProfileState', () {
     test('returns same object when no properties are passed', () {

@@ -74,7 +74,7 @@ class const _EmailTextField() extends StatelessWidget {
       type: BaseTextFieldType.email,
       text: email.value,
       label: context.l10n.common.email,
-      errorText: l10n.emailErrors[email.displayError?.name],
+      errorText: l10n.emailErrors[email.errorName],
       onChanged: context.read<SignupCubit>().onEmailChanged,
       textInputAction: TextInputAction.next,
     );
@@ -91,7 +91,7 @@ class const _PasswordTextField() extends StatelessWidget {
       type: BaseTextFieldType.password,
       text: password.value,
       label: context.l10n.common.password,
-      errorText: l10n.passwordErrors[password.displayError?.name],
+      errorText: l10n.passwordErrors[password.errorName],
       onChanged: context.read<SignupCubit>().onPasswordChanged,
       textInputAction: TextInputAction.next,
     );
@@ -108,7 +108,7 @@ class const _ConfirmPasswordTextField() extends StatelessWidget {
       type: BaseTextFieldType.password,
       text: confirmPassword.value,
       label: l10n.labelConfirmPassword,
-      errorText: l10n.confirmPasswordErrors[confirmPassword.displayError?.name],
+      errorText: l10n.confirmPasswordErrors[confirmPassword.errorName],
       onChanged: context.read<SignupCubit>().onConfirmPasswordChanged,
       textInputAction: TextInputAction.done,
       onSubmitted: (_) => context.read<SignupCubit>().onSubmit(),
@@ -121,12 +121,10 @@ class const _SubmitButton() extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.signup;
     final submission = context.select((SignupCubit cubit) => cubit.state.submission);
-    final isValid = context.select((SignupCubit cubit) => cubit.state.isValid);
 
     return BaseButton(
       text: l10n.buttonSubmit,
       isLoading: submission.isLoading,
-      isEnabled: isValid,
       onPressed: context.read<SignupCubit>().onSubmit,
     );
   }

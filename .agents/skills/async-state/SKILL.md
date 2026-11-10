@@ -182,10 +182,14 @@ Rules:
 - Explicit `copyWith`; no `freezed`, no `json_serializable`, no generated state.
 - `props` lists **every** field, or equality tests and `listenWhen` silently
   break.
-- Form states mix in both `Equatable` and `FormzMixin` and expose
-  `List<FormzInput<dynamic, dynamic>> get inputs => [email, password];`. The
-  cubit reads `state.isNotValid`; widgets read `state.isValid`,
-  `state.email.displayError`, and so on. Canonical form state:
+- Form states hold `FormInput<String>` fields from `package:form_inputs` and
+  mix in only `Equatable`. Change handlers emit `FormInput(value)`, which clears
+  that field's error. Validation runs on submit: the cubit emits the validated
+  state, returns early when any input is invalid, and only then performs the
+  action. Validate with `NonEmptyValidator`, `EmailValidator`,
+  `PasswordValidator`, `ConfirmValueValidator`, or `CompositeValidator`.
+  Widgets read `state.email.errorName` for `errorText`; submit buttons stay
+  enabled and are not gated on validity. Canonical form state:
   `app/lib/features/authentication/presentation/login/cubit/login_state.dart`.
 
 ## Page consumption

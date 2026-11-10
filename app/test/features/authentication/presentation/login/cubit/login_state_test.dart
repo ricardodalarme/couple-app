@@ -4,8 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 void main() {
-  const email = EmailInput.dirty('john@example.com');
-  const password = NonEmptyInput.dirty('password');
+  const email = FormInput<String>('john@example.com');
+  const password = FormInput<String>('password');
 
   group('LoginState', () {
     test('returns same object when no properties are passed', () {

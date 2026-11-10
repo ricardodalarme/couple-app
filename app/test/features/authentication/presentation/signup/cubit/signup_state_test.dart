@@ -4,9 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 void main() {
-  const email = EmailInput.dirty('email');
-  const password = PasswordInput.dirty('password');
-  const confirmPassword = ConfirmedPasswordInput.dirty(password: 'password');
+  const email = FormInput<String>('email');
+  const password = FormInput<String>('password');
+  const confirmPassword = FormInput<String>('password');
 
   group('SignupState', () {
     test('returns same object when no properties are passed', () {

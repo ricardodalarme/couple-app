@@ -133,9 +133,10 @@ final class const PostsListState({final Resource<List<Post>> posts = const Loadi
 - Reads start as `const Loading()` so the skeleton shows on the first frame.
 - Mutations/actions use an `*Action` slot and start as `const Initial()`.
 - Always emit `Failure.fromObject(exception)` on failure.
-- Forms mix in `FormzMixin` and expose
-  `List<FormzInput<dynamic, dynamic>> get inputs => [...]`; `state.isValid`
-  drives submit buttons (see `login_state.dart`).
+- Forms hold `FormInput<String>` fields; `onSubmit` emits the validated state
+  and returns early when invalid, so submit buttons stay enabled. Render errors
+  from `field.errorName` and clear them by emitting `FormInput(value)` on change
+  (see `login_state.dart`).
 
 ## Step 4 — Page + widgets
 

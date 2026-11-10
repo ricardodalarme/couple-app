@@ -59,7 +59,7 @@ class const _EmailTextField() extends StatelessWidget {
       type: BaseTextFieldType.email,
       text: email.value,
       label: context.l10n.common.email,
-      errorText: l10n.emailErrors[email.displayError?.name],
+      errorText: l10n.emailErrors[email.errorName],
       textInputAction: TextInputAction.done,
       onChanged: context.read<ForgotPasswordCubit>().onEmailChanged,
       onSubmitted: (_) => context.read<ForgotPasswordCubit>().onSubmit(),
@@ -71,11 +71,9 @@ class const _SubmitButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final submission = context.select((ForgotPasswordCubit cubit) => cubit.state.submission);
-    final isValid = context.select((ForgotPasswordCubit cubit) => cubit.state.isValid);
 
     return BaseButton(
       text: context.l10n.common.send,
-      isEnabled: isValid,
       isLoading: submission.isLoading,
       onPressed: context.read<ForgotPasswordCubit>().onSubmit,
     );

@@ -67,7 +67,7 @@ class const _FirstNameTextField() extends StatelessWidget {
     return BaseTextField(
       text: firstName.value,
       label: context.l10n.common.firstName,
-      errorText: l10n.firstNameErrors[firstName.displayError?.name],
+      errorText: l10n.firstNameErrors[firstName.errorName],
       textInputAction: TextInputAction.next,
       onChanged: context.read<EditProfileCubit>().onFirstNameChanged,
     );
@@ -83,7 +83,7 @@ class const _LastNameTextField() extends StatelessWidget {
     return BaseTextField(
       text: lastName.value,
       label: context.l10n.common.lastName,
-      errorText: l10n.lastNameErrors[lastName.displayError?.name],
+      errorText: l10n.lastNameErrors[lastName.errorName],
       textInputAction: TextInputAction.next,
       onChanged: context.read<EditProfileCubit>().onLastNameChanged,
     );
@@ -99,7 +99,7 @@ class const _EmailTextField() extends StatelessWidget {
     return BaseTextField(
       text: email.value,
       label: context.l10n.common.email,
-      errorText: l10n.emailErrors[email.displayError?.name],
+      errorText: l10n.emailErrors[email.errorName],
       textInputAction: TextInputAction.done,
       onSubmitted: (_) => context.read<EditProfileCubit>().onSubmit(),
       onChanged: context.read<EditProfileCubit>().onEmailChanged,
@@ -111,12 +111,10 @@ class const _SubmitButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final submission = context.select((EditProfileCubit cubit) => cubit.state.submission);
-    final isValid = context.select((EditProfileCubit cubit) => cubit.state.isValid);
 
     return BaseButton(
       text: context.l10n.common.save,
       isLoading: submission.isLoading,
-      isEnabled: isValid,
       onPressed: context.read<EditProfileCubit>().onSubmit,
     );
   }

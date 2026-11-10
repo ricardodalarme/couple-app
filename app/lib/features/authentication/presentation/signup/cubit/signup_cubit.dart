@@ -11,34 +11,24 @@ class SignupCubit({required final AuthenticationRepository _authenticationReposi
   this : super(const SignupState());
 
   void onEmailChanged(String email) {
-    emit(state.copyWith(email: EmailInput.dirty(email)));
+    emit(state.copyWith(email: FormInput(email)));
   }
 
   void onPasswordChanged(String password) {
     emit(
       state.copyWith(
-        password: PasswordInput.dirty(password),
-        confirmPassword: ConfirmedPasswordInput.pure(
-          password: password,
-          value: state.confirmPassword.value,
-        ),
+        password: FormInput(password),
+        confirmPassword: state.confirmPassword.toPure(),
       ),
     );
   }
 
   void onConfirmPasswordChanged(String confirmPassword) {
-    emit(
-      state.copyWith(
-        confirmPassword: ConfirmedPasswordInput.dirty(
-          password: state.password.value,
-          value: confirmPassword,
-        ),
-      ),
-    );
+    emit(state.copyWith(confirmPassword: FormInput(confirmPassword)));
   }
 
   Future<void> onSubmit() async {
-    if (state.isNotValid) return;
+    if (!_validateForm()) return;
 
     emit(state.copyWith(submission: const Loading()));
 
@@ -81,5 +71,19 @@ class SignupCubit({required final AuthenticationRepository _authenticationReposi
       emit(state.copyWith(submission: Failure.fromObject(exception)));
       emit(state.copyWith(submission: const Initial()));
     }
+  }
+
+  bool _validateForm() {
+    emit(
+      state.copyWith(
+        email: state.email.validate(const EmailValidator()),
+        password: state.password.validate(const PasswordValidator()),
+        confirmPassword: state.confirmPassword.validate(
+          ConfirmValueValidator(state.password.value),
+        ),
+      ),
+    );
+
+    return state.email.isValid && state.password.isValid && state.confirmPassword.isValid;
   }
 }

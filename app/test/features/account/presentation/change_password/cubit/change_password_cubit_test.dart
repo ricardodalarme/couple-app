@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/account/data/repositories/account_repository.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/change_password/cubit/change_password_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,45 +22,48 @@ void main() {
     });
 
     test('initial state is correct', () {
-      expect(
-        changePasswordCubit.state,
-        const ChangePasswordState(
-          currentPassword: NonEmptyInput.pure(),
-          password: PasswordInput.pure(),
-          confirmPassword: ConfirmedPasswordInput.pure(),
-          submission: Initial(),
-        ),
-      );
+      expect(changePasswordCubit.state, const ChangePasswordState());
     });
 
     blocTest<ChangePasswordCubit, ChangePasswordState>(
       'emits [ChangePasswordState] when onCurrentPasswordChanged is called',
       build: () => changePasswordCubit,
       act: (cubit) => cubit.onCurrentPasswordChanged('password'),
-      expect: () => [const ChangePasswordState(currentPassword: NonEmptyInput.dirty('password'))],
+      expect: () => [const ChangePasswordState(currentPassword: FormInput('password'))],
     );
 
     blocTest<ChangePasswordCubit, ChangePasswordState>(
       'emits [ChangePasswordState] when onNewPasswordChanged is called',
       build: () => changePasswordCubit,
       act: (cubit) => cubit.onNewPasswordChanged('password'),
-      expect: () => [
-        const ChangePasswordState(
-          password: PasswordInput.dirty('password'),
-          confirmPassword: ConfirmedPasswordInput.pure(password: 'password'),
-        ),
-      ],
+      expect: () => [const ChangePasswordState(password: FormInput('password'))],
     );
 
     blocTest<ChangePasswordCubit, ChangePasswordState>(
       'emits [ChangePasswordState] when onConfirmPasswordChanged is called',
       build: () => changePasswordCubit,
       act: (cubit) => cubit.onConfirmPasswordChanged('password'),
+      expect: () => [const ChangePasswordState(confirmPassword: FormInput('password'))],
+    );
+
+    blocTest<ChangePasswordCubit, ChangePasswordState>(
+      'emits validation errors and does not change the password when the form is empty',
+      build: () => changePasswordCubit,
+      act: (cubit) => cubit.onSubmit(),
       expect: () => [
         const ChangePasswordState(
-          confirmPassword: ConfirmedPasswordInput.dirty(password: '', value: 'password'),
+          currentPassword: FormInput('', error: NonEmptyValidationError.empty),
+          password: FormInput('', error: PasswordValidationError.weak),
         ),
       ],
+      verify: (_) {
+        verifyNever(
+          () => accountRepository.changePassword(
+            currentPassword: any(named: 'currentPassword'),
+            newPassword: any(named: 'newPassword'),
+          ),
+        );
+      },
     );
   });
 }

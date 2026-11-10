@@ -22,9 +22,9 @@ void main() {
     testWidgets('fills the fields from the cubit state', (tester) async {
       when(() => editProfileCubit.state).thenReturn(
         const EditProfileState(
-          firstName: NonEmptyInput.dirty('John'),
-          lastName: NonEmptyInput.dirty('Doe'),
-          email: EmailInput.dirty('john@example.com'),
+          firstName: FormInput<String>('John'),
+          lastName: FormInput<String>('Doe'),
+          email: FormInput<String>('john@example.com'),
         ),
       );
 

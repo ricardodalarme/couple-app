@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/signup/cubit/signup_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -24,33 +23,57 @@ void main() {
     });
 
     test('initial state is correct', () {
-      expect(
-        signupCubit.state,
-        const SignupState(
-          email: EmailInput.pure(),
-          password: PasswordInput.pure(),
-          confirmPassword: ConfirmedPasswordInput.pure(),
-          submission: Initial(),
-        ),
-      );
+      expect(signupCubit.state, const SignupState());
     });
 
     blocTest<SignupCubit, SignupState>(
       'emits [SignupState] when onEmailChanged is called',
       build: () => signupCubit,
       act: (cubit) => cubit.onEmailChanged('john@example.com'),
-      expect: () => [const SignupState(email: EmailInput.dirty('john@example.com'))],
+      expect: () => [const SignupState(email: FormInput('john@example.com'))],
     );
 
     blocTest<SignupCubit, SignupState>(
       'emits [SignupState] when onConfirmPasswordChanged is called',
       build: () => signupCubit,
       act: (cubit) => cubit.onConfirmPasswordChanged('password'),
+      expect: () => [const SignupState(confirmPassword: FormInput('password'))],
+    );
+
+    blocTest<SignupCubit, SignupState>(
+      'clears a seeded confirm password error and preserves its value when onPasswordChanged is called',
+      build: () => signupCubit,
+      seed: () => const SignupState(
+        password: FormInput('password'),
+        confirmPassword: FormInput('confirmation', error: ConfirmValueValidationError.invalid),
+      ),
+      act: (cubit) => cubit.onPasswordChanged('newPassword1'),
       expect: () => [
         const SignupState(
-          confirmPassword: ConfirmedPasswordInput.dirty(password: '', value: 'password'),
+          password: FormInput('newPassword1'),
+          confirmPassword: FormInput('confirmation'),
         ),
       ],
+    );
+
+    blocTest<SignupCubit, SignupState>(
+      'emits validation errors and does not sign up when the form is empty',
+      build: () => signupCubit,
+      act: (cubit) => cubit.onSubmit(),
+      expect: () => [
+        const SignupState(
+          email: FormInput('', error: EmailValidationError.invalid),
+          password: FormInput('', error: PasswordValidationError.weak),
+        ),
+      ],
+      verify: (_) {
+        verifyNever(
+          () => authenticationRepository.signup(
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+          ),
+        );
+      },
     );
   });
 }

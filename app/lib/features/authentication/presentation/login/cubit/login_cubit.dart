@@ -11,15 +11,15 @@ class LoginCubit({required final AuthenticationRepository _authenticationReposit
   this : super(const LoginState());
 
   void onEmailChanged(String email) {
-    emit(state.copyWith(email: EmailInput.dirty(email)));
+    emit(state.copyWith(email: FormInput(email)));
   }
 
   void onPasswordChanged(String password) {
-    emit(state.copyWith(password: NonEmptyInput.dirty(password)));
+    emit(state.copyWith(password: FormInput(password)));
   }
 
   Future<void> onSubmit() async {
-    if (state.isNotValid) return;
+    if (!_validateForm()) return;
 
     emit(state.copyWith(login: const Loading()));
 
@@ -58,5 +58,16 @@ class LoginCubit({required final AuthenticationRepository _authenticationReposit
       emit(state.copyWith(login: Failure.fromObject(exception)));
       emit(state.copyWith(login: const Initial()));
     }
+  }
+
+  bool _validateForm() {
+    emit(
+      state.copyWith(
+        email: state.email.validate(const EmailValidator()),
+        password: state.password.validate(const NonEmptyValidator()),
+      ),
+    );
+
+    return state.email.isValid && state.password.isValid;
   }
 }
