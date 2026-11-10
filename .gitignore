@@ -28,3 +28,7 @@ build
 
 # Melos
 pubspec_overrides.yaml
+
+# AI
+.claude
+CLAUDE.md
