@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
@@ -13,11 +16,15 @@ part 'today_state.dart';
 class TodayCubit({
   required final TodayRepository _todayRepository,
   required final ProfileRepository _profileRepository,
+  required final PairingRepository _pairingRepository,
 }) extends Cubit<TodayState> with WidgetsBindingObserver {
   this : super(const TodayState());
 
+  StreamSubscription<void>? _pairingChanges;
+
   void start() {
     WidgetsBinding.instance.addObserver(this);
+    _pairingChanges ??= _pairingRepository.onChanged.listen((_) => load());
     load();
   }
 
@@ -35,12 +42,29 @@ class TodayCubit({
           selfName: selfName,
           partnerHint: settings?.partnerName,
           isFirstDay: _isFirstDay(settings),
+          showUnpairNotice: result.wasUnpaired || state.showUnpairNotice,
+          unpairedPartnerName: result.wasUnpaired
+              ? result.previousPartnerName
+              : state.unpairedPartnerName,
         ),
       );
     } catch (exception) {
       if (state.home is Success) return;
       emit(state.copyWith(home: Failure.fromObject(exception), selfName: selfName));
     }
+  }
+
+  Future<void> acknowledgeUnpairNotice() async {
+    await _todayRepository.acknowledgeUnpair();
+    emit(
+      TodayState(
+        home: state.home,
+        isOffline: state.isOffline,
+        selfName: state.selfName,
+        partnerHint: state.partnerHint,
+        isFirstDay: state.isFirstDay,
+      ),
+    );
   }
 
   @override
@@ -76,7 +100,8 @@ class TodayCubit({
   }
 
   @override
-  Future<void> close() {
+  Future<void> close() async {
+    await _pairingChanges?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     return super.close();
   }

@@ -6,8 +6,13 @@ import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart'
 import 'package:logger/logger.dart';
 import 'package:network/network.dart';
 
-/// The Hoje state and whether it came from the device cache because the network failed.
-typedef TodayResult = ({TodayHome home, bool isFromCache});
+/// The Hoje state, whether it came from the device cache, and a pending unpair notice.
+typedef TodayResult = ({
+  TodayHome home,
+  bool isFromCache,
+  bool wasUnpaired,
+  String? previousPartnerName,
+});
 
 class TodayRepository({
   required final TodayDataSource _dataSource,
@@ -21,17 +26,30 @@ class TodayRepository({
       final home = (await _dataSource.getHome()).toModel();
       if (home == null) throw const NoDataException();
       await _localDataSource.write(home);
-      return (home: home, isFromCache: false);
+      final previous = _localDataSource.readRelationship();
+      final wasUnpaired = !home.isPaired && previous.wasPaired;
+      if (home.isPaired) {
+        await _localDataSource.writeRelationship(wasPaired: true, partnerName: home.partnerName);
+      }
+      return (
+        home: home,
+        isFromCache: false,
+        wasUnpaired: wasUnpaired,
+        previousPartnerName: wasUnpaired ? previous.partnerName : null,
+      );
     } catch (e, stack) {
       final cached = _localDataSource.read();
       if (cached != null && e is LocalizedException && e.l10nKey == networkErrorCode) {
-        return (home: cached, isFromCache: true);
+        return (home: cached, isFromCache: true, wasUnpaired: false, previousPartnerName: null);
       }
       _logger.error('Failed to load Hoje', error: e, stackTrace: stack);
       rethrow;
     }
   }
 
-  /// Forgets the cached state, for sign-out and unpair.
+  /// Marks the unpair notice as seen so it does not come back.
+  Future<void> acknowledgeUnpair() => _localDataSource.writeRelationship(wasPaired: false);
+
+  /// Forgets the cached state and the last pairing state, for sign-out and unpair.
   Future<void> clearCache() => _localDataSource.clear();
 }

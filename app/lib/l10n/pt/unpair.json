@@ -1,0 +1,42 @@
+{
+  "appBarTitle": "Desvincular",
+  "title": "Desvincular da {name}?",
+  "text": "Cartões e listas compartilhados param. Suas notas continuam com você.",
+  "confirm": "Desvincular",
+  "cancel": "Cancelar",
+  "unnamedPartner": "sua pessoa",
+  "done": {
+    "title": "Desvinculado",
+    "highlight": "Desvinculado",
+    "text": "Seus próprios dados continuam seus.",
+    "keepOption": "Guardar uma cópia dos itens compartilhados",
+    "deleteOption": "Apagar itens compartilhados",
+    "plusNote": "O Plus que cobria o parceiro termina.",
+    "continueLabel": "Continuar"
+  },
+  "relationship": {
+    "title": "Relacionamento",
+    "unpair": "Desvincular da {name}",
+    "ended": "A relação terminou"
+  },
+  "breakup": {
+    "appBarTitle": "Terminamos",
+    "title": "Sinto muito",
+    "highlight": "muito",
+    "text": "Você decide o que guardar. Nada é apagado sem você querer.",
+    "cancel": "Cancelar",
+    "continueLabel": "Continuar"
+  },
+  "partnerNotice": {
+    "title": "A {name} desvinculou",
+    "titleNoName": "Seu par desvinculou",
+    "highlight": "desvinculou",
+    "text": "Seus dados continuam seus. Cartões compartilhados pararam.",
+    "ok": "Ok"
+  },
+  "errors(map)": {
+    "NETWORK": "Sem conexão. Confira a internet e tente de novo.",
+    "STILL_PAIRED": "A relação ainda está ativa. Tente de novo.",
+    "other": "Não deu para desvincular agora. Tente de novo."
+  }
+}

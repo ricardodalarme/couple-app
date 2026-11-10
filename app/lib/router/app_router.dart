@@ -18,6 +18,10 @@ import 'package:flutter_bloc_starter/features/onboarding/presentation/phase/intr
 import 'package:flutter_bloc_starter/features/onboarding/presentation/theme/intro_theme_page.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/accept/accept_invite_page.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/invite/invite_page.dart';
+import 'package:flutter_bloc_starter/features/pairing/presentation/relationship/relationship_page.dart';
+import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/breakup_page.dart';
+import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/unpair_done_page.dart';
+import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/unpair_page.dart';
 import 'package:flutter_bloc_starter/features/profile/presentation/setup/profile_setup_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/quick_slip_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slips/slips_page.dart';
@@ -43,6 +47,10 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: ProfileSetupRoute.page),
     AutoRoute(page: InviteRoute.page),
     AutoRoute(page: AcceptInviteRoute.page),
+    AutoRoute(page: RelationshipRoute.page),
+    AutoRoute(page: UnpairRoute.page),
+    AutoRoute(page: BreakupRoute.page),
+    AutoRoute(page: UnpairDoneRoute.page),
     AutoRoute(page: QuickSlipRoute.page, fullscreenDialog: true),
     AutoRoute(page: SundayCardRoute.page),
     AutoRoute(page: CardsListRoute.page),

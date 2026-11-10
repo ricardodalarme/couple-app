@@ -1,0 +1,42 @@
+{
+  "appBarTitle": "Unpair",
+  "title": "Unpair from {name}?",
+  "text": "Shared cards and lists stop. Your notes stay with you.",
+  "confirm": "Unpair",
+  "cancel": "Cancel",
+  "unnamedPartner": "your person",
+  "done": {
+    "title": "Unpaired",
+    "highlight": "Unpaired",
+    "text": "Your own data stays yours.",
+    "keepOption": "Keep a copy of the shared items",
+    "deleteOption": "Delete shared items",
+    "plusNote": "The Plus that covered your partner ends.",
+    "continueLabel": "Continue"
+  },
+  "relationship": {
+    "title": "Relationship",
+    "unpair": "Unpair from {name}",
+    "ended": "The relationship ended"
+  },
+  "breakup": {
+    "appBarTitle": "We broke up",
+    "title": "I am sorry",
+    "highlight": "sorry",
+    "text": "You decide what to keep. Nothing is deleted without you wanting it.",
+    "cancel": "Cancel",
+    "continueLabel": "Continue"
+  },
+  "partnerNotice": {
+    "title": "{name} unpaired",
+    "titleNoName": "Your partner unpaired",
+    "highlight": "unpaired",
+    "text": "Your data stays yours. Shared cards stopped.",
+    "ok": "Ok"
+  },
+  "errors(map)": {
+    "NETWORK": "No connection. Check your internet and try again.",
+    "STILL_PAIRED": "The relationship is still active. Try again.",
+    "other": "Could not unpair right now. Try again."
+  }
+}

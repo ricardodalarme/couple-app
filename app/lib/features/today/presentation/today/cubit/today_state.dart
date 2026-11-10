@@ -6,6 +6,8 @@ final class const TodayState({
   final String? selfName,
   final String? partnerHint,
   final bool isFirstDay = false,
+  final bool showUnpairNotice = false,
+  final String? unpairedPartnerName,
 }) with Equatable {
   TodayState copyWith({
     Resource<TodayHome>? home,
@@ -13,6 +15,8 @@ final class const TodayState({
     String? selfName,
     String? partnerHint,
     bool? isFirstDay,
+    bool? showUnpairNotice,
+    String? unpairedPartnerName,
   }) {
     return TodayState(
       home: home ?? this.home,
@@ -20,9 +24,19 @@ final class const TodayState({
       selfName: selfName ?? this.selfName,
       partnerHint: partnerHint ?? this.partnerHint,
       isFirstDay: isFirstDay ?? this.isFirstDay,
+      showUnpairNotice: showUnpairNotice ?? this.showUnpairNotice,
+      unpairedPartnerName: unpairedPartnerName ?? this.unpairedPartnerName,
     );
   }
 
   @override
-  List<Object?> get props => [home, isOffline, selfName, partnerHint, isFirstDay];
+  List<Object?> get props => [
+    home,
+    isOffline,
+    selfName,
+    partnerHint,
+    isFirstDay,
+    showUnpairNotice,
+    unpairedPartnerName,
+  ];
 }

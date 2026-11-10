@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/today/data/data_sources/queries/generated/TodayHome.graphql.dart';
@@ -19,6 +20,8 @@ class _MockTodayRepository() extends Mock implements TodayRepository;
 
 class _MockProfileRepository() extends Mock implements ProfileRepository;
 
+class _MockPairingRepository() extends Mock implements PairingRepository;
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -30,6 +33,27 @@ void main() {
     hasPendingInvite: false,
     hasPlus: false,
     partnerName: 'Rui',
+  );
+
+  const unpairedHome = TodayHome(
+    isPaired: false,
+    unopenedCards: 0,
+    slipsThisWeek: 2,
+    slipsTotal: 2,
+    hasPendingInvite: false,
+    hasPlus: false,
+  );
+
+  TodayResult result({
+    TodayHome value = home,
+    bool isFromCache = false,
+    bool wasUnpaired = false,
+    String? previousPartnerName,
+  }) => (
+    home: value,
+    isFromCache: isFromCache,
+    wasUnpaired: wasUnpaired,
+    previousPartnerName: previousPartnerName,
   );
 
   setUpAll(() => registerFallbackValue(home));
@@ -50,6 +74,13 @@ void main() {
       local = _MockTodayLocalDataSource();
       repository = TodayRepository(dataSource: remote, localDataSource: local);
       when(() => local.write(any())).thenAnswer((_) async {});
+      when(() => local.readRelationship()).thenReturn((wasPaired: false, partnerName: null));
+      when(
+        () => local.writeRelationship(
+          wasPaired: any(named: 'wasPaired'),
+          partnerName: any(named: 'partnerName'),
+        ),
+      ).thenAnswer((_) async {});
     });
 
     test('offline with a cache returns the cached state', () async {
@@ -61,6 +92,7 @@ void main() {
 
       expect(result.isFromCache, isTrue);
       expect(result.home, home);
+      expect(result.wasUnpaired, isFalse);
     });
 
     test('offline without a cache fails', () {
@@ -85,23 +117,75 @@ void main() {
 
       expect(repository.getToday, throwsA(isA<NoDataException>()));
     });
+
+    test('a paired read remembers the partner name', () async {
+      when(() => remote.getHome()).thenAnswer(
+        (_) async => QueryTodayHome(today: QueryTodayHometoday(isPaired: true, partnerName: 'Rui')),
+      );
+      when(() => local.read()).thenReturn(home);
+
+      await repository.getToday();
+
+      verify(() => local.writeRelationship(wasPaired: true, partnerName: 'Rui')).called(1);
+    });
+
+    test('an unpair reports the stored partner name once', () async {
+      when(() => remote.getHome())
+          .thenAnswer((_) async => QueryTodayHome(today: QueryTodayHometoday(isPaired: false)));
+      when(() => local.readRelationship()).thenReturn((wasPaired: true, partnerName: 'Rui'));
+
+      final result = await repository.getToday();
+
+      expect(result.wasUnpaired, isTrue);
+      expect(result.previousPartnerName, 'Rui');
+    });
+
+    test('acknowledging the unpair clears the stored pairing state', () async {
+      await repository.acknowledgeUnpair();
+
+      verify(() => local.writeRelationship(wasPaired: false)).called(1);
+    });
+
+    test('an unpair already acknowledged is not reported again', () async {
+      when(() => remote.getHome())
+          .thenAnswer((_) async => QueryTodayHome(today: QueryTodayHometoday(isPaired: false)));
+
+      final result = await repository.getToday();
+
+      expect(result.wasUnpaired, isFalse);
+      expect(result.previousPartnerName, isNull);
+      verifyNever(
+        () => local.writeRelationship(
+          wasPaired: any(named: 'wasPaired'),
+          partnerName: any(named: 'partnerName'),
+        ),
+      );
+    });
   });
 
   group('TodayCubit', () {
     late TodayRepository today;
     late ProfileRepository profile;
+    late PairingRepository pairing;
 
     setUp(() {
       today = _MockTodayRepository();
       profile = _MockProfileRepository();
+      pairing = _MockPairingRepository();
+      when(() => pairing.onChanged).thenAnswer((_) => const Stream.empty());
       when(() => profile.getMyProfile()).thenAnswer(
         (_) async => const Profile(id: 'me', avatarKind: 'initials', displayName: 'Ana'),
       );
+      when(() => today.acknowledgeUnpair()).thenAnswer((_) async {});
     });
 
     test('load shows the state and the person name', () async {
-      when(() => today.getToday()).thenAnswer((_) async => (home: home, isFromCache: false));
-      final cubit = TodayCubit(todayRepository: today, profileRepository: profile);
+      when(() => today.getToday()).thenAnswer((_) async => result());
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        pairingRepository: pairing,
+      );
 
       await cubit.load();
 
@@ -111,8 +195,12 @@ void main() {
     });
 
     test('a cached result sets the offline flag', () async {
-      when(() => today.getToday()).thenAnswer((_) async => (home: home, isFromCache: true));
-      final cubit = TodayCubit(todayRepository: today, profileRepository: profile);
+      when(() => today.getToday()).thenAnswer((_) async => result(isFromCache: true));
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        pairingRepository: pairing,
+      );
 
       await cubit.load();
 
@@ -121,7 +209,11 @@ void main() {
 
     test('a failed first load shows a failure', () async {
       when(() => today.getToday()).thenAnswer((_) async => throw Exception());
-      final cubit = TodayCubit(todayRepository: today, profileRepository: profile);
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        pairingRepository: pairing,
+      );
 
       await cubit.load();
 
@@ -129,14 +221,59 @@ void main() {
     });
 
     test('a failed refresh keeps what is already on screen', () async {
-      when(() => today.getToday()).thenAnswer((_) async => (home: home, isFromCache: false));
-      final cubit = TodayCubit(todayRepository: today, profileRepository: profile);
+      when(() => today.getToday()).thenAnswer((_) async => result());
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        pairingRepository: pairing,
+      );
       await cubit.load();
 
       when(() => today.getToday()).thenAnswer((_) async => throw Exception());
       await cubit.load();
 
       expect(cubit.state.home, const Success<TodayHome>(home));
+    });
+
+    test('an unpair notice shows once with the last partner name', () async {
+      when(() => today.getToday()).thenAnswer(
+        (_) async => result(value: unpairedHome, wasUnpaired: true, previousPartnerName: 'Rui'),
+      );
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        pairingRepository: pairing,
+      );
+
+      await cubit.load();
+
+      expect(cubit.state.showUnpairNotice, isTrue);
+      expect(cubit.state.unpairedPartnerName, 'Rui');
+
+      await cubit.acknowledgeUnpairNotice();
+      verify(() => today.acknowledgeUnpair()).called(1);
+      expect(cubit.state.showUnpairNotice, isFalse);
+      expect(cubit.state.unpairedPartnerName, isNull);
+
+      when(() => today.getToday()).thenAnswer((_) async => result(value: unpairedHome));
+      await cubit.load();
+
+      expect(cubit.state.showUnpairNotice, isFalse);
+    });
+
+    test('an unpair notice without a stored name uses the neutral copy', () async {
+      when(() => today.getToday())
+          .thenAnswer((_) async => result(value: unpairedHome, wasUnpaired: true));
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        pairingRepository: pairing,
+      );
+
+      await cubit.load();
+
+      expect(cubit.state.showUnpairNotice, isTrue);
+      expect(cubit.state.unpairedPartnerName, isNull);
     });
   });
 }

@@ -27,6 +27,22 @@ class AcceptInviteRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [BreakupPage]
+class BreakupRoute extends PageRouteInfo<void> {
+  const BreakupRoute({List<PageRouteInfo>? children})
+    : super(BreakupRoute.name, initialChildren: children);
+
+  static const String name = 'BreakupRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const BreakupPage());
+    },
+  );
+}
+
+/// generated route for
 /// [CardDetailPage]
 class CardDetailRoute extends PageRouteInfo<CardDetailRouteArgs> {
   CardDetailRoute({
@@ -320,6 +336,22 @@ class QuickSlipRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RelationshipPage]
+class RelationshipRoute extends PageRouteInfo<void> {
+  const RelationshipRoute({List<PageRouteInfo>? children})
+    : super(RelationshipRoute.name, initialChildren: children);
+
+  static const String name = 'RelationshipRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const RelationshipPage());
+    },
+  );
+}
+
+/// generated route for
 /// [SignInPage]
 class SignInRoute extends PageRouteInfo<void> {
   const SignInRoute({List<PageRouteInfo>? children})
@@ -395,6 +427,38 @@ class TogetherRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const TogetherPage();
+    },
+  );
+}
+
+/// generated route for
+/// [UnpairDonePage]
+class UnpairDoneRoute extends PageRouteInfo<void> {
+  const UnpairDoneRoute({List<PageRouteInfo>? children})
+    : super(UnpairDoneRoute.name, initialChildren: children);
+
+  static const String name = 'UnpairDoneRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const UnpairDonePage());
+    },
+  );
+}
+
+/// generated route for
+/// [UnpairPage]
+class UnpairRoute extends PageRouteInfo<void> {
+  const UnpairRoute({List<PageRouteInfo>? children})
+    : super(UnpairRoute.name, initialChildren: children);
+
+  static const String name = 'UnpairRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const UnpairPage());
     },
   );
 }

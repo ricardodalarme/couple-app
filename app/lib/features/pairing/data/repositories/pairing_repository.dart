@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc_starter/features/pairing/data/data_sources/pairing_data_source.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/data_sources/pairing_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/models/active_invite.dart';
@@ -10,6 +12,10 @@ class PairingRepository({
   required final PairingLocalDataSource _localDataSource,
 }) {
   final Logger _logger = Logger('PairingRepository');
+  final StreamController<void> _changes = StreamController<void>.broadcast();
+
+  /// Emits when the couple forms or ends, so screens that show the partner can read again.
+  Stream<void> get onChanged => _changes.stream;
 
   /// The invite already created and still valid, or a new one.
   Future<ActiveInvite> getOrCreateInvite(DateTime now) async {
@@ -40,7 +46,10 @@ class PairingRepository({
   Future<bool> acceptInvite(String code) async {
     try {
       final connected = await _pairingDataSource.acceptInvite(code);
-      if (connected) await _localDataSource.clear();
+      if (connected) {
+        await _localDataSource.clear();
+        _changes.add(null);
+      }
       return connected;
     } catch (e, stack) {
       _logger.error('Failed to accept an invite', error: e, stackTrace: stack);
@@ -64,6 +73,28 @@ class PairingRepository({
       await _localDataSource.clear();
     } catch (e, stack) {
       _logger.error('Failed to cancel the invite', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Ends the couple and clears the stored invite.
+  Future<void> unpair() async {
+    try {
+      await _pairingDataSource.unpair();
+      await _localDataSource.clear();
+      _changes.add(null);
+    } catch (e, stack) {
+      _logger.error('Failed to unpair', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Keeps the person's shared rows private or deletes them, after [unpair].
+  Future<void> resolveSharedItems({required bool keep}) async {
+    try {
+      await _pairingDataSource.resolveSharedItems(keep: keep);
+    } catch (e, stack) {
+      _logger.error('Failed to resolve shared items', error: e, stackTrace: stack);
       rethrow;
     }
   }

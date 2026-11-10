@@ -1,0 +1,3 @@
+mutation ResolveSharedItems($keep: Boolean!) {
+  resolveSharedItems(keep: $keep)
+}
