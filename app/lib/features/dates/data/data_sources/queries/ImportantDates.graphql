@@ -1,0 +1,19 @@
+query ImportantDates {
+  importantDatesCollection(
+    filter: { hidden: { eq: false } }
+    orderBy: [{ month: AscNullsLast }, { day: AscNullsLast }]
+    first: 200
+  ) {
+    edges {
+      node {
+        id
+        title
+        kind
+        month
+        day
+        year
+        yearly
+      }
+    }
+  }
+}

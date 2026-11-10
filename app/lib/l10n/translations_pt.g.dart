@@ -62,6 +62,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$cardsList$pt cardsList = Translations$cardsList$pt.internal(_root);
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
   late final Translations$dateNight$pt dateNight = Translations$dateNight$pt.internal(_root);
+  late final Translations$dates$pt dates = Translations$dates$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
   late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
@@ -442,6 +443,142 @@ class Translations$dateNight$pt {
 
   /// pt: 'Suas ideias continuam salvas. Tente de novo.'
   String get errorText => 'Suas ideias continuam salvas. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para fazer isso agora. Tente de novo.',
+  };
+}
+
+// Path: dates
+class Translations$dates$pt {
+  Translations$dates$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Datas'
+  String get title => 'Datas';
+
+  /// pt: 'Datas'
+  String get segmentDates => 'Datas';
+
+  /// pt: 'Presentes'
+  String get segmentGifts => 'Presentes';
+
+  /// pt: 'Feriados'
+  String get segmentHolidays => 'Feriados';
+
+  /// pt: 'Nome'
+  String get titleLabel => 'Nome';
+
+  /// pt: 'Ex.: aniversário dele'
+  String get titleHint => 'Ex.: aniversário dele';
+
+  Map<String, String> get kinds => {
+    'relationship': 'Namoro',
+    'birthday': 'Aniversário',
+    'first': 'Uma primeira vez',
+    'trip': 'Viagem',
+    'custom': 'Outra',
+    'holiday': 'Feriado',
+    'reunion': 'Reencontro',
+    'other': '',
+  };
+
+  /// pt: 'Mês'
+  String get monthLabel => 'Mês';
+
+  /// pt: 'Dia'
+  String get dayLabel => 'Dia';
+
+  /// pt: 'Ano (opcional)'
+  String get yearLabel => 'Ano (opcional)';
+
+  /// pt: 'Ex.: 1994'
+  String get yearHint => 'Ex.: 1994';
+
+  /// pt: 'Sem o ano, a data só se repete, sem idade.'
+  String get yearHelp => 'Sem o ano, a data só se repete, sem idade.';
+
+  List<String> get months => [
+    'janeiro',
+    'fevereiro',
+    'março',
+    'abril',
+    'maio',
+    'junho',
+    'julho',
+    'agosto',
+    'setembro',
+    'outubro',
+    'novembro',
+    'dezembro',
+  ];
+  List<String> get monthsShort => [
+    'jan',
+    'fev',
+    'mar',
+    'abr',
+    'mai',
+    'jun',
+    'jul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dez',
+  ];
+
+  /// pt: '{day} {month} · {kind}'
+  String dayLine({required Object day, required Object month, required Object kind}) =>
+      '${day} ${month} · ${kind}';
+
+  /// pt: '{day} {month}'
+  String dayOnly({required Object day, required Object month}) => '${day} ${month}';
+
+  /// pt: 'Guardar data'
+  String get saveDate => 'Guardar data';
+
+  /// pt: 'Apagar'
+  String get delete => 'Apagar';
+
+  /// pt: 'Adicionar'
+  String get add => 'Adicionar';
+
+  /// pt: 'Nenhuma data ainda'
+  String get emptyDatesTitle => 'Nenhuma data ainda';
+
+  /// pt: 'Guarde aniversários e datas que importam. Avisamos antes.'
+  String get emptyDatesText => 'Guarde aniversários e datas que importam. Avisamos antes.';
+
+  /// pt: 'Ideias de presente só você vê.'
+  String get giftsPrivate => 'Ideias de presente só você vê.';
+
+  /// pt: 'Ex.: livro de poemas'
+  String get giftHint => 'Ex.: livro de poemas';
+
+  /// pt: 'Já dei'
+  String get given => 'Já dei';
+
+  /// pt: 'Nenhuma ideia ainda'
+  String get emptyGiftsTitle => 'Nenhuma ideia ainda';
+
+  /// pt: 'Anote presentes quando pensar neles.'
+  String get emptyGiftsText => 'Anote presentes quando pensar neles.';
+
+  /// pt: 'Sem feriados por aqui'
+  String get emptyHolidaysTitle => 'Sem feriados por aqui';
+
+  /// pt: 'O calendário ainda não tem feriados para você.'
+  String get emptyHolidaysText => 'O calendário ainda não tem feriados para você.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Seus dados continuam salvos. Tente de novo.'
+  String get errorText => 'Seus dados continuam salvos. Tente de novo.';
 
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
@@ -1794,6 +1931,15 @@ class Translations$tabs$pt {
 
   /// pt: 'Notas privadas para lembrar do que ele ou ela gosta.'
   String get partnerText => 'Notas privadas para lembrar do que ele ou ela gosta.';
+
+  /// pt: 'DATAS'
+  String get datesLabel => 'DATAS';
+
+  /// pt: 'Datas importantes'
+  String get datesTitle => 'Datas importantes';
+
+  /// pt: 'Aniversários, presentes e feriados, com aviso antes.'
+  String get datesText => 'Aniversários, presentes e feriados, com aviso antes.';
 
   /// pt: 'ENTRE VOCÊS'
   String get temperatureLabel => 'ENTRE VOCÊS';
@@ -3201,6 +3347,71 @@ extension on Translations {
           'dateNight.errorText' => 'Suas ideias continuam salvas. Tente de novo.',
           'dateNight.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'dateNight.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'dates.title' => 'Datas',
+          'dates.segmentDates' => 'Datas',
+          'dates.segmentGifts' => 'Presentes',
+          'dates.segmentHolidays' => 'Feriados',
+          'dates.titleLabel' => 'Nome',
+          'dates.titleHint' => 'Ex.: aniversário dele',
+          'dates.kinds.relationship' => 'Namoro',
+          'dates.kinds.birthday' => 'Aniversário',
+          'dates.kinds.first' => 'Uma primeira vez',
+          'dates.kinds.trip' => 'Viagem',
+          'dates.kinds.custom' => 'Outra',
+          'dates.kinds.holiday' => 'Feriado',
+          'dates.kinds.reunion' => 'Reencontro',
+          'dates.kinds.other' => '',
+          'dates.monthLabel' => 'Mês',
+          'dates.dayLabel' => 'Dia',
+          'dates.yearLabel' => 'Ano (opcional)',
+          'dates.yearHint' => 'Ex.: 1994',
+          'dates.yearHelp' => 'Sem o ano, a data só se repete, sem idade.',
+          'dates.months.0' => 'janeiro',
+          'dates.months.1' => 'fevereiro',
+          'dates.months.2' => 'março',
+          'dates.months.3' => 'abril',
+          'dates.months.4' => 'maio',
+          'dates.months.5' => 'junho',
+          'dates.months.6' => 'julho',
+          'dates.months.7' => 'agosto',
+          'dates.months.8' => 'setembro',
+          'dates.months.9' => 'outubro',
+          'dates.months.10' => 'novembro',
+          'dates.months.11' => 'dezembro',
+          'dates.monthsShort.0' => 'jan',
+          'dates.monthsShort.1' => 'fev',
+          'dates.monthsShort.2' => 'mar',
+          'dates.monthsShort.3' => 'abr',
+          'dates.monthsShort.4' => 'mai',
+          'dates.monthsShort.5' => 'jun',
+          'dates.monthsShort.6' => 'jul',
+          'dates.monthsShort.7' => 'ago',
+          'dates.monthsShort.8' => 'set',
+          'dates.monthsShort.9' => 'out',
+          'dates.monthsShort.10' => 'nov',
+          'dates.monthsShort.11' => 'dez',
+          'dates.dayLine' => ({
+            required Object day,
+            required Object month,
+            required Object kind,
+          }) => '${day} ${month} · ${kind}',
+          'dates.dayOnly' => ({required Object day, required Object month}) => '${day} ${month}',
+          'dates.saveDate' => 'Guardar data',
+          'dates.delete' => 'Apagar',
+          'dates.add' => 'Adicionar',
+          'dates.emptyDatesTitle' => 'Nenhuma data ainda',
+          'dates.emptyDatesText' => 'Guarde aniversários e datas que importam. Avisamos antes.',
+          'dates.giftsPrivate' => 'Ideias de presente só você vê.',
+          'dates.giftHint' => 'Ex.: livro de poemas',
+          'dates.given' => 'Já dei',
+          'dates.emptyGiftsTitle' => 'Nenhuma ideia ainda',
+          'dates.emptyGiftsText' => 'Anote presentes quando pensar neles.',
+          'dates.emptyHolidaysTitle' => 'Sem feriados por aqui',
+          'dates.emptyHolidaysText' => 'O calendário ainda não tem feriados para você.',
+          'dates.errorTitle' => 'Não deu para carregar',
+          'dates.errorText' => 'Seus dados continuam salvos. Tente de novo.',
+          'dates.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'dates.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'firstSlip.title' => 'Comece com uma coisa boa',
           'firstSlip.titleHighlight' => 'uma coisa boa',
           'firstSlip.subtitle' => 'O que seu parceiro fez ultimamente que te fez sorrir? 30 segundos bastam. Ainda sem conta.',
@@ -3549,6 +3760,9 @@ extension on Translations {
           'repair.calm.text' => 'Não tem pressa e não tem tempo contado. Saia quando quiser.',
           'repair.calm.ready' => 'Estou mais calmo(a)',
           'repair.calm.leave' => 'Sair',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.calm.askPause' => 'Pedir um tempo ao meu par',
           'repair.softStart.title' => 'Comece com suavidade',
           'repair.softStart.titleHighlight' => 'suavidade',
@@ -3619,9 +3833,6 @@ extension on Translations {
           'repair.guided.loadErrorTitle' => 'Não deu para abrir',
           'repair.guided.loadErrorText' => 'Nada se perdeu. Tente de novo.',
           'repair.learning.title' => 'O que você aprendeu?',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.learning.titleHighlight' => 'aprendeu',
           'repair.learning.subtitle' => 'Fica só com você e pode ser apagado quando quiser.',
           'repair.learning.kinds.trigger' => 'O que me incomoda',
@@ -3904,6 +4115,9 @@ extension on Translations {
           'tabs.partnerLabel' => 'SÓ PARA VOCÊ',
           'tabs.partnerTitle' => 'Sobre seu par',
           'tabs.partnerText' => 'Notas privadas para lembrar do que ele ou ela gosta.',
+          'tabs.datesLabel' => 'DATAS',
+          'tabs.datesTitle' => 'Datas importantes',
+          'tabs.datesText' => 'Aniversários, presentes e feriados, com aviso antes.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
           'tabs.temperatureTitle' => 'Como está entre vocês?',
           'tabs.temperatureText' => 'Um registro privado, sem nota.',

@@ -1,0 +1,11 @@
+query GiftIdeas {
+  giftIdeasCollection(orderBy: [{ createdAt: DescNullsLast }], first: 200) {
+    edges {
+      node {
+        id
+        title
+        status
+      }
+    }
+  }
+}

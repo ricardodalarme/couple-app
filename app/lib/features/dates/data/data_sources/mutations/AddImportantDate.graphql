@@ -1,0 +1,33 @@
+mutation AddImportantDate(
+  $id: UUID!
+  $title: String!
+  $kind: String!
+  $month: Int!
+  $day: Int!
+  $year: Int
+  $yearly: Boolean!
+  $remindDays: [Int]!
+  $origin: String!
+  $holidayKey: String
+  $coupleId: UUID
+) {
+  insertIntoImportantDatesCollection(
+    objects: [
+      {
+        id: $id
+        title: $title
+        kind: $kind
+        month: $month
+        day: $day
+        year: $year
+        yearly: $yearly
+        remindDays: $remindDays
+        origin: $origin
+        holidayKey: $holidayKey
+        coupleId: $coupleId
+      }
+    ]
+  ) {
+    affectedCount
+  }
+}

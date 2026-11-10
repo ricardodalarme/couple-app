@@ -6,6 +6,7 @@ import 'package:flutter_bloc_starter/features/authentication/presentation/welcom
 import 'package:flutter_bloc_starter/features/cards/presentation/detail/card_detail_page.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/draft/sunday_card_page.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/list/cards_list_page.dart';
+import 'package:flutter_bloc_starter/features/dates/presentation/dates/dates_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/home/presentation/home/home_page.dart';
 import 'package:flutter_bloc_starter/features/ideas/presentation/detail/idea_detail_page.dart';
@@ -79,6 +80,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: LogisticsRoute.page),
     AutoRoute(page: RitualsRoute.page),
     AutoRoute(page: PartnerProfileRoute.page),
+    AutoRoute(page: DatesRoute.page),
     AutoRoute(page: DateNightRoute.page),
     AutoRoute(page: RitualEditRoute.page),
     AutoRoute(page: GuidedRepairRoute.page, fullscreenDialog: true),

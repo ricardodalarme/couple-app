@@ -66,6 +66,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$dateNight$en dateNight = _Translations$dateNight$en._(_root);
   @override
+  late final _Translations$dates$en dates = _Translations$dates$en._(_root);
+  @override
   late final _Translations$firstSlip$en firstSlip = _Translations$firstSlip$en._(_root);
   @override
   late final _Translations$ideaDetail$en ideaDetail = _Translations$ideaDetail$en._(_root);
@@ -403,6 +405,116 @@ class _Translations$dateNight$en extends Translations$dateNight$pt {
   String get errorTitle => 'Couldn\'t load';
   @override
   String get errorText => 'Your ideas are still saved. Try again.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t do that right now. Try again.',
+  };
+}
+
+// Path: dates
+class _Translations$dates$en extends Translations$dates$pt {
+  _Translations$dates$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Dates';
+  @override
+  String get segmentDates => 'Dates';
+  @override
+  String get segmentGifts => 'Gifts';
+  @override
+  String get segmentHolidays => 'Holidays';
+  @override
+  String get titleLabel => 'Name';
+  @override
+  String get titleHint => 'E.g. their birthday';
+  @override
+  Map<String, String> get kinds => {
+    'relationship': 'Relationship',
+    'birthday': 'Birthday',
+    'first': 'A first time',
+    'trip': 'Trip',
+    'custom': 'Other',
+    'holiday': 'Holiday',
+    'reunion': 'Reunion',
+    'other': '',
+  };
+  @override
+  String get monthLabel => 'Month';
+  @override
+  String get dayLabel => 'Day';
+  @override
+  String get yearLabel => 'Year (optional)';
+  @override
+  String get yearHint => 'E.g. 1994';
+  @override
+  String get yearHelp => 'Without the year the date just repeats, with no age.';
+  @override
+  List<String> get months => [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  @override
+  List<String> get monthsShort => [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  @override
+  String dayLine({required Object month, required Object day, required Object kind}) =>
+      '${month} ${day} · ${kind}';
+  @override
+  String dayOnly({required Object month, required Object day}) => '${month} ${day}';
+  @override
+  String get saveDate => 'Save date';
+  @override
+  String get delete => 'Delete';
+  @override
+  String get add => 'Add';
+  @override
+  String get emptyDatesTitle => 'No dates yet';
+  @override
+  String get emptyDatesText => 'Keep birthdays and dates that matter. We remind you ahead.';
+  @override
+  String get giftsPrivate => 'Gift ideas only you see.';
+  @override
+  String get giftHint => 'E.g. book of poems';
+  @override
+  String get given => 'Given';
+  @override
+  String get emptyGiftsTitle => 'No ideas yet';
+  @override
+  String get emptyGiftsText => 'Jot down gifts when you think of them.';
+  @override
+  String get emptyHolidaysTitle => 'No holidays here';
+  @override
+  String get emptyHolidaysText => 'The calendar has no holidays for you yet.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Your data is still saved. Try again.';
   @override
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
@@ -1509,6 +1621,12 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get partnerTitle => 'About your partner';
   @override
   String get partnerText => 'Private notes to remember what they like.';
+  @override
+  String get datesLabel => 'DATES';
+  @override
+  String get datesTitle => 'Important dates';
+  @override
+  String get datesText => 'Birthdays, gifts and holidays, with a heads-up.';
   @override
   String get temperatureLabel => 'BETWEEN YOU';
   @override
@@ -2694,6 +2812,71 @@ extension on TranslationsEn {
           'dateNight.errorText' => 'Your ideas are still saved. Try again.',
           'dateNight.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'dateNight.errors.other' => 'Couldn\'t do that right now. Try again.',
+          'dates.title' => 'Dates',
+          'dates.segmentDates' => 'Dates',
+          'dates.segmentGifts' => 'Gifts',
+          'dates.segmentHolidays' => 'Holidays',
+          'dates.titleLabel' => 'Name',
+          'dates.titleHint' => 'E.g. their birthday',
+          'dates.kinds.relationship' => 'Relationship',
+          'dates.kinds.birthday' => 'Birthday',
+          'dates.kinds.first' => 'A first time',
+          'dates.kinds.trip' => 'Trip',
+          'dates.kinds.custom' => 'Other',
+          'dates.kinds.holiday' => 'Holiday',
+          'dates.kinds.reunion' => 'Reunion',
+          'dates.kinds.other' => '',
+          'dates.monthLabel' => 'Month',
+          'dates.dayLabel' => 'Day',
+          'dates.yearLabel' => 'Year (optional)',
+          'dates.yearHint' => 'E.g. 1994',
+          'dates.yearHelp' => 'Without the year the date just repeats, with no age.',
+          'dates.months.0' => 'January',
+          'dates.months.1' => 'February',
+          'dates.months.2' => 'March',
+          'dates.months.3' => 'April',
+          'dates.months.4' => 'May',
+          'dates.months.5' => 'June',
+          'dates.months.6' => 'July',
+          'dates.months.7' => 'August',
+          'dates.months.8' => 'September',
+          'dates.months.9' => 'October',
+          'dates.months.10' => 'November',
+          'dates.months.11' => 'December',
+          'dates.monthsShort.0' => 'Jan',
+          'dates.monthsShort.1' => 'Feb',
+          'dates.monthsShort.2' => 'Mar',
+          'dates.monthsShort.3' => 'Apr',
+          'dates.monthsShort.4' => 'May',
+          'dates.monthsShort.5' => 'Jun',
+          'dates.monthsShort.6' => 'Jul',
+          'dates.monthsShort.7' => 'Aug',
+          'dates.monthsShort.8' => 'Sep',
+          'dates.monthsShort.9' => 'Oct',
+          'dates.monthsShort.10' => 'Nov',
+          'dates.monthsShort.11' => 'Dec',
+          'dates.dayLine' => ({
+            required Object month,
+            required Object day,
+            required Object kind,
+          }) => '${month} ${day} · ${kind}',
+          'dates.dayOnly' => ({required Object month, required Object day}) => '${month} ${day}',
+          'dates.saveDate' => 'Save date',
+          'dates.delete' => 'Delete',
+          'dates.add' => 'Add',
+          'dates.emptyDatesTitle' => 'No dates yet',
+          'dates.emptyDatesText' => 'Keep birthdays and dates that matter. We remind you ahead.',
+          'dates.giftsPrivate' => 'Gift ideas only you see.',
+          'dates.giftHint' => 'E.g. book of poems',
+          'dates.given' => 'Given',
+          'dates.emptyGiftsTitle' => 'No ideas yet',
+          'dates.emptyGiftsText' => 'Jot down gifts when you think of them.',
+          'dates.emptyHolidaysTitle' => 'No holidays here',
+          'dates.emptyHolidaysText' => 'The calendar has no holidays for you yet.',
+          'dates.errorTitle' => 'Couldn\'t load',
+          'dates.errorText' => 'Your data is still saved. Try again.',
+          'dates.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'dates.errors.other' => 'Couldn\'t do that right now. Try again.',
           'firstSlip.title' => 'Start with one good thing',
           'firstSlip.titleHighlight' => 'one good thing',
           'firstSlip.subtitle' => 'What did your partner do lately that made you smile? 30 seconds is enough. No account yet.',
@@ -3041,6 +3224,9 @@ extension on TranslationsEn {
           'repair.calm.text' => 'There\'s no rush and no timer. Leave whenever you like.',
           'repair.calm.ready' => 'I feel calmer',
           'repair.calm.leave' => 'Leave',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.calm.askPause' => 'Ask my partner for some space',
           'repair.softStart.title' => 'Start softly',
           'repair.softStart.titleHighlight' => 'softly',
@@ -3111,9 +3297,6 @@ extension on TranslationsEn {
           'repair.guided.loadErrorTitle' => 'Couldn\'t open this',
           'repair.guided.loadErrorText' => 'Nothing was lost. Try again.',
           'repair.learning.title' => 'What did you learn?',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.learning.titleHighlight' => 'learn',
           'repair.learning.subtitle' => 'It stays with you and can be deleted whenever you like.',
           'repair.learning.kinds.trigger' => 'What bothers me',
@@ -3393,6 +3576,9 @@ extension on TranslationsEn {
           'tabs.partnerLabel' => 'JUST FOR YOU',
           'tabs.partnerTitle' => 'About your partner',
           'tabs.partnerText' => 'Private notes to remember what they like.',
+          'tabs.datesLabel' => 'DATES',
+          'tabs.datesTitle' => 'Important dates',
+          'tabs.datesText' => 'Birthdays, gifts and holidays, with a heads-up.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',
           'tabs.temperatureTitle' => 'How is it between you?',
           'tabs.temperatureText' => 'A private check-in, never a score.',

@@ -13,6 +13,9 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
   /// Emits whenever a shared item is changed on this device, so lists can read again.
   Stream<void> get onChanged => _changes.stream;
 
+  /// The id of the couple the person is in, or null when they are on their own.
+  Future<String?> getCoupleId() => _dataSource.getCoupleId();
+
   Future<List<LogisticItem>> getLogisticItems() async {
     try {
       return [

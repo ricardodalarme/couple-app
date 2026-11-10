@@ -144,6 +144,22 @@ class DateNightRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [DatesPage]
+class DatesRoute extends PageRouteInfo<void> {
+  const DatesRoute({List<PageRouteInfo>? children})
+    : super(DatesRoute.name, initialChildren: children);
+
+  static const String name = 'DatesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const DatesPage());
+    },
+  );
+}
+
+/// generated route for
 /// [DebugSignInPage]
 class DebugSignInRoute extends PageRouteInfo<void> {
   const DebugSignInRoute({List<PageRouteInfo>? children})
