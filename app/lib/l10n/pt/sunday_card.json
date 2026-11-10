@@ -14,5 +14,34 @@
   "errorTitle": "Não deu para carregar o cartão",
   "errorText": "Seus slips continuam salvos. Tente de novo.",
   "saveError": "Não deu para salvar o cartão. Tente de novo.",
-  "openFromToday": "Ver o rascunho"
+  "openFromToday": "Ver o rascunho",
+  "deliverError": "Não deu para enviar agora. O cartão continua aqui, tente de novo.",
+  "send": {
+    "action": "Enviar",
+    "invite": "Convidar para enviar",
+    "needsPartner": "Para enviar o cartão no app, sua pessoa precisa estar conectada.",
+    "title": "Enviar o cartão?",
+    "text": "{name} recebe agora. Depois de enviado, o cartão não muda.",
+    "textNoName": "Sua pessoa recebe agora. Depois de enviado, o cartão não muda.",
+    "confirm": "Enviar"
+  },
+  "hold": {
+    "action": "Segurar esta semana",
+    "title": "Segurar esta semana?",
+    "text": "O cartão fica guardado e nada se perde. Você pode enviar quando quiser.",
+    "confirm": "Segurar"
+  },
+  "held": {
+    "title": "Retido nesta semana",
+    "titleHighlight": "Retido",
+    "text": "Seu cartão espera. Envie quando estiver pronto. Nada se perde.",
+    "keepHolding": "Continuar retendo",
+    "sendAnyway": "Enviar mesmo assim"
+  },
+  "sent": {
+    "title": "Enviado",
+    "text": "O cartão foi para {name}.",
+    "textNoName": "O cartão foi para sua pessoa.",
+    "done": "Pronto"
+  }
 }

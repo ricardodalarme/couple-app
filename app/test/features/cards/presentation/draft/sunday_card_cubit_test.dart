@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
 import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/draft/cubit/sunday_card_cubit.dart';
+import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
@@ -12,9 +13,12 @@ class _MockCardsRepository() extends Mock implements CardsRepository;
 
 class _MockProfileRepository() extends Mock implements ProfileRepository;
 
+class _MockPairingRepository() extends Mock implements PairingRepository;
+
 void main() {
   late CardsRepository cards;
   late ProfileRepository profile;
+  late PairingRepository pairing;
 
   final card = SundayCard(
     id: 'c1',
@@ -32,6 +36,10 @@ void main() {
   setUp(() {
     cards = _MockCardsRepository();
     profile = _MockProfileRepository();
+    pairing = _MockPairingRepository();
+    when(
+      () => pairing.getPartner(),
+    ).thenAnswer((_) async => const Profile(id: 'p', avatarKind: 'initials', displayName: 'Rui'));
     when(() => cards.getDraft()).thenAnswer((_) async => card);
     when(
       () => profile.getMyProfile(),
@@ -40,7 +48,11 @@ void main() {
         .thenAnswer((_) async => const AccountSettings(theme: .rose, partnerName: 'Rui'));
   });
 
-  SundayCardCubit build() => SundayCardCubit(cardsRepository: cards, profileRepository: profile);
+  SundayCardCubit build() => SundayCardCubit(
+    cardsRepository: cards,
+    profileRepository: profile,
+    pairingRepository: pairing,
+  );
 
   Future<SundayCardCubit> loaded() async {
     final cubit = build();
@@ -131,5 +143,72 @@ void main() {
 
     expect(cubit.state.isEditing, isTrue);
     expect(cubit.state.draft!.items, hasLength(2));
+  });
+
+  test('a connected partner is detected', () async {
+    final cubit = await loaded();
+
+    expect(cubit.state.isPaired, isTrue);
+  });
+
+  test('without a partner the card cannot be marked as connected', () async {
+    when(() => pairing.getPartner()).thenAnswer((_) async => null);
+    final cubit = await loaded();
+
+    expect(cubit.state.isPaired, isFalse);
+  });
+
+  test('send marks the card as sent', () async {
+    final sent = SundayCard(id: 'c1', status: 'sent', weekStart: card.weekStart, items: card.items);
+    when(() => cards.send('c1')).thenAnswer((_) async => sent);
+    final cubit = await loaded();
+
+    await cubit.send();
+
+    expect(cubit.state.card, Success(sent));
+  });
+
+  test('a double tap on send sends once', () async {
+    final sent = SundayCard(id: 'c1', status: 'sent', weekStart: card.weekStart, items: card.items);
+    when(() => cards.send('c1')).thenAnswer((_) async => sent);
+    final cubit = await loaded();
+
+    await Future.wait([cubit.send(), cubit.send()]);
+
+    verify(() => cards.send('c1')).called(1);
+  });
+
+  test('a failed send leaves the draft in place to retry', () async {
+    when(() => cards.send('c1')).thenAnswer((_) async => throw Exception());
+    final cubit = await loaded();
+
+    await cubit.send();
+
+    expect(cubit.state.card, Success(card));
+    expect(cubit.state.deliverAction, const Initial());
+  });
+
+  test('hold keeps the card and can be followed by a send', () async {
+    final held = SundayCard(id: 'c1', status: 'held', weekStart: card.weekStart, items: card.items);
+    final sent = SundayCard(id: 'c1', status: 'sent', weekStart: card.weekStart, items: card.items);
+    when(() => cards.hold('c1')).thenAnswer((_) async => held);
+    when(() => cards.send('c1')).thenAnswer((_) async => sent);
+    final cubit = await loaded();
+
+    await cubit.hold();
+    expect((cubit.state.card as Success<SundayCard>).value.isHeld, isTrue);
+
+    await cubit.send();
+    expect((cubit.state.card as Success<SundayCard>).value.isSent, isTrue);
+  });
+
+  test('a sent card is never sent again', () async {
+    final sent = SundayCard(id: 'c1', status: 'sent', weekStart: card.weekStart, items: card.items);
+    when(() => cards.getDraft()).thenAnswer((_) async => sent);
+    final cubit = await loaded();
+
+    await cubit.send();
+
+    verifyNever(() => cards.send(any()));
   });
 }

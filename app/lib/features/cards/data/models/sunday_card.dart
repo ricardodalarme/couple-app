@@ -23,6 +23,12 @@ final class const SundayCard({
   /// Whether the person can still change the card.
   bool get isDraft => status == 'draft';
 
+  /// Whether the person chose to keep the card for later.
+  bool get isHeld => status == 'held';
+
+  /// Whether the card reached the partner.
+  bool get isSent => status == 'sent';
+
   SundayCard copyWith({List<CardItem>? items, String? note}) => SundayCard(
     id: id,
     status: status,

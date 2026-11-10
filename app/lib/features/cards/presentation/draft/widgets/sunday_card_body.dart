@@ -3,6 +3,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/draft/cubit/sunday_card_cubit.dart';
+import 'package:flutter_bloc_starter/features/cards/presentation/draft/widgets/sunday_card_status_views.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/shared/widgets/card_view.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
@@ -16,9 +17,15 @@ class const SundayCardBody({required final SundayCard card, super.key}) extends 
     final selfName = context.select((SundayCardCubit cubit) => cubit.state.selfName);
     final partnerName = context.select((SundayCardCubit cubit) => cubit.state.partnerName);
     final isSaving = context.select((SundayCardCubit cubit) => cubit.state.saveAction.isLoading);
+    final isPaired = context.select((SundayCardCubit cubit) => cubit.state.isPaired);
+    final isDelivering = context.select(
+      (SundayCardCubit cubit) => cubit.state.deliverAction.isLoading,
+    );
     final cubit = context.read<SundayCardCubit>();
     final shown = draft ?? card;
 
+    if (card.isHeld && draft == null) return const SundayCardHeld();
+    if (card.isSent) return const SundayCardSent();
     if (shown.items.isEmpty && draft == null) {
       return BaseEmptyState(
         title: l10n.emptyTitle,
@@ -53,9 +60,40 @@ class const SundayCardBody({required final SundayCard card, super.key}) extends 
         ],
       ),
       footer: draft == null
-          ? (card.isDraft
-                ? BaseButton(text: l10n.edit, variant: .secondary, onPressed: cubit.startEditing)
-                : null)
+          ? Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                if (!isPaired) ...[
+                  BaseNote(text: l10n.send.needsPartner),
+                  const SizedBox(height: AppSpace.s12),
+                ],
+                Row(
+                  children: [
+                    BaseButton(
+                      text: l10n.edit,
+                      variant: .secondary,
+                      isFullWidth: false,
+                      onPressed: cubit.startEditing,
+                    ),
+                    const SizedBox(width: AppSpace.s12),
+                    Expanded(
+                      child: isPaired
+                          ? BaseButton(
+                              text: l10n.send.action,
+                              isLoading: isDelivering,
+                              onPressed: () => confirmSend(context),
+                            )
+                          : BaseButton(
+                              text: l10n.send.invite,
+                              onPressed: () => context.pushRoute(const InviteRoute()),
+                            ),
+                    ),
+                  ],
+                ),
+                BaseTextLink(text: l10n.hold.action, onPressed: () => confirmHold(context)),
+              ],
+            )
           : Row(
               children: [
                 BaseButton(

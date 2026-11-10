@@ -21,6 +21,27 @@ class CardsRepository({required final CardsDataSource _dataSource}) {
     }
   }
 
+  /// Sends the card to the connected partner. Sending a card that was already sent is safe:
+  /// the server rejects it and the caller reads the card again.
+  Future<SundayCard> send(String cardId) async {
+    try {
+      return (await _dataSource.sendCard(cardId)).toModel();
+    } catch (e, stack) {
+      _logger.error('Failed to send the card', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Keeps the card for later; nothing is lost and it can still be sent.
+  Future<SundayCard> hold(String cardId) async {
+    try {
+      return (await _dataSource.holdCard(cardId)).toModel();
+    } catch (e, stack) {
+      _logger.error('Failed to hold the card', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
   /// Saves which slips the card holds, in order, and its closing note.
   Future<SundayCard> saveDraft(SundayCard card) async {
     try {

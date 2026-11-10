@@ -1,0 +1,5 @@
+mutation SendCard($cardId: UUID!) {
+  sendCard(cardId: $cardId) {
+    ...CardFragment
+  }
+}

@@ -722,6 +722,14 @@ class Translations$sundayCard$pt {
 
   /// pt: 'Ver o rascunho'
   String get openFromToday => 'Ver o rascunho';
+
+  /// pt: 'Não deu para enviar agora. O cartão continua aqui, tente de novo.'
+  String get deliverError => 'Não deu para enviar agora. O cartão continua aqui, tente de novo.';
+
+  late final Translations$sundayCard$send$pt send = Translations$sundayCard$send$pt.internal(_root);
+  late final Translations$sundayCard$hold$pt hold = Translations$sundayCard$hold$pt.internal(_root);
+  late final Translations$sundayCard$held$pt held = Translations$sundayCard$held$pt.internal(_root);
+  late final Translations$sundayCard$sent$pt sent = Translations$sundayCard$sent$pt.internal(_root);
 }
 
 // Path: tabs
@@ -1145,6 +1153,103 @@ class Translations$quickSlip$saved$pt {
   String get done => 'Pronto';
 }
 
+// Path: sundayCard.send
+class Translations$sundayCard$send$pt {
+  Translations$sundayCard$send$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Enviar'
+  String get action => 'Enviar';
+
+  /// pt: 'Convidar para enviar'
+  String get invite => 'Convidar para enviar';
+
+  /// pt: 'Para enviar o cartão no app, sua pessoa precisa estar conectada.'
+  String get needsPartner => 'Para enviar o cartão no app, sua pessoa precisa estar conectada.';
+
+  /// pt: 'Enviar o cartão?'
+  String get title => 'Enviar o cartão?';
+
+  /// pt: '{name} recebe agora. Depois de enviado, o cartão não muda.'
+  String text({required Object name}) =>
+      '${name} recebe agora. Depois de enviado, o cartão não muda.';
+
+  /// pt: 'Sua pessoa recebe agora. Depois de enviado, o cartão não muda.'
+  String get textNoName => 'Sua pessoa recebe agora. Depois de enviado, o cartão não muda.';
+
+  /// pt: 'Enviar'
+  String get confirm => 'Enviar';
+}
+
+// Path: sundayCard.hold
+class Translations$sundayCard$hold$pt {
+  Translations$sundayCard$hold$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Segurar esta semana'
+  String get action => 'Segurar esta semana';
+
+  /// pt: 'Segurar esta semana?'
+  String get title => 'Segurar esta semana?';
+
+  /// pt: 'O cartão fica guardado e nada se perde. Você pode enviar quando quiser.'
+  String get text => 'O cartão fica guardado e nada se perde. Você pode enviar quando quiser.';
+
+  /// pt: 'Segurar'
+  String get confirm => 'Segurar';
+}
+
+// Path: sundayCard.held
+class Translations$sundayCard$held$pt {
+  Translations$sundayCard$held$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Retido nesta semana'
+  String get title => 'Retido nesta semana';
+
+  /// pt: 'Retido'
+  String get titleHighlight => 'Retido';
+
+  /// pt: 'Seu cartão espera. Envie quando estiver pronto. Nada se perde.'
+  String get text => 'Seu cartão espera. Envie quando estiver pronto. Nada se perde.';
+
+  /// pt: 'Continuar retendo'
+  String get keepHolding => 'Continuar retendo';
+
+  /// pt: 'Enviar mesmo assim'
+  String get sendAnyway => 'Enviar mesmo assim';
+}
+
+// Path: sundayCard.sent
+class Translations$sundayCard$sent$pt {
+  Translations$sundayCard$sent$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Enviado'
+  String get title => 'Enviado';
+
+  /// pt: 'O cartão foi para {name}.'
+  String text({required Object name}) => 'O cartão foi para ${name}.';
+
+  /// pt: 'O cartão foi para sua pessoa.'
+  String get textNoName => 'O cartão foi para sua pessoa.';
+
+  /// pt: 'Pronto'
+  String get done => 'Pronto';
+}
+
 /// The flat map containing all translations for locale <pt>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -1452,6 +1557,33 @@ extension on Translations {
       'sundayCard.errorText' => 'Seus slips continuam salvos. Tente de novo.',
       'sundayCard.saveError' => 'Não deu para salvar o cartão. Tente de novo.',
       'sundayCard.openFromToday' => 'Ver o rascunho',
+      'sundayCard.deliverError' =>
+        'Não deu para enviar agora. O cartão continua aqui, tente de novo.',
+      'sundayCard.send.action' => 'Enviar',
+      'sundayCard.send.invite' => 'Convidar para enviar',
+      'sundayCard.send.needsPartner' =>
+        'Para enviar o cartão no app, sua pessoa precisa estar conectada.',
+      'sundayCard.send.title' => 'Enviar o cartão?',
+      'sundayCard.send.text' => ({
+        required Object name,
+      }) => '${name} recebe agora. Depois de enviado, o cartão não muda.',
+      'sundayCard.send.textNoName' =>
+        'Sua pessoa recebe agora. Depois de enviado, o cartão não muda.',
+      'sundayCard.send.confirm' => 'Enviar',
+      'sundayCard.hold.action' => 'Segurar esta semana',
+      'sundayCard.hold.title' => 'Segurar esta semana?',
+      'sundayCard.hold.text' =>
+        'O cartão fica guardado e nada se perde. Você pode enviar quando quiser.',
+      'sundayCard.hold.confirm' => 'Segurar',
+      'sundayCard.held.title' => 'Retido nesta semana',
+      'sundayCard.held.titleHighlight' => 'Retido',
+      'sundayCard.held.text' => 'Seu cartão espera. Envie quando estiver pronto. Nada se perde.',
+      'sundayCard.held.keepHolding' => 'Continuar retendo',
+      'sundayCard.held.sendAnyway' => 'Enviar mesmo assim',
+      'sundayCard.sent.title' => 'Enviado',
+      'sundayCard.sent.text' => ({required Object name}) => 'O cartão foi para ${name}.',
+      'sundayCard.sent.textNoName' => 'O cartão foi para sua pessoa.',
+      'sundayCard.sent.done' => 'Pronto',
       'tabs.today' => 'Hoje',
       'tabs.slips' => 'Slips',
       'tabs.together' => 'Juntos',

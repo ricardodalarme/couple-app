@@ -614,6 +614,16 @@ class _Translations$sundayCard$en extends Translations$sundayCard$pt {
   String get saveError => 'Could not save the card. Try again.';
   @override
   String get openFromToday => 'See the draft';
+  @override
+  String get deliverError => 'Could not send right now. The card is still here, try again.';
+  @override
+  late final _Translations$sundayCard$send$en send = _Translations$sundayCard$send$en._(_root);
+  @override
+  late final _Translations$sundayCard$hold$en hold = _Translations$sundayCard$hold$en._(_root);
+  @override
+  late final _Translations$sundayCard$held$en held = _Translations$sundayCard$held$en._(_root);
+  @override
+  late final _Translations$sundayCard$sent$en sent = _Translations$sundayCard$sent$en._(_root);
 }
 
 // Path: tabs
@@ -955,6 +965,83 @@ class _Translations$quickSlip$saved$en extends Translations$quickSlip$saved$pt {
   String get done => 'Done';
 }
 
+// Path: sundayCard.send
+class _Translations$sundayCard$send$en extends Translations$sundayCard$send$pt {
+  _Translations$sundayCard$send$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get action => 'Send';
+  @override
+  String get invite => 'Invite to send';
+  @override
+  String get needsPartner => 'To send the card in the app, your person has to be connected.';
+  @override
+  String get title => 'Send the card?';
+  @override
+  String text({required Object name}) =>
+      '${name} receives it now. Once sent, the card does not change.';
+  @override
+  String get textNoName => 'Your person receives it now. Once sent, the card does not change.';
+  @override
+  String get confirm => 'Send';
+}
+
+// Path: sundayCard.hold
+class _Translations$sundayCard$hold$en extends Translations$sundayCard$hold$pt {
+  _Translations$sundayCard$hold$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get action => 'Hold this week';
+  @override
+  String get title => 'Hold this week?';
+  @override
+  String get text => 'The card is kept and nothing is lost. You can send it whenever you like.';
+  @override
+  String get confirm => 'Hold';
+}
+
+// Path: sundayCard.held
+class _Translations$sundayCard$held$en extends Translations$sundayCard$held$pt {
+  _Translations$sundayCard$held$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Held this week';
+  @override
+  String get titleHighlight => 'Held';
+  @override
+  String get text => 'Your card waits. Send it when you are ready. Nothing is lost.';
+  @override
+  String get keepHolding => 'Keep holding';
+  @override
+  String get sendAnyway => 'Send anyway';
+}
+
+// Path: sundayCard.sent
+class _Translations$sundayCard$sent$en extends Translations$sundayCard$sent$pt {
+  _Translations$sundayCard$sent$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Sent';
+  @override
+  String text({required Object name}) => 'The card went to ${name}.';
+  @override
+  String get textNoName => 'The card went to your person.';
+  @override
+  String get done => 'Done';
+}
+
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -1258,6 +1345,32 @@ extension on TranslationsEn {
       'sundayCard.errorText' => 'Your slips are still saved. Try again.',
       'sundayCard.saveError' => 'Could not save the card. Try again.',
       'sundayCard.openFromToday' => 'See the draft',
+      'sundayCard.deliverError' => 'Could not send right now. The card is still here, try again.',
+      'sundayCard.send.action' => 'Send',
+      'sundayCard.send.invite' => 'Invite to send',
+      'sundayCard.send.needsPartner' =>
+        'To send the card in the app, your person has to be connected.',
+      'sundayCard.send.title' => 'Send the card?',
+      'sundayCard.send.text' => ({
+        required Object name,
+      }) => '${name} receives it now. Once sent, the card does not change.',
+      'sundayCard.send.textNoName' =>
+        'Your person receives it now. Once sent, the card does not change.',
+      'sundayCard.send.confirm' => 'Send',
+      'sundayCard.hold.action' => 'Hold this week',
+      'sundayCard.hold.title' => 'Hold this week?',
+      'sundayCard.hold.text' =>
+        'The card is kept and nothing is lost. You can send it whenever you like.',
+      'sundayCard.hold.confirm' => 'Hold',
+      'sundayCard.held.title' => 'Held this week',
+      'sundayCard.held.titleHighlight' => 'Held',
+      'sundayCard.held.text' => 'Your card waits. Send it when you are ready. Nothing is lost.',
+      'sundayCard.held.keepHolding' => 'Keep holding',
+      'sundayCard.held.sendAnyway' => 'Send anyway',
+      'sundayCard.sent.title' => 'Sent',
+      'sundayCard.sent.text' => ({required Object name}) => 'The card went to ${name}.',
+      'sundayCard.sent.textNoName' => 'The card went to your person.',
+      'sundayCard.sent.done' => 'Done',
       'tabs.today' => 'Today',
       'tabs.slips' => 'Slips',
       'tabs.together' => 'Together',

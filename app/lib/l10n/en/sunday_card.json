@@ -14,5 +14,34 @@
   "errorTitle": "Could not load the card",
   "errorText": "Your slips are still saved. Try again.",
   "saveError": "Could not save the card. Try again.",
-  "openFromToday": "See the draft"
+  "openFromToday": "See the draft",
+  "deliverError": "Could not send right now. The card is still here, try again.",
+  "send": {
+    "action": "Send",
+    "invite": "Invite to send",
+    "needsPartner": "To send the card in the app, your person has to be connected.",
+    "title": "Send the card?",
+    "text": "{name} receives it now. Once sent, the card does not change.",
+    "textNoName": "Your person receives it now. Once sent, the card does not change.",
+    "confirm": "Send"
+  },
+  "hold": {
+    "action": "Hold this week",
+    "title": "Hold this week?",
+    "text": "The card is kept and nothing is lost. You can send it whenever you like.",
+    "confirm": "Hold"
+  },
+  "held": {
+    "title": "Held this week",
+    "titleHighlight": "Held",
+    "text": "Your card waits. Send it when you are ready. Nothing is lost.",
+    "keepHolding": "Keep holding",
+    "sendAnyway": "Send anyway"
+  },
+  "sent": {
+    "title": "Sent",
+    "text": "The card went to {name}.",
+    "textNoName": "The card went to your person.",
+    "done": "Done"
+  }
 }

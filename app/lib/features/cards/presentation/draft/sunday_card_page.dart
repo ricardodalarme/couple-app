@@ -25,9 +25,12 @@ class const SundayCardPage({super.key}) extends StatelessWidget implements AutoR
     return BaseView(
       appBar: BaseAppBar(title: l10n.title),
       body: BlocListener<SundayCardCubit, SundayCardState>(
-        listenWhen: (previous, current) => previous.saveAction != current.saveAction,
+        listenWhen: (previous, current) =>
+            previous.saveAction != current.saveAction ||
+            previous.deliverAction != current.deliverAction,
         listener: (context, state) {
           if (state.saveAction is Failure) BaseToast.show(context, l10n.saveError);
+          if (state.deliverAction is Failure) BaseToast.show(context, l10n.deliverError);
         },
         child: switch (card) {
           Success<SundayCard>(:final value) => SundayCardBody(card: value),

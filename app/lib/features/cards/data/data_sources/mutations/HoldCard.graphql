@@ -1,0 +1,5 @@
+mutation HoldCard($cardId: UUID!) {
+  holdCard(cardId: $cardId) {
+    ...CardFragment
+  }
+}
