@@ -90,6 +90,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$reminders$pt reminders = Translations$reminders$pt.internal(_root);
   late final Translations$repair$pt repair = Translations$repair$pt.internal(_root);
   late final Translations$rituals$pt rituals = Translations$rituals$pt.internal(_root);
+  late final Translations$safeMode$pt safeMode = Translations$safeMode$pt.internal(_root);
   late final Translations$safety$pt safety = Translations$safety$pt.internal(_root);
   late final Translations$slipDetail$pt slipDetail = Translations$slipDetail$pt.internal(_root);
   late final Translations$slipKind$pt slipKind = Translations$slipKind$pt.internal(_root);
@@ -1788,6 +1789,33 @@ class Translations$rituals$pt {
   };
 }
 
+// Path: safeMode
+class Translations$safeMode$pt {
+  Translations$safeMode$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Modo seguro'
+  String get title => 'Modo seguro';
+
+  /// pt: 'Para quando o app precisa ficar discreto neste celular.'
+  String get text => 'Para quando o app precisa ficar discreto neste celular.';
+
+  /// pt: 'Esconder o app'
+  String get toggle => 'Esconder o app';
+
+  /// pt: 'Quando você troca de app, a tela fica em branco.'
+  String get toggleText => 'Quando você troca de app, a tela fica em branco.';
+
+  /// pt: 'Isto fica só neste celular. Nada é enviado nem registrado.'
+  String get localOnly => 'Isto fica só neste celular. Nada é enviado nem registrado.';
+
+  /// pt: 'Sair agora'
+  String get quickExit => 'Sair agora';
+}
+
 // Path: safety
 class Translations$safety$pt {
   Translations$safety$pt.internal(this._root);
@@ -1820,6 +1848,9 @@ class Translations$safety$pt {
 
   /// pt: 'Esta tela não guarda nada e nada é enviado a ninguém.'
   String get privateNote => 'Esta tela não guarda nada e nada é enviado a ninguém.';
+
+  /// pt: 'Modo seguro e saída rápida'
+  String get safeModeLink => 'Modo seguro e saída rápida';
 
   /// pt: 'Segurança e apoio'
   String get entry => 'Segurança e apoio';
@@ -4334,6 +4365,12 @@ extension on Translations {
           'rituals.errors.NOT_FOUND' => 'Esse ritual não está mais aqui.',
           'rituals.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'rituals.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'safeMode.title' => 'Modo seguro',
+          'safeMode.text' => 'Para quando o app precisa ficar discreto neste celular.',
+          'safeMode.toggle' => 'Esconder o app',
+          'safeMode.toggleText' => 'Quando você troca de app, a tela fica em branco.',
+          'safeMode.localOnly' => 'Isto fica só neste celular. Nada é enviado nem registrado.',
+          'safeMode.quickExit' => 'Sair agora',
           'safety.title' => 'Linhas de ajuda',
           'safety.subtitle' => 'Se você não se sente seguro, alguém pode ouvir agora.',
           'safety.lines.cvv' => 'CVV',
@@ -4344,6 +4381,7 @@ extension on Translations {
           'safety.call' => 'Ligar',
           'safety.copied' => 'Número copiado',
           'safety.privateNote' => 'Esta tela não guarda nada e nada é enviado a ninguém.',
+          'safety.safeModeLink' => 'Modo seguro e saída rápida',
           'safety.entry' => 'Segurança e apoio',
           'slipDetail.dateLine' => ({
             required Object weekday,
@@ -4695,6 +4733,9 @@ extension on Translations {
                   other: 'Seus slips privados: ${count} esta semana',
                 ),
           'today.sundayCardLabel' => 'Cartão de domingo',
+          _ => null,
+        } ??
+        switch (path) {
           'today.sundayCardTitle' => 'Seu cartão desta semana',
           'today.inviteCardLabel' => 'Convite',
           'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
@@ -4702,9 +4743,6 @@ extension on Translations {
           'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
           'today.privateTag' => 'Só seu',
           'today.privateQuestion' => 'Como foi o seu dia, de verdade?',
-          _ => null,
-        } ??
-        switch (path) {
           'today.privateHighlight' => 'dia',
           'today.privateAction' => 'Anotar um slip',
           'today.emptyWeekTag' => 'Sem pressa',

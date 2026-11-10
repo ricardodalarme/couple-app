@@ -1,0 +1,8 @@
+{
+  "title": "Modo seguro",
+  "text": "Para quando o app precisa ficar discreto neste celular.",
+  "toggle": "Esconder o app",
+  "toggleText": "Quando você troca de app, a tela fica em branco.",
+  "localOnly": "Isto fica só neste celular. Nada é enviado nem registrado.",
+  "quickExit": "Sair agora"
+}

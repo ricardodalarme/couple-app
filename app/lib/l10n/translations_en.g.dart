@@ -116,6 +116,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$rituals$en rituals = _Translations$rituals$en._(_root);
   @override
+  late final _Translations$safeMode$en safeMode = _Translations$safeMode$en._(_root);
+  @override
   late final _Translations$safety$en safety = _Translations$safety$en._(_root);
   @override
   late final _Translations$slipDetail$en slipDetail = _Translations$slipDetail$en._(_root);
@@ -1499,6 +1501,27 @@ class _Translations$rituals$en extends Translations$rituals$pt {
   };
 }
 
+// Path: safeMode
+class _Translations$safeMode$en extends Translations$safeMode$pt {
+  _Translations$safeMode$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Safe mode';
+  @override
+  String get text => 'For when the app needs to stay discreet on this phone.';
+  @override
+  String get toggle => 'Hide the app';
+  @override
+  String get toggleText => 'When you switch apps, the screen goes blank.';
+  @override
+  String get localOnly => 'This stays only on this phone. Nothing is sent or recorded.';
+  @override
+  String get quickExit => 'Leave now';
+}
+
 // Path: safety
 class _Translations$safety$en extends Translations$safety$pt {
   _Translations$safety$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1525,6 +1548,8 @@ class _Translations$safety$en extends Translations$safety$pt {
   String get copied => 'Number copied';
   @override
   String get privateNote => 'This screen keeps nothing and nothing is sent to anyone.';
+  @override
+  String get safeModeLink => 'Safe mode and quick exit';
   @override
   String get entry => 'Safety and support';
 }
@@ -3718,6 +3743,12 @@ extension on TranslationsEn {
           'rituals.errors.NOT_FOUND' => 'That ritual isn\'t here anymore.',
           'rituals.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'rituals.errors.other' => 'Couldn\'t do that right now. Try again.',
+          'safeMode.title' => 'Safe mode',
+          'safeMode.text' => 'For when the app needs to stay discreet on this phone.',
+          'safeMode.toggle' => 'Hide the app',
+          'safeMode.toggleText' => 'When you switch apps, the screen goes blank.',
+          'safeMode.localOnly' => 'This stays only on this phone. Nothing is sent or recorded.',
+          'safeMode.quickExit' => 'Leave now',
           'safety.title' => 'Help lines',
           'safety.subtitle' => 'If you don\'t feel safe, someone can listen right now.',
           'safety.lines.cvv' => 'CVV',
@@ -3728,6 +3759,7 @@ extension on TranslationsEn {
           'safety.call' => 'Call',
           'safety.copied' => 'Number copied',
           'safety.privateNote' => 'This screen keeps nothing and nothing is sent to anyone.',
+          'safety.safeModeLink' => 'Safe mode and quick exit',
           'safety.entry' => 'Safety and support',
           'slipDetail.dateLine' => ({
             required Object weekday,
@@ -4078,6 +4110,9 @@ extension on TranslationsEn {
                   other: 'Your private slips: ${count} this week',
                 ),
           'today.sundayCardLabel' => 'Sunday card',
+          _ => null,
+        } ??
+        switch (path) {
           'today.sundayCardTitle' => 'Your card for this week',
           'today.inviteCardLabel' => 'Invite',
           'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',
@@ -4085,9 +4120,6 @@ extension on TranslationsEn {
           'today.inviteCardText' => 'Shared cards and tools need both of you.',
           'today.privateTag' => 'Only yours',
           'today.privateQuestion' => 'How was your day, really?',
-          _ => null,
-        } ??
-        switch (path) {
           'today.privateHighlight' => 'day',
           'today.privateAction' => 'Note a slip',
           'today.emptyWeekTag' => 'No rush',

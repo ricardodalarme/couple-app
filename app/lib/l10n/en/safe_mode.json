@@ -1,0 +1,8 @@
+{
+  "title": "Safe mode",
+  "text": "For when the app needs to stay discreet on this phone.",
+  "toggle": "Hide the app",
+  "toggleText": "When you switch apps, the screen goes blank.",
+  "localOnly": "This stays only on this phone. Nothing is sent or recorded.",
+  "quickExit": "Leave now"
+}

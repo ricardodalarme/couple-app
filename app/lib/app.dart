@@ -3,6 +3,8 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
+import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
+import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/widgets/safe_mode_shield.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
@@ -32,15 +34,20 @@ class const App({super.key}) extends StatelessWidget {
             child: Builder(
               builder: (context) {
                 final theme = AppTheme.light(AppThemeScope.of(context));
-                return BaseApp.router(
-                  theme: theme,
-                  onGenerateTitle: (context) => context.l10n.common.appName,
-                  routerConfig: appRouter.config(
-                    navigatorObservers: () => navigatorObservers,
-                    deepLinkBuilder: _deepLinkBuilder,
+                return BlocProvider.value(
+                  value: injector.get<SafeModeCubit>(),
+                  child: SafeModeShield(
+                    child: BaseApp.router(
+                      theme: theme,
+                      onGenerateTitle: (context) => context.l10n.common.appName,
+                      routerConfig: appRouter.config(
+                        navigatorObservers: () => navigatorObservers,
+                        deepLinkBuilder: _deepLinkBuilder,
+                      ),
+                      locale: TranslationProvider.of(context).flutterLocale,
+                      supportedLocales: AppLocaleUtils.supportedLocales,
+                    ),
                   ),
-                  locale: TranslationProvider.of(context).flutterLocale,
-                  supportedLocales: AppLocaleUtils.supportedLocales,
                 );
               },
             ),

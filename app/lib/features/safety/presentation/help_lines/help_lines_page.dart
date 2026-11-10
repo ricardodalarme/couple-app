@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/safety/presentation/help_lines/cubit/help_lines_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// Help lines with one-tap dialling, always in the neutral theme and never behind Plus.
 @RoutePage()
@@ -56,6 +57,11 @@ class const HelpLinesPage({super.key}) extends StatelessWidget implements AutoRo
               ),
               const SizedBox(height: AppSpace.s12),
               BaseNote(text: l10n.privateNote),
+              const SizedBox(height: AppSpace.s12),
+              BaseTextLink(
+                text: l10n.safeModeLink,
+                onPressed: () => context.pushRoute(const SafeModeRoute()),
+              ),
             ],
           ),
         ),
