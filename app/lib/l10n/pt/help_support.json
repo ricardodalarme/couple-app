@@ -42,5 +42,7 @@
     "RATE_LIMITED": "Você enviou várias mensagens hoje. Tente de novo amanhã.",
     "noData": "Não deu para enviar agora. Sua mensagem continua aqui.",
     "other": "Não deu para enviar agora. Sua mensagem continua aqui."
-  }
+  },
+  "discardTitle": "Descartar esta mensagem?",
+  "discardText": "O que você escreveu não será salvo."
 }

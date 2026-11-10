@@ -1,7 +1,28 @@
 {
   "dateLine": "{weekday}, {month} {day}",
-  "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-  "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "weekdays": [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+  ],
+  "monthsShort": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ],
   "kinds(map)": {
     "quick": "Quick",
     "specific": "Specific",
@@ -44,5 +65,6 @@
     "SLIP_NOT_FOUND": "This slip no longer exists.",
     "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
     "other": "Couldn't do that right now. Try again."
-  }
+  },
+  "discardTitle": "Discard this slip?"
 }

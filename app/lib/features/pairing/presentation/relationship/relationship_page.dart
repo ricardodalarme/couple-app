@@ -137,6 +137,18 @@ class const _RelationshipForm() extends StatelessWidget {
             ),
           const SizedBox(height: AppSpace.s14),
           BaseNote(text: l10n.phaseNote, icon: AppIcons.heart),
+          const SizedBox(height: AppSpace.s20),
+          BaseListGroup(
+            children: [
+              BaseListTile(
+                title: l10n.changedPrompt,
+                subtitle: l10n.changedSubtitle,
+                icon: AppIcons.heart,
+                showsChevron: true,
+                onTap: () => context.pushRoute(const RelationshipChangedRoute()),
+              ),
+            ],
+          ),
           if (hasPartner ?? false) ...[
             const SizedBox(height: AppSpace.s20),
             BaseListGroup(

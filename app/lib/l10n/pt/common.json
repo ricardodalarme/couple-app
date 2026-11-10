@@ -9,5 +9,9 @@
   "password": "Senha",
   "firstName": "Nome",
   "lastName": "Sobrenome",
-  "genericError": "Algo deu errado"
+  "genericError": "Algo deu errado",
+  "discardTitle": "Descartar as alterações?",
+  "discardText": "O que você escreveu não será salvo.",
+  "discard": "Descartar",
+  "keepWriting": "Continuar escrevendo"
 }

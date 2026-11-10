@@ -5,6 +5,7 @@ query MySettings {
     timeZone
     partnerName
     togetherSince
+    relationshipStatus
     onboardedAt
     shareReadReceipts
     widgetInDiscreet

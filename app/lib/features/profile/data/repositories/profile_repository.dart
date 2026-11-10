@@ -8,6 +8,7 @@ import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutation
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateDisplayName.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdatePronouns.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateRelationshipPhase.graphql.dart';
+import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateRelationshipStatus.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateTheme.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateTimeZone.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateTogetherSince.graphql.dart';
@@ -15,11 +16,13 @@ import 'package:flutter_bloc_starter/features/profile/data/data_sources/profile_
 import 'package:flutter_bloc_starter/features/profile/data/mappers/account_settings_mapper.dart';
 import 'package:flutter_bloc_starter/features/profile/data/mappers/profile_mapper.dart';
 import 'package:flutter_bloc_starter/features/profile/data/mappers/relationship_phase_mapper.dart';
+import 'package:flutter_bloc_starter/features/profile/data/mappers/relationship_status_mapper.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile_details.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_details.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_status.dart';
 import 'package:logger/logger.dart';
 
 /// The goal slugs the server accepts in `profile_settings.goals`.
@@ -92,6 +95,7 @@ class ProfileRepository({required final ProfileDataSource _profileDataSource}) {
         profileId: settings.profileId,
         phase: RelationshipPhase.fromServer(settings.phase?.toJson()),
         togetherSince: settings.togetherSince,
+        relationshipStatus: RelationshipStatus.fromServer(settings.relationshipStatus.toJson()),
       );
     } catch (e, stack) {
       _logger.error('Failed to load the relationship details', error: e, stackTrace: stack);
@@ -179,6 +183,22 @@ class ProfileRepository({required final ProfileDataSource _profileDataSource}) {
       _notifyChanges();
     } catch (e, stack) {
       _logger.error('Failed to save the relationship date', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  Future<void> updateRelationshipStatus({
+    required String profileId,
+    required RelationshipStatus status,
+  }) async {
+    try {
+      final affected = await _profileDataSource.updateRelationshipStatus(
+        VariablesMutationUpdateRelationshipStatus(profileId: profileId, status: status.toSource()),
+      );
+      _ensureUpdated(affected);
+      _notifyChanges();
+    } catch (e, stack) {
+      _logger.error('Failed to save the relationship status', error: e, stackTrace: stack);
       rethrow;
     }
   }

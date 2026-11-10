@@ -320,6 +320,22 @@ class FirstSlipRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [GriefSupportPage]
+class GriefSupportRoute extends PageRouteInfo<void> {
+  const GriefSupportRoute({List<PageRouteInfo>? children})
+    : super(GriefSupportRoute.name, initialChildren: children);
+
+  static const String name = 'GriefSupportRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const GriefSupportPage();
+    },
+  );
+}
+
+/// generated route for
 /// [GuidedRepairPage]
 class GuidedRepairRoute extends PageRouteInfo<void> {
   const GuidedRepairRoute({List<PageRouteInfo>? children})
@@ -920,6 +936,22 @@ class ReceivedSignalsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RelationshipChangedPage]
+class RelationshipChangedRoute extends PageRouteInfo<void> {
+  const RelationshipChangedRoute({List<PageRouteInfo>? children})
+    : super(RelationshipChangedRoute.name, initialChildren: children);
+
+  static const String name = 'RelationshipChangedRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const RelationshipChangedPage());
+    },
+  );
+}
+
+/// generated route for
 /// [RelationshipPage]
 class RelationshipRoute extends PageRouteInfo<void> {
   const RelationshipRoute({List<PageRouteInfo>? children})
@@ -1031,6 +1063,55 @@ class SafeModeRoute extends PageRouteInfo<void> {
       return WrappedRoute(child: const SafeModePage());
     },
   );
+}
+
+/// generated route for
+/// [SessionExpiredPage]
+class SessionExpiredRoute extends PageRouteInfo<SessionExpiredRouteArgs> {
+  SessionExpiredRoute({
+    VoidCallback? onSignIn,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         SessionExpiredRoute.name,
+         args: SessionExpiredRouteArgs(onSignIn: onSignIn, key: key),
+         initialChildren: children,
+       );
+
+  static const String name = 'SessionExpiredRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<SessionExpiredRouteArgs>(
+        orElse: () => const SessionExpiredRouteArgs(),
+      );
+      return SessionExpiredPage(onSignIn: args.onSignIn, key: args.key);
+    },
+  );
+}
+
+class SessionExpiredRouteArgs {
+  const SessionExpiredRouteArgs({this.onSignIn, this.key});
+
+  final VoidCallback? onSignIn;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SessionExpiredRouteArgs{onSignIn: $onSignIn, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SessionExpiredRouteArgs) return false;
+    return onSignIn == other.onSignIn && key == other.key;
+  }
+
+  @override
+  int get hashCode => onSignIn.hashCode ^ key.hashCode;
 }
 
 /// generated route for

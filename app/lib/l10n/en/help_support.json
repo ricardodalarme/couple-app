@@ -42,5 +42,7 @@
     "RATE_LIMITED": "You sent several messages today. Try again tomorrow.",
     "noData": "Couldn't send right now. Your message is still here.",
     "other": "Couldn't send right now. Your message is still here."
-  }
+  },
+  "discardTitle": "Discard this message?",
+  "discardText": "What you wrote won't be saved."
 }

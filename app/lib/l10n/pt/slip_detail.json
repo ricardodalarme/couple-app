@@ -1,7 +1,28 @@
 {
   "dateLine": "{weekday}, {day} de {month}",
-  "weekdays": ["segunda", "terça", "quarta", "quinta", "sexta", "sábado", "domingo"],
-  "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+  "weekdays": [
+    "segunda",
+    "terça",
+    "quarta",
+    "quinta",
+    "sexta",
+    "sábado",
+    "domingo"
+  ],
+  "monthsShort": [
+    "jan",
+    "fev",
+    "mar",
+    "abr",
+    "mai",
+    "jun",
+    "jul",
+    "ago",
+    "set",
+    "out",
+    "nov",
+    "dez"
+  ],
   "kinds(map)": {
     "quick": "Rápido",
     "specific": "Específico",
@@ -44,5 +65,6 @@
     "SLIP_NOT_FOUND": "Este slip não existe mais.",
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para fazer isso agora. Tente de novo."
-  }
+  },
+  "discardTitle": "Descartar este slip?"
 }

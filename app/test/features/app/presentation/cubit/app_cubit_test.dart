@@ -154,6 +154,65 @@ void main() {
       await cubit.close();
     });
 
+    test('an auth loss after signing in expires the session without clearing drafts', () async {
+      final statuses = StreamController<bool>();
+      when(() => authenticationRepository.isAuthenticatedStream).thenAnswer((_) => statuses.stream);
+      final cubit = build();
+      addTearDown(() async {
+        await statuses.close();
+        await cubit.close();
+      });
+
+      await cubit.initialize();
+      statuses.add(false);
+      await pumpEventQueue();
+
+      expect(cubit.state, AppState.sessionExpired);
+      verifyNever(() => supportRepository.clearPending());
+      verifyNever(() => authenticationRepository.logOut());
+      verifyNever(() => notificationsRepository.unregisterCurrentDevice());
+    });
+
+    test('a late profile read cannot overwrite the expired state', () async {
+      final statuses = StreamController<bool>();
+      final profile = Completer<Profile>();
+      when(() => authenticationRepository.isAuthenticatedStream).thenAnswer((_) => statuses.stream);
+      when(() => profileRepository.ensureProfile()).thenAnswer((_) => profile.future);
+      final cubit = build();
+      addTearDown(() async {
+        await statuses.close();
+        await cubit.close();
+      });
+
+      final initializing = cubit.initialize();
+      statuses.add(false);
+      await pumpEventQueue();
+      expect(cubit.state, AppState.sessionExpired);
+
+      profile.complete(const Profile.fake());
+      await initializing;
+
+      expect(cubit.state, AppState.sessionExpired);
+    });
+
+    test('an explicit sign-out still lands on unauthenticated', () async {
+      final statuses = StreamController<bool>();
+      when(() => authenticationRepository.isAuthenticatedStream).thenAnswer((_) => statuses.stream);
+      when(() => authenticationRepository.logOut()).thenAnswer((_) async => statuses.add(false));
+      final cubit = build();
+      addTearDown(() async {
+        await statuses.close();
+        await cubit.close();
+      });
+
+      await cubit.initialize();
+      await cubit.logout();
+      await pumpEventQueue();
+
+      expect(cubit.state, AppState.unauthenticated);
+      verify(() => supportRepository.clearPending()).called(1);
+    });
+
     blocTest<AppCubit, AppState>(
       'completeOnboarding moves on to authenticated',
       build: build,

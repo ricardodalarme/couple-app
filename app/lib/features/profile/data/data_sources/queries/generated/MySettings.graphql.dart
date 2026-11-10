@@ -114,6 +114,13 @@ const documentNodeQueryMySettings = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'relationshipStatus'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: 'onboardedAt'),
                   alias: null,
                   arguments: [],
@@ -290,6 +297,7 @@ class QueryMySettingsmySettings {
     required this.timeZone,
     this.partnerName,
     this.togetherSince,
+    required this.relationshipStatus,
     this.onboardedAt,
     required this.shareReadReceipts,
     required this.widgetInDiscreet,
@@ -305,6 +313,7 @@ class QueryMySettingsmySettings {
     final l$timeZone = json['timeZone'];
     final l$partnerName = json['partnerName'];
     final l$togetherSince = json['togetherSince'];
+    final l$relationshipStatus = json['relationshipStatus'];
     final l$onboardedAt = json['onboardedAt'];
     final l$shareReadReceipts = json['shareReadReceipts'];
     final l$widgetInDiscreet = json['widgetInDiscreet'];
@@ -318,6 +327,7 @@ class QueryMySettingsmySettings {
       timeZone: (l$timeZone as String),
       partnerName: (l$partnerName as String?),
       togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
+      relationshipStatus: fromJsonEnumRelationshipStatus((l$relationshipStatus as String)),
       onboardedAt: l$onboardedAt == null ? null : DateTime.parse((l$onboardedAt as String)),
       shareReadReceipts: (l$shareReadReceipts as bool),
       widgetInDiscreet: (l$widgetInDiscreet as bool),
@@ -337,6 +347,8 @@ class QueryMySettingsmySettings {
   final String? partnerName;
 
   final DateTime? togetherSince;
+
+  final EnumRelationshipStatus relationshipStatus;
 
   final DateTime? onboardedAt;
 
@@ -366,6 +378,8 @@ class QueryMySettingsmySettings {
     _resultData['togetherSince'] = l$togetherSince == null
         ? null
         : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
+    final l$relationshipStatus = relationshipStatus;
+    _resultData['relationshipStatus'] = toJsonEnumRelationshipStatus(l$relationshipStatus);
     final l$onboardedAt = onboardedAt;
     _resultData['onboardedAt'] = l$onboardedAt == null
         ? null
@@ -392,6 +406,7 @@ class QueryMySettingsmySettings {
     final l$timeZone = timeZone;
     final l$partnerName = partnerName;
     final l$togetherSince = togetherSince;
+    final l$relationshipStatus = relationshipStatus;
     final l$onboardedAt = onboardedAt;
     final l$shareReadReceipts = shareReadReceipts;
     final l$widgetInDiscreet = widgetInDiscreet;
@@ -405,6 +420,7 @@ class QueryMySettingsmySettings {
       l$timeZone,
       l$partnerName,
       l$togetherSince,
+      l$relationshipStatus,
       l$onboardedAt,
       l$shareReadReceipts,
       l$widgetInDiscreet,
@@ -446,6 +462,11 @@ class QueryMySettingsmySettings {
     final l$togetherSince = togetherSince;
     final lOther$togetherSince = other.togetherSince;
     if (l$togetherSince != lOther$togetherSince) {
+      return false;
+    }
+    final l$relationshipStatus = relationshipStatus;
+    final lOther$relationshipStatus = other.relationshipStatus;
+    if (l$relationshipStatus != lOther$relationshipStatus) {
       return false;
     }
     final l$onboardedAt = onboardedAt;

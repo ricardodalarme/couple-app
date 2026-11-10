@@ -30,10 +30,13 @@ class SupportCubit({
   void onReplyEmailChanged(String replyEmail) => emit(state.copyWith(replyEmail: replyEmail));
 
   Future<void> send() async {
-    if (!state.canSend || state.sendAction.isLoading || state.sendAction is Success) return;
+    if (isClosed || !state.canSend || state.sendAction.isLoading || state.sendAction is Success) {
+      return;
+    }
 
     final authorId = _authenticationRepository.currentUserId;
     if (authorId == null) {
+      if (isClosed) return;
       emit(
         state.copyWith(sendAction: const Failure(LocalizedException(l10nKey: 'UNAUTHENTICATED'))),
       );
@@ -51,8 +54,10 @@ class SupportCubit({
         replyEmail: replyEmail.isEmpty ? null : replyEmail,
         appVersion: await _appVersionService.read(),
       );
+      if (isClosed) return;
       emit(state.copyWith(sendAction: Success(outcome)));
     } catch (exception) {
+      if (isClosed) return;
       emit(state.copyWith(sendAction: Failure.fromObject(exception)));
       emit(state.copyWith(sendAction: const Initial()));
     }

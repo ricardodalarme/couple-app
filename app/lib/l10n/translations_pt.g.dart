@@ -73,6 +73,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$globalErrors$pt globalErrors = Translations$globalErrors$pt.internal(
     _root,
   );
+  late final Translations$griefSupport$pt griefSupport = Translations$griefSupport$pt.internal(
+    _root,
+  );
   late final Translations$help$pt help = Translations$help$pt.internal(_root);
   late final Translations$helpSupport$pt helpSupport = Translations$helpSupport$pt.internal(_root);
   late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
@@ -100,6 +103,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   );
   late final Translations$quickSlip$pt quickSlip = Translations$quickSlip$pt.internal(_root);
   late final Translations$received$pt received = Translations$received$pt.internal(_root);
+  late final Translations$relationshipChanged$pt relationshipChanged =
+      Translations$relationshipChanged$pt.internal(_root);
   late final Translations$relationshipSettings$pt relationshipSettings =
       Translations$relationshipSettings$pt.internal(_root);
   late final Translations$reminders$pt reminders = Translations$reminders$pt.internal(_root);
@@ -107,6 +112,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$rituals$pt rituals = Translations$rituals$pt.internal(_root);
   late final Translations$safeMode$pt safeMode = Translations$safeMode$pt.internal(_root);
   late final Translations$safety$pt safety = Translations$safety$pt.internal(_root);
+  late final Translations$sessionExpired$pt sessionExpired =
+      Translations$sessionExpired$pt.internal(_root);
   late final Translations$settingsHome$pt settingsHome = Translations$settingsHome$pt.internal(
     _root,
   );
@@ -527,6 +534,18 @@ class Translations$common$pt {
 
   /// pt: 'Algo deu errado'
   String get genericError => 'Algo deu errado';
+
+  /// pt: 'Descartar as alterações?'
+  String get discardTitle => 'Descartar as alterações?';
+
+  /// pt: 'O que você escreveu não será salvo.'
+  String get discardText => 'O que você escreveu não será salvo.';
+
+  /// pt: 'Descartar'
+  String get discard => 'Descartar';
+
+  /// pt: 'Continuar escrevendo'
+  String get keepWriting => 'Continuar escrevendo';
 }
 
 // Path: dateNight
@@ -983,6 +1002,30 @@ class Translations$globalErrors$pt {
   String get updateUnavailable => 'Não foi possível abrir a loja. Atualize por lá.';
 }
 
+// Path: griefSupport
+class Translations$griefSupport$pt {
+  Translations$griefSupport$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Estamos com você'
+  String get title => 'Estamos com você';
+
+  /// pt: 'você'
+  String get highlight => 'você';
+
+  /// pt: 'Suas lembranças continuam aqui, no seu ritmo.'
+  String get text => 'Suas lembranças continuam aqui, no seu ritmo.';
+
+  /// pt: 'Ver apoio'
+  String get seeSupport => 'Ver apoio';
+
+  /// pt: 'Voltar ao início'
+  String get backHome => 'Voltar ao início';
+}
+
 // Path: help
 class Translations$help$pt {
   Translations$help$pt.internal(this._root);
@@ -1116,6 +1159,12 @@ class Translations$helpSupport$pt {
     'noData': 'Não deu para enviar agora. Sua mensagem continua aqui.',
     'other': 'Não deu para enviar agora. Sua mensagem continua aqui.',
   };
+
+  /// pt: 'Descartar esta mensagem?'
+  String get discardTitle => 'Descartar esta mensagem?';
+
+  /// pt: 'O que você escreveu não será salvo.'
+  String get discardText => 'O que você escreveu não será salvo.';
 }
 
 // Path: ideaDetail
@@ -2457,6 +2506,47 @@ class Translations$received$pt {
   };
 }
 
+// Path: relationshipChanged
+class Translations$relationshipChanged$pt {
+  Translations$relationshipChanged$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Algo mudou?'
+  String get title => 'Algo mudou?';
+
+  /// pt: 'mudou'
+  String get highlight => 'mudou';
+
+  /// pt: 'Conte com calma. Isso só muda o que o app mostra.'
+  String get subtitle => 'Conte com calma. Isso só muda o que o app mostra.';
+
+  /// pt: 'Terminamos'
+  String get optionEnded => 'Terminamos';
+
+  /// pt: 'Perdi a pessoa'
+  String get optionBereaved => 'Perdi a pessoa';
+
+  /// pt: 'Um tempo'
+  String get optionOnBreak => 'Um tempo';
+
+  /// pt: 'Está tudo bem'
+  String get optionTogether => 'Está tudo bem';
+
+  /// pt: 'Continuar'
+  String get continueLabel => 'Continuar';
+
+  /// pt: 'Salvo'
+  String get saved => 'Salvo';
+
+  Map<String, String> get errors => {
+    'NETWORK': 'Sem conexão. Tente de novo.',
+    'other': 'Não deu para salvar agora. Tente de novo.',
+  };
+}
+
 // Path: relationshipSettings
 class Translations$relationshipSettings$pt {
   Translations$relationshipSettings$pt.internal(this._root);
@@ -2541,6 +2631,12 @@ class Translations$relationshipSettings$pt {
     'NETWORK': 'Sem conexão. Tente de novo.',
     'other': 'Não deu para salvar agora. Tente de novo.',
   };
+
+  /// pt: 'Algo mudou entre vocês?'
+  String get changedPrompt => 'Algo mudou entre vocês?';
+
+  /// pt: 'Atualize o que o app mostra'
+  String get changedSubtitle => 'Atualize o que o app mostra';
 }
 
 // Path: reminders
@@ -2730,6 +2826,27 @@ class Translations$safety$pt {
 
   /// pt: 'Segurança e apoio'
   String get entry => 'Segurança e apoio';
+}
+
+// Path: sessionExpired
+class Translations$sessionExpired$pt {
+  Translations$sessionExpired$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Sua sessão terminou'
+  String get title => 'Sua sessão terminou';
+
+  /// pt: 'terminou'
+  String get highlight => 'terminou';
+
+  /// pt: 'Entre de novo para continuar. Seus dados estão seguros.'
+  String get text => 'Entre de novo para continuar. Seus dados estão seguros.';
+
+  /// pt: 'Entrar'
+  String get action => 'Entrar';
 }
 
 // Path: settingsHome
@@ -2970,6 +3087,9 @@ class Translations$slipDetail$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
+
+  /// pt: 'Descartar este slip?'
+  String get discardTitle => 'Descartar este slip?';
 }
 
 // Path: slipKind
@@ -4709,6 +4829,10 @@ extension on Translations {
           'common.firstName' => 'Nome',
           'common.lastName' => 'Sobrenome',
           'common.genericError' => 'Algo deu errado',
+          'common.discardTitle' => 'Descartar as alterações?',
+          'common.discardText' => 'O que você escreveu não será salvo.',
+          'common.discard' => 'Descartar',
+          'common.keepWriting' => 'Continuar escrevendo',
           'dateNight.title' => 'Date night',
           'dateNight.subtitle' => 'Ideias para vocês dois, escolhidas juntos.',
           'dateNight.hint' => 'Ex.: piquenique no parque',
@@ -4896,6 +5020,11 @@ extension on Translations {
           'globalErrors.updateText' => 'Há uma versão nova. Atualize para continuar.',
           'globalErrors.updateAction' => 'Atualizar',
           'globalErrors.updateUnavailable' => 'Não foi possível abrir a loja. Atualize por lá.',
+          'griefSupport.title' => 'Estamos com você',
+          'griefSupport.highlight' => 'você',
+          'griefSupport.text' => 'Suas lembranças continuam aqui, no seu ritmo.',
+          'griefSupport.seeSupport' => 'Ver apoio',
+          'griefSupport.backHome' => 'Voltar ao início',
           'help.badDayTitle' => 'Um dia difícil',
           'help.badDayText' => 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.',
           'help.starterTitle' => 'Começar uma conversa',
@@ -4948,6 +5077,8 @@ extension on Translations {
             'Você enviou várias mensagens hoje. Tente de novo amanhã.',
           'helpSupport.errors.noData' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
           'helpSupport.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
+          'helpSupport.discardTitle' => 'Descartar esta mensagem?',
+          'helpSupport.discardText' => 'O que você escreveu não será salvo.',
           'ideaDetail.label' => 'Ideia do dia',
           'ideaDetail.whyTitle' => 'Por que esta ideia',
           'ideaDetail.yourPhase' => 'Sua fase',
@@ -5109,6 +5240,9 @@ extension on Translations {
           'mood.errors.NETWORK' =>
             'Não deu para salvar seu humor. Verifique a conexão e tente de novo.',
           'mood.errors.TIMEOUT' => 'Não deu para salvar seu humor a tempo. Tente de novo.',
+          _ => null,
+        } ??
+        switch (path) {
           'mood.errors.other' => 'Não deu para salvar seu humor. Tente de novo.',
           'mood.entryCategory' => 'Humor do dia',
           'mood.entryTitle' => 'Como você está hoje?',
@@ -5124,9 +5258,6 @@ extension on Translations {
           'mood.partnerLoving' => ({
             required Object name,
           }) => '${name} está com o coração quentinho hoje',
-          _ => null,
-        } ??
-        switch (path) {
           'mood.partnerPlayful' => ({
             required Object name,
           }) => '${name} está com vontade de brincar hoje',
@@ -5499,6 +5630,17 @@ extension on Translations {
           'received.errors.NOT_FOUND' => 'Essa mensagem não está mais aqui.',
           'received.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'received.errors.other' => 'Não deu para responder agora. Tente de novo.',
+          'relationshipChanged.title' => 'Algo mudou?',
+          'relationshipChanged.highlight' => 'mudou',
+          'relationshipChanged.subtitle' => 'Conte com calma. Isso só muda o que o app mostra.',
+          'relationshipChanged.optionEnded' => 'Terminamos',
+          'relationshipChanged.optionBereaved' => 'Perdi a pessoa',
+          'relationshipChanged.optionOnBreak' => 'Um tempo',
+          'relationshipChanged.optionTogether' => 'Está tudo bem',
+          'relationshipChanged.continueLabel' => 'Continuar',
+          'relationshipChanged.saved' => 'Salvo',
+          'relationshipChanged.errors.NETWORK' => 'Sem conexão. Tente de novo.',
+          'relationshipChanged.errors.other' => 'Não deu para salvar agora. Tente de novo.',
           'relationshipSettings.title' => 'Relacionamento',
           'relationshipSettings.phaseLabel' => 'Fase',
           'relationshipSettings.phasePlaceholder' => 'Escolha uma fase',
@@ -5541,6 +5683,8 @@ extension on Translations {
           'relationshipSettings.loadErrorText' => 'Confira a conexão e tente de novo.',
           'relationshipSettings.errors.NETWORK' => 'Sem conexão. Tente de novo.',
           'relationshipSettings.errors.other' => 'Não deu para salvar agora. Tente de novo.',
+          'relationshipSettings.changedPrompt' => 'Algo mudou entre vocês?',
+          'relationshipSettings.changedSubtitle' => 'Atualize o que o app mostra',
           'reminders.title' => 'Repara',
           'reminders.dailyIdea' => 'Uma ideia pequena para hoje.',
           'reminders.dates' => 'Uma data está chegando.',
@@ -5663,6 +5807,9 @@ extension on Translations {
             required Object weekday,
           }) => '${cadence}, ${weekday}',
           'rituals.weekdays.0' => 'domingo',
+          _ => null,
+        } ??
+        switch (path) {
           'rituals.weekdays.1' => 'segunda',
           'rituals.weekdays.2' => 'terça',
           'rituals.weekdays.3' => 'quarta',
@@ -5695,6 +5842,10 @@ extension on Translations {
           'safeMode.localOnly' => 'Isto fica só neste celular. Nada é enviado nem registrado.',
           'safeMode.quickExit' => 'Sair agora',
           'safety.entry' => 'Segurança e apoio',
+          'sessionExpired.title' => 'Sua sessão terminou',
+          'sessionExpired.highlight' => 'terminou',
+          'sessionExpired.text' => 'Entre de novo para continuar. Seus dados estão seguros.',
+          'sessionExpired.action' => 'Entrar',
           'settingsHome.title' => 'Configurações',
           'settingsHome.safety' => 'Segurança e apoio',
           'settingsHome.safetyStatus' => 'Modo seguro e saída rápida',
@@ -5766,9 +5917,6 @@ extension on Translations {
           'slipDetail.cardOffText' => 'Fica na sua semana e não entra no cartão.',
           'slipDetail.cardOn' => 'Pode entrar no cartão',
           'slipDetail.cardOnText' => 'No domingo você escolhe se ele vai.',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.cardInvisible' => 'Slips invisíveis nunca entram em um cartão.',
           'slipDetail.previewTitle' => 'O que seu par leria',
           'slipDetail.previewText' => 'Se este slip entrar no cartão, é este texto que aparece.',
@@ -5778,9 +5926,6 @@ extension on Translations {
           'slipDetail.editCancel' => 'Cancelar',
           'slipDetail.archive' => 'Arquivar',
           'slipDetail.restore' => 'Restaurar',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.delete' => 'Apagar',
           'slipDetail.deleteTitle' => 'Apagar este slip?',
           'slipDetail.deleteText' => 'Será removido da sua semana e da linha do tempo.',
@@ -5795,6 +5940,7 @@ extension on Translations {
           'slipDetail.errors.SLIP_NOT_FOUND' => 'Este slip não existe mais.',
           'slipDetail.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'slipDetail.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'slipDetail.discardTitle' => 'Descartar este slip?',
           'slipKind.switcherTitle' => 'Outras formas de registrar',
           'slipKind.needEntry' => 'Preciso de…',
           'slipKind.kinds.specific' => 'Específico',

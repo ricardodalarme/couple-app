@@ -9,4 +9,7 @@ enum AppState() {
   /// Signed in, but the first profile step is not finished.
   onboarding,
   authenticated,
+
+  /// The session was lost without the person signing out.
+  sessionExpired,
 }

@@ -9,5 +9,9 @@
   "password": "Password",
   "firstName": "First Name",
   "lastName": "Last Name",
-  "genericError": "Something went wrong"
+  "genericError": "Something went wrong",
+  "discardTitle": "Discard changes?",
+  "discardText": "What you wrote won't be saved.",
+  "discard": "Discard",
+  "keepWriting": "Keep writing"
 }

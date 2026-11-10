@@ -84,6 +84,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$globalErrors$en globalErrors = _Translations$globalErrors$en._(_root);
   @override
+  late final _Translations$griefSupport$en griefSupport = _Translations$griefSupport$en._(_root);
+  @override
   late final _Translations$help$en help = _Translations$help$en._(_root);
   @override
   late final _Translations$helpSupport$en helpSupport = _Translations$helpSupport$en._(_root);
@@ -132,6 +134,9 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$received$en received = _Translations$received$en._(_root);
   @override
+  late final _Translations$relationshipChanged$en relationshipChanged =
+      _Translations$relationshipChanged$en._(_root);
+  @override
   late final _Translations$relationshipSettings$en relationshipSettings =
       _Translations$relationshipSettings$en._(_root);
   @override
@@ -144,6 +149,10 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$safeMode$en safeMode = _Translations$safeMode$en._(_root);
   @override
   late final _Translations$safety$en safety = _Translations$safety$en._(_root);
+  @override
+  late final _Translations$sessionExpired$en sessionExpired = _Translations$sessionExpired$en._(
+    _root,
+  );
   @override
   late final _Translations$settingsHome$en settingsHome = _Translations$settingsHome$en._(_root);
   @override
@@ -487,6 +496,14 @@ class _Translations$common$en extends Translations$common$pt {
   String get lastName => 'Last Name';
   @override
   String get genericError => 'Something went wrong';
+  @override
+  String get discardTitle => 'Discard changes?';
+  @override
+  String get discardText => 'What you wrote won\'t be saved.';
+  @override
+  String get discard => 'Discard';
+  @override
+  String get keepWriting => 'Keep writing';
 }
 
 // Path: dateNight
@@ -848,6 +865,25 @@ class _Translations$globalErrors$en extends Translations$globalErrors$pt {
   String get updateUnavailable => 'Could not open the store. Update there.';
 }
 
+// Path: griefSupport
+class _Translations$griefSupport$en extends Translations$griefSupport$pt {
+  _Translations$griefSupport$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'We\'re with you';
+  @override
+  String get highlight => 'you';
+  @override
+  String get text => 'Your memories stay here, at your pace.';
+  @override
+  String get seeSupport => 'See support';
+  @override
+  String get backHome => 'Back to the start';
+}
+
 // Path: help
 class _Translations$help$en extends Translations$help$pt {
   _Translations$help$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -953,6 +989,10 @@ class _Translations$helpSupport$en extends Translations$helpSupport$pt {
     'noData': 'Couldn\'t send right now. Your message is still here.',
     'other': 'Couldn\'t send right now. Your message is still here.',
   };
+  @override
+  String get discardTitle => 'Discard this message?';
+  @override
+  String get discardText => 'What you wrote won\'t be saved.';
 }
 
 // Path: ideaDetail
@@ -2012,6 +2052,40 @@ class _Translations$received$en extends Translations$received$pt {
   };
 }
 
+// Path: relationshipChanged
+class _Translations$relationshipChanged$en extends Translations$relationshipChanged$pt {
+  _Translations$relationshipChanged$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Something changed?';
+  @override
+  String get highlight => 'changed';
+  @override
+  String get subtitle => 'Take your time. This only changes what the app shows.';
+  @override
+  String get optionEnded => 'We broke up';
+  @override
+  String get optionBereaved => 'I lost them';
+  @override
+  String get optionOnBreak => 'A break';
+  @override
+  String get optionTogether => 'Everything is fine';
+  @override
+  String get continueLabel => 'Continue';
+  @override
+  String get saved => 'Saved';
+  @override
+  Map<String, String> get errors => {
+    'NETWORK': 'No connection. Try again.',
+    'other': 'Could not save right now. Try again.',
+  };
+}
+
 // Path: relationshipSettings
 class _Translations$relationshipSettings$en extends Translations$relationshipSettings$pt {
   _Translations$relationshipSettings$en._(TranslationsEn root)
@@ -2083,6 +2157,10 @@ class _Translations$relationshipSettings$en extends Translations$relationshipSet
     'NETWORK': 'No connection. Try again.',
     'other': 'Could not save right now. Try again.',
   };
+  @override
+  String get changedPrompt => 'Something changed between you two?';
+  @override
+  String get changedSubtitle => 'Update what the app shows';
 }
 
 // Path: reminders
@@ -2238,6 +2316,23 @@ class _Translations$safety$en extends Translations$safety$pt {
   // Translations
   @override
   String get entry => 'Safety and support';
+}
+
+// Path: sessionExpired
+class _Translations$sessionExpired$en extends Translations$sessionExpired$pt {
+  _Translations$sessionExpired$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Your session ended';
+  @override
+  String get highlight => 'ended';
+  @override
+  String get text => 'Sign in again to continue. Your data is safe.';
+  @override
+  String get action => 'Sign in';
 }
 
 // Path: settingsHome
@@ -2419,6 +2514,8 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t do that right now. Try again.',
   };
+  @override
+  String get discardTitle => 'Discard this slip?';
 }
 
 // Path: slipKind
@@ -3873,6 +3970,10 @@ extension on TranslationsEn {
           'common.firstName' => 'First Name',
           'common.lastName' => 'Last Name',
           'common.genericError' => 'Something went wrong',
+          'common.discardTitle' => 'Discard changes?',
+          'common.discardText' => 'What you wrote won\'t be saved.',
+          'common.discard' => 'Discard',
+          'common.keepWriting' => 'Keep writing',
           'dateNight.title' => 'Date night',
           'dateNight.subtitle' => 'Ideas for the two of you, picked together.',
           'dateNight.hint' => 'E.g. picnic in the park',
@@ -4056,6 +4157,11 @@ extension on TranslationsEn {
           'globalErrors.updateText' => 'There is a new version. Update to continue.',
           'globalErrors.updateAction' => 'Update',
           'globalErrors.updateUnavailable' => 'Could not open the store. Update there.',
+          'griefSupport.title' => 'We\'re with you',
+          'griefSupport.highlight' => 'you',
+          'griefSupport.text' => 'Your memories stay here, at your pace.',
+          'griefSupport.seeSupport' => 'See support',
+          'griefSupport.backHome' => 'Back to the start',
           'help.badDayTitle' => 'A hard day',
           'help.badDayText' => 'Three small things that may help right now. Nothing required.',
           'help.starterTitle' => 'Start a conversation',
@@ -4105,6 +4211,8 @@ extension on TranslationsEn {
             'You sent several messages today. Try again tomorrow.',
           'helpSupport.errors.noData' => 'Couldn\'t send right now. Your message is still here.',
           'helpSupport.errors.other' => 'Couldn\'t send right now. Your message is still here.',
+          'helpSupport.discardTitle' => 'Discard this message?',
+          'helpSupport.discardText' => 'What you wrote won\'t be saved.',
           'ideaDetail.label' => 'Idea of the day',
           'ideaDetail.whyTitle' => 'Why this idea',
           'ideaDetail.yourPhase' => 'Your phase',
@@ -4265,6 +4373,9 @@ extension on TranslationsEn {
           'mood.saved' => 'Mood saved',
           'mood.errors.NETWORK' => 'Couldn\'t save your mood. Check your connection and try again.',
           'mood.errors.TIMEOUT' => 'Couldn\'t save your mood in time. Try again.',
+          _ => null,
+        } ??
+        switch (path) {
           'mood.errors.other' => 'Couldn\'t save your mood. Try again.',
           'mood.entryCategory' => 'Mood of the day',
           'mood.entryTitle' => 'How are you today?',
@@ -4278,9 +4389,6 @@ extension on TranslationsEn {
             required Object name,
           }) => '${name} has a lot on their mind today',
           'mood.partnerLoving' => ({required Object name}) => '${name} is feeling tender today',
-          _ => null,
-        } ??
-        switch (path) {
           'mood.partnerPlayful' => ({required Object name}) => '${name} is in a playful mood today',
           'mood.partnerNeedListen' => 'What helps: just listening.',
           'mood.partnerNeedOpinion' => 'What helps: an opinion.',
@@ -4649,6 +4757,17 @@ extension on TranslationsEn {
           'received.errors.NOT_FOUND' => 'That message isn\'t here anymore.',
           'received.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'received.errors.other' => 'Couldn\'t answer right now. Try again.',
+          'relationshipChanged.title' => 'Something changed?',
+          'relationshipChanged.highlight' => 'changed',
+          'relationshipChanged.subtitle' => 'Take your time. This only changes what the app shows.',
+          'relationshipChanged.optionEnded' => 'We broke up',
+          'relationshipChanged.optionBereaved' => 'I lost them',
+          'relationshipChanged.optionOnBreak' => 'A break',
+          'relationshipChanged.optionTogether' => 'Everything is fine',
+          'relationshipChanged.continueLabel' => 'Continue',
+          'relationshipChanged.saved' => 'Saved',
+          'relationshipChanged.errors.NETWORK' => 'No connection. Try again.',
+          'relationshipChanged.errors.other' => 'Could not save right now. Try again.',
           'relationshipSettings.title' => 'Relationship',
           'relationshipSettings.phaseLabel' => 'Phase',
           'relationshipSettings.phasePlaceholder' => 'Pick a phase',
@@ -4691,6 +4810,8 @@ extension on TranslationsEn {
           'relationshipSettings.loadErrorText' => 'Check your connection and try again.',
           'relationshipSettings.errors.NETWORK' => 'No connection. Try again.',
           'relationshipSettings.errors.other' => 'Could not save right now. Try again.',
+          'relationshipSettings.changedPrompt' => 'Something changed between you two?',
+          'relationshipSettings.changedSubtitle' => 'Update what the app shows',
           'reminders.title' => 'Repara',
           'reminders.dailyIdea' => 'A small idea for today.',
           'reminders.dates' => 'A date is coming up.',
@@ -4810,6 +4931,9 @@ extension on TranslationsEn {
             required Object weekday,
           }) => '${cadence}, ${weekday}',
           'rituals.weekdays.0' => 'Sunday',
+          _ => null,
+        } ??
+        switch (path) {
           'rituals.weekdays.1' => 'Monday',
           'rituals.weekdays.2' => 'Tuesday',
           'rituals.weekdays.3' => 'Wednesday',
@@ -4842,6 +4966,10 @@ extension on TranslationsEn {
           'safeMode.localOnly' => 'This stays only on this phone. Nothing is sent or recorded.',
           'safeMode.quickExit' => 'Leave now',
           'safety.entry' => 'Safety and support',
+          'sessionExpired.title' => 'Your session ended',
+          'sessionExpired.highlight' => 'ended',
+          'sessionExpired.text' => 'Sign in again to continue. Your data is safe.',
+          'sessionExpired.action' => 'Sign in',
           'settingsHome.title' => 'Settings',
           'settingsHome.safety' => 'Safety and support',
           'settingsHome.safetyStatus' => 'Safe mode and quick exit',
@@ -4913,9 +5041,6 @@ extension on TranslationsEn {
           'slipDetail.cardOffText' => 'Stays in your week and does not go in the card.',
           'slipDetail.cardOn' => 'Can go in the card',
           'slipDetail.cardOnText' => 'On Sunday you choose whether it goes.',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.cardInvisible' => 'Invisible slips never go in a card.',
           'slipDetail.previewTitle' => 'What your partner would read',
           'slipDetail.previewText' => 'If this slip goes in the card, this is the text that shows.',
@@ -4925,9 +5050,6 @@ extension on TranslationsEn {
           'slipDetail.editCancel' => 'Cancel',
           'slipDetail.archive' => 'Archive',
           'slipDetail.restore' => 'Restore',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.delete' => 'Delete',
           'slipDetail.deleteTitle' => 'Delete this slip?',
           'slipDetail.deleteText' => 'It will be removed from your week and your timeline.',
@@ -4942,6 +5064,7 @@ extension on TranslationsEn {
           'slipDetail.errors.SLIP_NOT_FOUND' => 'This slip no longer exists.',
           'slipDetail.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'slipDetail.errors.other' => 'Couldn\'t do that right now. Try again.',
+          'slipDetail.discardTitle' => 'Discard this slip?',
           'slipKind.switcherTitle' => 'Other ways to write it down',
           'slipKind.needEntry' => 'I need…',
           'slipKind.kinds.specific' => 'Specific',

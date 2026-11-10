@@ -4,6 +4,7 @@ import 'package:flutter_bloc_starter/features/pairing/data/data_sources/pairing_
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/accept/cubit/accept_invite_cubit.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/invite/cubit/invite_cubit.dart';
+import 'package:flutter_bloc_starter/features/pairing/presentation/relationship/cubit/relationship_changed_cubit.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/relationship/cubit/relationship_settings_cubit.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/cubit/unpair_cubit.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/cubit/unpair_done_cubit.dart';
@@ -46,6 +47,9 @@ class PairingInjectionModule() implements InjectionModule {
         profileRepository: injector.get<ProfileRepository>(),
         pairingRepository: injector.get<PairingRepository>(),
       ),
+    )
+    ..registerFactory<RelationshipChangedCubit>(
+      () => RelationshipChangedCubit(profileRepository: injector.get<ProfileRepository>()),
     )
     ..registerFactory<UnpairCubit>(
       () => UnpairCubit(

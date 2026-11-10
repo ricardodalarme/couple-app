@@ -41,5 +41,7 @@
   "errors(map)": {
     "NETWORK": "No connection. Try again.",
     "other": "Could not save right now. Try again."
-  }
+  },
+  "changedPrompt": "Something changed between you two?",
+  "changedSubtitle": "Update what the app shows"
 }

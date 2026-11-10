@@ -11,6 +11,7 @@ void main() {
       'timeZone': 'America/Sao_Paulo',
       'partnerName': 'Rui',
       'togetherSince': '2024-05-01',
+      'relationshipStatus': 'together',
       'onboardedAt': null,
       'shareReadReceipts': true,
       'widgetInDiscreet': false,

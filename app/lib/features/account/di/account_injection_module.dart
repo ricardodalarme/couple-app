@@ -4,6 +4,7 @@ import 'package:flutter_bloc_starter/features/account/data/data_sources/account_
 import 'package:flutter_bloc_starter/features/account/data/repositories/account_repository.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/delete/cubit/delete_account_cubit.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/sign_out/cubit/sign_out_cubit.dart';
+import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
@@ -32,6 +33,7 @@ class AccountInjectionModule() implements InjectionModule {
     ..registerFactory<SignOutCubit>(
       () => SignOutCubit(
         authenticationRepository: injector.get<AuthenticationRepository>(),
+        appCubit: injector.get<AppCubit>(),
         slipRepository: injector.get<SlipRepository>(),
         remindersRepository: injector.get<RemindersRepository>(),
         preferencesService: injector.get<PreferencesService>(),

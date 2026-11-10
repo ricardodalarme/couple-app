@@ -3,6 +3,7 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/_shared/presentation/forms/discard_changes.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_detail.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/widgets/slip_detail_content.dart';
@@ -25,30 +26,39 @@ class const SlipDetailPage({@PathParam('id') required final String id, super.key
   Widget build(BuildContext context) {
     final l10n = context.l10n.slipDetail;
     final slip = context.select((SlipDetailCubit cubit) => cubit.state.slip);
+    final current = context.select((SlipDetailCubit cubit) => cubit.state.current);
+    final isEditing = context.select((SlipDetailCubit cubit) => cubit.state.isEditing);
+    final draftBody = context.select((SlipDetailCubit cubit) => cubit.state.draftBody);
+    final hasUnsavedDraft = isEditing && current != null && draftBody.trim() != current.body.trim();
 
     return BaseView(
-      body: MultiBlocListener(
-        listeners: [
-          BlocListener<SlipDetailCubit, SlipDetailState>(
-            listenWhen: (previous, current) => previous.saveAction != current.saveAction,
-            listener: _onSaveChanged,
-          ),
-          BlocListener<SlipDetailCubit, SlipDetailState>(
-            listenWhen: (previous, current) => previous.deleteAction != current.deleteAction,
-            listener: _onDeleteChanged,
-          ),
-        ],
-        child: SkeletonizerResourceWidget<SlipDetail?>(
-          slip,
-          fakeValue: SlipDetail.fake(),
-          successBuilder: (value) => value == null
-              ? BaseEmptyState(title: l10n.notFoundTitle, text: l10n.notFoundText)
-              : const SlipDetailContent(),
-          failureBuilder: (_) => BaseEmptyState(
-            title: l10n.errorTitle,
-            text: l10n.errorText,
-            actionText: context.l10n.common.retry,
-            onAction: () => context.read<SlipDetailCubit>().load(id),
+      body: DirtyFormGuard(
+        isDirty: hasUnsavedDraft,
+        title: l10n.discardTitle,
+        text: context.l10n.common.discardText,
+        child: MultiBlocListener(
+          listeners: [
+            BlocListener<SlipDetailCubit, SlipDetailState>(
+              listenWhen: (previous, current) => previous.saveAction != current.saveAction,
+              listener: _onSaveChanged,
+            ),
+            BlocListener<SlipDetailCubit, SlipDetailState>(
+              listenWhen: (previous, current) => previous.deleteAction != current.deleteAction,
+              listener: _onDeleteChanged,
+            ),
+          ],
+          child: SkeletonizerResourceWidget<SlipDetail?>(
+            slip,
+            fakeValue: SlipDetail.fake(),
+            successBuilder: (value) => value == null
+                ? BaseEmptyState(title: l10n.notFoundTitle, text: l10n.notFoundText)
+                : const SlipDetailContent(),
+            failureBuilder: (_) => BaseEmptyState(
+              title: l10n.errorTitle,
+              text: l10n.errorText,
+              actionText: context.l10n.common.retry,
+              onAction: () => context.read<SlipDetailCubit>().load(id),
+            ),
           ),
         ),
       ),

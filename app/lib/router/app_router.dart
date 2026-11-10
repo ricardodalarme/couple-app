@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/delete/delete_account_page.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/existing_account/existing_account_page.dart';
+import 'package:flutter_bloc_starter/features/authentication/presentation/session_expired/session_expired_page.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/sign_in/sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/welcome/welcome_page.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/detail/card_detail_page.dart';
@@ -27,6 +28,8 @@ import 'package:flutter_bloc_starter/features/onboarding/presentation/phase/intr
 import 'package:flutter_bloc_starter/features/onboarding/presentation/theme/intro_theme_page.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/accept/accept_invite_page.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/invite/invite_page.dart';
+import 'package:flutter_bloc_starter/features/pairing/presentation/relationship/grief_support_page.dart';
+import 'package:flutter_bloc_starter/features/pairing/presentation/relationship/relationship_changed_page.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/relationship/relationship_page.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/breakup_page.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/unpair_done_page.dart';
@@ -84,6 +87,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: PartnerStepRoute.page),
     AutoRoute(page: NotificationPermissionRoute.page, fullscreenDialog: true),
     AutoRoute(page: SignInRoute.page),
+    AutoRoute(page: SessionExpiredRoute.page),
     AutoRoute(page: ExistingAccountRoute.page),
     AutoRoute(page: DebugSignInRoute.page),
     AutoRoute(page: ProfileSetupRoute.page),
@@ -91,6 +95,8 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: InviteRoute.page),
     AutoRoute(page: AcceptInviteRoute.page),
     AutoRoute(page: RelationshipRoute.page),
+    AutoRoute(page: RelationshipChangedRoute.page),
+    AutoRoute(page: GriefSupportRoute.page),
     AutoRoute(page: UnpairRoute.page),
     AutoRoute(page: BreakupRoute.page),
     AutoRoute(page: UnpairDoneRoute.page),

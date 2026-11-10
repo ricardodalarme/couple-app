@@ -6,6 +6,7 @@ import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutation
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateDisplayName.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdatePronouns.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateRelationshipPhase.graphql.dart';
+import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateRelationshipStatus.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateTheme.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateTimeZone.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateTogetherSince.graphql.dart';
@@ -97,6 +98,17 @@ class ProfileDataSource({required final GQLClient _client}) {
   Future<int> updateRelationshipPhase(VariablesMutationUpdateRelationshipPhase variables) async {
     final response = await _client.mutate(
       OptionsMutationUpdateRelationshipPhase(variables: variables),
+    );
+
+    return validateResponseData(
+      response,
+      getData: (data) => data.updateProfileSettingsCollection.affectedCount,
+    );
+  }
+
+  Future<int> updateRelationshipStatus(VariablesMutationUpdateRelationshipStatus variables) async {
+    final response = await _client.mutate(
+      OptionsMutationUpdateRelationshipStatus(variables: variables),
     );
 
     return validateResponseData(
