@@ -1,0 +1,52 @@
+{
+  "greetingMorning": "Bom dia, {name}",
+  "greetingAfternoon": "Boa tarde, {name}",
+  "greetingEvening": "Boa noite, {name}",
+  "greetingNoName": "Olá",
+  "dateLine": "{weekday}, {day} de {month}",
+  "weekdays": ["segunda", "terça", "quarta", "quinta", "sexta", "sábado", "domingo"],
+  "months": [
+    "janeiro",
+    "fevereiro",
+    "março",
+    "abril",
+    "maio",
+    "junho",
+    "julho",
+    "agosto",
+    "setembro",
+    "outubro",
+    "novembro",
+    "dezembro"
+  ],
+  "togetherYears(plural, param=count)": {
+    "one": "1 ano",
+    "other": "{count} anos"
+  },
+  "togetherMonths(plural, param=count)": {
+    "one": "1 mês",
+    "other": "{count} meses"
+  },
+  "togetherDays(plural, param=count)": {
+    "one": "1 dia",
+    "other": "{count} dias"
+  },
+  "togetherJoin": "{first} e {second}",
+  "invitePerson": "Convidar sua pessoa",
+  "offline": "Sem conexão. Mostrando o que foi salvo.",
+  "pendingInviteTitle": "Convite enviado",
+  "pendingInviteText": "A pessoa ainda não entrou. Reenviar ou revogar.",
+  "pendingInviteAction": "Ver convite",
+  "answer": "Responder",
+  "slipsThisWeek(plural, param=count)": {
+    "zero": "Nenhum slip esta semana",
+    "one": "1 slip esta semana",
+    "other": "{count} slips esta semana"
+  },
+  "weekHintEmpty": "Anote uma coisa boa quando lembrar.",
+  "weekHint": "Seu cartão de domingo vem desses slips.",
+  "forToday": "Para hoje",
+  "ideaLabel": "Ideia do dia",
+  "errorTitle": "Não deu para carregar o Hoje",
+  "errorText": "Seus slips estão seguros. Tente de novo."
+}

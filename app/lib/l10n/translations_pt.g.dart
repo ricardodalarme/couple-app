@@ -71,6 +71,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   );
   late final Translations$quickSlip$pt quickSlip = Translations$quickSlip$pt.internal(_root);
   late final Translations$tabs$pt tabs = Translations$tabs$pt.internal(_root);
+  late final Translations$today$pt today = Translations$today$pt.internal(_root);
   late final Translations$welcome$pt welcome = Translations$welcome$pt.internal(_root);
 }
 
@@ -586,6 +587,127 @@ class Translations$tabs$pt {
   String get soonText => 'Esta parte do app ainda está sendo preparada.';
 }
 
+// Path: today
+class Translations$today$pt {
+  Translations$today$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Bom dia, {name}'
+  String greetingMorning({required Object name}) => 'Bom dia, ${name}';
+
+  /// pt: 'Boa tarde, {name}'
+  String greetingAfternoon({required Object name}) => 'Boa tarde, ${name}';
+
+  /// pt: 'Boa noite, {name}'
+  String greetingEvening({required Object name}) => 'Boa noite, ${name}';
+
+  /// pt: 'Olá'
+  String get greetingNoName => 'Olá';
+
+  /// pt: '{weekday}, {day} de {month}'
+  String dateLine({required Object weekday, required Object day, required Object month}) =>
+      '${weekday}, ${day} de ${month}';
+
+  List<String> get weekdays => [
+    'segunda',
+    'terça',
+    'quarta',
+    'quinta',
+    'sexta',
+    'sábado',
+    'domingo',
+  ];
+  List<String> get months => [
+    'janeiro',
+    'fevereiro',
+    'março',
+    'abril',
+    'maio',
+    'junho',
+    'julho',
+    'agosto',
+    'setembro',
+    'outubro',
+    'novembro',
+    'dezembro',
+  ];
+
+  /// pt: '(one) {1 ano} (other) {{count} anos}'
+  String togetherYears({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 ano',
+        other: '${count} anos',
+      );
+
+  /// pt: '(one) {1 mês} (other) {{count} meses}'
+  String togetherMonths({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 mês',
+        other: '${count} meses',
+      );
+
+  /// pt: '(one) {1 dia} (other) {{count} dias}'
+  String togetherDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 dia',
+        other: '${count} dias',
+      );
+
+  /// pt: '{first} e {second}'
+  String togetherJoin({required Object first, required Object second}) => '${first} e ${second}';
+
+  /// pt: 'Convidar sua pessoa'
+  String get invitePerson => 'Convidar sua pessoa';
+
+  /// pt: 'Sem conexão. Mostrando o que foi salvo.'
+  String get offline => 'Sem conexão. Mostrando o que foi salvo.';
+
+  /// pt: 'Convite enviado'
+  String get pendingInviteTitle => 'Convite enviado';
+
+  /// pt: 'A pessoa ainda não entrou. Reenviar ou revogar.'
+  String get pendingInviteText => 'A pessoa ainda não entrou. Reenviar ou revogar.';
+
+  /// pt: 'Ver convite'
+  String get pendingInviteAction => 'Ver convite';
+
+  /// pt: 'Responder'
+  String get answer => 'Responder';
+
+  /// pt: '(zero) {Nenhum slip esta semana} (one) {1 slip esta semana} (other) {{count} slips esta semana}'
+  String slipsThisWeek({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        zero: 'Nenhum slip esta semana',
+        one: '1 slip esta semana',
+        other: '${count} slips esta semana',
+      );
+
+  /// pt: 'Anote uma coisa boa quando lembrar.'
+  String get weekHintEmpty => 'Anote uma coisa boa quando lembrar.';
+
+  /// pt: 'Seu cartão de domingo vem desses slips.'
+  String get weekHint => 'Seu cartão de domingo vem desses slips.';
+
+  /// pt: 'Para hoje'
+  String get forToday => 'Para hoje';
+
+  /// pt: 'Ideia do dia'
+  String get ideaLabel => 'Ideia do dia';
+
+  /// pt: 'Não deu para carregar o Hoje'
+  String get errorTitle => 'Não deu para carregar o Hoje';
+
+  /// pt: 'Seus slips estão seguros. Tente de novo.'
+  String get errorText => 'Seus slips estão seguros. Tente de novo.';
+}
+
 // Path: welcome
 class Translations$welcome$pt {
   Translations$welcome$pt.internal(this._root);
@@ -1015,6 +1137,75 @@ extension on Translations {
       'tabs.capture' => 'Novo slip',
       'tabs.soonTitle' => 'Em construção',
       'tabs.soonText' => 'Esta parte do app ainda está sendo preparada.',
+      'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
+      'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
+      'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',
+      'today.greetingNoName' => 'Olá',
+      'today.dateLine' => ({
+        required Object weekday,
+        required Object day,
+        required Object month,
+      }) => '${weekday}, ${day} de ${month}',
+      'today.weekdays.0' => 'segunda',
+      'today.weekdays.1' => 'terça',
+      'today.weekdays.2' => 'quarta',
+      'today.weekdays.3' => 'quinta',
+      'today.weekdays.4' => 'sexta',
+      'today.weekdays.5' => 'sábado',
+      'today.weekdays.6' => 'domingo',
+      'today.months.0' => 'janeiro',
+      'today.months.1' => 'fevereiro',
+      'today.months.2' => 'março',
+      'today.months.3' => 'abril',
+      'today.months.4' => 'maio',
+      'today.months.5' => 'junho',
+      'today.months.6' => 'julho',
+      'today.months.7' => 'agosto',
+      'today.months.8' => 'setembro',
+      'today.months.9' => 'outubro',
+      'today.months.10' => 'novembro',
+      'today.months.11' => 'dezembro',
+      'today.togetherYears' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+          count,
+          one: '1 ano',
+          other: '${count} anos',
+        ),
+      'today.togetherMonths' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+          count,
+          one: '1 mês',
+          other: '${count} meses',
+        ),
+      'today.togetherDays' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+          count,
+          one: '1 dia',
+          other: '${count} dias',
+        ),
+      'today.togetherJoin' => ({
+        required Object first,
+        required Object second,
+      }) => '${first} e ${second}',
+      'today.invitePerson' => 'Convidar sua pessoa',
+      'today.offline' => 'Sem conexão. Mostrando o que foi salvo.',
+      'today.pendingInviteTitle' => 'Convite enviado',
+      'today.pendingInviteText' => 'A pessoa ainda não entrou. Reenviar ou revogar.',
+      'today.pendingInviteAction' => 'Ver convite',
+      'today.answer' => 'Responder',
+      'today.slipsThisWeek' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+          count,
+          zero: 'Nenhum slip esta semana',
+          one: '1 slip esta semana',
+          other: '${count} slips esta semana',
+        ),
+      'today.weekHintEmpty' => 'Anote uma coisa boa quando lembrar.',
+      'today.weekHint' => 'Seu cartão de domingo vem desses slips.',
+      'today.forToday' => 'Para hoje',
+      'today.ideaLabel' => 'Ideia do dia',
+      'today.errorTitle' => 'Não deu para carregar o Hoje',
+      'today.errorText' => 'Seus slips estão seguros. Tente de novo.',
       'welcome.headline' => 'Pequenas coisas boas, ditas em voz alta.',
       'welcome.headlineHighlight' => 'ditas em voz alta',
       'welcome.subtitle' => 'Um jeito leve de notar o que o outro faz de bom, a cada semana.',

@@ -79,6 +79,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$tabs$en tabs = _Translations$tabs$en._(_root);
   @override
+  late final _Translations$today$en today = _Translations$today$en._(_root);
+  @override
   late final _Translations$welcome$en welcome = _Translations$welcome$en._(_root);
 }
 
@@ -497,6 +499,106 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get soonText => 'This part of the app is still being prepared.';
 }
 
+// Path: today
+class _Translations$today$en extends Translations$today$pt {
+  _Translations$today$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String greetingMorning({required Object name}) => 'Good morning, ${name}';
+  @override
+  String greetingAfternoon({required Object name}) => 'Good afternoon, ${name}';
+  @override
+  String greetingEvening({required Object name}) => 'Good evening, ${name}';
+  @override
+  String get greetingNoName => 'Hello';
+  @override
+  String dateLine({required Object weekday, required Object month, required Object day}) =>
+      '${weekday}, ${month} ${day}';
+  @override
+  List<String> get weekdays => [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ];
+  @override
+  List<String> get months => [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  @override
+  String togetherYears({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 year',
+        other: '${count} years',
+      );
+  @override
+  String togetherMonths({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 month',
+        other: '${count} months',
+      );
+  @override
+  String togetherDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 day',
+        other: '${count} days',
+      );
+  @override
+  String togetherJoin({required Object first, required Object second}) => '${first} and ${second}';
+  @override
+  String get invitePerson => 'Invite your person';
+  @override
+  String get offline => 'No connection. Showing what was saved.';
+  @override
+  String get pendingInviteTitle => 'Invite sent';
+  @override
+  String get pendingInviteText => 'They have not joined yet. Send again or revoke.';
+  @override
+  String get pendingInviteAction => 'See invite';
+  @override
+  String get answer => 'Answer';
+  @override
+  String slipsThisWeek({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        zero: 'No slips this week',
+        one: '1 slip this week',
+        other: '${count} slips this week',
+      );
+  @override
+  String get weekHintEmpty => 'Note one good thing when you remember it.';
+  @override
+  String get weekHint => 'Your Sunday card comes from these slips.';
+  @override
+  String get forToday => 'For today';
+  @override
+  String get ideaLabel => 'Idea of the day';
+  @override
+  String get errorTitle => 'Could not load Today';
+  @override
+  String get errorText => 'Your slips are safe. Try again.';
+}
+
 // Path: welcome
 class _Translations$welcome$en extends Translations$welcome$pt {
   _Translations$welcome$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -888,6 +990,75 @@ extension on TranslationsEn {
       'tabs.capture' => 'New slip',
       'tabs.soonTitle' => 'Under construction',
       'tabs.soonText' => 'This part of the app is still being prepared.',
+      'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
+      'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
+      'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',
+      'today.greetingNoName' => 'Hello',
+      'today.dateLine' => ({
+        required Object weekday,
+        required Object month,
+        required Object day,
+      }) => '${weekday}, ${month} ${day}',
+      'today.weekdays.0' => 'Monday',
+      'today.weekdays.1' => 'Tuesday',
+      'today.weekdays.2' => 'Wednesday',
+      'today.weekdays.3' => 'Thursday',
+      'today.weekdays.4' => 'Friday',
+      'today.weekdays.5' => 'Saturday',
+      'today.weekdays.6' => 'Sunday',
+      'today.months.0' => 'January',
+      'today.months.1' => 'February',
+      'today.months.2' => 'March',
+      'today.months.3' => 'April',
+      'today.months.4' => 'May',
+      'today.months.5' => 'June',
+      'today.months.6' => 'July',
+      'today.months.7' => 'August',
+      'today.months.8' => 'September',
+      'today.months.9' => 'October',
+      'today.months.10' => 'November',
+      'today.months.11' => 'December',
+      'today.togetherYears' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+          count,
+          one: '1 year',
+          other: '${count} years',
+        ),
+      'today.togetherMonths' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+          count,
+          one: '1 month',
+          other: '${count} months',
+        ),
+      'today.togetherDays' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+          count,
+          one: '1 day',
+          other: '${count} days',
+        ),
+      'today.togetherJoin' => ({
+        required Object first,
+        required Object second,
+      }) => '${first} and ${second}',
+      'today.invitePerson' => 'Invite your person',
+      'today.offline' => 'No connection. Showing what was saved.',
+      'today.pendingInviteTitle' => 'Invite sent',
+      'today.pendingInviteText' => 'They have not joined yet. Send again or revoke.',
+      'today.pendingInviteAction' => 'See invite',
+      'today.answer' => 'Answer',
+      'today.slipsThisWeek' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+          count,
+          zero: 'No slips this week',
+          one: '1 slip this week',
+          other: '${count} slips this week',
+        ),
+      'today.weekHintEmpty' => 'Note one good thing when you remember it.',
+      'today.weekHint' => 'Your Sunday card comes from these slips.',
+      'today.forToday' => 'For today',
+      'today.ideaLabel' => 'Idea of the day',
+      'today.errorTitle' => 'Could not load Today',
+      'today.errorText' => 'Your slips are safe. Try again.',
       'welcome.headline' => 'Small good things, said out loud.',
       'welcome.headlineHighlight' => 'said out loud',
       'welcome.subtitle' => 'A light way to notice what the other does well, every week.',

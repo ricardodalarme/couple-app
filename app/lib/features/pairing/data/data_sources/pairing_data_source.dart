@@ -1,8 +1,8 @@
 import 'package:flutter_bloc_starter/features/pairing/data/data_sources/mutations/generated/AcceptInvite.graphql.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/data_sources/mutations/generated/CancelInvite.graphql.dart';
+import 'package:flutter_bloc_starter/features/pairing/data/data_sources/mutations/generated/CreateInvite.graphql.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/data_sources/queries/generated/MyPartner.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/fragments/generated/ProfileFragment.graphql.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/data_sources/mutations/generated/CreateInvite.graphql.dart';
 import 'package:network/network.dart';
 
 class PairingDataSource({required final GQLClient _client}) {

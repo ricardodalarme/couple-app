@@ -1,0 +1,52 @@
+{
+  "greetingMorning": "Good morning, {name}",
+  "greetingAfternoon": "Good afternoon, {name}",
+  "greetingEvening": "Good evening, {name}",
+  "greetingNoName": "Hello",
+  "dateLine": "{weekday}, {month} {day}",
+  "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+  "months": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ],
+  "togetherYears(plural, param=count)": {
+    "one": "1 year",
+    "other": "{count} years"
+  },
+  "togetherMonths(plural, param=count)": {
+    "one": "1 month",
+    "other": "{count} months"
+  },
+  "togetherDays(plural, param=count)": {
+    "one": "1 day",
+    "other": "{count} days"
+  },
+  "togetherJoin": "{first} and {second}",
+  "invitePerson": "Invite your person",
+  "offline": "No connection. Showing what was saved.",
+  "pendingInviteTitle": "Invite sent",
+  "pendingInviteText": "They have not joined yet. Send again or revoke.",
+  "pendingInviteAction": "See invite",
+  "answer": "Answer",
+  "slipsThisWeek(plural, param=count)": {
+    "zero": "No slips this week",
+    "one": "1 slip this week",
+    "other": "{count} slips this week"
+  },
+  "weekHintEmpty": "Note one good thing when you remember it.",
+  "weekHint": "Your Sunday card comes from these slips.",
+  "forToday": "For today",
+  "ideaLabel": "Idea of the day",
+  "errorTitle": "Could not load Today",
+  "errorText": "Your slips are safe. Try again."
+}

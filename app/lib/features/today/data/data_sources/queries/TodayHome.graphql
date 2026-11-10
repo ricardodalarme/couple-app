@@ -1,0 +1,24 @@
+query TodayHome {
+  today {
+    isPaired
+    partnerName
+    cardStatus
+    unopenedCards
+    slipsThisWeek
+    hasPendingInvite
+    togetherSince
+    pauseIsMine
+    pauseReturnAt
+    hasPlus
+  }
+  question: dailyContent(kind: "question") {
+    slug
+    title
+    tags
+  }
+  idea: dailyContent(kind: "daily_idea") {
+    slug
+    title
+    body
+  }
+}

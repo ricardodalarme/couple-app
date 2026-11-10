@@ -293,7 +293,7 @@ class TodayRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const TodayPage();
+      return WrappedRoute(child: const TodayPage());
     },
   );
 }
