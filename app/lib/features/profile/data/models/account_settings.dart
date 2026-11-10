@@ -3,6 +3,8 @@ import 'package:equatable/equatable.dart';
 
 final class const AccountSettings({
   required final AppThemeVariant theme,
+  final String profileId = '',
+  final String timeZone = 'UTC',
   final String? partnerName,
   final DateTime? togetherSince,
   final DateTime? onboardedAt,
@@ -18,6 +20,8 @@ final class const AccountSettings({
   @override
   List<Object?> get props => [
     theme,
+    profileId,
+    timeZone,
     partnerName,
     togetherSince,
     onboardedAt,

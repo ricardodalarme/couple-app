@@ -9,6 +9,9 @@ class AuthenticationRepository({required final AuthenticationService _authentica
 
   String? getAccessToken() => _authenticationService.currentSession?.accessToken;
 
+  /// The auth provider that created the session, or null when it cannot be read.
+  String? get loginProvider => _authenticationService.loginProvider;
+
   /// The signed-in user's id, which is also the profile id.
   String? get currentUserId => _authenticationService.currentSession?.user.id;
 

@@ -118,11 +118,18 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$privacy$en privacy = _Translations$privacy$en._(_root);
   @override
+  late final _Translations$profileDetails$en profileDetails = _Translations$profileDetails$en._(
+    _root,
+  );
+  @override
   late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
   @override
   late final _Translations$quickSlip$en quickSlip = _Translations$quickSlip$en._(_root);
   @override
   late final _Translations$received$en received = _Translations$received$en._(_root);
+  @override
+  late final _Translations$relationshipSettings$en relationshipSettings =
+      _Translations$relationshipSettings$en._(_root);
   @override
   late final _Translations$reminders$en reminders = _Translations$reminders$en._(_root);
   @override
@@ -1713,6 +1720,74 @@ class _Translations$privacy$en extends Translations$privacy$pt {
   String get errorText => 'Try again in a moment.';
 }
 
+// Path: profileDetails
+class _Translations$profileDetails$en extends Translations$profileDetails$pt {
+  _Translations$profileDetails$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Profile';
+  @override
+  String get nameLabel => 'Your name';
+  @override
+  String get nameHint => 'Marina';
+  @override
+  String get nameError => 'Your name cannot be empty.';
+  @override
+  String get pronounsLabel => 'Pronouns';
+  @override
+  String get pronounsHint => 'Optional';
+  @override
+  String get pronounsError => 'Use at most 30 characters.';
+  @override
+  String get timeZoneLabel => 'Time zone';
+  @override
+  String get timeZonePlaceholder => 'Pick a time zone';
+  @override
+  String get loginLabel => 'Login';
+  @override
+  String get loginAccount => 'Account';
+  @override
+  String get loginEmail => 'Email';
+  @override
+  String get loginApple => 'Apple';
+  @override
+  String get loginGoogle => 'Google';
+  @override
+  String get photoNote => 'Photo upload is not available yet.';
+  @override
+  String get saved => 'Saved';
+  @override
+  String get loadErrorTitle => 'Could not load your profile';
+  @override
+  String get loadErrorText => 'Check your connection and try again.';
+  @override
+  Map<String, String> get timeZones => {
+    'America/Sao_Paulo': 'São Paulo',
+    'America/Argentina/Buenos_Aires': 'Buenos Aires',
+    'America/Bogota': 'Bogotá',
+    'America/Mexico_City': 'Mexico City',
+    'America/New_York': 'New York',
+    'America/Los_Angeles': 'Los Angeles',
+    'Europe/Lisbon': 'Lisbon',
+    'Europe/London': 'London',
+    'Europe/Madrid': 'Madrid',
+    'Europe/Paris': 'Paris',
+    'Europe/Berlin': 'Berlin',
+    'Africa/Luanda': 'Luanda',
+    'Asia/Tokyo': 'Tokyo',
+    'Australia/Sydney': 'Sydney',
+    'UTC': 'UTC',
+  };
+  @override
+  Map<String, String> get errors => {
+    'NETWORK': 'No connection. Try again.',
+    'other': 'Could not save right now. Try again.',
+  };
+}
+
 // Path: profileSetup
 class _Translations$profileSetup$en extends Translations$profileSetup$pt {
   _Translations$profileSetup$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1894,6 +1969,79 @@ class _Translations$received$en extends Translations$received$pt {
   };
 }
 
+// Path: relationshipSettings
+class _Translations$relationshipSettings$en extends Translations$relationshipSettings$pt {
+  _Translations$relationshipSettings$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Relationship';
+  @override
+  String get phaseLabel => 'Phase';
+  @override
+  String get phasePlaceholder => 'Pick a phase';
+  @override
+  Map<String, String> get phases => {
+    'beginning': 'Just starting',
+    'dating': 'Dating',
+    'living_together': 'Living together',
+    'engaged': 'Engaged',
+    'married': 'Married',
+    'with_kids': 'With kids',
+    'long_distance': 'Long distance',
+    'restarting': 'Starting over',
+  };
+  @override
+  String get dateLabel => 'Together since';
+  @override
+  String get dateHint => 'Pick a date';
+  @override
+  String dateFormat({required Object month, required Object day, required Object year}) =>
+      '${month} ${day}, ${year}';
+  @override
+  List<String> get months => [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  @override
+  String get futureDateNote => 'A future date is fine; the countdown just starts later.';
+  @override
+  String get partnerLabel => 'Partner';
+  @override
+  String get invitePartner => 'Invite your partner';
+  @override
+  String get partnerError => 'Could not load your partner.';
+  @override
+  String get partnerRetry => 'Try again';
+  @override
+  String get phaseNote => 'The phase only changes the words.';
+  @override
+  String get saved => 'Saved';
+  @override
+  String get loadErrorTitle => 'Could not load the relationship';
+  @override
+  String get loadErrorText => 'Check your connection and try again.';
+  @override
+  Map<String, String> get errors => {
+    'NETWORK': 'No connection. Try again.',
+    'other': 'Could not save right now. Try again.',
+  };
+}
+
 // Path: reminders
 class _Translations$reminders$en extends Translations$reminders$pt {
   _Translations$reminders$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -2062,6 +2210,8 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   String get safety => 'Safety and support';
   @override
   String get safetyStatus => 'Safe mode and quick exit';
+  @override
+  String get profile => 'Profile';
   @override
   String get relationship => 'Relationship';
   @override
@@ -4294,6 +4444,41 @@ extension on TranslationsEn {
           'privacy.saveError' => 'Could not save now. Try again.',
           'privacy.errorTitle' => 'Could not load the consents',
           'privacy.errorText' => 'Try again in a moment.',
+          'profileDetails.title' => 'Profile',
+          'profileDetails.nameLabel' => 'Your name',
+          'profileDetails.nameHint' => 'Marina',
+          'profileDetails.nameError' => 'Your name cannot be empty.',
+          'profileDetails.pronounsLabel' => 'Pronouns',
+          'profileDetails.pronounsHint' => 'Optional',
+          'profileDetails.pronounsError' => 'Use at most 30 characters.',
+          'profileDetails.timeZoneLabel' => 'Time zone',
+          'profileDetails.timeZonePlaceholder' => 'Pick a time zone',
+          'profileDetails.loginLabel' => 'Login',
+          'profileDetails.loginAccount' => 'Account',
+          'profileDetails.loginEmail' => 'Email',
+          'profileDetails.loginApple' => 'Apple',
+          'profileDetails.loginGoogle' => 'Google',
+          'profileDetails.photoNote' => 'Photo upload is not available yet.',
+          'profileDetails.saved' => 'Saved',
+          'profileDetails.loadErrorTitle' => 'Could not load your profile',
+          'profileDetails.loadErrorText' => 'Check your connection and try again.',
+          'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
+          'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
+          'profileDetails.timeZones.America/Bogota' => 'Bogotá',
+          'profileDetails.timeZones.America/Mexico_City' => 'Mexico City',
+          'profileDetails.timeZones.America/New_York' => 'New York',
+          'profileDetails.timeZones.America/Los_Angeles' => 'Los Angeles',
+          'profileDetails.timeZones.Europe/Lisbon' => 'Lisbon',
+          'profileDetails.timeZones.Europe/London' => 'London',
+          'profileDetails.timeZones.Europe/Madrid' => 'Madrid',
+          'profileDetails.timeZones.Europe/Paris' => 'Paris',
+          'profileDetails.timeZones.Europe/Berlin' => 'Berlin',
+          'profileDetails.timeZones.Africa/Luanda' => 'Luanda',
+          'profileDetails.timeZones.Asia/Tokyo' => 'Tokyo',
+          'profileDetails.timeZones.Australia/Sydney' => 'Sydney',
+          'profileDetails.timeZones.UTC' => 'UTC',
+          'profileDetails.errors.NETWORK' => 'No connection. Try again.',
+          'profileDetails.errors.other' => 'Could not save right now. Try again.',
           'profileSetup.title' => 'The basics',
           'profileSetup.titleHighlight' => 'basics',
           'profileSetup.subtitle' =>
@@ -4403,6 +4588,48 @@ extension on TranslationsEn {
           'received.errors.NOT_FOUND' => 'That message isn\'t here anymore.',
           'received.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'received.errors.other' => 'Couldn\'t answer right now. Try again.',
+          'relationshipSettings.title' => 'Relationship',
+          'relationshipSettings.phaseLabel' => 'Phase',
+          'relationshipSettings.phasePlaceholder' => 'Pick a phase',
+          'relationshipSettings.phases.beginning' => 'Just starting',
+          'relationshipSettings.phases.dating' => 'Dating',
+          'relationshipSettings.phases.living_together' => 'Living together',
+          'relationshipSettings.phases.engaged' => 'Engaged',
+          'relationshipSettings.phases.married' => 'Married',
+          'relationshipSettings.phases.with_kids' => 'With kids',
+          'relationshipSettings.phases.long_distance' => 'Long distance',
+          'relationshipSettings.phases.restarting' => 'Starting over',
+          'relationshipSettings.dateLabel' => 'Together since',
+          'relationshipSettings.dateHint' => 'Pick a date',
+          'relationshipSettings.dateFormat' => ({
+            required Object month,
+            required Object day,
+            required Object year,
+          }) => '${month} ${day}, ${year}',
+          'relationshipSettings.months.0' => 'January',
+          'relationshipSettings.months.1' => 'February',
+          'relationshipSettings.months.2' => 'March',
+          'relationshipSettings.months.3' => 'April',
+          'relationshipSettings.months.4' => 'May',
+          'relationshipSettings.months.5' => 'June',
+          'relationshipSettings.months.6' => 'July',
+          'relationshipSettings.months.7' => 'August',
+          'relationshipSettings.months.8' => 'September',
+          'relationshipSettings.months.9' => 'October',
+          'relationshipSettings.months.10' => 'November',
+          'relationshipSettings.months.11' => 'December',
+          'relationshipSettings.futureDateNote' =>
+            'A future date is fine; the countdown just starts later.',
+          'relationshipSettings.partnerLabel' => 'Partner',
+          'relationshipSettings.invitePartner' => 'Invite your partner',
+          'relationshipSettings.partnerError' => 'Could not load your partner.',
+          'relationshipSettings.partnerRetry' => 'Try again',
+          'relationshipSettings.phaseNote' => 'The phase only changes the words.',
+          'relationshipSettings.saved' => 'Saved',
+          'relationshipSettings.loadErrorTitle' => 'Could not load the relationship',
+          'relationshipSettings.loadErrorText' => 'Check your connection and try again.',
+          'relationshipSettings.errors.NETWORK' => 'No connection. Try again.',
+          'relationshipSettings.errors.other' => 'Could not save right now. Try again.',
           'reminders.title' => 'Repara',
           'reminders.dailyIdea' => 'A small idea for today.',
           'reminders.dates' => 'A date is coming up.',
@@ -4557,6 +4784,7 @@ extension on TranslationsEn {
           'settingsHome.title' => 'Settings',
           'settingsHome.safety' => 'Safety and support',
           'settingsHome.safetyStatus' => 'Safe mode and quick exit',
+          'settingsHome.profile' => 'Profile',
           'settingsHome.relationship' => 'Relationship',
           'settingsHome.connected' => 'You are connected',
           'settingsHome.invitePartner' => 'Invite your partner',
@@ -4630,6 +4858,9 @@ extension on TranslationsEn {
           'slipDetail.editCancel' => 'Cancel',
           'slipDetail.archive' => 'Archive',
           'slipDetail.restore' => 'Restore',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.delete' => 'Delete',
           'slipDetail.deleteTitle' => 'Delete this slip?',
           'slipDetail.deleteText' => 'It will be removed from your week and your timeline.',

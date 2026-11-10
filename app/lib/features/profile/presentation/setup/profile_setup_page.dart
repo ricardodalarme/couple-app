@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/profile/presentation/setup/cubit/profile_setup_cubit.dart';
+import 'package:flutter_bloc_starter/features/profile/presentation/widgets/profile_theme_picker.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
@@ -50,7 +51,7 @@ class const ProfileSetupPage({super.key}) extends StatelessWidget implements Aut
               const SizedBox(height: AppSpace.s14),
               const _PartnerNameField(),
               const SizedBox(height: AppSpace.s14),
-              const _ThemePicker(),
+              const _ThemePickerField(),
               const SizedBox(height: AppSpace.s14),
               const _DateField(),
               const SizedBox(height: AppSpace.s14),
@@ -104,10 +105,9 @@ class const _PartnerNameField() extends StatelessWidget {
   }
 }
 
-class const _ThemePicker() extends StatelessWidget {
+class const _ThemePickerField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n.profileSetup;
     final selected = context.select((ProfileSetupCubit cubit) => cubit.state.theme);
 
     void choose(AppThemeVariant variant) {
@@ -115,37 +115,7 @@ class const _ThemePicker() extends StatelessWidget {
       AppThemeScope.set(context, variant);
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          l10n.themeLabel,
-          style: context.text.label.copyWith(color: context.colors.textSecondary),
-        ),
-        const SizedBox(height: AppSpace.s8),
-        Wrap(
-          spacing: AppSpace.s8,
-          runSpacing: AppSpace.s8,
-          children: [
-            BaseChoiceChip(
-              label: l10n.themeRose,
-              isSelected: selected == AppThemeVariant.rose,
-              onTap: () => choose(AppThemeVariant.rose),
-            ),
-            BaseChoiceChip(
-              label: l10n.themeBlue,
-              isSelected: selected == AppThemeVariant.blue,
-              onTap: () => choose(AppThemeVariant.blue),
-            ),
-            BaseChoiceChip(
-              label: l10n.themeNeutral,
-              isSelected: selected == AppThemeVariant.neutral,
-              onTap: () => choose(AppThemeVariant.neutral),
-            ),
-          ],
-        ),
-      ],
-    );
+    return ProfileThemePicker(selected: selected, onChanged: choose);
   }
 }
 

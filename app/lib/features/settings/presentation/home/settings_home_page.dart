@@ -58,13 +58,17 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
             BaseListGroup(
               children: [
                 BaseListTile(
+                  title: l10n.profile,
+                  icon: AppIcons.user,
+                  showsChevron: true,
+                  onTap: () => context.pushRoute(const ProfileSettingsRoute()),
+                ),
+                BaseListTile(
                   title: l10n.relationship,
                   subtitle: relationship,
                   icon: AppIcons.heart,
                   showsChevron: true,
-                  onTap: () => context.pushRoute(
-                    state.hasPartner == false ? const InviteRoute() : const RelationshipRoute(),
-                  ),
+                  onTap: () => context.pushRoute(const RelationshipRoute()),
                 ),
                 BaseListTile(
                   title: l10n.plan,

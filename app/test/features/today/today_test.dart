@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/partner_mood.dart';
@@ -220,6 +222,7 @@ void main() {
       repair = _MockRepairRepository();
       when(() => repair.onPauseChanged).thenAnswer((_) => const Stream.empty());
       when(() => pairing.onChanged).thenAnswer((_) => const Stream.empty());
+      when(() => profile.onChanged).thenAnswer((_) => const Stream.empty());
       when(() => profile.getMyProfile()).thenAnswer(
         (_) async => const Profile(id: 'me', avatarKind: 'initials', displayName: 'Ana'),
       );
@@ -295,6 +298,32 @@ void main() {
       expect(cubit.state.home, const Success<TodayHome>(home));
       expect(cubit.state.endPauseAction, isA<Initial>());
       await cubit.close();
+    });
+
+    test('a saved profile name reaches Hoje', () async {
+      final changes = StreamController<void>.broadcast();
+      when(() => profile.onChanged).thenAnswer((_) => changes.stream);
+      when(() => today.getToday()).thenAnswer((_) async => result());
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        pairingRepository: pairing,
+        repairRepository: repair,
+      );
+
+      unawaited(Future<void>.microtask(cubit.start));
+      await pumpEventQueue();
+      expect(cubit.state.selfName, 'Ana');
+
+      when(() => profile.getMyProfile()).thenAnswer(
+        (_) async => const Profile(id: 'me', avatarKind: 'initials', displayName: 'Bia'),
+      );
+      changes.add(null);
+      await pumpEventQueue();
+
+      expect(cubit.state.selfName, 'Bia');
+      await cubit.close();
+      await changes.close();
     });
 
     test('a cached result sets the offline flag', () async {

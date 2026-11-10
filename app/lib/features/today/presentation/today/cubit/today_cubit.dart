@@ -24,12 +24,14 @@ class TodayCubit({
 
   StreamSubscription<void>? _pairingChanges;
   StreamSubscription<void>? _pauseChanges;
+  StreamSubscription<void>? _profileChanges;
   Timer? _pauseTimer;
 
   void start() {
     WidgetsBinding.instance.addObserver(this);
     _pairingChanges ??= _pairingRepository.onChanged.listen((_) => load());
     _pauseChanges ??= _repairRepository.onPauseChanged.listen((_) => load());
+    _profileChanges ??= _profileRepository.onChanged.listen((_) => load());
     load();
   }
 
@@ -124,11 +126,10 @@ class TodayCubit({
   }
 
   Future<String?> _readOwnName() async {
-    if (state.selfName != null) return state.selfName;
     try {
       return (await _profileRepository.getMyProfile()).displayName;
     } on Object {
-      return null;
+      return state.selfName;
     }
   }
 
@@ -145,6 +146,7 @@ class TodayCubit({
     _pauseTimer?.cancel();
     await _pairingChanges?.cancel();
     await _pauseChanges?.cancel();
+    await _profileChanges?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     return super.close();
   }

@@ -79,7 +79,21 @@ const documentNodeQueryMySettings = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
+                  name: NameNode(value: 'profileId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: 'theme'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'timeZone'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -271,7 +285,9 @@ extension ClientExtensionQueryMySettings on graphql.GraphQLClient {
 
 class QueryMySettingsmySettings {
   QueryMySettingsmySettings({
+    required this.profileId,
     required this.theme,
+    required this.timeZone,
     this.partnerName,
     this.togetherSince,
     this.onboardedAt,
@@ -284,7 +300,9 @@ class QueryMySettingsmySettings {
   });
 
   factory QueryMySettingsmySettings.fromJson(Map<String, dynamic> json) {
+    final l$profileId = json['profileId'];
     final l$theme = json['theme'];
+    final l$timeZone = json['timeZone'];
     final l$partnerName = json['partnerName'];
     final l$togetherSince = json['togetherSince'];
     final l$onboardedAt = json['onboardedAt'];
@@ -295,7 +313,9 @@ class QueryMySettingsmySettings {
     final l$locale = json['locale'];
     final l$$__typename = json['__typename'];
     return QueryMySettingsmySettings(
+      profileId: (l$profileId as String),
       theme: fromJsonEnumAppTheme((l$theme as String)),
+      timeZone: (l$timeZone as String),
       partnerName: (l$partnerName as String?),
       togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
       onboardedAt: l$onboardedAt == null ? null : DateTime.parse((l$onboardedAt as String)),
@@ -308,7 +328,11 @@ class QueryMySettingsmySettings {
     );
   }
 
+  final String profileId;
+
   final EnumAppTheme theme;
+
+  final String timeZone;
 
   final String? partnerName;
 
@@ -330,8 +354,12 @@ class QueryMySettingsmySettings {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$profileId = profileId;
+    _resultData['profileId'] = l$profileId;
     final l$theme = theme;
     _resultData['theme'] = toJsonEnumAppTheme(l$theme);
+    final l$timeZone = timeZone;
+    _resultData['timeZone'] = l$timeZone;
     final l$partnerName = partnerName;
     _resultData['partnerName'] = l$partnerName;
     final l$togetherSince = togetherSince;
@@ -359,7 +387,9 @@ class QueryMySettingsmySettings {
 
   @override
   int get hashCode {
+    final l$profileId = profileId;
     final l$theme = theme;
+    final l$timeZone = timeZone;
     final l$partnerName = partnerName;
     final l$togetherSince = togetherSince;
     final l$onboardedAt = onboardedAt;
@@ -370,7 +400,9 @@ class QueryMySettingsmySettings {
     final l$locale = locale;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$profileId,
       l$theme,
+      l$timeZone,
       l$partnerName,
       l$togetherSince,
       l$onboardedAt,
@@ -391,9 +423,19 @@ class QueryMySettingsmySettings {
     if (other is! QueryMySettingsmySettings || runtimeType != other.runtimeType) {
       return false;
     }
+    final l$profileId = profileId;
+    final lOther$profileId = other.profileId;
+    if (l$profileId != lOther$profileId) {
+      return false;
+    }
     final l$theme = theme;
     final lOther$theme = other.theme;
     if (l$theme != lOther$theme) {
+      return false;
+    }
+    final l$timeZone = timeZone;
+    final lOther$timeZone = other.timeZone;
+    if (l$timeZone != lOther$timeZone) {
       return false;
     }
     final l$partnerName = partnerName;

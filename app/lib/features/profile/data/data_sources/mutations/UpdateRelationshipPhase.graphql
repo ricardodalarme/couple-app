@@ -1,0 +1,9 @@
+mutation UpdateRelationshipPhase($profileId: UUID!, $phase: RelationshipPhase) {
+  updateProfileSettingsCollection(
+    set: { phase: $phase }
+    filter: { profileId: { eq: $profileId } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

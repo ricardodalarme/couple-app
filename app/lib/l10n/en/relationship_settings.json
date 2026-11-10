@@ -1,0 +1,45 @@
+{
+  "title": "Relationship",
+  "phaseLabel": "Phase",
+  "phasePlaceholder": "Pick a phase",
+  "phases(map)": {
+    "beginning": "Just starting",
+    "dating": "Dating",
+    "living_together": "Living together",
+    "engaged": "Engaged",
+    "married": "Married",
+    "with_kids": "With kids",
+    "long_distance": "Long distance",
+    "restarting": "Starting over"
+  },
+  "dateLabel": "Together since",
+  "dateHint": "Pick a date",
+  "dateFormat": "{month} {day}, {year}",
+  "months": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ],
+  "futureDateNote": "A future date is fine; the countdown just starts later.",
+  "partnerLabel": "Partner",
+  "invitePartner": "Invite your partner",
+  "partnerError": "Could not load your partner.",
+  "partnerRetry": "Try again",
+  "phaseNote": "The phase only changes the words.",
+  "saved": "Saved",
+  "loadErrorTitle": "Could not load the relationship",
+  "loadErrorText": "Check your connection and try again.",
+  "errors(map)": {
+    "NETWORK": "No connection. Try again.",
+    "other": "Could not save right now. Try again."
+  }
+}

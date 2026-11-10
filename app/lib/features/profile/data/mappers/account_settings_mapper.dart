@@ -6,6 +6,8 @@ import 'package:flutter_bloc_starter/features/profile/data/models/account_settin
 extension MySettingsMapper on QueryMySettingsmySettings {
   AccountSettings toModel() => AccountSettings(
     theme: theme.toVariant(),
+    profileId: profileId,
+    timeZone: timeZone,
     partnerName: partnerName,
     togetherSince: togetherSince,
     onboardedAt: onboardedAt,

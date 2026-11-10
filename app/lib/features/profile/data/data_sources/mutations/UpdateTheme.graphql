@@ -1,0 +1,9 @@
+mutation UpdateTheme($profileId: UUID!, $theme: AppTheme!) {
+  updateProfileSettingsCollection(
+    set: { theme: $theme }
+    filter: { profileId: { eq: $profileId } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

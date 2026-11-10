@@ -773,6 +773,22 @@ class PrivacyHubRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ProfileSettingsPage]
+class ProfileSettingsRoute extends PageRouteInfo<void> {
+  const ProfileSettingsRoute({List<PageRouteInfo>? children})
+    : super(ProfileSettingsRoute.name, initialChildren: children);
+
+  static const String name = 'ProfileSettingsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const ProfileSettingsPage());
+    },
+  );
+}
+
+/// generated route for
 /// [ProfileSetupPage]
 class ProfileSetupRoute extends PageRouteInfo<void> {
   const ProfileSetupRoute({List<PageRouteInfo>? children})

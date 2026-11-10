@@ -1,0 +1,9 @@
+mutation UpdateTogetherSince($profileId: UUID!, $togetherSince: Date) {
+  updateProfileSettingsCollection(
+    set: { togetherSince: $togetherSince }
+    filter: { profileId: { eq: $profileId } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

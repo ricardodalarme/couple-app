@@ -22,6 +22,13 @@ class AuthenticationService() {
 
   String _metadataString(Object? value) => value is String ? value : '';
 
+  /// The auth provider that created the session, or null when it cannot be read.
+  String? get loginProvider {
+    final provider = _auth.currentUser?.appMetadata['provider'];
+
+    return provider is String && provider.isNotEmpty ? provider : null;
+  }
+
   Future<void> initialize({required String url, required String anonKey}) async {
     if (url.isEmpty || anonKey.isEmpty) {
       throw AuthenticationException(code: 'invalid_configuration');

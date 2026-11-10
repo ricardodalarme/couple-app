@@ -1,0 +1,9 @@
+mutation UpdatePronouns($profileId: UUID!, $pronouns: String) {
+  updateProfilesCollection(
+    set: { pronouns: $pronouns }
+    filter: { id: { eq: $profileId } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

@@ -91,11 +91,15 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$pause$pt pause = Translations$pause$pt.internal(_root);
   late final Translations$plus$pt plus = Translations$plus$pt.internal(_root);
   late final Translations$privacy$pt privacy = Translations$privacy$pt.internal(_root);
+  late final Translations$profileDetails$pt profileDetails =
+      Translations$profileDetails$pt.internal(_root);
   late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
     _root,
   );
   late final Translations$quickSlip$pt quickSlip = Translations$quickSlip$pt.internal(_root);
   late final Translations$received$pt received = Translations$received$pt.internal(_root);
+  late final Translations$relationshipSettings$pt relationshipSettings =
+      Translations$relationshipSettings$pt.internal(_root);
   late final Translations$reminders$pt reminders = Translations$reminders$pt.internal(_root);
   late final Translations$repair$pt repair = Translations$repair$pt.internal(_root);
   late final Translations$rituals$pt rituals = Translations$rituals$pt.internal(_root);
@@ -2099,6 +2103,91 @@ class Translations$privacy$pt {
   String get errorText => 'Tente de novo em instantes.';
 }
 
+// Path: profileDetails
+class Translations$profileDetails$pt {
+  Translations$profileDetails$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Perfil'
+  String get title => 'Perfil';
+
+  /// pt: 'Seu nome'
+  String get nameLabel => 'Seu nome';
+
+  /// pt: 'Marina'
+  String get nameHint => 'Marina';
+
+  /// pt: 'Seu nome não pode ficar vazio.'
+  String get nameError => 'Seu nome não pode ficar vazio.';
+
+  /// pt: 'Pronomes'
+  String get pronounsLabel => 'Pronomes';
+
+  /// pt: 'Opcional'
+  String get pronounsHint => 'Opcional';
+
+  /// pt: 'Use no máximo 30 caracteres.'
+  String get pronounsError => 'Use no máximo 30 caracteres.';
+
+  /// pt: 'Fuso horário'
+  String get timeZoneLabel => 'Fuso horário';
+
+  /// pt: 'Escolha um fuso'
+  String get timeZonePlaceholder => 'Escolha um fuso';
+
+  /// pt: 'Login'
+  String get loginLabel => 'Login';
+
+  /// pt: 'Conta'
+  String get loginAccount => 'Conta';
+
+  /// pt: 'E-mail'
+  String get loginEmail => 'E-mail';
+
+  /// pt: 'Apple'
+  String get loginApple => 'Apple';
+
+  /// pt: 'Google'
+  String get loginGoogle => 'Google';
+
+  /// pt: 'Ainda não dá para enviar foto.'
+  String get photoNote => 'Ainda não dá para enviar foto.';
+
+  /// pt: 'Salvo'
+  String get saved => 'Salvo';
+
+  /// pt: 'Não deu para carregar seu perfil'
+  String get loadErrorTitle => 'Não deu para carregar seu perfil';
+
+  /// pt: 'Confira a conexão e tente de novo.'
+  String get loadErrorText => 'Confira a conexão e tente de novo.';
+
+  Map<String, String> get timeZones => {
+    'America/Sao_Paulo': 'São Paulo',
+    'America/Argentina/Buenos_Aires': 'Buenos Aires',
+    'America/Bogota': 'Bogotá',
+    'America/Mexico_City': 'Cidade do México',
+    'America/New_York': 'Nova York',
+    'America/Los_Angeles': 'Los Angeles',
+    'Europe/Lisbon': 'Lisboa',
+    'Europe/London': 'Londres',
+    'Europe/Madrid': 'Madri',
+    'Europe/Paris': 'Paris',
+    'Europe/Berlin': 'Berlim',
+    'Africa/Luanda': 'Luanda',
+    'Asia/Tokyo': 'Tóquio',
+    'Australia/Sydney': 'Sydney',
+    'UTC': 'UTC',
+  };
+  Map<String, String> get errors => {
+    'NETWORK': 'Sem conexão. Tente de novo.',
+    'other': 'Não deu para salvar agora. Tente de novo.',
+  };
+}
+
 // Path: profileSetup
 class Translations$profileSetup$pt {
   Translations$profileSetup$pt.internal(this._root);
@@ -2312,6 +2401,92 @@ class Translations$received$pt {
   };
 }
 
+// Path: relationshipSettings
+class Translations$relationshipSettings$pt {
+  Translations$relationshipSettings$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Relacionamento'
+  String get title => 'Relacionamento';
+
+  /// pt: 'Fase'
+  String get phaseLabel => 'Fase';
+
+  /// pt: 'Escolha uma fase'
+  String get phasePlaceholder => 'Escolha uma fase';
+
+  Map<String, String> get phases => {
+    'beginning': 'Começando',
+    'dating': 'Namorando',
+    'living_together': 'Moramos juntos',
+    'engaged': 'Noivos',
+    'married': 'Casados',
+    'with_kids': 'Com filhos',
+    'long_distance': 'Namoro à distância',
+    'restarting': 'Recomeçando',
+  };
+
+  /// pt: 'Juntos desde'
+  String get dateLabel => 'Juntos desde';
+
+  /// pt: 'Escolha uma data'
+  String get dateHint => 'Escolha uma data';
+
+  /// pt: '{day} de {month} de {year}'
+  String dateFormat({required Object day, required Object month, required Object year}) =>
+      '${day} de ${month} de ${year}';
+
+  List<String> get months => [
+    'janeiro',
+    'fevereiro',
+    'março',
+    'abril',
+    'maio',
+    'junho',
+    'julho',
+    'agosto',
+    'setembro',
+    'outubro',
+    'novembro',
+    'dezembro',
+  ];
+
+  /// pt: 'Pode escolher uma data futura; a contagem só começa depois.'
+  String get futureDateNote => 'Pode escolher uma data futura; a contagem só começa depois.';
+
+  /// pt: 'Parceiro'
+  String get partnerLabel => 'Parceiro';
+
+  /// pt: 'Convide seu par'
+  String get invitePartner => 'Convide seu par';
+
+  /// pt: 'Não deu para carregar seu par.'
+  String get partnerError => 'Não deu para carregar seu par.';
+
+  /// pt: 'Tentar de novo'
+  String get partnerRetry => 'Tentar de novo';
+
+  /// pt: 'A fase muda só as palavras.'
+  String get phaseNote => 'A fase muda só as palavras.';
+
+  /// pt: 'Salvo'
+  String get saved => 'Salvo';
+
+  /// pt: 'Não deu para carregar o relacionamento'
+  String get loadErrorTitle => 'Não deu para carregar o relacionamento';
+
+  /// pt: 'Confira a conexão e tente de novo.'
+  String get loadErrorText => 'Confira a conexão e tente de novo.';
+
+  Map<String, String> get errors => {
+    'NETWORK': 'Sem conexão. Tente de novo.',
+    'other': 'Não deu para salvar agora. Tente de novo.',
+  };
+}
+
 // Path: reminders
 class Translations$reminders$pt {
   Translations$reminders$pt.internal(this._root);
@@ -2517,6 +2692,9 @@ class Translations$settingsHome$pt {
 
   /// pt: 'Modo seguro e saída rápida'
   String get safetyStatus => 'Modo seguro e saída rápida';
+
+  /// pt: 'Perfil'
+  String get profile => 'Perfil';
 
   /// pt: 'Relacionamento'
   String get relationship => 'Relacionamento';
@@ -5100,6 +5278,41 @@ extension on Translations {
           'privacy.saveError' => 'Não deu para salvar agora. Tente de novo.',
           'privacy.errorTitle' => 'Não deu para carregar os consentimentos',
           'privacy.errorText' => 'Tente de novo em instantes.',
+          'profileDetails.title' => 'Perfil',
+          'profileDetails.nameLabel' => 'Seu nome',
+          'profileDetails.nameHint' => 'Marina',
+          'profileDetails.nameError' => 'Seu nome não pode ficar vazio.',
+          'profileDetails.pronounsLabel' => 'Pronomes',
+          'profileDetails.pronounsHint' => 'Opcional',
+          'profileDetails.pronounsError' => 'Use no máximo 30 caracteres.',
+          'profileDetails.timeZoneLabel' => 'Fuso horário',
+          'profileDetails.timeZonePlaceholder' => 'Escolha um fuso',
+          'profileDetails.loginLabel' => 'Login',
+          'profileDetails.loginAccount' => 'Conta',
+          'profileDetails.loginEmail' => 'E-mail',
+          'profileDetails.loginApple' => 'Apple',
+          'profileDetails.loginGoogle' => 'Google',
+          'profileDetails.photoNote' => 'Ainda não dá para enviar foto.',
+          'profileDetails.saved' => 'Salvo',
+          'profileDetails.loadErrorTitle' => 'Não deu para carregar seu perfil',
+          'profileDetails.loadErrorText' => 'Confira a conexão e tente de novo.',
+          'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
+          'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
+          'profileDetails.timeZones.America/Bogota' => 'Bogotá',
+          'profileDetails.timeZones.America/Mexico_City' => 'Cidade do México',
+          'profileDetails.timeZones.America/New_York' => 'Nova York',
+          'profileDetails.timeZones.America/Los_Angeles' => 'Los Angeles',
+          'profileDetails.timeZones.Europe/Lisbon' => 'Lisboa',
+          'profileDetails.timeZones.Europe/London' => 'Londres',
+          'profileDetails.timeZones.Europe/Madrid' => 'Madri',
+          'profileDetails.timeZones.Europe/Paris' => 'Paris',
+          'profileDetails.timeZones.Europe/Berlin' => 'Berlim',
+          'profileDetails.timeZones.Africa/Luanda' => 'Luanda',
+          'profileDetails.timeZones.Asia/Tokyo' => 'Tóquio',
+          'profileDetails.timeZones.Australia/Sydney' => 'Sydney',
+          'profileDetails.timeZones.UTC' => 'UTC',
+          'profileDetails.errors.NETWORK' => 'Sem conexão. Tente de novo.',
+          'profileDetails.errors.other' => 'Não deu para salvar agora. Tente de novo.',
           'profileSetup.title' => 'O básico',
           'profileSetup.titleHighlight' => 'básico',
           'profileSetup.subtitle' =>
@@ -5209,6 +5422,48 @@ extension on Translations {
           'received.errors.NOT_FOUND' => 'Essa mensagem não está mais aqui.',
           'received.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'received.errors.other' => 'Não deu para responder agora. Tente de novo.',
+          'relationshipSettings.title' => 'Relacionamento',
+          'relationshipSettings.phaseLabel' => 'Fase',
+          'relationshipSettings.phasePlaceholder' => 'Escolha uma fase',
+          'relationshipSettings.phases.beginning' => 'Começando',
+          'relationshipSettings.phases.dating' => 'Namorando',
+          'relationshipSettings.phases.living_together' => 'Moramos juntos',
+          'relationshipSettings.phases.engaged' => 'Noivos',
+          'relationshipSettings.phases.married' => 'Casados',
+          'relationshipSettings.phases.with_kids' => 'Com filhos',
+          'relationshipSettings.phases.long_distance' => 'Namoro à distância',
+          'relationshipSettings.phases.restarting' => 'Recomeçando',
+          'relationshipSettings.dateLabel' => 'Juntos desde',
+          'relationshipSettings.dateHint' => 'Escolha uma data',
+          'relationshipSettings.dateFormat' => ({
+            required Object day,
+            required Object month,
+            required Object year,
+          }) => '${day} de ${month} de ${year}',
+          'relationshipSettings.months.0' => 'janeiro',
+          'relationshipSettings.months.1' => 'fevereiro',
+          'relationshipSettings.months.2' => 'março',
+          'relationshipSettings.months.3' => 'abril',
+          'relationshipSettings.months.4' => 'maio',
+          'relationshipSettings.months.5' => 'junho',
+          'relationshipSettings.months.6' => 'julho',
+          'relationshipSettings.months.7' => 'agosto',
+          'relationshipSettings.months.8' => 'setembro',
+          'relationshipSettings.months.9' => 'outubro',
+          'relationshipSettings.months.10' => 'novembro',
+          'relationshipSettings.months.11' => 'dezembro',
+          'relationshipSettings.futureDateNote' =>
+            'Pode escolher uma data futura; a contagem só começa depois.',
+          'relationshipSettings.partnerLabel' => 'Parceiro',
+          'relationshipSettings.invitePartner' => 'Convide seu par',
+          'relationshipSettings.partnerError' => 'Não deu para carregar seu par.',
+          'relationshipSettings.partnerRetry' => 'Tentar de novo',
+          'relationshipSettings.phaseNote' => 'A fase muda só as palavras.',
+          'relationshipSettings.saved' => 'Salvo',
+          'relationshipSettings.loadErrorTitle' => 'Não deu para carregar o relacionamento',
+          'relationshipSettings.loadErrorText' => 'Confira a conexão e tente de novo.',
+          'relationshipSettings.errors.NETWORK' => 'Sem conexão. Tente de novo.',
+          'relationshipSettings.errors.other' => 'Não deu para salvar agora. Tente de novo.',
           'reminders.title' => 'Repara',
           'reminders.dailyIdea' => 'Uma ideia pequena para hoje.',
           'reminders.dates' => 'Uma data está chegando.',
@@ -5366,6 +5621,7 @@ extension on Translations {
           'settingsHome.title' => 'Configurações',
           'settingsHome.safety' => 'Segurança e apoio',
           'settingsHome.safetyStatus' => 'Modo seguro e saída rápida',
+          'settingsHome.profile' => 'Perfil',
           'settingsHome.relationship' => 'Relacionamento',
           'settingsHome.connected' => 'Vocês estão conectados',
           'settingsHome.invitePartner' => 'Convide seu par',
@@ -5439,6 +5695,9 @@ extension on Translations {
           'slipDetail.editCancel' => 'Cancelar',
           'slipDetail.archive' => 'Arquivar',
           'slipDetail.restore' => 'Restaurar',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.delete' => 'Apagar',
           'slipDetail.deleteTitle' => 'Apagar este slip?',
           'slipDetail.deleteText' => 'Será removido da sua semana e da linha do tempo.',

@@ -2,21 +2,14 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/profile_name.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 
 part 'profile_setup_state.dart';
 
-const int maxNameLength = 30;
-
 /// The earliest relationship date the form accepts.
 final DateTime earliestTogetherSince = DateTime(1950);
-
-final RegExp _emoji = RegExp(
-  '[\u{1F000}-\u{1FFFF}\u{2190}-\u{21FF}\u{2300}-\u{23FF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}'
-  '\u{FE0F}\u{200D}]',
-  unicode: true,
-);
 
 class ProfileSetupCubit({
   required final ProfileRepository _profileRepository,
@@ -25,14 +18,7 @@ class ProfileSetupCubit({
   this : super(const ProfileSetupState());
 
   /// Removes emoji, trims and caps a typed name at [maxNameLength] characters.
-  static String sanitizeName(String value) {
-    final clean = value.replaceAll(_emoji, '').trim();
-    final runes = clean.runes.toList();
-
-    return runes.length <= maxNameLength
-        ? clean
-        : String.fromCharCodes(runes.take(maxNameLength)).trim();
-  }
+  static String sanitizeName(String value) => sanitizeDisplayName(value);
 
   void onNameChanged(String name) => emit(state.copyWith(name: name));
 

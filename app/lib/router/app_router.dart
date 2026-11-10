@@ -39,6 +39,7 @@ import 'package:flutter_bloc_starter/features/privacy/presentation/consents/cons
 import 'package:flutter_bloc_starter/features/privacy/presentation/hub/privacy_hub_page.dart';
 import 'package:flutter_bloc_starter/features/privacy/presentation/our_view/our_view_page.dart';
 import 'package:flutter_bloc_starter/features/privacy/presentation/partner_view/partner_view_page.dart';
+import 'package:flutter_bloc_starter/features/profile/presentation/profile/profile_settings_page.dart';
 import 'package:flutter_bloc_starter/features/profile/presentation/setup/profile_setup_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/calm/calm_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/guided/guided_repair_page.dart';
@@ -84,6 +85,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: ExistingAccountRoute.page),
     AutoRoute(page: DebugSignInRoute.page),
     AutoRoute(page: ProfileSetupRoute.page),
+    AutoRoute(page: ProfileSettingsRoute.page),
     AutoRoute(page: InviteRoute.page),
     AutoRoute(page: AcceptInviteRoute.page),
     AutoRoute(page: RelationshipRoute.page),

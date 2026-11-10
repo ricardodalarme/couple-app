@@ -1,0 +1,45 @@
+{
+  "title": "Relacionamento",
+  "phaseLabel": "Fase",
+  "phasePlaceholder": "Escolha uma fase",
+  "phases(map)": {
+    "beginning": "Começando",
+    "dating": "Namorando",
+    "living_together": "Moramos juntos",
+    "engaged": "Noivos",
+    "married": "Casados",
+    "with_kids": "Com filhos",
+    "long_distance": "Namoro à distância",
+    "restarting": "Recomeçando"
+  },
+  "dateLabel": "Juntos desde",
+  "dateHint": "Escolha uma data",
+  "dateFormat": "{day} de {month} de {year}",
+  "months": [
+    "janeiro",
+    "fevereiro",
+    "março",
+    "abril",
+    "maio",
+    "junho",
+    "julho",
+    "agosto",
+    "setembro",
+    "outubro",
+    "novembro",
+    "dezembro"
+  ],
+  "futureDateNote": "Pode escolher uma data futura; a contagem só começa depois.",
+  "partnerLabel": "Parceiro",
+  "invitePartner": "Convide seu par",
+  "partnerError": "Não deu para carregar seu par.",
+  "partnerRetry": "Tentar de novo",
+  "phaseNote": "A fase muda só as palavras.",
+  "saved": "Salvo",
+  "loadErrorTitle": "Não deu para carregar o relacionamento",
+  "loadErrorText": "Confira a conexão e tente de novo.",
+  "errors(map)": {
+    "NETWORK": "Sem conexão. Tente de novo.",
+    "other": "Não deu para salvar agora. Tente de novo."
+  }
+}

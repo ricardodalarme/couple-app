@@ -1,0 +1,9 @@
+mutation UpdateDisplayName($profileId: UUID!, $displayName: String!) {
+  updateProfilesCollection(
+    set: { displayName: $displayName }
+    filter: { id: { eq: $profileId } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

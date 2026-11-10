@@ -1,0 +1,41 @@
+{
+  "title": "Perfil",
+  "nameLabel": "Seu nome",
+  "nameHint": "Marina",
+  "nameError": "Seu nome não pode ficar vazio.",
+  "pronounsLabel": "Pronomes",
+  "pronounsHint": "Opcional",
+  "pronounsError": "Use no máximo 30 caracteres.",
+  "timeZoneLabel": "Fuso horário",
+  "timeZonePlaceholder": "Escolha um fuso",
+  "loginLabel": "Login",
+  "loginAccount": "Conta",
+  "loginEmail": "E-mail",
+  "loginApple": "Apple",
+  "loginGoogle": "Google",
+  "photoNote": "Ainda não dá para enviar foto.",
+  "saved": "Salvo",
+  "loadErrorTitle": "Não deu para carregar seu perfil",
+  "loadErrorText": "Confira a conexão e tente de novo.",
+  "timeZones(map)": {
+    "America/Sao_Paulo": "São Paulo",
+    "America/Argentina/Buenos_Aires": "Buenos Aires",
+    "America/Bogota": "Bogotá",
+    "America/Mexico_City": "Cidade do México",
+    "America/New_York": "Nova York",
+    "America/Los_Angeles": "Los Angeles",
+    "Europe/Lisbon": "Lisboa",
+    "Europe/London": "Londres",
+    "Europe/Madrid": "Madri",
+    "Europe/Paris": "Paris",
+    "Europe/Berlin": "Berlim",
+    "Africa/Luanda": "Luanda",
+    "Asia/Tokyo": "Tóquio",
+    "Australia/Sydney": "Sydney",
+    "UTC": "UTC"
+  },
+  "errors(map)": {
+    "NETWORK": "Sem conexão. Tente de novo.",
+    "other": "Não deu para salvar agora. Tente de novo."
+  }
+}

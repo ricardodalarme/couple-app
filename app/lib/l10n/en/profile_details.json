@@ -1,0 +1,41 @@
+{
+  "title": "Profile",
+  "nameLabel": "Your name",
+  "nameHint": "Marina",
+  "nameError": "Your name cannot be empty.",
+  "pronounsLabel": "Pronouns",
+  "pronounsHint": "Optional",
+  "pronounsError": "Use at most 30 characters.",
+  "timeZoneLabel": "Time zone",
+  "timeZonePlaceholder": "Pick a time zone",
+  "loginLabel": "Login",
+  "loginAccount": "Account",
+  "loginEmail": "Email",
+  "loginApple": "Apple",
+  "loginGoogle": "Google",
+  "photoNote": "Photo upload is not available yet.",
+  "saved": "Saved",
+  "loadErrorTitle": "Could not load your profile",
+  "loadErrorText": "Check your connection and try again.",
+  "timeZones(map)": {
+    "America/Sao_Paulo": "São Paulo",
+    "America/Argentina/Buenos_Aires": "Buenos Aires",
+    "America/Bogota": "Bogotá",
+    "America/Mexico_City": "Mexico City",
+    "America/New_York": "New York",
+    "America/Los_Angeles": "Los Angeles",
+    "Europe/Lisbon": "Lisbon",
+    "Europe/London": "London",
+    "Europe/Madrid": "Madrid",
+    "Europe/Paris": "Paris",
+    "Europe/Berlin": "Berlin",
+    "Africa/Luanda": "Luanda",
+    "Asia/Tokyo": "Tokyo",
+    "Australia/Sydney": "Sydney",
+    "UTC": "UTC"
+  },
+  "errors(map)": {
+    "NETWORK": "No connection. Try again.",
+    "other": "Could not save right now. Try again."
+  }
+}

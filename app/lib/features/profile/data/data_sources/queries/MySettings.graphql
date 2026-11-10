@@ -1,6 +1,8 @@
 query MySettings {
   mySettings {
+    profileId
     theme
+    timeZone
     partnerName
     togetherSince
     onboardedAt
