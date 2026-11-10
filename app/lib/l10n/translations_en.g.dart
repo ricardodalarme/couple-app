@@ -70,6 +70,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$day$en day = _Translations$day$en._(_root);
   @override
+  late final _Translations$discreet$en discreet = _Translations$discreet$en._(_root);
+  @override
   late final _Translations$firstSlip$en firstSlip = _Translations$firstSlip$en._(_root);
   @override
   late final _Translations$help$en help = _Translations$help$en._(_root);
@@ -575,6 +577,28 @@ class _Translations$day$en extends Translations$day$pt {
   String get errorTitle => 'Couldn\'t load';
   @override
   String get errorText => 'Try again in a moment.';
+}
+
+// Path: discreet
+class _Translations$discreet$en extends Translations$discreet$pt {
+  _Translations$discreet$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Discreet mode';
+  @override
+  String get neutralIcon => 'Neutral icon';
+  @override
+  String get neutralNotifications => 'Neutral notifications';
+  @override
+  String get hideWidgetText => 'Hide widget text';
+  @override
+  String get note =>
+      'Hides names and content in notifications and widgets. No couple photo on the icon.';
+  @override
+  String get saveError => 'Could not save now. Try again.';
 }
 
 // Path: firstSlip
@@ -1566,6 +1590,12 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   String get planFree => 'Free';
   @override
   String get planPlus => 'Plus';
+  @override
+  String get discreet => 'Discreet mode';
+  @override
+  String get discreetOn => 'On';
+  @override
+  String get discreetOff => 'Off';
 }
 
 // Path: slipDetail
@@ -3203,6 +3233,13 @@ extension on TranslationsEn {
           'day.emptyText' => 'A free day is good too.',
           'day.errorTitle' => 'Couldn\'t load',
           'day.errorText' => 'Try again in a moment.',
+          'discreet.title' => 'Discreet mode',
+          'discreet.neutralIcon' => 'Neutral icon',
+          'discreet.neutralNotifications' => 'Neutral notifications',
+          'discreet.hideWidgetText' => 'Hide widget text',
+          'discreet.note' =>
+            'Hides names and content in notifications and widgets. No couple photo on the icon.',
+          'discreet.saveError' => 'Could not save now. Try again.',
           'firstSlip.title' => 'Start with one good thing',
           'firstSlip.titleHighlight' => 'one good thing',
           'firstSlip.subtitle' => 'What did your partner do lately that made you smile? 30 seconds is enough. No account yet.',
@@ -3522,15 +3559,15 @@ extension on TranslationsEn {
             required Object year,
           }) => '${month} ${day}, ${year}',
           'profileSetup.months.0' => 'January',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.months.1' => 'February',
           'profileSetup.months.2' => 'March',
           'profileSetup.months.3' => 'April',
           'profileSetup.months.4' => 'May',
           'profileSetup.months.5' => 'June',
           'profileSetup.months.6' => 'July',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.months.7' => 'August',
           'profileSetup.months.8' => 'September',
           'profileSetup.months.9' => 'October',
@@ -3776,6 +3813,9 @@ extension on TranslationsEn {
           'settingsHome.plan' => 'Plan',
           'settingsHome.planFree' => 'Free',
           'settingsHome.planPlus' => 'Plus',
+          'settingsHome.discreet' => 'Discreet mode',
+          'settingsHome.discreetOn' => 'On',
+          'settingsHome.discreetOff' => 'Off',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -4101,6 +4141,9 @@ extension on TranslationsEn {
           'today.invitePerson' => 'Invite your person',
           'today.offline' => 'No connection. Showing what was saved.',
           'today.pendingInviteTitle' => 'Invite sent',
+          _ => null,
+        } ??
+        switch (path) {
           'today.pendingInviteText' => 'They have not joined yet. Send again or revoke.',
           'today.pendingInviteAction' => 'See invite',
           'today.answer' => 'Answer',
@@ -4124,9 +4167,6 @@ extension on TranslationsEn {
                   one: 'Your private slips: 1 this week',
                   other: 'Your private slips: ${count} this week',
                 ),
-          _ => null,
-        } ??
-        switch (path) {
           'today.sundayCardLabel' => 'Sunday card',
           'today.sundayCardTitle' => 'Your card for this week',
           'today.inviteCardLabel' => 'Invite',

@@ -55,6 +55,7 @@ class NotificationsRepository({
 
       return NotificationPreferences(
         isEnabled: settings.enabled,
+        discreet: settings.discreet,
         mutedTypes: {...settings.mutedTypes.whereType<String>()},
         quietStart: _parseTime(settings.quietStart),
         quietEnd: _parseTime(settings.quietEnd),
@@ -72,6 +73,7 @@ class NotificationsRepository({
     try {
       await _dataSource.updateSettings(
         enabled: preferences.isEnabled,
+        discreet: preferences.discreet,
         mutedTypes: preferences.mutedTypes.toList(),
         quietStart: _formatTime(preferences.quietStart),
         quietEnd: _formatTime(preferences.quietEnd),

@@ -1,0 +1,8 @@
+{
+  "title": "Modo discreto",
+  "neutralIcon": "Ícone neutro",
+  "neutralNotifications": "Notificações neutras",
+  "hideWidgetText": "Ocultar texto do widget",
+  "note": "Oculta nomes e conteúdo em notificações e widgets. Sem imagem do casal no ícone.",
+  "saveError": "Não deu para salvar agora. Tente de novo."
+}

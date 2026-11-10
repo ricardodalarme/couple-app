@@ -6,7 +6,15 @@ final class const SettingsHomeState({
   final bool? hasPartner,
   final bool? hasPlus,
   final bool? notificationsOn,
+  final bool discreetOn = false,
 }) with Equatable {
   @override
-  List<Object?> get props => [isLoaded, partnerName, hasPartner, hasPlus, notificationsOn];
+  List<Object?> get props => [
+    isLoaded,
+    partnerName,
+    hasPartner,
+    hasPlus,
+    notificationsOn,
+    discreetOn,
+  ];
 }

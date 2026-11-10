@@ -1,0 +1,8 @@
+{
+  "title": "Discreet mode",
+  "neutralIcon": "Neutral icon",
+  "neutralNotifications": "Neutral notifications",
+  "hideWidgetText": "Hide widget text",
+  "note": "Hides names and content in notifications and widgets. No couple photo on the icon.",
+  "saveError": "Could not save now. Try again."
+}

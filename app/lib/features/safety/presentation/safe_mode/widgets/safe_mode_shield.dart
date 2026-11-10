@@ -1,9 +1,10 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
+import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 
-/// Covers the whole app with a blank screen whenever it is not in the foreground and safe mode is
-/// on, so the app switcher shows nothing.
+/// Covers the whole app with a blank screen whenever it is not in the foreground and safe or
+/// discreet mode is on, so the app switcher shows nothing.
 class const SafeModeShield({required final Widget child, super.key}) extends StatefulWidget {
   @override
   State<SafeModeShield> createState() => _SafeModeShieldState();
@@ -32,13 +33,15 @@ class _SafeModeShieldState() extends State<SafeModeShield> with WidgetsBindingOb
 
   @override
   Widget build(BuildContext context) {
-    final isOn = context.select((SafeModeCubit cubit) => cubit.state);
+    final safeMode = context.select((SafeModeCubit cubit) => cubit.state);
+    final discreet = context.select((DiscreetModeCubit cubit) => cubit.state.isOn);
+    final hides = safeMode || discreet;
 
     return Stack(
       textDirection: TextDirection.ltr,
       children: [
         widget.child,
-        if (isOn && _isHidden) const Positioned.fill(child: ColoredBox(color: Color(0xFFFFFFFF))),
+        if (hides && _isHidden) const Positioned.fill(child: ColoredBox(color: Color(0xFFFFFFFF))),
       ],
     );
   }

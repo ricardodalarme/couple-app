@@ -16,6 +16,7 @@ class NotificationsDataSource({required final GQLClient _client}) {
 
   Future<void> updateSettings({
     required bool enabled,
+    required bool discreet,
     required List<String> mutedTypes,
     required String quietStart,
     required String quietEnd,
@@ -27,6 +28,7 @@ class NotificationsDataSource({required final GQLClient _client}) {
         variables: VariablesMutationUpdateNotificationSettings(
           $set: InputNotificationSettingsUpdateInput(
             enabled: enabled,
+            discreet: discreet,
             mutedTypes: mutedTypes,
             quietStart: quietStart,
             quietEnd: quietEnd,

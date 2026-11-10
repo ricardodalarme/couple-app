@@ -5,6 +5,7 @@ query MySettings {
     togetherSince
     onboardedAt
     shareReadReceipts
+    widgetInDiscreet
     phase
     goals
     locale

@@ -64,6 +64,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$dateNight$pt dateNight = Translations$dateNight$pt.internal(_root);
   late final Translations$dates$pt dates = Translations$dates$pt.internal(_root);
   late final Translations$day$pt day = Translations$day$pt.internal(_root);
+  late final Translations$discreet$pt discreet = Translations$discreet$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
   late final Translations$help$pt help = Translations$help$pt.internal(_root);
   late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
@@ -642,6 +643,34 @@ class Translations$day$pt {
 
   /// pt: 'Tente de novo daqui a pouco.'
   String get errorText => 'Tente de novo daqui a pouco.';
+}
+
+// Path: discreet
+class Translations$discreet$pt {
+  Translations$discreet$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Modo discreto'
+  String get title => 'Modo discreto';
+
+  /// pt: 'Ícone neutro'
+  String get neutralIcon => 'Ícone neutro';
+
+  /// pt: 'Notificações neutras'
+  String get neutralNotifications => 'Notificações neutras';
+
+  /// pt: 'Ocultar texto do widget'
+  String get hideWidgetText => 'Ocultar texto do widget';
+
+  /// pt: 'Oculta nomes e conteúdo em notificações e widgets. Sem imagem do casal no ícone.'
+  String get note =>
+      'Oculta nomes e conteúdo em notificações e widgets. Sem imagem do casal no ícone.';
+
+  /// pt: 'Não deu para salvar agora. Tente de novo.'
+  String get saveError => 'Não deu para salvar agora. Tente de novo.';
 }
 
 // Path: firstSlip
@@ -1874,6 +1903,15 @@ class Translations$settingsHome$pt {
 
   /// pt: 'Plus'
   String get planPlus => 'Plus';
+
+  /// pt: 'Modo discreto'
+  String get discreet => 'Modo discreto';
+
+  /// pt: 'Ligado'
+  String get discreetOn => 'Ligado';
+
+  /// pt: 'Desligado'
+  String get discreetOff => 'Desligado';
 }
 
 // Path: slipDetail
@@ -3825,6 +3863,13 @@ extension on Translations {
           'day.emptyText' => 'Um dia livre também é bom.',
           'day.errorTitle' => 'Não deu para carregar',
           'day.errorText' => 'Tente de novo daqui a pouco.',
+          'discreet.title' => 'Modo discreto',
+          'discreet.neutralIcon' => 'Ícone neutro',
+          'discreet.neutralNotifications' => 'Notificações neutras',
+          'discreet.hideWidgetText' => 'Ocultar texto do widget',
+          'discreet.note' =>
+            'Oculta nomes e conteúdo em notificações e widgets. Sem imagem do casal no ícone.',
+          'discreet.saveError' => 'Não deu para salvar agora. Tente de novo.',
           'firstSlip.title' => 'Comece com uma coisa boa',
           'firstSlip.titleHighlight' => 'uma coisa boa',
           'firstSlip.subtitle' => 'O que seu parceiro fez ultimamente que te fez sorrir? 30 segundos bastam. Ainda sem conta.',
@@ -4147,15 +4192,15 @@ extension on Translations {
             required Object year,
           }) => '${day} de ${month} de ${year}',
           'profileSetup.months.0' => 'janeiro',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.months.1' => 'fevereiro',
           'profileSetup.months.2' => 'março',
           'profileSetup.months.3' => 'abril',
           'profileSetup.months.4' => 'maio',
           'profileSetup.months.5' => 'junho',
           'profileSetup.months.6' => 'julho',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.months.7' => 'agosto',
           'profileSetup.months.8' => 'setembro',
           'profileSetup.months.9' => 'outubro',
@@ -4404,6 +4449,9 @@ extension on Translations {
           'settingsHome.plan' => 'Plano',
           'settingsHome.planFree' => 'Grátis',
           'settingsHome.planPlus' => 'Plus',
+          'settingsHome.discreet' => 'Modo discreto',
+          'settingsHome.discreetOn' => 'Ligado',
+          'settingsHome.discreetOff' => 'Desligado',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -4730,6 +4778,9 @@ extension on Translations {
           'today.invitePerson' => 'Convidar sua pessoa',
           'today.offline' => 'Sem conexão. Mostrando o que foi salvo.',
           'today.pendingInviteTitle' => 'Convite enviado',
+          _ => null,
+        } ??
+        switch (path) {
           'today.pendingInviteText' => 'A pessoa ainda não entrou. Reenviar ou revogar.',
           'today.pendingInviteAction' => 'Ver convite',
           'today.answer' => 'Responder',
@@ -4753,9 +4804,6 @@ extension on Translations {
                   one: 'Seus slips privados: 1 esta semana',
                   other: 'Seus slips privados: ${count} esta semana',
                 ),
-          _ => null,
-        } ??
-        switch (path) {
           'today.sundayCardLabel' => 'Cartão de domingo',
           'today.sundayCardTitle' => 'Seu cartão desta semana',
           'today.inviteCardLabel' => 'Convite',

@@ -10,5 +10,8 @@
   "off": "Off",
   "plan": "Plan",
   "planFree": "Free",
-  "planPlus": "Plus"
+  "planPlus": "Plus",
+  "discreet": "Discreet mode",
+  "discreetOn": "On",
+  "discreetOff": "Off"
 }

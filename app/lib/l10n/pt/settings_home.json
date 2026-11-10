@@ -10,5 +10,8 @@
   "off": "Desligadas",
   "plan": "Plano",
   "planFree": "Grátis",
-  "planPlus": "Plus"
+  "planPlus": "Plus",
+  "discreet": "Modo discreto",
+  "discreetOn": "Ligado",
+  "discreetOff": "Desligado"
 }

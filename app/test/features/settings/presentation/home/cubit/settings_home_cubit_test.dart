@@ -4,6 +4,8 @@ import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_
 import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
 import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
+import 'package:flutter_bloc_starter/features/settings/data/models/discreet_mode_values.dart';
+import 'package:flutter_bloc_starter/features/settings/data/repositories/discreet_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/home/cubit/settings_home_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -14,21 +16,27 @@ class _MockPlusRepository() extends Mock implements PlusRepository;
 
 class _MockNotificationsRepository() extends Mock implements NotificationsRepository;
 
+class _MockDiscreetRepository() extends Mock implements DiscreetRepository;
+
 void main() {
   late PairingRepository pairing;
   late PlusRepository plus;
   late NotificationsRepository notifications;
+  late DiscreetRepository discreet;
 
   setUp(() {
     pairing = _MockPairingRepository();
     plus = _MockPlusRepository();
     notifications = _MockNotificationsRepository();
+    discreet = _MockDiscreetRepository();
+    when(() => discreet.local).thenReturn(const DiscreetModeValues());
   });
 
   SettingsHomeCubit build() => SettingsHomeCubit(
     pairingRepository: pairing,
     plusRepository: plus,
     notificationsRepository: notifications,
+    discreetRepository: discreet,
   );
 
   test('each section shows its current state', () async {

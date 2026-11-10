@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
+import 'package:flutter_bloc_starter/features/settings/data/repositories/discreet_repository.dart';
 
 part 'settings_home_state.dart';
 
@@ -10,6 +11,7 @@ class SettingsHomeCubit({
   required final PairingRepository _pairingRepository,
   required final PlusRepository _plusRepository,
   required final NotificationsRepository _notificationsRepository,
+  required final DiscreetRepository _discreetRepository,
 }) extends Cubit<SettingsHomeState> {
   this : super(const SettingsHomeState());
 
@@ -25,6 +27,7 @@ class SettingsHomeCubit({
         hasPartner: partner.isOk ? partner.value != null : null,
         hasPlus: plus.value?.hasPlus,
         notificationsOn: notifications.value?.isEnabled,
+        discreetOn: _discreetRepository.local.isOn,
       ),
     );
   }

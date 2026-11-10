@@ -86,6 +86,13 @@ const documentNodeQueryMyNotificationSettings = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'discreet'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: 'quietStart'),
                   alias: null,
                   arguments: [],
@@ -261,6 +268,7 @@ extension ClientExtensionQueryMyNotificationSettings on graphql.GraphQLClient {
 class QueryMyNotificationSettingsmyNotificationSettings {
   QueryMyNotificationSettingsmyNotificationSettings({
     required this.enabled,
+    required this.discreet,
     required this.quietStart,
     required this.quietEnd,
     required this.cardDay,
@@ -271,6 +279,7 @@ class QueryMyNotificationSettingsmyNotificationSettings {
 
   factory QueryMyNotificationSettingsmyNotificationSettings.fromJson(Map<String, dynamic> json) {
     final l$enabled = json['enabled'];
+    final l$discreet = json['discreet'];
     final l$quietStart = json['quietStart'];
     final l$quietEnd = json['quietEnd'];
     final l$cardDay = json['cardDay'];
@@ -279,6 +288,7 @@ class QueryMyNotificationSettingsmyNotificationSettings {
     final l$$__typename = json['__typename'];
     return QueryMyNotificationSettingsmyNotificationSettings(
       enabled: (l$enabled as bool),
+      discreet: (l$discreet as bool),
       quietStart: (l$quietStart as String),
       quietEnd: (l$quietEnd as String),
       cardDay: (l$cardDay as int),
@@ -289,6 +299,8 @@ class QueryMyNotificationSettingsmyNotificationSettings {
   }
 
   final bool enabled;
+
+  final bool discreet;
 
   final String quietStart;
 
@@ -306,6 +318,8 @@ class QueryMyNotificationSettingsmyNotificationSettings {
     final _resultData = <String, dynamic>{};
     final l$enabled = enabled;
     _resultData['enabled'] = l$enabled;
+    final l$discreet = discreet;
+    _resultData['discreet'] = l$discreet;
     final l$quietStart = quietStart;
     _resultData['quietStart'] = l$quietStart;
     final l$quietEnd = quietEnd;
@@ -324,6 +338,7 @@ class QueryMyNotificationSettingsmyNotificationSettings {
   @override
   int get hashCode {
     final l$enabled = enabled;
+    final l$discreet = discreet;
     final l$quietStart = quietStart;
     final l$quietEnd = quietEnd;
     final l$cardDay = cardDay;
@@ -332,6 +347,7 @@ class QueryMyNotificationSettingsmyNotificationSettings {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$enabled,
+      l$discreet,
       l$quietStart,
       l$quietEnd,
       l$cardDay,
@@ -353,6 +369,11 @@ class QueryMyNotificationSettingsmyNotificationSettings {
     final l$enabled = enabled;
     final lOther$enabled = other.enabled;
     if (l$enabled != lOther$enabled) {
+      return false;
+    }
+    final l$discreet = discreet;
+    final lOther$discreet = other.discreet;
+    if (l$discreet != lOther$discreet) {
       return false;
     }
     final l$quietStart = quietStart;

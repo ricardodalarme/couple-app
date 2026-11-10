@@ -208,6 +208,22 @@ class DebugSignInRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [DiscreetModePage]
+class DiscreetModeRoute extends PageRouteInfo<void> {
+  const DiscreetModeRoute({List<PageRouteInfo>? children})
+    : super(DiscreetModeRoute.name, initialChildren: children);
+
+  static const String name = 'DiscreetModeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const DiscreetModePage());
+    },
+  );
+}
+
+/// generated route for
 /// [ExistingAccountPage]
 class ExistingAccountRoute extends PageRouteInfo<void> {
   const ExistingAccountRoute({List<PageRouteInfo>? children})

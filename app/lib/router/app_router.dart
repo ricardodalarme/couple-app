@@ -38,6 +38,7 @@ import 'package:flutter_bloc_starter/features/repair/presentation/soft_start/sof
 import 'package:flutter_bloc_starter/features/repair/presentation/temperature/temperature_page.dart';
 import 'package:flutter_bloc_starter/features/safety/presentation/neutral/neutral_page.dart';
 import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/safe_mode_page.dart';
+import 'package:flutter_bloc_starter/features/settings/presentation/discreet/discreet_page.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/home/settings_home_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/need/need_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/quick_slip_page.dart';
@@ -90,6 +91,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: DatesRoute.page),
     AutoRoute(page: PlansRoute.page),
     AutoRoute(page: SettingsHomeRoute.page),
+    AutoRoute(page: DiscreetModeRoute.page),
     AutoRoute(page: SafeModeRoute.page),
     AutoRoute(page: NeutralRoute.page),
     AutoRoute(page: BadDayRoute.page),

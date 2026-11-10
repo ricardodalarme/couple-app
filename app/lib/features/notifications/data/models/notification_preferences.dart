@@ -13,6 +13,7 @@ const List<String> notificationTypes = [
 /// What the person chose for notifications, kept on the server so it applies to pushes.
 final class const NotificationPreferences({
   final bool isEnabled = true,
+  final bool discreet = false,
   final Set<String> mutedTypes = const {},
   final TimeOfDayValue quietStart = const TimeOfDayValue(hour: 22, minute: 0),
   final TimeOfDayValue quietEnd = const TimeOfDayValue(hour: 8, minute: 0),
@@ -30,6 +31,7 @@ final class const NotificationPreferences({
 
   NotificationPreferences copyWith({
     bool? isEnabled,
+    bool? discreet,
     Set<String>? mutedTypes,
     TimeOfDayValue? quietStart,
     TimeOfDayValue? quietEnd,
@@ -37,6 +39,7 @@ final class const NotificationPreferences({
     int? cardHour,
   }) => NotificationPreferences(
     isEnabled: isEnabled ?? this.isEnabled,
+    discreet: discreet ?? this.discreet,
     mutedTypes: mutedTypes ?? this.mutedTypes,
     quietStart: quietStart ?? this.quietStart,
     quietEnd: quietEnd ?? this.quietEnd,
@@ -45,5 +48,13 @@ final class const NotificationPreferences({
   );
 
   @override
-  List<Object?> get props => [isEnabled, mutedTypes, quietStart, quietEnd, cardDay, cardHour];
+  List<Object?> get props => [
+    isEnabled,
+    discreet,
+    mutedTypes,
+    quietStart,
+    quietEnd,
+    cardDay,
+    cardHour,
+  ];
 }
