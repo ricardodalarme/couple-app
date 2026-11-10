@@ -1,0 +1,57 @@
+{
+  "title": "Como você está hoje?",
+  "titleHighlight": "hoje",
+  "subtitle": "Um toque. A etiqueta “Preciso de...” é opcional.",
+  "privateCue": "só você vê",
+  "moods(map)": {
+    "happy": "Feliz",
+    "tired": "Cansado(a)",
+    "sad": "Triste",
+    "stressed": "Estressado(a)",
+    "loving": "Carinhoso(a)",
+    "playful": "Brincalhão(ona)"
+  },
+  "needTitle": "Preciso de...",
+  "needs(map)": {
+    "listen": "Ser ouvido",
+    "opinion": "Uma opinião",
+    "hug": "Um abraço",
+    "space": "Um tempo"
+  },
+  "shareTitle": "O que seu par vê",
+  "shareTitleNamed": "O que {name} vê",
+  "shareSubtitle": "Quem cria o dado decide. O padrão é privado.",
+  "share(map)": {
+    "none": "Manter privado",
+    "mood": "Só meu humor",
+    "mood_need": "Humor e o que preciso"
+  },
+  "shareSupport(map)": {
+    "none": "Nada é compartilhado.",
+    "mood": "Seu par vê o humor, sem o que você precisa.",
+    "mood_need": "Seu par vê o humor e o que você precisa."
+  },
+  "privacyNote": "Nada é compartilhado por padrão. Seu par nunca vê gráfico nem nota.",
+  "save": "Salvar",
+  "saved": "Humor salvo",
+  "errors(map)": {
+    "NETWORK": "Não deu para salvar seu humor. Verifique a conexão e tente de novo.",
+    "TIMEOUT": "Não deu para salvar seu humor a tempo. Tente de novo.",
+    "other": "Não deu para salvar seu humor. Tente de novo."
+  },
+  "entryCategory": "Humor do dia",
+  "entryTitle": "Como você está hoje?",
+  "entryText": "Um toque. Só você vê até compartilhar.",
+  "partnerLabel": "Humor do seu par",
+  "partnerFallback": "Seu par",
+  "partnerHappy": "{name} está feliz hoje",
+  "partnerTired": "{name} está sem energia hoje",
+  "partnerSad": "{name} está para baixo hoje",
+  "partnerStressed": "{name} está com a cabeça cheia hoje",
+  "partnerLoving": "{name} está com o coração quentinho hoje",
+  "partnerPlayful": "{name} está com vontade de brincar hoje",
+  "partnerNeedListen": "O que ajuda: só ouvir.",
+  "partnerNeedOpinion": "O que ajuda: uma opinião.",
+  "partnerNeedHug": "O que ajuda: um abraço.",
+  "partnerNeedSpace": "O que ajuda: um pouco de espaço."
+}

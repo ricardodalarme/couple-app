@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/mood/presentation/mood/widgets/partner_mood_hint.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/off_banner/widgets/notifications_off_banner.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/cubit/today_cubit.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_bloc_starter/features/today/presentation/today/widgets/t
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
-/// The body of Hoje: banners, the main card, the week so far and today's idea.
+/// The body of Hoje: banners, the main card, the mood, the week so far and today's idea.
 ///
 /// The main card follows the person's state: the partner's question when connected, a private
 /// prompt when on their own, and a welcome on the first day.
@@ -19,6 +20,7 @@ class const TodayContent({
   final String? selfName,
   final String? partnerHint,
   final bool isFirstDay = false,
+  final bool isDiscreet = false,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -111,6 +113,26 @@ class const TodayContent({
             ),
           ),
         ],
+        if (!isDiscreet && home.isPaired && home.partnerMood?.isVisible == true) ...[
+          const SizedBox(height: AppSpace.s12),
+          PartnerMoodHint(
+            partnerMood: home.partnerMood!,
+            partnerName: home.partnerName,
+            isDiscreet: isDiscreet,
+            onTap: () => context.pushRoute(const BadDayRoute()),
+          ),
+        ],
+        const SizedBox(height: AppSpace.s12),
+        BaseListCard(
+          categoryLabel: context.l10n.mood.entryCategory,
+          title: context.l10n.mood.entryTitle,
+          supportText: context.l10n.mood.entryText,
+          face: FaceKind.smile,
+          onTap: () async {
+            await context.pushRoute(const MoodRoute());
+            if (context.mounted) await context.read<TodayCubit>().load();
+          },
+        ),
         const SizedBox(height: AppSpace.s16),
         BaseSurfaceCard(
           title: isAlone

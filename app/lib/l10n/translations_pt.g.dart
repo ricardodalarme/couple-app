@@ -78,6 +78,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
   late final Translations$logistics$pt logistics = Translations$logistics$pt.internal(_root);
   late final Translations$memories$pt memories = Translations$memories$pt.internal(_root);
+  late final Translations$mood$pt mood = Translations$mood$pt.internal(_root);
   late final Translations$need$pt need = Translations$need$pt.internal(_root);
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
   late final Translations$notificationPermission$pt notificationPermission =
@@ -1340,6 +1341,126 @@ class Translations$memories$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para fazer isso agora. Seu texto continua aqui.',
   };
+}
+
+// Path: mood
+class Translations$mood$pt {
+  Translations$mood$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Como você está hoje?'
+  String get title => 'Como você está hoje?';
+
+  /// pt: 'hoje'
+  String get titleHighlight => 'hoje';
+
+  /// pt: 'Um toque. A etiqueta “Preciso de...” é opcional.'
+  String get subtitle => 'Um toque. A etiqueta “Preciso de...” é opcional.';
+
+  /// pt: 'só você vê'
+  String get privateCue => 'só você vê';
+
+  Map<String, String> get moods => {
+    'happy': 'Feliz',
+    'tired': 'Cansado(a)',
+    'sad': 'Triste',
+    'stressed': 'Estressado(a)',
+    'loving': 'Carinhoso(a)',
+    'playful': 'Brincalhão(ona)',
+  };
+
+  /// pt: 'Preciso de...'
+  String get needTitle => 'Preciso de...';
+
+  Map<String, String> get needs => {
+    'listen': 'Ser ouvido',
+    'opinion': 'Uma opinião',
+    'hug': 'Um abraço',
+    'space': 'Um tempo',
+  };
+
+  /// pt: 'O que seu par vê'
+  String get shareTitle => 'O que seu par vê';
+
+  /// pt: 'O que {name} vê'
+  String shareTitleNamed({required Object name}) => 'O que ${name} vê';
+
+  /// pt: 'Quem cria o dado decide. O padrão é privado.'
+  String get shareSubtitle => 'Quem cria o dado decide. O padrão é privado.';
+
+  Map<String, String> get share => {
+    'none': 'Manter privado',
+    'mood': 'Só meu humor',
+    'mood_need': 'Humor e o que preciso',
+  };
+  Map<String, String> get shareSupport => {
+    'none': 'Nada é compartilhado.',
+    'mood': 'Seu par vê o humor, sem o que você precisa.',
+    'mood_need': 'Seu par vê o humor e o que você precisa.',
+  };
+
+  /// pt: 'Nada é compartilhado por padrão. Seu par nunca vê gráfico nem nota.'
+  String get privacyNote => 'Nada é compartilhado por padrão. Seu par nunca vê gráfico nem nota.';
+
+  /// pt: 'Salvar'
+  String get save => 'Salvar';
+
+  /// pt: 'Humor salvo'
+  String get saved => 'Humor salvo';
+
+  Map<String, String> get errors => {
+    'NETWORK': 'Não deu para salvar seu humor. Verifique a conexão e tente de novo.',
+    'TIMEOUT': 'Não deu para salvar seu humor a tempo. Tente de novo.',
+    'other': 'Não deu para salvar seu humor. Tente de novo.',
+  };
+
+  /// pt: 'Humor do dia'
+  String get entryCategory => 'Humor do dia';
+
+  /// pt: 'Como você está hoje?'
+  String get entryTitle => 'Como você está hoje?';
+
+  /// pt: 'Um toque. Só você vê até compartilhar.'
+  String get entryText => 'Um toque. Só você vê até compartilhar.';
+
+  /// pt: 'Humor do seu par'
+  String get partnerLabel => 'Humor do seu par';
+
+  /// pt: 'Seu par'
+  String get partnerFallback => 'Seu par';
+
+  /// pt: '{name} está feliz hoje'
+  String partnerHappy({required Object name}) => '${name} está feliz hoje';
+
+  /// pt: '{name} está sem energia hoje'
+  String partnerTired({required Object name}) => '${name} está sem energia hoje';
+
+  /// pt: '{name} está para baixo hoje'
+  String partnerSad({required Object name}) => '${name} está para baixo hoje';
+
+  /// pt: '{name} está com a cabeça cheia hoje'
+  String partnerStressed({required Object name}) => '${name} está com a cabeça cheia hoje';
+
+  /// pt: '{name} está com o coração quentinho hoje'
+  String partnerLoving({required Object name}) => '${name} está com o coração quentinho hoje';
+
+  /// pt: '{name} está com vontade de brincar hoje'
+  String partnerPlayful({required Object name}) => '${name} está com vontade de brincar hoje';
+
+  /// pt: 'O que ajuda: só ouvir.'
+  String get partnerNeedListen => 'O que ajuda: só ouvir.';
+
+  /// pt: 'O que ajuda: uma opinião.'
+  String get partnerNeedOpinion => 'O que ajuda: uma opinião.';
+
+  /// pt: 'O que ajuda: um abraço.'
+  String get partnerNeedHug => 'O que ajuda: um abraço.';
+
+  /// pt: 'O que ajuda: um pouco de espaço.'
+  String get partnerNeedSpace => 'O que ajuda: um pouco de espaço.';
 }
 
 // Path: need
@@ -4699,6 +4820,59 @@ extension on Translations {
           'memories.errorText' => 'Suas memórias continuam salvas. Tente de novo.',
           'memories.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'memories.errors.other' => 'Não deu para fazer isso agora. Seu texto continua aqui.',
+          'mood.title' => 'Como você está hoje?',
+          'mood.titleHighlight' => 'hoje',
+          'mood.subtitle' => 'Um toque. A etiqueta “Preciso de...” é opcional.',
+          'mood.privateCue' => 'só você vê',
+          'mood.moods.happy' => 'Feliz',
+          'mood.moods.tired' => 'Cansado(a)',
+          'mood.moods.sad' => 'Triste',
+          'mood.moods.stressed' => 'Estressado(a)',
+          'mood.moods.loving' => 'Carinhoso(a)',
+          'mood.moods.playful' => 'Brincalhão(ona)',
+          'mood.needTitle' => 'Preciso de...',
+          'mood.needs.listen' => 'Ser ouvido',
+          'mood.needs.opinion' => 'Uma opinião',
+          'mood.needs.hug' => 'Um abraço',
+          'mood.needs.space' => 'Um tempo',
+          'mood.shareTitle' => 'O que seu par vê',
+          'mood.shareTitleNamed' => ({required Object name}) => 'O que ${name} vê',
+          'mood.shareSubtitle' => 'Quem cria o dado decide. O padrão é privado.',
+          'mood.share.none' => 'Manter privado',
+          'mood.share.mood' => 'Só meu humor',
+          'mood.share.mood_need' => 'Humor e o que preciso',
+          'mood.shareSupport.none' => 'Nada é compartilhado.',
+          'mood.shareSupport.mood' => 'Seu par vê o humor, sem o que você precisa.',
+          'mood.shareSupport.mood_need' => 'Seu par vê o humor e o que você precisa.',
+          'mood.privacyNote' =>
+            'Nada é compartilhado por padrão. Seu par nunca vê gráfico nem nota.',
+          'mood.save' => 'Salvar',
+          'mood.saved' => 'Humor salvo',
+          'mood.errors.NETWORK' =>
+            'Não deu para salvar seu humor. Verifique a conexão e tente de novo.',
+          'mood.errors.TIMEOUT' => 'Não deu para salvar seu humor a tempo. Tente de novo.',
+          'mood.errors.other' => 'Não deu para salvar seu humor. Tente de novo.',
+          'mood.entryCategory' => 'Humor do dia',
+          'mood.entryTitle' => 'Como você está hoje?',
+          'mood.entryText' => 'Um toque. Só você vê até compartilhar.',
+          'mood.partnerLabel' => 'Humor do seu par',
+          'mood.partnerFallback' => 'Seu par',
+          'mood.partnerHappy' => ({required Object name}) => '${name} está feliz hoje',
+          'mood.partnerTired' => ({required Object name}) => '${name} está sem energia hoje',
+          'mood.partnerSad' => ({required Object name}) => '${name} está para baixo hoje',
+          'mood.partnerStressed' => ({
+            required Object name,
+          }) => '${name} está com a cabeça cheia hoje',
+          'mood.partnerLoving' => ({
+            required Object name,
+          }) => '${name} está com o coração quentinho hoje',
+          'mood.partnerPlayful' => ({
+            required Object name,
+          }) => '${name} está com vontade de brincar hoje',
+          'mood.partnerNeedListen' => 'O que ajuda: só ouvir.',
+          'mood.partnerNeedOpinion' => 'O que ajuda: uma opinião.',
+          'mood.partnerNeedHug' => 'O que ajuda: um abraço.',
+          'mood.partnerNeedSpace' => 'O que ajuda: um pouco de espaço.',
           'need.title' => 'Preciso de…',
           'need.titleHighlight' => 'Preciso',
           'need.subtitle' => 'Escolha uma coisa. Seu par recebe um aviso gentil, sem cobrança.',
@@ -4767,6 +4941,9 @@ extension on Translations {
           'notificationPreferences.hourFormat' => ({required Object hour}) => '${hour}:00',
           'notificationPreferences.previewTitle' => 'Como a notificação aparece',
           'notificationPreferences.previewText' => 'Sempre curta e sem detalhes pessoais.',
+          _ => null,
+        } ??
+        switch (path) {
           'notificationPreferences.loadErrorTitle' => 'Não deu para abrir suas preferências',
           'notificationPreferences.loadErrorText' => 'Elas continuam salvas. Tente de novo.',
           'notificationPreferences.errors.RATE_LIMITED' =>
@@ -5341,6 +5518,9 @@ extension on Translations {
           }) => '${weekday} · ${category}',
           'slipsList.weekdaysShort.0' => 'Seg',
           'slipsList.weekdaysShort.1' => 'Ter',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.weekdaysShort.2' => 'Qua',
           'slipsList.weekdaysShort.3' => 'Qui',
           'slipsList.weekdaysShort.4' => 'Sex',

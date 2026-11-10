@@ -565,6 +565,22 @@ class MemoriesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MoodPage]
+class MoodRoute extends PageRouteInfo<void> {
+  const MoodRoute({List<PageRouteInfo>? children})
+    : super(MoodRoute.name, initialChildren: children);
+
+  static const String name = 'MoodRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const MoodPage());
+    },
+  );
+}
+
+/// generated route for
 /// [NeedPage]
 class NeedRoute extends PageRouteInfo<void> {
   const NeedRoute({List<PageRouteInfo>? children})

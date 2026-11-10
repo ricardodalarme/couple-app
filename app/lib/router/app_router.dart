@@ -16,6 +16,7 @@ import 'package:flutter_bloc_starter/features/help/presentation/support/support_
 import 'package:flutter_bloc_starter/features/home/presentation/home/home_page.dart';
 import 'package:flutter_bloc_starter/features/ideas/presentation/detail/idea_detail_page.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/memories_page.dart';
+import 'package:flutter_bloc_starter/features/mood/presentation/mood/mood_page.dart';
 import 'package:flutter_bloc_starter/features/not_found/presentation/not_found/not_found_page.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/permission/notification_permission_page.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/preferences/notification_preferences_page.dart';
@@ -130,6 +131,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: CardsListRoute.page),
     AutoRoute(page: IdeaDetailRoute.page, path: '/idea'),
     AutoRoute(page: CardDetailRoute.page, path: '/card/:id'),
+    AutoRoute(page: MoodRoute.page),
     AutoRoute(
       page: HomeRoute.page,
       children: [

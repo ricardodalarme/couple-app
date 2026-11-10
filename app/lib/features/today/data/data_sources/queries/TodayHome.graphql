@@ -2,6 +2,7 @@ query TodayHome {
   today {
     isPaired
     partnerName
+    localDate
     cardStatus
     unopenedCards
     slipsThisWeek
@@ -22,5 +23,11 @@ query TodayHome {
     slug
     title
     body
+  }
+  partnerMoodToday {
+    id
+    day
+    mood
+    need
   }
 }

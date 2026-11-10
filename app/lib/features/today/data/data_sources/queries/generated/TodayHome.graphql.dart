@@ -5,12 +5,19 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryTodayHome {
-  QueryTodayHome({this.today, this.question, this.idea, this.$__typename = 'Query'});
+  QueryTodayHome({
+    this.today,
+    this.question,
+    this.idea,
+    this.partnerMoodToday,
+    this.$__typename = 'Query',
+  });
 
   factory QueryTodayHome.fromJson(Map<String, dynamic> json) {
     final l$today = json['today'];
     final l$question = json['question'];
     final l$idea = json['idea'];
+    final l$partnerMoodToday = json['partnerMoodToday'];
     final l$$__typename = json['__typename'];
     return QueryTodayHome(
       today: l$today == null
@@ -20,6 +27,9 @@ class QueryTodayHome {
           ? null
           : QueryTodayHomequestion.fromJson((l$question as Map<String, dynamic>)),
       idea: l$idea == null ? null : QueryTodayHomeidea.fromJson((l$idea as Map<String, dynamic>)),
+      partnerMoodToday: l$partnerMoodToday == null
+          ? null
+          : QueryTodayHomepartnerMoodToday.fromJson((l$partnerMoodToday as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -29,6 +39,8 @@ class QueryTodayHome {
   final QueryTodayHomequestion? question;
 
   final QueryTodayHomeidea? idea;
+
+  final QueryTodayHomepartnerMoodToday? partnerMoodToday;
 
   final String $__typename;
 
@@ -40,6 +52,8 @@ class QueryTodayHome {
     _resultData['question'] = l$question?.toJson();
     final l$idea = idea;
     _resultData['idea'] = l$idea?.toJson();
+    final l$partnerMoodToday = partnerMoodToday;
+    _resultData['partnerMoodToday'] = l$partnerMoodToday?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -50,8 +64,9 @@ class QueryTodayHome {
     final l$today = today;
     final l$question = question;
     final l$idea = idea;
+    final l$partnerMoodToday = partnerMoodToday;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$today, l$question, l$idea, l$$__typename]);
+    return Object.hashAll([l$today, l$question, l$idea, l$partnerMoodToday, l$$__typename]);
   }
 
   @override
@@ -75,6 +90,11 @@ class QueryTodayHome {
     final l$idea = idea;
     final lOther$idea = other.idea;
     if (l$idea != lOther$idea) {
+      return false;
+    }
+    final l$partnerMoodToday = partnerMoodToday;
+    final lOther$partnerMoodToday = other.partnerMoodToday;
+    if (l$partnerMoodToday != lOther$partnerMoodToday) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -111,6 +131,13 @@ const documentNodeQueryTodayHome = DocumentNode(
                 ),
                 FieldNode(
                   name: NameNode(value: 'partnerName'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'localDate'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -283,6 +310,51 @@ const documentNodeQueryTodayHome = DocumentNode(
             ),
           ),
           FieldNode(
+            name: NameNode(value: 'partnerMoodToday'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'day'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'mood'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'need'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -403,6 +475,7 @@ class QueryTodayHometoday {
   QueryTodayHometoday({
     this.isPaired,
     this.partnerName,
+    this.localDate,
     this.cardStatus,
     this.unopenedCards,
     this.slipsThisWeek,
@@ -419,6 +492,7 @@ class QueryTodayHometoday {
   factory QueryTodayHometoday.fromJson(Map<String, dynamic> json) {
     final l$isPaired = json['isPaired'];
     final l$partnerName = json['partnerName'];
+    final l$localDate = json['localDate'];
     final l$cardStatus = json['cardStatus'];
     final l$unopenedCards = json['unopenedCards'];
     final l$slipsThisWeek = json['slipsThisWeek'];
@@ -433,6 +507,7 @@ class QueryTodayHometoday {
     return QueryTodayHometoday(
       isPaired: (l$isPaired as bool?),
       partnerName: (l$partnerName as String?),
+      localDate: l$localDate == null ? null : DateTime.parse((l$localDate as String)),
       cardStatus: (l$cardStatus as String?),
       unopenedCards: (l$unopenedCards as int?),
       slipsThisWeek: (l$slipsThisWeek as int?),
@@ -450,6 +525,8 @@ class QueryTodayHometoday {
   final bool? isPaired;
 
   final String? partnerName;
+
+  final DateTime? localDate;
 
   final String? cardStatus;
 
@@ -479,6 +556,10 @@ class QueryTodayHometoday {
     _resultData['isPaired'] = l$isPaired;
     final l$partnerName = partnerName;
     _resultData['partnerName'] = l$partnerName;
+    final l$localDate = localDate;
+    _resultData['localDate'] = l$localDate == null
+        ? null
+        : ((v) => v.toIso8601String().substring(0, 10))(l$localDate);
     final l$cardStatus = cardStatus;
     _resultData['cardStatus'] = l$cardStatus;
     final l$unopenedCards = unopenedCards;
@@ -512,6 +593,7 @@ class QueryTodayHometoday {
   int get hashCode {
     final l$isPaired = isPaired;
     final l$partnerName = partnerName;
+    final l$localDate = localDate;
     final l$cardStatus = cardStatus;
     final l$unopenedCards = unopenedCards;
     final l$slipsThisWeek = slipsThisWeek;
@@ -526,6 +608,7 @@ class QueryTodayHometoday {
     return Object.hashAll([
       l$isPaired,
       l$partnerName,
+      l$localDate,
       l$cardStatus,
       l$unopenedCards,
       l$slipsThisWeek,
@@ -556,6 +639,11 @@ class QueryTodayHometoday {
     final l$partnerName = partnerName;
     final lOther$partnerName = other.partnerName;
     if (l$partnerName != lOther$partnerName) {
+      return false;
+    }
+    final l$localDate = localDate;
+    final lOther$localDate = other.localDate;
+    if (l$localDate != lOther$localDate) {
       return false;
     }
     final l$cardStatus = cardStatus;
@@ -779,6 +867,104 @@ class QueryTodayHomeidea {
     final l$body = body;
     final lOther$body = other.body;
     if (l$body != lOther$body) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryTodayHomepartnerMoodToday {
+  QueryTodayHomepartnerMoodToday({
+    this.id,
+    this.day,
+    this.mood,
+    this.need,
+    this.$__typename = 'PartnerMood',
+  });
+
+  factory QueryTodayHomepartnerMoodToday.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$day = json['day'];
+    final l$mood = json['mood'];
+    final l$need = json['need'];
+    final l$$__typename = json['__typename'];
+    return QueryTodayHomepartnerMoodToday(
+      id: (l$id as String?),
+      day: l$day == null ? null : DateTime.parse((l$day as String)),
+      mood: (l$mood as String?),
+      need: (l$need as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? id;
+
+  final DateTime? day;
+
+  final String? mood;
+
+  final String? need;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$day = day;
+    _resultData['day'] = l$day == null
+        ? null
+        : ((v) => v.toIso8601String().substring(0, 10))(l$day);
+    final l$mood = mood;
+    _resultData['mood'] = l$mood;
+    final l$need = need;
+    _resultData['need'] = l$need;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$day = day;
+    final l$mood = mood;
+    final l$need = need;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$day, l$mood, l$need, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryTodayHomepartnerMoodToday || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$day = day;
+    final lOther$day = other.day;
+    if (l$day != lOther$day) {
+      return false;
+    }
+    final l$mood = mood;
+    final lOther$mood = other.mood;
+    if (l$mood != lOther$mood) {
+      return false;
+    }
+    final l$need = need;
+    final lOther$need = other.need;
+    if (l$need != lOther$need) {
       return false;
     }
     final l$$__typename = $__typename;

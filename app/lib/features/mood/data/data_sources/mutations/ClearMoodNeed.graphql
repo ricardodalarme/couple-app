@@ -1,0 +1,15 @@
+mutation ClearMoodNeed($id: UUID!, $mood: String!, $share: String!, $day: Date!) {
+  updateMoodsCollection(
+    set: { mood: $mood, need: null, share: $share }
+    filter: { id: { eq: $id }, day: { eq: $day } }
+  ) {
+    affectedCount
+    records {
+      id
+      day
+      mood
+      need
+      share
+    }
+  }
+}

@@ -1,0 +1,14 @@
+mutation InsertMood($mood: String!, $need: String, $share: String!, $day: Date!) {
+  insertIntoMoodsCollection(
+    objects: [{ mood: $mood, need: $need, share: $share, day: $day }]
+  ) {
+    affectedCount
+    records {
+      id
+      day
+      mood
+      need
+      share
+    }
+  }
+}

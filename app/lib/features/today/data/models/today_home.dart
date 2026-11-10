@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_starter/features/mood/data/models/partner_mood.dart';
 
 /// A piece of editorial content shown on Hoje.
 final class const Suggestion({
@@ -34,6 +35,7 @@ final class const TodayHome({
   required final bool hasPendingInvite,
   required final bool hasPlus,
   final String? partnerName,
+  final DateTime? localDate,
   final String? cardStatus,
   final DateTime? togetherSince,
   final bool pauseIsMine = false,
@@ -41,6 +43,7 @@ final class const TodayHome({
   final int unseenSignals = 0,
   final Suggestion? question,
   final Suggestion? idea,
+  final PartnerMood? partnerMood,
 }) with Equatable {
   factory fromMap(Map<String, dynamic> map) => TodayHome(
     isPaired: map['isPaired'] as bool,
@@ -50,6 +53,7 @@ final class const TodayHome({
     hasPendingInvite: map['hasPendingInvite'] as bool,
     hasPlus: map['hasPlus'] as bool,
     partnerName: map['partnerName'] as String?,
+    localDate: _date(map['localDate']),
     cardStatus: map['cardStatus'] as String?,
     togetherSince: _date(map['togetherSince']),
     pauseIsMine: map['pauseIsMine'] as bool? ?? false,
@@ -91,6 +95,7 @@ final class const TodayHome({
     'hasPendingInvite': hasPendingInvite,
     'hasPlus': hasPlus,
     'partnerName': partnerName,
+    'localDate': localDate?.toIso8601String(),
     'cardStatus': cardStatus,
     'togetherSince': togetherSince?.toIso8601String(),
     'pauseIsMine': pauseIsMine,
@@ -114,6 +119,7 @@ final class const TodayHome({
     hasPendingInvite,
     hasPlus,
     partnerName,
+    localDate,
     cardStatus,
     togetherSince,
     pauseIsMine,
@@ -121,5 +127,6 @@ final class const TodayHome({
     unseenSignals,
     question,
     idea,
+    partnerMood,
   ];
 }

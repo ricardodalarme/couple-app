@@ -1,3 +1,6 @@
+import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
+import 'package:flutter_bloc_starter/features/mood/data/models/need_kind.dart';
+import 'package:flutter_bloc_starter/features/mood/data/models/partner_mood.dart';
 import 'package:flutter_bloc_starter/features/today/data/data_sources/queries/generated/TodayHome.graphql.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
 
@@ -6,6 +9,7 @@ extension TodayHomeMapper on QueryTodayHome {
   TodayHome? toModel() {
     final state = today;
     if (state == null) return null;
+    final sharedMood = partnerMoodToday;
 
     return TodayHome(
       isPaired: state.isPaired ?? false,
@@ -16,6 +20,7 @@ extension TodayHomeMapper on QueryTodayHome {
       hasPlus: state.hasPlus ?? false,
       unseenSignals: state.unseenSignals ?? 0,
       partnerName: state.partnerName,
+      localDate: state.localDate,
       cardStatus: state.cardStatus,
       togetherSince: state.togetherSince,
       pauseIsMine: state.pauseIsMine ?? false,
@@ -30,6 +35,14 @@ extension TodayHomeMapper on QueryTodayHome {
       idea: idea == null
           ? null
           : Suggestion(slug: idea!.slug, title: idea!.title, body: idea!.body),
+      partnerMood: state.localDate != null && sharedMood?.day == state.localDate
+          ? sharedMood!.toPartnerMood()
+          : null,
     );
   }
+}
+
+extension PartnerMoodMapper on QueryTodayHomepartnerMoodToday {
+  PartnerMood toPartnerMood() =>
+      PartnerMood(day: day, mood: MoodKind.fromValue(mood), need: NeedKind.fromValue(need));
 }

@@ -94,6 +94,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$memories$en memories = _Translations$memories$en._(_root);
   @override
+  late final _Translations$mood$en mood = _Translations$mood$en._(_root);
+  @override
   late final _Translations$need$en need = _Translations$need$en._(_root);
   @override
   late final _Translations$notFound$en notFound = _Translations$notFound$en._(_root);
@@ -1122,6 +1124,102 @@ class _Translations$memories$en extends Translations$memories$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t do that right now. Your text is still here.',
   };
+}
+
+// Path: mood
+class _Translations$mood$en extends Translations$mood$pt {
+  _Translations$mood$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'How are you today?';
+  @override
+  String get titleHighlight => 'today';
+  @override
+  String get subtitle => 'One tap. The “I need…” tag is optional.';
+  @override
+  String get privateCue => 'Only you see this';
+  @override
+  Map<String, String> get moods => {
+    'happy': 'Happy',
+    'tired': 'Tired',
+    'sad': 'Sad',
+    'stressed': 'Stressed',
+    'loving': 'Loving',
+    'playful': 'Playful',
+  };
+  @override
+  String get needTitle => 'I need…';
+  @override
+  Map<String, String> get needs => {
+    'listen': 'To be heard',
+    'opinion': 'An opinion',
+    'hug': 'A hug',
+    'space': 'Some space',
+  };
+  @override
+  String get shareTitle => 'What your partner sees';
+  @override
+  String shareTitleNamed({required Object name}) => 'What ${name} sees';
+  @override
+  String get shareSubtitle => 'You decide. Nothing is shared by default.';
+  @override
+  Map<String, String> get share => {
+    'none': 'Keep private',
+    'mood': 'Just my mood',
+    'mood_need': 'Mood and what I need',
+  };
+  @override
+  Map<String, String> get shareSupport => {
+    'none': 'Nothing is shared.',
+    'mood': 'Your partner sees the mood only.',
+    'mood_need': 'Your partner sees the mood and the need.',
+  };
+  @override
+  String get privacyNote =>
+      'Nothing is shared by default. Your partner never sees a chart or a score.';
+  @override
+  String get save => 'Save';
+  @override
+  String get saved => 'Mood saved';
+  @override
+  Map<String, String> get errors => {
+    'NETWORK': 'Couldn\'t save your mood. Check your connection and try again.',
+    'TIMEOUT': 'Couldn\'t save your mood in time. Try again.',
+    'other': 'Couldn\'t save your mood. Try again.',
+  };
+  @override
+  String get entryCategory => 'Mood of the day';
+  @override
+  String get entryTitle => 'How are you today?';
+  @override
+  String get entryText => 'One tap. Only you see it until you share.';
+  @override
+  String get partnerLabel => 'Your partner\'s mood';
+  @override
+  String get partnerFallback => 'Your partner';
+  @override
+  String partnerHappy({required Object name}) => '${name} is happy today';
+  @override
+  String partnerTired({required Object name}) => '${name} is out of energy today';
+  @override
+  String partnerSad({required Object name}) => '${name} is feeling low today';
+  @override
+  String partnerStressed({required Object name}) => '${name} has a lot on their mind today';
+  @override
+  String partnerLoving({required Object name}) => '${name} is feeling tender today';
+  @override
+  String partnerPlayful({required Object name}) => '${name} is in a playful mood today';
+  @override
+  String get partnerNeedListen => 'What helps: just listening.';
+  @override
+  String get partnerNeedOpinion => 'What helps: an opinion.';
+  @override
+  String get partnerNeedHug => 'What helps: a hug.';
+  @override
+  String get partnerNeedSpace => 'What helps: some space.';
 }
 
 // Path: need
@@ -3923,6 +4021,54 @@ extension on TranslationsEn {
           'memories.errorText' => 'Your memories are still saved. Try again.',
           'memories.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'memories.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
+          'mood.title' => 'How are you today?',
+          'mood.titleHighlight' => 'today',
+          'mood.subtitle' => 'One tap. The “I need…” tag is optional.',
+          'mood.privateCue' => 'Only you see this',
+          'mood.moods.happy' => 'Happy',
+          'mood.moods.tired' => 'Tired',
+          'mood.moods.sad' => 'Sad',
+          'mood.moods.stressed' => 'Stressed',
+          'mood.moods.loving' => 'Loving',
+          'mood.moods.playful' => 'Playful',
+          'mood.needTitle' => 'I need…',
+          'mood.needs.listen' => 'To be heard',
+          'mood.needs.opinion' => 'An opinion',
+          'mood.needs.hug' => 'A hug',
+          'mood.needs.space' => 'Some space',
+          'mood.shareTitle' => 'What your partner sees',
+          'mood.shareTitleNamed' => ({required Object name}) => 'What ${name} sees',
+          'mood.shareSubtitle' => 'You decide. Nothing is shared by default.',
+          'mood.share.none' => 'Keep private',
+          'mood.share.mood' => 'Just my mood',
+          'mood.share.mood_need' => 'Mood and what I need',
+          'mood.shareSupport.none' => 'Nothing is shared.',
+          'mood.shareSupport.mood' => 'Your partner sees the mood only.',
+          'mood.shareSupport.mood_need' => 'Your partner sees the mood and the need.',
+          'mood.privacyNote' =>
+            'Nothing is shared by default. Your partner never sees a chart or a score.',
+          'mood.save' => 'Save',
+          'mood.saved' => 'Mood saved',
+          'mood.errors.NETWORK' => 'Couldn\'t save your mood. Check your connection and try again.',
+          'mood.errors.TIMEOUT' => 'Couldn\'t save your mood in time. Try again.',
+          'mood.errors.other' => 'Couldn\'t save your mood. Try again.',
+          'mood.entryCategory' => 'Mood of the day',
+          'mood.entryTitle' => 'How are you today?',
+          'mood.entryText' => 'One tap. Only you see it until you share.',
+          'mood.partnerLabel' => 'Your partner\'s mood',
+          'mood.partnerFallback' => 'Your partner',
+          'mood.partnerHappy' => ({required Object name}) => '${name} is happy today',
+          'mood.partnerTired' => ({required Object name}) => '${name} is out of energy today',
+          'mood.partnerSad' => ({required Object name}) => '${name} is feeling low today',
+          'mood.partnerStressed' => ({
+            required Object name,
+          }) => '${name} has a lot on their mind today',
+          'mood.partnerLoving' => ({required Object name}) => '${name} is feeling tender today',
+          'mood.partnerPlayful' => ({required Object name}) => '${name} is in a playful mood today',
+          'mood.partnerNeedListen' => 'What helps: just listening.',
+          'mood.partnerNeedOpinion' => 'What helps: an opinion.',
+          'mood.partnerNeedHug' => 'What helps: a hug.',
+          'mood.partnerNeedSpace' => 'What helps: some space.',
           'need.title' => 'I need…',
           'need.titleHighlight' => 'need',
           'need.subtitle' => 'Pick one thing. Your partner gets a gentle note, no pressure.',
@@ -3992,6 +4138,9 @@ extension on TranslationsEn {
           'notificationPreferences.hourFormat' => ({required Object hour}) => '${hour}:00',
           'notificationPreferences.previewTitle' => 'How a notification looks',
           'notificationPreferences.previewText' => 'Always short, with no personal details.',
+          _ => null,
+        } ??
+        switch (path) {
           'notificationPreferences.loadErrorTitle' => 'Couldn\'t open your preferences',
           'notificationPreferences.loadErrorText' => 'They are still saved. Try again.',
           'notificationPreferences.errors.RATE_LIMITED' =>
@@ -4561,6 +4710,9 @@ extension on TranslationsEn {
           }) => '${weekday} · ${category}',
           'slipsList.weekdaysShort.0' => 'Mon',
           'slipsList.weekdaysShort.1' => 'Tue',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.weekdaysShort.2' => 'Wed',
           'slipsList.weekdaysShort.3' => 'Thu',
           'slipsList.weekdaysShort.4' => 'Fri',

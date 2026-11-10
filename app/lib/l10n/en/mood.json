@@ -1,0 +1,57 @@
+{
+  "title": "How are you today?",
+  "titleHighlight": "today",
+  "subtitle": "One tap. The “I need…” tag is optional.",
+  "privateCue": "Only you see this",
+  "moods(map)": {
+    "happy": "Happy",
+    "tired": "Tired",
+    "sad": "Sad",
+    "stressed": "Stressed",
+    "loving": "Loving",
+    "playful": "Playful"
+  },
+  "needTitle": "I need…",
+  "needs(map)": {
+    "listen": "To be heard",
+    "opinion": "An opinion",
+    "hug": "A hug",
+    "space": "Some space"
+  },
+  "shareTitle": "What your partner sees",
+  "shareTitleNamed": "What {name} sees",
+  "shareSubtitle": "You decide. Nothing is shared by default.",
+  "share(map)": {
+    "none": "Keep private",
+    "mood": "Just my mood",
+    "mood_need": "Mood and what I need"
+  },
+  "shareSupport(map)": {
+    "none": "Nothing is shared.",
+    "mood": "Your partner sees the mood only.",
+    "mood_need": "Your partner sees the mood and the need."
+  },
+  "privacyNote": "Nothing is shared by default. Your partner never sees a chart or a score.",
+  "save": "Save",
+  "saved": "Mood saved",
+  "errors(map)": {
+    "NETWORK": "Couldn't save your mood. Check your connection and try again.",
+    "TIMEOUT": "Couldn't save your mood in time. Try again.",
+    "other": "Couldn't save your mood. Try again."
+  },
+  "entryCategory": "Mood of the day",
+  "entryTitle": "How are you today?",
+  "entryText": "One tap. Only you see it until you share.",
+  "partnerLabel": "Your partner's mood",
+  "partnerFallback": "Your partner",
+  "partnerHappy": "{name} is happy today",
+  "partnerTired": "{name} is out of energy today",
+  "partnerSad": "{name} is feeling low today",
+  "partnerStressed": "{name} has a lot on their mind today",
+  "partnerLoving": "{name} is feeling tender today",
+  "partnerPlayful": "{name} is in a playful mood today",
+  "partnerNeedListen": "What helps: just listening.",
+  "partnerNeedOpinion": "What helps: an opinion.",
+  "partnerNeedHug": "What helps: a hug.",
+  "partnerNeedSpace": "What helps: some space."
+}

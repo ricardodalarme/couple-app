@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/errors/app_error_view.dart';
+import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/widgets/partner_unpaired_notice.dart';
@@ -26,6 +27,7 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
     final selfName = context.select((TodayCubit cubit) => cubit.state.selfName);
     final partnerHint = context.select((TodayCubit cubit) => cubit.state.partnerHint);
     final isFirstDay = context.select((TodayCubit cubit) => cubit.state.isFirstDay);
+    final isDiscreet = context.select((DiscreetModeCubit cubit) => cubit.state.isOn);
     final showUnpairNotice = context.select((TodayCubit cubit) => cubit.state.showUnpairNotice);
     final unpairedPartnerName = context.select(
       (TodayCubit cubit) => cubit.state.unpairedPartnerName,
@@ -50,6 +52,7 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
                     selfName: selfName,
                     partnerHint: partnerHint,
                     isFirstDay: isFirstDay,
+                    isDiscreet: isDiscreet,
                   ),
                   failureBuilder: (failure) =>
                       AppErrorView(exception: failure, onRetry: context.read<TodayCubit>().load),

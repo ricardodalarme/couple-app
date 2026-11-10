@@ -1,0 +1,17 @@
+query TodayMood {
+  today {
+    localDate
+    partnerName
+  }
+  moodsCollection(first: 1, orderBy: [{ day: DescNullsLast }]) {
+    edges {
+      node {
+        id
+        day
+        mood
+        need
+        share
+      }
+    }
+  }
+}
