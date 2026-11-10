@@ -58,6 +58,13 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
               ),
               const SizedBox(height: AppSpace.s12),
               BaseListCard(
+                categoryLabel: l10n.dateNightLabel,
+                title: l10n.dateNightTitle,
+                supportText: l10n.dateNightText,
+                onTap: () => context.pushRoute(const DateNightRoute()),
+              ),
+              const SizedBox(height: AppSpace.s12),
+              BaseListCard(
                 categoryLabel: l10n.temperatureLabel,
                 title: l10n.temperatureTitle,
                 supportText: l10n.temperatureText,

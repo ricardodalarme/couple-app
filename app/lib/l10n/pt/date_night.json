@@ -1,0 +1,31 @@
+{
+  "title": "Date night",
+  "subtitle": "Ideias para vocês dois, escolhidas juntos.",
+  "hint": "Ex.: piquenique no parque",
+  "add": "Adicionar",
+  "save": "Guardar",
+  "nextTitle": "Próximo encontro",
+  "ideasTitle": "Ideias",
+  "suggestionsTitle": "Para começar",
+  "plannedFor": "{day} {month}",
+  "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+  "planChoices(map)": {
+    "today": "Planejar para hoje",
+    "tomorrow": "Planejar para amanhã",
+    "saturday": "Planejar para sábado",
+    "sunday": "Planejar para domingo",
+    "other": ""
+  },
+  "markDone": "Já fizemos",
+  "reopen": "Voltar para as ideias",
+  "done": "Feito",
+  "delete": "Apagar",
+  "emptyTitle": "Nenhuma ideia ainda",
+  "emptyText": "Escreva uma ideia de encontro. Vocês dois veem.",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "Suas ideias continuam salvas. Tente de novo.",
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para fazer isso agora. Tente de novo."
+  }
+}

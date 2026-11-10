@@ -61,6 +61,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$cardView$pt cardView = Translations$cardView$pt.internal(_root);
   late final Translations$cardsList$pt cardsList = Translations$cardsList$pt.internal(_root);
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
+  late final Translations$dateNight$pt dateNight = Translations$dateNight$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
   late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
@@ -357,6 +358,93 @@ class Translations$common$pt {
 
   /// pt: 'Algo deu errado'
   String get genericError => 'Algo deu errado';
+}
+
+// Path: dateNight
+class Translations$dateNight$pt {
+  Translations$dateNight$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Date night'
+  String get title => 'Date night';
+
+  /// pt: 'Ideias para vocês dois, escolhidas juntos.'
+  String get subtitle => 'Ideias para vocês dois, escolhidas juntos.';
+
+  /// pt: 'Ex.: piquenique no parque'
+  String get hint => 'Ex.: piquenique no parque';
+
+  /// pt: 'Adicionar'
+  String get add => 'Adicionar';
+
+  /// pt: 'Guardar'
+  String get save => 'Guardar';
+
+  /// pt: 'Próximo encontro'
+  String get nextTitle => 'Próximo encontro';
+
+  /// pt: 'Ideias'
+  String get ideasTitle => 'Ideias';
+
+  /// pt: 'Para começar'
+  String get suggestionsTitle => 'Para começar';
+
+  /// pt: '{day} {month}'
+  String plannedFor({required Object day, required Object month}) => '${day} ${month}';
+
+  List<String> get monthsShort => [
+    'jan',
+    'fev',
+    'mar',
+    'abr',
+    'mai',
+    'jun',
+    'jul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dez',
+  ];
+  Map<String, String> get planChoices => {
+    'today': 'Planejar para hoje',
+    'tomorrow': 'Planejar para amanhã',
+    'saturday': 'Planejar para sábado',
+    'sunday': 'Planejar para domingo',
+    'other': '',
+  };
+
+  /// pt: 'Já fizemos'
+  String get markDone => 'Já fizemos';
+
+  /// pt: 'Voltar para as ideias'
+  String get reopen => 'Voltar para as ideias';
+
+  /// pt: 'Feito'
+  String get done => 'Feito';
+
+  /// pt: 'Apagar'
+  String get delete => 'Apagar';
+
+  /// pt: 'Nenhuma ideia ainda'
+  String get emptyTitle => 'Nenhuma ideia ainda';
+
+  /// pt: 'Escreva uma ideia de encontro. Vocês dois veem.'
+  String get emptyText => 'Escreva uma ideia de encontro. Vocês dois veem.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Suas ideias continuam salvas. Tente de novo.'
+  String get errorText => 'Suas ideias continuam salvas. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para fazer isso agora. Tente de novo.',
+  };
 }
 
 // Path: firstSlip
@@ -1628,6 +1716,15 @@ class Translations$tabs$pt {
 
   /// pt: 'Pequenos hábitos que vocês querem proteger.'
   String get ritualsText => 'Pequenos hábitos que vocês querem proteger.';
+
+  /// pt: 'ENCONTRO'
+  String get dateNightLabel => 'ENCONTRO';
+
+  /// pt: 'Date night'
+  String get dateNightTitle => 'Date night';
+
+  /// pt: 'Ideias para vocês dois, escolhidas juntos.'
+  String get dateNightText => 'Ideias para vocês dois, escolhidas juntos.';
 
   /// pt: 'ENTRE VOCÊS'
   String get temperatureLabel => 'ENTRE VOCÊS';
@@ -2996,6 +3093,45 @@ extension on Translations {
           'common.firstName' => 'Nome',
           'common.lastName' => 'Sobrenome',
           'common.genericError' => 'Algo deu errado',
+          'dateNight.title' => 'Date night',
+          'dateNight.subtitle' => 'Ideias para vocês dois, escolhidas juntos.',
+          'dateNight.hint' => 'Ex.: piquenique no parque',
+          'dateNight.add' => 'Adicionar',
+          'dateNight.save' => 'Guardar',
+          'dateNight.nextTitle' => 'Próximo encontro',
+          'dateNight.ideasTitle' => 'Ideias',
+          'dateNight.suggestionsTitle' => 'Para começar',
+          'dateNight.plannedFor' => ({
+            required Object day,
+            required Object month,
+          }) => '${day} ${month}',
+          'dateNight.monthsShort.0' => 'jan',
+          'dateNight.monthsShort.1' => 'fev',
+          'dateNight.monthsShort.2' => 'mar',
+          'dateNight.monthsShort.3' => 'abr',
+          'dateNight.monthsShort.4' => 'mai',
+          'dateNight.monthsShort.5' => 'jun',
+          'dateNight.monthsShort.6' => 'jul',
+          'dateNight.monthsShort.7' => 'ago',
+          'dateNight.monthsShort.8' => 'set',
+          'dateNight.monthsShort.9' => 'out',
+          'dateNight.monthsShort.10' => 'nov',
+          'dateNight.monthsShort.11' => 'dez',
+          'dateNight.planChoices.today' => 'Planejar para hoje',
+          'dateNight.planChoices.tomorrow' => 'Planejar para amanhã',
+          'dateNight.planChoices.saturday' => 'Planejar para sábado',
+          'dateNight.planChoices.sunday' => 'Planejar para domingo',
+          'dateNight.planChoices.other' => '',
+          'dateNight.markDone' => 'Já fizemos',
+          'dateNight.reopen' => 'Voltar para as ideias',
+          'dateNight.done' => 'Feito',
+          'dateNight.delete' => 'Apagar',
+          'dateNight.emptyTitle' => 'Nenhuma ideia ainda',
+          'dateNight.emptyText' => 'Escreva uma ideia de encontro. Vocês dois veem.',
+          'dateNight.errorTitle' => 'Não deu para carregar',
+          'dateNight.errorText' => 'Suas ideias continuam salvas. Tente de novo.',
+          'dateNight.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'dateNight.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'firstSlip.title' => 'Comece com uma coisa boa',
           'firstSlip.titleHighlight' => 'uma coisa boa',
           'firstSlip.subtitle' => 'O que seu parceiro fez ultimamente que te fez sorrir? 30 segundos bastam. Ainda sem conta.',
@@ -3412,6 +3548,9 @@ extension on Translations {
           'repair.next.pause' => 'Respirar um pouco',
           'repair.next.guided' => 'Começar o reparo guiado',
           'repair.next.quick' => 'Enviar um reparo',
+          _ => null,
+        } ??
+        switch (path) {
           'rituals.title' => 'Rituais',
           'rituals.subtitle' =>
             'Pequenos hábitos que vocês querem proteger. Sem sequências, sem cobrança.',
@@ -3453,9 +3592,6 @@ extension on Translations {
           'rituals.archiveText' => 'Ele some da lista. O histórico fica guardado.',
           'rituals.errorTitle' => 'Não deu para abrir',
           'rituals.errorText' => 'Nada se perdeu. Tente de novo.',
-          _ => null,
-        } ??
-        switch (path) {
           'rituals.errors.NOT_FOUND' => 'Esse ritual não está mais aqui.',
           'rituals.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'rituals.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
@@ -3670,6 +3806,9 @@ extension on Translations {
           'tabs.ritualsLabel' => 'ROTINA',
           'tabs.ritualsTitle' => 'Rituais',
           'tabs.ritualsText' => 'Pequenos hábitos que vocês querem proteger.',
+          'tabs.dateNightLabel' => 'ENCONTRO',
+          'tabs.dateNightTitle' => 'Date night',
+          'tabs.dateNightText' => 'Ideias para vocês dois, escolhidas juntos.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
           'tabs.temperatureTitle' => 'Como está entre vocês?',
           'tabs.temperatureText' => 'Um registro privado, sem nota.',

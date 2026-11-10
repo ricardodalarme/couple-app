@@ -1,0 +1,31 @@
+{
+  "title": "Date night",
+  "subtitle": "Ideas for the two of you, picked together.",
+  "hint": "E.g. picnic in the park",
+  "add": "Add",
+  "save": "Save",
+  "nextTitle": "Next date",
+  "ideasTitle": "Ideas",
+  "suggestionsTitle": "To start with",
+  "plannedFor": "{month} {day}",
+  "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "planChoices(map)": {
+    "today": "Plan for today",
+    "tomorrow": "Plan for tomorrow",
+    "saturday": "Plan for Saturday",
+    "sunday": "Plan for Sunday",
+    "other": ""
+  },
+  "markDone": "We did it",
+  "reopen": "Back to ideas",
+  "done": "Done",
+  "delete": "Delete",
+  "emptyTitle": "No ideas yet",
+  "emptyText": "Write a date idea. You both see it.",
+  "errorTitle": "Couldn't load",
+  "errorText": "Your ideas are still saved. Try again.",
+  "errors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't do that right now. Try again."
+  }
+}

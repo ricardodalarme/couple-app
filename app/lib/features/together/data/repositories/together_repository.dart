@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc_starter/features/together/data/data_sources/together_data_source.dart';
+import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/logistic_item.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/ritual.dart';
 import 'package:logger/logger.dart';
@@ -128,6 +129,76 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
     'complete a ritual',
     () => _dataSource.completeRitual(id: id, day: DateTime(now.year, now.month, now.day)),
   );
+
+  Future<List<DateIdea>> getDateIdeas() async {
+    try {
+      return [
+        for (final node in await _dataSource.getDateIdeas())
+          DateIdea(
+            id: node.id,
+            title: node.title,
+            status: node.status,
+            plannedFor: node.plannedFor,
+          ),
+      ];
+    } catch (e, stack) {
+      _logger.error('Failed to read date ideas', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// The editorial ideas offered when the couple has none of its own.
+  Future<List<DateIdeaSuggestion>> getDateIdeaSuggestions(String locale) async {
+    try {
+      return [
+        for (final node in await _dataSource.getDateIdeaSuggestions(locale))
+          DateIdeaSuggestion(slug: node.slug, title: node.title),
+      ];
+    } catch (e, stack) {
+      _logger.error('Failed to read date suggestions', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Saves an idea shared with the partner; [slug] names an editorial idea it came from.
+  Future<void> addDateIdea({required String id, required String title, String? slug}) async {
+    try {
+      await _dataSource.addDateIdea(
+        id: id,
+        title: title.trim(),
+        slug: slug,
+        coupleId: await _dataSource.getCoupleId(),
+      );
+      _changes.add(null);
+    } catch (e, stack) {
+      _logger.error('Failed to save a date idea', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Plans [idea] for [day] and adds the shared date that reminds both people.
+  Future<void> planDateIdea(DateIdea idea, {required DateTime day}) async {
+    try {
+      await _dataSource.planDateIdea(id: idea.id, day: day);
+      await _dataSource.addSharedDate(
+        title: idea.title,
+        day: day,
+        coupleId: await _dataSource.getCoupleId(),
+      );
+      _changes.add(null);
+    } catch (e, stack) {
+      _logger.error('Failed to plan a date', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  Future<void> setDateIdeaDone({required String id, required bool isDone}) => _run(
+    'update a date idea',
+    () => _dataSource.setDateIdeaStatus(id: id, status: isDone ? 'done' : 'saved'),
+  );
+
+  Future<void> deleteDateIdea(String id) =>
+      _run('delete a date idea', () => _dataSource.deleteDateIdea(id));
 
   int _hourOf(String? time) => time == null ? 19 : int.tryParse(time.split(':').first) ?? 19;
 

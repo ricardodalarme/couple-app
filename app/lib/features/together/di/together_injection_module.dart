@@ -6,6 +6,7 @@ import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_s
 import 'package:flutter_bloc_starter/features/together/data/data_sources/together_data_source.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/services/ritual_reminder_service.dart';
+import 'package:flutter_bloc_starter/features/together/presentation/date_night/cubit/date_night_cubit.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/logistics/cubit/logistics_cubit.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/ritual_edit/cubit/ritual_edit_cubit.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/rituals/cubit/rituals_cubit.dart';
@@ -40,6 +41,12 @@ class TogetherInjectionModule() implements InjectionModule {
       () => RitualEditCubit(
         togetherRepository: injector.get<TogetherRepository>(),
         reminderService: injector.get<RitualReminderService>(),
+      ),
+    )
+    ..registerFactory<DateNightCubit>(
+      () => DateNightCubit(
+        togetherRepository: injector.get<TogetherRepository>(),
+        profileRepository: injector.get<ProfileRepository>(),
       ),
     )
     ..registerFactory<LogisticsCubit>(

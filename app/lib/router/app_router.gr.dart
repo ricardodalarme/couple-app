@@ -128,6 +128,22 @@ class CardsListRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [DateNightPage]
+class DateNightRoute extends PageRouteInfo<void> {
+  const DateNightRoute({List<PageRouteInfo>? children})
+    : super(DateNightRoute.name, initialChildren: children);
+
+  static const String name = 'DateNightRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const DateNightPage());
+    },
+  );
+}
+
+/// generated route for
 /// [DebugSignInPage]
 class DebugSignInRoute extends PageRouteInfo<void> {
   const DebugSignInRoute({List<PageRouteInfo>? children})

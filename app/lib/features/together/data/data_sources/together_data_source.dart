@@ -1,13 +1,20 @@
+import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/AddDateIdea.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/AddLogisticItem.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/AddRitual.graphql.dart';
+import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/AddSharedDate.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/ArchiveRitual.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/ClearLogisticItemAssignee.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/ClearLogisticItemDone.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/CompleteRitual.graphql.dart';
+import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/DeleteDateIdea.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/DeleteLogisticItem.graphql.dart';
+import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/PlanDateIdea.graphql.dart';
+import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/SetDateIdeaStatus.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/SetLogisticItemAssignee.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/SetLogisticItemDone.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/UpdateRitual.graphql.dart';
+import 'package:flutter_bloc_starter/features/together/data/data_sources/queries/generated/DateIdeaSuggestions.graphql.dart';
+import 'package:flutter_bloc_starter/features/together/data/data_sources/queries/generated/DateIdeas.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/queries/generated/LogisticItems.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/queries/generated/MyCouple.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/queries/generated/Rituals.graphql.dart';
@@ -160,6 +167,101 @@ class TogetherDataSource({required final GQLClient _client}) {
     final response = await _client.mutate(
       OptionsMutationCompleteRitual(
         variables: VariablesMutationCompleteRitual(ritualId: id, doneOn: day),
+      ),
+    );
+
+    validateResponse(response);
+  }
+
+  Future<List<QueryDateIdeassavedDateIdeasCollectionedgesnode>> getDateIdeas() async {
+    final response = await _client.query(
+      OptionsQueryDateIdeas(fetchPolicy: FetchPolicy.networkOnly),
+    );
+    final edges = validateResponseData(
+      response,
+      getData: (data) => data.savedDateIdeasCollection.edges,
+    );
+
+    return [for (final edge in edges) edge.node];
+  }
+
+  Future<List<QueryDateIdeaSuggestionscontentItemsCollectionedgesnode>> getDateIdeaSuggestions(
+    String locale,
+  ) async {
+    final response = await _client.query(
+      OptionsQueryDateIdeaSuggestions(variables: VariablesQueryDateIdeaSuggestions(locale: locale)),
+    );
+    final edges = validateResponseData(
+      response,
+      getData: (data) => data.contentItemsCollection.edges,
+    );
+
+    return [for (final edge in edges) edge.node];
+  }
+
+  Future<void> addDateIdea({
+    required String id,
+    required String title,
+    String? slug,
+    String? coupleId,
+  }) async {
+    final response = await _client.mutate(
+      OptionsMutationAddDateIdea(
+        variables: VariablesMutationAddDateIdea(
+          id: id,
+          title: title,
+          slug: slug,
+          coupleId: coupleId,
+        ),
+      ),
+    );
+
+    validateResponse(response);
+  }
+
+  Future<void> planDateIdea({required String id, required DateTime day}) async {
+    final response = await _client.mutate(
+      OptionsMutationPlanDateIdea(
+        variables: VariablesMutationPlanDateIdea(id: id, day: day),
+      ),
+    );
+
+    validateResponse(response);
+  }
+
+  Future<void> setDateIdeaStatus({required String id, required String status}) async {
+    final response = await _client.mutate(
+      OptionsMutationSetDateIdeaStatus(
+        variables: VariablesMutationSetDateIdeaStatus(id: id, status: status),
+      ),
+    );
+
+    validateResponse(response);
+  }
+
+  Future<void> deleteDateIdea(String id) async {
+    final response = await _client.mutate(
+      OptionsMutationDeleteDateIdea(variables: VariablesMutationDeleteDateIdea(id: id)),
+    );
+
+    validateResponse(response);
+  }
+
+  /// Adds a one-off date everyone in the couple sees, reminded a day before.
+  Future<void> addSharedDate({
+    required String title,
+    required DateTime day,
+    String? coupleId,
+  }) async {
+    final response = await _client.mutate(
+      OptionsMutationAddSharedDate(
+        variables: VariablesMutationAddSharedDate(
+          title: title,
+          month: day.month,
+          day: day.day,
+          year: day.year,
+          coupleId: coupleId,
+        ),
       ),
     );
 

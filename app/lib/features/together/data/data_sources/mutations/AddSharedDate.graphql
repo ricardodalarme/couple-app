@@ -1,0 +1,24 @@
+mutation AddSharedDate(
+  $title: String!
+  $month: Int!
+  $day: Int!
+  $year: Int!
+  $coupleId: UUID
+) {
+  insertIntoImportantDatesCollection(
+    objects: [
+      {
+        title: $title
+        kind: "custom"
+        month: $month
+        day: $day
+        year: $year
+        yearly: false
+        remindDays: [1]
+        coupleId: $coupleId
+      }
+    ]
+  ) {
+    affectedCount
+  }
+}

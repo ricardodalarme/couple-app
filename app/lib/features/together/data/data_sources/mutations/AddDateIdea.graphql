@@ -1,0 +1,7 @@
+mutation AddDateIdea($id: UUID!, $title: String!, $slug: String, $coupleId: UUID) {
+  insertIntoSavedDateIdeasCollection(
+    objects: [{ id: $id, title: $title, contentSlug: $slug, coupleId: $coupleId }]
+  ) {
+    affectedCount
+  }
+}

@@ -1,0 +1,9 @@
+mutation SetDateIdeaStatus($id: UUID!, $status: String!) {
+  updateSavedDateIdeasCollection(
+    set: { status: $status }
+    filter: { id: { eq: $id } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

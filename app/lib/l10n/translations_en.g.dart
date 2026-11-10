@@ -64,6 +64,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$common$en common = _Translations$common$en._(_root);
   @override
+  late final _Translations$dateNight$en dateNight = _Translations$dateNight$en._(_root);
+  @override
   late final _Translations$firstSlip$en firstSlip = _Translations$firstSlip$en._(_root);
   @override
   late final _Translations$ideaDetail$en ideaDetail = _Translations$ideaDetail$en._(_root);
@@ -331,6 +333,77 @@ class _Translations$common$en extends Translations$common$pt {
   String get lastName => 'Last Name';
   @override
   String get genericError => 'Something went wrong';
+}
+
+// Path: dateNight
+class _Translations$dateNight$en extends Translations$dateNight$pt {
+  _Translations$dateNight$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Date night';
+  @override
+  String get subtitle => 'Ideas for the two of you, picked together.';
+  @override
+  String get hint => 'E.g. picnic in the park';
+  @override
+  String get add => 'Add';
+  @override
+  String get save => 'Save';
+  @override
+  String get nextTitle => 'Next date';
+  @override
+  String get ideasTitle => 'Ideas';
+  @override
+  String get suggestionsTitle => 'To start with';
+  @override
+  String plannedFor({required Object month, required Object day}) => '${month} ${day}';
+  @override
+  List<String> get monthsShort => [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  @override
+  Map<String, String> get planChoices => {
+    'today': 'Plan for today',
+    'tomorrow': 'Plan for tomorrow',
+    'saturday': 'Plan for Saturday',
+    'sunday': 'Plan for Sunday',
+    'other': '',
+  };
+  @override
+  String get markDone => 'We did it';
+  @override
+  String get reopen => 'Back to ideas';
+  @override
+  String get done => 'Done';
+  @override
+  String get delete => 'Delete';
+  @override
+  String get emptyTitle => 'No ideas yet';
+  @override
+  String get emptyText => 'Write a date idea. You both see it.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Your ideas are still saved. Try again.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t do that right now. Try again.',
+  };
 }
 
 // Path: firstSlip
@@ -1373,6 +1446,12 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get ritualsTitle => 'Rituals';
   @override
   String get ritualsText => 'Small habits you want to protect.';
+  @override
+  String get dateNightLabel => 'DATE';
+  @override
+  String get dateNightTitle => 'Date night';
+  @override
+  String get dateNightText => 'Ideas for the two of you, picked together.';
   @override
   String get temperatureLabel => 'BETWEEN YOU';
   @override
@@ -2519,6 +2598,45 @@ extension on TranslationsEn {
           'common.firstName' => 'First Name',
           'common.lastName' => 'Last Name',
           'common.genericError' => 'Something went wrong',
+          'dateNight.title' => 'Date night',
+          'dateNight.subtitle' => 'Ideas for the two of you, picked together.',
+          'dateNight.hint' => 'E.g. picnic in the park',
+          'dateNight.add' => 'Add',
+          'dateNight.save' => 'Save',
+          'dateNight.nextTitle' => 'Next date',
+          'dateNight.ideasTitle' => 'Ideas',
+          'dateNight.suggestionsTitle' => 'To start with',
+          'dateNight.plannedFor' => ({
+            required Object month,
+            required Object day,
+          }) => '${month} ${day}',
+          'dateNight.monthsShort.0' => 'Jan',
+          'dateNight.monthsShort.1' => 'Feb',
+          'dateNight.monthsShort.2' => 'Mar',
+          'dateNight.monthsShort.3' => 'Apr',
+          'dateNight.monthsShort.4' => 'May',
+          'dateNight.monthsShort.5' => 'Jun',
+          'dateNight.monthsShort.6' => 'Jul',
+          'dateNight.monthsShort.7' => 'Aug',
+          'dateNight.monthsShort.8' => 'Sep',
+          'dateNight.monthsShort.9' => 'Oct',
+          'dateNight.monthsShort.10' => 'Nov',
+          'dateNight.monthsShort.11' => 'Dec',
+          'dateNight.planChoices.today' => 'Plan for today',
+          'dateNight.planChoices.tomorrow' => 'Plan for tomorrow',
+          'dateNight.planChoices.saturday' => 'Plan for Saturday',
+          'dateNight.planChoices.sunday' => 'Plan for Sunday',
+          'dateNight.planChoices.other' => '',
+          'dateNight.markDone' => 'We did it',
+          'dateNight.reopen' => 'Back to ideas',
+          'dateNight.done' => 'Done',
+          'dateNight.delete' => 'Delete',
+          'dateNight.emptyTitle' => 'No ideas yet',
+          'dateNight.emptyText' => 'Write a date idea. You both see it.',
+          'dateNight.errorTitle' => 'Couldn\'t load',
+          'dateNight.errorText' => 'Your ideas are still saved. Try again.',
+          'dateNight.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'dateNight.errors.other' => 'Couldn\'t do that right now. Try again.',
           'firstSlip.title' => 'Start with one good thing',
           'firstSlip.titleHighlight' => 'one good thing',
           'firstSlip.subtitle' => 'What did your partner do lately that made you smile? 30 seconds is enough. No account yet.',
@@ -2936,6 +3054,9 @@ extension on TranslationsEn {
           'repair.next.pause' => 'Breathe a little',
           'repair.next.guided' => 'Start the guided repair',
           'repair.next.quick' => 'Send a repair',
+          _ => null,
+        } ??
+        switch (path) {
           'rituals.title' => 'Rituals',
           'rituals.subtitle' => 'Small habits you want to protect. No streaks, no pressure.',
           'rituals.emptyTitle' => 'No rituals yet',
@@ -2975,9 +3096,6 @@ extension on TranslationsEn {
           'rituals.archiveText' => 'It leaves the list. The history stays saved.',
           'rituals.errorTitle' => 'Couldn\'t open this',
           'rituals.errorText' => 'Nothing was lost. Try again.',
-          _ => null,
-        } ??
-        switch (path) {
           'rituals.errors.NOT_FOUND' => 'That ritual isn\'t here anymore.',
           'rituals.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'rituals.errors.other' => 'Couldn\'t do that right now. Try again.',
@@ -3192,6 +3310,9 @@ extension on TranslationsEn {
           'tabs.ritualsLabel' => 'ROUTINE',
           'tabs.ritualsTitle' => 'Rituals',
           'tabs.ritualsText' => 'Small habits you want to protect.',
+          'tabs.dateNightLabel' => 'DATE',
+          'tabs.dateNightTitle' => 'Date night',
+          'tabs.dateNightText' => 'Ideas for the two of you, picked together.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',
           'tabs.temperatureTitle' => 'How is it between you?',
           'tabs.temperatureText' => 'A private check-in, never a score.',
