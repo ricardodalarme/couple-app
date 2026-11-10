@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/card_summary.dart';
 import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
@@ -92,5 +94,25 @@ void main() {
     await cubit.load();
 
     expect(cubit.state.cards, isA<Success<List<CardSummary>>>());
+  });
+
+  test('a refresh discards a page that was already in flight', () async {
+    stub(CardSummaryPage(items: [_card('a')], hasNext: true, cursor: 'c1'));
+    final cubit = build();
+    await cubit.load();
+
+    final page = Completer<CardSummaryPage>();
+    when(() => cards.getHistory(selfId: 'me', after: 'c1')).thenAnswer((_) => page.future);
+    final more = cubit.loadMore();
+
+    stub(CardSummaryPage(items: [_card('fresh')], hasNext: false));
+    await cubit.load();
+
+    page.complete(CardSummaryPage(items: [_card('stale')], hasNext: false));
+    await more;
+
+    final items = (cubit.state.cards as Success<List<CardSummary>>).value;
+    expect(items.map((card) => card.id), ['fresh']);
+    expect(cubit.state.isLoadingMore, isFalse);
   });
 }

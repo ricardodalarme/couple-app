@@ -76,6 +76,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$sundayCard$pt sundayCard = Translations$sundayCard$pt.internal(_root);
   late final Translations$tabs$pt tabs = Translations$tabs$pt.internal(_root);
   late final Translations$today$pt today = Translations$today$pt.internal(_root);
+  late final Translations$unpair$pt unpair = Translations$unpair$pt.internal(_root);
   late final Translations$welcome$pt welcome = Translations$welcome$pt.internal(_root);
 }
 
@@ -257,6 +258,14 @@ class Translations$cardsList$pt {
 
   /// pt: 'Cartão'
   String get detailTitle => 'Cartão';
+
+  /// pt: 'Não deu para abrir o cartão'
+  String get detailErrorTitle => 'Não deu para abrir o cartão';
+
+  Map<String, String> get errors => {
+    'CARD_NOT_FOUND': 'Esse cartão não está mais disponível.',
+    'other': 'Ele continua salvo. Tente de novo.',
+  };
 
   /// pt: 'Resposta'
   String get reactionLabel => 'Resposta';
@@ -1087,6 +1096,47 @@ class Translations$today$pt {
   String get errorText => 'Seus slips estão seguros. Tente de novo.';
 }
 
+// Path: unpair
+class Translations$unpair$pt {
+  Translations$unpair$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Desvincular'
+  String get appBarTitle => 'Desvincular';
+
+  /// pt: 'Desvincular da {name}?'
+  String title({required Object name}) => 'Desvincular da ${name}?';
+
+  /// pt: 'Cartões e listas compartilhados param. Suas notas continuam com você.'
+  String get text => 'Cartões e listas compartilhados param. Suas notas continuam com você.';
+
+  /// pt: 'Desvincular'
+  String get confirm => 'Desvincular';
+
+  /// pt: 'Cancelar'
+  String get cancel => 'Cancelar';
+
+  /// pt: 'sua pessoa'
+  String get unnamedPartner => 'sua pessoa';
+
+  late final Translations$unpair$done$pt done = Translations$unpair$done$pt.internal(_root);
+  late final Translations$unpair$relationship$pt relationship =
+      Translations$unpair$relationship$pt.internal(_root);
+  late final Translations$unpair$breakup$pt breakup = Translations$unpair$breakup$pt.internal(
+    _root,
+  );
+  late final Translations$unpair$partnerNotice$pt partnerNotice =
+      Translations$unpair$partnerNotice$pt.internal(_root);
+  Map<String, String> get errors => {
+    'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
+    'STILL_PAIRED': 'A relação ainda está ativa. Tente de novo.',
+    'other': 'Não deu para desvincular agora. Tente de novo.',
+  };
+}
+
 // Path: welcome
 class Translations$welcome$pt {
   Translations$welcome$pt.internal(this._root);
@@ -1380,6 +1430,105 @@ class Translations$sundayCard$sent$pt {
   String get done => 'Pronto';
 }
 
+// Path: unpair.done
+class Translations$unpair$done$pt {
+  Translations$unpair$done$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Desvinculado'
+  String get title => 'Desvinculado';
+
+  /// pt: 'Desvinculado'
+  String get highlight => 'Desvinculado';
+
+  /// pt: 'Seus próprios dados continuam seus.'
+  String get text => 'Seus próprios dados continuam seus.';
+
+  /// pt: 'Guardar uma cópia dos itens compartilhados'
+  String get keepOption => 'Guardar uma cópia dos itens compartilhados';
+
+  /// pt: 'Apagar itens compartilhados'
+  String get deleteOption => 'Apagar itens compartilhados';
+
+  /// pt: 'O Plus que cobria o parceiro termina.'
+  String get plusNote => 'O Plus que cobria o parceiro termina.';
+
+  /// pt: 'Continuar'
+  String get continueLabel => 'Continuar';
+}
+
+// Path: unpair.relationship
+class Translations$unpair$relationship$pt {
+  Translations$unpair$relationship$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Relacionamento'
+  String get title => 'Relacionamento';
+
+  /// pt: 'Desvincular da {name}'
+  String unpair({required Object name}) => 'Desvincular da ${name}';
+
+  /// pt: 'A relação terminou'
+  String get ended => 'A relação terminou';
+}
+
+// Path: unpair.breakup
+class Translations$unpair$breakup$pt {
+  Translations$unpair$breakup$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Terminamos'
+  String get appBarTitle => 'Terminamos';
+
+  /// pt: 'Sinto muito'
+  String get title => 'Sinto muito';
+
+  /// pt: 'muito'
+  String get highlight => 'muito';
+
+  /// pt: 'Você decide o que guardar. Nada é apagado sem você querer.'
+  String get text => 'Você decide o que guardar. Nada é apagado sem você querer.';
+
+  /// pt: 'Cancelar'
+  String get cancel => 'Cancelar';
+
+  /// pt: 'Continuar'
+  String get continueLabel => 'Continuar';
+}
+
+// Path: unpair.partnerNotice
+class Translations$unpair$partnerNotice$pt {
+  Translations$unpair$partnerNotice$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'A {name} desvinculou'
+  String title({required Object name}) => 'A ${name} desvinculou';
+
+  /// pt: 'Seu par desvinculou'
+  String get titleNoName => 'Seu par desvinculou';
+
+  /// pt: 'desvinculou'
+  String get highlight => 'desvinculou';
+
+  /// pt: 'Seus dados continuam seus. Cartões compartilhados pararam.'
+  String get text => 'Seus dados continuam seus. Cartões compartilhados pararam.';
+
+  /// pt: 'Ok'
+  String get ok => 'Ok';
+}
+
 /// The flat map containing all translations for locale <pt>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -1479,6 +1628,9 @@ extension on Translations {
       'cardsList.errorTitle' => 'Não deu para carregar os cartões',
       'cardsList.errorText' => 'Eles continuam salvos. Tente de novo.',
       'cardsList.detailTitle' => 'Cartão',
+      'cardsList.detailErrorTitle' => 'Não deu para abrir o cartão',
+      'cardsList.errors.CARD_NOT_FOUND' => 'Esse cartão não está mais disponível.',
+      'cardsList.errors.other' => 'Ele continua salvo. Tente de novo.',
       'cardsList.reactionLabel' => 'Resposta',
       'cardsList.reactionPrompt' => 'Como você quer responder?',
       'cardsList.reactionThankYou' => 'Obrigado',
@@ -1881,6 +2033,36 @@ extension on Translations {
       'today.firstDayAction' => 'Anotar mais um',
       'today.errorTitle' => 'Não deu para carregar o Hoje',
       'today.errorText' => 'Seus slips estão seguros. Tente de novo.',
+      'unpair.appBarTitle' => 'Desvincular',
+      'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
+      'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',
+      'unpair.confirm' => 'Desvincular',
+      'unpair.cancel' => 'Cancelar',
+      'unpair.unnamedPartner' => 'sua pessoa',
+      'unpair.done.title' => 'Desvinculado',
+      'unpair.done.highlight' => 'Desvinculado',
+      'unpair.done.text' => 'Seus próprios dados continuam seus.',
+      'unpair.done.keepOption' => 'Guardar uma cópia dos itens compartilhados',
+      'unpair.done.deleteOption' => 'Apagar itens compartilhados',
+      'unpair.done.plusNote' => 'O Plus que cobria o parceiro termina.',
+      'unpair.done.continueLabel' => 'Continuar',
+      'unpair.relationship.title' => 'Relacionamento',
+      'unpair.relationship.unpair' => ({required Object name}) => 'Desvincular da ${name}',
+      'unpair.relationship.ended' => 'A relação terminou',
+      'unpair.breakup.appBarTitle' => 'Terminamos',
+      'unpair.breakup.title' => 'Sinto muito',
+      'unpair.breakup.highlight' => 'muito',
+      'unpair.breakup.text' => 'Você decide o que guardar. Nada é apagado sem você querer.',
+      'unpair.breakup.cancel' => 'Cancelar',
+      'unpair.breakup.continueLabel' => 'Continuar',
+      'unpair.partnerNotice.title' => ({required Object name}) => 'A ${name} desvinculou',
+      'unpair.partnerNotice.titleNoName' => 'Seu par desvinculou',
+      'unpair.partnerNotice.highlight' => 'desvinculou',
+      'unpair.partnerNotice.text' => 'Seus dados continuam seus. Cartões compartilhados pararam.',
+      'unpair.partnerNotice.ok' => 'Ok',
+      'unpair.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
+      'unpair.errors.STILL_PAIRED' => 'A relação ainda está ativa. Tente de novo.',
+      'unpair.errors.other' => 'Não deu para desvincular agora. Tente de novo.',
       'welcome.headline' => 'Pequenas coisas boas, ditas em voz alta.',
       'welcome.headlineHighlight' => 'ditas em voz alta',
       'welcome.subtitle' => 'Um jeito leve de notar o que o outro faz de bom, a cada semana.',

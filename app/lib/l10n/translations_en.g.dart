@@ -89,6 +89,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$today$en today = _Translations$today$en._(_root);
   @override
+  late final _Translations$unpair$en unpair = _Translations$unpair$en._(_root);
+  @override
   late final _Translations$welcome$en welcome = _Translations$welcome$en._(_root);
 }
 
@@ -242,6 +244,13 @@ class _Translations$cardsList$en extends Translations$cardsList$pt {
   String get errorText => 'They are still saved. Try again.';
   @override
   String get detailTitle => 'Card';
+  @override
+  String get detailErrorTitle => 'Could not open the card';
+  @override
+  Map<String, String> get errors => {
+    'CARD_NOT_FOUND': 'That card is no longer available.',
+    'other': 'It is still saved. Try again.',
+  };
   @override
   String get reactionLabel => 'Reply';
   @override
@@ -901,6 +910,43 @@ class _Translations$today$en extends Translations$today$pt {
   String get errorText => 'Your slips are safe. Try again.';
 }
 
+// Path: unpair
+class _Translations$unpair$en extends Translations$unpair$pt {
+  _Translations$unpair$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get appBarTitle => 'Unpair';
+  @override
+  String title({required Object name}) => 'Unpair from ${name}?';
+  @override
+  String get text => 'Shared cards and lists stop. Your notes stay with you.';
+  @override
+  String get confirm => 'Unpair';
+  @override
+  String get cancel => 'Cancel';
+  @override
+  String get unnamedPartner => 'your person';
+  @override
+  late final _Translations$unpair$done$en done = _Translations$unpair$done$en._(_root);
+  @override
+  late final _Translations$unpair$relationship$en relationship =
+      _Translations$unpair$relationship$en._(_root);
+  @override
+  late final _Translations$unpair$breakup$en breakup = _Translations$unpair$breakup$en._(_root);
+  @override
+  late final _Translations$unpair$partnerNotice$en partnerNotice =
+      _Translations$unpair$partnerNotice$en._(_root);
+  @override
+  Map<String, String> get errors => {
+    'NETWORK': 'No connection. Check your internet and try again.',
+    'STILL_PAIRED': 'The relationship is still active. Try again.',
+    'other': 'Could not unpair right now. Try again.',
+  };
+}
+
 // Path: welcome
 class _Translations$welcome$en extends Translations$welcome$pt {
   _Translations$welcome$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1140,6 +1186,88 @@ class _Translations$sundayCard$sent$en extends Translations$sundayCard$sent$pt {
   String get done => 'Done';
 }
 
+// Path: unpair.done
+class _Translations$unpair$done$en extends Translations$unpair$done$pt {
+  _Translations$unpair$done$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Unpaired';
+  @override
+  String get highlight => 'Unpaired';
+  @override
+  String get text => 'Your own data stays yours.';
+  @override
+  String get keepOption => 'Keep a copy of the shared items';
+  @override
+  String get deleteOption => 'Delete shared items';
+  @override
+  String get plusNote => 'The Plus that covered your partner ends.';
+  @override
+  String get continueLabel => 'Continue';
+}
+
+// Path: unpair.relationship
+class _Translations$unpair$relationship$en extends Translations$unpair$relationship$pt {
+  _Translations$unpair$relationship$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Relationship';
+  @override
+  String unpair({required Object name}) => 'Unpair from ${name}';
+  @override
+  String get ended => 'The relationship ended';
+}
+
+// Path: unpair.breakup
+class _Translations$unpair$breakup$en extends Translations$unpair$breakup$pt {
+  _Translations$unpair$breakup$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get appBarTitle => 'We broke up';
+  @override
+  String get title => 'I am sorry';
+  @override
+  String get highlight => 'sorry';
+  @override
+  String get text => 'You decide what to keep. Nothing is deleted without you wanting it.';
+  @override
+  String get cancel => 'Cancel';
+  @override
+  String get continueLabel => 'Continue';
+}
+
+// Path: unpair.partnerNotice
+class _Translations$unpair$partnerNotice$en extends Translations$unpair$partnerNotice$pt {
+  _Translations$unpair$partnerNotice$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String title({required Object name}) => '${name} unpaired';
+  @override
+  String get titleNoName => 'Your partner unpaired';
+  @override
+  String get highlight => 'unpaired';
+  @override
+  String get text => 'Your data stays yours. Shared cards stopped.';
+  @override
+  String get ok => 'Ok';
+}
+
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -1233,6 +1361,9 @@ extension on TranslationsEn {
       'cardsList.errorTitle' => 'Could not load the cards',
       'cardsList.errorText' => 'They are still saved. Try again.',
       'cardsList.detailTitle' => 'Card',
+      'cardsList.detailErrorTitle' => 'Could not open the card',
+      'cardsList.errors.CARD_NOT_FOUND' => 'That card is no longer available.',
+      'cardsList.errors.other' => 'It is still saved. Try again.',
       'cardsList.reactionLabel' => 'Reply',
       'cardsList.reactionPrompt' => 'How do you want to reply?',
       'cardsList.reactionThankYou' => 'Thank you',
@@ -1632,6 +1763,37 @@ extension on TranslationsEn {
       'today.firstDayAction' => 'Note one more',
       'today.errorTitle' => 'Could not load Today',
       'today.errorText' => 'Your slips are safe. Try again.',
+      'unpair.appBarTitle' => 'Unpair',
+      'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
+      'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',
+      'unpair.confirm' => 'Unpair',
+      'unpair.cancel' => 'Cancel',
+      'unpair.unnamedPartner' => 'your person',
+      'unpair.done.title' => 'Unpaired',
+      'unpair.done.highlight' => 'Unpaired',
+      'unpair.done.text' => 'Your own data stays yours.',
+      'unpair.done.keepOption' => 'Keep a copy of the shared items',
+      'unpair.done.deleteOption' => 'Delete shared items',
+      'unpair.done.plusNote' => 'The Plus that covered your partner ends.',
+      'unpair.done.continueLabel' => 'Continue',
+      'unpair.relationship.title' => 'Relationship',
+      'unpair.relationship.unpair' => ({required Object name}) => 'Unpair from ${name}',
+      'unpair.relationship.ended' => 'The relationship ended',
+      'unpair.breakup.appBarTitle' => 'We broke up',
+      'unpair.breakup.title' => 'I am sorry',
+      'unpair.breakup.highlight' => 'sorry',
+      'unpair.breakup.text' =>
+        'You decide what to keep. Nothing is deleted without you wanting it.',
+      'unpair.breakup.cancel' => 'Cancel',
+      'unpair.breakup.continueLabel' => 'Continue',
+      'unpair.partnerNotice.title' => ({required Object name}) => '${name} unpaired',
+      'unpair.partnerNotice.titleNoName' => 'Your partner unpaired',
+      'unpair.partnerNotice.highlight' => 'unpaired',
+      'unpair.partnerNotice.text' => 'Your data stays yours. Shared cards stopped.',
+      'unpair.partnerNotice.ok' => 'Ok',
+      'unpair.errors.NETWORK' => 'No connection. Check your internet and try again.',
+      'unpair.errors.STILL_PAIRED' => 'The relationship is still active. Try again.',
+      'unpair.errors.other' => 'Could not unpair right now. Try again.',
       'welcome.headline' => 'Small good things, said out loud.',
       'welcome.headlineHighlight' => 'said out loud',
       'welcome.subtitle' => 'A light way to notice what the other does well, every week.',

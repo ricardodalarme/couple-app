@@ -8,6 +8,7 @@ import 'package:flutter_bloc_starter/features/cards/presentation/detail/cubit/ca
 import 'package:flutter_bloc_starter/features/cards/presentation/detail/widgets/card_reaction_section.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/detail/widgets/card_response_received.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/shared/widgets/card_view.dart';
+import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
@@ -39,12 +40,17 @@ class const CardDetailPage({@PathParam('id') required final String cardId, super
           card,
           fakeValue: _skeleton,
           successBuilder: (detail) => _DetailBody(detail: detail),
-          failureBuilder: (_) => BaseEmptyState(
-            title: l10n.errorTitle,
-            text: l10n.notFound,
-            actionText: context.l10n.common.retry,
-            onAction: () => context.read<CardDetailCubit>().load(cardId),
-          ),
+          failureBuilder: (failure) {
+            final isMissing = failure.l10nKey == 'CARD_NOT_FOUND';
+
+            return BaseEmptyState(
+              face: FaceKind.sad,
+              title: l10n.detailErrorTitle,
+              text: isMissing ? l10n.notFound : l10n.errors.selectOrFallback(failure.l10nKey),
+              actionText: isMissing ? null : context.l10n.common.retry,
+              onAction: isMissing ? null : () => context.read<CardDetailCubit>().load(cardId),
+            );
+          },
         ),
       ),
     );

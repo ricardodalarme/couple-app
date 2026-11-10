@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/card_summary.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/list/cubit/cards_list_cubit.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/list/widgets/card_summary_tile.dart';
+import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// How close to the end of the list, in pixels, the next page starts loading.
@@ -53,31 +54,33 @@ class _CardsListPageState() extends State<CardsListPage> {
 
     return BaseView(
       appBar: BaseAppBar(title: l10n.title),
-      body: BaseRefreshable(
-        onRefresh: cubit.load,
-        child: BaseStackedContent(
+      body: SkeletonizerResourceWidget<List<CardSummary>>(
+        cards,
+        fakeValue: [CardSummary.fake(), CardSummary.fake()],
+        successBuilder: (items) => BaseListView(
+          itemCount: items.isEmpty ? 0 : 1 + (isLoadingMore ? 1 : 0),
           controller: _controller,
-          body: SkeletonizerResourceWidget<List<CardSummary>>(
-            cards,
-            fakeValue: [CardSummary.fake(), CardSummary.fake()],
-            successBuilder: (items) => items.isEmpty
-                ? BaseEmptyState(title: l10n.emptyTitle, text: l10n.emptyText)
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      BaseListGroup(
-                        children: [for (final card in items) CardSummaryTile(card: card)],
-                      ),
-                      if (isLoadingMore) const Center(child: BaseLoadingDots()),
-                    ],
-                  ),
-            failureBuilder: (_) => BaseEmptyState(
-              title: l10n.errorTitle,
-              text: l10n.errorText,
-              actionText: context.l10n.common.retry,
-              onAction: cubit.load,
-            ),
+          onRefresh: cubit.load,
+          padding: const EdgeInsets.fromLTRB(
+            AppSpace.screenMargin,
+            AppSpace.s8,
+            AppSpace.screenMargin,
+            AppSpace.s34,
           ),
+          emptyBuilder: (_) => BaseEmptyState(title: l10n.emptyTitle, text: l10n.emptyText),
+          itemBuilder: (context, index) => index == 0
+              ? BaseListGroup(children: [for (final card in items) CardSummaryTile(card: card)])
+              : const Padding(
+                  padding: EdgeInsets.only(top: AppSpace.s16),
+                  child: Center(child: BaseLoadingDots()),
+                ),
+        ),
+        failureBuilder: (failure) => BaseEmptyState(
+          face: FaceKind.sad,
+          title: l10n.errorTitle,
+          text: l10n.errors.selectOrFallback(failure.l10nKey),
+          actionText: context.l10n.common.retry,
+          onAction: cubit.load,
         ),
       ),
     );

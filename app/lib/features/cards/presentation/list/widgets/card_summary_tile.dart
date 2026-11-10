@@ -4,7 +4,7 @@ import 'package:flutter_bloc_starter/features/cards/data/models/card_summary.dar
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
-/// One row of the card history: the date, how many slips, and what the other person did.
+/// One row of the card history: the date, how many slips, and the partner's answer.
 class const CardSummaryTile({required final CardSummary card, super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class const CardSummaryTile({required final CardSummary card, super.key}) extend
         : card.isOpened
         ? l10n.opened
         : null;
-    final parts = [l10n.slipCount(count: card.itemCount), ?status];
+    final parts = [l10n.slipCount(count: card.itemCount), if (card.isMine) ?status];
 
     return BaseListTile(
       title: l10n.dateShort(day: date.day, month: l10n.monthsShort[date.month - 1]),

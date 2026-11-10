@@ -136,7 +136,12 @@ void main() {
     await cubit.toggleReaction(CardReaction.hug);
 
     expect(cubit.state.reaction, 'hug');
-    verifyNever(() => cards.react(cardId: any(named: 'cardId'), reaction: any(named: 'reaction')));
+    verifyNever(
+      () => cards.react(
+        cardId: any(named: 'cardId'),
+        reaction: any(named: 'reaction'),
+      ),
+    );
   });
 
   test('a failed reaction keeps the previous one and reports the failure', () async {

@@ -17,6 +17,11 @@
   "errorTitle": "Não deu para carregar os cartões",
   "errorText": "Eles continuam salvos. Tente de novo.",
   "detailTitle": "Cartão",
+  "detailErrorTitle": "Não deu para abrir o cartão",
+  "errors(map)": {
+    "CARD_NOT_FOUND": "Esse cartão não está mais disponível.",
+    "other": "Ele continua salvo. Tente de novo."
+  },
   "reactionLabel": "Resposta",
   "reactionPrompt": "Como você quer responder?",
   "reactionThankYou": "Obrigado",

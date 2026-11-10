@@ -17,6 +17,11 @@
   "errorTitle": "Could not load the cards",
   "errorText": "They are still saved. Try again.",
   "detailTitle": "Card",
+  "detailErrorTitle": "Could not open the card",
+  "errors(map)": {
+    "CARD_NOT_FOUND": "That card is no longer available.",
+    "other": "It is still saved. Try again."
+  },
   "reactionLabel": "Reply",
   "reactionPrompt": "How do you want to reply?",
   "reactionThankYou": "Thank you",

@@ -13,18 +13,31 @@ class CardsListCubit({
 }) extends Cubit<CardsListState> {
   this : super(const CardsListState());
 
+  /// Bumped by every first-page read so an older page request cannot overwrite it.
+  int _generation = 0;
   String? _selfId;
 
   /// Reads the first page again; the list on screen stays until the new one arrives.
   Future<void> load() async {
+    final generation = ++_generation;
     if (state.cards is! Success) emit(const CardsListState());
     try {
       final selfId = _selfId ??= (await _profileRepository.getMyProfile()).id;
       final page = await _cardsRepository.getHistory(selfId: selfId);
-      emit(CardsListState(cards: Success(page.items), hasNext: page.hasNext, cursor: page.cursor));
+      if (generation != _generation) return;
+      emit(
+        state.copyWith(
+          cards: Success(page.items),
+          hasNext: page.hasNext,
+          cursor: page.cursor,
+          clearCursor: page.cursor == null,
+          isLoadingMore: false,
+        ),
+      );
     } catch (exception) {
+      if (generation != _generation) return;
       if (state.cards is Success) return;
-      emit(CardsListState(cards: Failure.fromObject(exception)));
+      emit(state.copyWith(cards: Failure.fromObject(exception)));
     }
   }
 
@@ -35,29 +48,29 @@ class CardsListCubit({
     if (current is! Success<List<CardSummary>> || selfId == null) return;
     if (!state.hasNext || state.isLoadingMore) return;
 
-    emit(
-      CardsListState(
-        cards: current,
-        hasNext: state.hasNext,
-        cursor: state.cursor,
-        isLoadingMore: true,
-      ),
-    );
+    final generation = _generation;
+    emit(state.copyWith(isLoadingMore: true));
     try {
       final page = await _cardsRepository.getHistory(selfId: selfId, after: state.cursor);
-      final known = current.value.map((card) => card.id).toSet();
+      if (generation != _generation) return;
+      final latest = state.cards;
+      if (latest is! Success<List<CardSummary>>) return;
+      final known = latest.value.map((card) => card.id).toSet();
       emit(
-        CardsListState(
+        state.copyWith(
           cards: Success([
-            ...current.value,
+            ...latest.value,
             ...page.items.where((card) => !known.contains(card.id)),
           ]),
           hasNext: page.hasNext,
           cursor: page.cursor,
+          clearCursor: page.cursor == null,
+          isLoadingMore: false,
         ),
       );
     } on Object {
-      emit(CardsListState(cards: current, hasNext: state.hasNext, cursor: state.cursor));
+      if (generation != _generation) return;
+      emit(state.copyWith(isLoadingMore: false));
     }
   }
 }
