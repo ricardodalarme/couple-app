@@ -62,6 +62,23 @@ void main() {
     test('survives the cache round trip', () {
       expect(TodayHome.fromMap(home.toMap()), home);
     });
+
+    test('a pause ends at its return time', () {
+      final returnAt = DateTime(2026, 11, 10, 18);
+      final paused = TodayHome(
+        isPaired: true,
+        unopenedCards: 0,
+        slipsThisWeek: 0,
+        slipsTotal: 0,
+        hasPendingInvite: false,
+        hasPlus: false,
+        pauseReturnAt: returnAt,
+      );
+
+      expect(paused.isPausedAt(DateTime(2026, 11, 10, 17, 59)), isTrue);
+      expect(paused.isPausedAt(returnAt), isFalse);
+      expect(home.isPausedAt(DateTime(2026, 11, 10)), isFalse);
+    });
   });
 
   group('TodayRepository', () {
@@ -192,6 +209,59 @@ void main() {
       expect(cubit.state.home, const Success<TodayHome>(home));
       expect(cubit.state.selfName, 'Ana');
       expect(cubit.state.isOffline, isFalse);
+    });
+
+    test('endPause ends the pause and reads Hoje again', () async {
+      var calls = 0;
+      when(() => today.getToday()).thenAnswer((_) async {
+        calls++;
+        return result(
+          value: calls == 1
+              ? TodayHome(
+                  isPaired: true,
+                  unopenedCards: 0,
+                  slipsThisWeek: 2,
+                  slipsTotal: 2,
+                  hasPendingInvite: false,
+                  hasPlus: false,
+                  pauseIsMine: true,
+                  pauseReturnAt: DateTime.now().add(const Duration(hours: 2)),
+                )
+              : home,
+        );
+      });
+      when(() => today.endPause()).thenAnswer((_) async {});
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        pairingRepository: pairing,
+      );
+      await cubit.load();
+      expect(cubit.state.home, isA<Success<TodayHome>>());
+
+      await cubit.endPause();
+
+      verify(() => today.endPause()).called(1);
+      expect(calls, 2);
+      expect(cubit.state.endPauseAction, isA<Initial>());
+      await cubit.close();
+    });
+
+    test('a failed endPause keeps Hoje and re-enables the action', () async {
+      when(() => today.getToday()).thenAnswer((_) async => result());
+      when(() => today.endPause()).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        pairingRepository: pairing,
+      );
+      await cubit.load();
+
+      await cubit.endPause();
+
+      expect(cubit.state.home, const Success<TodayHome>(home));
+      expect(cubit.state.endPauseAction, isA<Initial>());
+      await cubit.close();
     });
 
     test('a cached result sets the offline flag', () async {

@@ -5,6 +5,7 @@ import 'package:flutter_bloc_starter/features/notifications/presentation/off_ban
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/widgets/today_header.dart';
+import 'package:flutter_bloc_starter/features/today/presentation/today/widgets/today_pause.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
@@ -25,6 +26,21 @@ class const TodayContent({
     final l10n = context.l10n.today;
     final idea = home.idea;
     final isAlone = !home.isPaired;
+
+    if (home.isPausedAt(DateTime.now())) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TodayHeader(home: home, selfName: selfName, isFirstDay: isFirstDay),
+          const SizedBox(height: AppSpace.s20),
+          if (isOffline) ...[
+            BaseBanner(text: l10n.offline, icon: AppIcons.wifi_off),
+            const SizedBox(height: AppSpace.s12),
+          ],
+          TodayPause(home: home),
+        ],
+      );
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

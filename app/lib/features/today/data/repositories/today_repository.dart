@@ -47,6 +47,16 @@ class TodayRepository({
     }
   }
 
+  /// Ends the person's own pause so Hoje returns to normal.
+  Future<void> endPause() async {
+    try {
+      await _dataSource.endPause();
+    } catch (e, stack) {
+      _logger.error('Failed to end the pause', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
   /// Marks the unpair notice as seen so it does not come back.
   Future<void> acknowledgeUnpair() => _localDataSource.writeRelationship(wasPaired: false);
 

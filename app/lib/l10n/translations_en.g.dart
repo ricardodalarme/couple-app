@@ -1264,6 +1264,19 @@ class _Translations$today$en extends Translations$today$pt {
   String get errorText => 'Your slips are safe. Try again.';
   @override
   String cardReceivedNamed({required Object name}) => '${name} sent you a card';
+  @override
+  String get pauseOwnTitle => 'You asked for some space';
+  @override
+  String pauseOwnText({required Object time}) =>
+      'You\'re back around ${time}. Nothing to do right now.';
+  @override
+  String get pausePartnerTitle => 'Your partner asked for some space';
+  @override
+  String get pausePartnerText => 'No rush. There\'s nothing to do right now.';
+  @override
+  String get pauseBack => 'Come back now';
+  @override
+  String get pauseWriteSlip => 'Write a slip';
 }
 
 // Path: unpair
@@ -2431,6 +2444,14 @@ extension on TranslationsEn {
           'today.errorTitle' => 'Could not load Today',
           'today.errorText' => 'Your slips are safe. Try again.',
           'today.cardReceivedNamed' => ({required Object name}) => '${name} sent you a card',
+          'today.pauseOwnTitle' => 'You asked for some space',
+          'today.pauseOwnText' => ({
+            required Object time,
+          }) => 'You\'re back around ${time}. Nothing to do right now.',
+          'today.pausePartnerTitle' => 'Your partner asked for some space',
+          'today.pausePartnerText' => 'No rush. There\'s nothing to do right now.',
+          'today.pauseBack' => 'Come back now',
+          'today.pauseWriteSlip' => 'Write a slip',
           'unpair.appBarTitle' => 'Unpair',
           'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
           'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',

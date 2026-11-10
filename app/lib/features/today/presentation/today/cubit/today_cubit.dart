@@ -21,6 +21,7 @@ class TodayCubit({
   this : super(const TodayState());
 
   StreamSubscription<void>? _pairingChanges;
+  Timer? _pauseTimer;
 
   void start() {
     WidgetsBinding.instance.addObserver(this);
@@ -35,6 +36,7 @@ class TodayCubit({
     final settings = await _readSettings();
     try {
       final result = await _todayRepository.getToday();
+      _schedulePauseEnd(result.home);
       emit(
         state.copyWith(
           home: Success(result.home),
@@ -52,6 +54,32 @@ class TodayCubit({
       if (state.home is Success) return;
       emit(state.copyWith(home: Failure.fromObject(exception), selfName: selfName));
     }
+  }
+
+  /// Ends the person's own pause and reads Hoje again.
+  Future<void> endPause() async {
+    if (state.endPauseAction.isLoading) return;
+
+    emit(state.copyWith(endPauseAction: const Loading()));
+    try {
+      await _todayRepository.endPause();
+      emit(state.copyWith(endPauseAction: const Success(null)));
+      await load();
+    } catch (exception) {
+      emit(state.copyWith(endPauseAction: Failure.fromObject(exception)));
+    }
+    emit(state.copyWith(endPauseAction: const Initial()));
+  }
+
+  void _schedulePauseEnd(TodayHome home) {
+    _pauseTimer?.cancel();
+    final returnAt = home.pauseReturnAt;
+    if (returnAt == null) return;
+
+    final wait = returnAt.difference(DateTime.now());
+    if (wait.isNegative) return;
+
+    _pauseTimer = Timer(wait + const Duration(seconds: 1), load);
   }
 
   Future<void> acknowledgeUnpairNotice() async {
@@ -101,6 +129,7 @@ class TodayCubit({
 
   @override
   Future<void> close() async {
+    _pauseTimer?.cancel();
     await _pairingChanges?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     return super.close();

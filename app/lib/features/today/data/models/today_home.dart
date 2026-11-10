@@ -78,6 +78,9 @@ final class const TodayHome({
   /// Whether the person is paused and a paused banner applies.
   bool get isPaused => pauseReturnAt != null;
 
+  /// Whether a pause is still running at [now].
+  bool isPausedAt(DateTime now) => pauseReturnAt != null && pauseReturnAt!.isAfter(now);
+
   Map<String, dynamic> toMap() => <String, dynamic>{
     'isPaired': isPaired,
     'unopenedCards': unopenedCards,

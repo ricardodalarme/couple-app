@@ -93,5 +93,11 @@
   "firstDayAction": "Note one more",
   "errorTitle": "Could not load Today",
   "errorText": "Your slips are safe. Try again.",
-  "cardReceivedNamed": "{name} sent you a card"
+  "cardReceivedNamed": "{name} sent you a card",
+  "pauseOwnTitle": "You asked for some space",
+  "pauseOwnText": "You're back around {time}. Nothing to do right now.",
+  "pausePartnerTitle": "Your partner asked for some space",
+  "pausePartnerText": "No rush. There's nothing to do right now.",
+  "pauseBack": "Come back now",
+  "pauseWriteSlip": "Write a slip"
 }

@@ -1509,6 +1509,25 @@ class Translations$today$pt {
 
   /// pt: '{name} te mandou um cartão'
   String cardReceivedNamed({required Object name}) => '${name} te mandou um cartão';
+
+  /// pt: 'Você pediu um tempo'
+  String get pauseOwnTitle => 'Você pediu um tempo';
+
+  /// pt: 'Você volta por volta das {time}. Nada para fazer agora.'
+  String pauseOwnText({required Object time}) =>
+      'Você volta por volta das ${time}. Nada para fazer agora.';
+
+  /// pt: 'Seu par pediu um tempo'
+  String get pausePartnerTitle => 'Seu par pediu um tempo';
+
+  /// pt: 'Sem pressa. Não tem nada para fazer agora.'
+  String get pausePartnerText => 'Sem pressa. Não tem nada para fazer agora.';
+
+  /// pt: 'Voltar agora'
+  String get pauseBack => 'Voltar agora';
+
+  /// pt: 'Anotar um slip'
+  String get pauseWriteSlip => 'Anotar um slip';
 }
 
 // Path: unpair
@@ -2773,6 +2792,14 @@ extension on Translations {
           'today.errorTitle' => 'Não deu para carregar o Hoje',
           'today.errorText' => 'Seus slips estão seguros. Tente de novo.',
           'today.cardReceivedNamed' => ({required Object name}) => '${name} te mandou um cartão',
+          'today.pauseOwnTitle' => 'Você pediu um tempo',
+          'today.pauseOwnText' => ({
+            required Object time,
+          }) => 'Você volta por volta das ${time}. Nada para fazer agora.',
+          'today.pausePartnerTitle' => 'Seu par pediu um tempo',
+          'today.pausePartnerText' => 'Sem pressa. Não tem nada para fazer agora.',
+          'today.pauseBack' => 'Voltar agora',
+          'today.pauseWriteSlip' => 'Anotar um slip',
           'unpair.appBarTitle' => 'Desvincular',
           'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
           'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',

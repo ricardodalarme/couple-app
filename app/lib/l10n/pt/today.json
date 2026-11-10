@@ -93,5 +93,11 @@
   "firstDayAction": "Anotar mais um",
   "errorTitle": "Não deu para carregar o Hoje",
   "errorText": "Seus slips estão seguros. Tente de novo.",
-  "cardReceivedNamed": "{name} te mandou um cartão"
+  "cardReceivedNamed": "{name} te mandou um cartão",
+  "pauseOwnTitle": "Você pediu um tempo",
+  "pauseOwnText": "Você volta por volta das {time}. Nada para fazer agora.",
+  "pausePartnerTitle": "Seu par pediu um tempo",
+  "pausePartnerText": "Sem pressa. Não tem nada para fazer agora.",
+  "pauseBack": "Voltar agora",
+  "pauseWriteSlip": "Anotar um slip"
 }
