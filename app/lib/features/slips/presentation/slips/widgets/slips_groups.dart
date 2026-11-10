@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_entry.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// Slips grouped by week, newest week first.
 class const SlipsGroups({required final List<SlipEntry> slips, super.key}) extends StatelessWidget {
@@ -22,7 +24,11 @@ class const SlipsGroups({required final List<SlipEntry> slips, super.key}) exten
           BaseListGroup(
             children: [
               for (final slip in group.value)
-                BaseListTile(title: slip.body, subtitle: _dayLine(context, slip)),
+                BaseListTile(
+                  title: slip.body,
+                  subtitle: _dayLine(context, slip),
+                  onTap: () => context.pushRoute(SlipDetailRoute(id: slip.id)),
+                ),
             ],
           ),
           const SizedBox(height: AppSpace.s20),

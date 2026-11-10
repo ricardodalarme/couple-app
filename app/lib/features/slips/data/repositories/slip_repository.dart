@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/slip_data_source.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/slip_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/pending_slip.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_detail.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_draft.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_entry.dart';
 import 'package:logger/logger.dart';
@@ -66,6 +67,70 @@ class SlipRepository({
       await _enqueue(slip);
       _changes.add(null);
       return SlipSaveOutcome.queued;
+    }
+  }
+
+  /// Reads one slip; returns null when it is deleted or not the person's.
+  Future<SlipDetail?> getSlip(String id) async {
+    try {
+      final node = await _slipDataSource.getSlip(id);
+      if (node == null) return null;
+
+      return SlipDetail(
+        id: node.id,
+        body: node.body,
+        kind: node.kind.name,
+        createdAt: node.createdAt,
+        forCard: node.forCard,
+        feeling: node.feeling,
+        planNote: node.planNote,
+        category: node.category,
+        workArea: node.workArea,
+        isArchived: node.archivedAt != null,
+        wasInCard: node.cardItemsCollection?.edges.isNotEmpty ?? false,
+      );
+    } catch (e, stack) {
+      _logger.error('Failed to load a slip', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Saves the edited text and card choice of an existing slip.
+  Future<void> updateSlip(SlipDetail slip) async {
+    try {
+      await _slipDataSource.saveSlip(
+        id: slip.id,
+        body: slip.body.trim(),
+        createdAt: slip.createdAt,
+        kind: slip.kind,
+        feeling: slip.feeling,
+        planNote: slip.planNote,
+        forCard: slip.forCard && slip.canGoInCard,
+      );
+      _changes.add(null);
+    } catch (e, stack) {
+      _logger.error('Failed to update a slip', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  Future<void> setArchived({required String id, required bool archived}) async {
+    try {
+      await _slipDataSource.archiveSlip(id: id, archived: archived);
+      _changes.add(null);
+    } catch (e, stack) {
+      _logger.error('Failed to archive a slip', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  Future<void> deleteSlip(String id) async {
+    try {
+      await _slipDataSource.deleteSlip(id);
+      _changes.add(null);
+    } catch (e, stack) {
+      _logger.error('Failed to delete a slip', error: e, stackTrace: stack);
+      rethrow;
     }
   }
 

@@ -1,0 +1,25 @@
+query SlipDetail($id: UUID!) {
+  slipsCollection(filter: { id: { eq: $id }, deletedAt: { is: NULL } }, first: 1) {
+    edges {
+      node {
+        id
+        body
+        kind
+        feeling
+        planNote
+        forCard
+        category
+        workArea
+        createdAt
+        archivedAt
+        cardItemsCollection(first: 1) {
+          edges {
+            node {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

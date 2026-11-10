@@ -4,6 +4,7 @@ import 'package:flutter_bloc_starter/features/slips/data/data_sources/slip_local
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/need/cubit/need_cubit.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
+import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
 import 'package:network/network.dart';
@@ -30,6 +31,9 @@ class SlipsInjectionModule() implements InjectionModule {
     )
     ..registerFactory<SlipKindCubit>(
       () => SlipKindCubit(slipRepository: injector.get<SlipRepository>()),
+    )
+    ..registerFactory<SlipDetailCubit>(
+      () => SlipDetailCubit(slipRepository: injector.get<SlipRepository>()),
     )
     ..registerFactory<NeedCubit>(() => NeedCubit(slipRepository: injector.get<SlipRepository>()));
 }

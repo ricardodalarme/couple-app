@@ -1,10 +1,12 @@
 import 'package:flutter_bloc_starter/features/_shared/data/data_sources/generated/schema.graphql.dart';
+import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/ArchiveSlip.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/DeleteSlip.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SaveSlip.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SendSignal.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SetSlipCategory.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SetSlipWorkArea.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/queries/generated/MySlips.graphql.dart';
+import 'package:flutter_bloc_starter/features/slips/data/data_sources/queries/generated/SlipDetail.graphql.dart';
 import 'package:network/network.dart';
 
 class SlipDataSource({required final GQLClient _client}) {
@@ -16,6 +18,7 @@ class SlipDataSource({required final GQLClient _client}) {
     String kind = 'quick',
     String? feeling,
     String? planNote,
+    bool? forCard,
   }) async {
     final response = await _client.mutate(
       OptionsMutationSaveSlip(
@@ -26,6 +29,7 @@ class SlipDataSource({required final GQLClient _client}) {
           kind: kind,
           feeling: feeling,
           planNote: planNote,
+          forCard: forCard,
         ),
       ),
     );
@@ -76,6 +80,29 @@ class SlipDataSource({required final GQLClient _client}) {
     );
 
     return validateResponseData(response, getData: (data) => data.slipsCollection);
+  }
+
+  /// Reads one slip of the person, or null when it is gone or not theirs.
+  Future<QuerySlipDetailslipsCollectionedgesnode?> getSlip(String id) async {
+    final response = await _client.query(
+      OptionsQuerySlipDetail(
+        fetchPolicy: FetchPolicy.networkOnly,
+        variables: VariablesQuerySlipDetail(id: id),
+      ),
+    );
+    final edges = validateResponseData(response, getData: (data) => data.slipsCollection.edges);
+
+    return edges.isEmpty ? null : edges.first.node;
+  }
+
+  Future<void> archiveSlip({required String id, required bool archived}) async {
+    final response = await _client.mutate(
+      OptionsMutationArchiveSlip(
+        variables: VariablesMutationArchiveSlip(id: id, archived: archived),
+      ),
+    );
+
+    validateResponse(response);
   }
 
   Future<void> setCategory({required String id, String? category}) async {

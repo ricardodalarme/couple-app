@@ -87,6 +87,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$reminders$en reminders = _Translations$reminders$en._(_root);
   @override
+  late final _Translations$slipDetail$en slipDetail = _Translations$slipDetail$en._(_root);
+  @override
   late final _Translations$slipKind$en slipKind = _Translations$slipKind$en._(_root);
   @override
   late final _Translations$slipsList$en slipsList = _Translations$slipsList$en._(_root);
@@ -714,6 +716,116 @@ class _Translations$reminders$en extends Translations$reminders$pt {
   String get weeklyCard => 'Your card is ready.';
   @override
   String get discreet => 'Open the app to see.';
+}
+
+// Path: slipDetail
+class _Translations$slipDetail$en extends Translations$slipDetail$pt {
+  _Translations$slipDetail$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String dateLine({required Object weekday, required Object month, required Object day}) =>
+      '${weekday}, ${month} ${day}';
+  @override
+  List<String> get weekdays => [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ];
+  @override
+  List<String> get monthsShort => [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  @override
+  Map<String, String> get kinds => {
+    'quick': 'Quick',
+    'specific': 'Specific',
+    'if_then': 'If… then',
+    'invisible': 'Invisible',
+    'other': '',
+  };
+  @override
+  String get private => 'Only you see this slip.';
+  @override
+  String get archived => 'Archived';
+  @override
+  String get feeling => 'How you felt';
+  @override
+  String get plan => 'Then I…';
+  @override
+  String get cardTitle => 'Who sees this';
+  @override
+  String get cardOff => 'Only me';
+  @override
+  String get cardOffText => 'Stays in your week and does not go in the card.';
+  @override
+  String get cardOn => 'Can go in the card';
+  @override
+  String get cardOnText => 'On Sunday you choose whether it goes.';
+  @override
+  String get cardInvisible => 'Invisible slips never go in a card.';
+  @override
+  String get previewTitle => 'What your partner would read';
+  @override
+  String get previewText => 'If this slip goes in the card, this is the text that shows.';
+  @override
+  String get sentNote =>
+      'This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.';
+  @override
+  String get edit => 'Edit';
+  @override
+  String get editSave => 'Save';
+  @override
+  String get editCancel => 'Cancel';
+  @override
+  String get archive => 'Archive';
+  @override
+  String get restore => 'Restore';
+  @override
+  String get delete => 'Delete';
+  @override
+  String get deleteTitle => 'Delete this slip?';
+  @override
+  String get deleteText => 'It will be removed from your week and your timeline.';
+  @override
+  String get deleteConfirm => 'Delete';
+  @override
+  String get saved => 'Saved';
+  @override
+  String get archivedToast => 'Archived';
+  @override
+  String get deleted => 'Slip deleted';
+  @override
+  String get notFoundTitle => 'This slip no longer exists';
+  @override
+  String get notFoundText => 'It may have been deleted.';
+  @override
+  String get errorTitle => 'Couldn\'t open this slip';
+  @override
+  String get errorText => 'It is still saved. Try again.';
+  @override
+  Map<String, String> get errors => {
+    'SLIP_NOT_FOUND': 'This slip no longer exists.',
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t do that right now. Try again.',
+  };
 }
 
 // Path: slipKind
@@ -1877,6 +1989,67 @@ extension on TranslationsEn {
           'reminders.dates' => 'A date is coming up.',
           'reminders.weeklyCard' => 'Your card is ready.',
           'reminders.discreet' => 'Open the app to see.',
+          'slipDetail.dateLine' => ({
+            required Object weekday,
+            required Object month,
+            required Object day,
+          }) => '${weekday}, ${month} ${day}',
+          'slipDetail.weekdays.0' => 'Monday',
+          'slipDetail.weekdays.1' => 'Tuesday',
+          'slipDetail.weekdays.2' => 'Wednesday',
+          'slipDetail.weekdays.3' => 'Thursday',
+          'slipDetail.weekdays.4' => 'Friday',
+          'slipDetail.weekdays.5' => 'Saturday',
+          'slipDetail.weekdays.6' => 'Sunday',
+          'slipDetail.monthsShort.0' => 'Jan',
+          'slipDetail.monthsShort.1' => 'Feb',
+          'slipDetail.monthsShort.2' => 'Mar',
+          'slipDetail.monthsShort.3' => 'Apr',
+          'slipDetail.monthsShort.4' => 'May',
+          'slipDetail.monthsShort.5' => 'Jun',
+          'slipDetail.monthsShort.6' => 'Jul',
+          'slipDetail.monthsShort.7' => 'Aug',
+          'slipDetail.monthsShort.8' => 'Sep',
+          'slipDetail.monthsShort.9' => 'Oct',
+          'slipDetail.monthsShort.10' => 'Nov',
+          'slipDetail.monthsShort.11' => 'Dec',
+          'slipDetail.kinds.quick' => 'Quick',
+          'slipDetail.kinds.specific' => 'Specific',
+          'slipDetail.kinds.if_then' => 'If… then',
+          'slipDetail.kinds.invisible' => 'Invisible',
+          'slipDetail.kinds.other' => '',
+          'slipDetail.private' => 'Only you see this slip.',
+          'slipDetail.archived' => 'Archived',
+          'slipDetail.feeling' => 'How you felt',
+          'slipDetail.plan' => 'Then I…',
+          'slipDetail.cardTitle' => 'Who sees this',
+          'slipDetail.cardOff' => 'Only me',
+          'slipDetail.cardOffText' => 'Stays in your week and does not go in the card.',
+          'slipDetail.cardOn' => 'Can go in the card',
+          'slipDetail.cardOnText' => 'On Sunday you choose whether it goes.',
+          'slipDetail.cardInvisible' => 'Invisible slips never go in a card.',
+          'slipDetail.previewTitle' => 'What your partner would read',
+          'slipDetail.previewText' => 'If this slip goes in the card, this is the text that shows.',
+          'slipDetail.sentNote' => 'This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.',
+          'slipDetail.edit' => 'Edit',
+          'slipDetail.editSave' => 'Save',
+          'slipDetail.editCancel' => 'Cancel',
+          'slipDetail.archive' => 'Archive',
+          'slipDetail.restore' => 'Restore',
+          'slipDetail.delete' => 'Delete',
+          'slipDetail.deleteTitle' => 'Delete this slip?',
+          'slipDetail.deleteText' => 'It will be removed from your week and your timeline.',
+          'slipDetail.deleteConfirm' => 'Delete',
+          'slipDetail.saved' => 'Saved',
+          'slipDetail.archivedToast' => 'Archived',
+          'slipDetail.deleted' => 'Slip deleted',
+          'slipDetail.notFoundTitle' => 'This slip no longer exists',
+          'slipDetail.notFoundText' => 'It may have been deleted.',
+          'slipDetail.errorTitle' => 'Couldn\'t open this slip',
+          'slipDetail.errorText' => 'It is still saved. Try again.',
+          'slipDetail.errors.SLIP_NOT_FOUND' => 'This slip no longer exists.',
+          'slipDetail.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'slipDetail.errors.other' => 'Couldn\'t do that right now. Try again.',
           'slipKind.switcherTitle' => 'Other ways to write it down',
           'slipKind.needEntry' => 'I need…',
           'slipKind.kinds.specific' => 'Specific',
@@ -2097,6 +2270,9 @@ extension on TranslationsEn {
                   one: 'Your private slips: 1 this week',
                   other: 'Your private slips: ${count} this week',
                 ),
+          _ => null,
+        } ??
+        switch (path) {
           'today.sundayCardLabel' => 'Sunday card',
           'today.sundayCardTitle' => 'Your card for this week',
           'today.inviteCardLabel' => 'Invite',
@@ -2168,9 +2344,6 @@ extension on TranslationsEn {
           'unpair.partnerNotice.ok' => 'Ok',
           'unpair.errors.NETWORK' => 'No connection. Check your internet and try again.',
           'unpair.errors.STILL_PAIRED' => 'The relationship is still active. Try again.',
-          _ => null,
-        } ??
-        switch (path) {
           'unpair.errors.other' => 'Could not unpair right now. Try again.',
           'welcome.headline' => 'Small good things, said out loud.',
           'welcome.headlineHighlight' => 'said out loud',

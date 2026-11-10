@@ -434,6 +434,56 @@ class SignInRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SlipDetailPage]
+class SlipDetailRoute extends PageRouteInfo<SlipDetailRouteArgs> {
+  SlipDetailRoute({required String id, Key? key, List<PageRouteInfo>? children})
+    : super(
+        SlipDetailRoute.name,
+        args: SlipDetailRouteArgs(id: id, key: key),
+        rawPathParams: {'id': id},
+        initialChildren: children,
+      );
+
+  static const String name = 'SlipDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<SlipDetailRouteArgs>(
+        orElse: () => SlipDetailRouteArgs(id: pathParams.getString('id')),
+      );
+      return WrappedRoute(
+        child: SlipDetailPage(id: args.id, key: args.key),
+      );
+    },
+  );
+}
+
+class SlipDetailRouteArgs {
+  const SlipDetailRouteArgs({required this.id, this.key});
+
+  final String id;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SlipDetailRouteArgs{id: $id, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SlipDetailRouteArgs) return false;
+    return id == other.id && key == other.key;
+  }
+
+  @override
+  int get hashCode => id.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [SlipKindPage]
 class SlipKindRoute extends PageRouteInfo<SlipKindRouteArgs> {
   SlipKindRoute({

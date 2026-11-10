@@ -1,0 +1,5 @@
+mutation ArchiveSlip($id: UUID!, $archived: Boolean) {
+  archiveSlip(id: $id, archived: $archived) {
+    id
+  }
+}
