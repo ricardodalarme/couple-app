@@ -1,0 +1,15 @@
+{
+  "title": "Linhas de ajuda",
+  "subtitle": "Se você não se sente seguro, alguém pode ouvir agora.",
+  "lines(map)": {
+    "cvv": "CVV",
+    "women": "Violência contra a mulher",
+    "emergency": "Emergência",
+    "other": ""
+  },
+  "toVerify": "a verificar",
+  "call": "Ligar",
+  "copied": "Número copiado",
+  "privateNote": "Esta tela não guarda nada e nada é enviado a ninguém.",
+  "entry": "Segurança e apoio"
+}

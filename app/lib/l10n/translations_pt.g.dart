@@ -90,6 +90,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$reminders$pt reminders = Translations$reminders$pt.internal(_root);
   late final Translations$repair$pt repair = Translations$repair$pt.internal(_root);
   late final Translations$rituals$pt rituals = Translations$rituals$pt.internal(_root);
+  late final Translations$safety$pt safety = Translations$safety$pt.internal(_root);
   late final Translations$slipDetail$pt slipDetail = Translations$slipDetail$pt.internal(_root);
   late final Translations$slipKind$pt slipKind = Translations$slipKind$pt.internal(_root);
   late final Translations$slipsList$pt slipsList = Translations$slipsList$pt.internal(_root);
@@ -1785,6 +1786,43 @@ class Translations$rituals$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
+}
+
+// Path: safety
+class Translations$safety$pt {
+  Translations$safety$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Linhas de ajuda'
+  String get title => 'Linhas de ajuda';
+
+  /// pt: 'Se você não se sente seguro, alguém pode ouvir agora.'
+  String get subtitle => 'Se você não se sente seguro, alguém pode ouvir agora.';
+
+  Map<String, String> get lines => {
+    'cvv': 'CVV',
+    'women': 'Violência contra a mulher',
+    'emergency': 'Emergência',
+    'other': '',
+  };
+
+  /// pt: 'a verificar'
+  String get toVerify => 'a verificar';
+
+  /// pt: 'Ligar'
+  String get call => 'Ligar';
+
+  /// pt: 'Número copiado'
+  String get copied => 'Número copiado';
+
+  /// pt: 'Esta tela não guarda nada e nada é enviado a ninguém.'
+  String get privateNote => 'Esta tela não guarda nada e nada é enviado a ninguém.';
+
+  /// pt: 'Segurança e apoio'
+  String get entry => 'Segurança e apoio';
 }
 
 // Path: slipDetail
@@ -4296,6 +4334,17 @@ extension on Translations {
           'rituals.errors.NOT_FOUND' => 'Esse ritual não está mais aqui.',
           'rituals.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'rituals.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'safety.title' => 'Linhas de ajuda',
+          'safety.subtitle' => 'Se você não se sente seguro, alguém pode ouvir agora.',
+          'safety.lines.cvv' => 'CVV',
+          'safety.lines.women' => 'Violência contra a mulher',
+          'safety.lines.emergency' => 'Emergência',
+          'safety.lines.other' => '',
+          'safety.toVerify' => 'a verificar',
+          'safety.call' => 'Ligar',
+          'safety.copied' => 'Número copiado',
+          'safety.privateNote' => 'Esta tela não guarda nada e nada é enviado a ninguém.',
+          'safety.entry' => 'Segurança e apoio',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -4653,6 +4702,9 @@ extension on Translations {
           'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
           'today.privateTag' => 'Só seu',
           'today.privateQuestion' => 'Como foi o seu dia, de verdade?',
+          _ => null,
+        } ??
+        switch (path) {
           'today.privateHighlight' => 'dia',
           'today.privateAction' => 'Anotar um slip',
           'today.emptyWeekTag' => 'Sem pressa',
@@ -4664,9 +4716,6 @@ extension on Translations {
           'today.cardReceivedAction' => 'Ver cartão',
           'today.firstDayLabel' => 'Começando',
           'today.firstDayGreeting' => ({required Object name}) => 'Oi, ${name}',
-          _ => null,
-        } ??
-        switch (path) {
           'today.firstDaySubtitle' => 'que bom ter você por aqui',
           'today.firstDayTag' => 'Bom começo',
           'today.firstDayTitle' =>

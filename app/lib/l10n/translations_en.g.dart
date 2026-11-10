@@ -116,6 +116,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$rituals$en rituals = _Translations$rituals$en._(_root);
   @override
+  late final _Translations$safety$en safety = _Translations$safety$en._(_root);
+  @override
   late final _Translations$slipDetail$en slipDetail = _Translations$slipDetail$en._(_root);
   @override
   late final _Translations$slipKind$en slipKind = _Translations$slipKind$en._(_root);
@@ -1495,6 +1497,36 @@ class _Translations$rituals$en extends Translations$rituals$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t do that right now. Try again.',
   };
+}
+
+// Path: safety
+class _Translations$safety$en extends Translations$safety$pt {
+  _Translations$safety$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Help lines';
+  @override
+  String get subtitle => 'If you don\'t feel safe, someone can listen right now.';
+  @override
+  Map<String, String> get lines => {
+    'cvv': 'CVV',
+    'women': 'Violence against women',
+    'emergency': 'Emergency',
+    'other': '',
+  };
+  @override
+  String get toVerify => 'to be verified';
+  @override
+  String get call => 'Call';
+  @override
+  String get copied => 'Number copied';
+  @override
+  String get privateNote => 'This screen keeps nothing and nothing is sent to anyone.';
+  @override
+  String get entry => 'Safety and support';
 }
 
 // Path: slipDetail
@@ -3686,6 +3718,17 @@ extension on TranslationsEn {
           'rituals.errors.NOT_FOUND' => 'That ritual isn\'t here anymore.',
           'rituals.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'rituals.errors.other' => 'Couldn\'t do that right now. Try again.',
+          'safety.title' => 'Help lines',
+          'safety.subtitle' => 'If you don\'t feel safe, someone can listen right now.',
+          'safety.lines.cvv' => 'CVV',
+          'safety.lines.women' => 'Violence against women',
+          'safety.lines.emergency' => 'Emergency',
+          'safety.lines.other' => '',
+          'safety.toVerify' => 'to be verified',
+          'safety.call' => 'Call',
+          'safety.copied' => 'Number copied',
+          'safety.privateNote' => 'This screen keeps nothing and nothing is sent to anyone.',
+          'safety.entry' => 'Safety and support',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -4042,6 +4085,9 @@ extension on TranslationsEn {
           'today.inviteCardText' => 'Shared cards and tools need both of you.',
           'today.privateTag' => 'Only yours',
           'today.privateQuestion' => 'How was your day, really?',
+          _ => null,
+        } ??
+        switch (path) {
           'today.privateHighlight' => 'day',
           'today.privateAction' => 'Note a slip',
           'today.emptyWeekTag' => 'No rush',
@@ -4053,9 +4099,6 @@ extension on TranslationsEn {
           'today.cardReceivedAction' => 'See card',
           'today.firstDayLabel' => 'Getting started',
           'today.firstDayGreeting' => ({required Object name}) => 'Hi, ${name}',
-          _ => null,
-        } ??
-        switch (path) {
           'today.firstDaySubtitle' => 'so glad you are here',
           'today.firstDayTag' => 'Good start',
           'today.firstDayTitle' =>

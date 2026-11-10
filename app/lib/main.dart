@@ -17,6 +17,7 @@ import 'package:flutter_bloc_starter/features/plus/di/plus_injection_module.dart
 import 'package:flutter_bloc_starter/features/profile/di/profile_injection_module.dart';
 import 'package:flutter_bloc_starter/features/reminders/di/reminders_injection_module.dart';
 import 'package:flutter_bloc_starter/features/repair/di/repair_injection_module.dart';
+import 'package:flutter_bloc_starter/features/safety/di/safety_injection_module.dart';
 import 'package:flutter_bloc_starter/features/settings/di/settings_injection_module.dart';
 import 'package:flutter_bloc_starter/features/slips/di/slips_injection_module.dart';
 import 'package:flutter_bloc_starter/features/today/di/today_injection_module.dart';
@@ -44,6 +45,7 @@ void _registerModules() {
     SharedInjectionModule(),
     AppInjectionModule(),
     AuthenticationInjectionModule(),
+    SafetyInjectionModule(),
     SettingsInjectionModule(),
     IdeasInjectionModule(),
     NotificationsInjectionModule(),
