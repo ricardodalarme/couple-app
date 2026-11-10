@@ -947,6 +947,10 @@ class Translations$repair$pt {
     _root,
   );
   late final Translations$repair$quick$pt quick = Translations$repair$quick$pt.internal(_root);
+  late final Translations$repair$guided$pt guided = Translations$repair$guided$pt.internal(_root);
+  late final Translations$repair$learning$pt learning = Translations$repair$learning$pt.internal(
+    _root,
+  );
   late final Translations$repair$next$pt next = Translations$repair$next$pt.internal(_root);
 }
 
@@ -1316,6 +1320,15 @@ class Translations$tabs$pt {
 
   /// pt: 'Um registro privado, sem nota.'
   String get temperatureText => 'Um registro privado, sem nota.';
+
+  /// pt: 'SÓ PARA VOCÊ'
+  String get learningLabel => 'SÓ PARA VOCÊ';
+
+  /// pt: 'O que você aprendeu'
+  String get learningTitle => 'O que você aprendeu';
+
+  /// pt: 'Anotações privadas que você pode apagar.'
+  String get learningText => 'Anotações privadas que você pode apagar.';
 }
 
 // Path: temperature
@@ -1991,6 +2004,142 @@ class Translations$repair$quick$pt {
   };
 }
 
+// Path: repair.guided
+class Translations$repair$guided$pt {
+  Translations$repair$guided$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Passo {current} de {total}'
+  String stepOf({required Object current, required Object total}) => 'Passo ${current} de ${total}';
+
+  List<String> get stepTitles => [
+    'O que aconteceu?',
+    'Do que você precisa?',
+    'O que você pode oferecer?',
+  ];
+  List<String> get stepHighlights => ['aconteceu', 'precisa', 'oferecer'];
+  List<String> get stepHints => [
+    'Do seu jeito, sem culpar ninguém.',
+    'Uma coisa que ajudaria agora.',
+    'Algo pequeno e sincero.',
+  ];
+
+  /// pt: 'Só você vê isto. Nada é enviado ao seu par.'
+  String get private => 'Só você vê isto. Nada é enviado ao seu par.';
+
+  /// pt: 'Continuar'
+  String get next => 'Continuar';
+
+  /// pt: 'Voltar'
+  String get back => 'Voltar';
+
+  /// pt: 'Guardar para depois'
+  String get later => 'Guardar para depois';
+
+  /// pt: 'Guardado. Você continua de onde parou.'
+  String get savedLater => 'Guardado. Você continua de onde parou.';
+
+  /// pt: 'Como você está agora?'
+  String get finalTitle => 'Como você está agora?';
+
+  /// pt: 'agora'
+  String get finalHighlight => 'agora';
+
+  Map<String, String> get feelings => {
+    'calmer': 'Mais calmo(a)',
+    'still_tense': 'Ainda tenso(a)',
+    'need_more_time': 'Preciso de mais tempo',
+    'other': '',
+  };
+
+  /// pt: 'Quer um lembrete para ver como estão?'
+  String get followUpTitle => 'Quer um lembrete para ver como estão?';
+
+  Map<String, String> get followUps => {
+    'none': 'Não precisa',
+    'tomorrow': 'Amanhã',
+    'inThreeDays': 'Em 3 dias',
+    'other': '',
+  };
+
+  /// pt: 'O lembrete é curto e não diz nada sobre o que aconteceu.'
+  String get followUpNote => 'O lembrete é curto e não diz nada sobre o que aconteceu.';
+
+  /// pt: 'Concluir'
+  String get finish => 'Concluir';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para salvar agora. Suas respostas continuam aqui.',
+  };
+
+  /// pt: 'Não deu para abrir'
+  String get loadErrorTitle => 'Não deu para abrir';
+
+  /// pt: 'Nada se perdeu. Tente de novo.'
+  String get loadErrorText => 'Nada se perdeu. Tente de novo.';
+}
+
+// Path: repair.learning
+class Translations$repair$learning$pt {
+  Translations$repair$learning$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'O que você aprendeu?'
+  String get title => 'O que você aprendeu?';
+
+  /// pt: 'aprendeu'
+  String get titleHighlight => 'aprendeu';
+
+  /// pt: 'Fica só com você e pode ser apagado quando quiser.'
+  String get subtitle => 'Fica só com você e pode ser apagado quando quiser.';
+
+  Map<String, String> get kinds => {
+    'trigger': 'O que me incomoda',
+    'need': 'O que eu preciso',
+    'good_fix': 'O que ajudou',
+    'other': '',
+  };
+
+  /// pt: 'Escreva em uma ou duas frases'
+  String get hint => 'Escreva em uma ou duas frases';
+
+  /// pt: 'Salvar'
+  String get save => 'Salvar';
+
+  /// pt: 'Seus aprendizados'
+  String get listTitle => 'Seus aprendizados';
+
+  /// pt: 'Apagar'
+  String get delete => 'Apagar';
+
+  /// pt: 'Nada ainda'
+  String get emptyTitle => 'Nada ainda';
+
+  /// pt: 'Quando você escrever um aprendizado, ele aparece aqui.'
+  String get emptyText => 'Quando você escrever um aprendizado, ele aparece aqui.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Seus aprendizados continuam salvos. Tente de novo.'
+  String get errorText => 'Seus aprendizados continuam salvos. Tente de novo.';
+
+  /// pt: 'Pronto'
+  String get done => 'Pronto';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para salvar agora. Seu texto continua aqui.',
+  };
+}
+
 // Path: repair.next
 class Translations$repair$next$pt {
   Translations$repair$next$pt.internal(this._root);
@@ -2002,8 +2151,8 @@ class Translations$repair$next$pt {
   /// pt: 'Respirar um pouco'
   String get pause => 'Respirar um pouco';
 
-  /// pt: 'Começar com suavidade'
-  String get guided => 'Começar com suavidade';
+  /// pt: 'Começar o reparo guiado'
+  String get guided => 'Começar o reparo guiado';
 
   /// pt: 'Enviar um reparo'
   String get quick => 'Enviar um reparo';
@@ -2810,8 +2959,64 @@ extension on Translations {
           'repair.quick.errors.NOT_PAIRED' => 'Para enviar, você precisa estar com seu par no app.',
           'repair.quick.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'repair.quick.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
+          'repair.guided.stepOf' => ({
+            required Object current,
+            required Object total,
+          }) => 'Passo ${current} de ${total}',
+          'repair.guided.stepTitles.0' => 'O que aconteceu?',
+          'repair.guided.stepTitles.1' => 'Do que você precisa?',
+          'repair.guided.stepTitles.2' => 'O que você pode oferecer?',
+          'repair.guided.stepHighlights.0' => 'aconteceu',
+          'repair.guided.stepHighlights.1' => 'precisa',
+          'repair.guided.stepHighlights.2' => 'oferecer',
+          'repair.guided.stepHints.0' => 'Do seu jeito, sem culpar ninguém.',
+          'repair.guided.stepHints.1' => 'Uma coisa que ajudaria agora.',
+          'repair.guided.stepHints.2' => 'Algo pequeno e sincero.',
+          'repair.guided.private' => 'Só você vê isto. Nada é enviado ao seu par.',
+          'repair.guided.next' => 'Continuar',
+          'repair.guided.back' => 'Voltar',
+          'repair.guided.later' => 'Guardar para depois',
+          'repair.guided.savedLater' => 'Guardado. Você continua de onde parou.',
+          'repair.guided.finalTitle' => 'Como você está agora?',
+          'repair.guided.finalHighlight' => 'agora',
+          'repair.guided.feelings.calmer' => 'Mais calmo(a)',
+          'repair.guided.feelings.still_tense' => 'Ainda tenso(a)',
+          'repair.guided.feelings.need_more_time' => 'Preciso de mais tempo',
+          'repair.guided.feelings.other' => '',
+          'repair.guided.followUpTitle' => 'Quer um lembrete para ver como estão?',
+          'repair.guided.followUps.none' => 'Não precisa',
+          'repair.guided.followUps.tomorrow' => 'Amanhã',
+          'repair.guided.followUps.inThreeDays' => 'Em 3 dias',
+          'repair.guided.followUps.other' => '',
+          'repair.guided.followUpNote' =>
+            'O lembrete é curto e não diz nada sobre o que aconteceu.',
+          'repair.guided.finish' => 'Concluir',
+          'repair.guided.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'repair.guided.errors.other' =>
+            'Não deu para salvar agora. Suas respostas continuam aqui.',
+          'repair.guided.loadErrorTitle' => 'Não deu para abrir',
+          'repair.guided.loadErrorText' => 'Nada se perdeu. Tente de novo.',
+          'repair.learning.title' => 'O que você aprendeu?',
+          'repair.learning.titleHighlight' => 'aprendeu',
+          'repair.learning.subtitle' => 'Fica só com você e pode ser apagado quando quiser.',
+          'repair.learning.kinds.trigger' => 'O que me incomoda',
+          'repair.learning.kinds.need' => 'O que eu preciso',
+          'repair.learning.kinds.good_fix' => 'O que ajudou',
+          'repair.learning.kinds.other' => '',
+          'repair.learning.hint' => 'Escreva em uma ou duas frases',
+          'repair.learning.save' => 'Salvar',
+          'repair.learning.listTitle' => 'Seus aprendizados',
+          'repair.learning.delete' => 'Apagar',
+          'repair.learning.emptyTitle' => 'Nada ainda',
+          'repair.learning.emptyText' => 'Quando você escrever um aprendizado, ele aparece aqui.',
+          'repair.learning.errorTitle' => 'Não deu para carregar',
+          'repair.learning.errorText' => 'Seus aprendizados continuam salvos. Tente de novo.',
+          'repair.learning.done' => 'Pronto',
+          'repair.learning.errors.RATE_LIMITED' =>
+            'Muitas tentativas seguidas. Espere um instante.',
+          'repair.learning.errors.other' => 'Não deu para salvar agora. Seu texto continua aqui.',
           'repair.next.pause' => 'Respirar um pouco',
-          'repair.next.guided' => 'Começar com suavidade',
+          'repair.next.guided' => 'Começar o reparo guiado',
           'repair.next.quick' => 'Enviar um reparo',
           'slipDetail.dateLine' => ({
             required Object weekday,
@@ -2918,6 +3123,9 @@ extension on Translations {
             'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
           'slipsList.title' => 'Slips',
           'slipsList.scopeWeek' => 'Esta semana',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.scopeAll' => 'Todos',
           'slipsList.private' => 'Privado',
           'slipsList.thisWeek' => 'Esta semana',
@@ -2977,9 +3185,6 @@ extension on Translations {
           'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
           'sundayCard.emptyAction' => 'Anotar um slip',
           'sundayCard.errorTitle' => 'Não deu para carregar o cartão',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.errorText' => 'Seus slips continuam salvos. Tente de novo.',
           'sundayCard.saveError' => 'Não deu para salvar o cartão. Tente de novo.',
           'sundayCard.openFromToday' => 'Ver o rascunho',
@@ -3021,6 +3226,9 @@ extension on Translations {
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
           'tabs.temperatureTitle' => 'Como está entre vocês?',
           'tabs.temperatureText' => 'Um registro privado, sem nota.',
+          'tabs.learningLabel' => 'SÓ PARA VOCÊ',
+          'tabs.learningTitle' => 'O que você aprendeu',
+          'tabs.learningText' => 'Anotações privadas que você pode apagar.',
           'temperature.levelTitle' => 'Como está entre vocês?',
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',

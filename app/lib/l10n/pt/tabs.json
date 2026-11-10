@@ -8,5 +8,8 @@
   "soonText": "Esta parte do app ainda está sendo preparada.",
   "temperatureLabel": "ENTRE VOCÊS",
   "temperatureTitle": "Como está entre vocês?",
-  "temperatureText": "Um registro privado, sem nota."
+  "temperatureText": "Um registro privado, sem nota.",
+  "learningLabel": "SÓ PARA VOCÊ",
+  "learningTitle": "O que você aprendeu",
+  "learningText": "Anotações privadas que você pode apagar."
 }

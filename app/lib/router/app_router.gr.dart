@@ -176,6 +176,22 @@ class FirstSlipRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [GuidedRepairPage]
+class GuidedRepairRoute extends PageRouteInfo<void> {
+  const GuidedRepairRoute({List<PageRouteInfo>? children})
+    : super(GuidedRepairRoute.name, initialChildren: children);
+
+  static const String name = 'GuidedRepairRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const GuidedRepairPage());
+    },
+  );
+}
+
+/// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
@@ -303,6 +319,57 @@ class InviteRoute extends PageRouteInfo<void> {
       return WrappedRoute(child: const InvitePage());
     },
   );
+}
+
+/// generated route for
+/// [LearningPage]
+class LearningRoute extends PageRouteInfo<LearningRouteArgs> {
+  LearningRoute({String? sessionId, Key? key, List<PageRouteInfo>? children})
+    : super(
+        LearningRoute.name,
+        args: LearningRouteArgs(sessionId: sessionId, key: key),
+        rawQueryParams: {'sessionId': sessionId},
+        initialChildren: children,
+      );
+
+  static const String name = 'LearningRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final queryParams = data.queryParams;
+      final args = data.argsAs<LearningRouteArgs>(
+        orElse: () =>
+            LearningRouteArgs(sessionId: queryParams.optString('sessionId')),
+      );
+      return WrappedRoute(
+        child: LearningPage(sessionId: args.sessionId, key: args.key),
+      );
+    },
+  );
+}
+
+class LearningRouteArgs {
+  const LearningRouteArgs({this.sessionId, this.key});
+
+  final String? sessionId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'LearningRouteArgs{sessionId: $sessionId, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! LearningRouteArgs) return false;
+    return sessionId == other.sessionId && key == other.key;
+  }
+
+  @override
+  int get hashCode => sessionId.hashCode ^ key.hashCode;
 }
 
 /// generated route for

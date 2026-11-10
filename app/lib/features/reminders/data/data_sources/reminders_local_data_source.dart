@@ -6,6 +6,7 @@ import 'package:preferences_service/preferences_service.dart';
 class RemindersLocalDataSource({required final PreferencesService _preferencesService}) {
   static const _key = 'reminderPreferences';
   static const _customKey = 'customReminders';
+  static const _followUpKey = 'followUpReminders';
 
   ReminderPreferences read() {
     final raw = _preferencesService.readString(key: _key);
@@ -32,6 +33,23 @@ class RemindersLocalDataSource({required final PreferencesService _preferencesSe
 
   Future<void> writeCustom(List<DateTime> moments) => _preferencesService.writeString(
     key: _customKey,
+    value: jsonEncode([for (final moment in moments) moment.toIso8601String()]),
+  );
+
+  /// One-off follow-up moments the person asked for after a repair.
+  List<DateTime> readFollowUps() {
+    final raw = _preferencesService.readString(key: _followUpKey);
+    if (raw == null) return const [];
+
+    try {
+      return (jsonDecode(raw) as List<dynamic>).cast<String>().map(DateTime.parse).toList();
+    } on Object {
+      return const [];
+    }
+  }
+
+  Future<void> writeFollowUps(List<DateTime> moments) => _preferencesService.writeString(
+    key: _followUpKey,
     value: jsonEncode([for (final moment in moments) moment.toIso8601String()]),
   );
 

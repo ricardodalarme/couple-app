@@ -817,6 +817,10 @@ class _Translations$repair$en extends Translations$repair$pt {
   @override
   late final _Translations$repair$quick$en quick = _Translations$repair$quick$en._(_root);
   @override
+  late final _Translations$repair$guided$en guided = _Translations$repair$guided$en._(_root);
+  @override
+  late final _Translations$repair$learning$en learning = _Translations$repair$learning$en._(_root);
+  @override
   late final _Translations$repair$next$en next = _Translations$repair$next$en._(_root);
 }
 
@@ -1123,6 +1127,12 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get temperatureTitle => 'How is it between you?';
   @override
   String get temperatureText => 'A private check-in, never a score.';
+  @override
+  String get learningLabel => 'JUST FOR YOU';
+  @override
+  String get learningTitle => 'What you learned';
+  @override
+  String get learningText => 'Private notes you can delete.';
 }
 
 // Path: temperature
@@ -1669,6 +1679,115 @@ class _Translations$repair$quick$en extends Translations$repair$quick$pt {
   };
 }
 
+// Path: repair.guided
+class _Translations$repair$guided$en extends Translations$repair$guided$pt {
+  _Translations$repair$guided$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String stepOf({required Object current, required Object total}) => 'Step ${current} of ${total}';
+  @override
+  List<String> get stepTitles => ['What happened?', 'What do you need?', 'What can you offer?'];
+  @override
+  List<String> get stepHighlights => ['happened', 'need', 'offer'];
+  @override
+  List<String> get stepHints => [
+    'In your own words, without blaming anyone.',
+    'One thing that would help right now.',
+    'Something small and sincere.',
+  ];
+  @override
+  String get private => 'Only you see this. Nothing is sent to your partner.';
+  @override
+  String get next => 'Continue';
+  @override
+  String get back => 'Back';
+  @override
+  String get later => 'Save for later';
+  @override
+  String get savedLater => 'Saved. You\'ll pick up where you left off.';
+  @override
+  String get finalTitle => 'How are you now?';
+  @override
+  String get finalHighlight => 'now';
+  @override
+  Map<String, String> get feelings => {
+    'calmer': 'Calmer',
+    'still_tense': 'Still tense',
+    'need_more_time': 'I need more time',
+    'other': '',
+  };
+  @override
+  String get followUpTitle => 'Want a reminder to check in on how you are?';
+  @override
+  Map<String, String> get followUps => {
+    'none': 'No need',
+    'tomorrow': 'Tomorrow',
+    'inThreeDays': 'In 3 days',
+    'other': '',
+  };
+  @override
+  String get followUpNote => 'The reminder is short and says nothing about what happened.';
+  @override
+  String get finish => 'Finish';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t save right now. Your answers are still here.',
+  };
+  @override
+  String get loadErrorTitle => 'Couldn\'t open this';
+  @override
+  String get loadErrorText => 'Nothing was lost. Try again.';
+}
+
+// Path: repair.learning
+class _Translations$repair$learning$en extends Translations$repair$learning$pt {
+  _Translations$repair$learning$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'What did you learn?';
+  @override
+  String get titleHighlight => 'learn';
+  @override
+  String get subtitle => 'It stays with you and can be deleted whenever you like.';
+  @override
+  Map<String, String> get kinds => {
+    'trigger': 'What bothers me',
+    'need': 'What I need',
+    'good_fix': 'What helped',
+    'other': '',
+  };
+  @override
+  String get hint => 'Write one or two sentences';
+  @override
+  String get save => 'Save';
+  @override
+  String get listTitle => 'Your learnings';
+  @override
+  String get delete => 'Delete';
+  @override
+  String get emptyTitle => 'Nothing yet';
+  @override
+  String get emptyText => 'When you write a learning, it shows up here.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Your learnings are still saved. Try again.';
+  @override
+  String get done => 'Done';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t save right now. Your text is still here.',
+  };
+}
+
 // Path: repair.next
 class _Translations$repair$next$en extends Translations$repair$next$pt {
   _Translations$repair$next$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1679,7 +1798,7 @@ class _Translations$repair$next$en extends Translations$repair$next$pt {
   @override
   String get pause => 'Breathe a little';
   @override
-  String get guided => 'Start softly';
+  String get guided => 'Start the guided repair';
   @override
   String get quick => 'Send a repair';
 }
@@ -2435,8 +2554,62 @@ extension on TranslationsEn {
             'To send this, you need to be connected with your partner in the app.',
           'repair.quick.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'repair.quick.errors.other' => 'Couldn\'t send right now. Your message is still here.',
+          'repair.guided.stepOf' => ({
+            required Object current,
+            required Object total,
+          }) => 'Step ${current} of ${total}',
+          'repair.guided.stepTitles.0' => 'What happened?',
+          'repair.guided.stepTitles.1' => 'What do you need?',
+          'repair.guided.stepTitles.2' => 'What can you offer?',
+          'repair.guided.stepHighlights.0' => 'happened',
+          'repair.guided.stepHighlights.1' => 'need',
+          'repair.guided.stepHighlights.2' => 'offer',
+          'repair.guided.stepHints.0' => 'In your own words, without blaming anyone.',
+          'repair.guided.stepHints.1' => 'One thing that would help right now.',
+          'repair.guided.stepHints.2' => 'Something small and sincere.',
+          'repair.guided.private' => 'Only you see this. Nothing is sent to your partner.',
+          'repair.guided.next' => 'Continue',
+          'repair.guided.back' => 'Back',
+          'repair.guided.later' => 'Save for later',
+          'repair.guided.savedLater' => 'Saved. You\'ll pick up where you left off.',
+          'repair.guided.finalTitle' => 'How are you now?',
+          'repair.guided.finalHighlight' => 'now',
+          'repair.guided.feelings.calmer' => 'Calmer',
+          'repair.guided.feelings.still_tense' => 'Still tense',
+          'repair.guided.feelings.need_more_time' => 'I need more time',
+          'repair.guided.feelings.other' => '',
+          'repair.guided.followUpTitle' => 'Want a reminder to check in on how you are?',
+          'repair.guided.followUps.none' => 'No need',
+          'repair.guided.followUps.tomorrow' => 'Tomorrow',
+          'repair.guided.followUps.inThreeDays' => 'In 3 days',
+          'repair.guided.followUps.other' => '',
+          'repair.guided.followUpNote' =>
+            'The reminder is short and says nothing about what happened.',
+          'repair.guided.finish' => 'Finish',
+          'repair.guided.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'repair.guided.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
+          'repair.guided.loadErrorTitle' => 'Couldn\'t open this',
+          'repair.guided.loadErrorText' => 'Nothing was lost. Try again.',
+          'repair.learning.title' => 'What did you learn?',
+          'repair.learning.titleHighlight' => 'learn',
+          'repair.learning.subtitle' => 'It stays with you and can be deleted whenever you like.',
+          'repair.learning.kinds.trigger' => 'What bothers me',
+          'repair.learning.kinds.need' => 'What I need',
+          'repair.learning.kinds.good_fix' => 'What helped',
+          'repair.learning.kinds.other' => '',
+          'repair.learning.hint' => 'Write one or two sentences',
+          'repair.learning.save' => 'Save',
+          'repair.learning.listTitle' => 'Your learnings',
+          'repair.learning.delete' => 'Delete',
+          'repair.learning.emptyTitle' => 'Nothing yet',
+          'repair.learning.emptyText' => 'When you write a learning, it shows up here.',
+          'repair.learning.errorTitle' => 'Couldn\'t load',
+          'repair.learning.errorText' => 'Your learnings are still saved. Try again.',
+          'repair.learning.done' => 'Done',
+          'repair.learning.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'repair.learning.errors.other' => 'Couldn\'t save right now. Your text is still here.',
           'repair.next.pause' => 'Breathe a little',
-          'repair.next.guided' => 'Start softly',
+          'repair.next.guided' => 'Start the guided repair',
           'repair.next.quick' => 'Send a repair',
           'slipDetail.dateLine' => ({
             required Object weekday,
@@ -2544,6 +2717,9 @@ extension on TranslationsEn {
             'Couldn\'t save right now. Your text is still here, try again.',
           'slipsList.title' => 'Slips',
           'slipsList.scopeWeek' => 'This week',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.scopeAll' => 'All',
           'slipsList.private' => 'Private',
           'slipsList.thisWeek' => 'This week',
@@ -2603,9 +2779,6 @@ extension on TranslationsEn {
           'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',
           'sundayCard.emptyAction' => 'Note a slip',
           'sundayCard.errorTitle' => 'Could not load the card',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.errorText' => 'Your slips are still saved. Try again.',
           'sundayCard.saveError' => 'Could not save the card. Try again.',
           'sundayCard.openFromToday' => 'See the draft',
@@ -2646,6 +2819,9 @@ extension on TranslationsEn {
           'tabs.temperatureLabel' => 'BETWEEN YOU',
           'tabs.temperatureTitle' => 'How is it between you?',
           'tabs.temperatureText' => 'A private check-in, never a score.',
+          'tabs.learningLabel' => 'JUST FOR YOU',
+          'tabs.learningTitle' => 'What you learned',
+          'tabs.learningText' => 'Private notes you can delete.',
           'temperature.levelTitle' => 'How is it between you?',
           'temperature.levelHighlight' => 'between you',
           'temperature.levelNote' => 'Private. Never becomes a score.',

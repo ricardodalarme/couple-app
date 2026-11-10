@@ -1,0 +1,5 @@
+mutation DeleteLearning($id: UUID!) {
+  deleteFromRepairLearningsCollection(filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}

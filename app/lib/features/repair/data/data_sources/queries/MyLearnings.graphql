@@ -1,0 +1,12 @@
+query MyLearnings {
+  repairLearningsCollection(orderBy: [{ createdAt: DescNullsLast }], first: 50) {
+    edges {
+      node {
+        id
+        kind
+        note
+        createdAt
+      }
+    }
+  }
+}

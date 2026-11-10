@@ -8,5 +8,8 @@
   "soonText": "This part of the app is still being prepared.",
   "temperatureLabel": "BETWEEN YOU",
   "temperatureTitle": "How is it between you?",
-  "temperatureText": "A private check-in, never a score."
+  "temperatureText": "A private check-in, never a score.",
+  "learningLabel": "JUST FOR YOU",
+  "learningTitle": "What you learned",
+  "learningText": "Private notes you can delete."
 }

@@ -1,0 +1,9 @@
+mutation CompleteRepairSession($id: UUID!, $feeling: String, $completedAt: Datetime!) {
+  updateRepairSessionsCollection(
+    set: { feelingAfter: $feeling, completedAt: $completedAt }
+    filter: { id: { eq: $id } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

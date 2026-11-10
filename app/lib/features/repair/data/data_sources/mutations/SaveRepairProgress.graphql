@@ -1,0 +1,9 @@
+mutation SaveRepairProgress($id: UUID!, $step: Int!, $draft: String) {
+  updateRepairSessionsCollection(
+    set: { step: $step, draft: $draft }
+    filter: { id: { eq: $id } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

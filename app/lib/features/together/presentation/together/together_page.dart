@@ -23,6 +23,13 @@ class const TogetherPage({super.key}) extends StatelessWidget {
               supportText: l10n.temperatureText,
               onTap: () => context.pushRoute(const TemperatureRoute()),
             ),
+            const SizedBox(height: AppSpace.s12),
+            BaseListCard(
+              categoryLabel: l10n.learningLabel,
+              title: l10n.learningTitle,
+              supportText: l10n.learningText,
+              onTap: () => context.pushRoute(LearningRoute()),
+            ),
             const SizedBox(height: AppSpace.s16),
             BaseEmptyState(title: l10n.soonTitle, text: l10n.soonText),
           ],

@@ -38,6 +38,16 @@ class RemindersRepository({
     return _localDataSource.writeCustom(moments);
   }
 
+  /// Remembers a follow-up check-in; it uses the generic text and the next [reschedule] places it.
+  Future<void> addFollowUp(DateTime at, {required DateTime now}) {
+    final moments = [
+      ..._localDataSource.readFollowUps().where((moment) => moment.isAfter(now)),
+      at,
+    ];
+
+    return _localDataSource.writeFollowUps(moments);
+  }
+
   /// Plans the next reminders and replaces the pending ones on the device.
   ///
   /// [dateReminders] are moments for important dates, supplied by the caller. Everything
@@ -61,6 +71,8 @@ class RemindersRepository({
         ...candidatesFor(now),
         for (final moment in _localDataSource.readCustom())
           ReminderCandidate(kind: ReminderKind.dailyIdea, at: moment, key: 'custom'),
+        for (final moment in _localDataSource.readFollowUps())
+          ReminderCandidate(kind: ReminderKind.followUp, at: moment, key: 'followUp'),
         ...dateReminders,
       ],
       now: now,

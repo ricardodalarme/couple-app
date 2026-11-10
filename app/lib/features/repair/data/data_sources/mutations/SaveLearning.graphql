@@ -1,0 +1,7 @@
+mutation SaveLearning($id: UUID!, $sessionId: UUID, $kind: String!, $note: String!) {
+  insertIntoRepairLearningsCollection(
+    objects: [{ id: $id, repairSessionId: $sessionId, kind: $kind, note: $note }]
+  ) {
+    affectedCount
+  }
+}

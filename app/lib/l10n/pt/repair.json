@@ -42,9 +42,67 @@
       "other": "Não deu para enviar agora. Sua mensagem continua aqui."
     }
   },
+  "guided": {
+    "stepOf": "Passo {current} de {total}",
+      "stepTitles": ["O que aconteceu?", "Do que você precisa?", "O que você pode oferecer?"],
+    "stepHighlights": ["aconteceu", "precisa", "oferecer"],
+    "stepHints": ["Do seu jeito, sem culpar ninguém.", "Uma coisa que ajudaria agora.", "Algo pequeno e sincero."],
+    "private": "Só você vê isto. Nada é enviado ao seu par.",
+    "next": "Continuar",
+    "back": "Voltar",
+    "later": "Guardar para depois",
+    "savedLater": "Guardado. Você continua de onde parou.",
+    "finalTitle": "Como você está agora?",
+    "finalHighlight": "agora",
+    "feelings(map)": {
+      "calmer": "Mais calmo(a)",
+      "still_tense": "Ainda tenso(a)",
+      "need_more_time": "Preciso de mais tempo",
+      "other": ""
+    },
+    "followUpTitle": "Quer um lembrete para ver como estão?",
+    "followUps(map)": {
+      "none": "Não precisa",
+      "tomorrow": "Amanhã",
+      "inThreeDays": "Em 3 dias",
+      "other": ""
+    },
+    "followUpNote": "O lembrete é curto e não diz nada sobre o que aconteceu.",
+    "finish": "Concluir",
+    "errors(map)": {
+      "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+      "other": "Não deu para salvar agora. Suas respostas continuam aqui."
+    },
+    "loadErrorTitle": "Não deu para abrir",
+    "loadErrorText": "Nada se perdeu. Tente de novo."
+  },
+  "learning": {
+    "title": "O que você aprendeu?",
+    "titleHighlight": "aprendeu",
+    "subtitle": "Fica só com você e pode ser apagado quando quiser.",
+    "kinds(map)": {
+      "trigger": "O que me incomoda",
+      "need": "O que eu preciso",
+      "good_fix": "O que ajudou",
+      "other": ""
+    },
+    "hint": "Escreva em uma ou duas frases",
+    "save": "Salvar",
+    "listTitle": "Seus aprendizados",
+    "delete": "Apagar",
+    "emptyTitle": "Nada ainda",
+    "emptyText": "Quando você escrever um aprendizado, ele aparece aqui.",
+    "errorTitle": "Não deu para carregar",
+    "errorText": "Seus aprendizados continuam salvos. Tente de novo.",
+    "done": "Pronto",
+    "errors(map)": {
+      "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+      "other": "Não deu para salvar agora. Seu texto continua aqui."
+    }
+  },
   "next": {
     "pause": "Respirar um pouco",
-    "guided": "Começar com suavidade",
+    "guided": "Começar o reparo guiado",
     "quick": "Enviar um reparo"
   }
 }

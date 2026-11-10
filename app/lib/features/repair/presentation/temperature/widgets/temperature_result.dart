@@ -51,7 +51,7 @@ class const TemperatureResult({super.key}) extends StatelessWidget {
               },
               onPressed: () => context.router.replace(switch (path) {
                 RepairPath.pause => const CalmRoute(),
-                RepairPath.guided => const SoftStartRoute(),
+                RepairPath.guided => const GuidedRepairRoute(),
                 RepairPath.quick => QuickRepairRoute(),
               }),
             ),

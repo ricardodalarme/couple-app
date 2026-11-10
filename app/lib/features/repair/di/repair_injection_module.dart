@@ -1,6 +1,10 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
+import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/repair_data_source.dart';
 import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
+import 'package:flutter_bloc_starter/features/repair/presentation/guided/cubit/guided_repair_cubit.dart';
+import 'package:flutter_bloc_starter/features/repair/presentation/learning/cubit/learning_cubit.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/quick_repair/cubit/quick_repair_cubit.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/soft_start/cubit/soft_start_cubit.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/temperature/cubit/temperature_cubit.dart';
@@ -16,6 +20,16 @@ class RepairInjectionModule() implements InjectionModule {
       () => RepairRepository(dataSource: injector.get<RepairDataSource>()),
     )
     ..registerFactory<SoftStartCubit>(SoftStartCubit.new)
+    ..registerFactory<GuidedRepairCubit>(
+      () => GuidedRepairCubit(
+        repairRepository: injector.get<RepairRepository>(),
+        remindersRepository: injector.get<RemindersRepository>(),
+        syncService: injector.get<ReminderSyncService>(),
+      ),
+    )
+    ..registerFactory<LearningCubit>(
+      () => LearningCubit(repairRepository: injector.get<RepairRepository>()),
+    )
     ..registerFactory<QuickRepairCubit>(
       () => QuickRepairCubit(repairRepository: injector.get<RepairRepository>()),
     )

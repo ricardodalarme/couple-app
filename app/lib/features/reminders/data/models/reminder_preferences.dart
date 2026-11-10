@@ -5,6 +5,9 @@ enum ReminderKind() {
   dailyIdea,
   dates,
   weeklyCard,
+
+  /// A one-off check-in the person asked for after a repair; always allowed unless paused.
+  followUp,
 }
 
 /// A time of day, without a date.

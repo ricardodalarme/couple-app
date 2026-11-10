@@ -42,9 +42,67 @@
       "other": "Couldn't send right now. Your message is still here."
     }
   },
+  "guided": {
+    "stepOf": "Step {current} of {total}",
+      "stepTitles": ["What happened?", "What do you need?", "What can you offer?"],
+    "stepHighlights": ["happened", "need", "offer"],
+    "stepHints": ["In your own words, without blaming anyone.", "One thing that would help right now.", "Something small and sincere."],
+    "private": "Only you see this. Nothing is sent to your partner.",
+    "next": "Continue",
+    "back": "Back",
+    "later": "Save for later",
+    "savedLater": "Saved. You'll pick up where you left off.",
+    "finalTitle": "How are you now?",
+    "finalHighlight": "now",
+    "feelings(map)": {
+      "calmer": "Calmer",
+      "still_tense": "Still tense",
+      "need_more_time": "I need more time",
+      "other": ""
+    },
+    "followUpTitle": "Want a reminder to check in on how you are?",
+    "followUps(map)": {
+      "none": "No need",
+      "tomorrow": "Tomorrow",
+      "inThreeDays": "In 3 days",
+      "other": ""
+    },
+    "followUpNote": "The reminder is short and says nothing about what happened.",
+    "finish": "Finish",
+    "errors(map)": {
+      "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+      "other": "Couldn't save right now. Your answers are still here."
+    },
+    "loadErrorTitle": "Couldn't open this",
+    "loadErrorText": "Nothing was lost. Try again."
+  },
+  "learning": {
+    "title": "What did you learn?",
+    "titleHighlight": "learn",
+    "subtitle": "It stays with you and can be deleted whenever you like.",
+    "kinds(map)": {
+      "trigger": "What bothers me",
+      "need": "What I need",
+      "good_fix": "What helped",
+      "other": ""
+    },
+    "hint": "Write one or two sentences",
+    "save": "Save",
+    "listTitle": "Your learnings",
+    "delete": "Delete",
+    "emptyTitle": "Nothing yet",
+    "emptyText": "When you write a learning, it shows up here.",
+    "errorTitle": "Couldn't load",
+    "errorText": "Your learnings are still saved. Try again.",
+    "done": "Done",
+    "errors(map)": {
+      "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+      "other": "Couldn't save right now. Your text is still here."
+    }
+  },
   "next": {
     "pause": "Breathe a little",
-    "guided": "Start softly",
+    "guided": "Start the guided repair",
     "quick": "Send a repair"
   }
 }

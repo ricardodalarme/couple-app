@@ -23,7 +23,10 @@ class const ReminderPlanner({
 
     final moved = <ReminderCandidate>[];
     for (final candidate in candidates) {
-      if (!preferences.enabled.contains(candidate.kind)) continue;
+      if (candidate.kind != ReminderKind.followUp &&
+          !preferences.enabled.contains(candidate.kind)) {
+        continue;
+      }
 
       final at = _afterQuietHours(candidate.at, preferences);
       if (!at.isAfter(now)) continue;
