@@ -1,4 +1,4 @@
--- Content catalog, Plus entitlements and free limits, consents, account deletion, safety help lines, support,
+-- Content catalog, Plus entitlements and free limits, consents, account deletion, safety support,
 -- storage, mascot conversation, widget and Hoje v2, timeline, reminders. (BE-016, BE-019 reminders, BE-020..BE-025, BE-030, BE-031)
 
 -- Small key/value configuration, readable by the app (limits, minimum app version).
@@ -268,7 +268,7 @@ end $$;
 grant execute on function public.resolve_shared_items(boolean) to authenticated;
 
 -- Safety: nothing is stored. Safe mode and the safety triage live only on the device (a test enforces it),
--- and help-line content, if any, ships inside the app (decision D-023: no help-line table).
+-- Safety content lives only on the device; there is no table or content kind for it.
 
 -- Support ---------------------------------------------------------------------------------------------
 create table private.support_requests (
