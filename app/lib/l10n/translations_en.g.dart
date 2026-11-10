@@ -100,6 +100,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$tabs$en tabs = _Translations$tabs$en._(_root);
   @override
+  late final _Translations$temperature$en temperature = _Translations$temperature$en._(_root);
+  @override
   late final _Translations$today$en today = _Translations$today$en._(_root);
   @override
   late final _Translations$unpair$en unpair = _Translations$unpair$en._(_root);
@@ -1094,6 +1096,64 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get soonTitle => 'Under construction';
   @override
   String get soonText => 'This part of the app is still being prepared.';
+  @override
+  String get temperatureLabel => 'BETWEEN YOU';
+  @override
+  String get temperatureTitle => 'How is it between you?';
+  @override
+  String get temperatureText => 'A private check-in, never a score.';
+}
+
+// Path: temperature
+class _Translations$temperature$en extends Translations$temperature$pt {
+  _Translations$temperature$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get levelTitle => 'How is it between you?';
+  @override
+  String get levelHighlight => 'between you';
+  @override
+  String get levelNote => 'Private. Never becomes a score.';
+  @override
+  Map<String, String> get levels => {
+    'good': 'Good',
+    'so_so': 'So-so',
+    'turbulent': 'Turbulent',
+    'fight': 'An argument',
+    'other': '',
+  };
+  @override
+  String get continueAction => 'Continue';
+  @override
+  String get back => 'Back';
+  @override
+  String get skip => 'Not now';
+  @override
+  String get intensityTitle => 'How strong is it?';
+  @override
+  String get intensityHighlight => 'strong';
+  @override
+  String get intensityHint => 'Under 7 you can talk. Over 7, take a pause first.';
+  @override
+  String get intensityHigh => 'High value: how about a pause first?';
+  @override
+  String get intensityLow => 'Mild';
+  @override
+  String get intensityTop => 'Very strong';
+  @override
+  String get intensityLabel => 'Intensity';
+  @override
+  late final _Translations$temperature$result$en result = _Translations$temperature$result$en._(
+    _root,
+  );
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t save right now. Your answers are still here.',
+  };
 }
 
 // Path: today
@@ -1656,6 +1716,31 @@ class _Translations$sundayCard$sent$en extends Translations$sundayCard$sent$pt {
   String get done => 'Done';
 }
 
+// Path: temperature.result
+class _Translations$temperature$result$en extends Translations$temperature$result$pt {
+  _Translations$temperature$result$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  late final _Translations$temperature$result$good$en good =
+      _Translations$temperature$result$good$en._(_root);
+  @override
+  late final _Translations$temperature$result$pause$en pause =
+      _Translations$temperature$result$pause$en._(_root);
+  @override
+  late final _Translations$temperature$result$guided$en guided =
+      _Translations$temperature$result$guided$en._(_root);
+  @override
+  late final _Translations$temperature$result$quick$en quick =
+      _Translations$temperature$result$quick$en._(_root);
+  @override
+  String get done => 'Done';
+}
+
 // Path: unpair.done
 class _Translations$unpair$done$en extends Translations$unpair$done$pt {
   _Translations$unpair$done$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1736,6 +1821,67 @@ class _Translations$unpair$partnerNotice$en extends Translations$unpair$partnerN
   String get text => 'Your data stays yours. Shared cards stopped.';
   @override
   String get ok => 'Ok';
+}
+
+// Path: temperature.result.good
+class _Translations$temperature$result$good$en extends Translations$temperature$result$good$pt {
+  _Translations$temperature$result$good$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'That\'s good';
+  @override
+  String get text => 'Saved just for you. Carry on with your day.';
+}
+
+// Path: temperature.result.pause
+class _Translations$temperature$result$pause$en extends Translations$temperature$result$pause$pt {
+  _Translations$temperature$result$pause$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'First, breathe';
+  @override
+  String get text =>
+      'When it\'s very hot, waiting helps. Some time apart is worth it before any conversation.';
+}
+
+// Path: temperature.result.guided
+class _Translations$temperature$result$guided$en extends Translations$temperature$result$guided$pt {
+  _Translations$temperature$result$guided$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'You can talk with care';
+  @override
+  String get text => 'One step at a time, at your pace.';
+}
+
+// Path: temperature.result.quick
+class _Translations$temperature$result$quick$en extends Translations$temperature$result$quick$pt {
+  _Translations$temperature$result$quick$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'A small fix is enough';
+  @override
+  String get text => 'Something light and quick can do it.';
 }
 
 /// The flat map containing all translations for locale <en>.
@@ -2321,6 +2467,41 @@ extension on TranslationsEn {
           'tabs.capture' => 'New slip',
           'tabs.soonTitle' => 'Under construction',
           'tabs.soonText' => 'This part of the app is still being prepared.',
+          'tabs.temperatureLabel' => 'BETWEEN YOU',
+          'tabs.temperatureTitle' => 'How is it between you?',
+          'tabs.temperatureText' => 'A private check-in, never a score.',
+          'temperature.levelTitle' => 'How is it between you?',
+          'temperature.levelHighlight' => 'between you',
+          _ => null,
+        } ??
+        switch (path) {
+          'temperature.levelNote' => 'Private. Never becomes a score.',
+          'temperature.levels.good' => 'Good',
+          'temperature.levels.so_so' => 'So-so',
+          'temperature.levels.turbulent' => 'Turbulent',
+          'temperature.levels.fight' => 'An argument',
+          'temperature.levels.other' => '',
+          'temperature.continueAction' => 'Continue',
+          'temperature.back' => 'Back',
+          'temperature.skip' => 'Not now',
+          'temperature.intensityTitle' => 'How strong is it?',
+          'temperature.intensityHighlight' => 'strong',
+          'temperature.intensityHint' => 'Under 7 you can talk. Over 7, take a pause first.',
+          'temperature.intensityHigh' => 'High value: how about a pause first?',
+          'temperature.intensityLow' => 'Mild',
+          'temperature.intensityTop' => 'Very strong',
+          'temperature.intensityLabel' => 'Intensity',
+          'temperature.result.good.title' => 'That\'s good',
+          'temperature.result.good.text' => 'Saved just for you. Carry on with your day.',
+          'temperature.result.pause.title' => 'First, breathe',
+          'temperature.result.pause.text' => 'When it\'s very hot, waiting helps. Some time apart is worth it before any conversation.',
+          'temperature.result.guided.title' => 'You can talk with care',
+          'temperature.result.guided.text' => 'One step at a time, at your pace.',
+          'temperature.result.quick.title' => 'A small fix is enough',
+          'temperature.result.quick.text' => 'Something light and quick can do it.',
+          'temperature.result.done' => 'Done',
+          'temperature.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'temperature.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
           'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',
@@ -2330,9 +2511,6 @@ extension on TranslationsEn {
             required Object month,
             required Object day,
           }) => '${weekday}, ${month} ${day}',
-          _ => null,
-        } ??
-        switch (path) {
           'today.weekdays.0' => 'Monday',
           'today.weekdays.1' => 'Tuesday',
           'today.weekdays.2' => 'Wednesday',

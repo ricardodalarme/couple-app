@@ -1,0 +1,45 @@
+{
+  "levelTitle": "How is it between you?",
+  "levelHighlight": "between you",
+  "levelNote": "Private. Never becomes a score.",
+  "levels(map)": {
+    "good": "Good",
+    "so_so": "So-so",
+    "turbulent": "Turbulent",
+    "fight": "An argument",
+    "other": ""
+  },
+  "continueAction": "Continue",
+  "back": "Back",
+  "skip": "Not now",
+  "intensityTitle": "How strong is it?",
+  "intensityHighlight": "strong",
+  "intensityHint": "Under 7 you can talk. Over 7, take a pause first.",
+  "intensityHigh": "High value: how about a pause first?",
+  "intensityLow": "Mild",
+  "intensityTop": "Very strong",
+  "intensityLabel": "Intensity",
+  "result": {
+    "good": {
+      "title": "That's good",
+      "text": "Saved just for you. Carry on with your day."
+    },
+    "pause": {
+      "title": "First, breathe",
+      "text": "When it's very hot, waiting helps. Some time apart is worth it before any conversation."
+    },
+    "guided": {
+      "title": "You can talk with care",
+      "text": "One step at a time, at your pace."
+    },
+    "quick": {
+      "title": "A small fix is enough",
+      "text": "Something light and quick can do it."
+    },
+    "done": "Done"
+  },
+  "errors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't save right now. Your answers are still here."
+  }
+}

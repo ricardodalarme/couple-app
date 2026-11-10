@@ -82,6 +82,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$slipsList$pt slipsList = Translations$slipsList$pt.internal(_root);
   late final Translations$sundayCard$pt sundayCard = Translations$sundayCard$pt.internal(_root);
   late final Translations$tabs$pt tabs = Translations$tabs$pt.internal(_root);
+  late final Translations$temperature$pt temperature = Translations$temperature$pt.internal(_root);
   late final Translations$today$pt today = Translations$today$pt.internal(_root);
   late final Translations$unpair$pt unpair = Translations$unpair$pt.internal(_root);
   late final Translations$welcome$pt welcome = Translations$welcome$pt.internal(_root);
@@ -1290,6 +1291,78 @@ class Translations$tabs$pt {
 
   /// pt: 'Esta parte do app ainda está sendo preparada.'
   String get soonText => 'Esta parte do app ainda está sendo preparada.';
+
+  /// pt: 'ENTRE VOCÊS'
+  String get temperatureLabel => 'ENTRE VOCÊS';
+
+  /// pt: 'Como está entre vocês?'
+  String get temperatureTitle => 'Como está entre vocês?';
+
+  /// pt: 'Um registro privado, sem nota.'
+  String get temperatureText => 'Um registro privado, sem nota.';
+}
+
+// Path: temperature
+class Translations$temperature$pt {
+  Translations$temperature$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Como está entre vocês?'
+  String get levelTitle => 'Como está entre vocês?';
+
+  /// pt: 'entre vocês'
+  String get levelHighlight => 'entre vocês';
+
+  /// pt: 'Privado. Nunca vira nota.'
+  String get levelNote => 'Privado. Nunca vira nota.';
+
+  Map<String, String> get levels => {
+    'good': 'Bem',
+    'so_so': 'Mais ou menos',
+    'turbulent': 'Turbulento',
+    'fight': 'Uma briga',
+    'other': '',
+  };
+
+  /// pt: 'Continuar'
+  String get continueAction => 'Continuar';
+
+  /// pt: 'Voltar'
+  String get back => 'Voltar';
+
+  /// pt: 'Agora não'
+  String get skip => 'Agora não';
+
+  /// pt: 'Qual a intensidade?'
+  String get intensityTitle => 'Qual a intensidade?';
+
+  /// pt: 'intensidade'
+  String get intensityHighlight => 'intensidade';
+
+  /// pt: 'Abaixo de 7 dá para conversar. Acima de 7, faça uma pausa primeiro.'
+  String get intensityHint => 'Abaixo de 7 dá para conversar. Acima de 7, faça uma pausa primeiro.';
+
+  /// pt: 'Valor alto: que tal uma pausa antes?'
+  String get intensityHigh => 'Valor alto: que tal uma pausa antes?';
+
+  /// pt: 'Fraca'
+  String get intensityLow => 'Fraca';
+
+  /// pt: 'Muito forte'
+  String get intensityTop => 'Muito forte';
+
+  /// pt: 'Intensidade'
+  String get intensityLabel => 'Intensidade';
+
+  late final Translations$temperature$result$pt result =
+      Translations$temperature$result$pt.internal(_root);
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para salvar agora. Suas respostas continuam aqui.',
+  };
 }
 
 // Path: today
@@ -1987,6 +2060,26 @@ class Translations$sundayCard$sent$pt {
   String get done => 'Pronto';
 }
 
+// Path: temperature.result
+class Translations$temperature$result$pt {
+  Translations$temperature$result$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+  late final Translations$temperature$result$good$pt good =
+      Translations$temperature$result$good$pt.internal(_root);
+  late final Translations$temperature$result$pause$pt pause =
+      Translations$temperature$result$pause$pt.internal(_root);
+  late final Translations$temperature$result$guided$pt guided =
+      Translations$temperature$result$guided$pt.internal(_root);
+  late final Translations$temperature$result$quick$pt quick =
+      Translations$temperature$result$quick$pt.internal(_root);
+
+  /// pt: 'Pronto'
+  String get done => 'Pronto';
+}
+
 // Path: unpair.done
 class Translations$unpair$done$pt {
   Translations$unpair$done$pt.internal(this._root);
@@ -2084,6 +2177,67 @@ class Translations$unpair$partnerNotice$pt {
 
   /// pt: 'Ok'
   String get ok => 'Ok';
+}
+
+// Path: temperature.result.good
+class Translations$temperature$result$good$pt {
+  Translations$temperature$result$good$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Que bom'
+  String get title => 'Que bom';
+
+  /// pt: 'Registrado só para você. Siga o seu dia.'
+  String get text => 'Registrado só para você. Siga o seu dia.';
+}
+
+// Path: temperature.result.pause
+class Translations$temperature$result$pause$pt {
+  Translations$temperature$result$pause$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Primeiro, respirar'
+  String get title => 'Primeiro, respirar';
+
+  /// pt: 'Quando está muito quente, esperar ajuda. Vale um tempo longe antes de qualquer conversa.'
+  String get text =>
+      'Quando está muito quente, esperar ajuda. Vale um tempo longe antes de qualquer conversa.';
+}
+
+// Path: temperature.result.guided
+class Translations$temperature$result$guided$pt {
+  Translations$temperature$result$guided$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Dá para conversar com cuidado'
+  String get title => 'Dá para conversar com cuidado';
+
+  /// pt: 'Um passo de cada vez, no seu ritmo.'
+  String get text => 'Um passo de cada vez, no seu ritmo.';
+}
+
+// Path: temperature.result.quick
+class Translations$temperature$result$quick$pt {
+  Translations$temperature$result$quick$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Um ajuste pequeno basta'
+  String get title => 'Um ajuste pequeno basta';
+
+  /// pt: 'Algo leve e rápido pode resolver.'
+  String get text => 'Algo leve e rápido pode resolver.';
 }
 
 /// The flat map containing all translations for locale <pt>.
@@ -2669,6 +2823,42 @@ extension on Translations {
           'tabs.capture' => 'Novo slip',
           'tabs.soonTitle' => 'Em construção',
           'tabs.soonText' => 'Esta parte do app ainda está sendo preparada.',
+          'tabs.temperatureLabel' => 'ENTRE VOCÊS',
+          'tabs.temperatureTitle' => 'Como está entre vocês?',
+          'tabs.temperatureText' => 'Um registro privado, sem nota.',
+          'temperature.levelTitle' => 'Como está entre vocês?',
+          'temperature.levelHighlight' => 'entre vocês',
+          _ => null,
+        } ??
+        switch (path) {
+          'temperature.levelNote' => 'Privado. Nunca vira nota.',
+          'temperature.levels.good' => 'Bem',
+          'temperature.levels.so_so' => 'Mais ou menos',
+          'temperature.levels.turbulent' => 'Turbulento',
+          'temperature.levels.fight' => 'Uma briga',
+          'temperature.levels.other' => '',
+          'temperature.continueAction' => 'Continuar',
+          'temperature.back' => 'Voltar',
+          'temperature.skip' => 'Agora não',
+          'temperature.intensityTitle' => 'Qual a intensidade?',
+          'temperature.intensityHighlight' => 'intensidade',
+          'temperature.intensityHint' =>
+            'Abaixo de 7 dá para conversar. Acima de 7, faça uma pausa primeiro.',
+          'temperature.intensityHigh' => 'Valor alto: que tal uma pausa antes?',
+          'temperature.intensityLow' => 'Fraca',
+          'temperature.intensityTop' => 'Muito forte',
+          'temperature.intensityLabel' => 'Intensidade',
+          'temperature.result.good.title' => 'Que bom',
+          'temperature.result.good.text' => 'Registrado só para você. Siga o seu dia.',
+          'temperature.result.pause.title' => 'Primeiro, respirar',
+          'temperature.result.pause.text' => 'Quando está muito quente, esperar ajuda. Vale um tempo longe antes de qualquer conversa.',
+          'temperature.result.guided.title' => 'Dá para conversar com cuidado',
+          'temperature.result.guided.text' => 'Um passo de cada vez, no seu ritmo.',
+          'temperature.result.quick.title' => 'Um ajuste pequeno basta',
+          'temperature.result.quick.text' => 'Algo leve e rápido pode resolver.',
+          'temperature.result.done' => 'Pronto',
+          'temperature.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'temperature.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
           'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',
@@ -2678,9 +2868,6 @@ extension on Translations {
             required Object day,
             required Object month,
           }) => '${weekday}, ${day} de ${month}',
-          _ => null,
-        } ??
-        switch (path) {
           'today.weekdays.0' => 'segunda',
           'today.weekdays.1' => 'terça',
           'today.weekdays.2' => 'quarta',

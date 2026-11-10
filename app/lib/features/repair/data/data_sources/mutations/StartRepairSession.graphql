@@ -1,0 +1,5 @@
+mutation StartRepairSession($id: UUID!, $intensity: Int, $path: String!) {
+  insertIntoRepairSessionsCollection(objects: [{ id: $id, intensity: $intensity, path: $path }]) {
+    affectedCount
+  }
+}

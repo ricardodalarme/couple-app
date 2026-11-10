@@ -5,5 +5,8 @@
   "memories": "Memórias",
   "capture": "Novo slip",
   "soonTitle": "Em construção",
-  "soonText": "Esta parte do app ainda está sendo preparada."
+  "soonText": "Esta parte do app ainda está sendo preparada.",
+  "temperatureLabel": "ENTRE VOCÊS",
+  "temperatureTitle": "Como está entre vocês?",
+  "temperatureText": "Um registro privado, sem nota."
 }

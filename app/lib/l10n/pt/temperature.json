@@ -1,0 +1,45 @@
+{
+  "levelTitle": "Como está entre vocês?",
+  "levelHighlight": "entre vocês",
+  "levelNote": "Privado. Nunca vira nota.",
+  "levels(map)": {
+    "good": "Bem",
+    "so_so": "Mais ou menos",
+    "turbulent": "Turbulento",
+    "fight": "Uma briga",
+    "other": ""
+  },
+  "continueAction": "Continuar",
+  "back": "Voltar",
+  "skip": "Agora não",
+  "intensityTitle": "Qual a intensidade?",
+  "intensityHighlight": "intensidade",
+  "intensityHint": "Abaixo de 7 dá para conversar. Acima de 7, faça uma pausa primeiro.",
+  "intensityHigh": "Valor alto: que tal uma pausa antes?",
+  "intensityLow": "Fraca",
+  "intensityTop": "Muito forte",
+  "intensityLabel": "Intensidade",
+  "result": {
+    "good": {
+      "title": "Que bom",
+      "text": "Registrado só para você. Siga o seu dia."
+    },
+    "pause": {
+      "title": "Primeiro, respirar",
+      "text": "Quando está muito quente, esperar ajuda. Vale um tempo longe antes de qualquer conversa."
+    },
+    "guided": {
+      "title": "Dá para conversar com cuidado",
+      "text": "Um passo de cada vez, no seu ritmo."
+    },
+    "quick": {
+      "title": "Um ajuste pequeno basta",
+      "text": "Algo leve e rápido pode resolver."
+    },
+    "done": "Pronto"
+  },
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para salvar agora. Suas respostas continuam aqui."
+  }
+}

@@ -591,6 +591,22 @@ class SundayCardRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [TemperaturePage]
+class TemperatureRoute extends PageRouteInfo<void> {
+  const TemperatureRoute({List<PageRouteInfo>? children})
+    : super(TemperatureRoute.name, initialChildren: children);
+
+  static const String name = 'TemperatureRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const TemperaturePage());
+    },
+  );
+}
+
+/// generated route for
 /// [TodayPage]
 class TodayRoute extends PageRouteInfo<void> {
   const TodayRoute({List<PageRouteInfo>? children})

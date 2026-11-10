@@ -25,6 +25,7 @@ import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/breaku
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/unpair_done_page.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/unpair_page.dart';
 import 'package:flutter_bloc_starter/features/profile/presentation/setup/profile_setup_page.dart';
+import 'package:flutter_bloc_starter/features/repair/presentation/temperature/temperature_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/need/need_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/quick_slip_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/slip_detail_page.dart';
@@ -59,6 +60,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: QuickSlipRoute.page, fullscreenDialog: true),
     AutoRoute(page: SlipKindRoute.page, fullscreenDialog: true),
     AutoRoute(page: NeedRoute.page, fullscreenDialog: true),
+    AutoRoute(page: TemperatureRoute.page, fullscreenDialog: true),
     AutoRoute(page: SlipDetailRoute.page, path: '/slip/:id'),
     AutoRoute(page: NotificationPreferencesRoute.page),
     AutoRoute(page: SundayCardRoute.page),
