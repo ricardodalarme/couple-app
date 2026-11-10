@@ -70,13 +70,21 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
                 supportText: l10n.temperatureText,
                 onTap: () => context.pushRoute(const TemperatureRoute()),
               ),
-            ] else
+            ] else ...[
+              BaseListCard(
+                categoryLabel: l10n.partnerLabel,
+                title: l10n.partnerTitle,
+                supportText: l10n.partnerText,
+                onTap: () => context.pushRoute(const PartnerProfileRoute()),
+              ),
+              const SizedBox(height: AppSpace.s12),
               BaseListCard(
                 categoryLabel: l10n.learningLabel,
                 title: l10n.learningTitle,
                 supportText: l10n.learningText,
                 onTap: () => context.pushRoute(LearningRoute()),
               ),
+            ],
           ],
         ),
       ),

@@ -1,0 +1,26 @@
+{
+  "title": "About your partner",
+  "privateNote": "Only you see these notes. They never show in notifications, widgets or to your partner.",
+  "categories(map)": {
+    "likes": "Likes",
+    "dislikes": "Dislikes",
+    "sizes": "Sizes",
+    "health": "Health",
+    "comfort": "Comfort",
+    "people": "People",
+    "other": "Other"
+  },
+  "labelLabel": "Topic",
+  "labelHint": "E.g. coffee",
+  "valueHint": "E.g. no sugar, very hot",
+  "save": "Save note",
+  "delete": "Delete",
+  "emptyTitle": "No notes yet",
+  "emptyText": "Small details help you pick a gift or a gesture.",
+  "errorTitle": "Couldn't load",
+  "errorText": "Your notes are still saved. Try again.",
+  "errors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't do that right now. Your text is still here."
+  }
+}

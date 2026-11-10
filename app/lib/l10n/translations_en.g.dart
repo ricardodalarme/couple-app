@@ -86,6 +86,10 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$notificationPreferences$en notificationPreferences =
       _Translations$notificationPreferences$en._(_root);
   @override
+  late final _Translations$partnerProfile$en partnerProfile = _Translations$partnerProfile$en._(
+    _root,
+  );
+  @override
   late final _Translations$partnerStep$en partnerStep = _Translations$partnerStep$en._(_root);
   @override
   late final _Translations$pause$en pause = _Translations$pause$en._(_root);
@@ -747,6 +751,53 @@ class _Translations$notificationPreferences$en extends Translations$notification
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t save right now. Your previous choice was kept.',
+  };
+}
+
+// Path: partnerProfile
+class _Translations$partnerProfile$en extends Translations$partnerProfile$pt {
+  _Translations$partnerProfile$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'About your partner';
+  @override
+  String get privateNote =>
+      'Only you see these notes. They never show in notifications, widgets or to your partner.';
+  @override
+  Map<String, String> get categories => {
+    'likes': 'Likes',
+    'dislikes': 'Dislikes',
+    'sizes': 'Sizes',
+    'health': 'Health',
+    'comfort': 'Comfort',
+    'people': 'People',
+    'other': 'Other',
+  };
+  @override
+  String get labelLabel => 'Topic';
+  @override
+  String get labelHint => 'E.g. coffee';
+  @override
+  String get valueHint => 'E.g. no sugar, very hot';
+  @override
+  String get save => 'Save note';
+  @override
+  String get delete => 'Delete';
+  @override
+  String get emptyTitle => 'No notes yet';
+  @override
+  String get emptyText => 'Small details help you pick a gift or a gesture.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Your notes are still saved. Try again.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t do that right now. Your text is still here.',
   };
 }
 
@@ -1452,6 +1503,12 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get dateNightTitle => 'Date night';
   @override
   String get dateNightText => 'Ideas for the two of you, picked together.';
+  @override
+  String get partnerLabel => 'JUST FOR YOU';
+  @override
+  String get partnerTitle => 'About your partner';
+  @override
+  String get partnerText => 'Private notes to remember what they like.';
   @override
   String get temperatureLabel => 'BETWEEN YOU';
   @override
@@ -2811,6 +2868,26 @@ extension on TranslationsEn {
             'Too many attempts in a row. Wait a moment.',
           'notificationPreferences.errors.other' =>
             'Couldn\'t save right now. Your previous choice was kept.',
+          'partnerProfile.title' => 'About your partner',
+          'partnerProfile.privateNote' => 'Only you see these notes. They never show in notifications, widgets or to your partner.',
+          'partnerProfile.categories.likes' => 'Likes',
+          'partnerProfile.categories.dislikes' => 'Dislikes',
+          'partnerProfile.categories.sizes' => 'Sizes',
+          'partnerProfile.categories.health' => 'Health',
+          'partnerProfile.categories.comfort' => 'Comfort',
+          'partnerProfile.categories.people' => 'People',
+          'partnerProfile.categories.other' => 'Other',
+          'partnerProfile.labelLabel' => 'Topic',
+          'partnerProfile.labelHint' => 'E.g. coffee',
+          'partnerProfile.valueHint' => 'E.g. no sugar, very hot',
+          'partnerProfile.save' => 'Save note',
+          'partnerProfile.delete' => 'Delete',
+          'partnerProfile.emptyTitle' => 'No notes yet',
+          'partnerProfile.emptyText' => 'Small details help you pick a gift or a gesture.',
+          'partnerProfile.errorTitle' => 'Couldn\'t load',
+          'partnerProfile.errorText' => 'Your notes are still saved. Try again.',
+          'partnerProfile.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'partnerProfile.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
           'partnerStep.title' => 'Want to bring your partner?',
           'partnerStep.titleHighlight' => 'partner',
           'partnerStep.subtitle' => 'The app works on your own. Invite whenever you want.',
@@ -3034,6 +3111,9 @@ extension on TranslationsEn {
           'repair.guided.loadErrorTitle' => 'Couldn\'t open this',
           'repair.guided.loadErrorText' => 'Nothing was lost. Try again.',
           'repair.learning.title' => 'What did you learn?',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.learning.titleHighlight' => 'learn',
           'repair.learning.subtitle' => 'It stays with you and can be deleted whenever you like.',
           'repair.learning.kinds.trigger' => 'What bothers me',
@@ -3054,9 +3134,6 @@ extension on TranslationsEn {
           'repair.next.pause' => 'Breathe a little',
           'repair.next.guided' => 'Start the guided repair',
           'repair.next.quick' => 'Send a repair',
-          _ => null,
-        } ??
-        switch (path) {
           'rituals.title' => 'Rituals',
           'rituals.subtitle' => 'Small habits you want to protect. No streaks, no pressure.',
           'rituals.emptyTitle' => 'No rituals yet',
@@ -3313,6 +3390,9 @@ extension on TranslationsEn {
           'tabs.dateNightLabel' => 'DATE',
           'tabs.dateNightTitle' => 'Date night',
           'tabs.dateNightText' => 'Ideas for the two of you, picked together.',
+          'tabs.partnerLabel' => 'JUST FOR YOU',
+          'tabs.partnerTitle' => 'About your partner',
+          'tabs.partnerText' => 'Private notes to remember what they like.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',
           'tabs.temperatureTitle' => 'How is it between you?',
           'tabs.temperatureText' => 'A private check-in, never a score.',

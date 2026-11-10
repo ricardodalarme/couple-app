@@ -1,0 +1,5 @@
+mutation DeletePartnerFact($id: UUID!) {
+  deleteFromPartnerFactsCollection(filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}

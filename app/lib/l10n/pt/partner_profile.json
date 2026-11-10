@@ -1,0 +1,26 @@
+{
+  "title": "Sobre seu par",
+  "privateNote": "Só você vê estas notas. Elas nunca aparecem em avisos, widgets ou para seu par.",
+  "categories(map)": {
+    "likes": "Gosta",
+    "dislikes": "Não gosta",
+    "sizes": "Tamanhos",
+    "health": "Saúde",
+    "comfort": "Conforto",
+    "people": "Pessoas",
+    "other": "Outro"
+  },
+  "labelLabel": "Assunto",
+  "labelHint": "Ex.: café",
+  "valueHint": "Ex.: sem açúcar, bem quente",
+  "save": "Guardar nota",
+  "delete": "Apagar",
+  "emptyTitle": "Nenhuma nota ainda",
+  "emptyText": "Pequenos detalhes ajudam a escolher um presente ou um gesto.",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "Suas notas continuam salvas. Tente de novo.",
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para fazer isso agora. Seu texto continua aqui."
+  }
+}

@@ -73,6 +73,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
       Translations$notificationPermission$pt.internal(_root);
   late final Translations$notificationPreferences$pt notificationPreferences =
       Translations$notificationPreferences$pt.internal(_root);
+  late final Translations$partnerProfile$pt partnerProfile =
+      Translations$partnerProfile$pt.internal(_root);
   late final Translations$partnerStep$pt partnerStep = Translations$partnerStep$pt.internal(_root);
   late final Translations$pause$pt pause = Translations$pause$pt.internal(_root);
   late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
@@ -869,6 +871,64 @@ class Translations$notificationPreferences$pt {
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para salvar agora. Sua escolha anterior foi mantida.',
+  };
+}
+
+// Path: partnerProfile
+class Translations$partnerProfile$pt {
+  Translations$partnerProfile$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Sobre seu par'
+  String get title => 'Sobre seu par';
+
+  /// pt: 'Só você vê estas notas. Elas nunca aparecem em avisos, widgets ou para seu par.'
+  String get privateNote =>
+      'Só você vê estas notas. Elas nunca aparecem em avisos, widgets ou para seu par.';
+
+  Map<String, String> get categories => {
+    'likes': 'Gosta',
+    'dislikes': 'Não gosta',
+    'sizes': 'Tamanhos',
+    'health': 'Saúde',
+    'comfort': 'Conforto',
+    'people': 'Pessoas',
+    'other': 'Outro',
+  };
+
+  /// pt: 'Assunto'
+  String get labelLabel => 'Assunto';
+
+  /// pt: 'Ex.: café'
+  String get labelHint => 'Ex.: café';
+
+  /// pt: 'Ex.: sem açúcar, bem quente'
+  String get valueHint => 'Ex.: sem açúcar, bem quente';
+
+  /// pt: 'Guardar nota'
+  String get save => 'Guardar nota';
+
+  /// pt: 'Apagar'
+  String get delete => 'Apagar';
+
+  /// pt: 'Nenhuma nota ainda'
+  String get emptyTitle => 'Nenhuma nota ainda';
+
+  /// pt: 'Pequenos detalhes ajudam a escolher um presente ou um gesto.'
+  String get emptyText => 'Pequenos detalhes ajudam a escolher um presente ou um gesto.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Suas notas continuam salvas. Tente de novo.'
+  String get errorText => 'Suas notas continuam salvas. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para fazer isso agora. Seu texto continua aqui.',
   };
 }
 
@@ -1725,6 +1785,15 @@ class Translations$tabs$pt {
 
   /// pt: 'Ideias para vocês dois, escolhidas juntos.'
   String get dateNightText => 'Ideias para vocês dois, escolhidas juntos.';
+
+  /// pt: 'SÓ PARA VOCÊ'
+  String get partnerLabel => 'SÓ PARA VOCÊ';
+
+  /// pt: 'Sobre seu par'
+  String get partnerTitle => 'Sobre seu par';
+
+  /// pt: 'Notas privadas para lembrar do que ele ou ela gosta.'
+  String get partnerText => 'Notas privadas para lembrar do que ele ou ela gosta.';
 
   /// pt: 'ENTRE VOCÊS'
   String get temperatureLabel => 'ENTRE VOCÊS';
@@ -3304,6 +3373,29 @@ extension on Translations {
             'Muitas tentativas seguidas. Espere um instante.',
           'notificationPreferences.errors.other' =>
             'Não deu para salvar agora. Sua escolha anterior foi mantida.',
+          'partnerProfile.title' => 'Sobre seu par',
+          'partnerProfile.privateNote' =>
+            'Só você vê estas notas. Elas nunca aparecem em avisos, widgets ou para seu par.',
+          'partnerProfile.categories.likes' => 'Gosta',
+          'partnerProfile.categories.dislikes' => 'Não gosta',
+          'partnerProfile.categories.sizes' => 'Tamanhos',
+          'partnerProfile.categories.health' => 'Saúde',
+          'partnerProfile.categories.comfort' => 'Conforto',
+          'partnerProfile.categories.people' => 'Pessoas',
+          'partnerProfile.categories.other' => 'Outro',
+          'partnerProfile.labelLabel' => 'Assunto',
+          'partnerProfile.labelHint' => 'Ex.: café',
+          'partnerProfile.valueHint' => 'Ex.: sem açúcar, bem quente',
+          'partnerProfile.save' => 'Guardar nota',
+          'partnerProfile.delete' => 'Apagar',
+          'partnerProfile.emptyTitle' => 'Nenhuma nota ainda',
+          'partnerProfile.emptyText' =>
+            'Pequenos detalhes ajudam a escolher um presente ou um gesto.',
+          'partnerProfile.errorTitle' => 'Não deu para carregar',
+          'partnerProfile.errorText' => 'Suas notas continuam salvas. Tente de novo.',
+          'partnerProfile.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'partnerProfile.errors.other' =>
+            'Não deu para fazer isso agora. Seu texto continua aqui.',
           'partnerStep.title' => 'Quer trazer seu parceiro?',
           'partnerStep.titleHighlight' => 'parceiro',
           'partnerStep.subtitle' => 'O app funciona sozinho. Você convida quando quiser.',
@@ -3527,6 +3619,9 @@ extension on Translations {
           'repair.guided.loadErrorTitle' => 'Não deu para abrir',
           'repair.guided.loadErrorText' => 'Nada se perdeu. Tente de novo.',
           'repair.learning.title' => 'O que você aprendeu?',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.learning.titleHighlight' => 'aprendeu',
           'repair.learning.subtitle' => 'Fica só com você e pode ser apagado quando quiser.',
           'repair.learning.kinds.trigger' => 'O que me incomoda',
@@ -3548,9 +3643,6 @@ extension on Translations {
           'repair.next.pause' => 'Respirar um pouco',
           'repair.next.guided' => 'Começar o reparo guiado',
           'repair.next.quick' => 'Enviar um reparo',
-          _ => null,
-        } ??
-        switch (path) {
           'rituals.title' => 'Rituais',
           'rituals.subtitle' =>
             'Pequenos hábitos que vocês querem proteger. Sem sequências, sem cobrança.',
@@ -3809,6 +3901,9 @@ extension on Translations {
           'tabs.dateNightLabel' => 'ENCONTRO',
           'tabs.dateNightTitle' => 'Date night',
           'tabs.dateNightText' => 'Ideias para vocês dois, escolhidas juntos.',
+          'tabs.partnerLabel' => 'SÓ PARA VOCÊ',
+          'tabs.partnerTitle' => 'Sobre seu par',
+          'tabs.partnerText' => 'Notas privadas para lembrar do que ele ou ela gosta.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
           'tabs.temperatureTitle' => 'Como está entre vocês?',
           'tabs.temperatureText' => 'Um registro privado, sem nota.',

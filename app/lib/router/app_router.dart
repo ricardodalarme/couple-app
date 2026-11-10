@@ -24,6 +24,7 @@ import 'package:flutter_bloc_starter/features/pairing/presentation/relationship/
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/breakup_page.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/unpair_done_page.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/unpair_page.dart';
+import 'package:flutter_bloc_starter/features/partner/presentation/profile/partner_profile_page.dart';
 import 'package:flutter_bloc_starter/features/profile/presentation/setup/profile_setup_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/calm/calm_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/guided/guided_repair_page.dart';
@@ -77,6 +78,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: ReceivedSignalsRoute.page),
     AutoRoute(page: LogisticsRoute.page),
     AutoRoute(page: RitualsRoute.page),
+    AutoRoute(page: PartnerProfileRoute.page),
     AutoRoute(page: DateNightRoute.page),
     AutoRoute(page: RitualEditRoute.page),
     AutoRoute(page: GuidedRepairRoute.page, fullscreenDialog: true),

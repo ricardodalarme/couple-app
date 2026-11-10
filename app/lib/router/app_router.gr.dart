@@ -485,6 +485,22 @@ class NotificationPreferencesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PartnerProfilePage]
+class PartnerProfileRoute extends PageRouteInfo<void> {
+  const PartnerProfileRoute({List<PageRouteInfo>? children})
+    : super(PartnerProfileRoute.name, initialChildren: children);
+
+  static const String name = 'PartnerProfileRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const PartnerProfilePage());
+    },
+  );
+}
+
+/// generated route for
 /// [PartnerStepPage]
 class PartnerStepRoute extends PageRouteInfo<void> {
   const PartnerStepRoute({List<PageRouteInfo>? children})

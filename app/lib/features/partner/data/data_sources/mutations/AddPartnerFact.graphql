@@ -1,0 +1,7 @@
+mutation AddPartnerFact($id: UUID!, $label: String!, $value: String!, $category: String) {
+  insertIntoPartnerFactsCollection(
+    objects: [{ id: $id, label: $label, value: $value, category: $category }]
+  ) {
+    affectedCount
+  }
+}
