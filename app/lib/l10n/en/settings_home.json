@@ -15,5 +15,10 @@
   "discreetOn": "On",
   "discreetOff": "Off",
   "privacy": "Privacy and security",
-  "privacyStatus": "What is shared and consents"
+  "privacyStatus": "What is shared and consents",
+  "signOut": "Sign out",
+  "deleteAccount": "Delete account",
+  "pendingBanner": "Your account will be deleted on {date}.",
+  "pendingAction": "See",
+  "pendingBannerSimple": "Your account will be deleted soon."
 }

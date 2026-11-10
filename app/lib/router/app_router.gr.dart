@@ -224,6 +224,22 @@ class DebugSignInRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [DeleteAccountPage]
+class DeleteAccountRoute extends PageRouteInfo<void> {
+  const DeleteAccountRoute({List<PageRouteInfo>? children})
+    : super(DeleteAccountRoute.name, initialChildren: children);
+
+  static const String name = 'DeleteAccountRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const DeleteAccountPage());
+    },
+  );
+}
+
+/// generated route for
 /// [DiscreetModePage]
 class DiscreetModeRoute extends PageRouteInfo<void> {
   const DiscreetModeRoute({List<PageRouteInfo>? children})

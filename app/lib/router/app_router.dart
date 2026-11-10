@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc_starter/features/account/presentation/delete/delete_account_page.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/existing_account/existing_account_page.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/sign_in/sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/welcome/welcome_page.dart';
@@ -100,6 +101,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: PartnerViewRoute.page),
     AutoRoute(page: OurViewRoute.page),
     AutoRoute(page: ConsentsRoute.page),
+    AutoRoute(page: DeleteAccountRoute.page),
     AutoRoute(page: SafeModeRoute.page),
     AutoRoute(page: NeutralRoute.page),
     AutoRoute(page: BadDayRoute.page),

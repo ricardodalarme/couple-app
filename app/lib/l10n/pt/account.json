@@ -1,0 +1,26 @@
+{
+  "deleteTitle": "Apagar conta",
+  "deleteHighlight": "conta",
+  "deleteText": "Os dados são apagados após 14 dias. Precisa de nova autenticação.",
+  "deleteWarningTitle": "Isso também desfaz o vínculo",
+  "deleteWarning": "Isso também desfaz o vínculo com {name}.",
+  "deleteWarningNoPartner": "Isso também desfaz o vínculo com seu par.",
+  "deleteAction": "Apagar conta",
+  "deleteConfirmTitle": "Apagar sua conta?",
+  "deleteConfirmText": "Você terá 14 dias para mudar de ideia. Depois disso, nada pode ser recuperado.",
+  "reauthReason": "Confirme para apagar sua conta.",
+  "pendingTitle": "Exclusão em {day} de {month}",
+  "pendingHighlight": "{day} de {month}",
+  "pendingText": "Você pode cancelar antes disso.",
+  "pendingCancel": "Cancelar exclusão",
+  "signOutTitle": "Sair?",
+  "signOutText": "Remover também os dados locais?",
+  "signOutPending": "Você tem {count} slips que ainda não foram enviados. Sair e remover dados apaga esses slips.",
+  "signOut": "Sair",
+  "signOutRemove": "Sair e remover dados",
+  "months": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para concluir agora. Tente de novo."
+  }
+}

@@ -56,6 +56,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$acceptInvite$pt acceptInvite = Translations$acceptInvite$pt.internal(
     _root,
   );
+  late final Translations$account$pt account = Translations$account$pt.internal(_root);
   late final Translations$authentication$pt authentication =
       Translations$authentication$pt.internal(_root);
   late final Translations$cardView$pt cardView = Translations$cardView$pt.internal(_root);
@@ -148,6 +149,94 @@ class Translations$acceptInvite$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um pouco e tente de novo.',
     'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
     'other': 'Não deu para conectar agora. Tente de novo.',
+  };
+}
+
+// Path: account
+class Translations$account$pt {
+  Translations$account$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Apagar conta'
+  String get deleteTitle => 'Apagar conta';
+
+  /// pt: 'conta'
+  String get deleteHighlight => 'conta';
+
+  /// pt: 'Os dados são apagados após 14 dias. Precisa de nova autenticação.'
+  String get deleteText => 'Os dados são apagados após 14 dias. Precisa de nova autenticação.';
+
+  /// pt: 'Isso também desfaz o vínculo'
+  String get deleteWarningTitle => 'Isso também desfaz o vínculo';
+
+  /// pt: 'Isso também desfaz o vínculo com {name}.'
+  String deleteWarning({required Object name}) => 'Isso também desfaz o vínculo com ${name}.';
+
+  /// pt: 'Isso também desfaz o vínculo com seu par.'
+  String get deleteWarningNoPartner => 'Isso também desfaz o vínculo com seu par.';
+
+  /// pt: 'Apagar conta'
+  String get deleteAction => 'Apagar conta';
+
+  /// pt: 'Apagar sua conta?'
+  String get deleteConfirmTitle => 'Apagar sua conta?';
+
+  /// pt: 'Você terá 14 dias para mudar de ideia. Depois disso, nada pode ser recuperado.'
+  String get deleteConfirmText =>
+      'Você terá 14 dias para mudar de ideia. Depois disso, nada pode ser recuperado.';
+
+  /// pt: 'Confirme para apagar sua conta.'
+  String get reauthReason => 'Confirme para apagar sua conta.';
+
+  /// pt: 'Exclusão em {day} de {month}'
+  String pendingTitle({required Object day, required Object month}) =>
+      'Exclusão em ${day} de ${month}';
+
+  /// pt: '{day} de {month}'
+  String pendingHighlight({required Object day, required Object month}) => '${day} de ${month}';
+
+  /// pt: 'Você pode cancelar antes disso.'
+  String get pendingText => 'Você pode cancelar antes disso.';
+
+  /// pt: 'Cancelar exclusão'
+  String get pendingCancel => 'Cancelar exclusão';
+
+  /// pt: 'Sair?'
+  String get signOutTitle => 'Sair?';
+
+  /// pt: 'Remover também os dados locais?'
+  String get signOutText => 'Remover também os dados locais?';
+
+  /// pt: 'Você tem {count} slips que ainda não foram enviados. Sair e remover dados apaga esses slips.'
+  String signOutPending({required Object count}) =>
+      'Você tem ${count} slips que ainda não foram enviados. Sair e remover dados apaga esses slips.';
+
+  /// pt: 'Sair'
+  String get signOut => 'Sair';
+
+  /// pt: 'Sair e remover dados'
+  String get signOutRemove => 'Sair e remover dados';
+
+  List<String> get months => [
+    'jan',
+    'fev',
+    'mar',
+    'abr',
+    'mai',
+    'jun',
+    'jul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dez',
+  ];
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para concluir agora. Tente de novo.',
   };
 }
 
@@ -2012,6 +2101,21 @@ class Translations$settingsHome$pt {
 
   /// pt: 'O que é compartilhado e consentimentos'
   String get privacyStatus => 'O que é compartilhado e consentimentos';
+
+  /// pt: 'Sair'
+  String get signOut => 'Sair';
+
+  /// pt: 'Apagar conta'
+  String get deleteAccount => 'Apagar conta';
+
+  /// pt: 'Sua conta será apagada em {date}.'
+  String pendingBanner({required Object date}) => 'Sua conta será apagada em ${date}.';
+
+  /// pt: 'Ver'
+  String get pendingAction => 'Ver';
+
+  /// pt: 'Sua conta será apagada em breve.'
+  String get pendingBannerSimple => 'Sua conta será apagada em breve.';
 }
 
 // Path: slipDetail
@@ -3742,6 +3846,51 @@ extension on Translations {
             'Muitas tentativas seguidas. Espere um pouco e tente de novo.',
           'acceptInvite.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
           'acceptInvite.errors.other' => 'Não deu para conectar agora. Tente de novo.',
+          'account.deleteTitle' => 'Apagar conta',
+          'account.deleteHighlight' => 'conta',
+          'account.deleteText' =>
+            'Os dados são apagados após 14 dias. Precisa de nova autenticação.',
+          'account.deleteWarningTitle' => 'Isso também desfaz o vínculo',
+          'account.deleteWarning' => ({
+            required Object name,
+          }) => 'Isso também desfaz o vínculo com ${name}.',
+          'account.deleteWarningNoPartner' => 'Isso também desfaz o vínculo com seu par.',
+          'account.deleteAction' => 'Apagar conta',
+          'account.deleteConfirmTitle' => 'Apagar sua conta?',
+          'account.deleteConfirmText' =>
+            'Você terá 14 dias para mudar de ideia. Depois disso, nada pode ser recuperado.',
+          'account.reauthReason' => 'Confirme para apagar sua conta.',
+          'account.pendingTitle' => ({
+            required Object day,
+            required Object month,
+          }) => 'Exclusão em ${day} de ${month}',
+          'account.pendingHighlight' => ({
+            required Object day,
+            required Object month,
+          }) => '${day} de ${month}',
+          'account.pendingText' => 'Você pode cancelar antes disso.',
+          'account.pendingCancel' => 'Cancelar exclusão',
+          'account.signOutTitle' => 'Sair?',
+          'account.signOutText' => 'Remover também os dados locais?',
+          'account.signOutPending' => ({
+            required Object count,
+          }) => 'Você tem ${count} slips que ainda não foram enviados. Sair e remover dados apaga esses slips.',
+          'account.signOut' => 'Sair',
+          'account.signOutRemove' => 'Sair e remover dados',
+          'account.months.0' => 'jan',
+          'account.months.1' => 'fev',
+          'account.months.2' => 'mar',
+          'account.months.3' => 'abr',
+          'account.months.4' => 'mai',
+          'account.months.5' => 'jun',
+          'account.months.6' => 'jul',
+          'account.months.7' => 'ago',
+          'account.months.8' => 'set',
+          'account.months.9' => 'out',
+          'account.months.10' => 'nov',
+          'account.months.11' => 'dez',
+          'account.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'account.errors.other' => 'Não deu para concluir agora. Tente de novo.',
           'authentication.signInTitle' => 'Entrar',
           'authentication.signInSubtitle' => 'Sem e-mail e senha. Só Apple ou Google.',
           'authentication.signInNote' => 'Entrar leva direto para o seu Hoje.',
@@ -4253,6 +4402,9 @@ extension on Translations {
           }) => 'Neste mês restam ${slips} slips e ${cards} cartões enviados no plano grátis.',
           'plus.freeName' => 'Grátis',
           'plus.freeFeatures' => 'Slips todo mês, um cartão enviado por mês, repair, pausa, segurança e tudo o que você já guardou.',
+          _ => null,
+        } ??
+        switch (path) {
           'plus.plusName' => 'Plus',
           'plus.plusFeatures' =>
             'Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.',
@@ -4287,9 +4439,6 @@ extension on Translations {
           'privacy.ourEncrypted' => 'Seu conteúdo é criptografado em trânsito.',
           'privacy.ourPrivate' => 'A equipe não pode ler suas notas privadas.',
           'privacy.ourAnalytics' => 'Análises: só contagens.',
-          _ => null,
-        } ??
-        switch (path) {
           'privacy.ourPlain' => 'Página em linguagem simples.',
           'privacy.consents' => 'Consentimentos',
           'privacy.sensitiveData' => 'Dados sensíveis',
@@ -4582,6 +4731,13 @@ extension on Translations {
           'settingsHome.discreetOff' => 'Desligado',
           'settingsHome.privacy' => 'Privacidade e segurança',
           'settingsHome.privacyStatus' => 'O que é compartilhado e consentimentos',
+          'settingsHome.signOut' => 'Sair',
+          'settingsHome.deleteAccount' => 'Apagar conta',
+          'settingsHome.pendingBanner' => ({
+            required Object date,
+          }) => 'Sua conta será apagada em ${date}.',
+          'settingsHome.pendingAction' => 'Ver',
+          'settingsHome.pendingBannerSimple' => 'Sua conta será apagada em breve.',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -4814,6 +4970,9 @@ extension on Translations {
           'tabs.dayTitle' => 'Dia a dia',
           'tabs.dayText' => 'O que importa em cada dia.',
           'tabs.plusLabel' => 'PLANO',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.plusTitle' => 'Grátis e Plus',
           'tabs.plusText' => 'O que cada plano inclui, sem pressão.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
@@ -4853,9 +5012,6 @@ extension on Translations {
           'temperature.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'temperature.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
           'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
-          _ => null,
-        } ??
-        switch (path) {
           'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',
           'today.greetingNoName' => 'Olá',

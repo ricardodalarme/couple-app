@@ -54,6 +54,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$acceptInvite$en acceptInvite = _Translations$acceptInvite$en._(_root);
   @override
+  late final _Translations$account$en account = _Translations$account$en._(_root);
+  @override
   late final _Translations$authentication$en authentication = _Translations$authentication$en._(
     _root,
   );
@@ -179,6 +181,76 @@ class _Translations$acceptInvite$en extends Translations$acceptInvite$pt {
     'RATE_LIMITED': 'Too many tries in a row. Wait a bit and try again.',
     'NETWORK': 'No connection. Check your internet and try again.',
     'other': 'Could not connect right now. Try again.',
+  };
+}
+
+// Path: account
+class _Translations$account$en extends Translations$account$pt {
+  _Translations$account$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get deleteTitle => 'Delete account';
+  @override
+  String get deleteHighlight => 'account';
+  @override
+  String get deleteText => 'Your data is erased after 14 days. This needs a fresh sign-in.';
+  @override
+  String get deleteWarningTitle => 'This also ends the link';
+  @override
+  String deleteWarning({required Object name}) => 'This also ends the link with ${name}.';
+  @override
+  String get deleteWarningNoPartner => 'This also ends the link with your partner.';
+  @override
+  String get deleteAction => 'Delete account';
+  @override
+  String get deleteConfirmTitle => 'Delete your account?';
+  @override
+  String get deleteConfirmText =>
+      'You have 14 days to change your mind. After that, nothing can be recovered.';
+  @override
+  String get reauthReason => 'Confirm to delete your account.';
+  @override
+  String pendingTitle({required Object month, required Object day}) =>
+      'Deletion on ${month} ${day}';
+  @override
+  String pendingHighlight({required Object month, required Object day}) => '${month} ${day}';
+  @override
+  String get pendingText => 'You can cancel before that.';
+  @override
+  String get pendingCancel => 'Cancel deletion';
+  @override
+  String get signOutTitle => 'Sign out?';
+  @override
+  String get signOutText => 'Remove the local data too?';
+  @override
+  String signOutPending({required Object count}) =>
+      'You have ${count} slips that were not sent yet. Signing out and removing data erases them.';
+  @override
+  String get signOut => 'Sign out';
+  @override
+  String get signOutRemove => 'Sign out and remove data';
+  @override
+  List<String> get months => [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
+    'other': 'Could not finish now. Try again.',
   };
 }
 
@@ -1667,6 +1739,16 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   String get privacy => 'Privacy and security';
   @override
   String get privacyStatus => 'What is shared and consents';
+  @override
+  String get signOut => 'Sign out';
+  @override
+  String get deleteAccount => 'Delete account';
+  @override
+  String pendingBanner({required Object date}) => 'Your account will be deleted on ${date}.';
+  @override
+  String get pendingAction => 'See';
+  @override
+  String get pendingBannerSimple => 'Your account will be deleted soon.';
 }
 
 // Path: slipDetail
@@ -3084,6 +3166,50 @@ extension on TranslationsEn {
             'Too many tries in a row. Wait a bit and try again.',
           'acceptInvite.errors.NETWORK' => 'No connection. Check your internet and try again.',
           'acceptInvite.errors.other' => 'Could not connect right now. Try again.',
+          'account.deleteTitle' => 'Delete account',
+          'account.deleteHighlight' => 'account',
+          'account.deleteText' => 'Your data is erased after 14 days. This needs a fresh sign-in.',
+          'account.deleteWarningTitle' => 'This also ends the link',
+          'account.deleteWarning' => ({
+            required Object name,
+          }) => 'This also ends the link with ${name}.',
+          'account.deleteWarningNoPartner' => 'This also ends the link with your partner.',
+          'account.deleteAction' => 'Delete account',
+          'account.deleteConfirmTitle' => 'Delete your account?',
+          'account.deleteConfirmText' =>
+            'You have 14 days to change your mind. After that, nothing can be recovered.',
+          'account.reauthReason' => 'Confirm to delete your account.',
+          'account.pendingTitle' => ({
+            required Object month,
+            required Object day,
+          }) => 'Deletion on ${month} ${day}',
+          'account.pendingHighlight' => ({
+            required Object month,
+            required Object day,
+          }) => '${month} ${day}',
+          'account.pendingText' => 'You can cancel before that.',
+          'account.pendingCancel' => 'Cancel deletion',
+          'account.signOutTitle' => 'Sign out?',
+          'account.signOutText' => 'Remove the local data too?',
+          'account.signOutPending' => ({
+            required Object count,
+          }) => 'You have ${count} slips that were not sent yet. Signing out and removing data erases them.',
+          'account.signOut' => 'Sign out',
+          'account.signOutRemove' => 'Sign out and remove data',
+          'account.months.0' => 'Jan',
+          'account.months.1' => 'Feb',
+          'account.months.2' => 'Mar',
+          'account.months.3' => 'Apr',
+          'account.months.4' => 'May',
+          'account.months.5' => 'Jun',
+          'account.months.6' => 'Jul',
+          'account.months.7' => 'Aug',
+          'account.months.8' => 'Sep',
+          'account.months.9' => 'Oct',
+          'account.months.10' => 'Nov',
+          'account.months.11' => 'Dec',
+          'account.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
+          'account.errors.other' => 'Could not finish now. Try again.',
           'authentication.signInTitle' => 'Sign in',
           'authentication.signInSubtitle' => 'No email and password. Just Apple or Google.',
           'authentication.signInNote' => 'Signing in takes you straight to your Today.',
@@ -3592,6 +3718,9 @@ extension on TranslationsEn {
           }) => 'This month you have ${slips} slips and ${cards} sent cards left on the free plan.',
           'plus.freeName' => 'Free',
           'plus.freeFeatures' => 'Slips every month, one sent card a month, repair, pause, safety and everything you already saved.',
+          _ => null,
+        } ??
+        switch (path) {
           'plus.plusName' => 'Plus',
           'plus.plusFeatures' => 'More slips and cards each month and more for both of you, covering you and your partner.',
           'plus.monthly' => 'Monthly',
@@ -3625,9 +3754,6 @@ extension on TranslationsEn {
           'privacy.ourEncrypted' => 'Your content is encrypted in transit.',
           'privacy.ourPrivate' => 'The team cannot read your private notes.',
           'privacy.ourAnalytics' => 'Analytics: counts only.',
-          _ => null,
-        } ??
-        switch (path) {
           'privacy.ourPlain' => 'This page in plain language.',
           'privacy.consents' => 'Consents',
           'privacy.sensitiveData' => 'Sensitive data',
@@ -3917,6 +4043,13 @@ extension on TranslationsEn {
           'settingsHome.discreetOff' => 'Off',
           'settingsHome.privacy' => 'Privacy and security',
           'settingsHome.privacyStatus' => 'What is shared and consents',
+          'settingsHome.signOut' => 'Sign out',
+          'settingsHome.deleteAccount' => 'Delete account',
+          'settingsHome.pendingBanner' => ({
+            required Object date,
+          }) => 'Your account will be deleted on ${date}.',
+          'settingsHome.pendingAction' => 'See',
+          'settingsHome.pendingBannerSimple' => 'Your account will be deleted soon.',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -4149,6 +4282,9 @@ extension on TranslationsEn {
           'tabs.dayTitle' => 'Day by day',
           'tabs.dayText' => 'What matters on each day.',
           'tabs.plusLabel' => 'PLAN',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.plusTitle' => 'Free and Plus',
           'tabs.plusText' => 'What each plan includes, no pressure.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',
@@ -4187,9 +4323,6 @@ extension on TranslationsEn {
           'temperature.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'temperature.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
           'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
-          _ => null,
-        } ??
-        switch (path) {
           'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',
           'today.greetingNoName' => 'Hello',

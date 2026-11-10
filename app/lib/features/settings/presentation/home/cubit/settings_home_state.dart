@@ -7,7 +7,9 @@ final class const SettingsHomeState({
   final bool? hasPlus,
   final bool? notificationsOn,
   final bool discreetOn = false,
+  final DateTime? deletionPurgeAfter,
 }) with Equatable {
+  bool get deletionPending => deletionPurgeAfter != null;
   @override
   List<Object?> get props => [
     isLoaded,
@@ -16,5 +18,6 @@ final class const SettingsHomeState({
     hasPlus,
     notificationsOn,
     discreetOn,
+    deletionPurgeAfter,
   ];
 }

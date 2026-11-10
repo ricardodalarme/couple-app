@@ -1,0 +1,6 @@
+mutation RequestAccountDeletion {
+  requestAccountDeletion {
+    requestedAt
+    purgeAfter
+  }
+}

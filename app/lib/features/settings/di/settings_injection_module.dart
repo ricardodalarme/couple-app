@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/account/data/repositories/account_repository.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
@@ -36,6 +37,7 @@ class SettingsInjectionModule() implements InjectionModule {
         plusRepository: injector.get<PlusRepository>(),
         notificationsRepository: injector.get<NotificationsRepository>(),
         discreetRepository: injector.get<DiscreetRepository>(),
+        accountRepository: injector.get<AccountRepository>(),
       ),
     )
     ..registerLazySingleton<SettingsRepository>(

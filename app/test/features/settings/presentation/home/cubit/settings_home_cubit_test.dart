@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/account/data/repositories/account_repository.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/models/notification_preferences.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
@@ -18,18 +19,23 @@ class _MockNotificationsRepository() extends Mock implements NotificationsReposi
 
 class _MockDiscreetRepository() extends Mock implements DiscreetRepository;
 
+class _MockAccountRepository() extends Mock implements AccountRepository;
+
 void main() {
   late PairingRepository pairing;
   late PlusRepository plus;
   late NotificationsRepository notifications;
   late DiscreetRepository discreet;
+  late AccountRepository account;
 
   setUp(() {
     pairing = _MockPairingRepository();
     plus = _MockPlusRepository();
     notifications = _MockNotificationsRepository();
     discreet = _MockDiscreetRepository();
+    account = _MockAccountRepository();
     when(() => discreet.local).thenReturn(const DiscreetModeValues());
+    when(() => account.getDeletion()).thenAnswer((_) async => null);
   });
 
   SettingsHomeCubit build() => SettingsHomeCubit(
@@ -37,6 +43,7 @@ void main() {
     plusRepository: plus,
     notificationsRepository: notifications,
     discreetRepository: discreet,
+    accountRepository: account,
   );
 
   test('each section shows its current state', () async {

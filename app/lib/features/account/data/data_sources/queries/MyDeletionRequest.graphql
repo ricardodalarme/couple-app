@@ -1,0 +1,10 @@
+query MyDeletionRequest {
+  deletionRequestsCollection(first: 1) {
+    edges {
+      node {
+        requestedAt
+        purgeAfter
+      }
+    }
+  }
+}

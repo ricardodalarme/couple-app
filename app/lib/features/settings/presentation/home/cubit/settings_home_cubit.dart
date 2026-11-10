@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/account/data/repositories/account_repository.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
@@ -12,6 +13,7 @@ class SettingsHomeCubit({
   required final PlusRepository _plusRepository,
   required final NotificationsRepository _notificationsRepository,
   required final DiscreetRepository _discreetRepository,
+  required final AccountRepository _accountRepository,
 }) extends Cubit<SettingsHomeState> {
   this : super(const SettingsHomeState());
 
@@ -20,6 +22,7 @@ class SettingsHomeCubit({
     final partner = await _try(_pairingRepository.getPartner);
     final plus = await _try(_plusRepository.getPlus);
     final notifications = await _try(_notificationsRepository.getPreferences);
+    final deletion = await _try(_accountRepository.getDeletion);
     emit(
       SettingsHomeState(
         isLoaded: true,
@@ -28,6 +31,7 @@ class SettingsHomeCubit({
         hasPlus: plus.value?.hasPlus,
         notificationsOn: notifications.value?.isEnabled,
         discreetOn: _discreetRepository.local.isOn,
+        deletionPurgeAfter: deletion.value?.purgeAfter,
       ),
     );
   }

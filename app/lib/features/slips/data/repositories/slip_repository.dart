@@ -29,6 +29,9 @@ class SlipRepository({
   final Logger _logger = Logger('SlipRepository');
   final StreamController<void> _changes = StreamController<void>.broadcast();
 
+  /// How many slips are waiting on the device for a connection.
+  int get pendingCount => _localDataSource.readPending().length;
+
   /// Emits whenever a slip is saved, undone or sent, so lists can read again.
   Stream<void> get onChanged => _changes.stream;
 

@@ -1,0 +1,26 @@
+{
+  "deleteTitle": "Delete account",
+  "deleteHighlight": "account",
+  "deleteText": "Your data is erased after 14 days. This needs a fresh sign-in.",
+  "deleteWarningTitle": "This also ends the link",
+  "deleteWarning": "This also ends the link with {name}.",
+  "deleteWarningNoPartner": "This also ends the link with your partner.",
+  "deleteAction": "Delete account",
+  "deleteConfirmTitle": "Delete your account?",
+  "deleteConfirmText": "You have 14 days to change your mind. After that, nothing can be recovered.",
+  "reauthReason": "Confirm to delete your account.",
+  "pendingTitle": "Deletion on {month} {day}",
+  "pendingHighlight": "{month} {day}",
+  "pendingText": "You can cancel before that.",
+  "pendingCancel": "Cancel deletion",
+  "signOutTitle": "Sign out?",
+  "signOutText": "Remove the local data too?",
+  "signOutPending": "You have {count} slips that were not sent yet. Signing out and removing data erases them.",
+  "signOut": "Sign out",
+  "signOutRemove": "Sign out and remove data",
+  "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "errors(map)": {
+    "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
+    "other": "Could not finish now. Try again."
+  }
+}
