@@ -1,0 +1,5 @@
+query MinAppVersion {
+  appConfigByPk(key: "min_app_version") {
+    value
+  }
+}

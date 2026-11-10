@@ -2,7 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
+import 'package:flutter_bloc_starter/features/app/presentation/shell/app_shell.dart';
+import 'package:flutter_bloc_starter/features/app/presentation/version/cubit/version_gate_cubit.dart';
 import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
 import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/widgets/safe_mode_shield.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
@@ -35,20 +38,28 @@ class const App({super.key}) extends StatelessWidget {
             child: Builder(
               builder: (context) {
                 final theme = AppTheme.light(AppThemeScope.of(context));
-                return BlocProvider.value(
-                  value: injector.get<DiscreetModeCubit>()..load(),
+                return MultiBlocProvider(
+                  providers: [
+                    BlocProvider.value(value: injector.get<ConnectivityCubit>()..start()),
+                    BlocProvider.value(value: injector.get<VersionGateCubit>()..check()),
+                  ],
                   child: BlocProvider.value(
-                    value: injector.get<SafeModeCubit>(),
-                    child: SafeModeShield(
-                      child: BaseApp.router(
-                        theme: theme,
-                        onGenerateTitle: (context) => context.l10n.common.appName,
-                        routerConfig: appRouter.config(
-                          navigatorObservers: () => navigatorObservers,
-                          deepLinkBuilder: _deepLinkBuilder,
+                    value: injector.get<DiscreetModeCubit>()..load(),
+                    child: BlocProvider.value(
+                      value: injector.get<SafeModeCubit>(),
+                      child: SafeModeShield(
+                        child: BaseApp.router(
+                          theme: theme,
+                          onGenerateTitle: (context) => context.l10n.common.appName,
+                          routerConfig: appRouter.config(
+                            navigatorObservers: () => navigatorObservers,
+                            deepLinkBuilder: _deepLinkBuilder,
+                          ),
+                          locale: TranslationProvider.of(context).flutterLocale,
+                          supportedLocales: AppLocaleUtils.supportedLocales,
+                          builder: (context, child) =>
+                              AppShell(child: child ?? const SizedBox.shrink()),
                         ),
-                        locale: TranslationProvider.of(context).flutterLocale,
-                        supportedLocales: AppLocaleUtils.supportedLocales,
                       ),
                     ),
                   ),

@@ -76,6 +76,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$firstSlip$en firstSlip = _Translations$firstSlip$en._(_root);
   @override
+  late final _Translations$globalErrors$en globalErrors = _Translations$globalErrors$en._(_root);
+  @override
   late final _Translations$help$en help = _Translations$help$en._(_root);
   @override
   late final _Translations$ideaDetail$en ideaDetail = _Translations$ideaDetail$en._(_root);
@@ -697,6 +699,51 @@ class _Translations$firstSlip$en extends Translations$firstSlip$pt {
   String get save => 'Save';
   @override
   String get saveError => 'Could not keep it right now. Try again.';
+}
+
+// Path: globalErrors
+class _Translations$globalErrors$en extends Translations$globalErrors$pt {
+  _Translations$globalErrors$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get offline => 'No connection. Your notes stay saved and sync later.';
+  @override
+  String get errorTitle => 'Something went wrong';
+  @override
+  String get errorText => 'Try again in a moment.';
+  @override
+  String get networkTitle => 'No connection';
+  @override
+  String get networkText => 'Check the connection and try again.';
+  @override
+  String get timeoutTitle => 'The connection took too long';
+  @override
+  String get timeoutText => 'Try again in a moment.';
+  @override
+  String get rateTitle => 'Easy there';
+  @override
+  String get rateText => 'Too many tries in a row. Wait a little and try again.';
+  @override
+  String get notFoundTitle => 'Not found';
+  @override
+  String get notFoundText => 'Maybe this is no longer available.';
+  @override
+  String get retry => 'Try again';
+  @override
+  String retryIn({required Object seconds}) => 'Try in ${seconds}s';
+  @override
+  String get updateTitle => 'Update the app';
+  @override
+  String get updateHighlight => 'app';
+  @override
+  String get updateText => 'There is a new version. Update to continue.';
+  @override
+  String get updateAction => 'Update';
+  @override
+  String get updateUnavailable => 'Could not open the store. Update there.';
 }
 
 // Path: help
@@ -3444,6 +3491,24 @@ extension on TranslationsEn {
           'firstSlip.localNote' => 'Stays saved on this phone only.',
           'firstSlip.save' => 'Save',
           'firstSlip.saveError' => 'Could not keep it right now. Try again.',
+          'globalErrors.offline' => 'No connection. Your notes stay saved and sync later.',
+          'globalErrors.errorTitle' => 'Something went wrong',
+          'globalErrors.errorText' => 'Try again in a moment.',
+          'globalErrors.networkTitle' => 'No connection',
+          'globalErrors.networkText' => 'Check the connection and try again.',
+          'globalErrors.timeoutTitle' => 'The connection took too long',
+          'globalErrors.timeoutText' => 'Try again in a moment.',
+          'globalErrors.rateTitle' => 'Easy there',
+          'globalErrors.rateText' => 'Too many tries in a row. Wait a little and try again.',
+          'globalErrors.notFoundTitle' => 'Not found',
+          'globalErrors.notFoundText' => 'Maybe this is no longer available.',
+          'globalErrors.retry' => 'Try again',
+          'globalErrors.retryIn' => ({required Object seconds}) => 'Try in ${seconds}s',
+          'globalErrors.updateTitle' => 'Update the app',
+          'globalErrors.updateHighlight' => 'app',
+          'globalErrors.updateText' => 'There is a new version. Update to continue.',
+          'globalErrors.updateAction' => 'Update',
+          'globalErrors.updateUnavailable' => 'Could not open the store. Update there.',
           'help.badDayTitle' => 'A hard day',
           'help.badDayText' => 'Three small things that may help right now. Nothing required.',
           'help.starterTitle' => 'Start a conversation',
@@ -3696,6 +3761,9 @@ extension on TranslationsEn {
           'pause.returns.oneHour' => '1 hour',
           'pause.returns.threeHours' => '3 hours',
           'pause.returns.eightHours' => '8 hours',
+          _ => null,
+        } ??
+        switch (path) {
           'pause.returns.tomorrow' => 'Tomorrow',
           'pause.returns.other' => '',
           'pause.note' => 'You both see Today on pause. You can come back whenever you like.',
@@ -3718,9 +3786,6 @@ extension on TranslationsEn {
           }) => 'This month you have ${slips} slips and ${cards} sent cards left on the free plan.',
           'plus.freeName' => 'Free',
           'plus.freeFeatures' => 'Slips every month, one sent card a month, repair, pause, safety and everything you already saved.',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.plusName' => 'Plus',
           'plus.plusFeatures' => 'More slips and cards each month and more for both of you, covering you and your partner.',
           'plus.monthly' => 'Monthly',
@@ -4264,6 +4329,9 @@ extension on TranslationsEn {
           'tabs.ritualsTitle' => 'Rituals',
           'tabs.ritualsText' => 'Small habits you want to protect.',
           'tabs.dateNightLabel' => 'DATE',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.dateNightTitle' => 'Date night',
           'tabs.dateNightText' => 'Ideas for the two of you, picked together.',
           'tabs.partnerLabel' => 'JUST FOR YOU',
@@ -4282,9 +4350,6 @@ extension on TranslationsEn {
           'tabs.dayTitle' => 'Day by day',
           'tabs.dayText' => 'What matters on each day.',
           'tabs.plusLabel' => 'PLAN',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.plusTitle' => 'Free and Plus',
           'tabs.plusText' => 'What each plan includes, no pressure.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',

@@ -1,0 +1,20 @@
+{
+  "offline": "Sem conexão. Suas anotações ficam salvas e sincronizam depois.",
+  "errorTitle": "Não deu certo",
+  "errorText": "Tente de novo em instantes.",
+  "networkTitle": "Sem conexão",
+  "networkText": "Verifique a conexão e tente de novo.",
+  "timeoutTitle": "A conexão demorou",
+  "timeoutText": "Tente de novo em instantes.",
+  "rateTitle": "Calma aí",
+  "rateText": "Muitas tentativas seguidas. Espere um pouco e tente de novo.",
+  "notFoundTitle": "Não encontramos",
+  "notFoundText": "Talvez isso não esteja mais disponível.",
+  "retry": "Tentar de novo",
+  "retryIn": "Tentar em {seconds}s",
+  "updateTitle": "Atualize o app",
+  "updateHighlight": "app",
+  "updateText": "Há uma versão nova. Atualize para continuar.",
+  "updateAction": "Atualizar",
+  "updateUnavailable": "Não foi possível abrir a loja. Atualize por lá."
+}

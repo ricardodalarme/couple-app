@@ -1,21 +1,39 @@
+import 'package:connectivity_service/connectivity_service.dart';
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/app/data/data_sources/app_config_data_source.dart';
+import 'package:flutter_bloc_starter/features/app/data/repositories/app_config_repository.dart';
+import 'package:flutter_bloc_starter/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
+import 'package:flutter_bloc_starter/features/app/presentation/version/cubit/version_gate_cubit.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
+import 'package:network/network.dart';
 
 class AppInjectionModule() implements InjectionModule {
   @override
-  void registerDependencies({required Injector injector}) =>
-      injector..registerLazySingleton<AppCubit>(
-        () => AppCubit(
-          authenticationRepository: injector.get<AuthenticationRepository>(),
-          profileRepository: injector.get<ProfileRepository>(),
-          settingsRepository: injector.get<SettingsRepository>(),
-          slipRepository: injector.get<SlipRepository>(),
-          reminderSyncService: injector.get<ReminderSyncService>(),
-        ),
-      );
+  void registerDependencies({required Injector injector}) => injector
+    ..registerLazySingleton<AppConfigDataSource>(
+      () => AppConfigDataSource(client: injector.get<GQLClient>()),
+    )
+    ..registerLazySingleton<AppConfigRepository>(
+      () => AppConfigRepository(dataSource: injector.get<AppConfigDataSource>()),
+    )
+    ..registerLazySingleton<ConnectivityCubit>(
+      () => ConnectivityCubit(connectivityService: injector.get<ConnectivityService>()),
+    )
+    ..registerLazySingleton<VersionGateCubit>(
+      () => VersionGateCubit(repository: injector.get<AppConfigRepository>()),
+    )
+    ..registerLazySingleton<AppCubit>(
+      () => AppCubit(
+        authenticationRepository: injector.get<AuthenticationRepository>(),
+        profileRepository: injector.get<ProfileRepository>(),
+        settingsRepository: injector.get<SettingsRepository>(),
+        slipRepository: injector.get<SlipRepository>(),
+        reminderSyncService: injector.get<ReminderSyncService>(),
+      ),
+    );
 }

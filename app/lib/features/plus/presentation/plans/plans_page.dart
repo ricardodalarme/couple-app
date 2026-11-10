@@ -3,6 +3,7 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
 import 'package:flutter_bloc_starter/features/plus/presentation/plans/cubit/plans_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -75,12 +76,8 @@ class const PlansPage({super.key}) extends StatelessWidget implements AutoRouteW
               ],
             ),
           ),
-          failureBuilder: (_) => BaseEmptyState(
-            title: l10n.errorTitle,
-            text: l10n.errorText,
-            actionText: context.l10n.common.retry,
-            onAction: context.read<PlansCubit>().load,
-          ),
+          failureBuilder: (failure) =>
+              AppErrorView(exception: failure, onRetry: context.read<PlansCubit>().load),
         ),
       ),
     );

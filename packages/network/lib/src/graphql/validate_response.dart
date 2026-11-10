@@ -16,7 +16,12 @@ ServerResponseException? mapResponseException(QueryResult response) {
   }
 
   if (exception.linkException != null && exception.graphqlErrors.isEmpty) {
-    return ServerResponseException(networkErrorCode, exception);
+    final link = exception.linkException.toString().toLowerCase();
+
+    return ServerResponseException(
+      link.contains('timeout') ? timeoutErrorCode : networkErrorCode,
+      exception,
+    );
   }
 
   final firstError = exception.graphqlErrors.firstOrNull;
@@ -32,6 +37,9 @@ ServerResponseException? mapResponseException(QueryResult response) {
 
 /// The code reported when the request never reached the server.
 const String networkErrorCode = 'NETWORK';
+
+/// The code reported when the request reached the server too late.
+const String timeoutErrorCode = 'TIMEOUT';
 
 final RegExp _stableCode = RegExp(r'^[A-Z][A-Z0-9_]+$');
 

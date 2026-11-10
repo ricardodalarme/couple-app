@@ -67,6 +67,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$day$pt day = Translations$day$pt.internal(_root);
   late final Translations$discreet$pt discreet = Translations$discreet$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
+  late final Translations$globalErrors$pt globalErrors = Translations$globalErrors$pt.internal(
+    _root,
+  );
   late final Translations$help$pt help = Translations$help$pt.internal(_root);
   late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
@@ -792,6 +795,69 @@ class Translations$firstSlip$pt {
 
   /// pt: 'Não deu para guardar agora. Tente de novo.'
   String get saveError => 'Não deu para guardar agora. Tente de novo.';
+}
+
+// Path: globalErrors
+class Translations$globalErrors$pt {
+  Translations$globalErrors$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Sem conexão. Suas anotações ficam salvas e sincronizam depois.'
+  String get offline => 'Sem conexão. Suas anotações ficam salvas e sincronizam depois.';
+
+  /// pt: 'Não deu certo'
+  String get errorTitle => 'Não deu certo';
+
+  /// pt: 'Tente de novo em instantes.'
+  String get errorText => 'Tente de novo em instantes.';
+
+  /// pt: 'Sem conexão'
+  String get networkTitle => 'Sem conexão';
+
+  /// pt: 'Verifique a conexão e tente de novo.'
+  String get networkText => 'Verifique a conexão e tente de novo.';
+
+  /// pt: 'A conexão demorou'
+  String get timeoutTitle => 'A conexão demorou';
+
+  /// pt: 'Tente de novo em instantes.'
+  String get timeoutText => 'Tente de novo em instantes.';
+
+  /// pt: 'Calma aí'
+  String get rateTitle => 'Calma aí';
+
+  /// pt: 'Muitas tentativas seguidas. Espere um pouco e tente de novo.'
+  String get rateText => 'Muitas tentativas seguidas. Espere um pouco e tente de novo.';
+
+  /// pt: 'Não encontramos'
+  String get notFoundTitle => 'Não encontramos';
+
+  /// pt: 'Talvez isso não esteja mais disponível.'
+  String get notFoundText => 'Talvez isso não esteja mais disponível.';
+
+  /// pt: 'Tentar de novo'
+  String get retry => 'Tentar de novo';
+
+  /// pt: 'Tentar em {seconds}s'
+  String retryIn({required Object seconds}) => 'Tentar em ${seconds}s';
+
+  /// pt: 'Atualize o app'
+  String get updateTitle => 'Atualize o app';
+
+  /// pt: 'app'
+  String get updateHighlight => 'app';
+
+  /// pt: 'Há uma versão nova. Atualize para continuar.'
+  String get updateText => 'Há uma versão nova. Atualize para continuar.';
+
+  /// pt: 'Atualizar'
+  String get updateAction => 'Atualizar';
+
+  /// pt: 'Não foi possível abrir a loja. Atualize por lá.'
+  String get updateUnavailable => 'Não foi possível abrir a loja. Atualize por lá.';
 }
 
 // Path: help
@@ -4126,6 +4192,25 @@ extension on Translations {
           'firstSlip.localNote' => 'Fica salvo só neste celular.',
           'firstSlip.save' => 'Salvar',
           'firstSlip.saveError' => 'Não deu para guardar agora. Tente de novo.',
+          'globalErrors.offline' =>
+            'Sem conexão. Suas anotações ficam salvas e sincronizam depois.',
+          'globalErrors.errorTitle' => 'Não deu certo',
+          'globalErrors.errorText' => 'Tente de novo em instantes.',
+          'globalErrors.networkTitle' => 'Sem conexão',
+          'globalErrors.networkText' => 'Verifique a conexão e tente de novo.',
+          'globalErrors.timeoutTitle' => 'A conexão demorou',
+          'globalErrors.timeoutText' => 'Tente de novo em instantes.',
+          'globalErrors.rateTitle' => 'Calma aí',
+          'globalErrors.rateText' => 'Muitas tentativas seguidas. Espere um pouco e tente de novo.',
+          'globalErrors.notFoundTitle' => 'Não encontramos',
+          'globalErrors.notFoundText' => 'Talvez isso não esteja mais disponível.',
+          'globalErrors.retry' => 'Tentar de novo',
+          'globalErrors.retryIn' => ({required Object seconds}) => 'Tentar em ${seconds}s',
+          'globalErrors.updateTitle' => 'Atualize o app',
+          'globalErrors.updateHighlight' => 'app',
+          'globalErrors.updateText' => 'Há uma versão nova. Atualize para continuar.',
+          'globalErrors.updateAction' => 'Atualizar',
+          'globalErrors.updateUnavailable' => 'Não foi possível abrir a loja. Atualize por lá.',
           'help.badDayTitle' => 'Um dia difícil',
           'help.badDayText' => 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.',
           'help.starterTitle' => 'Começar uma conversa',
@@ -4380,6 +4465,9 @@ extension on Translations {
           'pause.returns.oneHour' => '1 hora',
           'pause.returns.threeHours' => '3 horas',
           'pause.returns.eightHours' => '8 horas',
+          _ => null,
+        } ??
+        switch (path) {
           'pause.returns.tomorrow' => 'Amanhã',
           'pause.returns.other' => '',
           'pause.note' => 'Os dois veem o Hoje em pausa. Você pode voltar quando quiser.',
@@ -4402,9 +4490,6 @@ extension on Translations {
           }) => 'Neste mês restam ${slips} slips e ${cards} cartões enviados no plano grátis.',
           'plus.freeName' => 'Grátis',
           'plus.freeFeatures' => 'Slips todo mês, um cartão enviado por mês, repair, pausa, segurança e tudo o que você já guardou.',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.plusName' => 'Plus',
           'plus.plusFeatures' =>
             'Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.',
@@ -4952,6 +5037,9 @@ extension on Translations {
           'tabs.ritualsTitle' => 'Rituais',
           'tabs.ritualsText' => 'Pequenos hábitos que vocês querem proteger.',
           'tabs.dateNightLabel' => 'ENCONTRO',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.dateNightTitle' => 'Date night',
           'tabs.dateNightText' => 'Ideias para vocês dois, escolhidas juntos.',
           'tabs.partnerLabel' => 'SÓ PARA VOCÊ',
@@ -4970,9 +5058,6 @@ extension on Translations {
           'tabs.dayTitle' => 'Dia a dia',
           'tabs.dayText' => 'O que importa em cada dia.',
           'tabs.plusLabel' => 'PLANO',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.plusTitle' => 'Grátis e Plus',
           'tabs.plusText' => 'O que cada plano inclui, sem pressão.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',

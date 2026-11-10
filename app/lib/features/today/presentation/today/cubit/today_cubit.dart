@@ -35,11 +35,13 @@ class TodayCubit({
 
   /// Reads Hoje; a screen already showing data keeps it while the new read runs.
   Future<void> load() async {
+    if (isClosed) return;
     if (state.home is! Success) emit(state.copyWith(home: const Loading()));
     final selfName = await _readOwnName();
     final settings = await _readSettings();
     try {
       final result = await _todayRepository.getToday();
+      if (isClosed) return;
       _schedulePauseEnd(result.home);
       emit(
         state.copyWith(
@@ -55,7 +57,7 @@ class TodayCubit({
         ),
       );
     } catch (exception) {
-      if (state.home is Success) return;
+      if (isClosed || state.home is Success) return;
       emit(state.copyWith(home: Failure.fromObject(exception), selfName: selfName));
     }
   }
@@ -94,6 +96,7 @@ class TodayCubit({
 
   Future<void> acknowledgeUnpairNotice() async {
     await _todayRepository.acknowledgeUnpair();
+    if (isClosed) return;
     emit(
       TodayState(
         home: state.home,

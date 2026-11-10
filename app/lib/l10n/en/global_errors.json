@@ -1,0 +1,20 @@
+{
+  "offline": "No connection. Your notes stay saved and sync later.",
+  "errorTitle": "Something went wrong",
+  "errorText": "Try again in a moment.",
+  "networkTitle": "No connection",
+  "networkText": "Check the connection and try again.",
+  "timeoutTitle": "The connection took too long",
+  "timeoutText": "Try again in a moment.",
+  "rateTitle": "Easy there",
+  "rateText": "Too many tries in a row. Wait a little and try again.",
+  "notFoundTitle": "Not found",
+  "notFoundText": "Maybe this is no longer available.",
+  "retry": "Try again",
+  "retryIn": "Try in {seconds}s",
+  "updateTitle": "Update the app",
+  "updateHighlight": "app",
+  "updateText": "There is a new version. Update to continue.",
+  "updateAction": "Update",
+  "updateUnavailable": "Could not open the store. Update there."
+}
