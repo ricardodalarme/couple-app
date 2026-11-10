@@ -70,6 +70,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$quickSlip$pt quickSlip = Translations$quickSlip$pt.internal(_root);
+  late final Translations$slipsList$pt slipsList = Translations$slipsList$pt.internal(_root);
   late final Translations$tabs$pt tabs = Translations$tabs$pt.internal(_root);
   late final Translations$today$pt today = Translations$today$pt.internal(_root);
   late final Translations$welcome$pt welcome = Translations$welcome$pt.internal(_root);
@@ -555,6 +556,80 @@ class Translations$quickSlip$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
   };
+}
+
+// Path: slipsList
+class Translations$slipsList$pt {
+  Translations$slipsList$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Slips'
+  String get title => 'Slips';
+
+  /// pt: 'Esta semana'
+  String get scopeWeek => 'Esta semana';
+
+  /// pt: 'Todos'
+  String get scopeAll => 'Todos';
+
+  /// pt: 'Privado'
+  String get private => 'Privado';
+
+  /// pt: 'Esta semana'
+  String get thisWeek => 'Esta semana';
+
+  /// pt: 'Semana passada'
+  String get lastWeek => 'Semana passada';
+
+  /// pt: '{start} – {end}'
+  String weekRange({required Object start, required Object end}) => '${start} – ${end}';
+
+  /// pt: '{day} {month}'
+  String dateShort({required Object day, required Object month}) => '${day} ${month}';
+
+  /// pt: '{weekday} · {category}'
+  String dayLine({required Object weekday, required Object category}) => '${weekday} · ${category}';
+
+  List<String> get weekdaysShort => ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
+  List<String> get monthsShort => [
+    'jan',
+    'fev',
+    'mar',
+    'abr',
+    'mai',
+    'jun',
+    'jul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dez',
+  ];
+  Map<String, String> get categories => {
+    'said': 'Disse algo',
+    'did': 'Fez algo',
+    'noticed': 'Me notou',
+    'helped': 'Ajudou',
+    'other': '',
+  };
+
+  /// pt: 'Nada ainda'
+  String get emptyTitle => 'Nada ainda';
+
+  /// pt: 'Um slip é uma coisa boa, em uma linha.'
+  String get emptyText => 'Um slip é uma coisa boa, em uma linha.';
+
+  /// pt: 'Adicionar um slip'
+  String get emptyAction => 'Adicionar um slip';
+
+  /// pt: 'Não deu para carregar seus slips'
+  String get errorTitle => 'Não deu para carregar seus slips';
+
+  /// pt: 'Eles continuam salvos. Tente de novo.'
+  String get errorText => 'Eles continuam salvos. Tente de novo.';
 }
 
 // Path: tabs
@@ -1198,6 +1273,50 @@ extension on Translations {
       'quickSlip.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
       'quickSlip.errors.other' =>
         'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
+      'slipsList.title' => 'Slips',
+      'slipsList.scopeWeek' => 'Esta semana',
+      'slipsList.scopeAll' => 'Todos',
+      'slipsList.private' => 'Privado',
+      'slipsList.thisWeek' => 'Esta semana',
+      'slipsList.lastWeek' => 'Semana passada',
+      'slipsList.weekRange' => ({
+        required Object start,
+        required Object end,
+      }) => '${start} – ${end}',
+      'slipsList.dateShort' => ({required Object day, required Object month}) => '${day} ${month}',
+      'slipsList.dayLine' => ({
+        required Object weekday,
+        required Object category,
+      }) => '${weekday} · ${category}',
+      'slipsList.weekdaysShort.0' => 'Seg',
+      'slipsList.weekdaysShort.1' => 'Ter',
+      'slipsList.weekdaysShort.2' => 'Qua',
+      'slipsList.weekdaysShort.3' => 'Qui',
+      'slipsList.weekdaysShort.4' => 'Sex',
+      'slipsList.weekdaysShort.5' => 'Sáb',
+      'slipsList.weekdaysShort.6' => 'Dom',
+      'slipsList.monthsShort.0' => 'jan',
+      'slipsList.monthsShort.1' => 'fev',
+      'slipsList.monthsShort.2' => 'mar',
+      'slipsList.monthsShort.3' => 'abr',
+      'slipsList.monthsShort.4' => 'mai',
+      'slipsList.monthsShort.5' => 'jun',
+      'slipsList.monthsShort.6' => 'jul',
+      'slipsList.monthsShort.7' => 'ago',
+      'slipsList.monthsShort.8' => 'set',
+      'slipsList.monthsShort.9' => 'out',
+      'slipsList.monthsShort.10' => 'nov',
+      'slipsList.monthsShort.11' => 'dez',
+      'slipsList.categories.said' => 'Disse algo',
+      'slipsList.categories.did' => 'Fez algo',
+      'slipsList.categories.noticed' => 'Me notou',
+      'slipsList.categories.helped' => 'Ajudou',
+      'slipsList.categories.other' => '',
+      'slipsList.emptyTitle' => 'Nada ainda',
+      'slipsList.emptyText' => 'Um slip é uma coisa boa, em uma linha.',
+      'slipsList.emptyAction' => 'Adicionar um slip',
+      'slipsList.errorTitle' => 'Não deu para carregar seus slips',
+      'slipsList.errorText' => 'Eles continuam salvos. Tente de novo.',
       'tabs.today' => 'Hoje',
       'tabs.slips' => 'Slips',
       'tabs.together' => 'Juntos',

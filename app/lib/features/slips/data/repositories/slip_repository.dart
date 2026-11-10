@@ -1,10 +1,16 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/slip_data_source.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/slip_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/pending_slip.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_draft.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_entry.dart';
 import 'package:logger/logger.dart';
 import 'package:network/network.dart';
+
+/// How many slips one page holds.
+const int slipPageSize = 20;
 
 /// Where a saved slip ended up.
 enum SlipSaveOutcome() {
@@ -20,6 +26,10 @@ class SlipRepository({
   required final SlipLocalDataSource _localDataSource,
 }) {
   final Logger _logger = Logger('SlipRepository');
+  final StreamController<void> _changes = StreamController<void>.broadcast();
+
+  /// Emits whenever a slip is saved, undone or sent, so lists can read again.
+  Stream<void> get onChanged => _changes.stream;
 
   /// Saves a slip, or keeps it on the device when there is no connection.
   ///
@@ -33,6 +43,7 @@ class SlipRepository({
     final slip = PendingSlip(id: id, body: body, createdAt: createdAt, category: category);
     try {
       await _send(slip);
+      _changes.add(null);
       return SlipSaveOutcome.synced;
     } catch (e, stack) {
       if (!_isOffline(e)) {
@@ -40,7 +51,32 @@ class SlipRepository({
         rethrow;
       }
       await _enqueue(slip);
+      _changes.add(null);
       return SlipSaveOutcome.queued;
+    }
+  }
+
+  /// Reads a page of the person's slips, newest first; [since] limits it to recent ones.
+  Future<SlipPage> getSlips({String? after, DateTime? since, int pageSize = slipPageSize}) async {
+    try {
+      final result = await _slipDataSource.getSlips(first: pageSize, after: after, since: since);
+
+      return SlipPage(
+        items: [
+          for (final edge in result.edges)
+            SlipEntry(
+              id: edge.node.id,
+              body: edge.node.body,
+              category: edge.node.category,
+              createdAt: edge.node.createdAt,
+            ),
+        ],
+        hasNext: result.pageInfo.hasNextPage,
+        cursor: result.pageInfo.endCursor,
+      );
+    } catch (e, stack) {
+      _logger.error('Failed to load slips', error: e, stackTrace: stack);
+      rethrow;
     }
   }
 
@@ -56,11 +92,13 @@ class SlipRepository({
     final pending = _localDataSource.readPending();
     if (pending.any((slip) => slip.id == id)) {
       await _localDataSource.writePending(pending.where((slip) => slip.id != id).toList());
+      _changes.add(null);
       return;
     }
 
     try {
       await _slipDataSource.deleteSlip(id);
+      _changes.add(null);
     } catch (e, stack) {
       _logger.error('Failed to undo a slip', error: e, stackTrace: stack);
       rethrow;
@@ -78,6 +116,7 @@ class SlipRepository({
       }
       final remaining = _localDataSource.readPending().where((item) => item.id != slip.id);
       await _localDataSource.writePending(remaining.toList());
+      _changes.add(null);
     }
   }
 

@@ -1,0 +1,25 @@
+{
+  "title": "Slips",
+  "scopeWeek": "Esta semana",
+  "scopeAll": "Todos",
+  "private": "Privado",
+  "thisWeek": "Esta semana",
+  "lastWeek": "Semana passada",
+  "weekRange": "{start} – {end}",
+  "dateShort": "{day} {month}",
+  "dayLine": "{weekday} · {category}",
+  "weekdaysShort": ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"],
+  "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+  "categories(map)": {
+    "said": "Disse algo",
+    "did": "Fez algo",
+    "noticed": "Me notou",
+    "helped": "Ajudou",
+    "other": ""
+  },
+  "emptyTitle": "Nada ainda",
+  "emptyText": "Um slip é uma coisa boa, em uma linha.",
+  "emptyAction": "Adicionar um slip",
+  "errorTitle": "Não deu para carregar seus slips",
+  "errorText": "Eles continuam salvos. Tente de novo."
+}

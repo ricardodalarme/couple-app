@@ -77,6 +77,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$quickSlip$en quickSlip = _Translations$quickSlip$en._(_root);
   @override
+  late final _Translations$slipsList$en slipsList = _Translations$slipsList$en._(_root);
+  @override
   late final _Translations$tabs$en tabs = _Translations$tabs$en._(_root);
   @override
   late final _Translations$today$en today = _Translations$today$en._(_root);
@@ -474,6 +476,68 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'Could not save right now. Your text is still here, try again.',
   };
+}
+
+// Path: slipsList
+class _Translations$slipsList$en extends Translations$slipsList$pt {
+  _Translations$slipsList$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Slips';
+  @override
+  String get scopeWeek => 'This week';
+  @override
+  String get scopeAll => 'All';
+  @override
+  String get private => 'Private';
+  @override
+  String get thisWeek => 'This week';
+  @override
+  String get lastWeek => 'Last week';
+  @override
+  String weekRange({required Object start, required Object end}) => '${start} – ${end}';
+  @override
+  String dateShort({required Object month, required Object day}) => '${month} ${day}';
+  @override
+  String dayLine({required Object weekday, required Object category}) => '${weekday} · ${category}';
+  @override
+  List<String> get weekdaysShort => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  @override
+  List<String> get monthsShort => [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  @override
+  Map<String, String> get categories => {
+    'said': 'Said something',
+    'did': 'Did something',
+    'noticed': 'Noticed me',
+    'helped': 'Helped',
+    'other': '',
+  };
+  @override
+  String get emptyTitle => 'Nothing yet';
+  @override
+  String get emptyText => 'A slip is one good thing, in one line.';
+  @override
+  String get emptyAction => 'Add a slip';
+  @override
+  String get errorTitle => 'Could not load your slips';
+  @override
+  String get errorText => 'They are still saved. Try again.';
 }
 
 // Path: tabs
@@ -1033,6 +1097,50 @@ extension on TranslationsEn {
       'quickSlip.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
       'quickSlip.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
       'quickSlip.errors.other' => 'Could not save right now. Your text is still here, try again.',
+      'slipsList.title' => 'Slips',
+      'slipsList.scopeWeek' => 'This week',
+      'slipsList.scopeAll' => 'All',
+      'slipsList.private' => 'Private',
+      'slipsList.thisWeek' => 'This week',
+      'slipsList.lastWeek' => 'Last week',
+      'slipsList.weekRange' => ({
+        required Object start,
+        required Object end,
+      }) => '${start} – ${end}',
+      'slipsList.dateShort' => ({required Object month, required Object day}) => '${month} ${day}',
+      'slipsList.dayLine' => ({
+        required Object weekday,
+        required Object category,
+      }) => '${weekday} · ${category}',
+      'slipsList.weekdaysShort.0' => 'Mon',
+      'slipsList.weekdaysShort.1' => 'Tue',
+      'slipsList.weekdaysShort.2' => 'Wed',
+      'slipsList.weekdaysShort.3' => 'Thu',
+      'slipsList.weekdaysShort.4' => 'Fri',
+      'slipsList.weekdaysShort.5' => 'Sat',
+      'slipsList.weekdaysShort.6' => 'Sun',
+      'slipsList.monthsShort.0' => 'Jan',
+      'slipsList.monthsShort.1' => 'Feb',
+      'slipsList.monthsShort.2' => 'Mar',
+      'slipsList.monthsShort.3' => 'Apr',
+      'slipsList.monthsShort.4' => 'May',
+      'slipsList.monthsShort.5' => 'Jun',
+      'slipsList.monthsShort.6' => 'Jul',
+      'slipsList.monthsShort.7' => 'Aug',
+      'slipsList.monthsShort.8' => 'Sep',
+      'slipsList.monthsShort.9' => 'Oct',
+      'slipsList.monthsShort.10' => 'Nov',
+      'slipsList.monthsShort.11' => 'Dec',
+      'slipsList.categories.said' => 'Said something',
+      'slipsList.categories.did' => 'Did something',
+      'slipsList.categories.noticed' => 'Noticed me',
+      'slipsList.categories.helped' => 'Helped',
+      'slipsList.categories.other' => '',
+      'slipsList.emptyTitle' => 'Nothing yet',
+      'slipsList.emptyText' => 'A slip is one good thing, in one line.',
+      'slipsList.emptyAction' => 'Add a slip',
+      'slipsList.errorTitle' => 'Could not load your slips',
+      'slipsList.errorText' => 'They are still saved. Try again.',
       'tabs.today' => 'Today',
       'tabs.slips' => 'Slips',
       'tabs.together' => 'Together',

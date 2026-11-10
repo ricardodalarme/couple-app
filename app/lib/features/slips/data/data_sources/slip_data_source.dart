@@ -1,6 +1,8 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/DeleteSlip.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SaveSlip.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SetSlipCategory.graphql.dart';
+import 'package:flutter_bloc_starter/features/slips/data/data_sources/queries/generated/MySlips.graphql.dart';
 import 'package:network/network.dart';
 
 class SlipDataSource({required final GQLClient _client}) {
@@ -17,6 +19,30 @@ class SlipDataSource({required final GQLClient _client}) {
     );
 
     validateResponse(response);
+  }
+
+  /// Reads one page of the person's own slips, newest first, without deleted or archived ones.
+  Future<QueryMySlipsslipsCollection> getSlips({
+    required int first,
+    String? after,
+    DateTime? since,
+  }) async {
+    final response = await _client.query(
+      OptionsQueryMySlips(
+        fetchPolicy: FetchPolicy.networkOnly,
+        variables: VariablesQueryMySlips(
+          first: first,
+          after: after,
+          filter: InputSlipsFilter(
+            deletedAt: InputDatetimeFilter($is: EnumFilterIs.NULL),
+            archivedAt: InputDatetimeFilter($is: EnumFilterIs.NULL),
+            createdAt: since == null ? null : InputDatetimeFilter(gte: since),
+          ),
+        ),
+      ),
+    );
+
+    return validateResponseData(response, getData: (data) => data.slipsCollection);
   }
 
   Future<void> setCategory({required String id, String? category}) async {

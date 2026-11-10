@@ -1,0 +1,22 @@
+query MySlips($first: Int, $after: Cursor, $filter: SlipsFilter) {
+  slipsCollection(
+    first: $first
+    after: $after
+    filter: $filter
+    orderBy: [{ createdAt: DescNullsLast }]
+  ) {
+    edges {
+      node {
+        id
+        body
+        kind
+        category
+        createdAt
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

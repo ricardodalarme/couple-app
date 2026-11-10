@@ -1,0 +1,25 @@
+{
+  "title": "Slips",
+  "scopeWeek": "This week",
+  "scopeAll": "All",
+  "private": "Private",
+  "thisWeek": "This week",
+  "lastWeek": "Last week",
+  "weekRange": "{start} – {end}",
+  "dateShort": "{month} {day}",
+  "dayLine": "{weekday} · {category}",
+  "weekdaysShort": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "categories(map)": {
+    "said": "Said something",
+    "did": "Did something",
+    "noticed": "Noticed me",
+    "helped": "Helped",
+    "other": ""
+  },
+  "emptyTitle": "Nothing yet",
+  "emptyText": "A slip is one good thing, in one line.",
+  "emptyAction": "Add a slip",
+  "errorTitle": "Could not load your slips",
+  "errorText": "They are still saved. Try again."
+}

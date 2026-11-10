@@ -277,7 +277,7 @@ class SlipsRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const SlipsPage();
+      return WrappedRoute(child: const SlipsPage());
     },
   );
 }
