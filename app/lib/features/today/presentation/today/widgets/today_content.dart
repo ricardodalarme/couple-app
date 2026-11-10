@@ -51,12 +51,19 @@ class const TodayContent({
           BaseBanner(text: l10n.offline, icon: AppIcons.wifi_off),
           const SizedBox(height: AppSpace.s12),
         ],
-        Align(
-          alignment: Alignment.centerRight,
-          child: BaseTextLink(
-            text: context.l10n.safety.entry,
-            onPressed: () => context.pushRoute(const HelpLinesRoute()),
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            BaseTextLink(
+              text: context.l10n.settingsHome.title,
+              onPressed: () => context.pushRoute(const SettingsHomeRoute()),
+            ),
+            const SizedBox(width: AppSpace.s16),
+            BaseTextLink(
+              text: context.l10n.safety.entry,
+              onPressed: () => context.pushRoute(const HelpLinesRoute()),
+            ),
+          ],
         ),
         const NotificationsOffBanner(),
         if (home.unopenedCards > 0) ...[

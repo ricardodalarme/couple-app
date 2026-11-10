@@ -120,6 +120,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$safety$en safety = _Translations$safety$en._(_root);
   @override
+  late final _Translations$settingsHome$en settingsHome = _Translations$settingsHome$en._(_root);
+  @override
   late final _Translations$slipDetail$en slipDetail = _Translations$slipDetail$en._(_root);
   @override
   late final _Translations$slipKind$en slipKind = _Translations$slipKind$en._(_root);
@@ -1552,6 +1554,39 @@ class _Translations$safety$en extends Translations$safety$pt {
   String get safeModeLink => 'Safe mode and quick exit';
   @override
   String get entry => 'Safety and support';
+}
+
+// Path: settingsHome
+class _Translations$settingsHome$en extends Translations$settingsHome$pt {
+  _Translations$settingsHome$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Settings';
+  @override
+  String get safety => 'Safety and support';
+  @override
+  String get safetyStatus => 'Help lines, safe mode and quick exit';
+  @override
+  String get relationship => 'Relationship';
+  @override
+  String get connected => 'You are connected';
+  @override
+  String get invitePartner => 'Invite your partner';
+  @override
+  String get notifications => 'Notifications';
+  @override
+  String get on => 'On';
+  @override
+  String get off => 'Off';
+  @override
+  String get plan => 'Plan';
+  @override
+  String get planFree => 'Free';
+  @override
+  String get planPlus => 'Plus';
 }
 
 // Path: slipDetail
@@ -3761,6 +3796,18 @@ extension on TranslationsEn {
           'safety.privateNote' => 'This screen keeps nothing and nothing is sent to anyone.',
           'safety.safeModeLink' => 'Safe mode and quick exit',
           'safety.entry' => 'Safety and support',
+          'settingsHome.title' => 'Settings',
+          'settingsHome.safety' => 'Safety and support',
+          'settingsHome.safetyStatus' => 'Help lines, safe mode and quick exit',
+          'settingsHome.relationship' => 'Relationship',
+          'settingsHome.connected' => 'You are connected',
+          'settingsHome.invitePartner' => 'Invite your partner',
+          'settingsHome.notifications' => 'Notifications',
+          'settingsHome.on' => 'On',
+          'settingsHome.off' => 'Off',
+          'settingsHome.plan' => 'Plan',
+          'settingsHome.planFree' => 'Free',
+          'settingsHome.planPlus' => 'Plus',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -4084,6 +4131,9 @@ extension on TranslationsEn {
             required Object second,
           }) => '${first} and ${second}',
           'today.invitePerson' => 'Invite your person',
+          _ => null,
+        } ??
+        switch (path) {
           'today.offline' => 'No connection. Showing what was saved.',
           'today.pendingInviteTitle' => 'Invite sent',
           'today.pendingInviteText' => 'They have not joined yet. Send again or revoke.',
@@ -4110,9 +4160,6 @@ extension on TranslationsEn {
                   other: 'Your private slips: ${count} this week',
                 ),
           'today.sundayCardLabel' => 'Sunday card',
-          _ => null,
-        } ??
-        switch (path) {
           'today.sundayCardTitle' => 'Your card for this week',
           'today.inviteCardLabel' => 'Invite',
           'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',

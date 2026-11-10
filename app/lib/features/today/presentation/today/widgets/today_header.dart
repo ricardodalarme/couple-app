@@ -48,6 +48,8 @@ class const TodayHeader({
               BaseAvatarPair(
                 selfInitials: _initial(name),
                 partnerInitials: _initial(home.partnerName),
+                onTap: () => context.pushRoute(const SettingsHomeRoute()),
+                semanticLabel: context.l10n.settingsHome.title,
               )
             else
               BaseAvatarPair(

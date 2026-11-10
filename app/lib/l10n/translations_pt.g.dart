@@ -92,6 +92,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$rituals$pt rituals = Translations$rituals$pt.internal(_root);
   late final Translations$safeMode$pt safeMode = Translations$safeMode$pt.internal(_root);
   late final Translations$safety$pt safety = Translations$safety$pt.internal(_root);
+  late final Translations$settingsHome$pt settingsHome = Translations$settingsHome$pt.internal(
+    _root,
+  );
   late final Translations$slipDetail$pt slipDetail = Translations$slipDetail$pt.internal(_root);
   late final Translations$slipKind$pt slipKind = Translations$slipKind$pt.internal(_root);
   late final Translations$slipsList$pt slipsList = Translations$slipsList$pt.internal(_root);
@@ -1854,6 +1857,51 @@ class Translations$safety$pt {
 
   /// pt: 'Segurança e apoio'
   String get entry => 'Segurança e apoio';
+}
+
+// Path: settingsHome
+class Translations$settingsHome$pt {
+  Translations$settingsHome$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Configurações'
+  String get title => 'Configurações';
+
+  /// pt: 'Segurança e apoio'
+  String get safety => 'Segurança e apoio';
+
+  /// pt: 'Linhas de ajuda, modo seguro e saída rápida'
+  String get safetyStatus => 'Linhas de ajuda, modo seguro e saída rápida';
+
+  /// pt: 'Relacionamento'
+  String get relationship => 'Relacionamento';
+
+  /// pt: 'Vocês estão conectados'
+  String get connected => 'Vocês estão conectados';
+
+  /// pt: 'Convide seu par'
+  String get invitePartner => 'Convide seu par';
+
+  /// pt: 'Notificações'
+  String get notifications => 'Notificações';
+
+  /// pt: 'Ligadas'
+  String get on => 'Ligadas';
+
+  /// pt: 'Desligadas'
+  String get off => 'Desligadas';
+
+  /// pt: 'Plano'
+  String get plan => 'Plano';
+
+  /// pt: 'Grátis'
+  String get planFree => 'Grátis';
+
+  /// pt: 'Plus'
+  String get planPlus => 'Plus';
 }
 
 // Path: slipDetail
@@ -4383,6 +4431,18 @@ extension on Translations {
           'safety.privateNote' => 'Esta tela não guarda nada e nada é enviado a ninguém.',
           'safety.safeModeLink' => 'Modo seguro e saída rápida',
           'safety.entry' => 'Segurança e apoio',
+          'settingsHome.title' => 'Configurações',
+          'settingsHome.safety' => 'Segurança e apoio',
+          'settingsHome.safetyStatus' => 'Linhas de ajuda, modo seguro e saída rápida',
+          'settingsHome.relationship' => 'Relacionamento',
+          'settingsHome.connected' => 'Vocês estão conectados',
+          'settingsHome.invitePartner' => 'Convide seu par',
+          'settingsHome.notifications' => 'Notificações',
+          'settingsHome.on' => 'Ligadas',
+          'settingsHome.off' => 'Desligadas',
+          'settingsHome.plan' => 'Plano',
+          'settingsHome.planFree' => 'Grátis',
+          'settingsHome.planPlus' => 'Plus',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -4707,6 +4767,9 @@ extension on Translations {
             required Object second,
           }) => '${first} e ${second}',
           'today.invitePerson' => 'Convidar sua pessoa',
+          _ => null,
+        } ??
+        switch (path) {
           'today.offline' => 'Sem conexão. Mostrando o que foi salvo.',
           'today.pendingInviteTitle' => 'Convite enviado',
           'today.pendingInviteText' => 'A pessoa ainda não entrou. Reenviar ou revogar.',
@@ -4733,9 +4796,6 @@ extension on Translations {
                   other: 'Seus slips privados: ${count} esta semana',
                 ),
           'today.sundayCardLabel' => 'Cartão de domingo',
-          _ => null,
-        } ??
-        switch (path) {
           'today.sundayCardTitle' => 'Seu cartão desta semana',
           'today.inviteCardLabel' => 'Convite',
           'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',

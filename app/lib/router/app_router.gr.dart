@@ -826,6 +826,22 @@ class SafeModeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SettingsHomePage]
+class SettingsHomeRoute extends PageRouteInfo<void> {
+  const SettingsHomeRoute({List<PageRouteInfo>? children})
+    : super(SettingsHomeRoute.name, initialChildren: children);
+
+  static const String name = 'SettingsHomeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const SettingsHomePage());
+    },
+  );
+}
+
+/// generated route for
 /// [SignInPage]
 class SignInRoute extends PageRouteInfo<void> {
   const SignInRoute({List<PageRouteInfo>? children})
