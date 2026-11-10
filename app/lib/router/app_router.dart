@@ -42,6 +42,9 @@ import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/slip_
 import 'package:flutter_bloc_starter/features/slips/presentation/slips/slips_page.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/today_page.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/date_night/date_night_page.dart';
+import 'package:flutter_bloc_starter/features/together/presentation/day/day_page.dart';
+import 'package:flutter_bloc_starter/features/together/presentation/help/bad_day_page.dart';
+import 'package:flutter_bloc_starter/features/together/presentation/help/starter_page.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/logistics/logistics_page.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/ritual_edit/ritual_edit_page.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/rituals/rituals_page.dart';
@@ -81,6 +84,9 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: RitualsRoute.page),
     AutoRoute(page: PartnerProfileRoute.page),
     AutoRoute(page: DatesRoute.page),
+    AutoRoute(page: BadDayRoute.page),
+    AutoRoute(page: StarterRoute.page),
+    AutoRoute(page: DayRoute.page),
     AutoRoute(page: DateNightRoute.page),
     AutoRoute(page: RitualEditRoute.page),
     AutoRoute(page: GuidedRepairRoute.page, fullscreenDialog: true),

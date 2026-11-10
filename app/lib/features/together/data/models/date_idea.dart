@@ -25,5 +25,19 @@ final class const DateIdeaSuggestion({required final String slug, required final
   List<Object?> get props => [slug, title];
 }
 
+/// One piece of bundled help content, such as a bad-day tip or a conversation opener.
+final class const HelpItem({
+  required final String slug,
+  required final String title,
+  final String? body,
+}) with Equatable {
+  /// A skeleton placeholder, never shown as a real record.
+  factory fake() =>
+      const HelpItem(slug: 'fake', title: 'Pergunte como foi o dia', body: 'E escute.');
+
+  @override
+  List<Object?> get props => [slug, title, body];
+}
+
 /// The longest idea title the server accepts.
 const int dateIdeaTitleMaxLength = 120;

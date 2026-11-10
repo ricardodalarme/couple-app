@@ -1,0 +1,20 @@
+query HelpContent($kind: String!, $locale: String!) {
+  contentItemsCollection(
+    first: 20
+    filter: {
+      kind: { eq: $kind }
+      locale: { eq: $locale }
+      plusOnly: { eq: false }
+      published: { eq: true }
+    }
+    orderBy: [{ position: AscNullsLast }]
+  ) {
+    edges {
+      node {
+        slug
+        title
+        body
+      }
+    }
+  }
+}

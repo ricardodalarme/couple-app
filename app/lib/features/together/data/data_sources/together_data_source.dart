@@ -15,6 +15,7 @@ import 'package:flutter_bloc_starter/features/together/data/data_sources/mutatio
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/UpdateRitual.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/queries/generated/DateIdeaSuggestions.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/queries/generated/DateIdeas.graphql.dart';
+import 'package:flutter_bloc_starter/features/together/data/data_sources/queries/generated/HelpContent.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/queries/generated/LogisticItems.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/queries/generated/MyCouple.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/queries/generated/Rituals.graphql.dart';
@@ -266,6 +267,23 @@ class TogetherDataSource({required final GQLClient _client}) {
     );
 
     validateResponse(response);
+  }
+
+  Future<List<QueryHelpContentcontentItemsCollectionedgesnode>> getHelpContent({
+    required String kind,
+    required String locale,
+  }) async {
+    final response = await _client.query(
+      OptionsQueryHelpContent(
+        variables: VariablesQueryHelpContent(kind: kind, locale: locale),
+      ),
+    );
+    final edges = validateResponseData(
+      response,
+      getData: (data) => data.contentItemsCollection.edges,
+    );
+
+    return [for (final edge in edges) edge.node];
   }
 
   Future<void> deleteLogisticItem(String id) async {

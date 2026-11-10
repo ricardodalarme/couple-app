@@ -68,7 +68,11 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$dates$en dates = _Translations$dates$en._(_root);
   @override
+  late final _Translations$day$en day = _Translations$day$en._(_root);
+  @override
   late final _Translations$firstSlip$en firstSlip = _Translations$firstSlip$en._(_root);
+  @override
+  late final _Translations$help$en help = _Translations$help$en._(_root);
   @override
   late final _Translations$ideaDetail$en ideaDetail = _Translations$ideaDetail$en._(_root);
   @override
@@ -524,6 +528,47 @@ class _Translations$dates$en extends Translations$dates$pt {
   };
 }
 
+// Path: day
+class _Translations$day$en extends Translations$day$pt {
+  _Translations$day$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String dateLine({required Object month, required Object day, required Object year}) =>
+      '${month} ${day}, ${year}';
+  @override
+  List<String> get months => [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  @override
+  String get previous => 'Previous day';
+  @override
+  String get next => 'Next day';
+  @override
+  String get planned => 'Planned date';
+  @override
+  String get emptyTitle => 'Nothing set for this day';
+  @override
+  String get emptyText => 'A free day is good too.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Try again in a moment.';
+}
+
 // Path: firstSlip
 class _Translations$firstSlip$en extends Translations$firstSlip$pt {
   _Translations$firstSlip$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -546,6 +591,33 @@ class _Translations$firstSlip$en extends Translations$firstSlip$pt {
   String get save => 'Save';
   @override
   String get saveError => 'Could not keep it right now. Try again.';
+}
+
+// Path: help
+class _Translations$help$en extends Translations$help$pt {
+  _Translations$help$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get badDayTitle => 'A hard day';
+  @override
+  String get badDayText => 'Three small things that may help right now. Nothing required.';
+  @override
+  String get starterTitle => 'Start a conversation';
+  @override
+  String get starterText => 'A question to open with, no rush.';
+  @override
+  String get another => 'Another';
+  @override
+  String get emptyTitle => 'Nothing here yet';
+  @override
+  String get emptyText => 'We\'re preparing more suggestions.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Try again in a moment.';
 }
 
 // Path: ideaDetail
@@ -1697,6 +1769,24 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get datesTitle => 'Important dates';
   @override
   String get datesText => 'Birthdays, gifts and holidays, with a heads-up.';
+  @override
+  String get badDayLabel => 'HELP';
+  @override
+  String get badDayTitle => 'A hard day';
+  @override
+  String get badDayText => 'Three small things to do right now.';
+  @override
+  String get starterLabel => 'TALK';
+  @override
+  String get starterTitle => 'Start a conversation';
+  @override
+  String get starterText => 'A question to open with, no rush.';
+  @override
+  String get dayLabel => 'DAY';
+  @override
+  String get dayTitle => 'Day by day';
+  @override
+  String get dayText => 'What matters on each day.';
   @override
   String get temperatureLabel => 'BETWEEN YOU';
   @override
@@ -2947,6 +3037,30 @@ extension on TranslationsEn {
           'dates.errorText' => 'Your data is still saved. Try again.',
           'dates.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'dates.errors.other' => 'Couldn\'t do that right now. Try again.',
+          'day.dateLine' => ({
+            required Object month,
+            required Object day,
+            required Object year,
+          }) => '${month} ${day}, ${year}',
+          'day.months.0' => 'January',
+          'day.months.1' => 'February',
+          'day.months.2' => 'March',
+          'day.months.3' => 'April',
+          'day.months.4' => 'May',
+          'day.months.5' => 'June',
+          'day.months.6' => 'July',
+          'day.months.7' => 'August',
+          'day.months.8' => 'September',
+          'day.months.9' => 'October',
+          'day.months.10' => 'November',
+          'day.months.11' => 'December',
+          'day.previous' => 'Previous day',
+          'day.next' => 'Next day',
+          'day.planned' => 'Planned date',
+          'day.emptyTitle' => 'Nothing set for this day',
+          'day.emptyText' => 'A free day is good too.',
+          'day.errorTitle' => 'Couldn\'t load',
+          'day.errorText' => 'Try again in a moment.',
           'firstSlip.title' => 'Start with one good thing',
           'firstSlip.titleHighlight' => 'one good thing',
           'firstSlip.subtitle' => 'What did your partner do lately that made you smile? 30 seconds is enough. No account yet.',
@@ -2954,6 +3068,15 @@ extension on TranslationsEn {
           'firstSlip.localNote' => 'Stays saved on this phone only.',
           'firstSlip.save' => 'Save',
           'firstSlip.saveError' => 'Could not keep it right now. Try again.',
+          'help.badDayTitle' => 'A hard day',
+          'help.badDayText' => 'Three small things that may help right now. Nothing required.',
+          'help.starterTitle' => 'Start a conversation',
+          'help.starterText' => 'A question to open with, no rush.',
+          'help.another' => 'Another',
+          'help.emptyTitle' => 'Nothing here yet',
+          'help.emptyText' => 'We\'re preparing more suggestions.',
+          'help.errorTitle' => 'Couldn\'t load',
+          'help.errorText' => 'Try again in a moment.',
           'ideaDetail.label' => 'Idea of the day',
           'ideaDetail.whyTitle' => 'Why this idea',
           'ideaDetail.yourPhase' => 'Your phase',
@@ -3265,6 +3388,9 @@ extension on TranslationsEn {
           'quickSlip.monthsShort.5' => 'Jun',
           'quickSlip.monthsShort.6' => 'Jul',
           'quickSlip.monthsShort.7' => 'Aug',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.monthsShort.8' => 'Sep',
           'quickSlip.monthsShort.9' => 'Oct',
           'quickSlip.monthsShort.10' => 'Nov',
@@ -3297,9 +3423,6 @@ extension on TranslationsEn {
           'received.kinds.miss_us' => 'Missing you',
           'received.kinds.hug' => 'A hug',
           'received.kinds.distance' => 'A little distance',
-          _ => null,
-        } ??
-        switch (path) {
           'received.kinds.heavy_day' => 'A heavy day',
           'received.kinds.good_news' => 'Good news',
           'received.kinds.other' => '',
@@ -3686,6 +3809,15 @@ extension on TranslationsEn {
           'tabs.datesLabel' => 'DATES',
           'tabs.datesTitle' => 'Important dates',
           'tabs.datesText' => 'Birthdays, gifts and holidays, with a heads-up.',
+          'tabs.badDayLabel' => 'HELP',
+          'tabs.badDayTitle' => 'A hard day',
+          'tabs.badDayText' => 'Three small things to do right now.',
+          'tabs.starterLabel' => 'TALK',
+          'tabs.starterTitle' => 'Start a conversation',
+          'tabs.starterText' => 'A question to open with, no rush.',
+          'tabs.dayLabel' => 'DAY',
+          'tabs.dayTitle' => 'Day by day',
+          'tabs.dayText' => 'What matters on each day.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',
           'tabs.temperatureTitle' => 'How is it between you?',
           'tabs.temperatureText' => 'A private check-in, never a score.',
@@ -3862,6 +3994,9 @@ extension on TranslationsEn {
           'unpair.done.highlight' => 'Unpaired',
           'unpair.done.text' => 'Your own data stays yours.',
           'unpair.done.keepOption' => 'Keep a copy of the shared items',
+          _ => null,
+        } ??
+        switch (path) {
           'unpair.done.deleteOption' => 'Delete shared items',
           'unpair.done.plusNote' => 'The Plus that covered your partner ends.',
           'unpair.done.continueLabel' => 'Continue',

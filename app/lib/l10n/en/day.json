@@ -1,0 +1,11 @@
+{
+  "dateLine": "{month} {day}, {year}",
+  "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  "previous": "Previous day",
+  "next": "Next day",
+  "planned": "Planned date",
+  "emptyTitle": "Nothing set for this day",
+  "emptyText": "A free day is good too.",
+  "errorTitle": "Couldn't load",
+  "errorText": "Try again in a moment."
+}

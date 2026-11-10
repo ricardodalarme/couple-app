@@ -203,6 +203,19 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
   Future<void> deleteDateIdea(String id) =>
       _run('delete a date idea', () => _dataSource.deleteDateIdea(id));
 
+  /// Editorial help content of a [kind], such as `mood_tip` or `question`, in editorial order.
+  Future<List<HelpItem>> getHelpContent({required String kind, required String locale}) async {
+    try {
+      return [
+        for (final node in await _dataSource.getHelpContent(kind: kind, locale: locale))
+          HelpItem(slug: node.slug, title: node.title, body: node.body),
+      ];
+    } catch (e, stack) {
+      _logger.error('Failed to read help content', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
   int _hourOf(String? time) => time == null ? 19 : int.tryParse(time.split(':').first) ?? 19;
 
   Future<void> _run(String what, Future<void> Function() action) async {

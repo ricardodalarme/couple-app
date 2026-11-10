@@ -27,6 +27,22 @@ class AcceptInviteRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [BadDayPage]
+class BadDayRoute extends PageRouteInfo<void> {
+  const BadDayRoute({List<PageRouteInfo>? children})
+    : super(BadDayRoute.name, initialChildren: children);
+
+  static const String name = 'BadDayRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const BadDayPage());
+    },
+  );
+}
+
+/// generated route for
 /// [BreakupPage]
 class BreakupRoute extends PageRouteInfo<void> {
   const BreakupRoute({List<PageRouteInfo>? children})
@@ -155,6 +171,22 @@ class DatesRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const DatesPage());
+    },
+  );
+}
+
+/// generated route for
+/// [DayPage]
+class DayRoute extends PageRouteInfo<void> {
+  const DayRoute({List<PageRouteInfo>? children})
+    : super(DayRoute.name, initialChildren: children);
+
+  static const String name = 'DayRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const DayPage());
     },
   );
 }
@@ -882,6 +914,22 @@ class SoftStartRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const SoftStartPage());
+    },
+  );
+}
+
+/// generated route for
+/// [StarterPage]
+class StarterRoute extends PageRouteInfo<void> {
+  const StarterRoute({List<PageRouteInfo>? children})
+    : super(StarterRoute.name, initialChildren: children);
+
+  static const String name = 'StarterRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const StarterPage());
     },
   );
 }

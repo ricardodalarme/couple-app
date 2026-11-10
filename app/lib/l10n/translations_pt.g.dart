@@ -63,7 +63,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
   late final Translations$dateNight$pt dateNight = Translations$dateNight$pt.internal(_root);
   late final Translations$dates$pt dates = Translations$dates$pt.internal(_root);
+  late final Translations$day$pt day = Translations$day$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
+  late final Translations$help$pt help = Translations$help$pt.internal(_root);
   late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
@@ -587,6 +589,55 @@ class Translations$dates$pt {
   };
 }
 
+// Path: day
+class Translations$day$pt {
+  Translations$day$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: '{day} de {month} de {year}'
+  String dateLine({required Object day, required Object month, required Object year}) =>
+      '${day} de ${month} de ${year}';
+
+  List<String> get months => [
+    'janeiro',
+    'fevereiro',
+    'março',
+    'abril',
+    'maio',
+    'junho',
+    'julho',
+    'agosto',
+    'setembro',
+    'outubro',
+    'novembro',
+    'dezembro',
+  ];
+
+  /// pt: 'Dia anterior'
+  String get previous => 'Dia anterior';
+
+  /// pt: 'Próximo dia'
+  String get next => 'Próximo dia';
+
+  /// pt: 'Encontro planejado'
+  String get planned => 'Encontro planejado';
+
+  /// pt: 'Nada marcado neste dia'
+  String get emptyTitle => 'Nada marcado neste dia';
+
+  /// pt: 'Um dia livre também é bom.'
+  String get emptyText => 'Um dia livre também é bom.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Tente de novo daqui a pouco.'
+  String get errorText => 'Tente de novo daqui a pouco.';
+}
+
 // Path: firstSlip
 class Translations$firstSlip$pt {
   Translations$firstSlip$pt.internal(this._root);
@@ -616,6 +667,42 @@ class Translations$firstSlip$pt {
 
   /// pt: 'Não deu para guardar agora. Tente de novo.'
   String get saveError => 'Não deu para guardar agora. Tente de novo.';
+}
+
+// Path: help
+class Translations$help$pt {
+  Translations$help$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Um dia difícil'
+  String get badDayTitle => 'Um dia difícil';
+
+  /// pt: 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.'
+  String get badDayText => 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.';
+
+  /// pt: 'Começar uma conversa'
+  String get starterTitle => 'Começar uma conversa';
+
+  /// pt: 'Uma pergunta para abrir, sem pressa.'
+  String get starterText => 'Uma pergunta para abrir, sem pressa.';
+
+  /// pt: 'Outra'
+  String get another => 'Outra';
+
+  /// pt: 'Nada por aqui ainda'
+  String get emptyTitle => 'Nada por aqui ainda';
+
+  /// pt: 'Estamos preparando mais sugestões.'
+  String get emptyText => 'Estamos preparando mais sugestões.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Tente de novo daqui a pouco.'
+  String get errorText => 'Tente de novo daqui a pouco.';
 }
 
 // Path: ideaDetail
@@ -2028,6 +2115,33 @@ class Translations$tabs$pt {
 
   /// pt: 'Aniversários, presentes e feriados, com aviso antes.'
   String get datesText => 'Aniversários, presentes e feriados, com aviso antes.';
+
+  /// pt: 'AJUDA'
+  String get badDayLabel => 'AJUDA';
+
+  /// pt: 'Um dia difícil'
+  String get badDayTitle => 'Um dia difícil';
+
+  /// pt: 'Três coisas pequenas para fazer agora.'
+  String get badDayText => 'Três coisas pequenas para fazer agora.';
+
+  /// pt: 'CONVERSA'
+  String get starterLabel => 'CONVERSA';
+
+  /// pt: 'Começar uma conversa'
+  String get starterTitle => 'Começar uma conversa';
+
+  /// pt: 'Uma pergunta para abrir, sem pressa.'
+  String get starterText => 'Uma pergunta para abrir, sem pressa.';
+
+  /// pt: 'DIA'
+  String get dayLabel => 'DIA';
+
+  /// pt: 'Dia a dia'
+  String get dayTitle => 'Dia a dia';
+
+  /// pt: 'O que importa em cada dia.'
+  String get dayText => 'O que importa em cada dia.';
 
   /// pt: 'ENTRE VOCÊS'
   String get temperatureLabel => 'ENTRE VOCÊS';
@@ -3500,6 +3614,30 @@ extension on Translations {
           'dates.errorText' => 'Seus dados continuam salvos. Tente de novo.',
           'dates.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'dates.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'day.dateLine' => ({
+            required Object day,
+            required Object month,
+            required Object year,
+          }) => '${day} de ${month} de ${year}',
+          'day.months.0' => 'janeiro',
+          'day.months.1' => 'fevereiro',
+          'day.months.2' => 'março',
+          'day.months.3' => 'abril',
+          'day.months.4' => 'maio',
+          'day.months.5' => 'junho',
+          'day.months.6' => 'julho',
+          'day.months.7' => 'agosto',
+          'day.months.8' => 'setembro',
+          'day.months.9' => 'outubro',
+          'day.months.10' => 'novembro',
+          'day.months.11' => 'dezembro',
+          'day.previous' => 'Dia anterior',
+          'day.next' => 'Próximo dia',
+          'day.planned' => 'Encontro planejado',
+          'day.emptyTitle' => 'Nada marcado neste dia',
+          'day.emptyText' => 'Um dia livre também é bom.',
+          'day.errorTitle' => 'Não deu para carregar',
+          'day.errorText' => 'Tente de novo daqui a pouco.',
           'firstSlip.title' => 'Comece com uma coisa boa',
           'firstSlip.titleHighlight' => 'uma coisa boa',
           'firstSlip.subtitle' => 'O que seu parceiro fez ultimamente que te fez sorrir? 30 segundos bastam. Ainda sem conta.',
@@ -3507,6 +3645,15 @@ extension on Translations {
           'firstSlip.localNote' => 'Fica salvo só neste celular.',
           'firstSlip.save' => 'Salvar',
           'firstSlip.saveError' => 'Não deu para guardar agora. Tente de novo.',
+          'help.badDayTitle' => 'Um dia difícil',
+          'help.badDayText' => 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.',
+          'help.starterTitle' => 'Começar uma conversa',
+          'help.starterText' => 'Uma pergunta para abrir, sem pressa.',
+          'help.another' => 'Outra',
+          'help.emptyTitle' => 'Nada por aqui ainda',
+          'help.emptyText' => 'Estamos preparando mais sugestões.',
+          'help.errorTitle' => 'Não deu para carregar',
+          'help.errorText' => 'Tente de novo daqui a pouco.',
           'ideaDetail.label' => 'Ideia do dia',
           'ideaDetail.whyTitle' => 'Por que esta ideia',
           'ideaDetail.yourPhase' => 'Sua fase',
@@ -3820,6 +3967,9 @@ extension on Translations {
           'quickSlip.monthsShort.5' => 'jun',
           'quickSlip.monthsShort.6' => 'jul',
           'quickSlip.monthsShort.7' => 'ago',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.monthsShort.8' => 'set',
           'quickSlip.monthsShort.9' => 'out',
           'quickSlip.monthsShort.10' => 'nov',
@@ -3852,9 +4002,6 @@ extension on Translations {
           'received.kinds.miss_us' => 'Saudade',
           'received.kinds.hug' => 'Um abraço',
           'received.kinds.distance' => 'Um pouco de distância',
-          _ => null,
-        } ??
-        switch (path) {
           'received.kinds.heavy_day' => 'Um dia pesado',
           'received.kinds.good_news' => 'Boa notícia',
           'received.kinds.other' => '',
@@ -4244,6 +4391,15 @@ extension on Translations {
           'tabs.datesLabel' => 'DATAS',
           'tabs.datesTitle' => 'Datas importantes',
           'tabs.datesText' => 'Aniversários, presentes e feriados, com aviso antes.',
+          'tabs.badDayLabel' => 'AJUDA',
+          'tabs.badDayTitle' => 'Um dia difícil',
+          'tabs.badDayText' => 'Três coisas pequenas para fazer agora.',
+          'tabs.starterLabel' => 'CONVERSA',
+          'tabs.starterTitle' => 'Começar uma conversa',
+          'tabs.starterText' => 'Uma pergunta para abrir, sem pressa.',
+          'tabs.dayLabel' => 'DIA',
+          'tabs.dayTitle' => 'Dia a dia',
+          'tabs.dayText' => 'O que importa em cada dia.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
           'tabs.temperatureTitle' => 'Como está entre vocês?',
           'tabs.temperatureText' => 'Um registro privado, sem nota.',
@@ -4421,6 +4577,9 @@ extension on Translations {
           'unpair.done.highlight' => 'Desvinculado',
           'unpair.done.text' => 'Seus próprios dados continuam seus.',
           'unpair.done.keepOption' => 'Guardar uma cópia dos itens compartilhados',
+          _ => null,
+        } ??
+        switch (path) {
           'unpair.done.deleteOption' => 'Apagar itens compartilhados',
           'unpair.done.plusNote' => 'O Plus que cobria o parceiro termina.',
           'unpair.done.continueLabel' => 'Continuar',

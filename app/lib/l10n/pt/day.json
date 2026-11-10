@@ -1,0 +1,11 @@
+{
+  "dateLine": "{day} de {month} de {year}",
+  "months": ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"],
+  "previous": "Dia anterior",
+  "next": "Próximo dia",
+  "planned": "Encontro planejado",
+  "emptyTitle": "Nada marcado neste dia",
+  "emptyText": "Um dia livre também é bom.",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "Tente de novo daqui a pouco."
+}
