@@ -90,7 +90,7 @@ app/lib/
 │   │   ├── mappers/       # generated type → model extensions
 │   │   └── repositories/  # concrete classes, Logger, rethrow/map exceptions
 │   └── presentation/
-│       ├── <sub_feature>/ # page + cubit/ + widgets/ (split when multi-page)
+│       ├── <page_or_sub_feature>/ # always a folder: <name>_page.dart + cubit/ + widgets/
 └── router/app_router.dart # auto_route config
 ```
 
@@ -284,6 +284,10 @@ Loading is `BaseLoadingDots`; pull-to-refresh uses its own arc ring inside
 11. Read widget state with `context.select` and act with `context.read`. Do not
     add `BlocBuilder`, `BlocSelector`, or `buildWhen` anywhere in `app/lib`;
     `BlocListener` is only for side effects.
+12. A feature's `presentation/` never holds files directly. Every page lives in
+    its own subfolder (`presentation/<page_or_sub_feature>/<name>_page.dart` with
+    `cubit/` and `widgets/` beside it), even when the feature has a single page,
+    because features grow more pages. Tests mirror the same paths.
 
 ## Comments
 
