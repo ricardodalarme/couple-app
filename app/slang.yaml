@@ -1,4 +1,4 @@
-base_locale: en
+base_locale: pt
 fallback_strategy: base_locale
 format:
   enabled: true

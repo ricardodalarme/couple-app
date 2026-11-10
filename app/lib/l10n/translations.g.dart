@@ -12,18 +12,18 @@ import 'package:slang/generated.dart';
 import 'package:slang_flutter/slang_flutter.dart';
 export 'package:slang_flutter/slang_flutter.dart';
 
-import 'translations_pt.g.dart' as l_pt;
-part 'translations_en.g.dart';
+import 'translations_en.g.dart' as l_en;
+part 'translations_pt.g.dart';
 
 /// Supported locales.
 ///
 /// Usage:
-/// - LocaleSettings.setLocale(AppLocale.en) // set locale
-/// - Locale locale = AppLocale.en.flutterLocale // get flutter locale from enum
-/// - if (LocaleSettings.currentLocale == AppLocale.en) // locale check
+/// - LocaleSettings.setLocale(AppLocale.pt) // set locale
+/// - Locale locale = AppLocale.pt.flutterLocale // get flutter locale from enum
+/// - if (LocaleSettings.currentLocale == AppLocale.pt) // locale check
 enum AppLocale with BaseAppLocale<AppLocale, Translations> {
-  en(languageCode: 'en'),
-  pt(languageCode: 'pt');
+  pt(languageCode: 'pt'),
+  en(languageCode: 'en');
 
   const AppLocale({
     required this.languageCode,
@@ -58,14 +58,14 @@ enum AppLocale with BaseAppLocale<AppLocale, Translations> {
     PluralResolver? ordinalResolver,
   }) {
     switch (this) {
-      case AppLocale.en:
-        return TranslationsEn(
+      case AppLocale.pt:
+        return TranslationsPt(
           overrides: overrides,
           cardinalResolver: cardinalResolver,
           ordinalResolver: ordinalResolver,
         );
-      case AppLocale.pt:
-        return l_pt.TranslationsPt(
+      case AppLocale.en:
+        return l_en.TranslationsEn(
           overrides: overrides,
           cardinalResolver: cardinalResolver,
           ordinalResolver: ordinalResolver,
@@ -166,7 +166,7 @@ class LocaleSettings extends BaseFlutterLocaleSettings<AppLocale, Translations> 
 
 /// Provides utility functions without any side effects.
 class AppLocaleUtils extends BaseAppLocaleUtils<AppLocale, Translations> {
-  AppLocaleUtils._() : super(baseLocale: AppLocale.en, locales: AppLocale.values);
+  AppLocaleUtils._() : super(baseLocale: AppLocale.pt, locales: AppLocale.values);
 
   static final instance = AppLocaleUtils._();
 
@@ -184,38 +184,4 @@ class AppLocaleUtils extends BaseAppLocaleUtils<AppLocale, Translations> {
   static AppLocale findDeviceLocale() => instance.findDeviceLocale();
   static List<Locale> get supportedLocales => instance.supportedLocales;
   static List<String> get supportedLocalesRaw => instance.supportedLocalesRaw;
-}
-
-// interfaces generated as mixins
-
-mixin OnboardingPageData {
-  String get title;
-  String get message;
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! OnboardingPageData) return false;
-
-    final fields = $fields;
-    final otherFields = other.$fields;
-    for (int i = 0; i < fields.length; i++) {
-      if (fields[i] != otherFields[i]) return false;
-    }
-
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final fields = $fields;
-    int result = fields.first.hashCode;
-    for (final element in fields.skip(1)) {
-      result *= element.hashCode;
-    }
-
-    return result;
-  }
-
-  List<Object?> get $fields => [title, message];
 }

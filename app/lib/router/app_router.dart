@@ -1,20 +1,12 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_bloc_starter/features/account/presentation/change_password/change_password_page.dart';
-import 'package:flutter_bloc_starter/features/account/presentation/delete_account/delete_account_page.dart';
-import 'package:flutter_bloc_starter/features/account/presentation/edit_profile/edit_profile_page.dart';
-import 'package:flutter_bloc_starter/features/account/presentation/profile/profile_page.dart';
-import 'package:flutter_bloc_starter/features/authentication/presentation/forgot_password/forgot_password_page.dart';
-import 'package:flutter_bloc_starter/features/authentication/presentation/login/login_page.dart';
-import 'package:flutter_bloc_starter/features/authentication/presentation/signup/signup_page.dart';
+import 'package:flutter_bloc_starter/features/authentication/presentation/welcome/welcome_page.dart';
+import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/home/presentation/home_page.dart';
+import 'package:flutter_bloc_starter/features/memories/presentation/memories_page.dart';
 import 'package:flutter_bloc_starter/features/not_found/presentation/not_found_page.dart';
-import 'package:flutter_bloc_starter/features/notifications/presentation/inbox/notifications_page.dart';
-import 'package:flutter_bloc_starter/features/onboarding/presentation/onboarding_page.dart';
-import 'package:flutter_bloc_starter/features/post/presentation/list/posts_list_page.dart';
-import 'package:flutter_bloc_starter/features/privacy_policy/presentation/privacy_policy_page.dart';
-import 'package:flutter_bloc_starter/features/search/presentation/search_page.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/settings_page.dart';
-import 'package:flutter_bloc_starter/features/term/presentation/list/terms_list_page.dart';
+import 'package:flutter_bloc_starter/features/slips/presentation/slips_page.dart';
+import 'package:flutter_bloc_starter/features/today/presentation/today_page.dart';
+import 'package:flutter_bloc_starter/features/together/presentation/together_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -22,25 +14,17 @@ part 'app_router.gr.dart';
 class AppRouter() extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: OnboardingRoute.page),
-    AutoRoute(page: LoginRoute.page, initial: true),
-    AutoRoute(page: SignUpRoute.page),
-    AutoRoute(page: ForgotPasswordRoute.page),
+    AutoRoute(page: WelcomeRoute.page, initial: true),
+    AutoRoute(page: DebugSignInRoute.page),
     AutoRoute(
       page: HomeRoute.page,
       children: [
-        AutoRoute(page: PostsListRoute.page, initial: true),
-        AutoRoute(page: SearchRoute.page),
-        AutoRoute(page: ProfileRoute.page),
+        AutoRoute(page: TodayRoute.page, initial: true),
+        AutoRoute(page: SlipsRoute.page),
+        AutoRoute(page: TogetherRoute.page),
+        AutoRoute(page: MemoriesRoute.page),
       ],
     ),
-    AutoRoute(page: NotificationsRoute.page),
-    AutoRoute(page: SettingsRoute.page),
-    AutoRoute(page: EditProfileRoute.page),
-    AutoRoute(page: ChangePasswordRoute.page),
-    AutoRoute(page: DeleteAccountRoute.page),
-    AutoRoute(page: PrivacyPolicyRoute.page),
-    AutoRoute(page: TermsListRoute.page),
     AutoRoute(path: '*', page: NotFoundRoute.page),
   ];
 }

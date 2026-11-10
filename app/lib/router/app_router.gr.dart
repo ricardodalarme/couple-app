@@ -11,65 +11,17 @@
 part of 'app_router.dart';
 
 /// generated route for
-/// [ChangePasswordPage]
-class ChangePasswordRoute extends PageRouteInfo<void> {
-  const ChangePasswordRoute({List<PageRouteInfo>? children})
-    : super(ChangePasswordRoute.name, initialChildren: children);
+/// [DebugSignInPage]
+class DebugSignInRoute extends PageRouteInfo<void> {
+  const DebugSignInRoute({List<PageRouteInfo>? children})
+    : super(DebugSignInRoute.name, initialChildren: children);
 
-  static const String name = 'ChangePasswordRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const ChangePasswordPage());
-    },
-  );
-}
-
-/// generated route for
-/// [DeleteAccountPage]
-class DeleteAccountRoute extends PageRouteInfo<void> {
-  const DeleteAccountRoute({List<PageRouteInfo>? children})
-    : super(DeleteAccountRoute.name, initialChildren: children);
-
-  static const String name = 'DeleteAccountRoute';
+  static const String name = 'DebugSignInRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return WrappedRoute(child: const DeleteAccountPage());
-    },
-  );
-}
-
-/// generated route for
-/// [EditProfilePage]
-class EditProfileRoute extends PageRouteInfo<void> {
-  const EditProfileRoute({List<PageRouteInfo>? children})
-    : super(EditProfileRoute.name, initialChildren: children);
-
-  static const String name = 'EditProfileRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const EditProfilePage());
-    },
-  );
-}
-
-/// generated route for
-/// [ForgotPasswordPage]
-class ForgotPasswordRoute extends PageRouteInfo<void> {
-  const ForgotPasswordRoute({List<PageRouteInfo>? children})
-    : super(ForgotPasswordRoute.name, initialChildren: children);
-
-  static const String name = 'ForgotPasswordRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const ForgotPasswordPage());
+      return WrappedRoute(child: const DebugSignInPage());
     },
   );
 }
@@ -91,17 +43,17 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [LoginPage]
-class LoginRoute extends PageRouteInfo<void> {
-  const LoginRoute({List<PageRouteInfo>? children})
-    : super(LoginRoute.name, initialChildren: children);
+/// [MemoriesPage]
+class MemoriesRoute extends PageRouteInfo<void> {
+  const MemoriesRoute({List<PageRouteInfo>? children})
+    : super(MemoriesRoute.name, initialChildren: children);
 
-  static const String name = 'LoginRoute';
+  static const String name = 'MemoriesRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return WrappedRoute(child: const LoginPage());
+      return const MemoriesPage();
     },
   );
 }
@@ -123,145 +75,65 @@ class NotFoundRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [NotificationsPage]
-class NotificationsRoute extends PageRouteInfo<void> {
-  const NotificationsRoute({List<PageRouteInfo>? children})
-    : super(NotificationsRoute.name, initialChildren: children);
+/// [SlipsPage]
+class SlipsRoute extends PageRouteInfo<void> {
+  const SlipsRoute({List<PageRouteInfo>? children})
+    : super(SlipsRoute.name, initialChildren: children);
 
-  static const String name = 'NotificationsRoute';
+  static const String name = 'SlipsRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return WrappedRoute(child: const NotificationsPage());
+      return const SlipsPage();
     },
   );
 }
 
 /// generated route for
-/// [OnboardingPage]
-class OnboardingRoute extends PageRouteInfo<void> {
-  const OnboardingRoute({List<PageRouteInfo>? children})
-    : super(OnboardingRoute.name, initialChildren: children);
+/// [TodayPage]
+class TodayRoute extends PageRouteInfo<void> {
+  const TodayRoute({List<PageRouteInfo>? children})
+    : super(TodayRoute.name, initialChildren: children);
 
-  static const String name = 'OnboardingRoute';
+  static const String name = 'TodayRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return WrappedRoute(child: const OnboardingPage());
+      return const TodayPage();
     },
   );
 }
 
 /// generated route for
-/// [PostsListPage]
-class PostsListRoute extends PageRouteInfo<void> {
-  const PostsListRoute({List<PageRouteInfo>? children})
-    : super(PostsListRoute.name, initialChildren: children);
+/// [TogetherPage]
+class TogetherRoute extends PageRouteInfo<void> {
+  const TogetherRoute({List<PageRouteInfo>? children})
+    : super(TogetherRoute.name, initialChildren: children);
 
-  static const String name = 'PostsListRoute';
+  static const String name = 'TogetherRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return WrappedRoute(child: const PostsListPage());
+      return const TogetherPage();
     },
   );
 }
 
 /// generated route for
-/// [PrivacyPolicyPage]
-class PrivacyPolicyRoute extends PageRouteInfo<void> {
-  const PrivacyPolicyRoute({List<PageRouteInfo>? children})
-    : super(PrivacyPolicyRoute.name, initialChildren: children);
+/// [WelcomePage]
+class WelcomeRoute extends PageRouteInfo<void> {
+  const WelcomeRoute({List<PageRouteInfo>? children})
+    : super(WelcomeRoute.name, initialChildren: children);
 
-  static const String name = 'PrivacyPolicyRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const PrivacyPolicyPage();
-    },
-  );
-}
-
-/// generated route for
-/// [ProfilePage]
-class ProfileRoute extends PageRouteInfo<void> {
-  const ProfileRoute({List<PageRouteInfo>? children})
-    : super(ProfileRoute.name, initialChildren: children);
-
-  static const String name = 'ProfileRoute';
+  static const String name = 'WelcomeRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ProfilePage();
-    },
-  );
-}
-
-/// generated route for
-/// [SearchPage]
-class SearchRoute extends PageRouteInfo<void> {
-  const SearchRoute({List<PageRouteInfo>? children})
-    : super(SearchRoute.name, initialChildren: children);
-
-  static const String name = 'SearchRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const SearchPage();
-    },
-  );
-}
-
-/// generated route for
-/// [SettingsPage]
-class SettingsRoute extends PageRouteInfo<void> {
-  const SettingsRoute({List<PageRouteInfo>? children})
-    : super(SettingsRoute.name, initialChildren: children);
-
-  static const String name = 'SettingsRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const SettingsPage());
-    },
-  );
-}
-
-/// generated route for
-/// [SignUpPage]
-class SignUpRoute extends PageRouteInfo<void> {
-  const SignUpRoute({List<PageRouteInfo>? children})
-    : super(SignUpRoute.name, initialChildren: children);
-
-  static const String name = 'SignUpRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const SignUpPage());
-    },
-  );
-}
-
-/// generated route for
-/// [TermsListPage]
-class TermsListRoute extends PageRouteInfo<void> {
-  const TermsListRoute({List<PageRouteInfo>? children})
-    : super(TermsListRoute.name, initialChildren: children);
-
-  static const String name = 'TermsListRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const TermsListPage();
+      return const WelcomePage();
     },
   );
 }

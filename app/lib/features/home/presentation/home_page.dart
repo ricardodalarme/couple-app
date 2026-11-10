@@ -3,18 +3,23 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
+const int _captureIndex = 2;
+
 @RoutePage()
 class const HomePage({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n.tabs;
+
     return BaseView(
       appBar: null,
       hasSafeArea: false,
       body: AutoTabsRouter(
         duration: Duration.zero,
-        routes: const [PostsListRoute(), SearchRoute(), ProfileRoute()],
+        routes: const [TodayRoute(), SlipsRoute(), TogetherRoute(), MemoriesRoute()],
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);
+          final activeIndex = tabsRouter.activeIndex;
 
           return Column(
             children: [
@@ -32,12 +37,17 @@ class const HomePage({super.key}) extends StatelessWidget {
                 ),
               ),
               BaseTabBar(
-                currentIndex: tabsRouter.activeIndex,
-                onSelected: tabsRouter.setActiveIndex,
+                currentIndex: activeIndex < _captureIndex ? activeIndex : activeIndex + 1,
+                onSelected: (index) {
+                  if (index == _captureIndex) return;
+                  tabsRouter.setActiveIndex(index < _captureIndex ? index : index - 1);
+                },
                 items: [
-                  BaseTabBarItem(icon: AppIcons.home, label: context.l10n.post.list.title),
-                  BaseTabBarItem(icon: AppIcons.search, label: context.l10n.search.title),
-                  BaseTabBarItem(icon: AppIcons.user, label: context.l10n.account.profile.title),
+                  BaseTabBarItem(icon: AppIcons.home, label: l10n.today),
+                  BaseTabBarItem(icon: AppIcons.heart, label: l10n.slips),
+                  BaseTabBarItem(icon: AppIcons.plus, label: l10n.capture, isPrimaryAction: true),
+                  BaseTabBarItem(icon: AppIcons.users, label: l10n.together),
+                  BaseTabBarItem(icon: AppIcons.book, label: l10n.memories),
                 ],
               ),
             ],

@@ -61,9 +61,8 @@ class const App({super.key}) extends StatelessWidget {
   }
 
   PageRouteInfo<void> _resolveRouteForState(AppState state) => switch (state) {
-    .onboarding => const OnboardingRoute(),
     .authenticated => const HomeRoute(),
-    .unauthenticated => const LoginRoute(),
+    .unauthenticated => const WelcomeRoute(),
   };
 
   DeepLink _deepLinkBuilder(PlatformDeepLink deepLink) {

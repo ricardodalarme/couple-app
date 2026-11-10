@@ -1,7 +1,0 @@
-mutation UnregisterDeviceToken($token: String!) {
-  unregister_device_token(p_token: $token) {
-    id
-    token
-    invalidated_at
-  }
-}

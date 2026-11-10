@@ -11,17 +11,19 @@ class AuthenticationRepository({required final AuthenticationService _authentica
 
   Future<void> logInWithEmailAndPassword({required String email, required String password}) async {
     try {
-      _logger.info('Attempting login for user: $email');
-
       await _authenticationService.signInWithEmailAndPassword(email: email, password: password);
     } on AuthenticationException catch (exception, stackTrace) {
-      _logger.error('Failed to log in user: $email', error: exception, stackTrace: stackTrace);
+      _logger.error('Failed to sign in', error: exception, stackTrace: stackTrace);
       throw _toLocalizedException(exception);
     }
   }
 
-  Future<void> logOut() async {
-    await _authenticationService.signOut();
+  Future<void> signUpWithEmailAndPassword({required String email, required String password}) async {
+    try {
+      await _authenticationService.signUpWithEmailAndPassword(email: email, password: password);
+    } on AuthenticationException catch (exception) {
+      throw _toLocalizedException(exception);
+    }
   }
 
   Future<void> logInWithGoogle() async {
@@ -40,50 +42,8 @@ class AuthenticationRepository({required final AuthenticationService _authentica
     }
   }
 
-  Future<void> signup({required String email, required String password}) async {
-    try {
-      await _authenticationService.signUpWithEmailAndPassword(email: email, password: password);
-    } on AuthenticationException catch (exception) {
-      throw _toLocalizedException(exception);
-    }
-  }
-
-  Future<void> resetPassword({required String email}) async {
-    try {
-      await _authenticationService.resetPasswordForEmail(email: email);
-    } on AuthenticationException catch (exception) {
-      throw _toLocalizedException(exception);
-    }
-  }
-
-  Future<void> changePassword({
-    required String currentPassword,
-    required String newPassword,
-  }) async {
-    try {
-      await _authenticationService.changePassword(
-        currentPassword: currentPassword,
-        newPassword: newPassword,
-      );
-    } on AuthenticationException catch (exception) {
-      throw _toLocalizedException(exception);
-    }
-  }
-
-  Future<void> updateProfile({
-    required String firstName,
-    required String lastName,
-    required String email,
-  }) async {
-    try {
-      await _authenticationService.updateProfile(
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-      );
-    } on AuthenticationException catch (exception) {
-      throw _toLocalizedException(exception);
-    }
+  Future<void> logOut() async {
+    await _authenticationService.signOut();
   }
 
   LocalizedException _toLocalizedException(AuthenticationException exception) {

@@ -1,6 +1,0 @@
-fragment PostFragment on posts {
-  id
-  title
-  content
-  author_image_url
-}
