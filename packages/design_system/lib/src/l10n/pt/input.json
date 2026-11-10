@@ -1,0 +1,37 @@
+{
+  "showPassword": "Mostrar senha",
+  "hidePassword": "Ocultar senha",
+  "search": "Buscar",
+  "noOptions": "Nenhuma opção",
+  "confirm": "Confirmar",
+  "day": "Dia",
+  "month": "Mês",
+  "year": "Ano",
+  "hour": "Hora",
+  "minute": "Minuto",
+  "increase": "Aumentar",
+  "decrease": "Diminuir",
+  "calendar": {
+    "previousMonth": "Mês anterior",
+    "nextMonth": "Próximo mês",
+    "today": "Hoje",
+    "unavailable": "Indisponível",
+    "monthYear": "{month} de {year}",
+    "date": "{day} de {month} de {year}",
+    "months": [
+      "janeiro",
+      "fevereiro",
+      "março",
+      "abril",
+      "maio",
+      "junho",
+      "julho",
+      "agosto",
+      "setembro",
+      "outubro",
+      "novembro",
+      "dezembro"
+    ],
+    "weekdays": ["D", "S", "T", "Q", "Q", "S", "S"]
+  }
+}

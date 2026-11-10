@@ -1,0 +1,37 @@
+{
+  "showPassword": "Show password",
+  "hidePassword": "Hide password",
+  "search": "Search",
+  "noOptions": "No options",
+  "confirm": "Confirm",
+  "day": "Day",
+  "month": "Month",
+  "year": "Year",
+  "hour": "Hour",
+  "minute": "Minute",
+  "increase": "Increase",
+  "decrease": "Decrease",
+  "calendar": {
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month",
+    "today": "Today",
+    "unavailable": "Unavailable",
+    "monthYear": "{month} {year}",
+    "date": "{day} {month} {year}",
+    "months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "weekdays": ["S", "M", "T", "W", "T", "F", "S"]
+  }
+}

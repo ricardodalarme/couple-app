@@ -1,4 +1,7 @@
 import 'package:common_ui/common_ui.dart';
+import 'package:design_system/design_system.dart';
+
+const _googleBlue = Color(0xFF4285F4);
 
 enum ButtonProvider(final String text) {
   google('Google'),
@@ -11,7 +14,7 @@ class const SocialButton(
   required final VoidCallback onPressed,
   super.key,
 }) extends StatelessWidget {
-  static const double _iconSize = 24;
+  static const double _iconSize = AppIconSize.xl;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +25,12 @@ class const SocialButton(
         key: const ValueKey(ButtonProvider.google),
         text: buttonText,
         icon: Container(
-          padding: const EdgeInsets.all(Spacings.xsmall),
-          color: Colors.white,
+          padding: const EdgeInsets.all(AppSpace.s4),
+          color: AppPalette.white,
           child: Assets.logos.google.svg(height: _iconSize),
         ),
-        backgroundColor: const Color(0xFF4285F4),
-        iconPadding: const EdgeInsets.fromLTRB(Spacings.xxsmall, 0, Spacings.xsmall, 0),
+        backgroundColor: _googleBlue,
+        iconPadding: const EdgeInsets.fromLTRB(AppSpace.s2, 0, AppSpace.s4, 0),
         onPressed: onPressed,
       ),
       ButtonProvider.apple => _SignInButtonBuilder(
@@ -35,9 +38,9 @@ class const SocialButton(
         text: buttonText,
         icon: Assets.logos.apple.svg(
           height: _iconSize,
-          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+          colorFilter: const ColorFilter.mode(AppPalette.white, BlendMode.srcIn),
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: AppPalette.neutral900,
         onPressed: onPressed,
       ),
     };
@@ -57,30 +60,35 @@ class const _SignInButtonBuilder({
 
   @override
   Widget build(BuildContext context) {
-    return BaseTapper(
+    return AppPressable(
       onTap: onPressed,
-      backgroundColor: backgroundColor,
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: _buttonMaxWidth),
-        child: SizedBox(
-          height: _buttonHeight,
-          child: Row(
-            children: [
-              Padding(
-                padding: iconPadding ?? const EdgeInsets.symmetric(horizontal: Spacings.small),
-                child: icon,
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(Spacings.xsmall),
-                  child: Text(
-                    text,
-                    style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
-                    maxLines: 1,
+      child: ColoredBox(
+        color: backgroundColor,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: _buttonMaxWidth),
+          child: SizedBox(
+            height: _buttonHeight,
+            child: Row(
+              children: [
+                Padding(
+                  padding: iconPadding ?? const EdgeInsets.symmetric(horizontal: AppSpace.s8),
+                  child: icon,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppSpace.s4),
+                    child: Text(
+                      text,
+                      style: context.text.bodySm.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: AppPalette.white,
+                      ),
+                      maxLines: 1,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

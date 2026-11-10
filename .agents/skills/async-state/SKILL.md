@@ -1,6 +1,6 @@
 ---
 name: async-state
-description: Implement Cubit state management in this app with the sealed Resource pattern (Initial/Loading/Success/Failure), one-shot Future repository reads, Equatable part-file state classes, read slots rendered by SkeletonizerResourceWidget (skeleton from a model fake, ErrorIndicator on failure), private rebuilding widgets that read narrow slices with context.select/context.read, and BlocListener side effects. Use when creating or editing a Cubit or its state, wiring loading/error/empty states, adding skeleton loaders, showing a failure SnackBar, or whenever code mentions Resource, emit, Success, Failure, SkeletonizerResourceWidget, Skeletonizer, or posts.
+description: Implement Cubit state management in this app with the sealed Resource pattern (Initial/Loading/Success/Failure), one-shot Future repository reads, Equatable part-file state classes, read slots rendered by SkeletonizerResourceWidget (skeleton from a model fake, BaseEmptyState on failure), private rebuilding widgets that read narrow slices with context.select/context.read, and BlocListener side effects. Use when creating or editing a Cubit or its state, wiring loading/error/empty states, adding skeleton loaders, showing a failure SnackBar, or whenever code mentions Resource, emit, Success, Failure, SkeletonizerResourceWidget, Skeletonizer, or posts.
 ---
 
 # Async state in the app
@@ -24,13 +24,13 @@ PostsListPage.wrappedRoute → BlocProvider(create: () => injector.get<PostsList
    → SkeletonizerResourceWidget<List<Post>>(posts, fakeValue, successBuilder, failureBuilder)
         Initial  → SizedBox.shrink()
         Loading  → Skeletonizer(successBuilder(fakeValue))  (reuses the last Success on refresh)
-        Success  → successBuilder(value)                    (BaseListView, EmptyIndicator when empty)
-        Failure  → failureBuilder(exception)                (ErrorIndicator with retry)
+        Success  → successBuilder(value)                    (InfiniteListView, BaseEmptyState when empty)
+        Failure  → failureBuilder(exception)                (BaseEmptyState with retry)
 
 action / form submit:
 page → cubit.submit(): emit <slot> Loading → await repo → emit Success
                                                   catch → emit Failure → emit Initial
-   → BlocListener shows a SnackBar for Failure; Success navigates
+   → BlocListener shows an app toast for Failure; Success navigates
 ```
 
 ## Resource rules
@@ -213,16 +213,17 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
     final posts = context.select((PostsListCubit cubit) => cubit.state.posts);
 
     return BaseView(
-      title: l10n.title,
+      appBar: BaseAppBar(title: l10n.title),
       body: SkeletonizerResourceWidget<List<Post>>(
         posts,
         fakeValue: _skeletonPosts,
         successBuilder: (posts) => _PostsListWidget(posts: posts),
-        failureBuilder: (exception) => ErrorIndicator(
+        failureBuilder: (exception) => BaseEmptyState(
           title: context.l10n.common.genericError,
-          buttonText: context.l10n.common.retry,
-          message: l10n.textFailure,
-          onButtonPressed: context.read<PostsListCubit>().getPosts,
+          text: l10n.textFailure,
+          actionText: context.l10n.common.retry,
+          onAction: context.read<PostsListCubit>().getPosts,
+          face: FaceKind.sad,
         ),
       ),
     );
@@ -231,7 +232,7 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
 ```
 
 - The page does **not** switch over the `Resource`. `SkeletonizerResourceWidget`
-  (`app/lib/features/_shared/presentation/widgets/skeletonizer_resource_widget.dart`)
+  (`packages/common_ui/lib/src/widgets/skeletonizer_resource_widget.dart`)
   is the default renderer for a read slot and handles every branch:
   `Initial` → `SizedBox.shrink()`, `Loading` → `Skeletonizer` over
   `successBuilder(fakeValue)`, `Success` → `successBuilder(value)`, `Failure` →
@@ -244,10 +245,10 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
 - Do not wrap the widget in another `Skeletonizer`; it already applies one while
   loading. Nested skeletonizers double the shimmer and break the loading
   semantics.
-- `failureBuilder` receives the `LocalizedException`, so build `ErrorIndicator`
-  from `app/lib/features/_shared/presentation/widgets/error_indicator.dart`
-  (`title`, `message`, `buttonText`, `onButtonPressed`) inside it. The retry
-  callback is the same cubit method that produced the failure.
+- `failureBuilder` receives the `LocalizedException`, so build a
+  `BaseEmptyState` (`title`, `text`, `actionText`, `onAction`, `face: FaceKind.sad`)
+  inside it. The retry callback is the same cubit method that produced the
+  failure.
 - While loading, the widget wraps the content in
   `Semantics(liveRegion: true, label: context.l10n.common.loading)` and excludes
   the fake content from semantics. Do not re-announce loading from the page.
@@ -261,9 +262,10 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
   `context.l10n.<feature>.<scope>.errors.selectOrFallback(exception.l10nKey)`
   when the feature has an error map; otherwise use a generic failure string.
   Never show `exception.l10nKey` or `exception.toString()`.
-- The list itself is `BaseListView`
-  (`packages/common_ui/lib/src/components/base_list_view.dart`), which wires
-  pull-to-refresh and the empty state in one widget:
+- The list itself is `InfiniteListView`
+  (`packages/common_ui/lib/src/widgets/infinite_list_view.dart`), which owns the
+  pagination trigger and pull-to-refresh. It has no `emptyBuilder`: handle zero
+  items at the call site by rendering a single `BaseEmptyState` row:
 
   ```dart
   class const _PostsListWidget({required final List<Post> posts}) extends StatelessWidget {
@@ -271,13 +273,20 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
     Widget build(BuildContext context) {
       final l10n = context.l10n.post.list;
 
-      return BaseListView(
+      return InfiniteListView(
         onRefresh: context.read<PostsListCubit>().getPosts,
-        padding: const EdgeInsets.all(Spacings.large),
-        itemCount: posts.length,
-        emptyBuilder: (_) => EmptyIndicator(title: l10n.emptyIndicator.title),
-        itemBuilder: (_, index) => PostCard(key: ValueKey(posts[index].id), post: posts[index]),
-        separator: const Gap(Spacings.medium),
+        padding: const EdgeInsets.all(AppSpace.screenMargin),
+        itemCount: posts.isEmpty ? 1 : posts.length,
+        onFetchData: () {},
+        hasNextPage: false,
+        isLoading: false,
+        itemBuilder: (_, index) => posts.isEmpty
+            ? BaseEmptyState(
+                title: l10n.emptyIndicator.title,
+                text: l10n.emptyIndicator.text,
+              )
+            : PostCard(key: ValueKey(posts[index].id), post: posts[index]),
+        separator: posts.isEmpty ? null : const SizedBox(height: AppSpace.s12),
       );
     }
   }
@@ -285,9 +294,8 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
 
 - `onRefresh` is the same `getPosts` future, so the `RefreshIndicator` completes
   when the network call does. Do not return a cached value from it.
-- `emptyBuilder` returns `EmptyIndicator`
-  (`app/lib/features/_shared/presentation/widgets/empty_indicator.dart`); an
-  empty list is a normal success, not a failure.
+- The empty row is a `BaseEmptyState`; an empty list is a normal success, not a
+  failure.
 
 ## Rebuild discipline
 
@@ -360,19 +368,16 @@ void _handleStatus(BuildContext context, LoginState state) {
 
   switch (state.login) {
     case Failure(:final LocalizedException exception):
-      context.showSnackBar(
-        l10n.errors.selectOrFallback(exception.l10nKey),
-        type: SnackBarType.error,
-      );
+      BaseToast.show(context, l10n.errors.selectOrFallback(exception.l10nKey));
     default:
       break;
   }
 }
 ```
 
-- `context.showSnackBar` and `SnackBarType` come from
-  `packages/common_ui/lib/src/components/base_snack_bar.dart`, re-exported by
-  `package:common_ui/common_ui.dart`.
+- `BaseToast.show(context, message)` inserts the toast in the root overlay and
+  dismisses it after four seconds; the old success/error tones collapse to the
+  one neutral tone. The app does not wrap it in a helper.
 - `listenWhen` compares the action slot so unrelated rebuilds do not re-fire the
   side effect.
 - A success case can both pop and show a message, as

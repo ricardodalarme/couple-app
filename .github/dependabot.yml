@@ -40,6 +40,19 @@ updates:
     labels:
       - ":package: dependencies"
   - package-ecosystem: pub
+    directory: /packages/design_system
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-design-system-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
     directory: /packages/core
     schedule:
       interval: weekly

@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/error_indicator.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/models/app_notification.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/models/notification_inbox.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/inbox/cubit/notifications_cubit.dart';
@@ -57,7 +57,7 @@ void main() {
       expect(find.text(notification.title), findsOneWidget);
     });
 
-    testWidgets('renders the empty indicator when the inbox is empty', (tester) async {
+    testWidgets('renders the empty state when the inbox is empty', (tester) async {
       await pumpPage(
         tester,
         const NotificationsState(
@@ -65,11 +65,12 @@ void main() {
         ),
       );
 
+      expect(find.byType(BaseEmptyState), findsOneWidget);
       expect(find.text(l10n.notifications.emptyTitle), findsOneWidget);
       expect(find.byType(NotificationTile), findsNothing);
     });
 
-    testWidgets('renders the error indicator on failure', (tester) async {
+    testWidgets('renders the error state on failure', (tester) async {
       await pumpPage(
         tester,
         const NotificationsState(
@@ -77,8 +78,9 @@ void main() {
         ),
       );
 
-      expect(find.byType(ErrorIndicator), findsOneWidget);
+      expect(find.byType(BaseEmptyState), findsOneWidget);
       expect(find.text(l10n.notifications.textFailure), findsOneWidget);
+      expect(find.text(l10n.common.retry), findsOneWidget);
     });
   });
 }

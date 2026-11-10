@@ -1,4 +1,4 @@
-import 'package:common_ui/common_ui.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 class const LanguageSelectorPage({super.key}) extends StatelessWidget {
@@ -7,17 +7,19 @@ class const LanguageSelectorPage({super.key}) extends StatelessWidget {
     final currentLocale = Localizations.localeOf(context);
 
     return BaseView(
-      title: 'Language Selector',
-      body: RadioGroup(
-        groupValue: currentLocale.languageCode,
-        onChanged: (languageCode) => LocaleSettings.setLocaleRaw(languageCode!),
-        child: ListView(
-          children: AppLocale.values
-              .map(
-                (locale) =>
-                    BaseRadioListTile(value: locale.languageCode, title: locale.languageCode),
-              )
-              .toList(),
+      appBar: const BaseAppBar(title: 'Language Selector'),
+      body: BaseStackedContent(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          spacing: AppSpace.s10,
+          children: [
+            for (final locale in AppLocale.values)
+              BaseOptionTile(
+                title: locale.languageCode,
+                isSelected: currentLocale.languageCode == locale.languageCode,
+                onTap: () => LocaleSettings.setLocaleRaw(locale.languageCode),
+              ),
+          ],
         ),
       ),
     );

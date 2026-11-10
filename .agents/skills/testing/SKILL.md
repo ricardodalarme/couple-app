@@ -16,7 +16,7 @@ app/test/features/post/presentation/list/cubit/post_list_cubit_test.dart
 app/test/features/post/presentation/list/cubit/post_list_state_test.dart
 app/test/features/post/presentation/list/posts_list_page_test.dart
 app/test/features/post/presentation/list/widgets/post_card_test.dart
-app/test/features/_shared/presentation/widgets/skeletonizer_resource_widget_test.dart
+packages/common_ui/test/src/widgets/skeletonizer_resource_widget_test.dart
 ```
 
 ## Commands
@@ -27,7 +27,7 @@ cd app && flutter test         # app only
 cd app && flutter test test/features/post/presentation/list/cubit/post_list_cubit_test.dart
 cd app && flutter test test/path/file_test.dart --plain-name "initial state is correct"
 cd packages/core && dart test              # pure Dart package
-cd packages/common_ui && flutter test      # Flutter package
+cd packages/design_system && flutter test             # Flutter package
 ```
 
 ## Tools
@@ -39,8 +39,8 @@ cd packages/common_ui && flutter test      # Flutter package
 - Repositories, data sources, and SDK wrappers are mocked — never the network
   client or a real plugin.
 - `app/test/test_helpers/pump_app.dart` provides `tester.pumpApp(widget)`, which
-  wraps the widget in `TranslationProvider` + `BaseApp`, so l10n and the theme
-  work.
+  wraps the widget in `TranslationProvider` + `AppThemeHost` + `MaterialApp`, so
+  l10n and the theme work.
 
 ## Cubit test template
 
@@ -212,13 +212,13 @@ void main() {
 `SkeletonizerResourceWidget<T>` collapses the four `Resource` cases into one
 widget, so a widget test covers each case by pumping a different resource. It
 lives at
-`app/test/features/_shared/presentation/widgets/skeletonizer_resource_widget_test.dart`.
+`packages/common_ui/test/src/widgets/skeletonizer_resource_widget_test.dart`.
 
 ```dart
-import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/_shared/presentation/widgets/skeletonizer_resource_widget.dart';
+import 'package:common_ui/common_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:design_system/design_system.dart';
 
 import '../../../../test_helpers/pump_app.dart';
 
@@ -276,12 +276,12 @@ void main() {
 
 - Pure Dart packages (`core`, `form_inputs`, `formatters`, `logger`, `network`):
   `package:test`, plain `test()` functions, no Flutter binding.
-- Flutter packages (`common_ui`, `services/*`): `flutter_test` + `mocktail`;
+- Flutter packages (`design_system`, `services/*`): `flutter_test` + `mocktail`;
   inject SDK mocks through the constructor's optional parameter
   (`FirebaseAnalyticsService(MockFirebaseAnalytics())`,
   `SecureStorageServiceImpl(MockFlutterSecureStorage())`).
-- `common_ui` has its own `test/test_helpers/pump_app.dart` wrapping
-  `MaterialApp` with `AppTheme.light` and `AppTheme.dark`.
+- `design_system` tests use `test/helpers/widget_host.dart`, which wraps a widget in
+  `MaterialApp` + `AppThemed` (or a plain host) at the rose variant.
 - Some packages have no tests yet — adding the first `test/<topic>_service_test.dart`
   following the SDK-mock pattern is fine.
 

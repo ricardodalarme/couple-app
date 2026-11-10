@@ -238,6 +238,8 @@ class _Translations$search$pt extends Translations$search$en {
   // Translations
   @override
   String get title => 'Pesquisar';
+  @override
+  String get fieldSearchHint => 'Pesquisar';
 }
 
 // Path: settings
@@ -249,6 +251,8 @@ class _Translations$settings$pt extends Translations$settings$en {
   // Translations
   @override
   String get title => 'Configurações';
+  @override
+  String get sectionAccount => 'Conta';
   @override
   String get optionBiometrics => 'Biometria';
 }
@@ -569,6 +573,8 @@ class _Translations$post$list$emptyIndicator$pt extends Translations$post$list$e
   // Translations
   @override
   String get title => 'Nenhum post encontrado';
+  @override
+  String get text => 'Novos posts aparecerão aqui.';
 }
 
 /// The flat map containing all translations for locale <pt>.
@@ -694,9 +700,12 @@ extension on TranslationsPt {
       'post.list.title' => 'Feed',
       'post.list.textFailure' => 'Falha ao carregar o feed.',
       'post.list.emptyIndicator.title' => 'Nenhum post encontrado',
+      'post.list.emptyIndicator.text' => 'Novos posts aparecerão aqui.',
       'privacyPolicy.title' => 'Politíca de Privacidade',
       'search.title' => 'Pesquisar',
+      'search.fieldSearchHint' => 'Pesquisar',
       'settings.title' => 'Configurações',
+      'settings.sectionAccount' => 'Conta',
       'settings.optionBiometrics' => 'Biometria',
       'terms.list.title' => 'Termos',
       _ => null,

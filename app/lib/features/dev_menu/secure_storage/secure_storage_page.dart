@@ -1,5 +1,5 @@
-import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
+import 'package:design_system/design_system.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
 
 class const SecureStoragePage({super.key}) extends StatefulWidget {
@@ -23,11 +23,11 @@ class _SecureStoragePageState() extends State<SecureStoragePage> {
   @override
   Widget build(BuildContext context) {
     return BaseView(
-      title: 'Secure Storage',
-      actions: [
-        BaseIconButton(
-          icon: const Icon(Icons.delete_sweep),
-          tooltip: 'Clear secure storage',
+      appBar: BaseAppBar(
+        title: 'Secure Storage',
+        trailing: BaseRoundButton(
+          icon: AppIcons.trash,
+          semanticLabel: 'Clear secure storage',
           onPressed: () async {
             await AppInjector.instance.get<SecureStorageService>().clear();
             if (!mounted) return;
@@ -35,23 +35,40 @@ class _SecureStoragePageState() extends State<SecureStoragePage> {
             setState(() {});
           },
         ),
-      ],
+      ),
       body: FutureBuilder<Map<String, String>>(
         future: _secureStorageDataFuture,
         builder: (context, snapshot) {
           final data = snapshot.data ?? {};
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: BaseLoadingIndicator());
+            return const Center(child: BaseLoadingDots(semanticLabel: 'Loading'));
           }
           if (snapshot.hasError) {
-            return const Center(child: Text('Error loading secure storage data'));
+            return Center(
+              child: Text(
+                'Error loading secure storage data',
+                style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
+              ),
+            );
           }
           if (data.isEmpty) {
-            return const Center(child: Text('No secure storage data available'));
+            return Center(
+              child: Text(
+                'No secure storage data available',
+                style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
+              ),
+            );
           }
 
-          return ListView.builder(
+          return ListView.separated(
+            padding: const EdgeInsets.fromLTRB(
+              AppSpace.screenMargin,
+              AppSpace.s8,
+              AppSpace.screenMargin,
+              AppSpace.s8,
+            ),
             itemCount: data.length,
+            separatorBuilder: (_, _) => const SizedBox(height: AppSpace.s8),
             itemBuilder: (_, index) {
               final key = data.keys.elementAt(index);
               final value = data[key];
@@ -65,12 +82,12 @@ class _SecureStoragePageState() extends State<SecureStoragePage> {
                   setState(() {});
                 },
                 background: Container(
-                  color: Colors.red500,
+                  color: AppPalette.errorInk,
                   alignment: Alignment.centerRight,
-                  padding: const EdgeInsets.symmetric(horizontal: Spacings.large),
-                  child: const Icon(Icons.delete, color: Colors.white),
+                  padding: const EdgeInsets.symmetric(horizontal: AppSpace.s16),
+                  child: const AppIcon(icon: AppIcons.trash, color: AppPalette.white),
                 ),
-                child: BaseListTile(title: key, subtitle: value),
+                child: BaseListTile(title: key, subtitle: value, isLoose: true),
               );
             },
           );

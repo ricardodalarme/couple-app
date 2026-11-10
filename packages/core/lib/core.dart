@@ -6,5 +6,4 @@ export 'src/exceptions/unknown_exception.dart';
 export 'src/extensions/exception_extension.dart';
 export 'src/startup/initializer.dart';
 export 'src/startup/startup_pipeline.dart';
-export 'src/utils/callback_debouncer.dart';
 export 'src/utils/resource.dart';

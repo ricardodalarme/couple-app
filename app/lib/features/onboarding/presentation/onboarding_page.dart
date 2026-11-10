@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/cubit/onboarding_cubit.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/widgets/page_indicator_widget.dart';
@@ -17,11 +18,12 @@ class const OnboardingPage({super.key}) extends StatelessWidget implements AutoR
   @override
   Widget build(BuildContext context) {
     return BaseView(
+      appBar: null,
       body: Column(
         children: [
-          const Gap(Spacings.xxxlarge),
+          const SizedBox(height: AppSpace.s44),
           Assets.images.placeholder.svg(),
-          const Gap(Spacings.xxlarge),
+          const SizedBox(height: AppSpace.s44),
           Expanded(
             child: PageView.builder(
               onPageChanged: (index) => context.read<OnboardingCubit>().onPageChanged(index),
@@ -30,20 +32,12 @@ class const OnboardingPage({super.key}) extends StatelessWidget implements AutoR
                 final page = context.l10n.onboarding.pages[index];
 
                 return Padding(
-                  padding: const EdgeInsets.all(Spacings.xxlarge),
+                  padding: const EdgeInsets.all(AppSpace.s44),
                   child: Column(
                     children: [
-                      Text(
-                        page.title,
-                        style: context.typography.titleMedium,
-                        textAlign: TextAlign.center,
-                      ),
-                      const Gap(Spacings.large),
-                      Text(
-                        page.message,
-                        style: context.typography.bodyLarge,
-                        textAlign: TextAlign.center,
-                      ),
+                      Text(page.title, style: context.text.titleMd, textAlign: TextAlign.center),
+                      const SizedBox(height: AppSpace.s16),
+                      Text(page.message, style: context.text.body, textAlign: TextAlign.center),
                     ],
                   ),
                 );
@@ -51,9 +45,9 @@ class const OnboardingPage({super.key}) extends StatelessWidget implements AutoR
             ),
           ),
           const _PageIndicator(),
-          const Gap(Spacings.xlarge),
+          const SizedBox(height: AppSpace.s24),
           Padding(
-            padding: const EdgeInsets.all(Spacings.large),
+            padding: const EdgeInsets.all(AppSpace.s16),
             child: BaseButton(
               text: context.l10n.onboarding.doneButton,
               onPressed: () async {

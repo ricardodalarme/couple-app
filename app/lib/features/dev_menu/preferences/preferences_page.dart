@@ -1,5 +1,5 @@
-import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
+import 'package:design_system/design_system.dart';
 import 'package:preferences_service/preferences_service.dart';
 
 class const PreferencesPage({super.key}) extends StatefulWidget {
@@ -23,11 +23,11 @@ class _PreferencesPageState() extends State<PreferencesPage> {
   @override
   Widget build(BuildContext context) {
     return BaseView(
-      title: 'Preferences',
-      actions: [
-        BaseIconButton(
-          icon: const Icon(Icons.delete_sweep),
-          tooltip: 'Clear preferences',
+      appBar: BaseAppBar(
+        title: 'Preferences',
+        trailing: BaseRoundButton(
+          icon: AppIcons.trash,
+          semanticLabel: 'Clear preferences',
           onPressed: () async {
             await AppInjector.instance.get<PreferencesService>().clear();
             if (!mounted) return;
@@ -35,11 +35,23 @@ class _PreferencesPageState() extends State<PreferencesPage> {
             setState(() {});
           },
         ),
-      ],
+      ),
       body: _preferencesData.isEmpty
-          ? const Center(child: Text('No preferences data available'))
-          : ListView.builder(
+          ? Center(
+              child: Text(
+                'No preferences data available',
+                style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
+              ),
+            )
+          : ListView.separated(
+              padding: const EdgeInsets.fromLTRB(
+                AppSpace.screenMargin,
+                AppSpace.s8,
+                AppSpace.screenMargin,
+                AppSpace.s8,
+              ),
               itemCount: _preferencesData.length,
+              separatorBuilder: (_, _) => const SizedBox(height: AppSpace.s8),
               itemBuilder: (_, index) {
                 final key = _preferencesData.keys.elementAt(index);
                 final value = _preferencesData[key];
@@ -53,12 +65,12 @@ class _PreferencesPageState() extends State<PreferencesPage> {
                     setState(() {});
                   },
                   background: Container(
-                    color: Colors.red500,
+                    color: AppPalette.errorInk,
                     alignment: Alignment.centerRight,
-                    padding: const EdgeInsets.symmetric(horizontal: Spacings.large),
-                    child: const Icon(Icons.delete, color: Colors.white),
+                    padding: const EdgeInsets.symmetric(horizontal: AppSpace.s16),
+                    child: const AppIcon(icon: AppIcons.trash, color: AppPalette.white),
                   ),
-                  child: BaseListTile(title: key, subtitle: value.toString()),
+                  child: BaseListTile(title: key, subtitle: value.toString(), isLoose: true),
                 );
               },
             ),

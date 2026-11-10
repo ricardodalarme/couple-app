@@ -1,6 +1,6 @@
 ---
 name: localization
-description: Add or change user-facing strings in the app with slang — edit app/lib/l10n/en/<namespace>.json (with a pt/<namespace>.json sibling), regenerate with melos l10n, read keys as context.l10n.<namespace>.<key>, resolve runtime error codes with (map) maps plus selectOrFallback, and validate with melos l10n:analyze. Use whenever adding text, labels, hints, messages, or error strings to the UI, when the user says "localize", "translation", "l10n", or when a hardcoded string must become translatable.
+description: Add or change user-facing strings in the app or design system with slang — edit the package's l10n/en/<namespace>.json (with a pt sibling), regenerate with melos l10n, read app keys as context.l10n.<namespace>.<key> and design-system keys as context.designSystemL10nOrBase.<namespace>.<key>, resolve runtime error codes with (map) maps plus selectOrFallback, and validate with melos l10n:analyze. Use whenever adding text, labels, hints, messages, or error strings to the UI, when the user says "localize", "translation", "l10n", or when a hardcoded string must become translatable.
 ---
 
 # Localization in the app
@@ -58,6 +58,27 @@ translate_var: l10n
 ```
 
 `translate_var: l10n` is why every read is spelled `context.l10n...`.
+
+## Design-system strings
+
+`packages/design_system` has its own slang setup for strings owned by the design system:
+
+```
+packages/design_system/
+├── slang.yaml
+└── lib/src/l10n/
+    ├── en/{common,navigation,input}.json
+    ├── pt/{common,navigation,input}.json
+    └── translations*.g.dart      # generated, not exported from design_system.dart
+```
+
+- Read them with `context.designSystemL10nOrBase.<namespace>.<key>` from
+  `package:design_system/design_system_l10n.dart`. `BaseApp` installs the `TranslationProvider`;
+  `designSystemL10nOrBase` falls back to the base locale when a component is rendered
+  without one, which keeps isolated widget tests working.
+- Never put design-system labels in `app/lib/l10n`, and never put app copy in
+  `packages/design_system/lib/src/l10n`.
+- `melos l10n` regenerates both packages; `melos l10n:analyze` checks both.
 `format.enabled` is on, so slang reformats the JSON files on generation — let it
 own the formatting instead of hand-aligning.
 
@@ -124,9 +145,9 @@ the pattern for server or validation codes whose key is only known at runtime:
 errorText: context.l10n.authentication.login.emailErrors[errorKey],
 
 // exceptions (l10nKey comes from LocalizedException)
-context.showSnackBar(
+BaseToast.show(
+  context,
   context.l10n.post.createErrors.selectOrFallback(exception.l10nKey),
-  type: SnackBarType.error,
 );
 ```
 
@@ -248,12 +269,12 @@ Text.rich(
   context.l10n.authentication.signup.termsNotice(
     tos: (text) => TextSpan(
       text: text,
-      style: TextStyle(color: context.palette.primary),
+      style: TextStyle(color: context.colors.actionPrimary),
       recognizer: TapGestureRecognizer()..onTap = openTerms,
     ),
     privacy: (text) => TextSpan(
       text: text,
-      style: TextStyle(color: context.palette.primary),
+      style: TextStyle(color: context.colors.actionPrimary),
       recognizer: TapGestureRecognizer()..onTap = openPrivacy,
     ),
   ),

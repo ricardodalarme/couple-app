@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/change_password/cubit/change_password_cubit.dart';
@@ -22,26 +22,22 @@ class const ChangePasswordPage({super.key}) extends StatelessWidget implements A
     final l10n = context.l10n.account.changePassword;
 
     return BaseView(
-      title: l10n.title,
       body: BlocListener<ChangePasswordCubit, ChangePasswordState>(
         listenWhen: (previous, current) => previous.submission != current.submission,
         listener: _handleStatus,
-        child: const Center(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.all(Spacings.large),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _CurrentPasswordTextField(),
-                Gap(Spacings.medium),
-                _NewPasswordTextField(),
-                Gap(Spacings.medium),
-                _ConfirmPasswordTextField(),
-                Gap(Spacings.large),
-                _SubmitButton(),
-              ],
-            ),
+        child: BaseFlowContent(
+          heading: l10n.title,
+          content: const Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _CurrentPasswordTextField(),
+              SizedBox(height: AppSpace.s12),
+              _NewPasswordTextField(),
+              SizedBox(height: AppSpace.s12),
+              _ConfirmPasswordTextField(),
+            ],
           ),
+          primaryAction: const _SubmitButton(),
         ),
       ),
     );
@@ -53,12 +49,9 @@ class const ChangePasswordPage({super.key}) extends StatelessWidget implements A
     switch (state.submission) {
       case Success():
         context.router.maybePop();
-        context.showSnackBar(l10n.messageSuccess, type: SnackBarType.success);
+        BaseToast.show(context, l10n.messageSuccess);
       case Failure(:final LocalizedException exception):
-        context.showSnackBar(
-          l10n.errors.selectOrFallback(exception.l10nKey),
-          type: SnackBarType.error,
-        );
+        BaseToast.show(context, l10n.errors.selectOrFallback(exception.l10nKey));
       default:
         break;
     }

@@ -21,15 +21,16 @@ Agent-Skills-compatible tool can load them.
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `melos bootstrap`                                                                        | Install deps + hooks, copies `.env.example` → `.env.development`                   |
 | `melos get`                                                                              | `flutter pub get`                                                                  |
-| `melos gen`                                                                              | build_runner for routes + GraphQL codegen (required before analyzing new code)     |
-| `melos l10n`                                                                             | Regenerate slang translations after editing `app/lib/l10n/en/*.json` + `pt/*.json` |
+| `melos gen`                                                                              | build_runner for routes, GraphQL and generated assets (required before analyze)    |
+| `melos l10n`                                                                             | Regenerate app + design-system slang translations                                  |
 | `melos l10n:analyze`                                                                     | Fails on missing/unused translation keys (CI + pre-push)                           |
 | `melos lint`                                                                             | `flutter analyze` + format check                                                   |
 | `melos test`                                                                             | Full workspace test run (very_good_cli)                                            |
 | `melos format`                                                                           | Format all Dart files (100-col page width)                                         |
 | `cd app && flutter test test/path_test.dart [--plain-name "..."]`                        | Single test file                                                                   |
 | `cd packages/core && dart test`                                                          | Pure-Dart package tests                                                            |
-| `cd packages/common_ui && flutter test`                                                  | Flutter package tests                                                              |
+| `cd packages/design_system && flutter test`                                                         | Flutter package tests                                                              |
+| `cd packages/common_ui && flutter test`                                                  | Shared widget tests                                                                |
 | `cd app && flutter run --dart-define-from-file ../.env.development --flavor development` | Run the app (VSCode F5 works too)                                                  |
 
 Melos config is the `melos:` key in the **root `pubspec.yaml`** — there is no
@@ -61,7 +62,7 @@ keep them in sync.
 
 ```text
 app/          # Flutter app, package flutter_bloc_starter
-packages/     # core, network, common_ui, form_inputs, formatters, logger, services/*
+packages/     # core, network, design_system, common_ui, form_inputs, formatters, logger, services/*
 supabase/     # schema-first database, migrations, seed, pgTAP tests
 docs/         # contributing, dependency injection, localization, navigation notes
 .agents/      # skills (SKILL.md) and agent instructions
@@ -95,14 +96,14 @@ app/lib/
 
 The canonical feature is `post`: a GraphQL read with `PostDataSource`,
 `PostRepository`, `PostsListCubit`, `PostsListState`, and a page that renders the
-`Resource` state with `SkeletonizerResourceWidget` plus `EmptyIndicator` and
-`ErrorIndicator`. `notifications` follows the same one-shot pattern with a
+`Resource` state with `SkeletonizerResourceWidget` plus `BaseEmptyState` for
+empty and failure. `notifications` follows the same one-shot pattern with a
 separate unread badge cubit.
 
 ### Navigation shell
 
-The app has three primary tabs, rendered by `HomePage` with `AutoTabsScaffold`
-and `BaseNavigationBar`:
+The app has three primary tabs, rendered by `HomePage` with `AutoTabsRouter`
+and `BaseTabBar`:
 
 **Posts · Search · Profile**
 
@@ -110,7 +111,7 @@ and `BaseNavigationBar`:
   in `app/lib/router/app_router.dart`: `PostsListRoute` (initial), `SearchRoute`,
   and `ProfileRoute`.
 - Adding a tab requires both a child `AutoRoute` under `HomeRoute` and an entry
-  in `HomePage`'s `AutoTabsScaffold.routes`; keep the two lists in sync.
+  in `HomePage`'s `AutoTabsRouter.routes`; keep the two lists in sync.
 - All other pages (`Login`, `SignUp`, `Settings`, `EditProfile`,
   `ChangePassword`, `Notifications`, `PrivacyPolicy`, `TermsList`, `NotFound`)
   are flat root routes.
@@ -132,7 +133,17 @@ and `BaseNavigationBar`:
   value plus success and failure builders), and split UI into private widgets
   that read narrow slices with `context.select`. Use `context.select` for state
   reads — do not add `BlocBuilder`, `BlocSelector`, or `buildWhen`. Use a manual
-  `switch` over the `Resource` only for one-off cases.
+  `switch` over the `Resource` only for one-off cases. Every page starts with
+  `BaseView(appBar: BaseAppBar(...), body: ...)`, the padding-free page
+  shell. `appBar` defaults to a bare `BaseAppBar`, so stack routes get a
+  back button without page code; pass `appBar: null` only when the screen owns
+  the full screen. The body is a design-system content widget (`BaseFlowContent`,
+  `BaseStackedContent`, `BaseMomentContent`, `BaseTabContent`) for scrolling
+  content, or the page's own viewport (infinite lists, `WebView`, `PageView`,
+  dynamic lists). `BaseAppBar` adds the back button automatically when the
+  route can pop; use `onClose` only for a modal-style dismissal. Text fields
+  use `BaseTextField`/`BaseTextArea` with `text` + `onChanged`, and transient
+  confirmations use `BaseToast.show`.
 - **DI**: one `InjectionModule` per feature, registered in
   `main.dart::_registerModules()`; data sources/repositories/services are lazy
   singletons, cubits are factories.
@@ -208,42 +219,65 @@ allows them; use the body only for initializers and behavior.
 
 ## Design system
 
-`packages/common_ui` is the only UI layer the app may use; Material and Cupertino
-exist inside that package only. There is no separate design-system document in
-this repo — the tokens and components are the source of truth.
+`packages/design_system` is the only UI layer the app may use; Material and Cupertino exist
+inside that package only. There is no separate design-system document in this
+repo — the tokens and components are the source of truth.
 
-Use semantic colors (`context.palette`), text styles (`context.typography`), and
-the token constants (`Spacings`, `Borders`, `Durations`, `Breakpoints`,
-`FontSizes`) — never raw colors or magic numbers.
+Import everything UI-related from `package:design_system/design_system.dart`. The root is
+`BaseApp.router`, which installs `MaterialApp.router`, owns the root
+`DefaultTextStyle`, and defaults to `GlobalMaterialLocalizations.delegates` from
+`material_ui`; the barrel also re-exports `flutter/widgets.dart`, `ThemeMode`,
+`GlobalMaterialLocalizations`, `skeletonizer`, `flutter_svg`,
+`cached_network_image_ce`, the icons, the tokens and the `Base*` components.
+Do not import `flutter_localizations` in app code.
 
-- `packages/common_ui/lib/src/components` holds **domain-blind building-block
-  nouns** (`Base*`).
-- Scenario recipes — empty/error/retry states, section compositions — are
-  **patterns**: shared widgets in `app/lib/features/_shared`, never `Base*`.
+Use semantic colors (`context.colors`), text styles (`context.text`), and the
+token constants (`AppSpace`, `AppRadius`, `AppBorder`, `AppMotion`,
+`AppIconSize`) — never raw colors or magic numbers.
+
+Loading is `BaseLoadingDots`; pull-to-refresh uses its own arc ring inside
+`BaseRefreshable`. Never use a rounded spinner (`CircularProgressIndicator`,
+`CupertinoActivityIndicator`, or `RefreshIndicator`'s spinner).
+
+- `packages/design_system/lib/src/components` holds **domain-blind building-block nouns**
+  (`Base*`).
+- `packages/common_ui` holds shared non-design widgets: `SkeletonizerResourceWidget`,
+  `BaseListView`, `InfiniteListView`, `WebView` and the generated `Assets`.
+  They depend on app-level types or third-party packages, never on the feature
+  layer. Every page starts with `design_system`'s `BaseView(appBar:, body:)`; scrolling
+  content uses the content widgets (`BaseFlowContent`, `BaseStackedContent`,
+  `BaseMomentContent`, `BaseTabContent`) and `BaseEmptyState` for empty and
+  failure states.
 - Apply the `design-system` skill before creating, moving, or promoting any
   reusable widget.
 
 ## Hard rules
 
 1. **Never** import `flutter/material.dart` or `flutter/cupertino.dart` in
-   `app/lib`. Use `package:common_ui/common_ui.dart`; new components go in
-   `packages/common_ui`.
+   `app/lib`. Use `package:design_system/design_system.dart`; new components go in `packages/design_system`.
+   `material_ui` is re-exported from the barrel, never imported directly in
+   `app/lib`. Never use `Scaffold`, `AppBar`, `MaterialApp` or `AutoTabsScaffold`
+   in app code; `BaseView` and `BaseApp` own them.
 2. Cubits, not Blocs. No domain/usecase layer, no repository interfaces, no
    freezed/json_serializable/injectable.
 3. Cubits take no runtime constructor arguments (`Injector` has no
    `registerFactoryParam`); pass ids into methods or use route params.
 4. Every new `InjectionModule` must be added to `main.dart::_registerModules()`
    or `AppInjector.instance.get<T>()` fails at runtime.
-5. All user-facing strings come from slang. Files live at
+5. All user-facing strings come from slang. App strings live at
    `app/lib/l10n/en/<namespace>.json` with a `pt/<namespace>.json` sibling
-   (shared keys in `common.json`). File names are the namespace and must be
-   globally unique. Run `melos l10n` then `melos l10n:analyze`.
-6. Never hand-edit generated files (`*.g.dart`, `*.gr.dart`, `*.graphql.dart`,
-   `translations*.dart`). Run `melos gen`/`melos l10n` and commit outputs.
+   (shared keys in `common.json`). Design-system strings live at
+   `packages/design_system/lib/src/l10n/en/<namespace>.json` with a `pt` sibling and are
+   read through `context.designSystemL10nOrBase`. File names are the namespace and must be
+   unique within their package. Run `melos l10n` then `melos l10n:analyze`.
+6. Never hand-edit generated files (`*.g.dart`, `*.gr.dart`, `*.gen.dart`,
+   `*.graphql.dart`, `translations*.dart`). Run `melos gen`/`melos l10n` and
+   commit outputs.
 7. Do not edit `docs/` as part of code tasks.
-8. New `Base*` components go in `packages/common_ui/lib/src/components` with a
-   Storybook example and a test; scenario recipes go in
-   `app/lib/features/_shared` and never take the `Base*` prefix.
+8. New `Base*` components go in `packages/design_system/lib/src/components` with a
+   Storybook example and a test; shared non-design widgets go in
+   `packages/common_ui`. New widgets there do not take the `Base*` prefix
+   (`BaseListView` keeps its existing name).
 9. Use Dart primary constructors everywhere (see §State, UI, DI → Constructors).
    Do not add a separate constructor body just to assign fields.
 10. Imports are always `package:` imports, never relative package imports.
@@ -253,27 +287,23 @@ the token constants (`Spacings`, `Borders`, `Durations`, `Breakpoints`,
 
 ## Comments
 
-Default to no comments — well-named code explains itself. Write one only when
-the code truly cannot say it, and keep it to the point. A comment describes the
-declaration it sits on, never the app that uses it.
+Default to none. Write one only when the code cannot say it, and keep it to a
+short sentence. Describe the declaration in front of you — not its history, its
+consumers, or why it changed.
 
-- `///` doc comments are for public API whose purpose, contract, or edge cases
-  are not obvious from its name and signature. Describe the entity in
-  isolation: what it is or does, invariants, units, thrown errors. Never
-  mention a feature, page, cubit, or any consumer — shared code must make sense
-  without knowing this app.
-- Never restate the name, the signature, or the next line (`// increment i`),
-  never narrate steps or add section banners, never leave commented-out code —
-  delete it.
-- `//` inline comments exist only for a non-obvious *why*: a workaround, an
-  invariant, a subtle ordering requirement. One or two lines max; if it needs
-  more, simplify the code instead.
-- Style: first line is a single-sentence summary, further paragraphs after a
-  `///` line; properties start with a noun phrase, booleans with "Whether",
-  methods with a third-person verb; no `@param`/`@return`/`@throws` tags —
-  weave them into prose; do not repeat inherited docs on `@override`; link
-  identifiers with `[Symbol]`; backtick literals and keywords.
-- Every `// ignore:` directive states the lint name and a short reason.
+- `///` is for public API whose contract is not obvious from the name: what it
+  is, invariants, units, thrown errors. No `@param`/`@return`/`@throws`.
+- `//` is only for a non-obvious why — a workaround, invariant or ordering
+  requirement. One line; if it needs more, simplify the code.
+- Never restate the name or next line, narrate steps, add banners, keep
+  commented-out code, or mention a feature, page, cubit or consumer.
+- No diff notes: "now", "no longer", "previously", "moved", "used to", "still".
+  A comment must stand on its own.
+- Keep a comment local to its declaration; never edit another comment to
+  explain a change.
+- Properties start with a noun phrase, booleans with "Whether", methods with a
+  third-person verb. Link identifiers with `[Symbol]`; backtick literals.
+- Every `// ignore:` states the lint and a short reason.
 
 ## Skills
 
@@ -287,6 +317,6 @@ declaration it sits on, never the app that uses it.
 | `dependency-injection` | Registering/resolving dependencies, DI modules                                                                         |
 | `testing`              | Writing or running tests                                                                                               |
 | `storybook`            | Widgetbook (Storybook) examples for components/widgets                                                                 |
-| `design-system`        | Any UI, styling, tokens, `common_ui`, colors/typography; component-vs-pattern boundary, `Base*` naming, library audits |
+| `design-system`        | Any UI, styling, tokens, `design_system`, colors/typography; component-vs-pattern boundary, `Base*` naming, library audits        |
 | `package`              | New workspace package or third-party SDK wrapper                                                                       |
 | `supabase`             | Schema-first changes, migrations, RLS/grants, pgTAP, pg_graphql, GraphQL snapshot refresh                              |

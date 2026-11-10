@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,45 +23,41 @@ class const LoginPage({super.key}) extends StatelessWidget implements AutoRouteW
     final l10n = context.l10n.authentication.login;
 
     return BaseView(
-      title: l10n.title,
+      appBar: BaseAppBar(title: l10n.title),
       body: BlocListener<LoginCubit, LoginState>(
         listenWhen: (previous, current) => previous.login != current.login,
         listener: _handleStatus,
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(Spacings.large),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const _EmailTextField(),
-                const Gap(Spacings.medium),
-                const _PasswordTextField(),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: BaseTextButton(
-                    text: l10n.buttonForgotPassword,
-                    onPressed: () {
-                      context.pushRoute(const ForgotPasswordRoute());
-                    },
-                  ),
+        child: BaseStackedContent(
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const _EmailTextField(),
+              const SizedBox(height: AppSpace.s12),
+              const _PasswordTextField(),
+              Align(
+                alignment: Alignment.centerRight,
+                child: BaseTextLink(
+                  text: l10n.buttonForgotPassword,
+                  onPressed: () {
+                    context.pushRoute(const ForgotPasswordRoute());
+                  },
                 ),
-                const Gap(Spacings.small),
-                const _LoginButton(),
-                BaseDivider.text(
-                  text: l10n.dividerOr,
-                  startMargin: Spacings.large,
-                  endMargin: Spacings.large,
+              ),
+              const SizedBox(height: AppSpace.s8),
+              const _LoginButton(),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: AppSpace.s16),
+                child: BaseDivider(label: l10n.dividerOr),
+              ),
+              const _SignInWithThirdPartyButtons(),
+              const SizedBox(height: AppSpace.s8),
+              const _SignupButton(),
+              if (kDebugMode)
+                BaseTextLink(
+                  text: l10n.buttonDevMenu,
+                  onPressed: () => context.router.pushWidget(const DevMenuPage()),
                 ),
-                const _SignInWithThirdPartyButtons(),
-                const Gap(Spacings.small),
-                const _SignupButton(),
-                if (kDebugMode)
-                  BaseTextButton(
-                    text: l10n.buttonDevMenu,
-                    onPressed: () => context.router.pushWidget(const DevMenuPage()),
-                  ),
-              ],
-            ),
+            ],
           ),
         ),
       ),
@@ -73,10 +69,7 @@ class const LoginPage({super.key}) extends StatelessWidget implements AutoRouteW
 
     switch (state.login) {
       case Failure(:final LocalizedException exception):
-        context.showSnackBar(
-          l10n.errors.selectOrFallback(exception.l10nKey),
-          type: SnackBarType.error,
-        );
+        BaseToast.show(context, l10n.errors.selectOrFallback(exception.l10nKey));
       default:
         break;
     }
@@ -90,11 +83,11 @@ class const _EmailTextField() extends StatelessWidget {
     final email = context.select((LoginCubit cubit) => cubit.state.email);
 
     return BaseTextField(
+      type: BaseTextFieldType.email,
       text: email.value,
       label: context.l10n.common.email,
       errorText: l10n.emailErrors[email.displayError?.name],
       onChanged: context.read<LoginCubit>().onEmailChanged,
-      keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
     );
   }
@@ -140,7 +133,7 @@ class const _SignInWithThirdPartyButtons() extends StatelessWidget {
     final l10n = context.l10n.authentication.login;
 
     return Column(
-      spacing: Spacings.small,
+      spacing: AppSpace.s8,
       children: [
         SocialButton(
           ButtonProvider.google,
@@ -163,7 +156,7 @@ class const _SignupButton() extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication.login;
 
-    return BaseTextButton(
+    return BaseTextLink(
       text: l10n.buttonNewAccount,
       onPressed: () => context.pushRoute(const SignUpRoute()),
     );
