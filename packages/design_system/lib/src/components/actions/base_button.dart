@@ -30,6 +30,7 @@ class const BaseButton({
   final bool isLoading = false,
   final bool isEnabled = true,
   final IconData? icon,
+  final Widget? leading,
   final bool isFullWidth = true,
   super.key,
 }) extends StatefulWidget {
@@ -186,6 +187,10 @@ class _BaseButtonState() extends State<BaseButton> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    if (widget.leading != null) ...[
+                      widget.leading!,
+                      const SizedBox(width: AppSpace.s10),
+                    ],
                     Flexible(
                       child: Text(widget.text, style: style, textAlign: TextAlign.center),
                     ),

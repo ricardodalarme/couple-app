@@ -1,0 +1,13 @@
+{
+  "signInTitle": "Entrar",
+  "signInSubtitle": "Sem e-mail e senha. Só Apple ou Google.",
+  "signInNote": "Entrar leva direto para o seu Hoje.",
+  "existingAccountTitle": "Você já tem uma conta",
+  "existingAccountSubtitle": "Entre para continuar de onde parou.",
+  "continueWithApple": "Continuar com a Apple",
+  "continueWithGoogle": "Continuar com o Google",
+  "errors(map)": {
+    "NETWORK": "Sem conexão. Confira a internet e tente de novo.",
+    "other": "Não deu para entrar agora. Tente de novo."
+  }
+}

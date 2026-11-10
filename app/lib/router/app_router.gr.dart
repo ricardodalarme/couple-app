@@ -27,6 +27,22 @@ class DebugSignInRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ExistingAccountPage]
+class ExistingAccountRoute extends PageRouteInfo<void> {
+  const ExistingAccountRoute({List<PageRouteInfo>? children})
+    : super(ExistingAccountRoute.name, initialChildren: children);
+
+  static const String name = 'ExistingAccountRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const ExistingAccountPage());
+    },
+  );
+}
+
+/// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
@@ -70,6 +86,22 @@ class NotFoundRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const NotFoundPage();
+    },
+  );
+}
+
+/// generated route for
+/// [SignInPage]
+class SignInRoute extends PageRouteInfo<void> {
+  const SignInRoute({List<PageRouteInfo>? children})
+    : super(SignInRoute.name, initialChildren: children);
+
+  static const String name = 'SignInRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const SignInPage());
     },
   );
 }

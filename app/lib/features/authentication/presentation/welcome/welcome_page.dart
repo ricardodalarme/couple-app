@@ -13,34 +13,51 @@ class const WelcomePage({super.key}) extends StatelessWidget {
 
     return BaseView(
       appBar: null,
-      body: BaseMomentContent(
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
+      body: BaseStackedContent(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(context.l10n.common.appName, style: context.text.titleXl),
-            const SizedBox(height: AppSpace.s8),
+            const SizedBox(height: AppSpace.s44),
+            const BaseFace(kind: FaceKind.smile, size: FaceSize.showcase),
+            const SizedBox(height: AppSpace.s34),
+            Semantics(
+              header: true,
+              child: AppHighlightedText(
+                text: l10n.headline,
+                highlight: l10n.headlineHighlight,
+                style: context.text.display,
+              ),
+            ),
+            const SizedBox(height: AppSpace.s12),
             Text(
-              l10n.tagline,
-              textAlign: TextAlign.center,
-              style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
+              l10n.subtitle,
+              style: context.text.bodyLg.copyWith(color: context.colors.textSecondary),
             ),
           ],
         ),
-        footer: EnvVariables.debugSignIn
-            ? Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  BaseButton(
-                    text: l10n.debugSignIn,
-                    onPressed: () => context.pushRoute(const DebugSignInRoute()),
-                  ),
-                  BaseTextLink(
-                    text: 'Dev menu',
-                    onPressed: () => context.router.pushWidget(const DevMenuPage()),
-                  ),
-                ],
-              )
-            : null,
+        footer: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            BaseButton(text: l10n.start, onPressed: () => context.pushRoute(const SignInRoute())),
+            const SizedBox(height: AppSpace.s10),
+            BaseButton(
+              text: l10n.haveAccount,
+              variant: .secondary,
+              onPressed: () => context.pushRoute(const SignInRoute()),
+            ),
+            if (EnvVariables.debugSignIn) ...[
+              BaseTextLink(
+                text: l10n.debugSignIn,
+                onPressed: () => context.pushRoute(const DebugSignInRoute()),
+              ),
+              BaseTextLink(
+                text: 'Dev menu',
+                onPressed: () => context.router.pushWidget(const DevMenuPage()),
+              ),
+            ],
+          ],
+        ),
       ),
     );
   }

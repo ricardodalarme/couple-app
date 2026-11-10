@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc_starter/features/authentication/presentation/existing_account/existing_account_page.dart';
+import 'package:flutter_bloc_starter/features/authentication/presentation/sign_in/sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/welcome/welcome_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/home/presentation/home/home_page.dart';
@@ -15,6 +17,8 @@ class AppRouter() extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
     AutoRoute(page: WelcomeRoute.page, initial: true),
+    AutoRoute(page: SignInRoute.page),
+    AutoRoute(page: ExistingAccountRoute.page),
     AutoRoute(page: DebugSignInRoute.page),
     AutoRoute(
       page: HomeRoute.page,

@@ -1,4 +1,8 @@
 {
-  "tagline": "Guarde o que é bom. Entregue no domingo.",
+  "headline": "Pequenas coisas boas, ditas em voz alta.",
+  "headlineHighlight": "ditas em voz alta",
+  "subtitle": "Um jeito leve de notar o que o outro faz de bom, a cada semana.",
+  "start": "Começar",
+  "haveAccount": "Já tenho conta",
   "debugSignIn": "Entrar (debug)"
 }

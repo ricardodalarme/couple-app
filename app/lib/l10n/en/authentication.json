@@ -1,0 +1,13 @@
+{
+  "signInTitle": "Sign in",
+  "signInSubtitle": "No email and password. Just Apple or Google.",
+  "signInNote": "Signing in takes you straight to your Today.",
+  "existingAccountTitle": "You already have an account",
+  "existingAccountSubtitle": "Sign in to pick up where you left off.",
+  "continueWithApple": "Continue with Apple",
+  "continueWithGoogle": "Continue with Google",
+  "errors(map)": {
+    "NETWORK": "No connection. Check your internet and try again.",
+    "other": "Could not sign you in right now. Try again."
+  }
+}

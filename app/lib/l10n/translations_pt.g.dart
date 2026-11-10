@@ -53,10 +53,47 @@ class Translations with BaseTranslations<AppLocale, Translations> {
       Translations(meta: meta ?? this.$meta);
 
   // Translations
+  late final Translations$authentication$pt authentication =
+      Translations$authentication$pt.internal(_root);
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
   late final Translations$tabs$pt tabs = Translations$tabs$pt.internal(_root);
   late final Translations$welcome$pt welcome = Translations$welcome$pt.internal(_root);
+}
+
+// Path: authentication
+class Translations$authentication$pt {
+  Translations$authentication$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Entrar'
+  String get signInTitle => 'Entrar';
+
+  /// pt: 'Sem e-mail e senha. Só Apple ou Google.'
+  String get signInSubtitle => 'Sem e-mail e senha. Só Apple ou Google.';
+
+  /// pt: 'Entrar leva direto para o seu Hoje.'
+  String get signInNote => 'Entrar leva direto para o seu Hoje.';
+
+  /// pt: 'Você já tem uma conta'
+  String get existingAccountTitle => 'Você já tem uma conta';
+
+  /// pt: 'Entre para continuar de onde parou.'
+  String get existingAccountSubtitle => 'Entre para continuar de onde parou.';
+
+  /// pt: 'Continuar com a Apple'
+  String get continueWithApple => 'Continuar com a Apple';
+
+  /// pt: 'Continuar com o Google'
+  String get continueWithGoogle => 'Continuar com o Google';
+
+  Map<String, String> get errors => {
+    'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
+    'other': 'Não deu para entrar agora. Tente de novo.',
+  };
 }
 
 // Path: common
@@ -157,8 +194,20 @@ class Translations$welcome$pt {
 
   // Translations
 
-  /// pt: 'Guarde o que é bom. Entregue no domingo.'
-  String get tagline => 'Guarde o que é bom. Entregue no domingo.';
+  /// pt: 'Pequenas coisas boas, ditas em voz alta.'
+  String get headline => 'Pequenas coisas boas, ditas em voz alta.';
+
+  /// pt: 'ditas em voz alta'
+  String get headlineHighlight => 'ditas em voz alta';
+
+  /// pt: 'Um jeito leve de notar o que o outro faz de bom, a cada semana.'
+  String get subtitle => 'Um jeito leve de notar o que o outro faz de bom, a cada semana.';
+
+  /// pt: 'Começar'
+  String get start => 'Começar';
+
+  /// pt: 'Já tenho conta'
+  String get haveAccount => 'Já tenho conta';
 
   /// pt: 'Entrar (debug)'
   String get debugSignIn => 'Entrar (debug)';
@@ -172,6 +221,15 @@ class Translations$welcome$pt {
 extension on Translations {
   dynamic _flatMapFunction(String path) {
     return switch (path) {
+      'authentication.signInTitle' => 'Entrar',
+      'authentication.signInSubtitle' => 'Sem e-mail e senha. Só Apple ou Google.',
+      'authentication.signInNote' => 'Entrar leva direto para o seu Hoje.',
+      'authentication.existingAccountTitle' => 'Você já tem uma conta',
+      'authentication.existingAccountSubtitle' => 'Entre para continuar de onde parou.',
+      'authentication.continueWithApple' => 'Continuar com a Apple',
+      'authentication.continueWithGoogle' => 'Continuar com o Google',
+      'authentication.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
+      'authentication.errors.other' => 'Não deu para entrar agora. Tente de novo.',
       'common.appName' => 'Flutter Bloc Starter',
       'common.send' => 'Enviar',
       'common.save' => 'Salvar',
@@ -193,7 +251,11 @@ extension on Translations {
       'tabs.capture' => 'Novo slip',
       'tabs.soonTitle' => 'Em construção',
       'tabs.soonText' => 'Esta parte do app ainda está sendo preparada.',
-      'welcome.tagline' => 'Guarde o que é bom. Entregue no domingo.',
+      'welcome.headline' => 'Pequenas coisas boas, ditas em voz alta.',
+      'welcome.headlineHighlight' => 'ditas em voz alta',
+      'welcome.subtitle' => 'Um jeito leve de notar o que o outro faz de bom, a cada semana.',
+      'welcome.start' => 'Começar',
+      'welcome.haveAccount' => 'Já tenho conta',
       'welcome.debugSignIn' => 'Entrar (debug)',
       _ => null,
     };

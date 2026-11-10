@@ -52,6 +52,10 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 
   // Translations
   @override
+  late final _Translations$authentication$en authentication = _Translations$authentication$en._(
+    _root,
+  );
+  @override
   late final _Translations$common$en common = _Translations$common$en._(_root);
   @override
   late final _Translations$notFound$en notFound = _Translations$notFound$en._(_root);
@@ -59,6 +63,34 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$tabs$en tabs = _Translations$tabs$en._(_root);
   @override
   late final _Translations$welcome$en welcome = _Translations$welcome$en._(_root);
+}
+
+// Path: authentication
+class _Translations$authentication$en extends Translations$authentication$pt {
+  _Translations$authentication$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get signInTitle => 'Sign in';
+  @override
+  String get signInSubtitle => 'No email and password. Just Apple or Google.';
+  @override
+  String get signInNote => 'Signing in takes you straight to your Today.';
+  @override
+  String get existingAccountTitle => 'You already have an account';
+  @override
+  String get existingAccountSubtitle => 'Sign in to pick up where you left off.';
+  @override
+  String get continueWithApple => 'Continue with Apple';
+  @override
+  String get continueWithGoogle => 'Continue with Google';
+  @override
+  Map<String, String> get errors => {
+    'NETWORK': 'No connection. Check your internet and try again.',
+    'other': 'Could not sign you in right now. Try again.',
+  };
 }
 
 // Path: common
@@ -138,7 +170,15 @@ class _Translations$welcome$en extends Translations$welcome$pt {
 
   // Translations
   @override
-  String get tagline => 'Keep what is good. Hand it over on Sunday.';
+  String get headline => 'Small good things, said out loud.';
+  @override
+  String get headlineHighlight => 'said out loud';
+  @override
+  String get subtitle => 'A light way to notice what the other does well, every week.';
+  @override
+  String get start => 'Get started';
+  @override
+  String get haveAccount => 'I already have an account';
   @override
   String get debugSignIn => 'Sign in (debug)';
 }
@@ -151,6 +191,15 @@ class _Translations$welcome$en extends Translations$welcome$pt {
 extension on TranslationsEn {
   dynamic _flatMapFunction(String path) {
     return switch (path) {
+      'authentication.signInTitle' => 'Sign in',
+      'authentication.signInSubtitle' => 'No email and password. Just Apple or Google.',
+      'authentication.signInNote' => 'Signing in takes you straight to your Today.',
+      'authentication.existingAccountTitle' => 'You already have an account',
+      'authentication.existingAccountSubtitle' => 'Sign in to pick up where you left off.',
+      'authentication.continueWithApple' => 'Continue with Apple',
+      'authentication.continueWithGoogle' => 'Continue with Google',
+      'authentication.errors.NETWORK' => 'No connection. Check your internet and try again.',
+      'authentication.errors.other' => 'Could not sign you in right now. Try again.',
       'common.appName' => 'Flutter Bloc Starter',
       'common.send' => 'Send',
       'common.save' => 'Save',
@@ -172,7 +221,11 @@ extension on TranslationsEn {
       'tabs.capture' => 'New slip',
       'tabs.soonTitle' => 'Under construction',
       'tabs.soonText' => 'This part of the app is still being prepared.',
-      'welcome.tagline' => 'Keep what is good. Hand it over on Sunday.',
+      'welcome.headline' => 'Small good things, said out loud.',
+      'welcome.headlineHighlight' => 'said out loud',
+      'welcome.subtitle' => 'A light way to notice what the other does well, every week.',
+      'welcome.start' => 'Get started',
+      'welcome.haveAccount' => 'I already have an account',
       'welcome.debugSignIn' => 'Sign in (debug)',
       _ => null,
     };
