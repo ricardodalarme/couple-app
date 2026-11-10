@@ -4,5 +4,6 @@ query MySettings {
     partnerName
     togetherSince
     onboardedAt
+    shareReadReceipts
   }
 }

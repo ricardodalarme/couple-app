@@ -1,6 +1,8 @@
 import 'package:flutter_bloc_starter/features/cards/data/data_sources/fragments/generated/CardFragment.graphql.dart';
 import 'package:flutter_bloc_starter/features/cards/data/data_sources/mutations/generated/HoldCard.graphql.dart';
+import 'package:flutter_bloc_starter/features/cards/data/data_sources/mutations/generated/MarkCardRead.graphql.dart';
 import 'package:flutter_bloc_starter/features/cards/data/data_sources/mutations/generated/PrepareCard.graphql.dart';
+import 'package:flutter_bloc_starter/features/cards/data/data_sources/mutations/generated/ReactToCard.graphql.dart';
 import 'package:flutter_bloc_starter/features/cards/data/data_sources/mutations/generated/SendCard.graphql.dart';
 import 'package:flutter_bloc_starter/features/cards/data/data_sources/mutations/generated/UpdateCardDraft.graphql.dart';
 import 'package:flutter_bloc_starter/features/cards/data/data_sources/queries/generated/CardDetail.graphql.dart';
@@ -37,6 +39,23 @@ class CardsDataSource({required final GQLClient _client}) {
     validateResponse(response);
 
     return response.parsedData?.cardsCollection.edges.firstOrNull?.node;
+  }
+
+  Future<void> markRead(String cardId) async {
+    final response = await _client.mutate(
+      OptionsMutationMarkCardRead(variables: VariablesMutationMarkCardRead(cardId: cardId)),
+    );
+    validateResponse(response);
+  }
+
+  Future<String?> react({required String cardId, String? reaction}) async {
+    final response = await _client.mutate(
+      OptionsMutationReactToCard(
+        variables: VariablesMutationReactToCard(cardId: cardId, reaction: reaction),
+      ),
+    );
+
+    return validateResponseData(response, getData: (data) => data.reactToCard).reaction;
   }
 
   Future<FragmentCardFragment> sendCard(String cardId) async {

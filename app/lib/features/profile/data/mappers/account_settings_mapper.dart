@@ -9,6 +9,7 @@ extension MySettingsMapper on QueryMySettingsmySettings {
     partnerName: partnerName,
     togetherSince: togetherSince,
     onboardedAt: onboardedAt,
+    shareReadReceipts: shareReadReceipts,
   );
 }
 

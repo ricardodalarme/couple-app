@@ -1,0 +1,3 @@
+mutation MarkCardRead($cardId: UUID!) {
+  markCardRead(cardId: $cardId)
+}

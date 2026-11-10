@@ -34,6 +34,15 @@ class const TodayContent({
           const SizedBox(height: AppSpace.s12),
         ],
         const NotificationsOffBanner(),
+        if (home.unopenedCards > 0) ...[
+          BaseBanner(
+            text: l10n.cardReceived,
+            icon: AppIcons.mail,
+            actionLabel: l10n.cardReceivedAction,
+            onAction: () => context.pushRoute(const CardsListRoute()),
+          ),
+          const SizedBox(height: AppSpace.s12),
+        ],
         if (home.hasPendingInvite) ...[
           BaseBanner(
             title: l10n.pendingInviteTitle,

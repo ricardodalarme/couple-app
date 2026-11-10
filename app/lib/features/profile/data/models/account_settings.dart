@@ -6,10 +6,11 @@ final class const AccountSettings({
   final String? partnerName,
   final DateTime? togetherSince,
   final DateTime? onboardedAt,
+  final bool shareReadReceipts = false,
 }) with Equatable {
   /// Whether the person finished the first profile step.
   bool get isOnboarded => onboardedAt != null;
 
   @override
-  List<Object?> get props => [theme, partnerName, togetherSince, onboardedAt];
+  List<Object?> get props => [theme, partnerName, togetherSince, onboardedAt, shareReadReceipts];
 }

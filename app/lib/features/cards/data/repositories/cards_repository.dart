@@ -74,6 +74,26 @@ class CardsRepository({required final CardsDataSource _dataSource}) {
     }
   }
 
+  /// Records that the recipient opened the card, so the sender sees it when receipts are on.
+  Future<void> markRead(String cardId) async {
+    try {
+      await _dataSource.markRead(cardId);
+    } catch (e, stack) {
+      _logger.error('Failed to mark the card as read', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Sets the recipient's one reaction to the card.
+  Future<String?> react({required String cardId, required String reaction}) async {
+    try {
+      return await _dataSource.react(cardId: cardId, reaction: reaction);
+    } catch (e, stack) {
+      _logger.error('Failed to react to the card', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
   /// Sends the card to the connected partner. Sending a card that was already sent is safe:
   /// the server rejects it and the caller reads the card again.
   Future<SundayCard> send(String cardId) async {

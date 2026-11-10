@@ -67,6 +67,8 @@
   "emptyWeekHighlight": "boa",
   "emptyWeekAction": "Anotar um slip",
   "nothingReceived": "Nenhum cartão novo. Sem pressa.",
+  "cardReceived": "Você recebeu um cartão",
+  "cardReceivedAction": "Ver cartão",
   "firstDayLabel": "Começando",
   "firstDayGreeting": "Oi, {name}",
   "firstDaySubtitle": "que bom ter você por aqui",

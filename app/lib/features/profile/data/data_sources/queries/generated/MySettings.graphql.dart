@@ -107,6 +107,13 @@ const documentNodeQueryMySettings = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'shareReadReceipts'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: '__typename'),
                   alias: null,
                   arguments: [],
@@ -240,6 +247,7 @@ class QueryMySettingsmySettings {
     this.partnerName,
     this.togetherSince,
     this.onboardedAt,
+    required this.shareReadReceipts,
     this.$__typename = 'ProfileSettings',
   });
 
@@ -248,12 +256,14 @@ class QueryMySettingsmySettings {
     final l$partnerName = json['partnerName'];
     final l$togetherSince = json['togetherSince'];
     final l$onboardedAt = json['onboardedAt'];
+    final l$shareReadReceipts = json['shareReadReceipts'];
     final l$$__typename = json['__typename'];
     return QueryMySettingsmySettings(
       theme: fromJsonEnumAppTheme((l$theme as String)),
       partnerName: (l$partnerName as String?),
       togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
       onboardedAt: l$onboardedAt == null ? null : DateTime.parse((l$onboardedAt as String)),
+      shareReadReceipts: (l$shareReadReceipts as bool),
       $__typename: (l$$__typename as String),
     );
   }
@@ -265,6 +275,8 @@ class QueryMySettingsmySettings {
   final DateTime? togetherSince;
 
   final DateTime? onboardedAt;
+
+  final bool shareReadReceipts;
 
   final String $__typename;
 
@@ -280,6 +292,8 @@ class QueryMySettingsmySettings {
         : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
     final l$onboardedAt = onboardedAt;
     _resultData['onboardedAt'] = l$onboardedAt?.toIso8601String();
+    final l$shareReadReceipts = shareReadReceipts;
+    _resultData['shareReadReceipts'] = l$shareReadReceipts;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -291,8 +305,16 @@ class QueryMySettingsmySettings {
     final l$partnerName = partnerName;
     final l$togetherSince = togetherSince;
     final l$onboardedAt = onboardedAt;
+    final l$shareReadReceipts = shareReadReceipts;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$theme, l$partnerName, l$togetherSince, l$onboardedAt, l$$__typename]);
+    return Object.hashAll([
+      l$theme,
+      l$partnerName,
+      l$togetherSince,
+      l$onboardedAt,
+      l$shareReadReceipts,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -321,6 +343,11 @@ class QueryMySettingsmySettings {
     final l$onboardedAt = onboardedAt;
     final lOther$onboardedAt = other.onboardedAt;
     if (l$onboardedAt != lOther$onboardedAt) {
+      return false;
+    }
+    final l$shareReadReceipts = shareReadReceipts;
+    final lOther$shareReadReceipts = other.shareReadReceipts;
+    if (l$shareReadReceipts != lOther$shareReadReceipts) {
       return false;
     }
     final l$$__typename = $__typename;

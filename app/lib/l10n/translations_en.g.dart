@@ -245,6 +245,26 @@ class _Translations$cardsList$en extends Translations$cardsList$pt {
   @override
   String get reactionLabel => 'Reply';
   @override
+  String get reactionPrompt => 'How do you want to reply?';
+  @override
+  String get reactionThankYou => 'Thank you';
+  @override
+  String get reactionHug => 'Hug';
+  @override
+  String get reactionMadeMyDay => 'Made my day';
+  @override
+  String get reactionNoted => 'Noted';
+  @override
+  String get reactionError => 'Could not reply right now. Try again.';
+  @override
+  String responseReceivedName({required Object name}) => '${name}';
+  @override
+  String get responseReceivedNoName => 'Your person replied';
+  @override
+  String get responseReceivedVerb => 'replied';
+  @override
+  String responseQuote({required Object label}) => '“${label}”';
+  @override
   String get notFound => 'That card is no longer available.';
 }
 
@@ -846,6 +866,10 @@ class _Translations$today$en extends Translations$today$pt {
   @override
   String get nothingReceived => 'No new cards. No rush.';
   @override
+  String get cardReceived => 'You received a card';
+  @override
+  String get cardReceivedAction => 'See card';
+  @override
   String get firstDayLabel => 'Getting started';
   @override
   String firstDayGreeting({required Object name}) => 'Hi, ${name}';
@@ -1210,6 +1234,16 @@ extension on TranslationsEn {
       'cardsList.errorText' => 'They are still saved. Try again.',
       'cardsList.detailTitle' => 'Card',
       'cardsList.reactionLabel' => 'Reply',
+      'cardsList.reactionPrompt' => 'How do you want to reply?',
+      'cardsList.reactionThankYou' => 'Thank you',
+      'cardsList.reactionHug' => 'Hug',
+      'cardsList.reactionMadeMyDay' => 'Made my day',
+      'cardsList.reactionNoted' => 'Noted',
+      'cardsList.reactionError' => 'Could not reply right now. Try again.',
+      'cardsList.responseReceivedName' => ({required Object name}) => '${name}',
+      'cardsList.responseReceivedNoName' => 'Your person replied',
+      'cardsList.responseReceivedVerb' => 'replied',
+      'cardsList.responseQuote' => ({required Object label}) => '“${label}”',
       'cardsList.notFound' => 'That card is no longer available.',
       'common.appName' => 'Flutter Bloc Starter',
       'common.send' => 'Send',
@@ -1575,6 +1609,8 @@ extension on TranslationsEn {
       'today.emptyWeekHighlight' => 'good',
       'today.emptyWeekAction' => 'Note a slip',
       'today.nothingReceived' => 'No new cards. No rush.',
+      'today.cardReceived' => 'You received a card',
+      'today.cardReceivedAction' => 'See card',
       'today.firstDayLabel' => 'Getting started',
       'today.firstDayGreeting' => ({required Object name}) => 'Hi, ${name}',
       'today.firstDaySubtitle' => 'so glad you are here',

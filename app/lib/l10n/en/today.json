@@ -67,6 +67,8 @@
   "emptyWeekHighlight": "good",
   "emptyWeekAction": "Note a slip",
   "nothingReceived": "No new cards. No rush.",
+  "cardReceived": "You received a card",
+  "cardReceivedAction": "See card",
   "firstDayLabel": "Getting started",
   "firstDayGreeting": "Hi, {name}",
   "firstDaySubtitle": "so glad you are here",

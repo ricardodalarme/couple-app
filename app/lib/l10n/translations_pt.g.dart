@@ -261,6 +261,36 @@ class Translations$cardsList$pt {
   /// pt: 'Resposta'
   String get reactionLabel => 'Resposta';
 
+  /// pt: 'Como você quer responder?'
+  String get reactionPrompt => 'Como você quer responder?';
+
+  /// pt: 'Obrigado'
+  String get reactionThankYou => 'Obrigado';
+
+  /// pt: 'Abraço'
+  String get reactionHug => 'Abraço';
+
+  /// pt: 'Fez minha semana'
+  String get reactionMadeMyDay => 'Fez minha semana';
+
+  /// pt: 'Anotado'
+  String get reactionNoted => 'Anotado';
+
+  /// pt: 'Não deu para responder agora. Tente de novo.'
+  String get reactionError => 'Não deu para responder agora. Tente de novo.';
+
+  /// pt: 'A {name}'
+  String responseReceivedName({required Object name}) => 'A ${name}';
+
+  /// pt: 'Sua pessoa respondeu'
+  String get responseReceivedNoName => 'Sua pessoa respondeu';
+
+  /// pt: 'respondeu'
+  String get responseReceivedVerb => 'respondeu';
+
+  /// pt: '“{label}”'
+  String responseQuote({required Object label}) => '“${label}”';
+
   /// pt: 'Esse cartão não está mais disponível.'
   String get notFound => 'Esse cartão não está mais disponível.';
 }
@@ -1009,6 +1039,12 @@ class Translations$today$pt {
   /// pt: 'Nenhum cartão novo. Sem pressa.'
   String get nothingReceived => 'Nenhum cartão novo. Sem pressa.';
 
+  /// pt: 'Você recebeu um cartão'
+  String get cardReceived => 'Você recebeu um cartão';
+
+  /// pt: 'Ver cartão'
+  String get cardReceivedAction => 'Ver cartão';
+
   /// pt: 'Começando'
   String get firstDayLabel => 'Começando';
 
@@ -1444,6 +1480,16 @@ extension on Translations {
       'cardsList.errorText' => 'Eles continuam salvos. Tente de novo.',
       'cardsList.detailTitle' => 'Cartão',
       'cardsList.reactionLabel' => 'Resposta',
+      'cardsList.reactionPrompt' => 'Como você quer responder?',
+      'cardsList.reactionThankYou' => 'Obrigado',
+      'cardsList.reactionHug' => 'Abraço',
+      'cardsList.reactionMadeMyDay' => 'Fez minha semana',
+      'cardsList.reactionNoted' => 'Anotado',
+      'cardsList.reactionError' => 'Não deu para responder agora. Tente de novo.',
+      'cardsList.responseReceivedName' => ({required Object name}) => 'A ${name}',
+      'cardsList.responseReceivedNoName' => 'Sua pessoa respondeu',
+      'cardsList.responseReceivedVerb' => 'respondeu',
+      'cardsList.responseQuote' => ({required Object label}) => '“${label}”',
       'cardsList.notFound' => 'Esse cartão não está mais disponível.',
       'common.appName' => 'Flutter Bloc Starter',
       'common.send' => 'Enviar',
@@ -1812,6 +1858,8 @@ extension on Translations {
       'today.emptyWeekHighlight' => 'boa',
       'today.emptyWeekAction' => 'Anotar um slip',
       'today.nothingReceived' => 'Nenhum cartão novo. Sem pressa.',
+      'today.cardReceived' => 'Você recebeu um cartão',
+      'today.cardReceivedAction' => 'Ver cartão',
       'today.firstDayLabel' => 'Começando',
       'today.firstDayGreeting' => ({required Object name}) => 'Oi, ${name}',
       'today.firstDaySubtitle' => 'que bom ter você por aqui',

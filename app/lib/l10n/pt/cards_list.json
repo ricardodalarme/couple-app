@@ -18,5 +18,15 @@
   "errorText": "Eles continuam salvos. Tente de novo.",
   "detailTitle": "Cartão",
   "reactionLabel": "Resposta",
+  "reactionPrompt": "Como você quer responder?",
+  "reactionThankYou": "Obrigado",
+  "reactionHug": "Abraço",
+  "reactionMadeMyDay": "Fez minha semana",
+  "reactionNoted": "Anotado",
+  "reactionError": "Não deu para responder agora. Tente de novo.",
+  "responseReceivedName": "A {name}",
+  "responseReceivedNoName": "Sua pessoa respondeu",
+  "responseReceivedVerb": "respondeu",
+  "responseQuote": "“{label}”",
   "notFound": "Esse cartão não está mais disponível."
 }

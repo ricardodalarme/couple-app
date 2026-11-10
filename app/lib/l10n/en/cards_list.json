@@ -18,5 +18,15 @@
   "errorText": "They are still saved. Try again.",
   "detailTitle": "Card",
   "reactionLabel": "Reply",
+  "reactionPrompt": "How do you want to reply?",
+  "reactionThankYou": "Thank you",
+  "reactionHug": "Hug",
+  "reactionMadeMyDay": "Made my day",
+  "reactionNoted": "Noted",
+  "reactionError": "Could not reply right now. Try again.",
+  "responseReceivedName": "{name}",
+  "responseReceivedNoName": "Your person replied",
+  "responseReceivedVerb": "replied",
+  "responseQuote": "“{label}”",
   "notFound": "That card is no longer available."
 }
