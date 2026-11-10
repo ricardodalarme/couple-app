@@ -1,0 +1,25 @@
+mutation AddRitual(
+  $id: UUID!
+  $title: String!
+  $cadence: String!
+  $weekday: Int
+  $atTime: Time
+  $reminder: Boolean!
+  $coupleId: UUID
+) {
+  insertIntoRitualsCollection(
+    objects: [
+      {
+        id: $id
+        title: $title
+        cadence: $cadence
+        weekday: $weekday
+        atTime: $atTime
+        reminder: $reminder
+        coupleId: $coupleId
+      }
+    ]
+  ) {
+    affectedCount
+  }
+}

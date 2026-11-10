@@ -616,6 +616,72 @@ class RelationshipRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RitualEditPage]
+class RitualEditRoute extends PageRouteInfo<RitualEditRouteArgs> {
+  RitualEditRoute({String? id, Key? key, List<PageRouteInfo>? children})
+    : super(
+        RitualEditRoute.name,
+        args: RitualEditRouteArgs(id: id, key: key),
+        rawQueryParams: {'id': id},
+        initialChildren: children,
+      );
+
+  static const String name = 'RitualEditRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final queryParams = data.queryParams;
+      final args = data.argsAs<RitualEditRouteArgs>(
+        orElse: () => RitualEditRouteArgs(id: queryParams.optString('id')),
+      );
+      return WrappedRoute(
+        child: RitualEditPage(id: args.id, key: args.key),
+      );
+    },
+  );
+}
+
+class RitualEditRouteArgs {
+  const RitualEditRouteArgs({this.id, this.key});
+
+  final String? id;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'RitualEditRouteArgs{id: $id, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! RitualEditRouteArgs) return false;
+    return id == other.id && key == other.key;
+  }
+
+  @override
+  int get hashCode => id.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [RitualsPage]
+class RitualsRoute extends PageRouteInfo<void> {
+  const RitualsRoute({List<PageRouteInfo>? children})
+    : super(RitualsRoute.name, initialChildren: children);
+
+  static const String name = 'RitualsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const RitualsPage());
+    },
+  );
+}
+
+/// generated route for
 /// [SignInPage]
 class SignInRoute extends PageRouteInfo<void> {
   const SignInRoute({List<PageRouteInfo>? children})

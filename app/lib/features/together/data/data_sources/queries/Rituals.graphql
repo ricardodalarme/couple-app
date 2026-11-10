@@ -1,0 +1,25 @@
+query Rituals {
+  ritualsCollection(
+    filter: { archivedAt: { is: NULL } }
+    orderBy: [{ createdAt: DescNullsLast }]
+    first: 100
+  ) {
+    edges {
+      node {
+        id
+        title
+        cadence
+        weekday
+        atTime
+        reminder
+        ritualLogsCollection(orderBy: [{ doneOn: DescNullsLast }], first: 1) {
+          edges {
+            node {
+              doneOn
+            }
+          }
+        }
+      }
+    }
+  }
+}

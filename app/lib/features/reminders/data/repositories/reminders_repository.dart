@@ -1,6 +1,7 @@
 import 'package:flutter_bloc_starter/features/reminders/data/data_sources/reminders_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/models/planned_reminder.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
+import 'package:flutter_bloc_starter/features/reminders/data/models/ritual_schedule.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/planner/reminder_planner.dart';
 import 'package:local_notification_service/local_notification_service.dart';
 import 'package:logger/logger.dart';
@@ -48,6 +49,10 @@ class RemindersRepository({
     return _localDataSource.writeFollowUps(moments);
   }
 
+  /// Replaces the ritual reminders; the next [reschedule] places them.
+  Future<void> saveRitualSchedules(List<RitualSchedule> schedules) =>
+      _localDataSource.writeRituals(schedules);
+
   /// Plans the next reminders and replaces the pending ones on the device.
   ///
   /// [dateReminders] are moments for important dates, supplied by the caller. Everything
@@ -73,6 +78,8 @@ class RemindersRepository({
           ReminderCandidate(kind: ReminderKind.dailyIdea, at: moment, key: 'custom'),
         for (final moment in _localDataSource.readFollowUps())
           ReminderCandidate(kind: ReminderKind.followUp, at: moment, key: 'followUp'),
+        for (final schedule in _localDataSource.readRituals())
+          ...schedule.candidates(now, days: reminderHorizonDays),
         ...dateReminders,
       ],
       now: now,

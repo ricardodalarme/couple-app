@@ -98,6 +98,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$repair$en repair = _Translations$repair$en._(_root);
   @override
+  late final _Translations$rituals$en rituals = _Translations$rituals$en._(_root);
+  @override
   late final _Translations$slipDetail$en slipDetail = _Translations$slipDetail$en._(_root);
   @override
   late final _Translations$slipKind$en slipKind = _Translations$slipKind$en._(_root);
@@ -975,6 +977,87 @@ class _Translations$repair$en extends Translations$repair$pt {
   late final _Translations$repair$next$en next = _Translations$repair$next$en._(_root);
 }
 
+// Path: rituals
+class _Translations$rituals$en extends Translations$rituals$pt {
+  _Translations$rituals$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Rituals';
+  @override
+  String get subtitle => 'Small habits you want to protect. No streaks, no pressure.';
+  @override
+  String get emptyTitle => 'No rituals yet';
+  @override
+  String get emptyText => 'A Friday dinner, a Sunday walk. What do you want to protect?';
+  @override
+  String get create => 'Create a ritual';
+  @override
+  String get didIt => 'We did it';
+  @override
+  String get warm => 'That\'s lovely. A moment for the two of you.';
+  @override
+  Map<String, String> get cadences => {
+    'daily': 'Every day',
+    'weekly': 'Every week',
+    'biweekly': 'Every two weeks',
+    'monthly': 'Every month',
+    'other': '',
+  };
+  @override
+  String cadenceOn({required Object cadence, required Object weekday}) => '${cadence}, ${weekday}';
+  @override
+  List<String> get weekdays => [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+  @override
+  String get createTitle => 'New ritual';
+  @override
+  String get editTitle => 'Your ritual';
+  @override
+  String get nameLabel => 'Name';
+  @override
+  String get nameHint => 'E.g. Friday dinner';
+  @override
+  String get cadenceLabel => 'How often';
+  @override
+  String get weekdayLabel => 'On which day';
+  @override
+  String get hourLabel => 'What time';
+  @override
+  String hourFormat({required Object hour}) => '${hour}:00';
+  @override
+  String get reminderTitle => 'Reminder';
+  @override
+  String get reminderText => 'A short notice on this phone, with no details.';
+  @override
+  String get save => 'Save';
+  @override
+  String get archive => 'Archive';
+  @override
+  String get archiveTitle => 'Archive this ritual?';
+  @override
+  String get archiveText => 'It leaves the list. The history stays saved.';
+  @override
+  String get errorTitle => 'Couldn\'t open this';
+  @override
+  String get errorText => 'Nothing was lost. Try again.';
+  @override
+  Map<String, String> get errors => {
+    'NOT_FOUND': 'That ritual isn\'t here anymore.',
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t do that right now. Try again.',
+  };
+}
+
 // Path: slipDetail
 class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   _Translations$slipDetail$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1284,6 +1367,12 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get logisticsText => 'The practical things, with nobody carrying them alone.';
   @override
   String get soloNote => 'When your partner joins, shared things show up here.';
+  @override
+  String get ritualsLabel => 'ROUTINE';
+  @override
+  String get ritualsTitle => 'Rituals';
+  @override
+  String get ritualsText => 'Small habits you want to protect.';
   @override
   String get temperatureLabel => 'BETWEEN YOU';
   @override
@@ -2847,6 +2936,51 @@ extension on TranslationsEn {
           'repair.next.pause' => 'Breathe a little',
           'repair.next.guided' => 'Start the guided repair',
           'repair.next.quick' => 'Send a repair',
+          'rituals.title' => 'Rituals',
+          'rituals.subtitle' => 'Small habits you want to protect. No streaks, no pressure.',
+          'rituals.emptyTitle' => 'No rituals yet',
+          'rituals.emptyText' => 'A Friday dinner, a Sunday walk. What do you want to protect?',
+          'rituals.create' => 'Create a ritual',
+          'rituals.didIt' => 'We did it',
+          'rituals.warm' => 'That\'s lovely. A moment for the two of you.',
+          'rituals.cadences.daily' => 'Every day',
+          'rituals.cadences.weekly' => 'Every week',
+          'rituals.cadences.biweekly' => 'Every two weeks',
+          'rituals.cadences.monthly' => 'Every month',
+          'rituals.cadences.other' => '',
+          'rituals.cadenceOn' => ({
+            required Object cadence,
+            required Object weekday,
+          }) => '${cadence}, ${weekday}',
+          'rituals.weekdays.0' => 'Sunday',
+          'rituals.weekdays.1' => 'Monday',
+          'rituals.weekdays.2' => 'Tuesday',
+          'rituals.weekdays.3' => 'Wednesday',
+          'rituals.weekdays.4' => 'Thursday',
+          'rituals.weekdays.5' => 'Friday',
+          'rituals.weekdays.6' => 'Saturday',
+          'rituals.createTitle' => 'New ritual',
+          'rituals.editTitle' => 'Your ritual',
+          'rituals.nameLabel' => 'Name',
+          'rituals.nameHint' => 'E.g. Friday dinner',
+          'rituals.cadenceLabel' => 'How often',
+          'rituals.weekdayLabel' => 'On which day',
+          'rituals.hourLabel' => 'What time',
+          'rituals.hourFormat' => ({required Object hour}) => '${hour}:00',
+          'rituals.reminderTitle' => 'Reminder',
+          'rituals.reminderText' => 'A short notice on this phone, with no details.',
+          'rituals.save' => 'Save',
+          'rituals.archive' => 'Archive',
+          'rituals.archiveTitle' => 'Archive this ritual?',
+          'rituals.archiveText' => 'It leaves the list. The history stays saved.',
+          'rituals.errorTitle' => 'Couldn\'t open this',
+          'rituals.errorText' => 'Nothing was lost. Try again.',
+          _ => null,
+        } ??
+        switch (path) {
+          'rituals.errors.NOT_FOUND' => 'That ritual isn\'t here anymore.',
+          'rituals.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'rituals.errors.other' => 'Couldn\'t do that right now. Try again.',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -2887,9 +3021,6 @@ extension on TranslationsEn {
           'slipDetail.cardOnText' => 'On Sunday you choose whether it goes.',
           'slipDetail.cardInvisible' => 'Invisible slips never go in a card.',
           'slipDetail.previewTitle' => 'What your partner would read',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.previewText' => 'If this slip goes in the card, this is the text that shows.',
           'slipDetail.sentNote' => 'This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.',
           'slipDetail.edit' => 'Edit',
@@ -3058,6 +3189,9 @@ extension on TranslationsEn {
           'tabs.logisticsTitle' => 'Logistics',
           'tabs.logisticsText' => 'The practical things, with nobody carrying them alone.',
           'tabs.soloNote' => 'When your partner joins, shared things show up here.',
+          'tabs.ritualsLabel' => 'ROUTINE',
+          'tabs.ritualsTitle' => 'Rituals',
+          'tabs.ritualsText' => 'Small habits you want to protect.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',
           'tabs.temperatureTitle' => 'How is it between you?',
           'tabs.temperatureText' => 'A private check-in, never a score.',

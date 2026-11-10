@@ -1,0 +1,39 @@
+{
+  "title": "Rituais",
+  "subtitle": "Pequenos hábitos que vocês querem proteger. Sem sequências, sem cobrança.",
+  "emptyTitle": "Nenhum ritual ainda",
+  "emptyText": "Um jantar de sexta, uma caminhada de domingo. O que vocês querem proteger?",
+  "create": "Criar um ritual",
+  "didIt": "Fizemos",
+  "warm": "Que bom. Um momento de vocês.",
+  "cadences(map)": {
+    "daily": "Todo dia",
+    "weekly": "Toda semana",
+    "biweekly": "A cada duas semanas",
+    "monthly": "Todo mês",
+    "other": ""
+  },
+  "cadenceOn": "{cadence}, {weekday}",
+  "weekdays": ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"],
+  "createTitle": "Novo ritual",
+  "editTitle": "Seu ritual",
+  "nameLabel": "Nome",
+  "nameHint": "Ex.: jantar de sexta",
+  "cadenceLabel": "Com que frequência",
+  "weekdayLabel": "Em que dia",
+  "hourLabel": "Que horas",
+  "hourFormat": "{hour}:00",
+  "reminderTitle": "Lembrete",
+  "reminderText": "Um aviso curto neste celular, sem detalhes.",
+  "save": "Salvar",
+  "archive": "Arquivar",
+  "archiveTitle": "Arquivar este ritual?",
+  "archiveText": "Ele some da lista. O histórico fica guardado.",
+  "errorTitle": "Não deu para abrir",
+  "errorText": "Nada se perdeu. Tente de novo.",
+  "errors(map)": {
+    "NOT_FOUND": "Esse ritual não está mais aqui.",
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para fazer isso agora. Tente de novo."
+  }
+}

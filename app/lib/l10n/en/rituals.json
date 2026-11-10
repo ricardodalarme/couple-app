@@ -1,0 +1,39 @@
+{
+  "title": "Rituals",
+  "subtitle": "Small habits you want to protect. No streaks, no pressure.",
+  "emptyTitle": "No rituals yet",
+  "emptyText": "A Friday dinner, a Sunday walk. What do you want to protect?",
+  "create": "Create a ritual",
+  "didIt": "We did it",
+  "warm": "That's lovely. A moment for the two of you.",
+  "cadences(map)": {
+    "daily": "Every day",
+    "weekly": "Every week",
+    "biweekly": "Every two weeks",
+    "monthly": "Every month",
+    "other": ""
+  },
+  "cadenceOn": "{cadence}, {weekday}",
+  "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  "createTitle": "New ritual",
+  "editTitle": "Your ritual",
+  "nameLabel": "Name",
+  "nameHint": "E.g. Friday dinner",
+  "cadenceLabel": "How often",
+  "weekdayLabel": "On which day",
+  "hourLabel": "What time",
+  "hourFormat": "{hour}:00",
+  "reminderTitle": "Reminder",
+  "reminderText": "A short notice on this phone, with no details.",
+  "save": "Save",
+  "archive": "Archive",
+  "archiveTitle": "Archive this ritual?",
+  "archiveText": "It leaves the list. The history stays saved.",
+  "errorTitle": "Couldn't open this",
+  "errorText": "Nothing was lost. Try again.",
+  "errors(map)": {
+    "NOT_FOUND": "That ritual isn't here anymore.",
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't do that right now. Try again."
+  }
+}

@@ -1,11 +1,16 @@
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/AddLogisticItem.graphql.dart';
+import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/AddRitual.graphql.dart';
+import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/ArchiveRitual.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/ClearLogisticItemAssignee.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/ClearLogisticItemDone.graphql.dart';
+import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/CompleteRitual.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/DeleteLogisticItem.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/SetLogisticItemAssignee.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/SetLogisticItemDone.graphql.dart';
+import 'package:flutter_bloc_starter/features/together/data/data_sources/mutations/generated/UpdateRitual.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/queries/generated/LogisticItems.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/queries/generated/MyCouple.graphql.dart';
+import 'package:flutter_bloc_starter/features/together/data/data_sources/queries/generated/Rituals.graphql.dart';
 import 'package:network/network.dart';
 
 class TogetherDataSource({required final GQLClient _client}) {
@@ -79,6 +84,84 @@ class TogetherDataSource({required final GQLClient _client}) {
               variables: VariablesMutationSetLogisticItemAssignee(id: id, assigneeId: assigneeId),
             ),
           );
+
+    validateResponse(response);
+  }
+
+  Future<List<QueryRitualsritualsCollectionedgesnode>> getRituals() async {
+    final response = await _client.query(OptionsQueryRituals(fetchPolicy: FetchPolicy.networkOnly));
+    final edges = validateResponseData(response, getData: (data) => data.ritualsCollection.edges);
+
+    return [for (final edge in edges) edge.node];
+  }
+
+  Future<void> addRitual({
+    required String id,
+    required String title,
+    required String cadence,
+    required bool reminder,
+    int? weekday,
+    String? atTime,
+    String? coupleId,
+  }) async {
+    final response = await _client.mutate(
+      OptionsMutationAddRitual(
+        variables: VariablesMutationAddRitual(
+          id: id,
+          title: title,
+          cadence: cadence,
+          weekday: weekday,
+          atTime: atTime,
+          reminder: reminder,
+          coupleId: coupleId,
+        ),
+      ),
+    );
+
+    validateResponse(response);
+  }
+
+  Future<void> updateRitual({
+    required String id,
+    required String title,
+    required String cadence,
+    required bool reminder,
+    int? weekday,
+    String? atTime,
+  }) async {
+    final response = await _client.mutate(
+      OptionsMutationUpdateRitual(
+        variables: VariablesMutationUpdateRitual(
+          id: id,
+          title: title,
+          cadence: cadence,
+          weekday: weekday,
+          atTime: atTime,
+          reminder: reminder,
+        ),
+      ),
+    );
+
+    validateResponse(response);
+  }
+
+  Future<void> archiveRitual({required String id, required DateTime at}) async {
+    final response = await _client.mutate(
+      OptionsMutationArchiveRitual(
+        variables: VariablesMutationArchiveRitual(id: id, archivedAt: at),
+      ),
+    );
+
+    validateResponse(response);
+  }
+
+  /// Records that the ritual happened on [day]; a second record for the same day fails.
+  Future<void> completeRitual({required String id, required DateTime day}) async {
+    final response = await _client.mutate(
+      OptionsMutationCompleteRitual(
+        variables: VariablesMutationCompleteRitual(ritualId: id, doneOn: day),
+      ),
+    );
 
     validateResponse(response);
   }

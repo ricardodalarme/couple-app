@@ -81,6 +81,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$received$pt received = Translations$received$pt.internal(_root);
   late final Translations$reminders$pt reminders = Translations$reminders$pt.internal(_root);
   late final Translations$repair$pt repair = Translations$repair$pt.internal(_root);
+  late final Translations$rituals$pt rituals = Translations$rituals$pt.internal(_root);
   late final Translations$slipDetail$pt slipDetail = Translations$slipDetail$pt.internal(_root);
   late final Translations$slipKind$pt slipKind = Translations$slipKind$pt.internal(_root);
   late final Translations$slipsList$pt slipsList = Translations$slipsList$pt.internal(_root);
@@ -1136,6 +1137,113 @@ class Translations$repair$pt {
   late final Translations$repair$next$pt next = Translations$repair$next$pt.internal(_root);
 }
 
+// Path: rituals
+class Translations$rituals$pt {
+  Translations$rituals$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Rituais'
+  String get title => 'Rituais';
+
+  /// pt: 'Pequenos hábitos que vocês querem proteger. Sem sequências, sem cobrança.'
+  String get subtitle =>
+      'Pequenos hábitos que vocês querem proteger. Sem sequências, sem cobrança.';
+
+  /// pt: 'Nenhum ritual ainda'
+  String get emptyTitle => 'Nenhum ritual ainda';
+
+  /// pt: 'Um jantar de sexta, uma caminhada de domingo. O que vocês querem proteger?'
+  String get emptyText =>
+      'Um jantar de sexta, uma caminhada de domingo. O que vocês querem proteger?';
+
+  /// pt: 'Criar um ritual'
+  String get create => 'Criar um ritual';
+
+  /// pt: 'Fizemos'
+  String get didIt => 'Fizemos';
+
+  /// pt: 'Que bom. Um momento de vocês.'
+  String get warm => 'Que bom. Um momento de vocês.';
+
+  Map<String, String> get cadences => {
+    'daily': 'Todo dia',
+    'weekly': 'Toda semana',
+    'biweekly': 'A cada duas semanas',
+    'monthly': 'Todo mês',
+    'other': '',
+  };
+
+  /// pt: '{cadence}, {weekday}'
+  String cadenceOn({required Object cadence, required Object weekday}) => '${cadence}, ${weekday}';
+
+  List<String> get weekdays => [
+    'domingo',
+    'segunda',
+    'terça',
+    'quarta',
+    'quinta',
+    'sexta',
+    'sábado',
+  ];
+
+  /// pt: 'Novo ritual'
+  String get createTitle => 'Novo ritual';
+
+  /// pt: 'Seu ritual'
+  String get editTitle => 'Seu ritual';
+
+  /// pt: 'Nome'
+  String get nameLabel => 'Nome';
+
+  /// pt: 'Ex.: jantar de sexta'
+  String get nameHint => 'Ex.: jantar de sexta';
+
+  /// pt: 'Com que frequência'
+  String get cadenceLabel => 'Com que frequência';
+
+  /// pt: 'Em que dia'
+  String get weekdayLabel => 'Em que dia';
+
+  /// pt: 'Que horas'
+  String get hourLabel => 'Que horas';
+
+  /// pt: '{hour}:00'
+  String hourFormat({required Object hour}) => '${hour}:00';
+
+  /// pt: 'Lembrete'
+  String get reminderTitle => 'Lembrete';
+
+  /// pt: 'Um aviso curto neste celular, sem detalhes.'
+  String get reminderText => 'Um aviso curto neste celular, sem detalhes.';
+
+  /// pt: 'Salvar'
+  String get save => 'Salvar';
+
+  /// pt: 'Arquivar'
+  String get archive => 'Arquivar';
+
+  /// pt: 'Arquivar este ritual?'
+  String get archiveTitle => 'Arquivar este ritual?';
+
+  /// pt: 'Ele some da lista. O histórico fica guardado.'
+  String get archiveText => 'Ele some da lista. O histórico fica guardado.';
+
+  /// pt: 'Não deu para abrir'
+  String get errorTitle => 'Não deu para abrir';
+
+  /// pt: 'Nada se perdeu. Tente de novo.'
+  String get errorText => 'Nada se perdeu. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'NOT_FOUND': 'Esse ritual não está mais aqui.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para fazer isso agora. Tente de novo.',
+  };
+}
+
 // Path: slipDetail
 class Translations$slipDetail$pt {
   Translations$slipDetail$pt.internal(this._root);
@@ -1511,6 +1619,15 @@ class Translations$tabs$pt {
 
   /// pt: 'Quando seu par entrar, as coisas compartilhadas aparecem aqui.'
   String get soloNote => 'Quando seu par entrar, as coisas compartilhadas aparecem aqui.';
+
+  /// pt: 'ROTINA'
+  String get ritualsLabel => 'ROTINA';
+
+  /// pt: 'Rituais'
+  String get ritualsTitle => 'Rituais';
+
+  /// pt: 'Pequenos hábitos que vocês querem proteger.'
+  String get ritualsText => 'Pequenos hábitos que vocês querem proteger.';
 
   /// pt: 'ENTRE VOCÊS'
   String get temperatureLabel => 'ENTRE VOCÊS';
@@ -3295,6 +3412,53 @@ extension on Translations {
           'repair.next.pause' => 'Respirar um pouco',
           'repair.next.guided' => 'Começar o reparo guiado',
           'repair.next.quick' => 'Enviar um reparo',
+          'rituals.title' => 'Rituais',
+          'rituals.subtitle' =>
+            'Pequenos hábitos que vocês querem proteger. Sem sequências, sem cobrança.',
+          'rituals.emptyTitle' => 'Nenhum ritual ainda',
+          'rituals.emptyText' =>
+            'Um jantar de sexta, uma caminhada de domingo. O que vocês querem proteger?',
+          'rituals.create' => 'Criar um ritual',
+          'rituals.didIt' => 'Fizemos',
+          'rituals.warm' => 'Que bom. Um momento de vocês.',
+          'rituals.cadences.daily' => 'Todo dia',
+          'rituals.cadences.weekly' => 'Toda semana',
+          'rituals.cadences.biweekly' => 'A cada duas semanas',
+          'rituals.cadences.monthly' => 'Todo mês',
+          'rituals.cadences.other' => '',
+          'rituals.cadenceOn' => ({
+            required Object cadence,
+            required Object weekday,
+          }) => '${cadence}, ${weekday}',
+          'rituals.weekdays.0' => 'domingo',
+          'rituals.weekdays.1' => 'segunda',
+          'rituals.weekdays.2' => 'terça',
+          'rituals.weekdays.3' => 'quarta',
+          'rituals.weekdays.4' => 'quinta',
+          'rituals.weekdays.5' => 'sexta',
+          'rituals.weekdays.6' => 'sábado',
+          'rituals.createTitle' => 'Novo ritual',
+          'rituals.editTitle' => 'Seu ritual',
+          'rituals.nameLabel' => 'Nome',
+          'rituals.nameHint' => 'Ex.: jantar de sexta',
+          'rituals.cadenceLabel' => 'Com que frequência',
+          'rituals.weekdayLabel' => 'Em que dia',
+          'rituals.hourLabel' => 'Que horas',
+          'rituals.hourFormat' => ({required Object hour}) => '${hour}:00',
+          'rituals.reminderTitle' => 'Lembrete',
+          'rituals.reminderText' => 'Um aviso curto neste celular, sem detalhes.',
+          'rituals.save' => 'Salvar',
+          'rituals.archive' => 'Arquivar',
+          'rituals.archiveTitle' => 'Arquivar este ritual?',
+          'rituals.archiveText' => 'Ele some da lista. O histórico fica guardado.',
+          'rituals.errorTitle' => 'Não deu para abrir',
+          'rituals.errorText' => 'Nada se perdeu. Tente de novo.',
+          _ => null,
+        } ??
+        switch (path) {
+          'rituals.errors.NOT_FOUND' => 'Esse ritual não está mais aqui.',
+          'rituals.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'rituals.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -3335,9 +3499,6 @@ extension on Translations {
           'slipDetail.cardOnText' => 'No domingo você escolhe se ele vai.',
           'slipDetail.cardInvisible' => 'Slips invisíveis nunca entram em um cartão.',
           'slipDetail.previewTitle' => 'O que seu par leria',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.previewText' => 'Se este slip entrar no cartão, é este texto que aparece.',
           'slipDetail.sentNote' => 'Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.',
           'slipDetail.edit' => 'Editar',
@@ -3506,6 +3667,9 @@ extension on Translations {
           'tabs.logisticsTitle' => 'Logística',
           'tabs.logisticsText' => 'As coisas práticas, sem ninguém carregar sozinho.',
           'tabs.soloNote' => 'Quando seu par entrar, as coisas compartilhadas aparecem aqui.',
+          'tabs.ritualsLabel' => 'ROTINA',
+          'tabs.ritualsTitle' => 'Rituais',
+          'tabs.ritualsText' => 'Pequenos hábitos que vocês querem proteger.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
           'tabs.temperatureTitle' => 'Como está entre vocês?',
           'tabs.temperatureText' => 'Um registro privado, sem nota.',

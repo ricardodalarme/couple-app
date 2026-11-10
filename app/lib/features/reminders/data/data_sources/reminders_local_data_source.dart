@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
+import 'package:flutter_bloc_starter/features/reminders/data/models/ritual_schedule.dart';
 import 'package:preferences_service/preferences_service.dart';
 
 class RemindersLocalDataSource({required final PreferencesService _preferencesService}) {
   static const _key = 'reminderPreferences';
   static const _customKey = 'customReminders';
   static const _followUpKey = 'followUpReminders';
+  static const _ritualKey = 'ritualSchedules';
 
   ReminderPreferences read() {
     final raw = _preferencesService.readString(key: _key);
@@ -51,6 +53,26 @@ class RemindersLocalDataSource({required final PreferencesService _preferencesSe
   Future<void> writeFollowUps(List<DateTime> moments) => _preferencesService.writeString(
     key: _followUpKey,
     value: jsonEncode([for (final moment in moments) moment.toIso8601String()]),
+  );
+
+  /// The schedules of the rituals whose reminder is on.
+  List<RitualSchedule> readRituals() {
+    final raw = _preferencesService.readString(key: _ritualKey);
+    if (raw == null) return const [];
+
+    try {
+      return [
+        for (final item in jsonDecode(raw) as List<dynamic>)
+          RitualSchedule.fromMap(item as Map<String, dynamic>),
+      ];
+    } on Object {
+      return const [];
+    }
+  }
+
+  Future<void> writeRituals(List<RitualSchedule> schedules) => _preferencesService.writeString(
+    key: _ritualKey,
+    value: jsonEncode([for (final schedule in schedules) schedule.toMap()]),
   );
 
   Future<void> write(ReminderPreferences preferences) =>

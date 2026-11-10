@@ -1,0 +1,22 @@
+mutation UpdateRitual(
+  $id: UUID!
+  $title: String!
+  $cadence: String!
+  $weekday: Int
+  $atTime: Time
+  $reminder: Boolean!
+) {
+  updateRitualsCollection(
+    set: {
+      title: $title
+      cadence: $cadence
+      weekday: $weekday
+      atTime: $atTime
+      reminder: $reminder
+    }
+    filter: { id: { eq: $id } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

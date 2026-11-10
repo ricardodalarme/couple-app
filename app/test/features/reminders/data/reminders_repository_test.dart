@@ -36,6 +36,7 @@ void main() {
     when(() => local.read()).thenReturn(const ReminderPreferences());
     when(() => local.readCustom()).thenReturn(const []);
     when(() => local.readFollowUps()).thenReturn(const []);
+    when(() => local.readRituals()).thenReturn(const []);
     when(() => local.writeCustom(any())).thenAnswer((_) async {});
     when(() => notifications.replaceAll(any())).thenAnswer((invocation) async {
       scheduled = invocation.positionalArguments.first as List<LocalNotificationRequest>;
