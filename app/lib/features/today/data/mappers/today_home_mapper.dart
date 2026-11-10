@@ -11,6 +11,7 @@ extension TodayHomeMapper on QueryTodayHome {
       isPaired: state.isPaired ?? false,
       unopenedCards: state.unopenedCards ?? 0,
       slipsThisWeek: state.slipsThisWeek ?? 0,
+      slipsTotal: state.slipsTotal ?? 0,
       hasPendingInvite: state.hasPendingInvite ?? false,
       hasPlus: state.hasPlus ?? false,
       partnerName: state.partnerName,

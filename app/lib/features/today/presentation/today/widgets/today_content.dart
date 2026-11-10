@@ -6,23 +6,28 @@ import 'package:flutter_bloc_starter/features/today/presentation/today/widgets/t
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
-/// The body of Hoje: banners, the question, the week so far and today's idea.
+/// The body of Hoje: banners, the main card, the week so far and today's idea.
+///
+/// The main card follows the person's state: the partner's question when connected, a private
+/// prompt when on their own, and a welcome on the first day.
 class const TodayContent({
   required final TodayHome home,
   required final bool isOffline,
   final String? selfName,
+  final String? partnerHint,
+  final bool isFirstDay = false,
   super.key,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.today;
-    final question = home.question;
     final idea = home.idea;
+    final isAlone = !home.isPaired;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        TodayHeader(home: home, selfName: selfName),
+        TodayHeader(home: home, selfName: selfName, isFirstDay: isFirstDay),
         const SizedBox(height: AppSpace.s20),
         if (isOffline) ...[
           BaseBanner(text: l10n.offline, icon: AppIcons.wifi_off),
@@ -38,20 +43,26 @@ class const TodayContent({
           ),
           const SizedBox(height: AppSpace.s12),
         ],
-        if (question != null) ...[
-          BaseFeatureCard(
-            tag: question.tags.isEmpty ? l10n.forToday : question.tags.first,
-            question: question.title,
-            highlightedWord: _longestWord(question.title),
-            actionText: l10n.answer,
-            onAction: () => context.router.root.push(const QuickSlipRoute()),
-          ),
-          const SizedBox(height: AppSpace.s16),
-        ],
+        _MainCard(home: home, isFirstDay: isFirstDay),
+        const SizedBox(height: AppSpace.s16),
         BaseSurfaceCard(
-          title: l10n.slipsThisWeek(count: home.slipsThisWeek),
+          title: isAlone
+              ? l10n.slipsThisWeekPrivate(count: home.slipsThisWeek)
+              : l10n.slipsThisWeek(count: home.slipsThisWeek),
           supportText: home.slipsThisWeek == 0 ? l10n.weekHintEmpty : l10n.weekHint,
         ),
+        if (isAlone && !home.hasPendingInvite) ...[
+          const SizedBox(height: AppSpace.s12),
+          BaseListCard(
+            categoryLabel: l10n.inviteCardLabel,
+            category: AppCategory.invite,
+            title: partnerHint == null
+                ? l10n.inviteCardTitleNoName
+                : l10n.inviteCardTitle(name: partnerHint!),
+            supportText: l10n.inviteCardText,
+            onTap: () => context.pushRoute(const InviteRoute()),
+          ),
+        ],
         if (idea != null) ...[
           const SizedBox(height: AppSpace.s24),
           BaseSectionHeader(title: l10n.forToday),
@@ -64,6 +75,45 @@ class const TodayContent({
           ),
         ],
       ],
+    );
+  }
+}
+
+class const _MainCard({required final TodayHome home, required final bool isFirstDay})
+    extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.today;
+    void openCapture() => context.router.root.push(const QuickSlipRoute());
+
+    if (isFirstDay) {
+      return BaseFeatureCard(
+        tag: l10n.firstDayTag,
+        question: l10n.firstDayTitle(count: home.slipsTotal),
+        highlightedWord: l10n.firstDayHighlight(count: home.slipsTotal),
+        supportText: l10n.firstDayText,
+        actionText: l10n.firstDayAction,
+        onAction: openCapture,
+      );
+    }
+    if (!home.isPaired) {
+      return BaseFeatureCard(
+        tag: l10n.privateTag,
+        question: l10n.privateQuestion,
+        highlightedWord: l10n.privateHighlight,
+        actionText: l10n.privateAction,
+        onAction: openCapture,
+      );
+    }
+    final question = home.question;
+    if (question == null) return const SizedBox.shrink();
+
+    return BaseFeatureCard(
+      tag: question.tags.isEmpty ? l10n.forToday : question.tags.first,
+      question: question.title,
+      highlightedWord: _longestWord(question.title),
+      actionText: l10n.answer,
+      onAction: openCapture,
     );
   }
 

@@ -5,6 +5,7 @@ query TodayHome {
     cardStatus
     unopenedCards
     slipsThisWeek
+    slipsTotal
     hasPendingInvite
     togetherSince
     pauseIsMine

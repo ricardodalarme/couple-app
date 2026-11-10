@@ -594,6 +594,56 @@ class _Translations$today$en extends Translations$today$pt {
   @override
   String get ideaLabel => 'Idea of the day';
   @override
+  String slipsThisWeekPrivate({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        zero: 'Your private slips: none this week',
+        one: 'Your private slips: 1 this week',
+        other: 'Your private slips: ${count} this week',
+      );
+  @override
+  String get inviteCardLabel => 'Invite';
+  @override
+  String inviteCardTitle({required Object name}) => 'Invite ${name}';
+  @override
+  String get inviteCardTitleNoName => 'Invite your person';
+  @override
+  String get inviteCardText => 'Shared cards and tools need both of you.';
+  @override
+  String get privateTag => 'Only yours';
+  @override
+  String get privateQuestion => 'How was your day, really?';
+  @override
+  String get privateHighlight => 'day';
+  @override
+  String get privateAction => 'Note a slip';
+  @override
+  String get firstDayLabel => 'Getting started';
+  @override
+  String firstDayGreeting({required Object name}) => 'Hi, ${name}';
+  @override
+  String get firstDaySubtitle => 'so glad you are here';
+  @override
+  String get firstDayTag => 'Good start';
+  @override
+  String firstDayTitle({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'You have 1 slip.',
+        other: 'You have ${count} slips.',
+      );
+  @override
+  String firstDayHighlight({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 slip',
+        other: '${count} slips',
+      );
+  @override
+  String get firstDayText => 'A slip is one good thing, in one line. On Sunday they become a card.';
+  @override
+  String get firstDayAction => 'Note one more';
+  @override
   String get errorTitle => 'Could not load Today';
   @override
   String get errorText => 'Your slips are safe. Try again.';
@@ -1057,6 +1107,40 @@ extension on TranslationsEn {
       'today.weekHint' => 'Your Sunday card comes from these slips.',
       'today.forToday' => 'For today',
       'today.ideaLabel' => 'Idea of the day',
+      'today.slipsThisWeekPrivate' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+          count,
+          zero: 'Your private slips: none this week',
+          one: 'Your private slips: 1 this week',
+          other: 'Your private slips: ${count} this week',
+        ),
+      'today.inviteCardLabel' => 'Invite',
+      'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',
+      'today.inviteCardTitleNoName' => 'Invite your person',
+      'today.inviteCardText' => 'Shared cards and tools need both of you.',
+      'today.privateTag' => 'Only yours',
+      'today.privateQuestion' => 'How was your day, really?',
+      'today.privateHighlight' => 'day',
+      'today.privateAction' => 'Note a slip',
+      'today.firstDayLabel' => 'Getting started',
+      'today.firstDayGreeting' => ({required Object name}) => 'Hi, ${name}',
+      'today.firstDaySubtitle' => 'so glad you are here',
+      'today.firstDayTag' => 'Good start',
+      'today.firstDayTitle' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+          count,
+          one: 'You have 1 slip.',
+          other: 'You have ${count} slips.',
+        ),
+      'today.firstDayHighlight' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+          count,
+          one: '1 slip',
+          other: '${count} slips',
+        ),
+      'today.firstDayText' =>
+        'A slip is one good thing, in one line. On Sunday they become a card.',
+      'today.firstDayAction' => 'Note one more',
       'today.errorTitle' => 'Could not load Today',
       'today.errorText' => 'Your slips are safe. Try again.',
       'welcome.headline' => 'Small good things, said out loud.',

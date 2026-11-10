@@ -47,6 +47,33 @@
   "weekHint": "Your Sunday card comes from these slips.",
   "forToday": "For today",
   "ideaLabel": "Idea of the day",
+  "slipsThisWeekPrivate(plural, param=count)": {
+    "zero": "Your private slips: none this week",
+    "one": "Your private slips: 1 this week",
+    "other": "Your private slips: {count} this week"
+  },
+  "inviteCardLabel": "Invite",
+  "inviteCardTitle": "Invite {name}",
+  "inviteCardTitleNoName": "Invite your person",
+  "inviteCardText": "Shared cards and tools need both of you.",
+  "privateTag": "Only yours",
+  "privateQuestion": "How was your day, really?",
+  "privateHighlight": "day",
+  "privateAction": "Note a slip",
+  "firstDayLabel": "Getting started",
+  "firstDayGreeting": "Hi, {name}",
+  "firstDaySubtitle": "so glad you are here",
+  "firstDayTag": "Good start",
+  "firstDayTitle(plural, param=count)": {
+    "one": "You have 1 slip.",
+    "other": "You have {count} slips."
+  },
+  "firstDayHighlight(plural, param=count)": {
+    "one": "1 slip",
+    "other": "{count} slips"
+  },
+  "firstDayText": "A slip is one good thing, in one line. On Sunday they become a card.",
+  "firstDayAction": "Note one more",
   "errorTitle": "Could not load Today",
   "errorText": "Your slips are safe. Try again."
 }

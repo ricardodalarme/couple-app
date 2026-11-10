@@ -47,6 +47,33 @@
   "weekHint": "Seu cartão de domingo vem desses slips.",
   "forToday": "Para hoje",
   "ideaLabel": "Ideia do dia",
+  "slipsThisWeekPrivate(plural, param=count)": {
+    "zero": "Seus slips privados: nenhum esta semana",
+    "one": "Seus slips privados: 1 esta semana",
+    "other": "Seus slips privados: {count} esta semana"
+  },
+  "inviteCardLabel": "Convite",
+  "inviteCardTitle": "Convidar {name}",
+  "inviteCardTitleNoName": "Convidar sua pessoa",
+  "inviteCardText": "Cartões e ferramentas compartilhadas precisam dos dois.",
+  "privateTag": "Só seu",
+  "privateQuestion": "Como foi o seu dia, de verdade?",
+  "privateHighlight": "dia",
+  "privateAction": "Anotar um slip",
+  "firstDayLabel": "Começando",
+  "firstDayGreeting": "Oi, {name}",
+  "firstDaySubtitle": "que bom ter você por aqui",
+  "firstDayTag": "Bom começo",
+  "firstDayTitle(plural, param=count)": {
+    "one": "Você tem 1 slip.",
+    "other": "Você tem {count} slips."
+  },
+  "firstDayHighlight(plural, param=count)": {
+    "one": "1 slip",
+    "other": "{count} slips"
+  },
+  "firstDayText": "Um slip é uma coisa boa, em uma linha. No domingo eles viram um cartão.",
+  "firstDayAction": "Anotar mais um",
   "errorTitle": "Não deu para carregar o Hoje",
   "errorText": "Seus slips estão seguros. Tente de novo."
 }

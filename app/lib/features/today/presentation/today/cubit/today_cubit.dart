@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
 import 'package:flutter_bloc_starter/features/today/data/repositories/today_repository.dart';
@@ -24,6 +25,7 @@ class TodayCubit({
   Future<void> load() async {
     if (state.home is! Success) emit(state.copyWith(home: const Loading()));
     final selfName = await _readOwnName();
+    final settings = await _readSettings();
     try {
       final result = await _todayRepository.getToday();
       emit(
@@ -31,6 +33,8 @@ class TodayCubit({
           home: Success(result.home),
           isOffline: result.isFromCache,
           selfName: selfName,
+          partnerHint: settings?.partnerName,
+          isFirstDay: _isFirstDay(settings),
         ),
       );
     } catch (exception) {
@@ -44,10 +48,28 @@ class TodayCubit({
     if (state == AppLifecycleState.resumed) load();
   }
 
+  bool _isFirstDay(AccountSettings? settings) {
+    final onboardedAt = settings?.onboardedAt?.toLocal();
+    if (onboardedAt == null) return false;
+    final now = DateTime.now();
+
+    return onboardedAt.year == now.year &&
+        onboardedAt.month == now.month &&
+        onboardedAt.day == now.day;
+  }
+
   Future<String?> _readOwnName() async {
     if (state.selfName != null) return state.selfName;
     try {
       return (await _profileRepository.getMyProfile()).displayName;
+    } on Object {
+      return null;
+    }
+  }
+
+  Future<AccountSettings?> _readSettings() async {
+    try {
+      return await _profileRepository.getMySettings();
     } on Object {
       return null;
     }

@@ -138,6 +138,13 @@ const documentNodeQueryTodayHome = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'slipsTotal'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: 'hasPendingInvite'),
                   alias: null,
                   arguments: [],
@@ -392,6 +399,7 @@ class QueryTodayHometoday {
     this.cardStatus,
     this.unopenedCards,
     this.slipsThisWeek,
+    this.slipsTotal,
     this.hasPendingInvite,
     this.togetherSince,
     this.pauseIsMine,
@@ -406,6 +414,7 @@ class QueryTodayHometoday {
     final l$cardStatus = json['cardStatus'];
     final l$unopenedCards = json['unopenedCards'];
     final l$slipsThisWeek = json['slipsThisWeek'];
+    final l$slipsTotal = json['slipsTotal'];
     final l$hasPendingInvite = json['hasPendingInvite'];
     final l$togetherSince = json['togetherSince'];
     final l$pauseIsMine = json['pauseIsMine'];
@@ -418,6 +427,7 @@ class QueryTodayHometoday {
       cardStatus: (l$cardStatus as String?),
       unopenedCards: (l$unopenedCards as int?),
       slipsThisWeek: (l$slipsThisWeek as int?),
+      slipsTotal: (l$slipsTotal as int?),
       hasPendingInvite: (l$hasPendingInvite as bool?),
       togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
       pauseIsMine: (l$pauseIsMine as bool?),
@@ -436,6 +446,8 @@ class QueryTodayHometoday {
   final int? unopenedCards;
 
   final int? slipsThisWeek;
+
+  final int? slipsTotal;
 
   final bool? hasPendingInvite;
 
@@ -461,6 +473,8 @@ class QueryTodayHometoday {
     _resultData['unopenedCards'] = l$unopenedCards;
     final l$slipsThisWeek = slipsThisWeek;
     _resultData['slipsThisWeek'] = l$slipsThisWeek;
+    final l$slipsTotal = slipsTotal;
+    _resultData['slipsTotal'] = l$slipsTotal;
     final l$hasPendingInvite = hasPendingInvite;
     _resultData['hasPendingInvite'] = l$hasPendingInvite;
     final l$togetherSince = togetherSince;
@@ -485,6 +499,7 @@ class QueryTodayHometoday {
     final l$cardStatus = cardStatus;
     final l$unopenedCards = unopenedCards;
     final l$slipsThisWeek = slipsThisWeek;
+    final l$slipsTotal = slipsTotal;
     final l$hasPendingInvite = hasPendingInvite;
     final l$togetherSince = togetherSince;
     final l$pauseIsMine = pauseIsMine;
@@ -497,6 +512,7 @@ class QueryTodayHometoday {
       l$cardStatus,
       l$unopenedCards,
       l$slipsThisWeek,
+      l$slipsTotal,
       l$hasPendingInvite,
       l$togetherSince,
       l$pauseIsMine,
@@ -537,6 +553,11 @@ class QueryTodayHometoday {
     final l$slipsThisWeek = slipsThisWeek;
     final lOther$slipsThisWeek = other.slipsThisWeek;
     if (l$slipsThisWeek != lOther$slipsThisWeek) {
+      return false;
+    }
+    final l$slipsTotal = slipsTotal;
+    final lOther$slipsTotal = other.slipsTotal;
+    if (l$slipsTotal != lOther$slipsTotal) {
       return false;
     }
     final l$hasPendingInvite = hasPendingInvite;

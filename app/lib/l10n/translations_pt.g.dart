@@ -701,6 +701,74 @@ class Translations$today$pt {
   /// pt: 'Ideia do dia'
   String get ideaLabel => 'Ideia do dia';
 
+  /// pt: '(zero) {Seus slips privados: nenhum esta semana} (one) {Seus slips privados: 1 esta semana} (other) {Seus slips privados: {count} esta semana}'
+  String slipsThisWeekPrivate({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        zero: 'Seus slips privados: nenhum esta semana',
+        one: 'Seus slips privados: 1 esta semana',
+        other: 'Seus slips privados: ${count} esta semana',
+      );
+
+  /// pt: 'Convite'
+  String get inviteCardLabel => 'Convite';
+
+  /// pt: 'Convidar {name}'
+  String inviteCardTitle({required Object name}) => 'Convidar ${name}';
+
+  /// pt: 'Convidar sua pessoa'
+  String get inviteCardTitleNoName => 'Convidar sua pessoa';
+
+  /// pt: 'Cartões e ferramentas compartilhadas precisam dos dois.'
+  String get inviteCardText => 'Cartões e ferramentas compartilhadas precisam dos dois.';
+
+  /// pt: 'Só seu'
+  String get privateTag => 'Só seu';
+
+  /// pt: 'Como foi o seu dia, de verdade?'
+  String get privateQuestion => 'Como foi o seu dia, de verdade?';
+
+  /// pt: 'dia'
+  String get privateHighlight => 'dia';
+
+  /// pt: 'Anotar um slip'
+  String get privateAction => 'Anotar um slip';
+
+  /// pt: 'Começando'
+  String get firstDayLabel => 'Começando';
+
+  /// pt: 'Oi, {name}'
+  String firstDayGreeting({required Object name}) => 'Oi, ${name}';
+
+  /// pt: 'que bom ter você por aqui'
+  String get firstDaySubtitle => 'que bom ter você por aqui';
+
+  /// pt: 'Bom começo'
+  String get firstDayTag => 'Bom começo';
+
+  /// pt: '(one) {Você tem 1 slip.} (other) {Você tem {count} slips.}'
+  String firstDayTitle({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'Você tem 1 slip.',
+        other: 'Você tem ${count} slips.',
+      );
+
+  /// pt: '(one) {1 slip} (other) {{count} slips}'
+  String firstDayHighlight({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 slip',
+        other: '${count} slips',
+      );
+
+  /// pt: 'Um slip é uma coisa boa, em uma linha. No domingo eles viram um cartão.'
+  String get firstDayText =>
+      'Um slip é uma coisa boa, em uma linha. No domingo eles viram um cartão.';
+
+  /// pt: 'Anotar mais um'
+  String get firstDayAction => 'Anotar mais um';
+
   /// pt: 'Não deu para carregar o Hoje'
   String get errorTitle => 'Não deu para carregar o Hoje';
 
@@ -1204,6 +1272,40 @@ extension on Translations {
       'today.weekHint' => 'Seu cartão de domingo vem desses slips.',
       'today.forToday' => 'Para hoje',
       'today.ideaLabel' => 'Ideia do dia',
+      'today.slipsThisWeekPrivate' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+          count,
+          zero: 'Seus slips privados: nenhum esta semana',
+          one: 'Seus slips privados: 1 esta semana',
+          other: 'Seus slips privados: ${count} esta semana',
+        ),
+      'today.inviteCardLabel' => 'Convite',
+      'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
+      'today.inviteCardTitleNoName' => 'Convidar sua pessoa',
+      'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
+      'today.privateTag' => 'Só seu',
+      'today.privateQuestion' => 'Como foi o seu dia, de verdade?',
+      'today.privateHighlight' => 'dia',
+      'today.privateAction' => 'Anotar um slip',
+      'today.firstDayLabel' => 'Começando',
+      'today.firstDayGreeting' => ({required Object name}) => 'Oi, ${name}',
+      'today.firstDaySubtitle' => 'que bom ter você por aqui',
+      'today.firstDayTag' => 'Bom começo',
+      'today.firstDayTitle' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+          count,
+          one: 'Você tem 1 slip.',
+          other: 'Você tem ${count} slips.',
+        ),
+      'today.firstDayHighlight' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+          count,
+          one: '1 slip',
+          other: '${count} slips',
+        ),
+      'today.firstDayText' =>
+        'Um slip é uma coisa boa, em uma linha. No domingo eles viram um cartão.',
+      'today.firstDayAction' => 'Anotar mais um',
       'today.errorTitle' => 'Não deu para carregar o Hoje',
       'today.errorText' => 'Seus slips estão seguros. Tente de novo.',
       'welcome.headline' => 'Pequenas coisas boas, ditas em voz alta.',

@@ -24,6 +24,8 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
     final home = context.select((TodayCubit cubit) => cubit.state.home);
     final isOffline = context.select((TodayCubit cubit) => cubit.state.isOffline);
     final selfName = context.select((TodayCubit cubit) => cubit.state.selfName);
+    final partnerHint = context.select((TodayCubit cubit) => cubit.state.partnerHint);
+    final isFirstDay = context.select((TodayCubit cubit) => cubit.state.isFirstDay);
 
     return BaseView(
       appBar: null,
@@ -33,8 +35,13 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
           body: SkeletonizerResourceWidget<TodayHome>(
             home,
             fakeValue: const TodayHome.fake(),
-            successBuilder: (value) =>
-                TodayContent(home: value, isOffline: isOffline, selfName: selfName),
+            successBuilder: (value) => TodayContent(
+              home: value,
+              isOffline: isOffline,
+              selfName: selfName,
+              partnerHint: partnerHint,
+              isFirstDay: isFirstDay,
+            ),
             failureBuilder: (_) => BaseEmptyState(
               title: l10n.errorTitle,
               text: l10n.errorText,

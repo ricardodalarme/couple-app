@@ -26,6 +26,7 @@ void main() {
     isPaired: true,
     unopenedCards: 0,
     slipsThisWeek: 2,
+    slipsTotal: 2,
     hasPendingInvite: false,
     hasPlus: false,
     partnerName: 'Rui',

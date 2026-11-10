@@ -10,8 +10,12 @@ const double _chipHeight = 40;
 const double _chipDot = 30;
 
 /// Avatars or the invite chip, the time-together chip, then the greeting and the date.
-class const TodayHeader({required final TodayHome home, final String? selfName, super.key})
-    extends StatelessWidget {
+class const TodayHeader({
+  required final TodayHome home,
+  final String? selfName,
+  final bool isFirstDay = false,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.today;
@@ -19,16 +23,20 @@ class const TodayHeader({required final TodayHome home, final String? selfName, 
     final name = selfName;
     final greeting = name == null
         ? l10n.greetingNoName
+        : isFirstDay
+        ? l10n.firstDayGreeting(name: name)
         : switch (now.hour) {
             < 12 => l10n.greetingMorning(name: name),
             < 18 => l10n.greetingAfternoon(name: name),
             _ => l10n.greetingEvening(name: name),
           };
-    final dateLine = l10n.dateLine(
-      weekday: l10n.weekdays[now.weekday - 1],
-      day: now.day,
-      month: l10n.months[now.month - 1],
-    );
+    final dateLine = isFirstDay
+        ? l10n.firstDaySubtitle
+        : l10n.dateLine(
+            weekday: l10n.weekdays[now.weekday - 1],
+            day: now.day,
+            month: l10n.months[now.month - 1],
+          );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,14 +44,17 @@ class const TodayHeader({required final TodayHome home, final String? selfName, 
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            if (home.isPaired) BaseAvatarPair(
-                    selfInitials: _initial(name),
-                    partnerInitials: _initial(home.partnerName),
-                  ) else BaseAvatarPair(
-                    selfInitials: _initial(name),
-                    onTap: () => context.pushRoute(const InviteRoute()),
-                    semanticLabel: l10n.invitePerson,
-                  ),
+            if (home.isPaired)
+              BaseAvatarPair(
+                selfInitials: _initial(name),
+                partnerInitials: _initial(home.partnerName),
+              )
+            else
+              BaseAvatarPair(
+                selfInitials: _initial(name),
+                onTap: () => context.pushRoute(const InviteRoute()),
+                semanticLabel: l10n.invitePerson,
+              ),
             if (home.togetherSince != null) _TogetherChip(since: home.togetherSince!),
           ],
         ),
