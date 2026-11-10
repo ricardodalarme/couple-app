@@ -1,0 +1,8 @@
+fragment ProfileFragment on Profiles {
+  id
+  displayName
+  avatarPath
+  avatarKind
+  city
+  pronouns
+}

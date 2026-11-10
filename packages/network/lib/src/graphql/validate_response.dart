@@ -15,14 +15,25 @@ ServerResponseException? mapResponseException(QueryResult response) {
     return null;
   }
 
+  if (exception.linkException != null && exception.graphqlErrors.isEmpty) {
+    return ServerResponseException(networkErrorCode, exception);
+  }
+
   final firstError = exception.graphqlErrors.firstOrNull;
-  final code =
-      firstError?.extensions?['code']?.toString() ??
-      firstError?.extensions?['error_code']?.toString() ??
-      firstError?.message;
+  final message = firstError?.message;
+  final code = message != null && _stableCode.hasMatch(message)
+      ? message
+      : firstError?.extensions?['code']?.toString() ??
+            firstError?.extensions?['error_code']?.toString() ??
+            message;
 
   return ServerResponseException(code, exception);
 }
+
+/// The code reported when the request never reached the server.
+const String networkErrorCode = 'NETWORK';
+
+final RegExp _stableCode = RegExp(r'^[A-Z][A-Z0-9_]+$');
 
 D validateResponseData<T, D>(QueryResult<T> response, {D? Function(T data)? getData}) {
   validateResponse(response);

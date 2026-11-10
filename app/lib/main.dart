@@ -5,6 +5,7 @@ import 'package:flutter_bloc_starter/app.dart';
 import 'package:flutter_bloc_starter/features/_shared/di/shared_injection_module.dart';
 import 'package:flutter_bloc_starter/features/app/di/app_injection_module.dart';
 import 'package:flutter_bloc_starter/features/authentication/di/authentication_injection_module.dart';
+import 'package:flutter_bloc_starter/features/profile/di/profile_injection_module.dart';
 import 'package:flutter_bloc_starter/features/settings/di/settings_injection_module.dart';
 import 'package:flutter_bloc_starter/infrastructure/initializers/initializers.dart';
 import 'package:logger/logger.dart';
@@ -30,6 +31,7 @@ void _registerModules() {
     AppInjectionModule(),
     AuthenticationInjectionModule(),
     SettingsInjectionModule(),
+    ProfileInjectionModule(),
   ];
 
   final injector = AppInjector.instance;
