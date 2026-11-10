@@ -102,6 +102,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$pause$en pause = _Translations$pause$en._(_root);
   @override
+  late final _Translations$plus$en plus = _Translations$plus$en._(_root);
+  @override
   late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
   @override
   late final _Translations$quickSlip$en quickSlip = _Translations$quickSlip$en._(_root);
@@ -1128,6 +1130,56 @@ class _Translations$pause$en extends Translations$pause$pt {
   };
 }
 
+// Path: plus
+class _Translations$plus$en extends Translations$plus$pt {
+  _Translations$plus$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Repara Plus';
+  @override
+  String get subtitle => 'Compare calmly. The free plan stays whole for the essentials.';
+  @override
+  String get activeTitle => 'You have Plus';
+  @override
+  String get activeText => 'Thank you. Everything is unlocked for you and your partner.';
+  @override
+  String get paidByPartner => 'Your partner has Plus and it covers you both.';
+  @override
+  String freeLeft({required Object slips, required Object cards}) =>
+      'This month you have ${slips} slips and ${cards} sent cards left on the free plan.';
+  @override
+  String get freeName => 'Free';
+  @override
+  String get freeFeatures =>
+      'Slips every month, one sent card a month, repair, pause, safety and everything you already saved.';
+  @override
+  String get plusName => 'Plus';
+  @override
+  String get plusFeatures =>
+      'More slips and cards each month and more for both of you, covering you and your partner.';
+  @override
+  String get monthly => 'Monthly';
+  @override
+  String get yearly => 'Yearly';
+  @override
+  String get storeTitle => 'Couldn\'t load the prices';
+  @override
+  String get storeText => 'The store didn\'t answer. Nothing was charged. Try again.';
+  @override
+  String get alwaysFree => 'Safety, pause and unpair are never locked.';
+  @override
+  String get lockLabel => 'PLUS';
+  @override
+  String get lockText => 'Available with Plus. Tap to see the plans.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Try again in a moment.';
+}
+
 // Path: profileSetup
 class _Translations$profileSetup$en extends Translations$profileSetup$pt {
   _Translations$profileSetup$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1787,6 +1839,12 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get dayTitle => 'Day by day';
   @override
   String get dayText => 'What matters on each day.';
+  @override
+  String get plusLabel => 'PLAN';
+  @override
+  String get plusTitle => 'Free and Plus';
+  @override
+  String get plusText => 'What each plan includes, no pressure.';
   @override
   String get temperatureLabel => 'BETWEEN YOU';
   @override
@@ -3331,6 +3389,28 @@ extension on TranslationsEn {
           'pause.errors.INVALID_RETURN_TIME' => 'That return time doesn\'t work. Pick another.',
           'pause.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'pause.errors.other' => 'Couldn\'t send right now. Your message is still here.',
+          'plus.title' => 'Repara Plus',
+          'plus.subtitle' => 'Compare calmly. The free plan stays whole for the essentials.',
+          'plus.activeTitle' => 'You have Plus',
+          'plus.activeText' => 'Thank you. Everything is unlocked for you and your partner.',
+          'plus.paidByPartner' => 'Your partner has Plus and it covers you both.',
+          'plus.freeLeft' => ({
+            required Object slips,
+            required Object cards,
+          }) => 'This month you have ${slips} slips and ${cards} sent cards left on the free plan.',
+          'plus.freeName' => 'Free',
+          'plus.freeFeatures' => 'Slips every month, one sent card a month, repair, pause, safety and everything you already saved.',
+          'plus.plusName' => 'Plus',
+          'plus.plusFeatures' => 'More slips and cards each month and more for both of you, covering you and your partner.',
+          'plus.monthly' => 'Monthly',
+          'plus.yearly' => 'Yearly',
+          'plus.storeTitle' => 'Couldn\'t load the prices',
+          'plus.storeText' => 'The store didn\'t answer. Nothing was charged. Try again.',
+          'plus.alwaysFree' => 'Safety, pause and unpair are never locked.',
+          'plus.lockLabel' => 'PLUS',
+          'plus.lockText' => 'Available with Plus. Tap to see the plans.',
+          'plus.errorTitle' => 'Couldn\'t load',
+          'plus.errorText' => 'Try again in a moment.',
           'profileSetup.title' => 'The basics',
           'profileSetup.titleHighlight' => 'basics',
           'profileSetup.subtitle' =>
@@ -3364,6 +3444,9 @@ extension on TranslationsEn {
           'profileSetup.months.10' => 'November',
           'profileSetup.months.11' => 'December',
           'profileSetup.continueButton' => 'Continue',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.errors.INVALID_DATE' =>
             'That date does not look right. Pick one between 1950 and today.',
           'profileSetup.errors.NETWORK' => 'No connection. Your answers are still here, try again.',
@@ -3388,9 +3471,6 @@ extension on TranslationsEn {
           'quickSlip.monthsShort.5' => 'Jun',
           'quickSlip.monthsShort.6' => 'Jul',
           'quickSlip.monthsShort.7' => 'Aug',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.monthsShort.8' => 'Sep',
           'quickSlip.monthsShort.9' => 'Oct',
           'quickSlip.monthsShort.10' => 'Nov',
@@ -3818,6 +3898,9 @@ extension on TranslationsEn {
           'tabs.dayLabel' => 'DAY',
           'tabs.dayTitle' => 'Day by day',
           'tabs.dayText' => 'What matters on each day.',
+          'tabs.plusLabel' => 'PLAN',
+          'tabs.plusTitle' => 'Free and Plus',
+          'tabs.plusText' => 'What each plan includes, no pressure.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',
           'tabs.temperatureTitle' => 'How is it between you?',
           'tabs.temperatureText' => 'A private check-in, never a score.',
@@ -3970,6 +4053,9 @@ extension on TranslationsEn {
           'today.firstDayText' =>
             'A slip is one good thing, in one line. On Sunday they become a card.',
           'today.firstDayAction' => 'Note one more',
+          _ => null,
+        } ??
+        switch (path) {
           'today.errorTitle' => 'Could not load Today',
           'today.errorText' => 'Your slips are safe. Try again.',
           'today.cardReceivedNamed' => ({required Object name}) => '${name} sent you a card',
@@ -3994,9 +4080,6 @@ extension on TranslationsEn {
           'unpair.done.highlight' => 'Unpaired',
           'unpair.done.text' => 'Your own data stays yours.',
           'unpair.done.keepOption' => 'Keep a copy of the shared items',
-          _ => null,
-        } ??
-        switch (path) {
           'unpair.done.deleteOption' => 'Delete shared items',
           'unpair.done.plusNote' => 'The Plus that covered your partner ends.',
           'unpair.done.continueLabel' => 'Continue',

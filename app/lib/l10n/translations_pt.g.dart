@@ -81,6 +81,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
       Translations$partnerProfile$pt.internal(_root);
   late final Translations$partnerStep$pt partnerStep = Translations$partnerStep$pt.internal(_root);
   late final Translations$pause$pt pause = Translations$pause$pt.internal(_root);
+  late final Translations$plus$pt plus = Translations$plus$pt.internal(_root);
   late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
     _root,
   );
@@ -1335,6 +1336,75 @@ class Translations$pause$pt {
   };
 }
 
+// Path: plus
+class Translations$plus$pt {
+  Translations$plus$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Repara Plus'
+  String get title => 'Repara Plus';
+
+  /// pt: 'Compare com calma. O plano grátis continua inteiro para o essencial.'
+  String get subtitle => 'Compare com calma. O plano grátis continua inteiro para o essencial.';
+
+  /// pt: 'Você tem o Plus'
+  String get activeTitle => 'Você tem o Plus';
+
+  /// pt: 'Obrigado. Tudo está liberado para você e para seu par.'
+  String get activeText => 'Obrigado. Tudo está liberado para você e para seu par.';
+
+  /// pt: 'Seu par tem o Plus e ele vale para vocês dois.'
+  String get paidByPartner => 'Seu par tem o Plus e ele vale para vocês dois.';
+
+  /// pt: 'Neste mês restam {slips} slips e {cards} cartões enviados no plano grátis.'
+  String freeLeft({required Object slips, required Object cards}) =>
+      'Neste mês restam ${slips} slips e ${cards} cartões enviados no plano grátis.';
+
+  /// pt: 'Grátis'
+  String get freeName => 'Grátis';
+
+  /// pt: 'Slips todo mês, um cartão enviado por mês, repair, pausa, segurança e tudo o que você já guardou.'
+  String get freeFeatures =>
+      'Slips todo mês, um cartão enviado por mês, repair, pausa, segurança e tudo o que você já guardou.';
+
+  /// pt: 'Plus'
+  String get plusName => 'Plus';
+
+  /// pt: 'Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.'
+  String get plusFeatures =>
+      'Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.';
+
+  /// pt: 'Mensal'
+  String get monthly => 'Mensal';
+
+  /// pt: 'Anual'
+  String get yearly => 'Anual';
+
+  /// pt: 'Não deu para ver os preços'
+  String get storeTitle => 'Não deu para ver os preços';
+
+  /// pt: 'A loja não respondeu. Nada foi cobrado. Tente de novo.'
+  String get storeText => 'A loja não respondeu. Nada foi cobrado. Tente de novo.';
+
+  /// pt: 'Segurança, pausa e desparear nunca ficam trancados.'
+  String get alwaysFree => 'Segurança, pausa e desparear nunca ficam trancados.';
+
+  /// pt: 'PLUS'
+  String get lockLabel => 'PLUS';
+
+  /// pt: 'Disponível no Plus. Toque para ver os planos.'
+  String get lockText => 'Disponível no Plus. Toque para ver os planos.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Tente de novo daqui a pouco.'
+  String get errorText => 'Tente de novo daqui a pouco.';
+}
+
 // Path: profileSetup
 class Translations$profileSetup$pt {
   Translations$profileSetup$pt.internal(this._root);
@@ -2142,6 +2212,15 @@ class Translations$tabs$pt {
 
   /// pt: 'O que importa em cada dia.'
   String get dayText => 'O que importa em cada dia.';
+
+  /// pt: 'PLANO'
+  String get plusLabel => 'PLANO';
+
+  /// pt: 'Grátis e Plus'
+  String get plusTitle => 'Grátis e Plus';
+
+  /// pt: 'O que cada plano inclui, sem pressão.'
+  String get plusText => 'O que cada plano inclui, sem pressão.';
 
   /// pt: 'ENTRE VOCÊS'
   String get temperatureLabel => 'ENTRE VOCÊS';
@@ -3910,6 +3989,29 @@ extension on Translations {
           'pause.errors.INVALID_RETURN_TIME' => 'Esse horário de volta não vale. Escolha outro.',
           'pause.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'pause.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
+          'plus.title' => 'Repara Plus',
+          'plus.subtitle' => 'Compare com calma. O plano grátis continua inteiro para o essencial.',
+          'plus.activeTitle' => 'Você tem o Plus',
+          'plus.activeText' => 'Obrigado. Tudo está liberado para você e para seu par.',
+          'plus.paidByPartner' => 'Seu par tem o Plus e ele vale para vocês dois.',
+          'plus.freeLeft' => ({
+            required Object slips,
+            required Object cards,
+          }) => 'Neste mês restam ${slips} slips e ${cards} cartões enviados no plano grátis.',
+          'plus.freeName' => 'Grátis',
+          'plus.freeFeatures' => 'Slips todo mês, um cartão enviado por mês, repair, pausa, segurança e tudo o que você já guardou.',
+          'plus.plusName' => 'Plus',
+          'plus.plusFeatures' =>
+            'Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.',
+          'plus.monthly' => 'Mensal',
+          'plus.yearly' => 'Anual',
+          'plus.storeTitle' => 'Não deu para ver os preços',
+          'plus.storeText' => 'A loja não respondeu. Nada foi cobrado. Tente de novo.',
+          'plus.alwaysFree' => 'Segurança, pausa e desparear nunca ficam trancados.',
+          'plus.lockLabel' => 'PLUS',
+          'plus.lockText' => 'Disponível no Plus. Toque para ver os planos.',
+          'plus.errorTitle' => 'Não deu para carregar',
+          'plus.errorText' => 'Tente de novo daqui a pouco.',
           'profileSetup.title' => 'O básico',
           'profileSetup.titleHighlight' => 'básico',
           'profileSetup.subtitle' =>
@@ -3943,6 +4045,9 @@ extension on Translations {
           'profileSetup.months.10' => 'novembro',
           'profileSetup.months.11' => 'dezembro',
           'profileSetup.continueButton' => 'Continuar',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.errors.INVALID_DATE' =>
             'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
           'profileSetup.errors.NETWORK' => 'Sem conexão. Seus dados continuam aqui, tente de novo.',
@@ -3967,9 +4072,6 @@ extension on Translations {
           'quickSlip.monthsShort.5' => 'jun',
           'quickSlip.monthsShort.6' => 'jul',
           'quickSlip.monthsShort.7' => 'ago',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.monthsShort.8' => 'set',
           'quickSlip.monthsShort.9' => 'out',
           'quickSlip.monthsShort.10' => 'nov',
@@ -4400,6 +4502,9 @@ extension on Translations {
           'tabs.dayLabel' => 'DIA',
           'tabs.dayTitle' => 'Dia a dia',
           'tabs.dayText' => 'O que importa em cada dia.',
+          'tabs.plusLabel' => 'PLANO',
+          'tabs.plusTitle' => 'Grátis e Plus',
+          'tabs.plusText' => 'O que cada plano inclui, sem pressão.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
           'tabs.temperatureTitle' => 'Como está entre vocês?',
           'tabs.temperatureText' => 'Um registro privado, sem nota.',
@@ -4553,6 +4658,9 @@ extension on Translations {
           'today.firstDayText' =>
             'Um slip é uma coisa boa, em uma linha. No domingo eles viram um cartão.',
           'today.firstDayAction' => 'Anotar mais um',
+          _ => null,
+        } ??
+        switch (path) {
           'today.errorTitle' => 'Não deu para carregar o Hoje',
           'today.errorText' => 'Seus slips estão seguros. Tente de novo.',
           'today.cardReceivedNamed' => ({required Object name}) => '${name} te mandou um cartão',
@@ -4577,9 +4685,6 @@ extension on Translations {
           'unpair.done.highlight' => 'Desvinculado',
           'unpair.done.text' => 'Seus próprios dados continuam seus.',
           'unpair.done.keepOption' => 'Guardar uma cópia dos itens compartilhados',
-          _ => null,
-        } ??
-        switch (path) {
           'unpair.done.deleteOption' => 'Apagar itens compartilhados',
           'unpair.done.plusNote' => 'O Plus que cobria o parceiro termina.',
           'unpair.done.continueLabel' => 'Continuar',

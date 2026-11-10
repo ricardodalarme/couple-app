@@ -1,0 +1,10 @@
+query MyPlus {
+  myPlus {
+    hasPlus
+    paidByPartner
+    plan
+    status
+    slipsLeftThisMonth
+    cardsLeftThisMonth
+  }
+}

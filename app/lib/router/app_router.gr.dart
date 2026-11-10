@@ -581,6 +581,22 @@ class PauseRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PlansPage]
+class PlansRoute extends PageRouteInfo<void> {
+  const PlansRoute({List<PageRouteInfo>? children})
+    : super(PlansRoute.name, initialChildren: children);
+
+  static const String name = 'PlansRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const PlansPage());
+    },
+  );
+}
+
+/// generated route for
 /// [ProfileSetupPage]
 class ProfileSetupRoute extends PageRouteInfo<void> {
   const ProfileSetupRoute({List<PageRouteInfo>? children})

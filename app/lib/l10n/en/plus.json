@@ -1,0 +1,21 @@
+{
+  "title": "Repara Plus",
+  "subtitle": "Compare calmly. The free plan stays whole for the essentials.",
+  "activeTitle": "You have Plus",
+  "activeText": "Thank you. Everything is unlocked for you and your partner.",
+  "paidByPartner": "Your partner has Plus and it covers you both.",
+  "freeLeft": "This month you have {slips} slips and {cards} sent cards left on the free plan.",
+  "freeName": "Free",
+  "freeFeatures": "Slips every month, one sent card a month, repair, pause, safety and everything you already saved.",
+  "plusName": "Plus",
+  "plusFeatures": "More slips and cards each month and more for both of you, covering you and your partner.",
+  "monthly": "Monthly",
+  "yearly": "Yearly",
+  "storeTitle": "Couldn't load the prices",
+  "storeText": "The store didn't answer. Nothing was charged. Try again.",
+  "alwaysFree": "Safety, pause and unpair are never locked.",
+  "lockLabel": "PLUS",
+  "lockText": "Available with Plus. Tap to see the plans.",
+  "errorTitle": "Couldn't load",
+  "errorText": "Try again in a moment."
+}
