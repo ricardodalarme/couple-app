@@ -61,7 +61,9 @@ class FragmentCardFragment {
     final l$weekStart = weekStart;
     _resultData['weekStart'] = ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
     final l$sentAt = sentAt;
-    _resultData['sentAt'] = l$sentAt?.toIso8601String();
+    _resultData['sentAt'] = l$sentAt == null
+        ? null
+        : ((v) => v.toUtc().toIso8601String())(l$sentAt);
     final l$items = items;
     _resultData['items'] = l$items?.toJson();
     final l$$__typename = $__typename;
@@ -583,7 +585,7 @@ class FragmentCardFragmentitemsedgesnodeslip {
     final l$category = category;
     _resultData['category'] = l$category;
     final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

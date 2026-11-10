@@ -84,6 +84,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$partnerStep$en partnerStep = _Translations$partnerStep$en._(_root);
   @override
+  late final _Translations$pause$en pause = _Translations$pause$en._(_root);
+  @override
   late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
   @override
   late final _Translations$quickSlip$en quickSlip = _Translations$quickSlip$en._(_root);
@@ -652,6 +654,56 @@ class _Translations$partnerStep$en extends Translations$partnerStep$pt {
   String get haveCode => 'I have an invite code';
   @override
   String get continueButton => 'Continue';
+}
+
+// Path: pause
+class _Translations$pause$en extends Translations$pause$pt {
+  _Translations$pause$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Ask for some space';
+  @override
+  String get titleHighlight => 'space';
+  @override
+  String get subtitle => 'A short, kind message. Your partner sees only what you write.';
+  @override
+  Map<String, String> get presets => {
+    'space': 'I need some time to breathe. I\'ll be back soon.',
+    'later': 'Can we talk later, calmly?',
+    'calm': 'I want to listen well. I need to calm down first.',
+    'other': '',
+  };
+  @override
+  String get hint => 'Write my own';
+  @override
+  String get returnTitle => 'I\'ll be back in';
+  @override
+  Map<String, String> get returns => {
+    'oneHour': '1 hour',
+    'threeHours': '3 hours',
+    'eightHours': '8 hours',
+    'tomorrow': 'Tomorrow',
+    'other': '',
+  };
+  @override
+  String get note => 'You both see Today on pause. You can come back whenever you like.';
+  @override
+  String get send => 'Send and pause';
+  @override
+  String get sentTitle => 'Pause sent';
+  @override
+  String get sentText => 'Today is on pause for both of you. When you\'re ready, come back there.';
+  @override
+  String get done => 'Done';
+  @override
+  Map<String, String> get errors => {
+    'INVALID_RETURN_TIME': 'That return time doesn\'t work. Pick another.',
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t send right now. Your message is still here.',
+  };
 }
 
 // Path: profileSetup
@@ -1367,6 +1419,8 @@ class _Translations$today$en extends Translations$today$pt {
   @override
   String get pauseBack => 'Come back now';
   @override
+  String get pauseBackRepair => 'Come back and repair';
+  @override
   String get pauseWriteSlip => 'Write a slip';
 }
 
@@ -1604,6 +1658,8 @@ class _Translations$repair$calm$en extends Translations$repair$calm$pt {
   String get ready => 'I feel calmer';
   @override
   String get leave => 'Leave';
+  @override
+  String get askPause => 'Ask my partner for some space';
 }
 
 // Path: repair.softStart
@@ -2426,6 +2482,29 @@ extension on TranslationsEn {
           'partnerStep.aloneSupport' => 'Your slips stay with you only',
           'partnerStep.haveCode' => 'I have an invite code',
           'partnerStep.continueButton' => 'Continue',
+          'pause.title' => 'Ask for some space',
+          'pause.titleHighlight' => 'space',
+          'pause.subtitle' => 'A short, kind message. Your partner sees only what you write.',
+          'pause.presets.space' => 'I need some time to breathe. I\'ll be back soon.',
+          'pause.presets.later' => 'Can we talk later, calmly?',
+          'pause.presets.calm' => 'I want to listen well. I need to calm down first.',
+          'pause.presets.other' => '',
+          'pause.hint' => 'Write my own',
+          'pause.returnTitle' => 'I\'ll be back in',
+          'pause.returns.oneHour' => '1 hour',
+          'pause.returns.threeHours' => '3 hours',
+          'pause.returns.eightHours' => '8 hours',
+          'pause.returns.tomorrow' => 'Tomorrow',
+          'pause.returns.other' => '',
+          'pause.note' => 'You both see Today on pause. You can come back whenever you like.',
+          'pause.send' => 'Send and pause',
+          'pause.sentTitle' => 'Pause sent',
+          'pause.sentText' =>
+            'Today is on pause for both of you. When you\'re ready, come back there.',
+          'pause.done' => 'Done',
+          'pause.errors.INVALID_RETURN_TIME' => 'That return time doesn\'t work. Pick another.',
+          'pause.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'pause.errors.other' => 'Couldn\'t send right now. Your message is still here.',
           'profileSetup.title' => 'The basics',
           'profileSetup.titleHighlight' => 'basics',
           'profileSetup.subtitle' =>
@@ -2522,6 +2601,7 @@ extension on TranslationsEn {
           'repair.calm.text' => 'There\'s no rush and no timer. Leave whenever you like.',
           'repair.calm.ready' => 'I feel calmer',
           'repair.calm.leave' => 'Leave',
+          'repair.calm.askPause' => 'Ask my partner for some space',
           'repair.softStart.title' => 'Start softly',
           'repair.softStart.titleHighlight' => 'softly',
           'repair.softStart.subtitle' => 'A blame-free template to open the conversation.',
@@ -2692,6 +2772,9 @@ extension on TranslationsEn {
           'slipKind.ifThen.thenLabel' => 'Then…',
           'slipKind.ifThen.thenHint' => 'E.g. I ask for 10 minutes alone',
           'slipKind.invisible.title' => 'Things nobody notices',
+          _ => null,
+        } ??
+        switch (path) {
           'slipKind.invisible.titleHighlight' => 'nobody notices',
           'slipKind.invisible.subtitle' => 'Only for you. This never goes into a card.',
           'slipKind.invisible.hint' => 'E.g. remembered the kids\' appointment',
@@ -2717,9 +2800,6 @@ extension on TranslationsEn {
             'Couldn\'t save right now. Your text is still here, try again.',
           'slipsList.title' => 'Slips',
           'slipsList.scopeWeek' => 'This week',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.scopeAll' => 'All',
           'slipsList.private' => 'Private',
           'slipsList.thisWeek' => 'This week',
@@ -2978,6 +3058,7 @@ extension on TranslationsEn {
           'today.pausePartnerTitle' => 'Your partner asked for some space',
           'today.pausePartnerText' => 'No rush. There\'s nothing to do right now.',
           'today.pauseBack' => 'Come back now',
+          'today.pauseBackRepair' => 'Come back and repair',
           'today.pauseWriteSlip' => 'Write a slip',
           'unpair.appBarTitle' => 'Unpair',
           'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',

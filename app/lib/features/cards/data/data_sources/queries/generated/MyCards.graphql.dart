@@ -753,7 +753,9 @@ class QueryMyCardscardsCollectionedgesnode {
     final l$authorId = authorId;
     _resultData['authorId'] = l$authorId;
     final l$sentAt = sentAt;
-    _resultData['sentAt'] = l$sentAt?.toIso8601String();
+    _resultData['sentAt'] = l$sentAt == null
+        ? null
+        : ((v) => v.toUtc().toIso8601String())(l$sentAt);
     final l$weekStart = weekStart;
     _resultData['weekStart'] = ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
     final l$items = items;
@@ -1119,7 +1121,7 @@ class QueryMyCardscardsCollectionedgesnodeopen {
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$openedAt = openedAt;
-    _resultData['openedAt'] = l$openedAt.toIso8601String();
+    _resultData['openedAt'] = ((v) => v.toUtc().toIso8601String())(l$openedAt);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

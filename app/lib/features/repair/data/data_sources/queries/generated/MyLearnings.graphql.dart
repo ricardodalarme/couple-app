@@ -459,7 +459,7 @@ class QueryMyLearningsrepairLearningsCollectionedgesnode {
     final l$note = note;
     _resultData['note'] = l$note;
     final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

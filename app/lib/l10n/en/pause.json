@@ -1,0 +1,30 @@
+{
+  "title": "Ask for some space",
+  "titleHighlight": "space",
+  "subtitle": "A short, kind message. Your partner sees only what you write.",
+  "presets(map)": {
+    "space": "I need some time to breathe. I'll be back soon.",
+    "later": "Can we talk later, calmly?",
+    "calm": "I want to listen well. I need to calm down first.",
+    "other": ""
+  },
+  "hint": "Write my own",
+  "returnTitle": "I'll be back in",
+  "returns(map)": {
+    "oneHour": "1 hour",
+    "threeHours": "3 hours",
+    "eightHours": "8 hours",
+    "tomorrow": "Tomorrow",
+    "other": ""
+  },
+  "note": "You both see Today on pause. You can come back whenever you like.",
+  "send": "Send and pause",
+  "sentTitle": "Pause sent",
+  "sentText": "Today is on pause for both of you. When you're ready, come back there.",
+  "done": "Done",
+  "errors(map)": {
+    "INVALID_RETURN_TIME": "That return time doesn't work. Pick another.",
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't send right now. Your message is still here."
+  }
+}

@@ -1,0 +1,5 @@
+mutation StartPause($returnAt: Datetime!, $message: String) {
+  startPause(returnAt: $returnAt, message: $message) {
+    id
+  }
+}

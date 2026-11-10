@@ -5,6 +5,7 @@ import 'package:flutter_bloc_starter/features/repair/data/data_sources/repair_da
 import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/guided/cubit/guided_repair_cubit.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/learning/cubit/learning_cubit.dart';
+import 'package:flutter_bloc_starter/features/repair/presentation/pause/cubit/pause_cubit.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/quick_repair/cubit/quick_repair_cubit.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/soft_start/cubit/soft_start_cubit.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/temperature/cubit/temperature_cubit.dart';
@@ -20,6 +21,9 @@ class RepairInjectionModule() implements InjectionModule {
       () => RepairRepository(dataSource: injector.get<RepairDataSource>()),
     )
     ..registerFactory<SoftStartCubit>(SoftStartCubit.new)
+    ..registerFactory<PauseCubit>(
+      () => PauseCubit(repairRepository: injector.get<RepairRepository>()),
+    )
     ..registerFactory<GuidedRepairCubit>(
       () => GuidedRepairCubit(
         repairRepository: injector.get<RepairRepository>(),

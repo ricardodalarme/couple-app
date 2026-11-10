@@ -691,9 +691,11 @@ class QuerySlipDetailslipsCollectionedgesnode {
     final l$workArea = workArea;
     _resultData['workArea'] = l$workArea;
     final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$archivedAt = archivedAt;
-    _resultData['archivedAt'] = l$archivedAt?.toIso8601String();
+    _resultData['archivedAt'] = l$archivedAt == null
+        ? null
+        : ((v) => v.toUtc().toIso8601String())(l$archivedAt);
     final l$cardItemsCollection = cardItemsCollection;
     _resultData['cardItemsCollection'] = l$cardItemsCollection?.toJson();
     final l$$__typename = $__typename;

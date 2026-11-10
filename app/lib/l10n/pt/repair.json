@@ -5,7 +5,8 @@
     "cadence": "Inspire devagar por 4. Solte devagar por 6. Repita no seu ritmo.",
     "text": "Não tem pressa e não tem tempo contado. Saia quando quiser.",
     "ready": "Estou mais calmo(a)",
-    "leave": "Sair"
+    "leave": "Sair",
+    "askPause": "Pedir um tempo ao meu par"
   },
   "softStart": {
     "title": "Comece com suavidade",

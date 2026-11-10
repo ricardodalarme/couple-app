@@ -4,6 +4,7 @@ import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations/generated/SaveLearning.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations/generated/SaveRepairProgress.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations/generated/SendRepairSignal.graphql.dart';
+import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations/generated/StartPause.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/mutations/generated/StartRepairSession.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/queries/generated/MyLearnings.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/queries/generated/OpenGuidedSession.graphql.dart';
@@ -104,6 +105,17 @@ class RepairDataSource({required final GQLClient _client}) {
   Future<void> deleteLearning(String id) async {
     final response = await _client.mutate(
       OptionsMutationDeleteLearning(variables: VariablesMutationDeleteLearning(id: id)),
+    );
+
+    validateResponse(response);
+  }
+
+  /// Starts a pause that ends by itself at [returnAt], which the server limits to 24 hours.
+  Future<void> startPause({required DateTime returnAt, String? message}) async {
+    final response = await _client.mutate(
+      OptionsMutationStartPause(
+        variables: VariablesMutationStartPause(returnAt: returnAt, message: message),
+      ),
     );
 
     validateResponse(response);

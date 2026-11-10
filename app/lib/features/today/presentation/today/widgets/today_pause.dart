@@ -55,6 +55,18 @@ class const TodayPause({required final TodayHome home, super.key}) extends State
                     isLoading: isLoading,
                     onPressed: context.read<TodayCubit>().endPause,
                   ),
+                  const SizedBox(height: AppSpace.s10),
+                  BaseButton(
+                    text: l10n.pauseBackRepair,
+                    variant: .secondary,
+                    isEnabled: !isLoading,
+                    onPressed: () async {
+                      final didEnd = await context.read<TodayCubit>().endPause();
+                      if (didEnd && context.mounted) {
+                        await context.router.root.push(const TemperatureRoute());
+                      }
+                    },
+                  ),
                 ],
               ],
             ),

@@ -96,7 +96,9 @@ class VariablesMutationSaveSlip {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     return result$data;
   }

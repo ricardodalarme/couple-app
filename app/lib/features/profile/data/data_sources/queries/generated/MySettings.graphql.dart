@@ -327,7 +327,9 @@ class QueryMySettingsmySettings {
         ? null
         : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
     final l$onboardedAt = onboardedAt;
-    _resultData['onboardedAt'] = l$onboardedAt?.toIso8601String();
+    _resultData['onboardedAt'] = l$onboardedAt == null
+        ? null
+        : ((v) => v.toUtc().toIso8601String())(l$onboardedAt);
     final l$shareReadReceipts = shareReadReceipts;
     _resultData['shareReadReceipts'] = l$shareReadReceipts;
     final l$phase = phase;

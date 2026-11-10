@@ -242,7 +242,9 @@ class MutationCreateInvitecreateInvite {
     final l$code = code;
     _resultData['code'] = l$code;
     final l$expiresAt = expiresAt;
-    _resultData['expiresAt'] = l$expiresAt?.toIso8601String();
+    _resultData['expiresAt'] = l$expiresAt == null
+        ? null
+        : ((v) => v.toUtc().toIso8601String())(l$expiresAt);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

@@ -502,11 +502,15 @@ class InputAgreementsInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -3053,15 +3057,21 @@ class InputCapsulesInsertInput {
     }
     if (_$data.containsKey('openedAt')) {
       final l$openedAt = openedAt;
-      result$data['openedAt'] = l$openedAt?.toIso8601String();
+      result$data['openedAt'] = l$openedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$openedAt);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -3503,15 +3513,21 @@ class InputCapsulesUpdateInput {
     }
     if (_$data.containsKey('openedAt')) {
       final l$openedAt = openedAt;
-      result$data['openedAt'] = l$openedAt?.toIso8601String();
+      result$data['openedAt'] = l$openedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$openedAt);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -6773,11 +6789,15 @@ class InputCheckinAnswersInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -7227,11 +7247,15 @@ class InputCheckinAnswersUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -7729,7 +7753,9 @@ class InputConsentsInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     return result$data;
   }
@@ -9360,11 +9386,15 @@ class InputConversationPrepsInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -9808,11 +9838,15 @@ class InputConversationPrepsUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -11134,11 +11168,15 @@ class InputCycleDaysInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -11536,11 +11574,15 @@ class InputCycleDaysUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -12178,19 +12220,19 @@ class InputDatetimeFilter {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('eq')) {
       final l$eq = eq;
-      result$data['eq'] = l$eq?.toIso8601String();
+      result$data['eq'] = l$eq == null ? null : ((v) => v.toUtc().toIso8601String())(l$eq);
     }
     if (_$data.containsKey('gt')) {
       final l$gt = gt;
-      result$data['gt'] = l$gt?.toIso8601String();
+      result$data['gt'] = l$gt == null ? null : ((v) => v.toUtc().toIso8601String())(l$gt);
     }
     if (_$data.containsKey('gte')) {
       final l$gte = gte;
-      result$data['gte'] = l$gte?.toIso8601String();
+      result$data['gte'] = l$gte == null ? null : ((v) => v.toUtc().toIso8601String())(l$gte);
     }
     if (_$data.containsKey('in')) {
       final l$$in = $in;
-      result$data['in'] = l$$in?.map((e) => e.toIso8601String()).toList();
+      result$data['in'] = l$$in?.map((e) => ((v) => v.toUtc().toIso8601String())(e)).toList();
     }
     if (_$data.containsKey('is')) {
       final l$$is = $is;
@@ -12198,15 +12240,15 @@ class InputDatetimeFilter {
     }
     if (_$data.containsKey('lt')) {
       final l$lt = lt;
-      result$data['lt'] = l$lt?.toIso8601String();
+      result$data['lt'] = l$lt == null ? null : ((v) => v.toUtc().toIso8601String())(l$lt);
     }
     if (_$data.containsKey('lte')) {
       final l$lte = lte;
-      result$data['lte'] = l$lte?.toIso8601String();
+      result$data['lte'] = l$lte == null ? null : ((v) => v.toUtc().toIso8601String())(l$lte);
     }
     if (_$data.containsKey('neq')) {
       final l$neq = neq;
-      result$data['neq'] = l$neq?.toIso8601String();
+      result$data['neq'] = l$neq == null ? null : ((v) => v.toUtc().toIso8601String())(l$neq);
     }
     return result$data;
   }
@@ -12390,15 +12432,19 @@ class InputDatetimeListFilter {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('containedBy')) {
       final l$containedBy = containedBy;
-      result$data['containedBy'] = l$containedBy?.map((e) => e.toIso8601String()).toList();
+      result$data['containedBy'] = l$containedBy
+          ?.map((e) => ((v) => v.toUtc().toIso8601String())(e))
+          .toList();
     }
     if (_$data.containsKey('contains')) {
       final l$contains = contains;
-      result$data['contains'] = l$contains?.map((e) => e.toIso8601String()).toList();
+      result$data['contains'] = l$contains
+          ?.map((e) => ((v) => v.toUtc().toIso8601String())(e))
+          .toList();
     }
     if (_$data.containsKey('eq')) {
       final l$eq = eq;
-      result$data['eq'] = l$eq?.map((e) => e.toIso8601String()).toList();
+      result$data['eq'] = l$eq?.map((e) => ((v) => v.toUtc().toIso8601String())(e)).toList();
     }
     if (_$data.containsKey('is')) {
       final l$$is = $is;
@@ -12406,7 +12452,9 @@ class InputDatetimeListFilter {
     }
     if (_$data.containsKey('overlaps')) {
       final l$overlaps = overlaps;
-      result$data['overlaps'] = l$overlaps?.map((e) => e.toIso8601String()).toList();
+      result$data['overlaps'] = l$overlaps
+          ?.map((e) => ((v) => v.toUtc().toIso8601String())(e))
+          .toList();
     }
     return result$data;
   }
@@ -12898,7 +12946,9 @@ class InputDecisionOptionsInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     return result$data;
   }
@@ -13206,7 +13256,9 @@ class InputDecisionOptionsUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     return result$data;
   }
@@ -13672,11 +13724,15 @@ class InputDecisionRanksInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -14028,11 +14084,15 @@ class InputDecisionRanksUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -14540,15 +14600,21 @@ class InputDecisionsInsertInput {
     }
     if (_$data.containsKey('closedAt')) {
       final l$closedAt = closedAt;
-      result$data['closedAt'] = l$closedAt?.toIso8601String();
+      result$data['closedAt'] = l$closedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$closedAt);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -14942,15 +15008,21 @@ class InputDecisionsUpdateInput {
     }
     if (_$data.containsKey('closedAt')) {
       final l$closedAt = closedAt;
-      result$data['closedAt'] = l$closedAt?.toIso8601String();
+      result$data['closedAt'] = l$closedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$closedAt);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -18472,11 +18544,15 @@ class InputGiftIdeasInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -18968,11 +19044,15 @@ class InputGiftIdeasUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -20305,11 +20385,15 @@ class InputIdeaResponsesInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -20709,11 +20793,15 @@ class InputIdeaResponsesUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -21578,11 +21666,15 @@ class InputImportantDatesInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -22341,11 +22433,15 @@ class InputImportantDatesUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -24241,11 +24337,15 @@ class InputJournalEntriesInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -24649,11 +24749,15 @@ class InputJournalEntriesUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -25840,11 +25944,15 @@ class InputLessonProgressInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -26246,11 +26354,15 @@ class InputLessonProgressUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -26808,11 +26920,15 @@ class InputListItemsInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -27256,11 +27372,15 @@ class InputListItemsUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -27792,11 +27912,15 @@ class InputListsInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -28194,11 +28318,15 @@ class InputListsUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -28866,15 +28994,21 @@ class InputLogisticItemsInsertInput {
     }
     if (_$data.containsKey('doneAt')) {
       final l$doneAt = doneAt;
-      result$data['doneAt'] = l$doneAt?.toIso8601String();
+      result$data['doneAt'] = l$doneAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$doneAt);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -29464,15 +29598,21 @@ class InputLogisticItemsUpdateInput {
     }
     if (_$data.containsKey('doneAt')) {
       final l$doneAt = doneAt;
-      result$data['doneAt'] = l$doneAt?.toIso8601String();
+      result$data['doneAt'] = l$doneAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$doneAt);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -30072,15 +30212,21 @@ class InputLogisticsMeetingsInsertInput {
     }
     if (_$data.containsKey('heldAt')) {
       final l$heldAt = heldAt;
-      result$data['heldAt'] = l$heldAt?.toIso8601String();
+      result$data['heldAt'] = l$heldAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$heldAt);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -30526,15 +30672,21 @@ class InputLogisticsMeetingsUpdateInput {
     }
     if (_$data.containsKey('heldAt')) {
       final l$heldAt = heldAt;
-      result$data['heldAt'] = l$heldAt?.toIso8601String();
+      result$data['heldAt'] = l$heldAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$heldAt);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -31066,11 +31218,15 @@ class InputManualEntriesInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -31466,11 +31622,15 @@ class InputManualEntriesUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -32354,11 +32514,15 @@ class InputMemoriesInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -33042,11 +33206,15 @@ class InputMemoriesUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -33666,11 +33834,15 @@ class InputMoodsInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -34114,11 +34286,15 @@ class InputMoodsUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -35656,11 +35832,15 @@ class InputPartnerFactsInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -36104,11 +36284,15 @@ class InputPartnerFactsUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -38254,11 +38438,15 @@ class InputPlanningAreasInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -38656,11 +38844,15 @@ class InputPlanningAreasUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -41167,7 +41359,9 @@ class InputProfileSettingsUpdateInput {
     }
     if (_$data.containsKey('onboardedAt')) {
       final l$onboardedAt = onboardedAt;
-      result$data['onboardedAt'] = l$onboardedAt?.toIso8601String();
+      result$data['onboardedAt'] = l$onboardedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$onboardedAt);
     }
     if (_$data.containsKey('shareReadReceipts')) {
       final l$shareReadReceipts = shareReadReceipts;
@@ -41191,7 +41385,9 @@ class InputProfileSettingsUpdateInput {
     }
     if (_$data.containsKey('appPausedUntil')) {
       final l$appPausedUntil = appPausedUntil;
-      result$data['appPausedUntil'] = l$appPausedUntil?.toIso8601String();
+      result$data['appPausedUntil'] = l$appPausedUntil == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$appPausedUntil);
     }
     if (_$data.containsKey('holidayCountries')) {
       final l$holidayCountries = holidayCountries;
@@ -42718,15 +42914,21 @@ class InputProgramEnrollmentsInsertInput {
     }
     if (_$data.containsKey('completedAt')) {
       final l$completedAt = completedAt;
-      result$data['completedAt'] = l$completedAt?.toIso8601String();
+      result$data['completedAt'] = l$completedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$completedAt);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -43128,15 +43330,21 @@ class InputProgramEnrollmentsUpdateInput {
     }
     if (_$data.containsKey('completedAt')) {
       final l$completedAt = completedAt;
-      result$data['completedAt'] = l$completedAt?.toIso8601String();
+      result$data['completedAt'] = l$completedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$completedAt);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -43624,7 +43832,9 @@ class InputQuestionAnswersInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     return result$data;
   }
@@ -44283,11 +44493,15 @@ class InputQuizResultsInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -44630,11 +44844,15 @@ class InputQuizResultsUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -45587,11 +45805,15 @@ class InputRepairLearningsInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -45991,11 +46213,15 @@ class InputRepairLearningsUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -46623,15 +46849,21 @@ class InputRepairSessionsInsertInput {
     }
     if (_$data.containsKey('completedAt')) {
       final l$completedAt = completedAt;
-      result$data['completedAt'] = l$completedAt?.toIso8601String();
+      result$data['completedAt'] = l$completedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$completedAt);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -47171,15 +47403,21 @@ class InputRepairSessionsUpdateInput {
     }
     if (_$data.containsKey('completedAt')) {
       final l$completedAt = completedAt;
-      result$data['completedAt'] = l$completedAt?.toIso8601String();
+      result$data['completedAt'] = l$completedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$completedAt);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -47699,7 +47937,9 @@ class InputRitualLogsInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     return result$data;
   }
@@ -48053,7 +48293,9 @@ class InputRitualLogsUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     return result$data;
   }
@@ -48707,15 +48949,21 @@ class InputRitualsInsertInput {
     }
     if (_$data.containsKey('archivedAt')) {
       final l$archivedAt = archivedAt;
-      result$data['archivedAt'] = l$archivedAt?.toIso8601String();
+      result$data['archivedAt'] = l$archivedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$archivedAt);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -49297,15 +49545,21 @@ class InputRitualsUpdateInput {
     }
     if (_$data.containsKey('archivedAt')) {
       final l$archivedAt = archivedAt;
-      result$data['archivedAt'] = l$archivedAt?.toIso8601String();
+      result$data['archivedAt'] = l$archivedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$archivedAt);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -50051,11 +50305,15 @@ class InputSavedDateIdeasInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -50695,11 +50953,15 @@ class InputSavedDateIdeasUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -53175,11 +53437,15 @@ class InputStoryEventsInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -53677,11 +53943,15 @@ class InputStoryEventsUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -54736,11 +55006,15 @@ class InputTemperatureChecksInsertInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }
@@ -55092,11 +55366,15 @@ class InputTemperatureChecksUpdateInput {
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toIso8601String();
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toIso8601String();
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
     return result$data;
   }

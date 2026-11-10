@@ -1,0 +1,30 @@
+{
+  "title": "Pedir um tempo",
+  "titleHighlight": "tempo",
+  "subtitle": "Uma mensagem curta e gentil. Seu par vê só o que você escrever.",
+  "presets(map)": {
+    "space": "Preciso de um tempo para respirar. Volto logo.",
+    "later": "Vamos conversar mais tarde, com calma?",
+    "calm": "Quero te ouvir bem. Preciso me acalmar antes.",
+    "other": ""
+  },
+  "hint": "Escrever a minha",
+  "returnTitle": "Volto em",
+  "returns(map)": {
+    "oneHour": "1 hora",
+    "threeHours": "3 horas",
+    "eightHours": "8 horas",
+    "tomorrow": "Amanhã",
+    "other": ""
+  },
+  "note": "Os dois veem o Hoje em pausa. Você pode voltar quando quiser.",
+  "send": "Enviar e pausar",
+  "sentTitle": "Pausa enviada",
+  "sentText": "O Hoje fica em pausa para os dois. Quando estiver pronto(a), volte por lá.",
+  "done": "Pronto",
+  "errors(map)": {
+    "INVALID_RETURN_TIME": "Esse horário de volta não vale. Escolha outro.",
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para enviar agora. Sua mensagem continua aqui."
+  }
+}

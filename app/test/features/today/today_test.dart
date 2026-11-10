@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
+import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
 import 'package:flutter_bloc_starter/features/today/data/data_sources/queries/generated/TodayHome.graphql.dart';
 import 'package:flutter_bloc_starter/features/today/data/data_sources/today_data_source.dart';
 import 'package:flutter_bloc_starter/features/today/data/data_sources/today_local_data_source.dart';
@@ -21,6 +22,8 @@ class _MockTodayRepository() extends Mock implements TodayRepository;
 class _MockProfileRepository() extends Mock implements ProfileRepository;
 
 class _MockPairingRepository() extends Mock implements PairingRepository;
+
+class _MockRepairRepository() extends Mock implements RepairRepository;
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -184,11 +187,14 @@ void main() {
     late TodayRepository today;
     late ProfileRepository profile;
     late PairingRepository pairing;
+    late RepairRepository repair;
 
     setUp(() {
       today = _MockTodayRepository();
       profile = _MockProfileRepository();
       pairing = _MockPairingRepository();
+      repair = _MockRepairRepository();
+      when(() => repair.onPauseChanged).thenAnswer((_) => const Stream.empty());
       when(() => pairing.onChanged).thenAnswer((_) => const Stream.empty());
       when(() => profile.getMyProfile()).thenAnswer(
         (_) async => const Profile(id: 'me', avatarKind: 'initials', displayName: 'Ana'),
@@ -202,6 +208,7 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
+        repairRepository: repair,
       );
 
       await cubit.load();
@@ -235,6 +242,7 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
+        repairRepository: repair,
       );
       await cubit.load();
       expect(cubit.state.home, isA<Success<TodayHome>>());
@@ -254,6 +262,7 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
+        repairRepository: repair,
       );
       await cubit.load();
 
@@ -270,6 +279,7 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
+        repairRepository: repair,
       );
 
       await cubit.load();
@@ -283,6 +293,7 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
+        repairRepository: repair,
       );
 
       await cubit.load();
@@ -296,6 +307,7 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
+        repairRepository: repair,
       );
       await cubit.load();
 
@@ -313,6 +325,7 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
+        repairRepository: repair,
       );
 
       await cubit.load();
@@ -338,6 +351,7 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
+        repairRepository: repair,
       );
 
       await cubit.load();

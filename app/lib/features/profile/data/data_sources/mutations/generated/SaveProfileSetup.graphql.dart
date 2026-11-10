@@ -81,7 +81,7 @@ class VariablesMutationSaveProfileSetup {
           : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
     }
     final l$onboardedAt = onboardedAt;
-    result$data['onboardedAt'] = l$onboardedAt.toIso8601String();
+    result$data['onboardedAt'] = ((v) => v.toUtc().toIso8601String())(l$onboardedAt);
     return result$data;
   }
 

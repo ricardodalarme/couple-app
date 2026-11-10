@@ -50,6 +50,12 @@ class const CalmPage({super.key}) extends StatelessWidget {
             ),
             const SizedBox(height: AppSpace.s10),
             BaseButton(
+              text: l10n.askPause,
+              variant: .secondary,
+              onPressed: () => context.router.replace(const PauseRoute()),
+            ),
+            const SizedBox(height: AppSpace.s10),
+            BaseButton(
               text: l10n.leave,
               variant: .secondary,
               onPressed: () => context.router.maybePop(),

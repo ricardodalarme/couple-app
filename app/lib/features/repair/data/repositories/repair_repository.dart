@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/repair_data_source.dart';
 import 'package:flutter_bloc_starter/features/repair/data/models/guided_session.dart';
 import 'package:flutter_bloc_starter/features/repair/data/models/repair_path.dart';
@@ -5,6 +7,10 @@ import 'package:logger/logger.dart';
 
 class RepairRepository({required final RepairDataSource _dataSource}) {
   final Logger _logger = Logger('RepairRepository');
+  final StreamController<void> _pauseChanges = StreamController<void>.broadcast();
+
+  /// Emits whenever the person starts a pause, so Hoje can read again.
+  Stream<void> get onPauseChanged => _pauseChanges.stream;
 
   /// Stores the private temperature answer.
   Future<void> recordTemperature(String level) async {
@@ -91,6 +97,17 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
       await _dataSource.deleteLearning(id);
     } catch (e, stack) {
       _logger.error('Failed to delete a learning', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Asks the partner for space until [returnAt] with a short [message].
+  Future<void> startPause({required DateTime returnAt, String? message}) async {
+    try {
+      await _dataSource.startPause(returnAt: returnAt, message: message?.trim());
+      _pauseChanges.add(null);
+    } catch (e, stack) {
+      _logger.error('Failed to start a pause', error: e, stackTrace: stack);
       rethrow;
     }
   }

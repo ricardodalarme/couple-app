@@ -28,6 +28,7 @@ import 'package:flutter_bloc_starter/features/profile/presentation/setup/profile
 import 'package:flutter_bloc_starter/features/repair/presentation/calm/calm_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/guided/guided_repair_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/learning/learning_page.dart';
+import 'package:flutter_bloc_starter/features/repair/presentation/pause/pause_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/quick_repair/quick_repair_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/soft_start/soft_start_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/temperature/temperature_page.dart';
@@ -67,6 +68,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: NeedRoute.page, fullscreenDialog: true),
     AutoRoute(page: TemperatureRoute.page, fullscreenDialog: true),
     AutoRoute(page: CalmRoute.page, fullscreenDialog: true),
+    AutoRoute(page: PauseRoute.page, fullscreenDialog: true),
     AutoRoute(page: GuidedRepairRoute.page, fullscreenDialog: true),
     AutoRoute(page: LearningRoute.page),
     AutoRoute(page: SoftStartRoute.page, fullscreenDialog: true),

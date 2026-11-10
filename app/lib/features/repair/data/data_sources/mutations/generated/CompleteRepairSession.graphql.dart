@@ -47,7 +47,7 @@ class VariablesMutationCompleteRepairSession {
       result$data['feeling'] = l$feeling;
     }
     final l$completedAt = completedAt;
-    result$data['completedAt'] = l$completedAt.toIso8601String();
+    result$data['completedAt'] = ((v) => v.toUtc().toIso8601String())(l$completedAt);
     return result$data;
   }
 

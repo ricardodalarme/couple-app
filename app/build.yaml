@@ -28,6 +28,7 @@ targets:
               toJsonFunctionName: ((v) => v.toIso8601String().substring(0, 10))
             Datetime:
               type: DateTime
+              toJsonFunctionName: ((v) => v.toUtc().toIso8601String())
             JSON:
               type: dynamic
               fromJsonFunctionName: jsonDecode

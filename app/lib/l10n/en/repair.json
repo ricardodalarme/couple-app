@@ -5,7 +5,8 @@
     "cadence": "Breathe in slowly for 4. Breathe out slowly for 6. Repeat at your own pace.",
     "text": "There's no rush and no timer. Leave whenever you like.",
     "ready": "I feel calmer",
-    "leave": "Leave"
+    "leave": "Leave",
+    "askPause": "Ask my partner for some space"
   },
   "softStart": {
     "title": "Start softly",

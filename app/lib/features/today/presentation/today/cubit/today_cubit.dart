@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
+import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
 import 'package:flutter_bloc_starter/features/today/data/repositories/today_repository.dart';
 
@@ -17,15 +18,18 @@ class TodayCubit({
   required final TodayRepository _todayRepository,
   required final ProfileRepository _profileRepository,
   required final PairingRepository _pairingRepository,
+  required final RepairRepository _repairRepository,
 }) extends Cubit<TodayState> with WidgetsBindingObserver {
   this : super(const TodayState());
 
   StreamSubscription<void>? _pairingChanges;
+  StreamSubscription<void>? _pauseChanges;
   Timer? _pauseTimer;
 
   void start() {
     WidgetsBinding.instance.addObserver(this);
     _pairingChanges ??= _pairingRepository.onChanged.listen((_) => load());
+    _pauseChanges ??= _repairRepository.onPauseChanged.listen((_) => load());
     load();
   }
 
@@ -57,18 +61,24 @@ class TodayCubit({
   }
 
   /// Ends the person's own pause and reads Hoje again.
-  Future<void> endPause() async {
-    if (state.endPauseAction.isLoading) return;
+  ///
+  /// Returns whether the pause ended.
+  Future<bool> endPause() async {
+    if (state.endPauseAction.isLoading) return false;
 
+    var didEnd = false;
     emit(state.copyWith(endPauseAction: const Loading()));
     try {
       await _todayRepository.endPause();
+      didEnd = true;
       emit(state.copyWith(endPauseAction: const Success(null)));
       await load();
     } catch (exception) {
       emit(state.copyWith(endPauseAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(endPauseAction: const Initial()));
+
+    return didEnd;
   }
 
   void _schedulePauseEnd(TodayHome home) {
@@ -131,6 +141,7 @@ class TodayCubit({
   Future<void> close() async {
     _pauseTimer?.cancel();
     await _pairingChanges?.cancel();
+    await _pauseChanges?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     return super.close();
   }

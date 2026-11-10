@@ -484,7 +484,9 @@ class QueryTodayHometoday {
     final l$pauseIsMine = pauseIsMine;
     _resultData['pauseIsMine'] = l$pauseIsMine;
     final l$pauseReturnAt = pauseReturnAt;
-    _resultData['pauseReturnAt'] = l$pauseReturnAt?.toIso8601String();
+    _resultData['pauseReturnAt'] = l$pauseReturnAt == null
+        ? null
+        : ((v) => v.toUtc().toIso8601String())(l$pauseReturnAt);
     final l$hasPlus = hasPlus;
     _resultData['hasPlus'] = l$hasPlus;
     final l$$__typename = $__typename;
