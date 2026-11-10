@@ -252,8 +252,6 @@ class _Translations$cardsList$en extends Translations$cardsList$pt {
     'other': 'It is still saved. Try again.',
   };
   @override
-  String get reactionLabel => 'Reply';
-  @override
   String get reactionPrompt => 'How do you want to reply?';
   @override
   String get reactionThankYou => 'Thank you';
@@ -275,6 +273,8 @@ class _Translations$cardsList$en extends Translations$cardsList$pt {
   String responseQuote({required Object label}) => '“${label}”';
   @override
   String get notFound => 'That card is no longer available.';
+  @override
+  String get reactionQuoteMadeMyDay => 'That made my week.';
 }
 
 // Path: common
@@ -908,6 +908,8 @@ class _Translations$today$en extends Translations$today$pt {
   String get errorTitle => 'Could not load Today';
   @override
   String get errorText => 'Your slips are safe. Try again.';
+  @override
+  String cardReceivedNamed({required Object name}) => '${name} sent you a card';
 }
 
 // Path: unpair
@@ -1364,7 +1366,6 @@ extension on TranslationsEn {
       'cardsList.detailErrorTitle' => 'Could not open the card',
       'cardsList.errors.CARD_NOT_FOUND' => 'That card is no longer available.',
       'cardsList.errors.other' => 'It is still saved. Try again.',
-      'cardsList.reactionLabel' => 'Reply',
       'cardsList.reactionPrompt' => 'How do you want to reply?',
       'cardsList.reactionThankYou' => 'Thank you',
       'cardsList.reactionHug' => 'Hug',
@@ -1376,6 +1377,7 @@ extension on TranslationsEn {
       'cardsList.responseReceivedVerb' => 'replied',
       'cardsList.responseQuote' => ({required Object label}) => '“${label}”',
       'cardsList.notFound' => 'That card is no longer available.',
+      'cardsList.reactionQuoteMadeMyDay' => 'That made my week.',
       'common.appName' => 'Flutter Bloc Starter',
       'common.send' => 'Send',
       'common.save' => 'Save',
@@ -1763,6 +1765,7 @@ extension on TranslationsEn {
       'today.firstDayAction' => 'Note one more',
       'today.errorTitle' => 'Could not load Today',
       'today.errorText' => 'Your slips are safe. Try again.',
+      'today.cardReceivedNamed' => ({required Object name}) => '${name} sent you a card',
       'unpair.appBarTitle' => 'Unpair',
       'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
       'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',

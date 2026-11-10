@@ -5,10 +5,11 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationReactToCard {
-  factory VariablesMutationReactToCard({required String cardId, String? reaction}) =>
+  factory VariablesMutationReactToCard({required String cardId, String? reaction, String? reply}) =>
       VariablesMutationReactToCard._({
         r'cardId': cardId,
         if (reaction != null) r'reaction': reaction,
+        if (reply != null) r'reply': reply,
       });
 
   VariablesMutationReactToCard._(this._$data);
@@ -21,6 +22,10 @@ class VariablesMutationReactToCard {
       final l$reaction = data['reaction'];
       result$data['reaction'] = (l$reaction as String?);
     }
+    if (data.containsKey('reply')) {
+      final l$reply = data['reply'];
+      result$data['reply'] = (l$reply as String?);
+    }
     return VariablesMutationReactToCard._(result$data);
   }
 
@@ -30,6 +35,8 @@ class VariablesMutationReactToCard {
 
   String? get reaction => (_$data['reaction'] as String?);
 
+  String? get reply => (_$data['reply'] as String?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$cardId = cardId;
@@ -37,6 +44,10 @@ class VariablesMutationReactToCard {
     if (_$data.containsKey('reaction')) {
       final l$reaction = reaction;
       result$data['reaction'] = l$reaction;
+    }
+    if (_$data.containsKey('reply')) {
+      final l$reply = reply;
+      result$data['reply'] = l$reply;
     }
     return result$data;
   }
@@ -62,6 +73,14 @@ class VariablesMutationReactToCard {
     if (l$reaction != lOther$reaction) {
       return false;
     }
+    final l$reply = reply;
+    final lOther$reply = other.reply;
+    if (_$data.containsKey('reply') != other._$data.containsKey('reply')) {
+      return false;
+    }
+    if (l$reply != lOther$reply) {
+      return false;
+    }
     return true;
   }
 
@@ -69,7 +88,12 @@ class VariablesMutationReactToCard {
   int get hashCode {
     final l$cardId = cardId;
     final l$reaction = reaction;
-    return Object.hashAll([l$cardId, _$data.containsKey('reaction') ? l$reaction : const {}]);
+    final l$reply = reply;
+    return Object.hashAll([
+      l$cardId,
+      _$data.containsKey('reaction') ? l$reaction : const {},
+      _$data.containsKey('reply') ? l$reply : const {},
+    ]);
   }
 }
 
@@ -147,6 +171,12 @@ const documentNodeMutationReactToCard = DocumentNode(
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'reply')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
       ],
       directives: [],
       selectionSet: SelectionSetNode(
@@ -163,12 +193,23 @@ const documentNodeMutationReactToCard = DocumentNode(
                 name: NameNode(value: 'reaction'),
                 value: VariableNode(name: NameNode(value: 'reaction')),
               ),
+              ArgumentNode(
+                name: NameNode(value: 'reply'),
+                value: VariableNode(name: NameNode(value: 'reply')),
+              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
                   name: NameNode(value: 'reaction'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'reply'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -288,18 +329,22 @@ extension ClientExtensionMutationReactToCard on graphql.GraphQLClient {
 }
 
 class MutationReactToCardreactToCard {
-  MutationReactToCardreactToCard({this.reaction, this.$__typename = 'CardReactions'});
+  MutationReactToCardreactToCard({this.reaction, this.reply, this.$__typename = 'CardReactions'});
 
   factory MutationReactToCardreactToCard.fromJson(Map<String, dynamic> json) {
     final l$reaction = json['reaction'];
+    final l$reply = json['reply'];
     final l$$__typename = json['__typename'];
     return MutationReactToCardreactToCard(
       reaction: (l$reaction as String?),
+      reply: (l$reply as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String? reaction;
+
+  final String? reply;
 
   final String $__typename;
 
@@ -307,6 +352,8 @@ class MutationReactToCardreactToCard {
     final _resultData = <String, dynamic>{};
     final l$reaction = reaction;
     _resultData['reaction'] = l$reaction;
+    final l$reply = reply;
+    _resultData['reply'] = l$reply;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -315,8 +362,9 @@ class MutationReactToCardreactToCard {
   @override
   int get hashCode {
     final l$reaction = reaction;
+    final l$reply = reply;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$reaction, l$$__typename]);
+    return Object.hashAll([l$reaction, l$reply, l$$__typename]);
   }
 
   @override
@@ -330,6 +378,11 @@ class MutationReactToCardreactToCard {
     final l$reaction = reaction;
     final lOther$reaction = other.reaction;
     if (l$reaction != lOther$reaction) {
+      return false;
+    }
+    final l$reply = reply;
+    final lOther$reply = other.reply;
+    if (l$reply != lOther$reply) {
       return false;
     }
     final l$$__typename = $__typename;

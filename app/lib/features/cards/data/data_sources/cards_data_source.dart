@@ -48,10 +48,10 @@ class CardsDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<String?> react({required String cardId, String? reaction}) async {
+  Future<String?> react({required String cardId, required String reaction, String? reply}) async {
     final response = await _client.mutate(
       OptionsMutationReactToCard(
-        variables: VariablesMutationReactToCard(cardId: cardId, reaction: reaction),
+        variables: VariablesMutationReactToCard(cardId: cardId, reaction: reaction, reply: reply),
       ),
     );
 

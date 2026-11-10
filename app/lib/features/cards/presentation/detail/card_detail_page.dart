@@ -60,7 +60,8 @@ class const CardDetailPage({@PathParam('id') required final String cardId, super
 class const _DetailBody({required final CardDetail detail}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final showsResponse = detail.isMine && detail.reaction != null;
+    final showsResponse =
+        detail.isMine && (detail.reaction != null || (detail.reply ?? '').isNotEmpty);
 
     return BaseStackedContent(
       body: Column(

@@ -1,5 +1,6 @@
-mutation ReactToCard($cardId: UUID!, $reaction: String) {
-  reactToCard(cardId: $cardId, reaction: $reaction) {
+mutation ReactToCard($cardId: UUID!, $reaction: String, $reply: String) {
+  reactToCard(cardId: $cardId, reaction: $reaction, reply: $reply) {
     reaction
+    reply
   }
 }

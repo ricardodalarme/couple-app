@@ -4,7 +4,15 @@
   "greetingEvening": "Good evening, {name}",
   "greetingNoName": "Hello",
   "dateLine": "{weekday}, {month} {day}",
-  "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+  "weekdays": [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+  ],
   "months": [
     "January",
     "February",
@@ -84,5 +92,6 @@
   "firstDayText": "A slip is one good thing, in one line. On Sunday they become a card.",
   "firstDayAction": "Note one more",
   "errorTitle": "Could not load Today",
-  "errorText": "Your slips are safe. Try again."
+  "errorText": "Your slips are safe. Try again.",
+  "cardReceivedNamed": "{name} sent you a card"
 }

@@ -1,7 +1,20 @@
 {
   "title": "Past cards",
   "dateShort": "{month} {day}",
-  "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "monthsShort": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ],
   "slipCount(plural, param=count)": {
     "zero": "no slips",
     "one": "1 slip",
@@ -22,7 +35,6 @@
     "CARD_NOT_FOUND": "That card is no longer available.",
     "other": "It is still saved. Try again."
   },
-  "reactionLabel": "Reply",
   "reactionPrompt": "How do you want to reply?",
   "reactionThankYou": "Thank you",
   "reactionHug": "Hug",
@@ -33,5 +45,6 @@
   "responseReceivedNoName": "Your person replied",
   "responseReceivedVerb": "replied",
   "responseQuote": "“{label}”",
-  "notFound": "That card is no longer available."
+  "notFound": "That card is no longer available.",
+  "reactionQuoteMadeMyDay": "That made my week."
 }

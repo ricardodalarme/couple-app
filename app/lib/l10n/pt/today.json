@@ -4,7 +4,15 @@
   "greetingEvening": "Boa noite, {name}",
   "greetingNoName": "Olá",
   "dateLine": "{weekday}, {day} de {month}",
-  "weekdays": ["segunda", "terça", "quarta", "quinta", "sexta", "sábado", "domingo"],
+  "weekdays": [
+    "segunda",
+    "terça",
+    "quarta",
+    "quinta",
+    "sexta",
+    "sábado",
+    "domingo"
+  ],
   "months": [
     "janeiro",
     "fevereiro",
@@ -84,5 +92,6 @@
   "firstDayText": "Um slip é uma coisa boa, em uma linha. No domingo eles viram um cartão.",
   "firstDayAction": "Anotar mais um",
   "errorTitle": "Não deu para carregar o Hoje",
-  "errorText": "Seus slips estão seguros. Tente de novo."
+  "errorText": "Seus slips estão seguros. Tente de novo.",
+  "cardReceivedNamed": "{name} te mandou um cartão"
 }

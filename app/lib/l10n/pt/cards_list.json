@@ -1,7 +1,20 @@
 {
   "title": "Cartões anteriores",
   "dateShort": "{day} de {month}",
-  "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+  "monthsShort": [
+    "jan",
+    "fev",
+    "mar",
+    "abr",
+    "mai",
+    "jun",
+    "jul",
+    "ago",
+    "set",
+    "out",
+    "nov",
+    "dez"
+  ],
   "slipCount(plural, param=count)": {
     "zero": "sem slips",
     "one": "1 slip",
@@ -22,16 +35,16 @@
     "CARD_NOT_FOUND": "Esse cartão não está mais disponível.",
     "other": "Ele continua salvo. Tente de novo."
   },
-  "reactionLabel": "Resposta",
   "reactionPrompt": "Como você quer responder?",
   "reactionThankYou": "Obrigado",
   "reactionHug": "Abraço",
   "reactionMadeMyDay": "Fez minha semana",
   "reactionNoted": "Anotado",
   "reactionError": "Não deu para responder agora. Tente de novo.",
-  "responseReceivedName": "A {name}",
+  "responseReceivedName": "{name}",
   "responseReceivedNoName": "Sua pessoa respondeu",
   "responseReceivedVerb": "respondeu",
   "responseQuote": "“{label}”",
-  "notFound": "Esse cartão não está mais disponível."
+  "notFound": "Esse cartão não está mais disponível.",
+  "reactionQuoteMadeMyDay": "Isso fez a minha semana."
 }

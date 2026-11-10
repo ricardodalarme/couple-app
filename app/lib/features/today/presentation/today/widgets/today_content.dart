@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/off_banner/widgets/notifications_off_banner.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
+import 'package:flutter_bloc_starter/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/widgets/today_header.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
@@ -36,10 +38,15 @@ class const TodayContent({
         const NotificationsOffBanner(),
         if (home.unopenedCards > 0) ...[
           BaseBanner(
-            text: l10n.cardReceived,
+            text: home.partnerName == null
+                ? l10n.cardReceived
+                : l10n.cardReceivedNamed(name: home.partnerName!),
             icon: AppIcons.mail,
             actionLabel: l10n.cardReceivedAction,
-            onAction: () => context.pushRoute(const CardsListRoute()),
+            onAction: () async {
+              await context.pushRoute(const CardsListRoute());
+              if (context.mounted) await context.read<TodayCubit>().load();
+            },
           ),
           const SizedBox(height: AppSpace.s12),
         ],
@@ -53,7 +60,7 @@ class const TodayContent({
           const SizedBox(height: AppSpace.s12),
         ],
         _MainCard(home: home, isFirstDay: isFirstDay),
-        if (home.isPaired && home.unopenedCards == 0) ...[
+        if (home.isPaired && home.unopenedCards == 0 && home.slipsThisWeek > 0) ...[
           const SizedBox(height: AppSpace.s10),
           Center(
             child: Text(

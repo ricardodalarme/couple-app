@@ -4,7 +4,6 @@ import 'package:flutter_bloc_starter/features/cards/data/models/card_reaction.da
 import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
 import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -32,30 +31,24 @@ void main() {
     profile = _MockProfileRepository();
     when(() => profile.getMyProfile())
         .thenAnswer((_) async => const Profile(id: 'me', avatarKind: 'initials'));
-    when(() => profile.getMySettings())
-        .thenAnswer((_) async => const AccountSettings(theme: .rose));
     when(() => cards.markRead(any())).thenAnswer((_) async {});
   });
 
   void stubDetail(CardDetail detail) =>
       when(() => cards.getDetail(id: 'c1', selfId: 'me')).thenAnswer((_) async => detail);
 
-  void stubReceipts({required bool shares}) =>
-      when(() => profile.getMySettings())
-          .thenAnswer((_) async => AccountSettings(theme: .rose, shareReadReceipts: shares));
-
   void stubReaction({required String? result}) => when(
     () => cards.react(
       cardId: any(named: 'cardId'),
       reaction: any(named: 'reaction'),
+      reply: any(named: 'reply'),
     ),
   ).thenAnswer((_) async => result);
 
   CardDetailCubit build() => CardDetailCubit(cardsRepository: cards, profileRepository: profile);
 
-  test('loading an incoming card marks it read once when receipts are shared', () async {
+  test('loading an incoming card marks it read once', () async {
     stubDetail(incoming);
-    stubReceipts(shares: true);
     final cubit = build();
 
     await cubit.load('c1');
@@ -65,20 +58,8 @@ void main() {
     expect((cubit.state.card as Success<CardDetail>).value, incoming);
   });
 
-  test('loading an incoming card leaves it unread when receipts are off', () async {
-    stubDetail(incoming);
-    stubReceipts(shares: false);
-    final cubit = build();
-
-    await cubit.load('c1');
-
-    verifyNever(() => cards.markRead(any()));
-    expect(cubit.state.card, isA<Success<CardDetail>>());
-  });
-
   test("the person's own card is never marked read", () async {
     stubDetail(mine);
-    stubReceipts(shares: true);
     final cubit = build();
 
     await cubit.load('c1');
@@ -97,7 +78,13 @@ void main() {
 
     expect(cubit.state.reaction, 'hug');
     expect(cubit.state.reactionAction, isA<Success<void>>());
-    verify(() => cards.react(cardId: 'c1', reaction: 'hug')).called(1);
+    verify(
+      () => cards.react(
+        cardId: 'c1',
+        reaction: 'hug',
+        reply: any(named: 'reply'),
+      ),
+    ).called(1);
   });
 
   test('choosing another reaction changes it', () async {
@@ -117,7 +104,13 @@ void main() {
     await cubit.toggleReaction(CardReaction.thankYou);
 
     expect(cubit.state.reaction, 'thank_you');
-    verify(() => cards.react(cardId: 'c1', reaction: 'thank_you')).called(1);
+    verify(
+      () => cards.react(
+        cardId: 'c1',
+        reaction: 'thank_you',
+        reply: any(named: 'reply'),
+      ),
+    ).called(1);
   });
 
   test('tapping the selected reaction keeps it and sends nothing', () async {
@@ -140,6 +133,7 @@ void main() {
       () => cards.react(
         cardId: any(named: 'cardId'),
         reaction: any(named: 'reaction'),
+        reply: any(named: 'reply'),
       ),
     );
   });
@@ -158,6 +152,7 @@ void main() {
       () => cards.react(
         cardId: any(named: 'cardId'),
         reaction: any(named: 'reaction'),
+        reply: any(named: 'reply'),
       ),
     ).thenAnswer((_) async => throw Exception());
     final cubit = build();
@@ -180,6 +175,7 @@ void main() {
       () => cards.react(
         cardId: any(named: 'cardId'),
         reaction: any(named: 'reaction'),
+        reply: any(named: 'reply'),
       ),
     );
   });

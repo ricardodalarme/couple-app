@@ -267,9 +267,6 @@ class Translations$cardsList$pt {
     'other': 'Ele continua salvo. Tente de novo.',
   };
 
-  /// pt: 'Resposta'
-  String get reactionLabel => 'Resposta';
-
   /// pt: 'Como você quer responder?'
   String get reactionPrompt => 'Como você quer responder?';
 
@@ -288,8 +285,8 @@ class Translations$cardsList$pt {
   /// pt: 'Não deu para responder agora. Tente de novo.'
   String get reactionError => 'Não deu para responder agora. Tente de novo.';
 
-  /// pt: 'A {name}'
-  String responseReceivedName({required Object name}) => 'A ${name}';
+  /// pt: '{name}'
+  String responseReceivedName({required Object name}) => '${name}';
 
   /// pt: 'Sua pessoa respondeu'
   String get responseReceivedNoName => 'Sua pessoa respondeu';
@@ -302,6 +299,9 @@ class Translations$cardsList$pt {
 
   /// pt: 'Esse cartão não está mais disponível.'
   String get notFound => 'Esse cartão não está mais disponível.';
+
+  /// pt: 'Isso fez a minha semana.'
+  String get reactionQuoteMadeMyDay => 'Isso fez a minha semana.';
 }
 
 // Path: common
@@ -1094,6 +1094,9 @@ class Translations$today$pt {
 
   /// pt: 'Seus slips estão seguros. Tente de novo.'
   String get errorText => 'Seus slips estão seguros. Tente de novo.';
+
+  /// pt: '{name} te mandou um cartão'
+  String cardReceivedNamed({required Object name}) => '${name} te mandou um cartão';
 }
 
 // Path: unpair
@@ -1631,18 +1634,18 @@ extension on Translations {
       'cardsList.detailErrorTitle' => 'Não deu para abrir o cartão',
       'cardsList.errors.CARD_NOT_FOUND' => 'Esse cartão não está mais disponível.',
       'cardsList.errors.other' => 'Ele continua salvo. Tente de novo.',
-      'cardsList.reactionLabel' => 'Resposta',
       'cardsList.reactionPrompt' => 'Como você quer responder?',
       'cardsList.reactionThankYou' => 'Obrigado',
       'cardsList.reactionHug' => 'Abraço',
       'cardsList.reactionMadeMyDay' => 'Fez minha semana',
       'cardsList.reactionNoted' => 'Anotado',
       'cardsList.reactionError' => 'Não deu para responder agora. Tente de novo.',
-      'cardsList.responseReceivedName' => ({required Object name}) => 'A ${name}',
+      'cardsList.responseReceivedName' => ({required Object name}) => '${name}',
       'cardsList.responseReceivedNoName' => 'Sua pessoa respondeu',
       'cardsList.responseReceivedVerb' => 'respondeu',
       'cardsList.responseQuote' => ({required Object label}) => '“${label}”',
       'cardsList.notFound' => 'Esse cartão não está mais disponível.',
+      'cardsList.reactionQuoteMadeMyDay' => 'Isso fez a minha semana.',
       'common.appName' => 'Flutter Bloc Starter',
       'common.send' => 'Enviar',
       'common.save' => 'Salvar',
@@ -2033,6 +2036,7 @@ extension on Translations {
       'today.firstDayAction' => 'Anotar mais um',
       'today.errorTitle' => 'Não deu para carregar o Hoje',
       'today.errorText' => 'Seus slips estão seguros. Tente de novo.',
+      'today.cardReceivedNamed' => ({required Object name}) => '${name} te mandou um cartão',
       'unpair.appBarTitle' => 'Desvincular',
       'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
       'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',

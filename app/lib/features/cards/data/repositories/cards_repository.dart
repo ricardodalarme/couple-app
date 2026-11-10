@@ -85,9 +85,9 @@ class CardsRepository({required final CardsDataSource _dataSource}) {
   }
 
   /// Sets the recipient's one reaction to the card.
-  Future<String?> react({required String cardId, required String reaction}) async {
+  Future<String?> react({required String cardId, required String reaction, String? reply}) async {
     try {
-      return await _dataSource.react(cardId: cardId, reaction: reaction);
+      return await _dataSource.react(cardId: cardId, reaction: reaction, reply: reply);
     } catch (e, stack) {
       _logger.error('Failed to react to the card', error: e, stackTrace: stack);
       rethrow;

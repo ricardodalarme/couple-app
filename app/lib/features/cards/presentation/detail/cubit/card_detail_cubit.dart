@@ -47,6 +47,7 @@ class CardDetailCubit({
       final saved = await _cardsRepository.react(
         cardId: card.value.card.id,
         reaction: reaction.value,
+        reply: card.value.reply,
       );
       emit(
         state.copyWith(
@@ -62,22 +63,12 @@ class CardDetailCubit({
 
   Future<void> _markReadOnce(String cardId, CardDetail detail) async {
     if (detail.isMine || _markedCardId == cardId) return;
-    if (!await _sharesReadReceipts()) return;
 
     _markedCardId = cardId;
     try {
       await _cardsRepository.markRead(cardId);
     } on Object {
       _markedCardId = null;
-    }
-  }
-
-  Future<bool> _sharesReadReceipts() async {
-    try {
-      final settings = await _profileRepository.getMySettings();
-      return settings.shareReadReceipts;
-    } on Object {
-      return false;
     }
   }
 }
