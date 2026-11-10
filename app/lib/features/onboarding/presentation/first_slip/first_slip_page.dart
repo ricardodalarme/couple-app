@@ -4,7 +4,6 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/first_slip/cubit/first_slip_cubit.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/intro/widgets/intro_scaffold.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
@@ -41,7 +40,6 @@ class const FirstSlipPage({super.key}) extends StatelessWidget implements AutoRo
           children: [
             BaseTextArea(
               hint: l10n.hint,
-              maxLength: quickSlipMaxLength,
               onChanged: context.read<FirstSlipCubit>().onTextChanged,
             ),
             const SizedBox(height: AppSpace.s16),

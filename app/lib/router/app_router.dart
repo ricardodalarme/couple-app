@@ -5,13 +5,14 @@ import 'package:flutter_bloc_starter/features/authentication/presentation/welcom
 import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/home/presentation/home/home_page.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/memories_page.dart';
-import 'package:flutter_bloc_starter/features/pairing/presentation/invite/invite_page.dart';
-import 'package:flutter_bloc_starter/features/profile/presentation/setup/profile_setup_page.dart';
+import 'package:flutter_bloc_starter/features/not_found/presentation/not_found/not_found_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/first_slip/first_slip_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/goals/intro_goals_page.dart';
+import 'package:flutter_bloc_starter/features/onboarding/presentation/partner/partner_step_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/phase/intro_phase_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/theme/intro_theme_page.dart';
-import 'package:flutter_bloc_starter/features/not_found/presentation/not_found/not_found_page.dart';
+import 'package:flutter_bloc_starter/features/pairing/presentation/invite/invite_page.dart';
+import 'package:flutter_bloc_starter/features/profile/presentation/setup/profile_setup_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/quick_slip_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slips/slips_page.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/today_page.dart';
@@ -28,6 +29,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: IntroGoalsRoute.page),
     AutoRoute(page: IntroThemeRoute.page),
     AutoRoute(page: FirstSlipRoute.page),
+    AutoRoute(page: PartnerStepRoute.page),
     AutoRoute(page: SignInRoute.page),
     AutoRoute(page: ExistingAccountRoute.page),
     AutoRoute(page: DebugSignInRoute.page),

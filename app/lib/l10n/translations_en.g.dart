@@ -66,6 +66,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$notFound$en notFound = _Translations$notFound$en._(_root);
   @override
+  late final _Translations$partnerStep$en partnerStep = _Translations$partnerStep$en._(_root);
+  @override
   late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
   @override
   late final _Translations$quickSlip$en quickSlip = _Translations$quickSlip$en._(_root);
@@ -238,6 +240,31 @@ class _Translations$notFound$en extends Translations$notFound$pt {
   String get description => 'Page not found';
   @override
   String get buttonBack => 'Go back home';
+}
+
+// Path: partnerStep
+class _Translations$partnerStep$en extends Translations$partnerStep$pt {
+  _Translations$partnerStep$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Want to bring your partner?';
+  @override
+  String get titleHighlight => 'partner';
+  @override
+  String get subtitle => 'The app works on your own. Invite whenever you want.';
+  @override
+  String get inviteTitle => 'Send an invite';
+  @override
+  String get inviteSupport => 'Your person joins with a code';
+  @override
+  String get aloneTitle => 'Start on my own for now';
+  @override
+  String get aloneSupport => 'Your slips stay with you only';
+  @override
+  String get continueButton => 'Continue';
 }
 
 // Path: profileSetup
@@ -609,6 +636,14 @@ extension on TranslationsEn {
       'notFound.title' => '404',
       'notFound.description' => 'Page not found',
       'notFound.buttonBack' => 'Go back home',
+      'partnerStep.title' => 'Want to bring your partner?',
+      'partnerStep.titleHighlight' => 'partner',
+      'partnerStep.subtitle' => 'The app works on your own. Invite whenever you want.',
+      'partnerStep.inviteTitle' => 'Send an invite',
+      'partnerStep.inviteSupport' => 'Your person joins with a code',
+      'partnerStep.aloneTitle' => 'Start on my own for now',
+      'partnerStep.aloneSupport' => 'Your slips stay with you only',
+      'partnerStep.continueButton' => 'Continue',
       'profileSetup.title' => 'The basics',
       'profileSetup.titleHighlight' => 'basics',
       'profileSetup.subtitle' =>

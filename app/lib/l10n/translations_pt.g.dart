@@ -60,6 +60,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
+  late final Translations$partnerStep$pt partnerStep = Translations$partnerStep$pt.internal(_root);
   late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
     _root,
   );
@@ -273,6 +274,39 @@ class Translations$notFound$pt {
 
   /// pt: 'Voltar para página inicial'
   String get buttonBack => 'Voltar para página inicial';
+}
+
+// Path: partnerStep
+class Translations$partnerStep$pt {
+  Translations$partnerStep$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Quer trazer seu parceiro?'
+  String get title => 'Quer trazer seu parceiro?';
+
+  /// pt: 'parceiro'
+  String get titleHighlight => 'parceiro';
+
+  /// pt: 'O app funciona sozinho. Você convida quando quiser.'
+  String get subtitle => 'O app funciona sozinho. Você convida quando quiser.';
+
+  /// pt: 'Enviar um convite'
+  String get inviteTitle => 'Enviar um convite';
+
+  /// pt: 'Sua pessoa entra com um código'
+  String get inviteSupport => 'Sua pessoa entra com um código';
+
+  /// pt: 'Depois, começar sozinho'
+  String get aloneTitle => 'Depois, começar sozinho';
+
+  /// pt: 'Seus slips ficam só com você'
+  String get aloneSupport => 'Seus slips ficam só com você';
+
+  /// pt: 'Continuar'
+  String get continueButton => 'Continuar';
 }
 
 // Path: profileSetup
@@ -702,6 +736,14 @@ extension on Translations {
       'notFound.title' => '404',
       'notFound.description' => 'Página não encontrada',
       'notFound.buttonBack' => 'Voltar para página inicial',
+      'partnerStep.title' => 'Quer trazer seu parceiro?',
+      'partnerStep.titleHighlight' => 'parceiro',
+      'partnerStep.subtitle' => 'O app funciona sozinho. Você convida quando quiser.',
+      'partnerStep.inviteTitle' => 'Enviar um convite',
+      'partnerStep.inviteSupport' => 'Sua pessoa entra com um código',
+      'partnerStep.aloneTitle' => 'Depois, começar sozinho',
+      'partnerStep.aloneSupport' => 'Seus slips ficam só com você',
+      'partnerStep.continueButton' => 'Continuar',
       'profileSetup.title' => 'O básico',
       'profileSetup.titleHighlight' => 'básico',
       'profileSetup.subtitle' =>

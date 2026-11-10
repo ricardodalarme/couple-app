@@ -6,14 +6,14 @@ final class const SlipDraft({
   required final DateTime savedAt,
   final String? category,
 }) with Equatable {
-  /// How long a draft stays worth restoring.
-  static const Duration lifetime = Duration(hours: 1);
 
   factory fromMap(Map<String, dynamic> map) => SlipDraft(
     text: map['text'] as String,
     savedAt: DateTime.parse(map['savedAt'] as String),
     category: map['category'] as String?,
   );
+  /// How long a draft stays worth restoring.
+  static const Duration lifetime = Duration(hours: 1);
 
   bool isFresh(DateTime now) => now.difference(savedAt) < lifetime;
 

@@ -74,7 +74,7 @@ void main() {
       expect((saved as List<PendingSlip>).single.id, 's1');
     });
 
-    test('rethrows a server rejection instead of queueing it', () async {
+    test('rethrows a server rejection instead of queueing it', () {
       when(
         () => remote.saveSlip(
           id: any(named: 'id'),

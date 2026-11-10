@@ -2,10 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
 import 'package:flutter_bloc_starter/features/profile/presentation/setup/cubit/profile_setup_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 @RoutePage()
 class const ProfileSetupPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
@@ -66,7 +66,7 @@ class const ProfileSetupPage({super.key}) extends StatelessWidget implements Aut
   void _onSaveChanged(BuildContext context, ProfileSetupState state) {
     switch (state.saveAction) {
       case Success():
-        context.read<AppCubit>().completeOnboarding();
+        context.pushRoute(const PartnerStepRoute());
       case Failure(:final exception):
         BaseToast.show(
           context,

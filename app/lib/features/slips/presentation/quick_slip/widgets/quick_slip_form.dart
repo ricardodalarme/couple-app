@@ -65,7 +65,6 @@ class const _TextField() extends StatelessWidget {
     return BaseTextArea(
       text: text,
       hint: l10n.hint,
-      maxLength: quickSlipMaxLength,
       onChanged: context.read<QuickSlipCubit>().onTextChanged,
     );
   }

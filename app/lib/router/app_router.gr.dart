@@ -171,6 +171,22 @@ class NotFoundRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PartnerStepPage]
+class PartnerStepRoute extends PageRouteInfo<void> {
+  const PartnerStepRoute({List<PageRouteInfo>? children})
+    : super(PartnerStepRoute.name, initialChildren: children);
+
+  static const String name = 'PartnerStepRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const PartnerStepPage());
+    },
+  );
+}
+
+/// generated route for
 /// [ProfileSetupPage]
 class ProfileSetupRoute extends PageRouteInfo<void> {
   const ProfileSetupRoute({List<PageRouteInfo>? children})
