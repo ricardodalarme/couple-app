@@ -51,6 +51,15 @@ class const TodayContent({
               : l10n.slipsThisWeek(count: home.slipsThisWeek),
           supportText: home.slipsThisWeek == 0 ? l10n.weekHintEmpty : l10n.weekHint,
         ),
+        if (home.slipsThisWeek > 0) ...[
+          const SizedBox(height: AppSpace.s12),
+          BaseListCard(
+            categoryLabel: l10n.sundayCardLabel,
+            title: l10n.sundayCardTitle,
+            supportText: context.l10n.sundayCard.openFromToday,
+            onTap: () => context.pushRoute(const SundayCardRoute()),
+          ),
+        ],
         if (isAlone && !home.hasPendingInvite) ...[
           const SizedBox(height: AppSpace.s12),
           BaseListCard(

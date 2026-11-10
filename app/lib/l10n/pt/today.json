@@ -52,6 +52,8 @@
     "one": "Seus slips privados: 1 esta semana",
     "other": "Seus slips privados: {count} esta semana"
   },
+  "sundayCardLabel": "Cartão de domingo",
+  "sundayCardTitle": "Seu cartão desta semana",
   "inviteCardLabel": "Convite",
   "inviteCardTitle": "Convidar {name}",
   "inviteCardTitleNoName": "Convidar sua pessoa",

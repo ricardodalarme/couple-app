@@ -58,6 +58,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
     _root,
   );
   @override
+  late final _Translations$cardView$en cardView = _Translations$cardView$en._(_root);
+  @override
   late final _Translations$common$en common = _Translations$common$en._(_root);
   @override
   late final _Translations$firstSlip$en firstSlip = _Translations$firstSlip$en._(_root);
@@ -78,6 +80,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$quickSlip$en quickSlip = _Translations$quickSlip$en._(_root);
   @override
   late final _Translations$slipsList$en slipsList = _Translations$slipsList$en._(_root);
+  @override
+  late final _Translations$sundayCard$en sundayCard = _Translations$sundayCard$en._(_root);
   @override
   late final _Translations$tabs$en tabs = _Translations$tabs$en._(_root);
   @override
@@ -148,6 +152,37 @@ class _Translations$authentication$en extends Translations$authentication$pt {
   Map<String, String> get errors => {
     'NETWORK': 'No connection. Check your internet and try again.',
     'other': 'Could not sign you in right now. Try again.',
+  };
+}
+
+// Path: cardView
+class _Translations$cardView$en extends Translations$cardView$pt {
+  _Translations$cardView$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String forPartner({required Object name}) => 'For ${name}';
+  @override
+  String get forPartnerNoName => 'For your person';
+  @override
+  String goodThings({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        zero: 'No good things yet',
+        one: '1 good thing this week',
+        other: '${count} good things this week',
+      );
+  @override
+  List<String> get weekdays => ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+  @override
+  Map<String, String> get categories => {
+    'said': 'said something',
+    'did': 'did something',
+    'noticed': 'noticed me',
+    'helped': 'helped me',
+    'other': '',
   };
 }
 
@@ -540,6 +575,47 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   String get errorText => 'They are still saved. Try again.';
 }
 
+// Path: sundayCard
+class _Translations$sundayCard$en extends Translations$sundayCard$pt {
+  _Translations$sundayCard$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Your card';
+  @override
+  String get edit => 'Edit';
+  @override
+  String get save => 'Save';
+  @override
+  String get cancel => 'Cancel';
+  @override
+  String get noteLabel => 'Closing note';
+  @override
+  String get noteHint => 'Thank you for this week.';
+  @override
+  String get moveUp => 'Move up';
+  @override
+  String get moveDown => 'Move down';
+  @override
+  String get remove => 'Remove from card';
+  @override
+  String get emptyTitle => 'A week without slips';
+  @override
+  String get emptyText => 'Note one good thing and it goes on the Sunday card.';
+  @override
+  String get emptyAction => 'Note a slip';
+  @override
+  String get errorTitle => 'Could not load the card';
+  @override
+  String get errorText => 'Your slips are still saved. Try again.';
+  @override
+  String get saveError => 'Could not save the card. Try again.';
+  @override
+  String get openFromToday => 'See the draft';
+}
+
 // Path: tabs
 class _Translations$tabs$en extends Translations$tabs$pt {
   _Translations$tabs$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -665,6 +741,10 @@ class _Translations$today$en extends Translations$today$pt {
         one: 'Your private slips: 1 this week',
         other: 'Your private slips: ${count} this week',
       );
+  @override
+  String get sundayCardLabel => 'Sunday card';
+  @override
+  String get sundayCardTitle => 'Your card for this week';
   @override
   String get inviteCardLabel => 'Invite';
   @override
@@ -916,6 +996,27 @@ extension on TranslationsEn {
       'authentication.continueWithGoogle' => 'Continue with Google',
       'authentication.errors.NETWORK' => 'No connection. Check your internet and try again.',
       'authentication.errors.other' => 'Could not sign you in right now. Try again.',
+      'cardView.forPartner' => ({required Object name}) => 'For ${name}',
+      'cardView.forPartnerNoName' => 'For your person',
+      'cardView.goodThings' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+          count,
+          zero: 'No good things yet',
+          one: '1 good thing this week',
+          other: '${count} good things this week',
+        ),
+      'cardView.weekdays.0' => 'mon',
+      'cardView.weekdays.1' => 'tue',
+      'cardView.weekdays.2' => 'wed',
+      'cardView.weekdays.3' => 'thu',
+      'cardView.weekdays.4' => 'fri',
+      'cardView.weekdays.5' => 'sat',
+      'cardView.weekdays.6' => 'sun',
+      'cardView.categories.said' => 'said something',
+      'cardView.categories.did' => 'did something',
+      'cardView.categories.noticed' => 'noticed me',
+      'cardView.categories.helped' => 'helped me',
+      'cardView.categories.other' => '',
       'common.appName' => 'Flutter Bloc Starter',
       'common.send' => 'Send',
       'common.save' => 'Save',
@@ -1141,6 +1242,22 @@ extension on TranslationsEn {
       'slipsList.emptyAction' => 'Add a slip',
       'slipsList.errorTitle' => 'Could not load your slips',
       'slipsList.errorText' => 'They are still saved. Try again.',
+      'sundayCard.title' => 'Your card',
+      'sundayCard.edit' => 'Edit',
+      'sundayCard.save' => 'Save',
+      'sundayCard.cancel' => 'Cancel',
+      'sundayCard.noteLabel' => 'Closing note',
+      'sundayCard.noteHint' => 'Thank you for this week.',
+      'sundayCard.moveUp' => 'Move up',
+      'sundayCard.moveDown' => 'Move down',
+      'sundayCard.remove' => 'Remove from card',
+      'sundayCard.emptyTitle' => 'A week without slips',
+      'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',
+      'sundayCard.emptyAction' => 'Note a slip',
+      'sundayCard.errorTitle' => 'Could not load the card',
+      'sundayCard.errorText' => 'Your slips are still saved. Try again.',
+      'sundayCard.saveError' => 'Could not save the card. Try again.',
+      'sundayCard.openFromToday' => 'See the draft',
       'tabs.today' => 'Today',
       'tabs.slips' => 'Slips',
       'tabs.together' => 'Together',
@@ -1222,6 +1339,8 @@ extension on TranslationsEn {
           one: 'Your private slips: 1 this week',
           other: 'Your private slips: ${count} this week',
         ),
+      'today.sundayCardLabel' => 'Sunday card',
+      'today.sundayCardTitle' => 'Your card for this week',
       'today.inviteCardLabel' => 'Invite',
       'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',
       'today.inviteCardTitleNoName' => 'Invite your person',

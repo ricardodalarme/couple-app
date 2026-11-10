@@ -1,0 +1,18 @@
+{
+  "title": "Seu cartão",
+  "edit": "Editar",
+  "save": "Salvar",
+  "cancel": "Cancelar",
+  "noteLabel": "Mensagem final",
+  "noteHint": "Obrigada por essa semana.",
+  "moveUp": "Subir",
+  "moveDown": "Descer",
+  "remove": "Tirar do cartão",
+  "emptyTitle": "Semana sem slips",
+  "emptyText": "Anote uma coisa boa e ela entra no cartão de domingo.",
+  "emptyAction": "Anotar um slip",
+  "errorTitle": "Não deu para carregar o cartão",
+  "errorText": "Seus slips continuam salvos. Tente de novo.",
+  "saveError": "Não deu para salvar o cartão. Tente de novo.",
+  "openFromToday": "Ver o rascunho"
+}

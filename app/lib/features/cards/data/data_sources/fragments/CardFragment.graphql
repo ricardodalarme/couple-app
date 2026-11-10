@@ -1,0 +1,20 @@
+fragment CardFragment on Cards {
+  id
+  status
+  note
+  weekStart
+  sentAt
+  items(orderBy: [{ position: AscNullsLast }]) {
+    edges {
+      node {
+        slipId
+        body
+        position
+        slip {
+          category
+          createdAt
+        }
+      }
+    }
+  }
+}

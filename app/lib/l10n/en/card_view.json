@@ -1,0 +1,17 @@
+{
+  "forPartner": "For {name}",
+  "forPartnerNoName": "For your person",
+  "goodThings(plural, param=count)": {
+    "zero": "No good things yet",
+    "one": "1 good thing this week",
+    "other": "{count} good things this week"
+  },
+  "weekdays": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
+  "categories(map)": {
+    "said": "said something",
+    "did": "did something",
+    "noticed": "noticed me",
+    "helped": "helped me",
+    "other": ""
+  }
+}

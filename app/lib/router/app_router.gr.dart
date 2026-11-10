@@ -283,6 +283,22 @@ class SlipsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SundayCardPage]
+class SundayCardRoute extends PageRouteInfo<void> {
+  const SundayCardRoute({List<PageRouteInfo>? children})
+    : super(SundayCardRoute.name, initialChildren: children);
+
+  static const String name = 'SundayCardRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const SundayCardPage());
+    },
+  );
+}
+
+/// generated route for
 /// [TodayPage]
 class TodayRoute extends PageRouteInfo<void> {
   const TodayRoute({List<PageRouteInfo>? children})

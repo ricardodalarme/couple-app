@@ -1,0 +1,18 @@
+{
+  "title": "Your card",
+  "edit": "Edit",
+  "save": "Save",
+  "cancel": "Cancel",
+  "noteLabel": "Closing note",
+  "noteHint": "Thank you for this week.",
+  "moveUp": "Move up",
+  "moveDown": "Move down",
+  "remove": "Remove from card",
+  "emptyTitle": "A week without slips",
+  "emptyText": "Note one good thing and it goes on the Sunday card.",
+  "emptyAction": "Note a slip",
+  "errorTitle": "Could not load the card",
+  "errorText": "Your slips are still saved. Try again.",
+  "saveError": "Could not save the card. Try again.",
+  "openFromToday": "See the draft"
+}

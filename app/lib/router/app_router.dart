@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/existing_account/existing_account_page.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/sign_in/sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/welcome/welcome_page.dart';
+import 'package:flutter_bloc_starter/features/cards/presentation/draft/sunday_card_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/home/presentation/home/home_page.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/memories_page.dart';
@@ -40,6 +41,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: InviteRoute.page),
     AutoRoute(page: AcceptInviteRoute.page),
     AutoRoute(page: QuickSlipRoute.page, fullscreenDialog: true),
+    AutoRoute(page: SundayCardRoute.page),
     AutoRoute(
       page: HomeRoute.page,
       children: [

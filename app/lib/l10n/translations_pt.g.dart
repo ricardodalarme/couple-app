@@ -58,6 +58,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   );
   late final Translations$authentication$pt authentication =
       Translations$authentication$pt.internal(_root);
+  late final Translations$cardView$pt cardView = Translations$cardView$pt.internal(_root);
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
@@ -71,6 +72,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   );
   late final Translations$quickSlip$pt quickSlip = Translations$quickSlip$pt.internal(_root);
   late final Translations$slipsList$pt slipsList = Translations$slipsList$pt.internal(_root);
+  late final Translations$sundayCard$pt sundayCard = Translations$sundayCard$pt.internal(_root);
   late final Translations$tabs$pt tabs = Translations$tabs$pt.internal(_root);
   late final Translations$today$pt today = Translations$today$pt.internal(_root);
   late final Translations$welcome$pt welcome = Translations$welcome$pt.internal(_root);
@@ -151,6 +153,39 @@ class Translations$authentication$pt {
   Map<String, String> get errors => {
     'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
     'other': 'Não deu para entrar agora. Tente de novo.',
+  };
+}
+
+// Path: cardView
+class Translations$cardView$pt {
+  Translations$cardView$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Para {name}'
+  String forPartner({required Object name}) => 'Para ${name}';
+
+  /// pt: 'Para sua pessoa'
+  String get forPartnerNoName => 'Para sua pessoa';
+
+  /// pt: '(zero) {Nenhuma coisa boa ainda} (one) {1 coisa boa desta semana} (other) {{count} coisas boas desta semana}'
+  String goodThings({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        zero: 'Nenhuma coisa boa ainda',
+        one: '1 coisa boa desta semana',
+        other: '${count} coisas boas desta semana',
+      );
+
+  List<String> get weekdays => ['seg', 'ter', 'qua', 'qui', 'sex', 'sáb', 'dom'];
+  Map<String, String> get categories => {
+    'said': 'disse algo',
+    'did': 'fez algo',
+    'noticed': 'me notou',
+    'helped': 'me ajudou',
+    'other': '',
   };
 }
 
@@ -632,6 +667,63 @@ class Translations$slipsList$pt {
   String get errorText => 'Eles continuam salvos. Tente de novo.';
 }
 
+// Path: sundayCard
+class Translations$sundayCard$pt {
+  Translations$sundayCard$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Seu cartão'
+  String get title => 'Seu cartão';
+
+  /// pt: 'Editar'
+  String get edit => 'Editar';
+
+  /// pt: 'Salvar'
+  String get save => 'Salvar';
+
+  /// pt: 'Cancelar'
+  String get cancel => 'Cancelar';
+
+  /// pt: 'Mensagem final'
+  String get noteLabel => 'Mensagem final';
+
+  /// pt: 'Obrigada por essa semana.'
+  String get noteHint => 'Obrigada por essa semana.';
+
+  /// pt: 'Subir'
+  String get moveUp => 'Subir';
+
+  /// pt: 'Descer'
+  String get moveDown => 'Descer';
+
+  /// pt: 'Tirar do cartão'
+  String get remove => 'Tirar do cartão';
+
+  /// pt: 'Semana sem slips'
+  String get emptyTitle => 'Semana sem slips';
+
+  /// pt: 'Anote uma coisa boa e ela entra no cartão de domingo.'
+  String get emptyText => 'Anote uma coisa boa e ela entra no cartão de domingo.';
+
+  /// pt: 'Anotar um slip'
+  String get emptyAction => 'Anotar um slip';
+
+  /// pt: 'Não deu para carregar o cartão'
+  String get errorTitle => 'Não deu para carregar o cartão';
+
+  /// pt: 'Seus slips continuam salvos. Tente de novo.'
+  String get errorText => 'Seus slips continuam salvos. Tente de novo.';
+
+  /// pt: 'Não deu para salvar o cartão. Tente de novo.'
+  String get saveError => 'Não deu para salvar o cartão. Tente de novo.';
+
+  /// pt: 'Ver o rascunho'
+  String get openFromToday => 'Ver o rascunho';
+}
+
 // Path: tabs
 class Translations$tabs$pt {
   Translations$tabs$pt.internal(this._root);
@@ -784,6 +876,12 @@ class Translations$today$pt {
         one: 'Seus slips privados: 1 esta semana',
         other: 'Seus slips privados: ${count} esta semana',
       );
+
+  /// pt: 'Cartão de domingo'
+  String get sundayCardLabel => 'Cartão de domingo';
+
+  /// pt: 'Seu cartão desta semana'
+  String get sundayCardTitle => 'Seu cartão desta semana';
 
   /// pt: 'Convite'
   String get inviteCardLabel => 'Convite';
@@ -1090,6 +1188,27 @@ extension on Translations {
       'authentication.continueWithGoogle' => 'Continuar com o Google',
       'authentication.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
       'authentication.errors.other' => 'Não deu para entrar agora. Tente de novo.',
+      'cardView.forPartner' => ({required Object name}) => 'Para ${name}',
+      'cardView.forPartnerNoName' => 'Para sua pessoa',
+      'cardView.goodThings' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+          count,
+          zero: 'Nenhuma coisa boa ainda',
+          one: '1 coisa boa desta semana',
+          other: '${count} coisas boas desta semana',
+        ),
+      'cardView.weekdays.0' => 'seg',
+      'cardView.weekdays.1' => 'ter',
+      'cardView.weekdays.2' => 'qua',
+      'cardView.weekdays.3' => 'qui',
+      'cardView.weekdays.4' => 'sex',
+      'cardView.weekdays.5' => 'sáb',
+      'cardView.weekdays.6' => 'dom',
+      'cardView.categories.said' => 'disse algo',
+      'cardView.categories.did' => 'fez algo',
+      'cardView.categories.noticed' => 'me notou',
+      'cardView.categories.helped' => 'me ajudou',
+      'cardView.categories.other' => '',
       'common.appName' => 'Flutter Bloc Starter',
       'common.send' => 'Enviar',
       'common.save' => 'Salvar',
@@ -1317,6 +1436,22 @@ extension on Translations {
       'slipsList.emptyAction' => 'Adicionar um slip',
       'slipsList.errorTitle' => 'Não deu para carregar seus slips',
       'slipsList.errorText' => 'Eles continuam salvos. Tente de novo.',
+      'sundayCard.title' => 'Seu cartão',
+      'sundayCard.edit' => 'Editar',
+      'sundayCard.save' => 'Salvar',
+      'sundayCard.cancel' => 'Cancelar',
+      'sundayCard.noteLabel' => 'Mensagem final',
+      'sundayCard.noteHint' => 'Obrigada por essa semana.',
+      'sundayCard.moveUp' => 'Subir',
+      'sundayCard.moveDown' => 'Descer',
+      'sundayCard.remove' => 'Tirar do cartão',
+      'sundayCard.emptyTitle' => 'Semana sem slips',
+      'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
+      'sundayCard.emptyAction' => 'Anotar um slip',
+      'sundayCard.errorTitle' => 'Não deu para carregar o cartão',
+      'sundayCard.errorText' => 'Seus slips continuam salvos. Tente de novo.',
+      'sundayCard.saveError' => 'Não deu para salvar o cartão. Tente de novo.',
+      'sundayCard.openFromToday' => 'Ver o rascunho',
       'tabs.today' => 'Hoje',
       'tabs.slips' => 'Slips',
       'tabs.together' => 'Juntos',
@@ -1398,6 +1533,8 @@ extension on Translations {
           one: 'Seus slips privados: 1 esta semana',
           other: 'Seus slips privados: ${count} esta semana',
         ),
+      'today.sundayCardLabel' => 'Cartão de domingo',
+      'today.sundayCardTitle' => 'Seu cartão desta semana',
       'today.inviteCardLabel' => 'Convite',
       'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
       'today.inviteCardTitleNoName' => 'Convidar sua pessoa',

@@ -1,0 +1,5 @@
+mutation UpdateCardDraft($cardId: UUID!, $slipIds: [UUID]!, $note: String) {
+  updateCardDraft(cardId: $cardId, slipIds: $slipIds, note: $note) {
+    ...CardFragment
+  }
+}
