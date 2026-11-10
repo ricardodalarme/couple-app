@@ -1,0 +1,5 @@
+mutation SetSlipWorkArea($id: UUID!, $workArea: String) {
+  setSlipDetails(id: $id, workArea: $workArea) {
+    id
+  }
+}

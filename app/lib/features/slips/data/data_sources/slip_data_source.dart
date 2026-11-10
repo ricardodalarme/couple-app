@@ -1,7 +1,9 @@
 import 'package:flutter_bloc_starter/features/_shared/data/data_sources/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/DeleteSlip.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SaveSlip.graphql.dart';
+import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SendSignal.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SetSlipCategory.graphql.dart';
+import 'package:flutter_bloc_starter/features/slips/data/data_sources/mutations/generated/SetSlipWorkArea.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/queries/generated/MySlips.graphql.dart';
 import 'package:network/network.dart';
 
@@ -11,10 +13,41 @@ class SlipDataSource({required final GQLClient _client}) {
     required String id,
     required String body,
     required DateTime createdAt,
+    String kind = 'quick',
+    String? feeling,
+    String? planNote,
   }) async {
     final response = await _client.mutate(
       OptionsMutationSaveSlip(
-        variables: VariablesMutationSaveSlip(id: id, body: body, createdAt: createdAt),
+        variables: VariablesMutationSaveSlip(
+          id: id,
+          body: body,
+          createdAt: createdAt,
+          kind: kind,
+          feeling: feeling,
+          planNote: planNote,
+        ),
+      ),
+    );
+
+    validateResponse(response);
+  }
+
+  Future<void> setWorkArea({required String id, required String workArea}) async {
+    final response = await _client.mutate(
+      OptionsMutationSetSlipWorkArea(
+        variables: VariablesMutationSetSlipWorkArea(id: id, workArea: workArea),
+      ),
+    );
+
+    validateResponse(response);
+  }
+
+  /// Sends a gentle signal to the partner; fails with `NOT_PAIRED` when there is none.
+  Future<void> sendSignal({required String kind, String? value, String? body}) async {
+    final response = await _client.mutate(
+      OptionsMutationSendSignal(
+        variables: VariablesMutationSendSignal(kind: kind, value: value, body: body),
       ),
     );
 

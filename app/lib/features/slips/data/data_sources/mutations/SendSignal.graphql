@@ -1,0 +1,5 @@
+mutation SendSignal($kind: String!, $value: String, $body: String) {
+  sendSignal(kind: $kind, value: $value, body: $body) {
+    id
+  }
+}

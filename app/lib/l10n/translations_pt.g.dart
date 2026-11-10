@@ -65,6 +65,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
+  late final Translations$need$pt need = Translations$need$pt.internal(_root);
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
   late final Translations$notificationPermission$pt notificationPermission =
       Translations$notificationPermission$pt.internal(_root);
@@ -74,6 +75,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   );
   late final Translations$quickSlip$pt quickSlip = Translations$quickSlip$pt.internal(_root);
   late final Translations$reminders$pt reminders = Translations$reminders$pt.internal(_root);
+  late final Translations$slipKind$pt slipKind = Translations$slipKind$pt.internal(_root);
   late final Translations$slipsList$pt slipsList = Translations$slipsList$pt.internal(_root);
   late final Translations$sundayCard$pt sundayCard = Translations$sundayCard$pt.internal(_root);
   late final Translations$tabs$pt tabs = Translations$tabs$pt.internal(_root);
@@ -527,6 +529,47 @@ class Translations$invite$pt {
   };
 }
 
+// Path: need
+class Translations$need$pt {
+  Translations$need$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Preciso de…'
+  String get title => 'Preciso de…';
+
+  /// pt: 'Preciso'
+  String get titleHighlight => 'Preciso';
+
+  /// pt: 'Escolha uma coisa. Seu par recebe um aviso gentil, sem cobrança.'
+  String get subtitle => 'Escolha uma coisa. Seu par recebe um aviso gentil, sem cobrança.';
+
+  Map<String, String> get options => {
+    'hug': 'Um abraço',
+    'talk': 'Conversar',
+    'help_home': 'Ajuda em casa',
+    'quiet': 'Um tempo quieta',
+    'time_together': 'Tempo juntos',
+    'rest': 'Descansar',
+    'other': '',
+  };
+
+  /// pt: 'Não é uma exigência. É só um jeito simples de pedir.'
+  String get note => 'Não é uma exigência. É só um jeito simples de pedir.';
+
+  /// pt: 'Enviar'
+  String get send => 'Enviar';
+
+  late final Translations$need$sent$pt sent = Translations$need$sent$pt.internal(_root);
+  Map<String, String> get errors => {
+    'NOT_PAIRED': 'Para enviar, você precisa estar com seu par no app.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para enviar agora. Tente de novo.',
+  };
+}
+
 // Path: notFound
 class Translations$notFound$pt {
   Translations$notFound$pt.internal(this._root);
@@ -799,6 +842,55 @@ class Translations$reminders$pt {
 
   /// pt: 'Abra o app para ver.'
   String get discreet => 'Abra o app para ver.';
+}
+
+// Path: slipKind
+class Translations$slipKind$pt {
+  Translations$slipKind$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Outras formas de registrar'
+  String get switcherTitle => 'Outras formas de registrar';
+
+  /// pt: 'Preciso de…'
+  String get needEntry => 'Preciso de…';
+
+  Map<String, String> get kinds => {
+    'specific': 'Específico',
+    'if_then': 'Se… então',
+    'invisible': 'Invisível',
+    'other': '',
+  };
+  late final Translations$slipKind$specific$pt specific =
+      Translations$slipKind$specific$pt.internal(_root);
+  late final Translations$slipKind$ifThen$pt ifThen = Translations$slipKind$ifThen$pt.internal(
+    _root,
+  );
+  late final Translations$slipKind$invisible$pt invisible =
+      Translations$slipKind$invisible$pt.internal(_root);
+  Map<String, String> get workAreas => {
+    'planning': 'Planejar',
+    'dates': 'Datas',
+    'kitchen': 'Cozinha',
+    'cleaning': 'Limpeza',
+    'kids': 'Filhos',
+    'emotional': 'Emocional',
+    'finances': 'Finanças',
+    'other': 'Outro',
+  };
+
+  /// pt: 'Salvar'
+  String get save => 'Salvar';
+
+  late final Translations$slipKind$saved$pt saved = Translations$slipKind$saved$pt.internal(_root);
+  Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'Você chegou ao limite de slips do plano grátis.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
+  };
 }
 
 // Path: slipsList
@@ -1402,6 +1494,24 @@ class Translations$intro$theme$pt {
   String get footnote => 'Dá para trocar depois em Configurações, Aparência.';
 }
 
+// Path: need.sent
+class Translations$need$sent$pt {
+  Translations$need$sent$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Enviado'
+  String get title => 'Enviado';
+
+  /// pt: 'Seu par vai ver quando abrir o app.'
+  String get text => 'Seu par vai ver quando abrir o app.';
+
+  /// pt: 'Pronto'
+  String get done => 'Pronto';
+}
+
 // Path: quickSlip.saved
 class Translations$quickSlip$saved$pt {
   Translations$quickSlip$saved$pt.internal(this._root);
@@ -1424,6 +1534,111 @@ class Translations$quickSlip$saved$pt {
 
   /// pt: 'Desfazer'
   String get undo => 'Desfazer';
+
+  /// pt: 'Pronto'
+  String get done => 'Pronto';
+}
+
+// Path: slipKind.specific
+class Translations$slipKind$specific$pt {
+  Translations$slipKind$specific$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'O que exatamente ele fez?'
+  String get title => 'O que exatamente ele fez?';
+
+  /// pt: 'exatamente'
+  String get titleHighlight => 'exatamente';
+
+  /// pt: 'Detalhes ajudam a lembrar por que importou.'
+  String get subtitle => 'Detalhes ajudam a lembrar por que importou.';
+
+  /// pt: 'Ex.: levou o lixo sem eu pedir'
+  String get hint => 'Ex.: levou o lixo sem eu pedir';
+
+  /// pt: 'Como você se sentiu?'
+  String get feelingLabel => 'Como você se sentiu?';
+
+  /// pt: 'Opcional'
+  String get feelingHint => 'Opcional';
+}
+
+// Path: slipKind.ifThen
+class Translations$slipKind$ifThen$pt {
+  Translations$slipKind$ifThen$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Quer contar a ele?'
+  String get title => 'Quer contar a ele?';
+
+  /// pt: 'contar'
+  String get titleHighlight => 'contar';
+
+  /// pt: 'Um plano pequeno: quando acontecer isto, você faz aquilo.'
+  String get subtitle => 'Um plano pequeno: quando acontecer isto, você faz aquilo.';
+
+  /// pt: 'Se…'
+  String get ifLabel => 'Se…';
+
+  /// pt: 'Ex.: eu me sentir sobrecarregada'
+  String get ifHint => 'Ex.: eu me sentir sobrecarregada';
+
+  /// pt: 'Então…'
+  String get thenLabel => 'Então…';
+
+  /// pt: 'Ex.: peço um tempo de 10 minutos'
+  String get thenHint => 'Ex.: peço um tempo de 10 minutos';
+}
+
+// Path: slipKind.invisible
+class Translations$slipKind$invisible$pt {
+  Translations$slipKind$invisible$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Coisas que ninguém percebe'
+  String get title => 'Coisas que ninguém percebe';
+
+  /// pt: 'ninguém percebe'
+  String get titleHighlight => 'ninguém percebe';
+
+  /// pt: 'Só para você. Isto nunca vai para o cartão.'
+  String get subtitle => 'Só para você. Isto nunca vai para o cartão.';
+
+  /// pt: 'Ex.: lembrei da consulta das crianças'
+  String get hint => 'Ex.: lembrei da consulta das crianças';
+
+  /// pt: 'Que tipo de trabalho?'
+  String get areaLabel => 'Que tipo de trabalho?';
+
+  /// pt: 'Fica só com você, não entra em nenhum cartão.'
+  String get private => 'Fica só com você, não entra em nenhum cartão.';
+}
+
+// Path: slipKind.saved
+class Translations$slipKind$saved$pt {
+  Translations$slipKind$saved$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Salvo'
+  String get title => 'Salvo';
+
+  /// pt: 'Registrado.'
+  String get added => 'Registrado.';
+
+  /// pt: 'Salvo neste celular. Enviamos quando a conexão voltar.'
+  String get queued => 'Salvo neste celular. Enviamos quando a conexão voltar.';
 
   /// pt: 'Pronto'
   String get done => 'Pronto';
@@ -1633,565 +1848,644 @@ class Translations$unpair$partnerNotice$pt {
 extension on Translations {
   dynamic _flatMapFunction(String path) {
     return switch (path) {
-      'acceptInvite.title' => 'Tem um convite?',
-      'acceptInvite.titleHighlight' => 'convite',
-      'acceptInvite.subtitle' =>
-        'Digite o código que a outra pessoa enviou para vocês se conectarem.',
-      'acceptInvite.codeLabel' => 'Código do convite',
-      'acceptInvite.codeHint' => 'ABCD2345',
-      'acceptInvite.privacyNote' =>
-        'Aceitar compartilha cartões e ferramentas. Suas notas privadas continuam privadas.',
-      'acceptInvite.accept' => 'Aceitar',
-      'acceptInvite.connected.title' => 'Vocês estão conectados',
-      'acceptInvite.connected.titleHighlight' => 'conectados',
-      'acceptInvite.connected.text' =>
-        'Cartões e ferramentas compartilhadas ativos. Tudo que é privado continua privado.',
-      'acceptInvite.connected.goToToday' => 'Ir para Hoje',
-      'acceptInvite.unusable.title' => 'Esse convite é antigo',
-      'acceptInvite.unusable.titleHighlight' => 'antigo',
-      'acceptInvite.unusable.text' =>
-        'Confira o código ou peça um novo convite para quem convidou.',
-      'acceptInvite.unusable.tryAgain' => 'Digitar de novo',
-      'acceptInvite.unusable.close' => 'Fechar',
-      'acceptInvite.errors.ALREADY_PAIRED' => 'Você já está conectado com alguém.',
-      'acceptInvite.errors.COUPLE_FULL' => 'Esse espaço já tem duas pessoas.',
-      'acceptInvite.errors.RATE_LIMITED' =>
-        'Muitas tentativas seguidas. Espere um pouco e tente de novo.',
-      'acceptInvite.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
-      'acceptInvite.errors.other' => 'Não deu para conectar agora. Tente de novo.',
-      'authentication.signInTitle' => 'Entrar',
-      'authentication.signInSubtitle' => 'Sem e-mail e senha. Só Apple ou Google.',
-      'authentication.signInNote' => 'Entrar leva direto para o seu Hoje.',
-      'authentication.existingAccountTitle' => 'Você já tem uma conta',
-      'authentication.existingAccountSubtitle' => 'Entre para continuar de onde parou.',
-      'authentication.continueWithApple' => 'Continuar com a Apple',
-      'authentication.continueWithGoogle' => 'Continuar com o Google',
-      'authentication.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
-      'authentication.errors.other' => 'Não deu para entrar agora. Tente de novo.',
-      'cardView.forPartner' => ({required Object name}) => 'Para ${name}',
-      'cardView.forPartnerNoName' => 'Para sua pessoa',
-      'cardView.goodThings' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-          count,
-          zero: 'Nenhuma coisa boa ainda',
-          one: '1 coisa boa desta semana',
-          other: '${count} coisas boas desta semana',
-        ),
-      'cardView.weekdays.0' => 'seg',
-      'cardView.weekdays.1' => 'ter',
-      'cardView.weekdays.2' => 'qua',
-      'cardView.weekdays.3' => 'qui',
-      'cardView.weekdays.4' => 'sex',
-      'cardView.weekdays.5' => 'sáb',
-      'cardView.weekdays.6' => 'dom',
-      'cardView.categories.said' => 'disse algo',
-      'cardView.categories.did' => 'fez algo',
-      'cardView.categories.noticed' => 'me notou',
-      'cardView.categories.helped' => 'me ajudou',
-      'cardView.categories.other' => '',
-      'cardsList.title' => 'Cartões anteriores',
-      'cardsList.dateShort' => ({
-        required Object day,
-        required Object month,
-      }) => '${day} de ${month}',
-      'cardsList.monthsShort.0' => 'jan',
-      'cardsList.monthsShort.1' => 'fev',
-      'cardsList.monthsShort.2' => 'mar',
-      'cardsList.monthsShort.3' => 'abr',
-      'cardsList.monthsShort.4' => 'mai',
-      'cardsList.monthsShort.5' => 'jun',
-      'cardsList.monthsShort.6' => 'jul',
-      'cardsList.monthsShort.7' => 'ago',
-      'cardsList.monthsShort.8' => 'set',
-      'cardsList.monthsShort.9' => 'out',
-      'cardsList.monthsShort.10' => 'nov',
-      'cardsList.monthsShort.11' => 'dez',
-      'cardsList.slipCount' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-          count,
-          zero: 'sem slips',
-          one: '1 slip',
-          other: '${count} slips',
-        ),
-      'cardsList.sent' => 'Enviado',
-      'cardsList.received' => 'Recebido',
-      'cardsList.opened' => 'aberto',
-      'cardsList.reacted' => 'reação',
-      'cardsList.replied' => 'respondido',
-      'cardsList.emptyTitle' => 'Nenhum cartão ainda',
-      'cardsList.emptyText' =>
-        'Quando um cartão for enviado ou chegar, ele aparece aqui. Sem pressa.',
-      'cardsList.errorTitle' => 'Não deu para carregar os cartões',
-      'cardsList.errorText' => 'Eles continuam salvos. Tente de novo.',
-      'cardsList.detailTitle' => 'Cartão',
-      'cardsList.detailErrorTitle' => 'Não deu para abrir o cartão',
-      'cardsList.errors.CARD_NOT_FOUND' => 'Esse cartão não está mais disponível.',
-      'cardsList.errors.other' => 'Ele continua salvo. Tente de novo.',
-      'cardsList.reactionPrompt' => 'Como você quer responder?',
-      'cardsList.reactionThankYou' => 'Obrigado',
-      'cardsList.reactionHug' => 'Abraço',
-      'cardsList.reactionMadeMyDay' => 'Fez minha semana',
-      'cardsList.reactionNoted' => 'Anotado',
-      'cardsList.reactionError' => 'Não deu para responder agora. Tente de novo.',
-      'cardsList.responseReceivedName' => ({required Object name}) => '${name}',
-      'cardsList.responseReceivedNoName' => 'Sua pessoa respondeu',
-      'cardsList.responseReceivedVerb' => 'respondeu',
-      'cardsList.responseQuote' => ({required Object label}) => '“${label}”',
-      'cardsList.notFound' => 'Esse cartão não está mais disponível.',
-      'cardsList.reactionQuoteMadeMyDay' => 'Isso fez a minha semana.',
-      'common.appName' => 'Flutter Bloc Starter',
-      'common.send' => 'Enviar',
-      'common.save' => 'Salvar',
-      'common.retry' => 'Tentar novamente',
-      'common.loading' => 'Carregando',
-      'common.email' => 'Email',
-      'common.username' => 'Usuário',
-      'common.password' => 'Senha',
-      'common.firstName' => 'Nome',
-      'common.lastName' => 'Sobrenome',
-      'common.genericError' => 'Algo deu errado',
-      'firstSlip.title' => 'Comece com uma coisa boa',
-      'firstSlip.titleHighlight' => 'uma coisa boa',
-      'firstSlip.subtitle' => 'O que seu parceiro fez ultimamente que te fez sorrir? 30 segundos bastam. Ainda sem conta.',
-      'firstSlip.hint' => 'Ex.: fez café antes de eu acordar',
-      'firstSlip.localNote' => 'Fica salvo só neste celular.',
-      'firstSlip.save' => 'Salvar',
-      'firstSlip.saveError' => 'Não deu para guardar agora. Tente de novo.',
-      'ideaDetail.label' => 'Ideia do dia',
-      'ideaDetail.whyTitle' => 'Por que esta ideia',
-      'ideaDetail.yourPhase' => 'Sua fase',
-      'ideaDetail.yourGoal' => 'Seu objetivo',
-      'ideaDetail.willDo' => 'Eu vou fazer',
-      'ideaDetail.done' => 'Anotado. Que bom!',
-      'ideaDetail.another' => 'Outra ideia',
-      'ideaDetail.later' => 'Mais tarde',
-      'ideaDetail.laterTitle' => 'Quando lembrar?',
-      'ideaDetail.tonight' => 'Hoje à noite',
-      'ideaDetail.tomorrow' => 'Amanhã de manhã',
-      'ideaDetail.weekend' => 'No fim de semana',
-      'ideaDetail.reminderSet' => 'Combinado. Vamos lembrar com um aviso gentil.',
-      'ideaDetail.reminderSetNotificationsOff' =>
-        'Guardamos o lembrete. Ligue as notificações nas configurações para recebê-lo.',
-      'ideaDetail.reminderError' => 'Não deu para guardar o lembrete. Tente de novo.',
-      'ideaDetail.emptyTitle' => 'Sem ideias agora',
-      'ideaDetail.emptyText' => 'Volte mais tarde. Enquanto isso, anote um slip.',
-      'ideaDetail.errorTitle' => 'Não deu para carregar a ideia',
-      'ideaDetail.errorText' => 'Tente de novo em instantes.',
-      'intro.skip' => 'Pular',
-      'intro.continueButton' => 'Continuar',
-      'intro.phase.title' => 'Onde vocês estão agora?',
-      'intro.phase.titleHighlight' => 'agora',
-      'intro.phase.subtitle' => 'Escolha o mais próximo. Você pode mudar depois.',
-      'intro.phase.options.dating' => 'Namorando',
-      'intro.phase.options.living_together' => 'Moramos juntos',
-      'intro.phase.options.engaged' => 'Noivos',
-      'intro.phase.options.married' => 'Casados',
-      'intro.phase.options.with_kids' => 'Com filhos',
-      'intro.phase.options.long_distance' => 'Namoro à distância',
-      'intro.phase.options.restarting' => 'Recomeçando',
-      'intro.phase.options.other' => '',
-      'intro.goals.title' => 'O que você quer do app?',
-      'intro.goals.titleHighlight' => 'app',
-      'intro.goals.subtitle' => 'Escolha quantos quiser.',
-      'intro.goals.options.reconnect' => 'Reconectar',
-      'intro.goals.options.fight_less' => 'Brigar menos',
-      'intro.goals.options.keep_romance' => 'Manter o romance',
-      'intro.goals.options.remember_dates' => 'Lembrar de datas',
-      'intro.goals.options.organize_routine' => 'Organizar a rotina',
-      'intro.goals.options.just_record' => 'Só registrar coisas boas',
-      'intro.goals.options.other' => '',
-      'intro.theme.title' => 'Qual cor combina com você?',
-      'intro.theme.titleHighlight' => 'cor',
-      'intro.theme.subtitle' => 'Você escolhe a cor, não o gênero. Os recursos são os mesmos.',
-      'intro.theme.rose' => 'Rosa suave',
-      'intro.theme.roseSupport' => 'Delicado e quente',
-      'intro.theme.blue' => 'Azul suave',
-      'intro.theme.blueSupport' => 'Calmo e leve',
-      'intro.theme.neutral' => 'Neutro',
-      'intro.theme.neutralSupport' => 'Papel e verde',
-      'intro.theme.footnote' => 'Dá para trocar depois em Configurações, Aparência.',
-      'invite.title' => ({required Object name}) => 'Convidar ${name}',
-      'invite.titleNoName' => 'Convidar sua pessoa',
-      'invite.messageIntro' => 'Esta mensagem será enviada:',
-      'invite.message' => ({
-        required Object code,
-      }) => 'Comecei uma coisa pequena para nós. Para nos conectar no app, use o código ${code}.',
-      'invite.expiryNote' => ({
-        required Object days,
-      }) => 'O convite vale por ${days} dias. Só o último convite criado funciona.',
-      'invite.share' => 'Compartilhar convite',
-      'invite.copy' => 'Copiar convite',
-      'invite.sentTitle' => 'Convite enviado',
-      'invite.sentHighlight' => 'enviado',
-      'invite.sentText' => ({
-        required Object name,
-      }) => '${name} ainda não entrou. Enquanto isso, você pode usar o app sozinho.',
-      'invite.sentTextNoName' =>
-        'Sua pessoa ainda não entrou. Enquanto isso, você pode usar o app sozinho.',
-      'invite.resend' => 'Reenviar',
-      'invite.revoke' => 'Revogar',
-      'invite.errorTitle' => 'Não deu para criar o convite',
-      'invite.errors.ALREADY_PAIRED' => 'Você já está conectado com alguém.',
-      'invite.errors.RATE_LIMITED' => 'Você criou muitos convites hoje. Tente de novo amanhã.',
-      'invite.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
-      'invite.errors.other' => 'Algo deu errado. Tente de novo.',
-      'notFound.title' => '404',
-      'notFound.description' => 'Página não encontrada',
-      'notFound.buttonBack' => 'Voltar para página inicial',
-      'notificationPermission.label' => 'Lembretes',
-      'notificationPermission.title' => 'Lembretes gentis?',
-      'notificationPermission.titleHighlight' => 'gentis',
-      'notificationPermission.pointLimit' => 'No máximo 1 a 2 por dia.',
-      'notificationPermission.pointPrivate' => 'Nunca mostram nomes na tela bloqueada.',
-      'notificationPermission.pointChoice' => 'Você escolhe o que chega e quando.',
-      'notificationPermission.changeLater' => 'Você pode mudar isso quando quiser.',
-      'notificationPermission.notNow' => 'Agora não',
-      'notificationPermission.allow' => 'Permitir',
-      'notificationPermission.offBanner' =>
-        'Os lembretes estão desligados. Ligue nas configurações.',
-      'notificationPermission.openSettings' => 'Abrir configurações',
-      'notificationPermission.close' => 'Fechar',
-      'partnerStep.title' => 'Quer trazer seu parceiro?',
-      'partnerStep.titleHighlight' => 'parceiro',
-      'partnerStep.subtitle' => 'O app funciona sozinho. Você convida quando quiser.',
-      'partnerStep.inviteTitle' => 'Enviar um convite',
-      'partnerStep.inviteSupport' => 'Sua pessoa entra com um código',
-      'partnerStep.aloneTitle' => 'Depois, começar sozinho',
-      'partnerStep.aloneSupport' => 'Seus slips ficam só com você',
-      'partnerStep.haveCode' => 'Tenho um código de convite',
-      'partnerStep.continueButton' => 'Continuar',
-      'profileSetup.title' => 'O básico',
-      'profileSetup.titleHighlight' => 'básico',
-      'profileSetup.subtitle' =>
-        'Usado para as palavras do app e para a primeira data da sua história.',
-      'profileSetup.nameLabel' => 'Seu nome',
-      'profileSetup.nameHint' => 'Marina',
-      'profileSetup.partnerNameLabel' => 'Nome do parceiro',
-      'profileSetup.partnerNameHint' => 'Ricardo',
-      'profileSetup.partnerNameNote' => 'O nome do parceiro fica só na sua conta.',
-      'profileSetup.themeLabel' => 'Cor do seu app',
-      'profileSetup.themeRose' => 'Rosa',
-      'profileSetup.themeBlue' => 'Azul',
-      'profileSetup.themeNeutral' => 'Neutro',
-      'profileSetup.dateLabel' => 'Quando começaram?',
-      'profileSetup.dateHint' => 'Escolha uma data',
-      'profileSetup.dateFormat' => ({
-        required Object day,
-        required Object month,
-        required Object year,
-      }) => '${day} de ${month} de ${year}',
-      'profileSetup.months.0' => 'janeiro',
-      'profileSetup.months.1' => 'fevereiro',
-      'profileSetup.months.2' => 'março',
-      'profileSetup.months.3' => 'abril',
-      'profileSetup.months.4' => 'maio',
-      'profileSetup.months.5' => 'junho',
-      'profileSetup.months.6' => 'julho',
-      'profileSetup.months.7' => 'agosto',
-      'profileSetup.months.8' => 'setembro',
-      'profileSetup.months.9' => 'outubro',
-      'profileSetup.months.10' => 'novembro',
-      'profileSetup.months.11' => 'dezembro',
-      'profileSetup.continueButton' => 'Continuar',
-      'profileSetup.errors.INVALID_DATE' =>
-        'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
-      'profileSetup.errors.NETWORK' => 'Sem conexão. Seus dados continuam aqui, tente de novo.',
-      'profileSetup.errors.other' => 'Não deu para salvar agora. Tente de novo.',
-      'quickSlip.dateLine' => ({
-        required Object weekday,
-        required Object day,
-        required Object month,
-      }) => '${weekday}, ${day} de ${month}',
-      'quickSlip.weekdays.0' => 'segunda',
-      'quickSlip.weekdays.1' => 'terça',
-      'quickSlip.weekdays.2' => 'quarta',
-      'quickSlip.weekdays.3' => 'quinta',
-      'quickSlip.weekdays.4' => 'sexta',
-      'quickSlip.weekdays.5' => 'sábado',
-      'quickSlip.weekdays.6' => 'domingo',
-      'quickSlip.monthsShort.0' => 'jan',
-      'quickSlip.monthsShort.1' => 'fev',
-      'quickSlip.monthsShort.2' => 'mar',
-      'quickSlip.monthsShort.3' => 'abr',
-      'quickSlip.monthsShort.4' => 'mai',
-      'quickSlip.monthsShort.5' => 'jun',
-      'quickSlip.monthsShort.6' => 'jul',
-      'quickSlip.monthsShort.7' => 'ago',
-      'quickSlip.monthsShort.8' => 'set',
-      'quickSlip.monthsShort.9' => 'out',
-      'quickSlip.monthsShort.10' => 'nov',
-      'quickSlip.monthsShort.11' => 'dez',
-      'quickSlip.title' => 'O que te deixou feliz?',
-      'quickSlip.titleHighlight' => 'feliz',
-      'quickSlip.subtitle' => 'Uma linha basta. 30 segundos.',
-      'quickSlip.hint' => 'Ex.: fez café antes de eu acordar',
-      'quickSlip.categories.said' => 'Disse algo',
-      'quickSlip.categories.did' => 'Fez algo',
-      'quickSlip.categories.noticed' => 'Me notou',
-      'quickSlip.categories.helped' => 'Me ajudou',
-      'quickSlip.categories.other' => '',
-      'quickSlip.privacyNote' => 'Fica privado. No domingo você escolhe o que vai para o cartão.',
-      'quickSlip.save' => 'Salvar',
-      'quickSlip.saved.title' => 'Salvo',
-      'quickSlip.saved.added' => 'Slip adicionado a esta semana.',
-      'quickSlip.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
-      'quickSlip.saved.undoHint' => 'Desfazer por 30 segundos.',
-      'quickSlip.saved.undo' => 'Desfazer',
-      'quickSlip.saved.done' => 'Pronto',
-      'quickSlip.errors.FREE_LIMIT_REACHED' => 'Você chegou ao limite de slips do plano grátis.',
-      'quickSlip.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-      'quickSlip.errors.other' =>
-        'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
-      'reminders.title' => 'Repara',
-      'reminders.dailyIdea' => 'Uma ideia pequena para hoje.',
-      'reminders.dates' => 'Uma data está chegando.',
-      'reminders.weeklyCard' => 'Seu cartão está pronto.',
-      'reminders.discreet' => 'Abra o app para ver.',
-      'slipsList.title' => 'Slips',
-      'slipsList.scopeWeek' => 'Esta semana',
-      'slipsList.scopeAll' => 'Todos',
-      'slipsList.private' => 'Privado',
-      'slipsList.thisWeek' => 'Esta semana',
-      'slipsList.lastWeek' => 'Semana passada',
-      'slipsList.weekRange' => ({
-        required Object start,
-        required Object end,
-      }) => '${start} – ${end}',
-      'slipsList.dateShort' => ({required Object day, required Object month}) => '${day} ${month}',
-      'slipsList.dayLine' => ({
-        required Object weekday,
-        required Object category,
-      }) => '${weekday} · ${category}',
-      'slipsList.weekdaysShort.0' => 'Seg',
-      'slipsList.weekdaysShort.1' => 'Ter',
-      'slipsList.weekdaysShort.2' => 'Qua',
-      'slipsList.weekdaysShort.3' => 'Qui',
-      'slipsList.weekdaysShort.4' => 'Sex',
-      'slipsList.weekdaysShort.5' => 'Sáb',
-      'slipsList.weekdaysShort.6' => 'Dom',
-      'slipsList.monthsShort.0' => 'jan',
-      'slipsList.monthsShort.1' => 'fev',
-      'slipsList.monthsShort.2' => 'mar',
-      'slipsList.monthsShort.3' => 'abr',
-      'slipsList.monthsShort.4' => 'mai',
-      'slipsList.monthsShort.5' => 'jun',
-      'slipsList.monthsShort.6' => 'jul',
-      'slipsList.monthsShort.7' => 'ago',
-      'slipsList.monthsShort.8' => 'set',
-      'slipsList.monthsShort.9' => 'out',
-      'slipsList.monthsShort.10' => 'nov',
-      'slipsList.monthsShort.11' => 'dez',
-      'slipsList.categories.said' => 'Disse algo',
-      'slipsList.categories.did' => 'Fez algo',
-      'slipsList.categories.noticed' => 'Me notou',
-      'slipsList.categories.helped' => 'Ajudou',
-      'slipsList.categories.other' => '',
-      'slipsList.pastCards' => 'Cartões anteriores',
-      'slipsList.emptyTitle' => 'Nada ainda',
-      'slipsList.emptyText' => 'Um slip é uma coisa boa, em uma linha.',
-      'slipsList.emptyAction' => 'Adicionar um slip',
-      'slipsList.errorTitle' => 'Não deu para carregar seus slips',
-      'slipsList.errorText' => 'Eles continuam salvos. Tente de novo.',
-      'sundayCard.title' => 'Seu cartão',
-      'sundayCard.edit' => 'Editar',
-      'sundayCard.save' => 'Salvar',
-      'sundayCard.cancel' => 'Cancelar',
-      'sundayCard.noteLabel' => 'Mensagem final',
-      'sundayCard.noteHint' => 'Obrigada por essa semana.',
-      'sundayCard.moveUp' => 'Subir',
-      'sundayCard.moveDown' => 'Descer',
-      'sundayCard.remove' => 'Tirar do cartão',
-      'sundayCard.emptyTitle' => 'Semana sem slips',
-      'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
-      'sundayCard.emptyAction' => 'Anotar um slip',
-      'sundayCard.errorTitle' => 'Não deu para carregar o cartão',
-      'sundayCard.errorText' => 'Seus slips continuam salvos. Tente de novo.',
-      'sundayCard.saveError' => 'Não deu para salvar o cartão. Tente de novo.',
-      'sundayCard.openFromToday' => 'Ver o rascunho',
-      'sundayCard.deliverError' =>
-        'Não deu para enviar agora. O cartão continua aqui, tente de novo.',
-      'sundayCard.send.action' => 'Enviar',
-      'sundayCard.send.invite' => 'Convidar para enviar',
-      'sundayCard.send.needsPartner' =>
-        'Para enviar o cartão no app, sua pessoa precisa estar conectada.',
-      'sundayCard.send.title' => 'Enviar o cartão?',
-      'sundayCard.send.text' => ({
-        required Object name,
-      }) => '${name} recebe agora. Depois de enviado, o cartão não muda.',
-      'sundayCard.send.textNoName' =>
-        'Sua pessoa recebe agora. Depois de enviado, o cartão não muda.',
-      'sundayCard.send.confirm' => 'Enviar',
-      'sundayCard.hold.action' => 'Segurar esta semana',
-      'sundayCard.hold.title' => 'Segurar esta semana?',
-      'sundayCard.hold.text' =>
-        'O cartão fica guardado e nada se perde. Você pode enviar quando quiser.',
-      'sundayCard.hold.confirm' => 'Segurar',
-      'sundayCard.held.title' => 'Retido nesta semana',
-      'sundayCard.held.titleHighlight' => 'Retido',
-      'sundayCard.held.text' => 'Seu cartão espera. Envie quando estiver pronto. Nada se perde.',
-      'sundayCard.held.keepHolding' => 'Continuar retendo',
-      'sundayCard.held.sendAnyway' => 'Enviar mesmo assim',
-      'sundayCard.sent.title' => 'Enviado',
-      'sundayCard.sent.text' => ({required Object name}) => 'O cartão foi para ${name}.',
-      'sundayCard.sent.textNoName' => 'O cartão foi para sua pessoa.',
-      'sundayCard.sent.done' => 'Pronto',
-      'tabs.today' => 'Hoje',
-      'tabs.slips' => 'Slips',
-      'tabs.together' => 'Juntos',
-      'tabs.memories' => 'Memórias',
-      'tabs.capture' => 'Novo slip',
-      'tabs.soonTitle' => 'Em construção',
-      'tabs.soonText' => 'Esta parte do app ainda está sendo preparada.',
-      'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
-      'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
-      'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',
-      'today.greetingNoName' => 'Olá',
-      'today.dateLine' => ({
-        required Object weekday,
-        required Object day,
-        required Object month,
-      }) => '${weekday}, ${day} de ${month}',
-      'today.weekdays.0' => 'segunda',
-      'today.weekdays.1' => 'terça',
-      'today.weekdays.2' => 'quarta',
-      'today.weekdays.3' => 'quinta',
-      'today.weekdays.4' => 'sexta',
-      'today.weekdays.5' => 'sábado',
-      'today.weekdays.6' => 'domingo',
-      'today.months.0' => 'janeiro',
-      'today.months.1' => 'fevereiro',
-      'today.months.2' => 'março',
-      'today.months.3' => 'abril',
-      'today.months.4' => 'maio',
-      'today.months.5' => 'junho',
-      'today.months.6' => 'julho',
-      'today.months.7' => 'agosto',
-      'today.months.8' => 'setembro',
-      'today.months.9' => 'outubro',
-      'today.months.10' => 'novembro',
-      'today.months.11' => 'dezembro',
-      'today.togetherYears' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-          count,
-          one: '1 ano',
-          other: '${count} anos',
-        ),
-      'today.togetherMonths' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-          count,
-          one: '1 mês',
-          other: '${count} meses',
-        ),
-      'today.togetherDays' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-          count,
-          one: '1 dia',
-          other: '${count} dias',
-        ),
-      'today.togetherJoin' => ({
-        required Object first,
-        required Object second,
-      }) => '${first} e ${second}',
-      'today.invitePerson' => 'Convidar sua pessoa',
-      'today.offline' => 'Sem conexão. Mostrando o que foi salvo.',
-      'today.pendingInviteTitle' => 'Convite enviado',
-      'today.pendingInviteText' => 'A pessoa ainda não entrou. Reenviar ou revogar.',
-      'today.pendingInviteAction' => 'Ver convite',
-      'today.answer' => 'Responder',
-      'today.slipsThisWeek' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-          count,
-          zero: 'Nenhum slip esta semana',
-          one: '1 slip esta semana',
-          other: '${count} slips esta semana',
-        ),
-      'today.weekHintEmpty' => 'Anote uma coisa boa quando lembrar.',
-      'today.weekHint' => 'Seu cartão de domingo vem desses slips.',
-      'today.forToday' => 'Para hoje',
-      'today.ideaLabel' => 'Ideia do dia',
-      'today.slipsThisWeekPrivate' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-          count,
-          zero: 'Seus slips privados: nenhum esta semana',
-          one: 'Seus slips privados: 1 esta semana',
-          other: 'Seus slips privados: ${count} esta semana',
-        ),
-      'today.sundayCardLabel' => 'Cartão de domingo',
-      'today.sundayCardTitle' => 'Seu cartão desta semana',
-      'today.inviteCardLabel' => 'Convite',
-      'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
-      'today.inviteCardTitleNoName' => 'Convidar sua pessoa',
-      'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
-      'today.privateTag' => 'Só seu',
-      'today.privateQuestion' => 'Como foi o seu dia, de verdade?',
-      'today.privateHighlight' => 'dia',
-      'today.privateAction' => 'Anotar um slip',
-      'today.emptyWeekTag' => 'Sem pressa',
-      'today.emptyWeekQuestion' => 'Qual foi uma coisa boa hoje?',
-      'today.emptyWeekHighlight' => 'boa',
-      'today.emptyWeekAction' => 'Anotar um slip',
-      'today.nothingReceived' => 'Nenhum cartão novo. Sem pressa.',
-      'today.cardReceived' => 'Você recebeu um cartão',
-      'today.cardReceivedAction' => 'Ver cartão',
-      'today.firstDayLabel' => 'Começando',
-      'today.firstDayGreeting' => ({required Object name}) => 'Oi, ${name}',
-      'today.firstDaySubtitle' => 'que bom ter você por aqui',
-      'today.firstDayTag' => 'Bom começo',
-      'today.firstDayTitle' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-          count,
-          one: 'Você tem 1 slip.',
-          other: 'Você tem ${count} slips.',
-        ),
-      'today.firstDayHighlight' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-          count,
-          one: '1 slip',
-          other: '${count} slips',
-        ),
-      'today.firstDayText' =>
-        'Um slip é uma coisa boa, em uma linha. No domingo eles viram um cartão.',
-      'today.firstDayAction' => 'Anotar mais um',
-      'today.errorTitle' => 'Não deu para carregar o Hoje',
-      'today.errorText' => 'Seus slips estão seguros. Tente de novo.',
-      'today.cardReceivedNamed' => ({required Object name}) => '${name} te mandou um cartão',
-      'unpair.appBarTitle' => 'Desvincular',
-      'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
-      'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',
-      'unpair.confirm' => 'Desvincular',
-      'unpair.cancel' => 'Cancelar',
-      'unpair.unnamedPartner' => 'sua pessoa',
-      'unpair.done.title' => 'Desvinculado',
-      'unpair.done.highlight' => 'Desvinculado',
-      'unpair.done.text' => 'Seus próprios dados continuam seus.',
-      'unpair.done.keepOption' => 'Guardar uma cópia dos itens compartilhados',
-      'unpair.done.deleteOption' => 'Apagar itens compartilhados',
-      'unpair.done.plusNote' => 'O Plus que cobria o parceiro termina.',
-      'unpair.done.continueLabel' => 'Continuar',
-      'unpair.relationship.title' => 'Relacionamento',
-      'unpair.relationship.unpair' => ({required Object name}) => 'Desvincular da ${name}',
-      'unpair.relationship.ended' => 'A relação terminou',
-      'unpair.breakup.appBarTitle' => 'Terminamos',
-      'unpair.breakup.title' => 'Sinto muito',
-      'unpair.breakup.highlight' => 'muito',
-      'unpair.breakup.text' => 'Você decide o que guardar. Nada é apagado sem você querer.',
-      'unpair.breakup.cancel' => 'Cancelar',
-      'unpair.breakup.continueLabel' => 'Continuar',
-      'unpair.partnerNotice.title' => ({required Object name}) => 'A ${name} desvinculou',
-      'unpair.partnerNotice.titleNoName' => 'Seu par desvinculou',
-      'unpair.partnerNotice.highlight' => 'desvinculou',
-      'unpair.partnerNotice.text' => 'Seus dados continuam seus. Cartões compartilhados pararam.',
-      'unpair.partnerNotice.ok' => 'Ok',
-      'unpair.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
-      'unpair.errors.STILL_PAIRED' => 'A relação ainda está ativa. Tente de novo.',
-      'unpair.errors.other' => 'Não deu para desvincular agora. Tente de novo.',
-      'welcome.headline' => 'Pequenas coisas boas, ditas em voz alta.',
-      'welcome.headlineHighlight' => 'ditas em voz alta',
-      'welcome.subtitle' => 'Um jeito leve de notar o que o outro faz de bom, a cada semana.',
-      'welcome.start' => 'Começar',
-      'welcome.haveAccount' => 'Já tenho conta',
-      'welcome.debugSignIn' => 'Entrar (debug)',
-      _ => null,
-    };
+          'acceptInvite.title' => 'Tem um convite?',
+          'acceptInvite.titleHighlight' => 'convite',
+          'acceptInvite.subtitle' =>
+            'Digite o código que a outra pessoa enviou para vocês se conectarem.',
+          'acceptInvite.codeLabel' => 'Código do convite',
+          'acceptInvite.codeHint' => 'ABCD2345',
+          'acceptInvite.privacyNote' =>
+            'Aceitar compartilha cartões e ferramentas. Suas notas privadas continuam privadas.',
+          'acceptInvite.accept' => 'Aceitar',
+          'acceptInvite.connected.title' => 'Vocês estão conectados',
+          'acceptInvite.connected.titleHighlight' => 'conectados',
+          'acceptInvite.connected.text' =>
+            'Cartões e ferramentas compartilhadas ativos. Tudo que é privado continua privado.',
+          'acceptInvite.connected.goToToday' => 'Ir para Hoje',
+          'acceptInvite.unusable.title' => 'Esse convite é antigo',
+          'acceptInvite.unusable.titleHighlight' => 'antigo',
+          'acceptInvite.unusable.text' =>
+            'Confira o código ou peça um novo convite para quem convidou.',
+          'acceptInvite.unusable.tryAgain' => 'Digitar de novo',
+          'acceptInvite.unusable.close' => 'Fechar',
+          'acceptInvite.errors.ALREADY_PAIRED' => 'Você já está conectado com alguém.',
+          'acceptInvite.errors.COUPLE_FULL' => 'Esse espaço já tem duas pessoas.',
+          'acceptInvite.errors.RATE_LIMITED' =>
+            'Muitas tentativas seguidas. Espere um pouco e tente de novo.',
+          'acceptInvite.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
+          'acceptInvite.errors.other' => 'Não deu para conectar agora. Tente de novo.',
+          'authentication.signInTitle' => 'Entrar',
+          'authentication.signInSubtitle' => 'Sem e-mail e senha. Só Apple ou Google.',
+          'authentication.signInNote' => 'Entrar leva direto para o seu Hoje.',
+          'authentication.existingAccountTitle' => 'Você já tem uma conta',
+          'authentication.existingAccountSubtitle' => 'Entre para continuar de onde parou.',
+          'authentication.continueWithApple' => 'Continuar com a Apple',
+          'authentication.continueWithGoogle' => 'Continuar com o Google',
+          'authentication.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
+          'authentication.errors.other' => 'Não deu para entrar agora. Tente de novo.',
+          'cardView.forPartner' => ({required Object name}) => 'Para ${name}',
+          'cardView.forPartnerNoName' => 'Para sua pessoa',
+          'cardView.goodThings' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  zero: 'Nenhuma coisa boa ainda',
+                  one: '1 coisa boa desta semana',
+                  other: '${count} coisas boas desta semana',
+                ),
+          'cardView.weekdays.0' => 'seg',
+          'cardView.weekdays.1' => 'ter',
+          'cardView.weekdays.2' => 'qua',
+          'cardView.weekdays.3' => 'qui',
+          'cardView.weekdays.4' => 'sex',
+          'cardView.weekdays.5' => 'sáb',
+          'cardView.weekdays.6' => 'dom',
+          'cardView.categories.said' => 'disse algo',
+          'cardView.categories.did' => 'fez algo',
+          'cardView.categories.noticed' => 'me notou',
+          'cardView.categories.helped' => 'me ajudou',
+          'cardView.categories.other' => '',
+          'cardsList.title' => 'Cartões anteriores',
+          'cardsList.dateShort' => ({
+            required Object day,
+            required Object month,
+          }) => '${day} de ${month}',
+          'cardsList.monthsShort.0' => 'jan',
+          'cardsList.monthsShort.1' => 'fev',
+          'cardsList.monthsShort.2' => 'mar',
+          'cardsList.monthsShort.3' => 'abr',
+          'cardsList.monthsShort.4' => 'mai',
+          'cardsList.monthsShort.5' => 'jun',
+          'cardsList.monthsShort.6' => 'jul',
+          'cardsList.monthsShort.7' => 'ago',
+          'cardsList.monthsShort.8' => 'set',
+          'cardsList.monthsShort.9' => 'out',
+          'cardsList.monthsShort.10' => 'nov',
+          'cardsList.monthsShort.11' => 'dez',
+          'cardsList.slipCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  zero: 'sem slips',
+                  one: '1 slip',
+                  other: '${count} slips',
+                ),
+          'cardsList.sent' => 'Enviado',
+          'cardsList.received' => 'Recebido',
+          'cardsList.opened' => 'aberto',
+          'cardsList.reacted' => 'reação',
+          'cardsList.replied' => 'respondido',
+          'cardsList.emptyTitle' => 'Nenhum cartão ainda',
+          'cardsList.emptyText' =>
+            'Quando um cartão for enviado ou chegar, ele aparece aqui. Sem pressa.',
+          'cardsList.errorTitle' => 'Não deu para carregar os cartões',
+          'cardsList.errorText' => 'Eles continuam salvos. Tente de novo.',
+          'cardsList.detailTitle' => 'Cartão',
+          'cardsList.detailErrorTitle' => 'Não deu para abrir o cartão',
+          'cardsList.errors.CARD_NOT_FOUND' => 'Esse cartão não está mais disponível.',
+          'cardsList.errors.other' => 'Ele continua salvo. Tente de novo.',
+          'cardsList.reactionPrompt' => 'Como você quer responder?',
+          'cardsList.reactionThankYou' => 'Obrigado',
+          'cardsList.reactionHug' => 'Abraço',
+          'cardsList.reactionMadeMyDay' => 'Fez minha semana',
+          'cardsList.reactionNoted' => 'Anotado',
+          'cardsList.reactionError' => 'Não deu para responder agora. Tente de novo.',
+          'cardsList.responseReceivedName' => ({required Object name}) => '${name}',
+          'cardsList.responseReceivedNoName' => 'Sua pessoa respondeu',
+          'cardsList.responseReceivedVerb' => 'respondeu',
+          'cardsList.responseQuote' => ({required Object label}) => '“${label}”',
+          'cardsList.notFound' => 'Esse cartão não está mais disponível.',
+          'cardsList.reactionQuoteMadeMyDay' => 'Isso fez a minha semana.',
+          'common.appName' => 'Flutter Bloc Starter',
+          'common.send' => 'Enviar',
+          'common.save' => 'Salvar',
+          'common.retry' => 'Tentar novamente',
+          'common.loading' => 'Carregando',
+          'common.email' => 'Email',
+          'common.username' => 'Usuário',
+          'common.password' => 'Senha',
+          'common.firstName' => 'Nome',
+          'common.lastName' => 'Sobrenome',
+          'common.genericError' => 'Algo deu errado',
+          'firstSlip.title' => 'Comece com uma coisa boa',
+          'firstSlip.titleHighlight' => 'uma coisa boa',
+          'firstSlip.subtitle' => 'O que seu parceiro fez ultimamente que te fez sorrir? 30 segundos bastam. Ainda sem conta.',
+          'firstSlip.hint' => 'Ex.: fez café antes de eu acordar',
+          'firstSlip.localNote' => 'Fica salvo só neste celular.',
+          'firstSlip.save' => 'Salvar',
+          'firstSlip.saveError' => 'Não deu para guardar agora. Tente de novo.',
+          'ideaDetail.label' => 'Ideia do dia',
+          'ideaDetail.whyTitle' => 'Por que esta ideia',
+          'ideaDetail.yourPhase' => 'Sua fase',
+          'ideaDetail.yourGoal' => 'Seu objetivo',
+          'ideaDetail.willDo' => 'Eu vou fazer',
+          'ideaDetail.done' => 'Anotado. Que bom!',
+          'ideaDetail.another' => 'Outra ideia',
+          'ideaDetail.later' => 'Mais tarde',
+          'ideaDetail.laterTitle' => 'Quando lembrar?',
+          'ideaDetail.tonight' => 'Hoje à noite',
+          'ideaDetail.tomorrow' => 'Amanhã de manhã',
+          'ideaDetail.weekend' => 'No fim de semana',
+          'ideaDetail.reminderSet' => 'Combinado. Vamos lembrar com um aviso gentil.',
+          'ideaDetail.reminderSetNotificationsOff' =>
+            'Guardamos o lembrete. Ligue as notificações nas configurações para recebê-lo.',
+          'ideaDetail.reminderError' => 'Não deu para guardar o lembrete. Tente de novo.',
+          'ideaDetail.emptyTitle' => 'Sem ideias agora',
+          'ideaDetail.emptyText' => 'Volte mais tarde. Enquanto isso, anote um slip.',
+          'ideaDetail.errorTitle' => 'Não deu para carregar a ideia',
+          'ideaDetail.errorText' => 'Tente de novo em instantes.',
+          'intro.skip' => 'Pular',
+          'intro.continueButton' => 'Continuar',
+          'intro.phase.title' => 'Onde vocês estão agora?',
+          'intro.phase.titleHighlight' => 'agora',
+          'intro.phase.subtitle' => 'Escolha o mais próximo. Você pode mudar depois.',
+          'intro.phase.options.dating' => 'Namorando',
+          'intro.phase.options.living_together' => 'Moramos juntos',
+          'intro.phase.options.engaged' => 'Noivos',
+          'intro.phase.options.married' => 'Casados',
+          'intro.phase.options.with_kids' => 'Com filhos',
+          'intro.phase.options.long_distance' => 'Namoro à distância',
+          'intro.phase.options.restarting' => 'Recomeçando',
+          'intro.phase.options.other' => '',
+          'intro.goals.title' => 'O que você quer do app?',
+          'intro.goals.titleHighlight' => 'app',
+          'intro.goals.subtitle' => 'Escolha quantos quiser.',
+          'intro.goals.options.reconnect' => 'Reconectar',
+          'intro.goals.options.fight_less' => 'Brigar menos',
+          'intro.goals.options.keep_romance' => 'Manter o romance',
+          'intro.goals.options.remember_dates' => 'Lembrar de datas',
+          'intro.goals.options.organize_routine' => 'Organizar a rotina',
+          'intro.goals.options.just_record' => 'Só registrar coisas boas',
+          'intro.goals.options.other' => '',
+          'intro.theme.title' => 'Qual cor combina com você?',
+          'intro.theme.titleHighlight' => 'cor',
+          'intro.theme.subtitle' => 'Você escolhe a cor, não o gênero. Os recursos são os mesmos.',
+          'intro.theme.rose' => 'Rosa suave',
+          'intro.theme.roseSupport' => 'Delicado e quente',
+          'intro.theme.blue' => 'Azul suave',
+          'intro.theme.blueSupport' => 'Calmo e leve',
+          'intro.theme.neutral' => 'Neutro',
+          'intro.theme.neutralSupport' => 'Papel e verde',
+          'intro.theme.footnote' => 'Dá para trocar depois em Configurações, Aparência.',
+          'invite.title' => ({required Object name}) => 'Convidar ${name}',
+          'invite.titleNoName' => 'Convidar sua pessoa',
+          'invite.messageIntro' => 'Esta mensagem será enviada:',
+          'invite.message' => ({
+            required Object code,
+          }) => 'Comecei uma coisa pequena para nós. Para nos conectar no app, use o código ${code}.',
+          'invite.expiryNote' => ({
+            required Object days,
+          }) => 'O convite vale por ${days} dias. Só o último convite criado funciona.',
+          'invite.share' => 'Compartilhar convite',
+          'invite.copy' => 'Copiar convite',
+          'invite.sentTitle' => 'Convite enviado',
+          'invite.sentHighlight' => 'enviado',
+          'invite.sentText' => ({
+            required Object name,
+          }) => '${name} ainda não entrou. Enquanto isso, você pode usar o app sozinho.',
+          'invite.sentTextNoName' =>
+            'Sua pessoa ainda não entrou. Enquanto isso, você pode usar o app sozinho.',
+          'invite.resend' => 'Reenviar',
+          'invite.revoke' => 'Revogar',
+          'invite.errorTitle' => 'Não deu para criar o convite',
+          'invite.errors.ALREADY_PAIRED' => 'Você já está conectado com alguém.',
+          'invite.errors.RATE_LIMITED' => 'Você criou muitos convites hoje. Tente de novo amanhã.',
+          'invite.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
+          'invite.errors.other' => 'Algo deu errado. Tente de novo.',
+          'need.title' => 'Preciso de…',
+          'need.titleHighlight' => 'Preciso',
+          'need.subtitle' => 'Escolha uma coisa. Seu par recebe um aviso gentil, sem cobrança.',
+          'need.options.hug' => 'Um abraço',
+          'need.options.talk' => 'Conversar',
+          'need.options.help_home' => 'Ajuda em casa',
+          'need.options.quiet' => 'Um tempo quieta',
+          'need.options.time_together' => 'Tempo juntos',
+          'need.options.rest' => 'Descansar',
+          'need.options.other' => '',
+          'need.note' => 'Não é uma exigência. É só um jeito simples de pedir.',
+          'need.send' => 'Enviar',
+          'need.sent.title' => 'Enviado',
+          'need.sent.text' => 'Seu par vai ver quando abrir o app.',
+          'need.sent.done' => 'Pronto',
+          'need.errors.NOT_PAIRED' => 'Para enviar, você precisa estar com seu par no app.',
+          'need.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'need.errors.other' => 'Não deu para enviar agora. Tente de novo.',
+          'notFound.title' => '404',
+          'notFound.description' => 'Página não encontrada',
+          'notFound.buttonBack' => 'Voltar para página inicial',
+          'notificationPermission.label' => 'Lembretes',
+          'notificationPermission.title' => 'Lembretes gentis?',
+          'notificationPermission.titleHighlight' => 'gentis',
+          'notificationPermission.pointLimit' => 'No máximo 1 a 2 por dia.',
+          'notificationPermission.pointPrivate' => 'Nunca mostram nomes na tela bloqueada.',
+          'notificationPermission.pointChoice' => 'Você escolhe o que chega e quando.',
+          'notificationPermission.changeLater' => 'Você pode mudar isso quando quiser.',
+          'notificationPermission.notNow' => 'Agora não',
+          'notificationPermission.allow' => 'Permitir',
+          'notificationPermission.offBanner' =>
+            'Os lembretes estão desligados. Ligue nas configurações.',
+          'notificationPermission.openSettings' => 'Abrir configurações',
+          'notificationPermission.close' => 'Fechar',
+          'partnerStep.title' => 'Quer trazer seu parceiro?',
+          'partnerStep.titleHighlight' => 'parceiro',
+          'partnerStep.subtitle' => 'O app funciona sozinho. Você convida quando quiser.',
+          'partnerStep.inviteTitle' => 'Enviar um convite',
+          'partnerStep.inviteSupport' => 'Sua pessoa entra com um código',
+          'partnerStep.aloneTitle' => 'Depois, começar sozinho',
+          'partnerStep.aloneSupport' => 'Seus slips ficam só com você',
+          'partnerStep.haveCode' => 'Tenho um código de convite',
+          'partnerStep.continueButton' => 'Continuar',
+          'profileSetup.title' => 'O básico',
+          'profileSetup.titleHighlight' => 'básico',
+          'profileSetup.subtitle' =>
+            'Usado para as palavras do app e para a primeira data da sua história.',
+          'profileSetup.nameLabel' => 'Seu nome',
+          'profileSetup.nameHint' => 'Marina',
+          'profileSetup.partnerNameLabel' => 'Nome do parceiro',
+          'profileSetup.partnerNameHint' => 'Ricardo',
+          'profileSetup.partnerNameNote' => 'O nome do parceiro fica só na sua conta.',
+          'profileSetup.themeLabel' => 'Cor do seu app',
+          'profileSetup.themeRose' => 'Rosa',
+          'profileSetup.themeBlue' => 'Azul',
+          'profileSetup.themeNeutral' => 'Neutro',
+          'profileSetup.dateLabel' => 'Quando começaram?',
+          'profileSetup.dateHint' => 'Escolha uma data',
+          'profileSetup.dateFormat' => ({
+            required Object day,
+            required Object month,
+            required Object year,
+          }) => '${day} de ${month} de ${year}',
+          'profileSetup.months.0' => 'janeiro',
+          'profileSetup.months.1' => 'fevereiro',
+          'profileSetup.months.2' => 'março',
+          'profileSetup.months.3' => 'abril',
+          'profileSetup.months.4' => 'maio',
+          'profileSetup.months.5' => 'junho',
+          'profileSetup.months.6' => 'julho',
+          'profileSetup.months.7' => 'agosto',
+          'profileSetup.months.8' => 'setembro',
+          'profileSetup.months.9' => 'outubro',
+          'profileSetup.months.10' => 'novembro',
+          'profileSetup.months.11' => 'dezembro',
+          'profileSetup.continueButton' => 'Continuar',
+          'profileSetup.errors.INVALID_DATE' =>
+            'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
+          'profileSetup.errors.NETWORK' => 'Sem conexão. Seus dados continuam aqui, tente de novo.',
+          'profileSetup.errors.other' => 'Não deu para salvar agora. Tente de novo.',
+          'quickSlip.dateLine' => ({
+            required Object weekday,
+            required Object day,
+            required Object month,
+          }) => '${weekday}, ${day} de ${month}',
+          'quickSlip.weekdays.0' => 'segunda',
+          'quickSlip.weekdays.1' => 'terça',
+          'quickSlip.weekdays.2' => 'quarta',
+          'quickSlip.weekdays.3' => 'quinta',
+          'quickSlip.weekdays.4' => 'sexta',
+          'quickSlip.weekdays.5' => 'sábado',
+          'quickSlip.weekdays.6' => 'domingo',
+          'quickSlip.monthsShort.0' => 'jan',
+          'quickSlip.monthsShort.1' => 'fev',
+          'quickSlip.monthsShort.2' => 'mar',
+          'quickSlip.monthsShort.3' => 'abr',
+          'quickSlip.monthsShort.4' => 'mai',
+          'quickSlip.monthsShort.5' => 'jun',
+          'quickSlip.monthsShort.6' => 'jul',
+          'quickSlip.monthsShort.7' => 'ago',
+          'quickSlip.monthsShort.8' => 'set',
+          'quickSlip.monthsShort.9' => 'out',
+          'quickSlip.monthsShort.10' => 'nov',
+          'quickSlip.monthsShort.11' => 'dez',
+          'quickSlip.title' => 'O que te deixou feliz?',
+          'quickSlip.titleHighlight' => 'feliz',
+          'quickSlip.subtitle' => 'Uma linha basta. 30 segundos.',
+          'quickSlip.hint' => 'Ex.: fez café antes de eu acordar',
+          'quickSlip.categories.said' => 'Disse algo',
+          'quickSlip.categories.did' => 'Fez algo',
+          'quickSlip.categories.noticed' => 'Me notou',
+          'quickSlip.categories.helped' => 'Me ajudou',
+          'quickSlip.categories.other' => '',
+          'quickSlip.privacyNote' =>
+            'Fica privado. No domingo você escolhe o que vai para o cartão.',
+          'quickSlip.save' => 'Salvar',
+          'quickSlip.saved.title' => 'Salvo',
+          'quickSlip.saved.added' => 'Slip adicionado a esta semana.',
+          'quickSlip.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
+          'quickSlip.saved.undoHint' => 'Desfazer por 30 segundos.',
+          'quickSlip.saved.undo' => 'Desfazer',
+          'quickSlip.saved.done' => 'Pronto',
+          'quickSlip.errors.FREE_LIMIT_REACHED' =>
+            'Você chegou ao limite de slips do plano grátis.',
+          'quickSlip.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'quickSlip.errors.other' =>
+            'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
+          'reminders.title' => 'Repara',
+          'reminders.dailyIdea' => 'Uma ideia pequena para hoje.',
+          'reminders.dates' => 'Uma data está chegando.',
+          'reminders.weeklyCard' => 'Seu cartão está pronto.',
+          'reminders.discreet' => 'Abra o app para ver.',
+          'slipKind.switcherTitle' => 'Outras formas de registrar',
+          'slipKind.needEntry' => 'Preciso de…',
+          'slipKind.kinds.specific' => 'Específico',
+          'slipKind.kinds.if_then' => 'Se… então',
+          'slipKind.kinds.invisible' => 'Invisível',
+          'slipKind.kinds.other' => '',
+          'slipKind.specific.title' => 'O que exatamente ele fez?',
+          'slipKind.specific.titleHighlight' => 'exatamente',
+          'slipKind.specific.subtitle' => 'Detalhes ajudam a lembrar por que importou.',
+          'slipKind.specific.hint' => 'Ex.: levou o lixo sem eu pedir',
+          'slipKind.specific.feelingLabel' => 'Como você se sentiu?',
+          'slipKind.specific.feelingHint' => 'Opcional',
+          'slipKind.ifThen.title' => 'Quer contar a ele?',
+          'slipKind.ifThen.titleHighlight' => 'contar',
+          'slipKind.ifThen.subtitle' => 'Um plano pequeno: quando acontecer isto, você faz aquilo.',
+          'slipKind.ifThen.ifLabel' => 'Se…',
+          'slipKind.ifThen.ifHint' => 'Ex.: eu me sentir sobrecarregada',
+          'slipKind.ifThen.thenLabel' => 'Então…',
+          'slipKind.ifThen.thenHint' => 'Ex.: peço um tempo de 10 minutos',
+          'slipKind.invisible.title' => 'Coisas que ninguém percebe',
+          'slipKind.invisible.titleHighlight' => 'ninguém percebe',
+          'slipKind.invisible.subtitle' => 'Só para você. Isto nunca vai para o cartão.',
+          'slipKind.invisible.hint' => 'Ex.: lembrei da consulta das crianças',
+          'slipKind.invisible.areaLabel' => 'Que tipo de trabalho?',
+          'slipKind.invisible.private' => 'Fica só com você, não entra em nenhum cartão.',
+          'slipKind.workAreas.planning' => 'Planejar',
+          'slipKind.workAreas.dates' => 'Datas',
+          'slipKind.workAreas.kitchen' => 'Cozinha',
+          'slipKind.workAreas.cleaning' => 'Limpeza',
+          'slipKind.workAreas.kids' => 'Filhos',
+          'slipKind.workAreas.emotional' => 'Emocional',
+          'slipKind.workAreas.finances' => 'Finanças',
+          'slipKind.workAreas.other' => 'Outro',
+          'slipKind.save' => 'Salvar',
+          'slipKind.saved.title' => 'Salvo',
+          'slipKind.saved.added' => 'Registrado.',
+          'slipKind.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
+          'slipKind.saved.done' => 'Pronto',
+          'slipKind.errors.FREE_LIMIT_REACHED' => 'Você chegou ao limite de slips do plano grátis.',
+          'slipKind.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'slipKind.errors.other' =>
+            'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
+          'slipsList.title' => 'Slips',
+          'slipsList.scopeWeek' => 'Esta semana',
+          'slipsList.scopeAll' => 'Todos',
+          'slipsList.private' => 'Privado',
+          'slipsList.thisWeek' => 'Esta semana',
+          'slipsList.lastWeek' => 'Semana passada',
+          'slipsList.weekRange' => ({
+            required Object start,
+            required Object end,
+          }) => '${start} – ${end}',
+          'slipsList.dateShort' => ({
+            required Object day,
+            required Object month,
+          }) => '${day} ${month}',
+          'slipsList.dayLine' => ({
+            required Object weekday,
+            required Object category,
+          }) => '${weekday} · ${category}',
+          'slipsList.weekdaysShort.0' => 'Seg',
+          'slipsList.weekdaysShort.1' => 'Ter',
+          'slipsList.weekdaysShort.2' => 'Qua',
+          'slipsList.weekdaysShort.3' => 'Qui',
+          'slipsList.weekdaysShort.4' => 'Sex',
+          'slipsList.weekdaysShort.5' => 'Sáb',
+          'slipsList.weekdaysShort.6' => 'Dom',
+          'slipsList.monthsShort.0' => 'jan',
+          'slipsList.monthsShort.1' => 'fev',
+          'slipsList.monthsShort.2' => 'mar',
+          'slipsList.monthsShort.3' => 'abr',
+          'slipsList.monthsShort.4' => 'mai',
+          'slipsList.monthsShort.5' => 'jun',
+          'slipsList.monthsShort.6' => 'jul',
+          'slipsList.monthsShort.7' => 'ago',
+          'slipsList.monthsShort.8' => 'set',
+          'slipsList.monthsShort.9' => 'out',
+          'slipsList.monthsShort.10' => 'nov',
+          'slipsList.monthsShort.11' => 'dez',
+          'slipsList.categories.said' => 'Disse algo',
+          'slipsList.categories.did' => 'Fez algo',
+          'slipsList.categories.noticed' => 'Me notou',
+          'slipsList.categories.helped' => 'Ajudou',
+          'slipsList.categories.other' => '',
+          'slipsList.pastCards' => 'Cartões anteriores',
+          'slipsList.emptyTitle' => 'Nada ainda',
+          'slipsList.emptyText' => 'Um slip é uma coisa boa, em uma linha.',
+          'slipsList.emptyAction' => 'Adicionar um slip',
+          'slipsList.errorTitle' => 'Não deu para carregar seus slips',
+          'slipsList.errorText' => 'Eles continuam salvos. Tente de novo.',
+          'sundayCard.title' => 'Seu cartão',
+          'sundayCard.edit' => 'Editar',
+          'sundayCard.save' => 'Salvar',
+          'sundayCard.cancel' => 'Cancelar',
+          'sundayCard.noteLabel' => 'Mensagem final',
+          'sundayCard.noteHint' => 'Obrigada por essa semana.',
+          'sundayCard.moveUp' => 'Subir',
+          'sundayCard.moveDown' => 'Descer',
+          'sundayCard.remove' => 'Tirar do cartão',
+          'sundayCard.emptyTitle' => 'Semana sem slips',
+          'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
+          'sundayCard.emptyAction' => 'Anotar um slip',
+          'sundayCard.errorTitle' => 'Não deu para carregar o cartão',
+          'sundayCard.errorText' => 'Seus slips continuam salvos. Tente de novo.',
+          'sundayCard.saveError' => 'Não deu para salvar o cartão. Tente de novo.',
+          'sundayCard.openFromToday' => 'Ver o rascunho',
+          'sundayCard.deliverError' =>
+            'Não deu para enviar agora. O cartão continua aqui, tente de novo.',
+          'sundayCard.send.action' => 'Enviar',
+          'sundayCard.send.invite' => 'Convidar para enviar',
+          'sundayCard.send.needsPartner' =>
+            'Para enviar o cartão no app, sua pessoa precisa estar conectada.',
+          'sundayCard.send.title' => 'Enviar o cartão?',
+          'sundayCard.send.text' => ({
+            required Object name,
+          }) => '${name} recebe agora. Depois de enviado, o cartão não muda.',
+          'sundayCard.send.textNoName' =>
+            'Sua pessoa recebe agora. Depois de enviado, o cartão não muda.',
+          'sundayCard.send.confirm' => 'Enviar',
+          'sundayCard.hold.action' => 'Segurar esta semana',
+          'sundayCard.hold.title' => 'Segurar esta semana?',
+          'sundayCard.hold.text' =>
+            'O cartão fica guardado e nada se perde. Você pode enviar quando quiser.',
+          'sundayCard.hold.confirm' => 'Segurar',
+          'sundayCard.held.title' => 'Retido nesta semana',
+          'sundayCard.held.titleHighlight' => 'Retido',
+          'sundayCard.held.text' =>
+            'Seu cartão espera. Envie quando estiver pronto. Nada se perde.',
+          'sundayCard.held.keepHolding' => 'Continuar retendo',
+          'sundayCard.held.sendAnyway' => 'Enviar mesmo assim',
+          'sundayCard.sent.title' => 'Enviado',
+          'sundayCard.sent.text' => ({required Object name}) => 'O cartão foi para ${name}.',
+          'sundayCard.sent.textNoName' => 'O cartão foi para sua pessoa.',
+          'sundayCard.sent.done' => 'Pronto',
+          'tabs.today' => 'Hoje',
+          'tabs.slips' => 'Slips',
+          'tabs.together' => 'Juntos',
+          'tabs.memories' => 'Memórias',
+          'tabs.capture' => 'Novo slip',
+          'tabs.soonTitle' => 'Em construção',
+          'tabs.soonText' => 'Esta parte do app ainda está sendo preparada.',
+          'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
+          'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
+          'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',
+          'today.greetingNoName' => 'Olá',
+          'today.dateLine' => ({
+            required Object weekday,
+            required Object day,
+            required Object month,
+          }) => '${weekday}, ${day} de ${month}',
+          'today.weekdays.0' => 'segunda',
+          'today.weekdays.1' => 'terça',
+          'today.weekdays.2' => 'quarta',
+          'today.weekdays.3' => 'quinta',
+          'today.weekdays.4' => 'sexta',
+          'today.weekdays.5' => 'sábado',
+          'today.weekdays.6' => 'domingo',
+          'today.months.0' => 'janeiro',
+          'today.months.1' => 'fevereiro',
+          'today.months.2' => 'março',
+          'today.months.3' => 'abril',
+          'today.months.4' => 'maio',
+          'today.months.5' => 'junho',
+          'today.months.6' => 'julho',
+          'today.months.7' => 'agosto',
+          'today.months.8' => 'setembro',
+          'today.months.9' => 'outubro',
+          'today.months.10' => 'novembro',
+          'today.months.11' => 'dezembro',
+          'today.togetherYears' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 ano',
+                  other: '${count} anos',
+                ),
+          'today.togetherMonths' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 mês',
+                  other: '${count} meses',
+                ),
+          'today.togetherDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 dia',
+                  other: '${count} dias',
+                ),
+          'today.togetherJoin' => ({
+            required Object first,
+            required Object second,
+          }) => '${first} e ${second}',
+          'today.invitePerson' => 'Convidar sua pessoa',
+          'today.offline' => 'Sem conexão. Mostrando o que foi salvo.',
+          'today.pendingInviteTitle' => 'Convite enviado',
+          'today.pendingInviteText' => 'A pessoa ainda não entrou. Reenviar ou revogar.',
+          'today.pendingInviteAction' => 'Ver convite',
+          'today.answer' => 'Responder',
+          'today.slipsThisWeek' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  zero: 'Nenhum slip esta semana',
+                  one: '1 slip esta semana',
+                  other: '${count} slips esta semana',
+                ),
+          'today.weekHintEmpty' => 'Anote uma coisa boa quando lembrar.',
+          'today.weekHint' => 'Seu cartão de domingo vem desses slips.',
+          'today.forToday' => 'Para hoje',
+          'today.ideaLabel' => 'Ideia do dia',
+          'today.slipsThisWeekPrivate' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  zero: 'Seus slips privados: nenhum esta semana',
+                  one: 'Seus slips privados: 1 esta semana',
+                  other: 'Seus slips privados: ${count} esta semana',
+                ),
+          'today.sundayCardLabel' => 'Cartão de domingo',
+          'today.sundayCardTitle' => 'Seu cartão desta semana',
+          'today.inviteCardLabel' => 'Convite',
+          'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
+          'today.inviteCardTitleNoName' => 'Convidar sua pessoa',
+          'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
+          'today.privateTag' => 'Só seu',
+          'today.privateQuestion' => 'Como foi o seu dia, de verdade?',
+          'today.privateHighlight' => 'dia',
+          'today.privateAction' => 'Anotar um slip',
+          'today.emptyWeekTag' => 'Sem pressa',
+          'today.emptyWeekQuestion' => 'Qual foi uma coisa boa hoje?',
+          'today.emptyWeekHighlight' => 'boa',
+          'today.emptyWeekAction' => 'Anotar um slip',
+          'today.nothingReceived' => 'Nenhum cartão novo. Sem pressa.',
+          'today.cardReceived' => 'Você recebeu um cartão',
+          'today.cardReceivedAction' => 'Ver cartão',
+          'today.firstDayLabel' => 'Começando',
+          'today.firstDayGreeting' => ({required Object name}) => 'Oi, ${name}',
+          'today.firstDaySubtitle' => 'que bom ter você por aqui',
+          'today.firstDayTag' => 'Bom começo',
+          'today.firstDayTitle' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'Você tem 1 slip.',
+                  other: 'Você tem ${count} slips.',
+                ),
+          'today.firstDayHighlight' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 slip',
+                  other: '${count} slips',
+                ),
+          'today.firstDayText' =>
+            'Um slip é uma coisa boa, em uma linha. No domingo eles viram um cartão.',
+          'today.firstDayAction' => 'Anotar mais um',
+          'today.errorTitle' => 'Não deu para carregar o Hoje',
+          'today.errorText' => 'Seus slips estão seguros. Tente de novo.',
+          'today.cardReceivedNamed' => ({required Object name}) => '${name} te mandou um cartão',
+          'unpair.appBarTitle' => 'Desvincular',
+          'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
+          'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',
+          'unpair.confirm' => 'Desvincular',
+          'unpair.cancel' => 'Cancelar',
+          'unpair.unnamedPartner' => 'sua pessoa',
+          'unpair.done.title' => 'Desvinculado',
+          'unpair.done.highlight' => 'Desvinculado',
+          'unpair.done.text' => 'Seus próprios dados continuam seus.',
+          'unpair.done.keepOption' => 'Guardar uma cópia dos itens compartilhados',
+          'unpair.done.deleteOption' => 'Apagar itens compartilhados',
+          'unpair.done.plusNote' => 'O Plus que cobria o parceiro termina.',
+          'unpair.done.continueLabel' => 'Continuar',
+          'unpair.relationship.title' => 'Relacionamento',
+          'unpair.relationship.unpair' => ({required Object name}) => 'Desvincular da ${name}',
+          'unpair.relationship.ended' => 'A relação terminou',
+          'unpair.breakup.appBarTitle' => 'Terminamos',
+          'unpair.breakup.title' => 'Sinto muito',
+          'unpair.breakup.highlight' => 'muito',
+          'unpair.breakup.text' => 'Você decide o que guardar. Nada é apagado sem você querer.',
+          'unpair.breakup.cancel' => 'Cancelar',
+          'unpair.breakup.continueLabel' => 'Continuar',
+          'unpair.partnerNotice.title' => ({required Object name}) => 'A ${name} desvinculou',
+          'unpair.partnerNotice.titleNoName' => 'Seu par desvinculou',
+          'unpair.partnerNotice.highlight' => 'desvinculou',
+          'unpair.partnerNotice.text' =>
+            'Seus dados continuam seus. Cartões compartilhados pararam.',
+          'unpair.partnerNotice.ok' => 'Ok',
+          'unpair.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
+          'unpair.errors.STILL_PAIRED' => 'A relação ainda está ativa. Tente de novo.',
+          _ => null,
+        } ??
+        switch (path) {
+          'unpair.errors.other' => 'Não deu para desvincular agora. Tente de novo.',
+          'welcome.headline' => 'Pequenas coisas boas, ditas em voz alta.',
+          'welcome.headlineHighlight' => 'ditas em voz alta',
+          'welcome.subtitle' => 'Um jeito leve de notar o que o outro faz de bom, a cada semana.',
+          'welcome.start' => 'Começar',
+          'welcome.haveAccount' => 'Já tenho conta',
+          'welcome.debugSignIn' => 'Entrar (debug)',
+          _ => null,
+        };
   }
 }

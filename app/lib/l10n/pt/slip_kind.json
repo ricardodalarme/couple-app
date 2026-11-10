@@ -1,0 +1,57 @@
+{
+  "switcherTitle": "Outras formas de registrar",
+  "needEntry": "Preciso de…",
+  "kinds(map)": {
+    "specific": "Específico",
+    "if_then": "Se… então",
+    "invisible": "Invisível",
+    "other": ""
+  },
+  "specific": {
+    "title": "O que exatamente ele fez?",
+    "titleHighlight": "exatamente",
+    "subtitle": "Detalhes ajudam a lembrar por que importou.",
+    "hint": "Ex.: levou o lixo sem eu pedir",
+    "feelingLabel": "Como você se sentiu?",
+    "feelingHint": "Opcional"
+  },
+  "ifThen": {
+    "title": "Quer contar a ele?",
+    "titleHighlight": "contar",
+    "subtitle": "Um plano pequeno: quando acontecer isto, você faz aquilo.",
+    "ifLabel": "Se…",
+    "ifHint": "Ex.: eu me sentir sobrecarregada",
+    "thenLabel": "Então…",
+    "thenHint": "Ex.: peço um tempo de 10 minutos"
+  },
+  "invisible": {
+    "title": "Coisas que ninguém percebe",
+    "titleHighlight": "ninguém percebe",
+    "subtitle": "Só para você. Isto nunca vai para o cartão.",
+    "hint": "Ex.: lembrei da consulta das crianças",
+    "areaLabel": "Que tipo de trabalho?",
+    "private": "Fica só com você, não entra em nenhum cartão."
+  },
+  "workAreas(map)": {
+    "planning": "Planejar",
+    "dates": "Datas",
+    "kitchen": "Cozinha",
+    "cleaning": "Limpeza",
+    "kids": "Filhos",
+    "emotional": "Emocional",
+    "finances": "Finanças",
+    "other": "Outro"
+  },
+  "save": "Salvar",
+  "saved": {
+    "title": "Salvo",
+    "added": "Registrado.",
+    "queued": "Salvo neste celular. Enviamos quando a conexão voltar.",
+    "done": "Pronto"
+  },
+  "errors(map)": {
+    "FREE_LIMIT_REACHED": "Você chegou ao limite de slips do plano grátis.",
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para salvar agora. Seu texto continua aqui, tente de novo."
+  }
+}

@@ -8,10 +8,18 @@ class VariablesMutationSaveSlip {
   factory VariablesMutationSaveSlip({
     required String id,
     required String body,
+    String? kind,
+    String? feeling,
+    String? planNote,
+    bool? forCard,
     DateTime? createdAt,
   }) => VariablesMutationSaveSlip._({
     r'id': id,
     r'body': body,
+    if (kind != null) r'kind': kind,
+    if (feeling != null) r'feeling': feeling,
+    if (planNote != null) r'planNote': planNote,
+    if (forCard != null) r'forCard': forCard,
     if (createdAt != null) r'createdAt': createdAt,
   });
 
@@ -23,6 +31,22 @@ class VariablesMutationSaveSlip {
     result$data['id'] = (l$id as String);
     final l$body = data['body'];
     result$data['body'] = (l$body as String);
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = (l$kind as String?);
+    }
+    if (data.containsKey('feeling')) {
+      final l$feeling = data['feeling'];
+      result$data['feeling'] = (l$feeling as String?);
+    }
+    if (data.containsKey('planNote')) {
+      final l$planNote = data['planNote'];
+      result$data['planNote'] = (l$planNote as String?);
+    }
+    if (data.containsKey('forCard')) {
+      final l$forCard = data['forCard'];
+      result$data['forCard'] = (l$forCard as bool?);
+    }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
       result$data['createdAt'] = l$createdAt == null
@@ -38,6 +62,14 @@ class VariablesMutationSaveSlip {
 
   String get body => (_$data['body'] as String);
 
+  String? get kind => (_$data['kind'] as String?);
+
+  String? get feeling => (_$data['feeling'] as String?);
+
+  String? get planNote => (_$data['planNote'] as String?);
+
+  bool? get forCard => (_$data['forCard'] as bool?);
+
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
   Map<String, dynamic> toJson() {
@@ -46,6 +78,22 @@ class VariablesMutationSaveSlip {
     result$data['id'] = l$id;
     final l$body = body;
     result$data['body'] = l$body;
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind;
+    }
+    if (_$data.containsKey('feeling')) {
+      final l$feeling = feeling;
+      result$data['feeling'] = l$feeling;
+    }
+    if (_$data.containsKey('planNote')) {
+      final l$planNote = planNote;
+      result$data['planNote'] = l$planNote;
+    }
+    if (_$data.containsKey('forCard')) {
+      final l$forCard = forCard;
+      result$data['forCard'] = l$forCard;
+    }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
       result$data['createdAt'] = l$createdAt?.toIso8601String();
@@ -71,6 +119,38 @@ class VariablesMutationSaveSlip {
     if (l$body != lOther$body) {
       return false;
     }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$feeling = feeling;
+    final lOther$feeling = other.feeling;
+    if (_$data.containsKey('feeling') != other._$data.containsKey('feeling')) {
+      return false;
+    }
+    if (l$feeling != lOther$feeling) {
+      return false;
+    }
+    final l$planNote = planNote;
+    final lOther$planNote = other.planNote;
+    if (_$data.containsKey('planNote') != other._$data.containsKey('planNote')) {
+      return false;
+    }
+    if (l$planNote != lOther$planNote) {
+      return false;
+    }
+    final l$forCard = forCard;
+    final lOther$forCard = other.forCard;
+    if (_$data.containsKey('forCard') != other._$data.containsKey('forCard')) {
+      return false;
+    }
+    if (l$forCard != lOther$forCard) {
+      return false;
+    }
     final l$createdAt = createdAt;
     final lOther$createdAt = other.createdAt;
     if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
@@ -86,8 +166,20 @@ class VariablesMutationSaveSlip {
   int get hashCode {
     final l$id = id;
     final l$body = body;
+    final l$kind = kind;
+    final l$feeling = feeling;
+    final l$planNote = planNote;
+    final l$forCard = forCard;
     final l$createdAt = createdAt;
-    return Object.hashAll([l$id, l$body, _$data.containsKey('createdAt') ? l$createdAt : const {}]);
+    return Object.hashAll([
+      l$id,
+      l$body,
+      _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('feeling') ? l$feeling : const {},
+      _$data.containsKey('planNote') ? l$planNote : const {},
+      _$data.containsKey('forCard') ? l$forCard : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+    ]);
   }
 }
 
@@ -166,6 +258,30 @@ const documentNodeMutationSaveSlip = DocumentNode(
           directives: [],
         ),
         VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'kind')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'feeling')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'planNote')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'forCard')),
+          type: NamedTypeNode(name: NameNode(value: 'Boolean'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'createdAt')),
           type: NamedTypeNode(name: NameNode(value: 'Datetime'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
@@ -186,6 +302,22 @@ const documentNodeMutationSaveSlip = DocumentNode(
               ArgumentNode(
                 name: NameNode(value: 'body'),
                 value: VariableNode(name: NameNode(value: 'body')),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'kind'),
+                value: VariableNode(name: NameNode(value: 'kind')),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'feeling'),
+                value: VariableNode(name: NameNode(value: 'feeling')),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'planNote'),
+                value: VariableNode(name: NameNode(value: 'planNote')),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'forCard'),
+                value: VariableNode(name: NameNode(value: 'forCard')),
               ),
               ArgumentNode(
                 name: NameNode(value: 'createdAt'),

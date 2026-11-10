@@ -39,8 +39,21 @@ class SlipRepository({
     required String body,
     required DateTime createdAt,
     String? category,
+    String kind = 'quick',
+    String? feeling,
+    String? planNote,
+    String? workArea,
   }) async {
-    final slip = PendingSlip(id: id, body: body, createdAt: createdAt, category: category);
+    final slip = PendingSlip(
+      id: id,
+      body: body,
+      createdAt: createdAt,
+      category: category,
+      kind: kind,
+      feeling: feeling,
+      planNote: planNote,
+      workArea: workArea,
+    );
     try {
       await _send(slip);
       _changes.add(null);
@@ -53,6 +66,16 @@ class SlipRepository({
       await _enqueue(slip);
       _changes.add(null);
       return SlipSaveOutcome.queued;
+    }
+  }
+
+  /// Tells the partner something gentle, such as a need; throws when there is no partner.
+  Future<void> sendNeed(String need) async {
+    try {
+      await _slipDataSource.sendSignal(kind: 'need', value: need);
+    } catch (e, stack) {
+      _logger.error('Failed to send a need', error: e, stackTrace: stack);
+      rethrow;
     }
   }
 
@@ -135,9 +158,19 @@ class SlipRepository({
   Future<void> clearDraft() => _localDataSource.clearDraft();
 
   Future<void> _send(PendingSlip slip) async {
-    await _slipDataSource.saveSlip(id: slip.id, body: slip.body, createdAt: slip.createdAt);
+    await _slipDataSource.saveSlip(
+      id: slip.id,
+      body: slip.body,
+      createdAt: slip.createdAt,
+      kind: slip.kind,
+      feeling: slip.feeling,
+      planNote: slip.planNote,
+    );
     if (slip.category != null) {
       await _slipDataSource.setCategory(id: slip.id, category: slip.category);
+    }
+    if (slip.workArea != null) {
+      await _slipDataSource.setWorkArea(id: slip.id, workArea: slip.workArea!);
     }
   }
 

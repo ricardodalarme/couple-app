@@ -72,6 +72,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$invite$en invite = _Translations$invite$en._(_root);
   @override
+  late final _Translations$need$en need = _Translations$need$en._(_root);
+  @override
   late final _Translations$notFound$en notFound = _Translations$notFound$en._(_root);
   @override
   late final _Translations$notificationPermission$en notificationPermission =
@@ -84,6 +86,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$quickSlip$en quickSlip = _Translations$quickSlip$en._(_root);
   @override
   late final _Translations$reminders$en reminders = _Translations$reminders$en._(_root);
+  @override
+  late final _Translations$slipKind$en slipKind = _Translations$slipKind$en._(_root);
   @override
   late final _Translations$slipsList$en slipsList = _Translations$slipsList$en._(_root);
   @override
@@ -451,6 +455,43 @@ class _Translations$invite$en extends Translations$invite$pt {
   };
 }
 
+// Path: need
+class _Translations$need$en extends Translations$need$pt {
+  _Translations$need$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'I need…';
+  @override
+  String get titleHighlight => 'need';
+  @override
+  String get subtitle => 'Pick one thing. Your partner gets a gentle note, no pressure.';
+  @override
+  Map<String, String> get options => {
+    'hug': 'A hug',
+    'talk': 'To talk',
+    'help_home': 'Help at home',
+    'quiet': 'Some quiet time',
+    'time_together': 'Time together',
+    'rest': 'To rest',
+    'other': '',
+  };
+  @override
+  String get note => 'It\'s not a demand. It\'s just a simple way to ask.';
+  @override
+  String get send => 'Send';
+  @override
+  late final _Translations$need$sent$en sent = _Translations$need$sent$en._(_root);
+  @override
+  Map<String, String> get errors => {
+    'NOT_PAIRED': 'To send this, you need to be connected with your partner in the app.',
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t send right now. Try again.',
+  };
+}
+
 // Path: notFound
 class _Translations$notFound$en extends Translations$notFound$pt {
   _Translations$notFound$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -673,6 +714,57 @@ class _Translations$reminders$en extends Translations$reminders$pt {
   String get weeklyCard => 'Your card is ready.';
   @override
   String get discreet => 'Open the app to see.';
+}
+
+// Path: slipKind
+class _Translations$slipKind$en extends Translations$slipKind$pt {
+  _Translations$slipKind$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get switcherTitle => 'Other ways to write it down';
+  @override
+  String get needEntry => 'I need…';
+  @override
+  Map<String, String> get kinds => {
+    'specific': 'Specific',
+    'if_then': 'If… then',
+    'invisible': 'Invisible',
+    'other': '',
+  };
+  @override
+  late final _Translations$slipKind$specific$en specific = _Translations$slipKind$specific$en._(
+    _root,
+  );
+  @override
+  late final _Translations$slipKind$ifThen$en ifThen = _Translations$slipKind$ifThen$en._(_root);
+  @override
+  late final _Translations$slipKind$invisible$en invisible = _Translations$slipKind$invisible$en._(
+    _root,
+  );
+  @override
+  Map<String, String> get workAreas => {
+    'planning': 'Planning',
+    'dates': 'Dates',
+    'kitchen': 'Kitchen',
+    'cleaning': 'Cleaning',
+    'kids': 'Kids',
+    'emotional': 'Emotional',
+    'finances': 'Finances',
+    'other': 'Other',
+  };
+  @override
+  String get save => 'Save';
+  @override
+  late final _Translations$slipKind$saved$en saved = _Translations$slipKind$saved$en._(_root);
+  @override
+  Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'You reached the free plan\'s slip limit.',
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t save right now. Your text is still here, try again.',
+  };
 }
 
 // Path: slipsList
@@ -1161,6 +1253,21 @@ class _Translations$intro$theme$en extends Translations$intro$theme$pt {
   String get footnote => 'You can change it later in Settings, Appearance.';
 }
 
+// Path: need.sent
+class _Translations$need$sent$en extends Translations$need$sent$pt {
+  _Translations$need$sent$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Sent';
+  @override
+  String get text => 'Your partner will see it when they open the app.';
+  @override
+  String get done => 'Done';
+}
+
 // Path: quickSlip.saved
 class _Translations$quickSlip$saved$en extends Translations$quickSlip$saved$pt {
   _Translations$quickSlip$saved$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1178,6 +1285,92 @@ class _Translations$quickSlip$saved$en extends Translations$quickSlip$saved$pt {
   String get undoHint => 'Undo for 30 seconds.';
   @override
   String get undo => 'Undo';
+  @override
+  String get done => 'Done';
+}
+
+// Path: slipKind.specific
+class _Translations$slipKind$specific$en extends Translations$slipKind$specific$pt {
+  _Translations$slipKind$specific$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'What exactly did they do?';
+  @override
+  String get titleHighlight => 'exactly';
+  @override
+  String get subtitle => 'Details help you remember why it mattered.';
+  @override
+  String get hint => 'E.g. took out the trash without being asked';
+  @override
+  String get feelingLabel => 'How did you feel?';
+  @override
+  String get feelingHint => 'Optional';
+}
+
+// Path: slipKind.ifThen
+class _Translations$slipKind$ifThen$en extends Translations$slipKind$ifThen$pt {
+  _Translations$slipKind$ifThen$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Want to tell them?';
+  @override
+  String get titleHighlight => 'tell';
+  @override
+  String get subtitle => 'A small plan: when this happens, you do that.';
+  @override
+  String get ifLabel => 'If…';
+  @override
+  String get ifHint => 'E.g. I feel overwhelmed';
+  @override
+  String get thenLabel => 'Then…';
+  @override
+  String get thenHint => 'E.g. I ask for 10 minutes alone';
+}
+
+// Path: slipKind.invisible
+class _Translations$slipKind$invisible$en extends Translations$slipKind$invisible$pt {
+  _Translations$slipKind$invisible$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Things nobody notices';
+  @override
+  String get titleHighlight => 'nobody notices';
+  @override
+  String get subtitle => 'Only for you. This never goes into a card.';
+  @override
+  String get hint => 'E.g. remembered the kids\' appointment';
+  @override
+  String get areaLabel => 'What kind of work?';
+  @override
+  String get private => 'Stays with you and never enters a card.';
+}
+
+// Path: slipKind.saved
+class _Translations$slipKind$saved$en extends Translations$slipKind$saved$pt {
+  _Translations$slipKind$saved$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Saved';
+  @override
+  String get added => 'Written down.';
+  @override
+  String get queued => 'Saved on this phone. We\'ll send it when the connection is back.';
   @override
   String get done => 'Done';
 }
@@ -1349,557 +1542,643 @@ class _Translations$unpair$partnerNotice$en extends Translations$unpair$partnerN
 extension on TranslationsEn {
   dynamic _flatMapFunction(String path) {
     return switch (path) {
-      'acceptInvite.title' => 'Got an invite?',
-      'acceptInvite.titleHighlight' => 'invite',
-      'acceptInvite.subtitle' => 'Type the code the other person sent so you can connect.',
-      'acceptInvite.codeLabel' => 'Invite code',
-      'acceptInvite.codeHint' => 'ABCD2345',
-      'acceptInvite.privacyNote' =>
-        'Accepting shares cards and tools. Your private notes stay private.',
-      'acceptInvite.accept' => 'Accept',
-      'acceptInvite.connected.title' => 'You are connected',
-      'acceptInvite.connected.titleHighlight' => 'connected',
-      'acceptInvite.connected.text' =>
-        'Shared cards and tools are on. Everything private stays private.',
-      'acceptInvite.connected.goToToday' => 'Go to Today',
-      'acceptInvite.unusable.title' => 'That invite is old',
-      'acceptInvite.unusable.titleHighlight' => 'old',
-      'acceptInvite.unusable.text' =>
-        'Check the code or ask for a new invite from whoever invited you.',
-      'acceptInvite.unusable.tryAgain' => 'Type again',
-      'acceptInvite.unusable.close' => 'Close',
-      'acceptInvite.errors.ALREADY_PAIRED' => 'You are already connected with someone.',
-      'acceptInvite.errors.COUPLE_FULL' => 'That space already has two people.',
-      'acceptInvite.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a bit and try again.',
-      'acceptInvite.errors.NETWORK' => 'No connection. Check your internet and try again.',
-      'acceptInvite.errors.other' => 'Could not connect right now. Try again.',
-      'authentication.signInTitle' => 'Sign in',
-      'authentication.signInSubtitle' => 'No email and password. Just Apple or Google.',
-      'authentication.signInNote' => 'Signing in takes you straight to your Today.',
-      'authentication.existingAccountTitle' => 'You already have an account',
-      'authentication.existingAccountSubtitle' => 'Sign in to pick up where you left off.',
-      'authentication.continueWithApple' => 'Continue with Apple',
-      'authentication.continueWithGoogle' => 'Continue with Google',
-      'authentication.errors.NETWORK' => 'No connection. Check your internet and try again.',
-      'authentication.errors.other' => 'Could not sign you in right now. Try again.',
-      'cardView.forPartner' => ({required Object name}) => 'For ${name}',
-      'cardView.forPartnerNoName' => 'For your person',
-      'cardView.goodThings' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-          count,
-          zero: 'No good things yet',
-          one: '1 good thing this week',
-          other: '${count} good things this week',
-        ),
-      'cardView.weekdays.0' => 'mon',
-      'cardView.weekdays.1' => 'tue',
-      'cardView.weekdays.2' => 'wed',
-      'cardView.weekdays.3' => 'thu',
-      'cardView.weekdays.4' => 'fri',
-      'cardView.weekdays.5' => 'sat',
-      'cardView.weekdays.6' => 'sun',
-      'cardView.categories.said' => 'said something',
-      'cardView.categories.did' => 'did something',
-      'cardView.categories.noticed' => 'noticed me',
-      'cardView.categories.helped' => 'helped me',
-      'cardView.categories.other' => '',
-      'cardsList.title' => 'Past cards',
-      'cardsList.dateShort' => ({required Object month, required Object day}) => '${month} ${day}',
-      'cardsList.monthsShort.0' => 'Jan',
-      'cardsList.monthsShort.1' => 'Feb',
-      'cardsList.monthsShort.2' => 'Mar',
-      'cardsList.monthsShort.3' => 'Apr',
-      'cardsList.monthsShort.4' => 'May',
-      'cardsList.monthsShort.5' => 'Jun',
-      'cardsList.monthsShort.6' => 'Jul',
-      'cardsList.monthsShort.7' => 'Aug',
-      'cardsList.monthsShort.8' => 'Sep',
-      'cardsList.monthsShort.9' => 'Oct',
-      'cardsList.monthsShort.10' => 'Nov',
-      'cardsList.monthsShort.11' => 'Dec',
-      'cardsList.slipCount' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-          count,
-          zero: 'no slips',
-          one: '1 slip',
-          other: '${count} slips',
-        ),
-      'cardsList.sent' => 'Sent',
-      'cardsList.received' => 'Received',
-      'cardsList.opened' => 'opened',
-      'cardsList.reacted' => 'reaction',
-      'cardsList.replied' => 'replied',
-      'cardsList.emptyTitle' => 'No cards yet',
-      'cardsList.emptyText' => 'When a card is sent or arrives, it shows up here. No rush.',
-      'cardsList.errorTitle' => 'Could not load the cards',
-      'cardsList.errorText' => 'They are still saved. Try again.',
-      'cardsList.detailTitle' => 'Card',
-      'cardsList.detailErrorTitle' => 'Could not open the card',
-      'cardsList.errors.CARD_NOT_FOUND' => 'That card is no longer available.',
-      'cardsList.errors.other' => 'It is still saved. Try again.',
-      'cardsList.reactionPrompt' => 'How do you want to reply?',
-      'cardsList.reactionThankYou' => 'Thank you',
-      'cardsList.reactionHug' => 'Hug',
-      'cardsList.reactionMadeMyDay' => 'Made my day',
-      'cardsList.reactionNoted' => 'Noted',
-      'cardsList.reactionError' => 'Could not reply right now. Try again.',
-      'cardsList.responseReceivedName' => ({required Object name}) => '${name}',
-      'cardsList.responseReceivedNoName' => 'Your person replied',
-      'cardsList.responseReceivedVerb' => 'replied',
-      'cardsList.responseQuote' => ({required Object label}) => '“${label}”',
-      'cardsList.notFound' => 'That card is no longer available.',
-      'cardsList.reactionQuoteMadeMyDay' => 'That made my week.',
-      'common.appName' => 'Flutter Bloc Starter',
-      'common.send' => 'Send',
-      'common.save' => 'Save',
-      'common.retry' => 'Retry',
-      'common.loading' => 'Loading',
-      'common.username' => 'Username',
-      'common.email' => 'Email',
-      'common.password' => 'Password',
-      'common.firstName' => 'First Name',
-      'common.lastName' => 'Last Name',
-      'common.genericError' => 'Something went wrong',
-      'firstSlip.title' => 'Start with one good thing',
-      'firstSlip.titleHighlight' => 'one good thing',
-      'firstSlip.subtitle' => 'What did your partner do lately that made you smile? 30 seconds is enough. No account yet.',
-      'firstSlip.hint' => 'E.g. made coffee before I woke up',
-      'firstSlip.localNote' => 'Stays saved on this phone only.',
-      'firstSlip.save' => 'Save',
-      'firstSlip.saveError' => 'Could not keep it right now. Try again.',
-      'ideaDetail.label' => 'Idea of the day',
-      'ideaDetail.whyTitle' => 'Why this idea',
-      'ideaDetail.yourPhase' => 'Your phase',
-      'ideaDetail.yourGoal' => 'Your goal',
-      'ideaDetail.willDo' => 'I will do it',
-      'ideaDetail.done' => 'Noted. Nice!',
-      'ideaDetail.another' => 'Another idea',
-      'ideaDetail.later' => 'Later',
-      'ideaDetail.laterTitle' => 'When should we remind you?',
-      'ideaDetail.tonight' => 'Tonight',
-      'ideaDetail.tomorrow' => 'Tomorrow morning',
-      'ideaDetail.weekend' => 'This weekend',
-      'ideaDetail.reminderSet' => 'Done. We will remind you with a gentle nudge.',
-      'ideaDetail.reminderSetNotificationsOff' =>
-        'Reminder saved. Turn notifications on in settings to receive it.',
-      'ideaDetail.reminderError' => 'Could not save the reminder. Try again.',
-      'ideaDetail.emptyTitle' => 'No ideas right now',
-      'ideaDetail.emptyText' => 'Come back later. In the meantime, note a slip.',
-      'ideaDetail.errorTitle' => 'Could not load the idea',
-      'ideaDetail.errorText' => 'Try again in a moment.',
-      'intro.skip' => 'Skip',
-      'intro.continueButton' => 'Continue',
-      'intro.phase.title' => 'Where are you two right now?',
-      'intro.phase.titleHighlight' => 'right now',
-      'intro.phase.subtitle' => 'Pick the closest one. You can change it later.',
-      'intro.phase.options.dating' => 'Dating',
-      'intro.phase.options.living_together' => 'Living together',
-      'intro.phase.options.engaged' => 'Engaged',
-      'intro.phase.options.married' => 'Married',
-      'intro.phase.options.with_kids' => 'With kids',
-      'intro.phase.options.long_distance' => 'Long distance',
-      'intro.phase.options.restarting' => 'Starting over',
-      'intro.phase.options.other' => '',
-      'intro.goals.title' => 'What do you want from the app?',
-      'intro.goals.titleHighlight' => 'app',
-      'intro.goals.subtitle' => 'Pick as many as you like.',
-      'intro.goals.options.reconnect' => 'Reconnect',
-      'intro.goals.options.fight_less' => 'Fight less',
-      'intro.goals.options.keep_romance' => 'Keep the romance',
-      'intro.goals.options.remember_dates' => 'Remember dates',
-      'intro.goals.options.organize_routine' => 'Organise the routine',
-      'intro.goals.options.just_record' => 'Just note the good things',
-      'intro.goals.options.other' => '',
-      'intro.theme.title' => 'Which colour suits you?',
-      'intro.theme.titleHighlight' => 'colour',
-      'intro.theme.subtitle' => 'You pick the colour, not the gender. The features are the same.',
-      'intro.theme.rose' => 'Soft rose',
-      'intro.theme.roseSupport' => 'Delicate and warm',
-      'intro.theme.blue' => 'Soft blue',
-      'intro.theme.blueSupport' => 'Calm and light',
-      'intro.theme.neutral' => 'Neutral',
-      'intro.theme.neutralSupport' => 'Paper and green',
-      'intro.theme.footnote' => 'You can change it later in Settings, Appearance.',
-      'invite.title' => ({required Object name}) => 'Invite ${name}',
-      'invite.titleNoName' => 'Invite your person',
-      'invite.messageIntro' => 'This message will be sent:',
-      'invite.message' => ({
-        required Object code,
-      }) => 'I started something small for us. To connect in the app, use the code ${code}.',
-      'invite.expiryNote' => ({
-        required Object days,
-      }) => 'The invite is valid for ${days} days. Only the latest invite you create works.',
-      'invite.share' => 'Share invite',
-      'invite.copy' => 'Copy invite',
-      'invite.sentTitle' => 'Invite sent',
-      'invite.sentHighlight' => 'sent',
-      'invite.sentText' => ({
-        required Object name,
-      }) => '${name} has not joined yet. In the meantime you can use the app on your own.',
-      'invite.sentTextNoName' =>
-        'Your person has not joined yet. In the meantime you can use the app on your own.',
-      'invite.resend' => 'Send again',
-      'invite.revoke' => 'Revoke',
-      'invite.errorTitle' => 'Could not create the invite',
-      'invite.errors.ALREADY_PAIRED' => 'You are already connected with someone.',
-      'invite.errors.RATE_LIMITED' => 'You created too many invites today. Try again tomorrow.',
-      'invite.errors.NETWORK' => 'No connection. Check your internet and try again.',
-      'invite.errors.other' => 'Something went wrong. Try again.',
-      'notFound.title' => '404',
-      'notFound.description' => 'Page not found',
-      'notFound.buttonBack' => 'Go back home',
-      'notificationPermission.label' => 'Reminders',
-      'notificationPermission.title' => 'Gentle reminders?',
-      'notificationPermission.titleHighlight' => 'Gentle',
-      'notificationPermission.pointLimit' => 'At most 1 or 2 a day.',
-      'notificationPermission.pointPrivate' => 'They never show names on the lock screen.',
-      'notificationPermission.pointChoice' => 'You choose what arrives and when.',
-      'notificationPermission.changeLater' => 'You can change this whenever you like.',
-      'notificationPermission.notNow' => 'Not now',
-      'notificationPermission.allow' => 'Allow',
-      'notificationPermission.offBanner' => 'Reminders are off. Turn them on in settings.',
-      'notificationPermission.openSettings' => 'Open settings',
-      'notificationPermission.close' => 'Close',
-      'partnerStep.title' => 'Want to bring your partner?',
-      'partnerStep.titleHighlight' => 'partner',
-      'partnerStep.subtitle' => 'The app works on your own. Invite whenever you want.',
-      'partnerStep.inviteTitle' => 'Send an invite',
-      'partnerStep.inviteSupport' => 'Your person joins with a code',
-      'partnerStep.aloneTitle' => 'Start on my own for now',
-      'partnerStep.aloneSupport' => 'Your slips stay with you only',
-      'partnerStep.haveCode' => 'I have an invite code',
-      'partnerStep.continueButton' => 'Continue',
-      'profileSetup.title' => 'The basics',
-      'profileSetup.titleHighlight' => 'basics',
-      'profileSetup.subtitle' =>
-        'Used for the words in the app and for the first date of your story.',
-      'profileSetup.nameLabel' => 'Your name',
-      'profileSetup.nameHint' => 'Marina',
-      'profileSetup.partnerNameLabel' => 'Partner\'s name',
-      'profileSetup.partnerNameHint' => 'Ricardo',
-      'profileSetup.partnerNameNote' => 'Your partner\'s name stays on your account only.',
-      'profileSetup.themeLabel' => 'Your app colour',
-      'profileSetup.themeRose' => 'Rose',
-      'profileSetup.themeBlue' => 'Blue',
-      'profileSetup.themeNeutral' => 'Neutral',
-      'profileSetup.dateLabel' => 'When did you start?',
-      'profileSetup.dateHint' => 'Pick a date',
-      'profileSetup.dateFormat' => ({
-        required Object month,
-        required Object day,
-        required Object year,
-      }) => '${month} ${day}, ${year}',
-      'profileSetup.months.0' => 'January',
-      'profileSetup.months.1' => 'February',
-      'profileSetup.months.2' => 'March',
-      'profileSetup.months.3' => 'April',
-      'profileSetup.months.4' => 'May',
-      'profileSetup.months.5' => 'June',
-      'profileSetup.months.6' => 'July',
-      'profileSetup.months.7' => 'August',
-      'profileSetup.months.8' => 'September',
-      'profileSetup.months.9' => 'October',
-      'profileSetup.months.10' => 'November',
-      'profileSetup.months.11' => 'December',
-      'profileSetup.continueButton' => 'Continue',
-      'profileSetup.errors.INVALID_DATE' =>
-        'That date does not look right. Pick one between 1950 and today.',
-      'profileSetup.errors.NETWORK' => 'No connection. Your answers are still here, try again.',
-      'profileSetup.errors.other' => 'Could not save right now. Try again.',
-      'quickSlip.dateLine' => ({
-        required Object weekday,
-        required Object month,
-        required Object day,
-      }) => '${weekday}, ${month} ${day}',
-      'quickSlip.weekdays.0' => 'Monday',
-      'quickSlip.weekdays.1' => 'Tuesday',
-      'quickSlip.weekdays.2' => 'Wednesday',
-      'quickSlip.weekdays.3' => 'Thursday',
-      'quickSlip.weekdays.4' => 'Friday',
-      'quickSlip.weekdays.5' => 'Saturday',
-      'quickSlip.weekdays.6' => 'Sunday',
-      'quickSlip.monthsShort.0' => 'Jan',
-      'quickSlip.monthsShort.1' => 'Feb',
-      'quickSlip.monthsShort.2' => 'Mar',
-      'quickSlip.monthsShort.3' => 'Apr',
-      'quickSlip.monthsShort.4' => 'May',
-      'quickSlip.monthsShort.5' => 'Jun',
-      'quickSlip.monthsShort.6' => 'Jul',
-      'quickSlip.monthsShort.7' => 'Aug',
-      'quickSlip.monthsShort.8' => 'Sep',
-      'quickSlip.monthsShort.9' => 'Oct',
-      'quickSlip.monthsShort.10' => 'Nov',
-      'quickSlip.monthsShort.11' => 'Dec',
-      'quickSlip.title' => 'What made you happy?',
-      'quickSlip.titleHighlight' => 'happy',
-      'quickSlip.subtitle' => 'One line is enough. 30 seconds.',
-      'quickSlip.hint' => 'E.g. made coffee before I woke up',
-      'quickSlip.categories.said' => 'Said something',
-      'quickSlip.categories.did' => 'Did something',
-      'quickSlip.categories.noticed' => 'Noticed me',
-      'quickSlip.categories.helped' => 'Helped me',
-      'quickSlip.categories.other' => '',
-      'quickSlip.privacyNote' => 'It stays private. On Sunday you choose what goes on the card.',
-      'quickSlip.save' => 'Save',
-      'quickSlip.saved.title' => 'Saved',
-      'quickSlip.saved.added' => 'Slip added to this week.',
-      'quickSlip.saved.queued' => 'Saved on this phone. We send it when the connection is back.',
-      'quickSlip.saved.undoHint' => 'Undo for 30 seconds.',
-      'quickSlip.saved.undo' => 'Undo',
-      'quickSlip.saved.done' => 'Done',
-      'quickSlip.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
-      'quickSlip.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
-      'quickSlip.errors.other' => 'Could not save right now. Your text is still here, try again.',
-      'reminders.title' => 'Repara',
-      'reminders.dailyIdea' => 'A small idea for today.',
-      'reminders.dates' => 'A date is coming up.',
-      'reminders.weeklyCard' => 'Your card is ready.',
-      'reminders.discreet' => 'Open the app to see.',
-      'slipsList.title' => 'Slips',
-      'slipsList.scopeWeek' => 'This week',
-      'slipsList.scopeAll' => 'All',
-      'slipsList.private' => 'Private',
-      'slipsList.thisWeek' => 'This week',
-      'slipsList.lastWeek' => 'Last week',
-      'slipsList.weekRange' => ({
-        required Object start,
-        required Object end,
-      }) => '${start} – ${end}',
-      'slipsList.dateShort' => ({required Object month, required Object day}) => '${month} ${day}',
-      'slipsList.dayLine' => ({
-        required Object weekday,
-        required Object category,
-      }) => '${weekday} · ${category}',
-      'slipsList.weekdaysShort.0' => 'Mon',
-      'slipsList.weekdaysShort.1' => 'Tue',
-      'slipsList.weekdaysShort.2' => 'Wed',
-      'slipsList.weekdaysShort.3' => 'Thu',
-      'slipsList.weekdaysShort.4' => 'Fri',
-      'slipsList.weekdaysShort.5' => 'Sat',
-      'slipsList.weekdaysShort.6' => 'Sun',
-      'slipsList.monthsShort.0' => 'Jan',
-      'slipsList.monthsShort.1' => 'Feb',
-      'slipsList.monthsShort.2' => 'Mar',
-      'slipsList.monthsShort.3' => 'Apr',
-      'slipsList.monthsShort.4' => 'May',
-      'slipsList.monthsShort.5' => 'Jun',
-      'slipsList.monthsShort.6' => 'Jul',
-      'slipsList.monthsShort.7' => 'Aug',
-      'slipsList.monthsShort.8' => 'Sep',
-      'slipsList.monthsShort.9' => 'Oct',
-      'slipsList.monthsShort.10' => 'Nov',
-      'slipsList.monthsShort.11' => 'Dec',
-      'slipsList.categories.said' => 'Said something',
-      'slipsList.categories.did' => 'Did something',
-      'slipsList.categories.noticed' => 'Noticed me',
-      'slipsList.categories.helped' => 'Helped',
-      'slipsList.categories.other' => '',
-      'slipsList.pastCards' => 'Past cards',
-      'slipsList.emptyTitle' => 'Nothing yet',
-      'slipsList.emptyText' => 'A slip is one good thing, in one line.',
-      'slipsList.emptyAction' => 'Add a slip',
-      'slipsList.errorTitle' => 'Could not load your slips',
-      'slipsList.errorText' => 'They are still saved. Try again.',
-      'sundayCard.title' => 'Your card',
-      'sundayCard.edit' => 'Edit',
-      'sundayCard.save' => 'Save',
-      'sundayCard.cancel' => 'Cancel',
-      'sundayCard.noteLabel' => 'Closing note',
-      'sundayCard.noteHint' => 'Thank you for this week.',
-      'sundayCard.moveUp' => 'Move up',
-      'sundayCard.moveDown' => 'Move down',
-      'sundayCard.remove' => 'Remove from card',
-      'sundayCard.emptyTitle' => 'A week without slips',
-      'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',
-      'sundayCard.emptyAction' => 'Note a slip',
-      'sundayCard.errorTitle' => 'Could not load the card',
-      'sundayCard.errorText' => 'Your slips are still saved. Try again.',
-      'sundayCard.saveError' => 'Could not save the card. Try again.',
-      'sundayCard.openFromToday' => 'See the draft',
-      'sundayCard.deliverError' => 'Could not send right now. The card is still here, try again.',
-      'sundayCard.send.action' => 'Send',
-      'sundayCard.send.invite' => 'Invite to send',
-      'sundayCard.send.needsPartner' =>
-        'To send the card in the app, your person has to be connected.',
-      'sundayCard.send.title' => 'Send the card?',
-      'sundayCard.send.text' => ({
-        required Object name,
-      }) => '${name} receives it now. Once sent, the card does not change.',
-      'sundayCard.send.textNoName' =>
-        'Your person receives it now. Once sent, the card does not change.',
-      'sundayCard.send.confirm' => 'Send',
-      'sundayCard.hold.action' => 'Hold this week',
-      'sundayCard.hold.title' => 'Hold this week?',
-      'sundayCard.hold.text' =>
-        'The card is kept and nothing is lost. You can send it whenever you like.',
-      'sundayCard.hold.confirm' => 'Hold',
-      'sundayCard.held.title' => 'Held this week',
-      'sundayCard.held.titleHighlight' => 'Held',
-      'sundayCard.held.text' => 'Your card waits. Send it when you are ready. Nothing is lost.',
-      'sundayCard.held.keepHolding' => 'Keep holding',
-      'sundayCard.held.sendAnyway' => 'Send anyway',
-      'sundayCard.sent.title' => 'Sent',
-      'sundayCard.sent.text' => ({required Object name}) => 'The card went to ${name}.',
-      'sundayCard.sent.textNoName' => 'The card went to your person.',
-      'sundayCard.sent.done' => 'Done',
-      'tabs.today' => 'Today',
-      'tabs.slips' => 'Slips',
-      'tabs.together' => 'Together',
-      'tabs.memories' => 'Memories',
-      'tabs.capture' => 'New slip',
-      'tabs.soonTitle' => 'Under construction',
-      'tabs.soonText' => 'This part of the app is still being prepared.',
-      'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
-      'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
-      'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',
-      'today.greetingNoName' => 'Hello',
-      'today.dateLine' => ({
-        required Object weekday,
-        required Object month,
-        required Object day,
-      }) => '${weekday}, ${month} ${day}',
-      'today.weekdays.0' => 'Monday',
-      'today.weekdays.1' => 'Tuesday',
-      'today.weekdays.2' => 'Wednesday',
-      'today.weekdays.3' => 'Thursday',
-      'today.weekdays.4' => 'Friday',
-      'today.weekdays.5' => 'Saturday',
-      'today.weekdays.6' => 'Sunday',
-      'today.months.0' => 'January',
-      'today.months.1' => 'February',
-      'today.months.2' => 'March',
-      'today.months.3' => 'April',
-      'today.months.4' => 'May',
-      'today.months.5' => 'June',
-      'today.months.6' => 'July',
-      'today.months.7' => 'August',
-      'today.months.8' => 'September',
-      'today.months.9' => 'October',
-      'today.months.10' => 'November',
-      'today.months.11' => 'December',
-      'today.togetherYears' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-          count,
-          one: '1 year',
-          other: '${count} years',
-        ),
-      'today.togetherMonths' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-          count,
-          one: '1 month',
-          other: '${count} months',
-        ),
-      'today.togetherDays' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-          count,
-          one: '1 day',
-          other: '${count} days',
-        ),
-      'today.togetherJoin' => ({
-        required Object first,
-        required Object second,
-      }) => '${first} and ${second}',
-      'today.invitePerson' => 'Invite your person',
-      'today.offline' => 'No connection. Showing what was saved.',
-      'today.pendingInviteTitle' => 'Invite sent',
-      'today.pendingInviteText' => 'They have not joined yet. Send again or revoke.',
-      'today.pendingInviteAction' => 'See invite',
-      'today.answer' => 'Answer',
-      'today.slipsThisWeek' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-          count,
-          zero: 'No slips this week',
-          one: '1 slip this week',
-          other: '${count} slips this week',
-        ),
-      'today.weekHintEmpty' => 'Note one good thing when you remember it.',
-      'today.weekHint' => 'Your Sunday card comes from these slips.',
-      'today.forToday' => 'For today',
-      'today.ideaLabel' => 'Idea of the day',
-      'today.slipsThisWeekPrivate' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-          count,
-          zero: 'Your private slips: none this week',
-          one: 'Your private slips: 1 this week',
-          other: 'Your private slips: ${count} this week',
-        ),
-      'today.sundayCardLabel' => 'Sunday card',
-      'today.sundayCardTitle' => 'Your card for this week',
-      'today.inviteCardLabel' => 'Invite',
-      'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',
-      'today.inviteCardTitleNoName' => 'Invite your person',
-      'today.inviteCardText' => 'Shared cards and tools need both of you.',
-      'today.privateTag' => 'Only yours',
-      'today.privateQuestion' => 'How was your day, really?',
-      'today.privateHighlight' => 'day',
-      'today.privateAction' => 'Note a slip',
-      'today.emptyWeekTag' => 'No rush',
-      'today.emptyWeekQuestion' => 'What was one good thing today?',
-      'today.emptyWeekHighlight' => 'good',
-      'today.emptyWeekAction' => 'Note a slip',
-      'today.nothingReceived' => 'No new cards. No rush.',
-      'today.cardReceived' => 'You received a card',
-      'today.cardReceivedAction' => 'See card',
-      'today.firstDayLabel' => 'Getting started',
-      'today.firstDayGreeting' => ({required Object name}) => 'Hi, ${name}',
-      'today.firstDaySubtitle' => 'so glad you are here',
-      'today.firstDayTag' => 'Good start',
-      'today.firstDayTitle' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-          count,
-          one: 'You have 1 slip.',
-          other: 'You have ${count} slips.',
-        ),
-      'today.firstDayHighlight' =>
-        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-          count,
-          one: '1 slip',
-          other: '${count} slips',
-        ),
-      'today.firstDayText' =>
-        'A slip is one good thing, in one line. On Sunday they become a card.',
-      'today.firstDayAction' => 'Note one more',
-      'today.errorTitle' => 'Could not load Today',
-      'today.errorText' => 'Your slips are safe. Try again.',
-      'today.cardReceivedNamed' => ({required Object name}) => '${name} sent you a card',
-      'unpair.appBarTitle' => 'Unpair',
-      'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
-      'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',
-      'unpair.confirm' => 'Unpair',
-      'unpair.cancel' => 'Cancel',
-      'unpair.unnamedPartner' => 'your person',
-      'unpair.done.title' => 'Unpaired',
-      'unpair.done.highlight' => 'Unpaired',
-      'unpair.done.text' => 'Your own data stays yours.',
-      'unpair.done.keepOption' => 'Keep a copy of the shared items',
-      'unpair.done.deleteOption' => 'Delete shared items',
-      'unpair.done.plusNote' => 'The Plus that covered your partner ends.',
-      'unpair.done.continueLabel' => 'Continue',
-      'unpair.relationship.title' => 'Relationship',
-      'unpair.relationship.unpair' => ({required Object name}) => 'Unpair from ${name}',
-      'unpair.relationship.ended' => 'The relationship ended',
-      'unpair.breakup.appBarTitle' => 'We broke up',
-      'unpair.breakup.title' => 'I am sorry',
-      'unpair.breakup.highlight' => 'sorry',
-      'unpair.breakup.text' =>
-        'You decide what to keep. Nothing is deleted without you wanting it.',
-      'unpair.breakup.cancel' => 'Cancel',
-      'unpair.breakup.continueLabel' => 'Continue',
-      'unpair.partnerNotice.title' => ({required Object name}) => '${name} unpaired',
-      'unpair.partnerNotice.titleNoName' => 'Your partner unpaired',
-      'unpair.partnerNotice.highlight' => 'unpaired',
-      'unpair.partnerNotice.text' => 'Your data stays yours. Shared cards stopped.',
-      'unpair.partnerNotice.ok' => 'Ok',
-      'unpair.errors.NETWORK' => 'No connection. Check your internet and try again.',
-      'unpair.errors.STILL_PAIRED' => 'The relationship is still active. Try again.',
-      'unpair.errors.other' => 'Could not unpair right now. Try again.',
-      'welcome.headline' => 'Small good things, said out loud.',
-      'welcome.headlineHighlight' => 'said out loud',
-      'welcome.subtitle' => 'A light way to notice what the other does well, every week.',
-      'welcome.start' => 'Get started',
-      'welcome.haveAccount' => 'I already have an account',
-      'welcome.debugSignIn' => 'Sign in (debug)',
-      _ => null,
-    };
+          'acceptInvite.title' => 'Got an invite?',
+          'acceptInvite.titleHighlight' => 'invite',
+          'acceptInvite.subtitle' => 'Type the code the other person sent so you can connect.',
+          'acceptInvite.codeLabel' => 'Invite code',
+          'acceptInvite.codeHint' => 'ABCD2345',
+          'acceptInvite.privacyNote' =>
+            'Accepting shares cards and tools. Your private notes stay private.',
+          'acceptInvite.accept' => 'Accept',
+          'acceptInvite.connected.title' => 'You are connected',
+          'acceptInvite.connected.titleHighlight' => 'connected',
+          'acceptInvite.connected.text' =>
+            'Shared cards and tools are on. Everything private stays private.',
+          'acceptInvite.connected.goToToday' => 'Go to Today',
+          'acceptInvite.unusable.title' => 'That invite is old',
+          'acceptInvite.unusable.titleHighlight' => 'old',
+          'acceptInvite.unusable.text' =>
+            'Check the code or ask for a new invite from whoever invited you.',
+          'acceptInvite.unusable.tryAgain' => 'Type again',
+          'acceptInvite.unusable.close' => 'Close',
+          'acceptInvite.errors.ALREADY_PAIRED' => 'You are already connected with someone.',
+          'acceptInvite.errors.COUPLE_FULL' => 'That space already has two people.',
+          'acceptInvite.errors.RATE_LIMITED' =>
+            'Too many tries in a row. Wait a bit and try again.',
+          'acceptInvite.errors.NETWORK' => 'No connection. Check your internet and try again.',
+          'acceptInvite.errors.other' => 'Could not connect right now. Try again.',
+          'authentication.signInTitle' => 'Sign in',
+          'authentication.signInSubtitle' => 'No email and password. Just Apple or Google.',
+          'authentication.signInNote' => 'Signing in takes you straight to your Today.',
+          'authentication.existingAccountTitle' => 'You already have an account',
+          'authentication.existingAccountSubtitle' => 'Sign in to pick up where you left off.',
+          'authentication.continueWithApple' => 'Continue with Apple',
+          'authentication.continueWithGoogle' => 'Continue with Google',
+          'authentication.errors.NETWORK' => 'No connection. Check your internet and try again.',
+          'authentication.errors.other' => 'Could not sign you in right now. Try again.',
+          'cardView.forPartner' => ({required Object name}) => 'For ${name}',
+          'cardView.forPartnerNoName' => 'For your person',
+          'cardView.goodThings' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  zero: 'No good things yet',
+                  one: '1 good thing this week',
+                  other: '${count} good things this week',
+                ),
+          'cardView.weekdays.0' => 'mon',
+          'cardView.weekdays.1' => 'tue',
+          'cardView.weekdays.2' => 'wed',
+          'cardView.weekdays.3' => 'thu',
+          'cardView.weekdays.4' => 'fri',
+          'cardView.weekdays.5' => 'sat',
+          'cardView.weekdays.6' => 'sun',
+          'cardView.categories.said' => 'said something',
+          'cardView.categories.did' => 'did something',
+          'cardView.categories.noticed' => 'noticed me',
+          'cardView.categories.helped' => 'helped me',
+          'cardView.categories.other' => '',
+          'cardsList.title' => 'Past cards',
+          'cardsList.dateShort' => ({
+            required Object month,
+            required Object day,
+          }) => '${month} ${day}',
+          'cardsList.monthsShort.0' => 'Jan',
+          'cardsList.monthsShort.1' => 'Feb',
+          'cardsList.monthsShort.2' => 'Mar',
+          'cardsList.monthsShort.3' => 'Apr',
+          'cardsList.monthsShort.4' => 'May',
+          'cardsList.monthsShort.5' => 'Jun',
+          'cardsList.monthsShort.6' => 'Jul',
+          'cardsList.monthsShort.7' => 'Aug',
+          'cardsList.monthsShort.8' => 'Sep',
+          'cardsList.monthsShort.9' => 'Oct',
+          'cardsList.monthsShort.10' => 'Nov',
+          'cardsList.monthsShort.11' => 'Dec',
+          'cardsList.slipCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  zero: 'no slips',
+                  one: '1 slip',
+                  other: '${count} slips',
+                ),
+          'cardsList.sent' => 'Sent',
+          'cardsList.received' => 'Received',
+          'cardsList.opened' => 'opened',
+          'cardsList.reacted' => 'reaction',
+          'cardsList.replied' => 'replied',
+          'cardsList.emptyTitle' => 'No cards yet',
+          'cardsList.emptyText' => 'When a card is sent or arrives, it shows up here. No rush.',
+          'cardsList.errorTitle' => 'Could not load the cards',
+          'cardsList.errorText' => 'They are still saved. Try again.',
+          'cardsList.detailTitle' => 'Card',
+          'cardsList.detailErrorTitle' => 'Could not open the card',
+          'cardsList.errors.CARD_NOT_FOUND' => 'That card is no longer available.',
+          'cardsList.errors.other' => 'It is still saved. Try again.',
+          'cardsList.reactionPrompt' => 'How do you want to reply?',
+          'cardsList.reactionThankYou' => 'Thank you',
+          'cardsList.reactionHug' => 'Hug',
+          'cardsList.reactionMadeMyDay' => 'Made my day',
+          'cardsList.reactionNoted' => 'Noted',
+          'cardsList.reactionError' => 'Could not reply right now. Try again.',
+          'cardsList.responseReceivedName' => ({required Object name}) => '${name}',
+          'cardsList.responseReceivedNoName' => 'Your person replied',
+          'cardsList.responseReceivedVerb' => 'replied',
+          'cardsList.responseQuote' => ({required Object label}) => '“${label}”',
+          'cardsList.notFound' => 'That card is no longer available.',
+          'cardsList.reactionQuoteMadeMyDay' => 'That made my week.',
+          'common.appName' => 'Flutter Bloc Starter',
+          'common.send' => 'Send',
+          'common.save' => 'Save',
+          'common.retry' => 'Retry',
+          'common.loading' => 'Loading',
+          'common.username' => 'Username',
+          'common.email' => 'Email',
+          'common.password' => 'Password',
+          'common.firstName' => 'First Name',
+          'common.lastName' => 'Last Name',
+          'common.genericError' => 'Something went wrong',
+          'firstSlip.title' => 'Start with one good thing',
+          'firstSlip.titleHighlight' => 'one good thing',
+          'firstSlip.subtitle' => 'What did your partner do lately that made you smile? 30 seconds is enough. No account yet.',
+          'firstSlip.hint' => 'E.g. made coffee before I woke up',
+          'firstSlip.localNote' => 'Stays saved on this phone only.',
+          'firstSlip.save' => 'Save',
+          'firstSlip.saveError' => 'Could not keep it right now. Try again.',
+          'ideaDetail.label' => 'Idea of the day',
+          'ideaDetail.whyTitle' => 'Why this idea',
+          'ideaDetail.yourPhase' => 'Your phase',
+          'ideaDetail.yourGoal' => 'Your goal',
+          'ideaDetail.willDo' => 'I will do it',
+          'ideaDetail.done' => 'Noted. Nice!',
+          'ideaDetail.another' => 'Another idea',
+          'ideaDetail.later' => 'Later',
+          'ideaDetail.laterTitle' => 'When should we remind you?',
+          'ideaDetail.tonight' => 'Tonight',
+          'ideaDetail.tomorrow' => 'Tomorrow morning',
+          'ideaDetail.weekend' => 'This weekend',
+          'ideaDetail.reminderSet' => 'Done. We will remind you with a gentle nudge.',
+          'ideaDetail.reminderSetNotificationsOff' =>
+            'Reminder saved. Turn notifications on in settings to receive it.',
+          'ideaDetail.reminderError' => 'Could not save the reminder. Try again.',
+          'ideaDetail.emptyTitle' => 'No ideas right now',
+          'ideaDetail.emptyText' => 'Come back later. In the meantime, note a slip.',
+          'ideaDetail.errorTitle' => 'Could not load the idea',
+          'ideaDetail.errorText' => 'Try again in a moment.',
+          'intro.skip' => 'Skip',
+          'intro.continueButton' => 'Continue',
+          'intro.phase.title' => 'Where are you two right now?',
+          'intro.phase.titleHighlight' => 'right now',
+          'intro.phase.subtitle' => 'Pick the closest one. You can change it later.',
+          'intro.phase.options.dating' => 'Dating',
+          'intro.phase.options.living_together' => 'Living together',
+          'intro.phase.options.engaged' => 'Engaged',
+          'intro.phase.options.married' => 'Married',
+          'intro.phase.options.with_kids' => 'With kids',
+          'intro.phase.options.long_distance' => 'Long distance',
+          'intro.phase.options.restarting' => 'Starting over',
+          'intro.phase.options.other' => '',
+          'intro.goals.title' => 'What do you want from the app?',
+          'intro.goals.titleHighlight' => 'app',
+          'intro.goals.subtitle' => 'Pick as many as you like.',
+          'intro.goals.options.reconnect' => 'Reconnect',
+          'intro.goals.options.fight_less' => 'Fight less',
+          'intro.goals.options.keep_romance' => 'Keep the romance',
+          'intro.goals.options.remember_dates' => 'Remember dates',
+          'intro.goals.options.organize_routine' => 'Organise the routine',
+          'intro.goals.options.just_record' => 'Just note the good things',
+          'intro.goals.options.other' => '',
+          'intro.theme.title' => 'Which colour suits you?',
+          'intro.theme.titleHighlight' => 'colour',
+          'intro.theme.subtitle' =>
+            'You pick the colour, not the gender. The features are the same.',
+          'intro.theme.rose' => 'Soft rose',
+          'intro.theme.roseSupport' => 'Delicate and warm',
+          'intro.theme.blue' => 'Soft blue',
+          'intro.theme.blueSupport' => 'Calm and light',
+          'intro.theme.neutral' => 'Neutral',
+          'intro.theme.neutralSupport' => 'Paper and green',
+          'intro.theme.footnote' => 'You can change it later in Settings, Appearance.',
+          'invite.title' => ({required Object name}) => 'Invite ${name}',
+          'invite.titleNoName' => 'Invite your person',
+          'invite.messageIntro' => 'This message will be sent:',
+          'invite.message' => ({
+            required Object code,
+          }) => 'I started something small for us. To connect in the app, use the code ${code}.',
+          'invite.expiryNote' => ({
+            required Object days,
+          }) => 'The invite is valid for ${days} days. Only the latest invite you create works.',
+          'invite.share' => 'Share invite',
+          'invite.copy' => 'Copy invite',
+          'invite.sentTitle' => 'Invite sent',
+          'invite.sentHighlight' => 'sent',
+          'invite.sentText' => ({
+            required Object name,
+          }) => '${name} has not joined yet. In the meantime you can use the app on your own.',
+          'invite.sentTextNoName' =>
+            'Your person has not joined yet. In the meantime you can use the app on your own.',
+          'invite.resend' => 'Send again',
+          'invite.revoke' => 'Revoke',
+          'invite.errorTitle' => 'Could not create the invite',
+          'invite.errors.ALREADY_PAIRED' => 'You are already connected with someone.',
+          'invite.errors.RATE_LIMITED' => 'You created too many invites today. Try again tomorrow.',
+          'invite.errors.NETWORK' => 'No connection. Check your internet and try again.',
+          'invite.errors.other' => 'Something went wrong. Try again.',
+          'need.title' => 'I need…',
+          'need.titleHighlight' => 'need',
+          'need.subtitle' => 'Pick one thing. Your partner gets a gentle note, no pressure.',
+          'need.options.hug' => 'A hug',
+          'need.options.talk' => 'To talk',
+          'need.options.help_home' => 'Help at home',
+          'need.options.quiet' => 'Some quiet time',
+          'need.options.time_together' => 'Time together',
+          'need.options.rest' => 'To rest',
+          'need.options.other' => '',
+          'need.note' => 'It\'s not a demand. It\'s just a simple way to ask.',
+          'need.send' => 'Send',
+          'need.sent.title' => 'Sent',
+          'need.sent.text' => 'Your partner will see it when they open the app.',
+          'need.sent.done' => 'Done',
+          'need.errors.NOT_PAIRED' =>
+            'To send this, you need to be connected with your partner in the app.',
+          'need.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'need.errors.other' => 'Couldn\'t send right now. Try again.',
+          'notFound.title' => '404',
+          'notFound.description' => 'Page not found',
+          'notFound.buttonBack' => 'Go back home',
+          'notificationPermission.label' => 'Reminders',
+          'notificationPermission.title' => 'Gentle reminders?',
+          'notificationPermission.titleHighlight' => 'Gentle',
+          'notificationPermission.pointLimit' => 'At most 1 or 2 a day.',
+          'notificationPermission.pointPrivate' => 'They never show names on the lock screen.',
+          'notificationPermission.pointChoice' => 'You choose what arrives and when.',
+          'notificationPermission.changeLater' => 'You can change this whenever you like.',
+          'notificationPermission.notNow' => 'Not now',
+          'notificationPermission.allow' => 'Allow',
+          'notificationPermission.offBanner' => 'Reminders are off. Turn them on in settings.',
+          'notificationPermission.openSettings' => 'Open settings',
+          'notificationPermission.close' => 'Close',
+          'partnerStep.title' => 'Want to bring your partner?',
+          'partnerStep.titleHighlight' => 'partner',
+          'partnerStep.subtitle' => 'The app works on your own. Invite whenever you want.',
+          'partnerStep.inviteTitle' => 'Send an invite',
+          'partnerStep.inviteSupport' => 'Your person joins with a code',
+          'partnerStep.aloneTitle' => 'Start on my own for now',
+          'partnerStep.aloneSupport' => 'Your slips stay with you only',
+          'partnerStep.haveCode' => 'I have an invite code',
+          'partnerStep.continueButton' => 'Continue',
+          'profileSetup.title' => 'The basics',
+          'profileSetup.titleHighlight' => 'basics',
+          'profileSetup.subtitle' =>
+            'Used for the words in the app and for the first date of your story.',
+          'profileSetup.nameLabel' => 'Your name',
+          'profileSetup.nameHint' => 'Marina',
+          'profileSetup.partnerNameLabel' => 'Partner\'s name',
+          'profileSetup.partnerNameHint' => 'Ricardo',
+          'profileSetup.partnerNameNote' => 'Your partner\'s name stays on your account only.',
+          'profileSetup.themeLabel' => 'Your app colour',
+          'profileSetup.themeRose' => 'Rose',
+          'profileSetup.themeBlue' => 'Blue',
+          'profileSetup.themeNeutral' => 'Neutral',
+          'profileSetup.dateLabel' => 'When did you start?',
+          'profileSetup.dateHint' => 'Pick a date',
+          'profileSetup.dateFormat' => ({
+            required Object month,
+            required Object day,
+            required Object year,
+          }) => '${month} ${day}, ${year}',
+          'profileSetup.months.0' => 'January',
+          'profileSetup.months.1' => 'February',
+          'profileSetup.months.2' => 'March',
+          'profileSetup.months.3' => 'April',
+          'profileSetup.months.4' => 'May',
+          'profileSetup.months.5' => 'June',
+          'profileSetup.months.6' => 'July',
+          'profileSetup.months.7' => 'August',
+          'profileSetup.months.8' => 'September',
+          'profileSetup.months.9' => 'October',
+          'profileSetup.months.10' => 'November',
+          'profileSetup.months.11' => 'December',
+          'profileSetup.continueButton' => 'Continue',
+          'profileSetup.errors.INVALID_DATE' =>
+            'That date does not look right. Pick one between 1950 and today.',
+          'profileSetup.errors.NETWORK' => 'No connection. Your answers are still here, try again.',
+          'profileSetup.errors.other' => 'Could not save right now. Try again.',
+          'quickSlip.dateLine' => ({
+            required Object weekday,
+            required Object month,
+            required Object day,
+          }) => '${weekday}, ${month} ${day}',
+          'quickSlip.weekdays.0' => 'Monday',
+          'quickSlip.weekdays.1' => 'Tuesday',
+          'quickSlip.weekdays.2' => 'Wednesday',
+          'quickSlip.weekdays.3' => 'Thursday',
+          'quickSlip.weekdays.4' => 'Friday',
+          'quickSlip.weekdays.5' => 'Saturday',
+          'quickSlip.weekdays.6' => 'Sunday',
+          'quickSlip.monthsShort.0' => 'Jan',
+          'quickSlip.monthsShort.1' => 'Feb',
+          'quickSlip.monthsShort.2' => 'Mar',
+          'quickSlip.monthsShort.3' => 'Apr',
+          'quickSlip.monthsShort.4' => 'May',
+          'quickSlip.monthsShort.5' => 'Jun',
+          'quickSlip.monthsShort.6' => 'Jul',
+          'quickSlip.monthsShort.7' => 'Aug',
+          'quickSlip.monthsShort.8' => 'Sep',
+          'quickSlip.monthsShort.9' => 'Oct',
+          'quickSlip.monthsShort.10' => 'Nov',
+          'quickSlip.monthsShort.11' => 'Dec',
+          'quickSlip.title' => 'What made you happy?',
+          'quickSlip.titleHighlight' => 'happy',
+          'quickSlip.subtitle' => 'One line is enough. 30 seconds.',
+          'quickSlip.hint' => 'E.g. made coffee before I woke up',
+          'quickSlip.categories.said' => 'Said something',
+          'quickSlip.categories.did' => 'Did something',
+          'quickSlip.categories.noticed' => 'Noticed me',
+          'quickSlip.categories.helped' => 'Helped me',
+          'quickSlip.categories.other' => '',
+          'quickSlip.privacyNote' =>
+            'It stays private. On Sunday you choose what goes on the card.',
+          'quickSlip.save' => 'Save',
+          'quickSlip.saved.title' => 'Saved',
+          'quickSlip.saved.added' => 'Slip added to this week.',
+          'quickSlip.saved.queued' =>
+            'Saved on this phone. We send it when the connection is back.',
+          'quickSlip.saved.undoHint' => 'Undo for 30 seconds.',
+          'quickSlip.saved.undo' => 'Undo',
+          'quickSlip.saved.done' => 'Done',
+          'quickSlip.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
+          'quickSlip.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
+          'quickSlip.errors.other' =>
+            'Could not save right now. Your text is still here, try again.',
+          'reminders.title' => 'Repara',
+          'reminders.dailyIdea' => 'A small idea for today.',
+          'reminders.dates' => 'A date is coming up.',
+          'reminders.weeklyCard' => 'Your card is ready.',
+          'reminders.discreet' => 'Open the app to see.',
+          'slipKind.switcherTitle' => 'Other ways to write it down',
+          'slipKind.needEntry' => 'I need…',
+          'slipKind.kinds.specific' => 'Specific',
+          'slipKind.kinds.if_then' => 'If… then',
+          'slipKind.kinds.invisible' => 'Invisible',
+          'slipKind.kinds.other' => '',
+          'slipKind.specific.title' => 'What exactly did they do?',
+          'slipKind.specific.titleHighlight' => 'exactly',
+          'slipKind.specific.subtitle' => 'Details help you remember why it mattered.',
+          'slipKind.specific.hint' => 'E.g. took out the trash without being asked',
+          'slipKind.specific.feelingLabel' => 'How did you feel?',
+          'slipKind.specific.feelingHint' => 'Optional',
+          'slipKind.ifThen.title' => 'Want to tell them?',
+          'slipKind.ifThen.titleHighlight' => 'tell',
+          'slipKind.ifThen.subtitle' => 'A small plan: when this happens, you do that.',
+          'slipKind.ifThen.ifLabel' => 'If…',
+          'slipKind.ifThen.ifHint' => 'E.g. I feel overwhelmed',
+          'slipKind.ifThen.thenLabel' => 'Then…',
+          'slipKind.ifThen.thenHint' => 'E.g. I ask for 10 minutes alone',
+          'slipKind.invisible.title' => 'Things nobody notices',
+          'slipKind.invisible.titleHighlight' => 'nobody notices',
+          'slipKind.invisible.subtitle' => 'Only for you. This never goes into a card.',
+          'slipKind.invisible.hint' => 'E.g. remembered the kids\' appointment',
+          'slipKind.invisible.areaLabel' => 'What kind of work?',
+          'slipKind.invisible.private' => 'Stays with you and never enters a card.',
+          'slipKind.workAreas.planning' => 'Planning',
+          'slipKind.workAreas.dates' => 'Dates',
+          'slipKind.workAreas.kitchen' => 'Kitchen',
+          'slipKind.workAreas.cleaning' => 'Cleaning',
+          'slipKind.workAreas.kids' => 'Kids',
+          'slipKind.workAreas.emotional' => 'Emotional',
+          'slipKind.workAreas.finances' => 'Finances',
+          'slipKind.workAreas.other' => 'Other',
+          'slipKind.save' => 'Save',
+          'slipKind.saved.title' => 'Saved',
+          'slipKind.saved.added' => 'Written down.',
+          'slipKind.saved.queued' =>
+            'Saved on this phone. We\'ll send it when the connection is back.',
+          'slipKind.saved.done' => 'Done',
+          'slipKind.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
+          'slipKind.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'slipKind.errors.other' =>
+            'Couldn\'t save right now. Your text is still here, try again.',
+          'slipsList.title' => 'Slips',
+          'slipsList.scopeWeek' => 'This week',
+          'slipsList.scopeAll' => 'All',
+          'slipsList.private' => 'Private',
+          'slipsList.thisWeek' => 'This week',
+          'slipsList.lastWeek' => 'Last week',
+          'slipsList.weekRange' => ({
+            required Object start,
+            required Object end,
+          }) => '${start} – ${end}',
+          'slipsList.dateShort' => ({
+            required Object month,
+            required Object day,
+          }) => '${month} ${day}',
+          'slipsList.dayLine' => ({
+            required Object weekday,
+            required Object category,
+          }) => '${weekday} · ${category}',
+          'slipsList.weekdaysShort.0' => 'Mon',
+          'slipsList.weekdaysShort.1' => 'Tue',
+          'slipsList.weekdaysShort.2' => 'Wed',
+          'slipsList.weekdaysShort.3' => 'Thu',
+          'slipsList.weekdaysShort.4' => 'Fri',
+          'slipsList.weekdaysShort.5' => 'Sat',
+          'slipsList.weekdaysShort.6' => 'Sun',
+          'slipsList.monthsShort.0' => 'Jan',
+          'slipsList.monthsShort.1' => 'Feb',
+          'slipsList.monthsShort.2' => 'Mar',
+          'slipsList.monthsShort.3' => 'Apr',
+          'slipsList.monthsShort.4' => 'May',
+          'slipsList.monthsShort.5' => 'Jun',
+          'slipsList.monthsShort.6' => 'Jul',
+          'slipsList.monthsShort.7' => 'Aug',
+          'slipsList.monthsShort.8' => 'Sep',
+          'slipsList.monthsShort.9' => 'Oct',
+          'slipsList.monthsShort.10' => 'Nov',
+          'slipsList.monthsShort.11' => 'Dec',
+          'slipsList.categories.said' => 'Said something',
+          'slipsList.categories.did' => 'Did something',
+          'slipsList.categories.noticed' => 'Noticed me',
+          'slipsList.categories.helped' => 'Helped',
+          'slipsList.categories.other' => '',
+          'slipsList.pastCards' => 'Past cards',
+          'slipsList.emptyTitle' => 'Nothing yet',
+          'slipsList.emptyText' => 'A slip is one good thing, in one line.',
+          'slipsList.emptyAction' => 'Add a slip',
+          'slipsList.errorTitle' => 'Could not load your slips',
+          'slipsList.errorText' => 'They are still saved. Try again.',
+          'sundayCard.title' => 'Your card',
+          'sundayCard.edit' => 'Edit',
+          'sundayCard.save' => 'Save',
+          'sundayCard.cancel' => 'Cancel',
+          'sundayCard.noteLabel' => 'Closing note',
+          'sundayCard.noteHint' => 'Thank you for this week.',
+          'sundayCard.moveUp' => 'Move up',
+          'sundayCard.moveDown' => 'Move down',
+          'sundayCard.remove' => 'Remove from card',
+          'sundayCard.emptyTitle' => 'A week without slips',
+          'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',
+          'sundayCard.emptyAction' => 'Note a slip',
+          'sundayCard.errorTitle' => 'Could not load the card',
+          'sundayCard.errorText' => 'Your slips are still saved. Try again.',
+          'sundayCard.saveError' => 'Could not save the card. Try again.',
+          'sundayCard.openFromToday' => 'See the draft',
+          'sundayCard.deliverError' =>
+            'Could not send right now. The card is still here, try again.',
+          'sundayCard.send.action' => 'Send',
+          'sundayCard.send.invite' => 'Invite to send',
+          'sundayCard.send.needsPartner' =>
+            'To send the card in the app, your person has to be connected.',
+          'sundayCard.send.title' => 'Send the card?',
+          'sundayCard.send.text' => ({
+            required Object name,
+          }) => '${name} receives it now. Once sent, the card does not change.',
+          'sundayCard.send.textNoName' =>
+            'Your person receives it now. Once sent, the card does not change.',
+          'sundayCard.send.confirm' => 'Send',
+          'sundayCard.hold.action' => 'Hold this week',
+          'sundayCard.hold.title' => 'Hold this week?',
+          'sundayCard.hold.text' =>
+            'The card is kept and nothing is lost. You can send it whenever you like.',
+          'sundayCard.hold.confirm' => 'Hold',
+          'sundayCard.held.title' => 'Held this week',
+          'sundayCard.held.titleHighlight' => 'Held',
+          'sundayCard.held.text' => 'Your card waits. Send it when you are ready. Nothing is lost.',
+          'sundayCard.held.keepHolding' => 'Keep holding',
+          'sundayCard.held.sendAnyway' => 'Send anyway',
+          'sundayCard.sent.title' => 'Sent',
+          'sundayCard.sent.text' => ({required Object name}) => 'The card went to ${name}.',
+          'sundayCard.sent.textNoName' => 'The card went to your person.',
+          'sundayCard.sent.done' => 'Done',
+          'tabs.today' => 'Today',
+          'tabs.slips' => 'Slips',
+          'tabs.together' => 'Together',
+          'tabs.memories' => 'Memories',
+          'tabs.capture' => 'New slip',
+          'tabs.soonTitle' => 'Under construction',
+          'tabs.soonText' => 'This part of the app is still being prepared.',
+          'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
+          'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
+          'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',
+          'today.greetingNoName' => 'Hello',
+          'today.dateLine' => ({
+            required Object weekday,
+            required Object month,
+            required Object day,
+          }) => '${weekday}, ${month} ${day}',
+          'today.weekdays.0' => 'Monday',
+          'today.weekdays.1' => 'Tuesday',
+          'today.weekdays.2' => 'Wednesday',
+          'today.weekdays.3' => 'Thursday',
+          'today.weekdays.4' => 'Friday',
+          'today.weekdays.5' => 'Saturday',
+          'today.weekdays.6' => 'Sunday',
+          'today.months.0' => 'January',
+          'today.months.1' => 'February',
+          'today.months.2' => 'March',
+          'today.months.3' => 'April',
+          'today.months.4' => 'May',
+          'today.months.5' => 'June',
+          'today.months.6' => 'July',
+          'today.months.7' => 'August',
+          'today.months.8' => 'September',
+          'today.months.9' => 'October',
+          'today.months.10' => 'November',
+          'today.months.11' => 'December',
+          'today.togetherYears' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 year',
+                  other: '${count} years',
+                ),
+          'today.togetherMonths' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 month',
+                  other: '${count} months',
+                ),
+          'today.togetherDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 day',
+                  other: '${count} days',
+                ),
+          'today.togetherJoin' => ({
+            required Object first,
+            required Object second,
+          }) => '${first} and ${second}',
+          'today.invitePerson' => 'Invite your person',
+          'today.offline' => 'No connection. Showing what was saved.',
+          'today.pendingInviteTitle' => 'Invite sent',
+          'today.pendingInviteText' => 'They have not joined yet. Send again or revoke.',
+          'today.pendingInviteAction' => 'See invite',
+          'today.answer' => 'Answer',
+          'today.slipsThisWeek' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  zero: 'No slips this week',
+                  one: '1 slip this week',
+                  other: '${count} slips this week',
+                ),
+          'today.weekHintEmpty' => 'Note one good thing when you remember it.',
+          'today.weekHint' => 'Your Sunday card comes from these slips.',
+          'today.forToday' => 'For today',
+          'today.ideaLabel' => 'Idea of the day',
+          'today.slipsThisWeekPrivate' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  zero: 'Your private slips: none this week',
+                  one: 'Your private slips: 1 this week',
+                  other: 'Your private slips: ${count} this week',
+                ),
+          'today.sundayCardLabel' => 'Sunday card',
+          'today.sundayCardTitle' => 'Your card for this week',
+          'today.inviteCardLabel' => 'Invite',
+          'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',
+          'today.inviteCardTitleNoName' => 'Invite your person',
+          'today.inviteCardText' => 'Shared cards and tools need both of you.',
+          'today.privateTag' => 'Only yours',
+          'today.privateQuestion' => 'How was your day, really?',
+          'today.privateHighlight' => 'day',
+          'today.privateAction' => 'Note a slip',
+          'today.emptyWeekTag' => 'No rush',
+          'today.emptyWeekQuestion' => 'What was one good thing today?',
+          'today.emptyWeekHighlight' => 'good',
+          'today.emptyWeekAction' => 'Note a slip',
+          'today.nothingReceived' => 'No new cards. No rush.',
+          'today.cardReceived' => 'You received a card',
+          'today.cardReceivedAction' => 'See card',
+          'today.firstDayLabel' => 'Getting started',
+          'today.firstDayGreeting' => ({required Object name}) => 'Hi, ${name}',
+          'today.firstDaySubtitle' => 'so glad you are here',
+          'today.firstDayTag' => 'Good start',
+          'today.firstDayTitle' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'You have 1 slip.',
+                  other: 'You have ${count} slips.',
+                ),
+          'today.firstDayHighlight' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 slip',
+                  other: '${count} slips',
+                ),
+          'today.firstDayText' =>
+            'A slip is one good thing, in one line. On Sunday they become a card.',
+          'today.firstDayAction' => 'Note one more',
+          'today.errorTitle' => 'Could not load Today',
+          'today.errorText' => 'Your slips are safe. Try again.',
+          'today.cardReceivedNamed' => ({required Object name}) => '${name} sent you a card',
+          'unpair.appBarTitle' => 'Unpair',
+          'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
+          'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',
+          'unpair.confirm' => 'Unpair',
+          'unpair.cancel' => 'Cancel',
+          'unpair.unnamedPartner' => 'your person',
+          'unpair.done.title' => 'Unpaired',
+          'unpair.done.highlight' => 'Unpaired',
+          'unpair.done.text' => 'Your own data stays yours.',
+          'unpair.done.keepOption' => 'Keep a copy of the shared items',
+          'unpair.done.deleteOption' => 'Delete shared items',
+          'unpair.done.plusNote' => 'The Plus that covered your partner ends.',
+          'unpair.done.continueLabel' => 'Continue',
+          'unpair.relationship.title' => 'Relationship',
+          'unpair.relationship.unpair' => ({required Object name}) => 'Unpair from ${name}',
+          'unpair.relationship.ended' => 'The relationship ended',
+          'unpair.breakup.appBarTitle' => 'We broke up',
+          'unpair.breakup.title' => 'I am sorry',
+          'unpair.breakup.highlight' => 'sorry',
+          'unpair.breakup.text' =>
+            'You decide what to keep. Nothing is deleted without you wanting it.',
+          'unpair.breakup.cancel' => 'Cancel',
+          'unpair.breakup.continueLabel' => 'Continue',
+          'unpair.partnerNotice.title' => ({required Object name}) => '${name} unpaired',
+          'unpair.partnerNotice.titleNoName' => 'Your partner unpaired',
+          'unpair.partnerNotice.highlight' => 'unpaired',
+          'unpair.partnerNotice.text' => 'Your data stays yours. Shared cards stopped.',
+          'unpair.partnerNotice.ok' => 'Ok',
+          'unpair.errors.NETWORK' => 'No connection. Check your internet and try again.',
+          'unpair.errors.STILL_PAIRED' => 'The relationship is still active. Try again.',
+          _ => null,
+        } ??
+        switch (path) {
+          'unpair.errors.other' => 'Could not unpair right now. Try again.',
+          'welcome.headline' => 'Small good things, said out loud.',
+          'welcome.headlineHighlight' => 'said out loud',
+          'welcome.subtitle' => 'A light way to notice what the other does well, every week.',
+          'welcome.start' => 'Get started',
+          'welcome.haveAccount' => 'I already have an account',
+          'welcome.debugSignIn' => 'Sign in (debug)',
+          _ => null,
+        };
   }
 }

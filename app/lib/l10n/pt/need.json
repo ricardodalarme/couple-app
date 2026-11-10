@@ -1,0 +1,26 @@
+{
+  "title": "Preciso de…",
+  "titleHighlight": "Preciso",
+  "subtitle": "Escolha uma coisa. Seu par recebe um aviso gentil, sem cobrança.",
+  "options(map)": {
+    "hug": "Um abraço",
+    "talk": "Conversar",
+    "help_home": "Ajuda em casa",
+    "quiet": "Um tempo quieta",
+    "time_together": "Tempo juntos",
+    "rest": "Descansar",
+    "other": ""
+  },
+  "note": "Não é uma exigência. É só um jeito simples de pedir.",
+  "send": "Enviar",
+  "sent": {
+    "title": "Enviado",
+    "text": "Seu par vai ver quando abrir o app.",
+    "done": "Pronto"
+  },
+  "errors(map)": {
+    "NOT_PAIRED": "Para enviar, você precisa estar com seu par no app.",
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para enviar agora. Tente de novo."
+  }
+}

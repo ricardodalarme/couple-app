@@ -1,0 +1,57 @@
+{
+  "switcherTitle": "Other ways to write it down",
+  "needEntry": "I need…",
+  "kinds(map)": {
+    "specific": "Specific",
+    "if_then": "If… then",
+    "invisible": "Invisible",
+    "other": ""
+  },
+  "specific": {
+    "title": "What exactly did they do?",
+    "titleHighlight": "exactly",
+    "subtitle": "Details help you remember why it mattered.",
+    "hint": "E.g. took out the trash without being asked",
+    "feelingLabel": "How did you feel?",
+    "feelingHint": "Optional"
+  },
+  "ifThen": {
+    "title": "Want to tell them?",
+    "titleHighlight": "tell",
+    "subtitle": "A small plan: when this happens, you do that.",
+    "ifLabel": "If…",
+    "ifHint": "E.g. I feel overwhelmed",
+    "thenLabel": "Then…",
+    "thenHint": "E.g. I ask for 10 minutes alone"
+  },
+  "invisible": {
+    "title": "Things nobody notices",
+    "titleHighlight": "nobody notices",
+    "subtitle": "Only for you. This never goes into a card.",
+    "hint": "E.g. remembered the kids' appointment",
+    "areaLabel": "What kind of work?",
+    "private": "Stays with you and never enters a card."
+  },
+  "workAreas(map)": {
+    "planning": "Planning",
+    "dates": "Dates",
+    "kitchen": "Kitchen",
+    "cleaning": "Cleaning",
+    "kids": "Kids",
+    "emotional": "Emotional",
+    "finances": "Finances",
+    "other": "Other"
+  },
+  "save": "Save",
+  "saved": {
+    "title": "Saved",
+    "added": "Written down.",
+    "queued": "Saved on this phone. We'll send it when the connection is back.",
+    "done": "Done"
+  },
+  "errors(map)": {
+    "FREE_LIMIT_REACHED": "You reached the free plan's slip limit.",
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't save right now. Your text is still here, try again."
+  }
+}

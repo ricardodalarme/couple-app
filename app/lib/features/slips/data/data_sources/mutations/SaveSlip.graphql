@@ -1,5 +1,21 @@
-mutation SaveSlip($id: UUID!, $body: String!, $createdAt: Datetime) {
-  saveSlip(id: $id, body: $body, createdAt: $createdAt) {
+mutation SaveSlip(
+  $id: UUID!
+  $body: String!
+  $kind: String
+  $feeling: String
+  $planNote: String
+  $forCard: Boolean
+  $createdAt: Datetime
+) {
+  saveSlip(
+    id: $id
+    body: $body
+    kind: $kind
+    feeling: $feeling
+    planNote: $planNote
+    forCard: $forCard
+    createdAt: $createdAt
+  ) {
     id
   }
 }

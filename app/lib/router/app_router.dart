@@ -24,7 +24,9 @@ import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/breaku
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/unpair_done_page.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/unpair_page.dart';
 import 'package:flutter_bloc_starter/features/profile/presentation/setup/profile_setup_page.dart';
+import 'package:flutter_bloc_starter/features/slips/presentation/need/need_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/quick_slip_page.dart';
+import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/slip_kind_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slips/slips_page.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/today_page.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/together/together_page.dart';
@@ -53,6 +55,8 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: BreakupRoute.page),
     AutoRoute(page: UnpairDoneRoute.page),
     AutoRoute(page: QuickSlipRoute.page, fullscreenDialog: true),
+    AutoRoute(page: SlipKindRoute.page, fullscreenDialog: true),
+    AutoRoute(page: NeedRoute.page, fullscreenDialog: true),
     AutoRoute(page: SundayCardRoute.page),
     AutoRoute(page: CardsListRoute.page),
     AutoRoute(page: IdeaDetailRoute.page, path: '/idea'),

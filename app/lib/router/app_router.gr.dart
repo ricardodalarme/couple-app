@@ -306,6 +306,22 @@ class MemoriesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [NeedPage]
+class NeedRoute extends PageRouteInfo<void> {
+  const NeedRoute({List<PageRouteInfo>? children})
+    : super(NeedRoute.name, initialChildren: children);
+
+  static const String name = 'NeedRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const NeedPage());
+    },
+  );
+}
+
+/// generated route for
 /// [NotFoundPage]
 class NotFoundRoute extends PageRouteInfo<void> {
   const NotFoundRoute({List<PageRouteInfo>? children})
@@ -415,6 +431,65 @@ class SignInRoute extends PageRouteInfo<void> {
       return WrappedRoute(child: const SignInPage());
     },
   );
+}
+
+/// generated route for
+/// [SlipKindPage]
+class SlipKindRoute extends PageRouteInfo<SlipKindRouteArgs> {
+  SlipKindRoute({
+    String kind = 'specific',
+    String text = '',
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         SlipKindRoute.name,
+         args: SlipKindRouteArgs(kind: kind, text: text, key: key),
+         rawQueryParams: {'kind': kind, 'text': text},
+         initialChildren: children,
+       );
+
+  static const String name = 'SlipKindRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final queryParams = data.queryParams;
+      final args = data.argsAs<SlipKindRouteArgs>(
+        orElse: () => SlipKindRouteArgs(
+          kind: queryParams.getString('kind', 'specific'),
+          text: queryParams.getString('text', ''),
+        ),
+      );
+      return WrappedRoute(
+        child: SlipKindPage(kind: args.kind, text: args.text, key: args.key),
+      );
+    },
+  );
+}
+
+class SlipKindRouteArgs {
+  const SlipKindRouteArgs({this.kind = 'specific', this.text = '', this.key});
+
+  final String kind;
+
+  final String text;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SlipKindRouteArgs{kind: $kind, text: $text, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SlipKindRouteArgs) return false;
+    return kind == other.kind && text == other.text && key == other.key;
+  }
+
+  @override
+  int get hashCode => kind.hashCode ^ text.hashCode ^ key.hashCode;
 }
 
 /// generated route for

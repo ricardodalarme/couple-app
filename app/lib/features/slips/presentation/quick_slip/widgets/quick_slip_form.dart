@@ -1,8 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
+import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 class const QuickSlipForm({super.key}) extends StatelessWidget {
   @override
@@ -34,6 +37,8 @@ class const QuickSlipForm({super.key}) extends StatelessWidget {
           const _CategoryChips(),
           const SizedBox(height: AppSpace.s20),
           BaseNote(text: l10n.privacyNote),
+          const SizedBox(height: AppSpace.s20),
+          const _OtherKinds(),
         ],
       ),
       footer: const _SaveButton(),
@@ -88,6 +93,41 @@ class const _CategoryChips() extends StatelessWidget {
           ),
       ],
     );
+  }
+}
+
+class const _OtherKinds() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.slipKind;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(l10n.switcherTitle, style: context.text.label),
+        const SizedBox(height: AppSpace.s8),
+        Wrap(
+          spacing: AppSpace.s8,
+          runSpacing: AppSpace.s8,
+          children: [
+            for (final kind in slipKinds)
+              BaseChoiceChip(
+                label: l10n.kinds.selectOrFallback(kind),
+                onTap: () => _open(context, kind),
+              ),
+            BaseChoiceChip(
+              label: l10n.needEntry,
+              onTap: () => context.router.replace(const NeedRoute()),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  void _open(BuildContext context, String kind) {
+    final text = context.read<QuickSlipCubit>().state.text;
+    context.router.replace(SlipKindRoute(kind: kind, text: text));
   }
 }
 

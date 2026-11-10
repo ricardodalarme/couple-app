@@ -1,0 +1,26 @@
+{
+  "title": "I need…",
+  "titleHighlight": "need",
+  "subtitle": "Pick one thing. Your partner gets a gentle note, no pressure.",
+  "options(map)": {
+    "hug": "A hug",
+    "talk": "To talk",
+    "help_home": "Help at home",
+    "quiet": "Some quiet time",
+    "time_together": "Time together",
+    "rest": "To rest",
+    "other": ""
+  },
+  "note": "It's not a demand. It's just a simple way to ask.",
+  "send": "Send",
+  "sent": {
+    "title": "Sent",
+    "text": "Your partner will see it when they open the app.",
+    "done": "Done"
+  },
+  "errors(map)": {
+    "NOT_PAIRED": "To send this, you need to be connected with your partner in the app.",
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't send right now. Try again."
+  }
+}
