@@ -1,0 +1,50 @@
+{
+  "calm": {
+    "title": "Um momento para respirar",
+    "titleHighlight": "respirar",
+    "cadence": "Inspire devagar por 4. Solte devagar por 6. Repita no seu ritmo.",
+    "text": "Não tem pressa e não tem tempo contado. Saia quando quiser.",
+    "ready": "Estou mais calmo(a)",
+    "leave": "Sair"
+  },
+  "softStart": {
+    "title": "Comece com suavidade",
+    "titleHighlight": "suavidade",
+    "subtitle": "Um modelo sem culpa para abrir a conversa.",
+    "feeling": "Eu sinto…",
+    "feelingHint": "Ex.: cansado(a)",
+    "situation": "Quando…",
+    "situationHint": "Ex.: a louça fica para depois",
+    "need": "Eu preciso de…",
+    "needHint": "Ex.: um pouco de ajuda",
+    "template": "Eu sinto {feeling} quando {situation}. Eu preciso de {need}.",
+    "use": "Usar este modelo"
+  },
+  "quick": {
+    "title": "Um pequeno reparo",
+    "titleHighlight": "reparo",
+    "subtitle": "Um toque envia. Você pode mudar o texto antes.",
+    "presets(map)": {
+      "tone": "Desculpa pelo meu tom.",
+      "restart": "Podemos recomeçar?",
+      "five_minutes": "Preciso de cinco minutos.",
+      "love": "Eu te amo, mesmo agora.",
+      "other": ""
+    },
+    "hint": "Escrever o meu",
+    "send": "Enviar",
+    "sentTitle": "Enviado",
+    "sentText": "Seu par vai ver quando abrir o app.",
+    "done": "Pronto",
+    "errors(map)": {
+      "NOT_PAIRED": "Para enviar, você precisa estar com seu par no app.",
+      "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+      "other": "Não deu para enviar agora. Sua mensagem continua aqui."
+    }
+  },
+  "next": {
+    "pause": "Respirar um pouco",
+    "guided": "Começar com suavidade",
+    "quick": "Enviar um reparo"
+  }
+}

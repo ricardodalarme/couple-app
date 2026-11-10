@@ -15,6 +15,16 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
     }
   }
 
+  /// Sends the partner a short repair message; [preset] names a ready-made one, if used.
+  Future<void> sendRepair({required String message, String? preset}) async {
+    try {
+      await _dataSource.sendRepair(body: message.trim(), value: preset);
+    } catch (e, stack) {
+      _logger.error('Failed to send a repair message', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
   /// Starts a private repair session with the chosen [path]; the client [id] makes retries safe.
   Future<void> startSession({
     required String id,

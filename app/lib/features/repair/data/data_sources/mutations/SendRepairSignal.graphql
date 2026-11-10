@@ -1,0 +1,5 @@
+mutation SendRepairSignal($value: String, $body: String) {
+  sendSignal(kind: "repair", value: $value, body: $body) {
+    id
+  }
+}

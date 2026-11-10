@@ -90,6 +90,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$reminders$en reminders = _Translations$reminders$en._(_root);
   @override
+  late final _Translations$repair$en repair = _Translations$repair$en._(_root);
+  @override
   late final _Translations$slipDetail$en slipDetail = _Translations$slipDetail$en._(_root);
   @override
   late final _Translations$slipKind$en slipKind = _Translations$slipKind$en._(_root);
@@ -797,6 +799,25 @@ class _Translations$reminders$en extends Translations$reminders$pt {
   String get weeklyCard => 'Your card is ready.';
   @override
   String get discreet => 'Open the app to see.';
+}
+
+// Path: repair
+class _Translations$repair$en extends Translations$repair$pt {
+  _Translations$repair$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  late final _Translations$repair$calm$en calm = _Translations$repair$calm$en._(_root);
+  @override
+  late final _Translations$repair$softStart$en softStart = _Translations$repair$softStart$en._(
+    _root,
+  );
+  @override
+  late final _Translations$repair$quick$en quick = _Translations$repair$quick$en._(_root);
+  @override
+  late final _Translations$repair$next$en next = _Translations$repair$next$en._(_root);
 }
 
 // Path: slipDetail
@@ -1553,6 +1574,116 @@ class _Translations$quickSlip$saved$en extends Translations$quickSlip$saved$pt {
   String get done => 'Done';
 }
 
+// Path: repair.calm
+class _Translations$repair$calm$en extends Translations$repair$calm$pt {
+  _Translations$repair$calm$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'A moment to breathe';
+  @override
+  String get titleHighlight => 'breathe';
+  @override
+  String get cadence =>
+      'Breathe in slowly for 4. Breathe out slowly for 6. Repeat at your own pace.';
+  @override
+  String get text => 'There\'s no rush and no timer. Leave whenever you like.';
+  @override
+  String get ready => 'I feel calmer';
+  @override
+  String get leave => 'Leave';
+}
+
+// Path: repair.softStart
+class _Translations$repair$softStart$en extends Translations$repair$softStart$pt {
+  _Translations$repair$softStart$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Start softly';
+  @override
+  String get titleHighlight => 'softly';
+  @override
+  String get subtitle => 'A blame-free template to open the conversation.';
+  @override
+  String get feeling => 'I feel…';
+  @override
+  String get feelingHint => 'E.g. tired';
+  @override
+  String get situation => 'When…';
+  @override
+  String get situationHint => 'E.g. the dishes wait until later';
+  @override
+  String get need => 'I need…';
+  @override
+  String get needHint => 'E.g. a little help';
+  @override
+  String template({required Object feeling, required Object situation, required Object need}) =>
+      'I feel ${feeling} when ${situation}. I need ${need}.';
+  @override
+  String get use => 'Use this template';
+}
+
+// Path: repair.quick
+class _Translations$repair$quick$en extends Translations$repair$quick$pt {
+  _Translations$repair$quick$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'A small repair';
+  @override
+  String get titleHighlight => 'repair';
+  @override
+  String get subtitle => 'One tap sends. You can change the text first.';
+  @override
+  Map<String, String> get presets => {
+    'tone': 'Sorry for my tone.',
+    'restart': 'Can we start over?',
+    'five_minutes': 'I need five minutes.',
+    'love': 'I love you, even now.',
+    'other': '',
+  };
+  @override
+  String get hint => 'Write my own';
+  @override
+  String get send => 'Send';
+  @override
+  String get sentTitle => 'Sent';
+  @override
+  String get sentText => 'Your partner will see it when they open the app.';
+  @override
+  String get done => 'Done';
+  @override
+  Map<String, String> get errors => {
+    'NOT_PAIRED': 'To send this, you need to be connected with your partner in the app.',
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t send right now. Your message is still here.',
+  };
+}
+
+// Path: repair.next
+class _Translations$repair$next$en extends Translations$repair$next$pt {
+  _Translations$repair$next$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get pause => 'Breathe a little';
+  @override
+  String get guided => 'Start softly';
+  @override
+  String get quick => 'Send a repair';
+}
+
 // Path: slipKind.specific
 class _Translations$slipKind$specific$en extends Translations$slipKind$specific$pt {
   _Translations$slipKind$specific$en._(TranslationsEn root)
@@ -2265,6 +2396,48 @@ extension on TranslationsEn {
           'reminders.dates' => 'A date is coming up.',
           'reminders.weeklyCard' => 'Your card is ready.',
           'reminders.discreet' => 'Open the app to see.',
+          'repair.calm.title' => 'A moment to breathe',
+          'repair.calm.titleHighlight' => 'breathe',
+          'repair.calm.cadence' =>
+            'Breathe in slowly for 4. Breathe out slowly for 6. Repeat at your own pace.',
+          'repair.calm.text' => 'There\'s no rush and no timer. Leave whenever you like.',
+          'repair.calm.ready' => 'I feel calmer',
+          'repair.calm.leave' => 'Leave',
+          'repair.softStart.title' => 'Start softly',
+          'repair.softStart.titleHighlight' => 'softly',
+          'repair.softStart.subtitle' => 'A blame-free template to open the conversation.',
+          'repair.softStart.feeling' => 'I feel…',
+          'repair.softStart.feelingHint' => 'E.g. tired',
+          'repair.softStart.situation' => 'When…',
+          'repair.softStart.situationHint' => 'E.g. the dishes wait until later',
+          'repair.softStart.need' => 'I need…',
+          'repair.softStart.needHint' => 'E.g. a little help',
+          'repair.softStart.template' => ({
+            required Object feeling,
+            required Object situation,
+            required Object need,
+          }) => 'I feel ${feeling} when ${situation}. I need ${need}.',
+          'repair.softStart.use' => 'Use this template',
+          'repair.quick.title' => 'A small repair',
+          'repair.quick.titleHighlight' => 'repair',
+          'repair.quick.subtitle' => 'One tap sends. You can change the text first.',
+          'repair.quick.presets.tone' => 'Sorry for my tone.',
+          'repair.quick.presets.restart' => 'Can we start over?',
+          'repair.quick.presets.five_minutes' => 'I need five minutes.',
+          'repair.quick.presets.love' => 'I love you, even now.',
+          'repair.quick.presets.other' => '',
+          'repair.quick.hint' => 'Write my own',
+          'repair.quick.send' => 'Send',
+          'repair.quick.sentTitle' => 'Sent',
+          'repair.quick.sentText' => 'Your partner will see it when they open the app.',
+          'repair.quick.done' => 'Done',
+          'repair.quick.errors.NOT_PAIRED' =>
+            'To send this, you need to be connected with your partner in the app.',
+          'repair.quick.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'repair.quick.errors.other' => 'Couldn\'t send right now. Your message is still here.',
+          'repair.next.pause' => 'Breathe a little',
+          'repair.next.guided' => 'Start softly',
+          'repair.next.quick' => 'Send a repair',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -2430,6 +2603,9 @@ extension on TranslationsEn {
           'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',
           'sundayCard.emptyAction' => 'Note a slip',
           'sundayCard.errorTitle' => 'Could not load the card',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.errorText' => 'Your slips are still saved. Try again.',
           'sundayCard.saveError' => 'Could not save the card. Try again.',
           'sundayCard.openFromToday' => 'See the draft',
@@ -2472,9 +2648,6 @@ extension on TranslationsEn {
           'tabs.temperatureText' => 'A private check-in, never a score.',
           'temperature.levelTitle' => 'How is it between you?',
           'temperature.levelHighlight' => 'between you',
-          _ => null,
-        } ??
-        switch (path) {
           'temperature.levelNote' => 'Private. Never becomes a score.',
           'temperature.levels.good' => 'Good',
           'temperature.levels.so_so' => 'So-so',

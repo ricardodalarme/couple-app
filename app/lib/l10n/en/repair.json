@@ -1,0 +1,50 @@
+{
+  "calm": {
+    "title": "A moment to breathe",
+    "titleHighlight": "breathe",
+    "cadence": "Breathe in slowly for 4. Breathe out slowly for 6. Repeat at your own pace.",
+    "text": "There's no rush and no timer. Leave whenever you like.",
+    "ready": "I feel calmer",
+    "leave": "Leave"
+  },
+  "softStart": {
+    "title": "Start softly",
+    "titleHighlight": "softly",
+    "subtitle": "A blame-free template to open the conversation.",
+    "feeling": "I feel…",
+    "feelingHint": "E.g. tired",
+    "situation": "When…",
+    "situationHint": "E.g. the dishes wait until later",
+    "need": "I need…",
+    "needHint": "E.g. a little help",
+    "template": "I feel {feeling} when {situation}. I need {need}.",
+    "use": "Use this template"
+  },
+  "quick": {
+    "title": "A small repair",
+    "titleHighlight": "repair",
+    "subtitle": "One tap sends. You can change the text first.",
+    "presets(map)": {
+      "tone": "Sorry for my tone.",
+      "restart": "Can we start over?",
+      "five_minutes": "I need five minutes.",
+      "love": "I love you, even now.",
+      "other": ""
+    },
+    "hint": "Write my own",
+    "send": "Send",
+    "sentTitle": "Sent",
+    "sentText": "Your partner will see it when they open the app.",
+    "done": "Done",
+    "errors(map)": {
+      "NOT_PAIRED": "To send this, you need to be connected with your partner in the app.",
+      "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+      "other": "Couldn't send right now. Your message is still here."
+    }
+  },
+  "next": {
+    "pause": "Breathe a little",
+    "guided": "Start softly",
+    "quick": "Send a repair"
+  }
+}

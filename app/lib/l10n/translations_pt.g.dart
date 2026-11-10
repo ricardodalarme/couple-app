@@ -77,6 +77,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   );
   late final Translations$quickSlip$pt quickSlip = Translations$quickSlip$pt.internal(_root);
   late final Translations$reminders$pt reminders = Translations$reminders$pt.internal(_root);
+  late final Translations$repair$pt repair = Translations$repair$pt.internal(_root);
   late final Translations$slipDetail$pt slipDetail = Translations$slipDetail$pt.internal(_root);
   late final Translations$slipKind$pt slipKind = Translations$slipKind$pt.internal(_root);
   late final Translations$slipsList$pt slipsList = Translations$slipsList$pt.internal(_root);
@@ -932,6 +933,21 @@ class Translations$reminders$pt {
 
   /// pt: 'Abra o app para ver.'
   String get discreet => 'Abra o app para ver.';
+}
+
+// Path: repair
+class Translations$repair$pt {
+  Translations$repair$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+  late final Translations$repair$calm$pt calm = Translations$repair$calm$pt.internal(_root);
+  late final Translations$repair$softStart$pt softStart = Translations$repair$softStart$pt.internal(
+    _root,
+  );
+  late final Translations$repair$quick$pt quick = Translations$repair$quick$pt.internal(_root);
+  late final Translations$repair$next$pt next = Translations$repair$next$pt.internal(_root);
 }
 
 // Path: slipDetail
@@ -1858,6 +1874,141 @@ class Translations$quickSlip$saved$pt {
   String get done => 'Pronto';
 }
 
+// Path: repair.calm
+class Translations$repair$calm$pt {
+  Translations$repair$calm$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Um momento para respirar'
+  String get title => 'Um momento para respirar';
+
+  /// pt: 'respirar'
+  String get titleHighlight => 'respirar';
+
+  /// pt: 'Inspire devagar por 4. Solte devagar por 6. Repita no seu ritmo.'
+  String get cadence => 'Inspire devagar por 4. Solte devagar por 6. Repita no seu ritmo.';
+
+  /// pt: 'Não tem pressa e não tem tempo contado. Saia quando quiser.'
+  String get text => 'Não tem pressa e não tem tempo contado. Saia quando quiser.';
+
+  /// pt: 'Estou mais calmo(a)'
+  String get ready => 'Estou mais calmo(a)';
+
+  /// pt: 'Sair'
+  String get leave => 'Sair';
+}
+
+// Path: repair.softStart
+class Translations$repair$softStart$pt {
+  Translations$repair$softStart$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Comece com suavidade'
+  String get title => 'Comece com suavidade';
+
+  /// pt: 'suavidade'
+  String get titleHighlight => 'suavidade';
+
+  /// pt: 'Um modelo sem culpa para abrir a conversa.'
+  String get subtitle => 'Um modelo sem culpa para abrir a conversa.';
+
+  /// pt: 'Eu sinto…'
+  String get feeling => 'Eu sinto…';
+
+  /// pt: 'Ex.: cansado(a)'
+  String get feelingHint => 'Ex.: cansado(a)';
+
+  /// pt: 'Quando…'
+  String get situation => 'Quando…';
+
+  /// pt: 'Ex.: a louça fica para depois'
+  String get situationHint => 'Ex.: a louça fica para depois';
+
+  /// pt: 'Eu preciso de…'
+  String get need => 'Eu preciso de…';
+
+  /// pt: 'Ex.: um pouco de ajuda'
+  String get needHint => 'Ex.: um pouco de ajuda';
+
+  /// pt: 'Eu sinto {feeling} quando {situation}. Eu preciso de {need}.'
+  String template({required Object feeling, required Object situation, required Object need}) =>
+      'Eu sinto ${feeling} quando ${situation}. Eu preciso de ${need}.';
+
+  /// pt: 'Usar este modelo'
+  String get use => 'Usar este modelo';
+}
+
+// Path: repair.quick
+class Translations$repair$quick$pt {
+  Translations$repair$quick$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Um pequeno reparo'
+  String get title => 'Um pequeno reparo';
+
+  /// pt: 'reparo'
+  String get titleHighlight => 'reparo';
+
+  /// pt: 'Um toque envia. Você pode mudar o texto antes.'
+  String get subtitle => 'Um toque envia. Você pode mudar o texto antes.';
+
+  Map<String, String> get presets => {
+    'tone': 'Desculpa pelo meu tom.',
+    'restart': 'Podemos recomeçar?',
+    'five_minutes': 'Preciso de cinco minutos.',
+    'love': 'Eu te amo, mesmo agora.',
+    'other': '',
+  };
+
+  /// pt: 'Escrever o meu'
+  String get hint => 'Escrever o meu';
+
+  /// pt: 'Enviar'
+  String get send => 'Enviar';
+
+  /// pt: 'Enviado'
+  String get sentTitle => 'Enviado';
+
+  /// pt: 'Seu par vai ver quando abrir o app.'
+  String get sentText => 'Seu par vai ver quando abrir o app.';
+
+  /// pt: 'Pronto'
+  String get done => 'Pronto';
+
+  Map<String, String> get errors => {
+    'NOT_PAIRED': 'Para enviar, você precisa estar com seu par no app.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para enviar agora. Sua mensagem continua aqui.',
+  };
+}
+
+// Path: repair.next
+class Translations$repair$next$pt {
+  Translations$repair$next$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Respirar um pouco'
+  String get pause => 'Respirar um pouco';
+
+  /// pt: 'Começar com suavidade'
+  String get guided => 'Começar com suavidade';
+
+  /// pt: 'Enviar um reparo'
+  String get quick => 'Enviar um reparo';
+}
+
 // Path: slipKind.specific
 class Translations$slipKind$specific$pt {
   Translations$slipKind$specific$pt.internal(this._root);
@@ -2621,6 +2772,47 @@ extension on Translations {
           'reminders.dates' => 'Uma data está chegando.',
           'reminders.weeklyCard' => 'Seu cartão está pronto.',
           'reminders.discreet' => 'Abra o app para ver.',
+          'repair.calm.title' => 'Um momento para respirar',
+          'repair.calm.titleHighlight' => 'respirar',
+          'repair.calm.cadence' =>
+            'Inspire devagar por 4. Solte devagar por 6. Repita no seu ritmo.',
+          'repair.calm.text' => 'Não tem pressa e não tem tempo contado. Saia quando quiser.',
+          'repair.calm.ready' => 'Estou mais calmo(a)',
+          'repair.calm.leave' => 'Sair',
+          'repair.softStart.title' => 'Comece com suavidade',
+          'repair.softStart.titleHighlight' => 'suavidade',
+          'repair.softStart.subtitle' => 'Um modelo sem culpa para abrir a conversa.',
+          'repair.softStart.feeling' => 'Eu sinto…',
+          'repair.softStart.feelingHint' => 'Ex.: cansado(a)',
+          'repair.softStart.situation' => 'Quando…',
+          'repair.softStart.situationHint' => 'Ex.: a louça fica para depois',
+          'repair.softStart.need' => 'Eu preciso de…',
+          'repair.softStart.needHint' => 'Ex.: um pouco de ajuda',
+          'repair.softStart.template' => ({
+            required Object feeling,
+            required Object situation,
+            required Object need,
+          }) => 'Eu sinto ${feeling} quando ${situation}. Eu preciso de ${need}.',
+          'repair.softStart.use' => 'Usar este modelo',
+          'repair.quick.title' => 'Um pequeno reparo',
+          'repair.quick.titleHighlight' => 'reparo',
+          'repair.quick.subtitle' => 'Um toque envia. Você pode mudar o texto antes.',
+          'repair.quick.presets.tone' => 'Desculpa pelo meu tom.',
+          'repair.quick.presets.restart' => 'Podemos recomeçar?',
+          'repair.quick.presets.five_minutes' => 'Preciso de cinco minutos.',
+          'repair.quick.presets.love' => 'Eu te amo, mesmo agora.',
+          'repair.quick.presets.other' => '',
+          'repair.quick.hint' => 'Escrever o meu',
+          'repair.quick.send' => 'Enviar',
+          'repair.quick.sentTitle' => 'Enviado',
+          'repair.quick.sentText' => 'Seu par vai ver quando abrir o app.',
+          'repair.quick.done' => 'Pronto',
+          'repair.quick.errors.NOT_PAIRED' => 'Para enviar, você precisa estar com seu par no app.',
+          'repair.quick.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'repair.quick.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
+          'repair.next.pause' => 'Respirar um pouco',
+          'repair.next.guided' => 'Começar com suavidade',
+          'repair.next.quick' => 'Enviar um reparo',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -2785,6 +2977,9 @@ extension on Translations {
           'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
           'sundayCard.emptyAction' => 'Anotar um slip',
           'sundayCard.errorTitle' => 'Não deu para carregar o cartão',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.errorText' => 'Seus slips continuam salvos. Tente de novo.',
           'sundayCard.saveError' => 'Não deu para salvar o cartão. Tente de novo.',
           'sundayCard.openFromToday' => 'Ver o rascunho',
@@ -2828,9 +3023,6 @@ extension on Translations {
           'tabs.temperatureText' => 'Um registro privado, sem nota.',
           'temperature.levelTitle' => 'Como está entre vocês?',
           'temperature.levelHighlight' => 'entre vocês',
-          _ => null,
-        } ??
-        switch (path) {
           'temperature.levelNote' => 'Privado. Nunca vira nota.',
           'temperature.levels.good' => 'Bem',
           'temperature.levels.so_so' => 'Mais ou menos',

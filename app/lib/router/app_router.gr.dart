@@ -43,6 +43,22 @@ class BreakupRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CalmPage]
+class CalmRoute extends PageRouteInfo<void> {
+  const CalmRoute({List<PageRouteInfo>? children})
+    : super(CalmRoute.name, initialChildren: children);
+
+  static const String name = 'CalmRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CalmPage();
+    },
+  );
+}
+
+/// generated route for
 /// [CardDetailPage]
 class CardDetailRoute extends PageRouteInfo<CardDetailRouteArgs> {
   CardDetailRoute({
@@ -402,6 +418,57 @@ class ProfileSetupRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [QuickRepairPage]
+class QuickRepairRoute extends PageRouteInfo<QuickRepairRouteArgs> {
+  QuickRepairRoute({String text = '', Key? key, List<PageRouteInfo>? children})
+    : super(
+        QuickRepairRoute.name,
+        args: QuickRepairRouteArgs(text: text, key: key),
+        rawQueryParams: {'text': text},
+        initialChildren: children,
+      );
+
+  static const String name = 'QuickRepairRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final queryParams = data.queryParams;
+      final args = data.argsAs<QuickRepairRouteArgs>(
+        orElse: () =>
+            QuickRepairRouteArgs(text: queryParams.getString('text', '')),
+      );
+      return WrappedRoute(
+        child: QuickRepairPage(text: args.text, key: args.key),
+      );
+    },
+  );
+}
+
+class QuickRepairRouteArgs {
+  const QuickRepairRouteArgs({this.text = '', this.key});
+
+  final String text;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'QuickRepairRouteArgs{text: $text, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! QuickRepairRouteArgs) return false;
+    return text == other.text && key == other.key;
+  }
+
+  @override
+  int get hashCode => text.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [QuickSlipPage]
 class QuickSlipRoute extends PageRouteInfo<void> {
   const QuickSlipRoute({List<PageRouteInfo>? children})
@@ -570,6 +637,22 @@ class SlipsRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const SlipsPage());
+    },
+  );
+}
+
+/// generated route for
+/// [SoftStartPage]
+class SoftStartRoute extends PageRouteInfo<void> {
+  const SoftStartRoute({List<PageRouteInfo>? children})
+    : super(SoftStartRoute.name, initialChildren: children);
+
+  static const String name = 'SoftStartRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const SoftStartPage());
     },
   );
 }
