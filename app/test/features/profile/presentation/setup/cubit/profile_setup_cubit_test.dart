@@ -112,9 +112,8 @@ void main() {
     blocTest<ProfileSetupCubit, ProfileSetupState>(
       'reports a failure then resets so the toast can fire again',
       build: () {
-        when(
-          () => profileRepository.getMyProfile(),
-        ).thenAnswer((_) async => throw const LocalizedException(l10nKey: 'NETWORK'));
+        when(() => profileRepository.getMyProfile())
+            .thenAnswer((_) async => throw const LocalizedException(l10nKey: 'NETWORK'));
         return build();
       },
       act: (cubit) async {

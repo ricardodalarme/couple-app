@@ -58,6 +58,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$common$en common = _Translations$common$en._(_root);
   @override
+  late final _Translations$intro$en intro = _Translations$intro$en._(_root);
+  @override
   late final _Translations$notFound$en notFound = _Translations$notFound$en._(_root);
   @override
   late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
@@ -124,6 +126,25 @@ class _Translations$common$en extends Translations$common$pt {
   String get lastName => 'Last Name';
   @override
   String get genericError => 'Something went wrong';
+}
+
+// Path: intro
+class _Translations$intro$en extends Translations$intro$pt {
+  _Translations$intro$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get skip => 'Skip';
+  @override
+  String get continueButton => 'Continue';
+  @override
+  late final _Translations$intro$phase$en phase = _Translations$intro$phase$en._(_root);
+  @override
+  late final _Translations$intro$goals$en goals = _Translations$intro$goals$en._(_root);
+  @override
+  late final _Translations$intro$theme$en theme = _Translations$intro$theme$en._(_root);
 }
 
 // Path: notFound
@@ -248,6 +269,86 @@ class _Translations$welcome$en extends Translations$welcome$pt {
   String get debugSignIn => 'Sign in (debug)';
 }
 
+// Path: intro.phase
+class _Translations$intro$phase$en extends Translations$intro$phase$pt {
+  _Translations$intro$phase$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Where are you two right now?';
+  @override
+  String get titleHighlight => 'right now';
+  @override
+  String get subtitle => 'Pick the closest one. You can change it later.';
+  @override
+  Map<String, String> get options => {
+    'dating': 'Dating',
+    'living_together': 'Living together',
+    'engaged': 'Engaged',
+    'married': 'Married',
+    'with_kids': 'With kids',
+    'long_distance': 'Long distance',
+    'restarting': 'Starting over',
+    'other': '',
+  };
+}
+
+// Path: intro.goals
+class _Translations$intro$goals$en extends Translations$intro$goals$pt {
+  _Translations$intro$goals$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'What do you want from the app?';
+  @override
+  String get titleHighlight => 'app';
+  @override
+  String get subtitle => 'Pick as many as you like.';
+  @override
+  Map<String, String> get options => {
+    'reconnect': 'Reconnect',
+    'fight_less': 'Fight less',
+    'keep_romance': 'Keep the romance',
+    'remember_dates': 'Remember dates',
+    'organize_routine': 'Organise the routine',
+    'just_record': 'Just note the good things',
+    'other': '',
+  };
+}
+
+// Path: intro.theme
+class _Translations$intro$theme$en extends Translations$intro$theme$pt {
+  _Translations$intro$theme$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Which colour suits you?';
+  @override
+  String get titleHighlight => 'colour';
+  @override
+  String get subtitle => 'You pick the colour, not the gender. The features are the same.';
+  @override
+  String get rose => 'Soft rose';
+  @override
+  String get roseSupport => 'Delicate and warm';
+  @override
+  String get blue => 'Soft blue';
+  @override
+  String get blueSupport => 'Calm and light';
+  @override
+  String get neutral => 'Neutral';
+  @override
+  String get neutralSupport => 'Paper and green';
+  @override
+  String get footnote => 'You can change it later in Settings, Appearance.';
+}
+
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -276,6 +377,39 @@ extension on TranslationsEn {
       'common.firstName' => 'First Name',
       'common.lastName' => 'Last Name',
       'common.genericError' => 'Something went wrong',
+      'intro.skip' => 'Skip',
+      'intro.continueButton' => 'Continue',
+      'intro.phase.title' => 'Where are you two right now?',
+      'intro.phase.titleHighlight' => 'right now',
+      'intro.phase.subtitle' => 'Pick the closest one. You can change it later.',
+      'intro.phase.options.dating' => 'Dating',
+      'intro.phase.options.living_together' => 'Living together',
+      'intro.phase.options.engaged' => 'Engaged',
+      'intro.phase.options.married' => 'Married',
+      'intro.phase.options.with_kids' => 'With kids',
+      'intro.phase.options.long_distance' => 'Long distance',
+      'intro.phase.options.restarting' => 'Starting over',
+      'intro.phase.options.other' => '',
+      'intro.goals.title' => 'What do you want from the app?',
+      'intro.goals.titleHighlight' => 'app',
+      'intro.goals.subtitle' => 'Pick as many as you like.',
+      'intro.goals.options.reconnect' => 'Reconnect',
+      'intro.goals.options.fight_less' => 'Fight less',
+      'intro.goals.options.keep_romance' => 'Keep the romance',
+      'intro.goals.options.remember_dates' => 'Remember dates',
+      'intro.goals.options.organize_routine' => 'Organise the routine',
+      'intro.goals.options.just_record' => 'Just note the good things',
+      'intro.goals.options.other' => '',
+      'intro.theme.title' => 'Which colour suits you?',
+      'intro.theme.titleHighlight' => 'colour',
+      'intro.theme.subtitle' => 'You pick the colour, not the gender. The features are the same.',
+      'intro.theme.rose' => 'Soft rose',
+      'intro.theme.roseSupport' => 'Delicate and warm',
+      'intro.theme.blue' => 'Soft blue',
+      'intro.theme.blueSupport' => 'Calm and light',
+      'intro.theme.neutral' => 'Neutral',
+      'intro.theme.neutralSupport' => 'Paper and green',
+      'intro.theme.footnote' => 'You can change it later in Settings, Appearance.',
       'notFound.title' => '404',
       'notFound.description' => 'Page not found',
       'notFound.buttonBack' => 'Go back home',

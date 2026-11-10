@@ -29,9 +29,8 @@ void main() {
     blocTest<SignInCubit, SignInState>(
       'reports a failure then resets it so the listener can fire again',
       build: () {
-        when(
-          () => repository.logInWithGoogle(),
-        ).thenAnswer((_) async => throw const LocalizedException(l10nKey: 'NETWORK'));
+        when(() => repository.logInWithGoogle())
+            .thenAnswer((_) async => throw const LocalizedException(l10nKey: 'NETWORK'));
         return SignInCubit(authenticationRepository: repository);
       },
       act: (cubit) => cubit.signInWithGoogle(),
@@ -45,9 +44,8 @@ void main() {
     blocTest<SignInCubit, SignInState>(
       'a dismissed provider sheet shows no error',
       build: () {
-        when(
-          () => repository.logInWithApple(),
-        ).thenAnswer((_) async => throw const LocalizedException(l10nKey: 'cancelled'));
+        when(() => repository.logInWithApple())
+            .thenAnswer((_) async => throw const LocalizedException(l10nKey: 'cancelled'));
         return SignInCubit(authenticationRepository: repository);
       },
       act: (cubit) => cubit.signInWithApple(),

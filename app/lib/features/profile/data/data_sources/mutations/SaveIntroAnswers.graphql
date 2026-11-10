@@ -1,0 +1,13 @@
+mutation SaveIntroAnswers(
+  $profileId: UUID!
+  $phase: RelationshipPhase
+  $goal: RelationshipGoal
+  $goals: [String]
+) {
+  updateProfileSettingsCollection(
+    set: { phase: $phase, goal: $goal, goals: $goals }
+    filter: { profileId: { eq: $profileId } }
+  ) {
+    affectedCount
+  }
+}

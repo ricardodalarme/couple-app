@@ -56,6 +56,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$authentication$pt authentication =
       Translations$authentication$pt.internal(_root);
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
+  late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
   late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
     _root,
@@ -139,6 +140,25 @@ class Translations$common$pt {
 
   /// pt: 'Algo deu errado'
   String get genericError => 'Algo deu errado';
+}
+
+// Path: intro
+class Translations$intro$pt {
+  Translations$intro$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Pular'
+  String get skip => 'Pular';
+
+  /// pt: 'Continuar'
+  String get continueButton => 'Continuar';
+
+  late final Translations$intro$phase$pt phase = Translations$intro$phase$pt.internal(_root);
+  late final Translations$intro$goals$pt goals = Translations$intro$goals$pt.internal(_root);
+  late final Translations$intro$theme$pt theme = Translations$intro$theme$pt.internal(_root);
 }
 
 // Path: notFound
@@ -295,6 +315,102 @@ class Translations$welcome$pt {
   String get debugSignIn => 'Entrar (debug)';
 }
 
+// Path: intro.phase
+class Translations$intro$phase$pt {
+  Translations$intro$phase$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Onde vocês estão agora?'
+  String get title => 'Onde vocês estão agora?';
+
+  /// pt: 'agora'
+  String get titleHighlight => 'agora';
+
+  /// pt: 'Escolha o mais próximo. Você pode mudar depois.'
+  String get subtitle => 'Escolha o mais próximo. Você pode mudar depois.';
+
+  Map<String, String> get options => {
+    'dating': 'Namorando',
+    'living_together': 'Moramos juntos',
+    'engaged': 'Noivos',
+    'married': 'Casados',
+    'with_kids': 'Com filhos',
+    'long_distance': 'Namoro à distância',
+    'restarting': 'Recomeçando',
+    'other': '',
+  };
+}
+
+// Path: intro.goals
+class Translations$intro$goals$pt {
+  Translations$intro$goals$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'O que você quer do app?'
+  String get title => 'O que você quer do app?';
+
+  /// pt: 'app'
+  String get titleHighlight => 'app';
+
+  /// pt: 'Escolha quantos quiser.'
+  String get subtitle => 'Escolha quantos quiser.';
+
+  Map<String, String> get options => {
+    'reconnect': 'Reconectar',
+    'fight_less': 'Brigar menos',
+    'keep_romance': 'Manter o romance',
+    'remember_dates': 'Lembrar de datas',
+    'organize_routine': 'Organizar a rotina',
+    'just_record': 'Só registrar coisas boas',
+    'other': '',
+  };
+}
+
+// Path: intro.theme
+class Translations$intro$theme$pt {
+  Translations$intro$theme$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Qual cor combina com você?'
+  String get title => 'Qual cor combina com você?';
+
+  /// pt: 'cor'
+  String get titleHighlight => 'cor';
+
+  /// pt: 'Você escolhe a cor, não o gênero. Os recursos são os mesmos.'
+  String get subtitle => 'Você escolhe a cor, não o gênero. Os recursos são os mesmos.';
+
+  /// pt: 'Rosa suave'
+  String get rose => 'Rosa suave';
+
+  /// pt: 'Delicado e quente'
+  String get roseSupport => 'Delicado e quente';
+
+  /// pt: 'Azul suave'
+  String get blue => 'Azul suave';
+
+  /// pt: 'Calmo e leve'
+  String get blueSupport => 'Calmo e leve';
+
+  /// pt: 'Neutro'
+  String get neutral => 'Neutro';
+
+  /// pt: 'Papel e verde'
+  String get neutralSupport => 'Papel e verde';
+
+  /// pt: 'Dá para trocar depois em Configurações, Aparência.'
+  String get footnote => 'Dá para trocar depois em Configurações, Aparência.';
+}
+
 /// The flat map containing all translations for locale <pt>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -323,6 +439,39 @@ extension on Translations {
       'common.firstName' => 'Nome',
       'common.lastName' => 'Sobrenome',
       'common.genericError' => 'Algo deu errado',
+      'intro.skip' => 'Pular',
+      'intro.continueButton' => 'Continuar',
+      'intro.phase.title' => 'Onde vocês estão agora?',
+      'intro.phase.titleHighlight' => 'agora',
+      'intro.phase.subtitle' => 'Escolha o mais próximo. Você pode mudar depois.',
+      'intro.phase.options.dating' => 'Namorando',
+      'intro.phase.options.living_together' => 'Moramos juntos',
+      'intro.phase.options.engaged' => 'Noivos',
+      'intro.phase.options.married' => 'Casados',
+      'intro.phase.options.with_kids' => 'Com filhos',
+      'intro.phase.options.long_distance' => 'Namoro à distância',
+      'intro.phase.options.restarting' => 'Recomeçando',
+      'intro.phase.options.other' => '',
+      'intro.goals.title' => 'O que você quer do app?',
+      'intro.goals.titleHighlight' => 'app',
+      'intro.goals.subtitle' => 'Escolha quantos quiser.',
+      'intro.goals.options.reconnect' => 'Reconectar',
+      'intro.goals.options.fight_less' => 'Brigar menos',
+      'intro.goals.options.keep_romance' => 'Manter o romance',
+      'intro.goals.options.remember_dates' => 'Lembrar de datas',
+      'intro.goals.options.organize_routine' => 'Organizar a rotina',
+      'intro.goals.options.just_record' => 'Só registrar coisas boas',
+      'intro.goals.options.other' => '',
+      'intro.theme.title' => 'Qual cor combina com você?',
+      'intro.theme.titleHighlight' => 'cor',
+      'intro.theme.subtitle' => 'Você escolhe a cor, não o gênero. Os recursos são os mesmos.',
+      'intro.theme.rose' => 'Rosa suave',
+      'intro.theme.roseSupport' => 'Delicado e quente',
+      'intro.theme.blue' => 'Azul suave',
+      'intro.theme.blueSupport' => 'Calmo e leve',
+      'intro.theme.neutral' => 'Neutro',
+      'intro.theme.neutralSupport' => 'Papel e verde',
+      'intro.theme.footnote' => 'Dá para trocar depois em Configurações, Aparência.',
       'notFound.title' => '404',
       'notFound.description' => 'Página não encontrada',
       'notFound.buttonBack' => 'Voltar para página inicial',

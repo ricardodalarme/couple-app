@@ -11,7 +11,11 @@ import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 class const ProfileSetupPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(create: (_) => AppInjector.instance.get<ProfileSetupCubit>(), child: this);
+    return BlocProvider(
+      create: (_) =>
+          AppInjector.instance.get<ProfileSetupCubit>()..onThemeChanged(AppThemeScope.of(context)),
+      child: this,
+    );
   }
 
   @override
@@ -114,7 +118,10 @@ class const _ThemePicker() extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(l10n.themeLabel, style: context.text.label.copyWith(color: context.colors.textSecondary)),
+        Text(
+          l10n.themeLabel,
+          style: context.text.label.copyWith(color: context.colors.textSecondary),
+        ),
         const SizedBox(height: AppSpace.s8),
         Wrap(
           spacing: AppSpace.s8,
@@ -154,11 +161,8 @@ class const _DateField() extends StatelessWidget {
       value: date,
       minimum: earliestTogetherSince,
       maximum: DateTime.now(),
-      formatter: (value) => l10n.dateFormat(
-        day: value.day,
-        month: l10n.months[value.month - 1],
-        year: value.year,
-      ),
+      formatter: (value) =>
+          l10n.dateFormat(day: value.day, month: l10n.months[value.month - 1], year: value.year),
       onChanged: context.read<ProfileSetupCubit>().onDateChanged,
     );
   }

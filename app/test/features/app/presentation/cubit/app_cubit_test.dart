@@ -33,9 +33,8 @@ void main() {
     authenticationRepository = _MockAuthenticationRepository();
     profileRepository = _MockProfileRepository();
     settingsRepository = _MockSettingsRepository();
-    when(
-      () => authenticationRepository.isAuthenticatedStream,
-    ).thenAnswer((_) => const Stream.empty());
+    when(() => authenticationRepository.isAuthenticatedStream)
+        .thenAnswer((_) => const Stream.empty());
     when(() => authenticationRepository.isAuthenticated).thenReturn(true);
     when(() => profileRepository.ensureProfile()).thenAnswer((_) async => const Profile.fake());
     when(() => profileRepository.getMySettings()).thenAnswer(
@@ -63,9 +62,8 @@ void main() {
     blocTest<AppCubit, AppState>(
       'a person without the profile step goes to onboarding',
       build: () {
-        when(
-          () => profileRepository.getMySettings(),
-        ).thenAnswer((_) async => const AccountSettings(theme: AppThemeVariant.rose));
+        when(() => profileRepository.getMySettings())
+            .thenAnswer((_) async => const AccountSettings(theme: AppThemeVariant.rose));
         return build();
       },
       act: (cubit) => cubit.initialize(),
@@ -85,9 +83,8 @@ void main() {
     blocTest<AppCubit, AppState>(
       'a signed out stream goes to unauthenticated',
       build: () {
-        when(
-          () => authenticationRepository.isAuthenticatedStream,
-        ).thenAnswer((_) => Stream.value(false));
+        when(() => authenticationRepository.isAuthenticatedStream)
+            .thenAnswer((_) => Stream.value(false));
         return build();
       },
       expect: () => const [AppState.unauthenticated],

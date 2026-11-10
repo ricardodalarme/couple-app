@@ -37,13 +37,30 @@ class AppCubit({
 
     emit(AppState.checking);
     try {
-      await _profileRepository.ensureProfile();
+      final profile = await _profileRepository.ensureProfile();
+      await _uploadIntroAnswers(profile.id);
       final settings = await _profileRepository.getMySettings();
       await _rememberTheme(settings.theme);
       emit(settings.isOnboarded ? AppState.authenticated : AppState.onboarding);
     } on Object {
       // The repository already logged it. Offline people still reach their own space.
       emit(AppState.authenticated);
+    }
+  }
+
+  Future<void> _uploadIntroAnswers(String profileId) async {
+    final local = _settingsRepository.get();
+    if (!local.hasPendingIntroAnswers) return;
+
+    try {
+      await _profileRepository.saveIntroAnswers(
+        profileId: profileId,
+        phase: local.introPhase,
+        goals: local.introGoals,
+      );
+      await _settingsRepository.save(local.copyWith(introUploaded: true));
+    } on Object {
+      // Kept on the device and retried at the next start.
     }
   }
 

@@ -1,0 +1,45 @@
+{
+  "skip": "Skip",
+  "continueButton": "Continue",
+  "phase": {
+    "title": "Where are you two right now?",
+    "titleHighlight": "right now",
+    "subtitle": "Pick the closest one. You can change it later.",
+    "options(map)": {
+      "dating": "Dating",
+      "living_together": "Living together",
+      "engaged": "Engaged",
+      "married": "Married",
+      "with_kids": "With kids",
+      "long_distance": "Long distance",
+      "restarting": "Starting over",
+      "other": ""
+    }
+  },
+  "goals": {
+    "title": "What do you want from the app?",
+    "titleHighlight": "app",
+    "subtitle": "Pick as many as you like.",
+    "options(map)": {
+      "reconnect": "Reconnect",
+      "fight_less": "Fight less",
+      "keep_romance": "Keep the romance",
+      "remember_dates": "Remember dates",
+      "organize_routine": "Organise the routine",
+      "just_record": "Just note the good things",
+      "other": ""
+    }
+  },
+  "theme": {
+    "title": "Which colour suits you?",
+    "titleHighlight": "colour",
+    "subtitle": "You pick the colour, not the gender. The features are the same.",
+    "rose": "Soft rose",
+    "roseSupport": "Delicate and warm",
+    "blue": "Soft blue",
+    "blueSupport": "Calm and light",
+    "neutral": "Neutral",
+    "neutralSupport": "Paper and green",
+    "footnote": "You can change it later in Settings, Appearance."
+  }
+}

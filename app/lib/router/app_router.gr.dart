@@ -59,6 +59,54 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [IntroGoalsPage]
+class IntroGoalsRoute extends PageRouteInfo<void> {
+  const IntroGoalsRoute({List<PageRouteInfo>? children})
+    : super(IntroGoalsRoute.name, initialChildren: children);
+
+  static const String name = 'IntroGoalsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const IntroGoalsPage());
+    },
+  );
+}
+
+/// generated route for
+/// [IntroPhasePage]
+class IntroPhaseRoute extends PageRouteInfo<void> {
+  const IntroPhaseRoute({List<PageRouteInfo>? children})
+    : super(IntroPhaseRoute.name, initialChildren: children);
+
+  static const String name = 'IntroPhaseRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const IntroPhasePage());
+    },
+  );
+}
+
+/// generated route for
+/// [IntroThemePage]
+class IntroThemeRoute extends PageRouteInfo<void> {
+  const IntroThemeRoute({List<PageRouteInfo>? children})
+    : super(IntroThemeRoute.name, initialChildren: children);
+
+  static const String name = 'IntroThemeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const IntroThemePage());
+    },
+  );
+}
+
+/// generated route for
 /// [MemoriesPage]
 class MemoriesRoute extends PageRouteInfo<void> {
   const MemoriesRoute({List<PageRouteInfo>? children})

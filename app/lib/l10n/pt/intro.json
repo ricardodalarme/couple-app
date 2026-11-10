@@ -1,0 +1,45 @@
+{
+  "skip": "Pular",
+  "continueButton": "Continuar",
+  "phase": {
+    "title": "Onde vocês estão agora?",
+    "titleHighlight": "agora",
+    "subtitle": "Escolha o mais próximo. Você pode mudar depois.",
+    "options(map)": {
+      "dating": "Namorando",
+      "living_together": "Moramos juntos",
+      "engaged": "Noivos",
+      "married": "Casados",
+      "with_kids": "Com filhos",
+      "long_distance": "Namoro à distância",
+      "restarting": "Recomeçando",
+      "other": ""
+    }
+  },
+  "goals": {
+    "title": "O que você quer do app?",
+    "titleHighlight": "app",
+    "subtitle": "Escolha quantos quiser.",
+    "options(map)": {
+      "reconnect": "Reconectar",
+      "fight_less": "Brigar menos",
+      "keep_romance": "Manter o romance",
+      "remember_dates": "Lembrar de datas",
+      "organize_routine": "Organizar a rotina",
+      "just_record": "Só registrar coisas boas",
+      "other": ""
+    }
+  },
+  "theme": {
+    "title": "Qual cor combina com você?",
+    "titleHighlight": "cor",
+    "subtitle": "Você escolhe a cor, não o gênero. Os recursos são os mesmos.",
+    "rose": "Rosa suave",
+    "roseSupport": "Delicado e quente",
+    "blue": "Azul suave",
+    "blueSupport": "Calmo e leve",
+    "neutral": "Neutro",
+    "neutralSupport": "Papel e verde",
+    "footnote": "Dá para trocar depois em Configurações, Aparência."
+  }
+}

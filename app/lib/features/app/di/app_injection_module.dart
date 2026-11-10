@@ -6,12 +6,12 @@ import 'package:flutter_bloc_starter/features/settings/data/repositories/setting
 
 class AppInjectionModule() implements InjectionModule {
   @override
-  void registerDependencies({required Injector injector}) => injector
-    ..registerLazySingleton<AppCubit>(
-      () => AppCubit(
-        authenticationRepository: injector.get<AuthenticationRepository>(),
-        profileRepository: injector.get<ProfileRepository>(),
-        settingsRepository: injector.get<SettingsRepository>(),
-      ),
-    );
+  void registerDependencies({required Injector injector}) =>
+      injector..registerLazySingleton<AppCubit>(
+        () => AppCubit(
+          authenticationRepository: injector.get<AuthenticationRepository>(),
+          profileRepository: injector.get<ProfileRepository>(),
+          settingsRepository: injector.get<SettingsRepository>(),
+        ),
+      );
 }
