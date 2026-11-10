@@ -56,6 +56,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$authentication$pt authentication =
       Translations$authentication$pt.internal(_root);
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
+  late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
   late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
@@ -141,6 +142,37 @@ class Translations$common$pt {
 
   /// pt: 'Algo deu errado'
   String get genericError => 'Algo deu errado';
+}
+
+// Path: firstSlip
+class Translations$firstSlip$pt {
+  Translations$firstSlip$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Comece com uma coisa boa'
+  String get title => 'Comece com uma coisa boa';
+
+  /// pt: 'uma coisa boa'
+  String get titleHighlight => 'uma coisa boa';
+
+  /// pt: 'O que seu parceiro fez ultimamente que te fez sorrir? 30 segundos bastam. Ainda sem conta.'
+  String get subtitle =>
+      'O que seu parceiro fez ultimamente que te fez sorrir? 30 segundos bastam. Ainda sem conta.';
+
+  /// pt: 'Ex.: fez café antes de eu acordar'
+  String get hint => 'Ex.: fez café antes de eu acordar';
+
+  /// pt: 'Fica salvo só neste celular.'
+  String get localNote => 'Fica salvo só neste celular.';
+
+  /// pt: 'Salvar'
+  String get save => 'Salvar';
+
+  /// pt: 'Não deu para guardar agora. Tente de novo.'
+  String get saveError => 'Não deu para guardar agora. Tente de novo.';
 }
 
 // Path: intro
@@ -539,6 +571,13 @@ extension on Translations {
       'common.firstName' => 'Nome',
       'common.lastName' => 'Sobrenome',
       'common.genericError' => 'Algo deu errado',
+      'firstSlip.title' => 'Comece com uma coisa boa',
+      'firstSlip.titleHighlight' => 'uma coisa boa',
+      'firstSlip.subtitle' => 'O que seu parceiro fez ultimamente que te fez sorrir? 30 segundos bastam. Ainda sem conta.',
+      'firstSlip.hint' => 'Ex.: fez café antes de eu acordar',
+      'firstSlip.localNote' => 'Fica salvo só neste celular.',
+      'firstSlip.save' => 'Salvar',
+      'firstSlip.saveError' => 'Não deu para guardar agora. Tente de novo.',
       'intro.skip' => 'Pular',
       'intro.continueButton' => 'Continuar',
       'intro.phase.title' => 'Onde vocês estão agora?',

@@ -43,6 +43,22 @@ class ExistingAccountRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [FirstSlipPage]
+class FirstSlipRoute extends PageRouteInfo<void> {
+  const FirstSlipRoute({List<PageRouteInfo>? children})
+    : super(FirstSlipRoute.name, initialChildren: children);
+
+  static const String name = 'FirstSlipRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const FirstSlipPage());
+    },
+  );
+}
+
+/// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})

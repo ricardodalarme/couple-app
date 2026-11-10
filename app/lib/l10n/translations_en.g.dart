@@ -58,6 +58,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$common$en common = _Translations$common$en._(_root);
   @override
+  late final _Translations$firstSlip$en firstSlip = _Translations$firstSlip$en._(_root);
+  @override
   late final _Translations$intro$en intro = _Translations$intro$en._(_root);
   @override
   late final _Translations$notFound$en notFound = _Translations$notFound$en._(_root);
@@ -128,6 +130,30 @@ class _Translations$common$en extends Translations$common$pt {
   String get lastName => 'Last Name';
   @override
   String get genericError => 'Something went wrong';
+}
+
+// Path: firstSlip
+class _Translations$firstSlip$en extends Translations$firstSlip$pt {
+  _Translations$firstSlip$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Start with one good thing';
+  @override
+  String get titleHighlight => 'one good thing';
+  @override
+  String get subtitle =>
+      'What did your partner do lately that made you smile? 30 seconds is enough. No account yet.';
+  @override
+  String get hint => 'E.g. made coffee before I woke up';
+  @override
+  String get localNote => 'Stays saved on this phone only.';
+  @override
+  String get save => 'Save';
+  @override
+  String get saveError => 'Could not keep it right now. Try again.';
 }
 
 // Path: intro
@@ -465,6 +491,13 @@ extension on TranslationsEn {
       'common.firstName' => 'First Name',
       'common.lastName' => 'Last Name',
       'common.genericError' => 'Something went wrong',
+      'firstSlip.title' => 'Start with one good thing',
+      'firstSlip.titleHighlight' => 'one good thing',
+      'firstSlip.subtitle' => 'What did your partner do lately that made you smile? 30 seconds is enough. No account yet.',
+      'firstSlip.hint' => 'E.g. made coffee before I woke up',
+      'firstSlip.localNote' => 'Stays saved on this phone only.',
+      'firstSlip.save' => 'Save',
+      'firstSlip.saveError' => 'Could not keep it right now. Try again.',
       'intro.skip' => 'Skip',
       'intro.continueButton' => 'Continue',
       'intro.phase.title' => 'Where are you two right now?',

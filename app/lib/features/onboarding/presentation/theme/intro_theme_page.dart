@@ -27,7 +27,7 @@ class const IntroThemePage({super.key}) extends StatelessWidget implements AutoR
 
     Future<void> next(Future<void> Function() save) async {
       await save();
-      if (context.mounted) await context.pushRoute(const SignInRoute());
+      if (context.mounted) await context.pushRoute(const FirstSlipRoute());
     }
 
     return IntroScaffold(

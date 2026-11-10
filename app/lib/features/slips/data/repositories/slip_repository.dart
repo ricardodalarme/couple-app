@@ -44,6 +44,13 @@ class SlipRepository({
     }
   }
 
+  /// Keeps a slip only on the device; it is sent once there is a signed-in session.
+  Future<void> keepOnDevice({
+    required String id,
+    required String body,
+    required DateTime createdAt,
+  }) => _enqueue(PendingSlip(id: id, body: body, createdAt: createdAt));
+
   /// Removes a slip that was just saved, whether or not it reached the server.
   Future<void> undo(String id) async {
     final pending = _localDataSource.readPending();

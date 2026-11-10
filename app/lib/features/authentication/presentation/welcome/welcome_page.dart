@@ -15,6 +15,7 @@ PageRouteInfo<void> _nextIntroRoute() {
     0 => const IntroPhaseRoute(),
     1 => const IntroGoalsRoute(),
     2 => const IntroThemeRoute(),
+    3 => const FirstSlipRoute(),
     _ => const SignInRoute(),
   };
 }
