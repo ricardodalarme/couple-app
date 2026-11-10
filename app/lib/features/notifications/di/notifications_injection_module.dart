@@ -3,6 +3,9 @@ import 'package:flutter_bloc_starter/features/notifications/data/data_sources/no
 import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/off_banner/cubit/notifications_off_cubit.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/permission/cubit/notification_permission_cubit.dart';
+import 'package:flutter_bloc_starter/features/notifications/presentation/preferences/cubit/notification_preferences_cubit.dart';
+import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
+import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:network/network.dart';
 import 'package:notification_service/notification_service.dart';
 import 'package:permission_service/permission_service.dart';
@@ -22,6 +25,13 @@ class NotificationsInjectionModule() implements InjectionModule {
     )
     ..registerFactory<NotificationPermissionCubit>(
       () => NotificationPermissionCubit(repository: injector.get<NotificationsRepository>()),
+    )
+    ..registerFactory<NotificationPreferencesCubit>(
+      () => NotificationPreferencesCubit(
+        notificationsRepository: injector.get<NotificationsRepository>(),
+        remindersRepository: injector.get<RemindersRepository>(),
+        syncService: injector.get<ReminderSyncService>(),
+      ),
     )
     ..registerFactory<NotificationsOffCubit>(
       () => NotificationsOffCubit(repository: injector.get<NotificationsRepository>()),

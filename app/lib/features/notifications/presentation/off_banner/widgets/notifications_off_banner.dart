@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/off_banner/cubit/notifications_off_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// A quiet notice that reminders are off, with a way to system settings.
 class const NotificationsOffBanner({super.key}) extends StatelessWidget {
@@ -30,7 +32,7 @@ class const _Banner() extends StatelessWidget {
         text: l10n.offBanner,
         icon: AppIcons.bell_off,
         actionLabel: l10n.openSettings,
-        onAction: cubit.openSettings,
+        onAction: () => context.pushRoute(const NotificationPreferencesRoute()),
         onDismiss: cubit.dismiss,
         dismissLabel: l10n.close,
       ),

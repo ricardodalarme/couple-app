@@ -79,6 +79,9 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$notificationPermission$en notificationPermission =
       _Translations$notificationPermission$en._(_root);
   @override
+  late final _Translations$notificationPreferences$en notificationPreferences =
+      _Translations$notificationPreferences$en._(_root);
+  @override
   late final _Translations$partnerStep$en partnerStep = _Translations$partnerStep$en._(_root);
   @override
   late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
@@ -542,6 +545,82 @@ class _Translations$notificationPermission$en extends Translations$notificationP
   String get openSettings => 'Open settings';
   @override
   String get close => 'Close';
+}
+
+// Path: notificationPreferences
+class _Translations$notificationPreferences$en extends Translations$notificationPreferences$pt {
+  _Translations$notificationPreferences$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Notifications';
+  @override
+  String get subtitle => 'Choose what arrives and when. No pressure.';
+  @override
+  String get systemOff =>
+      'Notifications are off on this phone. Your choices apply once you turn them on.';
+  @override
+  String get openSystem => 'Open settings';
+  @override
+  String get all => 'Receive notifications';
+  @override
+  String get allText => 'Turn off to pause everything.';
+  @override
+  String get typesTitle => 'What you want to receive';
+  @override
+  Map<String, String> get types => {
+    'card_ready': 'Card ready',
+    'card_received': 'Card received',
+    'card_reaction': 'Reply to your card',
+    'daily_idea': 'Idea of the day',
+    'date_coming': 'Dates coming up',
+    'other': '',
+  };
+  @override
+  String get quietTitle => 'Quiet hours';
+  @override
+  String get quietText => 'Reminders wait until the quiet ends.';
+  @override
+  String get quietStart => 'Starts at';
+  @override
+  String get quietEnd => 'Ends at';
+  @override
+  String get quietOvernight => 'Quiet hours run through the night.';
+  @override
+  String get cardTitle => 'Sunday card';
+  @override
+  String get cardDay => 'Day';
+  @override
+  String get cardHour => 'Time';
+  @override
+  List<String> get days => [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+  @override
+  String hourFormat({required Object hour}) => '${hour}:00';
+  @override
+  String get previewTitle => 'How a notification looks';
+  @override
+  String get previewText => 'Always short, with no personal details.';
+  @override
+  String get loadErrorTitle => 'Couldn\'t open your preferences';
+  @override
+  String get loadErrorText => 'They are still saved. Try again.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t save right now. Your previous choice was kept.',
+  };
 }
 
 // Path: partnerStep
@@ -1891,6 +1970,44 @@ extension on TranslationsEn {
           'notificationPermission.offBanner' => 'Reminders are off. Turn them on in settings.',
           'notificationPermission.openSettings' => 'Open settings',
           'notificationPermission.close' => 'Close',
+          'notificationPreferences.title' => 'Notifications',
+          'notificationPreferences.subtitle' => 'Choose what arrives and when. No pressure.',
+          'notificationPreferences.systemOff' =>
+            'Notifications are off on this phone. Your choices apply once you turn them on.',
+          'notificationPreferences.openSystem' => 'Open settings',
+          'notificationPreferences.all' => 'Receive notifications',
+          'notificationPreferences.allText' => 'Turn off to pause everything.',
+          'notificationPreferences.typesTitle' => 'What you want to receive',
+          'notificationPreferences.types.card_ready' => 'Card ready',
+          'notificationPreferences.types.card_received' => 'Card received',
+          'notificationPreferences.types.card_reaction' => 'Reply to your card',
+          'notificationPreferences.types.daily_idea' => 'Idea of the day',
+          'notificationPreferences.types.date_coming' => 'Dates coming up',
+          'notificationPreferences.types.other' => '',
+          'notificationPreferences.quietTitle' => 'Quiet hours',
+          'notificationPreferences.quietText' => 'Reminders wait until the quiet ends.',
+          'notificationPreferences.quietStart' => 'Starts at',
+          'notificationPreferences.quietEnd' => 'Ends at',
+          'notificationPreferences.quietOvernight' => 'Quiet hours run through the night.',
+          'notificationPreferences.cardTitle' => 'Sunday card',
+          'notificationPreferences.cardDay' => 'Day',
+          'notificationPreferences.cardHour' => 'Time',
+          'notificationPreferences.days.0' => 'Sunday',
+          'notificationPreferences.days.1' => 'Monday',
+          'notificationPreferences.days.2' => 'Tuesday',
+          'notificationPreferences.days.3' => 'Wednesday',
+          'notificationPreferences.days.4' => 'Thursday',
+          'notificationPreferences.days.5' => 'Friday',
+          'notificationPreferences.days.6' => 'Saturday',
+          'notificationPreferences.hourFormat' => ({required Object hour}) => '${hour}:00',
+          'notificationPreferences.previewTitle' => 'How a notification looks',
+          'notificationPreferences.previewText' => 'Always short, with no personal details.',
+          'notificationPreferences.loadErrorTitle' => 'Couldn\'t open your preferences',
+          'notificationPreferences.loadErrorText' => 'They are still saved. Try again.',
+          'notificationPreferences.errors.RATE_LIMITED' =>
+            'Too many attempts in a row. Wait a moment.',
+          'notificationPreferences.errors.other' =>
+            'Couldn\'t save right now. Your previous choice was kept.',
           'partnerStep.title' => 'Want to bring your partner?',
           'partnerStep.titleHighlight' => 'partner',
           'partnerStep.subtitle' => 'The app works on your own. Invite whenever you want.',
@@ -2200,6 +2317,9 @@ extension on TranslationsEn {
             required Object month,
             required Object day,
           }) => '${weekday}, ${month} ${day}',
+          _ => null,
+        } ??
+        switch (path) {
           'today.weekdays.0' => 'Monday',
           'today.weekdays.1' => 'Tuesday',
           'today.weekdays.2' => 'Wednesday',
@@ -2270,9 +2390,6 @@ extension on TranslationsEn {
                   one: 'Your private slips: 1 this week',
                   other: 'Your private slips: ${count} this week',
                 ),
-          _ => null,
-        } ??
-        switch (path) {
           'today.sundayCardLabel' => 'Sunday card',
           'today.sundayCardTitle' => 'Your card for this week',
           'today.inviteCardLabel' => 'Invite',

@@ -69,6 +69,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
   late final Translations$notificationPermission$pt notificationPermission =
       Translations$notificationPermission$pt.internal(_root);
+  late final Translations$notificationPreferences$pt notificationPreferences =
+      Translations$notificationPreferences$pt.internal(_root);
   late final Translations$partnerStep$pt partnerStep = Translations$partnerStep$pt.internal(_root);
   late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
     _root,
@@ -632,6 +634,92 @@ class Translations$notificationPermission$pt {
 
   /// pt: 'Fechar'
   String get close => 'Fechar';
+}
+
+// Path: notificationPreferences
+class Translations$notificationPreferences$pt {
+  Translations$notificationPreferences$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Notificações'
+  String get title => 'Notificações';
+
+  /// pt: 'Escolha o que chega e quando. Nada de cobrança.'
+  String get subtitle => 'Escolha o que chega e quando. Nada de cobrança.';
+
+  /// pt: 'As notificações estão desligadas neste celular. Suas escolhas valem quando você ligar.'
+  String get systemOff =>
+      'As notificações estão desligadas neste celular. Suas escolhas valem quando você ligar.';
+
+  /// pt: 'Abrir configurações'
+  String get openSystem => 'Abrir configurações';
+
+  /// pt: 'Receber notificações'
+  String get all => 'Receber notificações';
+
+  /// pt: 'Desligue para pausar tudo.'
+  String get allText => 'Desligue para pausar tudo.';
+
+  /// pt: 'O que você quer receber'
+  String get typesTitle => 'O que você quer receber';
+
+  Map<String, String> get types => {
+    'card_ready': 'Cartão pronto',
+    'card_received': 'Cartão recebido',
+    'card_reaction': 'Resposta ao seu cartão',
+    'daily_idea': 'Ideia do dia',
+    'date_coming': 'Datas chegando',
+    'other': '',
+  };
+
+  /// pt: 'Horas de silêncio'
+  String get quietTitle => 'Horas de silêncio';
+
+  /// pt: 'Lembretes esperam até o silêncio acabar.'
+  String get quietText => 'Lembretes esperam até o silêncio acabar.';
+
+  /// pt: 'Começa às'
+  String get quietStart => 'Começa às';
+
+  /// pt: 'Termina às'
+  String get quietEnd => 'Termina às';
+
+  /// pt: 'O silêncio atravessa a madrugada.'
+  String get quietOvernight => 'O silêncio atravessa a madrugada.';
+
+  /// pt: 'Cartão de domingo'
+  String get cardTitle => 'Cartão de domingo';
+
+  /// pt: 'Dia'
+  String get cardDay => 'Dia';
+
+  /// pt: 'Horário'
+  String get cardHour => 'Horário';
+
+  List<String> get days => ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+
+  /// pt: '{hour}:00'
+  String hourFormat({required Object hour}) => '${hour}:00';
+
+  /// pt: 'Como a notificação aparece'
+  String get previewTitle => 'Como a notificação aparece';
+
+  /// pt: 'Sempre curta e sem detalhes pessoais.'
+  String get previewText => 'Sempre curta e sem detalhes pessoais.';
+
+  /// pt: 'Não deu para abrir suas preferências'
+  String get loadErrorTitle => 'Não deu para abrir suas preferências';
+
+  /// pt: 'Elas continuam salvas. Tente de novo.'
+  String get loadErrorText => 'Elas continuam salvas. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para salvar agora. Sua escolha anterior foi mantida.',
+  };
 }
 
 // Path: partnerStep
@@ -2225,6 +2313,43 @@ extension on Translations {
             'Os lembretes estão desligados. Ligue nas configurações.',
           'notificationPermission.openSettings' => 'Abrir configurações',
           'notificationPermission.close' => 'Fechar',
+          'notificationPreferences.title' => 'Notificações',
+          'notificationPreferences.subtitle' => 'Escolha o que chega e quando. Nada de cobrança.',
+          'notificationPreferences.systemOff' => 'As notificações estão desligadas neste celular. Suas escolhas valem quando você ligar.',
+          'notificationPreferences.openSystem' => 'Abrir configurações',
+          'notificationPreferences.all' => 'Receber notificações',
+          'notificationPreferences.allText' => 'Desligue para pausar tudo.',
+          'notificationPreferences.typesTitle' => 'O que você quer receber',
+          'notificationPreferences.types.card_ready' => 'Cartão pronto',
+          'notificationPreferences.types.card_received' => 'Cartão recebido',
+          'notificationPreferences.types.card_reaction' => 'Resposta ao seu cartão',
+          'notificationPreferences.types.daily_idea' => 'Ideia do dia',
+          'notificationPreferences.types.date_coming' => 'Datas chegando',
+          'notificationPreferences.types.other' => '',
+          'notificationPreferences.quietTitle' => 'Horas de silêncio',
+          'notificationPreferences.quietText' => 'Lembretes esperam até o silêncio acabar.',
+          'notificationPreferences.quietStart' => 'Começa às',
+          'notificationPreferences.quietEnd' => 'Termina às',
+          'notificationPreferences.quietOvernight' => 'O silêncio atravessa a madrugada.',
+          'notificationPreferences.cardTitle' => 'Cartão de domingo',
+          'notificationPreferences.cardDay' => 'Dia',
+          'notificationPreferences.cardHour' => 'Horário',
+          'notificationPreferences.days.0' => 'Domingo',
+          'notificationPreferences.days.1' => 'Segunda',
+          'notificationPreferences.days.2' => 'Terça',
+          'notificationPreferences.days.3' => 'Quarta',
+          'notificationPreferences.days.4' => 'Quinta',
+          'notificationPreferences.days.5' => 'Sexta',
+          'notificationPreferences.days.6' => 'Sábado',
+          'notificationPreferences.hourFormat' => ({required Object hour}) => '${hour}:00',
+          'notificationPreferences.previewTitle' => 'Como a notificação aparece',
+          'notificationPreferences.previewText' => 'Sempre curta e sem detalhes pessoais.',
+          'notificationPreferences.loadErrorTitle' => 'Não deu para abrir suas preferências',
+          'notificationPreferences.loadErrorText' => 'Elas continuam salvas. Tente de novo.',
+          'notificationPreferences.errors.RATE_LIMITED' =>
+            'Muitas tentativas seguidas. Espere um instante.',
+          'notificationPreferences.errors.other' =>
+            'Não deu para salvar agora. Sua escolha anterior foi mantida.',
           'partnerStep.title' => 'Quer trazer seu parceiro?',
           'partnerStep.titleHighlight' => 'parceiro',
           'partnerStep.subtitle' => 'O app funciona sozinho. Você convida quando quiser.',
@@ -2534,6 +2659,9 @@ extension on Translations {
             required Object day,
             required Object month,
           }) => '${weekday}, ${day} de ${month}',
+          _ => null,
+        } ??
+        switch (path) {
           'today.weekdays.0' => 'segunda',
           'today.weekdays.1' => 'terça',
           'today.weekdays.2' => 'quarta',
@@ -2604,9 +2732,6 @@ extension on Translations {
                   one: 'Seus slips privados: 1 esta semana',
                   other: 'Seus slips privados: ${count} esta semana',
                 ),
-          _ => null,
-        } ??
-        switch (path) {
           'today.sundayCardLabel' => 'Cartão de domingo',
           'today.sundayCardTitle' => 'Seu cartão desta semana',
           'today.inviteCardLabel' => 'Convite',

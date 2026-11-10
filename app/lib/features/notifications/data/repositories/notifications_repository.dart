@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/data_sources/notifications_data_source.dart';
+import 'package:flutter_bloc_starter/features/notifications/data/models/notification_preferences.dart';
+import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
 import 'package:logger/logger.dart';
 import 'package:notification_service/notification_service.dart';
 import 'package:permission_service/permission_service.dart';
@@ -45,6 +47,51 @@ class NotificationsRepository({
       _logger.warning('Could not register this device for push', error: e, stackTrace: stack);
     }
   }
+
+  /// Reads the notification choices kept on the server.
+  Future<NotificationPreferences> getPreferences() async {
+    try {
+      final settings = await _dataSource.getSettings();
+
+      return NotificationPreferences(
+        isEnabled: settings.enabled,
+        mutedTypes: {...settings.mutedTypes.whereType<String>()},
+        quietStart: _parseTime(settings.quietStart),
+        quietEnd: _parseTime(settings.quietEnd),
+        cardDay: settings.cardDay,
+        cardHour: settings.cardHour,
+      );
+    } catch (e, stack) {
+      _logger.error('Failed to load notification settings', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Saves the notification choices on the server, where they apply to every push.
+  Future<void> savePreferences(NotificationPreferences preferences) async {
+    try {
+      await _dataSource.updateSettings(
+        enabled: preferences.isEnabled,
+        mutedTypes: preferences.mutedTypes.toList(),
+        quietStart: _formatTime(preferences.quietStart),
+        quietEnd: _formatTime(preferences.quietEnd),
+        cardDay: preferences.cardDay,
+        cardHour: preferences.cardHour,
+      );
+    } catch (e, stack) {
+      _logger.error('Failed to save notification settings', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  TimeOfDayValue _parseTime(String value) {
+    final parts = value.split(':');
+
+    return TimeOfDayValue(hour: int.parse(parts[0]), minute: int.parse(parts[1]));
+  }
+
+  String _formatTime(TimeOfDayValue time) =>
+      '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:00';
 
   Future<bool> openSettings() => _permissionService.openAppSettings();
 

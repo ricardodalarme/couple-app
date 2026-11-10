@@ -1,0 +1,35 @@
+{
+  "title": "Notifications",
+  "subtitle": "Choose what arrives and when. No pressure.",
+  "systemOff": "Notifications are off on this phone. Your choices apply once you turn them on.",
+  "openSystem": "Open settings",
+  "all": "Receive notifications",
+  "allText": "Turn off to pause everything.",
+  "typesTitle": "What you want to receive",
+  "types(map)": {
+    "card_ready": "Card ready",
+    "card_received": "Card received",
+    "card_reaction": "Reply to your card",
+    "daily_idea": "Idea of the day",
+    "date_coming": "Dates coming up",
+    "other": ""
+  },
+  "quietTitle": "Quiet hours",
+  "quietText": "Reminders wait until the quiet ends.",
+  "quietStart": "Starts at",
+  "quietEnd": "Ends at",
+  "quietOvernight": "Quiet hours run through the night.",
+  "cardTitle": "Sunday card",
+  "cardDay": "Day",
+  "cardHour": "Time",
+  "days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  "hourFormat": "{hour}:00",
+  "previewTitle": "How a notification looks",
+  "previewText": "Always short, with no personal details.",
+  "loadErrorTitle": "Couldn't open your preferences",
+  "loadErrorText": "They are still saved. Try again.",
+  "errors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't save right now. Your previous choice was kept."
+  }
+}

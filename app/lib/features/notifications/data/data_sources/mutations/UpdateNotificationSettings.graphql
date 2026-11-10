@@ -1,0 +1,5 @@
+mutation UpdateNotificationSettings($set: NotificationSettingsUpdateInput!) {
+  updateNotificationSettingsCollection(set: $set, atMost: 1) {
+    affectedCount
+  }
+}

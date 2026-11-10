@@ -354,6 +354,22 @@ class NotificationPermissionRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [NotificationPreferencesPage]
+class NotificationPreferencesRoute extends PageRouteInfo<void> {
+  const NotificationPreferencesRoute({List<PageRouteInfo>? children})
+    : super(NotificationPreferencesRoute.name, initialChildren: children);
+
+  static const String name = 'NotificationPreferencesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const NotificationPreferencesPage());
+    },
+  );
+}
+
+/// generated route for
 /// [PartnerStepPage]
 class PartnerStepRoute extends PageRouteInfo<void> {
   const PartnerStepRoute({List<PageRouteInfo>? children})

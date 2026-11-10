@@ -1,0 +1,10 @@
+query MyNotificationSettings {
+  myNotificationSettings {
+    enabled
+    quietStart
+    quietEnd
+    cardDay
+    cardHour
+    mutedTypes
+  }
+}

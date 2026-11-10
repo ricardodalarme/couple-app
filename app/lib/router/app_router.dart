@@ -12,6 +12,7 @@ import 'package:flutter_bloc_starter/features/ideas/presentation/detail/idea_det
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/memories_page.dart';
 import 'package:flutter_bloc_starter/features/not_found/presentation/not_found/not_found_page.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/permission/notification_permission_page.dart';
+import 'package:flutter_bloc_starter/features/notifications/presentation/preferences/notification_preferences_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/first_slip/first_slip_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/goals/intro_goals_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/partner/partner_step_page.dart';
@@ -59,6 +60,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: SlipKindRoute.page, fullscreenDialog: true),
     AutoRoute(page: NeedRoute.page, fullscreenDialog: true),
     AutoRoute(page: SlipDetailRoute.page, path: '/slip/:id'),
+    AutoRoute(page: NotificationPreferencesRoute.page),
     AutoRoute(page: SundayCardRoute.page),
     AutoRoute(page: CardsListRoute.page),
     AutoRoute(page: IdeaDetailRoute.page, path: '/idea'),

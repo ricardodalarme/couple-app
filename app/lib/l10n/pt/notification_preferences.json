@@ -1,0 +1,35 @@
+{
+  "title": "Notificações",
+  "subtitle": "Escolha o que chega e quando. Nada de cobrança.",
+  "systemOff": "As notificações estão desligadas neste celular. Suas escolhas valem quando você ligar.",
+  "openSystem": "Abrir configurações",
+  "all": "Receber notificações",
+  "allText": "Desligue para pausar tudo.",
+  "typesTitle": "O que você quer receber",
+  "types(map)": {
+    "card_ready": "Cartão pronto",
+    "card_received": "Cartão recebido",
+    "card_reaction": "Resposta ao seu cartão",
+    "daily_idea": "Ideia do dia",
+    "date_coming": "Datas chegando",
+    "other": ""
+  },
+  "quietTitle": "Horas de silêncio",
+  "quietText": "Lembretes esperam até o silêncio acabar.",
+  "quietStart": "Começa às",
+  "quietEnd": "Termina às",
+  "quietOvernight": "O silêncio atravessa a madrugada.",
+  "cardTitle": "Cartão de domingo",
+  "cardDay": "Dia",
+  "cardHour": "Horário",
+  "days": ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+  "hourFormat": "{hour}:00",
+  "previewTitle": "Como a notificação aparece",
+  "previewText": "Sempre curta e sem detalhes pessoais.",
+  "loadErrorTitle": "Não deu para abrir suas preferências",
+  "loadErrorText": "Elas continuam salvas. Tente de novo.",
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para salvar agora. Sua escolha anterior foi mantida."
+  }
+}
