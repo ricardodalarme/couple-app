@@ -1,0 +1,46 @@
+{
+  "title": "Ajuda",
+  "contactTitle": "Falar com o suporte",
+  "reportBug": "Relatar um erro",
+  "faqTitle": "Perguntas frequentes",
+  "faqQuestions(map)": {
+    "replyTime": "Quando vou receber uma resposta?",
+    "offline": "E se eu enviar sem internet?",
+    "privacy": "Quem lê o que eu envio?",
+    "reportBug": "Como relato um erro?"
+  },
+  "faqAnswers(map)": {
+    "replyTime": "Respondemos em até 2 dias úteis.",
+    "offline": "A mensagem fica salva e sai quando você estiver online de novo.",
+    "privacy": "Só a equipe de suporte. Nada é compartilhado com seu parceiro.",
+    "reportBug": "Escolha Erro no formulário e conte o que aconteceu."
+  },
+  "pendingNote": "Uma mensagem está salva e será enviada quando você estiver online.",
+  "discardedNote": "Uma mensagem salva não pôde ser enviada e foi removida. Escreva de novo se ainda importar.",
+  "supportTitle": "Suporte",
+  "supportHeading": "Como podemos ajudar?",
+  "supportHighlight": "ajudar",
+  "topics(map)": {
+    "account": "Conta",
+    "billing": "Cobrança",
+    "bug": "Erro",
+    "other": "Outro"
+  },
+  "messageLabel": "Mensagem",
+  "messageHint": "Conte o que aconteceu, com o máximo de detalhes que quiser.",
+  "replyEmailLabel": "E-mail para resposta",
+  "replyEmailHint": "voce@email.com",
+  "replyEmailInvalid": "Confira o e-mail.",
+  "replyTime": "Respondemos em até 2 dias úteis.",
+  "send": "Enviar",
+  "sentTitle": "Mensagem enviada",
+  "sentText": "Obrigado. Respondemos em até 2 dias úteis.",
+  "queuedTitle": "Mensagem salva",
+  "queuedText": "Vamos enviar quando você estiver online. Ainda não foi entregue.",
+  "done": "Pronto",
+  "errors(map)": {
+    "RATE_LIMITED": "Você enviou várias mensagens hoje. Tente de novo amanhã.",
+    "noData": "Não deu para enviar agora. Sua mensagem continua aqui.",
+    "other": "Não deu para enviar agora. Sua mensagem continua aqui."
+  }
+}

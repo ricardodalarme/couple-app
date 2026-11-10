@@ -101,6 +101,13 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
                   showsChevron: true,
                   onTap: () => context.pushRoute(const SafeModeRoute()),
                 ),
+                BaseListTile(
+                  title: l10n.help,
+                  subtitle: l10n.helpStatus,
+                  icon: AppIcons.help,
+                  showsChevron: true,
+                  onTap: () => context.pushRoute(const HelpRoute()),
+                ),
               ],
             ),
             const SizedBox(height: AppSpace.s20),

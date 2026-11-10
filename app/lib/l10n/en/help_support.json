@@ -1,0 +1,46 @@
+{
+  "title": "Help",
+  "contactTitle": "Talk to support",
+  "reportBug": "Report a bug",
+  "faqTitle": "Common questions",
+  "faqQuestions(map)": {
+    "replyTime": "When will I get an answer?",
+    "offline": "What if I send without internet?",
+    "privacy": "Who reads what I send?",
+    "reportBug": "How do I report a bug?"
+  },
+  "faqAnswers(map)": {
+    "replyTime": "We reply within 2 business days.",
+    "offline": "Your message stays saved and goes out when you're online again.",
+    "privacy": "Only the support team. Nothing is shared with your partner.",
+    "reportBug": "Choose Bug in the form and tell us what happened."
+  },
+  "pendingNote": "A message is saved and will be sent when you're online.",
+  "discardedNote": "A saved message couldn't be sent and was removed. Write to us again if it still matters.",
+  "supportTitle": "Support",
+  "supportHeading": "How can we help?",
+  "supportHighlight": "help",
+  "topics(map)": {
+    "account": "Account",
+    "billing": "Billing",
+    "bug": "Bug",
+    "other": "Other"
+  },
+  "messageLabel": "Message",
+  "messageHint": "Tell us what happened, with as much detail as you like.",
+  "replyEmailLabel": "Reply email",
+  "replyEmailHint": "you@email.com",
+  "replyEmailInvalid": "Check the email address.",
+  "replyTime": "We reply within 2 business days.",
+  "send": "Send",
+  "sentTitle": "Message sent",
+  "sentText": "Thanks. We reply within 2 business days.",
+  "queuedTitle": "Saved",
+  "queuedText": "We'll send it when you're back online. It hasn't been delivered yet.",
+  "done": "Done",
+  "errors(map)": {
+    "RATE_LIMITED": "You sent several messages today. Try again tomorrow.",
+    "noData": "Couldn't send right now. Your message is still here.",
+    "other": "Couldn't send right now. Your message is still here."
+  }
+}

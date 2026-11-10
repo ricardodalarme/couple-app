@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:connectivity_service/connectivity_service.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:flutter_bloc_starter/features/help/data/repositories/support_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
@@ -15,15 +17,21 @@ class AppCubit({
   required final ProfileRepository _profileRepository,
   required final SettingsRepository _settingsRepository,
   required final SlipRepository _slipRepository,
+  required final SupportRepository _supportRepository,
   required final ReminderSyncService _reminderSyncService,
+  required final ConnectivityService _connectivityService,
 }) extends Cubit<AppState> {
   this : super(AppState.unauthenticated) {
     _authStateChangesSubscription = _authenticationRepository.isAuthenticatedStream.listen(
       _onStatusChanged,
     );
+    _connectivitySubscription = _connectivityService.onStatusChange.listen((isOnline) {
+      if (isOnline) unawaited(_flushSupport());
+    });
   }
 
   StreamSubscription<bool>? _authStateChangesSubscription;
+  StreamSubscription<bool>? _connectivitySubscription;
 
   void _onStatusChanged(bool isAuthenticated) => unawaited(_resolve(isAuthenticated));
 
@@ -37,7 +45,10 @@ class AppCubit({
   }
 
   Future<void> _resolve(bool isAuthenticated) async {
-    if (!isAuthenticated) return emit(AppState.unauthenticated);
+    if (!isAuthenticated) {
+      await _clearSupportQueue();
+      return emit(AppState.unauthenticated);
+    }
 
     emit(AppState.checking);
     try {
@@ -46,11 +57,27 @@ class AppCubit({
       final settings = await _profileRepository.getMySettings();
       await _rememberTheme(settings.theme);
       unawaited(_slipRepository.flushPending());
+      unawaited(_supportRepository.flushPending(authorId: profile.id));
       unawaited(_reminderSyncService.sync());
       emit(settings.isOnboarded ? AppState.authenticated : AppState.onboarding);
     } on Object {
       // The repository already logged it. Offline people still reach their own space.
       emit(AppState.authenticated);
+    }
+  }
+
+  Future<void> _flushSupport() async {
+    final authorId = _authenticationRepository.currentUserId;
+    if (authorId == null) return;
+
+    await _supportRepository.flushPending(authorId: authorId);
+  }
+
+  Future<void> _clearSupportQueue() async {
+    try {
+      await _supportRepository.clearPending();
+    } on Object {
+      // Local storage is unavailable; sign-out still proceeds.
     }
   }
 
@@ -78,6 +105,7 @@ class AppCubit({
   @override
   Future<void> close() async {
     await _authStateChangesSubscription?.cancel();
+    await _connectivitySubscription?.cancel();
     await super.close();
   }
 }

@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:bloc_test/bloc_test.dart';
+import 'package:connectivity_service/connectivity_service.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:flutter_bloc_starter/features/help/data/repositories/support_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
@@ -20,21 +24,29 @@ class _MockSettingsRepository() extends Mock implements SettingsRepository;
 
 class _MockSlipRepository() extends Mock implements SlipRepository;
 
+class _MockSupportRepository() extends Mock implements SupportRepository;
+
 class _MockReminderSyncService() extends Mock implements ReminderSyncService;
+
+class _MockConnectivityService() extends Mock implements ConnectivityService;
 
 void main() {
   late AuthenticationRepository authenticationRepository;
   late ProfileRepository profileRepository;
   late SettingsRepository settingsRepository;
   late SlipRepository slipRepository;
+  late SupportRepository supportRepository;
   late ReminderSyncService reminderSyncService;
+  late ConnectivityService connectivityService;
 
   AppCubit build() => AppCubit(
     authenticationRepository: authenticationRepository,
     profileRepository: profileRepository,
     settingsRepository: settingsRepository,
     slipRepository: slipRepository,
+    supportRepository: supportRepository,
     reminderSyncService: reminderSyncService,
+    connectivityService: connectivityService,
   );
 
   setUpAll(() => registerFallbackValue(const Settings.empty()));
@@ -44,12 +56,19 @@ void main() {
     profileRepository = _MockProfileRepository();
     settingsRepository = _MockSettingsRepository();
     slipRepository = _MockSlipRepository();
+    supportRepository = _MockSupportRepository();
     reminderSyncService = _MockReminderSyncService();
+    connectivityService = _MockConnectivityService();
     when(() => reminderSyncService.sync()).thenAnswer((_) async {});
     when(() => slipRepository.flushPending()).thenAnswer((_) async {});
+    when(() => supportRepository.flushPending(authorId: any(named: 'authorId')))
+        .thenAnswer((_) async => 0);
+    when(() => supportRepository.clearPending()).thenAnswer((_) async {});
+    when(() => connectivityService.onStatusChange).thenAnswer((_) => const Stream.empty());
     when(() => authenticationRepository.isAuthenticatedStream)
         .thenAnswer((_) => const Stream.empty());
     when(() => authenticationRepository.isAuthenticated).thenReturn(true);
+    when(() => authenticationRepository.currentUserId).thenReturn('fake');
     when(() => profileRepository.ensureProfile()).thenAnswer((_) async => const Profile.fake());
     when(() => profileRepository.getMySettings()).thenAnswer(
       (_) async => AccountSettings(theme: AppThemeVariant.blue, onboardedAt: DateTime(2026)),
@@ -70,7 +89,10 @@ void main() {
       build: build,
       act: (cubit) => cubit.initialize(),
       expect: () => const [AppState.checking, AppState.authenticated],
-      verify: (_) => verify(() => settingsRepository.save(any())).called(1),
+      verify: (_) {
+        verify(() => settingsRepository.save(any())).called(1);
+        verify(() => supportRepository.flushPending(authorId: 'fake')).called(1);
+      },
     );
 
     blocTest<AppCubit, AppState>(
@@ -95,14 +117,28 @@ void main() {
     );
 
     blocTest<AppCubit, AppState>(
-      'a signed out stream goes to unauthenticated',
+      'a signed out stream goes to unauthenticated and clears the support queue',
       build: () {
         when(() => authenticationRepository.isAuthenticatedStream)
             .thenAnswer((_) => Stream.value(false));
         return build();
       },
       expect: () => const [AppState.unauthenticated],
+      verify: (_) => verify(() => supportRepository.clearPending()).called(1),
     );
+
+    test('a regained connection flushes the signed-in support queue', () async {
+      final statuses = StreamController<bool>();
+      when(() => connectivityService.onStatusChange).thenAnswer((_) => statuses.stream);
+      addTearDown(statuses.close);
+      final cubit = build();
+
+      statuses.add(true);
+      await pumpEventQueue();
+
+      verify(() => supportRepository.flushPending(authorId: 'fake')).called(1);
+      await cubit.close();
+    });
 
     blocTest<AppCubit, AppState>(
       'completeOnboarding moves on to authenticated',

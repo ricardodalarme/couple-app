@@ -80,6 +80,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$help$en help = _Translations$help$en._(_root);
   @override
+  late final _Translations$helpSupport$en helpSupport = _Translations$helpSupport$en._(_root);
+  @override
   late final _Translations$ideaDetail$en ideaDetail = _Translations$ideaDetail$en._(_root);
   @override
   late final _Translations$intro$en intro = _Translations$intro$en._(_root);
@@ -771,6 +773,86 @@ class _Translations$help$en extends Translations$help$pt {
   String get errorTitle => 'Couldn\'t load';
   @override
   String get errorText => 'Try again in a moment.';
+}
+
+// Path: helpSupport
+class _Translations$helpSupport$en extends Translations$helpSupport$pt {
+  _Translations$helpSupport$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Help';
+  @override
+  String get contactTitle => 'Talk to support';
+  @override
+  String get reportBug => 'Report a bug';
+  @override
+  String get faqTitle => 'Common questions';
+  @override
+  Map<String, String> get faqQuestions => {
+    'replyTime': 'When will I get an answer?',
+    'offline': 'What if I send without internet?',
+    'privacy': 'Who reads what I send?',
+    'reportBug': 'How do I report a bug?',
+  };
+  @override
+  Map<String, String> get faqAnswers => {
+    'replyTime': 'We reply within 2 business days.',
+    'offline': 'Your message stays saved and goes out when you\'re online again.',
+    'privacy': 'Only the support team. Nothing is shared with your partner.',
+    'reportBug': 'Choose Bug in the form and tell us what happened.',
+  };
+  @override
+  String get pendingNote => 'A message is saved and will be sent when you\'re online.';
+  @override
+  String get discardedNote =>
+      'A saved message couldn\'t be sent and was removed. Write to us again if it still matters.';
+  @override
+  String get supportTitle => 'Support';
+  @override
+  String get supportHeading => 'How can we help?';
+  @override
+  String get supportHighlight => 'help';
+  @override
+  Map<String, String> get topics => {
+    'account': 'Account',
+    'billing': 'Billing',
+    'bug': 'Bug',
+    'other': 'Other',
+  };
+  @override
+  String get messageLabel => 'Message';
+  @override
+  String get messageHint => 'Tell us what happened, with as much detail as you like.';
+  @override
+  String get replyEmailLabel => 'Reply email';
+  @override
+  String get replyEmailHint => 'you@email.com';
+  @override
+  String get replyEmailInvalid => 'Check the email address.';
+  @override
+  String get replyTime => 'We reply within 2 business days.';
+  @override
+  String get send => 'Send';
+  @override
+  String get sentTitle => 'Message sent';
+  @override
+  String get sentText => 'Thanks. We reply within 2 business days.';
+  @override
+  String get queuedTitle => 'Saved';
+  @override
+  String get queuedText =>
+      'We\'ll send it when you\'re back online. It hasn\'t been delivered yet.';
+  @override
+  String get done => 'Done';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'You sent several messages today. Try again tomorrow.',
+    'noData': 'Couldn\'t send right now. Your message is still here.',
+    'other': 'Couldn\'t send right now. Your message is still here.',
+  };
 }
 
 // Path: ideaDetail
@@ -1872,6 +1954,10 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   String get pendingAction => 'See';
   @override
   String get pendingBannerSimple => 'Your account will be deleted soon.';
+  @override
+  String get help => 'Help and support';
+  @override
+  String get helpStatus => 'FAQ and contact';
 }
 
 // Path: slipDetail
@@ -3594,6 +3680,46 @@ extension on TranslationsEn {
           'help.emptyText' => 'We\'re preparing more suggestions.',
           'help.errorTitle' => 'Couldn\'t load',
           'help.errorText' => 'Try again in a moment.',
+          'helpSupport.title' => 'Help',
+          'helpSupport.contactTitle' => 'Talk to support',
+          'helpSupport.reportBug' => 'Report a bug',
+          'helpSupport.faqTitle' => 'Common questions',
+          'helpSupport.faqQuestions.replyTime' => 'When will I get an answer?',
+          'helpSupport.faqQuestions.offline' => 'What if I send without internet?',
+          'helpSupport.faqQuestions.privacy' => 'Who reads what I send?',
+          'helpSupport.faqQuestions.reportBug' => 'How do I report a bug?',
+          'helpSupport.faqAnswers.replyTime' => 'We reply within 2 business days.',
+          'helpSupport.faqAnswers.offline' =>
+            'Your message stays saved and goes out when you\'re online again.',
+          'helpSupport.faqAnswers.privacy' =>
+            'Only the support team. Nothing is shared with your partner.',
+          'helpSupport.faqAnswers.reportBug' => 'Choose Bug in the form and tell us what happened.',
+          'helpSupport.pendingNote' => 'A message is saved and will be sent when you\'re online.',
+          'helpSupport.discardedNote' => 'A saved message couldn\'t be sent and was removed. Write to us again if it still matters.',
+          'helpSupport.supportTitle' => 'Support',
+          'helpSupport.supportHeading' => 'How can we help?',
+          'helpSupport.supportHighlight' => 'help',
+          'helpSupport.topics.account' => 'Account',
+          'helpSupport.topics.billing' => 'Billing',
+          'helpSupport.topics.bug' => 'Bug',
+          'helpSupport.topics.other' => 'Other',
+          'helpSupport.messageLabel' => 'Message',
+          'helpSupport.messageHint' => 'Tell us what happened, with as much detail as you like.',
+          'helpSupport.replyEmailLabel' => 'Reply email',
+          'helpSupport.replyEmailHint' => 'you@email.com',
+          'helpSupport.replyEmailInvalid' => 'Check the email address.',
+          'helpSupport.replyTime' => 'We reply within 2 business days.',
+          'helpSupport.send' => 'Send',
+          'helpSupport.sentTitle' => 'Message sent',
+          'helpSupport.sentText' => 'Thanks. We reply within 2 business days.',
+          'helpSupport.queuedTitle' => 'Saved',
+          'helpSupport.queuedText' =>
+            'We\'ll send it when you\'re back online. It hasn\'t been delivered yet.',
+          'helpSupport.done' => 'Done',
+          'helpSupport.errors.RATE_LIMITED' =>
+            'You sent several messages today. Try again tomorrow.',
+          'helpSupport.errors.noData' => 'Couldn\'t send right now. Your message is still here.',
+          'helpSupport.errors.other' => 'Couldn\'t send right now. Your message is still here.',
           'ideaDetail.label' => 'Idea of the day',
           'ideaDetail.whyTitle' => 'Why this idea',
           'ideaDetail.yourPhase' => 'Your phase',
@@ -3801,6 +3927,9 @@ extension on TranslationsEn {
           'partnerProfile.categories.likes' => 'Likes',
           'partnerProfile.categories.dislikes' => 'Dislikes',
           'partnerProfile.categories.sizes' => 'Sizes',
+          _ => null,
+        } ??
+        switch (path) {
           'partnerProfile.categories.health' => 'Health',
           'partnerProfile.categories.comfort' => 'Comfort',
           'partnerProfile.categories.people' => 'People',
@@ -3837,9 +3966,6 @@ extension on TranslationsEn {
           'pause.returns.oneHour' => '1 hour',
           'pause.returns.threeHours' => '3 hours',
           'pause.returns.eightHours' => '8 hours',
-          _ => null,
-        } ??
-        switch (path) {
           'pause.returns.tomorrow' => 'Tomorrow',
           'pause.returns.other' => '',
           'pause.note' => 'You both see Today on pause. You can come back whenever you like.',
@@ -3895,9 +4021,6 @@ extension on TranslationsEn {
           'plus.seePlus' => 'See Plus',
           'plus.managePlan' => 'Manage plan',
           'plus.restorePurchases' => 'Restore purchases',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.partnerPays' => 'Your partner looks after this subscription.',
           'plus.partnerCancel' =>
             'If either partner cancels, Plus ends for both, with a clear notice.',
@@ -4233,6 +4356,8 @@ extension on TranslationsEn {
           }) => 'Your account will be deleted on ${date}.',
           'settingsHome.pendingAction' => 'See',
           'settingsHome.pendingBannerSimple' => 'Your account will be deleted soon.',
+          'settingsHome.help' => 'Help and support',
+          'settingsHome.helpStatus' => 'FAQ and contact',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -4366,6 +4491,9 @@ extension on TranslationsEn {
           'slipsList.weekdaysShort.6' => 'Sun',
           'slipsList.monthsShort.0' => 'Jan',
           'slipsList.monthsShort.1' => 'Feb',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.monthsShort.2' => 'Mar',
           'slipsList.monthsShort.3' => 'Apr',
           'slipsList.monthsShort.4' => 'May',
@@ -4447,9 +4575,6 @@ extension on TranslationsEn {
           'tabs.ritualsTitle' => 'Rituals',
           'tabs.ritualsText' => 'Small habits you want to protect.',
           'tabs.dateNightLabel' => 'DATE',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.dateNightTitle' => 'Date night',
           'tabs.dateNightText' => 'Ideas for the two of you, picked together.',
           'tabs.partnerLabel' => 'JUST FOR YOU',
@@ -4469,9 +4594,6 @@ extension on TranslationsEn {
           'tabs.dayText' => 'What matters on each day.',
           'tabs.plusLabel' => 'PLAN',
           'tabs.plusTitle' => 'Free and Plus',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.plusText' => 'What each plan includes, no pressure.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',
           'tabs.temperatureTitle' => 'How is it between you?',

@@ -20,5 +20,7 @@
   "deleteAccount": "Apagar conta",
   "pendingBanner": "Sua conta será apagada em {date}.",
   "pendingAction": "Ver",
-  "pendingBannerSimple": "Sua conta será apagada em breve."
+  "pendingBannerSimple": "Sua conta será apagada em breve.",
+  "help": "Ajuda e suporte",
+  "helpStatus": "Perguntas e contato"
 }

@@ -20,5 +20,7 @@
   "deleteAccount": "Delete account",
   "pendingBanner": "Your account will be deleted on {date}.",
   "pendingAction": "See",
-  "pendingBannerSimple": "Your account will be deleted soon."
+  "pendingBannerSimple": "Your account will be deleted soon.",
+  "help": "Help and support",
+  "helpStatus": "FAQ and contact"
 }

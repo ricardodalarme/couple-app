@@ -9,6 +9,9 @@ class AuthenticationRepository({required final AuthenticationService _authentica
 
   String? getAccessToken() => _authenticationService.currentSession?.accessToken;
 
+  /// The signed-in user's id, which is also the profile id.
+  String? get currentUserId => _authenticationService.currentSession?.user.id;
+
   Future<void> logInWithEmailAndPassword({required String email, required String password}) async {
     try {
       await _authenticationService.signInWithEmailAndPassword(email: email, password: password);

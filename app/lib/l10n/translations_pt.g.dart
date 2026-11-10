@@ -71,6 +71,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$help$pt help = Translations$help$pt.internal(_root);
+  late final Translations$helpSupport$pt helpSupport = Translations$helpSupport$pt.internal(_root);
   late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
@@ -894,6 +895,105 @@ class Translations$help$pt {
 
   /// pt: 'Tente de novo daqui a pouco.'
   String get errorText => 'Tente de novo daqui a pouco.';
+}
+
+// Path: helpSupport
+class Translations$helpSupport$pt {
+  Translations$helpSupport$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Ajuda'
+  String get title => 'Ajuda';
+
+  /// pt: 'Falar com o suporte'
+  String get contactTitle => 'Falar com o suporte';
+
+  /// pt: 'Relatar um erro'
+  String get reportBug => 'Relatar um erro';
+
+  /// pt: 'Perguntas frequentes'
+  String get faqTitle => 'Perguntas frequentes';
+
+  Map<String, String> get faqQuestions => {
+    'replyTime': 'Quando vou receber uma resposta?',
+    'offline': 'E se eu enviar sem internet?',
+    'privacy': 'Quem lê o que eu envio?',
+    'reportBug': 'Como relato um erro?',
+  };
+  Map<String, String> get faqAnswers => {
+    'replyTime': 'Respondemos em até 2 dias úteis.',
+    'offline': 'A mensagem fica salva e sai quando você estiver online de novo.',
+    'privacy': 'Só a equipe de suporte. Nada é compartilhado com seu parceiro.',
+    'reportBug': 'Escolha Erro no formulário e conte o que aconteceu.',
+  };
+
+  /// pt: 'Uma mensagem está salva e será enviada quando você estiver online.'
+  String get pendingNote => 'Uma mensagem está salva e será enviada quando você estiver online.';
+
+  /// pt: 'Uma mensagem salva não pôde ser enviada e foi removida. Escreva de novo se ainda importar.'
+  String get discardedNote =>
+      'Uma mensagem salva não pôde ser enviada e foi removida. Escreva de novo se ainda importar.';
+
+  /// pt: 'Suporte'
+  String get supportTitle => 'Suporte';
+
+  /// pt: 'Como podemos ajudar?'
+  String get supportHeading => 'Como podemos ajudar?';
+
+  /// pt: 'ajudar'
+  String get supportHighlight => 'ajudar';
+
+  Map<String, String> get topics => {
+    'account': 'Conta',
+    'billing': 'Cobrança',
+    'bug': 'Erro',
+    'other': 'Outro',
+  };
+
+  /// pt: 'Mensagem'
+  String get messageLabel => 'Mensagem';
+
+  /// pt: 'Conte o que aconteceu, com o máximo de detalhes que quiser.'
+  String get messageHint => 'Conte o que aconteceu, com o máximo de detalhes que quiser.';
+
+  /// pt: 'E-mail para resposta'
+  String get replyEmailLabel => 'E-mail para resposta';
+
+  /// pt: 'voce@email.com'
+  String get replyEmailHint => 'voce@email.com';
+
+  /// pt: 'Confira o e-mail.'
+  String get replyEmailInvalid => 'Confira o e-mail.';
+
+  /// pt: 'Respondemos em até 2 dias úteis.'
+  String get replyTime => 'Respondemos em até 2 dias úteis.';
+
+  /// pt: 'Enviar'
+  String get send => 'Enviar';
+
+  /// pt: 'Mensagem enviada'
+  String get sentTitle => 'Mensagem enviada';
+
+  /// pt: 'Obrigado. Respondemos em até 2 dias úteis.'
+  String get sentText => 'Obrigado. Respondemos em até 2 dias úteis.';
+
+  /// pt: 'Mensagem salva'
+  String get queuedTitle => 'Mensagem salva';
+
+  /// pt: 'Vamos enviar quando você estiver online. Ainda não foi entregue.'
+  String get queuedText => 'Vamos enviar quando você estiver online. Ainda não foi entregue.';
+
+  /// pt: 'Pronto'
+  String get done => 'Pronto';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Você enviou várias mensagens hoje. Tente de novo amanhã.',
+    'noData': 'Não deu para enviar agora. Sua mensagem continua aqui.',
+    'other': 'Não deu para enviar agora. Sua mensagem continua aqui.',
+  };
 }
 
 // Path: ideaDetail
@@ -2292,6 +2392,12 @@ class Translations$settingsHome$pt {
 
   /// pt: 'Sua conta será apagada em breve.'
   String get pendingBannerSimple => 'Sua conta será apagada em breve.';
+
+  /// pt: 'Ajuda e suporte'
+  String get help => 'Ajuda e suporte';
+
+  /// pt: 'Perguntas e contato'
+  String get helpStatus => 'Perguntas e contato';
 }
 
 // Path: slipDetail
@@ -4330,6 +4436,49 @@ extension on Translations {
           'help.emptyText' => 'Estamos preparando mais sugestões.',
           'help.errorTitle' => 'Não deu para carregar',
           'help.errorText' => 'Tente de novo daqui a pouco.',
+          'helpSupport.title' => 'Ajuda',
+          'helpSupport.contactTitle' => 'Falar com o suporte',
+          'helpSupport.reportBug' => 'Relatar um erro',
+          'helpSupport.faqTitle' => 'Perguntas frequentes',
+          'helpSupport.faqQuestions.replyTime' => 'Quando vou receber uma resposta?',
+          'helpSupport.faqQuestions.offline' => 'E se eu enviar sem internet?',
+          'helpSupport.faqQuestions.privacy' => 'Quem lê o que eu envio?',
+          'helpSupport.faqQuestions.reportBug' => 'Como relato um erro?',
+          'helpSupport.faqAnswers.replyTime' => 'Respondemos em até 2 dias úteis.',
+          'helpSupport.faqAnswers.offline' =>
+            'A mensagem fica salva e sai quando você estiver online de novo.',
+          'helpSupport.faqAnswers.privacy' =>
+            'Só a equipe de suporte. Nada é compartilhado com seu parceiro.',
+          'helpSupport.faqAnswers.reportBug' =>
+            'Escolha Erro no formulário e conte o que aconteceu.',
+          'helpSupport.pendingNote' =>
+            'Uma mensagem está salva e será enviada quando você estiver online.',
+          'helpSupport.discardedNote' => 'Uma mensagem salva não pôde ser enviada e foi removida. Escreva de novo se ainda importar.',
+          'helpSupport.supportTitle' => 'Suporte',
+          'helpSupport.supportHeading' => 'Como podemos ajudar?',
+          'helpSupport.supportHighlight' => 'ajudar',
+          'helpSupport.topics.account' => 'Conta',
+          'helpSupport.topics.billing' => 'Cobrança',
+          'helpSupport.topics.bug' => 'Erro',
+          'helpSupport.topics.other' => 'Outro',
+          'helpSupport.messageLabel' => 'Mensagem',
+          'helpSupport.messageHint' =>
+            'Conte o que aconteceu, com o máximo de detalhes que quiser.',
+          'helpSupport.replyEmailLabel' => 'E-mail para resposta',
+          'helpSupport.replyEmailHint' => 'voce@email.com',
+          'helpSupport.replyEmailInvalid' => 'Confira o e-mail.',
+          'helpSupport.replyTime' => 'Respondemos em até 2 dias úteis.',
+          'helpSupport.send' => 'Enviar',
+          'helpSupport.sentTitle' => 'Mensagem enviada',
+          'helpSupport.sentText' => 'Obrigado. Respondemos em até 2 dias úteis.',
+          'helpSupport.queuedTitle' => 'Mensagem salva',
+          'helpSupport.queuedText' =>
+            'Vamos enviar quando você estiver online. Ainda não foi entregue.',
+          'helpSupport.done' => 'Pronto',
+          'helpSupport.errors.RATE_LIMITED' =>
+            'Você enviou várias mensagens hoje. Tente de novo amanhã.',
+          'helpSupport.errors.noData' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
+          'helpSupport.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
           'ideaDetail.label' => 'Ideia do dia',
           'ideaDetail.whyTitle' => 'Por que esta ideia',
           'ideaDetail.yourPhase' => 'Sua fase',
@@ -4537,6 +4686,9 @@ extension on Translations {
           'partnerProfile.categories.likes' => 'Gosta',
           'partnerProfile.categories.dislikes' => 'Não gosta',
           'partnerProfile.categories.sizes' => 'Tamanhos',
+          _ => null,
+        } ??
+        switch (path) {
           'partnerProfile.categories.health' => 'Saúde',
           'partnerProfile.categories.comfort' => 'Conforto',
           'partnerProfile.categories.people' => 'Pessoas',
@@ -4575,9 +4727,6 @@ extension on Translations {
           'pause.returns.oneHour' => '1 hora',
           'pause.returns.threeHours' => '3 horas',
           'pause.returns.eightHours' => '8 horas',
-          _ => null,
-        } ??
-        switch (path) {
           'pause.returns.tomorrow' => 'Amanhã',
           'pause.returns.other' => '',
           'pause.note' => 'Os dois veem o Hoje em pausa. Você pode voltar quando quiser.',
@@ -4634,9 +4783,6 @@ extension on Translations {
           'plus.seePlus' => 'Ver o Plus',
           'plus.managePlan' => 'Gerenciar plano',
           'plus.restorePurchases' => 'Restaurar compras',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.partnerPays' => 'Seu par cuida desta assinatura.',
           'plus.partnerCancel' =>
             'Se um dos parceiros cancelar, o Plus termina para os dois, com aviso claro.',
@@ -4974,6 +5120,8 @@ extension on Translations {
           }) => 'Sua conta será apagada em ${date}.',
           'settingsHome.pendingAction' => 'Ver',
           'settingsHome.pendingBannerSimple' => 'Sua conta será apagada em breve.',
+          'settingsHome.help' => 'Ajuda e suporte',
+          'settingsHome.helpStatus' => 'Perguntas e contato',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -5106,6 +5254,9 @@ extension on Translations {
           'slipsList.weekdaysShort.6' => 'Dom',
           'slipsList.monthsShort.0' => 'jan',
           'slipsList.monthsShort.1' => 'fev',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.monthsShort.2' => 'mar',
           'slipsList.monthsShort.3' => 'abr',
           'slipsList.monthsShort.4' => 'mai',
@@ -5188,9 +5339,6 @@ extension on Translations {
           'tabs.ritualsTitle' => 'Rituais',
           'tabs.ritualsText' => 'Pequenos hábitos que vocês querem proteger.',
           'tabs.dateNightLabel' => 'ENCONTRO',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.dateNightTitle' => 'Date night',
           'tabs.dateNightText' => 'Ideias para vocês dois, escolhidas juntos.',
           'tabs.partnerLabel' => 'SÓ PARA VOCÊ',
@@ -5210,9 +5358,6 @@ extension on Translations {
           'tabs.dayText' => 'O que importa em cada dia.',
           'tabs.plusLabel' => 'PLANO',
           'tabs.plusTitle' => 'Grátis e Plus',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.plusText' => 'O que cada plano inclui, sem pressão.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
           'tabs.temperatureTitle' => 'Como está entre vocês?',

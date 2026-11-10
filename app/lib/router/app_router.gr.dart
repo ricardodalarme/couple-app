@@ -304,6 +304,22 @@ class GuidedRepairRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [HelpPage]
+class HelpRoute extends PageRouteInfo<void> {
+  const HelpRoute({List<PageRouteInfo>? children})
+    : super(HelpRoute.name, initialChildren: children);
+
+  static const String name = 'HelpRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const HelpPage());
+    },
+  );
+}
+
+/// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
@@ -1140,6 +1156,57 @@ class SundayCardRoute extends PageRouteInfo<void> {
       return WrappedRoute(child: const SundayCardPage());
     },
   );
+}
+
+/// generated route for
+/// [SupportPage]
+class SupportRoute extends PageRouteInfo<SupportRouteArgs> {
+  SupportRoute({
+    SupportTopic topic = SupportTopic.account,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         SupportRoute.name,
+         args: SupportRouteArgs(topic: topic, key: key),
+         initialChildren: children,
+       );
+
+  static const String name = 'SupportRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<SupportRouteArgs>(
+        orElse: () => const SupportRouteArgs(),
+      );
+      return WrappedRoute(
+        child: SupportPage(topic: args.topic, key: args.key),
+      );
+    },
+  );
+}
+
+class SupportRouteArgs {
+  const SupportRouteArgs({this.topic = SupportTopic.account, this.key});
+
+  final SupportTopic topic;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SupportRouteArgs{topic: $topic, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SupportRouteArgs) return false;
+    return topic == other.topic && key == other.key;
+  }
+
+  @override
+  int get hashCode => topic.hashCode ^ key.hashCode;
 }
 
 /// generated route for

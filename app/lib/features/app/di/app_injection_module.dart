@@ -6,6 +6,7 @@ import 'package:flutter_bloc_starter/features/app/presentation/connectivity/cubi
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/version/cubit/version_gate_cubit.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:flutter_bloc_starter/features/help/data/repositories/support_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
@@ -33,7 +34,9 @@ class AppInjectionModule() implements InjectionModule {
         profileRepository: injector.get<ProfileRepository>(),
         settingsRepository: injector.get<SettingsRepository>(),
         slipRepository: injector.get<SlipRepository>(),
+        supportRepository: injector.get<SupportRepository>(),
         reminderSyncService: injector.get<ReminderSyncService>(),
+        connectivityService: injector.get<ConnectivityService>(),
       ),
     );
 }

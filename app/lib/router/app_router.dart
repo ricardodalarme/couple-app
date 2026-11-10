@@ -9,6 +9,9 @@ import 'package:flutter_bloc_starter/features/cards/presentation/draft/sunday_ca
 import 'package:flutter_bloc_starter/features/cards/presentation/list/cards_list_page.dart';
 import 'package:flutter_bloc_starter/features/dates/presentation/dates/dates_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
+import 'package:flutter_bloc_starter/features/help/data/models/support_topic.dart';
+import 'package:flutter_bloc_starter/features/help/presentation/help/help_page.dart';
+import 'package:flutter_bloc_starter/features/help/presentation/support/support_page.dart';
 import 'package:flutter_bloc_starter/features/home/presentation/home/home_page.dart';
 import 'package:flutter_bloc_starter/features/ideas/presentation/detail/idea_detail_page.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/memories_page.dart';
@@ -100,6 +103,8 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: ManagePlusRoute.page),
     AutoRoute(page: RestorePurchasesRoute.page),
     AutoRoute(page: SettingsHomeRoute.page),
+    AutoRoute(page: HelpRoute.page),
+    AutoRoute(page: SupportRoute.page),
     AutoRoute(page: DiscreetModeRoute.page),
     AutoRoute(page: PrivacyHubRoute.page),
     AutoRoute(page: PartnerViewRoute.page),

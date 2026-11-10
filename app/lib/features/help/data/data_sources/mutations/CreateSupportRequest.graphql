@@ -1,0 +1,13 @@
+mutation CreateSupportRequest(
+  $topic: String!
+  $message: String!
+  $replyEmail: String
+  $appVersion: String
+) {
+  createSupportRequest(
+    topic: $topic
+    message: $message
+    replyEmail: $replyEmail
+    appVersion: $appVersion
+  )
+}
