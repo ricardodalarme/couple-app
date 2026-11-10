@@ -5,6 +5,7 @@ import 'package:flutter_bloc_starter/features/authentication/data/repositories/a
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
+import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
@@ -19,17 +20,21 @@ class _MockSettingsRepository() extends Mock implements SettingsRepository;
 
 class _MockSlipRepository() extends Mock implements SlipRepository;
 
+class _MockReminderSyncService() extends Mock implements ReminderSyncService;
+
 void main() {
   late AuthenticationRepository authenticationRepository;
   late ProfileRepository profileRepository;
   late SettingsRepository settingsRepository;
   late SlipRepository slipRepository;
+  late ReminderSyncService reminderSyncService;
 
   AppCubit build() => AppCubit(
     authenticationRepository: authenticationRepository,
     profileRepository: profileRepository,
     settingsRepository: settingsRepository,
     slipRepository: slipRepository,
+    reminderSyncService: reminderSyncService,
   );
 
   setUpAll(() => registerFallbackValue(const Settings.empty()));
@@ -39,6 +44,8 @@ void main() {
     profileRepository = _MockProfileRepository();
     settingsRepository = _MockSettingsRepository();
     slipRepository = _MockSlipRepository();
+    reminderSyncService = _MockReminderSyncService();
+    when(() => reminderSyncService.sync()).thenAnswer((_) async {});
     when(() => slipRepository.flushPending()).thenAnswer((_) async {});
     when(() => authenticationRepository.isAuthenticatedStream)
         .thenAnswer((_) => const Stream.empty());

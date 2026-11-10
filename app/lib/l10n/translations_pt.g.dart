@@ -72,6 +72,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$quickSlip$pt quickSlip = Translations$quickSlip$pt.internal(_root);
+  late final Translations$reminders$pt reminders = Translations$reminders$pt.internal(_root);
   late final Translations$slipsList$pt slipsList = Translations$slipsList$pt.internal(_root);
   late final Translations$sundayCard$pt sundayCard = Translations$sundayCard$pt.internal(_root);
   late final Translations$tabs$pt tabs = Translations$tabs$pt.internal(_root);
@@ -706,6 +707,30 @@ class Translations$quickSlip$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
   };
+}
+
+// Path: reminders
+class Translations$reminders$pt {
+  Translations$reminders$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Repara'
+  String get title => 'Repara';
+
+  /// pt: 'Uma ideia pequena para hoje.'
+  String get dailyIdea => 'Uma ideia pequena para hoje.';
+
+  /// pt: 'Uma data está chegando.'
+  String get dates => 'Uma data está chegando.';
+
+  /// pt: 'Seu cartão está pronto.'
+  String get weeklyCard => 'Seu cartão está pronto.';
+
+  /// pt: 'Abra o app para ver.'
+  String get discreet => 'Abra o app para ver.';
 }
 
 // Path: slipsList
@@ -1829,6 +1854,11 @@ extension on Translations {
       'quickSlip.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
       'quickSlip.errors.other' =>
         'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
+      'reminders.title' => 'Repara',
+      'reminders.dailyIdea' => 'Uma ideia pequena para hoje.',
+      'reminders.dates' => 'Uma data está chegando.',
+      'reminders.weeklyCard' => 'Seu cartão está pronto.',
+      'reminders.discreet' => 'Abra o app para ver.',
       'slipsList.title' => 'Slips',
       'slipsList.scopeWeek' => 'Esta semana',
       'slipsList.scopeAll' => 'Todos',

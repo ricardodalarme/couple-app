@@ -81,6 +81,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$quickSlip$en quickSlip = _Translations$quickSlip$en._(_root);
   @override
+  late final _Translations$reminders$en reminders = _Translations$reminders$en._(_root);
+  @override
   late final _Translations$slipsList$en slipsList = _Translations$slipsList$en._(_root);
   @override
   late final _Translations$sundayCard$en sundayCard = _Translations$sundayCard$en._(_root);
@@ -602,6 +604,25 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'Could not save right now. Your text is still here, try again.',
   };
+}
+
+// Path: reminders
+class _Translations$reminders$en extends Translations$reminders$pt {
+  _Translations$reminders$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Repara';
+  @override
+  String get dailyIdea => 'A small idea for today.';
+  @override
+  String get dates => 'A date is coming up.';
+  @override
+  String get weeklyCard => 'Your card is ready.';
+  @override
+  String get discreet => 'Open the app to see.';
 }
 
 // Path: slipsList
@@ -1559,6 +1580,11 @@ extension on TranslationsEn {
       'quickSlip.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
       'quickSlip.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
       'quickSlip.errors.other' => 'Could not save right now. Your text is still here, try again.',
+      'reminders.title' => 'Repara',
+      'reminders.dailyIdea' => 'A small idea for today.',
+      'reminders.dates' => 'A date is coming up.',
+      'reminders.weeklyCard' => 'Your card is ready.',
+      'reminders.discreet' => 'Open the app to see.',
       'slipsList.title' => 'Slips',
       'slipsList.scopeWeek' => 'This week',
       'slipsList.scopeAll' => 'All',

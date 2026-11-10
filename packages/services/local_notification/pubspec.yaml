@@ -1,0 +1,19 @@
+name: local_notification_service
+resolution: workspace
+publish_to: "none"
+
+environment:
+  sdk: ^3.13.7
+  flutter: ^3.47.9
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_local_notifications: ^23.0.0
+  flutter_timezone: ^5.1.1
+  timezone: ^0.11.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.5
