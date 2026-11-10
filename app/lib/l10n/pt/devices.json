@@ -1,0 +1,22 @@
+{
+  "title": "Dispositivos de notificação",
+  "subtitle": "Celulares que recebem notificações desta conta. Remover um para as notificações dele.",
+  "current": "Este dispositivo",
+  "registeredToday": "Registrado hoje às {time}",
+  "registeredYesterday": "Registrado ontem às {time}",
+  "registeredOn": "Registrado em {date}",
+  "platformIos": "iPhone",
+  "platformAndroid": "Android",
+  "revokeTitle": "Parar notificações deste dispositivo?",
+  "revokeText": "{name} vai deixar de receber notificações desta conta.",
+  "revokeConfirm": "Parar notificações",
+  "revoked": "Notificações paradas nesse dispositivo.",
+  "emptyTitle": "Nenhum dispositivo de notificação",
+  "emptyText": "Os dispositivos que recebem notificações desta conta aparecem aqui.",
+  "errors(map)": {
+    "NETWORK": "Sem conexão. Tente de novo quando voltar a internet.",
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "DEVICE_REVOKE_FAILED": "Não deu para parar as notificações nesse dispositivo. Tente de novo.",
+    "other": "Não deu para parar as notificações nesse dispositivo. Tente de novo."
+  }
+}

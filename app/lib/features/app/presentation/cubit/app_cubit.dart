@@ -4,7 +4,9 @@ import 'package:connectivity_service/connectivity_service.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:flutter_bloc_starter/features/devices/data/repositories/devices_repository.dart';
 import 'package:flutter_bloc_starter/features/help/data/repositories/support_repository.dart';
+import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
@@ -20,6 +22,8 @@ class AppCubit({
   required final SupportRepository _supportRepository,
   required final ReminderSyncService _reminderSyncService,
   required final ConnectivityService _connectivityService,
+  required final NotificationsRepository _notificationsRepository,
+  required final DevicesRepository _devicesRepository,
 }) extends Cubit<AppState> {
   this : super(AppState.unauthenticated) {
     _authStateChangesSubscription = _authenticationRepository.isAuthenticatedStream.listen(
@@ -41,6 +45,8 @@ class AppCubit({
   void completeOnboarding() => emit(AppState.authenticated);
 
   Future<void> logout() async {
+    final unregistered = await _notificationsRepository.unregisterCurrentDevice();
+    if (!unregistered) await _devicesRepository.revokeCurrentDevice();
     await _authenticationRepository.logOut();
   }
 

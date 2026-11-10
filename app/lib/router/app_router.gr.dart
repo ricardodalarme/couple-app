@@ -240,6 +240,22 @@ class DeleteAccountRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [DevicesPage]
+class DevicesRoute extends PageRouteInfo<void> {
+  const DevicesRoute({List<PageRouteInfo>? children})
+    : super(DevicesRoute.name, initialChildren: children);
+
+  static const String name = 'DevicesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const DevicesPage());
+    },
+  );
+}
+
+/// generated route for
 /// [DiscreetModePage]
 class DiscreetModeRoute extends PageRouteInfo<void> {
   const DiscreetModeRoute({List<PageRouteInfo>? children})

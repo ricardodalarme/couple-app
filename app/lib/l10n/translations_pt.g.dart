@@ -65,6 +65,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$dateNight$pt dateNight = Translations$dateNight$pt.internal(_root);
   late final Translations$dates$pt dates = Translations$dates$pt.internal(_root);
   late final Translations$day$pt day = Translations$day$pt.internal(_root);
+  late final Translations$devices$pt devices = Translations$devices$pt.internal(_root);
   late final Translations$discreet$pt discreet = Translations$discreet$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
   late final Translations$globalErrors$pt globalErrors = Translations$globalErrors$pt.internal(
@@ -737,6 +738,66 @@ class Translations$day$pt {
 
   /// pt: 'Tente de novo daqui a pouco.'
   String get errorText => 'Tente de novo daqui a pouco.';
+}
+
+// Path: devices
+class Translations$devices$pt {
+  Translations$devices$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Dispositivos de notificação'
+  String get title => 'Dispositivos de notificação';
+
+  /// pt: 'Celulares que recebem notificações desta conta. Remover um para as notificações dele.'
+  String get subtitle =>
+      'Celulares que recebem notificações desta conta. Remover um para as notificações dele.';
+
+  /// pt: 'Este dispositivo'
+  String get current => 'Este dispositivo';
+
+  /// pt: 'Registrado hoje às {time}'
+  String registeredToday({required Object time}) => 'Registrado hoje às ${time}';
+
+  /// pt: 'Registrado ontem às {time}'
+  String registeredYesterday({required Object time}) => 'Registrado ontem às ${time}';
+
+  /// pt: 'Registrado em {date}'
+  String registeredOn({required Object date}) => 'Registrado em ${date}';
+
+  /// pt: 'iPhone'
+  String get platformIos => 'iPhone';
+
+  /// pt: 'Android'
+  String get platformAndroid => 'Android';
+
+  /// pt: 'Parar notificações deste dispositivo?'
+  String get revokeTitle => 'Parar notificações deste dispositivo?';
+
+  /// pt: '{name} vai deixar de receber notificações desta conta.'
+  String revokeText({required Object name}) =>
+      '${name} vai deixar de receber notificações desta conta.';
+
+  /// pt: 'Parar notificações'
+  String get revokeConfirm => 'Parar notificações';
+
+  /// pt: 'Notificações paradas nesse dispositivo.'
+  String get revoked => 'Notificações paradas nesse dispositivo.';
+
+  /// pt: 'Nenhum dispositivo de notificação'
+  String get emptyTitle => 'Nenhum dispositivo de notificação';
+
+  /// pt: 'Os dispositivos que recebem notificações desta conta aparecem aqui.'
+  String get emptyText => 'Os dispositivos que recebem notificações desta conta aparecem aqui.';
+
+  Map<String, String> get errors => {
+    'NETWORK': 'Sem conexão. Tente de novo quando voltar a internet.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'DEVICE_REVOKE_FAILED': 'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
+    'other': 'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
+  };
 }
 
 // Path: discreet
@@ -2347,6 +2408,9 @@ class Translations$settingsHome$pt {
 
   /// pt: 'Notificações'
   String get notifications => 'Notificações';
+
+  /// pt: 'Dispositivos de notificação'
+  String get devices => 'Dispositivos de notificação';
 
   /// pt: 'Ligadas'
   String get on => 'Ligadas';
@@ -4394,6 +4458,32 @@ extension on Translations {
           'day.emptyText' => 'Um dia livre também é bom.',
           'day.errorTitle' => 'Não deu para carregar',
           'day.errorText' => 'Tente de novo daqui a pouco.',
+          'devices.title' => 'Dispositivos de notificação',
+          'devices.subtitle' =>
+            'Celulares que recebem notificações desta conta. Remover um para as notificações dele.',
+          'devices.current' => 'Este dispositivo',
+          'devices.registeredToday' => ({required Object time}) => 'Registrado hoje às ${time}',
+          'devices.registeredYesterday' => ({
+            required Object time,
+          }) => 'Registrado ontem às ${time}',
+          'devices.registeredOn' => ({required Object date}) => 'Registrado em ${date}',
+          'devices.platformIos' => 'iPhone',
+          'devices.platformAndroid' => 'Android',
+          'devices.revokeTitle' => 'Parar notificações deste dispositivo?',
+          'devices.revokeText' => ({
+            required Object name,
+          }) => '${name} vai deixar de receber notificações desta conta.',
+          'devices.revokeConfirm' => 'Parar notificações',
+          'devices.revoked' => 'Notificações paradas nesse dispositivo.',
+          'devices.emptyTitle' => 'Nenhum dispositivo de notificação',
+          'devices.emptyText' =>
+            'Os dispositivos que recebem notificações desta conta aparecem aqui.',
+          'devices.errors.NETWORK' => 'Sem conexão. Tente de novo quando voltar a internet.',
+          'devices.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'devices.errors.DEVICE_REVOKE_FAILED' =>
+            'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
+          'devices.errors.other' =>
+            'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
           'discreet.title' => 'Modo discreto',
           'discreet.neutralIcon' => 'Ícone neutro',
           'discreet.neutralNotifications' => 'Notificações neutras',
@@ -4665,6 +4755,9 @@ extension on Translations {
           'notificationPreferences.cardDay' => 'Dia',
           'notificationPreferences.cardHour' => 'Horário',
           'notificationPreferences.days.0' => 'Domingo',
+          _ => null,
+        } ??
+        switch (path) {
           'notificationPreferences.days.1' => 'Segunda',
           'notificationPreferences.days.2' => 'Terça',
           'notificationPreferences.days.3' => 'Quarta',
@@ -4686,9 +4779,6 @@ extension on Translations {
           'partnerProfile.categories.likes' => 'Gosta',
           'partnerProfile.categories.dislikes' => 'Não gosta',
           'partnerProfile.categories.sizes' => 'Tamanhos',
-          _ => null,
-        } ??
-        switch (path) {
           'partnerProfile.categories.health' => 'Saúde',
           'partnerProfile.categories.comfort' => 'Conforto',
           'partnerProfile.categories.people' => 'Pessoas',
@@ -5103,6 +5193,7 @@ extension on Translations {
           'settingsHome.connected' => 'Vocês estão conectados',
           'settingsHome.invitePartner' => 'Convide seu par',
           'settingsHome.notifications' => 'Notificações',
+          'settingsHome.devices' => 'Dispositivos de notificação',
           'settingsHome.on' => 'Ligadas',
           'settingsHome.off' => 'Desligadas',
           'settingsHome.plan' => 'Plano',
@@ -5225,6 +5316,9 @@ extension on Translations {
           'slipKind.saved.done' => 'Pronto',
           'slipKind.errors.FREE_LIMIT_REACHED' => 'Você chegou ao limite de slips do plano grátis.',
           'slipKind.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          _ => null,
+        } ??
+        switch (path) {
           'slipKind.errors.other' =>
             'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
           'slipsList.title' => 'Slips',
@@ -5254,9 +5348,6 @@ extension on Translations {
           'slipsList.weekdaysShort.6' => 'Dom',
           'slipsList.monthsShort.0' => 'jan',
           'slipsList.monthsShort.1' => 'fev',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.monthsShort.2' => 'mar',
           'slipsList.monthsShort.3' => 'abr',
           'slipsList.monthsShort.4' => 'mai',

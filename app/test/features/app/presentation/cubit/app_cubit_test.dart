@@ -5,7 +5,9 @@ import 'package:connectivity_service/connectivity_service.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:flutter_bloc_starter/features/devices/data/repositories/devices_repository.dart';
 import 'package:flutter_bloc_starter/features/help/data/repositories/support_repository.dart';
+import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
@@ -30,6 +32,10 @@ class _MockReminderSyncService() extends Mock implements ReminderSyncService;
 
 class _MockConnectivityService() extends Mock implements ConnectivityService;
 
+class _MockNotificationsRepository() extends Mock implements NotificationsRepository;
+
+class _MockDevicesRepository() extends Mock implements DevicesRepository;
+
 void main() {
   late AuthenticationRepository authenticationRepository;
   late ProfileRepository profileRepository;
@@ -38,6 +44,8 @@ void main() {
   late SupportRepository supportRepository;
   late ReminderSyncService reminderSyncService;
   late ConnectivityService connectivityService;
+  late NotificationsRepository notificationsRepository;
+  late DevicesRepository devicesRepository;
 
   AppCubit build() => AppCubit(
     authenticationRepository: authenticationRepository,
@@ -47,6 +55,8 @@ void main() {
     supportRepository: supportRepository,
     reminderSyncService: reminderSyncService,
     connectivityService: connectivityService,
+    notificationsRepository: notificationsRepository,
+    devicesRepository: devicesRepository,
   );
 
   setUpAll(() => registerFallbackValue(const Settings.empty()));
@@ -59,6 +69,10 @@ void main() {
     supportRepository = _MockSupportRepository();
     reminderSyncService = _MockReminderSyncService();
     connectivityService = _MockConnectivityService();
+    notificationsRepository = _MockNotificationsRepository();
+    devicesRepository = _MockDevicesRepository();
+    when(() => notificationsRepository.unregisterCurrentDevice()).thenAnswer((_) async => true);
+    when(() => devicesRepository.revokeCurrentDevice()).thenAnswer((_) async {});
     when(() => reminderSyncService.sync()).thenAnswer((_) async {});
     when(() => slipRepository.flushPending()).thenAnswer((_) async {});
     when(() => supportRepository.flushPending(authorId: any(named: 'authorId')))
@@ -148,13 +162,34 @@ void main() {
     );
 
     blocTest<AppCubit, AppState>(
-      'logout signs the repository out',
+      'logout unregisters the device before signing out',
       build: () {
         when(() => authenticationRepository.logOut()).thenAnswer((_) async {});
         return build();
       },
       act: (cubit) => cubit.logout(),
-      verify: (_) => verify(() => authenticationRepository.logOut()).called(1),
+      verify: (_) {
+        verifyInOrder([
+          () => notificationsRepository.unregisterCurrentDevice(),
+          () => authenticationRepository.logOut(),
+        ]);
+        verifyNever(() => devicesRepository.revokeCurrentDevice());
+      },
+    );
+
+    blocTest<AppCubit, AppState>(
+      'logout removes the current row when the session token is gone',
+      build: () {
+        when(() => notificationsRepository.unregisterCurrentDevice())
+            .thenAnswer((_) async => false);
+        when(() => authenticationRepository.logOut()).thenAnswer((_) async {});
+        return build();
+      },
+      act: (cubit) => cubit.logout(),
+      verify: (_) {
+        verify(() => devicesRepository.revokeCurrentDevice()).called(1);
+        verify(() => authenticationRepository.logOut()).called(1);
+      },
     );
   });
 }

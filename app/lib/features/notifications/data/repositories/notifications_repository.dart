@@ -1,4 +1,6 @@
+import 'package:device_info_service/device_info_service.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/device_marker_store.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/data_sources/notifications_data_source.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/models/notification_preferences.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
@@ -16,8 +18,11 @@ class NotificationsRepository({
   required final NotificationsDataSource _dataSource,
   required final NotificationService _notificationService,
   required final PermissionService _permissionService,
+  required final DeviceInfoService _deviceInfoService,
+  required final DeviceMarkerStore _markerStore,
 }) {
   final Logger _logger = Logger('NotificationsRepository');
+  String? _sessionToken;
 
   /// Reads the current access without asking.
   Future<NotificationAccess> currentAccess() async {
@@ -42,9 +47,30 @@ class NotificationsRepository({
       final token = await _notificationService.onRegistered.first.timeout(
         const Duration(seconds: 10),
       );
-      await _dataSource.registerDevice(token: token, platform: _platform);
+      final label = '${await _deviceLabel()}#${DeviceMarkerStore.markerFor(token)}';
+      await _dataSource.registerDevice(token: token, platform: _platform, label: label);
+      _sessionToken = token;
+      await _markerStore.writeMarker(DeviceMarkerStore.markerFor(token));
     } catch (e, stack) {
       _logger.warning('Could not register this device for push', error: e, stackTrace: stack);
+    }
+  }
+
+  /// Removes this installation's notification row when the token is still known.
+  Future<bool> unregisterCurrentDevice() async {
+    final token = _sessionToken;
+    if (token == null) return false;
+
+    try {
+      await _dataSource.unregisterDevice(token);
+      _sessionToken = null;
+      await _markerStore.clear();
+
+      return true;
+    } catch (e, stack) {
+      _logger.warning('Could not unregister this device for push', error: e, stackTrace: stack);
+
+      return false;
     }
   }
 
@@ -96,6 +122,14 @@ class NotificationsRepository({
       '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:00';
 
   Future<bool> openSettings() => _permissionService.openAppSettings();
+
+  Future<String> _deviceLabel() async {
+    try {
+      return (await _deviceInfoService.getDeviceInfo()).deviceModel;
+    } on Object {
+      return _platform == 'ios' ? 'iPhone' : 'Android';
+    }
+  }
 
   String get _platform => defaultTargetPlatform == TargetPlatform.iOS ? 'ios' : 'android';
 

@@ -1,0 +1,22 @@
+{
+  "title": "Notification devices",
+  "subtitle": "Phones that receive notifications for this account. Removing one stops its notifications.",
+  "current": "This device",
+  "registeredToday": "Registered today at {time}",
+  "registeredYesterday": "Registered yesterday at {time}",
+  "registeredOn": "Registered on {date}",
+  "platformIos": "iPhone",
+  "platformAndroid": "Android",
+  "revokeTitle": "Stop notifications on this device?",
+  "revokeText": "{name} will stop receiving notifications for this account.",
+  "revokeConfirm": "Stop notifications",
+  "revoked": "Notifications stopped on that device.",
+  "emptyTitle": "No notification devices",
+  "emptyText": "Devices that receive notifications for this account appear here.",
+  "errors(map)": {
+    "NETWORK": "No connection. Try again when you are back online.",
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "DEVICE_REVOKE_FAILED": "Couldn't stop notifications on that device. Try again.",
+    "other": "Couldn't stop notifications on that device. Try again."
+  }
+}

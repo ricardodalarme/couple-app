@@ -1,4 +1,6 @@
 import 'package:core/core.dart';
+import 'package:device_info_service/device_info_service.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/device_marker_store.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/data_sources/notifications_data_source.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/off_banner/cubit/notifications_off_cubit.dart';
@@ -21,6 +23,8 @@ class NotificationsInjectionModule() implements InjectionModule {
         dataSource: injector.get<NotificationsDataSource>(),
         notificationService: injector.get<NotificationService>(),
         permissionService: injector.get<PermissionService>(),
+        deviceInfoService: injector.get<DeviceInfoService>(),
+        markerStore: injector.get<DeviceMarkerStore>(),
       ),
     )
     ..registerFactory<NotificationPermissionCubit>(

@@ -72,6 +72,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$day$en day = _Translations$day$en._(_root);
   @override
+  late final _Translations$devices$en devices = _Translations$devices$en._(_root);
+  @override
   late final _Translations$discreet$en discreet = _Translations$discreet$en._(_root);
   @override
   late final _Translations$firstSlip$en firstSlip = _Translations$firstSlip$en._(_root);
@@ -655,6 +657,52 @@ class _Translations$day$en extends Translations$day$pt {
   String get errorTitle => 'Couldn\'t load';
   @override
   String get errorText => 'Try again in a moment.';
+}
+
+// Path: devices
+class _Translations$devices$en extends Translations$devices$pt {
+  _Translations$devices$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Notification devices';
+  @override
+  String get subtitle =>
+      'Phones that receive notifications for this account. Removing one stops its notifications.';
+  @override
+  String get current => 'This device';
+  @override
+  String registeredToday({required Object time}) => 'Registered today at ${time}';
+  @override
+  String registeredYesterday({required Object time}) => 'Registered yesterday at ${time}';
+  @override
+  String registeredOn({required Object date}) => 'Registered on ${date}';
+  @override
+  String get platformIos => 'iPhone';
+  @override
+  String get platformAndroid => 'Android';
+  @override
+  String get revokeTitle => 'Stop notifications on this device?';
+  @override
+  String revokeText({required Object name}) =>
+      '${name} will stop receiving notifications for this account.';
+  @override
+  String get revokeConfirm => 'Stop notifications';
+  @override
+  String get revoked => 'Notifications stopped on that device.';
+  @override
+  String get emptyTitle => 'No notification devices';
+  @override
+  String get emptyText => 'Devices that receive notifications for this account appear here.';
+  @override
+  Map<String, String> get errors => {
+    'NETWORK': 'No connection. Try again when you are back online.',
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'DEVICE_REVOKE_FAILED': 'Couldn\'t stop notifications on that device. Try again.',
+    'other': 'Couldn\'t stop notifications on that device. Try again.',
+  };
 }
 
 // Path: discreet
@@ -1924,6 +1972,8 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   String get invitePartner => 'Invite your partner';
   @override
   String get notifications => 'Notifications';
+  @override
+  String get devices => 'Notification devices';
   @override
   String get on => 'On';
   @override
@@ -3639,6 +3689,29 @@ extension on TranslationsEn {
           'day.emptyText' => 'A free day is good too.',
           'day.errorTitle' => 'Couldn\'t load',
           'day.errorText' => 'Try again in a moment.',
+          'devices.title' => 'Notification devices',
+          'devices.subtitle' => 'Phones that receive notifications for this account. Removing one stops its notifications.',
+          'devices.current' => 'This device',
+          'devices.registeredToday' => ({required Object time}) => 'Registered today at ${time}',
+          'devices.registeredYesterday' => ({
+            required Object time,
+          }) => 'Registered yesterday at ${time}',
+          'devices.registeredOn' => ({required Object date}) => 'Registered on ${date}',
+          'devices.platformIos' => 'iPhone',
+          'devices.platformAndroid' => 'Android',
+          'devices.revokeTitle' => 'Stop notifications on this device?',
+          'devices.revokeText' => ({
+            required Object name,
+          }) => '${name} will stop receiving notifications for this account.',
+          'devices.revokeConfirm' => 'Stop notifications',
+          'devices.revoked' => 'Notifications stopped on that device.',
+          'devices.emptyTitle' => 'No notification devices',
+          'devices.emptyText' => 'Devices that receive notifications for this account appear here.',
+          'devices.errors.NETWORK' => 'No connection. Try again when you are back online.',
+          'devices.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'devices.errors.DEVICE_REVOKE_FAILED' =>
+            'Couldn\'t stop notifications on that device. Try again.',
+          'devices.errors.other' => 'Couldn\'t stop notifications on that device. Try again.',
           'discreet.title' => 'Discreet mode',
           'discreet.neutralIcon' => 'Neutral icon',
           'discreet.neutralNotifications' => 'Neutral notifications',
@@ -3907,6 +3980,9 @@ extension on TranslationsEn {
           'notificationPreferences.cardDay' => 'Day',
           'notificationPreferences.cardHour' => 'Time',
           'notificationPreferences.days.0' => 'Sunday',
+          _ => null,
+        } ??
+        switch (path) {
           'notificationPreferences.days.1' => 'Monday',
           'notificationPreferences.days.2' => 'Tuesday',
           'notificationPreferences.days.3' => 'Wednesday',
@@ -3927,9 +4003,6 @@ extension on TranslationsEn {
           'partnerProfile.categories.likes' => 'Likes',
           'partnerProfile.categories.dislikes' => 'Dislikes',
           'partnerProfile.categories.sizes' => 'Sizes',
-          _ => null,
-        } ??
-        switch (path) {
           'partnerProfile.categories.health' => 'Health',
           'partnerProfile.categories.comfort' => 'Comfort',
           'partnerProfile.categories.people' => 'People',
@@ -4339,6 +4412,7 @@ extension on TranslationsEn {
           'settingsHome.connected' => 'You are connected',
           'settingsHome.invitePartner' => 'Invite your partner',
           'settingsHome.notifications' => 'Notifications',
+          'settingsHome.devices' => 'Notification devices',
           'settingsHome.on' => 'On',
           'settingsHome.off' => 'Off',
           'settingsHome.plan' => 'Plan',
@@ -4462,6 +4536,9 @@ extension on TranslationsEn {
           'slipKind.saved.done' => 'Done',
           'slipKind.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
           'slipKind.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          _ => null,
+        } ??
+        switch (path) {
           'slipKind.errors.other' =>
             'Couldn\'t save right now. Your text is still here, try again.',
           'slipsList.title' => 'Slips',
@@ -4491,9 +4568,6 @@ extension on TranslationsEn {
           'slipsList.weekdaysShort.6' => 'Sun',
           'slipsList.monthsShort.0' => 'Jan',
           'slipsList.monthsShort.1' => 'Feb',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.monthsShort.2' => 'Mar',
           'slipsList.monthsShort.3' => 'Apr',
           'slipsList.monthsShort.4' => 'May',

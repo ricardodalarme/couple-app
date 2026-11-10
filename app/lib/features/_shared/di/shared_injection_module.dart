@@ -6,6 +6,7 @@ import 'package:core/core.dart';
 import 'package:crash_report_service/crash_report_service.dart';
 import 'package:device_info_service/device_info_service.dart';
 import 'package:file_picker_service/file_picker_service.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/device_marker_store.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/infrastructure/config/env_variables.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
@@ -31,6 +32,9 @@ class SharedInjectionModule() implements InjectionModule {
       () => AnalyticsRouterObserver(analyticsService: injector.get<AnalyticsService>()),
     )
     ..registerLazySingleton<SecureStorageService>(SecureStorageService.new)
+    ..registerLazySingleton<DeviceMarkerStore>(
+      () => DeviceMarkerStore(secureStorageService: injector.get<SecureStorageService>()),
+    )
     ..registerLazySingleton<PreferencesService>(PreferencesService.new)
     ..registerLazySingleton<GQLClient>(
       () => GQLClient(
