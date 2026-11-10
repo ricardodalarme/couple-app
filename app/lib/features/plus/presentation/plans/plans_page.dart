@@ -21,48 +21,66 @@ class const PlansPage({super.key}) extends StatelessWidget implements AutoRouteW
     final plus = context.select((PlansCubit cubit) => cubit.state.plus);
 
     return BaseView(
-      body: SkeletonizerResourceWidget<PlusState>(
-        plus,
-        fakeValue: PlusState.fake(),
-        successBuilder: (value) => BaseStackedContent(
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Semantics(
-                header: true,
-                child: Text(
-                  value.hasPlus ? l10n.activeTitle : l10n.title,
-                  style: context.text.titleXl,
+      body: BlocListener<PlansCubit, PlansState>(
+        listenWhen: (previous, current) => previous.purchaseAction != current.purchaseAction,
+        listener: (context, state) {
+          final action = state.purchaseAction;
+          if (action is Success<PurchaseOutcome>) {
+            BaseToast.show(
+              context,
+              action.value == PurchaseOutcome.unlocked ? l10n.started : l10n.pending,
+            );
+          } else if (action is Failure) {
+            BaseToast.show(context, l10n.purchaseError);
+          }
+        },
+        child: SkeletonizerResourceWidget<PlusState>(
+          plus,
+          fakeValue: PlusState.fake(),
+          successBuilder: (value) => BaseStackedContent(
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Semantics(
+                  header: true,
+                  child: Text(
+                    value.hasPlus ? l10n.activeTitle : l10n.title,
+                    style: context.text.titleXl,
+                  ),
                 ),
-              ),
-              const SizedBox(height: AppSpace.s8),
-              Text(
-                value.isPaidByPartner
-                    ? l10n.paidByPartner
-                    : value.hasPlus
-                    ? l10n.activeText
-                    : l10n.subtitle,
-                style: context.text.body.copyWith(color: context.colors.textSecondary),
-              ),
-              const SizedBox(height: AppSpace.s20),
-              if (!value.hasPlus) ...[
-                BaseNote(
-                  text: l10n.freeLeft(slips: value.slipsLeft, cards: value.cardsLeft),
+                const SizedBox(height: AppSpace.s8),
+                Text(
+                  value.isPaidByPartner
+                      ? l10n.paidByPartner
+                      : value.hasPlus
+                      ? l10n.activeText
+                      : l10n.subtitle,
+                  style: context.text.body.copyWith(color: context.colors.textSecondary),
                 ),
+                const SizedBox(height: AppSpace.s20),
+                if (value.hasBillingProblem) ...[
+                  BaseBanner(title: l10n.billingTitle, text: l10n.billingText),
+                  const SizedBox(height: AppSpace.s16),
+                ],
+                if (!value.hasPlus) ...[
+                  BaseNote(
+                    text: l10n.freeLeft(slips: value.slipsLeft, cards: value.cardsLeft),
+                  ),
+                  const SizedBox(height: AppSpace.s16),
+                ],
+                const _Comparison(),
+                if (!value.hasPlus) ...[const SizedBox(height: AppSpace.s20), const _Prices()],
                 const SizedBox(height: AppSpace.s16),
+                BaseNote(text: l10n.alwaysFree),
               ],
-              const _Comparison(),
-              if (!value.hasPlus) ...[const SizedBox(height: AppSpace.s20), const _Prices()],
-              const SizedBox(height: AppSpace.s16),
-              BaseNote(text: l10n.alwaysFree),
-            ],
+            ),
           ),
-        ),
-        failureBuilder: (_) => BaseEmptyState(
-          title: l10n.errorTitle,
-          text: l10n.errorText,
-          actionText: context.l10n.common.retry,
-          onAction: context.read<PlansCubit>().load,
+          failureBuilder: (_) => BaseEmptyState(
+            title: l10n.errorTitle,
+            text: l10n.errorText,
+            actionText: context.l10n.common.retry,
+            onAction: context.read<PlansCubit>().load,
+          ),
         ),
       ),
     );
@@ -97,18 +115,36 @@ class const _Prices() extends StatelessWidget {
         PlanPrice(id: 'm', price: r'R$ 0,00', isYearly: false),
         PlanPrice(id: 'y', price: r'R$ 0,00', isYearly: true),
       ],
-      successBuilder: (list) => Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          for (final price in list) ...[
-            BaseSurfaceCard(
-              title: price.isYearly ? l10n.yearly : l10n.monthly,
-              supportText: price.price,
+      successBuilder: (list) {
+        final chosen = context.select((PlansCubit cubit) => cubit.state.chosenId);
+        final isBuying = context.select((PlansCubit cubit) => cubit.state.purchaseAction.isLoading);
+        final cubit = context.read<PlansCubit>();
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Wrap(
+              spacing: AppSpace.s8,
+              runSpacing: AppSpace.s8,
+              children: [
+                for (final price in list)
+                  BaseChoiceChip(
+                    label: '${price.isYearly ? l10n.yearly : l10n.monthly} · ${price.price}',
+                    isSelected: chosen == price.id,
+                    onTap: () => cubit.onPlanChosen(price.id),
+                  ),
+              ],
             ),
             const SizedBox(height: AppSpace.s12),
+            BaseButton(
+              text: l10n.subscribe,
+              isEnabled: chosen != null,
+              isLoading: isBuying,
+              onPressed: cubit.purchase,
+            ),
           ],
-        ],
-      ),
+        );
+      },
       failureBuilder: (_) => BaseEmptyState(
         title: l10n.storeTitle,
         text: l10n.storeText,

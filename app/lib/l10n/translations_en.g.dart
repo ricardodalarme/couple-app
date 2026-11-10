@@ -1169,6 +1169,19 @@ class _Translations$plus$en extends Translations$plus$pt {
   @override
   String get storeText => 'The store didn\'t answer. Nothing was charged. Try again.';
   @override
+  String get subscribe => 'Subscribe';
+  @override
+  String get started => 'Plus is on. Thank you.';
+  @override
+  String get pending => 'Purchase received. We\'re confirming, Plus will show up shortly.';
+  @override
+  String get purchaseError => 'Couldn\'t complete the purchase. Nothing was charged.';
+  @override
+  String get billingTitle => 'Payment problem';
+  @override
+  String get billingText =>
+      'The last payment didn\'t go through. Plus stays on for now. Open your subscriptions in the store and update the payment method.';
+  @override
   String get alwaysFree => 'Safety, pause and unpair are never locked.';
   @override
   String get lockLabel => 'PLUS';
@@ -3406,6 +3419,12 @@ extension on TranslationsEn {
           'plus.yearly' => 'Yearly',
           'plus.storeTitle' => 'Couldn\'t load the prices',
           'plus.storeText' => 'The store didn\'t answer. Nothing was charged. Try again.',
+          'plus.subscribe' => 'Subscribe',
+          'plus.started' => 'Plus is on. Thank you.',
+          'plus.pending' => 'Purchase received. We\'re confirming, Plus will show up shortly.',
+          'plus.purchaseError' => 'Couldn\'t complete the purchase. Nothing was charged.',
+          'plus.billingTitle' => 'Payment problem',
+          'plus.billingText' => 'The last payment didn\'t go through. Plus stays on for now. Open your subscriptions in the store and update the payment method.',
           'plus.alwaysFree' => 'Safety, pause and unpair are never locked.',
           'plus.lockLabel' => 'PLUS',
           'plus.lockText' => 'Available with Plus. Tap to see the plans.',
@@ -3438,15 +3457,15 @@ extension on TranslationsEn {
           'profileSetup.months.4' => 'May',
           'profileSetup.months.5' => 'June',
           'profileSetup.months.6' => 'July',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.months.7' => 'August',
           'profileSetup.months.8' => 'September',
           'profileSetup.months.9' => 'October',
           'profileSetup.months.10' => 'November',
           'profileSetup.months.11' => 'December',
           'profileSetup.continueButton' => 'Continue',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.errors.INVALID_DATE' =>
             'That date does not look right. Pick one between 1950 and today.',
           'profileSetup.errors.NETWORK' => 'No connection. Your answers are still here, try again.',
@@ -4034,6 +4053,9 @@ extension on TranslationsEn {
           'today.cardReceivedAction' => 'See card',
           'today.firstDayLabel' => 'Getting started',
           'today.firstDayGreeting' => ({required Object name}) => 'Hi, ${name}',
+          _ => null,
+        } ??
+        switch (path) {
           'today.firstDaySubtitle' => 'so glad you are here',
           'today.firstDayTag' => 'Good start',
           'today.firstDayTitle' =>
@@ -4053,9 +4075,6 @@ extension on TranslationsEn {
           'today.firstDayText' =>
             'A slip is one good thing, in one line. On Sunday they become a card.',
           'today.firstDayAction' => 'Note one more',
-          _ => null,
-        } ??
-        switch (path) {
           'today.errorTitle' => 'Could not load Today',
           'today.errorText' => 'Your slips are safe. Try again.',
           'today.cardReceivedNamed' => ({required Object name}) => '${name} sent you a card',

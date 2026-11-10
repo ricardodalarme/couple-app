@@ -1389,6 +1389,25 @@ class Translations$plus$pt {
   /// pt: 'A loja não respondeu. Nada foi cobrado. Tente de novo.'
   String get storeText => 'A loja não respondeu. Nada foi cobrado. Tente de novo.';
 
+  /// pt: 'Assinar'
+  String get subscribe => 'Assinar';
+
+  /// pt: 'Plus ativado. Obrigado.'
+  String get started => 'Plus ativado. Obrigado.';
+
+  /// pt: 'Compra recebida. Estamos confirmando, o Plus aparece em instantes.'
+  String get pending => 'Compra recebida. Estamos confirmando, o Plus aparece em instantes.';
+
+  /// pt: 'Não deu para concluir a compra. Nada foi cobrado.'
+  String get purchaseError => 'Não deu para concluir a compra. Nada foi cobrado.';
+
+  /// pt: 'Problema no pagamento'
+  String get billingTitle => 'Problema no pagamento';
+
+  /// pt: 'O último pagamento não passou. O Plus continua por enquanto. Abra suas assinaturas na loja e atualize a forma de pagamento.'
+  String get billingText =>
+      'O último pagamento não passou. O Plus continua por enquanto. Abra suas assinaturas na loja e atualize a forma de pagamento.';
+
   /// pt: 'Segurança, pausa e desparear nunca ficam trancados.'
   String get alwaysFree => 'Segurança, pausa e desparear nunca ficam trancados.';
 
@@ -4007,6 +4026,12 @@ extension on Translations {
           'plus.yearly' => 'Anual',
           'plus.storeTitle' => 'Não deu para ver os preços',
           'plus.storeText' => 'A loja não respondeu. Nada foi cobrado. Tente de novo.',
+          'plus.subscribe' => 'Assinar',
+          'plus.started' => 'Plus ativado. Obrigado.',
+          'plus.pending' => 'Compra recebida. Estamos confirmando, o Plus aparece em instantes.',
+          'plus.purchaseError' => 'Não deu para concluir a compra. Nada foi cobrado.',
+          'plus.billingTitle' => 'Problema no pagamento',
+          'plus.billingText' => 'O último pagamento não passou. O Plus continua por enquanto. Abra suas assinaturas na loja e atualize a forma de pagamento.',
           'plus.alwaysFree' => 'Segurança, pausa e desparear nunca ficam trancados.',
           'plus.lockLabel' => 'PLUS',
           'plus.lockText' => 'Disponível no Plus. Toque para ver os planos.',
@@ -4039,15 +4064,15 @@ extension on Translations {
           'profileSetup.months.4' => 'maio',
           'profileSetup.months.5' => 'junho',
           'profileSetup.months.6' => 'julho',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.months.7' => 'agosto',
           'profileSetup.months.8' => 'setembro',
           'profileSetup.months.9' => 'outubro',
           'profileSetup.months.10' => 'novembro',
           'profileSetup.months.11' => 'dezembro',
           'profileSetup.continueButton' => 'Continuar',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.errors.INVALID_DATE' =>
             'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
           'profileSetup.errors.NETWORK' => 'Sem conexão. Seus dados continuam aqui, tente de novo.',
@@ -4639,6 +4664,9 @@ extension on Translations {
           'today.cardReceivedAction' => 'Ver cartão',
           'today.firstDayLabel' => 'Começando',
           'today.firstDayGreeting' => ({required Object name}) => 'Oi, ${name}',
+          _ => null,
+        } ??
+        switch (path) {
           'today.firstDaySubtitle' => 'que bom ter você por aqui',
           'today.firstDayTag' => 'Bom começo',
           'today.firstDayTitle' =>
@@ -4658,9 +4686,6 @@ extension on Translations {
           'today.firstDayText' =>
             'Um slip é uma coisa boa, em uma linha. No domingo eles viram um cartão.',
           'today.firstDayAction' => 'Anotar mais um',
-          _ => null,
-        } ??
-        switch (path) {
           'today.errorTitle' => 'Não deu para carregar o Hoje',
           'today.errorText' => 'Seus slips estão seguros. Tente de novo.',
           'today.cardReceivedNamed' => ({required Object name}) => '${name} te mandou um cartão',

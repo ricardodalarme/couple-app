@@ -21,6 +21,30 @@ class PlansCubit({required final PlusRepository _plusRepository}) extends Cubit<
     }
   }
 
+  void onPlanChosen(String id) => emit(state.copyWith(chosenId: id));
+
+  /// Buys the chosen plan; a cancelled purchase returns silently.
+  Future<void> purchase() async {
+    final id = state.chosenId;
+    if (id == null || state.purchaseAction.isLoading) return;
+
+    emit(state.copyWith(purchaseAction: const Loading()));
+    try {
+      final outcome = await _plusRepository.purchase(id);
+      if (outcome == PurchaseOutcome.cancelled) {
+        emit(state.copyWith(purchaseAction: const Initial()));
+        return;
+      }
+      emit(state.copyWith(purchaseAction: Success(outcome)));
+      if (outcome == PurchaseOutcome.unlocked) {
+        emit(state.copyWith(plus: Success(await _plusRepository.getPlus())));
+      }
+    } catch (exception) {
+      emit(state.copyWith(purchaseAction: Failure.fromObject(exception)));
+      emit(state.copyWith(purchaseAction: const Initial()));
+    }
+  }
+
   /// Reads the prices again, for the retry when the store could not be reached.
   Future<void> loadPrices() async {
     emit(state.copyWith(prices: const Loading()));

@@ -6,12 +6,28 @@ final class const PlusState({
   final bool isPaidByPartner = false,
   final int slipsLeft = 0,
   final int cardsLeft = 0,
+  final String? status,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
   factory fake() => const PlusState(hasPlus: false, slipsLeft: 10, cardsLeft: 1);
 
+  /// Whether a payment failed; Plus stays on during the grace period.
+  bool get hasBillingProblem => status == 'billing_issue' || status == 'grace';
+
   @override
-  List<Object?> get props => [hasPlus, isPaidByPartner, slipsLeft, cardsLeft];
+  List<Object?> get props => [hasPlus, isPaidByPartner, slipsLeft, cardsLeft, status];
+}
+
+/// How a purchase attempt ended.
+enum PurchaseOutcome() {
+  /// Plus is active.
+  unlocked,
+
+  /// The store accepted it but the server has not confirmed yet.
+  pending,
+
+  /// The person backed out; nothing is shown.
+  cancelled,
 }
 
 /// A plan price as the store reports it; the text, currency and taxes are the store's own.
