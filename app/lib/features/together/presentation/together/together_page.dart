@@ -22,6 +22,7 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
     final l10n = context.l10n.tabs;
     final view = context.select((TogetherCubit cubit) => cubit.state.view);
     final hasPartner = context.select((TogetherCubit cubit) => cubit.state.hasPartner);
+    final showCheckin = context.select((TogetherCubit cubit) => cubit.state.showCheckin);
     final cubit = context.read<TogetherCubit>();
 
     return BaseView(
@@ -41,6 +42,15 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
             if (view == TogetherView.together) ...[
               if (!hasPartner) ...[
                 BaseNote(text: l10n.soloNote),
+                const SizedBox(height: AppSpace.s12),
+              ],
+              if (showCheckin) ...[
+                BaseListCard(
+                  categoryLabel: l10n.checkinLabel,
+                  title: l10n.checkinTitle,
+                  supportText: l10n.checkinText,
+                  onTap: () => _openCheckin(context, cubit),
+                ),
                 const SizedBox(height: AppSpace.s12),
               ],
               BaseListCard(
@@ -124,5 +134,10 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
         ),
       ),
     );
+  }
+
+  Future<void> _openCheckin(BuildContext context, TogetherCubit cubit) async {
+    await context.pushRoute(const CheckinRoute());
+    if (context.mounted) await cubit.load();
   }
 }

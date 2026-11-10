@@ -9,11 +9,16 @@ enum TogetherView() {
 final class const TogetherState({
   final TogetherView view = TogetherView.together,
   final bool hasPartner = true,
+  final bool showCheckin = true,
 }) with Equatable {
-  TogetherState copyWith({TogetherView? view, bool? hasPartner}) {
-    return TogetherState(view: view ?? this.view, hasPartner: hasPartner ?? this.hasPartner);
+  TogetherState copyWith({TogetherView? view, bool? hasPartner, bool? showCheckin}) {
+    return TogetherState(
+      view: view ?? this.view,
+      hasPartner: hasPartner ?? this.hasPartner,
+      showCheckin: showCheckin ?? this.showCheckin,
+    );
   }
 
   @override
-  List<Object?> get props => [view, hasPartner];
+  List<Object?> get props => [view, hasPartner, showCheckin];
 }

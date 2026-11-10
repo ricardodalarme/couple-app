@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
 import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
@@ -26,7 +27,10 @@ class TogetherInjectionModule() implements InjectionModule {
       () => TogetherRepository(dataSource: injector.get<TogetherDataSource>()),
     )
     ..registerFactory<TogetherCubit>(
-      () => TogetherCubit(pairingRepository: injector.get<PairingRepository>()),
+      () => TogetherCubit(
+        pairingRepository: injector.get<PairingRepository>(),
+        checkinRepository: injector.get<CheckinRepository>(),
+      ),
     )
     ..registerLazySingleton<RitualReminderService>(
       () => RitualReminderService(

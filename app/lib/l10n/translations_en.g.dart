@@ -68,6 +68,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$cardsList$en cardsList = _Translations$cardsList$en._(_root);
   @override
+  late final _Translations$checkin$en checkin = _Translations$checkin$en._(_root);
+  @override
   late final _Translations$common$en common = _Translations$common$en._(_root);
   @override
   late final _Translations$dateNight$en dateNight = _Translations$dateNight$en._(_root);
@@ -465,6 +467,96 @@ class _Translations$cardsList$en extends Translations$cardsList$pt {
   String get notFound => 'That card is no longer available.';
   @override
   String get reactionQuoteMadeMyDay => 'That made my week.';
+}
+
+// Path: checkin
+class _Translations$checkin$en extends Translations$checkin$pt {
+  _Translations$checkin$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Weekly check-in';
+  @override
+  String get titleHighlight => 'Weekly';
+  @override
+  String get introSubtitle => 'Ten minutes. Each of you answers privately first.';
+  @override
+  String get start => 'Start';
+  @override
+  String get notThisWeek => 'Not this week';
+  @override
+  String questionOf({required Object current, required Object total}) =>
+      'Question ${current} of ${total}';
+  @override
+  List<String> get questions => [
+    'What was good this week?',
+    'What do you want us to do together?',
+    'Did anything weigh on you this week?',
+    'What do you want me to know?',
+  ];
+  @override
+  String get answerHint => 'Write as much or as little as you want.';
+  @override
+  String get privateNote => 'Answers stay hidden until both of you finish.';
+  @override
+  String get next => 'Next';
+  @override
+  String get finish => 'Finish';
+  @override
+  String get skip => 'Skip this question';
+  @override
+  String get skipNote =>
+      'Skipping leaves this question blank. The check-in only appears when both of you answer all four.';
+  @override
+  String get waitingTitle => 'Your answers are kept';
+  @override
+  String get waitingText => 'Answers appear when both of you have answered all four.';
+  @override
+  String get waitingIncomplete =>
+      'Some questions are still blank. Answers appear when both of you answer all four.';
+  @override
+  String get answerMissing => 'Answer the missing ones';
+  @override
+  String get checkAgain => 'Check again';
+  @override
+  String get review => 'Review my answers';
+  @override
+  String get discardTitle => 'Discard this answer?';
+  @override
+  String get discardText => 'The text you wrote was not saved.';
+  @override
+  String get discard => 'Discard';
+  @override
+  String get keepWriting => 'Keep writing';
+  @override
+  String get revealTitle => 'Your answers together';
+  @override
+  String get revealHighlight => 'together';
+  @override
+  String get revealSubtitle =>
+      'Now that you both finished, both answers to each question are shown.';
+  @override
+  String get revealNote => 'No scores. Just what each of you wrote.';
+  @override
+  String get you => 'You';
+  @override
+  String get partnerFallback => 'Your partner';
+  @override
+  String get skippedAnswer => 'Skipped this question';
+  @override
+  String get close => 'Close';
+  @override
+  String get soloTitle => 'The check-in is for both of you';
+  @override
+  String get soloText => 'When your person joins, the weekly check-in shows up here.';
+  @override
+  String get loadErrorTitle => 'Couldn\'t open the check-in';
+  @override
+  String get loadErrorText => 'Nothing was lost. Try again.';
+  @override
+  Map<String, String> get errors => {'other': 'Couldn\'t save that now. Try again.'};
 }
 
 // Path: common
@@ -2710,6 +2802,12 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get segmentForMe => 'For me';
   @override
+  String get checkinLabel => 'CHECK-IN';
+  @override
+  String get checkinTitle => 'Weekly check-in';
+  @override
+  String get checkinText => 'A short conversation, private first.';
+  @override
   String get logisticsLabel => 'PRACTICAL';
   @override
   String get logisticsTitle => 'Logistics';
@@ -3959,6 +4057,50 @@ extension on TranslationsEn {
           'cardsList.responseQuote' => ({required Object label}) => '“${label}”',
           'cardsList.notFound' => 'That card is no longer available.',
           'cardsList.reactionQuoteMadeMyDay' => 'That made my week.',
+          'checkin.title' => 'Weekly check-in',
+          'checkin.titleHighlight' => 'Weekly',
+          'checkin.introSubtitle' => 'Ten minutes. Each of you answers privately first.',
+          'checkin.start' => 'Start',
+          'checkin.notThisWeek' => 'Not this week',
+          'checkin.questionOf' => ({
+            required Object current,
+            required Object total,
+          }) => 'Question ${current} of ${total}',
+          'checkin.questions.0' => 'What was good this week?',
+          'checkin.questions.1' => 'What do you want us to do together?',
+          'checkin.questions.2' => 'Did anything weigh on you this week?',
+          'checkin.questions.3' => 'What do you want me to know?',
+          'checkin.answerHint' => 'Write as much or as little as you want.',
+          'checkin.privateNote' => 'Answers stay hidden until both of you finish.',
+          'checkin.next' => 'Next',
+          'checkin.finish' => 'Finish',
+          'checkin.skip' => 'Skip this question',
+          'checkin.skipNote' => 'Skipping leaves this question blank. The check-in only appears when both of you answer all four.',
+          'checkin.waitingTitle' => 'Your answers are kept',
+          'checkin.waitingText' => 'Answers appear when both of you have answered all four.',
+          'checkin.waitingIncomplete' =>
+            'Some questions are still blank. Answers appear when both of you answer all four.',
+          'checkin.answerMissing' => 'Answer the missing ones',
+          'checkin.checkAgain' => 'Check again',
+          'checkin.review' => 'Review my answers',
+          'checkin.discardTitle' => 'Discard this answer?',
+          'checkin.discardText' => 'The text you wrote was not saved.',
+          'checkin.discard' => 'Discard',
+          'checkin.keepWriting' => 'Keep writing',
+          'checkin.revealTitle' => 'Your answers together',
+          'checkin.revealHighlight' => 'together',
+          'checkin.revealSubtitle' =>
+            'Now that you both finished, both answers to each question are shown.',
+          'checkin.revealNote' => 'No scores. Just what each of you wrote.',
+          'checkin.you' => 'You',
+          'checkin.partnerFallback' => 'Your partner',
+          'checkin.skippedAnswer' => 'Skipped this question',
+          'checkin.close' => 'Close',
+          'checkin.soloTitle' => 'The check-in is for both of you',
+          'checkin.soloText' => 'When your person joins, the weekly check-in shows up here.',
+          'checkin.loadErrorTitle' => 'Couldn\'t open the check-in',
+          'checkin.loadErrorText' => 'Nothing was lost. Try again.',
+          'checkin.errors.other' => 'Couldn\'t save that now. Try again.',
           'common.appName' => 'Flutter Bloc Starter',
           'common.send' => 'Send',
           'common.save' => 'Save',
@@ -4344,6 +4486,9 @@ extension on TranslationsEn {
           'memories.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'memories.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
           'mood.title' => 'How are you today?',
+          _ => null,
+        } ??
+        switch (path) {
           'mood.titleHighlight' => 'today',
           'mood.subtitle' => 'One tap. The “I need…” tag is optional.',
           'mood.privateCue' => 'Only you see this',
@@ -4913,6 +5058,9 @@ extension on TranslationsEn {
           'repair.learning.errors.other' => 'Couldn\'t save right now. Your text is still here.',
           'repair.next.pause' => 'Breathe a little',
           'repair.next.guided' => 'Start the guided repair',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.next.quick' => 'Send a repair',
           'rituals.title' => 'Rituals',
           'rituals.subtitle' => 'Small habits you want to protect. No streaks, no pressure.',
@@ -5208,6 +5356,9 @@ extension on TranslationsEn {
           'tabs.soonText' => 'This part of the app is still being prepared.',
           'tabs.segmentTogether' => 'Together',
           'tabs.segmentForMe' => 'For me',
+          'tabs.checkinLabel' => 'CHECK-IN',
+          'tabs.checkinTitle' => 'Weekly check-in',
+          'tabs.checkinText' => 'A short conversation, private first.',
           'tabs.logisticsLabel' => 'PRACTICAL',
           'tabs.logisticsTitle' => 'Logistics',
           'tabs.logisticsText' => 'The practical things, with nobody carrying them alone.',

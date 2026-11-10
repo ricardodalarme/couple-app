@@ -1,0 +1,20 @@
+mutation InsertCheckinAnswer(
+  $coupleId: UUID!
+  $weekStart: Date!
+  $question: Int!
+  $body: String!
+) {
+  insertIntoCheckinAnswersCollection(
+    objects: [
+      { coupleId: $coupleId, weekStart: $weekStart, question: $question, body: $body }
+    ]
+  ) {
+    records {
+      id
+      authorId
+      weekStart
+      question
+      body
+    }
+  }
+}

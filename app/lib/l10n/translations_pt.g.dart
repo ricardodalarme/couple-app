@@ -63,6 +63,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
       Translations$authentication$pt.internal(_root);
   late final Translations$cardView$pt cardView = Translations$cardView$pt.internal(_root);
   late final Translations$cardsList$pt cardsList = Translations$cardsList$pt.internal(_root);
+  late final Translations$checkin$pt checkin = Translations$checkin$pt.internal(_root);
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
   late final Translations$dateNight$pt dateNight = Translations$dateNight$pt.internal(_root);
   late final Translations$dates$pt dates = Translations$dates$pt.internal(_root);
@@ -492,6 +493,130 @@ class Translations$cardsList$pt {
 
   /// pt: 'Isso fez a minha semana.'
   String get reactionQuoteMadeMyDay => 'Isso fez a minha semana.';
+}
+
+// Path: checkin
+class Translations$checkin$pt {
+  Translations$checkin$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Check-in semanal'
+  String get title => 'Check-in semanal';
+
+  /// pt: 'semanal'
+  String get titleHighlight => 'semanal';
+
+  /// pt: 'Dez minutos. Cada um responde em privado primeiro.'
+  String get introSubtitle => 'Dez minutos. Cada um responde em privado primeiro.';
+
+  /// pt: 'Começar'
+  String get start => 'Começar';
+
+  /// pt: 'Não nesta semana'
+  String get notThisWeek => 'Não nesta semana';
+
+  /// pt: 'Pergunta {current} de {total}'
+  String questionOf({required Object current, required Object total}) =>
+      'Pergunta ${current} de ${total}';
+
+  List<String> get questions => [
+    'O que foi bom nesta semana?',
+    'O que você quer que a gente faça junto?',
+    'Teve algo que pesou esta semana?',
+    'O que você quer que eu saiba?',
+  ];
+
+  /// pt: 'Escreva o quanto quiser.'
+  String get answerHint => 'Escreva o quanto quiser.';
+
+  /// pt: 'As respostas ficam ocultas até os dois terminarem.'
+  String get privateNote => 'As respostas ficam ocultas até os dois terminarem.';
+
+  /// pt: 'Próximo'
+  String get next => 'Próximo';
+
+  /// pt: 'Concluir'
+  String get finish => 'Concluir';
+
+  /// pt: 'Pular esta pergunta'
+  String get skip => 'Pular esta pergunta';
+
+  /// pt: 'Pular deixa esta pergunta em branco. O check-in só aparece quando vocês dois responderem as quatro.'
+  String get skipNote =>
+      'Pular deixa esta pergunta em branco. O check-in só aparece quando vocês dois responderem as quatro.';
+
+  /// pt: 'Suas respostas ficaram guardadas'
+  String get waitingTitle => 'Suas respostas ficaram guardadas';
+
+  /// pt: 'As respostas aparecem quando vocês dois tiverem respondido as quatro.'
+  String get waitingText => 'As respostas aparecem quando vocês dois tiverem respondido as quatro.';
+
+  /// pt: 'Ainda faltam perguntas. As respostas aparecem quando vocês dois responderem as quatro.'
+  String get waitingIncomplete =>
+      'Ainda faltam perguntas. As respostas aparecem quando vocês dois responderem as quatro.';
+
+  /// pt: 'Responder as que faltam'
+  String get answerMissing => 'Responder as que faltam';
+
+  /// pt: 'Verificar de novo'
+  String get checkAgain => 'Verificar de novo';
+
+  /// pt: 'Rever minhas respostas'
+  String get review => 'Rever minhas respostas';
+
+  /// pt: 'Descartar esta resposta?'
+  String get discardTitle => 'Descartar esta resposta?';
+
+  /// pt: 'O texto que você escreveu não foi salvo.'
+  String get discardText => 'O texto que você escreveu não foi salvo.';
+
+  /// pt: 'Descartar'
+  String get discard => 'Descartar';
+
+  /// pt: 'Continuar escrevendo'
+  String get keepWriting => 'Continuar escrevendo';
+
+  /// pt: 'Suas respostas juntas'
+  String get revealTitle => 'Suas respostas juntas';
+
+  /// pt: 'juntas'
+  String get revealHighlight => 'juntas';
+
+  /// pt: 'Agora que os dois terminaram, aparecem as duas respostas de cada pergunta.'
+  String get revealSubtitle =>
+      'Agora que os dois terminaram, aparecem as duas respostas de cada pergunta.';
+
+  /// pt: 'Sem notas. Só o que cada um escreveu.'
+  String get revealNote => 'Sem notas. Só o que cada um escreveu.';
+
+  /// pt: 'Você'
+  String get you => 'Você';
+
+  /// pt: 'Seu par'
+  String get partnerFallback => 'Seu par';
+
+  /// pt: 'Pulou esta pergunta'
+  String get skippedAnswer => 'Pulou esta pergunta';
+
+  /// pt: 'Fechar'
+  String get close => 'Fechar';
+
+  /// pt: 'O check-in é para vocês dois'
+  String get soloTitle => 'O check-in é para vocês dois';
+
+  /// pt: 'Quando sua pessoa entrar, o check-in semanal aparece aqui.'
+  String get soloText => 'Quando sua pessoa entrar, o check-in semanal aparece aqui.';
+
+  /// pt: 'Não deu para abrir o check-in'
+  String get loadErrorTitle => 'Não deu para abrir o check-in';
+
+  /// pt: 'Nada foi perdido. Tente de novo.'
+  String get loadErrorText => 'Nada foi perdido. Tente de novo.';
+
+  Map<String, String> get errors => {'other': 'Não deu para salvar agora. Tente de novo.'};
 }
 
 // Path: common
@@ -3318,6 +3443,15 @@ class Translations$tabs$pt {
   /// pt: 'Para mim'
   String get segmentForMe => 'Para mim';
 
+  /// pt: 'CHECK-IN'
+  String get checkinLabel => 'CHECK-IN';
+
+  /// pt: 'Check-in da semana'
+  String get checkinTitle => 'Check-in da semana';
+
+  /// pt: 'Uma conversa curta, em privado primeiro.'
+  String get checkinText => 'Uma conversa curta, em privado primeiro.';
+
   /// pt: 'PRÁTICO'
   String get logisticsLabel => 'PRÁTICO';
 
@@ -4818,6 +4952,50 @@ extension on Translations {
           'cardsList.responseQuote' => ({required Object label}) => '“${label}”',
           'cardsList.notFound' => 'Esse cartão não está mais disponível.',
           'cardsList.reactionQuoteMadeMyDay' => 'Isso fez a minha semana.',
+          'checkin.title' => 'Check-in semanal',
+          'checkin.titleHighlight' => 'semanal',
+          'checkin.introSubtitle' => 'Dez minutos. Cada um responde em privado primeiro.',
+          'checkin.start' => 'Começar',
+          'checkin.notThisWeek' => 'Não nesta semana',
+          'checkin.questionOf' => ({
+            required Object current,
+            required Object total,
+          }) => 'Pergunta ${current} de ${total}',
+          'checkin.questions.0' => 'O que foi bom nesta semana?',
+          'checkin.questions.1' => 'O que você quer que a gente faça junto?',
+          'checkin.questions.2' => 'Teve algo que pesou esta semana?',
+          'checkin.questions.3' => 'O que você quer que eu saiba?',
+          'checkin.answerHint' => 'Escreva o quanto quiser.',
+          'checkin.privateNote' => 'As respostas ficam ocultas até os dois terminarem.',
+          'checkin.next' => 'Próximo',
+          'checkin.finish' => 'Concluir',
+          'checkin.skip' => 'Pular esta pergunta',
+          'checkin.skipNote' => 'Pular deixa esta pergunta em branco. O check-in só aparece quando vocês dois responderem as quatro.',
+          'checkin.waitingTitle' => 'Suas respostas ficaram guardadas',
+          'checkin.waitingText' =>
+            'As respostas aparecem quando vocês dois tiverem respondido as quatro.',
+          'checkin.waitingIncomplete' => 'Ainda faltam perguntas. As respostas aparecem quando vocês dois responderem as quatro.',
+          'checkin.answerMissing' => 'Responder as que faltam',
+          'checkin.checkAgain' => 'Verificar de novo',
+          'checkin.review' => 'Rever minhas respostas',
+          'checkin.discardTitle' => 'Descartar esta resposta?',
+          'checkin.discardText' => 'O texto que você escreveu não foi salvo.',
+          'checkin.discard' => 'Descartar',
+          'checkin.keepWriting' => 'Continuar escrevendo',
+          'checkin.revealTitle' => 'Suas respostas juntas',
+          'checkin.revealHighlight' => 'juntas',
+          'checkin.revealSubtitle' =>
+            'Agora que os dois terminaram, aparecem as duas respostas de cada pergunta.',
+          'checkin.revealNote' => 'Sem notas. Só o que cada um escreveu.',
+          'checkin.you' => 'Você',
+          'checkin.partnerFallback' => 'Seu par',
+          'checkin.skippedAnswer' => 'Pulou esta pergunta',
+          'checkin.close' => 'Fechar',
+          'checkin.soloTitle' => 'O check-in é para vocês dois',
+          'checkin.soloText' => 'Quando sua pessoa entrar, o check-in semanal aparece aqui.',
+          'checkin.loadErrorTitle' => 'Não deu para abrir o check-in',
+          'checkin.loadErrorText' => 'Nada foi perdido. Tente de novo.',
+          'checkin.errors.other' => 'Não deu para salvar agora. Tente de novo.',
           'common.appName' => 'Flutter Bloc Starter',
           'common.send' => 'Enviar',
           'common.save' => 'Salvar',
@@ -5210,6 +5388,9 @@ extension on Translations {
           'memories.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'memories.errors.other' => 'Não deu para fazer isso agora. Seu texto continua aqui.',
           'mood.title' => 'Como você está hoje?',
+          _ => null,
+        } ??
+        switch (path) {
           'mood.titleHighlight' => 'hoje',
           'mood.subtitle' => 'Um toque. A etiqueta “Preciso de...” é opcional.',
           'mood.privateCue' => 'só você vê',
@@ -5787,6 +5968,9 @@ extension on Translations {
           'repair.learning.errors.other' => 'Não deu para salvar agora. Seu texto continua aqui.',
           'repair.next.pause' => 'Respirar um pouco',
           'repair.next.guided' => 'Começar o reparo guiado',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.next.quick' => 'Enviar um reparo',
           'rituals.title' => 'Rituais',
           'rituals.subtitle' =>
@@ -6084,6 +6268,9 @@ extension on Translations {
           'tabs.soonText' => 'Esta parte do app ainda está sendo preparada.',
           'tabs.segmentTogether' => 'Juntos',
           'tabs.segmentForMe' => 'Para mim',
+          'tabs.checkinLabel' => 'CHECK-IN',
+          'tabs.checkinTitle' => 'Check-in da semana',
+          'tabs.checkinText' => 'Uma conversa curta, em privado primeiro.',
           'tabs.logisticsLabel' => 'PRÁTICO',
           'tabs.logisticsTitle' => 'Logística',
           'tabs.logisticsText' => 'As coisas práticas, sem ninguém carregar sozinho.',

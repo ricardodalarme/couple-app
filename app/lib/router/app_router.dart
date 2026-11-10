@@ -8,6 +8,7 @@ import 'package:flutter_bloc_starter/features/authentication/presentation/welcom
 import 'package:flutter_bloc_starter/features/cards/presentation/detail/card_detail_page.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/draft/sunday_card_page.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/list/cards_list_page.dart';
+import 'package:flutter_bloc_starter/features/checkin/presentation/checkin/checkin_page.dart';
 import 'package:flutter_bloc_starter/features/dates/presentation/dates/dates_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/devices/presentation/devices/devices_page.dart';
@@ -141,6 +142,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: DevicesRoute.page),
     AutoRoute(page: SundayCardRoute.page),
     AutoRoute(page: CardsListRoute.page),
+    AutoRoute(page: CheckinRoute.page),
     AutoRoute(page: IdeaDetailRoute.page, path: '/idea'),
     AutoRoute(page: CardDetailRoute.page, path: '/card/:id'),
     AutoRoute(page: MoodRoute.page),

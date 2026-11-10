@@ -1,0 +1,11 @@
+mutation UpdateCheckinAnswer($id: UUID!, $body: String!) {
+  updateCheckinAnswersCollection(set: { body: $body }, filter: { id: { eq: $id } }) {
+    records {
+      id
+      authorId
+      weekStart
+      question
+      body
+    }
+  }
+}

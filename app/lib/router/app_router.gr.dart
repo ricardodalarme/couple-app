@@ -160,6 +160,22 @@ class CardsListRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CheckinPage]
+class CheckinRoute extends PageRouteInfo<void> {
+  const CheckinRoute({List<PageRouteInfo>? children})
+    : super(CheckinRoute.name, initialChildren: children);
+
+  static const String name = 'CheckinRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const CheckinPage());
+    },
+  );
+}
+
+/// generated route for
 /// [ConsentsPage]
 class ConsentsRoute extends PageRouteInfo<void> {
   const ConsentsRoute({List<PageRouteInfo>? children})

@@ -1,0 +1,5 @@
+mutation DeleteCheckinAnswer($id: UUID!) {
+  deleteFromCheckinAnswersCollection(filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}
