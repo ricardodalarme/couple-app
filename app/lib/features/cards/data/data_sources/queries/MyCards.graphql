@@ -1,0 +1,35 @@
+query MyCards($first: Int, $after: Cursor) {
+  cardsCollection(
+    first: $first
+    after: $after
+    filter: { status: { eq: sent } }
+    orderBy: [{ sentAt: DescNullsLast }]
+  ) {
+    edges {
+      node {
+        id
+        authorId
+        sentAt
+        weekStart
+        items {
+          edges {
+            node {
+              slipId
+            }
+          }
+        }
+        reaction {
+          reaction
+          reply
+        }
+        open {
+          openedAt
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

@@ -27,6 +27,75 @@ class AcceptInviteRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CardDetailPage]
+class CardDetailRoute extends PageRouteInfo<CardDetailRouteArgs> {
+  CardDetailRoute({
+    required String cardId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         CardDetailRoute.name,
+         args: CardDetailRouteArgs(cardId: cardId, key: key),
+         rawPathParams: {'id': cardId},
+         initialChildren: children,
+       );
+
+  static const String name = 'CardDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<CardDetailRouteArgs>(
+        orElse: () => CardDetailRouteArgs(cardId: pathParams.getString('id')),
+      );
+      return WrappedRoute(
+        child: CardDetailPage(cardId: args.cardId, key: args.key),
+      );
+    },
+  );
+}
+
+class CardDetailRouteArgs {
+  const CardDetailRouteArgs({required this.cardId, this.key});
+
+  final String cardId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'CardDetailRouteArgs{cardId: $cardId, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CardDetailRouteArgs) return false;
+    return cardId == other.cardId && key == other.key;
+  }
+
+  @override
+  int get hashCode => cardId.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [CardsListPage]
+class CardsListRoute extends PageRouteInfo<void> {
+  const CardsListRoute({List<PageRouteInfo>? children})
+    : super(CardsListRoute.name, initialChildren: children);
+
+  static const String name = 'CardsListRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const CardsListPage());
+    },
+  );
+}
+
+/// generated route for
 /// [DebugSignInPage]
 class DebugSignInRoute extends PageRouteInfo<void> {
   const DebugSignInRoute({List<PageRouteInfo>? children})

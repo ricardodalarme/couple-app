@@ -59,6 +59,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$authentication$pt authentication =
       Translations$authentication$pt.internal(_root);
   late final Translations$cardView$pt cardView = Translations$cardView$pt.internal(_root);
+  late final Translations$cardsList$pt cardsList = Translations$cardsList$pt.internal(_root);
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
@@ -187,6 +188,81 @@ class Translations$cardView$pt {
     'helped': 'me ajudou',
     'other': '',
   };
+}
+
+// Path: cardsList
+class Translations$cardsList$pt {
+  Translations$cardsList$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Cartões anteriores'
+  String get title => 'Cartões anteriores';
+
+  /// pt: '{day} de {month}'
+  String dateShort({required Object day, required Object month}) => '${day} de ${month}';
+
+  List<String> get monthsShort => [
+    'jan',
+    'fev',
+    'mar',
+    'abr',
+    'mai',
+    'jun',
+    'jul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dez',
+  ];
+
+  /// pt: '(zero) {sem slips} (one) {1 slip} (other) {{count} slips}'
+  String slipCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        zero: 'sem slips',
+        one: '1 slip',
+        other: '${count} slips',
+      );
+
+  /// pt: 'Enviado'
+  String get sent => 'Enviado';
+
+  /// pt: 'Recebido'
+  String get received => 'Recebido';
+
+  /// pt: 'aberto'
+  String get opened => 'aberto';
+
+  /// pt: 'reação'
+  String get reacted => 'reação';
+
+  /// pt: 'respondido'
+  String get replied => 'respondido';
+
+  /// pt: 'Nenhum cartão ainda'
+  String get emptyTitle => 'Nenhum cartão ainda';
+
+  /// pt: 'Quando um cartão for enviado ou chegar, ele aparece aqui. Sem pressa.'
+  String get emptyText => 'Quando um cartão for enviado ou chegar, ele aparece aqui. Sem pressa.';
+
+  /// pt: 'Não deu para carregar os cartões'
+  String get errorTitle => 'Não deu para carregar os cartões';
+
+  /// pt: 'Eles continuam salvos. Tente de novo.'
+  String get errorText => 'Eles continuam salvos. Tente de novo.';
+
+  /// pt: 'Cartão'
+  String get detailTitle => 'Cartão';
+
+  /// pt: 'Resposta'
+  String get reactionLabel => 'Resposta';
+
+  /// pt: 'Esse cartão não está mais disponível.'
+  String get notFound => 'Esse cartão não está mais disponível.';
 }
 
 // Path: common
@@ -651,6 +727,9 @@ class Translations$slipsList$pt {
     'other': '',
   };
 
+  /// pt: 'Cartões anteriores'
+  String get pastCards => 'Cartões anteriores';
+
   /// pt: 'Nada ainda'
   String get emptyTitle => 'Nada ainda';
 
@@ -914,6 +993,21 @@ class Translations$today$pt {
 
   /// pt: 'Anotar um slip'
   String get privateAction => 'Anotar um slip';
+
+  /// pt: 'Sem pressa'
+  String get emptyWeekTag => 'Sem pressa';
+
+  /// pt: 'Qual foi uma coisa boa hoje?'
+  String get emptyWeekQuestion => 'Qual foi uma coisa boa hoje?';
+
+  /// pt: 'boa'
+  String get emptyWeekHighlight => 'boa';
+
+  /// pt: 'Anotar um slip'
+  String get emptyWeekAction => 'Anotar um slip';
+
+  /// pt: 'Nenhum cartão novo. Sem pressa.'
+  String get nothingReceived => 'Nenhum cartão novo. Sem pressa.';
 
   /// pt: 'Começando'
   String get firstDayLabel => 'Começando';
@@ -1314,6 +1408,43 @@ extension on Translations {
       'cardView.categories.noticed' => 'me notou',
       'cardView.categories.helped' => 'me ajudou',
       'cardView.categories.other' => '',
+      'cardsList.title' => 'Cartões anteriores',
+      'cardsList.dateShort' => ({
+        required Object day,
+        required Object month,
+      }) => '${day} de ${month}',
+      'cardsList.monthsShort.0' => 'jan',
+      'cardsList.monthsShort.1' => 'fev',
+      'cardsList.monthsShort.2' => 'mar',
+      'cardsList.monthsShort.3' => 'abr',
+      'cardsList.monthsShort.4' => 'mai',
+      'cardsList.monthsShort.5' => 'jun',
+      'cardsList.monthsShort.6' => 'jul',
+      'cardsList.monthsShort.7' => 'ago',
+      'cardsList.monthsShort.8' => 'set',
+      'cardsList.monthsShort.9' => 'out',
+      'cardsList.monthsShort.10' => 'nov',
+      'cardsList.monthsShort.11' => 'dez',
+      'cardsList.slipCount' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+          count,
+          zero: 'sem slips',
+          one: '1 slip',
+          other: '${count} slips',
+        ),
+      'cardsList.sent' => 'Enviado',
+      'cardsList.received' => 'Recebido',
+      'cardsList.opened' => 'aberto',
+      'cardsList.reacted' => 'reação',
+      'cardsList.replied' => 'respondido',
+      'cardsList.emptyTitle' => 'Nenhum cartão ainda',
+      'cardsList.emptyText' =>
+        'Quando um cartão for enviado ou chegar, ele aparece aqui. Sem pressa.',
+      'cardsList.errorTitle' => 'Não deu para carregar os cartões',
+      'cardsList.errorText' => 'Eles continuam salvos. Tente de novo.',
+      'cardsList.detailTitle' => 'Cartão',
+      'cardsList.reactionLabel' => 'Resposta',
+      'cardsList.notFound' => 'Esse cartão não está mais disponível.',
       'common.appName' => 'Flutter Bloc Starter',
       'common.send' => 'Enviar',
       'common.save' => 'Salvar',
@@ -1536,6 +1667,7 @@ extension on Translations {
       'slipsList.categories.noticed' => 'Me notou',
       'slipsList.categories.helped' => 'Ajudou',
       'slipsList.categories.other' => '',
+      'slipsList.pastCards' => 'Cartões anteriores',
       'slipsList.emptyTitle' => 'Nada ainda',
       'slipsList.emptyText' => 'Um slip é uma coisa boa, em uma linha.',
       'slipsList.emptyAction' => 'Adicionar um slip',
@@ -1675,6 +1807,11 @@ extension on Translations {
       'today.privateQuestion' => 'Como foi o seu dia, de verdade?',
       'today.privateHighlight' => 'dia',
       'today.privateAction' => 'Anotar um slip',
+      'today.emptyWeekTag' => 'Sem pressa',
+      'today.emptyWeekQuestion' => 'Qual foi uma coisa boa hoje?',
+      'today.emptyWeekHighlight' => 'boa',
+      'today.emptyWeekAction' => 'Anotar um slip',
+      'today.nothingReceived' => 'Nenhum cartão novo. Sem pressa.',
       'today.firstDayLabel' => 'Começando',
       'today.firstDayGreeting' => ({required Object name}) => 'Oi, ${name}',
       'today.firstDaySubtitle' => 'que bom ter você por aqui',

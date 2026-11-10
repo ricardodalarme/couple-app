@@ -60,6 +60,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$cardView$en cardView = _Translations$cardView$en._(_root);
   @override
+  late final _Translations$cardsList$en cardsList = _Translations$cardsList$en._(_root);
+  @override
   late final _Translations$common$en common = _Translations$common$en._(_root);
   @override
   late final _Translations$firstSlip$en firstSlip = _Translations$firstSlip$en._(_root);
@@ -184,6 +186,66 @@ class _Translations$cardView$en extends Translations$cardView$pt {
     'helped': 'helped me',
     'other': '',
   };
+}
+
+// Path: cardsList
+class _Translations$cardsList$en extends Translations$cardsList$pt {
+  _Translations$cardsList$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Past cards';
+  @override
+  String dateShort({required Object month, required Object day}) => '${month} ${day}';
+  @override
+  List<String> get monthsShort => [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  @override
+  String slipCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        zero: 'no slips',
+        one: '1 slip',
+        other: '${count} slips',
+      );
+  @override
+  String get sent => 'Sent';
+  @override
+  String get received => 'Received';
+  @override
+  String get opened => 'opened';
+  @override
+  String get reacted => 'reaction';
+  @override
+  String get replied => 'replied';
+  @override
+  String get emptyTitle => 'No cards yet';
+  @override
+  String get emptyText => 'When a card is sent or arrives, it shows up here. No rush.';
+  @override
+  String get errorTitle => 'Could not load the cards';
+  @override
+  String get errorText => 'They are still saved. Try again.';
+  @override
+  String get detailTitle => 'Card';
+  @override
+  String get reactionLabel => 'Reply';
+  @override
+  String get notFound => 'That card is no longer available.';
 }
 
 // Path: common
@@ -564,6 +626,8 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
     'other': '',
   };
   @override
+  String get pastCards => 'Past cards';
+  @override
   String get emptyTitle => 'Nothing yet';
   @override
   String get emptyText => 'A slip is one good thing, in one line.';
@@ -771,6 +835,16 @@ class _Translations$today$en extends Translations$today$pt {
   String get privateHighlight => 'day';
   @override
   String get privateAction => 'Note a slip';
+  @override
+  String get emptyWeekTag => 'No rush';
+  @override
+  String get emptyWeekQuestion => 'What was one good thing today?';
+  @override
+  String get emptyWeekHighlight => 'good';
+  @override
+  String get emptyWeekAction => 'Note a slip';
+  @override
+  String get nothingReceived => 'No new cards. No rush.';
   @override
   String get firstDayLabel => 'Getting started';
   @override
@@ -1104,6 +1178,39 @@ extension on TranslationsEn {
       'cardView.categories.noticed' => 'noticed me',
       'cardView.categories.helped' => 'helped me',
       'cardView.categories.other' => '',
+      'cardsList.title' => 'Past cards',
+      'cardsList.dateShort' => ({required Object month, required Object day}) => '${month} ${day}',
+      'cardsList.monthsShort.0' => 'Jan',
+      'cardsList.monthsShort.1' => 'Feb',
+      'cardsList.monthsShort.2' => 'Mar',
+      'cardsList.monthsShort.3' => 'Apr',
+      'cardsList.monthsShort.4' => 'May',
+      'cardsList.monthsShort.5' => 'Jun',
+      'cardsList.monthsShort.6' => 'Jul',
+      'cardsList.monthsShort.7' => 'Aug',
+      'cardsList.monthsShort.8' => 'Sep',
+      'cardsList.monthsShort.9' => 'Oct',
+      'cardsList.monthsShort.10' => 'Nov',
+      'cardsList.monthsShort.11' => 'Dec',
+      'cardsList.slipCount' =>
+        ({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+          count,
+          zero: 'no slips',
+          one: '1 slip',
+          other: '${count} slips',
+        ),
+      'cardsList.sent' => 'Sent',
+      'cardsList.received' => 'Received',
+      'cardsList.opened' => 'opened',
+      'cardsList.reacted' => 'reaction',
+      'cardsList.replied' => 'replied',
+      'cardsList.emptyTitle' => 'No cards yet',
+      'cardsList.emptyText' => 'When a card is sent or arrives, it shows up here. No rush.',
+      'cardsList.errorTitle' => 'Could not load the cards',
+      'cardsList.errorText' => 'They are still saved. Try again.',
+      'cardsList.detailTitle' => 'Card',
+      'cardsList.reactionLabel' => 'Reply',
+      'cardsList.notFound' => 'That card is no longer available.',
       'common.appName' => 'Flutter Bloc Starter',
       'common.send' => 'Send',
       'common.save' => 'Save',
@@ -1324,6 +1431,7 @@ extension on TranslationsEn {
       'slipsList.categories.noticed' => 'Noticed me',
       'slipsList.categories.helped' => 'Helped',
       'slipsList.categories.other' => '',
+      'slipsList.pastCards' => 'Past cards',
       'slipsList.emptyTitle' => 'Nothing yet',
       'slipsList.emptyText' => 'A slip is one good thing, in one line.',
       'slipsList.emptyAction' => 'Add a slip',
@@ -1462,6 +1570,11 @@ extension on TranslationsEn {
       'today.privateQuestion' => 'How was your day, really?',
       'today.privateHighlight' => 'day',
       'today.privateAction' => 'Note a slip',
+      'today.emptyWeekTag' => 'No rush',
+      'today.emptyWeekQuestion' => 'What was one good thing today?',
+      'today.emptyWeekHighlight' => 'good',
+      'today.emptyWeekAction' => 'Note a slip',
+      'today.nothingReceived' => 'No new cards. No rush.',
       'today.firstDayLabel' => 'Getting started',
       'today.firstDayGreeting' => ({required Object name}) => 'Hi, ${name}',
       'today.firstDaySubtitle' => 'so glad you are here',

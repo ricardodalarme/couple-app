@@ -70,6 +70,13 @@ class _SlipsPageState() extends State<SlipsPage> {
                 onSelectionChanged: (index) => cubit.changeScope(SlipsScope.values[index]),
               ),
               const SizedBox(height: AppSpace.s16),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: BaseTextLink(
+                  text: l10n.pastCards,
+                  onPressed: () => context.pushRoute(const CardsListRoute()),
+                ),
+              ),
               BaseSectionHeader(title: l10n.private, isLabel: true, showsLock: true),
               const SizedBox(height: AppSpace.s10),
               SkeletonizerResourceWidget<List<SlipEntry>>(

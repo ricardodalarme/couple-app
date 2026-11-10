@@ -1,7 +1,13 @@
+import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/cards/data/data_sources/cards_data_source.dart';
 import 'package:flutter_bloc_starter/features/cards/data/mappers/card_mapper.dart';
+import 'package:flutter_bloc_starter/features/cards/data/models/card_detail.dart';
+import 'package:flutter_bloc_starter/features/cards/data/models/card_summary.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
 import 'package:logger/logger.dart';
+
+/// How many cards one page of the history holds.
+const int cardPageSize = 20;
 
 class CardsRepository({required final CardsDataSource _dataSource}) {
   final Logger _logger = Logger('CardsRepository');
@@ -17,6 +23,53 @@ class CardsRepository({required final CardsDataSource _dataSource}) {
       return (await _dataSource.prepareCard()).toModel();
     } catch (e, stack) {
       _logger.error('Failed to load the card draft', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// One page of the sent and received cards, newest first.
+  Future<CardSummaryPage> getHistory({required String selfId, String? after}) async {
+    try {
+      final result = await _dataSource.getCards(first: cardPageSize, after: after);
+
+      return CardSummaryPage(
+        items: [
+          for (final edge in result.edges)
+            CardSummary(
+              id: edge.node.id,
+              isMine: edge.node.authorId == selfId,
+              sentAt: edge.node.sentAt ?? edge.node.weekStart,
+              itemCount: edge.node.items?.edges.length ?? 0,
+              reaction: edge.node.reaction?.reaction,
+              hasReply: (edge.node.reaction?.reply ?? '').isNotEmpty,
+              isOpened: edge.node.open != null,
+            ),
+        ],
+        hasNext: result.pageInfo.hasNextPage,
+        cursor: result.pageInfo.endCursor,
+      );
+    } catch (e, stack) {
+      _logger.error('Failed to load the card history', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// One card with its author and the answer, or a not-found failure.
+  Future<CardDetail> getDetail({required String id, required String selfId}) async {
+    try {
+      final node = await _dataSource.getCard(id);
+      if (node == null) throw const LocalizedException(l10nKey: 'CARD_NOT_FOUND');
+
+      return CardDetail(
+        card: node.toModel(),
+        isMine: node.authorId == selfId,
+        authorName: node.author?.displayName,
+        recipientName: node.recipient?.displayName,
+        reaction: node.reaction?.reaction,
+        reply: node.reaction?.reply,
+      );
+    } catch (e, stack) {
+      _logger.error('Failed to load the card', error: e, stackTrace: stack);
       rethrow;
     }
   }

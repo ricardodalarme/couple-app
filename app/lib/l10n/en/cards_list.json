@@ -1,0 +1,22 @@
+{
+  "title": "Past cards",
+  "dateShort": "{month} {day}",
+  "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "slipCount(plural, param=count)": {
+    "zero": "no slips",
+    "one": "1 slip",
+    "other": "{count} slips"
+  },
+  "sent": "Sent",
+  "received": "Received",
+  "opened": "opened",
+  "reacted": "reaction",
+  "replied": "replied",
+  "emptyTitle": "No cards yet",
+  "emptyText": "When a card is sent or arrives, it shows up here. No rush.",
+  "errorTitle": "Could not load the cards",
+  "errorText": "They are still saved. Try again.",
+  "detailTitle": "Card",
+  "reactionLabel": "Reply",
+  "notFound": "That card is no longer available."
+}

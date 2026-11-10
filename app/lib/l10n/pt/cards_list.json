@@ -1,0 +1,22 @@
+{
+  "title": "Cartões anteriores",
+  "dateShort": "{day} de {month}",
+  "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+  "slipCount(plural, param=count)": {
+    "zero": "sem slips",
+    "one": "1 slip",
+    "other": "{count} slips"
+  },
+  "sent": "Enviado",
+  "received": "Recebido",
+  "opened": "aberto",
+  "reacted": "reação",
+  "replied": "respondido",
+  "emptyTitle": "Nenhum cartão ainda",
+  "emptyText": "Quando um cartão for enviado ou chegar, ele aparece aqui. Sem pressa.",
+  "errorTitle": "Não deu para carregar os cartões",
+  "errorText": "Eles continuam salvos. Tente de novo.",
+  "detailTitle": "Cartão",
+  "reactionLabel": "Resposta",
+  "notFound": "Esse cartão não está mais disponível."
+}

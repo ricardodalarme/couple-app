@@ -44,6 +44,15 @@ class const TodayContent({
           const SizedBox(height: AppSpace.s12),
         ],
         _MainCard(home: home, isFirstDay: isFirstDay),
+        if (home.isPaired && home.unopenedCards == 0) ...[
+          const SizedBox(height: AppSpace.s10),
+          Center(
+            child: Text(
+              l10n.nothingReceived,
+              style: context.text.caption.copyWith(color: context.colors.textSecondary),
+            ),
+          ),
+        ],
         const SizedBox(height: AppSpace.s16),
         BaseSurfaceCard(
           title: isAlone
@@ -111,6 +120,15 @@ class const _MainCard({required final TodayHome home, required final bool isFirs
         question: l10n.privateQuestion,
         highlightedWord: l10n.privateHighlight,
         actionText: l10n.privateAction,
+        onAction: openCapture,
+      );
+    }
+    if (home.slipsThisWeek == 0) {
+      return BaseFeatureCard(
+        tag: l10n.emptyWeekTag,
+        question: l10n.emptyWeekQuestion,
+        highlightedWord: l10n.emptyWeekHighlight,
+        actionText: l10n.emptyWeekAction,
         onAction: openCapture,
       );
     }
