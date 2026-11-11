@@ -1,12 +1,14 @@
 import 'package:design_system/design_system.dart';
 
-/// One face and its label in a [BaseMoodRow].
-class const BaseMoodRowOption({required final FaceKind face, required final String label});
+const double _labelWidth = 56;
+
+/// One face and its label in a [MoodRow].
+class const MoodRowOption({required final FaceKind face, required final String label});
 
 /// A section header with a row of tappable faces and their labels.
-class const BaseMoodRow({
+class const MoodRow({
   required final String title,
-  required final List<BaseMoodRowOption> options,
+  required final List<MoodRowOption> options,
   required final ValueChanged<int> onSelected,
   final String? supportText,
   final int? selectedIndex,
@@ -34,7 +36,6 @@ class const BaseMoodRow({
                 child: Center(
                   child: AppPressable(
                     onTap: () => onSelected(index),
-                    isSemanticButton: true,
                     semanticLabel: options[index].label,
                     borderRadius: BorderRadius.circular(AppRadius.sm),
                     child: Column(
@@ -46,12 +47,16 @@ class const BaseMoodRow({
                           selected: selectedIndex == index,
                         ),
                         const SizedBox(height: AppSpace.s6),
-                        Text(
-                          options[index].label,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                          style: context.text.tab.copyWith(color: colors.textSecondary),
+                        SizedBox(
+                          width: _labelWidth,
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              options[index].label,
+                              maxLines: 1,
+                              style: context.text.tab.copyWith(color: colors.textSecondary),
+                            ),
+                          ),
                         ),
                       ],
                     ),

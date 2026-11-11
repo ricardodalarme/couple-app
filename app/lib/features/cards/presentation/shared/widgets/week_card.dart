@@ -6,7 +6,7 @@ const List<double> _tilts = [-3, 2, -1.5, 3, -2, 1.5, -2.5];
 /// A week of paper slips: [filledCount] drawn slips followed by empty slots.
 ///
 /// Slots are not tied to weekdays; [filledCount] is capped at seven.
-class const BaseWeekStrip({
+class const WeekCard({
   required final String title,
   required final int filledCount,
   final String? supportText,

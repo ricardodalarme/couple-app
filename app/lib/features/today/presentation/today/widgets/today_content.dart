@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/cards/presentation/shared/widgets/received_card.dart';
+import 'package:flutter_bloc_starter/features/cards/presentation/shared/widgets/week_card.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
 import 'package:flutter_bloc_starter/features/mood/presentation/mood/mood_faces.dart';
+import 'package:flutter_bloc_starter/features/mood/presentation/mood/widgets/mood_row.dart';
 import 'package:flutter_bloc_starter/features/mood/presentation/mood/widgets/partner_mood_hint.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/off_banner/widgets/notifications_off_banner.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
@@ -49,7 +52,7 @@ class const TodayContent({
         const SizedBox(height: AppSpace.s20),
         const NotificationsOffBanner(),
         if (home.unopenedCards > 0) ...[
-          BaseReceivedCard(
+          ReceivedCard(
             title: home.partnerName == null
                 ? l10n.cardReceived
                 : l10n.cardReceivedNamed(name: home.partnerName!),
@@ -86,7 +89,7 @@ class const TodayContent({
         _MainCard(home: home, isFirstDay: isFirstDay),
         if (!home.hasPendingInvite) ...[
           const SizedBox(height: AppSpace.s16),
-          BaseWeekStrip(
+          WeekCard(
             title: isAlone
                 ? l10n.slipsThisWeekPrivate(count: home.slipsThisWeek)
                 : l10n.slipsThisWeek(count: home.slipsThisWeek),
@@ -114,12 +117,12 @@ class const TodayContent({
         ],
         if (!isFirstDay && !home.hasPendingInvite) ...[
           const SizedBox(height: AppSpace.s24),
-          BaseMoodRow(
+          MoodRow(
             title: context.l10n.mood.entryTitle,
             supportText: context.l10n.mood.entryText,
             options: [
               for (final mood in MoodKind.values)
-                BaseMoodRowOption(
+                MoodRowOption(
                   face: mood.face,
                   label: context.l10n.mood.moods.selectOrFallback(mood.value),
                 ),

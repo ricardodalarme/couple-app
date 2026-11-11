@@ -1,7 +1,7 @@
 import 'package:design_system/design_system.dart';
 
 /// A framed card with the heart envelope, a title and one compact action.
-class const BaseReceivedCard({
+class const ReceivedCard({
   required final String title,
   required final String actionText,
   required final VoidCallback onAction,
