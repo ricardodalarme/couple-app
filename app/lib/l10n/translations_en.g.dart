@@ -4367,6 +4367,35 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get partnerNoteDisabledNote =>
       'You turned off partner notes on widgets. Enable below if you want to show them.';
+  @override
+  String get cardEncounterPageTitle => 'Card & next date';
+  @override
+  String get cardWeeklyLabel => 'Weekly card';
+  @override
+  String get cardReadyTitle => 'A card arrived';
+  @override
+  String get cardReadySubtitle => 'Tap to open';
+  @override
+  String get cardSentTitle => 'Card sent';
+  @override
+  String get cardSentSubtitle => 'Waiting for Sunday';
+  @override
+  String get cardNoneTitle => 'Sunday card';
+  @override
+  String get cardNoneSubtitle => 'In preparation';
+  @override
+  String get cardPauseTitle => 'Pause in progress';
+  @override
+  String get cardPauseSubtitle => 'Tap when ready';
+  @override
+  String get nextEncounterLabel => 'Next date';
+  @override
+  String get nextEncounterEmptyTitle => 'No upcoming date';
+  @override
+  String get nextEncounterEmptySubtitle => 'Tap to schedule';
+  @override
+  String get cardEncounterPrivacyNote =>
+      'This widget only shows card status and the next date — never names or card text.';
 }
 
 // Path: acceptInvite.connected
@@ -7606,6 +7635,21 @@ extension on TranslationsEn {
             'Only notes your partner marked as widget-safe appear here.',
           'widgets.partnerNoteDisabledNote' =>
             'You turned off partner notes on widgets. Enable below if you want to show them.',
+          'widgets.cardEncounterPageTitle' => 'Card & next date',
+          'widgets.cardWeeklyLabel' => 'Weekly card',
+          'widgets.cardReadyTitle' => 'A card arrived',
+          'widgets.cardReadySubtitle' => 'Tap to open',
+          'widgets.cardSentTitle' => 'Card sent',
+          'widgets.cardSentSubtitle' => 'Waiting for Sunday',
+          'widgets.cardNoneTitle' => 'Sunday card',
+          'widgets.cardNoneSubtitle' => 'In preparation',
+          'widgets.cardPauseTitle' => 'Pause in progress',
+          'widgets.cardPauseSubtitle' => 'Tap when ready',
+          'widgets.nextEncounterLabel' => 'Next date',
+          'widgets.nextEncounterEmptyTitle' => 'No upcoming date',
+          'widgets.nextEncounterEmptySubtitle' => 'Tap to schedule',
+          'widgets.cardEncounterPrivacyNote' =>
+            'This widget only shows card status and the next date — never names or card text.',
           _ => null,
         };
   }

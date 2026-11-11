@@ -257,7 +257,8 @@ final class const WidgetPayload({
   /// Calendar days until [nextDateOn] at local midnight for [localNow].
   int? daysUntilNextDateOn(DateTime localNow) {
     if (discreet || !isSignedIn) return null;
-    return _daysUntilDateString(nextDateOn, localNow);
+    final days = _daysUntilDateString(nextDateOn, localNow);
+    return days != null && days >= 0 ? days : null;
   }
 
   WidgetPayload copyWith({

@@ -741,6 +741,130 @@ struct ReparaPartnerNoteWidget: Widget {
   }
 }
 
+struct ReparaCardEncounterWidgetView: View {
+  let entry: ReparaWidgetEntry
+
+  var body: some View {
+    let p = entry.payload
+    if !p.isSignedIn {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://sign-in?homeWidget=1") {
+          Text("REPARA")
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text("Toque para entrar")
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+        }
+      )
+    }
+
+    if p.discreet {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://settings/discreet?homeWidget=1") {
+          Text("LEMBRETE")
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text("Texto neutro")
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+        }
+      )
+    }
+
+    if !p.isPaired {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://together?homeWidget=1") {
+          Text("JUNTOS")
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text("Convide para ver aqui")
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+          Text("Convidar")
+            .font(.caption)
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+        }
+      )
+    }
+
+    if p.isPauseActive(on: entry.date) {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://pause?homeWidget=1") {
+          Text("CARTÃO E ENCONTRO")
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text("Pausa em andamento")
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+          Text("Toque quando estiver pronto")
+            .font(.caption2)
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+        }
+      )
+    }
+
+    let cardTitle: String
+    switch p.cardState {
+    case "ready":
+      cardTitle = "Chegou um cartão"
+    case "sent":
+      cardTitle = "Cartão enviado"
+    default:
+      cardTitle = "Cartão de domingo"
+    }
+
+    let encounterSubtitle: String
+    if let days = p.daysUntilNextDate(on: entry.date) {
+      let label = p.nextDateTitle ?? "Próximo encontro"
+      encounterSubtitle = "\(days) dias · \(label)"
+    } else {
+      encounterSubtitle = p.cardState == "ready" ? "Toque para abrir" : "Em preparação"
+    }
+
+    let targetLink = p.cardState == "ready" ? "repara://card?homeWidget=1" : (p.daysUntilNextDate(on: entry.date) != nil ? "repara://dates?homeWidget=1" : "repara://card?homeWidget=1")
+    return AnyView(
+      ReparaSurfaceCard(deepLink: targetLink) {
+        Text("CARTÃO DA SEMANA")
+          .font(.caption2.weight(.semibold))
+          .foregroundColor(.secondary)
+          .lineLimit(1)
+        Spacer(minLength: 4)
+        Text(cardTitle)
+          .font(.subheadline.weight(.semibold))
+          .lineLimit(2)
+        Text(encounterSubtitle)
+          .font(.caption)
+          .foregroundColor(.secondary)
+          .lineLimit(1)
+      }
+    )
+  }
+}
+
+struct ReparaCardEncounterWidget: Widget {
+  let kind: String = "ReparaCardEncounterWidget"
+
+  var body: some WidgetConfiguration {
+    StaticConfiguration(kind: kind, provider: ReparaTimelineProvider(refreshesAtMidnight: true)) { entry in
+      ReparaCardEncounterWidgetView(entry: entry)
+    }
+    .configurationDisplayName("Repara · Cartão e encontro")
+    .description("Estado do cartão da semana e próxima data, sem nomes nem texto do cartão.")
+    .supportedFamilies([.systemSmall, .systemMedium])
+  }
+}
+
 @main
 struct ReparaWidgetsBundle: WidgetBundle {
   var body: some Widget {
@@ -750,5 +874,6 @@ struct ReparaWidgetsBundle: WidgetBundle {
     ReparaCoupleCounterWidget()
     ReparaCouplePhotosWidget()
     ReparaPartnerNoteWidget()
+    ReparaCardEncounterWidget()
   }
 }

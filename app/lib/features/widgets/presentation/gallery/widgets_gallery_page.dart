@@ -108,7 +108,7 @@ class const WidgetsGalleryPage({super.key}) extends StatelessWidget implements A
       WidgetFamilyKind.coupleCounter => const CoupleCounterWidgetRoute(),
       WidgetFamilyKind.couplePhotos => const CouplePhotosWidgetRoute(),
       WidgetFamilyKind.partnerNote => const PartnerNoteWidgetRoute(),
-      _ => WidgetConfigureRoute(initialFamily: family),
+      WidgetFamilyKind.cardEncounter => const CardEncounterWidgetRoute(),
     };
     await context.pushRoute(route);
     if (context.mounted) await cubit.load();

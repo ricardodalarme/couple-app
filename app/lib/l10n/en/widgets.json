@@ -123,5 +123,19 @@
   "partnerNoteReplyHint": "Reply with a heart",
   "partnerNoteDrawingPlaceholder": "drawing",
   "partnerNoteSafeNote": "Only notes your partner marked as widget-safe appear here.",
-  "partnerNoteDisabledNote": "You turned off partner notes on widgets. Enable below if you want to show them."
+  "partnerNoteDisabledNote": "You turned off partner notes on widgets. Enable below if you want to show them.",
+  "cardEncounterPageTitle": "Card & next date",
+  "cardWeeklyLabel": "Weekly card",
+  "cardReadyTitle": "A card arrived",
+  "cardReadySubtitle": "Tap to open",
+  "cardSentTitle": "Card sent",
+  "cardSentSubtitle": "Waiting for Sunday",
+  "cardNoneTitle": "Sunday card",
+  "cardNoneSubtitle": "In preparation",
+  "cardPauseTitle": "Pause in progress",
+  "cardPauseSubtitle": "Tap when ready",
+  "nextEncounterLabel": "Next date",
+  "nextEncounterEmptyTitle": "No upcoming date",
+  "nextEncounterEmptySubtitle": "Tap to schedule",
+  "cardEncounterPrivacyNote": "This widget only shows card status and the next date — never names or card text."
 }

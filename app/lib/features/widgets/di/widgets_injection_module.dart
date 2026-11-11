@@ -5,6 +5,7 @@ import 'package:flutter_bloc_starter/features/widgets/data/data_sources/widgets_
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/widgets_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/card_encounter/cubit/card_encounter_widget_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/configure/cubit/widget_configure_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/couple_counter/cubit/couple_counter_widget_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/couple_photos/cubit/couple_photos_widget_cubit.dart';
@@ -61,6 +62,9 @@ class WidgetsInjectionModule() implements InjectionModule {
       )
       ..registerFactory<PartnerNoteWidgetCubit>(
         () => PartnerNoteWidgetCubit(repository: injector.get<WidgetsRepository>()),
+      )
+      ..registerFactory<CardEncounterWidgetCubit>(
+        () => CardEncounterWidgetCubit(repository: injector.get<WidgetsRepository>()),
       );
   }
 }

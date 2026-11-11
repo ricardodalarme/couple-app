@@ -128,6 +128,22 @@ class CardDetailRouteArgs {
 }
 
 /// generated route for
+/// [CardEncounterWidgetPage]
+class CardEncounterWidgetRoute extends PageRouteInfo<void> {
+  const CardEncounterWidgetRoute({List<PageRouteInfo>? children})
+    : super(CardEncounterWidgetRoute.name, initialChildren: children);
+
+  static const String name = 'CardEncounterWidgetRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const CardEncounterWidgetPage());
+    },
+  );
+}
+
+/// generated route for
 /// [CardsListPage]
 class CardsListRoute extends PageRouteInfo<void> {
   const CardsListRoute({List<PageRouteInfo>? children})

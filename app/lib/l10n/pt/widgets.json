@@ -123,5 +123,19 @@
   "partnerNoteReplyHint": "Responder com um coração",
   "partnerNoteDrawingPlaceholder": "desenho",
   "partnerNoteSafeNote": "Apenas recados marcados pelo seu par como visíveis no widget aparecem aqui.",
-  "partnerNoteDisabledNote": "Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los."
+  "partnerNoteDisabledNote": "Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los.",
+  "cardEncounterPageTitle": "Cartão e próximo encontro",
+  "cardWeeklyLabel": "Cartão da semana",
+  "cardReadyTitle": "Chegou um cartão",
+  "cardReadySubtitle": "Toque para abrir",
+  "cardSentTitle": "Cartão enviado",
+  "cardSentSubtitle": "Aguardando domingo",
+  "cardNoneTitle": "Cartão de domingo",
+  "cardNoneSubtitle": "Em preparação",
+  "cardPauseTitle": "Pausa em andamento",
+  "cardPauseSubtitle": "Toque quando estiver pronto",
+  "nextEncounterLabel": "Próximo encontro",
+  "nextEncounterEmptyTitle": "Sem data futura",
+  "nextEncounterEmptySubtitle": "Toque para agendar",
+  "cardEncounterPrivacyNote": "Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão."
 }

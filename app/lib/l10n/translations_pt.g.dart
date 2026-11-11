@@ -5501,6 +5501,49 @@ class Translations$widgets$pt {
   /// pt: 'Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los.'
   String get partnerNoteDisabledNote =>
       'Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los.';
+
+  /// pt: 'Cartão e próximo encontro'
+  String get cardEncounterPageTitle => 'Cartão e próximo encontro';
+
+  /// pt: 'Cartão da semana'
+  String get cardWeeklyLabel => 'Cartão da semana';
+
+  /// pt: 'Chegou um cartão'
+  String get cardReadyTitle => 'Chegou um cartão';
+
+  /// pt: 'Toque para abrir'
+  String get cardReadySubtitle => 'Toque para abrir';
+
+  /// pt: 'Cartão enviado'
+  String get cardSentTitle => 'Cartão enviado';
+
+  /// pt: 'Aguardando domingo'
+  String get cardSentSubtitle => 'Aguardando domingo';
+
+  /// pt: 'Cartão de domingo'
+  String get cardNoneTitle => 'Cartão de domingo';
+
+  /// pt: 'Em preparação'
+  String get cardNoneSubtitle => 'Em preparação';
+
+  /// pt: 'Pausa em andamento'
+  String get cardPauseTitle => 'Pausa em andamento';
+
+  /// pt: 'Toque quando estiver pronto'
+  String get cardPauseSubtitle => 'Toque quando estiver pronto';
+
+  /// pt: 'Próximo encontro'
+  String get nextEncounterLabel => 'Próximo encontro';
+
+  /// pt: 'Sem data futura'
+  String get nextEncounterEmptyTitle => 'Sem data futura';
+
+  /// pt: 'Toque para agendar'
+  String get nextEncounterEmptySubtitle => 'Toque para agendar';
+
+  /// pt: 'Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão.'
+  String get cardEncounterPrivacyNote =>
+      'Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão.';
 }
 
 // Path: acceptInvite.connected
@@ -8926,6 +8969,20 @@ extension on Translations {
             'Apenas recados marcados pelo seu par como visíveis no widget aparecem aqui.',
           'widgets.partnerNoteDisabledNote' =>
             'Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los.',
+          'widgets.cardEncounterPageTitle' => 'Cartão e próximo encontro',
+          'widgets.cardWeeklyLabel' => 'Cartão da semana',
+          'widgets.cardReadyTitle' => 'Chegou um cartão',
+          'widgets.cardReadySubtitle' => 'Toque para abrir',
+          'widgets.cardSentTitle' => 'Cartão enviado',
+          'widgets.cardSentSubtitle' => 'Aguardando domingo',
+          'widgets.cardNoneTitle' => 'Cartão de domingo',
+          'widgets.cardNoneSubtitle' => 'Em preparação',
+          'widgets.cardPauseTitle' => 'Pausa em andamento',
+          'widgets.cardPauseSubtitle' => 'Toque quando estiver pronto',
+          'widgets.nextEncounterLabel' => 'Próximo encontro',
+          'widgets.nextEncounterEmptyTitle' => 'Sem data futura',
+          'widgets.nextEncounterEmptySubtitle' => 'Toque para agendar',
+          'widgets.cardEncounterPrivacyNote' => 'Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão.',
           _ => null,
         };
   }

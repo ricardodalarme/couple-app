@@ -12,6 +12,7 @@ import com.ricardodalarme.flutter_bloc_starter.MainActivity
 import com.ricardodalarme.flutter_bloc_starter.R
 import org.json.JSONObject
 import java.io.File
+import java.time.Instant
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
@@ -54,6 +55,15 @@ data class ReparaWidgetPayload(
             if (days >= 0L) days else null
         } catch (_: Exception) {
             null
+        }
+    }
+
+    fun isPauseActive(now: Instant = Instant.now()): Boolean {
+        if (pauseReturnAt.isNullOrBlank()) return false
+        return try {
+            Instant.parse(pauseReturnAt).isAfter(now)
+        } catch (_: Exception) {
+            false
         }
     }
 
