@@ -114,14 +114,41 @@ class const _Day({
   }
 
   Widget _marker(BuildContext context) {
-    if (isToday) {
-      final colors = context.colors;
+    final colors = context.colors;
+
+    if (count > 0) {
+      final slip = AppPaperSlip(
+        fill: colors.accentSoft,
+        ink: colors.accentLabel,
+        rotation: tilt,
+        child: count > 1
+            ? Text(
+                '$count',
+                style: context.text.micro.copyWith(
+                  color: colors.accentLabel,
+                  fontWeight: FontWeight.w600,
+                ),
+              )
+            : AppIcon(icon: AppIcons.check, size: AppIconSize.sm, color: colors.accentLabel),
+      );
+      if (!isToday) return slip;
 
       return SizedBox(
         width: 34,
         height: 40,
         child: CustomPaint(
-          foregroundPainter: DashedRoundedPainter(color: context.colors.accentLabel),
+          foregroundPainter: DashedRoundedPainter(color: colors.accentLabel),
+          child: Center(child: slip),
+        ),
+      );
+    }
+
+    if (isToday) {
+      return SizedBox(
+        width: 34,
+        height: 40,
+        child: CustomPaint(
+          foregroundPainter: DashedRoundedPainter(color: colors.accentLabel),
           child: Center(
             child: Container(
               width: 30,
@@ -137,25 +164,6 @@ class const _Day({
             ),
           ),
         ),
-      );
-    }
-
-    if (count > 0) {
-      final colors = context.colors;
-
-      return AppPaperSlip(
-        fill: colors.accentSoft,
-        ink: colors.accentLabel,
-        rotation: tilt,
-        child: count > 1
-            ? Text(
-                '$count',
-                style: context.text.micro.copyWith(
-                  color: colors.accentLabel,
-                  fontWeight: FontWeight.w600,
-                ),
-              )
-            : AppIcon(icon: AppIcons.check, size: AppIconSize.sm, color: colors.accentLabel),
       );
     }
 

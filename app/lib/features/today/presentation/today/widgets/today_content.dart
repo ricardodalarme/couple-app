@@ -244,6 +244,7 @@ class const _MainCard({required final TodayHome home, required final bool isFirs
       tag: question.tags.isEmpty ? l10n.forToday : question.tags.first,
       question: question.title,
       highlightedWord: _longestWord(question.title),
+      face: FaceKind.smile,
       actionText: l10n.answer,
       onAction: openCapture,
     );

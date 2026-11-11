@@ -25,6 +25,22 @@ void main() {
     expect(find.byIcon(AppIcons.mail_filled), findsOneWidget);
   });
 
+  testWidgets('a slip on today keeps its paper slip and today marker', (tester) async {
+    await tester.pumpApp(
+      const WeekCard(
+        title: '1 slip',
+        supportText: 'cartão no domingo',
+        dayLabels: _labels,
+        dayCounts: [0, 0, 1, 0, 0, 0, 0],
+        todayIndex: 2,
+      ),
+    );
+
+    expect(find.byType(AppPaperSlip), findsOneWidget);
+    expect(find.byIcon(AppIcons.mail_filled), findsNothing);
+    expect(find.text('qua'), findsOneWidget);
+  });
+
   testWidgets('an empty week still shows all seven days', (tester) async {
     await tester.pumpApp(
       const WeekCard(
