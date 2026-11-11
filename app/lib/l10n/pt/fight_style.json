@@ -1,0 +1,93 @@
+{
+  "exerciseTitle": "Como eu reajo numa briga",
+  "exerciseHighlight": "reajo",
+  "exerciseSubtitle": "Seis perguntas rápidas, só para você.",
+  "questionOf": "Pergunta {current} de {total}",
+  "questions": [
+    "Quando a conversa esquenta, o que você faz primeiro?",
+    "Se o seu par se cala no meio da briga, você...",
+    "Depois de uma discussão, o que costuma acontecer?",
+    "O que mais te incomoda numa briga?",
+    "Quando percebe que exagerou, você...",
+    "O que te ajuda a voltar ao normal?"
+  ],
+  "options1(map)": {
+    "pursue": "Continuo falando até resolver.",
+    "withdraw": "Preciso de um tempo antes de continuar.",
+    "repair": "Tento aliviar o clima com algo mais leve.",
+    "avoid": "Mudo de assunto para não piorar.",
+    "other": ""
+  },
+  "options2(map)": {
+    "pursue": "Insisto para ele falar.",
+    "withdraw": "Também me calo.",
+    "repair": "Pergunto com calma o que aconteceu.",
+    "avoid": "Deixo para depois.",
+    "other": ""
+  },
+  "options3(map)": {
+    "pursue": "Eu procuro a conversa logo.",
+    "withdraw": "Eu fico um tempo comigo.",
+    "repair": "Eu penso no que posso consertar.",
+    "avoid": "Eu prefiro não voltar ao assunto.",
+    "other": ""
+  },
+  "options4(map)": {
+    "pursue": "Ficar sem resposta.",
+    "withdraw": "Sentir pressão.",
+    "repair": "Ver que a gente não se entende.",
+    "avoid": "A conversa se arrastar.",
+    "other": ""
+  },
+  "options5(map)": {
+    "pursue": "Falo mais ainda para explicar.",
+    "withdraw": "Me fecho até me acalmar.",
+    "repair": "Peço desculpas ou proponho um jeito de resolver.",
+    "avoid": "Espero o assunto esfriar.",
+    "other": ""
+  },
+  "options6(map)": {
+    "pursue": "Terminar a conversa.",
+    "withdraw": "Um tempo quieto.",
+    "repair": "Um gesto pequeno de carinho.",
+    "avoid": "Seguir o dia como se nada tivesse acontecido.",
+    "other": ""
+  },
+  "continueAction": "Continuar",
+  "finishAction": "Ver resultado",
+  "back": "Voltar",
+  "privateNote": "Só você vê as respostas. Nada é enviado ao seu par.",
+  "resultTitle": "Como você costuma reagir",
+  "resultHighlight": "reagir",
+  "patternTag": "Seu padrão",
+  "descriptions(map)": {
+    "pursue": "Você tende a buscar a conversa logo, mesmo quando o assunto ainda está quente.",
+    "withdraw": "Você tende a se afastar primeiro e voltar depois.",
+    "repair": "Você tende a procurar um jeito de consertar pouco depois da briga.",
+    "avoid": "Você tende a deixar o assunto de lado para não piorar na hora.",
+    "other": ""
+  },
+  "practices(map)": {
+    "pursue": "Isso ajuda a resolver rápido. Vale pausar antes de piorar e ouvir até o fim.",
+    "withdraw": "Isso ajuda a pausar antes de piorar. Escolha um jeito combinado de voltar.",
+    "repair": "Isso ajuda a retomar depois da briga. Um pedido de desculpas curto costuma bastar.",
+    "avoid": "Isso ajuda a pausar antes de piorar. Marque um momento curto para retomar.",
+    "other": ""
+  },
+  "partnerSignal": "Combine com {name} um sinal de volta.",
+  "addToTools": "Adicionar às minhas ferramentas de reparo",
+  "addedToTools": "Já está nas suas ferramentas",
+  "keepMine": "Guardar só para mim",
+  "retake": "Refazer o exercício",
+  "addedToast": "Adicionado às suas ferramentas de reparo.",
+  "loadErrorTitle": "Não deu para carregar",
+  "loadErrorText": "Não deu para abrir seu resultado agora. Tente de novo.",
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para salvar agora. Suas respostas continuam aqui."
+  },
+  "addErrors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para adicionar agora. Tente de novo."
+  }
+}

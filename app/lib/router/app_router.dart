@@ -12,6 +12,7 @@ import 'package:flutter_bloc_starter/features/checkin/presentation/checkin/check
 import 'package:flutter_bloc_starter/features/dates/presentation/dates/dates_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/devices/presentation/devices/devices_page.dart';
+import 'package:flutter_bloc_starter/features/fight_style/presentation/exercise/fight_style_page.dart';
 import 'package:flutter_bloc_starter/features/help/data/models/support_topic.dart';
 import 'package:flutter_bloc_starter/features/help/presentation/help/help_page.dart';
 import 'package:flutter_bloc_starter/features/help/presentation/support/support_page.dart';
@@ -133,6 +134,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: RitualEditRoute.page),
     AutoRoute(page: GuidedRepairRoute.page, fullscreenDialog: true),
     AutoRoute(page: LearningRoute.page),
+    AutoRoute(page: FightStyleRoute.page, fullscreenDialog: true),
     AutoRoute(page: SoftStartRoute.page, fullscreenDialog: true),
     AutoRoute(page: QuickRepairRoute.page, fullscreenDialog: true),
     AutoRoute(page: SlipDetailRoute.page, path: '/slip/:id'),

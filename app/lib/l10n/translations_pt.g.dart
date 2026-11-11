@@ -68,6 +68,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$day$pt day = Translations$day$pt.internal(_root);
   late final Translations$devices$pt devices = Translations$devices$pt.internal(_root);
   late final Translations$discreet$pt discreet = Translations$discreet$pt.internal(_root);
+  late final Translations$fightStyle$pt fightStyle = Translations$fightStyle$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
   late final Translations$globalErrors$pt globalErrors = Translations$globalErrors$pt.internal(
     _root,
@@ -976,6 +977,148 @@ class Translations$discreet$pt {
 
   /// pt: 'Não deu para salvar agora. Tente de novo.'
   String get saveError => 'Não deu para salvar agora. Tente de novo.';
+}
+
+// Path: fightStyle
+class Translations$fightStyle$pt {
+  Translations$fightStyle$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Como eu reajo numa briga'
+  String get exerciseTitle => 'Como eu reajo numa briga';
+
+  /// pt: 'reajo'
+  String get exerciseHighlight => 'reajo';
+
+  /// pt: 'Seis perguntas rápidas, só para você.'
+  String get exerciseSubtitle => 'Seis perguntas rápidas, só para você.';
+
+  /// pt: 'Pergunta {current} de {total}'
+  String questionOf({required Object current, required Object total}) =>
+      'Pergunta ${current} de ${total}';
+
+  List<String> get questions => [
+    'Quando a conversa esquenta, o que você faz primeiro?',
+    'Se o seu par se cala no meio da briga, você...',
+    'Depois de uma discussão, o que costuma acontecer?',
+    'O que mais te incomoda numa briga?',
+    'Quando percebe que exagerou, você...',
+    'O que te ajuda a voltar ao normal?',
+  ];
+  Map<String, String> get options1 => {
+    'pursue': 'Continuo falando até resolver.',
+    'withdraw': 'Preciso de um tempo antes de continuar.',
+    'repair': 'Tento aliviar o clima com algo mais leve.',
+    'avoid': 'Mudo de assunto para não piorar.',
+    'other': '',
+  };
+  Map<String, String> get options2 => {
+    'pursue': 'Insisto para ele falar.',
+    'withdraw': 'Também me calo.',
+    'repair': 'Pergunto com calma o que aconteceu.',
+    'avoid': 'Deixo para depois.',
+    'other': '',
+  };
+  Map<String, String> get options3 => {
+    'pursue': 'Eu procuro a conversa logo.',
+    'withdraw': 'Eu fico um tempo comigo.',
+    'repair': 'Eu penso no que posso consertar.',
+    'avoid': 'Eu prefiro não voltar ao assunto.',
+    'other': '',
+  };
+  Map<String, String> get options4 => {
+    'pursue': 'Ficar sem resposta.',
+    'withdraw': 'Sentir pressão.',
+    'repair': 'Ver que a gente não se entende.',
+    'avoid': 'A conversa se arrastar.',
+    'other': '',
+  };
+  Map<String, String> get options5 => {
+    'pursue': 'Falo mais ainda para explicar.',
+    'withdraw': 'Me fecho até me acalmar.',
+    'repair': 'Peço desculpas ou proponho um jeito de resolver.',
+    'avoid': 'Espero o assunto esfriar.',
+    'other': '',
+  };
+  Map<String, String> get options6 => {
+    'pursue': 'Terminar a conversa.',
+    'withdraw': 'Um tempo quieto.',
+    'repair': 'Um gesto pequeno de carinho.',
+    'avoid': 'Seguir o dia como se nada tivesse acontecido.',
+    'other': '',
+  };
+
+  /// pt: 'Continuar'
+  String get continueAction => 'Continuar';
+
+  /// pt: 'Ver resultado'
+  String get finishAction => 'Ver resultado';
+
+  /// pt: 'Voltar'
+  String get back => 'Voltar';
+
+  /// pt: 'Só você vê as respostas. Nada é enviado ao seu par.'
+  String get privateNote => 'Só você vê as respostas. Nada é enviado ao seu par.';
+
+  /// pt: 'Como você costuma reagir'
+  String get resultTitle => 'Como você costuma reagir';
+
+  /// pt: 'reagir'
+  String get resultHighlight => 'reagir';
+
+  /// pt: 'Seu padrão'
+  String get patternTag => 'Seu padrão';
+
+  Map<String, String> get descriptions => {
+    'pursue': 'Você tende a buscar a conversa logo, mesmo quando o assunto ainda está quente.',
+    'withdraw': 'Você tende a se afastar primeiro e voltar depois.',
+    'repair': 'Você tende a procurar um jeito de consertar pouco depois da briga.',
+    'avoid': 'Você tende a deixar o assunto de lado para não piorar na hora.',
+    'other': '',
+  };
+  Map<String, String> get practices => {
+    'pursue': 'Isso ajuda a resolver rápido. Vale pausar antes de piorar e ouvir até o fim.',
+    'withdraw': 'Isso ajuda a pausar antes de piorar. Escolha um jeito combinado de voltar.',
+    'repair': 'Isso ajuda a retomar depois da briga. Um pedido de desculpas curto costuma bastar.',
+    'avoid': 'Isso ajuda a pausar antes de piorar. Marque um momento curto para retomar.',
+    'other': '',
+  };
+
+  /// pt: 'Combine com {name} um sinal de volta.'
+  String partnerSignal({required Object name}) => 'Combine com ${name} um sinal de volta.';
+
+  /// pt: 'Adicionar às minhas ferramentas de reparo'
+  String get addToTools => 'Adicionar às minhas ferramentas de reparo';
+
+  /// pt: 'Já está nas suas ferramentas'
+  String get addedToTools => 'Já está nas suas ferramentas';
+
+  /// pt: 'Guardar só para mim'
+  String get keepMine => 'Guardar só para mim';
+
+  /// pt: 'Refazer o exercício'
+  String get retake => 'Refazer o exercício';
+
+  /// pt: 'Adicionado às suas ferramentas de reparo.'
+  String get addedToast => 'Adicionado às suas ferramentas de reparo.';
+
+  /// pt: 'Não deu para carregar'
+  String get loadErrorTitle => 'Não deu para carregar';
+
+  /// pt: 'Não deu para abrir seu resultado agora. Tente de novo.'
+  String get loadErrorText => 'Não deu para abrir seu resultado agora. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para salvar agora. Suas respostas continuam aqui.',
+  };
+  Map<String, String> get addErrors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para adicionar agora. Tente de novo.',
+  };
 }
 
 // Path: firstSlip
@@ -3525,6 +3668,15 @@ class Translations$tabs$pt {
 
   /// pt: 'Anotações privadas que você pode apagar.'
   String get learningText => 'Anotações privadas que você pode apagar.';
+
+  /// pt: 'SÓ PARA VOCÊ'
+  String get fightStyleLabel => 'SÓ PARA VOCÊ';
+
+  /// pt: 'Como eu reajo numa briga'
+  String get fightStyleTitle => 'Como eu reajo numa briga';
+
+  /// pt: 'Uma reflexão curta e privada sobre o seu jeito.'
+  String get fightStyleText => 'Uma reflexão curta e privada sobre o seu jeito.';
 }
 
 // Path: temperature
@@ -5129,6 +5281,87 @@ extension on Translations {
           'discreet.note' =>
             'Oculta nomes e conteúdo em notificações e widgets. Sem imagem do casal no ícone.',
           'discreet.saveError' => 'Não deu para salvar agora. Tente de novo.',
+          'fightStyle.exerciseTitle' => 'Como eu reajo numa briga',
+          'fightStyle.exerciseHighlight' => 'reajo',
+          'fightStyle.exerciseSubtitle' => 'Seis perguntas rápidas, só para você.',
+          'fightStyle.questionOf' => ({
+            required Object current,
+            required Object total,
+          }) => 'Pergunta ${current} de ${total}',
+          'fightStyle.questions.0' => 'Quando a conversa esquenta, o que você faz primeiro?',
+          'fightStyle.questions.1' => 'Se o seu par se cala no meio da briga, você...',
+          'fightStyle.questions.2' => 'Depois de uma discussão, o que costuma acontecer?',
+          'fightStyle.questions.3' => 'O que mais te incomoda numa briga?',
+          'fightStyle.questions.4' => 'Quando percebe que exagerou, você...',
+          'fightStyle.questions.5' => 'O que te ajuda a voltar ao normal?',
+          'fightStyle.options1.pursue' => 'Continuo falando até resolver.',
+          'fightStyle.options1.withdraw' => 'Preciso de um tempo antes de continuar.',
+          'fightStyle.options1.repair' => 'Tento aliviar o clima com algo mais leve.',
+          'fightStyle.options1.avoid' => 'Mudo de assunto para não piorar.',
+          'fightStyle.options1.other' => '',
+          'fightStyle.options2.pursue' => 'Insisto para ele falar.',
+          'fightStyle.options2.withdraw' => 'Também me calo.',
+          'fightStyle.options2.repair' => 'Pergunto com calma o que aconteceu.',
+          'fightStyle.options2.avoid' => 'Deixo para depois.',
+          'fightStyle.options2.other' => '',
+          'fightStyle.options3.pursue' => 'Eu procuro a conversa logo.',
+          'fightStyle.options3.withdraw' => 'Eu fico um tempo comigo.',
+          'fightStyle.options3.repair' => 'Eu penso no que posso consertar.',
+          'fightStyle.options3.avoid' => 'Eu prefiro não voltar ao assunto.',
+          'fightStyle.options3.other' => '',
+          'fightStyle.options4.pursue' => 'Ficar sem resposta.',
+          'fightStyle.options4.withdraw' => 'Sentir pressão.',
+          'fightStyle.options4.repair' => 'Ver que a gente não se entende.',
+          'fightStyle.options4.avoid' => 'A conversa se arrastar.',
+          'fightStyle.options4.other' => '',
+          'fightStyle.options5.pursue' => 'Falo mais ainda para explicar.',
+          'fightStyle.options5.withdraw' => 'Me fecho até me acalmar.',
+          'fightStyle.options5.repair' => 'Peço desculpas ou proponho um jeito de resolver.',
+          'fightStyle.options5.avoid' => 'Espero o assunto esfriar.',
+          'fightStyle.options5.other' => '',
+          'fightStyle.options6.pursue' => 'Terminar a conversa.',
+          'fightStyle.options6.withdraw' => 'Um tempo quieto.',
+          'fightStyle.options6.repair' => 'Um gesto pequeno de carinho.',
+          'fightStyle.options6.avoid' => 'Seguir o dia como se nada tivesse acontecido.',
+          'fightStyle.options6.other' => '',
+          'fightStyle.continueAction' => 'Continuar',
+          'fightStyle.finishAction' => 'Ver resultado',
+          'fightStyle.back' => 'Voltar',
+          'fightStyle.privateNote' => 'Só você vê as respostas. Nada é enviado ao seu par.',
+          'fightStyle.resultTitle' => 'Como você costuma reagir',
+          'fightStyle.resultHighlight' => 'reagir',
+          'fightStyle.patternTag' => 'Seu padrão',
+          'fightStyle.descriptions.pursue' =>
+            'Você tende a buscar a conversa logo, mesmo quando o assunto ainda está quente.',
+          'fightStyle.descriptions.withdraw' => 'Você tende a se afastar primeiro e voltar depois.',
+          'fightStyle.descriptions.repair' =>
+            'Você tende a procurar um jeito de consertar pouco depois da briga.',
+          'fightStyle.descriptions.avoid' =>
+            'Você tende a deixar o assunto de lado para não piorar na hora.',
+          'fightStyle.descriptions.other' => '',
+          'fightStyle.practices.pursue' =>
+            'Isso ajuda a resolver rápido. Vale pausar antes de piorar e ouvir até o fim.',
+          'fightStyle.practices.withdraw' =>
+            'Isso ajuda a pausar antes de piorar. Escolha um jeito combinado de voltar.',
+          'fightStyle.practices.repair' =>
+            'Isso ajuda a retomar depois da briga. Um pedido de desculpas curto costuma bastar.',
+          'fightStyle.practices.avoid' =>
+            'Isso ajuda a pausar antes de piorar. Marque um momento curto para retomar.',
+          'fightStyle.practices.other' => '',
+          'fightStyle.partnerSignal' => ({
+            required Object name,
+          }) => 'Combine com ${name} um sinal de volta.',
+          'fightStyle.addToTools' => 'Adicionar às minhas ferramentas de reparo',
+          'fightStyle.addedToTools' => 'Já está nas suas ferramentas',
+          'fightStyle.keepMine' => 'Guardar só para mim',
+          'fightStyle.retake' => 'Refazer o exercício',
+          'fightStyle.addedToast' => 'Adicionado às suas ferramentas de reparo.',
+          'fightStyle.loadErrorTitle' => 'Não deu para carregar',
+          'fightStyle.loadErrorText' => 'Não deu para abrir seu resultado agora. Tente de novo.',
+          'fightStyle.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'fightStyle.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
+          'fightStyle.addErrors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'fightStyle.addErrors.other' => 'Não deu para adicionar agora. Tente de novo.',
           'firstSlip.title' => 'Comece com uma coisa boa',
           'firstSlip.titleHighlight' => 'uma coisa boa',
           'firstSlip.subtitle' => 'O que seu parceiro fez ultimamente que te fez sorrir? 30 segundos bastam. Ainda sem conta.',
@@ -5268,6 +5501,9 @@ extension on Translations {
           'intro.theme.neutralSupport' => 'Papel e verde',
           'intro.theme.footnote' => 'Dá para trocar depois em Configurações, Aparência.',
           'invite.title' => ({required Object name}) => 'Convidar ${name}',
+          _ => null,
+        } ??
+        switch (path) {
           'invite.titleNoName' => 'Convidar sua pessoa',
           'invite.messageIntro' => 'Esta mensagem será enviada:',
           'invite.message' => ({
@@ -5349,9 +5585,6 @@ extension on Translations {
           'memories.errorTitle' => 'Não deu para carregar',
           'memories.errorText' => 'Suas memórias continuam salvas. Tente de novo.',
           'memories.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          _ => null,
-        } ??
-        switch (path) {
           'memories.errors.other' => 'Não deu para fazer isso agora. Seu texto continua aqui.',
           'mood.title' => 'Como você está hoje?',
           'mood.titleHighlight' => 'hoje',
@@ -5833,6 +6066,9 @@ extension on Translations {
           'reminders.discreet' => 'Abra o app para ver.',
           'repair.calm.title' => 'Um momento para respirar',
           'repair.calm.titleHighlight' => 'respirar',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.calm.cadence' =>
             'Inspire devagar por 4. Solte devagar por 6. Repita no seu ritmo.',
           'repair.calm.text' => 'Não tem pressa e não tem tempo contado. Saia quando quiser.',
@@ -5912,9 +6148,6 @@ extension on Translations {
           'repair.learning.subtitle' => 'Fica só com você e pode ser apagado quando quiser.',
           'repair.learning.kinds.trigger' => 'O que me incomoda',
           'repair.learning.kinds.need' => 'O que eu preciso',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.learning.kinds.good_fix' => 'O que ajudou',
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Escreva em uma ou duas frases',
@@ -6262,6 +6495,9 @@ extension on Translations {
           'tabs.learningLabel' => 'SÓ PARA VOCÊ',
           'tabs.learningTitle' => 'O que você aprendeu',
           'tabs.learningText' => 'Anotações privadas que você pode apagar.',
+          'tabs.fightStyleLabel' => 'SÓ PARA VOCÊ',
+          'tabs.fightStyleTitle' => 'Como eu reajo numa briga',
+          'tabs.fightStyleText' => 'Uma reflexão curta e privada sobre o seu jeito.',
           'temperature.levelTitle' => 'Como está entre vocês?',
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',
@@ -6439,6 +6675,9 @@ extension on Translations {
           'unpair.relationship.title' => 'Relacionamento',
           'unpair.relationship.unpair' => ({required Object name}) => 'Desvincular da ${name}',
           'unpair.relationship.ended' => 'A relação terminou',
+          _ => null,
+        } ??
+        switch (path) {
           'unpair.breakup.appBarTitle' => 'Terminamos',
           'unpair.breakup.title' => 'Sinto muito',
           'unpair.breakup.highlight' => 'muito',

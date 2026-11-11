@@ -1,0 +1,93 @@
+{
+  "exerciseTitle": "How I react in a fight",
+  "exerciseHighlight": "react",
+  "exerciseSubtitle": "Six quick questions, just for you.",
+  "questionOf": "Question {current} of {total}",
+  "questions": [
+    "When the conversation heats up, what do you do first?",
+    "If your partner goes quiet mid-fight, you...",
+    "After an argument, what usually happens?",
+    "What bothers you most in a fight?",
+    "When you notice you went too far, you...",
+    "What helps you feel normal again?"
+  ],
+  "options1(map)": {
+    "pursue": "I keep talking until it's settled.",
+    "withdraw": "I need some time before going on.",
+    "repair": "I try to lighten the mood.",
+    "avoid": "I change the subject so it doesn't get worse.",
+    "other": ""
+  },
+  "options2(map)": {
+    "pursue": "I push for them to speak.",
+    "withdraw": "I go quiet too.",
+    "repair": "I calmly ask what happened.",
+    "avoid": "I leave it for later.",
+    "other": ""
+  },
+  "options3(map)": {
+    "pursue": "I look for the conversation right away.",
+    "withdraw": "I spend some time alone.",
+    "repair": "I think about what I can fix.",
+    "avoid": "I'd rather not go back to it.",
+    "other": ""
+  },
+  "options4(map)": {
+    "pursue": "Getting no answer.",
+    "withdraw": "Feeling pressured.",
+    "repair": "Seeing that we don't understand each other.",
+    "avoid": "The conversation dragging on.",
+    "other": ""
+  },
+  "options5(map)": {
+    "pursue": "I talk even more to explain.",
+    "withdraw": "I close up until I calm down.",
+    "repair": "I apologize or suggest a way to fix it.",
+    "avoid": "I wait for it to cool down.",
+    "other": ""
+  },
+  "options6(map)": {
+    "pursue": "Finishing the conversation.",
+    "withdraw": "Some quiet time.",
+    "repair": "A small gesture of care.",
+    "avoid": "Carrying on with the day as if nothing happened.",
+    "other": ""
+  },
+  "continueAction": "Continue",
+  "finishAction": "See result",
+  "back": "Back",
+  "privateNote": "Only you see your answers. Nothing is sent to your partner.",
+  "resultTitle": "How you usually react",
+  "resultHighlight": "react",
+  "patternTag": "Your pattern",
+  "descriptions(map)": {
+    "pursue": "You tend to seek the conversation right away, even while things are still hot.",
+    "withdraw": "You tend to step back first and come back later.",
+    "repair": "You tend to look for a way to fix things soon after a fight.",
+    "avoid": "You tend to set the subject aside so it doesn't get worse in the moment.",
+    "other": ""
+  },
+  "practices(map)": {
+    "pursue": "That helps you sort it out fast. Pausing before it gets worse and listening to the end is worth it.",
+    "withdraw": "That helps you pause before it gets worse. Pick a set way to come back.",
+    "repair": "That helps you return after a fight. A short apology often does it.",
+    "avoid": "That helps you pause before it gets worse. Choose a short moment to come back to it.",
+    "other": ""
+  },
+  "partnerSignal": "Agree on a signal with {name} to come back.",
+  "addToTools": "Add to my repair tools",
+  "addedToTools": "Already in your repair tools",
+  "keepMine": "Keep it to myself",
+  "retake": "Take it again",
+  "addedToast": "Added to your repair tools.",
+  "loadErrorTitle": "Couldn't load",
+  "loadErrorText": "Couldn't open your result right now. Try again.",
+  "errors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't save right now. Your answers are still here."
+  },
+  "addErrors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't add it right now. Try again."
+  }
+}

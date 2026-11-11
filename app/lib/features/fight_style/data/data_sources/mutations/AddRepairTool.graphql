@@ -1,0 +1,5 @@
+mutation AddRepairTool($id: UUID!, $note: String!) {
+  insertIntoRepairLearningsCollection(objects: [{ id: $id, kind: "trigger", note: $note }]) {
+    affectedCount
+  }
+}

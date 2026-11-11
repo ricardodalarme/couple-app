@@ -44,5 +44,8 @@
   "temperatureText": "Um registro privado, sem nota.",
   "learningLabel": "SÓ PARA VOCÊ",
   "learningTitle": "O que você aprendeu",
-  "learningText": "Anotações privadas que você pode apagar."
+  "learningText": "Anotações privadas que você pode apagar.",
+  "fightStyleLabel": "SÓ PARA VOCÊ",
+  "fightStyleTitle": "Como eu reajo numa briga",
+  "fightStyleText": "Uma reflexão curta e privada sobre o seu jeito."
 }

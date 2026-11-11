@@ -304,6 +304,22 @@ class ExistingAccountRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [FightStylePage]
+class FightStyleRoute extends PageRouteInfo<void> {
+  const FightStyleRoute({List<PageRouteInfo>? children})
+    : super(FightStyleRoute.name, initialChildren: children);
+
+  static const String name = 'FightStyleRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const FightStylePage());
+    },
+  );
+}
+
+/// generated route for
 /// [FirstSlipPage]
 class FirstSlipRoute extends PageRouteInfo<void> {
   const FirstSlipRoute({List<PageRouteInfo>? children})

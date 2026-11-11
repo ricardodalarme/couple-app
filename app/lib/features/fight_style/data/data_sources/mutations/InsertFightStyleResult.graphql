@@ -1,0 +1,8 @@
+mutation InsertFightStyleResult($ranked: [String]!) {
+  insertIntoQuizResultsCollection(objects: [{ quizKey: "conflict_style", ranked: $ranked }]) {
+    records {
+      id
+      ranked
+    }
+  }
+}

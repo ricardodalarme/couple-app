@@ -44,5 +44,8 @@
   "temperatureText": "A private check-in, never a score.",
   "learningLabel": "JUST FOR YOU",
   "learningTitle": "What you learned",
-  "learningText": "Private notes you can delete."
+  "learningText": "Private notes you can delete.",
+  "fightStyleLabel": "JUST FOR YOU",
+  "fightStyleTitle": "How I react in a fight",
+  "fightStyleText": "A short, private reflection on your own way."
 }
