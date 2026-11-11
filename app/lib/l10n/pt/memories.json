@@ -14,7 +14,7 @@
   "placeAddressNote": "Prefira só o nome do lugar, sem endereço ou número.",
   "segmentTimeline": "Linha do tempo",
   "segmentJar": "Potinho",
-  "jarEmpty": "O potinho está vazio. Guarde um slip nele pelos detalhes do slip.",
+  "jarEmpty": "Quando um slip te fizer bem, guarde-o no potinho pelos detalhes dele.",
   "jarAnother": "Outro",
   "jarClose": "Fechar",
   "titleLabel": "Uma memória",
@@ -23,7 +23,20 @@
   "add": "Adicionar memória",
   "save": "Guardar memória",
   "delete": "Apagar",
-  "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+  "monthsShort": [
+    "jan",
+    "fev",
+    "mar",
+    "abr",
+    "mai",
+    "jun",
+    "jul",
+    "ago",
+    "set",
+    "out",
+    "nov",
+    "dez"
+  ],
   "dateLine": "{day} {month} {year}",
   "emptyTitle": "Nenhuma memória ainda",
   "emptyText": "Guarde momentos que vocês querem rever.",
@@ -32,5 +45,8 @@
   "errors(map)": {
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para fazer isso agora. Seu texto continua aqui."
-  }
+  },
+  "jarEmptyTitle": "O potinho está vazio",
+  "jarEmptyAction": "Ver meus slips",
+  "moreTitle": "Mais"
 }

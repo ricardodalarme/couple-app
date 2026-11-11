@@ -57,11 +57,16 @@ class const LessonPage({
           programResource,
           fakeValue: Program.fake(),
           successBuilder: (program) => program.sensitive && !hasSensitiveConsent
-              ? SensitiveTracksGate(
-                  title: l10n.sensitiveLessonLockedTitle,
-                  text: l10n.sensitiveLessonLockedText,
-                  actionText: l10n.sensitiveGateAction,
-                  onAction: () => _acceptSensitive(context, cubit),
+              ? BaseStackedContent(
+                  body: SensitiveTracksGate(
+                    heading: program.title,
+                    title: l10n.sensitiveLessonLockedTitle,
+                    text: l10n.sensitiveLessonLockedText,
+                    actionText: l10n.sensitiveGateAction,
+                    cancelText: l10n.sensitiveConsentCancel,
+                    onAction: () => _acceptSensitive(context, cubit),
+                    onCancel: () => context.router.maybePop(),
+                  ),
                 )
               : lesson == null
               ? program.lessons.isEmpty

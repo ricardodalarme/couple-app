@@ -9,6 +9,7 @@ const double _scrolledSurfaceOpacity = .94;
 /// When [hasScrolled] it gains a translucent surface and a bottom hairline.
 class const BaseAppBar({
   final String? title,
+  final Widget? titleWidget,
   final String? subtitle,
   final VoidCallback? onBack,
   final VoidCallback? onClose,
@@ -54,7 +55,12 @@ class const BaseAppBar({
           children: [
             leading,
             Expanded(
-              child: _Centre(title: title, subtitle: subtitle, stepIndicator: stepIndicator),
+              child: _Centre(
+                title: title,
+                titleWidget: titleWidget,
+                subtitle: subtitle,
+                stepIndicator: stepIndicator,
+              ),
             ),
             trailing ?? const SizedBox(width: AppIconSize.touch),
           ],
@@ -80,6 +86,7 @@ class const BaseAppBar({
 
 class const _Centre({
   required final String? title,
+  required final Widget? titleWidget,
   required final String? subtitle,
   required final Widget? stepIndicator,
 }) extends StatelessWidget {
@@ -87,6 +94,7 @@ class const _Centre({
   Widget build(BuildContext context) {
     final colors = context.colors;
     final heading = title;
+    final headingWidget = titleWidget;
     final support = subtitle;
     final steps = stepIndicator;
 
@@ -94,7 +102,9 @@ class const _Centre({
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (heading != null)
+          if (headingWidget != null)
+            headingWidget
+          else if (heading != null)
             Text(
               heading,
               style: context.text.titleXs.copyWith(color: colors.textPrimary),
@@ -112,7 +122,9 @@ class const _Centre({
             ),
           if (steps != null)
             Padding(
-              padding: EdgeInsets.only(top: heading == null && support == null ? 0 : AppSpace.s6),
+              padding: EdgeInsets.only(
+                top: heading == null && headingWidget == null && support == null ? 0 : AppSpace.s6,
+              ),
               child: steps,
             ),
         ],

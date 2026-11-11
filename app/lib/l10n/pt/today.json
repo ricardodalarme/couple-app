@@ -46,12 +46,12 @@
   "pendingInviteAction": "Ver convite",
   "answer": "Responder",
   "slipsThisWeek(plural, param=count)": {
-    "zero": "Nenhum slip esta semana",
+    "zero": "Nenhum slip ainda",
     "one": "1 slip esta semana",
     "other": "{count} slips esta semana"
   },
-  "weekHintEmpty": "Anote uma coisa boa quando lembrar.",
-  "weekHint": "Seu cartão de domingo vem desses slips.",
+  "weekHintEmpty": "sem pressa",
+  "weekHint": "cartão no domingo",
   "forToday": "Para hoje",
   "ideaLabel": "Ideia do dia",
   "slipsThisWeekPrivate(plural, param=count)": {
@@ -101,5 +101,6 @@
   "signalReceivedAction": "Ver",
   "pauseBack": "Voltar agora",
   "pauseBackRepair": "Voltar e fazer um reparo",
-  "pauseWriteSlip": "Anotar um slip"
+  "pauseWriteSlip": "Anotar um slip",
+  "weekHintToday": "cartão sai hoje, 18:00"
 }

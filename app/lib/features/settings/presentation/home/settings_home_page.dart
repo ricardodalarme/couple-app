@@ -32,7 +32,8 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
 
     final relationship = switch (state.hasPartner) {
       null => null,
-      true => state.partnerName ?? l10n.connected,
+      true =>
+        state.partnerName == null ? l10n.connected : l10n.connectedWith(name: state.partnerName!),
       false => l10n.invitePartner,
     };
     final notifications = switch (state.notificationsOn) {
@@ -62,6 +63,8 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
               ),
               const SizedBox(height: AppSpace.s16),
             ],
+            BaseSectionHeader(title: l10n.accountSection),
+            const SizedBox(height: AppSpace.s8),
             BaseListGroup(
               children: [
                 BaseListTile(
@@ -87,6 +90,8 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
               ],
             ),
             const SizedBox(height: AppSpace.s20),
+            BaseSectionHeader(title: l10n.preferencesSection),
+            const SizedBox(height: AppSpace.s8),
             BaseListGroup(
               children: [
                 BaseListTile(
@@ -134,6 +139,8 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
               ],
             ),
             const SizedBox(height: AppSpace.s20),
+            BaseSectionHeader(title: l10n.privacySection),
+            const SizedBox(height: AppSpace.s8),
             BaseListGroup(
               children: [
                 BaseListTile(

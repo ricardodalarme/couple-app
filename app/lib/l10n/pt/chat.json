@@ -48,5 +48,9 @@
   "errors(map)": {
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para fazer isso agora. Tente de novo."
-  }
+  },
+  "starterHard": "Um momento difícil",
+  "starterIdea": "Uma ideia",
+  "starterPlan": "Um plano de encontro",
+  "menuLabel": "Mais opções"
 }

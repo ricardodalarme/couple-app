@@ -55,4 +55,21 @@ void main() {
       expect((plain.decoration! as BoxDecoration).border, isNull);
     });
   }
+
+  testWidgets('renders a title widget in the centre slot', (tester) async {
+    setSurface(tester);
+    await tester.pumpWidget(
+      appFor(
+        variant: AppThemeVariant.rose,
+        home: const Scaffold(
+          body: BaseAppBar(
+            titleWidget: Row(mainAxisSize: MainAxisSize.min, children: [Text('Mascote')]),
+            onBack: _noop,
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Mascote'), findsOneWidget);
+  });
 }

@@ -57,68 +57,16 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
                 if (state.view == MemoriesView.jar)
                   const _JarResult()
                 else ...[
-                  BaseListGroup(
-                    children: [
-                      BaseListTile(
-                        icon: AppIcons.book,
-                        title: l10n.historyTitle,
-                        showsChevron: true,
-                        titleMaxLines: 1,
-                        onTap: () => context.pushRoute(const HistoryRoute()),
-                      ),
-                      BaseListTile(
-                        icon: AppIcons.map_pin,
-                        title: l10n.placesTitle,
-                        showsChevron: true,
-                        titleMaxLines: 1,
-                        onTap: () => context.pushRoute(const PlacesRoute()),
-                      ),
-                      BaseListTile(
-                        icon: AppIcons.share,
-                        title: l10n.storyTitle,
-                        showsChevron: true,
-                        titleMaxLines: 1,
-                        onTap: () => context.pushRoute(const StoryRoute()),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: AppSpace.s24),
-                  if (state.showsForm) ...[
-                    BaseTextField(
-                      text: state.title,
-                      label: l10n.titleLabel,
-                      hint: l10n.titleHint,
-                      onChanged: cubit.onTitleChanged,
-                    ),
-                    const SizedBox(height: AppSpace.s12),
-                    BaseTextField(
-                      text: state.place,
-                      label: l10n.placeLabel,
-                      hint: l10n.placeHint,
-                      helpText: state.placeLooksLikeAddress ? l10n.placeAddressNote : null,
-                      onChanged: cubit.onPlaceChanged,
-                    ),
-                    const SizedBox(height: AppSpace.s12),
-                    BaseTextArea(
-                      text: state.body,
-                      hint: l10n.bodyHint,
-                      maxLength: memoryBodyMaxLength,
-                      maxLines: 3,
-                      onChanged: cubit.onBodyChanged,
-                    ),
-                  ] else
-                    BaseListGroup(
-                      children: [
-                        BaseListTile(icon: AppIcons.plus, title: l10n.add, onTap: cubit.openForm),
-                      ],
-                    ),
-                  const SizedBox(height: AppSpace.s24),
                   SkeletonizerResourceWidget<List<Memory>>(
                     state.memories,
                     fakeValue: [Memory.fake()],
-                    successBuilder: (list) => list.isEmpty
-                        ? BaseEmptyState(title: l10n.emptyTitle, text: l10n.emptyText)
-                        : BaseListGroup(
+                    successBuilder: (list) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        if (list.isEmpty)
+                          BaseEmptyState(title: l10n.emptyTitle, text: l10n.emptyText)
+                        else
+                          BaseListGroup(
                             children: [
                               for (final memory in list)
                                 BaseListTile(
@@ -130,7 +78,6 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
                                       year: memory.happenedOn.year,
                                     ),
                                     if (memory.place != null) memory.place!,
-                                    if (memory.body != null) memory.body!,
                                   ].join(' · '),
                                   trailing: BaseTextLink(
                                     text: l10n.delete,
@@ -139,6 +86,70 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
                                 ),
                             ],
                           ),
+                        const SizedBox(height: AppSpace.s16),
+                        if (state.showsForm) ...[
+                          BaseTextField(
+                            text: state.title,
+                            label: l10n.titleLabel,
+                            hint: l10n.titleHint,
+                            onChanged: cubit.onTitleChanged,
+                          ),
+                          const SizedBox(height: AppSpace.s12),
+                          BaseTextField(
+                            text: state.place,
+                            label: l10n.placeLabel,
+                            hint: l10n.placeHint,
+                            helpText: state.placeLooksLikeAddress ? l10n.placeAddressNote : null,
+                            onChanged: cubit.onPlaceChanged,
+                          ),
+                          const SizedBox(height: AppSpace.s12),
+                          BaseTextArea(
+                            text: state.body,
+                            hint: l10n.bodyHint,
+                            maxLength: memoryBodyMaxLength,
+                            maxLines: 3,
+                            onChanged: cubit.onBodyChanged,
+                          ),
+                        ] else
+                          BaseListGroup(
+                            children: [
+                              BaseListTile(
+                                icon: AppIcons.plus,
+                                title: l10n.add,
+                                onTap: cubit.openForm,
+                              ),
+                            ],
+                          ),
+                        const SizedBox(height: AppSpace.s24),
+                        BaseSectionHeader(title: l10n.moreTitle),
+                        const SizedBox(height: AppSpace.s8),
+                        BaseListGroup(
+                          children: [
+                            BaseListTile(
+                              icon: AppIcons.book,
+                              title: l10n.historyTitle,
+                              showsChevron: true,
+                              titleMaxLines: 1,
+                              onTap: () => context.pushRoute(const HistoryRoute()),
+                            ),
+                            BaseListTile(
+                              icon: AppIcons.map_pin,
+                              title: l10n.placesTitle,
+                              showsChevron: true,
+                              titleMaxLines: 1,
+                              onTap: () => context.pushRoute(const PlacesRoute()),
+                            ),
+                            BaseListTile(
+                              icon: AppIcons.share,
+                              title: l10n.storyTitle,
+                              showsChevron: true,
+                              titleMaxLines: 1,
+                              onTap: () => context.pushRoute(const StoryRoute()),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                     failureBuilder: (_) => BaseEmptyState(
                       title: l10n.errorTitle,
                       text: l10n.errorText,
@@ -174,6 +185,16 @@ class const _JarResult() extends StatelessWidget {
     if (jar is Success<String?>) {
       final text = jar.value;
 
+      if (text == null) {
+        return BaseEmptyState(
+          title: l10n.jarEmptyTitle,
+          text: l10n.jarEmpty,
+          textMaxLines: null,
+          actionText: l10n.jarEmptyAction,
+          onAction: cubit.closeJar,
+        );
+      }
+
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -186,13 +207,7 @@ class const _JarResult() extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(AppSpace.s20),
-              child: Semantics(
-                liveRegion: true,
-                child: Text(
-                  text ?? l10n.jarEmpty,
-                  style: text == null ? context.text.body : context.text.titleLg,
-                ),
-              ),
+              child: Semantics(liveRegion: true, child: Text(text, style: context.text.titleLg)),
             ),
           ),
           const SizedBox(height: AppSpace.s8),

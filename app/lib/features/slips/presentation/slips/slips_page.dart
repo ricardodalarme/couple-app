@@ -68,24 +68,19 @@ class _SlipsPageState() extends State<SlipsPage> {
               Row(
                 children: [
                   Expanded(child: Text(l10n.title, style: context.text.titleXl)),
-                  if (!isEmpty)
-                    BaseRoundButton(
-                      icon: isSearching ? AppIcons.close : AppIcons.search,
-                      semanticLabel: isSearching ? l10n.searchClose : l10n.search,
-                      onPressed: isSearching ? cubit.closeSearch : cubit.openSearch,
-                    ),
+                  BaseRoundButton(
+                    icon: isSearching ? AppIcons.close : AppIcons.search,
+                    semanticLabel: isSearching ? l10n.searchClose : l10n.search,
+                    onPressed: isSearching ? cubit.closeSearch : cubit.openSearch,
+                  ),
                 ],
               ),
               const SizedBox(height: AppSpace.s16),
+              if (isSearching) ...[
+                BaseTextField(text: query, hint: l10n.searchHint, onChanged: cubit.onQueryChanged),
+                const SizedBox(height: AppSpace.s16),
+              ],
               if (!isEmpty) ...[
-                if (isSearching) ...[
-                  BaseTextField(
-                    text: query,
-                    hint: l10n.searchHint,
-                    onChanged: cubit.onQueryChanged,
-                  ),
-                  const SizedBox(height: AppSpace.s16),
-                ],
                 Wrap(
                   spacing: AppSpace.s8,
                   runSpacing: AppSpace.s8,

@@ -31,8 +31,29 @@ class const TodayContent({
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.today;
+    final moodL10n = context.l10n.mood;
     final idea = home.idea;
     final isAlone = !home.isPaired;
+    final today = home.localDate ?? DateTime.now();
+    final weekStart = DateTime(
+      today.year,
+      today.month,
+      today.day,
+    ).subtract(Duration(days: today.weekday - DateTime.monday));
+    final weekCounts = List<int>.filled(7, 0);
+    for (final day in home.slipDays) {
+      final index = DateTime(day.year, day.month, day.day).difference(weekStart).inDays;
+      if (index >= 0 && index < 7) weekCounts[index]++;
+    }
+    const homeMoods = [
+      // Hoje shows the board's five-mood subset; the Mood screen keeps all six.
+      MoodKind.happy,
+      MoodKind.loving,
+      MoodKind.tired,
+      MoodKind.stressed,
+      MoodKind.sad,
+    ];
+    final selectedMood = home.myMood == null ? null : homeMoods.indexOf(home.myMood!);
 
     if (home.isPausedAt(DateTime.now())) {
       return Column(
@@ -93,8 +114,14 @@ class const TodayContent({
             title: isAlone
                 ? l10n.slipsThisWeekPrivate(count: home.slipsThisWeek)
                 : l10n.slipsThisWeek(count: home.slipsThisWeek),
-            supportText: home.slipsThisWeek == 0 ? l10n.weekHintEmpty : l10n.weekHint,
-            filledCount: home.slipsThisWeek,
+            supportText: home.slipsThisWeek == 0
+                ? l10n.weekHintEmpty
+                : today.weekday == DateTime.sunday
+                ? l10n.weekHintToday
+                : l10n.weekHint,
+            dayCounts: weekCounts,
+            dayLabels: [for (final day in l10n.weekdays) day.substring(0, 3)],
+            todayIndex: today.weekday - 1,
           ),
         ],
         if (home.isPaired && home.unopenedCards == 0 && home.slipsThisWeek > 0) ...[
@@ -118,17 +145,18 @@ class const TodayContent({
         if (!isFirstDay && !home.hasPendingInvite) ...[
           const SizedBox(height: AppSpace.s24),
           MoodRow(
-            title: context.l10n.mood.entryTitle,
-            supportText: context.l10n.mood.entryText,
+            title: moodL10n.homeTitle,
+            actionLabel: moodL10n.homePrivacy,
             options: [
-              for (final mood in MoodKind.values)
+              for (final mood in homeMoods)
                 MoodRowOption(
                   face: mood.face,
-                  label: context.l10n.mood.moods.selectOrFallback(mood.value),
+                  label: moodL10n.homeMoods.selectOrFallback(mood.value),
                 ),
             ],
+            selectedIndex: selectedMood == null || selectedMood < 0 ? null : selectedMood,
             onSelected: (index) async {
-              await context.pushRoute(MoodRoute(initialMood: MoodKind.values[index].value));
+              await context.pushRoute(MoodRoute(initialMood: homeMoods[index].value));
               if (context.mounted) await context.read<TodayCubit>().load();
             },
           ),

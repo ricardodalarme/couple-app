@@ -20,7 +20,15 @@
     "noPartnerNote": "Os jogos precisam dos dois. Quando seu par entrar, vocês podem jogar.",
     "refreshNote": "Para ver se algo mudou, volte ao app ou puxe para atualizar.",
     "loadErrorTitle": "Não deu para abrir os jogos",
-    "loadErrorText": "Nada foi perdido. Tente de novo."
+    "loadErrorText": "Nada foi perdido. Tente de novo.",
+    "questionCount(plural, param=count)": {
+      "one": "1 pergunta",
+      "other": "{count} perguntas"
+    },
+    "guessCount(plural, param=count)": {
+      "one": "1 palpite",
+      "other": "{count} palpites"
+    }
   },
   "kinds": {
     "meOrYou": {

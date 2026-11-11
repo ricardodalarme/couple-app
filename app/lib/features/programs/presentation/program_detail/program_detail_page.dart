@@ -63,10 +63,13 @@ class const ProgramDetailPage({@PathParam('slug') required final String slug, su
             fakeValue: Program.fake(),
             successBuilder: (program) => program.sensitive && !hasSensitiveConsent
                 ? SensitiveTracksGate(
+                    heading: program.title,
                     title: l10n.sensitiveGateTitle,
                     text: l10n.sensitiveGateText,
                     actionText: l10n.sensitiveGateAction,
+                    cancelText: l10n.sensitiveConsentCancel,
                     onAction: () => _acceptSensitive(context, cubit),
+                    onCancel: () => context.router.maybePop(),
                   )
                 : _ProgramBody(
                     program: program,

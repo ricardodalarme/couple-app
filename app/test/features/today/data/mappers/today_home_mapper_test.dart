@@ -6,6 +6,18 @@ import 'package:flutter_bloc_starter/features/today/data/mappers/today_home_mapp
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+QueryTodayHome _query({
+  QueryTodayHometoday? today,
+  QueryTodayHomepartnerMoodToday? partnerMoodToday,
+  List<QueryTodayHomeweekSlipsedges> weekSlipEdges = const [],
+  List<QueryTodayHomemyMoodedges> myMoodEdges = const [],
+}) => QueryTodayHome(
+  today: today,
+  partnerMoodToday: partnerMoodToday,
+  myMood: QueryTodayHomemyMood(edges: myMoodEdges),
+  weekSlips: QueryTodayHomeweekSlips(edges: weekSlipEdges),
+);
+
 void main() {
   group('PartnerMood', () {
     test('maps the shared mood and need', () {
@@ -39,7 +51,7 @@ void main() {
     });
 
     test("yesterday's shared mood is hidden from Hoje", () {
-      final model = QueryTodayHome(
+      final model = _query(
         today: QueryTodayHometoday(localDate: DateTime(2026, 11, 10)),
         partnerMoodToday: QueryTodayHomepartnerMoodToday(day: DateTime(2026, 11, 9), mood: 'tired'),
       ).toModel();
@@ -48,7 +60,7 @@ void main() {
     });
 
     test("today's shared mood is shown", () {
-      final model = QueryTodayHome(
+      final model = _query(
         today: QueryTodayHometoday(localDate: DateTime(2026, 11, 10)),
         partnerMoodToday: QueryTodayHomepartnerMoodToday(
           day: DateTime(2026, 11, 10),
@@ -80,6 +92,25 @@ void main() {
 
       expect(cached.localDate, DateTime(2026, 11, 10));
       expect(cached.partnerMood, isNull);
+    });
+
+    test('maps today mood and the week slip days', () {
+      final model = _query(
+        today: QueryTodayHometoday(localDate: DateTime(2026, 11, 10)),
+        myMoodEdges: [
+          QueryTodayHomemyMoodedges(
+            node: QueryTodayHomemyMoodedgesnode(day: DateTime(2026, 11, 10), mood: 'happy'),
+          ),
+        ],
+        weekSlipEdges: [
+          QueryTodayHomeweekSlipsedges(
+            node: QueryTodayHomeweekSlipsedgesnode(createdAt: DateTime(2026, 11, 9, 12)),
+          ),
+        ],
+      ).toModel();
+
+      expect(model?.myMood, MoodKind.happy);
+      expect(model?.slipDays, [DateTime(2026, 11, 9)]);
     });
   });
 }

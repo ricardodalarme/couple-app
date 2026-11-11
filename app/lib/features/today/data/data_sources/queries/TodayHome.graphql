@@ -30,4 +30,23 @@ query TodayHome {
     mood
     need
   }
+  myMood: moodsCollection(first: 1, orderBy: [{day: DescNullsLast}]) {
+    edges {
+      node {
+        day
+        mood
+      }
+    }
+  }
+  weekSlips: slipsCollection(
+    first: 50
+    filter: {deletedAt: {is: NULL}}
+    orderBy: [{createdAt: DescNullsLast}]
+  ) {
+    edges {
+      node {
+        createdAt
+      }
+    }
+  }
 }

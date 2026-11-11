@@ -10,6 +10,8 @@ extension TodayHomeMapper on QueryTodayHome {
     final state = today;
     if (state == null) return null;
     final sharedMood = partnerMoodToday;
+    final ownMood = myMood.edges.firstOrNull?.node;
+    final localDate = state.localDate;
 
     return TodayHome(
       isPaired: state.isPaired ?? false,
@@ -20,11 +22,22 @@ extension TodayHomeMapper on QueryTodayHome {
       hasPlus: state.hasPlus ?? false,
       unseenSignals: state.unseenSignals ?? 0,
       partnerName: state.partnerName,
-      localDate: state.localDate,
+      localDate: localDate,
       cardStatus: state.cardStatus,
       togetherSince: state.togetherSince,
       pauseIsMine: state.pauseIsMine ?? false,
       pauseReturnAt: state.pauseReturnAt,
+      myMood: ownMood != null && localDate != null && ownMood.day == localDate
+          ? MoodKind.fromValue(ownMood.mood)
+          : null,
+      slipDays: [
+        for (final edge in weekSlips.edges)
+          DateTime(
+            edge.node.createdAt.toLocal().year,
+            edge.node.createdAt.toLocal().month,
+            edge.node.createdAt.toLocal().day,
+          ),
+      ],
       question: question == null
           ? null
           : Suggestion(
@@ -35,7 +48,7 @@ extension TodayHomeMapper on QueryTodayHome {
       idea: idea == null
           ? null
           : Suggestion(slug: idea!.slug, title: idea!.title, body: idea!.body),
-      partnerMood: state.localDate != null && sharedMood?.day == state.localDate
+      partnerMood: localDate != null && sharedMood?.day == localDate
           ? sharedMood!.toPartnerMood()
           : null,
     );

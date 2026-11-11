@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/partner_mood.dart';
 
 /// A piece of editorial content shown on Hoje.
@@ -44,6 +45,8 @@ final class const TodayHome({
   final Suggestion? question,
   final Suggestion? idea,
   final PartnerMood? partnerMood,
+  final MoodKind? myMood,
+  final List<DateTime> slipDays = const [],
 }) with Equatable {
   factory fromMap(Map<String, dynamic> map) => TodayHome(
     isPaired: map['isPaired'] as bool,
@@ -61,6 +64,12 @@ final class const TodayHome({
     unseenSignals: map['unseenSignals'] as int? ?? 0,
     question: _suggestion(map['question']),
     idea: _suggestion(map['idea']),
+    myMood: MoodKind.fromValue(map['myMood'] as String?),
+    slipDays:
+        (map['slipDays'] as List<dynamic>?)
+            ?.map((value) => DateTime.parse(value as String))
+            .toList() ??
+        const [],
   );
 
   /// A skeleton placeholder, never shown as a real record.
@@ -103,6 +112,8 @@ final class const TodayHome({
     'unseenSignals': unseenSignals,
     'question': question?.toMap(),
     'idea': idea?.toMap(),
+    'myMood': myMood?.value,
+    'slipDays': [for (final day in slipDays) day.toIso8601String()],
   };
 
   static DateTime? _date(Object? value) => value == null ? null : DateTime.parse(value as String);
@@ -128,5 +139,7 @@ final class const TodayHome({
     question,
     idea,
     partnerMood,
+    myMood,
+    slipDays,
   ];
 }

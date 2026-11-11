@@ -67,10 +67,11 @@ void main() {
     await tester.pump();
 
     expect(find.text('7 dias de gratidão'), findsOneWidget);
-    expect(find.text('GRÁTIS'), findsOneWidget);
+    expect(find.text('GRÁTIS'), findsNothing);
     expect(find.textContaining('2 lições'), findsOneWidget);
     expect(find.text('Reencontro'), findsOneWidget);
     expect(find.text('PLUS'), findsOneWidget);
+    expect(find.textContaining('No grátis aparece'), findsOneWidget);
     expect(find.text('Diário'), findsOneWidget);
   });
 

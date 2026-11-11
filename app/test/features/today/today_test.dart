@@ -29,6 +29,16 @@ class _MockPairingRepository() extends Mock implements PairingRepository;
 
 class _MockRepairRepository() extends Mock implements RepairRepository;
 
+QueryTodayHome _query({
+  QueryTodayHometoday? today,
+  QueryTodayHomepartnerMoodToday? partnerMoodToday,
+}) => QueryTodayHome(
+  today: today,
+  partnerMoodToday: partnerMoodToday,
+  myMood: QueryTodayHomemyMood(edges: const []),
+  weekSlips: QueryTodayHomeweekSlips(edges: const []),
+);
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -158,7 +168,7 @@ void main() {
     });
 
     test('a server row without today fails instead of showing nothing', () {
-      when(() => remote.getHome()).thenAnswer((_) async => QueryTodayHome());
+      when(() => remote.getHome()).thenAnswer((_) async => _query());
       when(() => local.read()).thenReturn(null);
 
       expect(repository.getToday, throwsA(isA<NoDataException>()));
@@ -166,7 +176,7 @@ void main() {
 
     test('a paired read remembers the partner name', () async {
       when(() => remote.getHome()).thenAnswer(
-        (_) async => QueryTodayHome(today: QueryTodayHometoday(isPaired: true, partnerName: 'Rui')),
+        (_) async => _query(today: QueryTodayHometoday(isPaired: true, partnerName: 'Rui')),
       );
       when(() => local.read()).thenReturn(home);
 
@@ -177,7 +187,7 @@ void main() {
 
     test('an unpair reports the stored partner name once', () async {
       when(() => remote.getHome())
-          .thenAnswer((_) async => QueryTodayHome(today: QueryTodayHometoday(isPaired: false)));
+          .thenAnswer((_) async => _query(today: QueryTodayHometoday(isPaired: false)));
       when(() => local.readRelationship()).thenReturn((wasPaired: true, partnerName: 'Rui'));
 
       final result = await repository.getToday();
@@ -194,7 +204,7 @@ void main() {
 
     test('an unpair already acknowledged is not reported again', () async {
       when(() => remote.getHome())
-          .thenAnswer((_) async => QueryTodayHome(today: QueryTodayHometoday(isPaired: false)));
+          .thenAnswer((_) async => _query(today: QueryTodayHometoday(isPaired: false)));
 
       final result = await repository.getToday();
 

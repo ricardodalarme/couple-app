@@ -58,7 +58,20 @@
   "diaryEmptyText": "Quando quiser, escreva como você está. Só você vê.",
   "diaryErrorTitle": "Não deu para carregar",
   "diaryErrorText": "Suas entradas continuam guardadas. Tente de novo.",
-  "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+  "monthsShort": [
+    "jan",
+    "fev",
+    "mar",
+    "abr",
+    "mai",
+    "jun",
+    "jul",
+    "ago",
+    "set",
+    "out",
+    "nov",
+    "dez"
+  ],
   "dateLine": "{day} {month} {year}",
   "moods(map)": {
     "calm": "Em paz",
@@ -82,5 +95,6 @@
   "sensitiveConsentConfirm": "Entrar",
   "sensitiveConsentCancel": "Agora não",
   "sensitiveLessonLockedTitle": "Trilha sensível",
-  "sensitiveLessonLockedText": "Para abrir esta lição, ative o consentimento das trilhas sensíveis."
+  "sensitiveLessonLockedText": "Para abrir esta lição, ative o consentimento das trilhas sensíveis.",
+  "freeNote": "No grátis aparece só a primeira lição."
 }

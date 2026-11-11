@@ -46,12 +46,12 @@
   "pendingInviteAction": "See invite",
   "answer": "Answer",
   "slipsThisWeek(plural, param=count)": {
-    "zero": "No slips this week",
+    "zero": "No slips yet",
     "one": "1 slip this week",
     "other": "{count} slips this week"
   },
-  "weekHintEmpty": "Note one good thing when you remember it.",
-  "weekHint": "Your Sunday card comes from these slips.",
+  "weekHintEmpty": "no rush",
+  "weekHint": "card on Sunday",
   "forToday": "For today",
   "ideaLabel": "Idea of the day",
   "slipsThisWeekPrivate(plural, param=count)": {
@@ -101,5 +101,6 @@
   "signalReceivedAction": "View",
   "pauseBack": "Come back now",
   "pauseBackRepair": "Come back and repair",
-  "pauseWriteSlip": "Write a slip"
+  "pauseWriteSlip": "Write a slip",
+  "weekHintToday": "card goes out today, 18:00"
 }

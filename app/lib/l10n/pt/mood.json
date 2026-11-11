@@ -53,5 +53,14 @@
   "partnerNeedListen": "O que ajuda: só ouvir.",
   "partnerNeedOpinion": "O que ajuda: uma opinião.",
   "partnerNeedHug": "O que ajuda: um abraço.",
-  "partnerNeedSpace": "O que ajuda: um pouco de espaço."
+  "partnerNeedSpace": "O que ajuda: um pouco de espaço.",
+  "homeTitle": "Como você está?",
+  "homePrivacy": "Só você vê",
+  "homeMoods(map)": {
+    "happy": "Bem",
+    "loving": "Carinhoso",
+    "tired": "Cansado",
+    "stressed": "Tenso",
+    "sad": "Triste"
+  }
 }

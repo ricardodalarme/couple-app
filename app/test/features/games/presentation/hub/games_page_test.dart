@@ -45,6 +45,8 @@ void main() {
 
     expect(find.text('Eu ou ele'), findsOneWidget);
     expect(find.text('Quanto você me conhece'), findsOneWidget);
+    expect(find.textContaining('8 perguntas · 3 min'), findsOneWidget);
+    expect(find.textContaining('10 palpites · 5 min'), findsOneWidget);
     expect(find.text('20 perguntas'), findsNothing);
     expect(find.text('Eu nunca, nós dois'), findsOneWidget);
     expect(find.text('Missão do encontro'), findsOneWidget);

@@ -1,7 +1,7 @@
 {
   "title": "Settings",
   "safety": "Safety and support",
-  "safetyStatus": "Safe mode and quick exit",
+  "safetyStatus": "Safe mode",
   "profile": "Profile",
   "relationship": "Relationship",
   "connected": "You are connected",
@@ -18,7 +18,7 @@
   "discreetOn": "On",
   "discreetOff": "Off",
   "privacy": "Privacy and security",
-  "privacyStatus": "What is shared and consents",
+  "privacyStatus": "Who sees what",
   "signOut": "Sign out",
   "deleteAccount": "Delete account",
   "pendingBanner": "Your account will be deleted on {date}.",
@@ -29,5 +29,9 @@
   "appPreferences": "App preferences",
   "appPreferencesStatus": "Appearance, text and language",
   "weeklyCard": "Weekly card",
-  "language": "Language"
+  "language": "Language",
+  "accountSection": "Account",
+  "preferencesSection": "Preferences",
+  "privacySection": "Privacy and help",
+  "connectedWith": "Connected with {name}"
 }

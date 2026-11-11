@@ -3,7 +3,6 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/plus/presentation/lock/plus_lock.dart';
 import 'package:flutter_bloc_starter/features/programs/data/models/program.dart';
 import 'package:flutter_bloc_starter/features/programs/presentation/programs/cubit/programs_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -48,10 +47,17 @@ class const ProgramsPage({super.key}) extends StatelessWidget implements AutoRou
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          for (final program in list) ...[
-                            _ProgramCard(program: program, isLocked: program.plusOnly && !hasPlus),
-                            const SizedBox(height: AppSpace.s12),
-                          ],
+                          BaseListGroup(
+                            children: [
+                              for (final program in list)
+                                _ProgramTile(
+                                  program: program,
+                                  isLocked: program.plusOnly && !hasPlus,
+                                ),
+                            ],
+                          ),
+                          const SizedBox(height: AppSpace.s12),
+                          BaseNote(text: l10n.freeNote, icon: AppIcons.info),
                         ],
                       ),
                 failureBuilder: (_) => BaseEmptyState(
@@ -61,12 +67,16 @@ class const ProgramsPage({super.key}) extends StatelessWidget implements AutoRou
                   onAction: cubit.load,
                 ),
               ),
-              const SizedBox(height: AppSpace.s8),
-              BaseListCard(
-                categoryLabel: l10n.diaryLabel,
-                title: l10n.diaryTitle,
-                supportText: l10n.diaryText,
-                onTap: () => context.pushRoute(const DiaryRoute()),
+              const SizedBox(height: AppSpace.s16),
+              BaseListGroup(
+                children: [
+                  BaseListTile(
+                    title: l10n.diaryTitle,
+                    icon: AppIcons.note,
+                    showsChevron: true,
+                    onTap: () => context.pushRoute(const DiaryRoute()),
+                  ),
+                ],
               ),
             ],
           ),
@@ -76,28 +86,43 @@ class const ProgramsPage({super.key}) extends StatelessWidget implements AutoRou
   }
 }
 
-class const _ProgramCard({required final Program program, required final bool isLocked})
+class const _ProgramTile({required final Program program, required final bool isLocked})
     extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.programs;
-    final body = program.body?.trim();
-    final support = [
-      if (body != null && body.isNotEmpty) body,
-      if (program.lessonCount == 0)
-        l10n.noLessons
-      else
-        l10n.lessonCount(count: program.lessonCount),
-    ].join(' · ');
+    final lessonMeta = program.lessonCount == 0
+        ? l10n.noLessons
+        : l10n.lessonCount(count: program.lessonCount);
+    final onTap = isLocked
+        ? () => context.pushRoute(const PlansRoute())
+        : () => context.pushRoute(ProgramDetailRoute(slug: program.slug));
+    final trailing = program.sensitive || isLocked
+        ? Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (program.sensitive)
+                Text(
+                  l10n.sensitive,
+                  style: context.text.caption.copyWith(color: context.colors.textSecondary),
+                ),
+              if (program.sensitive && isLocked) const SizedBox(width: AppSpace.s8),
+              if (isLocked) BaseTag(text: l10n.plus),
+            ],
+          )
+        : null;
 
-    if (isLocked) return PlusLock(title: program.title, text: support);
-
-    return BaseListCard(
-      categoryLabel: program.plusOnly ? l10n.plus : l10n.free,
+    return BaseListTile(
       title: program.title,
-      supportText: support,
-      trailing: program.sensitive ? BaseTag(text: l10n.sensitive) : null,
-      onTap: () => context.pushRoute(ProgramDetailRoute(slug: program.slug)),
+      subtitle: lessonMeta,
+      icon: program.sensitive
+          ? AppIcons.shield
+          : isLocked
+          ? AppIcons.lock
+          : AppIcons.plant,
+      showsChevron: !isLocked,
+      trailing: trailing,
+      onTap: onTap,
     );
   }
 }

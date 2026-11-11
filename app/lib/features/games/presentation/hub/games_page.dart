@@ -47,6 +47,7 @@ class _GamesPageState() extends State<GamesPage> with WidgetsBindingObserver {
     final cubit = context.read<GamesCubit>();
 
     return BaseView(
+      appBar: BaseAppBar(title: l10n.title),
       body: SkeletonizerResourceWidget<GamesOverview>(
         overview,
         fakeValue: GamesOverview.fake(),
@@ -76,13 +77,6 @@ class const _GamesBody({required final GamesOverview overview}) extends Stateles
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Semantics(header: true, child: Text(l10n.title, style: context.text.titleXl)),
-          const SizedBox(height: AppSpace.s8),
-          Text(
-            l10n.subtitle,
-            style: context.text.body.copyWith(color: context.colors.textSecondary),
-          ),
-          const SizedBox(height: AppSpace.s20),
           if (!overview.hasPartner) ...[
             BaseNote(text: l10n.noPartnerNote),
             const SizedBox(height: AppSpace.s16),
@@ -158,11 +152,18 @@ class const _GameTile({
   Widget build(BuildContext context) {
     final l10n = context.l10n.games.hub;
     final minutes = l10n.minutes(minutes: entry.kind.minutes);
+    final count = switch (entry.kind) {
+      GameKind.meOrYou => l10n.questionCount(count: entry.kind.itemCount),
+      GameKind.howWell => l10n.guessCount(count: entry.kind.itemCount),
+      GameKind.twentyQuestions => l10n.questionCount(count: entry.kind.itemCount),
+      GameKind.neverHaveWe || GameKind.mission => null,
+    };
     final state = _stateText(context, l10n, entry.state);
+    final meta = count == null ? minutes : '$count · $minutes';
 
     return BaseListTile(
       title: entry.kind.title(context),
-      subtitle: state == null ? minutes : '$minutes · $state',
+      subtitle: state == null ? meta : '$meta · $state',
       icon: entry.kind.icon,
       showsChevron: hasPartner,
       trailing: hasPartner ? null : BaseTag(text: l10n.lockChip),

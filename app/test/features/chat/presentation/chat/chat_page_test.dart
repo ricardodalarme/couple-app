@@ -104,10 +104,11 @@ void main() {
 
     cubits.chat.onDraftChanged('Oi');
     await tester.pump();
-    final send = find.byWidgetPredicate(
-      (widget) => widget is BaseRoundButton && widget.icon == AppIcons.send,
+    final send = find.byKey(const ValueKey('chatSend'));
+    final sendPressable = tester.widget<AppPressable>(
+      find.descendant(of: send, matching: find.byType(AppPressable)),
     );
-    expect(tester.widget<BaseRoundButton>(send).onPressed, isNotNull);
+    expect(sendPressable.onTap, isNotNull);
   });
 
   testWidgets('a free person sees the Plus gate instead of the composer', (tester) async {
@@ -135,6 +136,17 @@ void main() {
     await tester.pump();
 
     expect(find.text('Resta 1 mensagem hoje'), findsOneWidget);
+  });
+
+  testWidgets('the app bar menu groups learnings and the conversation settings', (tester) async {
+    final cubits = await build(isOnline: true);
+    await pumpChat(tester, cubits.chat, cubits.connectivity);
+
+    await tester.tap(find.byIcon(AppIcons.more));
+    await tester.pumpAndSettle();
+
+    expect(find.text('O que aprendi'), findsOneWidget);
+    expect(find.text('Configurações da conversa'), findsOneWidget);
   });
 
   testWidgets('a finished reply can be saved as a learning from its action row', (tester) async {

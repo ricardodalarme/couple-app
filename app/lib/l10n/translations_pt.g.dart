@@ -722,6 +722,18 @@ class Translations$chat$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
+
+  /// pt: 'Um momento difícil'
+  String get starterHard => 'Um momento difícil';
+
+  /// pt: 'Uma ideia'
+  String get starterIdea => 'Uma ideia';
+
+  /// pt: 'Um plano de encontro'
+  String get starterPlan => 'Um plano de encontro';
+
+  /// pt: 'Mais opções'
+  String get menuLabel => 'Mais opções';
 }
 
 // Path: checkin
@@ -3402,8 +3414,8 @@ class Translations$memories$pt {
   /// pt: 'Potinho'
   String get segmentJar => 'Potinho';
 
-  /// pt: 'O potinho está vazio. Guarde um slip nele pelos detalhes do slip.'
-  String get jarEmpty => 'O potinho está vazio. Guarde um slip nele pelos detalhes do slip.';
+  /// pt: 'Quando um slip te fizer bem, guarde-o no potinho pelos detalhes dele.'
+  String get jarEmpty => 'Quando um slip te fizer bem, guarde-o no potinho pelos detalhes dele.';
 
   /// pt: 'Outro'
   String get jarAnother => 'Outro';
@@ -3464,6 +3476,15 @@ class Translations$memories$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para fazer isso agora. Seu texto continua aqui.',
   };
+
+  /// pt: 'O potinho está vazio'
+  String get jarEmptyTitle => 'O potinho está vazio';
+
+  /// pt: 'Ver meus slips'
+  String get jarEmptyAction => 'Ver meus slips';
+
+  /// pt: 'Mais'
+  String get moreTitle => 'Mais';
 }
 
 // Path: mood
@@ -3584,6 +3605,20 @@ class Translations$mood$pt {
 
   /// pt: 'O que ajuda: um pouco de espaço.'
   String get partnerNeedSpace => 'O que ajuda: um pouco de espaço.';
+
+  /// pt: 'Como você está?'
+  String get homeTitle => 'Como você está?';
+
+  /// pt: 'Só você vê'
+  String get homePrivacy => 'Só você vê';
+
+  Map<String, String> get homeMoods => {
+    'happy': 'Bem',
+    'loving': 'Carinhoso',
+    'tired': 'Cansado',
+    'stressed': 'Tenso',
+    'sad': 'Triste',
+  };
 }
 
 // Path: need
@@ -4812,6 +4847,9 @@ class Translations$programs$pt {
   /// pt: 'Para abrir esta lição, ative o consentimento das trilhas sensíveis.'
   String get sensitiveLessonLockedText =>
       'Para abrir esta lição, ative o consentimento das trilhas sensíveis.';
+
+  /// pt: 'No grátis aparece só a primeira lição.'
+  String get freeNote => 'No grátis aparece só a primeira lição.';
 }
 
 // Path: questions
@@ -5423,8 +5461,8 @@ class Translations$settingsHome$pt {
   /// pt: 'Segurança e apoio'
   String get safety => 'Segurança e apoio';
 
-  /// pt: 'Modo seguro e saída rápida'
-  String get safetyStatus => 'Modo seguro e saída rápida';
+  /// pt: 'Modo seguro'
+  String get safetyStatus => 'Modo seguro';
 
   /// pt: 'Perfil'
   String get profile => 'Perfil';
@@ -5474,8 +5512,8 @@ class Translations$settingsHome$pt {
   /// pt: 'Privacidade e segurança'
   String get privacy => 'Privacidade e segurança';
 
-  /// pt: 'O que é compartilhado e consentimentos'
-  String get privacyStatus => 'O que é compartilhado e consentimentos';
+  /// pt: 'Quem vê o quê'
+  String get privacyStatus => 'Quem vê o quê';
 
   /// pt: 'Sair'
   String get signOut => 'Sair';
@@ -5509,6 +5547,18 @@ class Translations$settingsHome$pt {
 
   /// pt: 'Idioma'
   String get language => 'Idioma';
+
+  /// pt: 'Conta'
+  String get accountSection => 'Conta';
+
+  /// pt: 'Preferências'
+  String get preferencesSection => 'Preferências';
+
+  /// pt: 'Privacidade e ajuda'
+  String get privacySection => 'Privacidade e ajuda';
+
+  /// pt: 'Conectado com {name}'
+  String connectedWith({required Object name}) => 'Conectado com ${name}';
 }
 
 // Path: slipDetail
@@ -6237,6 +6287,108 @@ class Translations$tabs$pt {
 
   /// pt: 'Precisa dos dois'
   String get gamesLock => 'Precisa dos dois';
+
+  /// pt: 'Para vocês'
+  String get sectionForYou => 'Para vocês';
+
+  /// pt: 'Ferramentas'
+  String get sectionTools => 'Ferramentas';
+
+  /// pt: 'Mais'
+  String get sectionMore => 'Mais';
+
+  /// pt: 'Só seu'
+  String get sectionPrivate => 'Só seu';
+
+  /// pt: 'Meus padrões'
+  String get sectionPatterns => 'Meus padrões';
+
+  /// pt: '15 min · semanal'
+  String get logisticsMeta => '15 min · semanal';
+
+  /// pt: 'Pequenos hábitos'
+  String get ritualsMeta => 'Pequenos hábitos';
+
+  /// pt: 'Para vocês dois'
+  String get dateNightMeta => 'Para vocês dois';
+
+  /// pt: 'Microlições'
+  String get programsMeta => 'Microlições';
+
+  /// pt: 'Uma vez por semana'
+  String get checkinMeta => 'Uma vez por semana';
+
+  /// pt: 'Uma para os dois'
+  String get questionMeta => 'Uma para os dois';
+
+  /// pt: 'Sem placar'
+  String get gamesMeta => 'Sem placar';
+
+  /// pt: 'Com aviso antes'
+  String get datesMeta => 'Com aviso antes';
+
+  /// pt: 'Só para você'
+  String get giftsMeta => 'Só para você';
+
+  /// pt: 'Um passo de cada vez'
+  String get guidesMeta => 'Um passo de cada vez';
+
+  /// pt: 'Uma pergunta'
+  String get starterMeta => 'Uma pergunta';
+
+  /// pt: 'Um dia de cada vez'
+  String get dayMeta => 'Um dia de cada vez';
+
+  /// pt: 'Para o futuro'
+  String get capsulesMeta => 'Para o futuro';
+
+  /// pt: 'Privado, sem nota'
+  String get temperatureMeta => 'Privado, sem nota';
+
+  /// pt: 'Na tela inicial'
+  String get widgetsMeta => 'Na tela inicial';
+
+  /// pt: 'Um toque'
+  String get usMeta => 'Um toque';
+
+  /// pt: 'Cartas neutras'
+  String get touchMeta => 'Cartas neutras';
+
+  /// pt: 'Três coisas pequenas'
+  String get badDayMeta => 'Três coisas pequenas';
+
+  /// pt: 'Fusos e reencontro'
+  String get distanceMeta => 'Fusos e reencontro';
+
+  /// pt: 'Cinco minutos'
+  String get parentsMeta => 'Cinco minutos';
+
+  /// pt: 'Só seu'
+  String get diaryMeta => 'Só seu';
+
+  /// pt: 'Notas antes de falar'
+  String get hardTalkMeta => 'Notas antes de falar';
+
+  /// pt: 'Quando quiser'
+  String get notesMeta => 'Quando quiser';
+
+  /// pt: 'Anotações privadas'
+  String get learningMeta => 'Anotações privadas';
+
+  /// pt: 'Só para você'
+  String get partnerMeta => 'Só para você';
+
+  /// pt: 'Como você reage'
+  String get fightStyleMeta => 'Como você reage';
+
+  /// pt: 'Como você se sente amado'
+  String get loveStyleMeta => 'Como você se sente amado';
+
+  /// pt: 'Uma conversa calma'
+  String get chatMeta => 'Uma conversa calma';
+
+  /// pt: 'Nenhuma ainda'
+  String get listsNone => 'Nenhuma ainda';
 }
 
 // Path: temperature
@@ -6416,20 +6568,20 @@ class Translations$today$pt {
   /// pt: 'Responder'
   String get answer => 'Responder';
 
-  /// pt: '(zero) {Nenhum slip esta semana} (one) {1 slip esta semana} (other) {{count} slips esta semana}'
+  /// pt: '(zero) {Nenhum slip ainda} (one) {1 slip esta semana} (other) {{count} slips esta semana}'
   String slipsThisWeek({required num count}) =>
       (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
         count,
-        zero: 'Nenhum slip esta semana',
+        zero: 'Nenhum slip ainda',
         one: '1 slip esta semana',
         other: '${count} slips esta semana',
       );
 
-  /// pt: 'Anote uma coisa boa quando lembrar.'
-  String get weekHintEmpty => 'Anote uma coisa boa quando lembrar.';
+  /// pt: 'sem pressa'
+  String get weekHintEmpty => 'sem pressa';
 
-  /// pt: 'Seu cartão de domingo vem desses slips.'
-  String get weekHint => 'Seu cartão de domingo vem desses slips.';
+  /// pt: 'cartão no domingo'
+  String get weekHint => 'cartão no domingo';
 
   /// pt: 'Para hoje'
   String get forToday => 'Para hoje';
@@ -6568,6 +6720,9 @@ class Translations$today$pt {
 
   /// pt: 'Anotar um slip'
   String get pauseWriteSlip => 'Anotar um slip';
+
+  /// pt: 'cartão sai hoje, 18:00'
+  String get weekHintToday => 'cartão sai hoje, 18:00';
 }
 
 // Path: unpair
@@ -6649,8 +6804,8 @@ class Translations$widgets$pt {
   /// pt: 'Widgets'
   String get settingsTitle => 'Widgets';
 
-  /// pt: 'Na tela inicial e bloqueio'
-  String get settingsSubtitle => 'Na tela inicial e bloqueio';
+  /// pt: 'Na tela inicial'
+  String get settingsSubtitle => 'Na tela inicial';
 
   /// pt: 'TELA INICIAL'
   String get juntosCategory => 'TELA INICIAL';
@@ -7246,6 +7401,22 @@ class Translations$games$hub$pt {
 
   /// pt: 'Nada foi perdido. Tente de novo.'
   String get loadErrorText => 'Nada foi perdido. Tente de novo.';
+
+  /// pt: '(one) {1 pergunta} (other) {{count} perguntas}'
+  String questionCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 pergunta',
+        other: '${count} perguntas',
+      );
+
+  /// pt: '(one) {1 palpite} (other) {{count} palpites}'
+  String guessCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 palpite',
+        other: '${count} palpites',
+      );
 }
 
 // Path: games.kinds
@@ -8837,6 +9008,10 @@ extension on Translations {
           'chat.errorText' => 'Tente de novo em instantes.',
           'chat.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'chat.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'chat.starterHard' => 'Um momento difícil',
+          'chat.starterIdea' => 'Uma ideia',
+          'chat.starterPlan' => 'Um plano de encontro',
+          'chat.menuLabel' => 'Mais opções',
           'checkin.title' => 'Check-in semanal',
           'checkin.titleHighlight' => 'semanal',
           'checkin.introSubtitle' => 'Dez minutos. Cada um responde em privado primeiro.',
@@ -9180,13 +9355,13 @@ extension on Translations {
           'firstSlip.localNote' => 'Fica salvo só neste celular.',
           'firstSlip.save' => 'Salvar',
           'firstSlip.saveError' => 'Não deu para guardar agora. Tente de novo.',
+          _ => null,
+        } ??
+        switch (path) {
           'games.hub.title' => 'Jogar',
           'games.hub.subtitle' => 'Jogos curtos para vocês dois. Sem placar e sem vencedor.',
           'games.hub.guessLabel' => 'Palpites',
           'games.hub.talkLabel' => 'Conversa',
-          _ => null,
-        } ??
-        switch (path) {
           'games.hub.challengeLabel' => 'Desafio',
           'games.hub.minutes' => ({required Object minutes}) => '${minutes} min',
           'games.hub.invitedTitle' => ({required Object name}) => '${name} chamou você',
@@ -9205,6 +9380,20 @@ extension on Translations {
           'games.hub.refreshNote' => 'Para ver se algo mudou, volte ao app ou puxe para atualizar.',
           'games.hub.loadErrorTitle' => 'Não deu para abrir os jogos',
           'games.hub.loadErrorText' => 'Nada foi perdido. Tente de novo.',
+          'games.hub.questionCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 pergunta',
+                  other: '${count} perguntas',
+                ),
+          'games.hub.guessCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 palpite',
+                  other: '${count} palpites',
+                ),
           'games.kinds.meOrYou.title' => 'Eu ou ele',
           'games.kinds.meOrYou.intro' => 'Respondam em separado quem combina mais com cada frase. Depois vejam onde vocês pensaram igual.',
           'games.kinds.howWell.title' => 'Quanto você me conhece',
@@ -9871,6 +10060,9 @@ extension on Translations {
           'invite.title' => ({required Object name}) => 'Convidar ${name}',
           'invite.titleNoName' => 'Convidar sua pessoa',
           'invite.messageIntro' => 'Esta mensagem será enviada:',
+          _ => null,
+        } ??
+        switch (path) {
           'invite.message' => ({
             required Object code,
           }) => 'Comecei uma coisa pequena para nós. Para nos conectar no app, use o código ${code}.',
@@ -9881,9 +10073,6 @@ extension on Translations {
           'invite.copy' => 'Copiar convite',
           'invite.sentTitle' => 'Convite enviado',
           'invite.sentHighlight' => 'enviado',
-          _ => null,
-        } ??
-        switch (path) {
           'invite.sentText' => ({
             required Object name,
           }) => '${name} ainda não entrou. Enquanto isso, você pode usar o app sozinho.',
@@ -10122,7 +10311,7 @@ extension on Translations {
           'memories.segmentTimeline' => 'Linha do tempo',
           'memories.segmentJar' => 'Potinho',
           'memories.jarEmpty' =>
-            'O potinho está vazio. Guarde um slip nele pelos detalhes do slip.',
+            'Quando um slip te fizer bem, guarde-o no potinho pelos detalhes dele.',
           'memories.jarAnother' => 'Outro',
           'memories.jarClose' => 'Fechar',
           'memories.titleLabel' => 'Uma memória',
@@ -10154,6 +10343,9 @@ extension on Translations {
           'memories.errorText' => 'Suas memórias continuam salvas. Tente de novo.',
           'memories.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'memories.errors.other' => 'Não deu para fazer isso agora. Seu texto continua aqui.',
+          'memories.jarEmptyTitle' => 'O potinho está vazio',
+          'memories.jarEmptyAction' => 'Ver meus slips',
+          'memories.moreTitle' => 'Mais',
           'mood.title' => 'Como você está hoje?',
           'mood.titleHighlight' => 'hoje',
           'mood.subtitle' => 'Um toque. A etiqueta “Preciso de...” é opcional.',
@@ -10207,6 +10399,13 @@ extension on Translations {
           'mood.partnerNeedOpinion' => 'O que ajuda: uma opinião.',
           'mood.partnerNeedHug' => 'O que ajuda: um abraço.',
           'mood.partnerNeedSpace' => 'O que ajuda: um pouco de espaço.',
+          'mood.homeTitle' => 'Como você está?',
+          'mood.homePrivacy' => 'Só você vê',
+          'mood.homeMoods.happy' => 'Bem',
+          'mood.homeMoods.loving' => 'Carinhoso',
+          'mood.homeMoods.tired' => 'Cansado',
+          'mood.homeMoods.stressed' => 'Tenso',
+          'mood.homeMoods.sad' => 'Triste',
           'need.title' => 'Preciso de…',
           'need.titleHighlight' => 'Preciso',
           'need.subtitle' => 'Escolha uma coisa. Seu par recebe um aviso gentil, sem cobrança.',
@@ -10448,6 +10647,9 @@ extension on Translations {
           'plus.lockText' => 'Disponível no Plus. Toque para ver os planos.',
           'plus.errorTitle' => 'Não deu para carregar',
           'plus.errorText' => 'Tente de novo daqui a pouco.',
+          _ => null,
+        } ??
+        switch (path) {
           'plus.manageTitle' => 'Gerenciar Plus',
           'plus.planRow' => 'Plano',
           'plus.statusRow' => 'Status',
@@ -10464,9 +10666,6 @@ extension on Translations {
           'plus.managePlan' => 'Gerenciar plano',
           'plus.restorePurchases' => 'Restaurar compras',
           'plus.partnerPays' => 'Seu par cuida desta assinatura.',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.partnerCancel' =>
             'Se um dos parceiros cancelar, o Plus termina para os dois, com aviso claro.',
           'plus.storeIssueTitle' => 'A loja não abriu',
@@ -10689,6 +10888,7 @@ extension on Translations {
           'programs.sensitiveLessonLockedTitle' => 'Trilha sensível',
           'programs.sensitiveLessonLockedText' =>
             'Para abrir esta lição, ative o consentimento das trilhas sensíveis.',
+          'programs.freeNote' => 'No grátis aparece só a primeira lição.',
           'questions.tag' => 'Pergunta para vocês dois',
           'questions.eyebrow' => 'Pergunta do dia',
           'questions.answerCta' => 'Responder',
@@ -11012,7 +11212,10 @@ extension on Translations {
           'sessionExpired.action' => 'Entrar',
           'settingsHome.title' => 'Configurações',
           'settingsHome.safety' => 'Segurança e apoio',
-          'settingsHome.safetyStatus' => 'Modo seguro e saída rápida',
+          _ => null,
+        } ??
+        switch (path) {
+          'settingsHome.safetyStatus' => 'Modo seguro',
           'settingsHome.profile' => 'Perfil',
           'settingsHome.relationship' => 'Relacionamento',
           'settingsHome.connected' => 'Vocês estão conectados',
@@ -11029,10 +11232,7 @@ extension on Translations {
           'settingsHome.discreetOn' => 'Ligado',
           'settingsHome.discreetOff' => 'Desligado',
           'settingsHome.privacy' => 'Privacidade e segurança',
-          _ => null,
-        } ??
-        switch (path) {
-          'settingsHome.privacyStatus' => 'O que é compartilhado e consentimentos',
+          'settingsHome.privacyStatus' => 'Quem vê o quê',
           'settingsHome.signOut' => 'Sair',
           'settingsHome.deleteAccount' => 'Apagar conta',
           'settingsHome.pendingBanner' => ({
@@ -11046,6 +11246,10 @@ extension on Translations {
           'settingsHome.appPreferencesStatus' => 'Aparência, texto e idioma',
           'settingsHome.weeklyCard' => 'Cartão semanal',
           'settingsHome.language' => 'Idioma',
+          'settingsHome.accountSection' => 'Conta',
+          'settingsHome.preferencesSection' => 'Preferências',
+          'settingsHome.privacySection' => 'Privacidade e ajuda',
+          'settingsHome.connectedWith' => ({required Object name}) => 'Conectado com ${name}',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -11374,6 +11578,40 @@ extension on Translations {
           'tabs.gamesTitle' => 'Jogar juntos',
           'tabs.gamesText' => 'Jogos curtos, sem placar e sem vencedor.',
           'tabs.gamesLock' => 'Precisa dos dois',
+          'tabs.sectionForYou' => 'Para vocês',
+          'tabs.sectionTools' => 'Ferramentas',
+          'tabs.sectionMore' => 'Mais',
+          'tabs.sectionPrivate' => 'Só seu',
+          'tabs.sectionPatterns' => 'Meus padrões',
+          'tabs.logisticsMeta' => '15 min · semanal',
+          'tabs.ritualsMeta' => 'Pequenos hábitos',
+          'tabs.dateNightMeta' => 'Para vocês dois',
+          'tabs.programsMeta' => 'Microlições',
+          'tabs.checkinMeta' => 'Uma vez por semana',
+          'tabs.questionMeta' => 'Uma para os dois',
+          'tabs.gamesMeta' => 'Sem placar',
+          'tabs.datesMeta' => 'Com aviso antes',
+          'tabs.giftsMeta' => 'Só para você',
+          'tabs.guidesMeta' => 'Um passo de cada vez',
+          'tabs.starterMeta' => 'Uma pergunta',
+          'tabs.dayMeta' => 'Um dia de cada vez',
+          'tabs.capsulesMeta' => 'Para o futuro',
+          'tabs.temperatureMeta' => 'Privado, sem nota',
+          'tabs.widgetsMeta' => 'Na tela inicial',
+          'tabs.usMeta' => 'Um toque',
+          'tabs.touchMeta' => 'Cartas neutras',
+          'tabs.badDayMeta' => 'Três coisas pequenas',
+          'tabs.distanceMeta' => 'Fusos e reencontro',
+          'tabs.parentsMeta' => 'Cinco minutos',
+          'tabs.diaryMeta' => 'Só seu',
+          'tabs.hardTalkMeta' => 'Notas antes de falar',
+          'tabs.notesMeta' => 'Quando quiser',
+          'tabs.learningMeta' => 'Anotações privadas',
+          'tabs.partnerMeta' => 'Só para você',
+          'tabs.fightStyleMeta' => 'Como você reage',
+          'tabs.loveStyleMeta' => 'Como você se sente amado',
+          'tabs.chatMeta' => 'Uma conversa calma',
+          'tabs.listsNone' => 'Nenhuma ainda',
           'temperature.levelTitle' => 'Como está entre vocês?',
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',
@@ -11471,12 +11709,12 @@ extension on Translations {
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
                   count,
-                  zero: 'Nenhum slip esta semana',
+                  zero: 'Nenhum slip ainda',
                   one: '1 slip esta semana',
                   other: '${count} slips esta semana',
                 ),
-          'today.weekHintEmpty' => 'Anote uma coisa boa quando lembrar.',
-          'today.weekHint' => 'Seu cartão de domingo vem desses slips.',
+          'today.weekHintEmpty' => 'sem pressa',
+          'today.weekHint' => 'cartão no domingo',
           'today.forToday' => 'Para hoje',
           'today.ideaLabel' => 'Ideia do dia',
           'today.slipsThisWeekPrivate' =>
@@ -11539,6 +11777,7 @@ extension on Translations {
           'today.pauseBack' => 'Voltar agora',
           'today.pauseBackRepair' => 'Voltar e fazer um reparo',
           'today.pauseWriteSlip' => 'Anotar um slip',
+          'today.weekHintToday' => 'cartão sai hoje, 18:00',
           'unpair.appBarTitle' => 'Desvincular',
           'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
           'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',
@@ -11577,9 +11816,12 @@ extension on Translations {
           'welcome.haveAccount' => 'Já tenho conta',
           'welcome.debugSignIn' => 'Entrar (debug)',
           'widgets.settingsTitle' => 'Widgets',
-          'widgets.settingsSubtitle' => 'Na tela inicial e bloqueio',
+          'widgets.settingsSubtitle' => 'Na tela inicial',
           'widgets.juntosCategory' => 'TELA INICIAL',
           'widgets.juntosTitle' => 'Widgets do Repara',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.juntosSubtitle' => 'Lembretes calmos para você ou para vocês dois.',
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Só meus',
@@ -11646,9 +11888,6 @@ extension on Translations {
           'widgets.configureRotationSixHours' => 'A cada 6h',
           'widgets.configureRotationManual' => 'Manual',
           'widgets.configurePrivacySection' => 'Privacidade',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.configureShowNames' => 'Mostrar nomes',
           'widgets.configureHideInDiscreet' => 'Ocultar em modo discreto',
           'widgets.configureAllowPartnerNotes' => 'Permitir recado do parceiro',

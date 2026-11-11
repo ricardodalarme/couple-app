@@ -53,5 +53,14 @@
   "partnerNeedListen": "What helps: just listening.",
   "partnerNeedOpinion": "What helps: an opinion.",
   "partnerNeedHug": "What helps: a hug.",
-  "partnerNeedSpace": "What helps: some space."
+  "partnerNeedSpace": "What helps: some space.",
+  "homeTitle": "How are you?",
+  "homePrivacy": "Only you see it",
+  "homeMoods(map)": {
+    "happy": "Good",
+    "loving": "Loving",
+    "tired": "Tired",
+    "stressed": "Tense",
+    "sad": "Sad"
+  }
 }

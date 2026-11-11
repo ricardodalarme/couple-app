@@ -669,6 +669,14 @@ class _Translations$chat$en extends Translations$chat$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t do that right now. Try again.',
   };
+  @override
+  String get starterHard => 'A hard moment';
+  @override
+  String get starterIdea => 'An idea';
+  @override
+  String get starterPlan => 'A date plan';
+  @override
+  String get menuLabel => 'More options';
 }
 
 // Path: checkin
@@ -2785,7 +2793,7 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get segmentJar => 'Jar';
   @override
-  String get jarEmpty => 'The jar is empty. Put a slip in it from the slip\'s details.';
+  String get jarEmpty => 'When a slip feels good, keep it in the jar from its details.';
   @override
   String get jarAnother => 'Another';
   @override
@@ -2833,6 +2841,12 @@ class _Translations$memories$en extends Translations$memories$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t do that right now. Your text is still here.',
   };
+  @override
+  String get jarEmptyTitle => 'The jar is empty';
+  @override
+  String get jarEmptyAction => 'See my slips';
+  @override
+  String get moreTitle => 'More';
 }
 
 // Path: mood
@@ -2929,6 +2943,18 @@ class _Translations$mood$en extends Translations$mood$pt {
   String get partnerNeedHug => 'What helps: a hug.';
   @override
   String get partnerNeedSpace => 'What helps: some space.';
+  @override
+  String get homeTitle => 'How are you?';
+  @override
+  String get homePrivacy => 'Only you see it';
+  @override
+  Map<String, String> get homeMoods => {
+    'happy': 'Good',
+    'loving': 'Loving',
+    'tired': 'Tired',
+    'stressed': 'Tense',
+    'sad': 'Sad',
+  };
 }
 
 // Path: need
@@ -3873,6 +3899,8 @@ class _Translations$programs$en extends Translations$programs$pt {
   @override
   String get sensitiveLessonLockedText =>
       'To open this lesson, turn on the sensitive tracks consent.';
+  @override
+  String get freeNote => 'Free shows only the first lesson.';
 }
 
 // Path: questions
@@ -4374,7 +4402,7 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   @override
   String get safety => 'Safety and support';
   @override
-  String get safetyStatus => 'Safe mode and quick exit';
+  String get safetyStatus => 'Safe mode';
   @override
   String get profile => 'Profile';
   @override
@@ -4408,7 +4436,7 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   @override
   String get privacy => 'Privacy and security';
   @override
-  String get privacyStatus => 'What is shared and consents';
+  String get privacyStatus => 'Who sees what';
   @override
   String get signOut => 'Sign out';
   @override
@@ -4431,6 +4459,14 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   String get weeklyCard => 'Weekly card';
   @override
   String get language => 'Language';
+  @override
+  String get accountSection => 'Account';
+  @override
+  String get preferencesSection => 'Preferences';
+  @override
+  String get privacySection => 'Privacy and help';
+  @override
+  String connectedWith({required Object name}) => 'Connected with ${name}';
 }
 
 // Path: slipDetail
@@ -4988,6 +5024,74 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get gamesText => 'Short games, no scores and no winner.';
   @override
   String get gamesLock => 'Needs both of you';
+  @override
+  String get sectionForYou => 'For you two';
+  @override
+  String get sectionTools => 'Tools';
+  @override
+  String get sectionMore => 'More';
+  @override
+  String get sectionPrivate => 'Only yours';
+  @override
+  String get sectionPatterns => 'My patterns';
+  @override
+  String get logisticsMeta => '15 min · weekly';
+  @override
+  String get ritualsMeta => 'Small habits';
+  @override
+  String get dateNightMeta => 'For you two';
+  @override
+  String get programsMeta => 'Micro-lessons';
+  @override
+  String get checkinMeta => 'Once a week';
+  @override
+  String get questionMeta => 'One for both';
+  @override
+  String get gamesMeta => 'No score';
+  @override
+  String get datesMeta => 'With a heads-up';
+  @override
+  String get giftsMeta => 'Only for you';
+  @override
+  String get guidesMeta => 'One step at a time';
+  @override
+  String get starterMeta => 'One question';
+  @override
+  String get dayMeta => 'One day at a time';
+  @override
+  String get capsulesMeta => 'For the future';
+  @override
+  String get temperatureMeta => 'Private, no score';
+  @override
+  String get widgetsMeta => 'On the home screen';
+  @override
+  String get usMeta => 'One touch';
+  @override
+  String get touchMeta => 'Neutral cards';
+  @override
+  String get badDayMeta => 'Three small things';
+  @override
+  String get distanceMeta => 'Time zones and reunion';
+  @override
+  String get parentsMeta => 'Five minutes';
+  @override
+  String get diaryMeta => 'Only yours';
+  @override
+  String get hardTalkMeta => 'Notes before you talk';
+  @override
+  String get notesMeta => 'When you want';
+  @override
+  String get learningMeta => 'Private notes';
+  @override
+  String get partnerMeta => 'Only for you';
+  @override
+  String get fightStyleMeta => 'How you react';
+  @override
+  String get loveStyleMeta => 'How you feel loved';
+  @override
+  String get chatMeta => 'A calm conversation';
+  @override
+  String get listsNone => 'None yet';
 }
 
 // Path: temperature
@@ -5141,14 +5245,14 @@ class _Translations$today$en extends Translations$today$pt {
   String slipsThisWeek({required num count}) =>
       (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
         count,
-        zero: 'No slips this week',
+        zero: 'No slips yet',
         one: '1 slip this week',
         other: '${count} slips this week',
       );
   @override
-  String get weekHintEmpty => 'Note one good thing when you remember it.';
+  String get weekHintEmpty => 'no rush';
   @override
-  String get weekHint => 'Your Sunday card comes from these slips.';
+  String get weekHint => 'card on Sunday';
   @override
   String get forToday => 'For today';
   @override
@@ -5246,6 +5350,8 @@ class _Translations$today$en extends Translations$today$pt {
   String get pauseBackRepair => 'Come back and repair';
   @override
   String get pauseWriteSlip => 'Write a slip';
+  @override
+  String get weekHintToday => 'card goes out today, 18:00';
 }
 
 // Path: unpair
@@ -5316,7 +5422,7 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get settingsTitle => 'Widgets';
   @override
-  String get settingsSubtitle => 'Home screen and lock screen';
+  String get settingsSubtitle => 'Home screen';
   @override
   String get juntosCategory => 'HOME SCREEN';
   @override
@@ -5733,6 +5839,20 @@ class _Translations$games$hub$en extends Translations$games$hub$pt {
   String get loadErrorTitle => 'Could not open the games';
   @override
   String get loadErrorText => 'Nothing was lost. Try again.';
+  @override
+  String questionCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 question',
+        other: '${count} questions',
+      );
+  @override
+  String guessCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 guess',
+        other: '${count} guesses',
+      );
 }
 
 // Path: games.kinds
@@ -7112,6 +7232,10 @@ extension on TranslationsEn {
           'chat.errorText' => 'Try again in a moment.',
           'chat.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'chat.errors.other' => 'Couldn\'t do that right now. Try again.',
+          'chat.starterHard' => 'A hard moment',
+          'chat.starterIdea' => 'An idea',
+          'chat.starterPlan' => 'A date plan',
+          'chat.menuLabel' => 'More options',
           'checkin.title' => 'Weekly check-in',
           'checkin.titleHighlight' => 'Weekly',
           'checkin.introSubtitle' => 'Ten minutes. Each of you answers privately first.',
@@ -7455,13 +7579,13 @@ extension on TranslationsEn {
           'firstSlip.localNote' => 'Stays saved on this phone only.',
           'firstSlip.save' => 'Save',
           'firstSlip.saveError' => 'Could not keep it right now. Try again.',
+          _ => null,
+        } ??
+        switch (path) {
           'games.hub.title' => 'Play',
           'games.hub.subtitle' => 'Short games for the two of you. No scores and no winner.',
           'games.hub.guessLabel' => 'Guesses',
           'games.hub.talkLabel' => 'Conversation',
-          _ => null,
-        } ??
-        switch (path) {
           'games.hub.challengeLabel' => 'Challenge',
           'games.hub.minutes' => ({required Object minutes}) => '${minutes} min',
           'games.hub.invitedTitle' => ({required Object name}) => '${name} invited you',
@@ -7481,6 +7605,20 @@ extension on TranslationsEn {
             'To see if anything changed, come back to the app or pull to refresh.',
           'games.hub.loadErrorTitle' => 'Could not open the games',
           'games.hub.loadErrorText' => 'Nothing was lost. Try again.',
+          'games.hub.questionCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 question',
+                  other: '${count} questions',
+                ),
+          'games.hub.guessCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 guess',
+                  other: '${count} guesses',
+                ),
           'games.kinds.meOrYou.title' => 'Me or you',
           'games.kinds.meOrYou.intro' =>
             'Answer separately who fits each phrase better. Then see where you thought alike.',
@@ -8144,6 +8282,9 @@ extension on TranslationsEn {
           'invite.title' => ({required Object name}) => 'Invite ${name}',
           'invite.titleNoName' => 'Invite your person',
           'invite.messageIntro' => 'This message will be sent:',
+          _ => null,
+        } ??
+        switch (path) {
           'invite.message' => ({
             required Object code,
           }) => 'I started something small for us. To connect in the app, use the code ${code}.',
@@ -8154,9 +8295,6 @@ extension on TranslationsEn {
           'invite.copy' => 'Copy invite',
           'invite.sentTitle' => 'Invite sent',
           'invite.sentHighlight' => 'sent',
-          _ => null,
-        } ??
-        switch (path) {
           'invite.sentText' => ({
             required Object name,
           }) => '${name} has not joined yet. In the meantime you can use the app on your own.',
@@ -8398,7 +8536,7 @@ extension on TranslationsEn {
             'Prefer just the name of the place, with no address or number.',
           'memories.segmentTimeline' => 'Timeline',
           'memories.segmentJar' => 'Jar',
-          'memories.jarEmpty' => 'The jar is empty. Put a slip in it from the slip\'s details.',
+          'memories.jarEmpty' => 'When a slip feels good, keep it in the jar from its details.',
           'memories.jarAnother' => 'Another',
           'memories.jarClose' => 'Close',
           'memories.titleLabel' => 'A memory',
@@ -8430,6 +8568,9 @@ extension on TranslationsEn {
           'memories.errorText' => 'Your memories are still saved. Try again.',
           'memories.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'memories.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
+          'memories.jarEmptyTitle' => 'The jar is empty',
+          'memories.jarEmptyAction' => 'See my slips',
+          'memories.moreTitle' => 'More',
           'mood.title' => 'How are you today?',
           'mood.titleHighlight' => 'today',
           'mood.subtitle' => 'One tap. The “I need…” tag is optional.',
@@ -8478,6 +8619,13 @@ extension on TranslationsEn {
           'mood.partnerNeedOpinion' => 'What helps: an opinion.',
           'mood.partnerNeedHug' => 'What helps: a hug.',
           'mood.partnerNeedSpace' => 'What helps: some space.',
+          'mood.homeTitle' => 'How are you?',
+          'mood.homePrivacy' => 'Only you see it',
+          'mood.homeMoods.happy' => 'Good',
+          'mood.homeMoods.loving' => 'Loving',
+          'mood.homeMoods.tired' => 'Tired',
+          'mood.homeMoods.stressed' => 'Tense',
+          'mood.homeMoods.sad' => 'Sad',
           'need.title' => 'I need…',
           'need.titleHighlight' => 'need',
           'need.subtitle' => 'Pick one thing. Your partner gets a gentle note, no pressure.',
@@ -8718,6 +8866,9 @@ extension on TranslationsEn {
           'plus.lockText' => 'Available with Plus. Tap to see the plans.',
           'plus.errorTitle' => 'Couldn\'t load',
           'plus.errorText' => 'Try again in a moment.',
+          _ => null,
+        } ??
+        switch (path) {
           'plus.manageTitle' => 'Manage Plus',
           'plus.planRow' => 'Plan',
           'plus.statusRow' => 'Status',
@@ -8734,9 +8885,6 @@ extension on TranslationsEn {
           'plus.managePlan' => 'Manage plan',
           'plus.restorePurchases' => 'Restore purchases',
           'plus.partnerPays' => 'Your partner looks after this subscription.',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.partnerCancel' =>
             'If either partner cancels, Plus ends for both, with a clear notice.',
           'plus.storeIssueTitle' => 'The store didn\'t open',
@@ -8960,6 +9108,7 @@ extension on TranslationsEn {
           'programs.sensitiveLessonLockedTitle' => 'Sensitive track',
           'programs.sensitiveLessonLockedText' =>
             'To open this lesson, turn on the sensitive tracks consent.',
+          'programs.freeNote' => 'Free shows only the first lesson.',
           'questions.tag' => 'Question for you two',
           'questions.eyebrow' => 'Question of the day',
           'questions.answerCta' => 'Answer',
@@ -9281,7 +9430,10 @@ extension on TranslationsEn {
           'sessionExpired.action' => 'Sign in',
           'settingsHome.title' => 'Settings',
           'settingsHome.safety' => 'Safety and support',
-          'settingsHome.safetyStatus' => 'Safe mode and quick exit',
+          _ => null,
+        } ??
+        switch (path) {
+          'settingsHome.safetyStatus' => 'Safe mode',
           'settingsHome.profile' => 'Profile',
           'settingsHome.relationship' => 'Relationship',
           'settingsHome.connected' => 'You are connected',
@@ -9298,10 +9450,7 @@ extension on TranslationsEn {
           'settingsHome.discreetOn' => 'On',
           'settingsHome.discreetOff' => 'Off',
           'settingsHome.privacy' => 'Privacy and security',
-          _ => null,
-        } ??
-        switch (path) {
-          'settingsHome.privacyStatus' => 'What is shared and consents',
+          'settingsHome.privacyStatus' => 'Who sees what',
           'settingsHome.signOut' => 'Sign out',
           'settingsHome.deleteAccount' => 'Delete account',
           'settingsHome.pendingBanner' => ({
@@ -9315,6 +9464,10 @@ extension on TranslationsEn {
           'settingsHome.appPreferencesStatus' => 'Appearance, text and language',
           'settingsHome.weeklyCard' => 'Weekly card',
           'settingsHome.language' => 'Language',
+          'settingsHome.accountSection' => 'Account',
+          'settingsHome.preferencesSection' => 'Preferences',
+          'settingsHome.privacySection' => 'Privacy and help',
+          'settingsHome.connectedWith' => ({required Object name}) => 'Connected with ${name}',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -9644,6 +9797,40 @@ extension on TranslationsEn {
           'tabs.gamesTitle' => 'Play together',
           'tabs.gamesText' => 'Short games, no scores and no winner.',
           'tabs.gamesLock' => 'Needs both of you',
+          'tabs.sectionForYou' => 'For you two',
+          'tabs.sectionTools' => 'Tools',
+          'tabs.sectionMore' => 'More',
+          'tabs.sectionPrivate' => 'Only yours',
+          'tabs.sectionPatterns' => 'My patterns',
+          'tabs.logisticsMeta' => '15 min · weekly',
+          'tabs.ritualsMeta' => 'Small habits',
+          'tabs.dateNightMeta' => 'For you two',
+          'tabs.programsMeta' => 'Micro-lessons',
+          'tabs.checkinMeta' => 'Once a week',
+          'tabs.questionMeta' => 'One for both',
+          'tabs.gamesMeta' => 'No score',
+          'tabs.datesMeta' => 'With a heads-up',
+          'tabs.giftsMeta' => 'Only for you',
+          'tabs.guidesMeta' => 'One step at a time',
+          'tabs.starterMeta' => 'One question',
+          'tabs.dayMeta' => 'One day at a time',
+          'tabs.capsulesMeta' => 'For the future',
+          'tabs.temperatureMeta' => 'Private, no score',
+          'tabs.widgetsMeta' => 'On the home screen',
+          'tabs.usMeta' => 'One touch',
+          'tabs.touchMeta' => 'Neutral cards',
+          'tabs.badDayMeta' => 'Three small things',
+          'tabs.distanceMeta' => 'Time zones and reunion',
+          'tabs.parentsMeta' => 'Five minutes',
+          'tabs.diaryMeta' => 'Only yours',
+          'tabs.hardTalkMeta' => 'Notes before you talk',
+          'tabs.notesMeta' => 'When you want',
+          'tabs.learningMeta' => 'Private notes',
+          'tabs.partnerMeta' => 'Only for you',
+          'tabs.fightStyleMeta' => 'How you react',
+          'tabs.loveStyleMeta' => 'How you feel loved',
+          'tabs.chatMeta' => 'A calm conversation',
+          'tabs.listsNone' => 'None yet',
           'temperature.levelTitle' => 'How is it between you?',
           'temperature.levelHighlight' => 'between you',
           'temperature.levelNote' => 'Private. Never becomes a score.',
@@ -9740,12 +9927,12 @@ extension on TranslationsEn {
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
                   count,
-                  zero: 'No slips this week',
+                  zero: 'No slips yet',
                   one: '1 slip this week',
                   other: '${count} slips this week',
                 ),
-          'today.weekHintEmpty' => 'Note one good thing when you remember it.',
-          'today.weekHint' => 'Your Sunday card comes from these slips.',
+          'today.weekHintEmpty' => 'no rush',
+          'today.weekHint' => 'card on Sunday',
           'today.forToday' => 'For today',
           'today.ideaLabel' => 'Idea of the day',
           'today.slipsThisWeekPrivate' =>
@@ -9808,6 +9995,7 @@ extension on TranslationsEn {
           'today.pauseBack' => 'Come back now',
           'today.pauseBackRepair' => 'Come back and repair',
           'today.pauseWriteSlip' => 'Write a slip',
+          'today.weekHintToday' => 'card goes out today, 18:00',
           'unpair.appBarTitle' => 'Unpair',
           'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
           'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',
@@ -9846,9 +10034,12 @@ extension on TranslationsEn {
           'welcome.haveAccount' => 'I already have an account',
           'welcome.debugSignIn' => 'Sign in (debug)',
           'widgets.settingsTitle' => 'Widgets',
-          'widgets.settingsSubtitle' => 'Home screen and lock screen',
+          'widgets.settingsSubtitle' => 'Home screen',
           'widgets.juntosCategory' => 'HOME SCREEN',
           'widgets.juntosTitle' => 'Repara widgets',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.juntosSubtitle' => 'Calm reminders for you or for the two of you.',
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Just mine',
@@ -9913,9 +10104,6 @@ extension on TranslationsEn {
           'widgets.configureRotationSixHours' => 'Every 6h',
           'widgets.configureRotationManual' => 'Manual',
           'widgets.configurePrivacySection' => 'Privacy',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.configureShowNames' => 'Show names',
           'widgets.configureHideInDiscreet' => 'Hide in discreet mode',
           'widgets.configureAllowPartnerNotes' => 'Allow partner notes',

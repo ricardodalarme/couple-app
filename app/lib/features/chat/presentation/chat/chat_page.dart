@@ -35,20 +35,26 @@ class const ChatPage({final ChatMode mode = ChatMode.free, super.key})
 
     return BaseView(
       appBar: BaseAppBar(
-        trailing: Row(
+        titleWidget: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            BaseRoundButton(
-              icon: AppIcons.settings,
-              semanticLabel: l10n.settingsTitle,
-              onPressed: () => _openSettings(context, cubit),
+            const SizedBox.square(
+              dimension: 34,
+              child: FittedBox(
+                child: BaseFace(kind: FaceKind.smile, size: FaceSize.small),
+              ),
             ),
-            const SizedBox(width: AppSpace.s4),
-            BaseTextLink(
-              text: l10n.learnedLink,
-              onPressed: () => context.pushRoute(const LearnedItemsRoute()),
+            const SizedBox(width: AppSpace.s8),
+            Text(
+              l10n.title,
+              style: context.text.titleXs.copyWith(color: context.colors.textPrimary),
             ),
           ],
+        ),
+        trailing: BaseRoundButton(
+          icon: AppIcons.more,
+          semanticLabel: l10n.menuLabel,
+          onPressed: () => _openMenu(context, cubit),
         ),
       ),
       body: BlocListener<ChatCubit, ChatState>(
@@ -134,6 +140,46 @@ Future<void> _openSettings(BuildContext context, ChatCubit cubit) async {
   if (!cubit.isClosed) await cubit.load();
 }
 
+enum _ChatMenuAction() {
+  learned,
+  settings,
+}
+
+Future<void> _openMenu(BuildContext context, ChatCubit cubit) async {
+  final l10n = context.l10n.chat;
+
+  final action = await BaseSheet.show<_ChatMenuAction>(
+    context: context,
+    title: l10n.title,
+    child: BaseListGroup(
+      children: [
+        BaseListTile(
+          title: l10n.learnedLink,
+          icon: AppIcons.book,
+          showsChevron: true,
+          onTap: () => Navigator.pop(context, _ChatMenuAction.learned),
+        ),
+        BaseListTile(
+          title: l10n.settingsTitle,
+          icon: AppIcons.settings,
+          showsChevron: true,
+          onTap: () => Navigator.pop(context, _ChatMenuAction.settings),
+        ),
+      ],
+    ),
+  );
+  if (!context.mounted) return;
+
+  switch (action) {
+    case _ChatMenuAction.learned:
+      await context.pushRoute(const LearnedItemsRoute());
+    case _ChatMenuAction.settings:
+      await _openSettings(context, cubit);
+    case null:
+      return;
+  }
+}
+
 class const _Conversation({required final bool isLimitReached}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -152,14 +198,7 @@ class const _Conversation({required final bool isLimitReached}) extends Stateles
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
-            children: [
-              const BaseFace(kind: FaceKind.smile, size: FaceSize.small),
-              const SizedBox(width: AppSpace.s12),
-              Semantics(header: true, child: Text(l10n.title, style: context.text.titleXl)),
-            ],
-          ),
-          const SizedBox(height: AppSpace.s12),
+          const SizedBox(height: AppSpace.s8),
           Expanded(
             child: messages.isEmpty
                 ? Align(
@@ -177,6 +216,17 @@ class const _Conversation({required final bool isLimitReached}) extends Stateles
                         _Message(message: messages[messages.length - 1 - index]),
                   ),
           ),
+          if (messages.isEmpty && options.isEmpty) ...[
+            const SizedBox(height: AppSpace.s8),
+            Wrap(
+              spacing: AppSpace.s8,
+              runSpacing: AppSpace.s8,
+              children: [
+                for (final starter in [l10n.starterHard, l10n.starterIdea, l10n.starterPlan])
+                  BaseChoiceChip(label: starter, onTap: () => cubit.send(starter)),
+              ],
+            ),
+          ],
           if (options.isNotEmpty) ...[
             const SizedBox(height: AppSpace.s8),
             Wrap(
@@ -204,11 +254,11 @@ class const _Conversation({required final bool isLimitReached}) extends Stateles
                   ),
                 ),
                 const SizedBox(width: AppSpace.s8),
-                BaseRoundButton(
-                  icon: AppIcons.send,
-                  semanticLabel: l10n.send,
+                _SendButton(
+                  key: const ValueKey('chatSend'),
                   isEnabled: canSend,
-                  onPressed: canSend ? cubit.sendDraft : null,
+                  onPressed: cubit.sendDraft,
+                  semanticLabel: l10n.send,
                 ),
               ],
             ),
@@ -222,6 +272,40 @@ class const _Conversation({required final bool isLimitReached}) extends Stateles
           ],
           const SizedBox(height: AppSpace.s12),
         ],
+      ),
+    );
+  }
+}
+
+class const _SendButton({
+  required final bool isEnabled,
+  required final VoidCallback onPressed,
+  required final String semanticLabel,
+  super.key,
+}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+
+    return Semantics(
+      button: true,
+      enabled: isEnabled,
+      label: semanticLabel,
+      child: AppPressable(
+        onTap: isEnabled ? onPressed : null,
+        borderRadius: BorderRadius.circular(AppRadius.pill),
+        enforceMinTapTarget: true,
+        isSemanticButton: false,
+        child: SizedBox(
+          width: 40,
+          height: 40,
+          child: DecoratedBox(
+            decoration: BoxDecoration(color: colors.actionPrimary, shape: BoxShape.circle),
+            child: Center(
+              child: AppIcon(icon: AppIcons.send, size: AppIconSize.sm, color: colors.textOnAction),
+            ),
+          ),
+        ),
       ),
     );
   }

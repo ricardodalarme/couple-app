@@ -52,7 +52,7 @@ void main() {
     await tester.pump();
   }
 
-  testWidgets('an empty list shows only the title and the empty invitation', (tester) async {
+  testWidgets('an empty list shows the title, search and the empty invitation', (tester) async {
     stubPage(const []);
     final cubit = await build();
 
@@ -61,7 +61,7 @@ void main() {
     expect(find.byType(BaseEmptyState), findsOneWidget);
     expect(find.byType(BaseChoiceChip), findsNothing);
     expect(find.byType(BaseTextLink), findsNothing);
-    expect(find.byType(BaseRoundButton), findsNothing);
+    expect(find.byType(BaseRoundButton), findsOneWidget);
     expect(find.byType(SlipsGroups), findsNothing);
     expect(find.text('Slips'), findsOneWidget);
   });

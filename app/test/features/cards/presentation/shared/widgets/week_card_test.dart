@@ -4,21 +4,44 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../../test_helpers/pump_app.dart';
 
-void main() {
-  testWidgets('draws one slip per filled count and caps at seven', (tester) async {
-    await tester.pumpApp(
-      const WeekCard(title: '3 slips', supportText: 'Esta semana', filledCount: 3),
-    );
-    expect(find.byType(AppPaperSlip), findsNWidgets(3));
+const _labels = ['seg', 'ter', 'qua', 'qui', 'sex', 'sáb', 'dom'];
 
-    await tester.pumpApp(const WeekCard(title: 'Muitos', filledCount: 12));
-    expect(find.byType(AppPaperSlip), findsNWidgets(7));
+void main() {
+  testWidgets('draws one slip per day with a count and marks today', (tester) async {
+    await tester.pumpApp(
+      const WeekCard(
+        title: '3 slips',
+        supportText: 'cartão no domingo',
+        dayLabels: _labels,
+        dayCounts: [1, 0, 2, 0, 1, 0, 0],
+        todayIndex: 6,
+      ),
+    );
+
+    expect(find.byType(AppPaperSlip), findsNWidgets(3));
+    expect(find.text('seg'), findsOneWidget);
+    expect(find.text('dom'), findsOneWidget);
+    expect(find.text('2'), findsOneWidget);
+    expect(find.byIcon(AppIcons.mail_filled), findsOneWidget);
   });
 
-  testWidgets('shows only empty slots for an empty week', (tester) async {
-    await tester.pumpApp(const WeekCard(title: 'Nenhum slip', filledCount: 0));
+  testWidgets('an empty week still shows all seven days', (tester) async {
+    await tester.pumpApp(
+      const WeekCard(
+        title: 'Nenhum slip',
+        supportText: 'sem pressa',
+        dayLabels: _labels,
+        dayCounts: [0, 0, 0, 0, 0, 0, 0],
+        todayIndex: 2,
+      ),
+    );
 
     expect(find.byType(AppPaperSlip), findsNothing);
     expect(find.text('Nenhum slip'), findsOneWidget);
+    expect(find.text('sem pressa'), findsOneWidget);
+    for (final label in _labels) {
+      expect(find.text(label), findsOneWidget);
+    }
+    expect(find.byIcon(AppIcons.mail_filled), findsOneWidget);
   });
 }

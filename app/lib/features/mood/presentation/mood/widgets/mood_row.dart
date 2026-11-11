@@ -1,7 +1,5 @@
 import 'package:design_system/design_system.dart';
 
-const double _labelWidth = 56;
-
 /// One face and its label in a [MoodRow].
 class const MoodRowOption({required final FaceKind face, required final String label});
 
@@ -11,17 +9,25 @@ class const MoodRow({
   required final List<MoodRowOption> options,
   required final ValueChanged<int> onSelected,
   final String? supportText,
+  final String? actionLabel,
   final int? selectedIndex,
   super.key,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final action = actionLabel;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: context.text.titleSm),
+        Row(
+          children: [
+            Expanded(child: Text(title, style: context.text.titleSm)),
+            if (action != null)
+              Text(action, style: context.text.bodySm.copyWith(color: colors.textSecondary)),
+          ],
+        ),
         if (supportText != null) ...[
           const SizedBox(height: AppSpace.s4),
           Text(supportText!, style: context.text.caption.copyWith(color: colors.textSecondary)),
@@ -43,19 +49,19 @@ class const MoodRow({
                       children: [
                         BaseFace(
                           kind: options[index].face,
-                          size: FaceSize.small,
+                          size: FaceSize.large,
                           selected: selectedIndex == index,
                         ),
                         const SizedBox(height: AppSpace.s6),
-                        SizedBox(
-                          width: _labelWidth,
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              options[index].label,
-                              maxLines: 1,
-                              style: context.text.tab.copyWith(color: colors.textSecondary),
-                            ),
+                        Text(
+                          options[index].label,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                          style: context.text.micro.copyWith(
+                            color: selectedIndex == index
+                                ? colors.textPrimary
+                                : colors.textSecondary,
                           ),
                         ),
                       ],

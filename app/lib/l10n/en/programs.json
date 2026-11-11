@@ -58,7 +58,20 @@
   "diaryEmptyText": "When you want, write how you are. Only you can see it.",
   "diaryErrorTitle": "Couldn't load",
   "diaryErrorText": "Your entries are still saved. Try again.",
-  "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "monthsShort": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ],
   "dateLine": "{month} {day}, {year}",
   "moods(map)": {
     "calm": "At peace",
@@ -82,5 +95,6 @@
   "sensitiveConsentConfirm": "Join",
   "sensitiveConsentCancel": "Not now",
   "sensitiveLessonLockedTitle": "Sensitive track",
-  "sensitiveLessonLockedText": "To open this lesson, turn on the sensitive tracks consent."
+  "sensitiveLessonLockedText": "To open this lesson, turn on the sensitive tracks consent.",
+  "freeNote": "Free shows only the first lesson."
 }

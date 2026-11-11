@@ -14,7 +14,7 @@
   "placeAddressNote": "Prefer just the name of the place, with no address or number.",
   "segmentTimeline": "Timeline",
   "segmentJar": "Jar",
-  "jarEmpty": "The jar is empty. Put a slip in it from the slip's details.",
+  "jarEmpty": "When a slip feels good, keep it in the jar from its details.",
   "jarAnother": "Another",
   "jarClose": "Close",
   "titleLabel": "A memory",
@@ -23,7 +23,20 @@
   "add": "Add a memory",
   "save": "Save memory",
   "delete": "Delete",
-  "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "monthsShort": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ],
   "dateLine": "{month} {day}, {year}",
   "emptyTitle": "No memories yet",
   "emptyText": "Keep moments you want to look back on.",
@@ -32,5 +45,8 @@
   "errors(map)": {
     "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
     "other": "Couldn't do that right now. Your text is still here."
-  }
+  },
+  "jarEmptyTitle": "The jar is empty",
+  "jarEmptyAction": "See my slips",
+  "moreTitle": "More"
 }

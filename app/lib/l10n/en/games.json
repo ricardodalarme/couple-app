@@ -20,7 +20,15 @@
     "noPartnerNote": "Games need both of you. When your partner joins, you can play.",
     "refreshNote": "To see if anything changed, come back to the app or pull to refresh.",
     "loadErrorTitle": "Could not open the games",
-    "loadErrorText": "Nothing was lost. Try again."
+    "loadErrorText": "Nothing was lost. Try again.",
+    "questionCount(plural, param=count)": {
+      "one": "1 question",
+      "other": "{count} questions"
+    },
+    "guessCount(plural, param=count)": {
+      "one": "1 guess",
+      "other": "{count} guesses"
+    }
   },
   "kinds": {
     "meOrYou": {
