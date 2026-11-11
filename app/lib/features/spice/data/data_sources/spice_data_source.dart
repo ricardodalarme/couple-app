@@ -20,14 +20,17 @@ class SpiceDataSource({required final GQLClient _client}) {
     return edges.isNotEmpty && edges.first.node.spiceEnabled;
   }
 
-  Future<void> setEnabled({required String profileId, required bool enabled}) async {
+  Future<int> setEnabled({required String profileId, required bool enabled}) async {
     final response = await _client.mutate(
       OptionsMutationSetSpiceEnabled(
         variables: VariablesMutationSetSpiceEnabled(profileId: profileId, enabled: enabled),
       ),
     );
 
-    validateResponse(response);
+    return validateResponseData(
+      response,
+      getData: (data) => data.updateProfileSettingsCollection.affectedCount,
+    );
   }
 
   /// The card texts; the server returns none unless both people switched the mode on.

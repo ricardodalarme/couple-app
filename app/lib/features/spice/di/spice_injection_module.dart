@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/safety/data/repositories/safe_mode_repository.dart';
 import 'package:flutter_bloc_starter/features/spice/data/data_sources/spice_data_source.dart';
@@ -17,6 +18,7 @@ class SpiceInjectionModule() implements InjectionModule {
         dataSource: injector.get<SpiceDataSource>(),
         profileRepository: injector.get<ProfileRepository>(),
         safeModeRepository: injector.get<SafeModeRepository>(),
+        plusRepository: injector.get<PlusRepository>(),
       ),
     )
     ..registerFactory<SpiceCubit>(

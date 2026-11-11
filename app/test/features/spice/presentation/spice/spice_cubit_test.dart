@@ -64,4 +64,41 @@ void main() {
 
     expect(cubit.state.toggleAction, isA<Initial>());
   });
+
+  test('a partner switching off after cards asks the page to close', () async {
+    var reads = 0;
+    when(repository.getView).thenAnswer((_) async {
+      reads++;
+
+      return reads == 1
+          ? const SpiceView(stage: SpiceStage.ready, cards: ['a'])
+          : const SpiceView(stage: SpiceStage.waiting);
+    });
+    final cubit = SpiceCubit(spiceRepository: repository);
+    await cubit.load();
+
+    await cubit.refresh();
+
+    expect(cubit.state.shouldExit, isTrue);
+  });
+
+  test('waiting without cards does not close the page', () async {
+    when(repository.getView).thenAnswer((_) async => const SpiceView(stage: SpiceStage.waiting));
+    final cubit = SpiceCubit(spiceRepository: repository);
+    await cubit.load();
+
+    await cubit.refresh();
+
+    expect(cubit.state.shouldExit, isFalse);
+  });
+
+  test('safe mode on refresh hides without reading the mode', () async {
+    when(() => repository.isHidden).thenReturn(true);
+    final cubit = SpiceCubit(spiceRepository: repository);
+
+    await cubit.refresh();
+
+    expect(cubit.state.isHidden, isTrue);
+    verifyNever(repository.getView);
+  });
 }

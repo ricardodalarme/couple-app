@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/sign_out/sign_out_dialog.dart';
+import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/home/cubit/settings_home_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -13,8 +14,11 @@ import 'package:flutter_bloc_starter/router/app_router.dart';
 class const SettingsHomePage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AppInjector.instance.get<SettingsHomeCubit>()..load(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => AppInjector.instance.get<SettingsHomeCubit>()..load()),
+        BlocProvider.value(value: AppInjector.instance.get<SafeModeCubit>()),
+      ],
       child: this,
     );
   }
@@ -24,6 +28,7 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
     final l10n = context.l10n.settingsHome;
     final state = context.select((SettingsHomeCubit cubit) => cubit.state);
     final locale = AppInjector.instance.get<SettingsRepository>().get().locale;
+    final safeModeOn = context.select((SafeModeCubit cubit) => cubit.state);
 
     final relationship = switch (state.hasPartner) {
       null => null,
@@ -108,12 +113,13 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
                   showsChevron: true,
                   onTap: () => context.pushRoute(const DiscreetModeRoute()),
                 ),
-                BaseListTile(
-                  title: l10n.spice,
-                  icon: AppIcons.heart,
-                  showsChevron: true,
-                  onTap: () => context.pushRoute(const SpiceRoute()),
-                ),
+                if (!safeModeOn)
+                  BaseListTile(
+                    title: l10n.spice,
+                    icon: AppIcons.heart,
+                    showsChevron: true,
+                    onTap: () => context.pushRoute(const SpiceRoute()),
+                  ),
                 BaseListTile(
                   title: context.l10n.widgets.settingsTitle,
                   subtitle: context.l10n.widgets.settingsSubtitle,
