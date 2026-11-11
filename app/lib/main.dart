@@ -8,6 +8,7 @@ import 'package:flutter_bloc_starter/features/app/di/app_injection_module.dart';
 import 'package:flutter_bloc_starter/features/authentication/di/authentication_injection_module.dart';
 import 'package:flutter_bloc_starter/features/capsules/di/capsules_injection_module.dart';
 import 'package:flutter_bloc_starter/features/cards/di/cards_injection_module.dart';
+import 'package:flutter_bloc_starter/features/chat/di/chat_injection_module.dart';
 import 'package:flutter_bloc_starter/features/checkin/di/checkin_injection_module.dart';
 import 'package:flutter_bloc_starter/features/connect/di/connect_injection_module.dart';
 import 'package:flutter_bloc_starter/features/dates/di/dates_injection_module.dart';
@@ -95,6 +96,7 @@ void _registerModules() {
     ProgramsInjectionModule(),
     QuestionsInjectionModule(),
     CardsInjectionModule(),
+    ChatInjectionModule(),
     CheckinInjectionModule(),
     RemindersInjectionModule(),
     RepairInjectionModule(),

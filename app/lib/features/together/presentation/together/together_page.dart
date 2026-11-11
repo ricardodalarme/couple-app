@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/together/cubit/together_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
@@ -203,6 +204,20 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
                 onTap: () => context.pushRoute(const WidgetsGalleryRoute()),
               ),
             ] else ...[
+              BaseListCard(
+                categoryLabel: l10n.chatLabel,
+                title: l10n.chatTitle,
+                supportText: l10n.chatText,
+                onTap: () => context.pushRoute(ChatRoute()),
+              ),
+              const SizedBox(height: AppSpace.s12),
+              BaseListCard(
+                categoryLabel: l10n.hardTalkLabel,
+                title: l10n.hardTalkTitle,
+                supportText: l10n.hardTalkText,
+                onTap: () => context.pushRoute(ChatRoute(mode: ChatMode.hardConversation)),
+              ),
+              const SizedBox(height: AppSpace.s12),
               BaseListCard(
                 categoryLabel: l10n.plusLabel,
                 title: l10n.plusTitle,

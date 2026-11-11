@@ -1,0 +1,11 @@
+query ChatStatus($profileId: UUID!) {
+  chatMessagesLeft
+  profileSettingsCollection(filter: { profileId: { eq: $profileId } }, first: 1) {
+    edges {
+      node {
+        profileId
+        chatEnabled
+      }
+    }
+  }
+}

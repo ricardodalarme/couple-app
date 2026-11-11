@@ -1,0 +1,27 @@
+{
+  "title": "Talk",
+  "consentText": "A calm conversation with the mascot, to sort out what you feel. It does not replace professional help and never takes sides.",
+  "consentPrivacy": "What you write is sent to an AI model only to produce the reply. Nothing from the conversation is kept, unless you turn a reply into a slip.",
+  "consentTurnOn": "Turn on the chat",
+  "emptyHint": "Say how you are, or start with something small.",
+  "inputHint": "Write here",
+  "send": "Send",
+  "messagesLeft": "{count} messages left today",
+  "saveAsSlip": "Make it a slip",
+  "slipSaved": "Slip saved",
+  "interrupted": "The reply was interrupted.",
+  "retry": "Try again",
+  "limitTitle": "Today's messages are used up",
+  "limitText": "Come back tomorrow, or see Plus to talk more.",
+  "crisisTitle": "You are not alone",
+  "crisisText": "It sounds like you are going through something very heavy. If you are in danger right now, call your local emergency service or reach someone you trust. I am not the right help for this.",
+  "crisisSafeMode": "Hide the app (safe mode)",
+  "unavailableTitle": "The chat is not available right now",
+  "unavailableText": "Try again later.",
+  "errorTitle": "Couldn't load",
+  "errorText": "Try again in a moment.",
+  "errors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't do that right now. Try again."
+  }
+}

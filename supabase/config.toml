@@ -91,5 +91,8 @@ verify_jwt = false
 [functions.places]
 verify_jwt = true
 
+[functions.chat]
+verify_jwt = true
+
 [functions.storage-cleanup]
 verify_jwt = false

@@ -62,6 +62,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$capsules$pt capsules = Translations$capsules$pt.internal(_root);
   late final Translations$cardView$pt cardView = Translations$cardView$pt.internal(_root);
   late final Translations$cardsList$pt cardsList = Translations$cardsList$pt.internal(_root);
+  late final Translations$chat$pt chat = Translations$chat$pt.internal(_root);
   late final Translations$checkin$pt checkin = Translations$checkin$pt.internal(_root);
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
   late final Translations$connectTouch$pt connectTouch = Translations$connectTouch$pt.internal(
@@ -561,6 +562,86 @@ class Translations$cardsList$pt {
 
   /// pt: 'Isso fez a minha semana.'
   String get reactionQuoteMadeMyDay => 'Isso fez a minha semana.';
+}
+
+// Path: chat
+class Translations$chat$pt {
+  Translations$chat$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Conversar'
+  String get title => 'Conversar';
+
+  /// pt: 'Uma conversa calma com a mascote, para organizar o que você sente. Ela não substitui ajuda profissional e nunca toma partido.'
+  String get consentText =>
+      'Uma conversa calma com a mascote, para organizar o que você sente. Ela não substitui ajuda profissional e nunca toma partido.';
+
+  /// pt: 'O que você escreve é enviado a um modelo de IA só para gerar a resposta. Nada da conversa é guardado, a menos que você transforme uma resposta em slip.'
+  String get consentPrivacy =>
+      'O que você escreve é enviado a um modelo de IA só para gerar a resposta. Nada da conversa é guardado, a menos que você transforme uma resposta em slip.';
+
+  /// pt: 'Ligar a conversa'
+  String get consentTurnOn => 'Ligar a conversa';
+
+  /// pt: 'Diga como você está, ou comece por uma coisa pequena.'
+  String get emptyHint => 'Diga como você está, ou comece por uma coisa pequena.';
+
+  /// pt: 'Escreva aqui'
+  String get inputHint => 'Escreva aqui';
+
+  /// pt: 'Enviar'
+  String get send => 'Enviar';
+
+  /// pt: 'Restam {count} mensagens hoje'
+  String messagesLeft({required Object count}) => 'Restam ${count} mensagens hoje';
+
+  /// pt: 'Virar slip'
+  String get saveAsSlip => 'Virar slip';
+
+  /// pt: 'Slip guardado'
+  String get slipSaved => 'Slip guardado';
+
+  /// pt: 'A resposta foi interrompida.'
+  String get interrupted => 'A resposta foi interrompida.';
+
+  /// pt: 'Tentar de novo'
+  String get retry => 'Tentar de novo';
+
+  /// pt: 'As mensagens de hoje acabaram'
+  String get limitTitle => 'As mensagens de hoje acabaram';
+
+  /// pt: 'Volte amanhã, ou veja o Plus para conversar mais.'
+  String get limitText => 'Volte amanhã, ou veja o Plus para conversar mais.';
+
+  /// pt: 'Você não está sozinho'
+  String get crisisTitle => 'Você não está sozinho';
+
+  /// pt: 'Parece que você está passando por algo muito pesado. Se estiver em perigo agora, ligue para o serviço de emergência da sua região ou procure alguém de confiança. Eu não sou a ajuda certa para isso.'
+  String get crisisText =>
+      'Parece que você está passando por algo muito pesado. Se estiver em perigo agora, ligue para o serviço de emergência da sua região ou procure alguém de confiança. Eu não sou a ajuda certa para isso.';
+
+  /// pt: 'Esconder o app (modo seguro)'
+  String get crisisSafeMode => 'Esconder o app (modo seguro)';
+
+  /// pt: 'A conversa não está disponível agora'
+  String get unavailableTitle => 'A conversa não está disponível agora';
+
+  /// pt: 'Tente de novo mais tarde.'
+  String get unavailableText => 'Tente de novo mais tarde.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Tente de novo em instantes.'
+  String get errorText => 'Tente de novo em instantes.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para fazer isso agora. Tente de novo.',
+  };
 }
 
 // Path: checkin
@@ -5541,6 +5622,24 @@ class Translations$tabs$pt {
   /// pt: 'Notas privadas para lembrar do que ele ou ela gosta.'
   String get partnerText => 'Notas privadas para lembrar do que ele ou ela gosta.';
 
+  /// pt: 'CONVERSAR'
+  String get chatLabel => 'CONVERSAR';
+
+  /// pt: 'Falar com a mascote'
+  String get chatTitle => 'Falar com a mascote';
+
+  /// pt: 'Uma conversa calma, que não fica guardada.'
+  String get chatText => 'Uma conversa calma, que não fica guardada.';
+
+  /// pt: 'CONVERSA DIFÍCIL'
+  String get hardTalkLabel => 'CONVERSA DIFÍCIL';
+
+  /// pt: 'Preparar uma conversa difícil'
+  String get hardTalkTitle => 'Preparar uma conversa difícil';
+
+  /// pt: 'A mascote ajuda você a organizar o que dizer.'
+  String get hardTalkText => 'A mascote ajuda você a organizar o que dizer.';
+
   /// pt: 'PARA SEU PAR'
   String get notesLabel => 'PARA SEU PAR';
 
@@ -7702,6 +7801,29 @@ extension on Translations {
           'cardsList.responseQuote' => ({required Object label}) => '“${label}”',
           'cardsList.notFound' => 'Esse cartão não está mais disponível.',
           'cardsList.reactionQuoteMadeMyDay' => 'Isso fez a minha semana.',
+          'chat.title' => 'Conversar',
+          'chat.consentText' => 'Uma conversa calma com a mascote, para organizar o que você sente. Ela não substitui ajuda profissional e nunca toma partido.',
+          'chat.consentPrivacy' => 'O que você escreve é enviado a um modelo de IA só para gerar a resposta. Nada da conversa é guardado, a menos que você transforme uma resposta em slip.',
+          'chat.consentTurnOn' => 'Ligar a conversa',
+          'chat.emptyHint' => 'Diga como você está, ou comece por uma coisa pequena.',
+          'chat.inputHint' => 'Escreva aqui',
+          'chat.send' => 'Enviar',
+          'chat.messagesLeft' => ({required Object count}) => 'Restam ${count} mensagens hoje',
+          'chat.saveAsSlip' => 'Virar slip',
+          'chat.slipSaved' => 'Slip guardado',
+          'chat.interrupted' => 'A resposta foi interrompida.',
+          'chat.retry' => 'Tentar de novo',
+          'chat.limitTitle' => 'As mensagens de hoje acabaram',
+          'chat.limitText' => 'Volte amanhã, ou veja o Plus para conversar mais.',
+          'chat.crisisTitle' => 'Você não está sozinho',
+          'chat.crisisText' => 'Parece que você está passando por algo muito pesado. Se estiver em perigo agora, ligue para o serviço de emergência da sua região ou procure alguém de confiança. Eu não sou a ajuda certa para isso.',
+          'chat.crisisSafeMode' => 'Esconder o app (modo seguro)',
+          'chat.unavailableTitle' => 'A conversa não está disponível agora',
+          'chat.unavailableText' => 'Tente de novo mais tarde.',
+          'chat.errorTitle' => 'Não deu para carregar',
+          'chat.errorText' => 'Tente de novo em instantes.',
+          'chat.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'chat.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'checkin.title' => 'Check-in semanal',
           'checkin.titleHighlight' => 'semanal',
           'checkin.introSubtitle' => 'Dez minutos. Cada um responde em privado primeiro.',
@@ -8072,6 +8194,9 @@ extension on Translations {
           'gifts.budgets.other' => '',
           'gifts.noBudget' => 'Sem orçamento',
           'gifts.shared' => 'Compartilhado',
+          _ => null,
+        } ??
+        switch (path) {
           'gifts.private' => 'Privado',
           'gifts.sharedHint' => 'Seu par pode ver este desejo.',
           'gifts.privateHint' => 'Só você vê este desejo.',
@@ -8096,9 +8221,6 @@ extension on Translations {
           'globalErrors.timeoutTitle' => 'A conexão demorou',
           'globalErrors.timeoutText' => 'Tente de novo em instantes.',
           'globalErrors.rateTitle' => 'Calma aí',
-          _ => null,
-        } ??
-        switch (path) {
           'globalErrors.rateText' => 'Muitas tentativas seguidas. Espere um pouco e tente de novo.',
           'globalErrors.notFoundTitle' => 'Não encontramos',
           'globalErrors.notFoundText' => 'Talvez isso não esteja mais disponível.',
@@ -8759,6 +8881,9 @@ extension on Translations {
           'memories.storyTitle' => 'Imagem para compartilhar',
           'memories.storyText' => 'Seus números em uma imagem, só com o que você escolher.',
           'memories.placesLabel' => 'LUGARES',
+          _ => null,
+        } ??
+        switch (path) {
           'memories.placesTitle' => 'Lugares onde vocês estiveram',
           'memories.placesText' => 'Só o nome do lugar, nunca a localização.',
           'memories.placeLabel' => 'Lugar (opcional)',
@@ -8783,9 +8908,6 @@ extension on Translations {
           'memories.monthsShort.4' => 'mai',
           'memories.monthsShort.5' => 'jun',
           'memories.monthsShort.6' => 'jul',
-          _ => null,
-        } ??
-        switch (path) {
           'memories.monthsShort.7' => 'ago',
           'memories.monthsShort.8' => 'set',
           'memories.monthsShort.9' => 'out',
@@ -9346,6 +9468,9 @@ extension on Translations {
           'questions.you' => 'Você',
           'questions.partnerFallback' => 'Seu par',
           'questions.discardTitle' => 'Descartar esta resposta?',
+          _ => null,
+        } ??
+        switch (path) {
           'questions.discardText' => 'O texto que você escreveu não foi salvo.',
           'questions.discard' => 'Descartar',
           'questions.keepWriting' => 'Continuar escrevendo',
@@ -9373,9 +9498,6 @@ extension on Translations {
           'quickSlip.monthsShort.2' => 'mar',
           'quickSlip.monthsShort.3' => 'abr',
           'quickSlip.monthsShort.4' => 'mai',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.monthsShort.5' => 'jun',
           'quickSlip.monthsShort.6' => 'jul',
           'quickSlip.monthsShort.7' => 'ago',
@@ -9913,6 +10035,9 @@ extension on Translations {
           'tabs.segmentForMe' => 'Para mim',
           'tabs.checkinLabel' => 'CHECK-IN',
           'tabs.checkinTitle' => 'Check-in da semana',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.checkinText' => 'Uma conversa curta, em privado primeiro.',
           'tabs.logisticsLabel' => 'PRÁTICO',
           'tabs.logisticsTitle' => 'Logística',
@@ -9945,12 +10070,15 @@ extension on Translations {
           'tabs.partnerLabel' => 'SÓ PARA VOCÊ',
           'tabs.partnerTitle' => 'Sobre seu par',
           'tabs.partnerText' => 'Notas privadas para lembrar do que ele ou ela gosta.',
+          'tabs.chatLabel' => 'CONVERSAR',
+          'tabs.chatTitle' => 'Falar com a mascote',
+          'tabs.chatText' => 'Uma conversa calma, que não fica guardada.',
+          'tabs.hardTalkLabel' => 'CONVERSA DIFÍCIL',
+          'tabs.hardTalkTitle' => 'Preparar uma conversa difícil',
+          'tabs.hardTalkText' => 'A mascote ajuda você a organizar o que dizer.',
           'tabs.notesLabel' => 'PARA SEU PAR',
           'tabs.notesTitle' => 'Bilhete ou desenho',
           'tabs.notesText' => 'Mande algo curto e carinhoso, quando quiser.',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.usLabel' => 'NÓS',
           'tabs.usTitle' => 'Sinto saudade de nós',
           'tabs.usText' => 'Um toque leve para o seu par, sem cobrança.',

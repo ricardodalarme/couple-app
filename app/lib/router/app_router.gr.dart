@@ -176,6 +176,57 @@ class CardsListRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ChatPage]
+class ChatRoute extends PageRouteInfo<ChatRouteArgs> {
+  ChatRoute({
+    ChatMode mode = ChatMode.free,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ChatRoute.name,
+         args: ChatRouteArgs(mode: mode, key: key),
+         initialChildren: children,
+       );
+
+  static const String name = 'ChatRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ChatRouteArgs>(
+        orElse: () => const ChatRouteArgs(),
+      );
+      return WrappedRoute(
+        child: ChatPage(mode: args.mode, key: args.key),
+      );
+    },
+  );
+}
+
+class ChatRouteArgs {
+  const ChatRouteArgs({this.mode = ChatMode.free, this.key});
+
+  final ChatMode mode;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ChatRouteArgs{mode: $mode, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ChatRouteArgs) return false;
+    return mode == other.mode && key == other.key;
+  }
+
+  @override
+  int get hashCode => mode.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [CheckinPage]
 class CheckinRoute extends PageRouteInfo<void> {
   const CheckinRoute({List<PageRouteInfo>? children})

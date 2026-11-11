@@ -9,6 +9,8 @@ import 'package:flutter_bloc_starter/features/capsules/presentation/capsules/cap
 import 'package:flutter_bloc_starter/features/cards/presentation/detail/card_detail_page.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/draft/sunday_card_page.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/list/cards_list_page.dart';
+import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
+import 'package:flutter_bloc_starter/features/chat/presentation/chat/chat_page.dart';
 import 'package:flutter_bloc_starter/features/checkin/presentation/checkin/checkin_page.dart';
 import 'package:flutter_bloc_starter/features/connect/presentation/touch/touch_page.dart';
 import 'package:flutter_bloc_starter/features/connect/presentation/us/us_page.dart';
@@ -152,6 +154,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: LogisticsRoute.page),
     AutoRoute(page: RitualsRoute.page),
     AutoRoute(page: PartnerProfileRoute.page),
+    AutoRoute(page: ChatRoute.page),
     AutoRoute(page: SpiceRoute.page),
     AutoRoute(page: ComposeRoute.page),
     AutoRoute(page: UsRoute.page),

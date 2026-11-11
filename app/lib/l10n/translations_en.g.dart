@@ -66,6 +66,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$cardsList$en cardsList = _Translations$cardsList$en._(_root);
   @override
+  late final _Translations$chat$en chat = _Translations$chat$en._(_root);
+  @override
   late final _Translations$checkin$en checkin = _Translations$checkin$en._(_root);
   @override
   late final _Translations$common$en common = _Translations$common$en._(_root);
@@ -545,6 +547,65 @@ class _Translations$cardsList$en extends Translations$cardsList$pt {
   String get notFound => 'That card is no longer available.';
   @override
   String get reactionQuoteMadeMyDay => 'That made my week.';
+}
+
+// Path: chat
+class _Translations$chat$en extends Translations$chat$pt {
+  _Translations$chat$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Talk';
+  @override
+  String get consentText =>
+      'A calm conversation with the mascot, to sort out what you feel. It does not replace professional help and never takes sides.';
+  @override
+  String get consentPrivacy =>
+      'What you write is sent to an AI model only to produce the reply. Nothing from the conversation is kept, unless you turn a reply into a slip.';
+  @override
+  String get consentTurnOn => 'Turn on the chat';
+  @override
+  String get emptyHint => 'Say how you are, or start with something small.';
+  @override
+  String get inputHint => 'Write here';
+  @override
+  String get send => 'Send';
+  @override
+  String messagesLeft({required Object count}) => '${count} messages left today';
+  @override
+  String get saveAsSlip => 'Make it a slip';
+  @override
+  String get slipSaved => 'Slip saved';
+  @override
+  String get interrupted => 'The reply was interrupted.';
+  @override
+  String get retry => 'Try again';
+  @override
+  String get limitTitle => 'Today\'s messages are used up';
+  @override
+  String get limitText => 'Come back tomorrow, or see Plus to talk more.';
+  @override
+  String get crisisTitle => 'You are not alone';
+  @override
+  String get crisisText =>
+      'It sounds like you are going through something very heavy. If you are in danger right now, call your local emergency service or reach someone you trust. I am not the right help for this.';
+  @override
+  String get crisisSafeMode => 'Hide the app (safe mode)';
+  @override
+  String get unavailableTitle => 'The chat is not available right now';
+  @override
+  String get unavailableText => 'Try again later.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Try again in a moment.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t do that right now. Try again.',
+  };
 }
 
 // Path: checkin
@@ -4461,6 +4522,18 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get partnerText => 'Private notes to remember what they like.';
   @override
+  String get chatLabel => 'TALK';
+  @override
+  String get chatTitle => 'Talk with the mascot';
+  @override
+  String get chatText => 'A calm conversation that is not kept.';
+  @override
+  String get hardTalkLabel => 'HARD CONVERSATION';
+  @override
+  String get hardTalkTitle => 'Prepare a hard conversation';
+  @override
+  String get hardTalkText => 'The mascot helps you sort out what to say.';
+  @override
   String get notesLabel => 'FOR YOUR PARTNER';
   @override
   String get notesTitle => 'A note or a drawing';
@@ -6183,6 +6256,29 @@ extension on TranslationsEn {
           'cardsList.responseQuote' => ({required Object label}) => '“${label}”',
           'cardsList.notFound' => 'That card is no longer available.',
           'cardsList.reactionQuoteMadeMyDay' => 'That made my week.',
+          'chat.title' => 'Talk',
+          'chat.consentText' => 'A calm conversation with the mascot, to sort out what you feel. It does not replace professional help and never takes sides.',
+          'chat.consentPrivacy' => 'What you write is sent to an AI model only to produce the reply. Nothing from the conversation is kept, unless you turn a reply into a slip.',
+          'chat.consentTurnOn' => 'Turn on the chat',
+          'chat.emptyHint' => 'Say how you are, or start with something small.',
+          'chat.inputHint' => 'Write here',
+          'chat.send' => 'Send',
+          'chat.messagesLeft' => ({required Object count}) => '${count} messages left today',
+          'chat.saveAsSlip' => 'Make it a slip',
+          'chat.slipSaved' => 'Slip saved',
+          'chat.interrupted' => 'The reply was interrupted.',
+          'chat.retry' => 'Try again',
+          'chat.limitTitle' => 'Today\'s messages are used up',
+          'chat.limitText' => 'Come back tomorrow, or see Plus to talk more.',
+          'chat.crisisTitle' => 'You are not alone',
+          'chat.crisisText' => 'It sounds like you are going through something very heavy. If you are in danger right now, call your local emergency service or reach someone you trust. I am not the right help for this.',
+          'chat.crisisSafeMode' => 'Hide the app (safe mode)',
+          'chat.unavailableTitle' => 'The chat is not available right now',
+          'chat.unavailableText' => 'Try again later.',
+          'chat.errorTitle' => 'Couldn\'t load',
+          'chat.errorText' => 'Try again in a moment.',
+          'chat.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'chat.errors.other' => 'Couldn\'t do that right now. Try again.',
           'checkin.title' => 'Weekly check-in',
           'checkin.titleHighlight' => 'Weekly',
           'checkin.introSubtitle' => 'Ten minutes. Each of you answers privately first.',
@@ -6553,6 +6649,9 @@ extension on TranslationsEn {
           'gifts.budgets.other' => '',
           'gifts.noBudget' => 'No budget',
           'gifts.shared' => 'Shared',
+          _ => null,
+        } ??
+        switch (path) {
           'gifts.private' => 'Private',
           'gifts.sharedHint' => 'Your partner can see this wish.',
           'gifts.privateHint' => 'Only you can see this wish.',
@@ -6576,9 +6675,6 @@ extension on TranslationsEn {
           'globalErrors.timeoutTitle' => 'The connection took too long',
           'globalErrors.timeoutText' => 'Try again in a moment.',
           'globalErrors.rateTitle' => 'Easy there',
-          _ => null,
-        } ??
-        switch (path) {
           'globalErrors.rateText' => 'Too many tries in a row. Wait a little and try again.',
           'globalErrors.notFoundTitle' => 'Not found',
           'globalErrors.notFoundText' => 'Maybe this is no longer available.',
@@ -7238,6 +7334,9 @@ extension on TranslationsEn {
           'memories.storyTitle' => 'Image to share',
           'memories.storyText' => 'Your numbers in an image, with only what you choose.',
           'memories.placesLabel' => 'PLACES',
+          _ => null,
+        } ??
+        switch (path) {
           'memories.placesTitle' => 'Places you have been',
           'memories.placesText' => 'Only the name of the place, never the location.',
           'memories.placeLabel' => 'Place (optional)',
@@ -7262,9 +7361,6 @@ extension on TranslationsEn {
           'memories.monthsShort.4' => 'May',
           'memories.monthsShort.5' => 'Jun',
           'memories.monthsShort.6' => 'Jul',
-          _ => null,
-        } ??
-        switch (path) {
           'memories.monthsShort.7' => 'Aug',
           'memories.monthsShort.8' => 'Sep',
           'memories.monthsShort.9' => 'Oct',
@@ -7821,6 +7917,9 @@ extension on TranslationsEn {
           'questions.you' => 'You',
           'questions.partnerFallback' => 'Your partner',
           'questions.discardTitle' => 'Discard this answer?',
+          _ => null,
+        } ??
+        switch (path) {
           'questions.discardText' => 'The text you wrote was not saved.',
           'questions.discard' => 'Discard',
           'questions.keepWriting' => 'Keep writing',
@@ -7848,9 +7947,6 @@ extension on TranslationsEn {
           'quickSlip.monthsShort.2' => 'Mar',
           'quickSlip.monthsShort.3' => 'Apr',
           'quickSlip.monthsShort.4' => 'May',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.monthsShort.5' => 'Jun',
           'quickSlip.monthsShort.6' => 'Jul',
           'quickSlip.monthsShort.7' => 'Aug',
@@ -8386,6 +8482,9 @@ extension on TranslationsEn {
           'tabs.segmentForMe' => 'For me',
           'tabs.checkinLabel' => 'CHECK-IN',
           'tabs.checkinTitle' => 'Weekly check-in',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.checkinText' => 'A short conversation, private first.',
           'tabs.logisticsLabel' => 'PRACTICAL',
           'tabs.logisticsTitle' => 'Logistics',
@@ -8418,12 +8517,15 @@ extension on TranslationsEn {
           'tabs.partnerLabel' => 'JUST FOR YOU',
           'tabs.partnerTitle' => 'About your partner',
           'tabs.partnerText' => 'Private notes to remember what they like.',
+          'tabs.chatLabel' => 'TALK',
+          'tabs.chatTitle' => 'Talk with the mascot',
+          'tabs.chatText' => 'A calm conversation that is not kept.',
+          'tabs.hardTalkLabel' => 'HARD CONVERSATION',
+          'tabs.hardTalkTitle' => 'Prepare a hard conversation',
+          'tabs.hardTalkText' => 'The mascot helps you sort out what to say.',
           'tabs.notesLabel' => 'FOR YOUR PARTNER',
           'tabs.notesTitle' => 'A note or a drawing',
           'tabs.notesText' => 'Send something short and kind, whenever you like.',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.usLabel' => 'US',
           'tabs.usTitle' => 'I miss us',
           'tabs.usText' => 'A light tap for your partner, no pressure.',
