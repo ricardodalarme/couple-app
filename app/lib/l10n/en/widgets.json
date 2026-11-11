@@ -93,5 +93,16 @@
   "ownMediumPageTitle": "Widget · Mine (medium)",
   "ownMediumIdeaAction": "Tap to view",
   "ownMediumJarTitle": "Tap to open a saved slip",
-  "ownMediumJarPrivacy": "Private: only appears on your device"
+  "ownMediumJarPrivacy": "Private: only appears on your device",
+  "lockScreenPageTitle": "Lock screen",
+  "lockScreenClockTime": "19:38",
+  "lockScreenClockDate": "Friday, April 10",
+  "lockScreenPauseTitle": "Pause in progress",
+  "lockScreenPauseUntil": "until {time}",
+  "lockScreenPauseUntilDefault": "until 20:00",
+  "lockScreenReadyAction": "I am ready",
+  "lockScreenGenericPhrase": "Calm moment",
+  "lockScreenDiscreetPhrase": "Reminder",
+  "lockScreenPrivacyRule": "Never shows names or messages on the lock screen.",
+  "lockScreenFamiliesTitle": "iOS formats (Circular, Rectangular and Inline)"
 }

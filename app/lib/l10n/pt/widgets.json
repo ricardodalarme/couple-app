@@ -93,5 +93,16 @@
   "ownMediumPageTitle": "Widget · Meu (médio)",
   "ownMediumIdeaAction": "Toque para ver",
   "ownMediumJarTitle": "Toque para abrir um slip guardado",
-  "ownMediumJarPrivacy": "Privado: só aparece no seu aparelho"
+  "ownMediumJarPrivacy": "Privado: só aparece no seu aparelho",
+  "lockScreenPageTitle": "Tela de bloqueio",
+  "lockScreenClockTime": "19:38",
+  "lockScreenClockDate": "Sexta, 10 de abril",
+  "lockScreenPauseTitle": "Pausa em andamento",
+  "lockScreenPauseUntil": "até {time}",
+  "lockScreenPauseUntilDefault": "até 20:00",
+  "lockScreenReadyAction": "Estou pronto",
+  "lockScreenGenericPhrase": "Momento calmo",
+  "lockScreenDiscreetPhrase": "Lembrete",
+  "lockScreenPrivacyRule": "Sem nomes nem mensagens na tela bloqueada.",
+  "lockScreenFamiliesTitle": "Formatos no iOS (Circular, Retangular e Linha)"
 }

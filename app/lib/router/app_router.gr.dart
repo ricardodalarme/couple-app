@@ -871,6 +871,22 @@ class ListsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [LockScreenWidgetPage]
+class LockRouteWidgetRoute extends PageRouteInfo<void> {
+  const LockRouteWidgetRoute({List<PageRouteInfo>? children})
+    : super(LockRouteWidgetRoute.name, initialChildren: children);
+
+  static const String name = 'LockRouteWidgetRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const LockScreenWidgetPage());
+    },
+  );
+}
+
+/// generated route for
 /// [LogisticsPage]
 class LogisticsRoute extends PageRouteInfo<void> {
   const LogisticsRoute({List<PageRouteInfo>? children})

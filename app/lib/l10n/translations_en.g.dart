@@ -4303,6 +4303,28 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   String get ownMediumJarTitle => 'Tap to open a saved slip';
   @override
   String get ownMediumJarPrivacy => 'Private: only appears on your device';
+  @override
+  String get lockScreenPageTitle => 'Lock screen';
+  @override
+  String get lockScreenClockTime => '19:38';
+  @override
+  String get lockScreenClockDate => 'Friday, April 10';
+  @override
+  String get lockScreenPauseTitle => 'Pause in progress';
+  @override
+  String lockScreenPauseUntil({required Object time}) => 'until ${time}';
+  @override
+  String get lockScreenPauseUntilDefault => 'until 20:00';
+  @override
+  String get lockScreenReadyAction => 'I am ready';
+  @override
+  String get lockScreenGenericPhrase => 'Calm moment';
+  @override
+  String get lockScreenDiscreetPhrase => 'Reminder';
+  @override
+  String get lockScreenPrivacyRule => 'Never shows names or messages on the lock screen.';
+  @override
+  String get lockScreenFamiliesTitle => 'iOS formats (Circular, Rectangular and Inline)';
 }
 
 // Path: acceptInvite.connected
@@ -7504,6 +7526,17 @@ extension on TranslationsEn {
           'widgets.ownMediumIdeaAction' => 'Tap to view',
           'widgets.ownMediumJarTitle' => 'Tap to open a saved slip',
           'widgets.ownMediumJarPrivacy' => 'Private: only appears on your device',
+          'widgets.lockScreenPageTitle' => 'Lock screen',
+          'widgets.lockScreenClockTime' => '19:38',
+          'widgets.lockScreenClockDate' => 'Friday, April 10',
+          'widgets.lockScreenPauseTitle' => 'Pause in progress',
+          'widgets.lockScreenPauseUntil' => ({required Object time}) => 'until ${time}',
+          'widgets.lockScreenPauseUntilDefault' => 'until 20:00',
+          'widgets.lockScreenReadyAction' => 'I am ready',
+          'widgets.lockScreenGenericPhrase' => 'Calm moment',
+          'widgets.lockScreenDiscreetPhrase' => 'Reminder',
+          'widgets.lockScreenPrivacyRule' => 'Never shows names or messages on the lock screen.',
+          'widgets.lockScreenFamiliesTitle' => 'iOS formats (Circular, Rectangular and Inline)',
           _ => null,
         };
   }

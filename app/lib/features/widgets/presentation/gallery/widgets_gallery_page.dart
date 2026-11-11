@@ -104,6 +104,7 @@ class const WidgetsGalleryPage({super.key}) extends StatelessWidget implements A
     final route = switch (family) {
       WidgetFamilyKind.ownSmall => const OwnSmallWidgetsRoute() as PageRouteInfo<void>,
       WidgetFamilyKind.ownMedium => const OwnMediumWidgetsRoute(),
+      WidgetFamilyKind.lockScreen => const LockRouteWidgetRoute(),
       _ => WidgetConfigureRoute(initialFamily: family),
     };
     await context.pushRoute(route);

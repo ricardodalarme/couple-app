@@ -5405,6 +5405,39 @@ class Translations$widgets$pt {
 
   /// pt: 'Privado: só aparece no seu aparelho'
   String get ownMediumJarPrivacy => 'Privado: só aparece no seu aparelho';
+
+  /// pt: 'Tela de bloqueio'
+  String get lockScreenPageTitle => 'Tela de bloqueio';
+
+  /// pt: '19:38'
+  String get lockScreenClockTime => '19:38';
+
+  /// pt: 'Sexta, 10 de abril'
+  String get lockScreenClockDate => 'Sexta, 10 de abril';
+
+  /// pt: 'Pausa em andamento'
+  String get lockScreenPauseTitle => 'Pausa em andamento';
+
+  /// pt: 'até {time}'
+  String lockScreenPauseUntil({required Object time}) => 'até ${time}';
+
+  /// pt: 'até 20:00'
+  String get lockScreenPauseUntilDefault => 'até 20:00';
+
+  /// pt: 'Estou pronto'
+  String get lockScreenReadyAction => 'Estou pronto';
+
+  /// pt: 'Momento calmo'
+  String get lockScreenGenericPhrase => 'Momento calmo';
+
+  /// pt: 'Lembrete'
+  String get lockScreenDiscreetPhrase => 'Lembrete';
+
+  /// pt: 'Sem nomes nem mensagens na tela bloqueada.'
+  String get lockScreenPrivacyRule => 'Sem nomes nem mensagens na tela bloqueada.';
+
+  /// pt: 'Formatos no iOS (Circular, Retangular e Linha)'
+  String get lockScreenFamiliesTitle => 'Formatos no iOS (Circular, Retangular e Linha)';
 }
 
 // Path: acceptInvite.connected
@@ -8791,6 +8824,17 @@ extension on Translations {
           'widgets.ownMediumIdeaAction' => 'Toque para ver',
           'widgets.ownMediumJarTitle' => 'Toque para abrir um slip guardado',
           'widgets.ownMediumJarPrivacy' => 'Privado: só aparece no seu aparelho',
+          'widgets.lockScreenPageTitle' => 'Tela de bloqueio',
+          'widgets.lockScreenClockTime' => '19:38',
+          'widgets.lockScreenClockDate' => 'Sexta, 10 de abril',
+          'widgets.lockScreenPauseTitle' => 'Pausa em andamento',
+          'widgets.lockScreenPauseUntil' => ({required Object time}) => 'até ${time}',
+          'widgets.lockScreenPauseUntilDefault' => 'até 20:00',
+          'widgets.lockScreenReadyAction' => 'Estou pronto',
+          'widgets.lockScreenGenericPhrase' => 'Momento calmo',
+          'widgets.lockScreenDiscreetPhrase' => 'Lembrete',
+          'widgets.lockScreenPrivacyRule' => 'Sem nomes nem mensagens na tela bloqueada.',
+          'widgets.lockScreenFamiliesTitle' => 'Formatos no iOS (Circular, Retangular e Linha)',
           _ => null,
         };
   }

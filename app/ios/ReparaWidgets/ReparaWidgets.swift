@@ -353,10 +353,93 @@ struct ReparaOwnMediumWidget: Widget {
   }
 }
 
+struct ReparaLockScreenWidgetView: View {
+  @Environment(\.widgetFamily) private var family
+  let entry: ReparaWidgetEntry
+
+  var body: some View {
+    let p = entry.payload
+    let isPause = p.isPauseActive(on: entry.date)
+    let deepLink = !p.isSignedIn
+      ? "repara://sign-in?homeWidget=1"
+      : (p.discreet ? "repara://settings/discreet?homeWidget=1" : (isPause ? "repara://pause?homeWidget=1" : "repara://today?homeWidget=1"))
+
+    switch family {
+    case .accessoryCircular:
+      ZStack {
+        AccessoryWidgetBackground()
+        Image(systemName: p.discreet ? "circle.dotted" : (isPause ? "moon.zzz.fill" : "heart"))
+          .font(.system(size: 18, weight: .semibold))
+      }
+      .widgetURL(URL(string: deepLink))
+    case .accessoryInline:
+      if p.discreet || !p.isSignedIn {
+        Label("Lembrete", systemImage: "circle.dotted")
+          .widgetURL(URL(string: deepLink))
+      } else if isPause, let until = p.pauseUntilTimeLabel() {
+        Label("Pausa · até \(until)", systemImage: "moon.zzz.fill")
+          .widgetURL(URL(string: deepLink))
+      } else {
+        Label("Momento calmo", systemImage: "heart")
+          .widgetURL(URL(string: deepLink))
+      }
+    default:
+      VStack(alignment: .leading, spacing: 2) {
+        if p.discreet || !p.isSignedIn {
+          Label("Lembrete", systemImage: "circle.dotted")
+            .font(.caption.weight(.semibold))
+            .lineLimit(1)
+          Text("Texto neutro")
+            .font(.caption2)
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+        } else if isPause {
+          Label("Pausa em andamento", systemImage: "moon.zzz.fill")
+            .font(.caption.weight(.semibold))
+            .lineLimit(1)
+          Text(p.pauseUntilTimeLabel().map { "até \($0)" } ?? "Toque quando estiver pronto")
+            .font(.caption2)
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+        } else {
+          Label("Momento calmo", systemImage: "heart")
+            .font(.caption.weight(.semibold))
+            .lineLimit(1)
+          Text("Sem nomes na tela bloqueada")
+            .font(.caption2)
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+        }
+      }
+      .frame(maxWidth: .infinity, alignment: .leading)
+      .widgetURL(URL(string: deepLink))
+    }
+  }
+}
+
+struct ReparaLockScreenWidget: Widget {
+  let kind: String = "ReparaLockScreenWidget"
+
+  var body: some WidgetConfiguration {
+    StaticConfiguration(kind: kind, provider: ReparaTimelineProvider()) { entry in
+      if #available(iOSApplicationExtension 17.0, *) {
+        ReparaLockScreenWidgetView(entry: entry)
+          .containerBackground(.clear, for: .widget)
+      } else {
+        ReparaLockScreenWidgetView(entry: entry)
+      }
+    }
+    .configurationDisplayName("Repara · Tela de bloqueio")
+    .description("Símbolo e frase genérica, sem nomes nem mensagens.")
+    .supportedFamilies([.accessoryCircular, .accessoryRectangular, .accessoryInline])
+  }
+}
+
 @main
 struct ReparaWidgetsBundle: WidgetBundle {
   var body: some Widget {
     ReparaOwnSmallWidget()
     ReparaOwnMediumWidget()
+    ReparaLockScreenWidget()
   }
 }
