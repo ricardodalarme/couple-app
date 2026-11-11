@@ -145,6 +145,29 @@ void main() {
     verifyNever(() => dataSource.getAnswers(any()));
   });
 
+  test('keeps a cancelled session so the start screen can explain it', () async {
+    stubSessions(sessions: [record(status: 'cancelled')]);
+    stubItems(const [(slug: 'a', title: 'A?', body: null)]);
+
+    final play = await repository.getPlay(kind: GameKind.meOrYou, locale: 'pt-BR', now: now);
+
+    expect(play.session?.status, GameStatus.cancelled);
+    expect(play.stage(now), GameStage.start);
+    expect(play.available.map((item) => item.slug), ['a']);
+  });
+
+  test('keeps an expired invitation so the start screen can explain it', () async {
+    stubSessions(sessions: [record(status: 'invited')]);
+    stubItems(const [(slug: 'a', title: 'A?', body: null)]);
+    final later = created.add(const Duration(hours: 49));
+
+    final play = await repository.getPlay(kind: GameKind.meOrYou, locale: 'pt-BR', now: later);
+
+    expect(play.session?.isExpired(later), isTrue);
+    expect(play.stage(later), GameStage.start);
+    expect(play.available.map((item) => item.slug), ['a']);
+  });
+
   test('splits the answers the server returns by author', () async {
     stubSessions(sessions: [record(status: 'finished')]);
     stubItems(const [(slug: 'a', title: 'A?', body: null), (slug: 'b', title: 'B?', body: null)]);
@@ -182,6 +205,31 @@ void main() {
 
     expect(session.status, GameStatus.invited);
     verify(() => dataSource.invite(game: 'me_or_you', itemSlugs: ['a', 'b'])).called(1);
+  });
+
+  test('keeps the server code when another game is already open', () async {
+    when(
+      () => dataSource.invite(
+        game: any(named: 'game'),
+        itemSlugs: any(named: 'itemSlugs'),
+      ),
+    ).thenThrow(ServerResponseException('GAME_ALREADY_OPEN', Exception('open')));
+    const play = GamePlay(
+      kind: GameKind.meOrYou,
+      selfId: 'me',
+      available: [GameItem(slug: 'a', title: 'A?')],
+    );
+
+    await expectLater(
+      repository.invite(play),
+      throwsA(
+        isA<ServerResponseException>().having(
+          (exception) => exception.l10nKey,
+          'l10nKey',
+          'GAME_ALREADY_OPEN',
+        ),
+      ),
+    );
   });
 
   test('refuses to invite when there is nothing to play', () async {

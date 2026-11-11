@@ -1309,6 +1309,24 @@ class _Translations$games$en extends Translations$games$pt {
   @override
   late final _Translations$games$active$en active = _Translations$games$active$en._(_root);
   @override
+  late final _Translations$games$playing$en playing = _Translations$games$playing$en._(_root);
+  @override
+  late final _Translations$games$date$en date = _Translations$games$date$en._(_root);
+  @override
+  Map<String, String> get reflections => {
+    'great': 'It was great',
+    'ok': 'It was nice',
+    'did_not_happen': 'It did not happen',
+    'other': 'No answer',
+  };
+  @override
+  late final _Translations$games$waitingPartner$en waitingPartner =
+      _Translations$games$waitingPartner$en._(_root);
+  @override
+  late final _Translations$games$finished$en finished = _Translations$games$finished$en._(_root);
+  @override
+  late final _Translations$games$notFound$en notFound = _Translations$games$notFound$en._(_root);
+  @override
   late final _Translations$games$cancel$en cancel = _Translations$games$cancel$en._(_root);
   @override
   late final _Translations$games$noPartner$en noPartner = _Translations$games$noPartner$en._(_root);
@@ -1323,6 +1341,9 @@ class _Translations$games$en extends Translations$games$pt {
     'NOT_PAIRED': 'Games need both of you connected.',
     'NOT_FOUND': 'That game no longer exists. We\'ll refresh.',
     'INVALID_GAME_ACTION': 'That game changed. We\'ll refresh.',
+    'GAME_ALREADY_OPEN': 'A game is already open. Finish or cancel it before inviting again.',
+    'GAME_NOT_COMPLETE': 'Your partner is still answering. Try again when they finish.',
+    'INVALID_GAME_INDEX': 'That question changed. We\'ll refresh.',
     'other': 'Could not do that right now. Try again.',
   };
 }
@@ -5514,6 +5535,133 @@ class _Translations$games$active$en extends Translations$games$active$pt {
   String get cancel => 'End the game';
 }
 
+// Path: games.playing
+class _Translations$games$playing$en extends Translations$games$playing$pt {
+  _Translations$games$playing$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String progress({required Object current, required Object total}) =>
+      'Question ${current} of ${total}';
+  @override
+  String get you => 'You';
+  @override
+  String get partnerFallback => 'Your partner';
+  @override
+  String get submit => 'Send answer';
+  @override
+  String get skip => 'Skip this one';
+  @override
+  String get guessAboutYou => 'About you';
+  @override
+  String guessAboutPartner({required Object name}) => 'About ${name}';
+  @override
+  String get guessAboutPartnerFallback => 'About your partner';
+  @override
+  String guessPrompt({required Object name}) => 'What did ${name} answer?';
+  @override
+  String get guessPromptFallback => 'What did your partner answer?';
+  @override
+  String get guessYourGuess => 'Your guess';
+  @override
+  String get answerHint => 'Answer as you would.';
+  @override
+  String get guessHint => 'Guess what they answered.';
+  @override
+  String get talkHint => 'Write your answer. Only you can read it until you both finish.';
+  @override
+  String get talkNote => 'Your partner only sees this after both of you answer.';
+}
+
+// Path: games.date
+class _Translations$games$date$en extends Translations$games$date$pt {
+  _Translations$games$date$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get start => 'Start the date';
+  @override
+  String get startNote => 'Do the mission together, then come back and tell how it was.';
+  @override
+  String get reflectionTitle => 'How was it?';
+  @override
+  String get reflectionText =>
+      'Pick what happened. Your partner sees it only after you both answer.';
+}
+
+// Path: games.waitingPartner
+class _Translations$games$waitingPartner$en extends Translations$games$waitingPartner$pt {
+  _Translations$games$waitingPartner$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'You answered everything';
+  @override
+  String text({required Object name}) =>
+      'Now it is just waiting for ${name}. Nothing you wrote appears before both of you finish.';
+  @override
+  String get textFallback =>
+      'Now it is just waiting for your partner. Nothing you wrote appears before both of you finish.';
+  @override
+  String get answersTitle => 'What you saved';
+  @override
+  String get checkAgain => 'Check again';
+  @override
+  String get cancel => 'End the game';
+}
+
+// Path: games.finished
+class _Translations$games$finished$en extends Translations$games$finished$pt {
+  _Translations$games$finished$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'That was a good conversation';
+  @override
+  String get text => 'No score, no winner. Just the two of you.';
+  @override
+  String get you => 'You';
+  @override
+  String get yourGuess => 'Your guess';
+  @override
+  String get partnerGuess => 'Their guess';
+  @override
+  String get matched => 'Matched';
+  @override
+  String get noAnswer => 'No answer';
+  @override
+  String get both => 'Both of you';
+  @override
+  String get agreed => 'You both agreed';
+  @override
+  String get back => 'Back';
+}
+
+// Path: games.notFound
+class _Translations$games$notFound$en extends Translations$games$notFound$pt {
+  _Translations$games$notFound$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'This game does not exist';
+  @override
+  String get text => 'It may have changed or never existed. Go back and pick another one.';
+  @override
+  String get action => 'Go back';
+}
+
 // Path: games.cancel
 class _Translations$games$cancel$en extends Translations$games$cancel$pt {
   _Translations$games$cancel$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -7033,6 +7181,56 @@ extension on TranslationsEn {
           'games.active.title' => 'The game has started',
           'games.active.text' => 'Both of you are in. This game\'s screens appear here.',
           'games.active.cancel' => 'End the game',
+          'games.playing.progress' => ({
+            required Object current,
+            required Object total,
+          }) => 'Question ${current} of ${total}',
+          'games.playing.you' => 'You',
+          'games.playing.partnerFallback' => 'Your partner',
+          'games.playing.submit' => 'Send answer',
+          'games.playing.skip' => 'Skip this one',
+          'games.playing.guessAboutYou' => 'About you',
+          'games.playing.guessAboutPartner' => ({required Object name}) => 'About ${name}',
+          'games.playing.guessAboutPartnerFallback' => 'About your partner',
+          'games.playing.guessPrompt' => ({required Object name}) => 'What did ${name} answer?',
+          'games.playing.guessPromptFallback' => 'What did your partner answer?',
+          'games.playing.guessYourGuess' => 'Your guess',
+          'games.playing.answerHint' => 'Answer as you would.',
+          'games.playing.guessHint' => 'Guess what they answered.',
+          'games.playing.talkHint' =>
+            'Write your answer. Only you can read it until you both finish.',
+          'games.playing.talkNote' => 'Your partner only sees this after both of you answer.',
+          'games.date.start' => 'Start the date',
+          'games.date.startNote' => 'Do the mission together, then come back and tell how it was.',
+          'games.date.reflectionTitle' => 'How was it?',
+          'games.date.reflectionText' =>
+            'Pick what happened. Your partner sees it only after you both answer.',
+          'games.reflections.great' => 'It was great',
+          'games.reflections.ok' => 'It was nice',
+          'games.reflections.did_not_happen' => 'It did not happen',
+          'games.reflections.other' => 'No answer',
+          'games.waitingPartner.title' => 'You answered everything',
+          'games.waitingPartner.text' => ({
+            required Object name,
+          }) => 'Now it is just waiting for ${name}. Nothing you wrote appears before both of you finish.',
+          'games.waitingPartner.textFallback' => 'Now it is just waiting for your partner. Nothing you wrote appears before both of you finish.',
+          'games.waitingPartner.answersTitle' => 'What you saved',
+          'games.waitingPartner.checkAgain' => 'Check again',
+          'games.waitingPartner.cancel' => 'End the game',
+          'games.finished.title' => 'That was a good conversation',
+          'games.finished.text' => 'No score, no winner. Just the two of you.',
+          'games.finished.you' => 'You',
+          'games.finished.yourGuess' => 'Your guess',
+          'games.finished.partnerGuess' => 'Their guess',
+          'games.finished.matched' => 'Matched',
+          'games.finished.noAnswer' => 'No answer',
+          'games.finished.both' => 'Both of you',
+          'games.finished.agreed' => 'You both agreed',
+          'games.finished.back' => 'Back',
+          'games.notFound.title' => 'This game does not exist',
+          'games.notFound.text' =>
+            'It may have changed or never existed. Go back and pick another one.',
+          'games.notFound.action' => 'Go back',
           'games.cancel.title' => 'End the game?',
           'games.cancel.text' => 'The game ends for both of you. You can start another later.',
           'games.cancel.confirm' => 'End game',
@@ -7045,6 +7243,11 @@ extension on TranslationsEn {
           'games.errors.NOT_PAIRED' => 'Games need both of you connected.',
           'games.errors.NOT_FOUND' => 'That game no longer exists. We\'ll refresh.',
           'games.errors.INVALID_GAME_ACTION' => 'That game changed. We\'ll refresh.',
+          'games.errors.GAME_ALREADY_OPEN' =>
+            'A game is already open. Finish or cancel it before inviting again.',
+          'games.errors.GAME_NOT_COMPLETE' =>
+            'Your partner is still answering. Try again when they finish.',
+          'games.errors.INVALID_GAME_INDEX' => 'That question changed. We\'ll refresh.',
           'games.errors.other' => 'Could not do that right now. Try again.',
           'gifts.title' => 'Gift page',
           'gifts.subtitle' => 'A page your partner can see in the app. You choose what to share.',
@@ -7630,6 +7833,9 @@ extension on TranslationsEn {
           'logistics.partner' => 'My partner',
           'logistics.both' => 'Both of us',
           'logistics.assignMe' => 'I\'ll take it',
+          _ => null,
+        } ??
+        switch (path) {
           'logistics.delete' => 'Delete',
           'logistics.doneTitle' => 'Done',
           'logistics.emptyTitle' => 'Nothing here',
@@ -7678,9 +7884,6 @@ extension on TranslationsEn {
           'loveStyle.options4.gifts' => 'A simple gift that has to do with me.',
           'loveStyle.options4.touch' => 'A caress on my hair or hand.',
           'loveStyle.options4.other' => '',
-          _ => null,
-        } ??
-        switch (path) {
           'loveStyle.options5.time' => 'When someone chooses to spend time with me.',
           'loveStyle.options5.words' => 'When someone acknowledges what I do.',
           'loveStyle.options5.acts' => 'When someone makes my day easier.',
@@ -8213,6 +8416,9 @@ extension on TranslationsEn {
           'profileSetup.months.3' => 'April',
           'profileSetup.months.4' => 'May',
           'profileSetup.months.5' => 'June',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.months.6' => 'July',
           'profileSetup.months.7' => 'August',
           'profileSetup.months.8' => 'September',
@@ -8267,9 +8473,6 @@ extension on TranslationsEn {
           'programs.saved' => 'Saved for later.',
           'programs.savedTag' => 'Saved',
           'programs.lockedTitle' => 'Plus lesson',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.lockedLessonText' => 'This lesson is part of Plus.',
           'programs.lockedProgramText' => 'This program is part of Plus.',
           'programs.completeTitle' => 'Well done',
@@ -8777,6 +8980,9 @@ extension on TranslationsEn {
           'slipsList.scopeWeek' => 'This week',
           'slipsList.scopeAll' => 'All',
           'slipsList.private' => 'Private',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.thisWeek' => 'This week',
           'slipsList.lastWeek' => 'Last week',
           'slipsList.weekRange' => ({
@@ -8831,9 +9037,6 @@ extension on TranslationsEn {
           'spice.turnOff' => 'Turn off',
           'spice.errorTitle' => 'Couldn\'t load',
           'spice.errorText' => 'Try again in a moment.',
-          _ => null,
-        } ??
-        switch (path) {
           'spice.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'spice.errors.other' => 'Couldn\'t change that right now. Try again.',
           'story.title' => 'Image to share',

@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_play.dart';
 import 'package:flutter_bloc_starter/features/games/presentation/game/cubit/game_cubit.dart';
+import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_not_found_view.dart';
 import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_play_view.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -17,14 +18,11 @@ class const GamePage({@PathParam('game') final String game = '', super.key})
     implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) {
-        final cubit = AppInjector.instance.get<GameCubit>();
-        final kind = GameKind.fromKey(game);
-        if (kind != null) cubit.load(kind);
+    final kind = GameKind.fromKey(game);
+    if (kind == null) return this;
 
-        return cubit;
-      },
+    return BlocProvider(
+      create: (_) => AppInjector.instance.get<GameCubit>()..load(kind),
       child: this,
     );
   }
@@ -49,12 +47,16 @@ class _GamePageState() extends State<GamePage> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state != AppLifecycleState.resumed) return;
+    if (GameKind.fromKey(widget.game) == null) return;
     final cubit = context.read<GameCubit>();
     if (!cubit.state.isBusy) cubit.refresh();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (GameKind.fromKey(widget.game) == null) {
+      return const BaseView(body: GameNotFoundView());
+    }
     final l10n = context.l10n.games;
     final play = context.select((GameCubit cubit) => cubit.state.play);
     final cubit = context.read<GameCubit>();

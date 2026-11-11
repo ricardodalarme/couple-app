@@ -23,8 +23,9 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
 
   /// One game with its latest session, items and the answers the server lets this person see.
   ///
-  /// When there is no open or finished session, the items a new one could start with are read
-  /// instead. A game without published content comes back with no items.
+  /// When there is no session, the items a new one could start with are read instead. A
+  /// cancelled or expired session is kept so the start screen can explain what happened. A
+  /// game without published content comes back with no items.
   Future<GamePlay> getPlay({required GameKind kind, required String locale, DateTime? now}) =>
       _run('read a game', () async {
         final record = await _dataSource.getSessions();
@@ -37,11 +38,20 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
         final isOpen = session != null && session.isOpen(now ?? DateTime.now());
         final isFinished = session?.status == GameStatus.finished;
         final available = isOpen ? const <GameItem>[] : await _available(kind, locale);
-        if (session == null || !(isOpen || isFinished)) {
+        if (session == null) {
           return GamePlay(
             kind: kind,
             selfId: record.selfId,
             partnerName: record.partnerName,
+            available: available,
+          );
+        }
+        if (!isOpen && !isFinished) {
+          return GamePlay(
+            kind: kind,
+            selfId: record.selfId,
+            partnerName: record.partnerName,
+            session: session,
             available: available,
           );
         }

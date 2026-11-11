@@ -23,11 +23,18 @@ void main() {
   GameEntryState stateOf(GamesOverview overview, GameKind kind) =>
       overview.entries(now).firstWhere((entry) => entry.kind == kind).state;
 
-  test('lists every game, idle when it was never started', () {
+  test('lists every playable game, idle when it was never started', () {
+    const overview = GamesOverview(selfId: 'me', hasPartner: true);
+    final playable = GameKind.values.where((kind) => kind.hasContent);
+
+    expect(overview.entries(now).map((entry) => entry.kind), playable);
+    expect(overview.entries(now).every((entry) => entry.state == GameEntryState.idle), isTrue);
+  });
+
+  test('hides a game with no content kind from the hub', () {
     const overview = GamesOverview(selfId: 'me', hasPartner: true);
 
-    expect(overview.entries(now).map((entry) => entry.kind), GameKind.values);
-    expect(overview.entries(now).every((entry) => entry.state == GameEntryState.idle), isTrue);
+    expect(overview.entries(now).any((entry) => entry.kind == GameKind.twentyQuestions), isFalse);
   });
 
   test('maps each session status to what the person reads', () {
@@ -45,9 +52,9 @@ void main() {
 
     expect(stateOf(overview, GameKind.meOrYou), GameEntryState.waiting);
     expect(stateOf(overview, GameKind.howWell), GameEntryState.invited);
-    expect(stateOf(overview, GameKind.twentyQuestions), GameEntryState.active);
     expect(stateOf(overview, GameKind.neverHaveWe), GameEntryState.finished);
     expect(stateOf(overview, GameKind.mission), GameEntryState.cancelled);
+    expect(overview.entries(now).any((entry) => entry.kind == GameKind.twentyQuestions), isFalse);
   });
 
   test('an invitation older than 48 hours reads as expired', () {

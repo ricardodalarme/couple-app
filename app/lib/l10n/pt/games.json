@@ -72,6 +72,60 @@
     "text": "Os dois estão dentro. As telas deste jogo aparecem aqui.",
     "cancel": "Encerrar o jogo"
   },
+  "playing": {
+    "progress": "Pergunta {current} de {total}",
+    "you": "Você",
+    "partnerFallback": "Seu par",
+    "submit": "Enviar resposta",
+    "skip": "Pular esta",
+    "guessAboutYou": "Sobre você",
+    "guessAboutPartner": "Sobre {name}",
+    "guessAboutPartnerFallback": "Sobre seu par",
+    "guessPrompt": "O que {name} respondeu?",
+    "guessPromptFallback": "O que seu par respondeu?",
+    "guessYourGuess": "Seu palpite",
+    "answerHint": "Responda do seu jeito.",
+    "guessHint": "Tente adivinhar a resposta.",
+    "talkHint": "Escreva sua resposta. Só você lê até os dois terminarem.",
+    "talkNote": "Seu par só vê depois que os dois responderem."
+  },
+  "date": {
+    "start": "Começar o encontro",
+    "startNote": "Façam a missão juntos e voltem para contar como foi.",
+    "reflectionTitle": "Como foi?",
+    "reflectionText": "Escolha o que aconteceu. Seu par só vê depois que os dois responderem."
+  },
+  "reflections(map)": {
+    "great": "Foi ótimo",
+    "ok": "Foi bom",
+    "did_not_happen": "Não aconteceu",
+    "other": "Sem resposta"
+  },
+  "waitingPartner": {
+    "title": "Você respondeu tudo",
+    "text": "Agora é só esperar {name}. Nada do que você escreveu aparece antes dos dois terminarem.",
+    "textFallback": "Agora é só esperar seu par. Nada do que você escreveu aparece antes dos dois terminarem.",
+    "answersTitle": "O que você salvou",
+    "checkAgain": "Ver de novo",
+    "cancel": "Encerrar o jogo"
+  },
+  "finished": {
+    "title": "Que conversa boa",
+    "text": "Sem placar, sem vencedor. Só vocês dois.",
+    "you": "Você",
+    "yourGuess": "Seu palpite",
+    "partnerGuess": "O palpite do seu par",
+    "matched": "Acertou",
+    "noAnswer": "Sem resposta",
+    "both": "Os dois",
+    "agreed": "Vocês combinaram",
+    "back": "Voltar"
+  },
+  "notFound": {
+    "title": "Este jogo não existe",
+    "text": "Ele pode ter mudado ou nunca ter existido. Volte e escolha outro.",
+    "action": "Voltar"
+  },
   "cancel": {
     "title": "Encerrar o jogo?",
     "text": "O jogo termina para os dois. Vocês podem começar outro depois.",
@@ -91,6 +145,9 @@
     "NOT_PAIRED": "Os jogos precisam dos dois conectados.",
     "NOT_FOUND": "Esse jogo não existe mais. Vamos atualizar.",
     "INVALID_GAME_ACTION": "Esse jogo mudou. Vamos atualizar.",
+    "GAME_ALREADY_OPEN": "Já existe um jogo aberto. Termine ou cancele antes de chamar de novo.",
+    "GAME_NOT_COMPLETE": "Seu par ainda está respondendo. Tente de novo quando terminarem.",
+    "INVALID_GAME_INDEX": "Essa pergunta mudou. Vamos atualizar.",
     "other": "Não deu para fazer isso agora. Tente de novo."
   }
 }

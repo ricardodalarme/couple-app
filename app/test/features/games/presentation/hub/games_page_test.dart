@@ -45,7 +45,7 @@ void main() {
 
     expect(find.text('Eu ou ele'), findsOneWidget);
     expect(find.text('Quanto você me conhece'), findsOneWidget);
-    expect(find.text('20 perguntas'), findsOneWidget);
+    expect(find.text('20 perguntas'), findsNothing);
     expect(find.text('Eu nunca, nós dois'), findsOneWidget);
     expect(find.text('Missão do encontro'), findsOneWidget);
     expect(
@@ -60,7 +60,10 @@ void main() {
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const GamesPage()));
     await tester.pump();
 
-    expect(find.text('PRECISA DOS DOIS'), findsNWidgets(GameKind.values.length));
+    expect(
+      find.text('PRECISA DOS DOIS'),
+      findsNWidgets(GameKind.values.where((kind) => kind.hasContent).length),
+    );
     expect(find.textContaining('Os jogos precisam dos dois'), findsOneWidget);
   });
 
@@ -74,8 +77,8 @@ void main() {
           session(GameKind.meOrYou, GameStatus.invited, invitedBy: 'partner'),
           session(GameKind.howWell, GameStatus.invited),
           session(GameKind.twentyQuestions, GameStatus.active),
-          session(GameKind.neverHaveWe, GameStatus.finished),
-          session(GameKind.mission, GameStatus.cancelled),
+          session(GameKind.neverHaveWe, GameStatus.active),
+          session(GameKind.mission, GameStatus.finished),
         ],
       ),
     );
@@ -88,6 +91,21 @@ void main() {
     expect(find.textContaining('Aguardando Marina'), findsOneWidget);
     expect(find.textContaining('Em andamento'), findsOneWidget);
     expect(find.textContaining('Terminado'), findsOneWidget);
+    expect(find.text('20 perguntas'), findsNothing);
+  });
+
+  testWidgets('shows a cancelled session on the hub tile', (tester) async {
+    final cubit = await loaded(
+      GamesOverview(
+        selfId: 'me',
+        hasPartner: true,
+        sessions: [session(GameKind.mission, GameStatus.cancelled)],
+      ),
+    );
+
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const GamesPage()));
+    await tester.pump();
+
     expect(find.textContaining('Convite cancelado'), findsOneWidget);
   });
 

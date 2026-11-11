@@ -48,9 +48,10 @@ final class const GamesOverview({
     return latest;
   }
 
-  /// Every game with the state of its latest session at [now].
+  /// Every playable game with the state of its latest session at [now].
   List<GameEntry> entries(DateTime now) => [
-    for (final kind in GameKind.values) _entry(kind, latestFor(kind), now),
+    for (final kind in GameKind.values)
+      if (kind.hasContent) _entry(kind, latestFor(kind), now),
   ];
 
   /// The invitation the partner sent that is still waiting for this person.

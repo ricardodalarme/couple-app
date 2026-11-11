@@ -38,4 +38,7 @@ enum GameKind(
 
   /// Whether every question is asked twice, once about the person and once as a guess.
   bool get asksTwice => flow == GameFlow.guess;
+
+  /// Whether the app has a content kind it can read for this game.
+  bool get hasContent => contentKind != null;
 }

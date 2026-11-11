@@ -72,6 +72,60 @@
     "text": "Both of you are in. This game's screens appear here.",
     "cancel": "End the game"
   },
+  "playing": {
+    "progress": "Question {current} of {total}",
+    "you": "You",
+    "partnerFallback": "Your partner",
+    "submit": "Send answer",
+    "skip": "Skip this one",
+    "guessAboutYou": "About you",
+    "guessAboutPartner": "About {name}",
+    "guessAboutPartnerFallback": "About your partner",
+    "guessPrompt": "What did {name} answer?",
+    "guessPromptFallback": "What did your partner answer?",
+    "guessYourGuess": "Your guess",
+    "answerHint": "Answer as you would.",
+    "guessHint": "Guess what they answered.",
+    "talkHint": "Write your answer. Only you can read it until you both finish.",
+    "talkNote": "Your partner only sees this after both of you answer."
+  },
+  "date": {
+    "start": "Start the date",
+    "startNote": "Do the mission together, then come back and tell how it was.",
+    "reflectionTitle": "How was it?",
+    "reflectionText": "Pick what happened. Your partner sees it only after you both answer."
+  },
+  "reflections(map)": {
+    "great": "It was great",
+    "ok": "It was nice",
+    "did_not_happen": "It did not happen",
+    "other": "No answer"
+  },
+  "waitingPartner": {
+    "title": "You answered everything",
+    "text": "Now it is just waiting for {name}. Nothing you wrote appears before both of you finish.",
+    "textFallback": "Now it is just waiting for your partner. Nothing you wrote appears before both of you finish.",
+    "answersTitle": "What you saved",
+    "checkAgain": "Check again",
+    "cancel": "End the game"
+  },
+  "finished": {
+    "title": "That was a good conversation",
+    "text": "No score, no winner. Just the two of you.",
+    "you": "You",
+    "yourGuess": "Your guess",
+    "partnerGuess": "Their guess",
+    "matched": "Matched",
+    "noAnswer": "No answer",
+    "both": "Both of you",
+    "agreed": "You both agreed",
+    "back": "Back"
+  },
+  "notFound": {
+    "title": "This game does not exist",
+    "text": "It may have changed or never existed. Go back and pick another one.",
+    "action": "Go back"
+  },
   "cancel": {
     "title": "End the game?",
     "text": "The game ends for both of you. You can start another later.",
@@ -91,6 +145,9 @@
     "NOT_PAIRED": "Games need both of you connected.",
     "NOT_FOUND": "That game no longer exists. We'll refresh.",
     "INVALID_GAME_ACTION": "That game changed. We'll refresh.",
+    "GAME_ALREADY_OPEN": "A game is already open. Finish or cancel it before inviting again.",
+    "GAME_NOT_COMPLETE": "Your partner is still answering. Try again when they finish.",
+    "INVALID_GAME_INDEX": "That question changed. We'll refresh.",
     "other": "Could not do that right now. Try again."
   }
 }
