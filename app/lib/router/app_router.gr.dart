@@ -999,6 +999,22 @@ class LogisticsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [LoveStylePage]
+class LoveStyleRoute extends PageRouteInfo<void> {
+  const LoveStyleRoute({List<PageRouteInfo>? children})
+    : super(LoveStyleRoute.name, initialChildren: children);
+
+  static const String name = 'LoveStyleRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const LoveStylePage());
+    },
+  );
+}
+
+/// generated route for
 /// [ManagePlusPage]
 class ManagePlusRoute extends PageRouteInfo<void> {
   const ManagePlusRoute({List<PageRouteInfo>? children})

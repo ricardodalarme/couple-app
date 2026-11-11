@@ -92,6 +92,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$language$pt language = Translations$language$pt.internal(_root);
   late final Translations$lists$pt lists = Translations$lists$pt.internal(_root);
   late final Translations$logistics$pt logistics = Translations$logistics$pt.internal(_root);
+  late final Translations$loveStyle$pt loveStyle = Translations$loveStyle$pt.internal(_root);
   late final Translations$memories$pt memories = Translations$memories$pt.internal(_root);
   late final Translations$mood$pt mood = Translations$mood$pt.internal(_root);
   late final Translations$need$pt need = Translations$need$pt.internal(_root);
@@ -2534,6 +2535,200 @@ class Translations$logistics$pt {
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
+  };
+}
+
+// Path: loveStyle
+class Translations$loveStyle$pt {
+  Translations$loveStyle$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'SÓ PARA VOCÊ'
+  String get entryLabel => 'SÓ PARA VOCÊ';
+
+  /// pt: 'Como eu me sinto querido(a)'
+  String get entryTitle => 'Como eu me sinto querido(a)';
+
+  /// pt: 'Seis perguntas rápidas para notar o que te faz sentir querido(a).'
+  String get entryText => 'Seis perguntas rápidas para notar o que te faz sentir querido(a).';
+
+  /// pt: 'Como eu me sinto querido(a)'
+  String get exerciseTitle => 'Como eu me sinto querido(a)';
+
+  /// pt: 'querido(a)'
+  String get exerciseHighlight => 'querido(a)';
+
+  /// pt: 'Seis perguntas rápidas, só para você.'
+  String get exerciseSubtitle => 'Seis perguntas rápidas, só para você.';
+
+  /// pt: 'Pergunta {current} de {total}'
+  String questionOf({required Object current, required Object total}) =>
+      'Pergunta ${current} de ${total}';
+
+  List<String> get questions => [
+    'O que mais faz você se sentir querido(a)?',
+    'Num dia difícil, o que mais te conforta?',
+    'O que você nota primeiro quando seu par demonstra carinho?',
+    'Qual desses gestos aquece seu coração?',
+    'O que te faz sentir importante para alguém?',
+    'Se pudesse escolher um gesto para hoje, qual seria?',
+  ];
+  Map<String, String> get options1 => {
+    'time': 'Passar um tempo junto, sem pressa.',
+    'words': 'Ouvir que sou importante.',
+    'acts': 'Ver que a pessoa me ajuda com algo.',
+    'gifts': 'Receber um presente pequeno, sem motivo.',
+    'touch': 'Um abraço demorado.',
+    'other': '',
+  };
+  Map<String, String> get options2 => {
+    'time': 'Ter alguém por perto, sem pressa de resolver.',
+    'words': 'Uma mensagem dizendo que estou no pensamento.',
+    'acts': 'Alguém assumir uma tarefa minha.',
+    'gifts': 'Um cuidado pequeno que chegou de surpresa.',
+    'touch': 'Um abraço bem apertado.',
+    'other': '',
+  };
+  Map<String, String> get options3 => {
+    'time': 'Quando a pessoa larga o celular para ficar comigo.',
+    'words': 'Quando a pessoa elogia algo que eu fiz.',
+    'acts': 'Quando a pessoa percebe o que eu preciso e faz.',
+    'gifts': 'Quando a pessoa lembra de algo que eu gosto.',
+    'touch': 'Quando a pessoa me toca de leve ao passar.',
+    'other': '',
+  };
+  Map<String, String> get options4 => {
+    'time': 'Um encontro tranquilo, só nós dois.',
+    'words': 'Uma conversa em que me sinto ouvido(a).',
+    'acts': 'Uma ajuda pequena numa tarefa.',
+    'gifts': 'Um presente simples que tem a ver comigo.',
+    'touch': 'Um carinho no cabelo ou na mão.',
+    'other': '',
+  };
+  Map<String, String> get options5 => {
+    'time': 'Quando alguém escolhe passar tempo comigo.',
+    'words': 'Quando alguém reconhece o que eu faço.',
+    'acts': 'Quando alguém facilita o meu dia.',
+    'gifts': 'Quando alguém lembra de mim com um detalhe.',
+    'touch': 'Quando alguém me abraça sem precisar falar.',
+    'other': '',
+  };
+  Map<String, String> get options6 => {
+    'time': 'Reservar uma noite livre para nós.',
+    'words': 'Escrever um recado de carinho.',
+    'acts': 'Resolver juntos uma tarefa chata.',
+    'gifts': 'Escolher um presente pequeno.',
+    'touch': 'Ficar de mãos dadas.',
+    'other': '',
+  };
+
+  /// pt: 'Próxima'
+  String get continueAction => 'Próxima';
+
+  /// pt: 'Ver resultado'
+  String get finishAction => 'Ver resultado';
+
+  /// pt: 'Voltar'
+  String get back => 'Voltar';
+
+  /// pt: 'Só você vê as respostas. Você escolhe se quer mostrar o resultado.'
+  String get privateNote => 'Só você vê as respostas. Você escolhe se quer mostrar o resultado.';
+
+  /// pt: 'O que faz você se sentir querido(a)'
+  String get resultTitle => 'O que faz você se sentir querido(a)';
+
+  /// pt: 'querido(a)'
+  String get resultHighlight => 'querido(a)';
+
+  /// pt: 'Uma descrição do que te faz sentir querido(a), do seu jeito.'
+  String get resultSubtitle => 'Uma descrição do que te faz sentir querido(a), do seu jeito.';
+
+  /// pt: 'O que mais combina com você'
+  String get topTag => 'O que mais combina com você';
+
+  Map<String, String> get descriptions => {
+    'time': 'Você se sente querido(a) quando tem tempo de verdade com quem gosta: sem pressa, sem telas, só a presença.',
+    'words': 'Você se sente querido(a) quando ouve, de forma sincera, o que a outra pessoa sente por você.',
+    'acts': 'Você se sente querido(a) quando alguém percebe o que você precisa e ajuda sem que você peça.',
+    'gifts': 'Você se sente querido(a) quando alguém lembra de você num detalhe pequeno, escolhido com carinho.',
+    'touch': 'Você se sente querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
+    'other': '',
+  };
+  Map<String, String> get shareDescriptions => {
+    'time': 'Eu me sinto querido(a) quando a gente passa um tempo junto, sem pressa e sem telas.',
+    'words': 'Eu me sinto querido(a) quando ouço, com sinceridade, o que você sente por mim.',
+    'acts': 'Eu me sinto querido(a) quando você percebe o que eu preciso e me ajuda sem eu pedir.',
+    'gifts': 'Eu me sinto querido(a) quando você lembra de mim num detalhe pequeno, escolhido com carinho.',
+    'touch': 'Eu me sinto querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
+    'other': '',
+  };
+
+  /// pt: 'Salvo só para você. Mostrar no widget do seu par é uma escolha sua, e você pode desfazer.'
+  String get resultPrivacyNote =>
+      'Salvo só para você. Mostrar no widget do seu par é uma escolha sua, e você pode desfazer.';
+
+  /// pt: 'Salvar no Meu manual'
+  String get saveManualAction => 'Salvar no Meu manual';
+
+  /// pt: 'Salvo no Meu manual'
+  String get savedManualAction => 'Salvo no Meu manual';
+
+  /// pt: 'Salvo no Meu manual.'
+  String get manualToast => 'Salvo no Meu manual.';
+
+  /// pt: 'Mostrar para {name}'
+  String shareAction({required Object name}) => 'Mostrar para ${name}';
+
+  /// pt: 'Tirar do widget dele(a)'
+  String get revokeAction => 'Tirar do widget dele(a)';
+
+  /// pt: 'Aparece no widget dele(a) se ele(a) permitir recados.'
+  String get shareToast => 'Aparece no widget dele(a) se ele(a) permitir recados.';
+
+  /// pt: 'Não aparece mais no widget dele(a).'
+  String get revokeToast => 'Não aparece mais no widget dele(a).';
+
+  /// pt: 'Quando vocês estiverem conectados, você pode mostrar isso no widget do seu par.'
+  String get shareSoloNote =>
+      'Quando vocês estiverem conectados, você pode mostrar isso no widget do seu par.';
+
+  /// pt: 'seu par'
+  String get partnerFallback => 'seu par';
+
+  /// pt: 'Não deu para verificar seu par agora.'
+  String get pairingErrorNote => 'Não deu para verificar seu par agora.';
+
+  /// pt: 'Tentar de novo'
+  String get retryPairing => 'Tentar de novo';
+
+  /// pt: 'Refazer o exercício'
+  String get retake => 'Refazer o exercício';
+
+  /// pt: 'Não deu para carregar'
+  String get loadErrorTitle => 'Não deu para carregar';
+
+  /// pt: 'Não deu para abrir seu resultado agora. Tente de novo.'
+  String get loadErrorText => 'Não deu para abrir seu resultado agora. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para salvar agora. Suas respostas continuam aqui.',
+  };
+  Map<String, String> get manualErrors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para salvar no Meu manual agora. Tente de novo.',
+  };
+  Map<String, String> get shareErrors => {
+    'NOT_PAIRED': 'Você ainda não tem um par conectado.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para mostrar agora. Tente de novo.',
+  };
+  Map<String, String> get revokeErrors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para tirar do widget agora. Tente de novo.',
   };
 }
 
@@ -8098,6 +8293,112 @@ extension on Translations {
           'logistics.errorText' => 'A lista continua salva. Tente de novo.',
           'logistics.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'logistics.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'loveStyle.entryLabel' => 'SÓ PARA VOCÊ',
+          'loveStyle.entryTitle' => 'Como eu me sinto querido(a)',
+          'loveStyle.entryText' =>
+            'Seis perguntas rápidas para notar o que te faz sentir querido(a).',
+          'loveStyle.exerciseTitle' => 'Como eu me sinto querido(a)',
+          'loveStyle.exerciseHighlight' => 'querido(a)',
+          'loveStyle.exerciseSubtitle' => 'Seis perguntas rápidas, só para você.',
+          'loveStyle.questionOf' => ({
+            required Object current,
+            required Object total,
+          }) => 'Pergunta ${current} de ${total}',
+          'loveStyle.questions.0' => 'O que mais faz você se sentir querido(a)?',
+          'loveStyle.questions.1' => 'Num dia difícil, o que mais te conforta?',
+          'loveStyle.questions.2' => 'O que você nota primeiro quando seu par demonstra carinho?',
+          'loveStyle.questions.3' => 'Qual desses gestos aquece seu coração?',
+          'loveStyle.questions.4' => 'O que te faz sentir importante para alguém?',
+          'loveStyle.questions.5' => 'Se pudesse escolher um gesto para hoje, qual seria?',
+          'loveStyle.options1.time' => 'Passar um tempo junto, sem pressa.',
+          'loveStyle.options1.words' => 'Ouvir que sou importante.',
+          'loveStyle.options1.acts' => 'Ver que a pessoa me ajuda com algo.',
+          'loveStyle.options1.gifts' => 'Receber um presente pequeno, sem motivo.',
+          'loveStyle.options1.touch' => 'Um abraço demorado.',
+          'loveStyle.options1.other' => '',
+          'loveStyle.options2.time' => 'Ter alguém por perto, sem pressa de resolver.',
+          'loveStyle.options2.words' => 'Uma mensagem dizendo que estou no pensamento.',
+          'loveStyle.options2.acts' => 'Alguém assumir uma tarefa minha.',
+          'loveStyle.options2.gifts' => 'Um cuidado pequeno que chegou de surpresa.',
+          'loveStyle.options2.touch' => 'Um abraço bem apertado.',
+          'loveStyle.options2.other' => '',
+          'loveStyle.options3.time' => 'Quando a pessoa larga o celular para ficar comigo.',
+          'loveStyle.options3.words' => 'Quando a pessoa elogia algo que eu fiz.',
+          'loveStyle.options3.acts' => 'Quando a pessoa percebe o que eu preciso e faz.',
+          'loveStyle.options3.gifts' => 'Quando a pessoa lembra de algo que eu gosto.',
+          'loveStyle.options3.touch' => 'Quando a pessoa me toca de leve ao passar.',
+          'loveStyle.options3.other' => '',
+          'loveStyle.options4.time' => 'Um encontro tranquilo, só nós dois.',
+          'loveStyle.options4.words' => 'Uma conversa em que me sinto ouvido(a).',
+          'loveStyle.options4.acts' => 'Uma ajuda pequena numa tarefa.',
+          'loveStyle.options4.gifts' => 'Um presente simples que tem a ver comigo.',
+          'loveStyle.options4.touch' => 'Um carinho no cabelo ou na mão.',
+          'loveStyle.options4.other' => '',
+          'loveStyle.options5.time' => 'Quando alguém escolhe passar tempo comigo.',
+          'loveStyle.options5.words' => 'Quando alguém reconhece o que eu faço.',
+          'loveStyle.options5.acts' => 'Quando alguém facilita o meu dia.',
+          'loveStyle.options5.gifts' => 'Quando alguém lembra de mim com um detalhe.',
+          'loveStyle.options5.touch' => 'Quando alguém me abraça sem precisar falar.',
+          'loveStyle.options5.other' => '',
+          'loveStyle.options6.time' => 'Reservar uma noite livre para nós.',
+          'loveStyle.options6.words' => 'Escrever um recado de carinho.',
+          'loveStyle.options6.acts' => 'Resolver juntos uma tarefa chata.',
+          'loveStyle.options6.gifts' => 'Escolher um presente pequeno.',
+          'loveStyle.options6.touch' => 'Ficar de mãos dadas.',
+          'loveStyle.options6.other' => '',
+          'loveStyle.continueAction' => 'Próxima',
+          'loveStyle.finishAction' => 'Ver resultado',
+          'loveStyle.back' => 'Voltar',
+          'loveStyle.privateNote' =>
+            'Só você vê as respostas. Você escolhe se quer mostrar o resultado.',
+          'loveStyle.resultTitle' => 'O que faz você se sentir querido(a)',
+          'loveStyle.resultHighlight' => 'querido(a)',
+          'loveStyle.resultSubtitle' =>
+            'Uma descrição do que te faz sentir querido(a), do seu jeito.',
+          'loveStyle.topTag' => 'O que mais combina com você',
+          'loveStyle.descriptions.time' => 'Você se sente querido(a) quando tem tempo de verdade com quem gosta: sem pressa, sem telas, só a presença.',
+          'loveStyle.descriptions.words' => 'Você se sente querido(a) quando ouve, de forma sincera, o que a outra pessoa sente por você.',
+          'loveStyle.descriptions.acts' => 'Você se sente querido(a) quando alguém percebe o que você precisa e ajuda sem que você peça.',
+          'loveStyle.descriptions.gifts' => 'Você se sente querido(a) quando alguém lembra de você num detalhe pequeno, escolhido com carinho.',
+          'loveStyle.descriptions.touch' => 'Você se sente querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
+          'loveStyle.descriptions.other' => '',
+          'loveStyle.shareDescriptions.time' =>
+            'Eu me sinto querido(a) quando a gente passa um tempo junto, sem pressa e sem telas.',
+          'loveStyle.shareDescriptions.words' =>
+            'Eu me sinto querido(a) quando ouço, com sinceridade, o que você sente por mim.',
+          'loveStyle.shareDescriptions.acts' =>
+            'Eu me sinto querido(a) quando você percebe o que eu preciso e me ajuda sem eu pedir.',
+          'loveStyle.shareDescriptions.gifts' => 'Eu me sinto querido(a) quando você lembra de mim num detalhe pequeno, escolhido com carinho.',
+          'loveStyle.shareDescriptions.touch' => 'Eu me sinto querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
+          'loveStyle.shareDescriptions.other' => '',
+          'loveStyle.resultPrivacyNote' => 'Salvo só para você. Mostrar no widget do seu par é uma escolha sua, e você pode desfazer.',
+          'loveStyle.saveManualAction' => 'Salvar no Meu manual',
+          'loveStyle.savedManualAction' => 'Salvo no Meu manual',
+          'loveStyle.manualToast' => 'Salvo no Meu manual.',
+          'loveStyle.shareAction' => ({required Object name}) => 'Mostrar para ${name}',
+          'loveStyle.revokeAction' => 'Tirar do widget dele(a)',
+          'loveStyle.shareToast' => 'Aparece no widget dele(a) se ele(a) permitir recados.',
+          'loveStyle.revokeToast' => 'Não aparece mais no widget dele(a).',
+          'loveStyle.shareSoloNote' =>
+            'Quando vocês estiverem conectados, você pode mostrar isso no widget do seu par.',
+          'loveStyle.partnerFallback' => 'seu par',
+          'loveStyle.pairingErrorNote' => 'Não deu para verificar seu par agora.',
+          'loveStyle.retryPairing' => 'Tentar de novo',
+          'loveStyle.retake' => 'Refazer o exercício',
+          'loveStyle.loadErrorTitle' => 'Não deu para carregar',
+          'loveStyle.loadErrorText' => 'Não deu para abrir seu resultado agora. Tente de novo.',
+          'loveStyle.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'loveStyle.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
+          'loveStyle.manualErrors.RATE_LIMITED' =>
+            'Muitas tentativas seguidas. Espere um instante.',
+          'loveStyle.manualErrors.other' =>
+            'Não deu para salvar no Meu manual agora. Tente de novo.',
+          'loveStyle.shareErrors.NOT_PAIRED' => 'Você ainda não tem um par conectado.',
+          'loveStyle.shareErrors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'loveStyle.shareErrors.other' => 'Não deu para mostrar agora. Tente de novo.',
+          'loveStyle.revokeErrors.RATE_LIMITED' =>
+            'Muitas tentativas seguidas. Espere um instante.',
+          'loveStyle.revokeErrors.other' => 'Não deu para tirar do widget agora. Tente de novo.',
           'memories.title' => 'Memórias',
           'memories.historyLabel' => 'NOSSA HISTÓRIA',
           'memories.historyTitle' => 'Nossa história',
@@ -8186,6 +8487,9 @@ extension on Translations {
           'mood.partnerStressed' => ({
             required Object name,
           }) => '${name} está com a cabeça cheia hoje',
+          _ => null,
+        } ??
+        switch (path) {
           'mood.partnerLoving' => ({
             required Object name,
           }) => '${name} está com o coração quentinho hoje',
@@ -8286,9 +8590,6 @@ extension on Translations {
           'notificationPreferences.days.5' => 'Sexta',
           'notificationPreferences.days.6' => 'Sábado',
           'notificationPreferences.hourFormat' => ({required Object hour}) => '${hour}:00',
-          _ => null,
-        } ??
-        switch (path) {
           'notificationPreferences.previewTitle' => 'Como a notificação aparece',
           'notificationPreferences.previewText' => 'Sempre curta e sem detalhes pessoais.',
           'notificationPreferences.loadErrorTitle' => 'Não deu para abrir suas preferências',
@@ -8751,6 +9052,9 @@ extension on Translations {
           'relationshipChanged.optionTogether' => 'Está tudo bem',
           'relationshipChanged.continueLabel' => 'Continuar',
           'relationshipChanged.saved' => 'Salvo',
+          _ => null,
+        } ??
+        switch (path) {
           'relationshipChanged.errors.NETWORK' => 'Sem conexão. Tente de novo.',
           'relationshipChanged.errors.other' => 'Não deu para salvar agora. Tente de novo.',
           'relationshipSettings.title' => 'Relacionamento',
@@ -8857,9 +9161,6 @@ extension on Translations {
           'repair.guided.stepHints.2' => 'Algo pequeno e sincero.',
           'repair.guided.private' => 'Só você vê isto. Nada é enviado ao seu par.',
           'repair.guided.next' => 'Continuar',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.guided.back' => 'Voltar',
           'repair.guided.later' => 'Guardar para depois',
           'repair.guided.savedLater' => 'Guardado. Você continua de onde parou.',
@@ -9327,6 +9628,9 @@ extension on Translations {
           'today.months.2' => 'março',
           'today.months.3' => 'abril',
           'today.months.4' => 'maio',
+          _ => null,
+        } ??
+        switch (path) {
           'today.months.5' => 'junho',
           'today.months.6' => 'julho',
           'today.months.7' => 'agosto',
@@ -9471,9 +9775,6 @@ extension on Translations {
           'welcome.headline' => 'Pequenas coisas boas, ditas em voz alta.',
           'welcome.headlineHighlight' => 'ditas em voz alta',
           'welcome.subtitle' => 'Um jeito leve de notar o que o outro faz de bom, a cada semana.',
-          _ => null,
-        } ??
-        switch (path) {
           'welcome.start' => 'Começar',
           'welcome.haveAccount' => 'Já tenho conta',
           'welcome.debugSignIn' => 'Entrar (debug)',

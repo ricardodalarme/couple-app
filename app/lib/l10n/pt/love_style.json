@@ -1,0 +1,121 @@
+{
+  "entryLabel": "SÓ PARA VOCÊ",
+  "entryTitle": "Como eu me sinto querido(a)",
+  "entryText": "Seis perguntas rápidas para notar o que te faz sentir querido(a).",
+  "exerciseTitle": "Como eu me sinto querido(a)",
+  "exerciseHighlight": "querido(a)",
+  "exerciseSubtitle": "Seis perguntas rápidas, só para você.",
+  "questionOf": "Pergunta {current} de {total}",
+  "questions": [
+    "O que mais faz você se sentir querido(a)?",
+    "Num dia difícil, o que mais te conforta?",
+    "O que você nota primeiro quando seu par demonstra carinho?",
+    "Qual desses gestos aquece seu coração?",
+    "O que te faz sentir importante para alguém?",
+    "Se pudesse escolher um gesto para hoje, qual seria?"
+  ],
+  "options1(map)": {
+    "time": "Passar um tempo junto, sem pressa.",
+    "words": "Ouvir que sou importante.",
+    "acts": "Ver que a pessoa me ajuda com algo.",
+    "gifts": "Receber um presente pequeno, sem motivo.",
+    "touch": "Um abraço demorado.",
+    "other": ""
+  },
+  "options2(map)": {
+    "time": "Ter alguém por perto, sem pressa de resolver.",
+    "words": "Uma mensagem dizendo que estou no pensamento.",
+    "acts": "Alguém assumir uma tarefa minha.",
+    "gifts": "Um cuidado pequeno que chegou de surpresa.",
+    "touch": "Um abraço bem apertado.",
+    "other": ""
+  },
+  "options3(map)": {
+    "time": "Quando a pessoa larga o celular para ficar comigo.",
+    "words": "Quando a pessoa elogia algo que eu fiz.",
+    "acts": "Quando a pessoa percebe o que eu preciso e faz.",
+    "gifts": "Quando a pessoa lembra de algo que eu gosto.",
+    "touch": "Quando a pessoa me toca de leve ao passar.",
+    "other": ""
+  },
+  "options4(map)": {
+    "time": "Um encontro tranquilo, só nós dois.",
+    "words": "Uma conversa em que me sinto ouvido(a).",
+    "acts": "Uma ajuda pequena numa tarefa.",
+    "gifts": "Um presente simples que tem a ver comigo.",
+    "touch": "Um carinho no cabelo ou na mão.",
+    "other": ""
+  },
+  "options5(map)": {
+    "time": "Quando alguém escolhe passar tempo comigo.",
+    "words": "Quando alguém reconhece o que eu faço.",
+    "acts": "Quando alguém facilita o meu dia.",
+    "gifts": "Quando alguém lembra de mim com um detalhe.",
+    "touch": "Quando alguém me abraça sem precisar falar.",
+    "other": ""
+  },
+  "options6(map)": {
+    "time": "Reservar uma noite livre para nós.",
+    "words": "Escrever um recado de carinho.",
+    "acts": "Resolver juntos uma tarefa chata.",
+    "gifts": "Escolher um presente pequeno.",
+    "touch": "Ficar de mãos dadas.",
+    "other": ""
+  },
+  "continueAction": "Próxima",
+  "finishAction": "Ver resultado",
+  "back": "Voltar",
+  "privateNote": "Só você vê as respostas. Você escolhe se quer mostrar o resultado.",
+  "resultTitle": "O que faz você se sentir querido(a)",
+  "resultHighlight": "querido(a)",
+  "resultSubtitle": "Uma descrição do que te faz sentir querido(a), do seu jeito.",
+  "topTag": "O que mais combina com você",
+  "descriptions(map)": {
+    "time": "Você se sente querido(a) quando tem tempo de verdade com quem gosta: sem pressa, sem telas, só a presença.",
+    "words": "Você se sente querido(a) quando ouve, de forma sincera, o que a outra pessoa sente por você.",
+    "acts": "Você se sente querido(a) quando alguém percebe o que você precisa e ajuda sem que você peça.",
+    "gifts": "Você se sente querido(a) quando alguém lembra de você num detalhe pequeno, escolhido com carinho.",
+    "touch": "Você se sente querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.",
+    "other": ""
+  },
+  "shareDescriptions(map)": {
+    "time": "Eu me sinto querido(a) quando a gente passa um tempo junto, sem pressa e sem telas.",
+    "words": "Eu me sinto querido(a) quando ouço, com sinceridade, o que você sente por mim.",
+    "acts": "Eu me sinto querido(a) quando você percebe o que eu preciso e me ajuda sem eu pedir.",
+    "gifts": "Eu me sinto querido(a) quando você lembra de mim num detalhe pequeno, escolhido com carinho.",
+    "touch": "Eu me sinto querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.",
+    "other": ""
+  },
+  "resultPrivacyNote": "Salvo só para você. Mostrar no widget do seu par é uma escolha sua, e você pode desfazer.",
+  "saveManualAction": "Salvar no Meu manual",
+  "savedManualAction": "Salvo no Meu manual",
+  "manualToast": "Salvo no Meu manual.",
+  "shareAction": "Mostrar para {name}",
+  "revokeAction": "Tirar do widget dele(a)",
+  "shareToast": "Aparece no widget dele(a) se ele(a) permitir recados.",
+  "revokeToast": "Não aparece mais no widget dele(a).",
+  "shareSoloNote": "Quando vocês estiverem conectados, você pode mostrar isso no widget do seu par.",
+  "partnerFallback": "seu par",
+  "pairingErrorNote": "Não deu para verificar seu par agora.",
+  "retryPairing": "Tentar de novo",
+  "retake": "Refazer o exercício",
+  "loadErrorTitle": "Não deu para carregar",
+  "loadErrorText": "Não deu para abrir seu resultado agora. Tente de novo.",
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para salvar agora. Suas respostas continuam aqui."
+  },
+  "manualErrors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para salvar no Meu manual agora. Tente de novo."
+  },
+  "shareErrors(map)": {
+    "NOT_PAIRED": "Você ainda não tem um par conectado.",
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para mostrar agora. Tente de novo."
+  },
+  "revokeErrors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para tirar do widget agora. Tente de novo."
+  }
+}

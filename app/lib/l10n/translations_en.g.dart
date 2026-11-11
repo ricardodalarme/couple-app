@@ -114,6 +114,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$logistics$en logistics = _Translations$logistics$en._(_root);
   @override
+  late final _Translations$loveStyle$en loveStyle = _Translations$loveStyle$en._(_root);
+  @override
   late final _Translations$memories$en memories = _Translations$memories$en._(_root);
   @override
   late final _Translations$mood$en mood = _Translations$mood$en._(_root);
@@ -2080,6 +2082,180 @@ class _Translations$logistics$en extends Translations$logistics$pt {
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t do that right now. Try again.',
+  };
+}
+
+// Path: loveStyle
+class _Translations$loveStyle$en extends Translations$loveStyle$pt {
+  _Translations$loveStyle$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get entryLabel => 'ONLY FOR YOU';
+  @override
+  String get entryTitle => 'What makes me feel loved';
+  @override
+  String get entryText => 'Six quick questions to notice what makes you feel loved.';
+  @override
+  String get exerciseTitle => 'How I feel loved';
+  @override
+  String get exerciseHighlight => 'loved';
+  @override
+  String get exerciseSubtitle => 'Six quick questions, just for you.';
+  @override
+  String questionOf({required Object current, required Object total}) =>
+      'Question ${current} of ${total}';
+  @override
+  List<String> get questions => [
+    'What makes you feel loved the most?',
+    'On a hard day, what comforts you the most?',
+    'What do you notice first when your partner shows care?',
+    'Which of these gestures warms your heart?',
+    'What makes you feel important to someone?',
+    'If you could choose one gesture for today, what would it be?',
+  ];
+  @override
+  Map<String, String> get options1 => {
+    'time': 'Spending unhurried time together.',
+    'words': 'Hearing that I matter.',
+    'acts': 'Seeing the person help me with something.',
+    'gifts': 'Getting a small gift for no reason.',
+    'touch': 'A long hug.',
+    'other': '',
+  };
+  @override
+  Map<String, String> get options2 => {
+    'time': 'Having someone nearby, with no rush to fix it.',
+    'words': 'A message saying I\'m on their mind.',
+    'acts': 'Someone taking a task off my hands.',
+    'gifts': 'A small care that arrived by surprise.',
+    'touch': 'A tight hug.',
+    'other': '',
+  };
+  @override
+  Map<String, String> get options3 => {
+    'time': 'When the person puts the phone down to be with me.',
+    'words': 'When the person praises something I did.',
+    'acts': 'When the person notices what I need and does it.',
+    'gifts': 'When the person remembers something I like.',
+    'touch': 'When the person touches me lightly as they pass.',
+    'other': '',
+  };
+  @override
+  Map<String, String> get options4 => {
+    'time': 'A quiet date, just the two of us.',
+    'words': 'A conversation where I feel heard.',
+    'acts': 'A small help with a task.',
+    'gifts': 'A simple gift that has to do with me.',
+    'touch': 'A caress on my hair or hand.',
+    'other': '',
+  };
+  @override
+  Map<String, String> get options5 => {
+    'time': 'When someone chooses to spend time with me.',
+    'words': 'When someone acknowledges what I do.',
+    'acts': 'When someone makes my day easier.',
+    'gifts': 'When someone remembers me with a detail.',
+    'touch': 'When someone hugs me without needing to speak.',
+    'other': '',
+  };
+  @override
+  Map<String, String> get options6 => {
+    'time': 'Saving a free evening for us.',
+    'words': 'Writing a loving note.',
+    'acts': 'Tackling a boring task together.',
+    'gifts': 'Picking a small gift.',
+    'touch': 'Holding hands.',
+    'other': '',
+  };
+  @override
+  String get continueAction => 'Next';
+  @override
+  String get finishAction => 'See result';
+  @override
+  String get back => 'Back';
+  @override
+  String get privateNote => 'Only you see your answers. You choose whether to show the result.';
+  @override
+  String get resultTitle => 'What makes you feel loved';
+  @override
+  String get resultHighlight => 'loved';
+  @override
+  String get resultSubtitle => 'A description of what makes you feel loved, in your own way.';
+  @override
+  String get topTag => 'What fits you best';
+  @override
+  Map<String, String> get descriptions => {
+    'time': 'You feel loved when you have real time with someone you care about: unhurried, no screens, just presence.',
+    'words': 'You feel loved when you hear, honestly, what the other person feels for you.',
+    'acts': 'You feel loved when someone notices what you need and helps without being asked.',
+    'gifts': 'You feel loved when someone remembers you in a small detail, chosen with care.',
+    'touch': 'You feel loved when a hug, a held hand or a caress says what words cannot.',
+    'other': '',
+  };
+  @override
+  Map<String, String> get shareDescriptions => {
+    'time': 'I feel loved when we spend unhurried time together, with no screens.',
+    'words': 'I feel loved when I hear, honestly, what you feel for me.',
+    'acts': 'I feel loved when you notice what I need and help without me asking.',
+    'gifts': 'I feel loved when you remember me in a small detail, chosen with care.',
+    'touch': 'I feel loved when a hug, a held hand or a caress says what words cannot.',
+    'other': '',
+  };
+  @override
+  String get resultPrivacyNote =>
+      'Saved only for you. Showing it on your partner\'s widget is your choice, and you can undo it.';
+  @override
+  String get saveManualAction => 'Save to My manual';
+  @override
+  String get savedManualAction => 'Saved to My manual';
+  @override
+  String get manualToast => 'Saved to My manual.';
+  @override
+  String shareAction({required Object name}) => 'Show ${name}';
+  @override
+  String get revokeAction => 'Remove from their widget';
+  @override
+  String get shareToast => 'It appears on their widget if they allow notes.';
+  @override
+  String get revokeToast => 'It\'s no longer on their widget.';
+  @override
+  String get shareSoloNote =>
+      'When you\'re connected with a partner, you can show this on their widget.';
+  @override
+  String get partnerFallback => 'your partner';
+  @override
+  String get pairingErrorNote => 'Couldn\'t check your partner right now.';
+  @override
+  String get retryPairing => 'Try again';
+  @override
+  String get retake => 'Take it again';
+  @override
+  String get loadErrorTitle => 'Couldn\'t load';
+  @override
+  String get loadErrorText => 'Couldn\'t open your result right now. Try again.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t save right now. Your answers are still here.',
+  };
+  @override
+  Map<String, String> get manualErrors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t save to My manual right now. Try again.',
+  };
+  @override
+  Map<String, String> get shareErrors => {
+    'NOT_PAIRED': 'You don\'t have a connected partner yet.',
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t show it right now. Try again.',
+  };
+  @override
+  Map<String, String> get revokeErrors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t remove it from their widget right now. Try again.',
   };
 }
 
@@ -6668,6 +6844,115 @@ extension on TranslationsEn {
           'logistics.errorText' => 'The list is still saved. Try again.',
           'logistics.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'logistics.errors.other' => 'Couldn\'t do that right now. Try again.',
+          'loveStyle.entryLabel' => 'ONLY FOR YOU',
+          'loveStyle.entryTitle' => 'What makes me feel loved',
+          'loveStyle.entryText' => 'Six quick questions to notice what makes you feel loved.',
+          'loveStyle.exerciseTitle' => 'How I feel loved',
+          'loveStyle.exerciseHighlight' => 'loved',
+          'loveStyle.exerciseSubtitle' => 'Six quick questions, just for you.',
+          'loveStyle.questionOf' => ({
+            required Object current,
+            required Object total,
+          }) => 'Question ${current} of ${total}',
+          'loveStyle.questions.0' => 'What makes you feel loved the most?',
+          'loveStyle.questions.1' => 'On a hard day, what comforts you the most?',
+          'loveStyle.questions.2' => 'What do you notice first when your partner shows care?',
+          'loveStyle.questions.3' => 'Which of these gestures warms your heart?',
+          'loveStyle.questions.4' => 'What makes you feel important to someone?',
+          'loveStyle.questions.5' => 'If you could choose one gesture for today, what would it be?',
+          'loveStyle.options1.time' => 'Spending unhurried time together.',
+          'loveStyle.options1.words' => 'Hearing that I matter.',
+          'loveStyle.options1.acts' => 'Seeing the person help me with something.',
+          'loveStyle.options1.gifts' => 'Getting a small gift for no reason.',
+          'loveStyle.options1.touch' => 'A long hug.',
+          'loveStyle.options1.other' => '',
+          'loveStyle.options2.time' => 'Having someone nearby, with no rush to fix it.',
+          'loveStyle.options2.words' => 'A message saying I\'m on their mind.',
+          'loveStyle.options2.acts' => 'Someone taking a task off my hands.',
+          'loveStyle.options2.gifts' => 'A small care that arrived by surprise.',
+          'loveStyle.options2.touch' => 'A tight hug.',
+          'loveStyle.options2.other' => '',
+          'loveStyle.options3.time' => 'When the person puts the phone down to be with me.',
+          'loveStyle.options3.words' => 'When the person praises something I did.',
+          'loveStyle.options3.acts' => 'When the person notices what I need and does it.',
+          'loveStyle.options3.gifts' => 'When the person remembers something I like.',
+          'loveStyle.options3.touch' => 'When the person touches me lightly as they pass.',
+          'loveStyle.options3.other' => '',
+          'loveStyle.options4.time' => 'A quiet date, just the two of us.',
+          'loveStyle.options4.words' => 'A conversation where I feel heard.',
+          'loveStyle.options4.acts' => 'A small help with a task.',
+          'loveStyle.options4.gifts' => 'A simple gift that has to do with me.',
+          'loveStyle.options4.touch' => 'A caress on my hair or hand.',
+          'loveStyle.options4.other' => '',
+          'loveStyle.options5.time' => 'When someone chooses to spend time with me.',
+          'loveStyle.options5.words' => 'When someone acknowledges what I do.',
+          'loveStyle.options5.acts' => 'When someone makes my day easier.',
+          'loveStyle.options5.gifts' => 'When someone remembers me with a detail.',
+          'loveStyle.options5.touch' => 'When someone hugs me without needing to speak.',
+          'loveStyle.options5.other' => '',
+          'loveStyle.options6.time' => 'Saving a free evening for us.',
+          'loveStyle.options6.words' => 'Writing a loving note.',
+          'loveStyle.options6.acts' => 'Tackling a boring task together.',
+          'loveStyle.options6.gifts' => 'Picking a small gift.',
+          'loveStyle.options6.touch' => 'Holding hands.',
+          'loveStyle.options6.other' => '',
+          'loveStyle.continueAction' => 'Next',
+          'loveStyle.finishAction' => 'See result',
+          'loveStyle.back' => 'Back',
+          'loveStyle.privateNote' =>
+            'Only you see your answers. You choose whether to show the result.',
+          'loveStyle.resultTitle' => 'What makes you feel loved',
+          'loveStyle.resultHighlight' => 'loved',
+          'loveStyle.resultSubtitle' =>
+            'A description of what makes you feel loved, in your own way.',
+          'loveStyle.topTag' => 'What fits you best',
+          'loveStyle.descriptions.time' => 'You feel loved when you have real time with someone you care about: unhurried, no screens, just presence.',
+          'loveStyle.descriptions.words' =>
+            'You feel loved when you hear, honestly, what the other person feels for you.',
+          'loveStyle.descriptions.acts' =>
+            'You feel loved when someone notices what you need and helps without being asked.',
+          'loveStyle.descriptions.gifts' =>
+            'You feel loved when someone remembers you in a small detail, chosen with care.',
+          'loveStyle.descriptions.touch' =>
+            'You feel loved when a hug, a held hand or a caress says what words cannot.',
+          'loveStyle.descriptions.other' => '',
+          'loveStyle.shareDescriptions.time' =>
+            'I feel loved when we spend unhurried time together, with no screens.',
+          'loveStyle.shareDescriptions.words' =>
+            'I feel loved when I hear, honestly, what you feel for me.',
+          'loveStyle.shareDescriptions.acts' =>
+            'I feel loved when you notice what I need and help without me asking.',
+          'loveStyle.shareDescriptions.gifts' =>
+            'I feel loved when you remember me in a small detail, chosen with care.',
+          'loveStyle.shareDescriptions.touch' =>
+            'I feel loved when a hug, a held hand or a caress says what words cannot.',
+          'loveStyle.shareDescriptions.other' => '',
+          'loveStyle.resultPrivacyNote' => 'Saved only for you. Showing it on your partner\'s widget is your choice, and you can undo it.',
+          'loveStyle.saveManualAction' => 'Save to My manual',
+          'loveStyle.savedManualAction' => 'Saved to My manual',
+          'loveStyle.manualToast' => 'Saved to My manual.',
+          'loveStyle.shareAction' => ({required Object name}) => 'Show ${name}',
+          'loveStyle.revokeAction' => 'Remove from their widget',
+          'loveStyle.shareToast' => 'It appears on their widget if they allow notes.',
+          'loveStyle.revokeToast' => 'It\'s no longer on their widget.',
+          'loveStyle.shareSoloNote' =>
+            'When you\'re connected with a partner, you can show this on their widget.',
+          'loveStyle.partnerFallback' => 'your partner',
+          'loveStyle.pairingErrorNote' => 'Couldn\'t check your partner right now.',
+          'loveStyle.retryPairing' => 'Try again',
+          'loveStyle.retake' => 'Take it again',
+          'loveStyle.loadErrorTitle' => 'Couldn\'t load',
+          'loveStyle.loadErrorText' => 'Couldn\'t open your result right now. Try again.',
+          'loveStyle.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'loveStyle.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
+          'loveStyle.manualErrors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'loveStyle.manualErrors.other' => 'Couldn\'t save to My manual right now. Try again.',
+          'loveStyle.shareErrors.NOT_PAIRED' => 'You don\'t have a connected partner yet.',
+          'loveStyle.shareErrors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'loveStyle.shareErrors.other' => 'Couldn\'t show it right now. Try again.',
+          'loveStyle.revokeErrors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'loveStyle.revokeErrors.other' =>
+            'Couldn\'t remove it from their widget right now. Try again.',
           'memories.title' => 'Memories',
           'memories.historyLabel' => 'OUR HISTORY',
           'memories.historyTitle' => 'Our history',
@@ -6755,6 +7040,9 @@ extension on TranslationsEn {
           'mood.partnerStressed' => ({
             required Object name,
           }) => '${name} has a lot on their mind today',
+          _ => null,
+        } ??
+        switch (path) {
           'mood.partnerLoving' => ({required Object name}) => '${name} is feeling tender today',
           'mood.partnerPlayful' => ({required Object name}) => '${name} is in a playful mood today',
           'mood.partnerNeedListen' => 'What helps: just listening.',
@@ -6851,9 +7139,6 @@ extension on TranslationsEn {
           'notificationPreferences.days.5' => 'Friday',
           'notificationPreferences.days.6' => 'Saturday',
           'notificationPreferences.hourFormat' => ({required Object hour}) => '${hour}:00',
-          _ => null,
-        } ??
-        switch (path) {
           'notificationPreferences.previewTitle' => 'How a notification looks',
           'notificationPreferences.previewText' => 'Always short, with no personal details.',
           'notificationPreferences.loadErrorTitle' => 'Couldn\'t open your preferences',
@@ -7315,6 +7600,9 @@ extension on TranslationsEn {
           'relationshipChanged.optionTogether' => 'Everything is fine',
           'relationshipChanged.continueLabel' => 'Continue',
           'relationshipChanged.saved' => 'Saved',
+          _ => null,
+        } ??
+        switch (path) {
           'relationshipChanged.errors.NETWORK' => 'No connection. Try again.',
           'relationshipChanged.errors.other' => 'Could not save right now. Try again.',
           'relationshipSettings.title' => 'Relationship',
@@ -7422,9 +7710,6 @@ extension on TranslationsEn {
           'repair.guided.stepHints.2' => 'Something small and sincere.',
           'repair.guided.private' => 'Only you see this. Nothing is sent to your partner.',
           'repair.guided.next' => 'Continue',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.guided.back' => 'Back',
           'repair.guided.later' => 'Save for later',
           'repair.guided.savedLater' => 'Saved. You\'ll pick up where you left off.',
@@ -7887,6 +8172,9 @@ extension on TranslationsEn {
           'today.months.2' => 'March',
           'today.months.3' => 'April',
           'today.months.4' => 'May',
+          _ => null,
+        } ??
+        switch (path) {
           'today.months.5' => 'June',
           'today.months.6' => 'July',
           'today.months.7' => 'August',
@@ -8031,9 +8319,6 @@ extension on TranslationsEn {
           'welcome.headline' => 'Small good things, said out loud.',
           'welcome.headlineHighlight' => 'said out loud',
           'welcome.subtitle' => 'A light way to notice what the other does well, every week.',
-          _ => null,
-        } ??
-        switch (path) {
           'welcome.start' => 'Get started',
           'welcome.haveAccount' => 'I already have an account',
           'welcome.debugSignIn' => 'Sign in (debug)',

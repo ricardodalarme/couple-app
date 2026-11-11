@@ -1,0 +1,13 @@
+query LoveStyleManualEntry($authorId: UUID!) {
+  manualEntriesCollection(
+    filter: { key: { eq: "loved" }, authorId: { eq: $authorId } }
+    first: 1
+  ) {
+    edges {
+      node {
+        id
+        value
+      }
+    }
+  }
+}

@@ -34,6 +34,7 @@ import 'package:flutter_bloc_starter/features/home/presentation/home/home_page.d
 import 'package:flutter_bloc_starter/features/ideas/presentation/detail/idea_detail_page.dart';
 import 'package:flutter_bloc_starter/features/lists/presentation/detail/list_detail_page.dart';
 import 'package:flutter_bloc_starter/features/lists/presentation/lists/lists_page.dart';
+import 'package:flutter_bloc_starter/features/love_style/presentation/exercise/love_style_page.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/memories_page.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/places/place_detail_page.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/places/places_page.dart';
@@ -177,6 +178,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: GuidedRepairRoute.page, fullscreenDialog: true),
     AutoRoute(page: LearningRoute.page),
     AutoRoute(page: FightStyleRoute.page, fullscreenDialog: true),
+    AutoRoute(page: LoveStyleRoute.page, fullscreenDialog: true),
     AutoRoute(page: SoftStartRoute.page, fullscreenDialog: true),
     AutoRoute(page: QuickRepairRoute.page, fullscreenDialog: true),
     AutoRoute(page: SlipDetailRoute.page, path: '/slip/:id'),

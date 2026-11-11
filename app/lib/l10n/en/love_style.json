@@ -1,0 +1,121 @@
+{
+  "entryLabel": "ONLY FOR YOU",
+  "entryTitle": "What makes me feel loved",
+  "entryText": "Six quick questions to notice what makes you feel loved.",
+  "exerciseTitle": "How I feel loved",
+  "exerciseHighlight": "loved",
+  "exerciseSubtitle": "Six quick questions, just for you.",
+  "questionOf": "Question {current} of {total}",
+  "questions": [
+    "What makes you feel loved the most?",
+    "On a hard day, what comforts you the most?",
+    "What do you notice first when your partner shows care?",
+    "Which of these gestures warms your heart?",
+    "What makes you feel important to someone?",
+    "If you could choose one gesture for today, what would it be?"
+  ],
+  "options1(map)": {
+    "time": "Spending unhurried time together.",
+    "words": "Hearing that I matter.",
+    "acts": "Seeing the person help me with something.",
+    "gifts": "Getting a small gift for no reason.",
+    "touch": "A long hug.",
+    "other": ""
+  },
+  "options2(map)": {
+    "time": "Having someone nearby, with no rush to fix it.",
+    "words": "A message saying I'm on their mind.",
+    "acts": "Someone taking a task off my hands.",
+    "gifts": "A small care that arrived by surprise.",
+    "touch": "A tight hug.",
+    "other": ""
+  },
+  "options3(map)": {
+    "time": "When the person puts the phone down to be with me.",
+    "words": "When the person praises something I did.",
+    "acts": "When the person notices what I need and does it.",
+    "gifts": "When the person remembers something I like.",
+    "touch": "When the person touches me lightly as they pass.",
+    "other": ""
+  },
+  "options4(map)": {
+    "time": "A quiet date, just the two of us.",
+    "words": "A conversation where I feel heard.",
+    "acts": "A small help with a task.",
+    "gifts": "A simple gift that has to do with me.",
+    "touch": "A caress on my hair or hand.",
+    "other": ""
+  },
+  "options5(map)": {
+    "time": "When someone chooses to spend time with me.",
+    "words": "When someone acknowledges what I do.",
+    "acts": "When someone makes my day easier.",
+    "gifts": "When someone remembers me with a detail.",
+    "touch": "When someone hugs me without needing to speak.",
+    "other": ""
+  },
+  "options6(map)": {
+    "time": "Saving a free evening for us.",
+    "words": "Writing a loving note.",
+    "acts": "Tackling a boring task together.",
+    "gifts": "Picking a small gift.",
+    "touch": "Holding hands.",
+    "other": ""
+  },
+  "continueAction": "Next",
+  "finishAction": "See result",
+  "back": "Back",
+  "privateNote": "Only you see your answers. You choose whether to show the result.",
+  "resultTitle": "What makes you feel loved",
+  "resultHighlight": "loved",
+  "resultSubtitle": "A description of what makes you feel loved, in your own way.",
+  "topTag": "What fits you best",
+  "descriptions(map)": {
+    "time": "You feel loved when you have real time with someone you care about: unhurried, no screens, just presence.",
+    "words": "You feel loved when you hear, honestly, what the other person feels for you.",
+    "acts": "You feel loved when someone notices what you need and helps without being asked.",
+    "gifts": "You feel loved when someone remembers you in a small detail, chosen with care.",
+    "touch": "You feel loved when a hug, a held hand or a caress says what words cannot.",
+    "other": ""
+  },
+  "shareDescriptions(map)": {
+    "time": "I feel loved when we spend unhurried time together, with no screens.",
+    "words": "I feel loved when I hear, honestly, what you feel for me.",
+    "acts": "I feel loved when you notice what I need and help without me asking.",
+    "gifts": "I feel loved when you remember me in a small detail, chosen with care.",
+    "touch": "I feel loved when a hug, a held hand or a caress says what words cannot.",
+    "other": ""
+  },
+  "resultPrivacyNote": "Saved only for you. Showing it on your partner's widget is your choice, and you can undo it.",
+  "saveManualAction": "Save to My manual",
+  "savedManualAction": "Saved to My manual",
+  "manualToast": "Saved to My manual.",
+  "shareAction": "Show {name}",
+  "revokeAction": "Remove from their widget",
+  "shareToast": "It appears on their widget if they allow notes.",
+  "revokeToast": "It's no longer on their widget.",
+  "shareSoloNote": "When you're connected with a partner, you can show this on their widget.",
+  "partnerFallback": "your partner",
+  "pairingErrorNote": "Couldn't check your partner right now.",
+  "retryPairing": "Try again",
+  "retake": "Take it again",
+  "loadErrorTitle": "Couldn't load",
+  "loadErrorText": "Couldn't open your result right now. Try again.",
+  "errors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't save right now. Your answers are still here."
+  },
+  "manualErrors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't save to My manual right now. Try again."
+  },
+  "shareErrors(map)": {
+    "NOT_PAIRED": "You don't have a connected partner yet.",
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't show it right now. Try again."
+  },
+  "revokeErrors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't remove it from their widget right now. Try again."
+  }
+}

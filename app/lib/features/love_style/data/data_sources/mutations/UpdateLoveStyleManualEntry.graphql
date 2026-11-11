@@ -1,0 +1,9 @@
+mutation UpdateLoveStyleManualEntry($id: UUID!, $value: String!) {
+  updateManualEntriesCollection(
+    set: { value: $value }
+    filter: { id: { eq: $id } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

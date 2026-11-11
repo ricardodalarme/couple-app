@@ -1,0 +1,5 @@
+mutation UpdateLoveStyleResult($id: UUID!, $ranked: [String]!) {
+  updateQuizResultsCollection(set: { ranked: $ranked }, filter: { id: { eq: $id } }) {
+    affectedCount
+  }
+}

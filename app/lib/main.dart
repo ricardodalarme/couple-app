@@ -19,6 +19,7 @@ import 'package:flutter_bloc_starter/features/help/di/help_injection_module.dart
 import 'package:flutter_bloc_starter/features/history/di/history_injection_module.dart';
 import 'package:flutter_bloc_starter/features/ideas/di/ideas_injection_module.dart';
 import 'package:flutter_bloc_starter/features/lists/di/lists_injection_module.dart';
+import 'package:flutter_bloc_starter/features/love_style/di/love_style_injection_module.dart';
 import 'package:flutter_bloc_starter/features/memories/di/memories_injection_module.dart';
 import 'package:flutter_bloc_starter/features/mood/di/mood_injection_module.dart';
 import 'package:flutter_bloc_starter/features/notes/di/notes_injection_module.dart';
@@ -75,6 +76,7 @@ void _registerModules() {
     ConnectInjectionModule(),
     DistanceInjectionModule(),
     CapsulesInjectionModule(),
+    LoveStyleInjectionModule(),
     NotificationsInjectionModule(),
     OnboardingInjectionModule(),
     PairingInjectionModule(),

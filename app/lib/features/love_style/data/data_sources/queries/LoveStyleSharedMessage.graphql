@@ -1,0 +1,9 @@
+query LoveStyleSharedMessage($id: UUID!) {
+  partnerMessagesCollection(filter: { id: { eq: $id } }, first: 1) {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}
