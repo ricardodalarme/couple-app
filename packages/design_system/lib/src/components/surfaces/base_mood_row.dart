@@ -31,28 +31,30 @@ class const BaseMoodRow({
           children: [
             for (var index = 0; index < options.length; index++)
               Expanded(
-                child: AppPressable(
-                  onTap: () => onSelected(index),
-                  isSemanticButton: true,
-                  semanticLabel: options[index].label,
-                  borderRadius: BorderRadius.circular(AppRadius.sm),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      BaseFace(
-                        kind: options[index].face,
-                        size: FaceSize.small,
-                        selected: selectedIndex == index,
-                      ),
-                      const SizedBox(height: AppSpace.s6),
-                      Text(
-                        options[index].label,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.center,
-                        style: context.text.caption.copyWith(color: colors.textSecondary),
-                      ),
-                    ],
+                child: Center(
+                  child: AppPressable(
+                    onTap: () => onSelected(index),
+                    isSemanticButton: true,
+                    semanticLabel: options[index].label,
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        BaseFace(
+                          kind: options[index].face,
+                          size: FaceSize.small,
+                          selected: selectedIndex == index,
+                        ),
+                        const SizedBox(height: AppSpace.s6),
+                        Text(
+                          options[index].label,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                          style: context.text.tab.copyWith(color: colors.textSecondary),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

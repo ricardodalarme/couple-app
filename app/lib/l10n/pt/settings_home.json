@@ -7,7 +7,7 @@
   "connected": "Vocês estão conectados",
   "invitePartner": "Convide seu par",
   "notifications": "Notificações",
-  "devices": "Dispositivos de notificação",
+  "devices": "Dispositivos",
   "on": "Ligadas no app",
   "off": "Desligadas no app",
   "plan": "Plano",
@@ -28,5 +28,6 @@
   "helpStatus": "Perguntas e contato",
   "appPreferences": "Preferências do app",
   "appPreferencesStatus": "Aparência, texto e idioma",
+  "weeklyCard": "Cartão semanal",
   "language": "Idioma"
 }

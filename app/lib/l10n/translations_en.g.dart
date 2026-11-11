@@ -2733,11 +2733,9 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get placeAddressNote => 'Prefer just the name of the place, with no address or number.';
   @override
-  String get jarLabel => 'JAR';
+  String get segmentTimeline => 'Timeline';
   @override
-  String get jarTitle => 'Open the jar';
-  @override
-  String get jarText => 'A good slip you kept, drawn at random.';
+  String get segmentJar => 'Jar';
   @override
   String get jarEmpty => 'The jar is empty. Put a slip in it from the slip\'s details.';
   @override
@@ -4313,7 +4311,7 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   @override
   String get notifications => 'Notifications';
   @override
-  String get devices => 'Notification devices';
+  String get devices => 'Devices';
   @override
   String get on => 'On in the app';
   @override
@@ -4354,6 +4352,8 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   String get appPreferences => 'App preferences';
   @override
   String get appPreferencesStatus => 'Appearance, text and language';
+  @override
+  String get weeklyCard => 'Weekly card';
   @override
   String get language => 'Language';
 }
@@ -4539,7 +4539,15 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   @override
   String get scopeAll => 'All';
   @override
-  String get private => 'Private';
+  String get search => 'Search';
+  @override
+  String get searchClose => 'Close search';
+  @override
+  String get searchHint => 'Search your slips';
+  @override
+  String get searchEmptyTitle => 'Nothing found';
+  @override
+  String get searchEmptyText => 'Try another word.';
   @override
   String get thisWeek => 'This week';
   @override
@@ -8293,9 +8301,8 @@ extension on TranslationsEn {
           'memories.placeHint' => 'E.g. Lisbon',
           'memories.placeAddressNote' =>
             'Prefer just the name of the place, with no address or number.',
-          'memories.jarLabel' => 'JAR',
-          'memories.jarTitle' => 'Open the jar',
-          'memories.jarText' => 'A good slip you kept, drawn at random.',
+          'memories.segmentTimeline' => 'Timeline',
+          'memories.segmentJar' => 'Jar',
           'memories.jarEmpty' => 'The jar is empty. Put a slip in it from the slip\'s details.',
           'memories.jarAnother' => 'Another',
           'memories.jarClose' => 'Close',
@@ -8650,10 +8657,10 @@ extension on TranslationsEn {
           'plus.restoreFailedTitle' => 'Couldn\'t restore',
           'plus.restoreFailedHighlight' => 'restore',
           'plus.tryAgain' => 'Try again',
+          'plus.done' => 'Done',
           _ => null,
         } ??
         switch (path) {
-          'plus.done' => 'Done',
           'plus.errors.storeUnavailable' => 'The store isn\'t available on this device right now.',
           'plus.errors.manageUnavailable' => 'There\'s no store page for this subscription here.',
           'plus.errors.other' => 'Couldn\'t do that right now. Try again.',
@@ -9172,7 +9179,7 @@ extension on TranslationsEn {
           'settingsHome.connected' => 'You are connected',
           'settingsHome.invitePartner' => 'Invite your partner',
           'settingsHome.notifications' => 'Notifications',
-          'settingsHome.devices' => 'Notification devices',
+          'settingsHome.devices' => 'Devices',
           'settingsHome.on' => 'On in the app',
           'settingsHome.off' => 'Off in the app',
           'settingsHome.plan' => 'Plan',
@@ -9195,6 +9202,7 @@ extension on TranslationsEn {
           'settingsHome.helpStatus' => 'FAQ and contact',
           'settingsHome.appPreferences' => 'App preferences',
           'settingsHome.appPreferencesStatus' => 'Appearance, text and language',
+          'settingsHome.weeklyCard' => 'Weekly card',
           'settingsHome.language' => 'Language',
           'slipDetail.dateLine' => ({
             required Object weekday,
@@ -9309,7 +9317,11 @@ extension on TranslationsEn {
           'slipsList.title' => 'Slips',
           'slipsList.scopeWeek' => 'This week',
           'slipsList.scopeAll' => 'All',
-          'slipsList.private' => 'Private',
+          'slipsList.search' => 'Search',
+          'slipsList.searchClose' => 'Close search',
+          'slipsList.searchHint' => 'Search your slips',
+          'slipsList.searchEmptyTitle' => 'Nothing found',
+          'slipsList.searchEmptyText' => 'Try another word.',
           'slipsList.thisWeek' => 'This week',
           'slipsList.lastWeek' => 'Last week',
           'slipsList.weekRange' => ({
@@ -9828,13 +9840,13 @@ extension on TranslationsEn {
           'widgets.ownMediumIdeaAction' => 'Tap to view',
           'widgets.ownMediumJarTitle' => 'Tap to open a saved slip',
           'widgets.ownMediumJarPrivacy' => 'Private: only appears on your device',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.lockScreenPageTitle' => 'Lock screen',
           'widgets.lockScreenClockTime' => '19:38',
           'widgets.lockScreenClockDate' => 'Friday, April 10',
           'widgets.lockScreenPauseTitle' => 'Pause in progress',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.lockScreenPauseUntil' => ({required Object time}) => 'until ${time}',
           'widgets.lockScreenPauseUntilDefault' => 'until 20:00',
           'widgets.lockScreenReadyAction' => 'I am ready',

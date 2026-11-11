@@ -34,7 +34,7 @@ class const TodayPause({required final TodayHome home, super.key}) extends State
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const BaseFace(kind: FaceKind.smile, size: FaceSize.showcase),
+                const BaseFace(kind: FaceKind.tired, size: FaceSize.showcase),
                 const SizedBox(height: AppSpace.s16),
                 Semantics(
                   header: true,

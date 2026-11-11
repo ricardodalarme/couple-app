@@ -1,5 +1,11 @@
 part of 'memories_cubit.dart';
 
+/// Which view of Memórias is showing.
+enum MemoriesView() {
+  timeline,
+  jar,
+}
+
 final class const MemoriesState({
   final Resource<List<Memory>> memories = const Loading(),
   final String title = '',
@@ -8,6 +14,7 @@ final class const MemoriesState({
   final Resource<void> saveAction = const Initial(),
   final Resource<String?> jarAction = const Initial(),
   final bool isFormOpen = false,
+  final MemoriesView view = MemoriesView.timeline,
 }) with Equatable {
   /// Whether the title is filled and every text is within its limit.
   bool get canSave =>
@@ -34,6 +41,7 @@ final class const MemoriesState({
     Resource<void>? saveAction,
     Resource<String?>? jarAction,
     bool? isFormOpen,
+    MemoriesView? view,
   }) {
     return MemoriesState(
       memories: memories ?? this.memories,
@@ -43,9 +51,19 @@ final class const MemoriesState({
       saveAction: saveAction ?? this.saveAction,
       jarAction: jarAction ?? this.jarAction,
       isFormOpen: isFormOpen ?? this.isFormOpen,
+      view: view ?? this.view,
     );
   }
 
   @override
-  List<Object?> get props => [memories, title, body, place, saveAction, jarAction, isFormOpen];
+  List<Object?> get props => [
+    memories,
+    title,
+    body,
+    place,
+    saveAction,
+    jarAction,
+    isFormOpen,
+    view,
+  ];
 }

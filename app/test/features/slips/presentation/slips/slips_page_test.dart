@@ -59,26 +59,45 @@ void main() {
     await pumpPage(tester, cubit);
 
     expect(find.byType(BaseEmptyState), findsOneWidget);
-    expect(find.byType(BaseSegmented), findsNothing);
+    expect(find.byType(BaseChoiceChip), findsNothing);
     expect(find.byType(BaseTextLink), findsNothing);
-    expect(find.byType(BaseSectionHeader), findsNothing);
+    expect(find.byType(BaseRoundButton), findsNothing);
     expect(find.byType(SlipsGroups), findsNothing);
     expect(find.text('Slips'), findsOneWidget);
   });
 
-  testWidgets('a populated list keeps the scopes, the history link and the private group', (
-    tester,
-  ) async {
+  testWidgets('a populated list keeps the scopes, search and the history link', (tester) async {
     stubPage([SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: DateTime.now())]);
     final cubit = await build();
 
     await pumpPage(tester, cubit);
 
     expect(find.byType(BaseEmptyState), findsNothing);
-    expect(find.byType(BaseSegmented), findsOneWidget);
+    expect(find.byType(BaseChoiceChip), findsNWidgets(2));
     expect(find.byType(BaseTextLink), findsOneWidget);
-    expect(find.byType(BaseSectionHeader), findsWidgets);
+    expect(find.byType(BaseRoundButton), findsOneWidget);
     expect(find.byType(SlipsGroups), findsOneWidget);
     expect(find.text('Fez café sem eu pedir'), findsOneWidget);
+  });
+
+  testWidgets('search filters the loaded slips and reports no matches', (tester) async {
+    stubPage([SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: DateTime.now())]);
+    final cubit = await build();
+
+    await pumpPage(tester, cubit);
+    cubit
+      ..openSearch()
+      ..onQueryChanged('café');
+    await tester.pump();
+    await tester.pump();
+
+    expect(find.text('Fez café sem eu pedir'), findsOneWidget);
+
+    cubit.onQueryChanged('xyz');
+    await tester.pump();
+    await tester.pump();
+
+    expect(find.byType(SlipsGroups), findsNothing);
+    expect(find.byType(BaseEmptyState), findsOneWidget);
   });
 }

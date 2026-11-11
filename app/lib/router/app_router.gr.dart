@@ -1308,18 +1308,50 @@ class MilestoneRouteArgs {
 
 /// generated route for
 /// [MoodPage]
-class MoodRoute extends PageRouteInfo<void> {
-  const MoodRoute({List<PageRouteInfo>? children})
-    : super(MoodRoute.name, initialChildren: children);
+class MoodRoute extends PageRouteInfo<MoodRouteArgs> {
+  MoodRoute({String? initialMood, Key? key, List<PageRouteInfo>? children})
+    : super(
+        MoodRoute.name,
+        args: MoodRouteArgs(initialMood: initialMood, key: key),
+        initialChildren: children,
+      );
 
   static const String name = 'MoodRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return WrappedRoute(child: const MoodPage());
+      final args = data.argsAs<MoodRouteArgs>(
+        orElse: () => const MoodRouteArgs(),
+      );
+      return WrappedRoute(
+        child: MoodPage(initialMood: args.initialMood, key: args.key),
+      );
     },
   );
+}
+
+class MoodRouteArgs {
+  const MoodRouteArgs({this.initialMood, this.key});
+
+  final String? initialMood;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'MoodRouteArgs{initialMood: $initialMood, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! MoodRouteArgs) return false;
+    return initialMood == other.initialMood && key == other.key;
+  }
+
+  @override
+  int get hashCode => initialMood.hashCode ^ key.hashCode;
 }
 
 /// generated route for

@@ -192,16 +192,25 @@ class const _Conversation({required final bool isLimitReached}) extends Stateles
           if (isLimitReached)
             PlusLock(title: l10n.limitTitle, text: l10n.limitText)
           else ...[
-            BaseTextField(
-              text: draft,
-              hint: l10n.inputHint,
-              isEnabled: !isReplying && !isOffline,
-              onChanged: cubit.onDraftChanged,
-              onSubmitted: (_) => canSend ? cubit.sendDraft() : null,
-              trailingAction: BaseTextLink(
-                text: l10n.send,
-                onPressed: canSend ? cubit.sendDraft : null,
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: BaseTextField(
+                    text: draft,
+                    hint: l10n.inputHint,
+                    isEnabled: !isReplying && !isOffline,
+                    onChanged: cubit.onDraftChanged,
+                    onSubmitted: (_) => canSend ? cubit.sendDraft() : null,
+                  ),
+                ),
+                const SizedBox(width: AppSpace.s8),
+                BaseRoundButton(
+                  icon: AppIcons.send,
+                  semanticLabel: l10n.send,
+                  isEnabled: canSend,
+                  onPressed: canSend ? cubit.sendDraft : null,
+                ),
+              ],
             ),
             if (isOffline || messagesLeft <= 2) ...[
               const SizedBox(height: AppSpace.s4),

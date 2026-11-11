@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
 import 'package:flutter_bloc_starter/features/mood/presentation/mood/mood_faces.dart';
 import 'package:flutter_bloc_starter/features/mood/presentation/mood/widgets/partner_mood_hint.dart';
-import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/off_banner/widgets/notifications_off_banner.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/widgets/today_header.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/widgets/today_pause.dart';
+import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
@@ -49,12 +49,11 @@ class const TodayContent({
         const SizedBox(height: AppSpace.s20),
         const NotificationsOffBanner(),
         if (home.unopenedCards > 0) ...[
-          BaseBanner(
-            text: home.partnerName == null
+          BaseReceivedCard(
+            title: home.partnerName == null
                 ? l10n.cardReceived
                 : l10n.cardReceivedNamed(name: home.partnerName!),
-            icon: AppIcons.mail,
-            actionLabel: l10n.cardReceivedAction,
+            actionText: l10n.cardReceivedAction,
             onAction: () async {
               await context.pushRoute(const CardsListRoute());
               if (context.mounted) await context.read<TodayCubit>().load();
@@ -75,23 +74,26 @@ class const TodayContent({
           const SizedBox(height: AppSpace.s12),
         ],
         if (home.hasPendingInvite) ...[
-          BaseBanner(
-            title: l10n.pendingInviteTitle,
-            text: l10n.pendingInviteText,
-            actionLabel: l10n.pendingInviteAction,
-            onAction: () => context.pushRoute(const InviteRoute()),
+          BaseListCard(
+            category: AppCategory.invite,
+            categoryLabel: l10n.pendingInviteTitle,
+            title: l10n.pendingInviteText,
+            supportText: l10n.pendingInviteAction,
+            onTap: () => context.pushRoute(const InviteRoute()),
           ),
           const SizedBox(height: AppSpace.s12),
         ],
         _MainCard(home: home, isFirstDay: isFirstDay),
-        const SizedBox(height: AppSpace.s16),
-        BaseWeekStrip(
-          title: isAlone
-              ? l10n.slipsThisWeekPrivate(count: home.slipsThisWeek)
-              : l10n.slipsThisWeek(count: home.slipsThisWeek),
-          supportText: home.slipsThisWeek == 0 ? l10n.weekHintEmpty : l10n.weekHint,
-          filledCount: home.slipsThisWeek,
-        ),
+        if (!home.hasPendingInvite) ...[
+          const SizedBox(height: AppSpace.s16),
+          BaseWeekStrip(
+            title: isAlone
+                ? l10n.slipsThisWeekPrivate(count: home.slipsThisWeek)
+                : l10n.slipsThisWeek(count: home.slipsThisWeek),
+            supportText: home.slipsThisWeek == 0 ? l10n.weekHintEmpty : l10n.weekHint,
+            filledCount: home.slipsThisWeek,
+          ),
+        ],
         if (home.isPaired && home.unopenedCards == 0 && home.slipsThisWeek > 0) ...[
           const SizedBox(height: AppSpace.s10),
           Center(
@@ -110,8 +112,7 @@ class const TodayContent({
             onTap: () => context.pushRoute(const BadDayRoute()),
           ),
         ],
-        const SizedBox(height: AppSpace.s12),
-        if (!isFirstDay) ...[
+        if (!isFirstDay && !home.hasPendingInvite) ...[
           const SizedBox(height: AppSpace.s24),
           BaseMoodRow(
             title: context.l10n.mood.entryTitle,

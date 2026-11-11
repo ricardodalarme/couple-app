@@ -15,13 +15,28 @@ final class const SlipsListState({
   final bool hasNext = false,
   final String? cursor,
   final bool isLoadingMore = false,
+  final bool isSearching = false,
+  final String query = '',
 }) with Equatable {
+  /// The loaded slips whose text contains [query], ignoring case.
+  List<SlipEntry> matching(List<SlipEntry> items) {
+    final needle = query.trim().toLowerCase();
+    if (needle.isEmpty) return items;
+
+    return [
+      for (final item in items)
+        if (item.body.toLowerCase().contains(needle)) item,
+    ];
+  }
+
   SlipsListState copyWith({
     Resource<List<SlipEntry>>? slips,
     SlipsScope? scope,
     bool? hasNext,
     String? cursor,
     bool? isLoadingMore,
+    bool? isSearching,
+    String? query,
   }) {
     return SlipsListState(
       slips: slips ?? this.slips,
@@ -29,9 +44,11 @@ final class const SlipsListState({
       hasNext: hasNext ?? this.hasNext,
       cursor: cursor ?? this.cursor,
       isLoadingMore: isLoadingMore ?? this.isLoadingMore,
+      isSearching: isSearching ?? this.isSearching,
+      query: query ?? this.query,
     );
   }
 
   @override
-  List<Object?> get props => [slips, scope, hasNext, cursor, isLoadingMore];
+  List<Object?> get props => [slips, scope, hasNext, cursor, isLoadingMore, isSearching, query];
 }

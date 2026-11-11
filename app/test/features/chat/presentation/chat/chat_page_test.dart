@@ -104,10 +104,10 @@ void main() {
 
     cubits.chat.onDraftChanged('Oi');
     await tester.pump();
-    expect(
-      tester.widget<BaseTextLink>(find.widgetWithText(BaseTextLink, 'Enviar')).onPressed,
-      isNotNull,
+    final send = find.byWidgetPredicate(
+      (widget) => widget is BaseRoundButton && widget.icon == AppIcons.send,
     );
+    expect(tester.widget<BaseRoundButton>(send).onPressed, isNotNull);
   });
 
   testWidgets('a free person sees the Plus gate instead of the composer', (tester) async {

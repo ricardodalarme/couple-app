@@ -199,20 +199,19 @@ class const _InvitationCard({required final GameEntry entry, final String? partn
     final l10n = context.l10n.games.hub;
     final name = gamePartnerName(partnerName, '');
 
-    return BaseSurfaceCard(
-      title: name.isEmpty ? l10n.invitedFallbackTitle : l10n.invitedTitle(name: name),
-      supportText: '${entry.kind.title(context)} · ${l10n.minutes(minutes: entry.kind.minutes)}',
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: BaseButton.compact(
-          text: l10n.join,
-          onPressed: () async {
-            final cubit = context.read<GamesCubit>();
-            await context.pushRoute(GameRoute(game: entry.kind.key));
-            if (context.mounted) await cubit.load();
-          },
-        ),
-      ),
+    Future<void> join() async {
+      final cubit = context.read<GamesCubit>();
+      await context.pushRoute(GameRoute(game: entry.kind.key));
+      if (context.mounted) await cubit.load();
+    }
+
+    return BaseListCard(
+      category: AppCategory.invite,
+      categoryLabel: name.isEmpty ? l10n.invitedFallbackTitle : l10n.invitedTitle(name: name),
+      title: entry.kind.title(context),
+      supportText: l10n.minutes(minutes: entry.kind.minutes),
+      trailing: BaseButton.compact(text: l10n.join, onPressed: join),
+      onTap: join,
     );
   }
 }

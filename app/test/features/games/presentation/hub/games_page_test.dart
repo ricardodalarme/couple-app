@@ -86,7 +86,7 @@ void main() {
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const GamesPage()));
     await tester.pump();
 
-    expect(find.text('Marina chamou você'), findsOneWidget);
+    expect(find.text('MARINA CHAMOU VOCÊ'), findsOneWidget);
     expect(find.text('Entrar'), findsOneWidget);
     expect(find.textContaining('Aguardando Marina'), findsOneWidget);
     expect(find.textContaining('Em andamento'), findsOneWidget);

@@ -10,7 +10,9 @@ import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
-class const MoodPage({final String? initialMood, super.key}) extends StatelessWidget implements AutoRouteWrapper {
+class const MoodPage({final String? initialMood, super.key})
+    extends StatelessWidget
+    implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(

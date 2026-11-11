@@ -51,6 +51,8 @@ class _SlipsPageState() extends State<SlipsPage> {
     final l10n = context.l10n.slipsList;
     final slips = context.select((SlipsListCubit cubit) => cubit.state.slips);
     final scope = context.select((SlipsListCubit cubit) => cubit.state.scope);
+    final isSearching = context.select((SlipsListCubit cubit) => cubit.state.isSearching);
+    final query = context.select((SlipsListCubit cubit) => cubit.state.query);
     final cubit = context.read<SlipsListCubit>();
     final isEmpty = slips is Success<List<SlipEntry>> && slips.value.isEmpty;
 
@@ -63,24 +65,40 @@ class _SlipsPageState() extends State<SlipsPage> {
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(l10n.title, style: context.text.titleXl),
+              Row(
+                children: [
+                  Expanded(child: Text(l10n.title, style: context.text.titleXl)),
+                  if (!isEmpty)
+                    BaseRoundButton(
+                      icon: isSearching ? AppIcons.close : AppIcons.search,
+                      semanticLabel: isSearching ? l10n.searchClose : l10n.search,
+                      onPressed: isSearching ? cubit.closeSearch : cubit.openSearch,
+                    ),
+                ],
+              ),
               const SizedBox(height: AppSpace.s16),
               if (!isEmpty) ...[
-                BaseSegmented(
-                  segments: [l10n.scopeWeek, l10n.scopeAll],
-                  selectedIndex: scope.index,
-                  onSelectionChanged: (index) => cubit.changeScope(SlipsScope.values[index]),
+                if (isSearching) ...[
+                  BaseTextField(
+                    text: query,
+                    hint: l10n.searchHint,
+                    onChanged: cubit.onQueryChanged,
+                  ),
+                  const SizedBox(height: AppSpace.s16),
+                ],
+                Wrap(
+                  spacing: AppSpace.s8,
+                  runSpacing: AppSpace.s8,
+                  children: [
+                    for (final option in SlipsScope.values)
+                      BaseChoiceChip(
+                        label: option == SlipsScope.week ? l10n.scopeWeek : l10n.scopeAll,
+                        isSelected: scope == option,
+                        onTap: () => cubit.changeScope(option),
+                      ),
+                  ],
                 ),
                 const SizedBox(height: AppSpace.s16),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: BaseTextLink(
-                    text: l10n.pastCards,
-                    onPressed: () => context.pushRoute(const CardsListRoute()),
-                  ),
-                ),
-                BaseSectionHeader(title: l10n.private, isLabel: true, showsLock: true),
-                const SizedBox(height: AppSpace.s10),
               ],
               SkeletonizerResourceWidget<List<SlipEntry>>(
                 slips,
@@ -93,7 +111,7 @@ class _SlipsPageState() extends State<SlipsPage> {
                         actionText: l10n.emptyAction,
                         onAction: () => context.router.root.push(const QuickSlipRoute()),
                       )
-                    : SlipsGroups(slips: items),
+                    : _Results(items: items),
                 failureBuilder: (_) => BaseEmptyState(
                   title: l10n.errorTitle,
                   text: l10n.errorText,
@@ -105,6 +123,32 @@ class _SlipsPageState() extends State<SlipsPage> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class const _Results({required final List<SlipEntry> items}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.slipsList;
+    final matches = context.select((SlipsListCubit cubit) => cubit.state.matching(items));
+    if (matches.isEmpty) {
+      return BaseEmptyState(title: l10n.searchEmptyTitle, text: l10n.searchEmptyText);
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        SlipsGroups(slips: matches),
+        const SizedBox(height: AppSpace.s16),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: BaseTextLink(
+            text: l10n.pastCards,
+            onPressed: () => context.pushRoute(const CardsListRoute()),
+          ),
+        ),
+      ],
     );
   }
 }

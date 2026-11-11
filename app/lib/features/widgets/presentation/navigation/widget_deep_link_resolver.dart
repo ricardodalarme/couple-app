@@ -61,7 +61,7 @@ List<PageRouteInfo<void>>? resolveWidgetDeepLinkUri(Uri? uri, {required AppState
     ],
     'mood' => [
       const HomeRoute(children: [TodayRoute()]),
-      const MoodRoute(),
+      MoodRoute(),
     ],
     'rituals' => [
       const HomeRoute(children: [TogetherRoute()]),

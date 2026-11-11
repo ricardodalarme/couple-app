@@ -24,7 +24,8 @@ class const HomePage({super.key}) extends StatelessWidget {
       appBar: null,
       hasSafeArea: false,
       body: AutoTabsRouter(
-        duration: Duration.zero,
+        duration: AppMotion.base,
+        curve: AppMotion.baseCurve,
         routes: const [TodayRoute(), SlipsRoute(), TogetherRoute(), MemoriesRoute()],
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);

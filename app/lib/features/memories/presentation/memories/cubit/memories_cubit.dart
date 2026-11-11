@@ -24,6 +24,13 @@ class MemoriesCubit({required final MemoriesRepository _memoriesRepository})
     }
   }
 
+  /// Switches view; opening the jar draws a slip when none is showing.
+  Future<void> onViewChanged(MemoriesView view) async {
+    if (view == state.view) return;
+    emit(state.copyWith(view: view));
+    if (view == MemoriesView.jar && state.jarAction is! Success) await drawFromJar();
+  }
+
   void openForm() => emit(state.copyWith(isFormOpen: true));
 
   void onTitleChanged(String title) => emit(state.copyWith(title: title));
@@ -85,5 +92,5 @@ class MemoriesCubit({required final MemoriesRepository _memoriesRepository})
   }
 
   /// Closes the drawn slip.
-  void closeJar() => emit(state.copyWith(jarAction: const Initial()));
+  void closeJar() => emit(state.copyWith(jarAction: const Initial(), view: MemoriesView.timeline));
 }

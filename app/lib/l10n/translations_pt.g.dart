@@ -3333,14 +3333,11 @@ class Translations$memories$pt {
   /// pt: 'Prefira só o nome do lugar, sem endereço ou número.'
   String get placeAddressNote => 'Prefira só o nome do lugar, sem endereço ou número.';
 
-  /// pt: 'POTINHO'
-  String get jarLabel => 'POTINHO';
+  /// pt: 'Linha do tempo'
+  String get segmentTimeline => 'Linha do tempo';
 
-  /// pt: 'Abrir o potinho'
-  String get jarTitle => 'Abrir o potinho';
-
-  /// pt: 'Um slip bom que você guardou, sorteado.'
-  String get jarText => 'Um slip bom que você guardou, sorteado.';
+  /// pt: 'Potinho'
+  String get segmentJar => 'Potinho';
 
   /// pt: 'O potinho está vazio. Guarde um slip nele pelos detalhes do slip.'
   String get jarEmpty => 'O potinho está vazio. Guarde um slip nele pelos detalhes do slip.';
@@ -5342,8 +5339,8 @@ class Translations$settingsHome$pt {
   /// pt: 'Notificações'
   String get notifications => 'Notificações';
 
-  /// pt: 'Dispositivos de notificação'
-  String get devices => 'Dispositivos de notificação';
+  /// pt: 'Dispositivos'
+  String get devices => 'Dispositivos';
 
   /// pt: 'Ligadas no app'
   String get on => 'Ligadas no app';
@@ -5404,6 +5401,9 @@ class Translations$settingsHome$pt {
 
   /// pt: 'Aparência, texto e idioma'
   String get appPreferencesStatus => 'Aparência, texto e idioma';
+
+  /// pt: 'Cartão semanal'
+  String get weeklyCard => 'Cartão semanal';
 
   /// pt: 'Idioma'
   String get language => 'Idioma';
@@ -5622,8 +5622,20 @@ class Translations$slipsList$pt {
   /// pt: 'Todos'
   String get scopeAll => 'Todos';
 
-  /// pt: 'Privado'
-  String get private => 'Privado';
+  /// pt: 'Buscar'
+  String get search => 'Buscar';
+
+  /// pt: 'Fechar busca'
+  String get searchClose => 'Fechar busca';
+
+  /// pt: 'Buscar nos seus slips'
+  String get searchHint => 'Buscar nos seus slips';
+
+  /// pt: 'Nada encontrado'
+  String get searchEmptyTitle => 'Nada encontrado';
+
+  /// pt: 'Tente outra palavra.'
+  String get searchEmptyText => 'Tente outra palavra.';
 
   /// pt: 'Esta semana'
   String get thisWeek => 'Esta semana';
@@ -9985,9 +9997,8 @@ extension on Translations {
           'memories.placeLabel' => 'Lugar (opcional)',
           'memories.placeHint' => 'Ex.: Paraty',
           'memories.placeAddressNote' => 'Prefira só o nome do lugar, sem endereço ou número.',
-          'memories.jarLabel' => 'POTINHO',
-          'memories.jarTitle' => 'Abrir o potinho',
-          'memories.jarText' => 'Um slip bom que você guardou, sorteado.',
+          'memories.segmentTimeline' => 'Linha do tempo',
+          'memories.segmentJar' => 'Potinho',
           'memories.jarEmpty' =>
             'O potinho está vazio. Guarde um slip nele pelos detalhes do slip.',
           'memories.jarAnother' => 'Outro',
@@ -10348,10 +10359,10 @@ extension on Translations {
           'plus.restoreFailedTitle' => 'Não deu para restaurar',
           'plus.restoreFailedHighlight' => 'restaurar',
           'plus.tryAgain' => 'Tentar de novo',
+          'plus.done' => 'Pronto',
           _ => null,
         } ??
         switch (path) {
-          'plus.done' => 'Pronto',
           'plus.errors.storeUnavailable' => 'A loja não está disponível neste aparelho agora.',
           'plus.errors.manageUnavailable' => 'Não há uma página da loja para esta assinatura aqui.',
           'plus.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
@@ -10872,7 +10883,7 @@ extension on Translations {
           'settingsHome.connected' => 'Vocês estão conectados',
           'settingsHome.invitePartner' => 'Convide seu par',
           'settingsHome.notifications' => 'Notificações',
-          'settingsHome.devices' => 'Dispositivos de notificação',
+          'settingsHome.devices' => 'Dispositivos',
           'settingsHome.on' => 'Ligadas no app',
           'settingsHome.off' => 'Desligadas no app',
           'settingsHome.plan' => 'Plano',
@@ -10895,6 +10906,7 @@ extension on Translations {
           'settingsHome.helpStatus' => 'Perguntas e contato',
           'settingsHome.appPreferences' => 'Preferências do app',
           'settingsHome.appPreferencesStatus' => 'Aparência, texto e idioma',
+          'settingsHome.weeklyCard' => 'Cartão semanal',
           'settingsHome.language' => 'Idioma',
           'slipDetail.dateLine' => ({
             required Object weekday,
@@ -11008,7 +11020,11 @@ extension on Translations {
           'slipsList.title' => 'Slips',
           'slipsList.scopeWeek' => 'Esta semana',
           'slipsList.scopeAll' => 'Todos',
-          'slipsList.private' => 'Privado',
+          'slipsList.search' => 'Buscar',
+          'slipsList.searchClose' => 'Fechar busca',
+          'slipsList.searchHint' => 'Buscar nos seus slips',
+          'slipsList.searchEmptyTitle' => 'Nada encontrado',
+          'slipsList.searchEmptyText' => 'Tente outra palavra.',
           'slipsList.thisWeek' => 'Esta semana',
           'slipsList.lastWeek' => 'Semana passada',
           'slipsList.weekRange' => ({
@@ -11530,13 +11546,13 @@ extension on Translations {
           'widgets.ownMediumIdeaAction' => 'Toque para ver',
           'widgets.ownMediumJarTitle' => 'Toque para abrir um slip guardado',
           'widgets.ownMediumJarPrivacy' => 'Privado: só aparece no seu aparelho',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.lockScreenPageTitle' => 'Tela de bloqueio',
           'widgets.lockScreenClockTime' => '19:38',
           'widgets.lockScreenClockDate' => 'Sexta, 10 de abril',
           'widgets.lockScreenPauseTitle' => 'Pausa em andamento',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.lockScreenPauseUntil' => ({required Object time}) => 'até ${time}',
           'widgets.lockScreenPauseUntilDefault' => 'até 20:00',
           'widgets.lockScreenReadyAction' => 'Estou pronto',

@@ -84,6 +84,11 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
                   showsChevron: true,
                   onTap: () => context.pushRoute(const PlansRoute()),
                 ),
+              ],
+            ),
+            const SizedBox(height: AppSpace.s20),
+            BaseListGroup(
+              children: [
                 BaseListTile(
                   title: l10n.notifications,
                   subtitle: notifications,
@@ -107,11 +112,10 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
                   onTap: () => context.pushRoute(const LanguageRoute()),
                 ),
                 BaseListTile(
-                  title: l10n.discreet,
-                  subtitle: state.discreetOn ? l10n.discreetOn : l10n.discreetOff,
-                  icon: AppIcons.eye_off,
+                  title: l10n.weeklyCard,
+                  icon: AppIcons.mail,
                   showsChevron: true,
-                  onTap: () => context.pushRoute(const DiscreetModeRoute()),
+                  onTap: () => context.pushRoute(const SundayCardRoute()),
                 ),
                 if (!safeModeOn)
                   BaseListTile(
@@ -127,12 +131,24 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
                   showsChevron: true,
                   onTap: () => context.pushRoute(const WidgetsGalleryRoute()),
                 ),
+              ],
+            ),
+            const SizedBox(height: AppSpace.s20),
+            BaseListGroup(
+              children: [
                 BaseListTile(
                   title: l10n.privacy,
                   subtitle: l10n.privacyStatus,
                   icon: AppIcons.lock,
                   showsChevron: true,
                   onTap: () => context.pushRoute(const PrivacyHubRoute()),
+                ),
+                BaseListTile(
+                  title: l10n.discreet,
+                  subtitle: state.discreetOn ? l10n.discreetOn : l10n.discreetOff,
+                  icon: AppIcons.eye_off,
+                  showsChevron: true,
+                  onTap: () => context.pushRoute(const DiscreetModeRoute()),
                 ),
                 BaseListTile(
                   title: l10n.safety,

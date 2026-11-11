@@ -31,6 +31,8 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
           scope: state.scope,
           hasNext: page.hasNext,
           cursor: page.cursor,
+          isSearching: state.isSearching,
+          query: state.query,
         ),
       );
     } catch (exception) {
@@ -42,9 +44,15 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
   Future<void> changeScope(SlipsScope scope) async {
     if (scope == state.scope) return;
 
-    emit(SlipsListState(scope: scope));
+    emit(SlipsListState(scope: scope, isSearching: state.isSearching, query: state.query));
     await load();
   }
+
+  void openSearch() => emit(state.copyWith(isSearching: true));
+
+  void closeSearch() => emit(state.copyWith(isSearching: false, query: ''));
+
+  void onQueryChanged(String query) => emit(state.copyWith(query: query));
 
   /// Appends the next page; ignored while one is loading or when there is none.
   Future<void> loadMore() async {
@@ -67,6 +75,8 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
           scope: state.scope,
           hasNext: page.hasNext,
           cursor: page.cursor,
+          isSearching: state.isSearching,
+          query: state.query,
         ),
       );
     } on Object {
