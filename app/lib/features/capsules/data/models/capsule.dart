@@ -32,8 +32,8 @@ final class const Capsule({
   List<Object?> get props => [id, opensOn, isMine, isShared, body];
 }
 
-/// The earliest day a new capsule can open, which is tomorrow.
-DateTime capsuleEarliest(DateTime today) => DateTime(today.year, today.month, today.day + 1);
+/// The earliest day a new capsule can open, seven days from today.
+DateTime capsuleEarliest(DateTime today) => DateTime(today.year, today.month, today.day + 7);
 
 /// The latest day a new capsule can open.
 DateTime capsuleLatest(DateTime today) =>

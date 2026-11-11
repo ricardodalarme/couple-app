@@ -27,6 +27,7 @@
   "gate": {
     "title": "Um tema sensível",
     "text": "Este tema fala sobre intimidade e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.",
+    "cycleText": "Este tema fala sobre o corpo e o humor ao longo do mês e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.",
     "continueAction": "Continuar",
     "otherAction": "Ver outros temas"
   },

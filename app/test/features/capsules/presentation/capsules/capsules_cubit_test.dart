@@ -1,6 +1,9 @@
+import 'package:bloc_test/bloc_test.dart';
+import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/capsules/data/data_sources/capsules_data_source.dart';
 import 'package:flutter_bloc_starter/features/capsules/data/data_sources/queries/generated/Capsules.graphql.dart';
+import 'package:flutter_bloc_starter/features/capsules/data/models/capsule.dart';
 import 'package:flutter_bloc_starter/features/capsules/data/repositories/capsules_repository.dart';
 import 'package:flutter_bloc_starter/features/capsules/presentation/capsules/cubit/capsules_cubit.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
@@ -36,14 +39,17 @@ void main() {
 
     CapsulesCubit build() => CapsulesCubit(capsulesRepository: repository);
 
-    test('a capsule needs text and a date from tomorrow to fifty years ahead', () {
+    test('a capsule needs text and a date from seven days to fifty years ahead', () {
       final cubit = build()..onBodyChanged('Oi, futuro');
       expect(cubit.state.canSave(today), isFalse);
 
       cubit.onOpensOnChanged(DateTime(2026, 11, 11));
       expect(cubit.state.canSave(today), isFalse);
 
-      cubit.onOpensOnChanged(DateTime(2026, 11, 12));
+      cubit.onOpensOnChanged(DateTime(2026, 11, 17));
+      expect(cubit.state.canSave(today), isFalse);
+
+      cubit.onOpensOnChanged(DateTime(2026, 11, 18));
       expect(cubit.state.canSave(today), isTrue);
 
       cubit.onOpensOnChanged(DateTime(2076, 11, 11));
@@ -90,6 +96,24 @@ void main() {
         ),
       );
     });
+
+    blocTest<CapsulesCubit, CapsulesState>(
+      'a failed delete keeps its own error, apart from the save slot',
+      build: () {
+        when(() => repository.delete(any()))
+            .thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
+        return build();
+      },
+      act: (cubit) => cubit.delete(
+        Capsule(id: 'capsule-1', opensOn: DateTime(2027), isMine: true, isShared: false),
+      ),
+      expect: () => [
+        isA<CapsulesState>().having((state) => state.deleteAction, 'deleteAction', isA<Loading>()),
+        isA<CapsulesState>().having((state) => state.deleteAction, 'deleteAction', isA<Failure>()),
+        isA<CapsulesState>().having((state) => state.deleteAction, 'deleteAction', isA<Initial>()),
+      ],
+      verify: (_) => verify(() => repository.delete('capsule-1')).called(1),
+    );
   });
 
   group('CapsulesRepository', () {

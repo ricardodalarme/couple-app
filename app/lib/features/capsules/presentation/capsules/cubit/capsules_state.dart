@@ -6,8 +6,9 @@ final class const CapsulesState({
   final DateTime? opensOn,
   final bool isShared = false,
   final Resource<void> saveAction = const Initial(),
+  final Resource<void> deleteAction = const Initial(),
 }) with Equatable {
-  /// Whether the text fits and the open date is between tomorrow and 50 years from [today].
+  /// Whether the text fits and the open date is between seven days and 50 years from [today].
   bool canSave(DateTime today) {
     final date = opensOn;
     if (date == null || body.trim().isEmpty || body.length > capsuleBodyMaxLength) return false;
@@ -22,6 +23,7 @@ final class const CapsulesState({
     bool clearDate = false,
     bool? isShared,
     Resource<void>? saveAction,
+    Resource<void>? deleteAction,
   }) {
     return CapsulesState(
       capsules: capsules ?? this.capsules,
@@ -29,9 +31,10 @@ final class const CapsulesState({
       opensOn: clearDate ? null : opensOn ?? this.opensOn,
       isShared: isShared ?? this.isShared,
       saveAction: saveAction ?? this.saveAction,
+      deleteAction: deleteAction ?? this.deleteAction,
     );
   }
 
   @override
-  List<Object?> get props => [capsules, body, opensOn, isShared, saveAction];
+  List<Object?> get props => [capsules, body, opensOn, isShared, saveAction, deleteAction];
 }

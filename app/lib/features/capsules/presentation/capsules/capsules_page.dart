@@ -32,13 +32,23 @@ class const CapsulesPage({super.key}) extends StatelessWidget implements AutoRou
 
     return BaseView(
       body: BlocListener<CapsulesCubit, CapsulesState>(
-        listenWhen: (previous, current) => previous.saveAction != current.saveAction,
+        listenWhen: (previous, current) =>
+            previous.saveAction != current.saveAction ||
+            previous.deleteAction != current.deleteAction,
         listener: (context, state) {
           final action = state.saveAction;
           if (action is Failure) {
             BaseToast.show(context, l10n.errors.selectOrFallback(action.exception.l10nKey));
           } else if (action is Success) {
             BaseToast.show(context, l10n.saved);
+          }
+
+          final deleteAction = state.deleteAction;
+          if (deleteAction is Failure) {
+            BaseToast.show(
+              context,
+              l10n.deleteErrors.selectOrFallback(deleteAction.exception.l10nKey),
+            );
           }
         },
         child: BaseStackedContent(
@@ -108,6 +118,17 @@ class const _CapsuleList() extends StatelessWidget {
     String format(DateTime value) =>
         l10n.dateFormat(day: value.day, month: l10n.months[value.month - 1], year: value.year);
 
+    Future<void> confirmDelete(Capsule capsule) async {
+      final confirmed = await BaseConfirmSheet.show(
+        context: context,
+        title: l10n.deleteTitle,
+        text: l10n.deleteText,
+        confirmText: l10n.deleteConfirm,
+        isDestructive: true,
+      );
+      if (confirmed) await cubit.delete(capsule);
+    }
+
     return SkeletonizerResourceWidget<List<Capsule>>(
       capsules,
       fakeValue: [Capsule.fake()],
@@ -127,7 +148,7 @@ class const _CapsuleList() extends StatelessWidget {
                       _ => l10n.fromPartner,
                     },
                     trailing: capsule.isMine
-                        ? BaseTextLink(text: l10n.delete, onPressed: () => cubit.delete(capsule))
+                        ? BaseTextLink(text: l10n.delete, onPressed: () => confirmDelete(capsule))
                         : null,
                   ),
               ],

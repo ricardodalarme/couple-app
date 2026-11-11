@@ -35,6 +35,7 @@ void main() {
 
   final money = guideCatalogue.firstWhere((guide) => guide.slug == 'money').localized('pt');
   final intimacy = guideCatalogue.firstWhere((guide) => guide.slug == 'intimacy').localized('pt');
+  final cycle = guideCatalogue.firstWhere((guide) => guide.slug == 'cycle').localized('pt');
 
   setUpAll(() {
     LocaleSettings.setLocaleSync(AppLocale.pt);
@@ -129,6 +130,25 @@ void main() {
     await tester.pump();
 
     expect(find.text('Um tema sensível'), findsNothing);
+  });
+
+  testWidgets('the cycle gate talks about body and mood, not intimacy', (tester) async {
+    when(() => repository.getGuide(any(), languageCode: any(named: 'languageCode')))
+        .thenAnswer((_) async => cycle);
+    final cubit = GuideCubit(repository: repository, session: GuideSession());
+    addTearDown(cubit.close);
+    await tester.pumpApp(
+      BlocProvider.value(
+        value: cubit,
+        child: const GuidePage(slug: 'cycle'),
+      ),
+    );
+    await tester.pump();
+    await cubit.start('cycle');
+    await tester.pump();
+
+    expect(find.textContaining('corpo e o humor ao longo do mês e foi pensado'), findsOneWidget);
+    expect(find.textContaining('intimidade'), findsNothing);
   });
 
   testWidgets('a failed save keeps the answers on screen and shows the error', (tester) async {

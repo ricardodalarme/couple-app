@@ -397,6 +397,12 @@ class _Translations$capsules$en extends Translations$capsules$pt {
   @override
   String get delete => 'Delete';
   @override
+  String get deleteTitle => 'Delete this capsule?';
+  @override
+  String get deleteText => 'It will be gone before anyone reads it. This cannot be undone.';
+  @override
+  String get deleteConfirm => 'Delete';
+  @override
   String get emptyTitle => 'No capsules yet';
   @override
   String get emptyText => 'Write one and choose the day it opens.';
@@ -408,6 +414,10 @@ class _Translations$capsules$en extends Translations$capsules$pt {
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t save right now. Your text is still here.',
+  };
+  @override
+  Map<String, String> get deleteErrors => {
+    'other': 'Couldn\'t delete this capsule. It\'s still here.',
   };
 }
 
@@ -5092,6 +5102,9 @@ class _Translations$guides$gate$en extends Translations$guides$gate$pt {
   String get text =>
       'This topic is about intimacy and is meant for adults. You can go slowly or choose another topic whenever you like.';
   @override
+  String get cycleText =>
+      'This topic is about your body and mood through the month and is meant for adults. You can go slowly or choose another topic whenever you like.';
+  @override
   String get continueAction => 'Continue';
   @override
   String get otherAction => 'See other topics';
@@ -5905,12 +5918,16 @@ extension on TranslationsEn {
           'capsules.ownerPrivate' => 'Only yours',
           'capsules.fromPartner' => 'From your partner',
           'capsules.delete' => 'Delete',
+          'capsules.deleteTitle' => 'Delete this capsule?',
+          'capsules.deleteText' => 'It will be gone before anyone reads it. This cannot be undone.',
+          'capsules.deleteConfirm' => 'Delete',
           'capsules.emptyTitle' => 'No capsules yet',
           'capsules.emptyText' => 'Write one and choose the day it opens.',
           'capsules.errorTitle' => 'Couldn\'t load',
           'capsules.errorText' => 'Your capsules are still saved. Try again.',
           'capsules.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'capsules.errors.other' => 'Couldn\'t save right now. Your text is still here.',
+          'capsules.deleteErrors.other' => 'Couldn\'t delete this capsule. It\'s still here.',
           'cardView.forPartner' => ({required Object name}) => 'For ${name}',
           'cardView.forPartnerNoName' => 'For your person',
           'cardView.goodThings' =>
@@ -6376,6 +6393,7 @@ extension on TranslationsEn {
           'guides.viewer.errors.other' => 'Could not save right now. Your answers are still here.',
           'guides.gate.title' => 'A sensitive topic',
           'guides.gate.text' => 'This topic is about intimacy and is meant for adults. You can go slowly or choose another topic whenever you like.',
+          'guides.gate.cycleText' => 'This topic is about your body and mood through the month and is meant for adults. You can go slowly or choose another topic whenever you like.',
           'guides.gate.continueAction' => 'Continue',
           'guides.gate.otherAction' => 'See other topics',
           'guides.finish.title' => 'Your conversation is ready',
@@ -6385,14 +6403,14 @@ extension on TranslationsEn {
           'guides.finish.start' => 'Start a conversation',
           'guides.finish.other' => 'Back to topics',
           'help.badDayTitle' => 'A hard day',
+          _ => null,
+        } ??
+        switch (path) {
           'help.badDayText' => 'Three small things that may help right now. Nothing required.',
           'help.starterTitle' => 'Start a conversation',
           'help.starterText' => 'A question to open with, no rush.',
           'help.another' => 'Another',
           'help.emptyTitle' => 'Nothing here yet',
-          _ => null,
-        } ??
-        switch (path) {
           'help.emptyText' => 'We\'re preparing more suggestions.',
           'help.errorTitle' => 'Couldn\'t load',
           'help.errorText' => 'Try again in a moment.',
@@ -7067,6 +7085,9 @@ extension on TranslationsEn {
           'mood.entryTitle' => 'How are you today?',
           'mood.entryText' => 'One tap. Only you see it until you share.',
           'mood.partnerLabel' => 'Your partner\'s mood',
+          _ => null,
+        } ??
+        switch (path) {
           'mood.partnerFallback' => 'Your partner',
           'mood.partnerHappy' => ({required Object name}) => '${name} is happy today',
           'mood.partnerTired' => ({required Object name}) => '${name} is out of energy today',
@@ -7074,9 +7095,6 @@ extension on TranslationsEn {
           'mood.partnerStressed' => ({
             required Object name,
           }) => '${name} has a lot on their mind today',
-          _ => null,
-        } ??
-        switch (path) {
           'mood.partnerLoving' => ({required Object name}) => '${name} is feeling tender today',
           'mood.partnerPlayful' => ({required Object name}) => '${name} is in a playful mood today',
           'mood.partnerNeedListen' => 'What helps: just listening.',
@@ -7651,14 +7669,14 @@ extension on TranslationsEn {
           'received.doneText' => 'Thanks for reading it calmly.',
           'received.emptyTitle' => 'Nothing new',
           'received.emptyText' => 'When your partner sends something, it shows up here.',
+          _ => null,
+        } ??
+        switch (path) {
           'received.close' => 'Close',
           'received.errorTitle' => 'Couldn\'t open this',
           'received.errorText' => 'Nothing was lost. Try again.',
           'received.errors.NOT_FOUND' => 'That message isn\'t here anymore.',
           'received.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
-          _ => null,
-        } ??
-        switch (path) {
           'received.errors.other' => 'Couldn\'t answer right now. Try again.',
           'relationshipChanged.title' => 'Something changed?',
           'relationshipChanged.highlight' => 'changed',
@@ -8219,6 +8237,9 @@ extension on TranslationsEn {
           'temperature.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
           'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
+          _ => null,
+        } ??
+        switch (path) {
           'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',
           'today.greetingNoName' => 'Hello',
           'today.dateLine' => ({
@@ -8228,9 +8249,6 @@ extension on TranslationsEn {
           }) => '${weekday}, ${month} ${day}',
           'today.weekdays.0' => 'Monday',
           'today.weekdays.1' => 'Tuesday',
-          _ => null,
-        } ??
-        switch (path) {
           'today.weekdays.2' => 'Wednesday',
           'today.weekdays.3' => 'Thursday',
           'today.weekdays.4' => 'Friday',

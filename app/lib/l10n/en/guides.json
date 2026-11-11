@@ -27,6 +27,7 @@
   "gate": {
     "title": "A sensitive topic",
     "text": "This topic is about intimacy and is meant for adults. You can go slowly or choose another topic whenever you like.",
+    "cycleText": "This topic is about your body and mood through the month and is meant for adults. You can go slowly or choose another topic whenever you like.",
     "continueAction": "Continue",
     "otherAction": "See other topics"
   },

@@ -258,7 +258,7 @@ begin
   end loop;
   -- pattern 2: owner, plus the current partner when couple_id is set
   foreach t in array array['rituals', 'logistic_items', 'logistics_meetings', 'planning_areas', 'saved_date_ideas', 'important_dates',
-    'memories', 'story_events', 'lists', 'agreements', 'capsules', 'decisions'] loop
+    'memories', 'story_events', 'lists', 'agreements', 'decisions'] loop
     execute format('alter table public.%I enable row level security', t);
     execute format('grant select, insert, update, delete on public.%I to authenticated', t);
     execute format('create policy %I on public.%I for select to authenticated using (author_id = (select auth.uid()) or couple_id = (select private.current_couple_id()))', t || '_select_own_or_couple', t);
@@ -296,10 +296,34 @@ create index repair_learnings_session_idx on public.repair_learnings (repair_ses
 -- My manual: the partner reads only entries I marked as shared.
 create policy manual_entries_select_shared_by_partner on public.manual_entries for select to authenticated
   using (shared and author_id = (select private.partner_id()));
--- Capsules: the partner cannot read a shared capsule before it opens.
-drop policy capsules_select_own_or_couple on public.capsules;
+-- Capsules: sealed until the open date, author-only writes, and nobody edits after sealing.
+alter table public.capsules enable row level security;
+grant select, insert, delete on public.capsules to authenticated;
+revoke update on public.capsules from authenticated;
 create policy capsules_select_own_or_opened on public.capsules for select to authenticated
   using (author_id = (select auth.uid()) or (couple_id = (select private.current_couple_id()) and opens_on <= current_date));
+create policy capsules_insert_own on public.capsules for insert to authenticated
+  with check (author_id = (select auth.uid()) and (couple_id is null or couple_id = (select private.current_couple_id())));
+create policy capsules_delete_own on public.capsules for delete to authenticated
+  using (author_id = (select auth.uid()));
+create index if not exists capsules_author_idx on public.capsules (author_id, created_at desc);
+create index if not exists capsules_couple_idx on public.capsules (couple_id);
+create trigger capsules_set_updated_at before update on public.capsules
+  for each row execute function private.set_updated_at();
+
+create function private.enforce_capsule_open_window() returns trigger
+language plpgsql set search_path = '' as $$
+begin
+  if new.opens_on < current_date + 7 then
+    raise exception 'CAPSULE_OPENS_TOO_SOON' using errcode = '23514';
+  end if;
+  if new.opens_on > (current_date + interval '50 years')::date then
+    raise exception 'CAPSULE_OPENS_TOO_FAR' using errcode = '23514';
+  end if;
+  return new;
+end $$;
+create trigger capsules_open_window before insert on public.capsules
+  for each row execute function private.enforce_capsule_open_window();
 -- Temperature "fight" expires after 24 hours (product rule): the current state for the caller.
 create function public.current_temperature() returns public.temperature_checks
 language sql stable security definer set search_path = '' as $$

@@ -38,7 +38,9 @@ class const GuidePage({@PathParam('slug') final String slug = '', super.key})
           final goAhead = await BaseDialog.show<bool>(
             context: context,
             title: context.l10n.guides.gate.title,
-            text: context.l10n.guides.gate.text,
+            text: state.currentGuide?.gateKey == 'cycle'
+                ? context.l10n.guides.gate.cycleText
+                : context.l10n.guides.gate.text,
             primaryText: context.l10n.guides.gate.continueAction,
             primaryResult: true,
             secondaryText: context.l10n.guides.gate.otherAction,

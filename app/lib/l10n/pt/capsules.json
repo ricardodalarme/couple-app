@@ -28,6 +28,9 @@
   "ownerPrivate": "Só sua",
   "fromPartner": "Do seu par",
   "delete": "Apagar",
+  "deleteTitle": "Apagar esta cápsula?",
+  "deleteText": "Ela some antes de qualquer pessoa ler. Não dá para desfazer.",
+  "deleteConfirm": "Apagar",
   "emptyTitle": "Nenhuma cápsula ainda",
   "emptyText": "Escreva uma e escolha o dia em que ela abre.",
   "errorTitle": "Não deu para carregar",
@@ -35,5 +38,8 @@
   "errors(map)": {
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para guardar agora. Seu texto continua aqui."
+  },
+  "deleteErrors(map)": {
+    "other": "Não deu para apagar esta cápsula. Ela continua aqui."
   }
 }

@@ -164,6 +164,7 @@ const List<GuideDefinition> guideCatalogue = [
       ),
     ],
     isSensitive: true,
+    gateKey: 'intimacy',
   ),
   GuideDefinition(
     slug: 'year',
@@ -219,6 +220,7 @@ const List<GuideDefinition> guideCatalogue = [
       ),
     ],
     isSensitive: true,
+    gateKey: 'cycle',
   ),
   GuideDefinition(
     slug: 'apology',

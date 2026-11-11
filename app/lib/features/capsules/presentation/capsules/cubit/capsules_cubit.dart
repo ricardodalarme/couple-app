@@ -55,12 +55,15 @@ class CapsulesCubit({required final CapsulesRepository _capsulesRepository})
   }
 
   Future<void> delete(Capsule capsule) async {
+    if (state.deleteAction.isLoading) return;
+    emit(state.copyWith(deleteAction: const Loading()));
     try {
       await _capsulesRepository.delete(capsule.id);
+      emit(state.copyWith(deleteAction: const Initial()));
       await load();
     } catch (exception) {
-      emit(state.copyWith(saveAction: Failure.fromObject(exception)));
-      emit(state.copyWith(saveAction: const Initial()));
+      emit(state.copyWith(deleteAction: Failure.fromObject(exception)));
+      emit(state.copyWith(deleteAction: const Initial()));
     }
   }
 }

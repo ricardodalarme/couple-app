@@ -30,6 +30,7 @@ final class const GuideDefinition({
   required final List<GuideText> prompts,
   final bool isSensitive = false,
   final bool isPlusOnly = false,
+  final String gateKey = '',
 }) with Equatable {
   Guide localized(String languageCode) => Guide(
     slug: slug,
@@ -40,6 +41,7 @@ final class const GuideDefinition({
     contentVersion: guideContentVersion([for (final prompt in prompts) prompt.pt]),
     isSensitive: isSensitive,
     isPlusOnly: isPlusOnly,
+    gateKey: gateKey,
   );
 
   @override
@@ -51,6 +53,7 @@ final class const GuideDefinition({
     prompts,
     isSensitive,
     isPlusOnly,
+    gateKey,
   ];
 }
 
@@ -64,6 +67,7 @@ final class const Guide({
   required final String contentVersion,
   final bool isSensitive = false,
   final bool isPlusOnly = false,
+  final String gateKey = '',
 }) with Equatable {
   int get stepCount => prompts.length;
 
@@ -77,5 +81,6 @@ final class const Guide({
     contentVersion,
     isSensitive,
     isPlusOnly,
+    gateKey,
   ];
 }

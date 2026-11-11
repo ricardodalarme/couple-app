@@ -382,6 +382,15 @@ class Translations$capsules$pt {
   /// pt: 'Apagar'
   String get delete => 'Apagar';
 
+  /// pt: 'Apagar esta cápsula?'
+  String get deleteTitle => 'Apagar esta cápsula?';
+
+  /// pt: 'Ela some antes de qualquer pessoa ler. Não dá para desfazer.'
+  String get deleteText => 'Ela some antes de qualquer pessoa ler. Não dá para desfazer.';
+
+  /// pt: 'Apagar'
+  String get deleteConfirm => 'Apagar';
+
   /// pt: 'Nenhuma cápsula ainda'
   String get emptyTitle => 'Nenhuma cápsula ainda';
 
@@ -397,6 +406,9 @@ class Translations$capsules$pt {
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para guardar agora. Seu texto continua aqui.',
+  };
+  Map<String, String> get deleteErrors => {
+    'other': 'Não deu para apagar esta cápsula. Ela continua aqui.',
   };
 }
 
@@ -6407,6 +6419,10 @@ class Translations$guides$gate$pt {
   String get text =>
       'Este tema fala sobre intimidade e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.';
 
+  /// pt: 'Este tema fala sobre o corpo e o humor ao longo do mês e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.'
+  String get cycleText =>
+      'Este tema fala sobre o corpo e o humor ao longo do mês e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.';
+
   /// pt: 'Continuar'
   String get continueAction => 'Continuar';
 
@@ -7359,12 +7375,16 @@ extension on Translations {
           'capsules.ownerPrivate' => 'Só sua',
           'capsules.fromPartner' => 'Do seu par',
           'capsules.delete' => 'Apagar',
+          'capsules.deleteTitle' => 'Apagar esta cápsula?',
+          'capsules.deleteText' => 'Ela some antes de qualquer pessoa ler. Não dá para desfazer.',
+          'capsules.deleteConfirm' => 'Apagar',
           'capsules.emptyTitle' => 'Nenhuma cápsula ainda',
           'capsules.emptyText' => 'Escreva uma e escolha o dia em que ela abre.',
           'capsules.errorTitle' => 'Não deu para carregar',
           'capsules.errorText' => 'Suas cápsulas continuam guardadas. Tente de novo.',
           'capsules.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'capsules.errors.other' => 'Não deu para guardar agora. Seu texto continua aqui.',
+          'capsules.deleteErrors.other' => 'Não deu para apagar esta cápsula. Ela continua aqui.',
           'cardView.forPartner' => ({required Object name}) => 'Para ${name}',
           'cardView.forPartnerNoName' => 'Para sua pessoa',
           'cardView.goodThings' =>
@@ -7834,6 +7854,7 @@ extension on Translations {
             'Não deu para salvar agora. Suas respostas continuam aqui.',
           'guides.gate.title' => 'Um tema sensível',
           'guides.gate.text' => 'Este tema fala sobre intimidade e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.',
+          'guides.gate.cycleText' => 'Este tema fala sobre o corpo e o humor ao longo do mês e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.',
           'guides.gate.continueAction' => 'Continuar',
           'guides.gate.otherAction' => 'Ver outros temas',
           'guides.finish.title' => 'Sua conversa está preparada',
@@ -7843,14 +7864,14 @@ extension on Translations {
           'guides.finish.start' => 'Começar uma conversa',
           'guides.finish.other' => 'Voltar aos temas',
           'help.badDayTitle' => 'Um dia difícil',
+          _ => null,
+        } ??
+        switch (path) {
           'help.badDayText' => 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.',
           'help.starterTitle' => 'Começar uma conversa',
           'help.starterText' => 'Uma pergunta para abrir, sem pressa.',
           'help.another' => 'Outra',
           'help.emptyTitle' => 'Nada por aqui ainda',
-          _ => null,
-        } ??
-        switch (path) {
           'help.emptyText' => 'Estamos preparando mais sugestões.',
           'help.errorTitle' => 'Não deu para carregar',
           'help.errorText' => 'Tente de novo daqui a pouco.',
@@ -8525,6 +8546,9 @@ extension on Translations {
           'mood.entryTitle' => 'Como você está hoje?',
           'mood.entryText' => 'Um toque. Só você vê até compartilhar.',
           'mood.partnerLabel' => 'Humor do seu par',
+          _ => null,
+        } ??
+        switch (path) {
           'mood.partnerFallback' => 'Seu par',
           'mood.partnerHappy' => ({required Object name}) => '${name} está feliz hoje',
           'mood.partnerTired' => ({required Object name}) => '${name} está sem energia hoje',
@@ -8532,9 +8556,6 @@ extension on Translations {
           'mood.partnerStressed' => ({
             required Object name,
           }) => '${name} está com a cabeça cheia hoje',
-          _ => null,
-        } ??
-        switch (path) {
           'mood.partnerLoving' => ({
             required Object name,
           }) => '${name} está com o coração quentinho hoje',
@@ -9112,14 +9133,14 @@ extension on Translations {
           'received.doneText' => 'Obrigado por ler com calma.',
           'received.emptyTitle' => 'Nada novo',
           'received.emptyText' => 'Quando seu par mandar algo, aparece aqui.',
+          _ => null,
+        } ??
+        switch (path) {
           'received.close' => 'Fechar',
           'received.errorTitle' => 'Não deu para abrir',
           'received.errorText' => 'Nada se perdeu. Tente de novo.',
           'received.errors.NOT_FOUND' => 'Essa mensagem não está mais aqui.',
           'received.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          _ => null,
-        } ??
-        switch (path) {
           'received.errors.other' => 'Não deu para responder agora. Tente de novo.',
           'relationshipChanged.title' => 'Algo mudou?',
           'relationshipChanged.highlight' => 'mudou',
@@ -9684,6 +9705,9 @@ extension on Translations {
           'temperature.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
           'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
+          _ => null,
+        } ??
+        switch (path) {
           'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',
           'today.greetingNoName' => 'Olá',
           'today.dateLine' => ({
@@ -9693,9 +9717,6 @@ extension on Translations {
           }) => '${weekday}, ${day} de ${month}',
           'today.weekdays.0' => 'segunda',
           'today.weekdays.1' => 'terça',
-          _ => null,
-        } ??
-        switch (path) {
           'today.weekdays.2' => 'quarta',
           'today.weekdays.3' => 'quinta',
           'today.weekdays.4' => 'sexta',

@@ -69,4 +69,24 @@ void main() {
       },
     );
   });
+
+  test('each sensitive topic carries its own gate reason', () {
+    expect(
+      {for (final guide in guideCatalogue) guide.slug: guide.gateKey},
+      {
+        'transition': '',
+        'money': '',
+        'family': '',
+        'chores': '',
+        'plans': '',
+        'intimacy': 'intimacy',
+        'year': '',
+        'cycle': 'cycle',
+        'apology': '',
+        'dreams': '',
+        'values': '',
+        'distance': '',
+      },
+    );
+  });
 }
