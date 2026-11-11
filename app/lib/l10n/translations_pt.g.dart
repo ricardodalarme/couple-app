@@ -59,15 +59,21 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$account$pt account = Translations$account$pt.internal(_root);
   late final Translations$authentication$pt authentication =
       Translations$authentication$pt.internal(_root);
+  late final Translations$capsules$pt capsules = Translations$capsules$pt.internal(_root);
   late final Translations$cardView$pt cardView = Translations$cardView$pt.internal(_root);
   late final Translations$cardsList$pt cardsList = Translations$cardsList$pt.internal(_root);
   late final Translations$checkin$pt checkin = Translations$checkin$pt.internal(_root);
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
+  late final Translations$connectTouch$pt connectTouch = Translations$connectTouch$pt.internal(
+    _root,
+  );
+  late final Translations$connectUs$pt connectUs = Translations$connectUs$pt.internal(_root);
   late final Translations$dateNight$pt dateNight = Translations$dateNight$pt.internal(_root);
   late final Translations$dates$pt dates = Translations$dates$pt.internal(_root);
   late final Translations$day$pt day = Translations$day$pt.internal(_root);
   late final Translations$devices$pt devices = Translations$devices$pt.internal(_root);
   late final Translations$discreet$pt discreet = Translations$discreet$pt.internal(_root);
+  late final Translations$distance$pt distance = Translations$distance$pt.internal(_root);
   late final Translations$fightStyle$pt fightStyle = Translations$fightStyle$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
   late final Translations$globalErrors$pt globalErrors = Translations$globalErrors$pt.internal(
@@ -301,6 +307,94 @@ class Translations$authentication$pt {
   Map<String, String> get errors => {
     'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
     'other': 'Não deu para entrar agora. Tente de novo.',
+  };
+}
+
+// Path: capsules
+class Translations$capsules$pt {
+  Translations$capsules$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Cápsula do tempo'
+  String get title => 'Cápsula do tempo';
+
+  /// pt: 'Escreva algo para ser aberto em uma data futura. Até lá, ninguém lê, nem você.'
+  String get text =>
+      'Escreva algo para ser aberto em uma data futura. Até lá, ninguém lê, nem você.';
+
+  /// pt: 'O que você quer dizer para o futuro?'
+  String get bodyHint => 'O que você quer dizer para o futuro?';
+
+  /// pt: 'Abre em'
+  String get dateLabel => 'Abre em';
+
+  /// pt: 'Escolha uma data'
+  String get dateHint => 'Escolha uma data';
+
+  /// pt: '{day} de {month} de {year}'
+  String dateFormat({required Object day, required Object month, required Object year}) =>
+      '${day} de ${month} de ${year}';
+
+  List<String> get months => [
+    'janeiro',
+    'fevereiro',
+    'março',
+    'abril',
+    'maio',
+    'junho',
+    'julho',
+    'agosto',
+    'setembro',
+    'outubro',
+    'novembro',
+    'dezembro',
+  ];
+
+  /// pt: 'Para nós dois'
+  String get sharedLabel => 'Para nós dois';
+
+  /// pt: 'Seu par também lê quando a data chegar. Desligado, só você lê.'
+  String get sharedText => 'Seu par também lê quando a data chegar. Desligado, só você lê.';
+
+  /// pt: 'Guardar cápsula'
+  String get save => 'Guardar cápsula';
+
+  /// pt: 'Cápsula guardada'
+  String get saved => 'Cápsula guardada';
+
+  /// pt: 'Fechada até {date}'
+  String closedUntil({required Object date}) => 'Fechada até ${date}';
+
+  /// pt: 'Sua, para os dois'
+  String get ownerSharedBy => 'Sua, para os dois';
+
+  /// pt: 'Só sua'
+  String get ownerPrivate => 'Só sua';
+
+  /// pt: 'Do seu par'
+  String get fromPartner => 'Do seu par';
+
+  /// pt: 'Apagar'
+  String get delete => 'Apagar';
+
+  /// pt: 'Nenhuma cápsula ainda'
+  String get emptyTitle => 'Nenhuma cápsula ainda';
+
+  /// pt: 'Escreva uma e escolha o dia em que ela abre.'
+  String get emptyText => 'Escreva uma e escolha o dia em que ela abre.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Suas cápsulas continuam guardadas. Tente de novo.'
+  String get errorText => 'Suas cápsulas continuam guardadas. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para guardar agora. Seu texto continua aqui.',
   };
 }
 
@@ -626,6 +720,86 @@ class Translations$common$pt {
 
   /// pt: 'Continuar escrevendo'
   String get keepWriting => 'Continuar escrevendo';
+}
+
+// Path: connectTouch
+class Translations$connectTouch$pt {
+  Translations$connectTouch$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Toque'
+  String get title => 'Toque';
+
+  /// pt: 'Cartas neutras, sem tempero. Fazer ou pular, sem pressão.'
+  String get text => 'Cartas neutras, sem tempero. Fazer ou pular, sem pressão.';
+
+  /// pt: 'Temas de toque'
+  String get switchTitle => 'Temas de toque';
+
+  /// pt: 'Vale para vocês dois: se um desligar, some para os dois.'
+  String get switchText => 'Vale para vocês dois: se um desligar, some para os dois.';
+
+  /// pt: 'Temas de toque desligados'
+  String get offTitle => 'Temas de toque desligados';
+
+  /// pt: 'Você ou seu par desligou. Podem religar aqui quando quiserem.'
+  String get offText => 'Você ou seu par desligou. Podem religar aqui quando quiserem.';
+
+  /// pt: 'Nenhuma carta agora'
+  String get emptyTitle => 'Nenhuma carta agora';
+
+  /// pt: 'Volte mais tarde.'
+  String get emptyText => 'Volte mais tarde.';
+
+  /// pt: 'Pronto'
+  String get done => 'Pronto';
+
+  /// pt: 'Pular'
+  String get skip => 'Pular';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Tente de novo em instantes.'
+  String get errorText => 'Tente de novo em instantes.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para mudar agora. Tente de novo.',
+  };
+}
+
+// Path: connectUs
+class Translations$connectUs$pt {
+  Translations$connectUs$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Nós'
+  String get title => 'Nós';
+
+  /// pt: 'Envie “sinto saudade de nós” com um toque. Leve, sem culpa. Seu par não precisa responder.'
+  String get text =>
+      'Envie “sinto saudade de nós” com um toque. Leve, sem culpa. Seu par não precisa responder.';
+
+  /// pt: 'Enviar com carinho'
+  String get send => 'Enviar com carinho';
+
+  /// pt: 'Sugerir um plano pequeno'
+  String get plan => 'Sugerir um plano pequeno';
+
+  /// pt: 'Enviado. Sem pressa de resposta.'
+  String get sentNote => 'Enviado. Sem pressa de resposta.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para enviar agora. Tente de novo.',
+  };
 }
 
 // Path: dateNight
@@ -986,6 +1160,57 @@ class Translations$discreet$pt {
 
   /// pt: 'Não deu para salvar agora. Tente de novo.'
   String get saveError => 'Não deu para salvar agora. Tente de novo.';
+}
+
+// Path: distance
+class Translations$distance$pt {
+  Translations$distance$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Distância'
+  String get title => 'Distância';
+
+  /// pt: 'Dois relógios, cada um no seu fuso, sem confusão.'
+  String get text => 'Dois relógios, cada um no seu fuso, sem confusão.';
+
+  /// pt: 'Você'
+  String get you => 'Você';
+
+  /// pt: 'Seu par'
+  String get partner => 'Seu par';
+
+  /// pt: 'Quando seu par entrar, o relógio dele ou dela aparece aqui.'
+  String get noPartner => 'Quando seu par entrar, o relógio dele ou dela aparece aqui.';
+
+  /// pt: 'Vocês estão no mesmo fuso por enquanto.'
+  String get sameZone => 'Vocês estão no mesmo fuso por enquanto.';
+
+  /// pt: '{n} dias até vocês se verem'
+  String reunionDays({required Object n}) => '${n} dias até vocês se verem';
+
+  /// pt: 'Vocês se veem hoje'
+  String get reunionToday => 'Vocês se veem hoje';
+
+  /// pt: 'Vocês se veem amanhã'
+  String get reunionTomorrow => 'Vocês se veem amanhã';
+
+  /// pt: 'Sem data de reencontro'
+  String get noReunionTitle => 'Sem data de reencontro';
+
+  /// pt: 'Salve um “Reencontro” nas datas e a contagem aparece aqui.'
+  String get noReunionText => 'Salve um “Reencontro” nas datas e a contagem aparece aqui.';
+
+  /// pt: 'Salvar uma data'
+  String get addReunion => 'Salvar uma data';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Tente de novo em instantes.'
+  String get errorText => 'Tente de novo em instantes.';
 }
 
 // Path: fightStyle
@@ -3924,6 +4149,7 @@ class Translations$relationshipSettings$pt {
     'married': 'Casados',
     'with_kids': 'Com filhos',
     'long_distance': 'Namoro à distância',
+    'with_parents': 'Moramos com os pais',
     'restarting': 'Recomeçando',
   };
 
@@ -4754,6 +4980,51 @@ class Translations$tabs$pt {
 
   /// pt: 'Mande algo curto e carinhoso, quando quiser.'
   String get notesText => 'Mande algo curto e carinhoso, quando quiser.';
+
+  /// pt: 'NÓS'
+  String get usLabel => 'NÓS';
+
+  /// pt: 'Sinto saudade de nós'
+  String get usTitle => 'Sinto saudade de nós';
+
+  /// pt: 'Um toque leve para o seu par, sem cobrança.'
+  String get usText => 'Um toque leve para o seu par, sem cobrança.';
+
+  /// pt: 'TOQUE'
+  String get touchLabel => 'TOQUE';
+
+  /// pt: 'Cartas de toque'
+  String get touchTitle => 'Cartas de toque';
+
+  /// pt: 'Neutras, para fazer ou pular.'
+  String get touchText => 'Neutras, para fazer ou pular.';
+
+  /// pt: 'DISTÂNCIA'
+  String get distanceLabel => 'DISTÂNCIA';
+
+  /// pt: 'Nossos dois relógios'
+  String get distanceTitle => 'Nossos dois relógios';
+
+  /// pt: 'Fusos e a contagem até o reencontro.'
+  String get distanceText => 'Fusos e a contagem até o reencontro.';
+
+  /// pt: 'COM OS PAIS'
+  String get parentsLabel => 'COM OS PAIS';
+
+  /// pt: 'Cinco minutos para nós'
+  String get parentsTitle => 'Cinco minutos para nós';
+
+  /// pt: 'Um momento curto e só de vocês dois, mesmo com a casa cheia.'
+  String get parentsText => 'Um momento curto e só de vocês dois, mesmo com a casa cheia.';
+
+  /// pt: 'CÁPSULA DO TEMPO'
+  String get capsulesLabel => 'CÁPSULA DO TEMPO';
+
+  /// pt: 'Uma mensagem para o futuro'
+  String get capsulesTitle => 'Uma mensagem para o futuro';
+
+  /// pt: 'Fica fechada até a data que você escolher.'
+  String get capsulesText => 'Fica fechada até a data que você escolher.';
 
   /// pt: 'DATAS'
   String get datesLabel => 'DATAS';
@@ -5877,6 +6148,7 @@ class Translations$intro$phase$pt {
     'married': 'Casados',
     'with_kids': 'Com filhos',
     'long_distance': 'Namoro à distância',
+    'with_parents': 'Moramos com os pais',
     'restarting': 'Recomeçando',
     'other': '',
   };
@@ -6738,6 +7010,44 @@ extension on Translations {
           'authentication.continueWithGoogle' => 'Continuar com o Google',
           'authentication.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
           'authentication.errors.other' => 'Não deu para entrar agora. Tente de novo.',
+          'capsules.title' => 'Cápsula do tempo',
+          'capsules.text' =>
+            'Escreva algo para ser aberto em uma data futura. Até lá, ninguém lê, nem você.',
+          'capsules.bodyHint' => 'O que você quer dizer para o futuro?',
+          'capsules.dateLabel' => 'Abre em',
+          'capsules.dateHint' => 'Escolha uma data',
+          'capsules.dateFormat' => ({
+            required Object day,
+            required Object month,
+            required Object year,
+          }) => '${day} de ${month} de ${year}',
+          'capsules.months.0' => 'janeiro',
+          'capsules.months.1' => 'fevereiro',
+          'capsules.months.2' => 'março',
+          'capsules.months.3' => 'abril',
+          'capsules.months.4' => 'maio',
+          'capsules.months.5' => 'junho',
+          'capsules.months.6' => 'julho',
+          'capsules.months.7' => 'agosto',
+          'capsules.months.8' => 'setembro',
+          'capsules.months.9' => 'outubro',
+          'capsules.months.10' => 'novembro',
+          'capsules.months.11' => 'dezembro',
+          'capsules.sharedLabel' => 'Para nós dois',
+          'capsules.sharedText' => 'Seu par também lê quando a data chegar. Desligado, só você lê.',
+          'capsules.save' => 'Guardar cápsula',
+          'capsules.saved' => 'Cápsula guardada',
+          'capsules.closedUntil' => ({required Object date}) => 'Fechada até ${date}',
+          'capsules.ownerSharedBy' => 'Sua, para os dois',
+          'capsules.ownerPrivate' => 'Só sua',
+          'capsules.fromPartner' => 'Do seu par',
+          'capsules.delete' => 'Apagar',
+          'capsules.emptyTitle' => 'Nenhuma cápsula ainda',
+          'capsules.emptyText' => 'Escreva uma e escolha o dia em que ela abre.',
+          'capsules.errorTitle' => 'Não deu para carregar',
+          'capsules.errorText' => 'Suas cápsulas continuam guardadas. Tente de novo.',
+          'capsules.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'capsules.errors.other' => 'Não deu para guardar agora. Seu texto continua aqui.',
           'cardView.forPartner' => ({required Object name}) => 'Para ${name}',
           'cardView.forPartnerNoName' => 'Para sua pessoa',
           'cardView.goodThings' =>
@@ -6870,6 +7180,27 @@ extension on Translations {
           'common.discardText' => 'O que você escreveu não será salvo.',
           'common.discard' => 'Descartar',
           'common.keepWriting' => 'Continuar escrevendo',
+          'connectTouch.title' => 'Toque',
+          'connectTouch.text' => 'Cartas neutras, sem tempero. Fazer ou pular, sem pressão.',
+          'connectTouch.switchTitle' => 'Temas de toque',
+          'connectTouch.switchText' => 'Vale para vocês dois: se um desligar, some para os dois.',
+          'connectTouch.offTitle' => 'Temas de toque desligados',
+          'connectTouch.offText' => 'Você ou seu par desligou. Podem religar aqui quando quiserem.',
+          'connectTouch.emptyTitle' => 'Nenhuma carta agora',
+          'connectTouch.emptyText' => 'Volte mais tarde.',
+          'connectTouch.done' => 'Pronto',
+          'connectTouch.skip' => 'Pular',
+          'connectTouch.errorTitle' => 'Não deu para carregar',
+          'connectTouch.errorText' => 'Tente de novo em instantes.',
+          'connectTouch.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'connectTouch.errors.other' => 'Não deu para mudar agora. Tente de novo.',
+          'connectUs.title' => 'Nós',
+          'connectUs.text' => 'Envie “sinto saudade de nós” com um toque. Leve, sem culpa. Seu par não precisa responder.',
+          'connectUs.send' => 'Enviar com carinho',
+          'connectUs.plan' => 'Sugerir um plano pequeno',
+          'connectUs.sentNote' => 'Enviado. Sem pressa de resposta.',
+          'connectUs.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'connectUs.errors.other' => 'Não deu para enviar agora. Tente de novo.',
           'dateNight.title' => 'Date night',
           'dateNight.subtitle' => 'Ideias para vocês dois, escolhidas juntos.',
           'dateNight.hint' => 'Ex.: piquenique no parque',
@@ -7031,6 +7362,20 @@ extension on Translations {
           'discreet.note' =>
             'Oculta nomes e conteúdo em notificações e widgets. Sem imagem do casal no ícone.',
           'discreet.saveError' => 'Não deu para salvar agora. Tente de novo.',
+          'distance.title' => 'Distância',
+          'distance.text' => 'Dois relógios, cada um no seu fuso, sem confusão.',
+          'distance.you' => 'Você',
+          'distance.partner' => 'Seu par',
+          'distance.noPartner' => 'Quando seu par entrar, o relógio dele ou dela aparece aqui.',
+          'distance.sameZone' => 'Vocês estão no mesmo fuso por enquanto.',
+          'distance.reunionDays' => ({required Object n}) => '${n} dias até vocês se verem',
+          'distance.reunionToday' => 'Vocês se veem hoje',
+          'distance.reunionTomorrow' => 'Vocês se veem amanhã',
+          'distance.noReunionTitle' => 'Sem data de reencontro',
+          'distance.noReunionText' => 'Salve um “Reencontro” nas datas e a contagem aparece aqui.',
+          'distance.addReunion' => 'Salvar uma data',
+          'distance.errorTitle' => 'Não deu para carregar',
+          'distance.errorText' => 'Tente de novo em instantes.',
           'fightStyle.exerciseTitle' => 'Como eu reajo numa briga',
           'fightStyle.exerciseHighlight' => 'reajo',
           'fightStyle.exerciseSubtitle' => 'Seis perguntas rápidas, só para você.',
@@ -7186,6 +7531,9 @@ extension on Translations {
           'help.starterText' => 'Uma pergunta para abrir, sem pressa.',
           'help.another' => 'Outra',
           'help.emptyTitle' => 'Nada por aqui ainda',
+          _ => null,
+        } ??
+        switch (path) {
           'help.emptyText' => 'Estamos preparando mais sugestões.',
           'help.errorTitle' => 'Não deu para carregar',
           'help.errorText' => 'Tente de novo daqui a pouco.',
@@ -7313,9 +7661,6 @@ extension on Translations {
           'history.differentDatesBanner' => 'Vocês escolheram datas diferentes para o início',
           'history.differentDatesAction' => 'Ver datas',
           'history.timelineSection' => 'MARCOS E MEMÓRIAS',
-          _ => null,
-        } ??
-        switch (path) {
           'history.recentChip' => 'Recentes',
           'history.unknownYearChip' => 'Sem data',
           'history.timelineRecentNote' => 'Mostrando os marcos mais recentes.',
@@ -7552,6 +7897,7 @@ extension on Translations {
           'intro.phase.options.married' => 'Casados',
           'intro.phase.options.with_kids' => 'Com filhos',
           'intro.phase.options.long_distance' => 'Namoro à distância',
+          'intro.phase.options.with_parents' => 'Moramos com os pais',
           'intro.phase.options.restarting' => 'Recomeçando',
           'intro.phase.options.other' => '',
           'intro.goals.title' => 'O que você quer do app?',
@@ -7865,6 +8211,9 @@ extension on Translations {
             'Muitas tentativas seguidas. Espere um instante.',
           'notificationPreferences.errors.other' =>
             'Não deu para salvar agora. Sua escolha anterior foi mantida.',
+          _ => null,
+        } ??
+        switch (path) {
           'partnerProfile.title' => 'Sobre seu par',
           'partnerProfile.privateNote' =>
             'Só você vê estas notas. Elas nunca aparecem em avisos, widgets ou para seu par.',
@@ -7942,9 +8291,6 @@ extension on Translations {
           'plus.subscribe' => 'Assinar',
           'plus.started' => 'Plus ativado. Obrigado.',
           'plus.pending' => 'Compra recebida. Estamos confirmando, o Plus aparece em instantes.',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.purchaseError' => 'Não deu para concluir a compra. Nada foi cobrado.',
           'plus.billingTitle' => 'Problema no pagamento',
           'plus.billingText' => 'O último pagamento não passou. O Plus continua por enquanto. Abra suas assinaturas na loja e atualize a forma de pagamento.',
@@ -8306,6 +8652,7 @@ extension on Translations {
           'relationshipSettings.phases.married' => 'Casados',
           'relationshipSettings.phases.with_kids' => 'Com filhos',
           'relationshipSettings.phases.long_distance' => 'Namoro à distância',
+          'relationshipSettings.phases.with_parents' => 'Moramos com os pais',
           'relationshipSettings.phases.restarting' => 'Recomeçando',
           'relationshipSettings.dateLabel' => 'Juntos desde',
           'relationshipSettings.dateHint' => 'Escolha uma data',
@@ -8430,6 +8777,9 @@ extension on Translations {
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Escreva em uma ou duas frases',
           'repair.learning.save' => 'Salvar',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.learning.listTitle' => 'Seus aprendizados',
           'repair.learning.delete' => 'Apagar',
           'repair.learning.emptyTitle' => 'Nada ainda',
@@ -8542,9 +8892,6 @@ extension on Translations {
           'slipDetail.weekdays.5' => 'sábado',
           'slipDetail.weekdays.6' => 'domingo',
           'slipDetail.monthsShort.0' => 'jan',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.monthsShort.1' => 'fev',
           'slipDetail.monthsShort.2' => 'mar',
           'slipDetail.monthsShort.3' => 'abr',
@@ -8591,9 +8938,6 @@ extension on Translations {
           'slipDetail.notFoundTitle' => 'Este slip não existe mais',
           'slipDetail.notFoundText' => 'Ele pode ter sido apagado.',
           'slipDetail.errorTitle' => 'Não deu para abrir este slip',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.errorText' => 'Ele continua salvo. Tente de novo.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'Este slip não existe mais.',
           'slipDetail.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
@@ -8779,6 +9123,21 @@ extension on Translations {
           'tabs.notesLabel' => 'PARA SEU PAR',
           'tabs.notesTitle' => 'Bilhete ou desenho',
           'tabs.notesText' => 'Mande algo curto e carinhoso, quando quiser.',
+          'tabs.usLabel' => 'NÓS',
+          'tabs.usTitle' => 'Sinto saudade de nós',
+          'tabs.usText' => 'Um toque leve para o seu par, sem cobrança.',
+          'tabs.touchLabel' => 'TOQUE',
+          'tabs.touchTitle' => 'Cartas de toque',
+          'tabs.touchText' => 'Neutras, para fazer ou pular.',
+          'tabs.distanceLabel' => 'DISTÂNCIA',
+          'tabs.distanceTitle' => 'Nossos dois relógios',
+          'tabs.distanceText' => 'Fusos e a contagem até o reencontro.',
+          'tabs.parentsLabel' => 'COM OS PAIS',
+          'tabs.parentsTitle' => 'Cinco minutos para nós',
+          'tabs.parentsText' => 'Um momento curto e só de vocês dois, mesmo com a casa cheia.',
+          'tabs.capsulesLabel' => 'CÁPSULA DO TEMPO',
+          'tabs.capsulesTitle' => 'Uma mensagem para o futuro',
+          'tabs.capsulesText' => 'Fica fechada até a data que você escolher.',
           'tabs.datesLabel' => 'DATAS',
           'tabs.datesTitle' => 'Datas importantes',
           'tabs.datesText' => 'Aniversários, presentes e feriados, com aviso antes.',
@@ -9036,6 +9395,9 @@ extension on Translations {
                 ),
           'widgets.couplePhotosLabel' => 'FOTOS DO CASAL · PLUS',
           'widgets.couplePhotosPrompt' => 'Escolha uma foto de vocês dois',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.couplePhotosPlusHint' => 'Disponível no plano Plus',
           'widgets.partnerNoteLabel' => 'RECADO DO PAR',
           'widgets.partnerNoteEmpty' => 'Sem recado novo no momento',
@@ -9174,9 +9536,6 @@ extension on Translations {
           'widgets.statesOfflineSection' => 'Sem conexão',
           'widgets.statesOfflineTitle' => 'Mostrando o último dado',
           'widgets.statesOfflineSubtitle' => 'Atualiza quando voltar a internet',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.statesPrecedenceNote' => 'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).',
           'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
             'Não foi possível salvar as preferências agora.',

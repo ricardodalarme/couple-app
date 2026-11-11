@@ -1,7 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 /// The two kinds of message the server accepts.
-enum MessageKind() { note, drawing }
+enum MessageKind() {
+  note,
+  drawing,
+}
 
 /// The longest note the server accepts.
 const int noteMaxLength = 280;

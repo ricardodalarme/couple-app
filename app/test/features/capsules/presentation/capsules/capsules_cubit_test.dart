@@ -1,7 +1,6 @@
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/capsules/data/data_sources/capsules_data_source.dart';
 import 'package:flutter_bloc_starter/features/capsules/data/data_sources/queries/generated/Capsules.graphql.dart';
-import 'package:flutter_bloc_starter/features/capsules/data/models/capsule.dart';
 import 'package:flutter_bloc_starter/features/capsules/data/repositories/capsules_repository.dart';
 import 'package:flutter_bloc_starter/features/capsules/presentation/capsules/cubit/capsules_cubit.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
@@ -98,7 +97,7 @@ void main() {
       final dataSource = _MockDataSource();
       final auth = _MockAuth();
       when(() => auth.currentUserId).thenReturn('me');
-      when(() => dataSource.getCapsules()).thenAnswer(
+      when(dataSource.getCapsules).thenAnswer(
         (_) async => [
           _node('a', DateTime(2026, 12, 1), 'segredo'),
           _node('b', DateTime(2026, 11, 11), 'aberta'),

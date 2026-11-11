@@ -1,6 +1,9 @@
 part of 'compose_cubit.dart';
 
-enum DrawingTool() { pen, eraser }
+enum DrawingTool() {
+  pen,
+  eraser,
+}
 
 final class const ComposeState({
   final Resource<List<SentMessage>> sent = const Loading(),

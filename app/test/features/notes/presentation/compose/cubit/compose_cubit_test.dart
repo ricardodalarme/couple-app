@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-import 'dart:ui';
 
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/notes/data/models/sent_message.dart';

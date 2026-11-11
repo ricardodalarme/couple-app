@@ -60,6 +60,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
     _root,
   );
   @override
+  late final _Translations$capsules$en capsules = _Translations$capsules$en._(_root);
+  @override
   late final _Translations$cardView$en cardView = _Translations$cardView$en._(_root);
   @override
   late final _Translations$cardsList$en cardsList = _Translations$cardsList$en._(_root);
@@ -67,6 +69,10 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$checkin$en checkin = _Translations$checkin$en._(_root);
   @override
   late final _Translations$common$en common = _Translations$common$en._(_root);
+  @override
+  late final _Translations$connectTouch$en connectTouch = _Translations$connectTouch$en._(_root);
+  @override
+  late final _Translations$connectUs$en connectUs = _Translations$connectUs$en._(_root);
   @override
   late final _Translations$dateNight$en dateNight = _Translations$dateNight$en._(_root);
   @override
@@ -77,6 +83,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$devices$en devices = _Translations$devices$en._(_root);
   @override
   late final _Translations$discreet$en discreet = _Translations$discreet$en._(_root);
+  @override
+  late final _Translations$distance$en distance = _Translations$distance$en._(_root);
   @override
   late final _Translations$fightStyle$en fightStyle = _Translations$fightStyle$en._(_root);
   @override
@@ -330,6 +338,75 @@ class _Translations$authentication$en extends Translations$authentication$pt {
   };
 }
 
+// Path: capsules
+class _Translations$capsules$en extends Translations$capsules$pt {
+  _Translations$capsules$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Time capsule';
+  @override
+  String get text =>
+      'Write something to be opened on a future date. Until then nobody reads it, not even you.';
+  @override
+  String get bodyHint => 'What do you want to say to the future?';
+  @override
+  String get dateLabel => 'Opens on';
+  @override
+  String get dateHint => 'Pick a date';
+  @override
+  String dateFormat({required Object month, required Object day, required Object year}) =>
+      '${month} ${day}, ${year}';
+  @override
+  List<String> get months => [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  @override
+  String get sharedLabel => 'For both of us';
+  @override
+  String get sharedText => 'Your partner reads it too when the date comes. Off, only you read it.';
+  @override
+  String get save => 'Save capsule';
+  @override
+  String get saved => 'Capsule saved';
+  @override
+  String closedUntil({required Object date}) => 'Closed until ${date}';
+  @override
+  String get ownerSharedBy => 'Yours, for both';
+  @override
+  String get ownerPrivate => 'Only yours';
+  @override
+  String get fromPartner => 'From your partner';
+  @override
+  String get delete => 'Delete';
+  @override
+  String get emptyTitle => 'No capsules yet';
+  @override
+  String get emptyText => 'Write one and choose the day it opens.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Your capsules are still saved. Try again.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t save right now. Your text is still here.',
+  };
+}
+
 // Path: cardView
 class _Translations$cardView$en extends Translations$cardView$pt {
   _Translations$cardView$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -575,6 +652,70 @@ class _Translations$common$en extends Translations$common$pt {
   String get discard => 'Discard';
   @override
   String get keepWriting => 'Keep writing';
+}
+
+// Path: connectTouch
+class _Translations$connectTouch$en extends Translations$connectTouch$pt {
+  _Translations$connectTouch$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Touch';
+  @override
+  String get text => 'Neutral cards, nothing spicy. Do it or skip it, no pressure.';
+  @override
+  String get switchTitle => 'Touch topics';
+  @override
+  String get switchText => 'Applies to both of you: if one turns it off, it goes away for both.';
+  @override
+  String get offTitle => 'Touch topics are off';
+  @override
+  String get offText =>
+      'You or your partner turned them off. You can turn them back on here anytime.';
+  @override
+  String get emptyTitle => 'No cards right now';
+  @override
+  String get emptyText => 'Come back later.';
+  @override
+  String get done => 'Done';
+  @override
+  String get skip => 'Skip';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Try again in a moment.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t change that right now. Try again.',
+  };
+}
+
+// Path: connectUs
+class _Translations$connectUs$en extends Translations$connectUs$pt {
+  _Translations$connectUs$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Us';
+  @override
+  String get text =>
+      'Send “I miss us” with one tap. Light, no guilt. Your partner doesn\'t have to answer.';
+  @override
+  String get send => 'Send with care';
+  @override
+  String get plan => 'Suggest a small plan';
+  @override
+  String get sentNote => 'Sent. No rush to reply.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t send right now. Try again.',
+  };
 }
 
 // Path: dateNight
@@ -865,6 +1006,43 @@ class _Translations$discreet$en extends Translations$discreet$pt {
       'Hides names and content in notifications and widgets. No couple photo on the icon.';
   @override
   String get saveError => 'Could not save now. Try again.';
+}
+
+// Path: distance
+class _Translations$distance$en extends Translations$distance$pt {
+  _Translations$distance$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Distance';
+  @override
+  String get text => 'Two clocks, each in its own time zone, never mixed up.';
+  @override
+  String get you => 'You';
+  @override
+  String get partner => 'Your partner';
+  @override
+  String get noPartner => 'When your partner joins, their clock shows up here.';
+  @override
+  String get sameZone => 'You are in the same time zone for now.';
+  @override
+  String reunionDays({required Object n}) => '${n} days until you see each other';
+  @override
+  String get reunionToday => 'You see each other today';
+  @override
+  String get reunionTomorrow => 'You see each other tomorrow';
+  @override
+  String get noReunionTitle => 'No reunion date';
+  @override
+  String get noReunionText => 'Save a “Reunion” in your dates and the countdown shows here.';
+  @override
+  String get addReunion => 'Save a date';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Try again in a moment.';
 }
 
 // Path: fightStyle
@@ -3164,6 +3342,7 @@ class _Translations$relationshipSettings$en extends Translations$relationshipSet
     'married': 'Married',
     'with_kids': 'With kids',
     'long_distance': 'Long distance',
+    'with_parents': 'Living with parents',
     'restarting': 'Starting over',
   };
   @override
@@ -3823,6 +4002,36 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get notesTitle => 'A note or a drawing';
   @override
   String get notesText => 'Send something short and kind, whenever you like.';
+  @override
+  String get usLabel => 'US';
+  @override
+  String get usTitle => 'I miss us';
+  @override
+  String get usText => 'A light tap for your partner, no pressure.';
+  @override
+  String get touchLabel => 'TOUCH';
+  @override
+  String get touchTitle => 'Touch cards';
+  @override
+  String get touchText => 'Neutral, to do or skip.';
+  @override
+  String get distanceLabel => 'DISTANCE';
+  @override
+  String get distanceTitle => 'Our two clocks';
+  @override
+  String get distanceText => 'Time zones and the countdown to seeing each other.';
+  @override
+  String get parentsLabel => 'WITH PARENTS';
+  @override
+  String get parentsTitle => 'Five minutes for us';
+  @override
+  String get parentsText => 'A short moment just for the two of you, even in a full house.';
+  @override
+  String get capsulesLabel => 'TIME CAPSULE';
+  @override
+  String get capsulesTitle => 'A message to the future';
+  @override
+  String get capsulesText => 'Stays closed until the day you choose.';
   @override
   String get datesLabel => 'DATES';
   @override
@@ -4657,6 +4866,7 @@ class _Translations$intro$phase$en extends Translations$intro$phase$pt {
     'married': 'Married',
     'with_kids': 'With kids',
     'long_distance': 'Long distance',
+    'with_parents': 'Living with parents',
     'restarting': 'Starting over',
     'other': '',
   };
@@ -5390,6 +5600,44 @@ extension on TranslationsEn {
           'authentication.continueWithGoogle' => 'Continue with Google',
           'authentication.errors.NETWORK' => 'No connection. Check your internet and try again.',
           'authentication.errors.other' => 'Could not sign you in right now. Try again.',
+          'capsules.title' => 'Time capsule',
+          'capsules.text' => 'Write something to be opened on a future date. Until then nobody reads it, not even you.',
+          'capsules.bodyHint' => 'What do you want to say to the future?',
+          'capsules.dateLabel' => 'Opens on',
+          'capsules.dateHint' => 'Pick a date',
+          'capsules.dateFormat' => ({
+            required Object month,
+            required Object day,
+            required Object year,
+          }) => '${month} ${day}, ${year}',
+          'capsules.months.0' => 'January',
+          'capsules.months.1' => 'February',
+          'capsules.months.2' => 'March',
+          'capsules.months.3' => 'April',
+          'capsules.months.4' => 'May',
+          'capsules.months.5' => 'June',
+          'capsules.months.6' => 'July',
+          'capsules.months.7' => 'August',
+          'capsules.months.8' => 'September',
+          'capsules.months.9' => 'October',
+          'capsules.months.10' => 'November',
+          'capsules.months.11' => 'December',
+          'capsules.sharedLabel' => 'For both of us',
+          'capsules.sharedText' =>
+            'Your partner reads it too when the date comes. Off, only you read it.',
+          'capsules.save' => 'Save capsule',
+          'capsules.saved' => 'Capsule saved',
+          'capsules.closedUntil' => ({required Object date}) => 'Closed until ${date}',
+          'capsules.ownerSharedBy' => 'Yours, for both',
+          'capsules.ownerPrivate' => 'Only yours',
+          'capsules.fromPartner' => 'From your partner',
+          'capsules.delete' => 'Delete',
+          'capsules.emptyTitle' => 'No capsules yet',
+          'capsules.emptyText' => 'Write one and choose the day it opens.',
+          'capsules.errorTitle' => 'Couldn\'t load',
+          'capsules.errorText' => 'Your capsules are still saved. Try again.',
+          'capsules.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'capsules.errors.other' => 'Couldn\'t save right now. Your text is still here.',
           'cardView.forPartner' => ({required Object name}) => 'For ${name}',
           'cardView.forPartnerNoName' => 'For your person',
           'cardView.goodThings' =>
@@ -5521,6 +5769,30 @@ extension on TranslationsEn {
           'common.discardText' => 'What you wrote won\'t be saved.',
           'common.discard' => 'Discard',
           'common.keepWriting' => 'Keep writing',
+          'connectTouch.title' => 'Touch',
+          'connectTouch.text' => 'Neutral cards, nothing spicy. Do it or skip it, no pressure.',
+          'connectTouch.switchTitle' => 'Touch topics',
+          'connectTouch.switchText' =>
+            'Applies to both of you: if one turns it off, it goes away for both.',
+          'connectTouch.offTitle' => 'Touch topics are off',
+          'connectTouch.offText' =>
+            'You or your partner turned them off. You can turn them back on here anytime.',
+          'connectTouch.emptyTitle' => 'No cards right now',
+          'connectTouch.emptyText' => 'Come back later.',
+          'connectTouch.done' => 'Done',
+          'connectTouch.skip' => 'Skip',
+          'connectTouch.errorTitle' => 'Couldn\'t load',
+          'connectTouch.errorText' => 'Try again in a moment.',
+          'connectTouch.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'connectTouch.errors.other' => 'Couldn\'t change that right now. Try again.',
+          'connectUs.title' => 'Us',
+          'connectUs.text' =>
+            'Send “I miss us” with one tap. Light, no guilt. Your partner doesn\'t have to answer.',
+          'connectUs.send' => 'Send with care',
+          'connectUs.plan' => 'Suggest a small plan',
+          'connectUs.sentNote' => 'Sent. No rush to reply.',
+          'connectUs.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'connectUs.errors.other' => 'Couldn\'t send right now. Try again.',
           'dateNight.title' => 'Date night',
           'dateNight.subtitle' => 'Ideas for the two of you, picked together.',
           'dateNight.hint' => 'E.g. picnic in the park',
@@ -5679,6 +5951,21 @@ extension on TranslationsEn {
           'discreet.note' =>
             'Hides names and content in notifications and widgets. No couple photo on the icon.',
           'discreet.saveError' => 'Could not save now. Try again.',
+          'distance.title' => 'Distance',
+          'distance.text' => 'Two clocks, each in its own time zone, never mixed up.',
+          'distance.you' => 'You',
+          'distance.partner' => 'Your partner',
+          'distance.noPartner' => 'When your partner joins, their clock shows up here.',
+          'distance.sameZone' => 'You are in the same time zone for now.',
+          'distance.reunionDays' => ({required Object n}) => '${n} days until you see each other',
+          'distance.reunionToday' => 'You see each other today',
+          'distance.reunionTomorrow' => 'You see each other tomorrow',
+          'distance.noReunionTitle' => 'No reunion date',
+          'distance.noReunionText' =>
+            'Save a “Reunion” in your dates and the countdown shows here.',
+          'distance.addReunion' => 'Save a date',
+          'distance.errorTitle' => 'Couldn\'t load',
+          'distance.errorText' => 'Try again in a moment.',
           'fightStyle.exerciseTitle' => 'How I react in a fight',
           'fightStyle.exerciseHighlight' => 'react',
           'fightStyle.exerciseSubtitle' => 'Six quick questions, just for you.',
@@ -5830,6 +6117,9 @@ extension on TranslationsEn {
           'help.starterText' => 'A question to open with, no rush.',
           'help.another' => 'Another',
           'help.emptyTitle' => 'Nothing here yet',
+          _ => null,
+        } ??
+        switch (path) {
           'help.emptyText' => 'We\'re preparing more suggestions.',
           'help.errorTitle' => 'Couldn\'t load',
           'help.errorText' => 'Try again in a moment.',
@@ -5954,9 +6244,6 @@ extension on TranslationsEn {
           'history.differentDatesBanner' => 'You chose different start dates',
           'history.differentDatesAction' => 'See dates',
           'history.timelineSection' => 'MILESTONES AND MEMORIES',
-          _ => null,
-        } ??
-        switch (path) {
           'history.recentChip' => 'Recent',
           'history.unknownYearChip' => 'No date',
           'history.timelineRecentNote' => 'Showing your most recent milestones.',
@@ -6193,6 +6480,7 @@ extension on TranslationsEn {
           'intro.phase.options.married' => 'Married',
           'intro.phase.options.with_kids' => 'With kids',
           'intro.phase.options.long_distance' => 'Long distance',
+          'intro.phase.options.with_parents' => 'Living with parents',
           'intro.phase.options.restarting' => 'Starting over',
           'intro.phase.options.other' => '',
           'intro.goals.title' => 'What do you want from the app?',
@@ -6501,6 +6789,9 @@ extension on TranslationsEn {
             'Too many attempts in a row. Wait a moment.',
           'notificationPreferences.errors.other' =>
             'Couldn\'t save right now. Your previous choice was kept.',
+          _ => null,
+        } ??
+        switch (path) {
           'partnerProfile.title' => 'About your partner',
           'partnerProfile.privateNote' => 'Only you see these notes. They never show in notifications, widgets or to your partner.',
           'partnerProfile.categories.likes' => 'Likes',
@@ -6574,9 +6865,6 @@ extension on TranslationsEn {
           'plus.subscribe' => 'Subscribe',
           'plus.started' => 'Plus is on. Thank you.',
           'plus.pending' => 'Purchase received. We\'re confirming, Plus will show up shortly.',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.purchaseError' => 'Couldn\'t complete the purchase. Nothing was charged.',
           'plus.billingTitle' => 'Payment problem',
           'plus.billingText' => 'The last payment didn\'t go through. Plus stays on for now. Open your subscriptions in the store and update the payment method.',
@@ -6940,6 +7228,7 @@ extension on TranslationsEn {
           'relationshipSettings.phases.married' => 'Married',
           'relationshipSettings.phases.with_kids' => 'With kids',
           'relationshipSettings.phases.long_distance' => 'Long distance',
+          'relationshipSettings.phases.with_parents' => 'Living with parents',
           'relationshipSettings.phases.restarting' => 'Starting over',
           'relationshipSettings.dateLabel' => 'Together since',
           'relationshipSettings.dateHint' => 'Pick a date',
@@ -7064,6 +7353,9 @@ extension on TranslationsEn {
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Write one or two sentences',
           'repair.learning.save' => 'Save',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.learning.listTitle' => 'Your learnings',
           'repair.learning.delete' => 'Delete',
           'repair.learning.emptyTitle' => 'Nothing yet',
@@ -7173,9 +7465,6 @@ extension on TranslationsEn {
           'slipDetail.weekdays.5' => 'Saturday',
           'slipDetail.weekdays.6' => 'Sunday',
           'slipDetail.monthsShort.0' => 'Jan',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.monthsShort.1' => 'Feb',
           'slipDetail.monthsShort.2' => 'Mar',
           'slipDetail.monthsShort.3' => 'Apr',
@@ -7222,9 +7511,6 @@ extension on TranslationsEn {
           'slipDetail.notFoundTitle' => 'This slip no longer exists',
           'slipDetail.notFoundText' => 'It may have been deleted.',
           'slipDetail.errorTitle' => 'Couldn\'t open this slip',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.errorText' => 'It is still saved. Try again.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'This slip no longer exists.',
           'slipDetail.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
@@ -7410,6 +7696,21 @@ extension on TranslationsEn {
           'tabs.notesLabel' => 'FOR YOUR PARTNER',
           'tabs.notesTitle' => 'A note or a drawing',
           'tabs.notesText' => 'Send something short and kind, whenever you like.',
+          'tabs.usLabel' => 'US',
+          'tabs.usTitle' => 'I miss us',
+          'tabs.usText' => 'A light tap for your partner, no pressure.',
+          'tabs.touchLabel' => 'TOUCH',
+          'tabs.touchTitle' => 'Touch cards',
+          'tabs.touchText' => 'Neutral, to do or skip.',
+          'tabs.distanceLabel' => 'DISTANCE',
+          'tabs.distanceTitle' => 'Our two clocks',
+          'tabs.distanceText' => 'Time zones and the countdown to seeing each other.',
+          'tabs.parentsLabel' => 'WITH PARENTS',
+          'tabs.parentsTitle' => 'Five minutes for us',
+          'tabs.parentsText' => 'A short moment just for the two of you, even in a full house.',
+          'tabs.capsulesLabel' => 'TIME CAPSULE',
+          'tabs.capsulesTitle' => 'A message to the future',
+          'tabs.capsulesText' => 'Stays closed until the day you choose.',
           'tabs.datesLabel' => 'DATES',
           'tabs.datesTitle' => 'Important dates',
           'tabs.datesText' => 'Birthdays, gifts and holidays, with a heads-up.',
@@ -7666,6 +7967,9 @@ extension on TranslationsEn {
                 ),
           'widgets.couplePhotosLabel' => 'COUPLE PHOTOS · PLUS',
           'widgets.couplePhotosPrompt' => 'Choose a photo of you two',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.couplePhotosPlusHint' => 'Available with Plus',
           'widgets.partnerNoteLabel' => 'PARTNER NOTE',
           'widgets.partnerNoteEmpty' => 'No new note right now',
@@ -7802,9 +8106,6 @@ extension on TranslationsEn {
           'widgets.statesOfflineSection' => 'Offline',
           'widgets.statesOfflineTitle' => 'Showing the last saved data',
           'widgets.statesOfflineSubtitle' => 'Updates when back online',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.statesPrecedenceNote' => 'When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).',
           'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
             'Could not save widget preferences right now.',
