@@ -7,6 +7,7 @@ enum RelationshipPhase(final String serverValue) {
   married('married'),
   withKids('with_kids'),
   longDistance('long_distance'),
+  withParents('with_parents'),
   restarting('restarting');
 
   /// Maps a stored server value, including values this build does not know.

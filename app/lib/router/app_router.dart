@@ -14,6 +14,7 @@ import 'package:flutter_bloc_starter/features/connect/presentation/us/us_page.da
 import 'package:flutter_bloc_starter/features/dates/presentation/dates/dates_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/devices/presentation/devices/devices_page.dart';
+import 'package:flutter_bloc_starter/features/distance/presentation/distance/distance_page.dart';
 import 'package:flutter_bloc_starter/features/fight_style/presentation/exercise/fight_style_page.dart';
 import 'package:flutter_bloc_starter/features/guides/presentation/hub/guides_page.dart';
 import 'package:flutter_bloc_starter/features/guides/presentation/viewer/guide_page.dart';
@@ -147,6 +148,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: ComposeRoute.page),
     AutoRoute(page: UsRoute.page),
     AutoRoute(page: TouchRoute.page),
+    AutoRoute(page: DistanceRoute.page),
     AutoRoute(page: DatesRoute.page),
     AutoRoute(page: PlansRoute.page),
     AutoRoute(page: ManagePlusRoute.page),

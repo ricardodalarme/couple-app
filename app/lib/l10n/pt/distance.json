@@ -1,0 +1,16 @@
+{
+  "title": "Distância",
+  "text": "Dois relógios, cada um no seu fuso, sem confusão.",
+  "you": "Você",
+  "partner": "Seu par",
+  "noPartner": "Quando seu par entrar, o relógio dele ou dela aparece aqui.",
+  "sameZone": "Vocês estão no mesmo fuso por enquanto.",
+  "reunionDays": "{n} dias até vocês se verem",
+  "reunionToday": "Vocês se veem hoje",
+  "reunionTomorrow": "Vocês se veem amanhã",
+  "noReunionTitle": "Sem data de reencontro",
+  "noReunionText": "Salve um “Reencontro” nas datas e a contagem aparece aqui.",
+  "addReunion": "Salvar uma data",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "Tente de novo em instantes."
+}

@@ -1,0 +1,16 @@
+{
+  "title": "Distance",
+  "text": "Two clocks, each in its own time zone, never mixed up.",
+  "you": "You",
+  "partner": "Your partner",
+  "noPartner": "When your partner joins, their clock shows up here.",
+  "sameZone": "You are in the same time zone for now.",
+  "reunionDays": "{n} days until you see each other",
+  "reunionToday": "You see each other today",
+  "reunionTomorrow": "You see each other tomorrow",
+  "noReunionTitle": "No reunion date",
+  "noReunionText": "Save a “Reunion” in your dates and the countdown shows here.",
+  "addReunion": "Save a date",
+  "errorTitle": "Couldn't load",
+  "errorText": "Try again in a moment."
+}

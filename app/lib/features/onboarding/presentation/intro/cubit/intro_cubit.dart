@@ -15,6 +15,7 @@ const List<String> introPhases = [
   'married',
   'with_kids',
   'long_distance',
+  'with_parents',
   'restarting',
 ];
 

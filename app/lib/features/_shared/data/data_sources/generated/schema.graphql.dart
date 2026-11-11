@@ -59834,6 +59834,7 @@ enum EnumRelationshipPhase {
   long_distance,
   engaged,
   restarting,
+  with_parents,
   $unknown;
 
   factory EnumRelationshipPhase.fromJson(String value) => fromJsonEnumRelationshipPhase(value);
@@ -59859,6 +59860,8 @@ String toJsonEnumRelationshipPhase(EnumRelationshipPhase e) {
       return r'engaged';
     case EnumRelationshipPhase.restarting:
       return r'restarting';
+    case EnumRelationshipPhase.with_parents:
+      return r'with_parents';
     case EnumRelationshipPhase.$unknown:
       return r'$unknown';
   }
@@ -59882,6 +59885,8 @@ EnumRelationshipPhase fromJsonEnumRelationshipPhase(String value) {
       return EnumRelationshipPhase.engaged;
     case r'restarting':
       return EnumRelationshipPhase.restarting;
+    case r'with_parents':
+      return EnumRelationshipPhase.with_parents;
     default:
       return EnumRelationshipPhase.$unknown;
   }

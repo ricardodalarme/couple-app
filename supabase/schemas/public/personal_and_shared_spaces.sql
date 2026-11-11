@@ -9,6 +9,7 @@
 -- Profile extras ------------------------------------------------------------------------------------
 alter type public.relationship_phase add value if not exists 'engaged';
 alter type public.relationship_phase add value if not exists 'restarting';
+alter type public.relationship_phase add value if not exists 'with_parents';
 create type public.relationship_status as enum ('together', 'on_break', 'ended', 'bereaved');
 
 alter table public.profiles add column avatar_kind text not null default 'initials' check (avatar_kind in ('photo', 'illustration', 'initials'));

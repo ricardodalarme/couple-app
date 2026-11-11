@@ -400,6 +400,22 @@ class DiscreetModeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [DistancePage]
+class DistanceRoute extends PageRouteInfo<void> {
+  const DistanceRoute({List<PageRouteInfo>? children})
+    : super(DistanceRoute.name, initialChildren: children);
+
+  static const String name = 'DistanceRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const DistancePage());
+    },
+  );
+}
+
+/// generated route for
 /// [ExistingAccountPage]
 class ExistingAccountRoute extends PageRouteInfo<void> {
   const ExistingAccountRoute({List<PageRouteInfo>? children})

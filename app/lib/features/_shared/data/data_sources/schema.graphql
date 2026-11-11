@@ -9579,6 +9579,7 @@ enum RelationshipPhase {
   long_distance
   engaged
   restarting
+  with_parents
 }
 
 """

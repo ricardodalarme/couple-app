@@ -10,6 +10,7 @@ extension RelationshipPhaseMapper on RelationshipPhase {
     .married => EnumRelationshipPhase.married,
     .withKids => EnumRelationshipPhase.with_kids,
     .longDistance => EnumRelationshipPhase.long_distance,
+    .withParents => EnumRelationshipPhase.with_parents,
     .restarting => EnumRelationshipPhase.restarting,
   };
 }

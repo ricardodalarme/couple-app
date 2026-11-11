@@ -18,7 +18,7 @@ class const HistoryNumbersGrid({required final HistoryOverview overview, super.k
       .engaged => l10n.numbersSuffixEngaged,
       .married || .withKids => l10n.numbersSuffixMarried,
       .dating || .livingTogether => l10n.numbersSuffixDating,
-      .beginning || .longDistance || .restarting => l10n.numbersSuffixTogether,
+      .beginning || .longDistance || .withParents || .restarting => l10n.numbersSuffixTogether,
     };
 
     final nextAnniversaryValue = numbers.daysUntilNextAnniversary < 45

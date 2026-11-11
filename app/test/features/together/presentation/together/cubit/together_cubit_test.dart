@@ -2,6 +2,7 @@ import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/questions/data/models/question_thread.dart';
 import 'package:flutter_bloc_starter/features/questions/data/repositories/questions_repository.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/together/cubit/together_cubit.dart';
@@ -16,17 +17,22 @@ class _MockListsRepository() extends Mock implements ListsRepository;
 
 class _MockQuestionsRepository() extends Mock implements QuestionsRepository;
 
+class _MockProfileRepository() extends Mock implements ProfileRepository;
+
 void main() {
   late PairingRepository pairingRepository;
   late CheckinRepository checkinRepository;
   late ListsRepository listsRepository;
   late QuestionsRepository questionsRepository;
+  late ProfileRepository profileRepository;
 
   setUp(() {
     pairingRepository = _MockPairingRepository();
     checkinRepository = _MockCheckinRepository();
     listsRepository = _MockListsRepository();
     questionsRepository = _MockQuestionsRepository();
+    profileRepository = _MockProfileRepository();
+    when(profileRepository.getMySettings).thenThrow(Exception('none'));
     when(pairingRepository.getPartner).thenAnswer((_) async => null);
     when(checkinRepository.isCurrentWeekDismissed).thenAnswer((_) async => false);
     when(listsRepository.getLists).thenAnswer((_) async => const []);
@@ -45,6 +51,7 @@ void main() {
     checkinRepository: checkinRepository,
     listsRepository: listsRepository,
     questionsRepository: questionsRepository,
+    profileRepository: profileRepository,
   );
 
   test('a dismissed week hides the check-in entry', () async {

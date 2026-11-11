@@ -34,6 +34,7 @@ class TogetherInjectionModule() implements InjectionModule {
         checkinRepository: injector.get<CheckinRepository>(),
         listsRepository: injector.get<ListsRepository>(),
         questionsRepository: injector.get<QuestionsRepository>(),
+        profileRepository: injector.get<ProfileRepository>(),
       ),
     )
     ..registerLazySingleton<RitualReminderService>(

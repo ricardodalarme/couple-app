@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/questions/data/repositories/questions_repository.dart';
 
 part 'together_state.dart';
@@ -12,6 +13,7 @@ class TogetherCubit({
   required final CheckinRepository _checkinRepository,
   required final ListsRepository _listsRepository,
   required final QuestionsRepository _questionsRepository,
+  required final ProfileRepository _profileRepository,
 }) extends Cubit<TogetherState> {
   this : super(const TogetherState());
 
@@ -38,6 +40,13 @@ class TogetherCubit({
       // An unreadable count leaves the entry without a number.
     }
 
+    String? phase;
+    try {
+      phase = (await _profileRepository.getMySettings()).phase;
+    } on Object {
+      // Without the phase the hub shows the default set of modules.
+    }
+
     String? questionTitle;
     try {
       questionTitle = (await _questionsRepository.getPrompt()).title;
@@ -51,6 +60,7 @@ class TogetherCubit({
         showCheckin: showCheckin,
         listCount: listCount,
         questionTitle: questionTitle,
+        phase: phase,
       ),
     );
   }

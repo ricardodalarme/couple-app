@@ -26,6 +26,7 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
     final showCheckin = context.select((TogetherCubit cubit) => cubit.state.showCheckin);
     final listCount = context.select((TogetherCubit cubit) => cubit.state.listCount);
     final questionTitle = context.select((TogetherCubit cubit) => cubit.state.questionTitle);
+    final phase = context.select((TogetherCubit cubit) => cubit.state.phase);
     final cubit = context.read<TogetherCubit>();
 
     return BaseView(
@@ -45,6 +46,23 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
             if (view == TogetherView.together) ...[
               if (!hasPartner) ...[
                 BaseNote(text: l10n.soloNote),
+                const SizedBox(height: AppSpace.s12),
+              ],
+              if (phase == 'long_distance') ...[
+                BaseListCard(
+                  categoryLabel: l10n.distanceLabel,
+                  title: l10n.distanceTitle,
+                  supportText: l10n.distanceText,
+                  onTap: () => context.pushRoute(const DistanceRoute()),
+                ),
+                const SizedBox(height: AppSpace.s12),
+              ] else if (phase == 'with_parents') ...[
+                BaseListCard(
+                  categoryLabel: l10n.parentsLabel,
+                  title: l10n.parentsTitle,
+                  supportText: l10n.parentsText,
+                  onTap: () => context.pushRoute(const RitualsRoute()),
+                ),
                 const SizedBox(height: AppSpace.s12),
               ],
               if (showCheckin) ...[

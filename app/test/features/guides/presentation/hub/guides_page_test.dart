@@ -9,6 +9,7 @@ import 'package:flutter_bloc_starter/features/guides/presentation/hub/cubit/guid
 import 'package:flutter_bloc_starter/features/guides/presentation/hub/guides_page.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/questions/data/models/question_thread.dart';
 import 'package:flutter_bloc_starter/features/questions/data/repositories/questions_repository.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/together/cubit/together_cubit.dart';
@@ -32,6 +33,8 @@ class _MockCheckinRepository() extends Mock implements CheckinRepository;
 class _MockListsRepository() extends Mock implements ListsRepository;
 
 class _MockQuestionsRepository() extends Mock implements QuestionsRepository;
+
+class _MockProfileRepository() extends Mock implements ProfileRepository;
 
 void main() {
   late GuidesCubit guidesCubit;
@@ -90,6 +93,8 @@ void main() {
     final checkinRepository = _MockCheckinRepository();
     final listsRepository = _MockListsRepository();
     final questionsRepository = _MockQuestionsRepository();
+    final profileRepository = _MockProfileRepository();
+    when(profileRepository.getMySettings).thenThrow(Exception('none'));
     when(pairingRepository.getPartner).thenAnswer((_) async => null);
     when(checkinRepository.isCurrentWeekDismissed).thenAnswer((_) async => false);
     when(listsRepository.getLists).thenAnswer((_) async => []);
@@ -106,6 +111,7 @@ void main() {
       checkinRepository: checkinRepository,
       listsRepository: listsRepository,
       questionsRepository: questionsRepository,
+      profileRepository: profileRepository,
     );
     addTearDown(cubit.close);
     await cubit.load();
