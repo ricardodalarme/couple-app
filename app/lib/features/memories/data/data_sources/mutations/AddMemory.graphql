@@ -3,11 +3,19 @@ mutation AddMemory(
   $title: String!
   $body: String
   $happenedOn: Date!
+  $place: String
   $coupleId: UUID
 ) {
   insertIntoMemoriesCollection(
     objects: [
-      { id: $id, title: $title, body: $body, happenedOn: $happenedOn, coupleId: $coupleId }
+      {
+        id: $id
+        title: $title
+        body: $body
+        happenedOn: $happenedOn
+        place: $place
+        coupleId: $coupleId
+      }
     ]
   ) {
     affectedCount

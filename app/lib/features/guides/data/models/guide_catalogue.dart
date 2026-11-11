@@ -248,6 +248,62 @@ const List<GuideDefinition> guideCatalogue = [
     ],
   ),
   GuideDefinition(
+    slug: 'dreams',
+    guideType: 'transition',
+    title: GuideText(pt: 'Sonhos a dois', en: 'Dreams together'),
+    description: GuideText(
+      pt: 'O que cada um sonha e como caber no mesmo caminho.',
+      en: 'What each of you dreams of, and how to fit one path.',
+    ),
+    prompts: [
+      GuideText(
+        pt: 'Com o que você sonha para daqui a cinco anos, sem filtro?',
+        en: 'What do you dream of five years from now, with no filter?',
+      ),
+      GuideText(
+        pt: 'Qual desses sonhos é só seu, e qual é nosso?',
+        en: 'Which of those dreams is only yours, and which is ours?',
+      ),
+      GuideText(
+        pt: 'O que faria um sonho meu pesar para você?',
+        en: 'What would make a dream of mine feel heavy for you?',
+      ),
+      GuideText(
+        pt: 'Que primeiro passo pequeno vocês podem dar neste mês?',
+        en: 'What small first step could you take this month?',
+      ),
+    ],
+    isPlusOnly: true,
+  ),
+  GuideDefinition(
+    slug: 'values',
+    guideType: 'transition',
+    title: GuideText(pt: 'O que importa para nós', en: 'What matters to us'),
+    description: GuideText(
+      pt: 'Valores que guiam as escolhas de vocês.',
+      en: 'Values that guide your choices.',
+    ),
+    prompts: [
+      GuideText(
+        pt: 'Que três coisas você não abre mão na sua vida?',
+        en: 'What three things would you never give up in your life?',
+      ),
+      GuideText(
+        pt: 'Quando você sentiu que vivemos de acordo com isso?',
+        en: 'When did you feel we lived by those?',
+      ),
+      GuideText(
+        pt: 'Onde nossos valores se encontram, e onde eles se separam?',
+        en: 'Where do our values meet, and where do they part?',
+      ),
+      GuideText(
+        pt: 'Que combinado respeita os dois quando eles se separam?',
+        en: 'What agreement respects both of you when they part?',
+      ),
+    ],
+    isPlusOnly: true,
+  ),
+  GuideDefinition(
     slug: 'distance',
     guideType: 'difficult',
     title: GuideText(pt: 'Distância', en: 'Distance'),

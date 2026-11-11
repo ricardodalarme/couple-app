@@ -2,7 +2,7 @@ import 'package:flutter_bloc_starter/features/guides/data/models/guide_catalogue
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('the catalogue holds the ten guides in the product order', () {
+  test('the catalogue holds the twelve guides in the product order', () {
     expect(guideCatalogue.map((guide) => guide.slug), [
       'transition',
       'money',
@@ -13,6 +13,8 @@ void main() {
       'year',
       'cycle',
       'apology',
+      'dreams',
+      'values',
       'distance',
     ]);
   });
@@ -41,6 +43,8 @@ void main() {
         'year': 'transition',
         'cycle': 'difficult',
         'apology': 'apology',
+        'dreams': 'transition',
+        'values': 'transition',
         'distance': 'difficult',
       },
     );
@@ -59,6 +63,8 @@ void main() {
         'year': false,
         'cycle': true,
         'apology': false,
+        'dreams': false,
+        'values': false,
         'distance': false,
       },
     );

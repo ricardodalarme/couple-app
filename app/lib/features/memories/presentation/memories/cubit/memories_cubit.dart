@@ -28,6 +28,8 @@ class MemoriesCubit({required final MemoriesRepository _memoriesRepository})
 
   void onBodyChanged(String body) => emit(state.copyWith(body: body));
 
+  void onPlaceChanged(String place) => emit(state.copyWith(place: place));
+
   /// Saves the typed memory dated today; on failure the text stays so it can be sent again.
   Future<void> save() async {
     if (!state.canSave || state.saveAction.isLoading) return;
@@ -38,10 +40,11 @@ class MemoriesCubit({required final MemoriesRepository _memoriesRepository})
         id: _pendingId ??= _uuid.v4(),
         title: state.title,
         body: state.body,
+        place: state.place,
         happenedOn: DateTime.now(),
       );
       _pendingId = null;
-      emit(state.copyWith(title: '', body: '', saveAction: const Success(null)));
+      emit(state.copyWith(title: '', body: '', place: '', saveAction: const Success(null)));
       await load();
     } catch (exception) {
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));

@@ -1,0 +1,14 @@
+{
+  "title": "Lugares",
+  "privacyNote": "Só o nome do lugar. O app nunca lê nem guarda sua localização.",
+  "memoryOne": "1 memória",
+  "memoryMany": "{count} memórias",
+  "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+  "dateLine": "{day} {month} {year}",
+  "emptyTitle": "Nenhum lugar ainda",
+  "emptyText": "Ao guardar uma memória, escreva o nome do lugar e ele aparece aqui.",
+  "detailEmptyTitle": "Nada neste lugar",
+  "detailEmptyText": "As memórias deste lugar não estão mais aqui.",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "Suas memórias continuam salvas. Tente de novo."
+}

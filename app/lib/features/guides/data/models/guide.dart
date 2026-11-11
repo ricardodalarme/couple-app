@@ -29,6 +29,7 @@ final class const GuideDefinition({
   required final GuideText description,
   required final List<GuideText> prompts,
   final bool isSensitive = false,
+  final bool isPlusOnly = false,
 }) with Equatable {
   Guide localized(String languageCode) => Guide(
     slug: slug,
@@ -38,10 +39,19 @@ final class const GuideDefinition({
     prompts: [for (final prompt in prompts) prompt.forLanguage(languageCode)],
     contentVersion: guideContentVersion([for (final prompt in prompts) prompt.pt]),
     isSensitive: isSensitive,
+    isPlusOnly: isPlusOnly,
   );
 
   @override
-  List<Object?> get props => [slug, guideType, title, description, prompts, isSensitive];
+  List<Object?> get props => [
+    slug,
+    guideType,
+    title,
+    description,
+    prompts,
+    isSensitive,
+    isPlusOnly,
+  ];
 }
 
 /// A guide ready to show: one language and the steps in order.
@@ -53,6 +63,7 @@ final class const Guide({
   required final List<String> prompts,
   required final String contentVersion,
   final bool isSensitive = false,
+  final bool isPlusOnly = false,
 }) with Equatable {
   int get stepCount => prompts.length;
 
@@ -65,5 +76,6 @@ final class const Guide({
     prompts,
     contentVersion,
     isSensitive,
+    isPlusOnly,
   ];
 }

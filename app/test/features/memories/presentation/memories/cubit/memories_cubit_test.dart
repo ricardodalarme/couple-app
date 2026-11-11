@@ -22,6 +22,7 @@ void main() {
         id: any(named: 'id'),
         title: any(named: 'title'),
         body: any(named: 'body'),
+        place: any(named: 'place'),
         happenedOn: any(named: 'happenedOn'),
       ),
     ).thenAnswer((_) async {});
@@ -44,7 +45,8 @@ void main() {
   test('saving clears the form and reads again', () async {
     final cubit = build()
       ..onTitleChanged('Primeiro jantar')
-      ..onBodyChanged('Foi lindo');
+      ..onBodyChanged('Foi lindo')
+      ..onPlaceChanged('Paraty');
 
     await cubit.save();
 
@@ -53,6 +55,7 @@ void main() {
         id: any(named: 'id'),
         title: 'Primeiro jantar',
         body: 'Foi lindo',
+        place: 'Paraty',
         happenedOn: any(named: 'happenedOn'),
       ),
     ).called(1);
@@ -66,6 +69,7 @@ void main() {
         id: any(named: 'id'),
         title: any(named: 'title'),
         body: any(named: 'body'),
+        place: any(named: 'place'),
         happenedOn: any(named: 'happenedOn'),
       ),
     ).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));

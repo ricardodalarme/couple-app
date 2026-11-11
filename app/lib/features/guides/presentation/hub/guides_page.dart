@@ -4,6 +4,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide.dart';
 import 'package:flutter_bloc_starter/features/guides/presentation/hub/cubit/guides_cubit.dart';
+import 'package:flutter_bloc_starter/features/plus/presentation/lock/plus_lock.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
@@ -22,6 +23,7 @@ class const GuidesPage({super.key}) extends StatelessWidget implements AutoRoute
   Widget build(BuildContext context) {
     final l10n = context.l10n.guides.hub;
     final guides = context.select((GuidesCubit cubit) => cubit.state.guides);
+    final hasPlus = context.select((GuidesCubit cubit) => cubit.state.hasPlus);
     final cubit = context.read<GuidesCubit>();
 
     return BaseView(
@@ -52,7 +54,10 @@ class const GuidesPage({super.key}) extends StatelessWidget implements AutoRoute
               ),
               const SizedBox(height: AppSpace.s20),
               for (final guide in value) ...[
-                _GuideCard(guide: guide),
+                if (guide.isPlusOnly && !hasPlus)
+                  PlusLock(title: guide.title, text: guide.description)
+                else
+                  _GuideCard(guide: guide),
                 const SizedBox(height: AppSpace.s12),
               ],
               const SizedBox(height: AppSpace.s4),

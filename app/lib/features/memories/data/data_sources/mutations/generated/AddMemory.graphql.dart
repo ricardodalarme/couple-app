@@ -10,12 +10,14 @@ class VariablesMutationAddMemory {
     required String title,
     String? body,
     required DateTime happenedOn,
+    String? place,
     String? coupleId,
   }) => VariablesMutationAddMemory._({
     r'id': id,
     r'title': title,
     if (body != null) r'body': body,
     r'happenedOn': happenedOn,
+    if (place != null) r'place': place,
     if (coupleId != null) r'coupleId': coupleId,
   });
 
@@ -33,6 +35,10 @@ class VariablesMutationAddMemory {
     }
     final l$happenedOn = data['happenedOn'];
     result$data['happenedOn'] = DateTime.parse((l$happenedOn as String));
+    if (data.containsKey('place')) {
+      final l$place = data['place'];
+      result$data['place'] = (l$place as String?);
+    }
     if (data.containsKey('coupleId')) {
       final l$coupleId = data['coupleId'];
       result$data['coupleId'] = (l$coupleId as String?);
@@ -50,6 +56,8 @@ class VariablesMutationAddMemory {
 
   DateTime get happenedOn => (_$data['happenedOn'] as DateTime);
 
+  String? get place => (_$data['place'] as String?);
+
   String? get coupleId => (_$data['coupleId'] as String?);
 
   Map<String, dynamic> toJson() {
@@ -64,6 +72,10 @@ class VariablesMutationAddMemory {
     }
     final l$happenedOn = happenedOn;
     result$data['happenedOn'] = ((v) => v.toIso8601String().substring(0, 10))(l$happenedOn);
+    if (_$data.containsKey('place')) {
+      final l$place = place;
+      result$data['place'] = l$place;
+    }
     if (_$data.containsKey('coupleId')) {
       final l$coupleId = coupleId;
       result$data['coupleId'] = l$coupleId;
@@ -102,6 +114,14 @@ class VariablesMutationAddMemory {
     if (l$happenedOn != lOther$happenedOn) {
       return false;
     }
+    final l$place = place;
+    final lOther$place = other.place;
+    if (_$data.containsKey('place') != other._$data.containsKey('place')) {
+      return false;
+    }
+    if (l$place != lOther$place) {
+      return false;
+    }
     final l$coupleId = coupleId;
     final lOther$coupleId = other.coupleId;
     if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
@@ -119,12 +139,14 @@ class VariablesMutationAddMemory {
     final l$title = title;
     final l$body = body;
     final l$happenedOn = happenedOn;
+    final l$place = place;
     final l$coupleId = coupleId;
     return Object.hashAll([
       l$id,
       l$title,
       _$data.containsKey('body') ? l$body : const {},
       l$happenedOn,
+      _$data.containsKey('place') ? l$place : const {},
       _$data.containsKey('coupleId') ? l$coupleId : const {},
     ]);
   }
@@ -219,6 +241,12 @@ const documentNodeMutationAddMemory = DocumentNode(
           directives: [],
         ),
         VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'place')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
           type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
@@ -253,6 +281,10 @@ const documentNodeMutationAddMemory = DocumentNode(
                         ObjectFieldNode(
                           name: NameNode(value: 'happenedOn'),
                           value: VariableNode(name: NameNode(value: 'happenedOn')),
+                        ),
+                        ObjectFieldNode(
+                          name: NameNode(value: 'place'),
+                          value: VariableNode(name: NameNode(value: 'place')),
                         ),
                         ObjectFieldNode(
                           name: NameNode(value: 'coupleId'),

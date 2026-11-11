@@ -55,6 +55,13 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
                   onTap: () => context.pushRoute(const HistoryRoute()),
                 ),
                 const SizedBox(height: AppSpace.s12),
+                BaseListCard(
+                  categoryLabel: l10n.placesLabel,
+                  title: l10n.placesTitle,
+                  supportText: l10n.placesText,
+                  onTap: () => context.pushRoute(const PlacesRoute()),
+                ),
+                const SizedBox(height: AppSpace.s12),
                 const _Jar(),
                 const SizedBox(height: AppSpace.s20),
                 BaseTextField(
@@ -62,6 +69,14 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
                   label: l10n.titleLabel,
                   hint: l10n.titleHint,
                   onChanged: cubit.onTitleChanged,
+                ),
+                const SizedBox(height: AppSpace.s12),
+                BaseTextField(
+                  text: state.place,
+                  label: l10n.placeLabel,
+                  hint: l10n.placeHint,
+                  helpText: state.placeLooksLikeAddress ? l10n.placeAddressNote : null,
+                  onChanged: cubit.onPlaceChanged,
                 ),
                 const SizedBox(height: AppSpace.s12),
                 BaseTextArea(
@@ -88,6 +103,7 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
                                     month: l10n.monthsShort[memory.happenedOn.month - 1],
                                     year: memory.happenedOn.year,
                                   ),
+                                  if (memory.place != null) memory.place!,
                                   if (memory.body != null) memory.body!,
                                 ].join(' · '),
                                 trailing: BaseTextLink(

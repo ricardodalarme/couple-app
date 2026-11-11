@@ -35,6 +35,8 @@ import 'package:flutter_bloc_starter/features/ideas/presentation/detail/idea_det
 import 'package:flutter_bloc_starter/features/lists/presentation/detail/list_detail_page.dart';
 import 'package:flutter_bloc_starter/features/lists/presentation/lists/lists_page.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/memories_page.dart';
+import 'package:flutter_bloc_starter/features/memories/presentation/places/place_detail_page.dart';
+import 'package:flutter_bloc_starter/features/memories/presentation/places/places_page.dart';
 import 'package:flutter_bloc_starter/features/mood/presentation/mood/mood_page.dart';
 import 'package:flutter_bloc_starter/features/not_found/presentation/not_found/not_found_page.dart';
 import 'package:flutter_bloc_starter/features/notes/presentation/compose/compose_page.dart';
@@ -197,6 +199,8 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: CardDetailRoute.page, path: '/card/:id'),
     AutoRoute(page: MoodRoute.page),
     AutoRoute(page: HistoryRoute.page),
+    AutoRoute(page: PlacesRoute.page),
+    AutoRoute(page: PlaceDetailRoute.page),
     AutoRoute(page: MilestoneRoute.page),
     AutoRoute(page: StoryDatesRoute.page),
     AutoRoute(page: CounterVariationsRoute.page),

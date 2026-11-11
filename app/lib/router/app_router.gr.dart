@@ -1334,6 +1334,71 @@ class PauseRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PlaceDetailPage]
+class PlaceDetailRoute extends PageRouteInfo<PlaceDetailRouteArgs> {
+  PlaceDetailRoute({
+    required String placeName,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         PlaceDetailRoute.name,
+         args: PlaceDetailRouteArgs(placeName: placeName, key: key),
+         initialChildren: children,
+       );
+
+  static const String name = 'PlaceDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PlaceDetailRouteArgs>();
+      return WrappedRoute(
+        child: PlaceDetailPage(placeName: args.placeName, key: args.key),
+      );
+    },
+  );
+}
+
+class PlaceDetailRouteArgs {
+  const PlaceDetailRouteArgs({required this.placeName, this.key});
+
+  final String placeName;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'PlaceDetailRouteArgs{placeName: $placeName, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PlaceDetailRouteArgs) return false;
+    return placeName == other.placeName && key == other.key;
+  }
+
+  @override
+  int get hashCode => placeName.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [PlacesPage]
+class PlacesRoute extends PageRouteInfo<void> {
+  const PlacesRoute({List<PageRouteInfo>? children})
+    : super(PlacesRoute.name, initialChildren: children);
+
+  static const String name = 'PlacesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const PlacesPage());
+    },
+  );
+}
+
+/// generated route for
 /// [PlansPage]
 class PlansRoute extends PageRouteInfo<void> {
   const PlansRoute({List<PageRouteInfo>? children})

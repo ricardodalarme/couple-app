@@ -105,6 +105,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
       Translations$partnerProfile$pt.internal(_root);
   late final Translations$partnerStep$pt partnerStep = Translations$partnerStep$pt.internal(_root);
   late final Translations$pause$pt pause = Translations$pause$pt.internal(_root);
+  late final Translations$places$pt places = Translations$places$pt.internal(_root);
   late final Translations$plus$pt plus = Translations$plus$pt.internal(_root);
   late final Translations$privacy$pt privacy = Translations$privacy$pt.internal(_root);
   late final Translations$profileDetails$pt profileDetails =
@@ -2556,6 +2557,24 @@ class Translations$memories$pt {
   /// pt: 'Marcos, datas, lugares e a nossa história em números.'
   String get historyText => 'Marcos, datas, lugares e a nossa história em números.';
 
+  /// pt: 'LUGARES'
+  String get placesLabel => 'LUGARES';
+
+  /// pt: 'Lugares onde vocês estiveram'
+  String get placesTitle => 'Lugares onde vocês estiveram';
+
+  /// pt: 'Só o nome do lugar, nunca a localização.'
+  String get placesText => 'Só o nome do lugar, nunca a localização.';
+
+  /// pt: 'Lugar (opcional)'
+  String get placeLabel => 'Lugar (opcional)';
+
+  /// pt: 'Ex.: Paraty'
+  String get placeHint => 'Ex.: Paraty';
+
+  /// pt: 'Prefira só o nome do lugar, sem endereço ou número.'
+  String get placeAddressNote => 'Prefira só o nome do lugar, sem endereço ou número.';
+
   /// pt: 'POTINHO'
   String get jarLabel => 'POTINHO';
 
@@ -3160,6 +3179,64 @@ class Translations$pause$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para enviar agora. Sua mensagem continua aqui.',
   };
+}
+
+// Path: places
+class Translations$places$pt {
+  Translations$places$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Lugares'
+  String get title => 'Lugares';
+
+  /// pt: 'Só o nome do lugar. O app nunca lê nem guarda sua localização.'
+  String get privacyNote => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.';
+
+  /// pt: '1 memória'
+  String get memoryOne => '1 memória';
+
+  /// pt: '{count} memórias'
+  String memoryMany({required Object count}) => '${count} memórias';
+
+  List<String> get monthsShort => [
+    'jan',
+    'fev',
+    'mar',
+    'abr',
+    'mai',
+    'jun',
+    'jul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dez',
+  ];
+
+  /// pt: '{day} {month} {year}'
+  String dateLine({required Object day, required Object month, required Object year}) =>
+      '${day} ${month} ${year}';
+
+  /// pt: 'Nenhum lugar ainda'
+  String get emptyTitle => 'Nenhum lugar ainda';
+
+  /// pt: 'Ao guardar uma memória, escreva o nome do lugar e ele aparece aqui.'
+  String get emptyText => 'Ao guardar uma memória, escreva o nome do lugar e ele aparece aqui.';
+
+  /// pt: 'Nada neste lugar'
+  String get detailEmptyTitle => 'Nada neste lugar';
+
+  /// pt: 'As memórias deste lugar não estão mais aqui.'
+  String get detailEmptyText => 'As memórias deste lugar não estão mais aqui.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Suas memórias continuam salvas. Tente de novo.'
+  String get errorText => 'Suas memórias continuam salvas. Tente de novo.';
 }
 
 // Path: plus
@@ -8025,6 +8102,12 @@ extension on Translations {
           'memories.historyLabel' => 'NOSSA HISTÓRIA',
           'memories.historyTitle' => 'Nossa história',
           'memories.historyText' => 'Marcos, datas, lugares e a nossa história em números.',
+          'memories.placesLabel' => 'LUGARES',
+          'memories.placesTitle' => 'Lugares onde vocês estiveram',
+          'memories.placesText' => 'Só o nome do lugar, nunca a localização.',
+          'memories.placeLabel' => 'Lugar (opcional)',
+          'memories.placeHint' => 'Ex.: Paraty',
+          'memories.placeAddressNote' => 'Prefira só o nome do lugar, sem endereço ou número.',
           'memories.jarLabel' => 'POTINHO',
           'memories.jarTitle' => 'Abrir o potinho',
           'memories.jarText' => 'Um slip bom que você guardou, sorteado.',
@@ -8203,6 +8286,9 @@ extension on Translations {
           'notificationPreferences.days.5' => 'Sexta',
           'notificationPreferences.days.6' => 'Sábado',
           'notificationPreferences.hourFormat' => ({required Object hour}) => '${hour}:00',
+          _ => null,
+        } ??
+        switch (path) {
           'notificationPreferences.previewTitle' => 'Como a notificação aparece',
           'notificationPreferences.previewText' => 'Sempre curta e sem detalhes pessoais.',
           'notificationPreferences.loadErrorTitle' => 'Não deu para abrir suas preferências',
@@ -8211,9 +8297,6 @@ extension on Translations {
             'Muitas tentativas seguidas. Espere um instante.',
           'notificationPreferences.errors.other' =>
             'Não deu para salvar agora. Sua escolha anterior foi mantida.',
-          _ => null,
-        } ??
-        switch (path) {
           'partnerProfile.title' => 'Sobre seu par',
           'partnerProfile.privateNote' =>
             'Só você vê estas notas. Elas nunca aparecem em avisos, widgets ou para seu par.',
@@ -8269,6 +8352,34 @@ extension on Translations {
           'pause.errors.INVALID_RETURN_TIME' => 'Esse horário de volta não vale. Escolha outro.',
           'pause.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'pause.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
+          'places.title' => 'Lugares',
+          'places.privacyNote' => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.',
+          'places.memoryOne' => '1 memória',
+          'places.memoryMany' => ({required Object count}) => '${count} memórias',
+          'places.monthsShort.0' => 'jan',
+          'places.monthsShort.1' => 'fev',
+          'places.monthsShort.2' => 'mar',
+          'places.monthsShort.3' => 'abr',
+          'places.monthsShort.4' => 'mai',
+          'places.monthsShort.5' => 'jun',
+          'places.monthsShort.6' => 'jul',
+          'places.monthsShort.7' => 'ago',
+          'places.monthsShort.8' => 'set',
+          'places.monthsShort.9' => 'out',
+          'places.monthsShort.10' => 'nov',
+          'places.monthsShort.11' => 'dez',
+          'places.dateLine' => ({
+            required Object day,
+            required Object month,
+            required Object year,
+          }) => '${day} ${month} ${year}',
+          'places.emptyTitle' => 'Nenhum lugar ainda',
+          'places.emptyText' =>
+            'Ao guardar uma memória, escreva o nome do lugar e ele aparece aqui.',
+          'places.detailEmptyTitle' => 'Nada neste lugar',
+          'places.detailEmptyText' => 'As memórias deste lugar não estão mais aqui.',
+          'places.errorTitle' => 'Não deu para carregar',
+          'places.errorText' => 'Suas memórias continuam salvas. Tente de novo.',
           'plus.title' => 'Repara Plus',
           'plus.subtitle' => 'Compare com calma. O plano grátis continua inteiro para o essencial.',
           'plus.activeTitle' => 'Você tem o Plus',
@@ -8746,6 +8857,9 @@ extension on Translations {
           'repair.guided.stepHints.2' => 'Algo pequeno e sincero.',
           'repair.guided.private' => 'Só você vê isto. Nada é enviado ao seu par.',
           'repair.guided.next' => 'Continuar',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.guided.back' => 'Voltar',
           'repair.guided.later' => 'Guardar para depois',
           'repair.guided.savedLater' => 'Guardado. Você continua de onde parou.',
@@ -8777,9 +8891,6 @@ extension on Translations {
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Escreva em uma ou duas frases',
           'repair.learning.save' => 'Salvar',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.learning.listTitle' => 'Seus aprendizados',
           'repair.learning.delete' => 'Apagar',
           'repair.learning.emptyTitle' => 'Nada ainda',
@@ -9360,6 +9471,9 @@ extension on Translations {
           'welcome.headline' => 'Pequenas coisas boas, ditas em voz alta.',
           'welcome.headlineHighlight' => 'ditas em voz alta',
           'welcome.subtitle' => 'Um jeito leve de notar o que o outro faz de bom, a cada semana.',
+          _ => null,
+        } ??
+        switch (path) {
           'welcome.start' => 'Começar',
           'welcome.haveAccount' => 'Já tenho conta',
           'welcome.debugSignIn' => 'Entrar (debug)',
@@ -9395,9 +9509,6 @@ extension on Translations {
                 ),
           'widgets.couplePhotosLabel' => 'FOTOS DO CASAL · PLUS',
           'widgets.couplePhotosPrompt' => 'Escolha uma foto de vocês dois',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.couplePhotosPlusHint' => 'Disponível no plano Plus',
           'widgets.partnerNoteLabel' => 'RECADO DO PAR',
           'widgets.partnerNoteEmpty' => 'Sem recado novo no momento',

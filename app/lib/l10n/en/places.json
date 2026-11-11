@@ -1,0 +1,14 @@
+{
+  "title": "Places",
+  "privacyNote": "Only the name of the place. The app never reads or stores your location.",
+  "memoryOne": "1 memory",
+  "memoryMany": "{count} memories",
+  "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "dateLine": "{month} {day}, {year}",
+  "emptyTitle": "No places yet",
+  "emptyText": "When you save a memory, write the name of the place and it shows up here.",
+  "detailEmptyTitle": "Nothing at this place",
+  "detailEmptyText": "The memories of this place are not here anymore.",
+  "errorTitle": "Couldn't load",
+  "errorText": "Your memories are still saved. Try again."
+}

@@ -139,6 +139,13 @@ const documentNodeQueryMemories = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
+                              name: NameNode(value: 'place'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
                               name: NameNode(value: '__typename'),
                               alias: null,
                               arguments: [],
@@ -405,6 +412,7 @@ class QueryMemoriesmemoriesCollectionedgesnode {
     required this.title,
     this.body,
     required this.happenedOn,
+    this.place,
     this.$__typename = 'Memories',
   });
 
@@ -413,12 +421,14 @@ class QueryMemoriesmemoriesCollectionedgesnode {
     final l$title = json['title'];
     final l$body = json['body'];
     final l$happenedOn = json['happenedOn'];
+    final l$place = json['place'];
     final l$$__typename = json['__typename'];
     return QueryMemoriesmemoriesCollectionedgesnode(
       id: (l$id as String),
       title: (l$title as String),
       body: (l$body as String?),
       happenedOn: DateTime.parse((l$happenedOn as String)),
+      place: (l$place as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -430,6 +440,8 @@ class QueryMemoriesmemoriesCollectionedgesnode {
   final String? body;
 
   final DateTime happenedOn;
+
+  final String? place;
 
   final String $__typename;
 
@@ -443,6 +455,8 @@ class QueryMemoriesmemoriesCollectionedgesnode {
     _resultData['body'] = l$body;
     final l$happenedOn = happenedOn;
     _resultData['happenedOn'] = ((v) => v.toIso8601String().substring(0, 10))(l$happenedOn);
+    final l$place = place;
+    _resultData['place'] = l$place;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -454,8 +468,9 @@ class QueryMemoriesmemoriesCollectionedgesnode {
     final l$title = title;
     final l$body = body;
     final l$happenedOn = happenedOn;
+    final l$place = place;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$title, l$body, l$happenedOn, l$$__typename]);
+    return Object.hashAll([l$id, l$title, l$body, l$happenedOn, l$place, l$$__typename]);
   }
 
   @override
@@ -484,6 +499,11 @@ class QueryMemoriesmemoriesCollectionedgesnode {
     final l$happenedOn = happenedOn;
     final lOther$happenedOn = other.happenedOn;
     if (l$happenedOn != lOther$happenedOn) {
+      return false;
+    }
+    final l$place = place;
+    final lOther$place = other.place;
+    if (l$place != lOther$place) {
       return false;
     }
     final l$$__typename = $__typename;

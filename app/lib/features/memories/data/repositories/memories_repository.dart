@@ -13,7 +13,13 @@ class MemoriesRepository({
     'read memories',
     () async => [
       for (final node in await _dataSource.getMemories())
-        Memory(id: node.id, title: node.title, body: node.body, happenedOn: node.happenedOn),
+        Memory(
+          id: node.id,
+          title: node.title,
+          body: node.body,
+          happenedOn: node.happenedOn,
+          place: node.place,
+        ),
     ],
   );
 
@@ -23,6 +29,7 @@ class MemoriesRepository({
     required String title,
     required DateTime happenedOn,
     String? body,
+    String? place,
   }) => _run(
     'add a memory',
     () async => _dataSource.addMemory(
@@ -30,6 +37,7 @@ class MemoriesRepository({
       title: title.trim(),
       body: body == null || body.trim().isEmpty ? null : body.trim(),
       happenedOn: DateTime(happenedOn.year, happenedOn.month, happenedOn.day),
+      place: place == null || place.trim().isEmpty ? null : place.trim(),
       coupleId: await _togetherRepository.getCoupleId(),
     ),
   );

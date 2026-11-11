@@ -19,6 +19,7 @@ class MemoriesDataSource({required final GQLClient _client}) {
     required String title,
     required DateTime happenedOn,
     String? body,
+    String? place,
     String? coupleId,
   }) async {
     final response = await _client.mutate(
@@ -28,6 +29,7 @@ class MemoriesDataSource({required final GQLClient _client}) {
           title: title,
           body: body,
           happenedOn: happenedOn,
+          place: place,
           coupleId: coupleId,
         ),
       ),

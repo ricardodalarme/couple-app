@@ -138,6 +138,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$pause$en pause = _Translations$pause$en._(_root);
   @override
+  late final _Translations$places$en places = _Translations$places$en._(_root);
+  @override
   late final _Translations$plus$en plus = _Translations$plus$en._(_root);
   @override
   late final _Translations$privacy$en privacy = _Translations$privacy$en._(_root);
@@ -2097,6 +2099,18 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get historyText => 'Milestones, dates, places and our story in numbers.';
   @override
+  String get placesLabel => 'PLACES';
+  @override
+  String get placesTitle => 'Places you have been';
+  @override
+  String get placesText => 'Only the name of the place, never the location.';
+  @override
+  String get placeLabel => 'Place (optional)';
+  @override
+  String get placeHint => 'E.g. Lisbon';
+  @override
+  String get placeAddressNote => 'Prefer just the name of the place, with no address or number.';
+  @override
   String get jarLabel => 'JAR';
   @override
   String get jarTitle => 'Open the jar';
@@ -2586,6 +2600,55 @@ class _Translations$pause$en extends Translations$pause$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t send right now. Your message is still here.',
   };
+}
+
+// Path: places
+class _Translations$places$en extends Translations$places$pt {
+  _Translations$places$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Places';
+  @override
+  String get privacyNote =>
+      'Only the name of the place. The app never reads or stores your location.';
+  @override
+  String get memoryOne => '1 memory';
+  @override
+  String memoryMany({required Object count}) => '${count} memories';
+  @override
+  List<String> get monthsShort => [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  @override
+  String dateLine({required Object month, required Object day, required Object year}) =>
+      '${month} ${day}, ${year}';
+  @override
+  String get emptyTitle => 'No places yet';
+  @override
+  String get emptyText =>
+      'When you save a memory, write the name of the place and it shows up here.';
+  @override
+  String get detailEmptyTitle => 'Nothing at this place';
+  @override
+  String get detailEmptyText => 'The memories of this place are not here anymore.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Your memories are still saved. Try again.';
 }
 
 // Path: plus
@@ -6609,6 +6672,13 @@ extension on TranslationsEn {
           'memories.historyLabel' => 'OUR HISTORY',
           'memories.historyTitle' => 'Our history',
           'memories.historyText' => 'Milestones, dates, places and our story in numbers.',
+          'memories.placesLabel' => 'PLACES',
+          'memories.placesTitle' => 'Places you have been',
+          'memories.placesText' => 'Only the name of the place, never the location.',
+          'memories.placeLabel' => 'Place (optional)',
+          'memories.placeHint' => 'E.g. Lisbon',
+          'memories.placeAddressNote' =>
+            'Prefer just the name of the place, with no address or number.',
           'memories.jarLabel' => 'JAR',
           'memories.jarTitle' => 'Open the jar',
           'memories.jarText' => 'A good slip you kept, drawn at random.',
@@ -6781,6 +6851,9 @@ extension on TranslationsEn {
           'notificationPreferences.days.5' => 'Friday',
           'notificationPreferences.days.6' => 'Saturday',
           'notificationPreferences.hourFormat' => ({required Object hour}) => '${hour}:00',
+          _ => null,
+        } ??
+        switch (path) {
           'notificationPreferences.previewTitle' => 'How a notification looks',
           'notificationPreferences.previewText' => 'Always short, with no personal details.',
           'notificationPreferences.loadErrorTitle' => 'Couldn\'t open your preferences',
@@ -6789,9 +6862,6 @@ extension on TranslationsEn {
             'Too many attempts in a row. Wait a moment.',
           'notificationPreferences.errors.other' =>
             'Couldn\'t save right now. Your previous choice was kept.',
-          _ => null,
-        } ??
-        switch (path) {
           'partnerProfile.title' => 'About your partner',
           'partnerProfile.privateNote' => 'Only you see these notes. They never show in notifications, widgets or to your partner.',
           'partnerProfile.categories.likes' => 'Likes',
@@ -6844,6 +6914,35 @@ extension on TranslationsEn {
           'pause.errors.INVALID_RETURN_TIME' => 'That return time doesn\'t work. Pick another.',
           'pause.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'pause.errors.other' => 'Couldn\'t send right now. Your message is still here.',
+          'places.title' => 'Places',
+          'places.privacyNote' =>
+            'Only the name of the place. The app never reads or stores your location.',
+          'places.memoryOne' => '1 memory',
+          'places.memoryMany' => ({required Object count}) => '${count} memories',
+          'places.monthsShort.0' => 'Jan',
+          'places.monthsShort.1' => 'Feb',
+          'places.monthsShort.2' => 'Mar',
+          'places.monthsShort.3' => 'Apr',
+          'places.monthsShort.4' => 'May',
+          'places.monthsShort.5' => 'Jun',
+          'places.monthsShort.6' => 'Jul',
+          'places.monthsShort.7' => 'Aug',
+          'places.monthsShort.8' => 'Sep',
+          'places.monthsShort.9' => 'Oct',
+          'places.monthsShort.10' => 'Nov',
+          'places.monthsShort.11' => 'Dec',
+          'places.dateLine' => ({
+            required Object month,
+            required Object day,
+            required Object year,
+          }) => '${month} ${day}, ${year}',
+          'places.emptyTitle' => 'No places yet',
+          'places.emptyText' =>
+            'When you save a memory, write the name of the place and it shows up here.',
+          'places.detailEmptyTitle' => 'Nothing at this place',
+          'places.detailEmptyText' => 'The memories of this place are not here anymore.',
+          'places.errorTitle' => 'Couldn\'t load',
+          'places.errorText' => 'Your memories are still saved. Try again.',
           'plus.title' => 'Repara Plus',
           'plus.subtitle' => 'Compare calmly. The free plan stays whole for the essentials.',
           'plus.activeTitle' => 'You have Plus',
@@ -7323,6 +7422,9 @@ extension on TranslationsEn {
           'repair.guided.stepHints.2' => 'Something small and sincere.',
           'repair.guided.private' => 'Only you see this. Nothing is sent to your partner.',
           'repair.guided.next' => 'Continue',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.guided.back' => 'Back',
           'repair.guided.later' => 'Save for later',
           'repair.guided.savedLater' => 'Saved. You\'ll pick up where you left off.',
@@ -7353,9 +7455,6 @@ extension on TranslationsEn {
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Write one or two sentences',
           'repair.learning.save' => 'Save',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.learning.listTitle' => 'Your learnings',
           'repair.learning.delete' => 'Delete',
           'repair.learning.emptyTitle' => 'Nothing yet',
@@ -7932,6 +8031,9 @@ extension on TranslationsEn {
           'welcome.headline' => 'Small good things, said out loud.',
           'welcome.headlineHighlight' => 'said out loud',
           'welcome.subtitle' => 'A light way to notice what the other does well, every week.',
+          _ => null,
+        } ??
+        switch (path) {
           'welcome.start' => 'Get started',
           'welcome.haveAccount' => 'I already have an account',
           'welcome.debugSignIn' => 'Sign in (debug)',
@@ -7967,9 +8069,6 @@ extension on TranslationsEn {
                 ),
           'widgets.couplePhotosLabel' => 'COUPLE PHOTOS · PLUS',
           'widgets.couplePhotosPrompt' => 'Choose a photo of you two',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.couplePhotosPlusHint' => 'Available with Plus',
           'widgets.partnerNoteLabel' => 'PARTNER NOTE',
           'widgets.partnerNoteEmpty' => 'No new note right now',
