@@ -1,0 +1,18 @@
+query QuestionOfTheWeek {
+  question: dailyContent(kind: "question") {
+    slug
+    title
+    body
+    tags
+  }
+  today {
+    isPaired
+    partnerName
+  }
+  myProfile {
+    id
+  }
+  myCouple {
+    id
+  }
+}

@@ -190,14 +190,18 @@ create table public.question_answers (
   question_slug text not null check (char_length(question_slug) between 1 and 80),
   body text not null check (char_length(btrim(body)) between 1 and 1000),
   created_at timestamptz not null default now(),
-  constraint question_answers_once unique (author_id, question_slug)
+  constraint question_answers_once unique (author_id, couple_id, question_slug)
 );
+create unique index question_answers_solo_once on public.question_answers (author_id, question_slug)
+  where couple_id is null;
 create index question_answers_couple_idx on public.question_answers (couple_id, question_slug);
 alter table public.question_answers enable row level security;
 grant select, insert, delete on public.question_answers to authenticated;
 create function private.answered_question(p_slug text) returns boolean
 language sql stable security definer set search_path = '' as $$
-  select exists (select 1 from public.question_answers where author_id = auth.uid() and question_slug = p_slug);
+  select exists (select 1 from public.question_answers
+                 where author_id = auth.uid() and question_slug = p_slug
+                   and couple_id is not distinct from private.current_couple_id());
 $$;
 grant execute on function private.answered_question(text) to authenticated;
 create policy question_answers_select_own_or_revealed on public.question_answers for select to authenticated

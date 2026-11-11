@@ -237,6 +237,8 @@ begin
   insert into public.couples default values returning * into v_couple;
   insert into public.couple_members (couple_id, profile_id, role)
   values (v_couple.id, v_invite.created_by, 'inviter'), (v_couple.id, v_uid, 'invitee');
+  update public.question_answers set couple_id = v_couple.id
+  where author_id in (v_invite.created_by, v_uid) and couple_id is null;
   update public.invites set used_at = now(), used_by = v_uid where id = v_invite.id;
   return v_couple;
 end $$;

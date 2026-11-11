@@ -48,6 +48,7 @@ import 'package:flutter_bloc_starter/features/privacy/presentation/our_view/our_
 import 'package:flutter_bloc_starter/features/privacy/presentation/partner_view/partner_view_page.dart';
 import 'package:flutter_bloc_starter/features/profile/presentation/profile/profile_settings_page.dart';
 import 'package:flutter_bloc_starter/features/profile/presentation/setup/profile_setup_page.dart';
+import 'package:flutter_bloc_starter/features/questions/presentation/questions/questions_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/calm/calm_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/guided/guided_repair_page.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/learning/learning_page.dart';
@@ -147,6 +148,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: SundayCardRoute.page),
     AutoRoute(page: CardsListRoute.page),
     AutoRoute(page: CheckinRoute.page),
+    AutoRoute(page: QuestionsRoute.page),
     AutoRoute(page: IdeaDetailRoute.page, path: '/idea'),
     AutoRoute(page: CardDetailRoute.page, path: '/card/:id'),
     AutoRoute(page: MoodRoute.page),

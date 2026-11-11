@@ -1,0 +1,14 @@
+query QuestionAnswers($questionSlug: String!) {
+  partnerAnswered(questionSlug: $questionSlug)
+  questionAnswersCollection(filter: { questionSlug: { eq: $questionSlug } }, first: 10) {
+    edges {
+      node {
+        id
+        authorId
+        coupleId
+        questionSlug
+        body
+      }
+    }
+  }
+}

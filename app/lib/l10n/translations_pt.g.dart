@@ -103,6 +103,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
     _root,
   );
+  late final Translations$questions$pt questions = Translations$questions$pt.internal(_root);
+  late final Translations$questionsEntry$pt questionsEntry =
+      Translations$questionsEntry$pt.internal(_root);
   late final Translations$quickSlip$pt quickSlip = Translations$quickSlip$pt.internal(_root);
   late final Translations$received$pt received = Translations$received$pt.internal(_root);
   late final Translations$relationshipChanged$pt relationshipChanged =
@@ -2769,6 +2772,123 @@ class Translations$profileSetup$pt {
     'NETWORK': 'Sem conexão. Seus dados continuam aqui, tente de novo.',
     'other': 'Não deu para salvar agora. Tente de novo.',
   };
+}
+
+// Path: questions
+class Translations$questions$pt {
+  Translations$questions$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Pergunta para vocês dois'
+  String get tag => 'Pergunta para vocês dois';
+
+  /// pt: 'Pergunta do dia'
+  String get eyebrow => 'Pergunta do dia';
+
+  /// pt: 'Responder'
+  String get answerCta => 'Responder';
+
+  /// pt: 'Editar minha resposta'
+  String get editCta => 'Editar minha resposta';
+
+  /// pt: 'Escreva o quanto quiser.'
+  String get answerHint => 'Escreva o quanto quiser.';
+
+  /// pt: 'Só você vê isto até seu par responder também.'
+  String get privateNote => 'Só você vê isto até seu par responder também.';
+
+  /// pt: 'Seu par já respondeu. Envie a sua para ver as duas.'
+  String get partnerAnsweredNote => 'Seu par já respondeu. Envie a sua para ver as duas.';
+
+  /// pt: 'Sua resposta fica privada. Seu par vai ver depois que vocês se conectarem.'
+  String get soloNote =>
+      'Sua resposta fica privada. Seu par vai ver depois que vocês se conectarem.';
+
+  /// pt: 'Enviar'
+  String get save => 'Enviar';
+
+  /// pt: 'Cancelar'
+  String get cancel => 'Cancelar';
+
+  /// pt: 'Sua resposta ficou guardada'
+  String get waitingTitle => 'Sua resposta ficou guardada';
+
+  /// pt: 'Ela aparece aqui quando seu par responder também.'
+  String get waitingText => 'Ela aparece aqui quando seu par responder também.';
+
+  /// pt: 'Quando seu par entrar, ele vê a sua resposta e você vê a dele.'
+  String get waitingSoloText => 'Quando seu par entrar, ele vê a sua resposta e você vê a dele.';
+
+  /// pt: 'Verificar de novo'
+  String get checkAgain => 'Verificar de novo';
+
+  /// pt: 'Recado de voz'
+  String get voiceSoon => 'Recado de voz';
+
+  /// pt: 'Por enquanto as respostas são escritas. A voz vem depois.'
+  String get voiceSoonNote => 'Por enquanto as respostas são escritas. A voz vem depois.';
+
+  /// pt: 'Suas respostas juntas'
+  String get revealTitle => 'Suas respostas juntas';
+
+  /// pt: 'juntas'
+  String get revealHighlight => 'juntas';
+
+  /// pt: 'Agora que os dois responderam, vocês veem as duas.'
+  String get revealSubtitle => 'Agora que os dois responderam, vocês veem as duas.';
+
+  /// pt: 'Sem notas. Só o que cada um escreveu.'
+  String get revealNote => 'Sem notas. Só o que cada um escreveu.';
+
+  /// pt: 'Você'
+  String get you => 'Você';
+
+  /// pt: 'Seu par'
+  String get partnerFallback => 'Seu par';
+
+  /// pt: 'Descartar esta resposta?'
+  String get discardTitle => 'Descartar esta resposta?';
+
+  /// pt: 'O texto que você escreveu não foi salvo.'
+  String get discardText => 'O texto que você escreveu não foi salvo.';
+
+  /// pt: 'Descartar'
+  String get discard => 'Descartar';
+
+  /// pt: 'Continuar escrevendo'
+  String get keepWriting => 'Continuar escrevendo';
+
+  /// pt: 'Não deu para abrir a pergunta'
+  String get loadErrorTitle => 'Não deu para abrir a pergunta';
+
+  /// pt: 'Nada foi perdido. Tente de novo.'
+  String get loadErrorText => 'Nada foi perdido. Tente de novo.';
+
+  /// pt: 'Fechar'
+  String get close => 'Fechar';
+
+  Map<String, String> get errors => {'other': 'Não deu para salvar agora. Tente de novo.'};
+}
+
+// Path: questionsEntry
+class Translations$questionsEntry$pt {
+  Translations$questionsEntry$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'PERGUNTA DO DIA'
+  String get label => 'PERGUNTA DO DIA';
+
+  /// pt: 'Pergunta do dia'
+  String get title => 'Pergunta do dia';
+
+  /// pt: 'Uma pergunta para os dois responderem.'
+  String get text => 'Uma pergunta para os dois responderem.';
 }
 
 // Path: quickSlip
@@ -6173,6 +6293,41 @@ extension on Translations {
             'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
           'profileSetup.errors.NETWORK' => 'Sem conexão. Seus dados continuam aqui, tente de novo.',
           'profileSetup.errors.other' => 'Não deu para salvar agora. Tente de novo.',
+          'questions.tag' => 'Pergunta para vocês dois',
+          'questions.eyebrow' => 'Pergunta do dia',
+          'questions.answerCta' => 'Responder',
+          'questions.editCta' => 'Editar minha resposta',
+          'questions.answerHint' => 'Escreva o quanto quiser.',
+          'questions.privateNote' => 'Só você vê isto até seu par responder também.',
+          'questions.partnerAnsweredNote' => 'Seu par já respondeu. Envie a sua para ver as duas.',
+          'questions.soloNote' =>
+            'Sua resposta fica privada. Seu par vai ver depois que vocês se conectarem.',
+          'questions.save' => 'Enviar',
+          'questions.cancel' => 'Cancelar',
+          'questions.waitingTitle' => 'Sua resposta ficou guardada',
+          'questions.waitingText' => 'Ela aparece aqui quando seu par responder também.',
+          'questions.waitingSoloText' =>
+            'Quando seu par entrar, ele vê a sua resposta e você vê a dele.',
+          'questions.checkAgain' => 'Verificar de novo',
+          'questions.voiceSoon' => 'Recado de voz',
+          'questions.voiceSoonNote' => 'Por enquanto as respostas são escritas. A voz vem depois.',
+          'questions.revealTitle' => 'Suas respostas juntas',
+          'questions.revealHighlight' => 'juntas',
+          'questions.revealSubtitle' => 'Agora que os dois responderam, vocês veem as duas.',
+          'questions.revealNote' => 'Sem notas. Só o que cada um escreveu.',
+          'questions.you' => 'Você',
+          'questions.partnerFallback' => 'Seu par',
+          'questions.discardTitle' => 'Descartar esta resposta?',
+          'questions.discardText' => 'O texto que você escreveu não foi salvo.',
+          'questions.discard' => 'Descartar',
+          'questions.keepWriting' => 'Continuar escrevendo',
+          'questions.loadErrorTitle' => 'Não deu para abrir a pergunta',
+          'questions.loadErrorText' => 'Nada foi perdido. Tente de novo.',
+          'questions.close' => 'Fechar',
+          'questions.errors.other' => 'Não deu para salvar agora. Tente de novo.',
+          'questionsEntry.label' => 'PERGUNTA DO DIA',
+          'questionsEntry.title' => 'Pergunta do dia',
+          'questionsEntry.text' => 'Uma pergunta para os dois responderem.',
           'quickSlip.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -6213,6 +6368,9 @@ extension on Translations {
           'quickSlip.saved.added' => 'Slip adicionado a esta semana.',
           'quickSlip.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
           'quickSlip.saved.undoHint' => 'Desfazer por 30 segundos.',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.saved.undo' => 'Desfazer',
           'quickSlip.saved.done' => 'Pronto',
           'quickSlip.errors.FREE_LIMIT_REACHED' =>
@@ -6248,9 +6406,6 @@ extension on Translations {
           'relationshipChanged.title' => 'Algo mudou?',
           'relationshipChanged.highlight' => 'mudou',
           'relationshipChanged.subtitle' => 'Conte com calma. Isso só muda o que o app mostra.',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipChanged.optionEnded' => 'Terminamos',
           'relationshipChanged.optionBereaved' => 'Perdi a pessoa',
           'relationshipChanged.optionOnBreak' => 'Um tempo',
@@ -6787,6 +6942,9 @@ extension on Translations {
           'temperature.result.done' => 'Pronto',
           'temperature.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'temperature.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
+          _ => null,
+        } ??
+        switch (path) {
           'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',
@@ -6845,9 +7003,6 @@ extension on Translations {
           'today.pendingInviteTitle' => 'Convite enviado',
           'today.pendingInviteText' => 'A pessoa ainda não entrou. Reenviar ou revogar.',
           'today.pendingInviteAction' => 'Ver convite',
-          _ => null,
-        } ??
-        switch (path) {
           'today.answer' => 'Responder',
           'today.slipsThisWeek' =>
             ({required num count}) =>

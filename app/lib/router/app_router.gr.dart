@@ -938,6 +938,22 @@ class ProfileSetupRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [QuestionsPage]
+class QuestionsRoute extends PageRouteInfo<void> {
+  const QuestionsRoute({List<PageRouteInfo>? children})
+    : super(QuestionsRoute.name, initialChildren: children);
+
+  static const String name = 'QuestionsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const QuestionsPage());
+    },
+  );
+}
+
+/// generated route for
 /// [QuickRepairPage]
 class QuickRepairRoute extends PageRouteInfo<QuickRepairRouteArgs> {
   QuickRepairRoute({String text = '', Key? key, List<PageRouteInfo>? children})

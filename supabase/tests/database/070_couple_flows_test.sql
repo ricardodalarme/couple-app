@@ -1,6 +1,6 @@
 begin;
 set local search_path = tap, public, extensions;
-select plan(35);
+select plan(40);
 select tests.create_user('ana', 'Ana'); select tests.create_user('bia', 'Bia'); select tests.create_user('caio');
 create temp table ids (k text primary key, id uuid) on commit drop; grant all on ids to authenticated;
 
@@ -60,6 +60,32 @@ select is((select count(*)::int from public.question_answers), 0, 'partner canno
 select is(public.partner_answered('first-meeting'), true, 'but knows that I answered');
 insert into public.question_answers (question_slug, body, couple_id) values ('first-meeting', 'Achei você sério demais.', private.current_couple_id());
 select is((select count(*)::int from public.question_answers), 2, 'both answers are revealed once both answered');
+
+-- answers are scoped to the couple that was current when they were written
+select tests.create_user('davi', 'Davi'); select tests.create_user('eve', 'Eve'); select tests.create_user('fabi', 'Fabi');
+select tests.as('davi');
+insert into public.question_answers (question_slug, body) values ('second-question', 'Antes de qualquer par.');
+select tests.pair('davi', 'eve');
+select tests.as('davi');
+select is((select couple_id from public.question_answers where question_slug = 'second-question'),
+          private.current_couple_id(), 'a solo answer joins the couple when they pair');
+select tests.as('eve');
+insert into public.question_answers (question_slug, body, couple_id) values ('second-question', 'Agora respondo.', private.current_couple_id());
+select tests.as('davi');
+select is((select count(*)::int from public.question_answers where question_slug = 'second-question'), 2, 'both answers reveal for the new couple');
+
+insert into public.question_answers (question_slug, body, couple_id) values ('third-question', 'Da primeira vez.', private.current_couple_id());
+select public.unpair();
+select tests.as_admin();
+select tests.pair('davi', 'fabi');
+select tests.as('fabi');
+insert into public.question_answers (question_slug, body, couple_id) values ('third-question', 'Da segunda vez.', private.current_couple_id());
+select tests.as('davi');
+select is((select count(*)::int from public.question_answers where question_slug = 'third-question' and author_id = tests.uid('fabi')), 0, 'an answer from a previous couple does not reveal the new partner answer');
+insert into public.question_answers (question_slug, body, couple_id) values ('third-question', 'Respondo de novo.', private.current_couple_id());
+select is((select count(*)::int from public.question_answers where question_slug = 'third-question'), 3, 'a person can answer the same question in a new couple');
+select tests.as('fabi');
+select is((select count(*)::int from public.question_answers where question_slug = 'third-question' and author_id = tests.uid('davi')), 1, 'the new couple reveals once both answered');
 
 -- weekly check-in: revealed when both finished all four
 select tests.as('ana');

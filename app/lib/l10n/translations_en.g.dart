@@ -134,6 +134,12 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
   @override
+  late final _Translations$questions$en questions = _Translations$questions$en._(_root);
+  @override
+  late final _Translations$questionsEntry$en questionsEntry = _Translations$questionsEntry$en._(
+    _root,
+  );
+  @override
   late final _Translations$quickSlip$en quickSlip = _Translations$quickSlip$en._(_root);
   @override
   late final _Translations$received$en received = _Translations$received$en._(_root);
@@ -2254,6 +2260,91 @@ class _Translations$profileSetup$en extends Translations$profileSetup$pt {
     'NETWORK': 'No connection. Your answers are still here, try again.',
     'other': 'Could not save right now. Try again.',
   };
+}
+
+// Path: questions
+class _Translations$questions$en extends Translations$questions$pt {
+  _Translations$questions$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get tag => 'Question for you two';
+  @override
+  String get eyebrow => 'Question of the day';
+  @override
+  String get answerCta => 'Answer';
+  @override
+  String get editCta => 'Edit my answer';
+  @override
+  String get answerHint => 'Write as much or as little as you want.';
+  @override
+  String get privateNote => 'Only you can see this until your partner answers too.';
+  @override
+  String get partnerAnsweredNote => 'Your partner already answered. Send yours to see both.';
+  @override
+  String get soloNote => 'Your answer stays private. Your partner will see it after you connect.';
+  @override
+  String get save => 'Send';
+  @override
+  String get cancel => 'Cancel';
+  @override
+  String get waitingTitle => 'Your answer is saved';
+  @override
+  String get waitingText => 'It appears here when your partner answers too.';
+  @override
+  String get waitingSoloText =>
+      'When your partner joins, they will see your answer and you can see theirs.';
+  @override
+  String get checkAgain => 'Check again';
+  @override
+  String get voiceSoon => 'Voice note';
+  @override
+  String get voiceSoonNote => 'For now answers are written. Voice will come later.';
+  @override
+  String get revealTitle => 'Your answers together';
+  @override
+  String get revealHighlight => 'together';
+  @override
+  String get revealSubtitle => 'Now that you both answered, you can see each one.';
+  @override
+  String get revealNote => 'No scores. Just what each of you wrote.';
+  @override
+  String get you => 'You';
+  @override
+  String get partnerFallback => 'Your partner';
+  @override
+  String get discardTitle => 'Discard this answer?';
+  @override
+  String get discardText => 'The text you wrote was not saved.';
+  @override
+  String get discard => 'Discard';
+  @override
+  String get keepWriting => 'Keep writing';
+  @override
+  String get loadErrorTitle => 'Couldn\'t open the question';
+  @override
+  String get loadErrorText => 'Nothing was lost. Try again.';
+  @override
+  String get close => 'Close';
+  @override
+  Map<String, String> get errors => {'other': 'Couldn\'t save that now. Try again.'};
+}
+
+// Path: questionsEntry
+class _Translations$questionsEntry$en extends Translations$questionsEntry$pt {
+  _Translations$questionsEntry$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get label => 'QUESTION OF THE DAY';
+  @override
+  String get title => 'Question of the day';
+  @override
+  String get text => 'One question for both of you to answer.';
 }
 
 // Path: quickSlip
@@ -5210,6 +5301,42 @@ extension on TranslationsEn {
             'That date does not look right. Pick one between 1950 and today.',
           'profileSetup.errors.NETWORK' => 'No connection. Your answers are still here, try again.',
           'profileSetup.errors.other' => 'Could not save right now. Try again.',
+          'questions.tag' => 'Question for you two',
+          'questions.eyebrow' => 'Question of the day',
+          'questions.answerCta' => 'Answer',
+          'questions.editCta' => 'Edit my answer',
+          'questions.answerHint' => 'Write as much or as little as you want.',
+          'questions.privateNote' => 'Only you can see this until your partner answers too.',
+          'questions.partnerAnsweredNote' =>
+            'Your partner already answered. Send yours to see both.',
+          'questions.soloNote' =>
+            'Your answer stays private. Your partner will see it after you connect.',
+          'questions.save' => 'Send',
+          'questions.cancel' => 'Cancel',
+          'questions.waitingTitle' => 'Your answer is saved',
+          'questions.waitingText' => 'It appears here when your partner answers too.',
+          'questions.waitingSoloText' =>
+            'When your partner joins, they will see your answer and you can see theirs.',
+          'questions.checkAgain' => 'Check again',
+          'questions.voiceSoon' => 'Voice note',
+          'questions.voiceSoonNote' => 'For now answers are written. Voice will come later.',
+          'questions.revealTitle' => 'Your answers together',
+          'questions.revealHighlight' => 'together',
+          'questions.revealSubtitle' => 'Now that you both answered, you can see each one.',
+          'questions.revealNote' => 'No scores. Just what each of you wrote.',
+          'questions.you' => 'You',
+          'questions.partnerFallback' => 'Your partner',
+          'questions.discardTitle' => 'Discard this answer?',
+          'questions.discardText' => 'The text you wrote was not saved.',
+          'questions.discard' => 'Discard',
+          'questions.keepWriting' => 'Keep writing',
+          'questions.loadErrorTitle' => 'Couldn\'t open the question',
+          'questions.loadErrorText' => 'Nothing was lost. Try again.',
+          'questions.close' => 'Close',
+          'questions.errors.other' => 'Couldn\'t save that now. Try again.',
+          'questionsEntry.label' => 'QUESTION OF THE DAY',
+          'questionsEntry.title' => 'Question of the day',
+          'questionsEntry.text' => 'One question for both of you to answer.',
           'quickSlip.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -5251,6 +5378,9 @@ extension on TranslationsEn {
           'quickSlip.saved.queued' =>
             'Saved on this phone. We send it when the connection is back.',
           'quickSlip.saved.undoHint' => 'Undo for 30 seconds.',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.saved.undo' => 'Undo',
           'quickSlip.saved.done' => 'Done',
           'quickSlip.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
@@ -5285,9 +5415,6 @@ extension on TranslationsEn {
           'relationshipChanged.title' => 'Something changed?',
           'relationshipChanged.highlight' => 'changed',
           'relationshipChanged.subtitle' => 'Take your time. This only changes what the app shows.',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipChanged.optionEnded' => 'We broke up',
           'relationshipChanged.optionBereaved' => 'I lost them',
           'relationshipChanged.optionOnBreak' => 'A break',
@@ -5820,6 +5947,9 @@ extension on TranslationsEn {
           'temperature.result.done' => 'Done',
           'temperature.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'temperature.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
+          _ => null,
+        } ??
+        switch (path) {
           'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',
@@ -5878,9 +6008,6 @@ extension on TranslationsEn {
           'today.pendingInviteTitle' => 'Invite sent',
           'today.pendingInviteText' => 'They have not joined yet. Send again or revoke.',
           'today.pendingInviteAction' => 'See invite',
-          _ => null,
-        } ??
-        switch (path) {
           'today.answer' => 'Answer',
           'today.slipsThisWeek' =>
             ({required num count}) =>
