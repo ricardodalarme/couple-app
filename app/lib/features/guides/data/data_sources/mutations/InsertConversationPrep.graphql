@@ -1,0 +1,15 @@
+mutation InsertConversationPrep(
+  $id: UUID!
+  $guide: String!
+  $topic: String!
+  $notes: String
+  $draft: String
+) {
+  insertIntoConversationPrepsCollection(
+    objects: [{ id: $id, guide: $guide, topic: $topic, notes: $notes, draft: $draft }]
+  ) {
+    records {
+      id
+    }
+  }
+}

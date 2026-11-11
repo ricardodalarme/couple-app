@@ -1,0 +1,41 @@
+{
+  "hub": {
+    "title": "Difficult conversations",
+    "titleHighlight": "Difficult",
+    "subtitle": "One step at a time, in private.",
+    "privateNote": "Your notes stay with you. Nothing is sent to your partner.",
+    "stepCount(plural, param=count)": {
+      "one": "1 step",
+      "other": "{count} steps"
+    },
+    "loadErrorTitle": "Could not open the topics",
+    "loadErrorText": "Nothing was lost. Try again."
+  },
+  "viewer": {
+    "stepOf": "Step {current} of {total}",
+    "answerHint": "Write whatever makes sense. It can stay blank.",
+    "stepNote": "Saved as you go. Only you can see it.",
+    "next": "Next",
+    "finish": "Finish",
+    "back": "Back",
+    "loadErrorTitle": "Could not open this conversation",
+    "loadErrorText": "Nothing was lost. Try again.",
+    "errors(map)": {
+      "other": "Could not save right now. Your answers are still here."
+    }
+  },
+  "gate": {
+    "title": "A sensitive topic",
+    "text": "This topic is about intimacy and is meant for adults. You can go slowly or choose another topic whenever you like.",
+    "continueAction": "Continue",
+    "otherAction": "See other topics"
+  },
+  "finish": {
+    "title": "Your conversation is ready",
+    "titleHighlight": "ready",
+    "text": "Your notes are saved to your account, privately.",
+    "finishSaved": "Saved only for you.",
+    "start": "Start a conversation",
+    "other": "Back to topics"
+  }
+}

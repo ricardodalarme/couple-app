@@ -86,6 +86,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$griefSupport$en griefSupport = _Translations$griefSupport$en._(_root);
   @override
+  late final _Translations$guides$en guides = _Translations$guides$en._(_root);
+  @override
   late final _Translations$help$en help = _Translations$help$en._(_root);
   @override
   late final _Translations$helpSupport$en helpSupport = _Translations$helpSupport$en._(_root);
@@ -1076,6 +1078,23 @@ class _Translations$griefSupport$en extends Translations$griefSupport$pt {
   String get seeSupport => 'See support';
   @override
   String get backHome => 'Back to the start';
+}
+
+// Path: guides
+class _Translations$guides$en extends Translations$guides$pt {
+  _Translations$guides$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  late final _Translations$guides$hub$en hub = _Translations$guides$hub$en._(_root);
+  @override
+  late final _Translations$guides$viewer$en viewer = _Translations$guides$viewer$en._(_root);
+  @override
+  late final _Translations$guides$gate$en gate = _Translations$guides$gate$en._(_root);
+  @override
+  late final _Translations$guides$finish$en finish = _Translations$guides$finish$en._(_root);
 }
 
 // Path: help
@@ -3628,6 +3647,12 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get fightStyleTitle => 'How I react in a fight';
   @override
   String get fightStyleText => 'A short, private reflection on your own way.';
+  @override
+  String get guidesLabel => 'CONVERSATIONS';
+  @override
+  String get guidesTitle => 'Difficult conversations';
+  @override
+  String get guidesText => 'One step at a time, just for you.';
 }
 
 // Path: temperature
@@ -3967,6 +3992,102 @@ class _Translations$acceptInvite$unusable$en extends Translations$acceptInvite$u
   String get tryAgain => 'Type again';
   @override
   String get close => 'Close';
+}
+
+// Path: guides.hub
+class _Translations$guides$hub$en extends Translations$guides$hub$pt {
+  _Translations$guides$hub$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Difficult conversations';
+  @override
+  String get titleHighlight => 'Difficult';
+  @override
+  String get subtitle => 'One step at a time, in private.';
+  @override
+  String get privateNote => 'Your notes stay with you. Nothing is sent to your partner.';
+  @override
+  String stepCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 step',
+        other: '${count} steps',
+      );
+  @override
+  String get loadErrorTitle => 'Could not open the topics';
+  @override
+  String get loadErrorText => 'Nothing was lost. Try again.';
+}
+
+// Path: guides.viewer
+class _Translations$guides$viewer$en extends Translations$guides$viewer$pt {
+  _Translations$guides$viewer$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String stepOf({required Object current, required Object total}) => 'Step ${current} of ${total}';
+  @override
+  String get answerHint => 'Write whatever makes sense. It can stay blank.';
+  @override
+  String get stepNote => 'Saved as you go. Only you can see it.';
+  @override
+  String get next => 'Next';
+  @override
+  String get finish => 'Finish';
+  @override
+  String get back => 'Back';
+  @override
+  String get loadErrorTitle => 'Could not open this conversation';
+  @override
+  String get loadErrorText => 'Nothing was lost. Try again.';
+  @override
+  Map<String, String> get errors => {
+    'other': 'Could not save right now. Your answers are still here.',
+  };
+}
+
+// Path: guides.gate
+class _Translations$guides$gate$en extends Translations$guides$gate$pt {
+  _Translations$guides$gate$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'A sensitive topic';
+  @override
+  String get text =>
+      'This topic is about intimacy and is meant for adults. You can go slowly or choose another topic whenever you like.';
+  @override
+  String get continueAction => 'Continue';
+  @override
+  String get otherAction => 'See other topics';
+}
+
+// Path: guides.finish
+class _Translations$guides$finish$en extends Translations$guides$finish$pt {
+  _Translations$guides$finish$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Your conversation is ready';
+  @override
+  String get titleHighlight => 'ready';
+  @override
+  String get text => 'Your notes are saved to your account, privately.';
+  @override
+  String get finishSaved => 'Saved only for you.';
+  @override
+  String get start => 'Start a conversation';
+  @override
+  String get other => 'Back to topics';
 }
 
 // Path: intro.phase
@@ -5122,6 +5243,41 @@ extension on TranslationsEn {
           'griefSupport.text' => 'Your memories stay here, at your pace.',
           'griefSupport.seeSupport' => 'See support',
           'griefSupport.backHome' => 'Back to the start',
+          'guides.hub.title' => 'Difficult conversations',
+          'guides.hub.titleHighlight' => 'Difficult',
+          'guides.hub.subtitle' => 'One step at a time, in private.',
+          'guides.hub.privateNote' => 'Your notes stay with you. Nothing is sent to your partner.',
+          'guides.hub.stepCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 step',
+                  other: '${count} steps',
+                ),
+          'guides.hub.loadErrorTitle' => 'Could not open the topics',
+          'guides.hub.loadErrorText' => 'Nothing was lost. Try again.',
+          'guides.viewer.stepOf' => ({
+            required Object current,
+            required Object total,
+          }) => 'Step ${current} of ${total}',
+          'guides.viewer.answerHint' => 'Write whatever makes sense. It can stay blank.',
+          'guides.viewer.stepNote' => 'Saved as you go. Only you can see it.',
+          'guides.viewer.next' => 'Next',
+          'guides.viewer.finish' => 'Finish',
+          'guides.viewer.back' => 'Back',
+          'guides.viewer.loadErrorTitle' => 'Could not open this conversation',
+          'guides.viewer.loadErrorText' => 'Nothing was lost. Try again.',
+          'guides.viewer.errors.other' => 'Could not save right now. Your answers are still here.',
+          'guides.gate.title' => 'A sensitive topic',
+          'guides.gate.text' => 'This topic is about intimacy and is meant for adults. You can go slowly or choose another topic whenever you like.',
+          'guides.gate.continueAction' => 'Continue',
+          'guides.gate.otherAction' => 'See other topics',
+          'guides.finish.title' => 'Your conversation is ready',
+          'guides.finish.titleHighlight' => 'ready',
+          'guides.finish.text' => 'Your notes are saved to your account, privately.',
+          'guides.finish.finishSaved' => 'Saved only for you.',
+          'guides.finish.start' => 'Start a conversation',
+          'guides.finish.other' => 'Back to topics',
           'help.badDayTitle' => 'A hard day',
           'help.badDayText' => 'Three small things that may help right now. Nothing required.',
           'help.starterTitle' => 'Start a conversation',
@@ -5252,6 +5408,9 @@ extension on TranslationsEn {
           'history.differentDatesBanner' => 'You chose different start dates',
           'history.differentDatesAction' => 'See dates',
           'history.timelineSection' => 'MILESTONES AND MEMORIES',
+          _ => null,
+        } ??
+        switch (path) {
           'history.recentChip' => 'Recent',
           'history.unknownYearChip' => 'No date',
           'history.timelineRecentNote' => 'Showing your most recent milestones.',
@@ -5278,9 +5437,6 @@ extension on TranslationsEn {
           'history.monthsLong.1' => 'February',
           'history.monthsLong.2' => 'March',
           'history.monthsLong.3' => 'April',
-          _ => null,
-        } ??
-        switch (path) {
           'history.monthsLong.4' => 'May',
           'history.monthsLong.5' => 'June',
           'history.monthsLong.6' => 'July',
@@ -5872,6 +6028,9 @@ extension on TranslationsEn {
           'plus.partnerPays' => 'Your partner looks after this subscription.',
           'plus.partnerCancel' =>
             'If either partner cancels, Plus ends for both, with a clear notice.',
+          _ => null,
+        } ??
+        switch (path) {
           'plus.storeIssueTitle' => 'The store didn\'t open',
           'plus.restoreLoadingTitle' => 'Restoring purchases',
           'plus.restoreLoadingText' => 'This takes a few seconds.',
@@ -5899,9 +6058,6 @@ extension on TranslationsEn {
           'privacy.partnerSlipsText' => 'Only what you send',
           'privacy.partnerPrivateSlips' => 'Private slips',
           'privacy.partnerTemperature' => 'Temperature',
-          _ => null,
-        } ??
-        switch (path) {
           'privacy.partnerJournal' => 'Journal',
           'privacy.partnerPause' => 'Pause',
           'privacy.partnerPauseText' => 'The message you wrote',
@@ -6428,6 +6584,9 @@ extension on TranslationsEn {
           'slipKind.ifThen.thenLabel' => 'Then…',
           'slipKind.ifThen.thenHint' => 'E.g. I ask for 10 minutes alone',
           'slipKind.invisible.title' => 'Things nobody notices',
+          _ => null,
+        } ??
+        switch (path) {
           'slipKind.invisible.titleHighlight' => 'nobody notices',
           'slipKind.invisible.subtitle' => 'Only for you. This never goes into a card.',
           'slipKind.invisible.hint' => 'E.g. remembered the kids\' appointment',
@@ -6456,9 +6615,6 @@ extension on TranslationsEn {
           'slipsList.scopeAll' => 'All',
           'slipsList.private' => 'Private',
           'slipsList.thisWeek' => 'This week',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.lastWeek' => 'Last week',
           'slipsList.weekRange' => ({
             required Object start,
@@ -6612,6 +6768,9 @@ extension on TranslationsEn {
           'tabs.fightStyleLabel' => 'JUST FOR YOU',
           'tabs.fightStyleTitle' => 'How I react in a fight',
           'tabs.fightStyleText' => 'A short, private reflection on your own way.',
+          'tabs.guidesLabel' => 'CONVERSATIONS',
+          'tabs.guidesTitle' => 'Difficult conversations',
+          'tabs.guidesText' => 'One step at a time, just for you.',
           'temperature.levelTitle' => 'How is it between you?',
           'temperature.levelHighlight' => 'between you',
           'temperature.levelNote' => 'Private. Never becomes a score.',

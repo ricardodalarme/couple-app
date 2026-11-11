@@ -13,6 +13,8 @@ import 'package:flutter_bloc_starter/features/dates/presentation/dates/dates_pag
 import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/devices/presentation/devices/devices_page.dart';
 import 'package:flutter_bloc_starter/features/fight_style/presentation/exercise/fight_style_page.dart';
+import 'package:flutter_bloc_starter/features/guides/presentation/hub/guides_page.dart';
+import 'package:flutter_bloc_starter/features/guides/presentation/viewer/guide_page.dart';
 import 'package:flutter_bloc_starter/features/help/data/models/support_topic.dart';
 import 'package:flutter_bloc_starter/features/help/presentation/help/help_page.dart';
 import 'package:flutter_bloc_starter/features/help/presentation/support/support_page.dart';
@@ -151,6 +153,8 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: SlipDetailRoute.page, path: '/slip/:id'),
     AutoRoute(page: ListsRoute.page),
     AutoRoute(page: ListDetailRoute.page, path: '/list/:id'),
+    AutoRoute(page: GuidesRoute.page, path: '/guides'),
+    AutoRoute(page: GuideRoute.page, path: '/guide/:slug', fullscreenDialog: true),
     AutoRoute(page: NotificationPreferencesRoute.page),
     AutoRoute(page: DevicesRoute.page),
     AutoRoute(page: SundayCardRoute.page),

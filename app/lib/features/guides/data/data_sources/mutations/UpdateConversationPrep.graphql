@@ -1,0 +1,15 @@
+mutation UpdateConversationPrep(
+  $id: UUID!
+  $guide: String!
+  $topic: String!
+  $notes: String
+  $draft: String
+) {
+  updateConversationPrepsCollection(
+    set: { guide: $guide, topic: $topic, notes: $notes, draft: $draft }
+    filter: { id: { eq: $id } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

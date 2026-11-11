@@ -384,6 +384,56 @@ class GriefSupportRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [GuidePage]
+class GuideRoute extends PageRouteInfo<GuideRouteArgs> {
+  GuideRoute({String slug = '', Key? key, List<PageRouteInfo>? children})
+    : super(
+        GuideRoute.name,
+        args: GuideRouteArgs(slug: slug, key: key),
+        rawPathParams: {'slug': slug},
+        initialChildren: children,
+      );
+
+  static const String name = 'GuideRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<GuideRouteArgs>(
+        orElse: () => GuideRouteArgs(slug: pathParams.getString('slug', '')),
+      );
+      return WrappedRoute(
+        child: GuidePage(slug: args.slug, key: args.key),
+      );
+    },
+  );
+}
+
+class GuideRouteArgs {
+  const GuideRouteArgs({this.slug = '', this.key});
+
+  final String slug;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'GuideRouteArgs{slug: $slug, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! GuideRouteArgs) return false;
+    return slug == other.slug && key == other.key;
+  }
+
+  @override
+  int get hashCode => slug.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [GuidedRepairPage]
 class GuidedRepairRoute extends PageRouteInfo<void> {
   const GuidedRepairRoute({List<PageRouteInfo>? children})
@@ -395,6 +445,22 @@ class GuidedRepairRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const GuidedRepairPage());
+    },
+  );
+}
+
+/// generated route for
+/// [GuidesPage]
+class GuidesRoute extends PageRouteInfo<void> {
+  const GuidesRoute({List<PageRouteInfo>? children})
+    : super(GuidesRoute.name, initialChildren: children);
+
+  static const String name = 'GuidesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const GuidesPage());
     },
   );
 }

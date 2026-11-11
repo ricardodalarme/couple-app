@@ -76,6 +76,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$griefSupport$pt griefSupport = Translations$griefSupport$pt.internal(
     _root,
   );
+  late final Translations$guides$pt guides = Translations$guides$pt.internal(_root);
   late final Translations$help$pt help = Translations$help$pt.internal(_root);
   late final Translations$helpSupport$pt helpSupport = Translations$helpSupport$pt.internal(_root);
   late final Translations$history$pt history = Translations$history$pt.internal(_root);
@@ -1242,6 +1243,19 @@ class Translations$griefSupport$pt {
 
   /// pt: 'Voltar ao início'
   String get backHome => 'Voltar ao início';
+}
+
+// Path: guides
+class Translations$guides$pt {
+  Translations$guides$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+  late final Translations$guides$hub$pt hub = Translations$guides$hub$pt.internal(_root);
+  late final Translations$guides$viewer$pt viewer = Translations$guides$viewer$pt.internal(_root);
+  late final Translations$guides$gate$pt gate = Translations$guides$gate$pt.internal(_root);
+  late final Translations$guides$finish$pt finish = Translations$guides$finish$pt.internal(_root);
 }
 
 // Path: help
@@ -4514,6 +4528,15 @@ class Translations$tabs$pt {
 
   /// pt: 'Uma reflexão curta e privada sobre o seu jeito.'
   String get fightStyleText => 'Uma reflexão curta e privada sobre o seu jeito.';
+
+  /// pt: 'CONVERSAS'
+  String get guidesLabel => 'CONVERSAS';
+
+  /// pt: 'Conversas difíceis'
+  String get guidesTitle => 'Conversas difíceis';
+
+  /// pt: 'Um passo de cada vez, só para você.'
+  String get guidesText => 'Um passo de cada vez, só para você.';
 }
 
 // Path: temperature
@@ -4938,6 +4961,127 @@ class Translations$acceptInvite$unusable$pt {
 
   /// pt: 'Fechar'
   String get close => 'Fechar';
+}
+
+// Path: guides.hub
+class Translations$guides$hub$pt {
+  Translations$guides$hub$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Conversas difíceis'
+  String get title => 'Conversas difíceis';
+
+  /// pt: 'difíceis'
+  String get titleHighlight => 'difíceis';
+
+  /// pt: 'Um passo de cada vez, só para você.'
+  String get subtitle => 'Um passo de cada vez, só para você.';
+
+  /// pt: 'Suas anotações ficam só com você. Nada é enviado ao seu par.'
+  String get privateNote => 'Suas anotações ficam só com você. Nada é enviado ao seu par.';
+
+  /// pt: '(one) {1 passo} (other) {{count} passos}'
+  String stepCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 passo',
+        other: '${count} passos',
+      );
+
+  /// pt: 'Não deu para abrir os temas'
+  String get loadErrorTitle => 'Não deu para abrir os temas';
+
+  /// pt: 'Nada foi perdido. Tente de novo.'
+  String get loadErrorText => 'Nada foi perdido. Tente de novo.';
+}
+
+// Path: guides.viewer
+class Translations$guides$viewer$pt {
+  Translations$guides$viewer$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Passo {current} de {total}'
+  String stepOf({required Object current, required Object total}) => 'Passo ${current} de ${total}';
+
+  /// pt: 'Escreva o que fizer sentido. Pode ficar em branco.'
+  String get answerHint => 'Escreva o que fizer sentido. Pode ficar em branco.';
+
+  /// pt: 'Guardado aos poucos. Só você vê.'
+  String get stepNote => 'Guardado aos poucos. Só você vê.';
+
+  /// pt: 'Próximo'
+  String get next => 'Próximo';
+
+  /// pt: 'Concluir'
+  String get finish => 'Concluir';
+
+  /// pt: 'Voltar'
+  String get back => 'Voltar';
+
+  /// pt: 'Não deu para abrir esta conversa'
+  String get loadErrorTitle => 'Não deu para abrir esta conversa';
+
+  /// pt: 'Nada foi perdido. Tente de novo.'
+  String get loadErrorText => 'Nada foi perdido. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'other': 'Não deu para salvar agora. Suas respostas continuam aqui.',
+  };
+}
+
+// Path: guides.gate
+class Translations$guides$gate$pt {
+  Translations$guides$gate$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Um tema sensível'
+  String get title => 'Um tema sensível';
+
+  /// pt: 'Este tema fala sobre intimidade e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.'
+  String get text =>
+      'Este tema fala sobre intimidade e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.';
+
+  /// pt: 'Continuar'
+  String get continueAction => 'Continuar';
+
+  /// pt: 'Ver outros temas'
+  String get otherAction => 'Ver outros temas';
+}
+
+// Path: guides.finish
+class Translations$guides$finish$pt {
+  Translations$guides$finish$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Sua conversa está preparada'
+  String get title => 'Sua conversa está preparada';
+
+  /// pt: 'preparada'
+  String get titleHighlight => 'preparada';
+
+  /// pt: 'Suas anotações ficam guardadas na sua conta, só para você.'
+  String get text => 'Suas anotações ficam guardadas na sua conta, só para você.';
+
+  /// pt: 'Salvo só para você.'
+  String get finishSaved => 'Salvo só para você.';
+
+  /// pt: 'Começar uma conversa'
+  String get start => 'Começar uma conversa';
+
+  /// pt: 'Voltar aos temas'
+  String get other => 'Voltar aos temas';
 }
 
 // Path: intro.phase
@@ -6230,6 +6374,43 @@ extension on Translations {
           'griefSupport.text' => 'Suas lembranças continuam aqui, no seu ritmo.',
           'griefSupport.seeSupport' => 'Ver apoio',
           'griefSupport.backHome' => 'Voltar ao início',
+          'guides.hub.title' => 'Conversas difíceis',
+          'guides.hub.titleHighlight' => 'difíceis',
+          'guides.hub.subtitle' => 'Um passo de cada vez, só para você.',
+          'guides.hub.privateNote' =>
+            'Suas anotações ficam só com você. Nada é enviado ao seu par.',
+          'guides.hub.stepCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 passo',
+                  other: '${count} passos',
+                ),
+          'guides.hub.loadErrorTitle' => 'Não deu para abrir os temas',
+          'guides.hub.loadErrorText' => 'Nada foi perdido. Tente de novo.',
+          'guides.viewer.stepOf' => ({
+            required Object current,
+            required Object total,
+          }) => 'Passo ${current} de ${total}',
+          'guides.viewer.answerHint' => 'Escreva o que fizer sentido. Pode ficar em branco.',
+          'guides.viewer.stepNote' => 'Guardado aos poucos. Só você vê.',
+          'guides.viewer.next' => 'Próximo',
+          'guides.viewer.finish' => 'Concluir',
+          'guides.viewer.back' => 'Voltar',
+          'guides.viewer.loadErrorTitle' => 'Não deu para abrir esta conversa',
+          'guides.viewer.loadErrorText' => 'Nada foi perdido. Tente de novo.',
+          'guides.viewer.errors.other' =>
+            'Não deu para salvar agora. Suas respostas continuam aqui.',
+          'guides.gate.title' => 'Um tema sensível',
+          'guides.gate.text' => 'Este tema fala sobre intimidade e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.',
+          'guides.gate.continueAction' => 'Continuar',
+          'guides.gate.otherAction' => 'Ver outros temas',
+          'guides.finish.title' => 'Sua conversa está preparada',
+          'guides.finish.titleHighlight' => 'preparada',
+          'guides.finish.text' => 'Suas anotações ficam guardadas na sua conta, só para você.',
+          'guides.finish.finishSaved' => 'Salvo só para você.',
+          'guides.finish.start' => 'Começar uma conversa',
+          'guides.finish.other' => 'Voltar aos temas',
           'help.badDayTitle' => 'Um dia difícil',
           'help.badDayText' => 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.',
           'help.starterTitle' => 'Começar uma conversa',
@@ -6363,6 +6544,9 @@ extension on Translations {
           'history.differentDatesBanner' => 'Vocês escolheram datas diferentes para o início',
           'history.differentDatesAction' => 'Ver datas',
           'history.timelineSection' => 'MARCOS E MEMÓRIAS',
+          _ => null,
+        } ??
+        switch (path) {
           'history.recentChip' => 'Recentes',
           'history.unknownYearChip' => 'Sem data',
           'history.timelineRecentNote' => 'Mostrando os marcos mais recentes.',
@@ -6389,9 +6573,6 @@ extension on Translations {
           'history.monthsLong.1' => 'fevereiro',
           'history.monthsLong.2' => 'março',
           'history.monthsLong.3' => 'abril',
-          _ => null,
-        } ??
-        switch (path) {
           'history.monthsLong.4' => 'maio',
           'history.monthsLong.5' => 'junho',
           'history.monthsLong.6' => 'julho',
@@ -6991,6 +7172,9 @@ extension on Translations {
           'plus.partnerPays' => 'Seu par cuida desta assinatura.',
           'plus.partnerCancel' =>
             'Se um dos parceiros cancelar, o Plus termina para os dois, com aviso claro.',
+          _ => null,
+        } ??
+        switch (path) {
           'plus.storeIssueTitle' => 'A loja não abriu',
           'plus.restoreLoadingTitle' => 'Restaurando compras',
           'plus.restoreLoadingText' => 'Isso leva alguns segundos.',
@@ -7017,9 +7201,6 @@ extension on Translations {
           'privacy.partnerSlipsText' => 'Só o que você envia',
           'privacy.partnerPrivateSlips' => 'Slips privados',
           'privacy.partnerTemperature' => 'Temperatura',
-          _ => null,
-        } ??
-        switch (path) {
           'privacy.partnerJournal' => 'Diário',
           'privacy.partnerPause' => 'Pausa',
           'privacy.partnerPauseText' => 'A mensagem que você escreveu',
@@ -7548,6 +7729,9 @@ extension on Translations {
           'slipKind.ifThen.thenLabel' => 'Então…',
           'slipKind.ifThen.thenHint' => 'Ex.: peço um tempo de 10 minutos',
           'slipKind.invisible.title' => 'Coisas que ninguém percebe',
+          _ => null,
+        } ??
+        switch (path) {
           'slipKind.invisible.titleHighlight' => 'ninguém percebe',
           'slipKind.invisible.subtitle' => 'Só para você. Isto nunca vai para o cartão.',
           'slipKind.invisible.hint' => 'Ex.: lembrei da consulta das crianças',
@@ -7575,9 +7759,6 @@ extension on Translations {
           'slipsList.scopeAll' => 'Todos',
           'slipsList.private' => 'Privado',
           'slipsList.thisWeek' => 'Esta semana',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.lastWeek' => 'Semana passada',
           'slipsList.weekRange' => ({
             required Object start,
@@ -7732,6 +7913,9 @@ extension on Translations {
           'tabs.fightStyleLabel' => 'SÓ PARA VOCÊ',
           'tabs.fightStyleTitle' => 'Como eu reajo numa briga',
           'tabs.fightStyleText' => 'Uma reflexão curta e privada sobre o seu jeito.',
+          'tabs.guidesLabel' => 'CONVERSAS',
+          'tabs.guidesTitle' => 'Conversas difíceis',
+          'tabs.guidesText' => 'Um passo de cada vez, só para você.',
           'temperature.levelTitle' => 'Como está entre vocês?',
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',

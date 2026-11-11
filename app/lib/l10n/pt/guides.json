@@ -1,0 +1,41 @@
+{
+  "hub": {
+    "title": "Conversas difíceis",
+    "titleHighlight": "difíceis",
+    "subtitle": "Um passo de cada vez, só para você.",
+    "privateNote": "Suas anotações ficam só com você. Nada é enviado ao seu par.",
+    "stepCount(plural, param=count)": {
+      "one": "1 passo",
+      "other": "{count} passos"
+    },
+    "loadErrorTitle": "Não deu para abrir os temas",
+    "loadErrorText": "Nada foi perdido. Tente de novo."
+  },
+  "viewer": {
+    "stepOf": "Passo {current} de {total}",
+    "answerHint": "Escreva o que fizer sentido. Pode ficar em branco.",
+    "stepNote": "Guardado aos poucos. Só você vê.",
+    "next": "Próximo",
+    "finish": "Concluir",
+    "back": "Voltar",
+    "loadErrorTitle": "Não deu para abrir esta conversa",
+    "loadErrorText": "Nada foi perdido. Tente de novo.",
+    "errors(map)": {
+      "other": "Não deu para salvar agora. Suas respostas continuam aqui."
+    }
+  },
+  "gate": {
+    "title": "Um tema sensível",
+    "text": "Este tema fala sobre intimidade e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.",
+    "continueAction": "Continuar",
+    "otherAction": "Ver outros temas"
+  },
+  "finish": {
+    "title": "Sua conversa está preparada",
+    "titleHighlight": "preparada",
+    "text": "Suas anotações ficam guardadas na sua conta, só para você.",
+    "finishSaved": "Salvo só para você.",
+    "start": "Começar uma conversa",
+    "other": "Voltar aos temas"
+  }
+}
