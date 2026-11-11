@@ -70,5 +70,28 @@
   "configureErrorToast": "Could not save widget preferences right now.",
   "loadErrorTitle": "Could not load widgets",
   "loadErrorBody": "Check your connection and try again.",
-  "retryAction": "Try again"
+  "retryAction": "Try again",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "discreetReminderLabel": "Reminder",
+  "discreetNeutralBody": "Neutral text",
+  "signedOutLabel": "Repara",
+  "signedOutBody": "Tap to sign in",
+  "ownSmallPageTitle": "Widget · Mine (small)",
+  "ownSmallSlipAction": "Log",
+  "ownSmallDateDefaultTitle": "Next date",
+  "ownSmallDateDays(plural, param=count)": {
+    "one": "{count} day",
+    "other": "{count} days"
+  },
+  "ownSmallMoodLabel": "MOOD",
+  "ownSmallMoodPrompt": "How are you?",
+  "ownSmallMoodOptions": "Happy · Tired · Sad",
+  "ownSmallRitualLabel": "RITUAL",
+  "ownSmallRitualDefaultTitle": "Sunday walk",
+  "ownSmallRitualDefaultTime": "Sun · 10:00",
+  "ownMediumPageTitle": "Widget · Mine (medium)",
+  "ownMediumIdeaAction": "Tap to view",
+  "ownMediumJarTitle": "Tap to open a saved slip",
+  "ownMediumJarPrivacy": "Private: only appears on your device"
 }

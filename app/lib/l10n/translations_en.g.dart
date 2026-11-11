@@ -4258,6 +4258,51 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   String get loadErrorBody => 'Check your connection and try again.';
   @override
   String get retryAction => 'Try again';
+  @override
+  String get themeLight => 'Light';
+  @override
+  String get themeDark => 'Dark';
+  @override
+  String get discreetReminderLabel => 'Reminder';
+  @override
+  String get discreetNeutralBody => 'Neutral text';
+  @override
+  String get signedOutLabel => 'Repara';
+  @override
+  String get signedOutBody => 'Tap to sign in';
+  @override
+  String get ownSmallPageTitle => 'Widget · Mine (small)';
+  @override
+  String get ownSmallSlipAction => 'Log';
+  @override
+  String get ownSmallDateDefaultTitle => 'Next date';
+  @override
+  String ownSmallDateDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '${count} day',
+        other: '${count} days',
+      );
+  @override
+  String get ownSmallMoodLabel => 'MOOD';
+  @override
+  String get ownSmallMoodPrompt => 'How are you?';
+  @override
+  String get ownSmallMoodOptions => 'Happy · Tired · Sad';
+  @override
+  String get ownSmallRitualLabel => 'RITUAL';
+  @override
+  String get ownSmallRitualDefaultTitle => 'Sunday walk';
+  @override
+  String get ownSmallRitualDefaultTime => 'Sun · 10:00';
+  @override
+  String get ownMediumPageTitle => 'Widget · Mine (medium)';
+  @override
+  String get ownMediumIdeaAction => 'Tap to view';
+  @override
+  String get ownMediumJarTitle => 'Tap to open a saved slip';
+  @override
+  String get ownMediumJarPrivacy => 'Private: only appears on your device';
 }
 
 // Path: acceptInvite.connected
@@ -7433,6 +7478,32 @@ extension on TranslationsEn {
           'widgets.loadErrorTitle' => 'Could not load widgets',
           'widgets.loadErrorBody' => 'Check your connection and try again.',
           'widgets.retryAction' => 'Try again',
+          'widgets.themeLight' => 'Light',
+          'widgets.themeDark' => 'Dark',
+          'widgets.discreetReminderLabel' => 'Reminder',
+          'widgets.discreetNeutralBody' => 'Neutral text',
+          'widgets.signedOutLabel' => 'Repara',
+          'widgets.signedOutBody' => 'Tap to sign in',
+          'widgets.ownSmallPageTitle' => 'Widget · Mine (small)',
+          'widgets.ownSmallSlipAction' => 'Log',
+          'widgets.ownSmallDateDefaultTitle' => 'Next date',
+          'widgets.ownSmallDateDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '${count} day',
+                  other: '${count} days',
+                ),
+          'widgets.ownSmallMoodLabel' => 'MOOD',
+          'widgets.ownSmallMoodPrompt' => 'How are you?',
+          'widgets.ownSmallMoodOptions' => 'Happy · Tired · Sad',
+          'widgets.ownSmallRitualLabel' => 'RITUAL',
+          'widgets.ownSmallRitualDefaultTitle' => 'Sunday walk',
+          'widgets.ownSmallRitualDefaultTime' => 'Sun · 10:00',
+          'widgets.ownMediumPageTitle' => 'Widget · Mine (medium)',
+          'widgets.ownMediumIdeaAction' => 'Tap to view',
+          'widgets.ownMediumJarTitle' => 'Tap to open a saved slip',
+          'widgets.ownMediumJarPrivacy' => 'Private: only appears on your device',
           _ => null,
         };
   }

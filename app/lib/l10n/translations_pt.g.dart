@@ -5340,6 +5340,71 @@ class Translations$widgets$pt {
 
   /// pt: 'Tentar novamente'
   String get retryAction => 'Tentar novamente';
+
+  /// pt: 'Claro'
+  String get themeLight => 'Claro';
+
+  /// pt: 'Escuro'
+  String get themeDark => 'Escuro';
+
+  /// pt: 'Lembrete'
+  String get discreetReminderLabel => 'Lembrete';
+
+  /// pt: 'Texto neutro'
+  String get discreetNeutralBody => 'Texto neutro';
+
+  /// pt: 'Repara'
+  String get signedOutLabel => 'Repara';
+
+  /// pt: 'Toque para entrar'
+  String get signedOutBody => 'Toque para entrar';
+
+  /// pt: 'Widget · Meu (pequeno)'
+  String get ownSmallPageTitle => 'Widget · Meu (pequeno)';
+
+  /// pt: 'Anotar'
+  String get ownSmallSlipAction => 'Anotar';
+
+  /// pt: 'Próxima data'
+  String get ownSmallDateDefaultTitle => 'Próxima data';
+
+  /// pt: '(one) {{count} dia} (other) {{count} dias}'
+  String ownSmallDateDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '${count} dia',
+        other: '${count} dias',
+      );
+
+  /// pt: 'HUMOR'
+  String get ownSmallMoodLabel => 'HUMOR';
+
+  /// pt: 'Como você está?'
+  String get ownSmallMoodPrompt => 'Como você está?';
+
+  /// pt: 'Feliz · Cansado · Triste'
+  String get ownSmallMoodOptions => 'Feliz · Cansado · Triste';
+
+  /// pt: 'RITUAL'
+  String get ownSmallRitualLabel => 'RITUAL';
+
+  /// pt: 'Caminhada de domingo'
+  String get ownSmallRitualDefaultTitle => 'Caminhada de domingo';
+
+  /// pt: 'Dom · 10:00'
+  String get ownSmallRitualDefaultTime => 'Dom · 10:00';
+
+  /// pt: 'Widget · Meu (médio)'
+  String get ownMediumPageTitle => 'Widget · Meu (médio)';
+
+  /// pt: 'Toque para ver'
+  String get ownMediumIdeaAction => 'Toque para ver';
+
+  /// pt: 'Toque para abrir um slip guardado'
+  String get ownMediumJarTitle => 'Toque para abrir um slip guardado';
+
+  /// pt: 'Privado: só aparece no seu aparelho'
+  String get ownMediumJarPrivacy => 'Privado: só aparece no seu aparelho';
 }
 
 // Path: acceptInvite.connected
@@ -8700,6 +8765,32 @@ extension on Translations {
           'widgets.loadErrorTitle' => 'Não foi possível carregar os widgets',
           'widgets.loadErrorBody' => 'Verifique sua conexão e tente novamente.',
           'widgets.retryAction' => 'Tentar novamente',
+          'widgets.themeLight' => 'Claro',
+          'widgets.themeDark' => 'Escuro',
+          'widgets.discreetReminderLabel' => 'Lembrete',
+          'widgets.discreetNeutralBody' => 'Texto neutro',
+          'widgets.signedOutLabel' => 'Repara',
+          'widgets.signedOutBody' => 'Toque para entrar',
+          'widgets.ownSmallPageTitle' => 'Widget · Meu (pequeno)',
+          'widgets.ownSmallSlipAction' => 'Anotar',
+          'widgets.ownSmallDateDefaultTitle' => 'Próxima data',
+          'widgets.ownSmallDateDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '${count} dia',
+                  other: '${count} dias',
+                ),
+          'widgets.ownSmallMoodLabel' => 'HUMOR',
+          'widgets.ownSmallMoodPrompt' => 'Como você está?',
+          'widgets.ownSmallMoodOptions' => 'Feliz · Cansado · Triste',
+          'widgets.ownSmallRitualLabel' => 'RITUAL',
+          'widgets.ownSmallRitualDefaultTitle' => 'Caminhada de domingo',
+          'widgets.ownSmallRitualDefaultTime' => 'Dom · 10:00',
+          'widgets.ownMediumPageTitle' => 'Widget · Meu (médio)',
+          'widgets.ownMediumIdeaAction' => 'Toque para ver',
+          'widgets.ownMediumJarTitle' => 'Toque para abrir um slip guardado',
+          'widgets.ownMediumJarPrivacy' => 'Privado: só aparece no seu aparelho',
           _ => null,
         };
   }

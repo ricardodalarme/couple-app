@@ -95,6 +95,8 @@ import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.
 import 'package:flutter_bloc_starter/features/widgets/presentation/configure/widget_configure_page.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/gallery/widgets_gallery_page.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/how_to_add/widget_how_to_add_page.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/own_medium/own_medium_widgets_page.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/own_small/own_small_widgets_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -188,6 +190,8 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: WidgetsGalleryRoute.page),
     AutoRoute(page: WidgetHowToAddRoute.page),
     AutoRoute(page: WidgetConfigureRoute.page),
+    AutoRoute(page: OwnSmallWidgetsRoute.page),
+    AutoRoute(page: OwnMediumWidgetsRoute.page),
     AutoRoute(
       page: HomeRoute.page,
       children: [

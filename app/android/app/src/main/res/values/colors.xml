@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="repara_widget_bg">#FCF8F6</color>
+    <color name="repara_widget_border">#EBE2DE</color>
+    <color name="repara_widget_label">#8A6055</color>
+    <color name="repara_widget_title">#1F1C1B</color>
+    <color name="repara_widget_subtitle">#69615E</color>
+</resources>

@@ -6,6 +6,8 @@ import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_
 import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/configure/cubit/widget_configure_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/gallery/cubit/widgets_gallery_cubit.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/own_medium/cubit/own_medium_widgets_cubit.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/own_small/cubit/own_small_widgets_cubit.dart';
 import 'package:network/network.dart';
 import 'package:preferences_service/preferences_service.dart';
 
@@ -33,6 +35,12 @@ class WidgetsInjectionModule() implements InjectionModule {
       )
       ..registerFactory<WidgetConfigureCubit>(
         () => WidgetConfigureCubit(repository: injector.get<WidgetsRepository>()),
+      )
+      ..registerFactory<OwnSmallWidgetsCubit>(
+        () => OwnSmallWidgetsCubit(repository: injector.get<WidgetsRepository>()),
+      )
+      ..registerFactory<OwnMediumWidgetsCubit>(
+        () => OwnMediumWidgetsCubit(repository: injector.get<WidgetsRepository>()),
       );
   }
 }

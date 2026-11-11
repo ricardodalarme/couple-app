@@ -1110,6 +1110,38 @@ class OurViewRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [OwnMediumWidgetsPage]
+class OwnMediumWidgetsRoute extends PageRouteInfo<void> {
+  const OwnMediumWidgetsRoute({List<PageRouteInfo>? children})
+    : super(OwnMediumWidgetsRoute.name, initialChildren: children);
+
+  static const String name = 'OwnMediumWidgetsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const OwnMediumWidgetsPage());
+    },
+  );
+}
+
+/// generated route for
+/// [OwnSmallWidgetsPage]
+class OwnSmallWidgetsRoute extends PageRouteInfo<void> {
+  const OwnSmallWidgetsRoute({List<PageRouteInfo>? children})
+    : super(OwnSmallWidgetsRoute.name, initialChildren: children);
+
+  static const String name = 'OwnSmallWidgetsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const OwnSmallWidgetsPage());
+    },
+  );
+}
+
+/// generated route for
 /// [PartnerProfilePage]
 class PartnerProfileRoute extends PageRouteInfo<void> {
   const PartnerProfileRoute({List<PageRouteInfo>? children})

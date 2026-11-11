@@ -101,7 +101,12 @@ class const WidgetsGalleryPage({super.key}) extends StatelessWidget implements A
     WidgetsGalleryCubit cubit,
     WidgetFamilyKind family,
   ) async {
-    await context.pushRoute(WidgetConfigureRoute(initialFamily: family));
+    final route = switch (family) {
+      WidgetFamilyKind.ownSmall => const OwnSmallWidgetsRoute() as PageRouteInfo<void>,
+      WidgetFamilyKind.ownMedium => const OwnMediumWidgetsRoute(),
+      _ => WidgetConfigureRoute(initialFamily: family),
+    };
+    await context.pushRoute(route);
     if (context.mounted) await cubit.load();
   }
 }

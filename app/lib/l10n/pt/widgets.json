@@ -70,5 +70,28 @@
   "configureErrorToast": "Não foi possível salvar as preferências agora.",
   "loadErrorTitle": "Não foi possível carregar os widgets",
   "loadErrorBody": "Verifique sua conexão e tente novamente.",
-  "retryAction": "Tentar novamente"
+  "retryAction": "Tentar novamente",
+  "themeLight": "Claro",
+  "themeDark": "Escuro",
+  "discreetReminderLabel": "Lembrete",
+  "discreetNeutralBody": "Texto neutro",
+  "signedOutLabel": "Repara",
+  "signedOutBody": "Toque para entrar",
+  "ownSmallPageTitle": "Widget · Meu (pequeno)",
+  "ownSmallSlipAction": "Anotar",
+  "ownSmallDateDefaultTitle": "Próxima data",
+  "ownSmallDateDays(plural, param=count)": {
+    "one": "{count} dia",
+    "other": "{count} dias"
+  },
+  "ownSmallMoodLabel": "HUMOR",
+  "ownSmallMoodPrompt": "Como você está?",
+  "ownSmallMoodOptions": "Feliz · Cansado · Triste",
+  "ownSmallRitualLabel": "RITUAL",
+  "ownSmallRitualDefaultTitle": "Caminhada de domingo",
+  "ownSmallRitualDefaultTime": "Dom · 10:00",
+  "ownMediumPageTitle": "Widget · Meu (médio)",
+  "ownMediumIdeaAction": "Toque para ver",
+  "ownMediumJarTitle": "Toque para abrir um slip guardado",
+  "ownMediumJarPrivacy": "Privado: só aparece no seu aparelho"
 }
