@@ -218,13 +218,6 @@ const documentNodeQuerySentPartnerMessages = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'seenAt'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
                               name: NameNode(value: 'createdAt'),
                               alias: null,
                               arguments: [],
@@ -543,7 +536,6 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
     this.body,
     this.mediaPath,
     required this.forWidget,
-    this.seenAt,
     required this.createdAt,
     this.$__typename = 'PartnerMessages',
   });
@@ -556,7 +548,6 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
     final l$body = json['body'];
     final l$mediaPath = json['mediaPath'];
     final l$forWidget = json['forWidget'];
-    final l$seenAt = json['seenAt'];
     final l$createdAt = json['createdAt'];
     final l$$__typename = json['__typename'];
     return QuerySentPartnerMessagespartnerMessagesCollectionedgesnode(
@@ -565,7 +556,6 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
       body: (l$body as String?),
       mediaPath: (l$mediaPath as String?),
       forWidget: (l$forWidget as bool),
-      seenAt: l$seenAt == null ? null : DateTime.parse((l$seenAt as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
       $__typename: (l$$__typename as String),
     );
@@ -580,8 +570,6 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
   final String? mediaPath;
 
   final bool forWidget;
-
-  final DateTime? seenAt;
 
   final DateTime createdAt;
 
@@ -599,10 +587,6 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
     _resultData['mediaPath'] = l$mediaPath;
     final l$forWidget = forWidget;
     _resultData['forWidget'] = l$forWidget;
-    final l$seenAt = seenAt;
-    _resultData['seenAt'] = l$seenAt == null
-        ? null
-        : ((v) => v.toUtc().toIso8601String())(l$seenAt);
     final l$createdAt = createdAt;
     _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$$__typename = $__typename;
@@ -617,7 +601,6 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
     final l$body = body;
     final l$mediaPath = mediaPath;
     final l$forWidget = forWidget;
-    final l$seenAt = seenAt;
     final l$createdAt = createdAt;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -626,7 +609,6 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
       l$body,
       l$mediaPath,
       l$forWidget,
-      l$seenAt,
       l$createdAt,
       l$$__typename,
     ]);
@@ -664,11 +646,6 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
     final l$forWidget = forWidget;
     final lOther$forWidget = other.forWidget;
     if (l$forWidget != lOther$forWidget) {
-      return false;
-    }
-    final l$seenAt = seenAt;
-    final lOther$seenAt = other.seenAt;
-    if (l$seenAt != lOther$seenAt) {
       return false;
     }
     final l$createdAt = createdAt;

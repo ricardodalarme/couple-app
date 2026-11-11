@@ -3030,9 +3030,9 @@ class Translations$notes$pt {
   /// pt: 'Bilhete ou desenho'
   String get title => 'Bilhete ou desenho';
 
-  /// pt: 'Um recado curto que seu par recebe quando abrir o app. Sem contagem, sem cobrança.'
+  /// pt: 'Um recado curto para seu par, ou um desenho que fica na sua lista de enviados.'
   String get intro =>
-      'Um recado curto que seu par recebe quando abrir o app. Sem contagem, sem cobrança.';
+      'Um recado curto para seu par, ou um desenho que fica na sua lista de enviados.';
 
   List<String> get kinds => ['Bilhete', 'Desenho'];
 
@@ -3043,9 +3043,6 @@ class Translations$notes$pt {
   String get canvasLabel => 'Área do desenho';
 
   List<String> get pens => ['Preto', 'Laranja', 'Roxo', 'Verde'];
-
-  /// pt: 'Caneta'
-  String get pen => 'Caneta';
 
   /// pt: 'Borracha'
   String get eraser => 'Borracha';
@@ -3059,12 +3056,22 @@ class Translations$notes$pt {
   /// pt: 'Faça um traço para poder enviar.'
   String get emptyDrawing => 'Faça um traço para poder enviar.';
 
-  /// pt: 'Pode aparecer no widget'
-  String get widgetLabel => 'Pode aparecer no widget';
+  /// pt: 'Enviar para o widget'
+  String get widgetLabel => 'Enviar para o widget';
 
-  /// pt: 'Só aparece se seu par permitir recados no widget. Se não, ele vê só dentro do app.'
-  String get widgetText =>
-      'Só aparece se seu par permitir recados no widget. Se não, ele vê só dentro do app.';
+  /// pt: 'Aparece no widget dele se ele permitir recados.'
+  String get widgetText => 'Aparece no widget dele se ele permitir recados.';
+
+  /// pt: 'Desenhos ficam na sua lista de enviados. Recados no widget são só texto por enquanto.'
+  String get drawingHint =>
+      'Desenhos ficam na sua lista de enviados. Recados no widget são só texto por enquanto.';
+
+  /// pt: 'Conecte-se com seu par'
+  String get unpairedTitle => 'Conecte-se com seu par';
+
+  /// pt: 'Você precisa estar conectado com seu par para enviar um bilhete ou desenho.'
+  String get unpairedText =>
+      'Você precisa estar conectado com seu par para enviar um bilhete ou desenho.';
 
   /// pt: 'Enviar'
   String get send => 'Enviar';
@@ -3072,20 +3079,57 @@ class Translations$notes$pt {
   /// pt: 'Enviado'
   String get sent => 'Enviado';
 
-  /// pt: 'Enviados'
-  String get sentTitle => 'Enviados';
+  /// pt: 'Enviados por você'
+  String get sentTitle => 'Enviados por você';
 
-  /// pt: 'Visto'
-  String get seen => 'Visto';
+  /// pt: 'Agora'
+  String get justNow => 'Agora';
 
-  /// pt: 'Enviado'
-  String get delivered => 'Enviado';
+  /// pt: '(one) {1 min atrás} (other) {{count} min atrás}'
+  String minutesAgo({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 min atrás',
+        other: '${count} min atrás',
+      );
 
-  /// pt: 'Desenho enviado'
-  String get drawingAlt => 'Desenho enviado';
+  /// pt: '(one) {1 h atrás} (other) {{count} h atrás}'
+  String hoursAgo({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 h atrás',
+        other: '${count} h atrás',
+      );
+
+  /// pt: '(one) {1 dia atrás} (other) {{count} dias atrás}'
+  String daysAgo({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 dia atrás',
+        other: '${count} dias atrás',
+      );
+
+  /// pt: 'Desenho'
+  String get drawingAlt => 'Desenho';
 
   /// pt: 'Apagar'
   String get delete => 'Apagar';
+
+  /// pt: 'Apagar este envio?'
+  String get deleteConfirmTitle => 'Apagar este envio?';
+
+  /// pt: 'Ele sai da sua lista de enviados. Bilhetes também saem do widget do seu par.'
+  String get deleteConfirmText =>
+      'Ele sai da sua lista de enviados. Bilhetes também saem do widget do seu par.';
+
+  /// pt: 'Apagar agora'
+  String get deleteConfirm => 'Apagar agora';
+
+  /// pt: 'Apagado'
+  String get deleted => 'Apagado';
+
+  /// pt: 'Não deu para apagar agora. Tente de novo.'
+  String get deleteError => 'Não deu para apagar agora. Tente de novo.';
 
   /// pt: 'Nada enviado ainda'
   String get emptyTitle => 'Nada enviado ainda';
@@ -3101,6 +3145,7 @@ class Translations$notes$pt {
 
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'NOT_PAIRED': 'Para enviar, você precisa estar com seu par no app.',
     'other': 'Não deu para enviar agora. O que você escreveu continua aqui.',
   };
 }
@@ -8523,7 +8568,7 @@ extension on Translations {
           'notFound.buttonBack' => 'Voltar para página inicial',
           'notes.title' => 'Bilhete ou desenho',
           'notes.intro' =>
-            'Um recado curto que seu par recebe quando abrir o app. Sem contagem, sem cobrança.',
+            'Um recado curto para seu par, ou um desenho que fica na sua lista de enviados.',
           'notes.kinds.0' => 'Bilhete',
           'notes.kinds.1' => 'Desenho',
           'notes.noteHint' => 'Ex.: boa sorte na reunião de hoje',
@@ -8532,26 +8577,56 @@ extension on Translations {
           'notes.pens.1' => 'Laranja',
           'notes.pens.2' => 'Roxo',
           'notes.pens.3' => 'Verde',
-          'notes.pen' => 'Caneta',
           'notes.eraser' => 'Borracha',
           'notes.undo' => 'Desfazer',
           'notes.clear' => 'Limpar',
           'notes.emptyDrawing' => 'Faça um traço para poder enviar.',
-          'notes.widgetLabel' => 'Pode aparecer no widget',
-          'notes.widgetText' =>
-            'Só aparece se seu par permitir recados no widget. Se não, ele vê só dentro do app.',
+          'notes.widgetLabel' => 'Enviar para o widget',
+          'notes.widgetText' => 'Aparece no widget dele se ele permitir recados.',
+          'notes.drawingHint' =>
+            'Desenhos ficam na sua lista de enviados. Recados no widget são só texto por enquanto.',
+          'notes.unpairedTitle' => 'Conecte-se com seu par',
+          'notes.unpairedText' =>
+            'Você precisa estar conectado com seu par para enviar um bilhete ou desenho.',
           'notes.send' => 'Enviar',
           'notes.sent' => 'Enviado',
-          'notes.sentTitle' => 'Enviados',
-          'notes.seen' => 'Visto',
-          'notes.delivered' => 'Enviado',
-          'notes.drawingAlt' => 'Desenho enviado',
+          'notes.sentTitle' => 'Enviados por você',
+          'notes.justNow' => 'Agora',
+          'notes.minutesAgo' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 min atrás',
+                  other: '${count} min atrás',
+                ),
+          'notes.hoursAgo' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 h atrás',
+                  other: '${count} h atrás',
+                ),
+          'notes.daysAgo' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 dia atrás',
+                  other: '${count} dias atrás',
+                ),
+          'notes.drawingAlt' => 'Desenho',
           'notes.delete' => 'Apagar',
+          'notes.deleteConfirmTitle' => 'Apagar este envio?',
+          'notes.deleteConfirmText' =>
+            'Ele sai da sua lista de enviados. Bilhetes também saem do widget do seu par.',
+          'notes.deleteConfirm' => 'Apagar agora',
+          'notes.deleted' => 'Apagado',
+          'notes.deleteError' => 'Não deu para apagar agora. Tente de novo.',
           'notes.emptyTitle' => 'Nada enviado ainda',
           'notes.emptyText' => 'Quando você mandar um bilhete ou desenho, ele aparece aqui.',
           'notes.errorTitle' => 'Não deu para carregar',
           'notes.errorText' => 'Tente de novo em instantes.',
           'notes.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'notes.errors.NOT_PAIRED' => 'Para enviar, você precisa estar com seu par no app.',
           'notes.errors.other' => 'Não deu para enviar agora. O que você escreveu continua aqui.',
           'notificationPermission.label' => 'Lembretes',
           'notificationPermission.title' => 'Lembretes gentis?',
@@ -9042,6 +9117,9 @@ extension on Translations {
           'received.errorText' => 'Nada se perdeu. Tente de novo.',
           'received.errors.NOT_FOUND' => 'Essa mensagem não está mais aqui.',
           'received.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          _ => null,
+        } ??
+        switch (path) {
           'received.errors.other' => 'Não deu para responder agora. Tente de novo.',
           'relationshipChanged.title' => 'Algo mudou?',
           'relationshipChanged.highlight' => 'mudou',
@@ -9052,9 +9130,6 @@ extension on Translations {
           'relationshipChanged.optionTogether' => 'Está tudo bem',
           'relationshipChanged.continueLabel' => 'Continuar',
           'relationshipChanged.saved' => 'Salvo',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipChanged.errors.NETWORK' => 'Sem conexão. Tente de novo.',
           'relationshipChanged.errors.other' => 'Não deu para salvar agora. Tente de novo.',
           'relationshipSettings.title' => 'Relacionamento',
@@ -9618,6 +9693,9 @@ extension on Translations {
           }) => '${weekday}, ${day} de ${month}',
           'today.weekdays.0' => 'segunda',
           'today.weekdays.1' => 'terça',
+          _ => null,
+        } ??
+        switch (path) {
           'today.weekdays.2' => 'quarta',
           'today.weekdays.3' => 'quinta',
           'today.weekdays.4' => 'sexta',
@@ -9628,9 +9706,6 @@ extension on Translations {
           'today.months.2' => 'março',
           'today.months.3' => 'abril',
           'today.months.4' => 'maio',
-          _ => null,
-        } ??
-        switch (path) {
           'today.months.5' => 'junho',
           'today.months.6' => 'julho',
           'today.months.7' => 'agosto',

@@ -41,13 +41,14 @@ class NotesDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<void> delete(String id) async {
+  /// Whether the server removed the row; `false` means it was already gone.
+  Future<bool> delete(String id) async {
     final response = await _client.mutate(
       OptionsMutationDeletePartnerMessage(
         variables: VariablesMutationDeletePartnerMessage(messageId: id),
       ),
     );
 
-    validateResponse(response);
+    return validateResponseData(response, getData: (data) => data.deletePartnerMessage ?? false);
   }
 }

@@ -2499,8 +2499,7 @@ class _Translations$notes$en extends Translations$notes$pt {
   @override
   String get title => 'A note or a drawing';
   @override
-  String get intro =>
-      'A short message your partner gets when they open the app. No counting, no pressure.';
+  String get intro => 'A short note for your partner, or a drawing that stays in your sent list.';
   @override
   List<String> get kinds => ['Note', 'Drawing'];
   @override
@@ -2510,8 +2509,6 @@ class _Translations$notes$en extends Translations$notes$pt {
   @override
   List<String> get pens => ['Black', 'Orange', 'Purple', 'Green'];
   @override
-  String get pen => 'Pen';
-  @override
   String get eraser => 'Eraser';
   @override
   String get undo => 'Undo';
@@ -2520,24 +2517,60 @@ class _Translations$notes$en extends Translations$notes$pt {
   @override
   String get emptyDrawing => 'Draw something to be able to send it.';
   @override
-  String get widgetLabel => 'May show on the widget';
+  String get widgetLabel => 'Send to the widget';
   @override
-  String get widgetText =>
-      'It only shows if your partner allows notes on their widget. Otherwise they see it only inside the app.';
+  String get widgetText => 'It appears on their widget if they allow notes.';
+  @override
+  String get drawingHint => 'Drawings stay in your sent list. Widget notes are text-only for now.';
+  @override
+  String get unpairedTitle => 'Connect with your partner';
+  @override
+  String get unpairedText =>
+      'You need to be connected with your partner to send a note or drawing.';
   @override
   String get send => 'Send';
   @override
   String get sent => 'Sent';
   @override
-  String get sentTitle => 'Sent';
+  String get sentTitle => 'Sent by you';
   @override
-  String get seen => 'Seen';
+  String get justNow => 'Just now';
   @override
-  String get delivered => 'Sent';
+  String minutesAgo({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 min ago',
+        other: '${count} min ago',
+      );
   @override
-  String get drawingAlt => 'Drawing you sent';
+  String hoursAgo({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 h ago',
+        other: '${count} h ago',
+      );
+  @override
+  String daysAgo({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 day ago',
+        other: '${count} days ago',
+      );
+  @override
+  String get drawingAlt => 'Drawing';
   @override
   String get delete => 'Delete';
+  @override
+  String get deleteConfirmTitle => 'Delete this?';
+  @override
+  String get deleteConfirmText =>
+      'It leaves your sent list. Notes also leave your partner\'s widget.';
+  @override
+  String get deleteConfirm => 'Delete now';
+  @override
+  String get deleted => 'Deleted';
+  @override
+  String get deleteError => 'Couldn\'t delete right now. Try again.';
   @override
   String get emptyTitle => 'Nothing sent yet';
   @override
@@ -2549,6 +2582,7 @@ class _Translations$notes$en extends Translations$notes$pt {
   @override
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'NOT_PAIRED': 'To send this, you need to be connected with your partner in the app.',
     'other': 'Couldn\'t send right now. What you wrote is still here.',
   };
 }
@@ -7073,7 +7107,7 @@ extension on TranslationsEn {
           'notFound.buttonBack' => 'Go back home',
           'notes.title' => 'A note or a drawing',
           'notes.intro' =>
-            'A short message your partner gets when they open the app. No counting, no pressure.',
+            'A short note for your partner, or a drawing that stays in your sent list.',
           'notes.kinds.0' => 'Note',
           'notes.kinds.1' => 'Drawing',
           'notes.noteHint' => 'E.g. good luck at today\'s meeting',
@@ -7082,25 +7116,57 @@ extension on TranslationsEn {
           'notes.pens.1' => 'Orange',
           'notes.pens.2' => 'Purple',
           'notes.pens.3' => 'Green',
-          'notes.pen' => 'Pen',
           'notes.eraser' => 'Eraser',
           'notes.undo' => 'Undo',
           'notes.clear' => 'Clear',
           'notes.emptyDrawing' => 'Draw something to be able to send it.',
-          'notes.widgetLabel' => 'May show on the widget',
-          'notes.widgetText' => 'It only shows if your partner allows notes on their widget. Otherwise they see it only inside the app.',
+          'notes.widgetLabel' => 'Send to the widget',
+          'notes.widgetText' => 'It appears on their widget if they allow notes.',
+          'notes.drawingHint' =>
+            'Drawings stay in your sent list. Widget notes are text-only for now.',
+          'notes.unpairedTitle' => 'Connect with your partner',
+          'notes.unpairedText' =>
+            'You need to be connected with your partner to send a note or drawing.',
           'notes.send' => 'Send',
           'notes.sent' => 'Sent',
-          'notes.sentTitle' => 'Sent',
-          'notes.seen' => 'Seen',
-          'notes.delivered' => 'Sent',
-          'notes.drawingAlt' => 'Drawing you sent',
+          'notes.sentTitle' => 'Sent by you',
+          'notes.justNow' => 'Just now',
+          'notes.minutesAgo' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 min ago',
+                  other: '${count} min ago',
+                ),
+          'notes.hoursAgo' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 h ago',
+                  other: '${count} h ago',
+                ),
+          'notes.daysAgo' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 day ago',
+                  other: '${count} days ago',
+                ),
+          'notes.drawingAlt' => 'Drawing',
           'notes.delete' => 'Delete',
+          'notes.deleteConfirmTitle' => 'Delete this?',
+          'notes.deleteConfirmText' =>
+            'It leaves your sent list. Notes also leave your partner\'s widget.',
+          'notes.deleteConfirm' => 'Delete now',
+          'notes.deleted' => 'Deleted',
+          'notes.deleteError' => 'Couldn\'t delete right now. Try again.',
           'notes.emptyTitle' => 'Nothing sent yet',
           'notes.emptyText' => 'When you send a note or a drawing, it shows up here.',
           'notes.errorTitle' => 'Couldn\'t load',
           'notes.errorText' => 'Try again in a moment.',
           'notes.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'notes.errors.NOT_PAIRED' =>
+            'To send this, you need to be connected with your partner in the app.',
           'notes.errors.other' => 'Couldn\'t send right now. What you wrote is still here.',
           'notificationPermission.label' => 'Reminders',
           'notificationPermission.title' => 'Gentle reminders?',
@@ -7590,6 +7656,9 @@ extension on TranslationsEn {
           'received.errorText' => 'Nothing was lost. Try again.',
           'received.errors.NOT_FOUND' => 'That message isn\'t here anymore.',
           'received.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          _ => null,
+        } ??
+        switch (path) {
           'received.errors.other' => 'Couldn\'t answer right now. Try again.',
           'relationshipChanged.title' => 'Something changed?',
           'relationshipChanged.highlight' => 'changed',
@@ -7600,9 +7669,6 @@ extension on TranslationsEn {
           'relationshipChanged.optionTogether' => 'Everything is fine',
           'relationshipChanged.continueLabel' => 'Continue',
           'relationshipChanged.saved' => 'Saved',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipChanged.errors.NETWORK' => 'No connection. Try again.',
           'relationshipChanged.errors.other' => 'Could not save right now. Try again.',
           'relationshipSettings.title' => 'Relationship',
@@ -8162,6 +8228,9 @@ extension on TranslationsEn {
           }) => '${weekday}, ${month} ${day}',
           'today.weekdays.0' => 'Monday',
           'today.weekdays.1' => 'Tuesday',
+          _ => null,
+        } ??
+        switch (path) {
           'today.weekdays.2' => 'Wednesday',
           'today.weekdays.3' => 'Thursday',
           'today.weekdays.4' => 'Friday',
@@ -8172,9 +8241,6 @@ extension on TranslationsEn {
           'today.months.2' => 'March',
           'today.months.3' => 'April',
           'today.months.4' => 'May',
-          _ => null,
-        } ??
-        switch (path) {
           'today.months.5' => 'June',
           'today.months.6' => 'July',
           'today.months.7' => 'August',

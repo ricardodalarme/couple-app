@@ -4,13 +4,18 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/notes/data/models/sent_message.dart';
 import 'package:flutter_bloc_starter/features/notes/data/repositories/notes_repository.dart';
 import 'package:flutter_bloc_starter/features/notes/presentation/compose/cubit/compose_cubit.dart';
+import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockNotesRepository() extends Mock implements NotesRepository;
 
+class _MockPairingRepository() extends Mock implements PairingRepository;
+
 void main() {
   late NotesRepository repository;
+  late PairingRepository pairingRepository;
   final message = SentMessage(
     id: 'm1',
     kind: MessageKind.note,
@@ -21,6 +26,9 @@ void main() {
 
   setUp(() {
     repository = _MockNotesRepository();
+    pairingRepository = _MockPairingRepository();
+    when(() => pairingRepository.getPartner())
+        .thenAnswer((_) async => const Profile(id: 'p1', avatarKind: 'initial'));
     when(() => repository.getSent()).thenAnswer((_) async => [message]);
     when(
       () => repository.sendNote(
@@ -44,8 +52,13 @@ void main() {
 
   ComposeCubit build() => ComposeCubit(
     notesRepository: repository,
+    pairingRepository: pairingRepository,
     exportDrawing: (_) async => Uint8List.fromList([1]),
   );
+
+  test('the widget switch starts on', () {
+    expect(build().state.forWidget, isTrue);
+  });
 
   test('a note needs text within the limit', () {
     final cubit = build();
@@ -96,20 +109,24 @@ void main() {
     expect(cubit.state.strokes.single.points.single, const Offset(0.9, 0.9));
   });
 
-  test('sending a note clears the form and reads the sent list again', () async {
+  test('sending a note clears only the note and reads the sent list again', () async {
     final cubit = build()
       ..onTextChanged('Boa sorte')
-      ..onForWidgetChanged(true);
+      ..onKindChanged(MessageKind.drawing)
+      ..onStrokeStarted(const Offset(0.1, 0.1))
+      ..onKindChanged(MessageKind.note);
 
     await cubit.send();
 
     verify(() => repository.sendNote(body: 'Boa sorte', forWidget: true)).called(1);
     expect(cubit.state.text, '');
+    expect(cubit.state.strokes, isNotEmpty);
     verify(() => repository.getSent()).called(1);
   });
 
-  test('sending a drawing uploads the rendered image', () async {
+  test('sending a drawing clears only the drawing', () async {
     final cubit = build()
+      ..onTextChanged('Boa sorte')
       ..onKindChanged(MessageKind.drawing)
       ..onStrokeStarted(const Offset(0.1, 0.1));
 
@@ -117,6 +134,7 @@ void main() {
 
     verify(() => repository.sendDrawing(png: Uint8List.fromList([1]), forWidget: false)).called(1);
     expect(cubit.state.strokes, isEmpty);
+    expect(cubit.state.text, 'Boa sorte');
   });
 
   test('a failed send keeps what was written', () async {
@@ -132,6 +150,16 @@ void main() {
 
     expect(cubit.state.text, 'Boa sorte');
     expect(cubit.state.sendAction, isA<Initial>());
+  });
+
+  test('without a partner the compose form cannot send', () async {
+    when(() => pairingRepository.getPartner()).thenAnswer((_) async => null);
+    final cubit = build()..onTextChanged('Boa sorte');
+
+    await cubit.load();
+
+    expect(cubit.state.isUnpaired, isTrue);
+    expect(cubit.state.canSend, isFalse);
   });
 
   test('deleting a message reads the list again', () async {

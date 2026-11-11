@@ -18,7 +18,6 @@ final class const SentMessage({
   final String? body,
   final String? mediaPath,
   final String? imageUrl,
-  final bool wasSeen = false,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
   factory fake() => SentMessage(
@@ -30,5 +29,5 @@ final class const SentMessage({
   );
 
   @override
-  List<Object?> get props => [id, kind, createdAt, forWidget, body, mediaPath, imageUrl, wasSeen];
+  List<Object?> get props => [id, kind, createdAt, forWidget, body, mediaPath, imageUrl];
 }

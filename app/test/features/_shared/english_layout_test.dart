@@ -11,6 +11,8 @@ import 'package:flutter_bloc_starter/features/connect/presentation/us/us_page.da
 import 'package:flutter_bloc_starter/features/notes/data/repositories/notes_repository.dart';
 import 'package:flutter_bloc_starter/features/notes/presentation/compose/compose_page.dart';
 import 'package:flutter_bloc_starter/features/notes/presentation/compose/cubit/compose_cubit.dart';
+import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,6 +25,8 @@ class _MockCapsules() extends Mock implements CapsulesRepository;
 class _MockConnect() extends Mock implements ConnectRepository;
 
 class _MockNotes() extends Mock implements NotesRepository;
+
+class _MockPairing() extends Mock implements PairingRepository;
 
 void main() {
   setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.en));
@@ -80,9 +84,13 @@ void main() {
 
   testWidgets('the note page fits in English at a small width and large text', (tester) async {
     final repository = _MockNotes();
+    final pairingRepository = _MockPairing();
     when(repository.getSent).thenAnswer((_) async => const []);
+    when(pairingRepository.getPartner)
+        .thenAnswer((_) async => const Profile(id: 'p1', avatarKind: 'initial'));
     final cubit = ComposeCubit(
       notesRepository: repository,
+      pairingRepository: pairingRepository,
       exportDrawing: (_) async => throw UnimplementedError(),
     );
     addTearDown(cubit.close);

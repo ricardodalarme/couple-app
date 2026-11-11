@@ -37,7 +37,6 @@ class NotesRepository({
               body: node.body,
               mediaPath: path,
               imageUrl: path == null ? null : await _signedUrl(path),
-              wasSeen: node.seenAt != null,
             );
           }(),
       ]);
@@ -82,6 +81,8 @@ class NotesRepository({
   }
 
   /// Takes the message back so the partner no longer sees it, drawing file included.
+  ///
+  /// A row the server already removed still counts as success.
   Future<void> delete(SentMessage message) async {
     try {
       await _dataSource.delete(message.id);

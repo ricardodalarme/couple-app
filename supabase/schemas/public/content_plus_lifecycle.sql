@@ -580,7 +580,9 @@ begin
     r.partner_name := case when s.widget_show_names then t.partner_name end;
     if s.widget_allow_partner_notes then
       select m.body, m.media_path, m.created_at into r.partner_note, r.partner_note_media, r.partner_note_at
-      from public.partner_messages m where m.recipient_id = v_uid and m.for_widget order by m.created_at desc limit 1;
+      from public.partner_messages m
+      where m.recipient_id = v_uid and m.for_widget and m.kind = 'note'
+      order by m.created_at desc limit 1;
     end if;
     r.partner_mood := (select mood from public.partner_mood_today());
   end if;

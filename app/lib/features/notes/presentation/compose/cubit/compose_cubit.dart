@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/notes/data/models/sent_message.dart';
 import 'package:flutter_bloc_starter/features/notes/data/repositories/notes_repository.dart';
 import 'package:flutter_bloc_starter/features/notes/presentation/compose/cubit/drawing_stroke.dart';
+import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 
 part 'compose_state.dart';
 
@@ -17,17 +18,19 @@ const double _eraserRadius = 0.04;
 
 class ComposeCubit({
   required final NotesRepository _notesRepository,
+  required final PairingRepository _pairingRepository,
   required final DrawingExporter _exportDrawing,
 }) extends Cubit<ComposeState> {
   this : super(const ComposeState());
 
   Future<void> load() async {
     if (state.sent is! Success) emit(state.copyWith(sent: const Loading()));
+    final isPaired = await _readIsPaired();
     try {
-      emit(state.copyWith(sent: Success(await _notesRepository.getSent())));
+      emit(state.copyWith(sent: Success(await _notesRepository.getSent()), isPaired: isPaired));
     } catch (exception) {
       if (state.sent is Success) return;
-      emit(state.copyWith(sent: Failure.fromObject(exception)));
+      emit(state.copyWith(sent: Failure.fromObject(exception), isPaired: isPaired));
     }
   }
 
@@ -83,13 +86,14 @@ class ComposeCubit({
       switch (state.kind) {
         case MessageKind.note:
           await _notesRepository.sendNote(body: state.text, forWidget: state.forWidget);
+          emit(state.copyWith(text: '', sendAction: const Success(null)));
         case MessageKind.drawing:
           await _notesRepository.sendDrawing(
             png: await _exportDrawing(state.strokes),
-            forWidget: state.forWidget,
+            forWidget: false,
           );
+          emit(state.copyWith(strokes: const [], sendAction: const Success(null)));
       }
-      emit(state.copyWith(text: '', strokes: const [], sendAction: const Success(null)));
       await load();
     } catch (exception) {
       emit(state.copyWith(sendAction: Failure.fromObject(exception)));
@@ -98,12 +102,24 @@ class ComposeCubit({
   }
 
   Future<void> delete(SentMessage message) async {
+    if (state.deleteAction.isLoading) return;
+
+    emit(state.copyWith(deleteAction: const Loading()));
     try {
       await _notesRepository.delete(message);
+      emit(state.copyWith(deleteAction: const Success(null)));
       await load();
     } catch (exception) {
-      emit(state.copyWith(sendAction: Failure.fromObject(exception)));
-      emit(state.copyWith(sendAction: const Initial()));
+      emit(state.copyWith(deleteAction: Failure.fromObject(exception)));
+    }
+    emit(state.copyWith(deleteAction: const Initial()));
+  }
+
+  Future<bool?> _readIsPaired() async {
+    try {
+      return (await _pairingRepository.getPartner()) != null;
+    } on Object {
+      return null;
     }
   }
 

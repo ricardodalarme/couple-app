@@ -1,30 +1,49 @@
 {
   "title": "Bilhete ou desenho",
-  "intro": "Um recado curto que seu par recebe quando abrir o app. Sem contagem, sem cobrança.",
+  "intro": "Um recado curto para seu par, ou um desenho que fica na sua lista de enviados.",
   "kinds": ["Bilhete", "Desenho"],
   "noteHint": "Ex.: boa sorte na reunião de hoje",
   "canvasLabel": "Área do desenho",
   "pens": ["Preto", "Laranja", "Roxo", "Verde"],
-  "pen": "Caneta",
   "eraser": "Borracha",
   "undo": "Desfazer",
   "clear": "Limpar",
   "emptyDrawing": "Faça um traço para poder enviar.",
-  "widgetLabel": "Pode aparecer no widget",
-  "widgetText": "Só aparece se seu par permitir recados no widget. Se não, ele vê só dentro do app.",
+  "widgetLabel": "Enviar para o widget",
+  "widgetText": "Aparece no widget dele se ele permitir recados.",
+  "drawingHint": "Desenhos ficam na sua lista de enviados. Recados no widget são só texto por enquanto.",
+  "unpairedTitle": "Conecte-se com seu par",
+  "unpairedText": "Você precisa estar conectado com seu par para enviar um bilhete ou desenho.",
   "send": "Enviar",
   "sent": "Enviado",
-  "sentTitle": "Enviados",
-  "seen": "Visto",
-  "delivered": "Enviado",
-  "drawingAlt": "Desenho enviado",
+  "sentTitle": "Enviados por você",
+  "justNow": "Agora",
+  "minutesAgo(plural, param=count)": {
+    "one": "1 min atrás",
+    "other": "{count} min atrás"
+  },
+  "hoursAgo(plural, param=count)": {
+    "one": "1 h atrás",
+    "other": "{count} h atrás"
+  },
+  "daysAgo(plural, param=count)": {
+    "one": "1 dia atrás",
+    "other": "{count} dias atrás"
+  },
+  "drawingAlt": "Desenho",
   "delete": "Apagar",
+  "deleteConfirmTitle": "Apagar este envio?",
+  "deleteConfirmText": "Ele sai da sua lista de enviados. Bilhetes também saem do widget do seu par.",
+  "deleteConfirm": "Apagar agora",
+  "deleted": "Apagado",
+  "deleteError": "Não deu para apagar agora. Tente de novo.",
   "emptyTitle": "Nada enviado ainda",
   "emptyText": "Quando você mandar um bilhete ou desenho, ele aparece aqui.",
   "errorTitle": "Não deu para carregar",
   "errorText": "Tente de novo em instantes.",
   "errors(map)": {
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "NOT_PAIRED": "Para enviar, você precisa estar com seu par no app.",
     "other": "Não deu para enviar agora. O que você escreveu continua aqui."
   }
 }
