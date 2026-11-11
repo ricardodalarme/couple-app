@@ -1,0 +1,26 @@
+mutation UpdateHistoryMemory(
+  $id: UUID!
+  $coupleId: UUID
+  $title: String!
+  $body: String
+  $happenedOn: Date!
+  $datePrecision: String!
+  $place: String
+  $origin: String!
+) {
+  updateMemoriesCollection(
+    set: {
+      coupleId: $coupleId
+      title: $title
+      body: $body
+      happenedOn: $happenedOn
+      datePrecision: $datePrecision
+      place: $place
+      origin: $origin
+    }
+    filter: { id: { eq: $id } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

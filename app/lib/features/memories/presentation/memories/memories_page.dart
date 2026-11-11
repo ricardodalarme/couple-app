@@ -7,6 +7,7 @@ import 'package:flutter_bloc_starter/features/memories/data/models/memory.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/cubit/memories_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// The couple's memories and the jar of good slips to open on a bad day.
 @RoutePage()
@@ -47,6 +48,13 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
               children: [
                 Semantics(header: true, child: Text(l10n.title, style: context.text.titleXl)),
                 const SizedBox(height: AppSpace.s16),
+                BaseListCard(
+                  categoryLabel: l10n.historyLabel,
+                  title: l10n.historyTitle,
+                  supportText: l10n.historyText,
+                  onTap: () => context.pushRoute(const HistoryRoute()),
+                ),
+                const SizedBox(height: AppSpace.s12),
                 const _Jar(),
                 const SizedBox(height: AppSpace.s20),
                 BaseTextField(

@@ -1,0 +1,26 @@
+mutation UpdateHistoryDate(
+  $id: UUID!
+  $coupleId: UUID
+  $title: String!
+  $kind: String!
+  $month: Int!
+  $day: Int!
+  $year: Int
+  $yearly: Boolean!
+) {
+  updateImportantDatesCollection(
+    set: {
+      coupleId: $coupleId
+      title: $title
+      kind: $kind
+      month: $month
+      day: $day
+      year: $year
+      yearly: $yearly
+    }
+    filter: { id: { eq: $id } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

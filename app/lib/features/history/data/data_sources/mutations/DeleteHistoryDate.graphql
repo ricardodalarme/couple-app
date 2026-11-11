@@ -1,0 +1,5 @@
+mutation DeleteHistoryDate($id: UUID!) {
+  deleteFromImportantDatesCollection(filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}

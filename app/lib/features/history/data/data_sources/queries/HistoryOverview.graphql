@@ -1,0 +1,90 @@
+query HistoryOverview($year: Int!) {
+  myProfile {
+    id
+    displayName
+    avatarPath
+    avatarKind
+  }
+  myPartner {
+    id
+    displayName
+    avatarPath
+    avatarKind
+  }
+  mySettings {
+    profileId
+    phase
+    togetherSince
+    partnerName
+    relationshipStatus
+  }
+  myCouple {
+    id
+  }
+  storyEventsCollection(orderBy: [{ happenedOn: DescNullsLast }], first: 50) {
+    edges {
+      node {
+        id
+        authorId
+        coupleId
+        kind
+        title
+        happenedOn
+        datePrecision
+      }
+    }
+    pageInfo {
+      hasNextPage
+    }
+  }
+  memoriesCollection(orderBy: [{ happenedOn: DescNullsLast }], first: 50) {
+    edges {
+      node {
+        id
+        authorId
+        coupleId
+        title
+        body
+        happenedOn
+        datePrecision
+        place
+        photoPath
+        origin
+      }
+    }
+    pageInfo {
+      hasNextPage
+    }
+  }
+  importantDatesCollection(
+    orderBy: [{ year: DescNullsLast }, { month: DescNullsLast }, { day: DescNullsLast }]
+    first: 50
+  ) {
+    edges {
+      node {
+        id
+        authorId
+        coupleId
+        title
+        kind
+        month
+        day
+        year
+        yearly
+        hidden
+      }
+    }
+    pageInfo {
+      hasNextPage
+    }
+  }
+  myYear(year: $year) {
+    year
+    slips
+    cardsSent
+    cardsReceived
+    memories
+    firsts
+    ritualsDone
+  }
+}

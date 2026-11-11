@@ -1,0 +1,23 @@
+mutation InsertStoryEvent(
+  $id: UUID!
+  $coupleId: UUID
+  $kind: String!
+  $title: String
+  $happenedOn: Date!
+  $datePrecision: String!
+) {
+  insertIntoStoryEventsCollection(
+    objects: [
+      {
+        id: $id
+        coupleId: $coupleId
+        kind: $kind
+        title: $title
+        happenedOn: $happenedOn
+        datePrecision: $datePrecision
+      }
+    ]
+  ) {
+    affectedCount
+  }
+}

@@ -1,0 +1,27 @@
+mutation InsertHistoryMemory(
+  $id: UUID!
+  $coupleId: UUID
+  $title: String!
+  $body: String
+  $happenedOn: Date!
+  $datePrecision: String!
+  $place: String
+  $origin: String!
+) {
+  insertIntoMemoriesCollection(
+    objects: [
+      {
+        id: $id
+        coupleId: $coupleId
+        title: $title
+        body: $body
+        happenedOn: $happenedOn
+        datePrecision: $datePrecision
+        place: $place
+        origin: $origin
+      }
+    ]
+  ) {
+    affectedCount
+  }
+}

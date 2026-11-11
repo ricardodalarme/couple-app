@@ -1,0 +1,28 @@
+mutation InsertHistoryDate(
+  $id: UUID!
+  $coupleId: UUID
+  $title: String!
+  $kind: String!
+  $month: Int!
+  $day: Int!
+  $year: Int
+  $yearly: Boolean!
+) {
+  insertIntoImportantDatesCollection(
+    objects: [
+      {
+        id: $id
+        coupleId: $coupleId
+        title: $title
+        kind: $kind
+        month: $month
+        day: $day
+        year: $year
+        yearly: $yearly
+        origin: "manual"
+      }
+    ]
+  ) {
+    affectedCount
+  }
+}

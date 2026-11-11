@@ -1,0 +1,9 @@
+mutation UpdateAvatarKind($profileId: UUID!, $avatarKind: String!) {
+  updateProfilesCollection(
+    set: { avatarKind: $avatarKind }
+    filter: { id: { eq: $profileId } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

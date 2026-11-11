@@ -1,0 +1,5 @@
+mutation DeleteStoryEvent($id: UUID!) {
+  deleteFromStoryEventsCollection(filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}

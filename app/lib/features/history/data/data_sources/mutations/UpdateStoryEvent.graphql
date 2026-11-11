@@ -1,0 +1,22 @@
+mutation UpdateStoryEvent(
+  $id: UUID!
+  $coupleId: UUID
+  $kind: String!
+  $title: String
+  $happenedOn: Date!
+  $datePrecision: String!
+) {
+  updateStoryEventsCollection(
+    set: {
+      coupleId: $coupleId
+      kind: $kind
+      title: $title
+      happenedOn: $happenedOn
+      datePrecision: $datePrecision
+    }
+    filter: { id: { eq: $id } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

@@ -16,6 +16,14 @@ import 'package:flutter_bloc_starter/features/fight_style/presentation/exercise/
 import 'package:flutter_bloc_starter/features/help/data/models/support_topic.dart';
 import 'package:flutter_bloc_starter/features/help/presentation/help/help_page.dart';
 import 'package:flutter_bloc_starter/features/help/presentation/support/support_page.dart';
+import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
+import 'package:flutter_bloc_starter/features/history/presentation/avatar/history_avatar_page.dart';
+import 'package:flutter_bloc_starter/features/history/presentation/different_dates/different_dates_page.dart';
+import 'package:flutter_bloc_starter/features/history/presentation/history/history_page.dart';
+import 'package:flutter_bloc_starter/features/history/presentation/milestone/milestone_page.dart';
+import 'package:flutter_bloc_starter/features/history/presentation/numbers/history_numbers_page.dart';
+import 'package:flutter_bloc_starter/features/history/presentation/story_dates/story_dates_page.dart';
+import 'package:flutter_bloc_starter/features/history/presentation/variations/counter_variations_page.dart';
 import 'package:flutter_bloc_starter/features/home/presentation/home/home_page.dart';
 import 'package:flutter_bloc_starter/features/ideas/presentation/detail/idea_detail_page.dart';
 import 'package:flutter_bloc_starter/features/lists/presentation/detail/list_detail_page.dart';
@@ -152,6 +160,13 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: IdeaDetailRoute.page, path: '/idea'),
     AutoRoute(page: CardDetailRoute.page, path: '/card/:id'),
     AutoRoute(page: MoodRoute.page),
+    AutoRoute(page: HistoryRoute.page),
+    AutoRoute(page: MilestoneRoute.page),
+    AutoRoute(page: StoryDatesRoute.page),
+    AutoRoute(page: CounterVariationsRoute.page),
+    AutoRoute(page: HistoryAvatarRoute.page),
+    AutoRoute(page: HistoryNumbersRoute.page),
+    AutoRoute(page: DifferentDatesRoute.page),
     AutoRoute(
       page: HomeRoute.page,
       children: [

@@ -90,6 +90,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$helpSupport$en helpSupport = _Translations$helpSupport$en._(_root);
   @override
+  late final _Translations$history$en history = _Translations$history$en._(_root);
+  @override
   late final _Translations$ideaDetail$en ideaDetail = _Translations$ideaDetail$en._(_root);
   @override
   late final _Translations$intro$en intro = _Translations$intro$en._(_root);
@@ -1187,6 +1189,402 @@ class _Translations$helpSupport$en extends Translations$helpSupport$pt {
   String get discardText => 'What you wrote won\'t be saved.';
 }
 
+// Path: history
+class _Translations$history$en extends Translations$history$pt {
+  _Translations$history$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Our history';
+  @override
+  String get addMilestoneTooltip => 'Add milestone';
+  @override
+  String togetherSinceLine({required Object date}) => 'together since ${date}';
+  @override
+  String get setStartDate => 'Set when our story started';
+  @override
+  String get beginningHeadline => 'Starting out';
+  @override
+  String reunionCountdown({required num days}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        days,
+        one: '${days} day to go',
+        other: '${days} days to go',
+      );
+  @override
+  String durationFull({
+    required Object years,
+    required Object yearsUnit,
+    required Object months,
+    required Object monthsUnit,
+    required Object days,
+    required Object daysUnit,
+  }) => '${years} ${yearsUnit}, ${months} ${monthsUnit}\nand ${days} ${daysUnit}';
+  @override
+  String durationFullInline({
+    required Object years,
+    required Object yearsUnit,
+    required Object months,
+    required Object monthsUnit,
+    required Object days,
+    required Object daysUnit,
+  }) => '${years} ${yearsUnit}, ${months} ${monthsUnit} and ${days} ${daysUnit}';
+  @override
+  String durationMonthsDays({
+    required Object months,
+    required Object monthsUnit,
+    required Object days,
+    required Object daysUnit,
+  }) => '${months} ${monthsUnit} and ${days} ${daysUnit}';
+  @override
+  String durationDaysOnly({required Object days, required Object daysUnit}) =>
+      '${days} ${daysUnit}';
+  @override
+  String get yearOne => 'year';
+  @override
+  String get yearMany => 'years';
+  @override
+  String get monthOne => 'month';
+  @override
+  String get monthMany => 'months';
+  @override
+  String get dayOne => 'day';
+  @override
+  String get dayMany => 'days';
+  @override
+  String statDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'day',
+        other: 'days',
+      );
+  @override
+  String statWeekends({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'weekend',
+        other: 'weekends',
+      );
+  @override
+  String statChristmases({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'Christmas',
+        other: 'Christmases',
+      );
+  @override
+  String statPlaces({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'place',
+        other: 'places',
+      );
+  @override
+  String get storyDatesAction => 'Story dates';
+  @override
+  String get numbersAction => 'In numbers';
+  @override
+  String get variationsAction => 'How the counter looks';
+  @override
+  String get avatarAction => 'Your avatar';
+  @override
+  String get differentDatesBanner => 'You chose different start dates';
+  @override
+  String get differentDatesAction => 'See dates';
+  @override
+  String get timelineSection => 'MILESTONES AND MEMORIES';
+  @override
+  String get recentChip => 'Recent';
+  @override
+  String get unknownYearChip => 'No date';
+  @override
+  String get timelineRecentNote => 'Showing your most recent milestones.';
+  @override
+  String loadEarlierYear({required Object year}) => 'See ${year}';
+  @override
+  String get unknownDateLabel => 'Unknown date';
+  @override
+  String get addMilestoneRow => 'Add a milestone';
+  @override
+  String get emptyTitle => 'Start with your first milestone';
+  @override
+  String get emptyText => 'Save when you met or a special moment.';
+  @override
+  String get suggestedFirstTitle => 'We met';
+  @override
+  String get suggestedFirstSub => 'Suggested first milestone · tap to add';
+  @override
+  List<String> get monthsShort => [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  @override
+  List<String> get monthsLong => [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  @override
+  String fullDate({required Object month, required Object day, required Object year}) =>
+      '${month} ${day}, ${year}';
+  @override
+  String shortDayMonthYear({required Object month, required Object day, required Object year}) =>
+      '${month} ${day}, ${year}';
+  @override
+  String shortMonthYear({required Object month, required Object year}) => '${month} ${year}';
+  @override
+  String shortDayMonth({required Object month, required Object day}) => '${month} ${day}';
+  @override
+  String get milestoneNewTitle => 'New milestone';
+  @override
+  String get milestoneDetailTitle => 'Milestone details';
+  @override
+  String get milestoneDefaultHighlight => 'together';
+  @override
+  String get milestoneTitleLabel => 'What happened';
+  @override
+  String get milestoneTitleHint => 'E.g. First trip together';
+  @override
+  String get milestonePlaceLabel => 'Place (optional)';
+  @override
+  String get milestonePlaceHint => 'E.g. Paraty';
+  @override
+  String get milestoneBodyHint => 'A note about this moment (optional)';
+  @override
+  String get milestoneKindLabel => 'Milestone kind';
+  @override
+  String get kindFirst => 'First time';
+  @override
+  String get kindTrip => 'Trip';
+  @override
+  String get kindHome => 'Moved in together';
+  @override
+  String get kindCustom => 'Milestone';
+  @override
+  String get unknownDateToggle => 'Unknown date';
+  @override
+  String get precisionDay => 'Exact day';
+  @override
+  String get precisionMonth => 'Month and year';
+  @override
+  String get precisionYear => 'Year only';
+  @override
+  String get dateRowLabel => 'Date';
+  @override
+  String get addedByRowLabel => 'Added by';
+  @override
+  String get addedByYou => 'You';
+  @override
+  String get visibilityRowLabel => 'Who sees it';
+  @override
+  String get visibilityBoth => 'Both';
+  @override
+  String get visibilityOnlyYou => 'Only you';
+  @override
+  String get deleteMilestone => 'Delete';
+  @override
+  String get deleteMilestoneTitle => 'Delete this milestone?';
+  @override
+  String get deleteMilestoneTextShared => 'It will be removed from both of your stories.';
+  @override
+  String get deleteMilestoneTextPrivate => 'It will be removed from your story.';
+  @override
+  String get deleteMilestoneConfirm => 'Delete';
+  @override
+  String get saveMilestone => 'Save';
+  @override
+  String get storyDatesTitle => 'Dates of our story';
+  @override
+  String get storyMet => 'We met';
+  @override
+  String get storyDating => 'Started dating';
+  @override
+  String get storyEngaged => 'Got engaged';
+  @override
+  String get storyMarried => 'Got married';
+  @override
+  String get storyAdd => 'Add';
+  @override
+  String storyDateAddedBy({required Object name}) => 'Added by ${name}';
+  @override
+  String get storyDatesNote => 'Everything is optional. The start date feeds the counter.';
+  @override
+  String get variationsTitle => 'How the counter looks';
+  @override
+  String get variationDating => 'Dating';
+  @override
+  String get variationEngaged => 'Engaged';
+  @override
+  String get variationMarried => 'Married';
+  @override
+  String get variationBeginning => 'Starting out';
+  @override
+  String get variationLongDistance => 'Long distance';
+  @override
+  String get variationsPreviewNote =>
+      'Style preview. The time shown is your real total; per-phase counts need their own dates.';
+  @override
+  String get avatarHeadline => 'How do you appear?';
+  @override
+  String get avatarHighlight => 'appear';
+  @override
+  String get avatarInitials => 'Initials';
+  @override
+  String get avatarInitialsNote => 'Your avatar uses your initials.';
+  @override
+  String get avatarNote => 'Each person chooses their own. The app never pulls the other\'s photo.';
+  @override
+  String get avatarContinue => 'Continue';
+  @override
+  String get numbersTitle => 'In numbers';
+  @override
+  String numbersHeroDays({required Object days}) => '${days} days';
+  @override
+  String get numbersHeroEmpty => 'In your own time';
+  @override
+  String get numbersHeroEmptySub => 'Set a start date whenever you want to track the days.';
+  @override
+  String numbersWeekends({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'weekend together',
+        other: 'weekends together',
+      );
+  @override
+  String numbersFullMoons({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'full moon',
+        other: 'full moons',
+      );
+  @override
+  String numbersChristmases({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'Christmas together',
+        other: 'Christmases together',
+      );
+  @override
+  String numbersNextAnniversary({required num years, required Object suffix}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        years,
+        one: 'until ${years} year ${suffix}',
+        other: 'until ${years} years ${suffix}',
+      );
+  @override
+  String get numbersSuffixDating => 'dating';
+  @override
+  String get numbersSuffixEngaged => 'engaged';
+  @override
+  String get numbersSuffixMarried => 'married';
+  @override
+  String get numbersSuffixTogether => 'together';
+  @override
+  String numbersMonthsCount({required num months}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        months,
+        one: '${months} month',
+        other: '${months} months',
+      );
+  @override
+  String numbersDaysCount({required num days}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        days,
+        one: '${days} day',
+        other: '${days} days',
+      );
+  @override
+  String get numbersPlacesSection => 'PLACES THAT MATTERED';
+  @override
+  String numbersYearSection({required Object year}) => 'YOUR YEAR (${year})';
+  @override
+  String get numbersYearNote => 'Only your own records this year.';
+  @override
+  String numbersFirstsCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'first time',
+        other: 'first times',
+      );
+  @override
+  String get differentHeadline => 'The dates differ';
+  @override
+  String get differentHighlight => 'differ';
+  @override
+  String differentSubtitle({required Object partner}) =>
+      'You and ${partner} chose different start dates.';
+  @override
+  String get differentYourDate => 'Your date';
+  @override
+  String differentPartnerDate({required Object partner}) => '${partner}\'s date';
+  @override
+  String get differentNote => 'Each sees their own. Nothing is changed without both.';
+  @override
+  String get differentNoDates => 'There are no start dates to compare yet.';
+  @override
+  String get differentContinue => 'Continue';
+  @override
+  String get partnerFallback => 'your partner';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Your story is still saved. Try again.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'NOT_OWNER': 'Only its author can edit or delete it.',
+    'other': 'Couldn\'t do that right now. Try again.',
+  };
+  @override
+  String numbersMemoriesCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'saved memory',
+        other: 'saved memories',
+      );
+  @override
+  String numbersMemoriesRecent({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'recent memory',
+        other: 'recent memories',
+      );
+  @override
+  String numbersPlaces({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'place',
+        other: 'places',
+      );
+  @override
+  String get readOnlyMilestone =>
+      'This milestone was added by someone else. Only its author can edit it.';
+  @override
+  String readOnlyMilestoneBy({required Object name}) =>
+      'Added by ${name}. Only its author can edit it.';
+}
+
 // Path: ideaDetail
 class _Translations$ideaDetail$en extends Translations$ideaDetail$pt {
   _Translations$ideaDetail$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1489,6 +1887,12 @@ class _Translations$memories$en extends Translations$memories$pt {
   // Translations
   @override
   String get title => 'Memories';
+  @override
+  String get historyLabel => 'OUR HISTORY';
+  @override
+  String get historyTitle => 'Our history';
+  @override
+  String get historyText => 'Milestones, dates, places and our story in numbers.';
   @override
   String get jarLabel => 'JAR';
   @override
@@ -4769,6 +5173,293 @@ extension on TranslationsEn {
           'helpSupport.errors.other' => 'Couldn\'t send right now. Your message is still here.',
           'helpSupport.discardTitle' => 'Discard this message?',
           'helpSupport.discardText' => 'What you wrote won\'t be saved.',
+          'history.title' => 'Our history',
+          'history.addMilestoneTooltip' => 'Add milestone',
+          'history.togetherSinceLine' => ({required Object date}) => 'together since ${date}',
+          'history.setStartDate' => 'Set when our story started',
+          'history.beginningHeadline' => 'Starting out',
+          'history.reunionCountdown' =>
+            ({required num days}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  days,
+                  one: '${days} day to go',
+                  other: '${days} days to go',
+                ),
+          'history.durationFull' => ({
+            required Object years,
+            required Object yearsUnit,
+            required Object months,
+            required Object monthsUnit,
+            required Object days,
+            required Object daysUnit,
+          }) => '${years} ${yearsUnit}, ${months} ${monthsUnit}\nand ${days} ${daysUnit}',
+          'history.durationFullInline' => ({
+            required Object years,
+            required Object yearsUnit,
+            required Object months,
+            required Object monthsUnit,
+            required Object days,
+            required Object daysUnit,
+          }) => '${years} ${yearsUnit}, ${months} ${monthsUnit} and ${days} ${daysUnit}',
+          'history.durationMonthsDays' => ({
+            required Object months,
+            required Object monthsUnit,
+            required Object days,
+            required Object daysUnit,
+          }) => '${months} ${monthsUnit} and ${days} ${daysUnit}',
+          'history.durationDaysOnly' => ({
+            required Object days,
+            required Object daysUnit,
+          }) => '${days} ${daysUnit}',
+          'history.yearOne' => 'year',
+          'history.yearMany' => 'years',
+          'history.monthOne' => 'month',
+          'history.monthMany' => 'months',
+          'history.dayOne' => 'day',
+          'history.dayMany' => 'days',
+          'history.statDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'day',
+                  other: 'days',
+                ),
+          'history.statWeekends' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'weekend',
+                  other: 'weekends',
+                ),
+          'history.statChristmases' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'Christmas',
+                  other: 'Christmases',
+                ),
+          'history.statPlaces' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'place',
+                  other: 'places',
+                ),
+          'history.storyDatesAction' => 'Story dates',
+          'history.numbersAction' => 'In numbers',
+          'history.variationsAction' => 'How the counter looks',
+          'history.avatarAction' => 'Your avatar',
+          'history.differentDatesBanner' => 'You chose different start dates',
+          'history.differentDatesAction' => 'See dates',
+          'history.timelineSection' => 'MILESTONES AND MEMORIES',
+          'history.recentChip' => 'Recent',
+          'history.unknownYearChip' => 'No date',
+          'history.timelineRecentNote' => 'Showing your most recent milestones.',
+          'history.loadEarlierYear' => ({required Object year}) => 'See ${year}',
+          'history.unknownDateLabel' => 'Unknown date',
+          'history.addMilestoneRow' => 'Add a milestone',
+          'history.emptyTitle' => 'Start with your first milestone',
+          'history.emptyText' => 'Save when you met or a special moment.',
+          'history.suggestedFirstTitle' => 'We met',
+          'history.suggestedFirstSub' => 'Suggested first milestone · tap to add',
+          'history.monthsShort.0' => 'Jan',
+          'history.monthsShort.1' => 'Feb',
+          'history.monthsShort.2' => 'Mar',
+          'history.monthsShort.3' => 'Apr',
+          'history.monthsShort.4' => 'May',
+          'history.monthsShort.5' => 'Jun',
+          'history.monthsShort.6' => 'Jul',
+          'history.monthsShort.7' => 'Aug',
+          'history.monthsShort.8' => 'Sep',
+          'history.monthsShort.9' => 'Oct',
+          'history.monthsShort.10' => 'Nov',
+          'history.monthsShort.11' => 'Dec',
+          'history.monthsLong.0' => 'January',
+          'history.monthsLong.1' => 'February',
+          'history.monthsLong.2' => 'March',
+          'history.monthsLong.3' => 'April',
+          _ => null,
+        } ??
+        switch (path) {
+          'history.monthsLong.4' => 'May',
+          'history.monthsLong.5' => 'June',
+          'history.monthsLong.6' => 'July',
+          'history.monthsLong.7' => 'August',
+          'history.monthsLong.8' => 'September',
+          'history.monthsLong.9' => 'October',
+          'history.monthsLong.10' => 'November',
+          'history.monthsLong.11' => 'December',
+          'history.fullDate' => ({
+            required Object month,
+            required Object day,
+            required Object year,
+          }) => '${month} ${day}, ${year}',
+          'history.shortDayMonthYear' => ({
+            required Object month,
+            required Object day,
+            required Object year,
+          }) => '${month} ${day}, ${year}',
+          'history.shortMonthYear' => ({
+            required Object month,
+            required Object year,
+          }) => '${month} ${year}',
+          'history.shortDayMonth' => ({
+            required Object month,
+            required Object day,
+          }) => '${month} ${day}',
+          'history.milestoneNewTitle' => 'New milestone',
+          'history.milestoneDetailTitle' => 'Milestone details',
+          'history.milestoneDefaultHighlight' => 'together',
+          'history.milestoneTitleLabel' => 'What happened',
+          'history.milestoneTitleHint' => 'E.g. First trip together',
+          'history.milestonePlaceLabel' => 'Place (optional)',
+          'history.milestonePlaceHint' => 'E.g. Paraty',
+          'history.milestoneBodyHint' => 'A note about this moment (optional)',
+          'history.milestoneKindLabel' => 'Milestone kind',
+          'history.kindFirst' => 'First time',
+          'history.kindTrip' => 'Trip',
+          'history.kindHome' => 'Moved in together',
+          'history.kindCustom' => 'Milestone',
+          'history.unknownDateToggle' => 'Unknown date',
+          'history.precisionDay' => 'Exact day',
+          'history.precisionMonth' => 'Month and year',
+          'history.precisionYear' => 'Year only',
+          'history.dateRowLabel' => 'Date',
+          'history.addedByRowLabel' => 'Added by',
+          'history.addedByYou' => 'You',
+          'history.visibilityRowLabel' => 'Who sees it',
+          'history.visibilityBoth' => 'Both',
+          'history.visibilityOnlyYou' => 'Only you',
+          'history.deleteMilestone' => 'Delete',
+          'history.deleteMilestoneTitle' => 'Delete this milestone?',
+          'history.deleteMilestoneTextShared' => 'It will be removed from both of your stories.',
+          'history.deleteMilestoneTextPrivate' => 'It will be removed from your story.',
+          'history.deleteMilestoneConfirm' => 'Delete',
+          'history.saveMilestone' => 'Save',
+          'history.storyDatesTitle' => 'Dates of our story',
+          'history.storyMet' => 'We met',
+          'history.storyDating' => 'Started dating',
+          'history.storyEngaged' => 'Got engaged',
+          'history.storyMarried' => 'Got married',
+          'history.storyAdd' => 'Add',
+          'history.storyDateAddedBy' => ({required Object name}) => 'Added by ${name}',
+          'history.storyDatesNote' => 'Everything is optional. The start date feeds the counter.',
+          'history.variationsTitle' => 'How the counter looks',
+          'history.variationDating' => 'Dating',
+          'history.variationEngaged' => 'Engaged',
+          'history.variationMarried' => 'Married',
+          'history.variationBeginning' => 'Starting out',
+          'history.variationLongDistance' => 'Long distance',
+          'history.variationsPreviewNote' => 'Style preview. The time shown is your real total; per-phase counts need their own dates.',
+          'history.avatarHeadline' => 'How do you appear?',
+          'history.avatarHighlight' => 'appear',
+          'history.avatarInitials' => 'Initials',
+          'history.avatarInitialsNote' => 'Your avatar uses your initials.',
+          'history.avatarNote' =>
+            'Each person chooses their own. The app never pulls the other\'s photo.',
+          'history.avatarContinue' => 'Continue',
+          'history.numbersTitle' => 'In numbers',
+          'history.numbersHeroDays' => ({required Object days}) => '${days} days',
+          'history.numbersHeroEmpty' => 'In your own time',
+          'history.numbersHeroEmptySub' => 'Set a start date whenever you want to track the days.',
+          'history.numbersWeekends' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'weekend together',
+                  other: 'weekends together',
+                ),
+          'history.numbersFullMoons' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'full moon',
+                  other: 'full moons',
+                ),
+          'history.numbersChristmases' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'Christmas together',
+                  other: 'Christmases together',
+                ),
+          'history.numbersNextAnniversary' =>
+            ({required num years, required Object suffix}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  years,
+                  one: 'until ${years} year ${suffix}',
+                  other: 'until ${years} years ${suffix}',
+                ),
+          'history.numbersSuffixDating' => 'dating',
+          'history.numbersSuffixEngaged' => 'engaged',
+          'history.numbersSuffixMarried' => 'married',
+          'history.numbersSuffixTogether' => 'together',
+          'history.numbersMonthsCount' =>
+            ({required num months}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  months,
+                  one: '${months} month',
+                  other: '${months} months',
+                ),
+          'history.numbersDaysCount' =>
+            ({required num days}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  days,
+                  one: '${days} day',
+                  other: '${days} days',
+                ),
+          'history.numbersPlacesSection' => 'PLACES THAT MATTERED',
+          'history.numbersYearSection' => ({required Object year}) => 'YOUR YEAR (${year})',
+          'history.numbersYearNote' => 'Only your own records this year.',
+          'history.numbersFirstsCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'first time',
+                  other: 'first times',
+                ),
+          'history.differentHeadline' => 'The dates differ',
+          'history.differentHighlight' => 'differ',
+          'history.differentSubtitle' => ({
+            required Object partner,
+          }) => 'You and ${partner} chose different start dates.',
+          'history.differentYourDate' => 'Your date',
+          'history.differentPartnerDate' => ({required Object partner}) => '${partner}\'s date',
+          'history.differentNote' => 'Each sees their own. Nothing is changed without both.',
+          'history.differentNoDates' => 'There are no start dates to compare yet.',
+          'history.differentContinue' => 'Continue',
+          'history.partnerFallback' => 'your partner',
+          'history.errorTitle' => 'Couldn\'t load',
+          'history.errorText' => 'Your story is still saved. Try again.',
+          'history.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'history.errors.NOT_OWNER' => 'Only its author can edit or delete it.',
+          'history.errors.other' => 'Couldn\'t do that right now. Try again.',
+          'history.numbersMemoriesCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'saved memory',
+                  other: 'saved memories',
+                ),
+          'history.numbersMemoriesRecent' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'recent memory',
+                  other: 'recent memories',
+                ),
+          'history.numbersPlaces' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'place',
+                  other: 'places',
+                ),
+          'history.readOnlyMilestone' =>
+            'This milestone was added by someone else. Only its author can edit it.',
+          'history.readOnlyMilestoneBy' => ({
+            required Object name,
+          }) => 'Added by ${name}. Only its author can edit it.',
           'ideaDetail.label' => 'Idea of the day',
           'ideaDetail.whyTitle' => 'Why this idea',
           'ideaDetail.yourPhase' => 'Your phase',
@@ -4824,9 +5515,6 @@ extension on TranslationsEn {
           'intro.theme.neutralSupport' => 'Paper and green',
           'intro.theme.footnote' => 'You can change it later in Settings, Appearance.',
           'invite.title' => ({required Object name}) => 'Invite ${name}',
-          _ => null,
-        } ??
-        switch (path) {
           'invite.titleNoName' => 'Invite your person',
           'invite.messageIntro' => 'This message will be sent:',
           'invite.message' => ({
@@ -4928,6 +5616,9 @@ extension on TranslationsEn {
           'logistics.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'logistics.errors.other' => 'Couldn\'t do that right now. Try again.',
           'memories.title' => 'Memories',
+          'memories.historyLabel' => 'OUR HISTORY',
+          'memories.historyTitle' => 'Our history',
+          'memories.historyText' => 'Milestones, dates, places and our story in numbers.',
           'memories.jarLabel' => 'JAR',
           'memories.jarTitle' => 'Open the jar',
           'memories.jarText' => 'A good slip you kept, drawn at random.',
@@ -5208,6 +5899,9 @@ extension on TranslationsEn {
           'privacy.partnerSlipsText' => 'Only what you send',
           'privacy.partnerPrivateSlips' => 'Private slips',
           'privacy.partnerTemperature' => 'Temperature',
+          _ => null,
+        } ??
+        switch (path) {
           'privacy.partnerJournal' => 'Journal',
           'privacy.partnerPause' => 'Pause',
           'privacy.partnerPauseText' => 'The message you wrote',
@@ -5378,9 +6072,6 @@ extension on TranslationsEn {
           'quickSlip.saved.queued' =>
             'Saved on this phone. We send it when the connection is back.',
           'quickSlip.saved.undoHint' => 'Undo for 30 seconds.',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.saved.undo' => 'Undo',
           'quickSlip.saved.done' => 'Done',
           'quickSlip.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
@@ -5765,6 +6456,9 @@ extension on TranslationsEn {
           'slipsList.scopeAll' => 'All',
           'slipsList.private' => 'Private',
           'slipsList.thisWeek' => 'This week',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.lastWeek' => 'Last week',
           'slipsList.weekRange' => ({
             required Object start,
@@ -5947,9 +6641,6 @@ extension on TranslationsEn {
           'temperature.result.done' => 'Done',
           'temperature.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'temperature.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
-          _ => null,
-        } ??
-        switch (path) {
           'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',

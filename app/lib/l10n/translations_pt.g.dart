@@ -78,6 +78,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   );
   late final Translations$help$pt help = Translations$help$pt.internal(_root);
   late final Translations$helpSupport$pt helpSupport = Translations$helpSupport$pt.internal(_root);
+  late final Translations$history$pt history = Translations$history$pt.internal(_root);
   late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
@@ -1384,6 +1385,526 @@ class Translations$helpSupport$pt {
   String get discardText => 'O que você escreveu não será salvo.';
 }
 
+// Path: history
+class Translations$history$pt {
+  Translations$history$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Nossa história'
+  String get title => 'Nossa história';
+
+  /// pt: 'Adicionar marco'
+  String get addMilestoneTooltip => 'Adicionar marco';
+
+  /// pt: 'juntos desde {date}'
+  String togetherSinceLine({required Object date}) => 'juntos desde ${date}';
+
+  /// pt: 'Definir início da história'
+  String get setStartDate => 'Definir início da história';
+
+  /// pt: 'Começando'
+  String get beginningHeadline => 'Começando';
+
+  /// pt: '(one) {Falta {days} dia} (other) {Faltam {days} dias}'
+  String reunionCountdown({required num days}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        days,
+        one: 'Falta ${days} dia',
+        other: 'Faltam ${days} dias',
+      );
+
+  /// pt: '{years} {yearsUnit}, {months} {monthsUnit} e {days} {daysUnit}'
+  String durationFull({
+    required Object years,
+    required Object yearsUnit,
+    required Object months,
+    required Object monthsUnit,
+    required Object days,
+    required Object daysUnit,
+  }) => '${years} ${yearsUnit}, ${months} ${monthsUnit}\ne ${days} ${daysUnit}';
+
+  /// pt: '{years} {yearsUnit}, {months} {monthsUnit} e {days} {daysUnit}'
+  String durationFullInline({
+    required Object years,
+    required Object yearsUnit,
+    required Object months,
+    required Object monthsUnit,
+    required Object days,
+    required Object daysUnit,
+  }) => '${years} ${yearsUnit}, ${months} ${monthsUnit} e ${days} ${daysUnit}';
+
+  /// pt: '{months} {monthsUnit} e {days} {daysUnit}'
+  String durationMonthsDays({
+    required Object months,
+    required Object monthsUnit,
+    required Object days,
+    required Object daysUnit,
+  }) => '${months} ${monthsUnit} e ${days} ${daysUnit}';
+
+  /// pt: '{days} {daysUnit}'
+  String durationDaysOnly({required Object days, required Object daysUnit}) =>
+      '${days} ${daysUnit}';
+
+  /// pt: 'ano'
+  String get yearOne => 'ano';
+
+  /// pt: 'anos'
+  String get yearMany => 'anos';
+
+  /// pt: 'mês'
+  String get monthOne => 'mês';
+
+  /// pt: 'meses'
+  String get monthMany => 'meses';
+
+  /// pt: 'dia'
+  String get dayOne => 'dia';
+
+  /// pt: 'dias'
+  String get dayMany => 'dias';
+
+  /// pt: '(one) {dia} (other) {dias}'
+  String statDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'dia',
+        other: 'dias',
+      );
+
+  /// pt: '(one) {fim de semana} (other) {fins de semana}'
+  String statWeekends({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'fim de semana',
+        other: 'fins de semana',
+      );
+
+  /// pt: '(one) {Natal} (other) {Natais}'
+  String statChristmases({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'Natal',
+        other: 'Natais',
+      );
+
+  /// pt: '(one) {lugar} (other) {lugares}'
+  String statPlaces({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'lugar',
+        other: 'lugares',
+      );
+
+  /// pt: 'Datas da história'
+  String get storyDatesAction => 'Datas da história';
+
+  /// pt: 'Em números'
+  String get numbersAction => 'Em números';
+
+  /// pt: 'Como o contador aparece'
+  String get variationsAction => 'Como o contador aparece';
+
+  /// pt: 'Seu avatar'
+  String get avatarAction => 'Seu avatar';
+
+  /// pt: 'Vocês escolheram datas diferentes para o início'
+  String get differentDatesBanner => 'Vocês escolheram datas diferentes para o início';
+
+  /// pt: 'Ver datas'
+  String get differentDatesAction => 'Ver datas';
+
+  /// pt: 'MARCOS E MEMÓRIAS'
+  String get timelineSection => 'MARCOS E MEMÓRIAS';
+
+  /// pt: 'Recentes'
+  String get recentChip => 'Recentes';
+
+  /// pt: 'Sem data'
+  String get unknownYearChip => 'Sem data';
+
+  /// pt: 'Mostrando os marcos mais recentes.'
+  String get timelineRecentNote => 'Mostrando os marcos mais recentes.';
+
+  /// pt: 'Ver {year}'
+  String loadEarlierYear({required Object year}) => 'Ver ${year}';
+
+  /// pt: 'Data desconhecida'
+  String get unknownDateLabel => 'Data desconhecida';
+
+  /// pt: 'Adicionar um marco'
+  String get addMilestoneRow => 'Adicionar um marco';
+
+  /// pt: 'Comece pelo primeiro marco'
+  String get emptyTitle => 'Comece pelo primeiro marco';
+
+  /// pt: 'Registre quando vocês se conheceram ou um momento especial.'
+  String get emptyText => 'Registre quando vocês se conheceram ou um momento especial.';
+
+  /// pt: 'Nos conhecemos'
+  String get suggestedFirstTitle => 'Nos conhecemos';
+
+  /// pt: 'Sugestão de primeiro marco · toque para adicionar'
+  String get suggestedFirstSub => 'Sugestão de primeiro marco · toque para adicionar';
+
+  List<String> get monthsShort => [
+    'jan',
+    'fev',
+    'mar',
+    'abr',
+    'mai',
+    'jun',
+    'jul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dez',
+  ];
+  List<String> get monthsLong => [
+    'janeiro',
+    'fevereiro',
+    'março',
+    'abril',
+    'maio',
+    'junho',
+    'julho',
+    'agosto',
+    'setembro',
+    'outubro',
+    'novembro',
+    'dezembro',
+  ];
+
+  /// pt: '{day} de {month} de {year}'
+  String fullDate({required Object day, required Object month, required Object year}) =>
+      '${day} de ${month} de ${year}';
+
+  /// pt: '{day} {month} {year}'
+  String shortDayMonthYear({required Object day, required Object month, required Object year}) =>
+      '${day} ${month} ${year}';
+
+  /// pt: '{month} {year}'
+  String shortMonthYear({required Object month, required Object year}) => '${month} ${year}';
+
+  /// pt: '{day} {month}'
+  String shortDayMonth({required Object day, required Object month}) => '${day} ${month}';
+
+  /// pt: 'Novo marco'
+  String get milestoneNewTitle => 'Novo marco';
+
+  /// pt: 'Detalhe do marco'
+  String get milestoneDetailTitle => 'Detalhe do marco';
+
+  /// pt: 'juntos'
+  String get milestoneDefaultHighlight => 'juntos';
+
+  /// pt: 'O que aconteceu'
+  String get milestoneTitleLabel => 'O que aconteceu';
+
+  /// pt: 'Ex.: Primeira viagem juntos'
+  String get milestoneTitleHint => 'Ex.: Primeira viagem juntos';
+
+  /// pt: 'Lugar (opcional)'
+  String get milestonePlaceLabel => 'Lugar (opcional)';
+
+  /// pt: 'Ex.: Paraty'
+  String get milestonePlaceHint => 'Ex.: Paraty';
+
+  /// pt: 'Uma nota sobre esse momento (opcional)'
+  String get milestoneBodyHint => 'Uma nota sobre esse momento (opcional)';
+
+  /// pt: 'Tipo de marco'
+  String get milestoneKindLabel => 'Tipo de marco';
+
+  /// pt: 'Primeira vez'
+  String get kindFirst => 'Primeira vez';
+
+  /// pt: 'Viagem'
+  String get kindTrip => 'Viagem';
+
+  /// pt: 'Moramos juntos'
+  String get kindHome => 'Moramos juntos';
+
+  /// pt: 'Marco'
+  String get kindCustom => 'Marco';
+
+  /// pt: 'Data desconhecida'
+  String get unknownDateToggle => 'Data desconhecida';
+
+  /// pt: 'Dia exato'
+  String get precisionDay => 'Dia exato';
+
+  /// pt: 'Mês e ano'
+  String get precisionMonth => 'Mês e ano';
+
+  /// pt: 'Só o ano'
+  String get precisionYear => 'Só o ano';
+
+  /// pt: 'Data'
+  String get dateRowLabel => 'Data';
+
+  /// pt: 'Adicionado por'
+  String get addedByRowLabel => 'Adicionado por';
+
+  /// pt: 'Você'
+  String get addedByYou => 'Você';
+
+  /// pt: 'Quem vê'
+  String get visibilityRowLabel => 'Quem vê';
+
+  /// pt: 'Os dois'
+  String get visibilityBoth => 'Os dois';
+
+  /// pt: 'Só você'
+  String get visibilityOnlyYou => 'Só você';
+
+  /// pt: 'Apagar'
+  String get deleteMilestone => 'Apagar';
+
+  /// pt: 'Excluir este marco?'
+  String get deleteMilestoneTitle => 'Excluir este marco?';
+
+  /// pt: 'Ele será removido da história dos dois.'
+  String get deleteMilestoneTextShared => 'Ele será removido da história dos dois.';
+
+  /// pt: 'Ele será removido da sua história.'
+  String get deleteMilestoneTextPrivate => 'Ele será removido da sua história.';
+
+  /// pt: 'Excluir'
+  String get deleteMilestoneConfirm => 'Excluir';
+
+  /// pt: 'Salvar'
+  String get saveMilestone => 'Salvar';
+
+  /// pt: 'Datas da nossa história'
+  String get storyDatesTitle => 'Datas da nossa história';
+
+  /// pt: 'Nos conhecemos'
+  String get storyMet => 'Nos conhecemos';
+
+  /// pt: 'Começamos a namorar'
+  String get storyDating => 'Começamos a namorar';
+
+  /// pt: 'Noivamos'
+  String get storyEngaged => 'Noivamos';
+
+  /// pt: 'Casamos'
+  String get storyMarried => 'Casamos';
+
+  /// pt: 'Adicionar'
+  String get storyAdd => 'Adicionar';
+
+  /// pt: 'Adicionado por {name}'
+  String storyDateAddedBy({required Object name}) => 'Adicionado por ${name}';
+
+  /// pt: 'Tudo opcional. A data de início alimenta o contador.'
+  String get storyDatesNote => 'Tudo opcional. A data de início alimenta o contador.';
+
+  /// pt: 'Como o contador aparece'
+  String get variationsTitle => 'Como o contador aparece';
+
+  /// pt: 'Namoro'
+  String get variationDating => 'Namoro';
+
+  /// pt: 'Noivado'
+  String get variationEngaged => 'Noivado';
+
+  /// pt: 'Casados'
+  String get variationMarried => 'Casados';
+
+  /// pt: 'Começando'
+  String get variationBeginning => 'Começando';
+
+  /// pt: 'Distância'
+  String get variationLongDistance => 'Distância';
+
+  /// pt: 'Prévia de estilos. O tempo mostrado é o total real do casal; contagens por fase precisam de datas próprias.'
+  String get variationsPreviewNote =>
+      'Prévia de estilos. O tempo mostrado é o total real do casal; contagens por fase precisam de datas próprias.';
+
+  /// pt: 'Como você aparece?'
+  String get avatarHeadline => 'Como você aparece?';
+
+  /// pt: 'aparece'
+  String get avatarHighlight => 'aparece';
+
+  /// pt: 'Iniciais'
+  String get avatarInitials => 'Iniciais';
+
+  /// pt: 'Seu avatar usa as suas iniciais.'
+  String get avatarInitialsNote => 'Seu avatar usa as suas iniciais.';
+
+  /// pt: 'Cada pessoa escolhe o seu. O app nunca puxa a foto do outro.'
+  String get avatarNote => 'Cada pessoa escolhe o seu. O app nunca puxa a foto do outro.';
+
+  /// pt: 'Continuar'
+  String get avatarContinue => 'Continuar';
+
+  /// pt: 'Em números'
+  String get numbersTitle => 'Em números';
+
+  /// pt: '{days} dias'
+  String numbersHeroDays({required Object days}) => '${days} dias';
+
+  /// pt: 'No seu tempo'
+  String get numbersHeroEmpty => 'No seu tempo';
+
+  /// pt: 'Defina uma data de início quando quiser acompanhar os dias.'
+  String get numbersHeroEmptySub => 'Defina uma data de início quando quiser acompanhar os dias.';
+
+  /// pt: '(one) {fim de semana juntos} (other) {fins de semana juntos}'
+  String numbersWeekends({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'fim de semana juntos',
+        other: 'fins de semana juntos',
+      );
+
+  /// pt: '(one) {lua cheia} (other) {luas cheias}'
+  String numbersFullMoons({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'lua cheia',
+        other: 'luas cheias',
+      );
+
+  /// pt: '(one) {Natal juntos} (other) {Natais juntos}'
+  String numbersChristmases({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'Natal juntos',
+        other: 'Natais juntos',
+      );
+
+  /// pt: '(one) {para {years} ano {suffix}} (other) {para {years} anos {suffix}}'
+  String numbersNextAnniversary({required num years, required Object suffix}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        years,
+        one: 'para ${years} ano ${suffix}',
+        other: 'para ${years} anos ${suffix}',
+      );
+
+  /// pt: 'de namoro'
+  String get numbersSuffixDating => 'de namoro';
+
+  /// pt: 'de noivado'
+  String get numbersSuffixEngaged => 'de noivado';
+
+  /// pt: 'casados'
+  String get numbersSuffixMarried => 'casados';
+
+  /// pt: 'juntos'
+  String get numbersSuffixTogether => 'juntos';
+
+  /// pt: '(one) {{months} mês} (other) {{months} meses}'
+  String numbersMonthsCount({required num months}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        months,
+        one: '${months} mês',
+        other: '${months} meses',
+      );
+
+  /// pt: '(one) {{days} dia} (other) {{days} dias}'
+  String numbersDaysCount({required num days}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        days,
+        one: '${days} dia',
+        other: '${days} dias',
+      );
+
+  /// pt: 'LUGARES QUE MARCARAM'
+  String get numbersPlacesSection => 'LUGARES QUE MARCARAM';
+
+  /// pt: 'SEU ANO ({year})'
+  String numbersYearSection({required Object year}) => 'SEU ANO (${year})';
+
+  /// pt: 'Só os seus registros deste ano.'
+  String get numbersYearNote => 'Só os seus registros deste ano.';
+
+  /// pt: '(one) {primeira vez} (other) {primeiras vezes}'
+  String numbersFirstsCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'primeira vez',
+        other: 'primeiras vezes',
+      );
+
+  /// pt: 'As datas diferem'
+  String get differentHeadline => 'As datas diferem';
+
+  /// pt: 'diferem'
+  String get differentHighlight => 'diferem';
+
+  /// pt: 'Você e {partner} escolheram datas diferentes para o início.'
+  String differentSubtitle({required Object partner}) =>
+      'Você e ${partner} escolheram datas diferentes para o início.';
+
+  /// pt: 'Sua data'
+  String get differentYourDate => 'Sua data';
+
+  /// pt: 'Data de {partner}'
+  String differentPartnerDate({required Object partner}) => 'Data de ${partner}';
+
+  /// pt: 'Cada um vê a sua. Nada é trocado sem os dois.'
+  String get differentNote => 'Cada um vê a sua. Nada é trocado sem os dois.';
+
+  /// pt: 'Ainda não há datas de início para comparar.'
+  String get differentNoDates => 'Ainda não há datas de início para comparar.';
+
+  /// pt: 'Continuar'
+  String get differentContinue => 'Continuar';
+
+  /// pt: 'seu par'
+  String get partnerFallback => 'seu par';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Sua história continua salva. Tente de novo.'
+  String get errorText => 'Sua história continua salva. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'NOT_OWNER': 'Só quem criou pode editar ou apagar.',
+    'other': 'Não deu para fazer isso agora. Tente de novo.',
+  };
+
+  /// pt: '(one) {memória guardada} (other) {memórias guardadas}'
+  String numbersMemoriesCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'memória guardada',
+        other: 'memórias guardadas',
+      );
+
+  /// pt: '(one) {memória recente} (other) {memórias recentes}'
+  String numbersMemoriesRecent({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'memória recente',
+        other: 'memórias recentes',
+      );
+
+  /// pt: '(one) {lugar} (other) {lugares}'
+  String numbersPlaces({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'lugar',
+        other: 'lugares',
+      );
+
+  /// pt: 'Este marco foi adicionado por outra pessoa. Só quem criou pode editar.'
+  String get readOnlyMilestone =>
+      'Este marco foi adicionado por outra pessoa. Só quem criou pode editar.';
+
+  /// pt: 'Adicionado por {name}. Só quem criou pode editar.'
+  String readOnlyMilestoneBy({required Object name}) =>
+      'Adicionado por ${name}. Só quem criou pode editar.';
+}
+
 // Path: ideaDetail
 class Translations$ideaDetail$pt {
   Translations$ideaDetail$pt.internal(this._root);
@@ -1783,6 +2304,15 @@ class Translations$memories$pt {
 
   /// pt: 'Memórias'
   String get title => 'Memórias';
+
+  /// pt: 'NOSSA HISTÓRIA'
+  String get historyLabel => 'NOSSA HISTÓRIA';
+
+  /// pt: 'Nossa história'
+  String get historyTitle => 'Nossa história';
+
+  /// pt: 'Marcos, datas, lugares e a nossa história em números.'
+  String get historyText => 'Marcos, datas, lugares e a nossa história em números.';
 
   /// pt: 'POTINHO'
   String get jarLabel => 'POTINHO';
@@ -5754,6 +6284,293 @@ extension on Translations {
           'helpSupport.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
           'helpSupport.discardTitle' => 'Descartar esta mensagem?',
           'helpSupport.discardText' => 'O que você escreveu não será salvo.',
+          'history.title' => 'Nossa história',
+          'history.addMilestoneTooltip' => 'Adicionar marco',
+          'history.togetherSinceLine' => ({required Object date}) => 'juntos desde ${date}',
+          'history.setStartDate' => 'Definir início da história',
+          'history.beginningHeadline' => 'Começando',
+          'history.reunionCountdown' =>
+            ({required num days}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  days,
+                  one: 'Falta ${days} dia',
+                  other: 'Faltam ${days} dias',
+                ),
+          'history.durationFull' => ({
+            required Object years,
+            required Object yearsUnit,
+            required Object months,
+            required Object monthsUnit,
+            required Object days,
+            required Object daysUnit,
+          }) => '${years} ${yearsUnit}, ${months} ${monthsUnit}\ne ${days} ${daysUnit}',
+          'history.durationFullInline' => ({
+            required Object years,
+            required Object yearsUnit,
+            required Object months,
+            required Object monthsUnit,
+            required Object days,
+            required Object daysUnit,
+          }) => '${years} ${yearsUnit}, ${months} ${monthsUnit} e ${days} ${daysUnit}',
+          'history.durationMonthsDays' => ({
+            required Object months,
+            required Object monthsUnit,
+            required Object days,
+            required Object daysUnit,
+          }) => '${months} ${monthsUnit} e ${days} ${daysUnit}',
+          'history.durationDaysOnly' => ({
+            required Object days,
+            required Object daysUnit,
+          }) => '${days} ${daysUnit}',
+          'history.yearOne' => 'ano',
+          'history.yearMany' => 'anos',
+          'history.monthOne' => 'mês',
+          'history.monthMany' => 'meses',
+          'history.dayOne' => 'dia',
+          'history.dayMany' => 'dias',
+          'history.statDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'dia',
+                  other: 'dias',
+                ),
+          'history.statWeekends' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'fim de semana',
+                  other: 'fins de semana',
+                ),
+          'history.statChristmases' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'Natal',
+                  other: 'Natais',
+                ),
+          'history.statPlaces' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'lugar',
+                  other: 'lugares',
+                ),
+          'history.storyDatesAction' => 'Datas da história',
+          'history.numbersAction' => 'Em números',
+          'history.variationsAction' => 'Como o contador aparece',
+          'history.avatarAction' => 'Seu avatar',
+          'history.differentDatesBanner' => 'Vocês escolheram datas diferentes para o início',
+          'history.differentDatesAction' => 'Ver datas',
+          'history.timelineSection' => 'MARCOS E MEMÓRIAS',
+          'history.recentChip' => 'Recentes',
+          'history.unknownYearChip' => 'Sem data',
+          'history.timelineRecentNote' => 'Mostrando os marcos mais recentes.',
+          'history.loadEarlierYear' => ({required Object year}) => 'Ver ${year}',
+          'history.unknownDateLabel' => 'Data desconhecida',
+          'history.addMilestoneRow' => 'Adicionar um marco',
+          'history.emptyTitle' => 'Comece pelo primeiro marco',
+          'history.emptyText' => 'Registre quando vocês se conheceram ou um momento especial.',
+          'history.suggestedFirstTitle' => 'Nos conhecemos',
+          'history.suggestedFirstSub' => 'Sugestão de primeiro marco · toque para adicionar',
+          'history.monthsShort.0' => 'jan',
+          'history.monthsShort.1' => 'fev',
+          'history.monthsShort.2' => 'mar',
+          'history.monthsShort.3' => 'abr',
+          'history.monthsShort.4' => 'mai',
+          'history.monthsShort.5' => 'jun',
+          'history.monthsShort.6' => 'jul',
+          'history.monthsShort.7' => 'ago',
+          'history.monthsShort.8' => 'set',
+          'history.monthsShort.9' => 'out',
+          'history.monthsShort.10' => 'nov',
+          'history.monthsShort.11' => 'dez',
+          'history.monthsLong.0' => 'janeiro',
+          'history.monthsLong.1' => 'fevereiro',
+          'history.monthsLong.2' => 'março',
+          'history.monthsLong.3' => 'abril',
+          _ => null,
+        } ??
+        switch (path) {
+          'history.monthsLong.4' => 'maio',
+          'history.monthsLong.5' => 'junho',
+          'history.monthsLong.6' => 'julho',
+          'history.monthsLong.7' => 'agosto',
+          'history.monthsLong.8' => 'setembro',
+          'history.monthsLong.9' => 'outubro',
+          'history.monthsLong.10' => 'novembro',
+          'history.monthsLong.11' => 'dezembro',
+          'history.fullDate' => ({
+            required Object day,
+            required Object month,
+            required Object year,
+          }) => '${day} de ${month} de ${year}',
+          'history.shortDayMonthYear' => ({
+            required Object day,
+            required Object month,
+            required Object year,
+          }) => '${day} ${month} ${year}',
+          'history.shortMonthYear' => ({
+            required Object month,
+            required Object year,
+          }) => '${month} ${year}',
+          'history.shortDayMonth' => ({
+            required Object day,
+            required Object month,
+          }) => '${day} ${month}',
+          'history.milestoneNewTitle' => 'Novo marco',
+          'history.milestoneDetailTitle' => 'Detalhe do marco',
+          'history.milestoneDefaultHighlight' => 'juntos',
+          'history.milestoneTitleLabel' => 'O que aconteceu',
+          'history.milestoneTitleHint' => 'Ex.: Primeira viagem juntos',
+          'history.milestonePlaceLabel' => 'Lugar (opcional)',
+          'history.milestonePlaceHint' => 'Ex.: Paraty',
+          'history.milestoneBodyHint' => 'Uma nota sobre esse momento (opcional)',
+          'history.milestoneKindLabel' => 'Tipo de marco',
+          'history.kindFirst' => 'Primeira vez',
+          'history.kindTrip' => 'Viagem',
+          'history.kindHome' => 'Moramos juntos',
+          'history.kindCustom' => 'Marco',
+          'history.unknownDateToggle' => 'Data desconhecida',
+          'history.precisionDay' => 'Dia exato',
+          'history.precisionMonth' => 'Mês e ano',
+          'history.precisionYear' => 'Só o ano',
+          'history.dateRowLabel' => 'Data',
+          'history.addedByRowLabel' => 'Adicionado por',
+          'history.addedByYou' => 'Você',
+          'history.visibilityRowLabel' => 'Quem vê',
+          'history.visibilityBoth' => 'Os dois',
+          'history.visibilityOnlyYou' => 'Só você',
+          'history.deleteMilestone' => 'Apagar',
+          'history.deleteMilestoneTitle' => 'Excluir este marco?',
+          'history.deleteMilestoneTextShared' => 'Ele será removido da história dos dois.',
+          'history.deleteMilestoneTextPrivate' => 'Ele será removido da sua história.',
+          'history.deleteMilestoneConfirm' => 'Excluir',
+          'history.saveMilestone' => 'Salvar',
+          'history.storyDatesTitle' => 'Datas da nossa história',
+          'history.storyMet' => 'Nos conhecemos',
+          'history.storyDating' => 'Começamos a namorar',
+          'history.storyEngaged' => 'Noivamos',
+          'history.storyMarried' => 'Casamos',
+          'history.storyAdd' => 'Adicionar',
+          'history.storyDateAddedBy' => ({required Object name}) => 'Adicionado por ${name}',
+          'history.storyDatesNote' => 'Tudo opcional. A data de início alimenta o contador.',
+          'history.variationsTitle' => 'Como o contador aparece',
+          'history.variationDating' => 'Namoro',
+          'history.variationEngaged' => 'Noivado',
+          'history.variationMarried' => 'Casados',
+          'history.variationBeginning' => 'Começando',
+          'history.variationLongDistance' => 'Distância',
+          'history.variationsPreviewNote' => 'Prévia de estilos. O tempo mostrado é o total real do casal; contagens por fase precisam de datas próprias.',
+          'history.avatarHeadline' => 'Como você aparece?',
+          'history.avatarHighlight' => 'aparece',
+          'history.avatarInitials' => 'Iniciais',
+          'history.avatarInitialsNote' => 'Seu avatar usa as suas iniciais.',
+          'history.avatarNote' => 'Cada pessoa escolhe o seu. O app nunca puxa a foto do outro.',
+          'history.avatarContinue' => 'Continuar',
+          'history.numbersTitle' => 'Em números',
+          'history.numbersHeroDays' => ({required Object days}) => '${days} dias',
+          'history.numbersHeroEmpty' => 'No seu tempo',
+          'history.numbersHeroEmptySub' =>
+            'Defina uma data de início quando quiser acompanhar os dias.',
+          'history.numbersWeekends' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'fim de semana juntos',
+                  other: 'fins de semana juntos',
+                ),
+          'history.numbersFullMoons' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'lua cheia',
+                  other: 'luas cheias',
+                ),
+          'history.numbersChristmases' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'Natal juntos',
+                  other: 'Natais juntos',
+                ),
+          'history.numbersNextAnniversary' =>
+            ({required num years, required Object suffix}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  years,
+                  one: 'para ${years} ano ${suffix}',
+                  other: 'para ${years} anos ${suffix}',
+                ),
+          'history.numbersSuffixDating' => 'de namoro',
+          'history.numbersSuffixEngaged' => 'de noivado',
+          'history.numbersSuffixMarried' => 'casados',
+          'history.numbersSuffixTogether' => 'juntos',
+          'history.numbersMonthsCount' =>
+            ({required num months}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  months,
+                  one: '${months} mês',
+                  other: '${months} meses',
+                ),
+          'history.numbersDaysCount' =>
+            ({required num days}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  days,
+                  one: '${days} dia',
+                  other: '${days} dias',
+                ),
+          'history.numbersPlacesSection' => 'LUGARES QUE MARCARAM',
+          'history.numbersYearSection' => ({required Object year}) => 'SEU ANO (${year})',
+          'history.numbersYearNote' => 'Só os seus registros deste ano.',
+          'history.numbersFirstsCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'primeira vez',
+                  other: 'primeiras vezes',
+                ),
+          'history.differentHeadline' => 'As datas diferem',
+          'history.differentHighlight' => 'diferem',
+          'history.differentSubtitle' => ({
+            required Object partner,
+          }) => 'Você e ${partner} escolheram datas diferentes para o início.',
+          'history.differentYourDate' => 'Sua data',
+          'history.differentPartnerDate' => ({required Object partner}) => 'Data de ${partner}',
+          'history.differentNote' => 'Cada um vê a sua. Nada é trocado sem os dois.',
+          'history.differentNoDates' => 'Ainda não há datas de início para comparar.',
+          'history.differentContinue' => 'Continuar',
+          'history.partnerFallback' => 'seu par',
+          'history.errorTitle' => 'Não deu para carregar',
+          'history.errorText' => 'Sua história continua salva. Tente de novo.',
+          'history.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'history.errors.NOT_OWNER' => 'Só quem criou pode editar ou apagar.',
+          'history.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'history.numbersMemoriesCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'memória guardada',
+                  other: 'memórias guardadas',
+                ),
+          'history.numbersMemoriesRecent' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'memória recente',
+                  other: 'memórias recentes',
+                ),
+          'history.numbersPlaces' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'lugar',
+                  other: 'lugares',
+                ),
+          'history.readOnlyMilestone' =>
+            'Este marco foi adicionado por outra pessoa. Só quem criou pode editar.',
+          'history.readOnlyMilestoneBy' => ({
+            required Object name,
+          }) => 'Adicionado por ${name}. Só quem criou pode editar.',
           'ideaDetail.label' => 'Ideia do dia',
           'ideaDetail.whyTitle' => 'Por que esta ideia',
           'ideaDetail.yourPhase' => 'Sua fase',
@@ -5808,9 +6625,6 @@ extension on Translations {
           'intro.theme.neutralSupport' => 'Papel e verde',
           'intro.theme.footnote' => 'Dá para trocar depois em Configurações, Aparência.',
           'invite.title' => ({required Object name}) => 'Convidar ${name}',
-          _ => null,
-        } ??
-        switch (path) {
           'invite.titleNoName' => 'Convidar sua pessoa',
           'invite.messageIntro' => 'Esta mensagem será enviada:',
           'invite.message' => ({
@@ -5912,6 +6726,9 @@ extension on Translations {
           'logistics.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'logistics.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'memories.title' => 'Memórias',
+          'memories.historyLabel' => 'NOSSA HISTÓRIA',
+          'memories.historyTitle' => 'Nossa história',
+          'memories.historyText' => 'Marcos, datas, lugares e a nossa história em números.',
           'memories.jarLabel' => 'POTINHO',
           'memories.jarTitle' => 'Abrir o potinho',
           'memories.jarText' => 'Um slip bom que você guardou, sorteado.',
@@ -6200,6 +7017,9 @@ extension on Translations {
           'privacy.partnerSlipsText' => 'Só o que você envia',
           'privacy.partnerPrivateSlips' => 'Slips privados',
           'privacy.partnerTemperature' => 'Temperatura',
+          _ => null,
+        } ??
+        switch (path) {
           'privacy.partnerJournal' => 'Diário',
           'privacy.partnerPause' => 'Pausa',
           'privacy.partnerPauseText' => 'A mensagem que você escreveu',
@@ -6368,9 +7188,6 @@ extension on Translations {
           'quickSlip.saved.added' => 'Slip adicionado a esta semana.',
           'quickSlip.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
           'quickSlip.saved.undoHint' => 'Desfazer por 30 segundos.',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.saved.undo' => 'Desfazer',
           'quickSlip.saved.done' => 'Pronto',
           'quickSlip.errors.FREE_LIMIT_REACHED' =>
@@ -6758,6 +7575,9 @@ extension on Translations {
           'slipsList.scopeAll' => 'Todos',
           'slipsList.private' => 'Privado',
           'slipsList.thisWeek' => 'Esta semana',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.lastWeek' => 'Semana passada',
           'slipsList.weekRange' => ({
             required Object start,
@@ -6942,9 +7762,6 @@ extension on Translations {
           'temperature.result.done' => 'Pronto',
           'temperature.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'temperature.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
-          _ => null,
-        } ??
-        switch (path) {
           'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',

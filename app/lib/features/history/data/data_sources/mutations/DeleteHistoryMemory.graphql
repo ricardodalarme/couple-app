@@ -1,0 +1,5 @@
+mutation DeleteHistoryMemory($id: UUID!) {
+  deleteFromMemoriesCollection(filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}

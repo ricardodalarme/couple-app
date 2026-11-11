@@ -176,6 +176,22 @@ class ConsentsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CounterVariationsPage]
+class CounterVariationsRoute extends PageRouteInfo<void> {
+  const CounterVariationsRoute({List<PageRouteInfo>? children})
+    : super(CounterVariationsRoute.name, initialChildren: children);
+
+  static const String name = 'CounterVariationsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const CounterVariationsPage());
+    },
+  );
+}
+
+/// generated route for
 /// [DateNightPage]
 class DateNightRoute extends PageRouteInfo<void> {
   const DateNightRoute({List<PageRouteInfo>? children})
@@ -267,6 +283,22 @@ class DevicesRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const DevicesPage());
+    },
+  );
+}
+
+/// generated route for
+/// [DifferentDatesPage]
+class DifferentDatesRoute extends PageRouteInfo<void> {
+  const DifferentDatesRoute({List<PageRouteInfo>? children})
+    : super(DifferentDatesRoute.name, initialChildren: children);
+
+  static const String name = 'DifferentDatesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const DifferentDatesPage());
     },
   );
 }
@@ -379,6 +411,54 @@ class HelpRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const HelpPage());
+    },
+  );
+}
+
+/// generated route for
+/// [HistoryAvatarPage]
+class HistoryAvatarRoute extends PageRouteInfo<void> {
+  const HistoryAvatarRoute({List<PageRouteInfo>? children})
+    : super(HistoryAvatarRoute.name, initialChildren: children);
+
+  static const String name = 'HistoryAvatarRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const HistoryAvatarPage());
+    },
+  );
+}
+
+/// generated route for
+/// [HistoryNumbersPage]
+class HistoryNumbersRoute extends PageRouteInfo<void> {
+  const HistoryNumbersRoute({List<PageRouteInfo>? children})
+    : super(HistoryNumbersRoute.name, initialChildren: children);
+
+  static const String name = 'HistoryNumbersRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const HistoryNumbersPage());
+    },
+  );
+}
+
+/// generated route for
+/// [HistoryPage]
+class HistoryRoute extends PageRouteInfo<void> {
+  const HistoryRoute({List<PageRouteInfo>? children})
+    : super(HistoryRoute.name, initialChildren: children);
+
+  static const String name = 'HistoryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const HistoryPage());
     },
   );
 }
@@ -695,6 +775,85 @@ class MemoriesRoute extends PageRouteInfo<void> {
       return WrappedRoute(child: const MemoriesPage());
     },
   );
+}
+
+/// generated route for
+/// [MilestonePage]
+class MilestoneRoute extends PageRouteInfo<MilestoneRouteArgs> {
+  MilestoneRoute({
+    HistoryMilestone? initialMilestone,
+    String? initialTitle,
+    MilestoneKind? initialKind,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         MilestoneRoute.name,
+         args: MilestoneRouteArgs(
+           initialMilestone: initialMilestone,
+           initialTitle: initialTitle,
+           initialKind: initialKind,
+           key: key,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'MilestoneRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<MilestoneRouteArgs>(
+        orElse: () => const MilestoneRouteArgs(),
+      );
+      return WrappedRoute(
+        child: MilestonePage(
+          initialMilestone: args.initialMilestone,
+          initialTitle: args.initialTitle,
+          initialKind: args.initialKind,
+          key: args.key,
+        ),
+      );
+    },
+  );
+}
+
+class MilestoneRouteArgs {
+  const MilestoneRouteArgs({
+    this.initialMilestone,
+    this.initialTitle,
+    this.initialKind,
+    this.key,
+  });
+
+  final HistoryMilestone? initialMilestone;
+
+  final String? initialTitle;
+
+  final MilestoneKind? initialKind;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'MilestoneRouteArgs{initialMilestone: $initialMilestone, initialTitle: $initialTitle, initialKind: $initialKind, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! MilestoneRouteArgs) return false;
+    return initialMilestone == other.initialMilestone &&
+        initialTitle == other.initialTitle &&
+        initialKind == other.initialKind &&
+        key == other.key;
+  }
+
+  @override
+  int get hashCode =>
+      initialMilestone.hashCode ^
+      initialTitle.hashCode ^
+      initialKind.hashCode ^
+      key.hashCode;
 }
 
 /// generated route for
@@ -1400,6 +1559,22 @@ class StarterRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const StarterPage());
+    },
+  );
+}
+
+/// generated route for
+/// [StoryDatesPage]
+class StoryDatesRoute extends PageRouteInfo<void> {
+  const StoryDatesRoute({List<PageRouteInfo>? children})
+    : super(StoryDatesRoute.name, initialChildren: children);
+
+  static const String name = 'StoryDatesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const StoryDatesPage());
     },
   );
 }
