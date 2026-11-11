@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/delete/delete_account_page.dart';
+import 'package:flutter_bloc_starter/features/app/presentation/time_in_app/time_in_app_page.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/existing_account/existing_account_page.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/session_expired/session_expired_page.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/sign_in/sign_in_page.dart';
@@ -152,6 +153,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: TemperatureRoute.page, fullscreenDialog: true),
     AutoRoute(page: CalmRoute.page, fullscreenDialog: true),
     AutoRoute(page: PauseRoute.page, fullscreenDialog: true),
+    AutoRoute(page: TimeInAppRoute.page, fullscreenDialog: true),
     AutoRoute(page: ReceivedSignalsRoute.page),
     AutoRoute(page: LogisticsRoute.page),
     AutoRoute(page: RitualsRoute.page),

@@ -2327,6 +2327,22 @@ class TemperatureRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [TimeInAppPage]
+class TimeInAppRoute extends PageRouteInfo<void> {
+  const TimeInAppRoute({List<PageRouteInfo>? children})
+    : super(TimeInAppRoute.name, initialChildren: children);
+
+  static const String name = 'TimeInAppRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const TimeInAppPage();
+    },
+  );
+}
+
+/// generated route for
 /// [TodayPage]
 class TodayRoute extends PageRouteInfo<void> {
   const TodayRoute({List<PageRouteInfo>? children})

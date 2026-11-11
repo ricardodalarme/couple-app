@@ -145,6 +145,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$sundayCard$pt sundayCard = Translations$sundayCard$pt.internal(_root);
   late final Translations$tabs$pt tabs = Translations$tabs$pt.internal(_root);
   late final Translations$temperature$pt temperature = Translations$temperature$pt.internal(_root);
+  late final Translations$timeInApp$pt timeInApp = Translations$timeInApp$pt.internal(_root);
   late final Translations$today$pt today = Translations$today$pt.internal(_root);
   late final Translations$unpair$pt unpair = Translations$unpair$pt.internal(_root);
   late final Translations$welcome$pt welcome = Translations$welcome$pt.internal(_root);
@@ -5886,6 +5887,30 @@ class Translations$temperature$pt {
   };
 }
 
+// Path: timeInApp
+class Translations$timeInApp$pt {
+  Translations$timeInApp$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Um tempo no app'
+  String get title => 'Um tempo no app';
+
+  /// pt: 'app'
+  String get titleHighlight => 'app';
+
+  /// pt: 'Escondemos cartões e lembretes até você voltar.'
+  String get text => 'Escondemos cartões e lembretes até você voltar.';
+
+  /// pt: 'Pausar o app'
+  String get pause => 'Pausar o app';
+
+  /// pt: 'Cancelar'
+  String get cancel => 'Cancelar';
+}
+
 // Path: today
 class Translations$today$pt {
   Translations$today$pt.internal(this._root);
@@ -10587,6 +10612,11 @@ extension on Translations {
           'temperature.result.done' => 'Pronto',
           'temperature.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'temperature.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
+          'timeInApp.title' => 'Um tempo no app',
+          'timeInApp.titleHighlight' => 'app',
+          'timeInApp.text' => 'Escondemos cartões e lembretes até você voltar.',
+          'timeInApp.pause' => 'Pausar o app',
+          'timeInApp.cancel' => 'Cancelar',
           'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',

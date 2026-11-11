@@ -208,6 +208,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$temperature$en temperature = _Translations$temperature$en._(_root);
   @override
+  late final _Translations$timeInApp$en timeInApp = _Translations$timeInApp$en._(_root);
+  @override
   late final _Translations$today$en today = _Translations$today$en._(_root);
   @override
   late final _Translations$unpair$en unpair = _Translations$unpair$en._(_root);
@@ -4727,6 +4729,25 @@ class _Translations$temperature$en extends Translations$temperature$pt {
   };
 }
 
+// Path: timeInApp
+class _Translations$timeInApp$en extends Translations$timeInApp$pt {
+  _Translations$timeInApp$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Time in the app';
+  @override
+  String get titleHighlight => 'app';
+  @override
+  String get text => 'We hide cards and reminders until you come back.';
+  @override
+  String get pause => 'Pause the app';
+  @override
+  String get cancel => 'Cancel';
+}
+
 // Path: today
 class _Translations$today$en extends Translations$today$pt {
   _Translations$today$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -9001,6 +9022,11 @@ extension on TranslationsEn {
           'temperature.result.done' => 'Done',
           'temperature.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'temperature.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
+          'timeInApp.title' => 'Time in the app',
+          'timeInApp.titleHighlight' => 'app',
+          'timeInApp.text' => 'We hide cards and reminders until you come back.',
+          'timeInApp.pause' => 'Pause the app',
+          'timeInApp.cancel' => 'Cancel',
           'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',
