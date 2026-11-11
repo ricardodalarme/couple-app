@@ -40,7 +40,7 @@ void main() {
         .called(1);
   });
 
-  test('a failed upload is a FileStorageException', () async {
+  test('a failed upload is a FileStorageException', () {
     when(
       () => bucket.uploadBinary(any(), any(), fileOptions: any(named: 'fileOptions')),
     ).thenThrow(Exception('offline'));
