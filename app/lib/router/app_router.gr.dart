@@ -921,6 +921,22 @@ class LanguageRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [LearnedItemsPage]
+class LearnedItemsRoute extends PageRouteInfo<void> {
+  const LearnedItemsRoute({List<PageRouteInfo>? children})
+    : super(LearnedItemsRoute.name, initialChildren: children);
+
+  static const String name = 'LearnedItemsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const LearnedItemsPage());
+    },
+  );
+}
+
+/// generated route for
 /// [LearningPage]
 class LearningRoute extends PageRouteInfo<LearningRouteArgs> {
   LearningRoute({String? sessionId, Key? key, List<PageRouteInfo>? children})

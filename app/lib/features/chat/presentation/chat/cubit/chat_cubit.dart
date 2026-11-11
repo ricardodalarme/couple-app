@@ -4,18 +4,24 @@ import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
+import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
 import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
+import 'package:flutter_bloc_starter/features/chat/data/repositories/learned_items_repository.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:uuid/uuid.dart';
 
 part 'chat_state.dart';
 
-class ChatCubit({required final ChatRepository _chatRepository}) extends Cubit<ChatState> {
+class ChatCubit({
+  required final ChatRepository _chatRepository,
+  required final LearnedItemsRepository _learnedItemsRepository,
+  final Duration _idleTimeout = chatIdleTimeout,
+}) extends Cubit<ChatState> {
   this : super(const ChatState());
 
   final Uuid _uuid = const Uuid();
+  final String _session = const Uuid().v4();
   StreamSubscription<ChatEvent>? _subscription;
-  String? _lastUserText;
 
   /// Chooses the kind of help before the first message.
   void setMode(ChatMode mode) => emit(state.copyWith(mode: mode));
@@ -28,13 +34,16 @@ class ChatCubit({required final ChatRepository _chatRepository}) extends Cubit<C
       emit(
         state.copyWith(
           stage: Success(
-            !status.isEnabled
+            !status.hasPlus
+                ? ChatStage.plusRequired
+                : !status.isEnabled
                 ? ChatStage.needsConsent
                 : status.messagesLeft <= 0
                 ? ChatStage.limitReached
                 : ChatStage.ready,
           ),
           messagesLeft: status.messagesLeft,
+          hasPlus: status.hasPlus,
         ),
       );
     } catch (exception) {
@@ -71,9 +80,14 @@ class ChatCubit({required final ChatRepository _chatRepository}) extends Cubit<C
     final message = text.trim();
     if (message.isEmpty || message.length > chatMessageMaxLength || state.isReplying) return;
 
-    _lastUserText = message;
-    final userMessage = ChatMessage(id: _uuid.v4(), role: ChatRole.user, text: message);
-    if (looksLikeCrisis(message)) {
+    final isCrisis = looksLikeCrisis(message);
+    final userMessage = ChatMessage(
+      id: _uuid.v4(),
+      role: ChatRole.user,
+      text: message,
+      excludeFromHistory: isCrisis,
+    );
+    if (isCrisis) {
       emit(
         state.copyWith(
           messages: [
@@ -87,11 +101,21 @@ class ChatCubit({required final ChatRepository _chatRepository}) extends Cubit<C
       return;
     }
 
-    final reply = ChatMessage(id: _uuid.v4(), role: ChatRole.mascot, text: '', isStreaming: true);
-    final history = state.messages;
+    final reply = ChatMessage(
+      id: _uuid.v4(),
+      role: ChatRole.mascot,
+      text: '',
+      isStreaming: true,
+      retryText: message,
+    );
+    final messages = state.messages;
+    final history = [
+      for (final item in messages)
+        if (!item.isCrisis && !item.excludeFromHistory) item,
+    ];
     emit(
       state.copyWith(
-        messages: [...history, userMessage, reply],
+        messages: [...messages, userMessage, reply],
         options: const [],
         isReplying: true,
       ),
@@ -104,7 +128,9 @@ class ChatCubit({required final ChatRepository _chatRepository}) extends Cubit<C
           history: history,
           locale: LocaleSettings.currentLocale.languageTag,
           mode: state.mode,
+          session: _session,
         )
+        .timeout(_idleTimeout)
         .listen(
           (event) => _onEvent(reply.id, event),
           onError: (Object _) {
@@ -120,11 +146,11 @@ class ChatCubit({required final ChatRepository _chatRepository}) extends Cubit<C
     await completer.future;
   }
 
-  /// Sends the last message again after an interruption.
-  Future<void> retry() async {
-    final text = _lastUserText;
+  /// Sends the interrupted reply's own turn again.
+  Future<void> retry(ChatMessage message) async {
+    final text = message.retryText;
     if (text == null || state.isReplying) return;
-    emit(state.copyWith(messages: _withoutTrailingInterrupted(state.messages)));
+    emit(state.copyWith(messages: _withoutReplyPair(state.messages, message.id)));
     await send(text);
   }
 
@@ -140,6 +166,24 @@ class ChatCubit({required final ChatRepository _chatRepository}) extends Cubit<C
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));
+  }
+
+  /// Keeps a reply as a pending learning, for the person to review later.
+  Future<void> saveLearning({
+    required LearnedTarget target,
+    required String text,
+    String? excerpt,
+  }) async {
+    if (text.trim().isEmpty || state.saveLearningAction.isLoading) return;
+
+    emit(state.copyWith(saveLearningAction: const Loading()));
+    try {
+      await _learnedItemsRepository.add(target: target, text: text, excerpt: excerpt);
+      emit(state.copyWith(saveLearningAction: const Success(null)));
+    } catch (exception) {
+      emit(state.copyWith(saveLearningAction: Failure.fromObject(exception)));
+    }
+    emit(state.copyWith(saveLearningAction: const Initial()));
   }
 
   void _onEvent(String replyId, ChatEvent event) {
@@ -159,11 +203,20 @@ class ChatCubit({required final ChatRepository _chatRepository}) extends Cubit<C
         emit(
           state.copyWith(
             messages: [
-              for (final m in state.messages)
-                if (m.id == replyId)
-                  ChatMessage(id: m.id, role: m.role, text: '', isCrisis: true)
+              for (var index = 0; index < state.messages.length; index++)
+                if (state.messages[index].id == replyId)
+                  ChatMessage(
+                    id: state.messages[index].id,
+                    role: state.messages[index].role,
+                    text: '',
+                    isCrisis: true,
+                  )
+                else if (index + 1 < state.messages.length &&
+                    state.messages[index + 1].id == replyId &&
+                    state.messages[index].role == ChatRole.user)
+                  state.messages[index].copyWith(excludeFromHistory: true)
                 else
-                  m,
+                  state.messages[index],
             ],
             isReplying: false,
           ),
@@ -240,12 +293,12 @@ class ChatCubit({required final ChatRepository _chatRepository}) extends Cubit<C
       if (m.id == id) change(m) else m,
   ];
 
-  List<ChatMessage> _withoutTrailingInterrupted(List<ChatMessage> messages) {
-    if (messages.length < 2) return messages;
-    final last = messages.last;
-    if (!(last.role == ChatRole.mascot && last.isInterrupted)) return messages;
+  List<ChatMessage> _withoutReplyPair(List<ChatMessage> messages, String replyId) {
+    final index = messages.indexWhere((message) => message.id == replyId);
+    if (index < 0) return messages;
+    final start = index > 0 && messages[index - 1].role == ChatRole.user ? index - 1 : index;
 
-    return messages.sublist(0, messages.length - 2);
+    return [...messages.sublist(0, start), ...messages.sublist(index + 1)];
   }
 
   @override

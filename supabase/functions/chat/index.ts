@@ -11,10 +11,12 @@
 // CHAT_EXTRA_BODY and CHAT_EXTRA_HEADERS (JSON objects) are optional.
 // verify_jwt = true only proves the token is valid, and the public anon key is a valid JWT, so the role is checked here.
 import { cors, json, log, sql } from "../_shared/db.ts";
+import { looksLikeCrisis } from "./crisis.ts";
 import { type ChatEvent, relay } from "./relay.ts";
 
 const MAX_MESSAGE = 1000;
 const MAX_HISTORY = 12;
+const SESSION = /^[A-Za-z0-9_-]{1,80}$/;
 
 function claims(token: string): { role?: string; sub?: string } | null {
   try {
@@ -24,18 +26,6 @@ function claims(token: string): { role?: string; sub?: string } | null {
     return null;
   }
 }
-
-// Words that mean the person may be in danger. The app answers with its own safety message instead of a model reply.
-const CRISIS = new RegExp(
-  [
-    "suic[ií]d", "me matar", "quero morrer", "n[aã]o quero mais viver", "acabar com tudo", "me machucar",
-    "me cortar", "autolesion", "automutila", "tirar minha vida",
-    "kill myself", "want to die", "end it all", "hurt myself", "self[- ]harm", "take my own life",
-    "ele me bate", "ela me bate", "me agrid", "me amea[cç]", "tenho medo (dele|dela|do meu)",
-    "hits me", "beats me", "afraid of (him|her|my partner)", "threatens me",
-  ].join("|"),
-  "i",
-);
 
 const sse = (stream: ReadableStream<Uint8Array>) =>
   new Response(stream, {
@@ -66,7 +56,7 @@ type Turn = { role: "user" | "mascot"; text: string };
 
 // Optional provider settings, as JSON objects in secrets: CHAT_EXTRA_BODY merges into the request body
 // (for example to switch a model's thinking off) and CHAT_EXTRA_HEADERS adds headers, where "{session}"
-// becomes a fresh id for gateways that route by session.
+// becomes the client's session id so a gateway can reuse its prompt cache.
 function jsonEnv(name: string): Record<string, unknown> {
   try {
     const value = JSON.parse(Deno.env.get(name) ?? "{}");
@@ -76,11 +66,11 @@ function jsonEnv(name: string): Record<string, unknown> {
   }
 }
 const extraBody = () => jsonEnv("CHAT_EXTRA_BODY");
-const extraHeaders = (): Record<string, string> =>
+const extraHeaders = (session: string): Record<string, string> =>
   Object.fromEntries(
     Object.entries(jsonEnv("CHAT_EXTRA_HEADERS")).map(([k, v]) => [
       k,
-      String(v).replace("{session}", crypto.randomUUID()),
+      String(v).replace("{session}", session),
     ]),
   );
 
@@ -96,13 +86,15 @@ Deno.serve(async (req) => {
   if (!message) return json({ error: "EMPTY_MESSAGE" }, 400);
   const locale = String(body.locale ?? "pt-BR");
   const mode = body.mode === "hard_conversation" ? "hard_conversation" : "free";
+  const requestedSession = typeof body.session === "string" ? body.session : "";
+  const session = SESSION.test(requestedSession) ? requestedSession : crypto.randomUUID();
   const history: Turn[] = (Array.isArray(body.history) ? body.history : [])
     .filter((t: Turn) => (t?.role === "user" || t?.role === "mascot") && typeof t?.text === "string")
     .slice(-MAX_HISTORY)
     .map((t: Turn) => ({ role: t.role, text: t.text.slice(0, MAX_MESSAGE) }));
 
   // Crisis wording is answered by the app itself, before any limit, setting or model call.
-  if (CRISIS.test(message)) {
+  if (looksLikeCrisis(message)) {
     log("chat_crisis");
     return oneEvent({ type: "crisis" });
   }
@@ -115,14 +107,8 @@ Deno.serve(async (req) => {
   const [settings] = await sql`select chat_enabled from public.profile_settings where profile_id = ${userId}`;
   if (!settings?.chat_enabled) return oneEvent({ type: "error", code: "CHAT_DISABLED" }, 403);
 
-  const [{ left }] = await sql`
-    select greatest(0,
-      (select value::integer from public.app_config
-        where key = case when private.has_plus(${userId}) then 'chat_messages_per_day_plus' else 'chat_messages_per_day_free' end)
-      - (select count(*)::integer from public.chat_messages m
-          where m.author_id = ${userId} and m.role = 'user' and m.created_at >= date_trunc('day', now()))) as left`;
-  if (left <= 0) return oneEvent({ type: "error", code: "CHAT_LIMIT" }, 429);
-  await sql`insert into public.chat_messages (author_id, role) values (${userId}, 'user')`;
+  const [quota] = await sql`select private.take_chat_message(${userId}) as id`;
+  if (!quota?.id) return oneEvent({ type: "error", code: "CHAT_LIMIT" }, 429);
 
   const messages = [
     { role: "system", content: systemPrompt(locale, mode) },
@@ -132,10 +118,11 @@ Deno.serve(async (req) => {
 
   const upstream = await fetch(`${apiUrl.replace(/\/$/, "")}/chat/completions`, {
     method: "POST",
+    signal: AbortSignal.timeout(30_000),
     headers: {
       "content-type": "application/json",
       authorization: `Bearer ${apiKey}`,
-      ...extraHeaders(),
+      ...extraHeaders(session),
     },
     body: JSON.stringify({
       model,
@@ -147,6 +134,7 @@ Deno.serve(async (req) => {
     }),
   }).catch(() => null);
   if (!upstream || !upstream.ok || !upstream.body) {
+    if (quota) await sql`delete from public.chat_messages where id = ${quota.id}`;
     log("chat_upstream_failed", { status: upstream?.status ?? 0 });
     return oneEvent({ type: "error", code: "UPSTREAM" }, 502);
   }
@@ -161,6 +149,7 @@ Deno.serve(async (req) => {
       try {
         await relay(reader, send);
       } catch {
+        // A break after the first token keeps the charge: the person already saw part of the reply.
         log("chat_stream_failed");
         send({ type: "error", code: "UPSTREAM" });
       } finally {

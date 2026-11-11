@@ -1,0 +1,14 @@
+query LearnedItems {
+  learnedItemsCollection(first: 50, orderBy: [{ createdAt: DescNullsLast }]) {
+    edges {
+      node {
+        id
+        target
+        text
+        excerpt
+        status
+        createdAt
+      }
+    }
+  }
+}

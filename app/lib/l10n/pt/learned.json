@@ -1,0 +1,33 @@
+{
+  "title": "O que aprendi",
+  "intro": "Coisas que você escolheu guardar da conversa. Só você vê.",
+  "pendingTitle": "Para revisar",
+  "confirmedTitle": "Confirmado",
+  "targets(map)": {
+    "partnerFact": "Sobre meu par",
+    "date": "Um date",
+    "memory": "Uma memória",
+    "commitment": "Um combinado"
+  },
+  "confirm": "Confirmar",
+  "edit": "Editar",
+  "discard": "Descartar",
+  "confirmTitle": "Confirmar este aprendizado?",
+  "confirmText": "Ele passa a aparecer em O que aprendi. Só você vê.",
+  "discardTitle": "Descartar este aprendizado?",
+  "discardText": "Ele não será guardado.",
+  "discardConfirm": "Descartar",
+  "editTitle": "Editar aprendizado",
+  "editHint": "O que você quer guardar",
+  "save": "Guardar",
+  "partnerFactLabel": "Da conversa",
+  "updated": "Aprendizado atualizado",
+  "emptyTitle": "Nada guardado ainda",
+  "emptyText": "Quando quiser, salve uma resposta da conversa para lembrar depois.",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "Tente de novo em instantes.",
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para fazer isso agora. Tente de novo."
+  }
+}

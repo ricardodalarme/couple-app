@@ -3212,6 +3212,20 @@ input LearnedItemsFilter {
   not: LearnedItemsFilter
 }
 
+input LearnedItemsInsertInput {
+  target: String
+  text: String
+  excerpt: String
+}
+
+type LearnedItemsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [LearnedItems!]!
+}
+
 input LearnedItemsOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -4596,6 +4610,9 @@ type Mutation {
 
   """Adds one or more `JournalEntries` records to the collection"""
   insertIntoJournalEntriesCollection(objects: [JournalEntriesInsertInput!]!): JournalEntriesInsertResponse
+
+  """Adds one or more `LearnedItems` records to the collection"""
+  insertIntoLearnedItemsCollection(objects: [LearnedItemsInsertInput!]!): LearnedItemsInsertResponse
 
   """Adds one or more `LessonProgress` records to the collection"""
   insertIntoLessonProgressCollection(objects: [LessonProgressInsertInput!]!): LessonProgressInsertResponse

@@ -1,6 +1,7 @@
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/chat_data_source.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
+import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:logger/logger.dart';
@@ -9,21 +10,31 @@ import 'package:uuid/uuid.dart';
 /// The longest slip body, so a long reply is cut instead of refused.
 const int _slipMaxLength = 280;
 
+/// What the app knows before the first message.
+typedef ChatStatus = ({int messagesLeft, bool isEnabled, bool hasPlus});
+
 class ChatRepository({
   required final ChatDataSource _dataSource,
   required final ProfileRepository _profileRepository,
   required final AuthenticationRepository _authenticationRepository,
   required final SlipRepository _slipRepository,
+  required final PlusRepository _plusRepository,
 }) {
   final Logger _logger = Logger('ChatRepository');
   final Uuid _uuid = const Uuid();
 
-  /// How many messages are left today and whether the person turned the chat on.
+  /// How many messages are left today, whether the person turned the chat on, and whether they have Plus.
   Future<ChatStatus> getStatus() async {
     try {
       final settings = await _profileRepository.getMySettings();
+      final status = await _dataSource.getStatus(settings.profileId);
+      final plus = await _plusRepository.getPlus();
 
-      return await _dataSource.getStatus(settings.profileId);
+      return (
+        messagesLeft: status.messagesLeft,
+        isEnabled: status.isEnabled,
+        hasPlus: plus.hasPlus,
+      );
     } catch (e, stack) {
       _logger.error('Failed to read the chat status', error: e, stackTrace: stack);
       rethrow;
@@ -47,10 +58,12 @@ class ChatRepository({
     required List<ChatMessage> history,
     required String locale,
     required ChatMode mode,
+    required String session,
   }) async* {
     final turns = [
       for (final item in history)
-        if (!item.isCrisis && item.text.trim().isNotEmpty) (role: item.role, text: item.text),
+        if (!item.isCrisis && !item.excludeFromHistory && item.text.trim().isNotEmpty)
+          (role: item.role, text: item.text),
     ];
     yield* _dataSource.send(
       message: message,
@@ -59,6 +72,7 @@ class ChatRepository({
           : turns,
       locale: locale,
       mode: mode,
+      session: session,
       accessToken: _authenticationRepository.getAccessToken(),
     );
   }

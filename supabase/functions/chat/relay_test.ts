@@ -1,5 +1,6 @@
 // Run with: deno test supabase/functions/chat/relay_test.ts
 import { assertEquals } from "jsr:@std/assert@1";
+import { looksLikeCrisis } from "./crisis.ts";
 import { type ChatEvent, parseOptions, relay } from "./relay.ts";
 
 const sse = (pieces: string[]) => {
@@ -44,6 +45,34 @@ Deno.test("a marker split mid-way across pieces is still held back", async () =>
 Deno.test("a lone bracket in the text is released at the end", async () => {
   const events = await run(["Veja [isto"]);
   assertEquals(text(events), "Veja [isto");
+});
+
+const CRISIS_PHRASES = [
+  "não quero mais viver",
+  "não quero viver",
+  "queria desaparecer",
+  "não aguento mais",
+  "me cortei",
+  "tomei os remédios",
+  "autolesão",
+  "I don't want to live",
+  "I dont want to live",
+  "end my life",
+  "better off dead",
+  "quero morrer",
+  "ele me bate",
+];
+
+Deno.test("crisis fixtures match in both languages", () => {
+  for (const phrase of CRISIS_PHRASES) {
+    assertEquals(looksLikeCrisis(phrase), true, phrase);
+  }
+});
+
+Deno.test("ordinary talk stays out of the crisis path", () => {
+  for (const phrase of ["vou me matar de rir", "brigamos por causa da louça"]) {
+    assertEquals(looksLikeCrisis(phrase), false, phrase);
+  }
 });
 
 Deno.test("options are cut to three and forty characters", () => {

@@ -6,6 +6,9 @@ const int chatMessageMaxLength = 1000;
 /// How many earlier turns are sent along so the mascot keeps the thread.
 const int chatHistoryTurns = 12;
 
+/// How long a reply may stay silent before it is treated as interrupted.
+const Duration chatIdleTimeout = Duration(seconds: 45);
+
 enum ChatRole(final String wire) {
   user('user'),
   mascot('mascot'),
@@ -25,18 +28,36 @@ final class const ChatMessage({
   final bool isStreaming = false,
   final bool isInterrupted = false,
   final bool isCrisis = false,
+  final bool excludeFromHistory = false,
+  final String? retryText,
 }) with Equatable {
-  ChatMessage copyWith({String? text, bool? isStreaming, bool? isInterrupted}) => ChatMessage(
+  ChatMessage copyWith({
+    String? text,
+    bool? isStreaming,
+    bool? isInterrupted,
+    bool? excludeFromHistory,
+  }) => ChatMessage(
     id: id,
     role: role,
     text: text ?? this.text,
     isStreaming: isStreaming ?? this.isStreaming,
     isInterrupted: isInterrupted ?? this.isInterrupted,
     isCrisis: isCrisis,
+    excludeFromHistory: excludeFromHistory ?? this.excludeFromHistory,
+    retryText: retryText,
   );
 
   @override
-  List<Object?> get props => [id, role, text, isStreaming, isInterrupted, isCrisis];
+  List<Object?> get props => [
+    id,
+    role,
+    text,
+    isStreaming,
+    isInterrupted,
+    isCrisis,
+    excludeFromHistory,
+    retryText,
+  ];
 }
 
 /// What the server streams back.
@@ -51,9 +72,11 @@ final class const ChatCrisis() extends ChatEvent;
 final class const ChatError(final String code) extends ChatEvent;
 
 final RegExp _crisis = RegExp(
-  'suic[ií]d|me matar|quero morrer|n[aã]o quero mais viver|acabar com tudo|me machucar|me cortar|'
-  'autolesion|automutila|tirar minha vida|kill myself|want to die|end it all|hurt myself|'
-  'self[- ]?harm|take my own life|ele me bate|ela me bate|me agrid|me amea[cç]|'
+  'suic[ií]d|me matar(?! de rir)|quero morrer|n[aã]o quero mais viver|n[aã]o quero viver|'
+  'acabar com tudo|me machucar|me cortar|me cortei|autolesion|autoles[aã]o|automutila|'
+  'tirar minha vida|queria desaparecer|n[aã]o aguento mais|tomei os rem[eé]dios|'
+  'kill myself|want to die|end it all|end my life|hurt myself|self[- ]?harm|take my own life|'
+  "i don'?t want to live|better off dead|ele me bate|ela me bate|me agrid|me amea[cç]|"
   'tenho medo (dele|dela|do meu)|hits me|beats me|afraid of (him|her|my partner)|threatens me',
   caseSensitive: false,
 );

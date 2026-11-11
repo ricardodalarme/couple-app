@@ -326,24 +326,44 @@ create table public.learned_items (
 create index learned_items_author_idx on public.learned_items (author_id, status);
 alter table public.chat_messages enable row level security;
 alter table public.learned_items enable row level security;
-grant select, delete on public.chat_messages to authenticated;
+grant select on public.chat_messages to authenticated;
 grant select, delete on public.learned_items to authenticated;
+grant insert (target, text, excerpt) on public.learned_items to authenticated;
 grant update (text, status) on public.learned_items to authenticated;
 create policy chat_messages_select_own on public.chat_messages for select to authenticated using (author_id = (select auth.uid()));
-create policy chat_messages_delete_own on public.chat_messages for delete to authenticated using (author_id = (select auth.uid()));
 create policy learned_items_select_own on public.learned_items for select to authenticated using (author_id = (select auth.uid()));
+create policy learned_items_insert_own on public.learned_items for insert to authenticated with check (author_id = (select auth.uid()));
 create policy learned_items_update_own on public.learned_items for update to authenticated using (author_id = (select auth.uid())) with check (author_id = (select auth.uid()));
 create policy learned_items_delete_own on public.learned_items for delete to authenticated using (author_id = (select auth.uid()));
 create trigger learned_items_set_updated_at before update on public.learned_items for each row execute function private.set_updated_at();
 
--- Messages left today for the caller (Plus only; "O Mascote precisa descansar e volta amanhã").
-create function public.chat_messages_left() returns integer
+-- Messages left today for a profile (Plus only; "O Mascote precisa descansar e volta amanhã").
+create function private.chat_messages_left(p_profile_id uuid) returns integer
 language sql stable security definer set search_path = '' as $$
   select greatest(0,
-    (select value::integer from public.app_config
-     where key = case when private.has_plus(auth.uid()) then 'chat_messages_per_day_plus' else 'chat_messages_per_day_free' end)
+    coalesce((select value::integer from public.app_config
+      where key = case when private.has_plus(p_profile_id) then 'chat_messages_per_day_plus' else 'chat_messages_per_day_free' end), 0)
     - (select count(*)::integer from public.chat_messages m
-       where m.author_id = auth.uid() and m.role = 'user' and m.created_at >= date_trunc('day', now())));
+       where m.author_id = p_profile_id and m.role = 'user' and m.created_at >= date_trunc('day', now())));
+$$;
+
+-- Reserves one message for the caller and returns its row id, or null when the allowance is gone.
+create function private.take_chat_message(p_profile_id uuid) returns uuid
+language plpgsql security definer set search_path = '' as $$
+declare
+  v_left integer;
+  v_id uuid;
+begin
+  perform pg_advisory_xact_lock(hashtextextended(p_profile_id::text, 0));
+  v_left := private.chat_messages_left(p_profile_id);
+  if v_left <= 0 then return null; end if;
+  insert into public.chat_messages (author_id, role) values (p_profile_id, 'user') returning id into v_id;
+  return v_id;
+end $$;
+
+create function public.chat_messages_left() returns integer
+language sql stable security definer set search_path = '' as $$
+  select private.chat_messages_left(auth.uid());
 $$;
 grant execute on function public.chat_messages_left() to authenticated;
 

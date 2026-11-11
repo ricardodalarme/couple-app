@@ -2,8 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
 import 'package:flutter_bloc_starter/features/chat/presentation/chat/cubit/chat_cubit.dart';
+import 'package:flutter_bloc_starter/features/chat/presentation/chat/widgets/save_learning_sheet.dart';
 import 'package:flutter_bloc_starter/features/plus/presentation/lock/plus_lock.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -32,17 +34,32 @@ class const ChatPage({final ChatMode mode = ChatMode.free, super.key})
     final cubit = context.read<ChatCubit>();
 
     return BaseView(
+      appBar: BaseAppBar(
+        trailing: BaseTextLink(
+          text: l10n.learnedLink,
+          onPressed: () => context.pushRoute(const LearnedItemsRoute()),
+        ),
+      ),
       body: BlocListener<ChatCubit, ChatState>(
         listenWhen: (previous, current) =>
             previous.saveAction != current.saveAction ||
+            previous.saveLearningAction != current.saveLearningAction ||
             previous.enableAction != current.enableAction,
         listener: (context, state) {
-          final failure = switch ((state.saveAction, state.enableAction)) {
-            (Failure(:final exception), _) || (_, Failure(:final exception)) => exception,
+          final failure = switch ((
+            state.saveAction,
+            state.saveLearningAction,
+            state.enableAction,
+          )) {
+            (Failure(:final exception), _, _) ||
+            (_, Failure(:final exception), _) ||
+            (_, _, Failure(:final exception)) => exception,
             _ => null,
           };
           if (failure != null) {
             BaseToast.show(context, l10n.errors.selectOrFallback(failure.l10nKey));
+          } else if (state.saveLearningAction is Success) {
+            BaseToast.show(context, l10n.learningSaved);
           } else if (state.saveAction is Success) {
             BaseToast.show(context, l10n.slipSaved);
           }
@@ -80,6 +97,16 @@ class const ChatPage({final ChatMode mode = ChatMode.free, super.key})
               title: l10n.unavailableTitle,
               text: l10n.unavailableText,
             ),
+            ChatStage.plusRequired => BaseStackedContent(
+              body: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Semantics(header: true, child: Text(l10n.title, style: context.text.titleXl)),
+                  const SizedBox(height: AppSpace.s16),
+                  PlusLock(title: l10n.plusTitle, text: l10n.plusText),
+                ],
+              ),
+            ),
             ChatStage.ready || ChatStage.limitReached => _Conversation(
               isLimitReached: value == ChatStage.limitReached,
             ),
@@ -94,10 +121,11 @@ class const _Conversation({required final bool isLimitReached}) extends Stateles
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.chat;
+    final isOffline = context.select((ConnectivityCubit cubit) => cubit.state.isOffline);
     final messages = context.select((ChatCubit cubit) => cubit.state.messages);
     final options = context.select((ChatCubit cubit) => cubit.state.options);
     final draft = context.select((ChatCubit cubit) => cubit.state.draft);
-    final canSend = context.select((ChatCubit cubit) => cubit.state.canSend);
+    final canSend = context.select((ChatCubit cubit) => cubit.state.canSend) && !isOffline;
     final isReplying = context.select((ChatCubit cubit) => cubit.state.isReplying);
     final messagesLeft = context.select((ChatCubit cubit) => cubit.state.messagesLeft);
     final cubit = context.read<ChatCubit>();
@@ -144,7 +172,7 @@ class const _Conversation({required final bool isLimitReached}) extends Stateles
             BaseTextField(
               text: draft,
               hint: l10n.inputHint,
-              isEnabled: !isReplying,
+              isEnabled: !isReplying && !isOffline,
               onChanged: cubit.onDraftChanged,
               onSubmitted: (_) => canSend ? cubit.sendDraft() : null,
               trailingAction: BaseTextLink(
@@ -154,7 +182,7 @@ class const _Conversation({required final bool isLimitReached}) extends Stateles
             ),
             const SizedBox(height: AppSpace.s4),
             Text(
-              l10n.messagesLeft(count: messagesLeft),
+              isOffline ? l10n.offline : l10n.messagesLeft(count: messagesLeft),
               style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
             ),
           ],
@@ -193,13 +221,39 @@ class const _Message({required final ChatMessage message}) extends StatelessWidg
         variant: message.isInterrupted ? BaseBubbleVariant.failure : BaseBubbleVariant.other,
         text: message.text.isEmpty ? l10n.interrupted : message.text,
         action: message.isInterrupted
-            ? BaseTextLink(text: l10n.retry, onPressed: cubit.retry)
+            ? BaseTextLink(text: l10n.retry, onPressed: () => cubit.retry(message))
             : (message.isStreaming
                   ? null
-                  : BaseTextLink(
-                      text: l10n.saveAsSlip,
-                      onPressed: () => cubit.saveAsSlip(message),
+                  : Wrap(
+                      spacing: AppSpace.s12,
+                      runSpacing: AppSpace.s4,
+                      children: [
+                        BaseTextLink(
+                          text: l10n.saveAsSlip,
+                          onPressed: () => cubit.saveAsSlip(message),
+                        ),
+                        BaseTextLink(
+                          text: l10n.saveLearning,
+                          onPressed: () => _saveLearning(context, message),
+                        ),
+                      ],
                     )),
+      ),
+    );
+  }
+
+  Future<void> _saveLearning(BuildContext context, ChatMessage message) async {
+    final l10n = context.l10n.chat;
+    final cubit = context.read<ChatCubit>();
+
+    await BaseSheet.show<void>(
+      context: context,
+      title: l10n.learningSheetTitle,
+      child: SaveLearningSheet(
+        initialText: message.text,
+        onSave: (target, text) {
+          cubit.saveLearning(target: target, text: text, excerpt: message.text);
+        },
       ),
     );
   }

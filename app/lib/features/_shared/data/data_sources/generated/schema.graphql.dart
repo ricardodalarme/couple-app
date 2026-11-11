@@ -25218,6 +25218,106 @@ class InputLearnedItemsFilter {
   }
 }
 
+class InputLearnedItemsInsertInput {
+  factory InputLearnedItemsInsertInput({String? target, String? text, String? excerpt}) =>
+      InputLearnedItemsInsertInput._({
+        if (target != null) r'target': target,
+        if (text != null) r'text': text,
+        if (excerpt != null) r'excerpt': excerpt,
+      });
+
+  InputLearnedItemsInsertInput._(this._$data);
+
+  factory InputLearnedItemsInsertInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('target')) {
+      final l$target = data['target'];
+      result$data['target'] = (l$target as String?);
+    }
+    if (data.containsKey('text')) {
+      final l$text = data['text'];
+      result$data['text'] = (l$text as String?);
+    }
+    if (data.containsKey('excerpt')) {
+      final l$excerpt = data['excerpt'];
+      result$data['excerpt'] = (l$excerpt as String?);
+    }
+    return InputLearnedItemsInsertInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get target => (_$data['target'] as String?);
+
+  String? get text => (_$data['text'] as String?);
+
+  String? get excerpt => (_$data['excerpt'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('target')) {
+      final l$target = target;
+      result$data['target'] = l$target;
+    }
+    if (_$data.containsKey('text')) {
+      final l$text = text;
+      result$data['text'] = l$text;
+    }
+    if (_$data.containsKey('excerpt')) {
+      final l$excerpt = excerpt;
+      result$data['excerpt'] = l$excerpt;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputLearnedItemsInsertInput || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$target = target;
+    final lOther$target = other.target;
+    if (_$data.containsKey('target') != other._$data.containsKey('target')) {
+      return false;
+    }
+    if (l$target != lOther$target) {
+      return false;
+    }
+    final l$text = text;
+    final lOther$text = other.text;
+    if (_$data.containsKey('text') != other._$data.containsKey('text')) {
+      return false;
+    }
+    if (l$text != lOther$text) {
+      return false;
+    }
+    final l$excerpt = excerpt;
+    final lOther$excerpt = other.excerpt;
+    if (_$data.containsKey('excerpt') != other._$data.containsKey('excerpt')) {
+      return false;
+    }
+    if (l$excerpt != lOther$excerpt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$target = target;
+    final l$text = text;
+    final l$excerpt = excerpt;
+    return Object.hashAll([
+      _$data.containsKey('target') ? l$target : const {},
+      _$data.containsKey('text') ? l$text : const {},
+      _$data.containsKey('excerpt') ? l$excerpt : const {},
+    ]);
+  }
+}
+
 class InputLearnedItemsOrderBy {
   factory InputLearnedItemsOrderBy({
     EnumOrderByDirection? id,

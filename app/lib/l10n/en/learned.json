@@ -1,0 +1,33 @@
+{
+  "title": "What I learned",
+  "intro": "Things you chose to keep from the conversation. Only you see them.",
+  "pendingTitle": "To review",
+  "confirmedTitle": "Confirmed",
+  "targets(map)": {
+    "partnerFact": "About my partner",
+    "date": "A date",
+    "memory": "A memory",
+    "commitment": "A promise"
+  },
+  "confirm": "Confirm",
+  "edit": "Edit",
+  "discard": "Discard",
+  "confirmTitle": "Confirm this learning?",
+  "confirmText": "It will show in What I learned. Only you see it.",
+  "discardTitle": "Discard this learning?",
+  "discardText": "It will not be saved.",
+  "discardConfirm": "Discard",
+  "editTitle": "Edit learning",
+  "editHint": "What you want to keep",
+  "save": "Save",
+  "partnerFactLabel": "From the conversation",
+  "updated": "Learning updated",
+  "emptyTitle": "Nothing kept yet",
+  "emptyText": "When you want, save a reply from the conversation to remember it later.",
+  "errorTitle": "Couldn't load",
+  "errorText": "Try again in a moment.",
+  "errors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't do that right now. Try again."
+  }
+}

@@ -116,6 +116,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$language$en language = _Translations$language$en._(_root);
   @override
+  late final _Translations$learned$en learned = _Translations$learned$en._(_root);
+  @override
   late final _Translations$lists$en lists = _Translations$lists$en._(_root);
   @override
   late final _Translations$logistics$en logistics = _Translations$logistics$en._(_root);
@@ -583,6 +585,22 @@ class _Translations$chat$en extends Translations$chat$pt {
   @override
   String get slipSaved => 'Slip saved';
   @override
+  String get saveLearning => 'Save as learning';
+  @override
+  String get learningSheetTitle => 'Save as learning';
+  @override
+  String get learningSheetTarget => 'What is it about?';
+  @override
+  String get learningSheetHint => 'What you want to keep';
+  @override
+  String get learningSave => 'Save';
+  @override
+  String get learningSaved => 'Learning saved';
+  @override
+  String get learnedLink => 'What I learned';
+  @override
+  String get offline => 'You\'re offline. The chat resumes when you reconnect.';
+  @override
   String get interrupted => 'The reply was interrupted.';
   @override
   String get retry => 'Try again';
@@ -590,6 +608,10 @@ class _Translations$chat$en extends Translations$chat$pt {
   String get limitTitle => 'Today\'s messages are used up';
   @override
   String get limitText => 'Come back tomorrow, or see Plus to talk more.';
+  @override
+  String get plusTitle => 'The chat is part of Plus';
+  @override
+  String get plusText => 'The mascot is available on Plus, with 20 messages a day.';
   @override
   String get crisisTitle => 'You are not alone';
   @override
@@ -2161,6 +2183,69 @@ class _Translations$language$en extends Translations$language$pt {
   String get languageNote => 'English is finished later.';
   @override
   String get saveError => 'Could not save. Try again.';
+}
+
+// Path: learned
+class _Translations$learned$en extends Translations$learned$pt {
+  _Translations$learned$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'What I learned';
+  @override
+  String get intro => 'Things you chose to keep from the conversation. Only you see them.';
+  @override
+  String get pendingTitle => 'To review';
+  @override
+  String get confirmedTitle => 'Confirmed';
+  @override
+  Map<String, String> get targets => {
+    'partnerFact': 'About my partner',
+    'date': 'A date',
+    'memory': 'A memory',
+    'commitment': 'A promise',
+  };
+  @override
+  String get confirm => 'Confirm';
+  @override
+  String get edit => 'Edit';
+  @override
+  String get discard => 'Discard';
+  @override
+  String get confirmTitle => 'Confirm this learning?';
+  @override
+  String get confirmText => 'It will show in What I learned. Only you see it.';
+  @override
+  String get discardTitle => 'Discard this learning?';
+  @override
+  String get discardText => 'It will not be saved.';
+  @override
+  String get discardConfirm => 'Discard';
+  @override
+  String get editTitle => 'Edit learning';
+  @override
+  String get editHint => 'What you want to keep';
+  @override
+  String get save => 'Save';
+  @override
+  String get partnerFactLabel => 'From the conversation';
+  @override
+  String get updated => 'Learning updated';
+  @override
+  String get emptyTitle => 'Nothing kept yet';
+  @override
+  String get emptyText => 'When you want, save a reply from the conversation to remember it later.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Try again in a moment.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t do that right now. Try again.',
+  };
 }
 
 // Path: lists
@@ -6762,10 +6847,20 @@ extension on TranslationsEn {
           'chat.messagesLeft' => ({required Object count}) => '${count} messages left today',
           'chat.saveAsSlip' => 'Make it a slip',
           'chat.slipSaved' => 'Slip saved',
+          'chat.saveLearning' => 'Save as learning',
+          'chat.learningSheetTitle' => 'Save as learning',
+          'chat.learningSheetTarget' => 'What is it about?',
+          'chat.learningSheetHint' => 'What you want to keep',
+          'chat.learningSave' => 'Save',
+          'chat.learningSaved' => 'Learning saved',
+          'chat.learnedLink' => 'What I learned',
+          'chat.offline' => 'You\'re offline. The chat resumes when you reconnect.',
           'chat.interrupted' => 'The reply was interrupted.',
           'chat.retry' => 'Try again',
           'chat.limitTitle' => 'Today\'s messages are used up',
           'chat.limitText' => 'Come back tomorrow, or see Plus to talk more.',
+          'chat.plusTitle' => 'The chat is part of Plus',
+          'chat.plusText' => 'The mascot is available on Plus, with 20 messages a day.',
           'chat.crisisTitle' => 'You are not alone',
           'chat.crisisText' => 'It sounds like you are going through something very heavy. If you are in danger right now, call your local emergency service or reach someone you trust. I am not the right help for this.',
           'chat.crisisSafeMode' => 'Hide the app (safe mode)',
@@ -7134,6 +7229,9 @@ extension on TranslationsEn {
           'games.hub.stateFinished' => 'Finished',
           'games.hub.stateCancelled' => 'Invitation cancelled',
           'games.hub.stateExpired' => 'Invitation expired',
+          _ => null,
+        } ??
+        switch (path) {
           'games.hub.lockChip' => 'Needs both of you',
           'games.hub.noPartnerNote' =>
             'Games need both of you. When your partner joins, you can play.',
@@ -7147,9 +7245,6 @@ extension on TranslationsEn {
           'games.kinds.howWell.title' => 'How well you know me',
           'games.kinds.howWell.intro' => 'Each of you answers about yourself and guesses the other\'s answer. Then comes the conversation.',
           'games.kinds.twentyQuestions.title' => '20 questions',
-          _ => null,
-        } ??
-        switch (path) {
           'games.kinds.twentyQuestions.intro' =>
             'Light questions to answer in private and reveal together.',
           'games.kinds.neverHaveWe.title' => 'Never have we',
@@ -7771,6 +7866,34 @@ extension on TranslationsEn {
           'language.comingSoon' => 'Coming soon',
           'language.languageNote' => 'English is finished later.',
           'language.saveError' => 'Could not save. Try again.',
+          'learned.title' => 'What I learned',
+          'learned.intro' => 'Things you chose to keep from the conversation. Only you see them.',
+          'learned.pendingTitle' => 'To review',
+          'learned.confirmedTitle' => 'Confirmed',
+          'learned.targets.partnerFact' => 'About my partner',
+          'learned.targets.date' => 'A date',
+          'learned.targets.memory' => 'A memory',
+          'learned.targets.commitment' => 'A promise',
+          'learned.confirm' => 'Confirm',
+          'learned.edit' => 'Edit',
+          'learned.discard' => 'Discard',
+          'learned.confirmTitle' => 'Confirm this learning?',
+          'learned.confirmText' => 'It will show in What I learned. Only you see it.',
+          'learned.discardTitle' => 'Discard this learning?',
+          'learned.discardText' => 'It will not be saved.',
+          'learned.discardConfirm' => 'Discard',
+          'learned.editTitle' => 'Edit learning',
+          'learned.editHint' => 'What you want to keep',
+          'learned.save' => 'Save',
+          'learned.partnerFactLabel' => 'From the conversation',
+          'learned.updated' => 'Learning updated',
+          'learned.emptyTitle' => 'Nothing kept yet',
+          'learned.emptyText' =>
+            'When you want, save a reply from the conversation to remember it later.',
+          'learned.errorTitle' => 'Couldn\'t load',
+          'learned.errorText' => 'Try again in a moment.',
+          'learned.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'learned.errors.other' => 'Couldn\'t do that right now. Try again.',
           'lists.title' => 'Lists',
           'lists.subtitle' => 'Trips, places and films, shared or just for you.',
           'lists.newList' => 'New list',
@@ -7796,6 +7919,9 @@ extension on TranslationsEn {
           'lists.delete' => 'Delete',
           'lists.renameTitle' => 'Rename list',
           'lists.save' => 'Save',
+          _ => null,
+        } ??
+        switch (path) {
           'lists.deleteTitle' => 'Delete list?',
           'lists.deleteTextShared' => 'The list and everything in it will be gone for both of you.',
           'lists.deleteTextPrivate' => 'The list and everything in it will be gone for good.',
@@ -7833,9 +7959,6 @@ extension on TranslationsEn {
           'logistics.partner' => 'My partner',
           'logistics.both' => 'Both of us',
           'logistics.assignMe' => 'I\'ll take it',
-          _ => null,
-        } ??
-        switch (path) {
           'logistics.delete' => 'Delete',
           'logistics.doneTitle' => 'Done',
           'logistics.emptyTitle' => 'Nothing here',
@@ -8374,6 +8497,9 @@ extension on TranslationsEn {
           'profileDetails.loadErrorTitle' => 'Could not load your profile',
           'profileDetails.loadErrorText' => 'Check your connection and try again.',
           'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
+          _ => null,
+        } ??
+        switch (path) {
           'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
           'profileDetails.timeZones.America/Bogota' => 'Bogotá',
           'profileDetails.timeZones.America/Mexico_City' => 'Mexico City',
@@ -8416,9 +8542,6 @@ extension on TranslationsEn {
           'profileSetup.months.3' => 'April',
           'profileSetup.months.4' => 'May',
           'profileSetup.months.5' => 'June',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.months.6' => 'July',
           'profileSetup.months.7' => 'August',
           'profileSetup.months.8' => 'September',
@@ -8941,6 +9064,9 @@ extension on TranslationsEn {
           'slipKind.kinds.other' => '',
           'slipKind.specific.title' => 'What exactly did they do?',
           'slipKind.specific.titleHighlight' => 'exactly',
+          _ => null,
+        } ??
+        switch (path) {
           'slipKind.specific.subtitle' => 'Details help you remember why it mattered.',
           'slipKind.specific.hint' => 'E.g. took out the trash without being asked',
           'slipKind.specific.feelingLabel' => 'How did you feel?',
@@ -8980,9 +9106,6 @@ extension on TranslationsEn {
           'slipsList.scopeWeek' => 'This week',
           'slipsList.scopeAll' => 'All',
           'slipsList.private' => 'Private',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.thisWeek' => 'This week',
           'slipsList.lastWeek' => 'Last week',
           'slipsList.weekRange' => ({
@@ -9566,6 +9689,9 @@ extension on TranslationsEn {
           'widgets.statesOfflineSection' => 'Offline',
           'widgets.statesOfflineTitle' => 'Showing the last saved data',
           'widgets.statesOfflineSubtitle' => 'Updates when back online',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.statesPrecedenceNote' => 'When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).',
           'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
             'Could not save widget preferences right now.',

@@ -93,6 +93,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
   late final Translations$language$pt language = Translations$language$pt.internal(_root);
+  late final Translations$learned$pt learned = Translations$learned$pt.internal(_root);
   late final Translations$lists$pt lists = Translations$lists$pt.internal(_root);
   late final Translations$logistics$pt logistics = Translations$logistics$pt.internal(_root);
   late final Translations$loveStyle$pt loveStyle = Translations$loveStyle$pt.internal(_root);
@@ -606,6 +607,30 @@ class Translations$chat$pt {
   /// pt: 'Slip guardado'
   String get slipSaved => 'Slip guardado';
 
+  /// pt: 'Salvar aprendizado'
+  String get saveLearning => 'Salvar aprendizado';
+
+  /// pt: 'Salvar aprendizado'
+  String get learningSheetTitle => 'Salvar aprendizado';
+
+  /// pt: 'Sobre o que é?'
+  String get learningSheetTarget => 'Sobre o que é?';
+
+  /// pt: 'O que você quer guardar'
+  String get learningSheetHint => 'O que você quer guardar';
+
+  /// pt: 'Guardar'
+  String get learningSave => 'Guardar';
+
+  /// pt: 'Aprendizado guardado'
+  String get learningSaved => 'Aprendizado guardado';
+
+  /// pt: 'O que aprendi'
+  String get learnedLink => 'O que aprendi';
+
+  /// pt: 'Sem conexão. A conversa volta quando você reconectar.'
+  String get offline => 'Sem conexão. A conversa volta quando você reconectar.';
+
   /// pt: 'A resposta foi interrompida.'
   String get interrupted => 'A resposta foi interrompida.';
 
@@ -617,6 +642,12 @@ class Translations$chat$pt {
 
   /// pt: 'Volte amanhã, ou veja o Plus para conversar mais.'
   String get limitText => 'Volte amanhã, ou veja o Plus para conversar mais.';
+
+  /// pt: 'A conversa faz parte do Plus'
+  String get plusTitle => 'A conversa faz parte do Plus';
+
+  /// pt: 'A mascote está disponível no Plus, com 20 mensagens por dia.'
+  String get plusText => 'A mascote está disponível no Plus, com 20 mensagens por dia.';
 
   /// pt: 'Você não está sozinho'
   String get crisisTitle => 'Você não está sozinho';
@@ -2600,6 +2631,90 @@ class Translations$language$pt {
 
   /// pt: 'Não foi possível salvar. Tente novamente.'
   String get saveError => 'Não foi possível salvar. Tente novamente.';
+}
+
+// Path: learned
+class Translations$learned$pt {
+  Translations$learned$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'O que aprendi'
+  String get title => 'O que aprendi';
+
+  /// pt: 'Coisas que você escolheu guardar da conversa. Só você vê.'
+  String get intro => 'Coisas que você escolheu guardar da conversa. Só você vê.';
+
+  /// pt: 'Para revisar'
+  String get pendingTitle => 'Para revisar';
+
+  /// pt: 'Confirmado'
+  String get confirmedTitle => 'Confirmado';
+
+  Map<String, String> get targets => {
+    'partnerFact': 'Sobre meu par',
+    'date': 'Um date',
+    'memory': 'Uma memória',
+    'commitment': 'Um combinado',
+  };
+
+  /// pt: 'Confirmar'
+  String get confirm => 'Confirmar';
+
+  /// pt: 'Editar'
+  String get edit => 'Editar';
+
+  /// pt: 'Descartar'
+  String get discard => 'Descartar';
+
+  /// pt: 'Confirmar este aprendizado?'
+  String get confirmTitle => 'Confirmar este aprendizado?';
+
+  /// pt: 'Ele passa a aparecer em O que aprendi. Só você vê.'
+  String get confirmText => 'Ele passa a aparecer em O que aprendi. Só você vê.';
+
+  /// pt: 'Descartar este aprendizado?'
+  String get discardTitle => 'Descartar este aprendizado?';
+
+  /// pt: 'Ele não será guardado.'
+  String get discardText => 'Ele não será guardado.';
+
+  /// pt: 'Descartar'
+  String get discardConfirm => 'Descartar';
+
+  /// pt: 'Editar aprendizado'
+  String get editTitle => 'Editar aprendizado';
+
+  /// pt: 'O que você quer guardar'
+  String get editHint => 'O que você quer guardar';
+
+  /// pt: 'Guardar'
+  String get save => 'Guardar';
+
+  /// pt: 'Da conversa'
+  String get partnerFactLabel => 'Da conversa';
+
+  /// pt: 'Aprendizado atualizado'
+  String get updated => 'Aprendizado atualizado';
+
+  /// pt: 'Nada guardado ainda'
+  String get emptyTitle => 'Nada guardado ainda';
+
+  /// pt: 'Quando quiser, salve uma resposta da conversa para lembrar depois.'
+  String get emptyText => 'Quando quiser, salve uma resposta da conversa para lembrar depois.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Tente de novo em instantes.'
+  String get errorText => 'Tente de novo em instantes.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para fazer isso agora. Tente de novo.',
+  };
 }
 
 // Path: lists
@@ -8380,10 +8495,20 @@ extension on Translations {
           'chat.messagesLeft' => ({required Object count}) => 'Restam ${count} mensagens hoje',
           'chat.saveAsSlip' => 'Virar slip',
           'chat.slipSaved' => 'Slip guardado',
+          'chat.saveLearning' => 'Salvar aprendizado',
+          'chat.learningSheetTitle' => 'Salvar aprendizado',
+          'chat.learningSheetTarget' => 'Sobre o que é?',
+          'chat.learningSheetHint' => 'O que você quer guardar',
+          'chat.learningSave' => 'Guardar',
+          'chat.learningSaved' => 'Aprendizado guardado',
+          'chat.learnedLink' => 'O que aprendi',
+          'chat.offline' => 'Sem conexão. A conversa volta quando você reconectar.',
           'chat.interrupted' => 'A resposta foi interrompida.',
           'chat.retry' => 'Tentar de novo',
           'chat.limitTitle' => 'As mensagens de hoje acabaram',
           'chat.limitText' => 'Volte amanhã, ou veja o Plus para conversar mais.',
+          'chat.plusTitle' => 'A conversa faz parte do Plus',
+          'chat.plusText' => 'A mascote está disponível no Plus, com 20 mensagens por dia.',
           'chat.crisisTitle' => 'Você não está sozinho',
           'chat.crisisText' => 'Parece que você está passando por algo muito pesado. Se estiver em perigo agora, ligue para o serviço de emergência da sua região ou procure alguém de confiança. Eu não sou a ajuda certa para isso.',
           'chat.crisisSafeMode' => 'Esconder o app (modo seguro)',
@@ -8752,6 +8877,9 @@ extension on Translations {
           'games.hub.stateFinished' => 'Terminado',
           'games.hub.stateCancelled' => 'Convite cancelado',
           'games.hub.stateExpired' => 'Convite expirado',
+          _ => null,
+        } ??
+        switch (path) {
           'games.hub.lockChip' => 'Precisa dos dois',
           'games.hub.noPartnerNote' =>
             'Os jogos precisam dos dois. Quando seu par entrar, vocês podem jogar.',
@@ -8763,9 +8891,6 @@ extension on Translations {
           'games.kinds.howWell.title' => 'Quanto você me conhece',
           'games.kinds.howWell.intro' => 'Cada um responde sobre si e tenta adivinhar a resposta do outro. Depois vem a conversa.',
           'games.kinds.twentyQuestions.title' => '20 perguntas',
-          _ => null,
-        } ??
-        switch (path) {
           'games.kinds.twentyQuestions.intro' =>
             'Perguntas leves para responder em privado e revelar juntos.',
           'games.kinds.neverHaveWe.title' => 'Eu nunca, nós dois',
@@ -9390,6 +9515,34 @@ extension on Translations {
           'language.comingSoon' => 'Em breve',
           'language.languageNote' => 'O inglês fica completo depois.',
           'language.saveError' => 'Não foi possível salvar. Tente novamente.',
+          'learned.title' => 'O que aprendi',
+          'learned.intro' => 'Coisas que você escolheu guardar da conversa. Só você vê.',
+          'learned.pendingTitle' => 'Para revisar',
+          'learned.confirmedTitle' => 'Confirmado',
+          'learned.targets.partnerFact' => 'Sobre meu par',
+          'learned.targets.date' => 'Um date',
+          'learned.targets.memory' => 'Uma memória',
+          'learned.targets.commitment' => 'Um combinado',
+          'learned.confirm' => 'Confirmar',
+          'learned.edit' => 'Editar',
+          'learned.discard' => 'Descartar',
+          'learned.confirmTitle' => 'Confirmar este aprendizado?',
+          'learned.confirmText' => 'Ele passa a aparecer em O que aprendi. Só você vê.',
+          'learned.discardTitle' => 'Descartar este aprendizado?',
+          'learned.discardText' => 'Ele não será guardado.',
+          'learned.discardConfirm' => 'Descartar',
+          'learned.editTitle' => 'Editar aprendizado',
+          'learned.editHint' => 'O que você quer guardar',
+          'learned.save' => 'Guardar',
+          'learned.partnerFactLabel' => 'Da conversa',
+          'learned.updated' => 'Aprendizado atualizado',
+          'learned.emptyTitle' => 'Nada guardado ainda',
+          'learned.emptyText' =>
+            'Quando quiser, salve uma resposta da conversa para lembrar depois.',
+          'learned.errorTitle' => 'Não deu para carregar',
+          'learned.errorText' => 'Tente de novo em instantes.',
+          'learned.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'learned.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'lists.title' => 'Listas',
           'lists.subtitle' => 'Viagens, lugares e filmes, compartilhados ou só seus.',
           'lists.newList' => 'Nova lista',
@@ -9415,6 +9568,9 @@ extension on Translations {
           'lists.delete' => 'Apagar',
           'lists.renameTitle' => 'Renomear lista',
           'lists.save' => 'Guardar',
+          _ => null,
+        } ??
+        switch (path) {
           'lists.deleteTitle' => 'Apagar lista?',
           'lists.deleteTextShared' => 'A lista e tudo o que está nela somem para vocês dois.',
           'lists.deleteTextPrivate' => 'A lista e tudo o que está nela somem de vez.',
@@ -9452,9 +9608,6 @@ extension on Translations {
           'logistics.partner' => 'Meu par',
           'logistics.both' => 'Nós dois',
           'logistics.assignMe' => 'Eu cuido',
-          _ => null,
-        } ??
-        switch (path) {
           'logistics.delete' => 'Apagar',
           'logistics.doneTitle' => 'Feitas',
           'logistics.emptyTitle' => 'Nada por aqui',
@@ -9995,6 +10148,9 @@ extension on Translations {
           'profileDetails.loadErrorTitle' => 'Não deu para carregar seu perfil',
           'profileDetails.loadErrorText' => 'Confira a conexão e tente de novo.',
           'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
+          _ => null,
+        } ??
+        switch (path) {
           'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
           'profileDetails.timeZones.America/Bogota' => 'Bogotá',
           'profileDetails.timeZones.America/Mexico_City' => 'Cidade do México',
@@ -10037,9 +10193,6 @@ extension on Translations {
           'profileSetup.months.3' => 'abril',
           'profileSetup.months.4' => 'maio',
           'profileSetup.months.5' => 'junho',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.months.6' => 'julho',
           'profileSetup.months.7' => 'agosto',
           'profileSetup.months.8' => 'setembro',
@@ -10564,6 +10717,9 @@ extension on Translations {
           'slipKind.kinds.other' => '',
           'slipKind.specific.title' => 'O que exatamente ele fez?',
           'slipKind.specific.titleHighlight' => 'exatamente',
+          _ => null,
+        } ??
+        switch (path) {
           'slipKind.specific.subtitle' => 'Detalhes ajudam a lembrar por que importou.',
           'slipKind.specific.hint' => 'Ex.: levou o lixo sem eu pedir',
           'slipKind.specific.feelingLabel' => 'Como você se sentiu?',
@@ -10602,9 +10758,6 @@ extension on Translations {
           'slipsList.scopeWeek' => 'Esta semana',
           'slipsList.scopeAll' => 'Todos',
           'slipsList.private' => 'Privado',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.thisWeek' => 'Esta semana',
           'slipsList.lastWeek' => 'Semana passada',
           'slipsList.weekRange' => ({
@@ -11191,6 +11344,9 @@ extension on Translations {
           'widgets.statesOfflineSection' => 'Sem conexão',
           'widgets.statesOfflineTitle' => 'Mostrando o último dado',
           'widgets.statesOfflineSubtitle' => 'Atualiza quando voltar a internet',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.statesPrecedenceNote' => 'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).',
           'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
             'Não foi possível salvar as preferências agora.',

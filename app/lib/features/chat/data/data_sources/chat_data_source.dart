@@ -5,8 +5,8 @@ import 'package:flutter_bloc_starter/features/chat/data/data_sources/queries/gen
 import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
 import 'package:network/network.dart';
 
-/// What the app knows before the first message.
-typedef ChatStatus = ({int messagesLeft, bool isEnabled});
+/// What the server knows before the first message.
+typedef ChatSettings = ({int messagesLeft, bool isEnabled});
 
 class ChatDataSource({
   required final GQLClient _client,
@@ -14,7 +14,7 @@ class ChatDataSource({
   required final String _functionUrl,
   required final String _apiKey,
 }) {
-  Future<ChatStatus> getStatus(String profileId) async {
+  Future<ChatSettings> getStatus(String profileId) async {
     final response = await _client.query(
       OptionsQueryChatStatus(
         variables: VariablesQueryChatStatus(profileId: profileId),
@@ -51,6 +51,7 @@ class ChatDataSource({
     required List<({ChatRole role, String text})> history,
     required String locale,
     required ChatMode mode,
+    required String session,
     required String? accessToken,
   }) async* {
     final lines = _restClient.postLines(
@@ -59,6 +60,7 @@ class ChatDataSource({
         'message': message,
         'locale': locale,
         'mode': mode.wire,
+        'session': session,
         'history': [
           for (final turn in history) {'role': turn.role.wire, 'text': turn.text},
         ],

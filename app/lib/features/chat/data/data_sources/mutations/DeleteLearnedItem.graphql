@@ -1,0 +1,5 @@
+mutation DeleteLearnedItem($id: UUID!) {
+  deleteFromLearnedItemsCollection(filter: { id: { eq: $id } }) {
+    affectedCount
+  }
+}
