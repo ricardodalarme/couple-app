@@ -90,6 +90,7 @@ import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/quic
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/slip_detail_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/slip_kind_page.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slips/slips_page.dart';
+import 'package:flutter_bloc_starter/features/spice/presentation/spice/spice_page.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/today_page.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/date_night/date_night_page.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/day/day_page.dart';
@@ -149,6 +150,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: LogisticsRoute.page),
     AutoRoute(page: RitualsRoute.page),
     AutoRoute(page: PartnerProfileRoute.page),
+    AutoRoute(page: SpiceRoute.page),
     AutoRoute(page: ComposeRoute.page),
     AutoRoute(page: UsRoute.page),
     AutoRoute(page: TouchRoute.page),

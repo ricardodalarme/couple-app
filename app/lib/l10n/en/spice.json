@@ -1,0 +1,16 @@
+{
+  "title": "Moments for two",
+  "offText": "This section is hidden by default, behind this setting. It is light, playful cards, nothing explicit. They only show up when you both turn it on, and either of you can turn it off at any time, without notice.",
+  "turnOn": "Turn on",
+  "notNow": "Not now",
+  "waitingText": "You both need to accept. Nothing is sent to your partner; when they turn it on too, the cards show up here.",
+  "readyText": "Light cards for the two of you. Do it or skip it, no pressure.",
+  "drawCard": "Draw a card",
+  "turnOff": "Turn off",
+  "errorTitle": "Couldn't load",
+  "errorText": "Try again in a moment.",
+  "errors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't change that right now. Try again."
+  }
+}

@@ -192,6 +192,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$slipsList$en slipsList = _Translations$slipsList$en._(_root);
   @override
+  late final _Translations$spice$en spice = _Translations$spice$en._(_root);
+  @override
   late final _Translations$sundayCard$en sundayCard = _Translations$sundayCard$en._(_root);
   @override
   late final _Translations$tabs$en tabs = _Translations$tabs$en._(_root);
@@ -3887,6 +3889,8 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   @override
   String get planPlus => 'Plus';
   @override
+  String get spice => 'Moments for two';
+  @override
   String get discreet => 'Discreet mode';
   @override
   String get discreetOn => 'On';
@@ -4147,6 +4151,42 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   String get errorTitle => 'Could not load your slips';
   @override
   String get errorText => 'They are still saved. Try again.';
+}
+
+// Path: spice
+class _Translations$spice$en extends Translations$spice$pt {
+  _Translations$spice$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Moments for two';
+  @override
+  String get offText =>
+      'This section is hidden by default, behind this setting. It is light, playful cards, nothing explicit. They only show up when you both turn it on, and either of you can turn it off at any time, without notice.';
+  @override
+  String get turnOn => 'Turn on';
+  @override
+  String get notNow => 'Not now';
+  @override
+  String get waitingText =>
+      'You both need to accept. Nothing is sent to your partner; when they turn it on too, the cards show up here.';
+  @override
+  String get readyText => 'Light cards for the two of you. Do it or skip it, no pressure.';
+  @override
+  String get drawCard => 'Draw a card';
+  @override
+  String get turnOff => 'Turn off';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Try again in a moment.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t change that right now. Try again.',
+  };
 }
 
 // Path: sundayCard
@@ -7903,6 +7943,7 @@ extension on TranslationsEn {
           'settingsHome.plan' => 'Plan',
           'settingsHome.planFree' => 'Free',
           'settingsHome.planPlus' => 'Plus',
+          'settingsHome.spice' => 'Moments for two',
           'settingsHome.discreet' => 'Discreet mode',
           'settingsHome.discreetOn' => 'On',
           'settingsHome.discreetOff' => 'Off',
@@ -8075,6 +8116,18 @@ extension on TranslationsEn {
           'slipsList.emptyAction' => 'Add a slip',
           'slipsList.errorTitle' => 'Could not load your slips',
           'slipsList.errorText' => 'They are still saved. Try again.',
+          'spice.title' => 'Moments for two',
+          'spice.offText' => 'This section is hidden by default, behind this setting. It is light, playful cards, nothing explicit. They only show up when you both turn it on, and either of you can turn it off at any time, without notice.',
+          'spice.turnOn' => 'Turn on',
+          'spice.notNow' => 'Not now',
+          'spice.waitingText' => 'You both need to accept. Nothing is sent to your partner; when they turn it on too, the cards show up here.',
+          'spice.readyText' => 'Light cards for the two of you. Do it or skip it, no pressure.',
+          'spice.drawCard' => 'Draw a card',
+          'spice.turnOff' => 'Turn off',
+          'spice.errorTitle' => 'Couldn\'t load',
+          'spice.errorText' => 'Try again in a moment.',
+          'spice.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'spice.errors.other' => 'Couldn\'t change that right now. Try again.',
           'sundayCard.title' => 'Your card',
           'sundayCard.edit' => 'Edit',
           'sundayCard.save' => 'Save',
@@ -8224,6 +8277,9 @@ extension on TranslationsEn {
           'temperature.intensityLow' => 'Mild',
           'temperature.intensityTop' => 'Very strong',
           'temperature.intensityLabel' => 'Intensity',
+          _ => null,
+        } ??
+        switch (path) {
           'temperature.result.good.title' => 'That\'s good',
           'temperature.result.good.text' => 'Saved just for you. Carry on with your day.',
           'temperature.result.pause.title' => 'First, breathe',
@@ -8237,9 +8293,6 @@ extension on TranslationsEn {
           'temperature.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
           'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
-          _ => null,
-        } ??
-        switch (path) {
           'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',
           'today.greetingNoName' => 'Hello',
           'today.dateLine' => ({

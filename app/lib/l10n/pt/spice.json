@@ -1,0 +1,16 @@
+{
+  "title": "Momentos a dois",
+  "offText": "Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.",
+  "turnOn": "Ligar",
+  "notNow": "Agora não",
+  "waitingText": "Os dois precisam aceitar. Nada é avisado ao seu par; quando ele também ligar, as cartas aparecem aqui.",
+  "readyText": "Cartas leves para vocês dois. Fazer ou pular, sem pressão.",
+  "drawCard": "Tirar uma carta",
+  "turnOff": "Desligar",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "Tente de novo em instantes.",
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para mudar agora. Tente de novo."
+  }
+}

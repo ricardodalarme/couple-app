@@ -137,6 +137,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$slipDetail$pt slipDetail = Translations$slipDetail$pt.internal(_root);
   late final Translations$slipKind$pt slipKind = Translations$slipKind$pt.internal(_root);
   late final Translations$slipsList$pt slipsList = Translations$slipsList$pt.internal(_root);
+  late final Translations$spice$pt spice = Translations$spice$pt.internal(_root);
   late final Translations$sundayCard$pt sundayCard = Translations$sundayCard$pt.internal(_root);
   late final Translations$tabs$pt tabs = Translations$tabs$pt.internal(_root);
   late final Translations$temperature$pt temperature = Translations$temperature$pt.internal(_root);
@@ -4806,6 +4807,9 @@ class Translations$settingsHome$pt {
   /// pt: 'Plus'
   String get planPlus => 'Plus';
 
+  /// pt: 'Momentos a dois'
+  String get spice => 'Momentos a dois';
+
   /// pt: 'Modo discreto'
   String get discreet => 'Modo discreto';
 
@@ -5123,6 +5127,52 @@ class Translations$slipsList$pt {
 
   /// pt: 'Eles continuam salvos. Tente de novo.'
   String get errorText => 'Eles continuam salvos. Tente de novo.';
+}
+
+// Path: spice
+class Translations$spice$pt {
+  Translations$spice$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Momentos a dois'
+  String get title => 'Momentos a dois';
+
+  /// pt: 'Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.'
+  String get offText =>
+      'Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.';
+
+  /// pt: 'Ligar'
+  String get turnOn => 'Ligar';
+
+  /// pt: 'Agora não'
+  String get notNow => 'Agora não';
+
+  /// pt: 'Os dois precisam aceitar. Nada é avisado ao seu par; quando ele também ligar, as cartas aparecem aqui.'
+  String get waitingText =>
+      'Os dois precisam aceitar. Nada é avisado ao seu par; quando ele também ligar, as cartas aparecem aqui.';
+
+  /// pt: 'Cartas leves para vocês dois. Fazer ou pular, sem pressão.'
+  String get readyText => 'Cartas leves para vocês dois. Fazer ou pular, sem pressão.';
+
+  /// pt: 'Tirar uma carta'
+  String get drawCard => 'Tirar uma carta';
+
+  /// pt: 'Desligar'
+  String get turnOff => 'Desligar';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Tente de novo em instantes.'
+  String get errorText => 'Tente de novo em instantes.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para mudar agora. Tente de novo.',
+  };
 }
 
 // Path: sundayCard
@@ -9370,6 +9420,7 @@ extension on Translations {
           'settingsHome.plan' => 'Plano',
           'settingsHome.planFree' => 'Grátis',
           'settingsHome.planPlus' => 'Plus',
+          'settingsHome.spice' => 'Momentos a dois',
           'settingsHome.discreet' => 'Modo discreto',
           'settingsHome.discreetOn' => 'Ligado',
           'settingsHome.discreetOff' => 'Desligado',
@@ -9541,6 +9592,18 @@ extension on Translations {
           'slipsList.emptyAction' => 'Adicionar um slip',
           'slipsList.errorTitle' => 'Não deu para carregar seus slips',
           'slipsList.errorText' => 'Eles continuam salvos. Tente de novo.',
+          'spice.title' => 'Momentos a dois',
+          'spice.offText' => 'Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.',
+          'spice.turnOn' => 'Ligar',
+          'spice.notNow' => 'Agora não',
+          'spice.waitingText' => 'Os dois precisam aceitar. Nada é avisado ao seu par; quando ele também ligar, as cartas aparecem aqui.',
+          'spice.readyText' => 'Cartas leves para vocês dois. Fazer ou pular, sem pressão.',
+          'spice.drawCard' => 'Tirar uma carta',
+          'spice.turnOff' => 'Desligar',
+          'spice.errorTitle' => 'Não deu para carregar',
+          'spice.errorText' => 'Tente de novo em instantes.',
+          'spice.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'spice.errors.other' => 'Não deu para mudar agora. Tente de novo.',
           'sundayCard.title' => 'Seu cartão',
           'sundayCard.edit' => 'Editar',
           'sundayCard.save' => 'Salvar',
@@ -9692,6 +9755,9 @@ extension on Translations {
           'temperature.intensityLow' => 'Fraca',
           'temperature.intensityTop' => 'Muito forte',
           'temperature.intensityLabel' => 'Intensidade',
+          _ => null,
+        } ??
+        switch (path) {
           'temperature.result.good.title' => 'Que bom',
           'temperature.result.good.text' => 'Registrado só para você. Siga o seu dia.',
           'temperature.result.pause.title' => 'Primeiro, respirar',
@@ -9705,9 +9771,6 @@ extension on Translations {
           'temperature.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
           'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
-          _ => null,
-        } ??
-        switch (path) {
           'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',
           'today.greetingNoName' => 'Olá',
           'today.dateLine' => ({

@@ -2047,6 +2047,22 @@ class SoftStartRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SpicePage]
+class SpiceRoute extends PageRouteInfo<void> {
+  const SpiceRoute({List<PageRouteInfo>? children})
+    : super(SpiceRoute.name, initialChildren: children);
+
+  static const String name = 'SpiceRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const SpicePage());
+    },
+  );
+}
+
+/// generated route for
 /// [StarterPage]
 class StarterRoute extends PageRouteInfo<void> {
   const StarterRoute({List<PageRouteInfo>? children})

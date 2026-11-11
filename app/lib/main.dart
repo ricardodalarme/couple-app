@@ -37,6 +37,7 @@ import 'package:flutter_bloc_starter/features/repair/di/repair_injection_module.
 import 'package:flutter_bloc_starter/features/safety/di/safety_injection_module.dart';
 import 'package:flutter_bloc_starter/features/settings/di/settings_injection_module.dart';
 import 'package:flutter_bloc_starter/features/slips/di/slips_injection_module.dart';
+import 'package:flutter_bloc_starter/features/spice/di/spice_injection_module.dart';
 import 'package:flutter_bloc_starter/features/today/di/today_injection_module.dart';
 import 'package:flutter_bloc_starter/features/together/di/together_injection_module.dart';
 import 'package:flutter_bloc_starter/features/widgets/di/widgets_injection_module.dart';
@@ -95,6 +96,7 @@ void _registerModules() {
     RemindersInjectionModule(),
     RepairInjectionModule(),
     SlipsInjectionModule(),
+    SpiceInjectionModule(),
     TodayInjectionModule(),
     TogetherInjectionModule(),
     WidgetsInjectionModule(),

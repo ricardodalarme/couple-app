@@ -1,0 +1,9 @@
+mutation SetSpiceEnabled($profileId: UUID!, $enabled: Boolean!) {
+  updateProfileSettingsCollection(
+    set: { spiceEnabled: $enabled }
+    filter: { profileId: { eq: $profileId } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

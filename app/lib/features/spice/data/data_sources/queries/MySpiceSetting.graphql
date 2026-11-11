@@ -1,0 +1,10 @@
+query MySpiceSetting($profileId: UUID!) {
+  profileSettingsCollection(filter: { profileId: { eq: $profileId } }, first: 1) {
+    edges {
+      node {
+        profileId
+        spiceEnabled
+      }
+    }
+  }
+}
