@@ -32,9 +32,12 @@ final class const Capsule({
   List<Object?> get props => [id, opensOn, isMine, isShared, body];
 }
 
-/// The earliest day a new capsule can open, seven days from today.
-DateTime capsuleEarliest(DateTime today) => DateTime(today.year, today.month, today.day + 7);
+/// The earliest day a new capsule can open.
+///
+/// The server requires seven days counted from its own UTC date, so one extra day keeps a device
+/// that is behind UTC from being refused in the evening.
+DateTime capsuleEarliest(DateTime today) => DateTime(today.year, today.month, today.day + 8);
 
-/// The latest day a new capsule can open.
+/// The latest day a new capsule can open, one day inside the server's fifty-year limit.
 DateTime capsuleLatest(DateTime today) =>
-    DateTime(today.year + capsuleMaxYears, today.month, today.day);
+    DateTime(today.year + capsuleMaxYears, today.month, today.day - 1);

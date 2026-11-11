@@ -36,6 +36,8 @@
   "errorTitle": "Couldn't load",
   "errorText": "Your capsules are still saved. Try again.",
   "errors(map)": {
+    "CAPSULE_OPENS_TOO_SOON": "Pick a date at least a week ahead.",
+    "CAPSULE_OPENS_TOO_FAR": "Pick a date within the next 50 years.",
     "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
     "other": "Couldn't save right now. Your text is still here."
   },

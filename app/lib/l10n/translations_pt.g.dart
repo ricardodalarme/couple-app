@@ -407,6 +407,8 @@ class Translations$capsules$pt {
   String get errorText => 'Suas cápsulas continuam guardadas. Tente de novo.';
 
   Map<String, String> get errors => {
+    'CAPSULE_OPENS_TOO_SOON': 'Escolha uma data pelo menos uma semana à frente.',
+    'CAPSULE_OPENS_TOO_FAR': 'Escolha uma data dentro dos próximos 50 anos.',
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para guardar agora. Seu texto continua aqui.',
   };
@@ -7620,6 +7622,10 @@ extension on Translations {
           'capsules.emptyText' => 'Escreva uma e escolha o dia em que ela abre.',
           'capsules.errorTitle' => 'Não deu para carregar',
           'capsules.errorText' => 'Suas cápsulas continuam guardadas. Tente de novo.',
+          'capsules.errors.CAPSULE_OPENS_TOO_SOON' =>
+            'Escolha uma data pelo menos uma semana à frente.',
+          'capsules.errors.CAPSULE_OPENS_TOO_FAR' =>
+            'Escolha uma data dentro dos próximos 50 anos.',
           'capsules.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'capsules.errors.other' => 'Não deu para guardar agora. Seu texto continua aqui.',
           'capsules.deleteErrors.other' => 'Não deu para apagar esta cápsula. Ela continua aqui.',
@@ -8090,11 +8096,11 @@ extension on Translations {
           'globalErrors.timeoutTitle' => 'A conexão demorou',
           'globalErrors.timeoutText' => 'Tente de novo em instantes.',
           'globalErrors.rateTitle' => 'Calma aí',
-          'globalErrors.rateText' => 'Muitas tentativas seguidas. Espere um pouco e tente de novo.',
-          'globalErrors.notFoundTitle' => 'Não encontramos',
           _ => null,
         } ??
         switch (path) {
+          'globalErrors.rateText' => 'Muitas tentativas seguidas. Espere um pouco e tente de novo.',
+          'globalErrors.notFoundTitle' => 'Não encontramos',
           'globalErrors.notFoundText' => 'Talvez isso não esteja mais disponível.',
           'globalErrors.retry' => 'Tentar de novo',
           'globalErrors.retryIn' => ({required Object seconds}) => 'Tentar em ${seconds}s',
@@ -8777,11 +8783,11 @@ extension on Translations {
           'memories.monthsShort.4' => 'mai',
           'memories.monthsShort.5' => 'jun',
           'memories.monthsShort.6' => 'jul',
-          'memories.monthsShort.7' => 'ago',
-          'memories.monthsShort.8' => 'set',
           _ => null,
         } ??
         switch (path) {
+          'memories.monthsShort.7' => 'ago',
+          'memories.monthsShort.8' => 'set',
           'memories.monthsShort.9' => 'out',
           'memories.monthsShort.10' => 'nov',
           'memories.monthsShort.11' => 'dez',
@@ -9367,11 +9373,11 @@ extension on Translations {
           'quickSlip.monthsShort.2' => 'mar',
           'quickSlip.monthsShort.3' => 'abr',
           'quickSlip.monthsShort.4' => 'mai',
-          'quickSlip.monthsShort.5' => 'jun',
-          'quickSlip.monthsShort.6' => 'jul',
           _ => null,
         } ??
         switch (path) {
+          'quickSlip.monthsShort.5' => 'jun',
+          'quickSlip.monthsShort.6' => 'jul',
           'quickSlip.monthsShort.7' => 'ago',
           'quickSlip.monthsShort.8' => 'set',
           'quickSlip.monthsShort.9' => 'out',
@@ -9942,11 +9948,11 @@ extension on Translations {
           'tabs.notesLabel' => 'PARA SEU PAR',
           'tabs.notesTitle' => 'Bilhete ou desenho',
           'tabs.notesText' => 'Mande algo curto e carinhoso, quando quiser.',
-          'tabs.usLabel' => 'NÓS',
-          'tabs.usTitle' => 'Sinto saudade de nós',
           _ => null,
         } ??
         switch (path) {
+          'tabs.usLabel' => 'NÓS',
+          'tabs.usTitle' => 'Sinto saudade de nós',
           'tabs.usText' => 'Um toque leve para o seu par, sem cobrança.',
           'tabs.touchLabel' => 'TOQUE',
           'tabs.touchTitle' => 'Cartas de toque',

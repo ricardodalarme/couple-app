@@ -418,6 +418,8 @@ class _Translations$capsules$en extends Translations$capsules$pt {
   String get errorText => 'Your capsules are still saved. Try again.';
   @override
   Map<String, String> get errors => {
+    'CAPSULE_OPENS_TOO_SOON': 'Pick a date at least a week ahead.',
+    'CAPSULE_OPENS_TOO_FAR': 'Pick a date within the next 50 years.',
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t save right now. Your text is still here.',
   };
@@ -6104,6 +6106,8 @@ extension on TranslationsEn {
           'capsules.emptyText' => 'Write one and choose the day it opens.',
           'capsules.errorTitle' => 'Couldn\'t load',
           'capsules.errorText' => 'Your capsules are still saved. Try again.',
+          'capsules.errors.CAPSULE_OPENS_TOO_SOON' => 'Pick a date at least a week ahead.',
+          'capsules.errors.CAPSULE_OPENS_TOO_FAR' => 'Pick a date within the next 50 years.',
           'capsules.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'capsules.errors.other' => 'Couldn\'t save right now. Your text is still here.',
           'capsules.deleteErrors.other' => 'Couldn\'t delete this capsule. It\'s still here.',
@@ -6572,11 +6576,11 @@ extension on TranslationsEn {
           'globalErrors.timeoutTitle' => 'The connection took too long',
           'globalErrors.timeoutText' => 'Try again in a moment.',
           'globalErrors.rateTitle' => 'Easy there',
-          'globalErrors.rateText' => 'Too many tries in a row. Wait a little and try again.',
-          'globalErrors.notFoundTitle' => 'Not found',
           _ => null,
         } ??
         switch (path) {
+          'globalErrors.rateText' => 'Too many tries in a row. Wait a little and try again.',
+          'globalErrors.notFoundTitle' => 'Not found',
           'globalErrors.notFoundText' => 'Maybe this is no longer available.',
           'globalErrors.retry' => 'Try again',
           'globalErrors.retryIn' => ({required Object seconds}) => 'Try in ${seconds}s',
@@ -7258,11 +7262,11 @@ extension on TranslationsEn {
           'memories.monthsShort.4' => 'May',
           'memories.monthsShort.5' => 'Jun',
           'memories.monthsShort.6' => 'Jul',
-          'memories.monthsShort.7' => 'Aug',
-          'memories.monthsShort.8' => 'Sep',
           _ => null,
         } ??
         switch (path) {
+          'memories.monthsShort.7' => 'Aug',
+          'memories.monthsShort.8' => 'Sep',
           'memories.monthsShort.9' => 'Oct',
           'memories.monthsShort.10' => 'Nov',
           'memories.monthsShort.11' => 'Dec',
@@ -7844,11 +7848,11 @@ extension on TranslationsEn {
           'quickSlip.monthsShort.2' => 'Mar',
           'quickSlip.monthsShort.3' => 'Apr',
           'quickSlip.monthsShort.4' => 'May',
-          'quickSlip.monthsShort.5' => 'Jun',
-          'quickSlip.monthsShort.6' => 'Jul',
           _ => null,
         } ??
         switch (path) {
+          'quickSlip.monthsShort.5' => 'Jun',
+          'quickSlip.monthsShort.6' => 'Jul',
           'quickSlip.monthsShort.7' => 'Aug',
           'quickSlip.monthsShort.8' => 'Sep',
           'quickSlip.monthsShort.9' => 'Oct',
@@ -8417,11 +8421,11 @@ extension on TranslationsEn {
           'tabs.notesLabel' => 'FOR YOUR PARTNER',
           'tabs.notesTitle' => 'A note or a drawing',
           'tabs.notesText' => 'Send something short and kind, whenever you like.',
-          'tabs.usLabel' => 'US',
-          'tabs.usTitle' => 'I miss us',
           _ => null,
         } ??
         switch (path) {
+          'tabs.usLabel' => 'US',
+          'tabs.usTitle' => 'I miss us',
           'tabs.usText' => 'A light tap for your partner, no pressure.',
           'tabs.touchLabel' => 'TOUCH',
           'tabs.touchTitle' => 'Touch cards',

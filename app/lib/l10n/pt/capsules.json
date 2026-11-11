@@ -36,6 +36,8 @@
   "errorTitle": "Não deu para carregar",
   "errorText": "Suas cápsulas continuam guardadas. Tente de novo.",
   "errors(map)": {
+    "CAPSULE_OPENS_TOO_SOON": "Escolha uma data pelo menos uma semana à frente.",
+    "CAPSULE_OPENS_TOO_FAR": "Escolha uma data dentro dos próximos 50 anos.",
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para guardar agora. Seu texto continua aqui."
   },

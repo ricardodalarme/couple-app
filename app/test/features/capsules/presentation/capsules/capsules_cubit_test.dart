@@ -39,23 +39,23 @@ void main() {
 
     CapsulesCubit build() => CapsulesCubit(capsulesRepository: repository);
 
-    test('a capsule needs text and a date from seven days to fifty years ahead', () {
+    test('a capsule needs text and a date between eight days and just under fifty years', () {
       final cubit = build()..onBodyChanged('Oi, futuro');
       expect(cubit.state.canSave(today), isFalse);
 
       cubit.onOpensOnChanged(DateTime(2026, 11, 11));
       expect(cubit.state.canSave(today), isFalse);
 
-      cubit.onOpensOnChanged(DateTime(2026, 11, 17));
+      cubit.onOpensOnChanged(DateTime(2026, 11, 18));
       expect(cubit.state.canSave(today), isFalse);
 
-      cubit.onOpensOnChanged(DateTime(2026, 11, 18));
+      cubit.onOpensOnChanged(DateTime(2026, 11, 19));
+      expect(cubit.state.canSave(today), isTrue);
+
+      cubit.onOpensOnChanged(DateTime(2076, 11, 10));
       expect(cubit.state.canSave(today), isTrue);
 
       cubit.onOpensOnChanged(DateTime(2076, 11, 11));
-      expect(cubit.state.canSave(today), isTrue);
-
-      cubit.onOpensOnChanged(DateTime(2076, 11, 12));
       expect(cubit.state.canSave(today), isFalse);
     });
 
