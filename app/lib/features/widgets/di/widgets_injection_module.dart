@@ -14,6 +14,7 @@ import 'package:flutter_bloc_starter/features/widgets/presentation/lock_screen/c
 import 'package:flutter_bloc_starter/features/widgets/presentation/own_medium/cubit/own_medium_widgets_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/own_small/cubit/own_small_widgets_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/partner_note/cubit/partner_note_widget_cubit.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/states/cubit/widget_states_cubit.dart';
 import 'package:network/network.dart';
 import 'package:preferences_service/preferences_service.dart';
 
@@ -65,6 +66,9 @@ class WidgetsInjectionModule() implements InjectionModule {
       )
       ..registerFactory<CardEncounterWidgetCubit>(
         () => CardEncounterWidgetCubit(repository: injector.get<WidgetsRepository>()),
+      )
+      ..registerFactory<WidgetStatesCubit>(
+        () => WidgetStatesCubit(repository: injector.get<WidgetsRepository>()),
       );
   }
 }

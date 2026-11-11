@@ -5544,6 +5544,40 @@ class Translations$widgets$pt {
   /// pt: 'Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão.'
   String get cardEncounterPrivacyNote =>
       'Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão.';
+
+  /// pt: 'Estados do widget'
+  String get statesPageTitle => 'Estados do widget';
+
+  /// pt: 'Ver estados (discreto e sem par)'
+  String get statesAction => 'Ver estados (discreto e sem par)';
+
+  /// pt: 'Modo discreto'
+  String get statesDiscreetSection => 'Modo discreto';
+
+  /// pt: 'Ativar modo discreto agora'
+  String get statesDiscreetToggle => 'Ativar modo discreto agora';
+
+  /// pt: 'Sem parceiro'
+  String get statesUnpairedSection => 'Sem parceiro';
+
+  /// pt: 'Convide para ver aqui'
+  String get statesUnpairedTitle => 'Convide para ver aqui';
+
+  /// pt: 'Convidar'
+  String get statesUnpairedAction => 'Convidar';
+
+  /// pt: 'Sem conexão'
+  String get statesOfflineSection => 'Sem conexão';
+
+  /// pt: 'Mostrando o último dado'
+  String get statesOfflineTitle => 'Mostrando o último dado';
+
+  /// pt: 'Atualiza quando voltar a internet'
+  String get statesOfflineSubtitle => 'Atualiza quando voltar a internet';
+
+  /// pt: 'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).'
+  String get statesPrecedenceNote =>
+      'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).';
 }
 
 // Path: acceptInvite.connected
@@ -8983,6 +9017,17 @@ extension on Translations {
           'widgets.nextEncounterEmptyTitle' => 'Sem data futura',
           'widgets.nextEncounterEmptySubtitle' => 'Toque para agendar',
           'widgets.cardEncounterPrivacyNote' => 'Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão.',
+          'widgets.statesPageTitle' => 'Estados do widget',
+          'widgets.statesAction' => 'Ver estados (discreto e sem par)',
+          'widgets.statesDiscreetSection' => 'Modo discreto',
+          'widgets.statesDiscreetToggle' => 'Ativar modo discreto agora',
+          'widgets.statesUnpairedSection' => 'Sem parceiro',
+          'widgets.statesUnpairedTitle' => 'Convide para ver aqui',
+          'widgets.statesUnpairedAction' => 'Convidar',
+          'widgets.statesOfflineSection' => 'Sem conexão',
+          'widgets.statesOfflineTitle' => 'Mostrando o último dado',
+          'widgets.statesOfflineSubtitle' => 'Atualiza quando voltar a internet',
+          'widgets.statesPrecedenceNote' => 'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).',
           _ => null,
         };
   }

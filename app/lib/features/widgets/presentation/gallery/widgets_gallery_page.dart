@@ -88,6 +88,18 @@ class const WidgetsGalleryPage({super.key}) extends StatelessWidget implements A
                   payload: payload,
                   onSelectFamily: (family) => _onSelectFamily(context, cubit, family),
                 ),
+                const SizedBox(height: AppSpace.s16),
+                BaseListGroup(
+                  children: [
+                    BaseListTile(
+                      title: l10n.statesAction,
+                      onTap: () async {
+                        await context.pushRoute(const WidgetStatesRoute());
+                        if (context.mounted) await cubit.load();
+                      },
+                    ),
+                  ],
+                ),
               ],
             );
           },

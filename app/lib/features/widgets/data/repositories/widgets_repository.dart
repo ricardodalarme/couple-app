@@ -95,6 +95,7 @@ class WidgetsRepository({
     required bool discreet,
     DateTime? now,
   }) async {
+    await _discreetLocalDataSource.setHideWidgetText(value: discreet);
     final existing =
         _localDataSource.readCachedPayload() ?? await _widgetDataService.readStoredPayload();
     if (existing != null && existing.isSignedIn) {

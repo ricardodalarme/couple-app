@@ -137,5 +137,16 @@
   "nextEncounterLabel": "Next date",
   "nextEncounterEmptyTitle": "No upcoming date",
   "nextEncounterEmptySubtitle": "Tap to schedule",
-  "cardEncounterPrivacyNote": "This widget only shows card status and the next date — never names or card text."
+  "cardEncounterPrivacyNote": "This widget only shows card status and the next date — never names or card text.",
+  "statesPageTitle": "Widget states",
+  "statesAction": "View states (discreet & unpaired)",
+  "statesDiscreetSection": "Discreet mode",
+  "statesDiscreetToggle": "Enable discreet mode now",
+  "statesUnpairedSection": "No partner",
+  "statesUnpairedTitle": "Invite to see here",
+  "statesUnpairedAction": "Invite",
+  "statesOfflineSection": "Offline",
+  "statesOfflineTitle": "Showing the last saved data",
+  "statesOfflineSubtitle": "Updates when back online",
+  "statesPrecedenceNote": "When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder)."
 }

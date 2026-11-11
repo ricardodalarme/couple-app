@@ -4396,6 +4396,29 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get cardEncounterPrivacyNote =>
       'This widget only shows card status and the next date — never names or card text.';
+  @override
+  String get statesPageTitle => 'Widget states';
+  @override
+  String get statesAction => 'View states (discreet & unpaired)';
+  @override
+  String get statesDiscreetSection => 'Discreet mode';
+  @override
+  String get statesDiscreetToggle => 'Enable discreet mode now';
+  @override
+  String get statesUnpairedSection => 'No partner';
+  @override
+  String get statesUnpairedTitle => 'Invite to see here';
+  @override
+  String get statesUnpairedAction => 'Invite';
+  @override
+  String get statesOfflineSection => 'Offline';
+  @override
+  String get statesOfflineTitle => 'Showing the last saved data';
+  @override
+  String get statesOfflineSubtitle => 'Updates when back online';
+  @override
+  String get statesPrecedenceNote =>
+      'When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).';
 }
 
 // Path: acceptInvite.connected
@@ -7650,6 +7673,17 @@ extension on TranslationsEn {
           'widgets.nextEncounterEmptySubtitle' => 'Tap to schedule',
           'widgets.cardEncounterPrivacyNote' =>
             'This widget only shows card status and the next date — never names or card text.',
+          'widgets.statesPageTitle' => 'Widget states',
+          'widgets.statesAction' => 'View states (discreet & unpaired)',
+          'widgets.statesDiscreetSection' => 'Discreet mode',
+          'widgets.statesDiscreetToggle' => 'Enable discreet mode now',
+          'widgets.statesUnpairedSection' => 'No partner',
+          'widgets.statesUnpairedTitle' => 'Invite to see here',
+          'widgets.statesUnpairedAction' => 'Invite',
+          'widgets.statesOfflineSection' => 'Offline',
+          'widgets.statesOfflineTitle' => 'Showing the last saved data',
+          'widgets.statesOfflineSubtitle' => 'Updates when back online',
+          'widgets.statesPrecedenceNote' => 'When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).',
           _ => null,
         };
   }

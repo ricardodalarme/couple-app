@@ -137,5 +137,16 @@
   "nextEncounterLabel": "Próximo encontro",
   "nextEncounterEmptyTitle": "Sem data futura",
   "nextEncounterEmptySubtitle": "Toque para agendar",
-  "cardEncounterPrivacyNote": "Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão."
+  "cardEncounterPrivacyNote": "Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão.",
+  "statesPageTitle": "Estados do widget",
+  "statesAction": "Ver estados (discreto e sem par)",
+  "statesDiscreetSection": "Modo discreto",
+  "statesDiscreetToggle": "Ativar modo discreto agora",
+  "statesUnpairedSection": "Sem parceiro",
+  "statesUnpairedTitle": "Convide para ver aqui",
+  "statesUnpairedAction": "Convidar",
+  "statesOfflineSection": "Sem conexão",
+  "statesOfflineTitle": "Mostrando o último dado",
+  "statesOfflineSubtitle": "Atualiza quando voltar a internet",
+  "statesPrecedenceNote": "Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete)."
 }

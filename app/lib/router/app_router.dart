@@ -102,6 +102,7 @@ import 'package:flutter_bloc_starter/features/widgets/presentation/lock_screen/l
 import 'package:flutter_bloc_starter/features/widgets/presentation/own_medium/own_medium_widgets_page.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/own_small/own_small_widgets_page.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/partner_note/partner_note_widget_page.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/states/widget_states_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -202,6 +203,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: CouplePhotosWidgetRoute.page),
     AutoRoute(page: PartnerNoteWidgetRoute.page),
     AutoRoute(page: CardEncounterWidgetRoute.page),
+    AutoRoute(page: WidgetStatesRoute.page),
     AutoRoute(
       page: HomeRoute.page,
       children: [

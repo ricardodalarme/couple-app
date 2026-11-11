@@ -2151,6 +2151,22 @@ class WidgetHowToAddRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [WidgetStatesPage]
+class WidgetStatesRoute extends PageRouteInfo<void> {
+  const WidgetStatesRoute({List<PageRouteInfo>? children})
+    : super(WidgetStatesRoute.name, initialChildren: children);
+
+  static const String name = 'WidgetStatesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const WidgetStatesPage());
+    },
+  );
+}
+
+/// generated route for
 /// [WidgetsGalleryPage]
 class WidgetsGalleryRoute extends PageRouteInfo<void> {
   const WidgetsGalleryRoute({List<PageRouteInfo>? children})
