@@ -270,6 +270,8 @@ create table public.game_sessions (
 );
 create index game_sessions_couple_idx on public.game_sessions (couple_id, created_at desc);
 create index game_sessions_invited_by_idx on public.game_sessions (invited_by);
+create unique index game_sessions_one_open on public.game_sessions (couple_id, game)
+  where status in ('invited', 'active');
 create table public.game_answers (
   id uuid primary key default gen_random_uuid(),
   session_id uuid not null references public.game_sessions (id) on delete cascade,
@@ -287,15 +289,20 @@ create policy game_sessions_select_couple on public.game_sessions for select to 
   using (couple_id = (select private.current_couple_id()));
 create policy game_answers_select_own_or_finished on public.game_answers for select to authenticated
   using (author_id = (select auth.uid())
-         or exists (select 1 from public.game_sessions g where g.id = session_id and g.status = 'finished'));
+         or exists (select 1 from public.game_sessions g
+                    where g.id = session_id and g.status = 'finished'
+                      and g.couple_id = (select private.current_couple_id())));
 
 create function public.invite_to_game(game text, item_slugs text[] default '{}') returns public.game_sessions
 language plpgsql security definer set search_path = '' as $$
 declare v_uid uuid := private.require_user(); v_couple uuid := private.current_couple_id(); v_row public.game_sessions;
 begin
   if v_couple is null then raise exception 'NOT_PAIRED' using errcode = 'P0001'; end if;
-  update public.game_sessions g set status = 'cancelled'
-  where g.couple_id = v_couple and g.game = invite_to_game.game and g.status in ('invited', 'active');
+  if exists (select 1 from public.game_sessions g
+             where g.couple_id = v_couple and g.game = invite_to_game.game
+               and g.status in ('invited', 'active')) then
+    raise exception 'GAME_ALREADY_OPEN' using errcode = 'P0001';
+  end if;
   insert into public.game_sessions (couple_id, game, invited_by, item_slugs)
   values (v_couple, invite_to_game.game, v_uid, coalesce(invite_to_game.item_slugs, '{}')) returning * into v_row;
   perform private.enqueue_notification(private.partner_id(), 'game_invite', v_row.id, 'game_invite:' || v_row.id);
@@ -317,8 +324,22 @@ begin
     update public.game_sessions g set status = 'cancelled' where g.id = v_row.id returning g.* into v_row;
   elsif action = 'finish' and v_row.status = 'active' then
     v_n := coalesce(array_length(v_row.item_slugs, 1), 0);
-    if v_n > 0 and (select count(*) from public.game_answers a where a.session_id = v_row.id) < 2 * v_n then
-      raise exception 'GAME_NOT_COMPLETE' using errcode = 'P0001';
+    if v_n > 0 then
+      if (select count(*) from public.couple_members m
+          where m.couple_id = v_row.couple_id and m.left_at is null) <> 2
+         or exists (
+           select 1
+           from generate_series(0, v_n - 1) as gs(i)
+           cross join (select m.profile_id from public.couple_members m
+                       where m.couple_id = v_row.couple_id and m.left_at is null) as member(profile_id)
+           where not exists (
+             select 1 from public.game_answers a
+             where a.session_id = v_row.id and a.author_id = member.profile_id and a.idx = gs.i
+           )
+         )
+      then
+        raise exception 'GAME_NOT_COMPLETE' using errcode = 'P0001';
+      end if;
     end if;
     update public.game_sessions g set status = 'finished', finished_at = now(), outcome = update_game.outcome
     where g.id = v_row.id returning g.* into v_row;
@@ -331,11 +352,13 @@ end $$;
 
 create function public.answer_game(session_id uuid, idx integer, answer text) returns boolean
 language plpgsql security definer set search_path = '' as $$
-declare v_uid uuid := private.require_user();
+declare v_uid uuid := private.require_user(); v_row public.game_sessions;
 begin
-  if not exists (select 1 from public.game_sessions g
-                 where g.id = session_id and g.couple_id = private.current_couple_id() and g.status = 'active') then
-    raise exception 'NOT_FOUND' using errcode = 'P0001';
+  select * into v_row from public.game_sessions g
+  where g.id = session_id and g.couple_id = private.current_couple_id() and g.status = 'active';
+  if not found then raise exception 'NOT_FOUND' using errcode = 'P0001'; end if;
+  if answer_game.idx < 0 or answer_game.idx >= coalesce(array_length(v_row.item_slugs, 1), 0) then
+    raise exception 'INVALID_GAME_INDEX' using errcode = 'P0001';
   end if;
   insert into public.game_answers as a (session_id, author_id, idx, answer)
   values (answer_game.session_id, v_uid, answer_game.idx, answer_game.answer)
