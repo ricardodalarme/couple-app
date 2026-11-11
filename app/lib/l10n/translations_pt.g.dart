@@ -57,8 +57,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$account$pt account = Translations$account$pt.internal(_root);
-  late final Translations$appPreferences$pt appPreferences =
-      Translations$appPreferences$pt.internal(_root);
   late final Translations$authentication$pt authentication =
       Translations$authentication$pt.internal(_root);
   late final Translations$cardView$pt cardView = Translations$cardView$pt.internal(_root);
@@ -82,6 +80,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
+  late final Translations$language$pt language = Translations$language$pt.internal(_root);
   late final Translations$logistics$pt logistics = Translations$logistics$pt.internal(_root);
   late final Translations$memories$pt memories = Translations$memories$pt.internal(_root);
   late final Translations$mood$pt mood = Translations$mood$pt.internal(_root);
@@ -258,60 +257,6 @@ class Translations$account$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para concluir agora. Tente de novo.',
   };
-}
-
-// Path: appPreferences
-class Translations$appPreferences$pt {
-  Translations$appPreferences$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Preferências do app'
-  String get title => 'Preferências do app';
-
-  /// pt: 'Tamanho do texto'
-  String get textSizeLabel => 'Tamanho do texto';
-
-  /// pt: 'Pequeno'
-  String get textSizeSmall => 'Pequeno';
-
-  /// pt: 'Médio'
-  String get textSizeMedium => 'Médio';
-
-  /// pt: 'Grande'
-  String get textSizeLarge => 'Grande';
-
-  /// pt: 'Maior'
-  String get textSizeExtraLarge => 'Maior';
-
-  /// pt: 'Reduzir movimento'
-  String get reduceMotion => 'Reduzir movimento';
-
-  /// pt: 'Alto contraste'
-  String get highContrast => 'Alto contraste';
-
-  /// pt: 'Idioma'
-  String get language => 'Idioma';
-
-  /// pt: 'Português (Brasil)'
-  String get languagePortuguese => 'Português (Brasil)';
-
-  /// pt: 'Inglês'
-  String get languageEnglish => 'Inglês';
-
-  /// pt: 'Em breve'
-  String get comingSoon => 'Em breve';
-
-  /// pt: 'O inglês fica completo depois.'
-  String get languageNote => 'O inglês fica completo depois.';
-
-  /// pt: 'A cor do app fica no Perfil.'
-  String get colourInProfile => 'A cor do app fica no Perfil.';
-
-  /// pt: 'Não foi possível salvar. Tente novamente.'
-  String get saveError => 'Não foi possível salvar. Tente novamente.';
 }
 
 // Path: authentication
@@ -1438,6 +1383,33 @@ class Translations$invite$pt {
     'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
     'other': 'Algo deu errado. Tente de novo.',
   };
+}
+
+// Path: language
+class Translations$language$pt {
+  Translations$language$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Idioma'
+  String get language => 'Idioma';
+
+  /// pt: 'Português (Brasil)'
+  String get languagePortuguese => 'Português (Brasil)';
+
+  /// pt: 'Inglês'
+  String get languageEnglish => 'Inglês';
+
+  /// pt: 'Em breve'
+  String get comingSoon => 'Em breve';
+
+  /// pt: 'O inglês fica completo depois.'
+  String get languageNote => 'O inglês fica completo depois.';
+
+  /// pt: 'Não foi possível salvar. Tente novamente.'
+  String get saveError => 'Não foi possível salvar. Tente novamente.';
 }
 
 // Path: logistics
@@ -4855,21 +4827,6 @@ extension on Translations {
           'account.months.11' => 'dez',
           'account.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'account.errors.other' => 'Não deu para concluir agora. Tente de novo.',
-          'appPreferences.title' => 'Preferências do app',
-          'appPreferences.textSizeLabel' => 'Tamanho do texto',
-          'appPreferences.textSizeSmall' => 'Pequeno',
-          'appPreferences.textSizeMedium' => 'Médio',
-          'appPreferences.textSizeLarge' => 'Grande',
-          'appPreferences.textSizeExtraLarge' => 'Maior',
-          'appPreferences.reduceMotion' => 'Reduzir movimento',
-          'appPreferences.highContrast' => 'Alto contraste',
-          'appPreferences.language' => 'Idioma',
-          'appPreferences.languagePortuguese' => 'Português (Brasil)',
-          'appPreferences.languageEnglish' => 'Inglês',
-          'appPreferences.comingSoon' => 'Em breve',
-          'appPreferences.languageNote' => 'O inglês fica completo depois.',
-          'appPreferences.colourInProfile' => 'A cor do app fica no Perfil.',
-          'appPreferences.saveError' => 'Não foi possível salvar. Tente novamente.',
           'authentication.signInTitle' => 'Entrar',
           'authentication.signInSubtitle' => 'Sem e-mail e senha. Só Apple ou Google.',
           'authentication.signInNote' => 'Entrar leva direto para o seu Hoje.',
@@ -5335,6 +5292,12 @@ extension on Translations {
           'invite.errors.RATE_LIMITED' => 'Você criou muitos convites hoje. Tente de novo amanhã.',
           'invite.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
           'invite.errors.other' => 'Algo deu errado. Tente de novo.',
+          'language.language' => 'Idioma',
+          'language.languagePortuguese' => 'Português (Brasil)',
+          'language.languageEnglish' => 'Inglês',
+          'language.comingSoon' => 'Em breve',
+          'language.languageNote' => 'O inglês fica completo depois.',
+          'language.saveError' => 'Não foi possível salvar. Tente novamente.',
           'logistics.title' => 'Logística',
           'logistics.subtitle' => 'As coisas práticas, sem ninguém carregar sozinho.',
           'logistics.hint' => 'Ex.: ligar para o encanador',
@@ -5386,11 +5349,11 @@ extension on Translations {
           'memories.errorTitle' => 'Não deu para carregar',
           'memories.errorText' => 'Suas memórias continuam salvas. Tente de novo.',
           'memories.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          'memories.errors.other' => 'Não deu para fazer isso agora. Seu texto continua aqui.',
-          'mood.title' => 'Como você está hoje?',
           _ => null,
         } ??
         switch (path) {
+          'memories.errors.other' => 'Não deu para fazer isso agora. Seu texto continua aqui.',
+          'mood.title' => 'Como você está hoje?',
           'mood.titleHighlight' => 'hoje',
           'mood.subtitle' => 'Um toque. A etiqueta “Preciso de...” é opcional.',
           'mood.privateCue' => 'só você vê',
@@ -5421,9 +5384,6 @@ extension on Translations {
           'mood.errors.NETWORK' =>
             'Não deu para salvar seu humor. Verifique a conexão e tente de novo.',
           'mood.errors.TIMEOUT' => 'Não deu para salvar seu humor a tempo. Tente de novo.',
-          _ => null,
-        } ??
-        switch (path) {
           'mood.errors.other' => 'Não deu para salvar seu humor. Tente de novo.',
           'mood.entryCategory' => 'Humor do dia',
           'mood.entryTitle' => 'Como você está hoje?',
@@ -5952,6 +5912,9 @@ extension on Translations {
           'repair.learning.subtitle' => 'Fica só com você e pode ser apagado quando quiser.',
           'repair.learning.kinds.trigger' => 'O que me incomoda',
           'repair.learning.kinds.need' => 'O que eu preciso',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.learning.kinds.good_fix' => 'O que ajudou',
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Escreva em uma ou duas frases',
@@ -5968,9 +5931,6 @@ extension on Translations {
           'repair.learning.errors.other' => 'Não deu para salvar agora. Seu texto continua aqui.',
           'repair.next.pause' => 'Respirar um pouco',
           'repair.next.guided' => 'Começar o reparo guiado',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.next.quick' => 'Enviar um reparo',
           'rituals.title' => 'Rituais',
           'rituals.subtitle' =>
@@ -5991,9 +5951,6 @@ extension on Translations {
             required Object weekday,
           }) => '${cadence}, ${weekday}',
           'rituals.weekdays.0' => 'domingo',
-          _ => null,
-        } ??
-        switch (path) {
           'rituals.weekdays.1' => 'segunda',
           'rituals.weekdays.2' => 'terça',
           'rituals.weekdays.3' => 'quarta',

@@ -18,7 +18,13 @@ class NotificationsOffCubit({required final NotificationsRepository _repository}
   }
 
   Future<void> refresh() async {
-    final access = await _repository.currentAccess();
+    final NotificationAccess access;
+    try {
+      access = await _repository.currentAccess();
+    } on Object {
+      return;
+    }
+    if (isClosed) return;
     emit(
       NotificationsOffState(
         isOff: access == NotificationAccess.denied,

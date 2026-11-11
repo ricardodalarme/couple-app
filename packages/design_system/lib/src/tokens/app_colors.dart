@@ -106,23 +106,14 @@ class const AppColors({
     scrim: AppPalette.scrim,
   );
 
-  static AppColors forVariant(AppThemeVariant variant, {bool highContrast = false}) {
+  static AppColors forVariant(AppThemeVariant variant) {
     final colors = switch (variant) {
       .rose => rose,
       .blue => blue,
       .neutral => neutral,
     };
-    return highContrast ? colors.highContrast : colors;
+    return colors;
   }
-
-  /// Darker borders and secondary ink for the high-contrast switch.
-  AppColors get highContrast => copyWith(
-    borderDefault: AppPalette.neutral700,
-    borderSelected: AppPalette.neutral900,
-    textSecondary: AppPalette.neutral800,
-    textPlaceholder: AppPalette.neutral600,
-    iconMuted: AppPalette.neutral700,
-  );
 
   @override
   AppColors copyWith({

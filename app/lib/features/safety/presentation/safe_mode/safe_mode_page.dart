@@ -3,7 +3,6 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/preferences/cubit/app_preferences_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
@@ -13,19 +12,8 @@ class const SafeModePage({super.key}) extends StatelessWidget implements AutoRou
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider.value(
-      value: AppInjector.instance.get<AppPreferencesCubit>(),
-      child: BlocProvider.value(
-        value: AppInjector.instance.get<SafeModeCubit>(),
-        child: Builder(
-          builder: (context) => AppThemeHost(
-            initialVariant: AppThemeVariant.neutral,
-            highContrast: context.select(
-              (AppPreferencesCubit cubit) => cubit.state.settings.highContrast,
-            ),
-            child: this,
-          ),
-        ),
-      ),
+      value: AppInjector.instance.get<SafeModeCubit>(),
+      child: AppThemeHost(initialVariant: AppThemeVariant.neutral, child: this),
     );
   }
 

@@ -56,10 +56,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$account$en account = _Translations$account$en._(_root);
   @override
-  late final _Translations$appPreferences$en appPreferences = _Translations$appPreferences$en._(
-    _root,
-  );
-  @override
   late final _Translations$authentication$en authentication = _Translations$authentication$en._(
     _root,
   );
@@ -97,6 +93,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$intro$en intro = _Translations$intro$en._(_root);
   @override
   late final _Translations$invite$en invite = _Translations$invite$en._(_root);
+  @override
+  late final _Translations$language$en language = _Translations$language$en._(_root);
   @override
   late final _Translations$logistics$en logistics = _Translations$logistics$en._(_root);
   @override
@@ -282,45 +280,6 @@ class _Translations$account$en extends Translations$account$pt {
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'Could not finish now. Try again.',
   };
-}
-
-// Path: appPreferences
-class _Translations$appPreferences$en extends Translations$appPreferences$pt {
-  _Translations$appPreferences$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'App preferences';
-  @override
-  String get textSizeLabel => 'Text size';
-  @override
-  String get textSizeSmall => 'Small';
-  @override
-  String get textSizeMedium => 'Medium';
-  @override
-  String get textSizeLarge => 'Large';
-  @override
-  String get textSizeExtraLarge => 'Larger';
-  @override
-  String get reduceMotion => 'Reduce motion';
-  @override
-  String get highContrast => 'High contrast';
-  @override
-  String get language => 'Language';
-  @override
-  String get languagePortuguese => 'Portuguese (Brazil)';
-  @override
-  String get languageEnglish => 'English';
-  @override
-  String get comingSoon => 'Coming soon';
-  @override
-  String get languageNote => 'English is finished later.';
-  @override
-  String get colourInProfile => 'The app colour is in Profile.';
-  @override
-  String get saveError => 'Could not save. Try again.';
 }
 
 // Path: authentication
@@ -1200,6 +1159,27 @@ class _Translations$invite$en extends Translations$invite$pt {
     'NETWORK': 'No connection. Check your internet and try again.',
     'other': 'Something went wrong. Try again.',
   };
+}
+
+// Path: language
+class _Translations$language$en extends Translations$language$pt {
+  _Translations$language$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get language => 'Language';
+  @override
+  String get languagePortuguese => 'Portuguese (Brazil)';
+  @override
+  String get languageEnglish => 'English';
+  @override
+  String get comingSoon => 'Coming soon';
+  @override
+  String get languageNote => 'English is finished later.';
+  @override
+  String get saveError => 'Could not save. Try again.';
 }
 
 // Path: logistics
@@ -3961,21 +3941,6 @@ extension on TranslationsEn {
           'account.months.11' => 'Dec',
           'account.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'account.errors.other' => 'Could not finish now. Try again.',
-          'appPreferences.title' => 'App preferences',
-          'appPreferences.textSizeLabel' => 'Text size',
-          'appPreferences.textSizeSmall' => 'Small',
-          'appPreferences.textSizeMedium' => 'Medium',
-          'appPreferences.textSizeLarge' => 'Large',
-          'appPreferences.textSizeExtraLarge' => 'Larger',
-          'appPreferences.reduceMotion' => 'Reduce motion',
-          'appPreferences.highContrast' => 'High contrast',
-          'appPreferences.language' => 'Language',
-          'appPreferences.languagePortuguese' => 'Portuguese (Brazil)',
-          'appPreferences.languageEnglish' => 'English',
-          'appPreferences.comingSoon' => 'Coming soon',
-          'appPreferences.languageNote' => 'English is finished later.',
-          'appPreferences.colourInProfile' => 'The app colour is in Profile.',
-          'appPreferences.saveError' => 'Could not save. Try again.',
           'authentication.signInTitle' => 'Sign in',
           'authentication.signInSubtitle' => 'No email and password. Just Apple or Google.',
           'authentication.signInNote' => 'Signing in takes you straight to your Today.',
@@ -4434,6 +4399,12 @@ extension on TranslationsEn {
           'invite.errors.RATE_LIMITED' => 'You created too many invites today. Try again tomorrow.',
           'invite.errors.NETWORK' => 'No connection. Check your internet and try again.',
           'invite.errors.other' => 'Something went wrong. Try again.',
+          'language.language' => 'Language',
+          'language.languagePortuguese' => 'Portuguese (Brazil)',
+          'language.languageEnglish' => 'English',
+          'language.comingSoon' => 'Coming soon',
+          'language.languageNote' => 'English is finished later.',
+          'language.saveError' => 'Could not save. Try again.',
           'logistics.title' => 'Logistics',
           'logistics.subtitle' => 'The practical things, with nobody carrying them alone.',
           'logistics.hint' => 'E.g. call the plumber',
@@ -4484,11 +4455,11 @@ extension on TranslationsEn {
           'memories.errorTitle' => 'Couldn\'t load',
           'memories.errorText' => 'Your memories are still saved. Try again.',
           'memories.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
-          'memories.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
-          'mood.title' => 'How are you today?',
           _ => null,
         } ??
         switch (path) {
+          'memories.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
+          'mood.title' => 'How are you today?',
           'mood.titleHighlight' => 'today',
           'mood.subtitle' => 'One tap. The “I need…” tag is optional.',
           'mood.privateCue' => 'Only you see this',
@@ -4518,9 +4489,6 @@ extension on TranslationsEn {
           'mood.saved' => 'Mood saved',
           'mood.errors.NETWORK' => 'Couldn\'t save your mood. Check your connection and try again.',
           'mood.errors.TIMEOUT' => 'Couldn\'t save your mood in time. Try again.',
-          _ => null,
-        } ??
-        switch (path) {
           'mood.errors.other' => 'Couldn\'t save your mood. Try again.',
           'mood.entryCategory' => 'Mood of the day',
           'mood.entryTitle' => 'How are you today?',
@@ -5043,6 +5011,9 @@ extension on TranslationsEn {
           'repair.learning.subtitle' => 'It stays with you and can be deleted whenever you like.',
           'repair.learning.kinds.trigger' => 'What bothers me',
           'repair.learning.kinds.need' => 'What I need',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.learning.kinds.good_fix' => 'What helped',
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Write one or two sentences',
@@ -5058,9 +5029,6 @@ extension on TranslationsEn {
           'repair.learning.errors.other' => 'Couldn\'t save right now. Your text is still here.',
           'repair.next.pause' => 'Breathe a little',
           'repair.next.guided' => 'Start the guided repair',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.next.quick' => 'Send a repair',
           'rituals.title' => 'Rituals',
           'rituals.subtitle' => 'Small habits you want to protect. No streaks, no pressure.',
@@ -5079,9 +5047,6 @@ extension on TranslationsEn {
             required Object weekday,
           }) => '${cadence}, ${weekday}',
           'rituals.weekdays.0' => 'Sunday',
-          _ => null,
-        } ??
-        switch (path) {
           'rituals.weekdays.1' => 'Monday',
           'rituals.weekdays.2' => 'Tuesday',
           'rituals.weekdays.3' => 'Wednesday',

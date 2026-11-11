@@ -3,8 +3,8 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/sign_out/sign_out_dialog.dart';
+import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/home/cubit/settings_home_cubit.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/preferences/cubit/app_preferences_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
@@ -23,7 +23,7 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
   Widget build(BuildContext context) {
     final l10n = context.l10n.settingsHome;
     final state = context.select((SettingsHomeCubit cubit) => cubit.state);
-    final locale = context.select((AppPreferencesCubit cubit) => cubit.state.settings.locale);
+    final locale = AppInjector.instance.get<SettingsRepository>().get().locale;
 
     final relationship = switch (state.hasPartner) {
       null => null,
@@ -93,17 +93,10 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
                   onTap: () => context.pushRoute(const DevicesRoute()),
                 ),
                 BaseListTile(
-                  title: l10n.appPreferences,
-                  subtitle: l10n.appPreferencesStatus,
-                  icon: AppIcons.settings,
-                  showsChevron: true,
-                  onTap: () => context.pushRoute(const AppPreferencesRoute()),
-                ),
-                BaseListTile(
                   title: l10n.language,
                   value: locale == 'en'
-                      ? context.l10n.appPreferences.languageEnglish
-                      : context.l10n.appPreferences.languagePortuguese,
+                      ? context.l10n.language.languageEnglish
+                      : context.l10n.language.languagePortuguese,
                   icon: AppIcons.globe,
                   showsChevron: true,
                   onTap: () => context.pushRoute(const LanguageRoute()),

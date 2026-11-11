@@ -2,8 +2,8 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
+import 'package:flutter_bloc_starter/features/settings/presentation/language/cubit/language_cubit.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/language/language_page.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/preferences/cubit/app_preferences_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -18,7 +18,7 @@ void main() {
   testWidgets('Portuguese is selected and English is coming soon', (tester) async {
     final repository = _MockSettingsRepository();
     when(repository.get).thenReturn(const Settings.empty());
-    final cubit = AppPreferencesCubit(repository: repository);
+    final cubit = LanguageCubit(repository: repository);
     addTearDown(cubit.close);
 
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const LanguagePage()));

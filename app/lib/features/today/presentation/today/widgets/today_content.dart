@@ -60,11 +60,6 @@ class const TodayContent({
               text: context.l10n.settingsHome.title,
               onPressed: () => context.pushRoute(const SettingsHomeRoute()),
             ),
-            const SizedBox(width: AppSpace.s16),
-            BaseTextLink(
-              text: context.l10n.safety.entry,
-              onPressed: () => context.pushRoute(const SafeModeRoute()),
-            ),
           ],
         ),
         const NotificationsOffBanner(),

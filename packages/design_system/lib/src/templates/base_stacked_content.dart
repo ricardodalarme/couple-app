@@ -24,7 +24,7 @@ class const BaseStackedContent({
               AppSpace.screenMargin,
               AppSpace.s8,
               AppSpace.screenMargin,
-              AppSpace.s34,
+              AppSpace.s8,
             ),
             child: body,
           ),

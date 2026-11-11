@@ -79,7 +79,7 @@ class const FooterBar({
           AppSpace.screenMargin,
           AppSpace.s16,
           AppSpace.screenMargin,
-          AppSpace.s34,
+          AppSpace.s8,
         ),
         child: buttons,
       ),
