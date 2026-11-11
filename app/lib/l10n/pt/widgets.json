@@ -117,5 +117,11 @@
   "photosPageTitle": "Widget · Fotos do casal",
   "photosPlusBadge": "PLUS",
   "photosNeutralFallbackNote": "Quando nenhuma foto local está salva (ou no modo discreto), o widget mostra apenas o cartão neutro com o tempo juntos.",
-  "photosUnlockPlusAction": "Conhecer o Plus"
+  "photosUnlockPlusAction": "Conhecer o Plus",
+  "partnerNotePageTitle": "Recado do parceiro",
+  "partnerNoteMediumSection": "Médio",
+  "partnerNoteReplyHint": "Responder com um coração",
+  "partnerNoteDrawingPlaceholder": "desenho",
+  "partnerNoteSafeNote": "Apenas recados marcados pelo seu par como visíveis no widget aparecem aqui.",
+  "partnerNoteDisabledNote": "Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los."
 }

@@ -4354,6 +4354,19 @@ class _Translations$widgets$en extends Translations$widgets$pt {
       'When no local photo is cached (or in discreet mode), the widget shows only a neutral card with your time together.';
   @override
   String get photosUnlockPlusAction => 'Explore Plus';
+  @override
+  String get partnerNotePageTitle => 'Partner note';
+  @override
+  String get partnerNoteMediumSection => 'Medium';
+  @override
+  String get partnerNoteReplyHint => 'Reply with a heart';
+  @override
+  String get partnerNoteDrawingPlaceholder => 'drawing';
+  @override
+  String get partnerNoteSafeNote => 'Only notes your partner marked as widget-safe appear here.';
+  @override
+  String get partnerNoteDisabledNote =>
+      'You turned off partner notes on widgets. Enable below if you want to show them.';
 }
 
 // Path: acceptInvite.connected
@@ -7585,6 +7598,14 @@ extension on TranslationsEn {
           'widgets.photosPlusBadge' => 'PLUS',
           'widgets.photosNeutralFallbackNote' => 'When no local photo is cached (or in discreet mode), the widget shows only a neutral card with your time together.',
           'widgets.photosUnlockPlusAction' => 'Explore Plus',
+          'widgets.partnerNotePageTitle' => 'Partner note',
+          'widgets.partnerNoteMediumSection' => 'Medium',
+          'widgets.partnerNoteReplyHint' => 'Reply with a heart',
+          'widgets.partnerNoteDrawingPlaceholder' => 'drawing',
+          'widgets.partnerNoteSafeNote' =>
+            'Only notes your partner marked as widget-safe appear here.',
+          'widgets.partnerNoteDisabledNote' =>
+            'You turned off partner notes on widgets. Enable below if you want to show them.',
           _ => null,
         };
   }

@@ -117,5 +117,11 @@
   "photosPageTitle": "Widget · Couple photos",
   "photosPlusBadge": "PLUS",
   "photosNeutralFallbackNote": "When no local photo is cached (or in discreet mode), the widget shows only a neutral card with your time together.",
-  "photosUnlockPlusAction": "Explore Plus"
+  "photosUnlockPlusAction": "Explore Plus",
+  "partnerNotePageTitle": "Partner note",
+  "partnerNoteMediumSection": "Medium",
+  "partnerNoteReplyHint": "Reply with a heart",
+  "partnerNoteDrawingPlaceholder": "drawing",
+  "partnerNoteSafeNote": "Only notes your partner marked as widget-safe appear here.",
+  "partnerNoteDisabledNote": "You turned off partner notes on widgets. Enable below if you want to show them."
 }

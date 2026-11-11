@@ -12,6 +12,7 @@ import 'package:flutter_bloc_starter/features/widgets/presentation/gallery/cubit
 import 'package:flutter_bloc_starter/features/widgets/presentation/lock_screen/cubit/lock_screen_widget_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/own_medium/cubit/own_medium_widgets_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/own_small/cubit/own_small_widgets_cubit.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/partner_note/cubit/partner_note_widget_cubit.dart';
 import 'package:network/network.dart';
 import 'package:preferences_service/preferences_service.dart';
 
@@ -57,6 +58,9 @@ class WidgetsInjectionModule() implements InjectionModule {
       )
       ..registerFactory<CouplePhotosWidgetCubit>(
         () => CouplePhotosWidgetCubit(repository: injector.get<WidgetsRepository>()),
+      )
+      ..registerFactory<PartnerNoteWidgetCubit>(
+        () => PartnerNoteWidgetCubit(repository: injector.get<WidgetsRepository>()),
       );
   }
 }

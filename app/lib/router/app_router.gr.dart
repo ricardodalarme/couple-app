@@ -1158,6 +1158,22 @@ class OwnSmallWidgetsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PartnerNoteWidgetPage]
+class PartnerNoteWidgetRoute extends PageRouteInfo<void> {
+  const PartnerNoteWidgetRoute({List<PageRouteInfo>? children})
+    : super(PartnerNoteWidgetRoute.name, initialChildren: children);
+
+  static const String name = 'PartnerNoteWidgetRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const PartnerNoteWidgetPage());
+    },
+  );
+}
+
+/// generated route for
 /// [PartnerProfilePage]
 class PartnerProfileRoute extends PageRouteInfo<void> {
   const PartnerProfileRoute({List<PageRouteInfo>? children})

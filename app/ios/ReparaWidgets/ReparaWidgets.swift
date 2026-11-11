@@ -639,6 +639,108 @@ struct ReparaCouplePhotosWidget: Widget {
   }
 }
 
+struct ReparaPartnerNoteWidgetView: View {
+  let entry: ReparaWidgetEntry
+
+  var body: some View {
+    let p = entry.payload
+    if !p.isSignedIn {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://sign-in?homeWidget=1") {
+          Text("REPARA")
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text("Toque para entrar")
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+        }
+      )
+    }
+
+    if p.discreet {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://settings/discreet?homeWidget=1") {
+          Text("LEMBRETE")
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text("Texto neutro")
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+        }
+      )
+    }
+
+    if !p.isPaired {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://together?homeWidget=1") {
+          Text("JUNTOS")
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text("Convide para ver aqui")
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+          Text("Convidar")
+            .font(.caption)
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+        }
+      )
+    }
+
+    let fromLabel = (p.showNames ? p.partnerName.map { "DE \($0.uppercased())" } : nil) ?? "RECADO DO PAR"
+    if p.allowPartnerNotes, let note = p.partnerNote, !note.isEmpty {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://today?homeWidget=1") {
+          Text(fromLabel)
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text(note)
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+          Text("Responder com um coração")
+            .font(.caption2)
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+        }
+      )
+    }
+
+    return AnyView(
+      ReparaSurfaceCard(deepLink: "repara://today?homeWidget=1") {
+        Text(fromLabel)
+          .font(.caption2.weight(.semibold))
+          .foregroundColor(.secondary)
+          .lineLimit(1)
+        Spacer(minLength: 4)
+        Text("Sem recado novo no momento")
+          .font(.subheadline.weight(.semibold))
+          .lineLimit(2)
+      }
+    )
+  }
+}
+
+struct ReparaPartnerNoteWidget: Widget {
+  let kind: String = "ReparaPartnerNoteWidget"
+
+  var body: some WidgetConfiguration {
+    StaticConfiguration(kind: kind, provider: ReparaTimelineProvider()) { entry in
+      ReparaPartnerNoteWidgetView(entry: entry)
+    }
+    .configurationDisplayName("Repara · Recado do parceiro")
+    .description("Recado curto marcado pelo seu par para o widget.")
+    .supportedFamilies([.systemSmall, .systemMedium])
+  }
+}
+
 @main
 struct ReparaWidgetsBundle: WidgetBundle {
   var body: some Widget {
@@ -647,5 +749,6 @@ struct ReparaWidgetsBundle: WidgetBundle {
     ReparaLockScreenWidget()
     ReparaCoupleCounterWidget()
     ReparaCouplePhotosWidget()
+    ReparaPartnerNoteWidget()
   }
 }

@@ -5481,6 +5481,26 @@ class Translations$widgets$pt {
 
   /// pt: 'Conhecer o Plus'
   String get photosUnlockPlusAction => 'Conhecer o Plus';
+
+  /// pt: 'Recado do parceiro'
+  String get partnerNotePageTitle => 'Recado do parceiro';
+
+  /// pt: 'Médio'
+  String get partnerNoteMediumSection => 'Médio';
+
+  /// pt: 'Responder com um coração'
+  String get partnerNoteReplyHint => 'Responder com um coração';
+
+  /// pt: 'desenho'
+  String get partnerNoteDrawingPlaceholder => 'desenho';
+
+  /// pt: 'Apenas recados marcados pelo seu par como visíveis no widget aparecem aqui.'
+  String get partnerNoteSafeNote =>
+      'Apenas recados marcados pelo seu par como visíveis no widget aparecem aqui.';
+
+  /// pt: 'Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los.'
+  String get partnerNoteDisabledNote =>
+      'Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los.';
 }
 
 // Path: acceptInvite.connected
@@ -8898,6 +8918,14 @@ extension on Translations {
           'widgets.photosPlusBadge' => 'PLUS',
           'widgets.photosNeutralFallbackNote' => 'Quando nenhuma foto local está salva (ou no modo discreto), o widget mostra apenas o cartão neutro com o tempo juntos.',
           'widgets.photosUnlockPlusAction' => 'Conhecer o Plus',
+          'widgets.partnerNotePageTitle' => 'Recado do parceiro',
+          'widgets.partnerNoteMediumSection' => 'Médio',
+          'widgets.partnerNoteReplyHint' => 'Responder com um coração',
+          'widgets.partnerNoteDrawingPlaceholder' => 'desenho',
+          'widgets.partnerNoteSafeNote' =>
+            'Apenas recados marcados pelo seu par como visíveis no widget aparecem aqui.',
+          'widgets.partnerNoteDisabledNote' =>
+            'Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los.',
           _ => null,
         };
   }

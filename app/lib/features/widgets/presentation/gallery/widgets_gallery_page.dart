@@ -107,6 +107,7 @@ class const WidgetsGalleryPage({super.key}) extends StatelessWidget implements A
       WidgetFamilyKind.lockScreen => const LockRouteWidgetRoute(),
       WidgetFamilyKind.coupleCounter => const CoupleCounterWidgetRoute(),
       WidgetFamilyKind.couplePhotos => const CouplePhotosWidgetRoute(),
+      WidgetFamilyKind.partnerNote => const PartnerNoteWidgetRoute(),
       _ => WidgetConfigureRoute(initialFamily: family),
     };
     await context.pushRoute(route);
