@@ -7,6 +7,12 @@ void main() {
     expect(analyticsScreenNameFor('GriefSupportRoute'), 'settings');
     expect(analyticsScreenNameFor('RelationshipRoute'), 'settings');
     expect(analyticsScreenNameFor('UnpairRoute'), 'settings');
+    expect(analyticsScreenNameFor('UsRoute'), 'settings');
+    expect(analyticsScreenNameFor('TouchRoute'), 'settings');
+    expect(analyticsScreenNameFor('CapsulesRoute'), 'settings');
+    expect(analyticsScreenNameFor('GuidesRoute'), 'settings');
+    expect(analyticsScreenNameFor('GuideRoute'), 'settings');
+    expect(analyticsScreenNameFor('CheckinRoute'), 'settings');
   });
 
   test('ordinary routes keep their name and missing names stay empty', () {

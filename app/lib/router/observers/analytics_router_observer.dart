@@ -10,6 +10,12 @@ const Set<String> _sensitiveRouteNames = {
   'UnpairRoute',
   'BreakupRoute',
   'UnpairDoneRoute',
+  'UsRoute',
+  'TouchRoute',
+  'CapsulesRoute',
+  'GuidesRoute',
+  'GuideRoute',
+  'CheckinRoute',
 };
 
 /// The screen name safe to send, or null when the route has no name.
