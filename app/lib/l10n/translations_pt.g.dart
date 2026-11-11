@@ -5438,6 +5438,49 @@ class Translations$widgets$pt {
 
   /// pt: 'Formatos no iOS (Circular, Retangular e Linha)'
   String get lockScreenFamiliesTitle => 'Formatos no iOS (Circular, Retangular e Linha)';
+
+  /// pt: 'Widget · Contador'
+  String get counterPageTitle => 'Widget · Contador';
+
+  /// pt: '{years} anos · {months} meses'
+  String counterYearsMonthsTitle({required Object years, required Object months}) =>
+      '${years} anos · ${months} meses';
+
+  /// pt: '{months} meses · {days} dias'
+  String counterMonthsDaysSubtitle({required Object months, required Object days}) =>
+      '${months} meses · ${days} dias';
+
+  /// pt: 'Namorando'
+  String get counterStatusDating => 'Namorando';
+
+  /// pt: 'Morando juntos'
+  String get counterStatusLivingTogether => 'Morando juntos';
+
+  /// pt: 'Casados'
+  String get counterStatusMarried => 'Casados';
+
+  /// pt: 'Juntos'
+  String get counterStatusTogether => 'Juntos';
+
+  /// pt: 'O contador atualiza automaticamente à meia-noite no fuso local.'
+  String get counterMidnightNote =>
+      'O contador atualiza automaticamente à meia-noite no fuso local.';
+
+  /// pt: 'Definir data do relacionamento'
+  String get counterSetDateAction => 'Definir data do relacionamento';
+
+  /// pt: 'Widget · Fotos do casal'
+  String get photosPageTitle => 'Widget · Fotos do casal';
+
+  /// pt: 'PLUS'
+  String get photosPlusBadge => 'PLUS';
+
+  /// pt: 'Quando nenhuma foto local está salva (ou no modo discreto), o widget mostra apenas o cartão neutro com o tempo juntos.'
+  String get photosNeutralFallbackNote =>
+      'Quando nenhuma foto local está salva (ou no modo discreto), o widget mostra apenas o cartão neutro com o tempo juntos.';
+
+  /// pt: 'Conhecer o Plus'
+  String get photosUnlockPlusAction => 'Conhecer o Plus';
 }
 
 // Path: acceptInvite.connected
@@ -8835,6 +8878,26 @@ extension on Translations {
           'widgets.lockScreenDiscreetPhrase' => 'Lembrete',
           'widgets.lockScreenPrivacyRule' => 'Sem nomes nem mensagens na tela bloqueada.',
           'widgets.lockScreenFamiliesTitle' => 'Formatos no iOS (Circular, Retangular e Linha)',
+          'widgets.counterPageTitle' => 'Widget · Contador',
+          'widgets.counterYearsMonthsTitle' => ({
+            required Object years,
+            required Object months,
+          }) => '${years} anos · ${months} meses',
+          'widgets.counterMonthsDaysSubtitle' => ({
+            required Object months,
+            required Object days,
+          }) => '${months} meses · ${days} dias',
+          'widgets.counterStatusDating' => 'Namorando',
+          'widgets.counterStatusLivingTogether' => 'Morando juntos',
+          'widgets.counterStatusMarried' => 'Casados',
+          'widgets.counterStatusTogether' => 'Juntos',
+          'widgets.counterMidnightNote' =>
+            'O contador atualiza automaticamente à meia-noite no fuso local.',
+          'widgets.counterSetDateAction' => 'Definir data do relacionamento',
+          'widgets.photosPageTitle' => 'Widget · Fotos do casal',
+          'widgets.photosPlusBadge' => 'PLUS',
+          'widgets.photosNeutralFallbackNote' => 'Quando nenhuma foto local está salva (ou no modo discreto), o widget mostra apenas o cartão neutro com o tempo juntos.',
+          'widgets.photosUnlockPlusAction' => 'Conhecer o Plus',
           _ => null,
         };
   }

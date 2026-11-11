@@ -4325,6 +4325,35 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   String get lockScreenPrivacyRule => 'Never shows names or messages on the lock screen.';
   @override
   String get lockScreenFamiliesTitle => 'iOS formats (Circular, Rectangular and Inline)';
+  @override
+  String get counterPageTitle => 'Widget · Counter';
+  @override
+  String counterYearsMonthsTitle({required Object years, required Object months}) =>
+      '${years} years · ${months} months';
+  @override
+  String counterMonthsDaysSubtitle({required Object months, required Object days}) =>
+      '${months} months · ${days} days';
+  @override
+  String get counterStatusDating => 'Dating';
+  @override
+  String get counterStatusLivingTogether => 'Living together';
+  @override
+  String get counterStatusMarried => 'Married';
+  @override
+  String get counterStatusTogether => 'Together';
+  @override
+  String get counterMidnightNote => 'The counter updates automatically at local midnight.';
+  @override
+  String get counterSetDateAction => 'Set relationship date';
+  @override
+  String get photosPageTitle => 'Widget · Couple photos';
+  @override
+  String get photosPlusBadge => 'PLUS';
+  @override
+  String get photosNeutralFallbackNote =>
+      'When no local photo is cached (or in discreet mode), the widget shows only a neutral card with your time together.';
+  @override
+  String get photosUnlockPlusAction => 'Explore Plus';
 }
 
 // Path: acceptInvite.connected
@@ -7537,6 +7566,25 @@ extension on TranslationsEn {
           'widgets.lockScreenDiscreetPhrase' => 'Reminder',
           'widgets.lockScreenPrivacyRule' => 'Never shows names or messages on the lock screen.',
           'widgets.lockScreenFamiliesTitle' => 'iOS formats (Circular, Rectangular and Inline)',
+          'widgets.counterPageTitle' => 'Widget · Counter',
+          'widgets.counterYearsMonthsTitle' => ({
+            required Object years,
+            required Object months,
+          }) => '${years} years · ${months} months',
+          'widgets.counterMonthsDaysSubtitle' => ({
+            required Object months,
+            required Object days,
+          }) => '${months} months · ${days} days',
+          'widgets.counterStatusDating' => 'Dating',
+          'widgets.counterStatusLivingTogether' => 'Living together',
+          'widgets.counterStatusMarried' => 'Married',
+          'widgets.counterStatusTogether' => 'Together',
+          'widgets.counterMidnightNote' => 'The counter updates automatically at local midnight.',
+          'widgets.counterSetDateAction' => 'Set relationship date',
+          'widgets.photosPageTitle' => 'Widget · Couple photos',
+          'widgets.photosPlusBadge' => 'PLUS',
+          'widgets.photosNeutralFallbackNote' => 'When no local photo is cached (or in discreet mode), the widget shows only a neutral card with your time together.',
+          'widgets.photosUnlockPlusAction' => 'Explore Plus',
           _ => null,
         };
   }

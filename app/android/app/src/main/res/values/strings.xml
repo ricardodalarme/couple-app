@@ -2,4 +2,6 @@
 <resources>
     <string name="repara_widget_own_small_desc">Anotar slip, próxima data, humor ou ritual.</string>
     <string name="repara_widget_own_medium_desc">Ideia do dia ou potinho do dia ruim.</string>
+    <string name="repara_widget_couple_counter_desc">Dias juntos, atualizado à meia-noite.</string>
+    <string name="repara_widget_couple_photos_desc">Foto em cache local ou cartão neutro.</string>
 </resources>

@@ -6,6 +6,8 @@ import 'package:flutter_bloc_starter/features/widgets/data/data_sources/widgets_
 import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/configure/cubit/widget_configure_cubit.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/couple_counter/cubit/couple_counter_widget_cubit.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/couple_photos/cubit/couple_photos_widget_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/gallery/cubit/widgets_gallery_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/lock_screen/cubit/lock_screen_widget_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/own_medium/cubit/own_medium_widgets_cubit.dart';
@@ -49,6 +51,12 @@ class WidgetsInjectionModule() implements InjectionModule {
           repository: injector.get<WidgetsRepository>(),
           todayRepository: injector.get<TodayRepository>(),
         ),
+      )
+      ..registerFactory<CoupleCounterWidgetCubit>(
+        () => CoupleCounterWidgetCubit(repository: injector.get<WidgetsRepository>()),
+      )
+      ..registerFactory<CouplePhotosWidgetCubit>(
+        () => CouplePhotosWidgetCubit(repository: injector.get<WidgetsRepository>()),
       );
   }
 }

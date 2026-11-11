@@ -104,5 +104,18 @@
   "lockScreenGenericPhrase": "Momento calmo",
   "lockScreenDiscreetPhrase": "Lembrete",
   "lockScreenPrivacyRule": "Sem nomes nem mensagens na tela bloqueada.",
-  "lockScreenFamiliesTitle": "Formatos no iOS (Circular, Retangular e Linha)"
+  "lockScreenFamiliesTitle": "Formatos no iOS (Circular, Retangular e Linha)",
+  "counterPageTitle": "Widget · Contador",
+  "counterYearsMonthsTitle": "{years} anos · {months} meses",
+  "counterMonthsDaysSubtitle": "{months} meses · {days} dias",
+  "counterStatusDating": "Namorando",
+  "counterStatusLivingTogether": "Morando juntos",
+  "counterStatusMarried": "Casados",
+  "counterStatusTogether": "Juntos",
+  "counterMidnightNote": "O contador atualiza automaticamente à meia-noite no fuso local.",
+  "counterSetDateAction": "Definir data do relacionamento",
+  "photosPageTitle": "Widget · Fotos do casal",
+  "photosPlusBadge": "PLUS",
+  "photosNeutralFallbackNote": "Quando nenhuma foto local está salva (ou no modo discreto), o widget mostra apenas o cartão neutro com o tempo juntos.",
+  "photosUnlockPlusAction": "Conhecer o Plus"
 }

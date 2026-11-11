@@ -4,11 +4,14 @@ import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
+import android.view.View
 import android.widget.RemoteViews
 import com.ricardodalarme.flutter_bloc_starter.MainActivity
 import com.ricardodalarme.flutter_bloc_starter.R
 import org.json.JSONObject
+import java.io.File
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
@@ -117,11 +120,24 @@ data class ReparaWidgetPayload(
             title: String,
             subtitle: String,
             deepLink: String,
+            imagePath: String? = null,
         ) {
             val views = RemoteViews(context.packageName, R.layout.repara_widget_card)
             views.setTextViewText(R.id.repara_widget_label, label)
             views.setTextViewText(R.id.repara_widget_title, title)
             views.setTextViewText(R.id.repara_widget_subtitle, subtitle)
+
+            val bitmap = if (!imagePath.isNullOrBlank() && File(imagePath).exists()) {
+                BitmapFactory.decodeFile(imagePath)
+            } else {
+                null
+            }
+            if (bitmap != null) {
+                views.setImageViewBitmap(R.id.repara_widget_image, bitmap)
+                views.setViewVisibility(R.id.repara_widget_image, View.VISIBLE)
+            } else {
+                views.setViewVisibility(R.id.repara_widget_image, View.GONE)
+            }
 
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(deepLink), context, MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP

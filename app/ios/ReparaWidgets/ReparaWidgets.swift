@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 import WidgetKit
 
 struct ReparaWidgetPayload: Codable {
@@ -435,11 +436,216 @@ struct ReparaLockScreenWidget: Widget {
   }
 }
 
+struct ReparaCoupleCounterWidgetView: View {
+  let entry: ReparaWidgetEntry
+
+  var body: some View {
+    let p = entry.payload
+    if !p.isSignedIn {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://sign-in?homeWidget=1") {
+          Text("REPARA")
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text("Toque para entrar")
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+        }
+      )
+    }
+
+    if p.discreet {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://settings/discreet?homeWidget=1") {
+          Text("LEMBRETE")
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text("Texto neutro")
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+        }
+      )
+    }
+
+    if !p.isPaired {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://together?homeWidget=1") {
+          Text("JUNTOS")
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text("Convide para ver aqui")
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+          Text("Convidar")
+            .font(.caption)
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+        }
+      )
+    }
+
+    let daysText = p.daysTogether(on: entry.date).map { "\($0) dias" } ?? "Começando agora"
+    let subtitle = (p.showNames ? p.partnerName : nil) ?? "Tempo juntos"
+    return AnyView(
+      ReparaSurfaceCard(deepLink: "repara://together?homeWidget=1") {
+        Text("JUNTOS HÁ")
+          .font(.caption2.weight(.semibold))
+          .foregroundColor(.secondary)
+          .lineLimit(1)
+        Spacer(minLength: 4)
+        Text(daysText)
+          .font(.headline.weight(.semibold))
+          .lineLimit(1)
+        Text(subtitle)
+          .font(.caption)
+          .foregroundColor(.secondary)
+          .lineLimit(1)
+      }
+    )
+  }
+}
+
+struct ReparaCoupleCounterWidget: Widget {
+  let kind: String = "ReparaCoupleCounterWidget"
+
+  var body: some WidgetConfiguration {
+    StaticConfiguration(kind: kind, provider: ReparaTimelineProvider(refreshesAtMidnight: true)) { entry in
+      ReparaCoupleCounterWidgetView(entry: entry)
+    }
+    .configurationDisplayName("Repara · Contador do casal")
+    .description("Dias juntos, atualizado à meia-noite.")
+    .supportedFamilies([.systemSmall, .systemMedium])
+  }
+}
+
+struct ReparaCouplePhotosWidgetView: View {
+  let entry: ReparaWidgetEntry
+
+  var body: some View {
+    let p = entry.payload
+    if !p.isSignedIn {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://sign-in?homeWidget=1") {
+          Text("REPARA")
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text("Toque para entrar")
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+        }
+      )
+    }
+
+    if p.discreet {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://settings/discreet?homeWidget=1") {
+          Text("LEMBRETE")
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text("Texto neutro")
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+        }
+      )
+    }
+
+    if !p.isPaired {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://together?homeWidget=1") {
+          Text("JUNTOS")
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text("Convide para ver aqui")
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+        }
+      )
+    }
+
+    if !p.hasPlus {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://memories?homeWidget=1") {
+          Text("MEMÓRIA")
+            .font(.caption2.weight(.semibold))
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+          Spacer(minLength: 4)
+          Text("Disponível no Plus")
+            .font(.subheadline.weight(.semibold))
+            .lineLimit(2)
+        }
+      )
+    }
+
+    if let path = p.cachedPhotoPath, !path.isEmpty, let uiImage = UIImage(contentsOfFile: path) {
+      return AnyView(
+        ReparaSurfaceCard(deepLink: "repara://memories?homeWidget=1") {
+          Image(uiImage: uiImage)
+            .resizable()
+            .scaledToFill()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .clipped()
+            .cornerRadius(8)
+          Text("Memória salva neste aparelho")
+            .font(.caption2)
+            .foregroundColor(.secondary)
+            .lineLimit(1)
+        }
+      )
+    }
+
+    let fallbackTitle = p.daysTogether(on: entry.date).map { "\($0) dias juntos" } ?? "Um momento nosso"
+    return AnyView(
+      ReparaSurfaceCard(deepLink: "repara://memories?homeWidget=1") {
+        Text("MEMÓRIA")
+          .font(.caption2.weight(.semibold))
+          .foregroundColor(.secondary)
+          .lineLimit(1)
+        Spacer(minLength: 4)
+        Text(fallbackTitle)
+          .font(.headline.weight(.semibold))
+          .lineLimit(2)
+        Text("Sem foto selecionada")
+          .font(.caption)
+          .foregroundColor(.secondary)
+          .lineLimit(1)
+      }
+    )
+  }
+}
+
+struct ReparaCouplePhotosWidget: Widget {
+  let kind: String = "ReparaCouplePhotosWidget"
+
+  var body: some WidgetConfiguration {
+    StaticConfiguration(kind: kind, provider: ReparaTimelineProvider(refreshesAtMidnight: true)) { entry in
+      ReparaCouplePhotosWidgetView(entry: entry)
+    }
+    .configurationDisplayName("Repara · Fotos do casal")
+    .description("Foto em cache local ou cartão neutro.")
+    .supportedFamilies([.systemSmall, .systemMedium])
+  }
+}
+
 @main
 struct ReparaWidgetsBundle: WidgetBundle {
   var body: some Widget {
     ReparaOwnSmallWidget()
     ReparaOwnMediumWidget()
     ReparaLockScreenWidget()
+    ReparaCoupleCounterWidget()
+    ReparaCouplePhotosWidget()
   }
 }

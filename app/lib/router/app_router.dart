@@ -93,6 +93,8 @@ import 'package:flutter_bloc_starter/features/together/presentation/rituals/ritu
 import 'package:flutter_bloc_starter/features/together/presentation/together/together_page.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/configure/widget_configure_page.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/couple_counter/couple_counter_widget_page.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/couple_photos/couple_photos_widget_page.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/gallery/widgets_gallery_page.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/how_to_add/widget_how_to_add_page.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/lock_screen/lock_screen_widget_page.dart';
@@ -194,6 +196,8 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: OwnSmallWidgetsRoute.page),
     AutoRoute(page: OwnMediumWidgetsRoute.page),
     AutoRoute(page: LockRouteWidgetRoute.page),
+    AutoRoute(page: CoupleCounterWidgetRoute.page),
+    AutoRoute(page: CouplePhotosWidgetRoute.page),
     AutoRoute(
       page: HomeRoute.page,
       children: [

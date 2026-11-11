@@ -104,5 +104,18 @@
   "lockScreenGenericPhrase": "Calm moment",
   "lockScreenDiscreetPhrase": "Reminder",
   "lockScreenPrivacyRule": "Never shows names or messages on the lock screen.",
-  "lockScreenFamiliesTitle": "iOS formats (Circular, Rectangular and Inline)"
+  "lockScreenFamiliesTitle": "iOS formats (Circular, Rectangular and Inline)",
+  "counterPageTitle": "Widget · Counter",
+  "counterYearsMonthsTitle": "{years} years · {months} months",
+  "counterMonthsDaysSubtitle": "{months} months · {days} days",
+  "counterStatusDating": "Dating",
+  "counterStatusLivingTogether": "Living together",
+  "counterStatusMarried": "Married",
+  "counterStatusTogether": "Together",
+  "counterMidnightNote": "The counter updates automatically at local midnight.",
+  "counterSetDateAction": "Set relationship date",
+  "photosPageTitle": "Widget · Couple photos",
+  "photosPlusBadge": "PLUS",
+  "photosNeutralFallbackNote": "When no local photo is cached (or in discreet mode), the widget shows only a neutral card with your time together.",
+  "photosUnlockPlusAction": "Explore Plus"
 }

@@ -105,6 +105,8 @@ class const WidgetsGalleryPage({super.key}) extends StatelessWidget implements A
       WidgetFamilyKind.ownSmall => const OwnSmallWidgetsRoute() as PageRouteInfo<void>,
       WidgetFamilyKind.ownMedium => const OwnMediumWidgetsRoute(),
       WidgetFamilyKind.lockScreen => const LockRouteWidgetRoute(),
+      WidgetFamilyKind.coupleCounter => const CoupleCounterWidgetRoute(),
+      WidgetFamilyKind.couplePhotos => const CouplePhotosWidgetRoute(),
       _ => WidgetConfigureRoute(initialFamily: family),
     };
     await context.pushRoute(route);
