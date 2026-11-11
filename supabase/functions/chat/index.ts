@@ -10,10 +10,10 @@
 // Requires secrets CHAT_API_URL (an OpenAI-compatible base, e.g. https://host/v1), CHAT_API_KEY and CHAT_MODEL.
 // verify_jwt = true only proves the token is valid, and the public anon key is a valid JWT, so the role is checked here.
 import { cors, json, log, sql } from "../_shared/db.ts";
+import { type ChatEvent, relay } from "./relay.ts";
 
 const MAX_MESSAGE = 1000;
 const MAX_HISTORY = 12;
-const OPTIONS_MARKER = "[[options:";
 
 function claims(token: string): { role?: string; sub?: string } | null {
   try {
@@ -120,52 +120,14 @@ Deno.serve(async (req) => {
   }
 
   const encoder = new TextEncoder();
-  const decoder = new TextDecoder();
   const reader = upstream.body.getReader();
 
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
-      const send = (event: Record<string, unknown>) =>
+      const send = (event: ChatEvent) =>
         controller.enqueue(encoder.encode(`data: ${JSON.stringify(event)}\n\n`));
-      let buffered = "";
-      let full = "";
-      let emitted = 0;
       try {
-        for (;;) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          buffered += decoder.decode(value, { stream: true });
-          const lines = buffered.split("\n");
-          buffered = lines.pop() ?? "";
-          for (const line of lines) {
-            if (!line.startsWith("data:")) continue;
-            const data = line.slice(5).trim();
-            if (!data || data === "[DONE]") continue;
-            let piece = "";
-            try {
-              piece = JSON.parse(data).choices?.[0]?.delta?.content ?? "";
-            } catch {
-              continue;
-            }
-            if (!piece) continue;
-            full += piece;
-            // Hold back anything from a possible options marker so the chips never show up as text.
-            const marker = full.indexOf("[[");
-            let safeEnd = marker >= 0 ? marker : full.length;
-            if (marker < 0 && full.endsWith("[")) safeEnd = full.length - 1;
-            if (safeEnd > emitted) {
-              send({ type: "delta", text: full.slice(emitted, safeEnd) });
-              emitted = safeEnd;
-            }
-          }
-        }
-        const at = full.toLowerCase().indexOf(OPTIONS_MARKER);
-        const options = at >= 0
-          ? full.slice(at + OPTIONS_MARKER.length).replace(/\]\].*$/s, "").split("|")
-            .map((o) => o.trim()).filter(Boolean).slice(0, 3).map((o) => o.slice(0, 40))
-          : [];
-        if (at < 0 && emitted < full.length) send({ type: "delta", text: full.slice(emitted) });
-        send({ type: "done", options });
+        await relay(reader, send);
       } catch {
         log("chat_stream_failed");
         send({ type: "error", code: "UPSTREAM" });
