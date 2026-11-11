@@ -17,6 +17,7 @@ class const SensitiveTracksGate({
       actionText: actionText,
       onAction: onAction,
       face: FaceKind.thinking,
+      textMaxLines: null,
     );
   }
 }

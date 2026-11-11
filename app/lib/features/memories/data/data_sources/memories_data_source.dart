@@ -49,7 +49,8 @@ class MemoriesDataSource({required final GQLClient _client}) {
   /// One random slip the person put in the jar, or null when the jar is empty.
   Future<String?> drawFromJar() async {
     final response = await _client.mutate(OptionsMutationDrawFromJar());
+    validateResponse(response);
 
-    return validateResponseData(response, getData: (data) => data.drawFromJar?.body);
+    return response.parsedData?.drawFromJar?.body;
   }
 }

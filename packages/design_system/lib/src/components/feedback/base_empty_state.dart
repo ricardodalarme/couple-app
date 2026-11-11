@@ -16,6 +16,7 @@ class const BaseEmptyState({
   final bool isSecondaryAction = false,
   final FaceKind face = FaceKind.smile,
   final String? faceLabel,
+  final int? textMaxLines = 2,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -49,8 +50,8 @@ class const BaseEmptyState({
               Text(
                 text,
                 textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+                maxLines: textMaxLines,
+                overflow: textMaxLines == null ? TextOverflow.visible : TextOverflow.ellipsis,
                 style: context.text.bodySm.copyWith(color: colors.textSecondary),
               ),
               if (action != null) ...[

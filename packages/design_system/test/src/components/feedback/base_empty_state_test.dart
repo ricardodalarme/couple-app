@@ -44,4 +44,24 @@ void main() {
       await tester.pumpWidget(const SizedBox());
     });
   }
+
+  testWidgets('empty state can show the full supporting copy', (tester) async {
+    const text =
+        'This is a longer consent explanation that must not be cut off before the person can read it.';
+
+    await tester.pumpWidget(
+      scaffoldHost(
+        const BaseEmptyState(title: 'A private trail', text: text, textMaxLines: null),
+        variant: AppThemeVariant.rose,
+      ),
+    );
+    await tester.pump(const Duration(milliseconds: 200));
+
+    final rendered = tester.widget<Text>(find.text(text));
+    expect(rendered.maxLines, isNull);
+    expect(rendered.overflow, TextOverflow.visible);
+    expect(tester.takeException(), isNull);
+
+    await tester.pumpWidget(const SizedBox());
+  });
 }
