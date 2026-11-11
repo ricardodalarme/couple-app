@@ -566,7 +566,7 @@ class _Translations$chat$en extends Translations$chat$pt {
 
   // Translations
   @override
-  String get title => 'Talk';
+  String get title => 'Mascot';
   @override
   String get consentText =>
       'A calm conversation with the mascot, to sort out what you feel. It does not replace professional help and never takes sides.';
@@ -582,7 +582,12 @@ class _Translations$chat$en extends Translations$chat$pt {
   @override
   String get send => 'Send';
   @override
-  String messagesLeft({required Object count}) => '${count} messages left today';
+  String messagesLeft({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 message left today',
+        other: '${count} messages left today',
+      );
   @override
   String get saveAsSlip => 'Make it a slip';
   @override
@@ -2746,6 +2751,8 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get bodyHint => 'Tell how it went (optional)';
   @override
+  String get add => 'Add a memory';
+  @override
   String get save => 'Save memory';
   @override
   String get delete => 'Delete';
@@ -4308,9 +4315,9 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   @override
   String get devices => 'Notification devices';
   @override
-  String get on => 'On';
+  String get on => 'On in the app';
   @override
-  String get off => 'Off';
+  String get off => 'Off in the app';
   @override
   String get plan => 'Plan';
   @override
@@ -4729,7 +4736,9 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get soonText => 'This part of the app is still being prepared.';
   @override
-  String get segmentTogether => 'Together';
+  String get segmentTogether => 'Us';
+  @override
+  String get forMeFooter => 'Private tools. Never shared.';
   @override
   String get segmentForMe => 'For me';
   @override
@@ -4741,7 +4750,7 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get logisticsLabel => 'PRACTICAL';
   @override
-  String get logisticsTitle => 'Logistics';
+  String get logisticsTitle => 'Logistics meeting';
   @override
   String get logisticsText => 'The practical things, with nobody carrying them alone.';
   @override
@@ -4789,7 +4798,7 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get chatLabel => 'TALK';
   @override
-  String get chatTitle => 'Talk with the mascot';
+  String get chatTitle => 'Mascot';
   @override
   String get chatText => 'A calm conversation that is not kept.';
   @override
@@ -5037,8 +5046,6 @@ class _Translations$today$en extends Translations$today$pt {
   String togetherJoin({required Object first, required Object second}) => '${first} and ${second}';
   @override
   String get invitePerson => 'Invite your person';
-  @override
-  String get offline => 'No connection. Showing what was saved.';
   @override
   String get pendingInviteTitle => 'Invite sent';
   @override
@@ -6968,14 +6975,20 @@ extension on TranslationsEn {
           'cardsList.responseQuote' => ({required Object label}) => '“${label}”',
           'cardsList.notFound' => 'That card is no longer available.',
           'cardsList.reactionQuoteMadeMyDay' => 'That made my week.',
-          'chat.title' => 'Talk',
+          'chat.title' => 'Mascot',
           'chat.consentText' => 'A calm conversation with the mascot, to sort out what you feel. It does not replace professional help and never takes sides.',
           'chat.consentPrivacy' => 'What you write is sent to an AI model only to produce the reply. Nothing from the conversation is kept, unless you turn a reply into a slip.',
           'chat.consentTurnOn' => 'Turn on the chat',
           'chat.emptyHint' => 'Say how you are, or start with something small.',
           'chat.inputHint' => 'Write here',
           'chat.send' => 'Send',
-          'chat.messagesLeft' => ({required Object count}) => '${count} messages left today',
+          'chat.messagesLeft' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 message left today',
+                  other: '${count} messages left today',
+                ),
           'chat.saveAsSlip' => 'Make it a slip',
           'chat.slipSaved' => 'Slip saved',
           'chat.saveLearning' => 'Save as learning',
@@ -8289,6 +8302,7 @@ extension on TranslationsEn {
           'memories.titleLabel' => 'A memory',
           'memories.titleHint' => 'E.g. our first dinner',
           'memories.bodyHint' => 'Tell how it went (optional)',
+          'memories.add' => 'Add a memory',
           'memories.save' => 'Save memory',
           'memories.delete' => 'Delete',
           'memories.monthsShort.0' => 'Jan',
@@ -8636,10 +8650,10 @@ extension on TranslationsEn {
           'plus.restoreFailedTitle' => 'Couldn\'t restore',
           'plus.restoreFailedHighlight' => 'restore',
           'plus.tryAgain' => 'Try again',
-          'plus.done' => 'Done',
           _ => null,
         } ??
         switch (path) {
+          'plus.done' => 'Done',
           'plus.errors.storeUnavailable' => 'The store isn\'t available on this device right now.',
           'plus.errors.manageUnavailable' => 'There\'s no store page for this subscription here.',
           'plus.errors.other' => 'Couldn\'t do that right now. Try again.',
@@ -9159,8 +9173,8 @@ extension on TranslationsEn {
           'settingsHome.invitePartner' => 'Invite your partner',
           'settingsHome.notifications' => 'Notifications',
           'settingsHome.devices' => 'Notification devices',
-          'settingsHome.on' => 'On',
-          'settingsHome.off' => 'Off',
+          'settingsHome.on' => 'On in the app',
+          'settingsHome.off' => 'Off in the app',
           'settingsHome.plan' => 'Plan',
           'settingsHome.planFree' => 'Free',
           'settingsHome.planPlus' => 'Plus',
@@ -9203,10 +9217,10 @@ extension on TranslationsEn {
           'slipDetail.monthsShort.6' => 'Jul',
           'slipDetail.monthsShort.7' => 'Aug',
           'slipDetail.monthsShort.8' => 'Sep',
-          'slipDetail.monthsShort.9' => 'Oct',
           _ => null,
         } ??
         switch (path) {
+          'slipDetail.monthsShort.9' => 'Oct',
           'slipDetail.monthsShort.10' => 'Nov',
           'slipDetail.monthsShort.11' => 'Dec',
           'slipDetail.kinds.quick' => 'Quick',
@@ -9418,13 +9432,14 @@ extension on TranslationsEn {
           'tabs.capture' => 'New slip',
           'tabs.soonTitle' => 'Under construction',
           'tabs.soonText' => 'This part of the app is still being prepared.',
-          'tabs.segmentTogether' => 'Together',
+          'tabs.segmentTogether' => 'Us',
+          'tabs.forMeFooter' => 'Private tools. Never shared.',
           'tabs.segmentForMe' => 'For me',
           'tabs.checkinLabel' => 'CHECK-IN',
           'tabs.checkinTitle' => 'Weekly check-in',
           'tabs.checkinText' => 'A short conversation, private first.',
           'tabs.logisticsLabel' => 'PRACTICAL',
-          'tabs.logisticsTitle' => 'Logistics',
+          'tabs.logisticsTitle' => 'Logistics meeting',
           'tabs.logisticsText' => 'The practical things, with nobody carrying them alone.',
           'tabs.listsLabel' => 'LISTS',
           'tabs.listsTitle' => 'Lists',
@@ -9455,7 +9470,7 @@ extension on TranslationsEn {
           'tabs.partnerTitle' => 'About your partner',
           'tabs.partnerText' => 'Private notes to remember what they like.',
           'tabs.chatLabel' => 'TALK',
-          'tabs.chatTitle' => 'Talk with the mascot',
+          'tabs.chatTitle' => 'Mascot',
           'tabs.chatText' => 'A calm conversation that is not kept.',
           'tabs.hardTalkLabel' => 'HARD CONVERSATION',
           'tabs.hardTalkTitle' => 'Prepare a hard conversation',
@@ -9597,7 +9612,6 @@ extension on TranslationsEn {
             required Object second,
           }) => '${first} and ${second}',
           'today.invitePerson' => 'Invite your person',
-          'today.offline' => 'No connection. Showing what was saved.',
           'today.pendingInviteTitle' => 'Invite sent',
           'today.pendingInviteText' => 'They have not joined yet. Send again or revoke.',
           'today.pendingInviteAction' => 'See invite',
@@ -9818,10 +9832,10 @@ extension on TranslationsEn {
           'widgets.lockScreenClockTime' => '19:38',
           'widgets.lockScreenClockDate' => 'Friday, April 10',
           'widgets.lockScreenPauseTitle' => 'Pause in progress',
-          'widgets.lockScreenPauseUntil' => ({required Object time}) => 'until ${time}',
           _ => null,
         } ??
         switch (path) {
+          'widgets.lockScreenPauseUntil' => ({required Object time}) => 'until ${time}',
           'widgets.lockScreenPauseUntilDefault' => 'until 20:00',
           'widgets.lockScreenReadyAction' => 'I am ready',
           'widgets.lockScreenGenericPhrase' => 'Calm moment',

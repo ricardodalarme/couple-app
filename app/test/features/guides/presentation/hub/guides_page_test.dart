@@ -132,8 +132,7 @@ void main() {
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const TogetherPage()));
     await tester.pump();
 
-    expect(find.text('CONVERSAS'), findsOneWidget);
     expect(find.text('Conversas difíceis'), findsOneWidget);
-    expect(find.text('Um passo de cada vez, só para você.'), findsOneWidget);
+    expect(find.text('CONVERSAS'), findsNothing);
   });
 }

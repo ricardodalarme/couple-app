@@ -52,6 +52,7 @@ class _SlipsPageState() extends State<SlipsPage> {
     final slips = context.select((SlipsListCubit cubit) => cubit.state.slips);
     final scope = context.select((SlipsListCubit cubit) => cubit.state.scope);
     final cubit = context.read<SlipsListCubit>();
+    final isEmpty = slips is Success<List<SlipEntry>> && slips.value.isEmpty;
 
     return BaseView(
       appBar: null,
@@ -64,21 +65,23 @@ class _SlipsPageState() extends State<SlipsPage> {
             children: [
               Text(l10n.title, style: context.text.titleXl),
               const SizedBox(height: AppSpace.s16),
-              BaseSegmented(
-                segments: [l10n.scopeWeek, l10n.scopeAll],
-                selectedIndex: scope.index,
-                onSelectionChanged: (index) => cubit.changeScope(SlipsScope.values[index]),
-              ),
-              const SizedBox(height: AppSpace.s16),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: BaseTextLink(
-                  text: l10n.pastCards,
-                  onPressed: () => context.pushRoute(const CardsListRoute()),
+              if (!isEmpty) ...[
+                BaseSegmented(
+                  segments: [l10n.scopeWeek, l10n.scopeAll],
+                  selectedIndex: scope.index,
+                  onSelectionChanged: (index) => cubit.changeScope(SlipsScope.values[index]),
                 ),
-              ),
-              BaseSectionHeader(title: l10n.private, isLabel: true, showsLock: true),
-              const SizedBox(height: AppSpace.s10),
+                const SizedBox(height: AppSpace.s16),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: BaseTextLink(
+                    text: l10n.pastCards,
+                    onPressed: () => context.pushRoute(const CardsListRoute()),
+                  ),
+                ),
+                BaseSectionHeader(title: l10n.private, isLabel: true, showsLock: true),
+                const SizedBox(height: AppSpace.s10),
+              ],
               SkeletonizerResourceWidget<List<SlipEntry>>(
                 slips,
                 fakeValue: [SlipEntry.fake(), SlipEntry.fake(), SlipEntry.fake()],
@@ -86,6 +89,7 @@ class _SlipsPageState() extends State<SlipsPage> {
                     ? BaseEmptyState(
                         title: l10n.emptyTitle,
                         text: l10n.emptyText,
+                        face: FaceKind.thinking,
                         actionText: l10n.emptyAction,
                         onAction: () => context.router.root.push(const QuickSlipRoute()),
                       )

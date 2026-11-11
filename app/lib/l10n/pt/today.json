@@ -41,7 +41,6 @@
   },
   "togetherJoin": "{first} e {second}",
   "invitePerson": "Convidar sua pessoa",
-  "offline": "Sem conexão. Mostrando o que foi salvo.",
   "pendingInviteTitle": "Convite enviado",
   "pendingInviteText": "A pessoa ainda não entrou. Reenviar ou revogar.",
   "pendingInviteAction": "Ver convite",

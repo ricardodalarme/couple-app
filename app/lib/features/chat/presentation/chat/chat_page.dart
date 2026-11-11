@@ -152,15 +152,21 @@ class const _Conversation({required final bool isLimitReached}) extends Stateles
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Semantics(header: true, child: Text(l10n.title, style: context.text.titleXl)),
-          const SizedBox(height: AppSpace.s8),
+          Row(
+            children: [
+              const BaseFace(kind: FaceKind.smile, size: FaceSize.small),
+              const SizedBox(width: AppSpace.s12),
+              Semantics(header: true, child: Text(l10n.title, style: context.text.titleXl)),
+            ],
+          ),
+          const SizedBox(height: AppSpace.s12),
           Expanded(
             child: messages.isEmpty
                 ? Align(
                     alignment: Alignment.topLeft,
-                    child: Text(
-                      l10n.emptyHint,
-                      style: context.text.body.copyWith(color: context.colors.textSecondary),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [BaseBubble(text: l10n.emptyHint)],
                     ),
                   )
                 : ListView.separated(
@@ -197,11 +203,13 @@ class const _Conversation({required final bool isLimitReached}) extends Stateles
                 onPressed: canSend ? cubit.sendDraft : null,
               ),
             ),
-            const SizedBox(height: AppSpace.s4),
-            Text(
-              isOffline ? l10n.offline : l10n.messagesLeft(count: messagesLeft),
-              style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
-            ),
+            if (isOffline || messagesLeft <= 2) ...[
+              const SizedBox(height: AppSpace.s4),
+              Text(
+                isOffline ? l10n.offline : l10n.messagesLeft(count: messagesLeft),
+                style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
+              ),
+            ],
           ],
           const SizedBox(height: AppSpace.s12),
         ],

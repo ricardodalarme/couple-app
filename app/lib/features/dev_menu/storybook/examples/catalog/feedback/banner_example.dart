@@ -6,7 +6,7 @@ final WidgetbookNode bannerExample = WidgetbookComponent(
   name: 'Banner',
   useCases: [
     WidgetbookUseCase(
-      name: 'Info, warning, error, safety, plain, action and dismiss',
+      name: 'Info, warning, error, safety, plain, notice, action and dismiss',
       builder: (context) => GalleryPage(
         title: 'Banner',
         children: [
@@ -33,17 +33,19 @@ final WidgetbookNode bannerExample = WidgetbookComponent(
 );
 
 String _bannerTitle(BaseBannerVariant variant) => switch (variant) {
-  BaseBannerVariant.info => 'A small update',
-  BaseBannerVariant.warning => 'Check your reminder',
-  BaseBannerVariant.error => 'Something did not send',
-  BaseBannerVariant.safety => 'Your safety settings',
-  BaseBannerVariant.plain => 'A quiet note',
+  .info => 'A small update',
+  .warning => 'Check your reminder',
+  .error => 'Something did not send',
+  .safety => 'Your safety settings',
+  .plain => 'A quiet note',
+  .notice => 'Reminders are off',
 };
 
 String _bannerText(BaseBannerVariant variant) => switch (variant) {
-  BaseBannerVariant.info => 'There is a new way to revisit your first week.',
-  BaseBannerVariant.warning => 'Notifications are off on this device.',
-  BaseBannerVariant.error => 'We could not reach the server. Your draft is safe.',
-  BaseBannerVariant.safety => 'You can review who sees your answers at any time.',
-  BaseBannerVariant.plain => 'This note stays inside the card and scrolls with it.',
+  .info => 'There is a new way to revisit your first week.',
+  .warning => 'Notifications are off on this device.',
+  .error => 'We could not reach the server. Your draft is safe.',
+  .safety => 'You can review who sees your answers at any time.',
+  .plain => 'This note stays inside the card and scrolls with it.',
+  .notice => 'Turn them on in settings. Nothing is lost meanwhile.',
 };

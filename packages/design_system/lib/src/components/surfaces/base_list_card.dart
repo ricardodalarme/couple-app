@@ -7,10 +7,13 @@ import 'package:design_system/src/tokens/tokens.dart';
 import 'package:flutter/widgets.dart';
 
 /// A tappable list card with a category label, text and a trailing visual.
+///
+/// The default [AppCategory.card] shows no label glyph unless [icon] is set.
 class const BaseListCard({
   required final String categoryLabel,
   required final String title,
   final AppCategory category = AppCategory.card,
+  final IconData? icon,
   final String? supportText,
   final FaceKind? face,
   final Widget? trailing,
@@ -51,7 +54,12 @@ class const BaseListCard({
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      BaseCategoryLabel(text: categoryLabel, category: category),
+                      BaseCategoryLabel(
+                        text: categoryLabel,
+                        category: category,
+                        icon: icon,
+                        showsIcon: icon != null || category != AppCategory.card,
+                      ),
                       const SizedBox(height: AppSpace.s8),
                       Text(title, maxLines: 3, overflow: TextOverflow.ellipsis, style: text.body),
                       if (supportText != null) ...[

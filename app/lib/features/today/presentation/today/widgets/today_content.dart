@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
+import 'package:flutter_bloc_starter/features/mood/presentation/mood/mood_faces.dart';
 import 'package:flutter_bloc_starter/features/mood/presentation/mood/widgets/partner_mood_hint.dart';
+import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/off_banner/widgets/notifications_off_banner.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/cubit/today_cubit.dart';
@@ -16,7 +19,6 @@ import 'package:flutter_bloc_starter/router/app_router.dart';
 /// prompt when on their own, and a welcome on the first day.
 class const TodayContent({
   required final TodayHome home,
-  required final bool isOffline,
   final String? selfName,
   final String? partnerHint,
   final bool isFirstDay = false,
@@ -35,10 +37,6 @@ class const TodayContent({
         children: [
           TodayHeader(home: home, selfName: selfName, isFirstDay: isFirstDay),
           const SizedBox(height: AppSpace.s20),
-          if (isOffline) ...[
-            BaseBanner(text: l10n.offline, icon: AppIcons.wifi_off),
-            const SizedBox(height: AppSpace.s12),
-          ],
           TodayPause(home: home),
         ],
       );
@@ -49,19 +47,6 @@ class const TodayContent({
       children: [
         TodayHeader(home: home, selfName: selfName, isFirstDay: isFirstDay),
         const SizedBox(height: AppSpace.s20),
-        if (isOffline) ...[
-          BaseBanner(text: l10n.offline, icon: AppIcons.wifi_off),
-          const SizedBox(height: AppSpace.s12),
-        ],
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            BaseTextLink(
-              text: context.l10n.settingsHome.title,
-              onPressed: () => context.pushRoute(const SettingsHomeRoute()),
-            ),
-          ],
-        ),
         const NotificationsOffBanner(),
         if (home.unopenedCards > 0) ...[
           BaseBanner(
@@ -99,6 +84,14 @@ class const TodayContent({
           const SizedBox(height: AppSpace.s12),
         ],
         _MainCard(home: home, isFirstDay: isFirstDay),
+        const SizedBox(height: AppSpace.s16),
+        BaseWeekStrip(
+          title: isAlone
+              ? l10n.slipsThisWeekPrivate(count: home.slipsThisWeek)
+              : l10n.slipsThisWeek(count: home.slipsThisWeek),
+          supportText: home.slipsThisWeek == 0 ? l10n.weekHintEmpty : l10n.weekHint,
+          filledCount: home.slipsThisWeek,
+        ),
         if (home.isPaired && home.unopenedCards == 0 && home.slipsThisWeek > 0) ...[
           const SizedBox(height: AppSpace.s10),
           Center(
@@ -118,23 +111,24 @@ class const TodayContent({
           ),
         ],
         const SizedBox(height: AppSpace.s12),
-        BaseListCard(
-          categoryLabel: context.l10n.mood.entryCategory,
-          title: context.l10n.mood.entryTitle,
-          supportText: context.l10n.mood.entryText,
-          face: FaceKind.smile,
-          onTap: () async {
-            await context.pushRoute(const MoodRoute());
-            if (context.mounted) await context.read<TodayCubit>().load();
-          },
-        ),
-        const SizedBox(height: AppSpace.s16),
-        BaseSurfaceCard(
-          title: isAlone
-              ? l10n.slipsThisWeekPrivate(count: home.slipsThisWeek)
-              : l10n.slipsThisWeek(count: home.slipsThisWeek),
-          supportText: home.slipsThisWeek == 0 ? l10n.weekHintEmpty : l10n.weekHint,
-        ),
+        if (!isFirstDay) ...[
+          const SizedBox(height: AppSpace.s24),
+          BaseMoodRow(
+            title: context.l10n.mood.entryTitle,
+            supportText: context.l10n.mood.entryText,
+            options: [
+              for (final mood in MoodKind.values)
+                BaseMoodRowOption(
+                  face: mood.face,
+                  label: context.l10n.mood.moods.selectOrFallback(mood.value),
+                ),
+            ],
+            onSelected: (index) async {
+              await context.pushRoute(MoodRoute(initialMood: MoodKind.values[index].value));
+              if (context.mounted) await context.read<TodayCubit>().load();
+            },
+          ),
+        ],
         if (home.slipsThisWeek > 0) ...[
           const SizedBox(height: AppSpace.s12),
           BaseListCard(
@@ -162,6 +156,7 @@ class const TodayContent({
           const SizedBox(height: AppSpace.s10),
           BaseListCard(
             categoryLabel: l10n.ideaLabel,
+            category: AppCategory.idea,
             title: idea.title,
             supportText: idea.body,
             face: FaceKind.smile,
@@ -195,6 +190,7 @@ class const _MainCard({required final TodayHome home, required final bool isFirs
         tag: l10n.privateTag,
         question: l10n.privateQuestion,
         highlightedWord: l10n.privateHighlight,
+        face: FaceKind.thinking,
         actionText: l10n.privateAction,
         onAction: openCapture,
       );
@@ -204,6 +200,7 @@ class const _MainCard({required final TodayHome home, required final bool isFirs
         tag: l10n.emptyWeekTag,
         question: l10n.emptyWeekQuestion,
         highlightedWord: l10n.emptyWeekHighlight,
+        face: FaceKind.thinking,
         actionText: l10n.emptyWeekAction,
         onAction: openCapture,
       );

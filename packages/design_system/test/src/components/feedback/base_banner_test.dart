@@ -63,6 +63,56 @@ void main() {
         expect(tester.takeException(), isNull);
       });
 
+      testWidgets('notice stays quiet on the surface with a warning glyph', (tester) async {
+        await tester.pumpWidget(
+          materialAppFor(
+            const BaseBanner(
+              text: 'Reminders are off. Turn them on in settings.',
+              variant: BaseBannerVariant.notice,
+            ),
+            variant: variant,
+          ),
+        );
+
+        expect(_bannerSurface(tester), colors.bgSurface);
+        final glyphIcon = tester.widget<AppIcon>(
+          find.ancestor(of: find.byIcon(AppIcons.warning), matching: find.byType(AppIcon)),
+        );
+        expect(glyphIcon.color, AppPalette.warningInk);
+        expect(tester.takeException(), isNull);
+      });
+
+      testWidgets('a long action stacks below the text on a narrow banner', (tester) async {
+        const text = 'Reminders are off. Turn them on in settings.';
+        const action = 'Open settings';
+
+        await tester.pumpWidget(
+          materialAppFor(
+            BaseBanner(
+              text: text,
+              variant: BaseBannerVariant.notice,
+              actionLabel: action,
+              onAction: () {},
+            ),
+            variant: variant,
+            size: const Size(260, 844),
+          ),
+        );
+
+        expect(find.text(action), findsOneWidget);
+        expect(
+          tester.getTopLeft(find.text(action)).dy,
+          greaterThanOrEqualTo(tester.getBottomLeft(find.text(text)).dy),
+          reason: 'the action sits on its own row',
+        );
+        expect(
+          tester.getSize(find.text(action)).height,
+          lessThan(30),
+          reason: 'the action stays on one line',
+        );
+        expect(tester.takeException(), isNull);
+      });
+
       testWidgets('banner action and dismiss stay tappable', (tester) async {
         var actions = 0;
         var dismissals = 0;

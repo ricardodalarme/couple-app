@@ -30,6 +30,7 @@ class const _Banner() extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: AppSpace.s12),
       child: BaseBanner(
         text: l10n.offBanner,
+        variant: BaseBannerVariant.notice,
         icon: AppIcons.bell_off,
         actionLabel: l10n.openSettings,
         onAction: () => context.pushRoute(const NotificationPreferencesRoute()),

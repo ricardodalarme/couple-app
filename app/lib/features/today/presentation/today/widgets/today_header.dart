@@ -37,6 +37,7 @@ class const TodayHeader({
             day: now.day,
             month: l10n.months[now.month - 1],
           );
+    final timeIcon = now.hour >= 18 || now.hour < 6 ? AppIcons.moon : AppIcons.sun;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,10 +66,23 @@ class const TodayHeader({
           onLongPress: EnvVariables.debugSignIn
               ? () => context.router.pushWidget(const DevMenuPage())
               : null,
-          child: Semantics(header: true, child: Text(greeting, style: context.text.titleXl)),
+          child: Semantics(
+            header: true,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(child: Text(greeting, style: context.text.titleLg)),
+                const SizedBox(width: AppSpace.s8),
+                Padding(
+                  padding: const EdgeInsets.only(top: AppSpace.s2),
+                  child: AppIcon(icon: timeIcon, color: context.colors.accentLabel),
+                ),
+              ],
+            ),
+          ),
         ),
         const SizedBox(height: AppSpace.s4),
-        Text(dateLine, style: context.text.body.copyWith(color: context.colors.textSecondary)),
+        Text(dateLine, style: context.text.bodySm.copyWith(color: context.colors.textSecondary)),
       ],
     );
   }
@@ -101,7 +115,13 @@ class const _TogetherChip({required final DateTime since}) extends StatelessWidg
             child: Icon(AppIcons.heart_filled, size: AppIconSize.xs, color: colors.accentHighlight),
           ),
           const SizedBox(width: AppSpace.s8),
-          Text(_label(l10n, since), style: context.text.label.copyWith(color: colors.textPrimary)),
+          Text(
+            _label(l10n, since),
+            style: context.text.bodySm.copyWith(
+              color: colors.textPrimary,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ],
       ),
     );

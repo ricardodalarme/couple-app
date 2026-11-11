@@ -1,12 +1,15 @@
 {
-  "title": "Talk",
+  "title": "Mascot",
   "consentText": "A calm conversation with the mascot, to sort out what you feel. It does not replace professional help and never takes sides.",
   "consentPrivacy": "What you write is sent to an AI model only to produce the reply. Nothing from the conversation is kept, unless you turn a reply into a slip.",
   "consentTurnOn": "Turn on the chat",
   "emptyHint": "Say how you are, or start with something small.",
   "inputHint": "Write here",
   "send": "Send",
-  "messagesLeft": "{count} messages left today",
+  "messagesLeft(plural, param=count)": {
+    "one": "1 message left today",
+    "other": "{count} messages left today"
+  },
   "saveAsSlip": "Make it a slip",
   "slipSaved": "Slip saved",
   "saveLearning": "Save as learning",

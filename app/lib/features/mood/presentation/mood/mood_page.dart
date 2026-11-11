@@ -3,16 +3,28 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/errors/app_error_view.dart';
+import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
 import 'package:flutter_bloc_starter/features/mood/presentation/mood/cubit/mood_cubit.dart';
 import 'package:flutter_bloc_starter/features/mood/presentation/mood/widgets/mood_form.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
-class const MoodPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
+class const MoodPage({final String? initialMood, super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(create: (_) => AppInjector.instance.get<MoodCubit>()..load(), child: this);
+    return BlocProvider(
+      create: (_) {
+        final cubit = AppInjector.instance.get<MoodCubit>();
+        cubit.load().then((_) {
+          final mood = MoodKind.fromValue(initialMood);
+          if (mood != null && !cubit.isClosed) cubit.selectMood(mood);
+        });
+
+        return cubit;
+      },
+      child: this,
+    );
   }
 
   @override

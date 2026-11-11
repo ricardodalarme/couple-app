@@ -4,9 +4,13 @@ import 'package:design_system/src/tokens/tokens.dart';
 import 'package:flutter/widgets.dart';
 
 /// A filled icon with an upper-case label.
+///
+/// [icon] overrides the category glyph; [showsIcon] hides it.
 class const BaseCategoryLabel({
   required final String text,
   required final AppCategory category,
+  final IconData? icon,
+  final bool showsIcon = true,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -16,8 +20,10 @@ class const BaseCategoryLabel({
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        AppIcon(icon: _iconFor(category), color: ink),
-        const SizedBox(width: AppSpace.s8),
+        if (showsIcon) ...[
+          AppIcon(icon: icon ?? _iconFor(category), color: ink),
+          const SizedBox(width: AppSpace.s8),
+        ],
         Flexible(
           child: Text(text.toUpperCase(), style: context.text.label.copyWith(color: ink)),
         ),

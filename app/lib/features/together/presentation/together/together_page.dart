@@ -48,230 +48,220 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
                 BaseNote(text: l10n.soloNote),
                 const SizedBox(height: AppSpace.s12),
               ],
-              if (phase == 'long_distance') ...[
-                BaseListCard(
-                  categoryLabel: l10n.distanceLabel,
-                  title: l10n.distanceTitle,
-                  supportText: l10n.distanceText,
-                  onTap: () => context.pushRoute(const DistanceRoute()),
-                ),
-                const SizedBox(height: AppSpace.s12),
-              ] else if (phase == 'with_parents') ...[
-                BaseListCard(
-                  categoryLabel: l10n.parentsLabel,
-                  title: l10n.parentsTitle,
-                  supportText: l10n.parentsText,
-                  onTap: () => context.pushRoute(const RitualsRoute()),
-                ),
-                const SizedBox(height: AppSpace.s12),
-              ],
-              if (showCheckin) ...[
-                BaseListCard(
-                  categoryLabel: l10n.checkinLabel,
-                  title: l10n.checkinTitle,
-                  supportText: l10n.checkinText,
-                  onTap: () => _openCheckin(context, cubit),
-                ),
-                const SizedBox(height: AppSpace.s12),
-              ],
-              BaseListCard(
-                categoryLabel: context.l10n.programs.label,
-                title: context.l10n.programs.title,
-                supportText: context.l10n.programs.entryText,
-                onTap: () => context.pushRoute(const ProgramsRoute()),
+              BaseListGroup(
+                children: [
+                  if (phase == 'long_distance')
+                    _row(
+                      icon: AppIcons.map_pin,
+                      title: l10n.distanceTitle,
+                      onTap: () => context.pushRoute(const DistanceRoute()),
+                    )
+                  else if (phase == 'with_parents')
+                    _row(
+                      icon: AppIcons.home,
+                      title: l10n.parentsTitle,
+                      onTap: () => context.pushRoute(const RitualsRoute()),
+                    ),
+                  if (showCheckin)
+                    _row(
+                      icon: AppIcons.check,
+                      title: l10n.checkinTitle,
+                      onTap: () => _openCheckin(context, cubit),
+                    ),
+                  _row(
+                    icon: AppIcons.plant,
+                    title: context.l10n.programs.title,
+                    onTap: () => context.pushRoute(const ProgramsRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.chat,
+                    title: entry.title,
+                    subtitle: questionTitle,
+                    onTap: () => context.pushRoute(const QuestionsRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.play,
+                    title: l10n.gamesTitle,
+                    trailing: hasPartner ? null : BaseTag(text: l10n.gamesLock),
+                    onTap: () => context.pushRoute(const GamesRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.cart,
+                    title: l10n.logisticsTitle,
+                    onTap: () => context.pushRoute(const LogisticsRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.rings,
+                    title: l10n.ritualsTitle,
+                    onTap: () => context.pushRoute(const RitualsRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.sparkle,
+                    title: l10n.dateNightTitle,
+                    onTap: () => context.pushRoute(const DateNightRoute()),
+                  ),
+                ],
               ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: entry.label,
-                title: questionTitle ?? entry.title,
-                supportText: entry.text,
-                onTap: () => context.pushRoute(const QuestionsRoute()),
+              const SizedBox(height: AppSpace.s24),
+              BaseListGroup(
+                children: [
+                  _row(
+                    icon: AppIcons.note,
+                    title: l10n.listsTitle,
+                    subtitle: switch ((hasPartner, listCount)) {
+                      (true, 0) => l10n.listsEmpty,
+                      (false, 0) => l10n.listsEmptyPrivate,
+                      (true, final count) => l10n.listsSharedCount(count: count),
+                      (false, final count) => l10n.listsPrivateCount(count: count),
+                    },
+                    onTap: () async {
+                      await context.pushRoute(const ListsRoute());
+                      if (context.mounted) await cubit.load();
+                    },
+                  ),
+                  _row(
+                    icon: AppIcons.gift,
+                    title: context.l10n.gifts.entryTitle,
+                    onTap: () => context.pushRoute(const GiftsRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.book,
+                    title: l10n.guidesTitle,
+                    onTap: () => context.pushRoute(const GuidesRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.calendar,
+                    title: l10n.datesTitle,
+                    onTap: () => context.pushRoute(const DatesRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.sun,
+                    title: l10n.dayTitle,
+                    onTap: () => context.pushRoute(const DayRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.sparkle,
+                    title: l10n.starterTitle,
+                    onTap: () => context.pushRoute(const StarterRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.cloud,
+                    title: l10n.badDayTitle,
+                    onTap: () => context.pushRoute(const BadDayRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.smile,
+                    title: l10n.temperatureTitle,
+                    onTap: () => context.pushRoute(const TemperatureRoute()),
+                  ),
+                ],
               ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.gamesLabel,
-                title: l10n.gamesTitle,
-                supportText: l10n.gamesText,
-                trailing: hasPartner ? null : BaseTag(text: l10n.gamesLock),
-                onTap: () => context.pushRoute(const GamesRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.logisticsLabel,
-                title: l10n.logisticsTitle,
-                supportText: l10n.logisticsText,
-                onTap: () => context.pushRoute(const LogisticsRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.listsLabel,
-                title: l10n.listsTitle,
-                supportText: switch ((hasPartner, listCount)) {
-                  (true, 0) => l10n.listsEmpty,
-                  (false, 0) => l10n.listsEmptyPrivate,
-                  (true, final count) => l10n.listsSharedCount(count: count),
-                  (false, final count) => l10n.listsPrivateCount(count: count),
-                },
-                onTap: () async {
-                  await context.pushRoute(const ListsRoute());
-                  if (context.mounted) await cubit.load();
-                },
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: context.l10n.gifts.entryLabel,
-                title: context.l10n.gifts.entryTitle,
-                supportText: context.l10n.gifts.entryText,
-                onTap: () => context.pushRoute(const GiftsRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.guidesLabel,
-                title: l10n.guidesTitle,
-                supportText: l10n.guidesText,
-                onTap: () => context.pushRoute(const GuidesRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.ritualsLabel,
-                title: l10n.ritualsTitle,
-                supportText: l10n.ritualsText,
-                onTap: () => context.pushRoute(const RitualsRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.datesLabel,
-                title: l10n.datesTitle,
-                supportText: l10n.datesText,
-                onTap: () => context.pushRoute(const DatesRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.dateNightLabel,
-                title: l10n.dateNightTitle,
-                supportText: l10n.dateNightText,
-                onTap: () => context.pushRoute(const DateNightRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.badDayLabel,
-                title: l10n.badDayTitle,
-                supportText: l10n.badDayText,
-                onTap: () => context.pushRoute(const BadDayRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.starterLabel,
-                title: l10n.starterTitle,
-                supportText: l10n.starterText,
-                onTap: () => context.pushRoute(const StarterRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.dayLabel,
-                title: l10n.dayTitle,
-                supportText: l10n.dayText,
-                onTap: () => context.pushRoute(const DayRoute()),
-              ),
-              if (hasPartner) ...[
-                const SizedBox(height: AppSpace.s12),
-                BaseListCard(
-                  categoryLabel: l10n.usLabel,
-                  title: l10n.usTitle,
-                  supportText: l10n.usText,
-                  onTap: () => context.pushRoute(const UsRoute()),
-                ),
-                const SizedBox(height: AppSpace.s12),
-                BaseListCard(
-                  categoryLabel: l10n.touchLabel,
-                  title: l10n.touchTitle,
-                  supportText: l10n.touchText,
-                  onTap: () => context.pushRoute(const TouchRoute()),
-                ),
-              ],
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.capsulesLabel,
-                title: l10n.capsulesTitle,
-                supportText: l10n.capsulesText,
-                onTap: () => context.pushRoute(const CapsulesRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.temperatureLabel,
-                title: l10n.temperatureTitle,
-                supportText: l10n.temperatureText,
-                onTap: () => context.pushRoute(const TemperatureRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: context.l10n.widgets.juntosCategory,
-                title: context.l10n.widgets.juntosTitle,
-                supportText: context.l10n.widgets.juntosSubtitle,
-                onTap: () => context.pushRoute(const WidgetsGalleryRoute()),
+              const SizedBox(height: AppSpace.s24),
+              BaseListGroup(
+                children: [
+                  if (hasPartner) ...[
+                    _row(
+                      icon: AppIcons.heart,
+                      title: l10n.usTitle,
+                      onTap: () => context.pushRoute(const UsRoute()),
+                    ),
+                    _row(
+                      icon: AppIcons.twinkle,
+                      title: l10n.touchTitle,
+                      onTap: () => context.pushRoute(const TouchRoute()),
+                    ),
+                  ],
+                  _row(
+                    icon: AppIcons.timer,
+                    title: l10n.capsulesTitle,
+                    onTap: () => context.pushRoute(const CapsulesRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.smartphone,
+                    title: context.l10n.widgets.juntosTitle,
+                    onTap: () => context.pushRoute(const WidgetsGalleryRoute()),
+                  ),
+                ],
               ),
             ] else ...[
-              BaseListCard(
-                categoryLabel: l10n.chatLabel,
-                title: l10n.chatTitle,
-                supportText: l10n.chatText,
-                onTap: () => context.pushRoute(ChatRoute()),
+              BaseListGroup(
+                children: [
+                  _row(
+                    icon: AppIcons.lock,
+                    title: context.l10n.programs.diaryTitle,
+                    onTap: () => context.pushRoute(const DiaryRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.chat,
+                    title: l10n.chatTitle,
+                    onTap: () => context.pushRoute(ChatRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.heart,
+                    title: l10n.hardTalkTitle,
+                    onTap: () => context.pushRoute(const HardConversationRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.pencil,
+                    title: l10n.notesTitle,
+                    onTap: () => context.pushRoute(const ComposeRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.lightbulb,
+                    title: l10n.learningTitle,
+                    onTap: () => context.pushRoute(LearningRoute()),
+                  ),
+                ],
               ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.hardTalkLabel,
-                title: l10n.hardTalkTitle,
-                supportText: l10n.hardTalkText,
-                onTap: () => context.pushRoute(const HardConversationRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.plusLabel,
-                title: l10n.plusTitle,
-                supportText: l10n.plusText,
-                onTap: () => context.pushRoute(const PlansRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.fightStyleLabel,
-                title: l10n.fightStyleTitle,
-                supportText: l10n.fightStyleText,
-                face: FaceKind.thinking,
-                onTap: () => context.pushRoute(const FightStyleRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: context.l10n.loveStyle.entryLabel,
-                title: context.l10n.loveStyle.entryTitle,
-                supportText: context.l10n.loveStyle.entryText,
-                face: FaceKind.affectionate,
-                onTap: () => context.pushRoute(const LoveStyleRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.partnerLabel,
-                title: l10n.partnerTitle,
-                supportText: l10n.partnerText,
-                onTap: () => context.pushRoute(const PartnerProfileRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.notesLabel,
-                title: l10n.notesTitle,
-                supportText: l10n.notesText,
-                onTap: () => context.pushRoute(const ComposeRoute()),
-              ),
-              const SizedBox(height: AppSpace.s12),
-              BaseListCard(
-                categoryLabel: l10n.learningLabel,
-                title: l10n.learningTitle,
-                supportText: l10n.learningText,
-                onTap: () => context.pushRoute(LearningRoute()),
+              const SizedBox(height: AppSpace.s24),
+              BaseListGroup(
+                footer: l10n.forMeFooter,
+                children: [
+                  _row(
+                    icon: AppIcons.twinkle,
+                    title: l10n.fightStyleTitle,
+                    onTap: () => context.pushRoute(const FightStyleRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.heart,
+                    title: context.l10n.loveStyle.entryTitle,
+                    onTap: () => context.pushRoute(const LoveStyleRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.user,
+                    title: l10n.partnerTitle,
+                    onTap: () => context.pushRoute(const PartnerProfileRoute()),
+                  ),
+                  _row(
+                    icon: AppIcons.star,
+                    title: l10n.plusTitle,
+                    onTap: () => context.pushRoute(const PlansRoute()),
+                  ),
+                ],
               ),
             ],
           ],
         ),
       ),
+    );
+  }
+
+  Widget _row({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+    String? subtitle,
+    Widget? trailing,
+  }) {
+    return BaseListTile(
+      icon: icon,
+      title: title,
+      subtitle: subtitle,
+      subtitleMaxLines: 1,
+      titleMaxLines: 1,
+      trailing: trailing,
+      showsChevron: true,
+      onTap: onTap,
     );
   }
 

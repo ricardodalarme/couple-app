@@ -7,6 +7,7 @@ final class const MemoriesState({
   final String place = '',
   final Resource<void> saveAction = const Initial(),
   final Resource<String?> jarAction = const Initial(),
+  final bool isFormOpen = false,
 }) with Equatable {
   /// Whether the title is filled and every text is within its limit.
   bool get canSave =>
@@ -14,6 +15,13 @@ final class const MemoriesState({
       title.length <= memoryTitleMaxLength &&
       body.length <= memoryBodyMaxLength &&
       place.length <= memoryPlaceMaxLength;
+
+  /// Whether the person has started writing a memory.
+  bool get isFormDirty =>
+      title.trim().isNotEmpty || body.trim().isNotEmpty || place.trim().isNotEmpty;
+
+  /// Whether the form is on screen, opened on purpose or already started.
+  bool get showsForm => isFormOpen || isFormDirty;
 
   /// Whether the typed place reads like an address instead of a name.
   bool get placeLooksLikeAddress => place.trim().isNotEmpty && looksLikeAddress(place);
@@ -25,6 +33,7 @@ final class const MemoriesState({
     String? place,
     Resource<void>? saveAction,
     Resource<String?>? jarAction,
+    bool? isFormOpen,
   }) {
     return MemoriesState(
       memories: memories ?? this.memories,
@@ -33,9 +42,10 @@ final class const MemoriesState({
       place: place ?? this.place,
       saveAction: saveAction ?? this.saveAction,
       jarAction: jarAction ?? this.jarAction,
+      isFormOpen: isFormOpen ?? this.isFormOpen,
     );
   }
 
   @override
-  List<Object?> get props => [memories, title, body, place, saveAction, jarAction];
+  List<Object?> get props => [memories, title, body, place, saveAction, jarAction, isFormOpen];
 }

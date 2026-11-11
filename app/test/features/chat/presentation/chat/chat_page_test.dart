@@ -121,6 +121,22 @@ void main() {
     expect(find.text('Ligar a conversa'), findsNothing);
   });
 
+  testWidgets('the quota stays quiet until two messages are left', (tester) async {
+    final cubits = await build(isOnline: true);
+
+    await pumpChat(tester, cubits.chat, cubits.connectivity);
+
+    expect(find.textContaining('mensagens hoje'), findsNothing);
+
+    when(chatRepository.getStatus)
+        .thenAnswer((_) async => (messagesLeft: 1, limit: 20, isEnabled: true, hasPlus: true));
+    await cubits.chat.load();
+    await tester.pump();
+    await tester.pump();
+
+    expect(find.text('Resta 1 mensagem hoje'), findsOneWidget);
+  });
+
   testWidgets('a finished reply can be saved as a learning from its action row', (tester) async {
     when(
       () => chatRepository.send(

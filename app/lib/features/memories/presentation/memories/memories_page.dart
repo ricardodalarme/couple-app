@@ -48,51 +48,69 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
               children: [
                 Semantics(header: true, child: Text(l10n.title, style: context.text.titleXl)),
                 const SizedBox(height: AppSpace.s16),
-                BaseListCard(
-                  categoryLabel: l10n.historyLabel,
-                  title: l10n.historyTitle,
-                  supportText: l10n.historyText,
-                  onTap: () => context.pushRoute(const HistoryRoute()),
+                BaseListGroup(
+                  children: [
+                    BaseListTile(
+                      icon: AppIcons.book,
+                      title: l10n.historyTitle,
+                      showsChevron: true,
+                      titleMaxLines: 1,
+                      onTap: () => context.pushRoute(const HistoryRoute()),
+                    ),
+                    BaseListTile(
+                      icon: AppIcons.map_pin,
+                      title: l10n.placesTitle,
+                      showsChevron: true,
+                      titleMaxLines: 1,
+                      onTap: () => context.pushRoute(const PlacesRoute()),
+                    ),
+                    BaseListTile(
+                      icon: AppIcons.share,
+                      title: l10n.storyTitle,
+                      showsChevron: true,
+                      titleMaxLines: 1,
+                      onTap: () => context.pushRoute(const StoryRoute()),
+                    ),
+                    BaseListTile(
+                      icon: AppIcons.heart,
+                      title: l10n.jarTitle,
+                      showsChevron: true,
+                      titleMaxLines: 1,
+                      onTap: cubit.drawFromJar,
+                    ),
+                  ],
                 ),
-                const SizedBox(height: AppSpace.s12),
-                BaseListCard(
-                  categoryLabel: l10n.placesLabel,
-                  title: l10n.placesTitle,
-                  supportText: l10n.placesText,
-                  onTap: () => context.pushRoute(const PlacesRoute()),
-                ),
-                const SizedBox(height: AppSpace.s12),
-                BaseListCard(
-                  categoryLabel: l10n.storyLabel,
-                  title: l10n.storyTitle,
-                  supportText: l10n.storyText,
-                  onTap: () => context.pushRoute(const StoryRoute()),
-                ),
-                const SizedBox(height: AppSpace.s12),
-                const _Jar(),
-                const SizedBox(height: AppSpace.s20),
-                BaseTextField(
-                  text: state.title,
-                  label: l10n.titleLabel,
-                  hint: l10n.titleHint,
-                  onChanged: cubit.onTitleChanged,
-                ),
-                const SizedBox(height: AppSpace.s12),
-                BaseTextField(
-                  text: state.place,
-                  label: l10n.placeLabel,
-                  hint: l10n.placeHint,
-                  helpText: state.placeLooksLikeAddress ? l10n.placeAddressNote : null,
-                  onChanged: cubit.onPlaceChanged,
-                ),
-                const SizedBox(height: AppSpace.s12),
-                BaseTextArea(
-                  text: state.body,
-                  hint: l10n.bodyHint,
-                  maxLength: memoryBodyMaxLength,
-                  maxLines: 3,
-                  onChanged: cubit.onBodyChanged,
-                ),
+                const _JarResult(),
+                const SizedBox(height: AppSpace.s24),
+                if (state.showsForm) ...[
+                  BaseTextField(
+                    text: state.title,
+                    label: l10n.titleLabel,
+                    hint: l10n.titleHint,
+                    onChanged: cubit.onTitleChanged,
+                  ),
+                  const SizedBox(height: AppSpace.s12),
+                  BaseTextField(
+                    text: state.place,
+                    label: l10n.placeLabel,
+                    hint: l10n.placeHint,
+                    helpText: state.placeLooksLikeAddress ? l10n.placeAddressNote : null,
+                    onChanged: cubit.onPlaceChanged,
+                  ),
+                  const SizedBox(height: AppSpace.s12),
+                  BaseTextArea(
+                    text: state.body,
+                    hint: l10n.bodyHint,
+                    maxLength: memoryBodyMaxLength,
+                    maxLines: 3,
+                    onChanged: cubit.onBodyChanged,
+                  ),
+                ] else
+                  BaseListGroup(
+                    children: [
+                      BaseListTile(icon: AppIcons.plus, title: l10n.add, onTap: cubit.openForm),
+                    ],
+                  ),
                 const SizedBox(height: AppSpace.s24),
                 SkeletonizerResourceWidget<List<Memory>>(
                   state.memories,
@@ -129,12 +147,14 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
                 ),
               ],
             ),
-            footer: BaseButton(
-              text: l10n.save,
-              isEnabled: state.canSave,
-              isLoading: state.saveAction.isLoading,
-              onPressed: cubit.save,
-            ),
+            footer: state.showsForm
+                ? BaseButton(
+                    text: l10n.save,
+                    isEnabled: state.canSave,
+                    isLoading: state.saveAction.isLoading,
+                    onPressed: cubit.save,
+                  )
+                : null,
           ),
         ),
       ),
@@ -142,7 +162,7 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
   }
 }
 
-class const _Jar() extends StatelessWidget {
+class const _JarResult() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.memories;
@@ -155,6 +175,7 @@ class const _Jar() extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          const SizedBox(height: AppSpace.s12),
           DecoratedBox(
             decoration: BoxDecoration(
               color: context.colors.bgSurface,
@@ -184,11 +205,6 @@ class const _Jar() extends StatelessWidget {
       );
     }
 
-    return BaseListCard(
-      categoryLabel: l10n.jarLabel,
-      title: l10n.jarTitle,
-      supportText: l10n.jarText,
-      onTap: cubit.drawFromJar,
-    );
+    return const SizedBox.shrink();
   }
 }

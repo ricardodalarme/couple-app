@@ -1,12 +1,15 @@
 {
-  "title": "Conversar",
+  "title": "Mascote",
   "consentText": "Uma conversa calma com a mascote, para organizar o que você sente. Ela não substitui ajuda profissional e nunca toma partido.",
   "consentPrivacy": "O que você escreve é enviado a um modelo de IA só para gerar a resposta. Nada da conversa é guardado, a menos que você transforme uma resposta em slip.",
   "consentTurnOn": "Ligar a conversa",
   "emptyHint": "Diga como você está, ou comece por uma coisa pequena.",
   "inputHint": "Escreva aqui",
   "send": "Enviar",
-  "messagesLeft": "Restam {count} mensagens hoje",
+  "messagesLeft(plural, param=count)": {
+    "one": "Resta 1 mensagem hoje",
+    "other": "Restam {count} mensagens hoje"
+  },
   "saveAsSlip": "Virar slip",
   "slipSaved": "Slip guardado",
   "saveLearning": "Salvar aprendizado",

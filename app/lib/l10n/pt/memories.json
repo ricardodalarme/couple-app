@@ -21,6 +21,7 @@
   "titleLabel": "Uma memória",
   "titleHint": "Ex.: nosso primeiro jantar",
   "bodyHint": "Conte como foi (opcional)",
+  "add": "Adicionar memória",
   "save": "Guardar memória",
   "delete": "Apagar",
   "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],

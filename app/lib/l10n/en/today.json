@@ -41,7 +41,6 @@
   },
   "togetherJoin": "{first} and {second}",
   "invitePerson": "Invite your person",
-  "offline": "No connection. Showing what was saved.",
   "pendingInviteTitle": "Invite sent",
   "pendingInviteText": "They have not joined yet. Send again or revoke.",
   "pendingInviteAction": "See invite",

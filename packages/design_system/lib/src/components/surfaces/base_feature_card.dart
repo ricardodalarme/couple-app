@@ -78,7 +78,7 @@ class const BaseFeatureCard({
                   _PrivacyNote(text: privacyNote!),
                 ],
               ],
-              SizedBox(height: hasContext ? AppSpace.s18 : AppSpace.s44),
+              SizedBox(height: hasContext ? AppSpace.s18 : AppSpace.s24),
               if (isAnswered)
                 BaseButton.secondary(
                   text: actionText,

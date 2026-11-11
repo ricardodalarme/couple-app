@@ -6,6 +6,7 @@ import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/catalo
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/catalog/surfaces/list_card_example.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/catalog/surfaces/surface_card_example.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/catalog/surfaces/tag_example.dart';
+import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/catalog/surfaces/week_strip_example.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 final WidgetbookNode surfacesExamples = WidgetbookFolder(
@@ -14,6 +15,7 @@ final WidgetbookNode surfacesExamples = WidgetbookFolder(
     featureCardExample,
     listCardExample,
     surfaceCardExample,
+    weekStripExample,
     tagExample,
     categoryLabelExample,
     faceExample,

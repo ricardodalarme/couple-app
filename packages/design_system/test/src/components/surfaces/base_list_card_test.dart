@@ -47,6 +47,13 @@ Widget _showcase() {
         face: FaceKind.smile,
         onTap: () {},
       ),
+      const SizedBox(height: AppSpace.cardGap),
+      BaseListCard(
+        categoryLabel: 'Reminder',
+        icon: AppIcons.bell,
+        title: 'One quiet reminder.',
+        onTap: () {},
+      ),
     ],
   );
 }
@@ -56,15 +63,26 @@ void main() {
     testWidgets('renders every list card in ${variant.name}', (tester) async {
       await tester.pumpWidget(_host(variant, _showcase()));
 
-      expect(find.byType(BaseListCard), findsNWidgets(3));
+      expect(find.byType(BaseListCard), findsNWidgets(4));
       expect(find.text('Faltam 12 dias.'), findsOneWidget);
+      expect(find.text('IDEA OF THE DAY'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('the default card hides the category glyph in ${variant.name}', (tester) async {
+      await tester.pumpWidget(_host(variant, _showcase()));
+
+      expect(find.byIcon(AppIcons.mail), findsNothing);
+      expect(find.byIcon(AppIcons.calendar), findsOneWidget);
+      expect(find.byIcon(AppIcons.user_filled), findsOneWidget);
+      expect(find.byIcon(AppIcons.bell), findsOneWidget);
       expect(tester.takeException(), isNull);
     });
 
     testWidgets('list cards grow at 200% text scale in ${variant.name}', (tester) async {
       await tester.pumpWidget(_host(variant, _showcase(), textScale: 2));
 
-      expect(find.byType(BaseListCard), findsNWidgets(3));
+      expect(find.byType(BaseListCard), findsNWidgets(4));
       expect(tester.takeException(), isNull);
     });
   }

@@ -5,6 +5,15 @@ import 'package:flutter_bloc_starter/router/app_router.dart';
 
 const int _captureIndex = 2;
 
+/// Tab icons in display order, with the capture action in the middle.
+const List<IconData> homeTabIcons = [
+  AppIcons.home,
+  AppIcons.note,
+  AppIcons.plus,
+  AppIcons.rings,
+  AppIcons.bookmark,
+];
+
 @RoutePage()
 class const HomePage({super.key}) extends StatelessWidget {
   @override
@@ -46,11 +55,11 @@ class const HomePage({super.key}) extends StatelessWidget {
                   tabsRouter.setActiveIndex(index < _captureIndex ? index : index - 1);
                 },
                 items: [
-                  BaseTabBarItem(icon: AppIcons.home, label: l10n.today),
-                  BaseTabBarItem(icon: AppIcons.heart, label: l10n.slips),
-                  BaseTabBarItem(icon: AppIcons.plus, label: l10n.capture, isPrimaryAction: true),
-                  BaseTabBarItem(icon: AppIcons.users, label: l10n.together),
-                  BaseTabBarItem(icon: AppIcons.book, label: l10n.memories),
+                  BaseTabBarItem(icon: homeTabIcons[0], label: l10n.today),
+                  BaseTabBarItem(icon: homeTabIcons[1], label: l10n.slips),
+                  BaseTabBarItem(icon: homeTabIcons[2], label: l10n.capture, isPrimaryAction: true),
+                  BaseTabBarItem(icon: homeTabIcons[3], label: l10n.together),
+                  BaseTabBarItem(icon: homeTabIcons[4], label: l10n.memories),
                 ],
               ),
             ],

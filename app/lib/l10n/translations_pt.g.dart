@@ -577,8 +577,8 @@ class Translations$chat$pt {
 
   // Translations
 
-  /// pt: 'Conversar'
-  String get title => 'Conversar';
+  /// pt: 'Mascote'
+  String get title => 'Mascote';
 
   /// pt: 'Uma conversa calma com a mascote, para organizar o que você sente. Ela não substitui ajuda profissional e nunca toma partido.'
   String get consentText =>
@@ -600,8 +600,13 @@ class Translations$chat$pt {
   /// pt: 'Enviar'
   String get send => 'Enviar';
 
-  /// pt: 'Restam {count} mensagens hoje'
-  String messagesLeft({required Object count}) => 'Restam ${count} mensagens hoje';
+  /// pt: '(one) {Resta 1 mensagem hoje} (other) {Restam {count} mensagens hoje}'
+  String messagesLeft({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'Resta 1 mensagem hoje',
+        other: 'Restam ${count} mensagens hoje',
+      );
 
   /// pt: 'Virar slip'
   String get saveAsSlip => 'Virar slip';
@@ -984,8 +989,8 @@ class Translations$dateNight$pt {
 
   // Translations
 
-  /// pt: 'Date night'
-  String get title => 'Date night';
+  /// pt: 'Encontro'
+  String get title => 'Encontro';
 
   /// pt: 'Ideias para vocês dois, escolhidas juntos.'
   String get subtitle => 'Ideias para vocês dois, escolhidas juntos.';
@@ -3355,6 +3360,9 @@ class Translations$memories$pt {
   /// pt: 'Conte como foi (opcional)'
   String get bodyHint => 'Conte como foi (opcional)';
 
+  /// pt: 'Adicionar memória'
+  String get add => 'Adicionar memória';
+
   /// pt: 'Guardar memória'
   String get save => 'Guardar memória';
 
@@ -5337,11 +5345,11 @@ class Translations$settingsHome$pt {
   /// pt: 'Dispositivos de notificação'
   String get devices => 'Dispositivos de notificação';
 
-  /// pt: 'Ligadas'
-  String get on => 'Ligadas';
+  /// pt: 'Ligadas no app'
+  String get on => 'Ligadas no app';
 
-  /// pt: 'Desligadas'
-  String get off => 'Desligadas';
+  /// pt: 'Desligadas no app'
+  String get off => 'Desligadas no app';
 
   /// pt: 'Plano'
   String get plan => 'Plano';
@@ -5866,8 +5874,11 @@ class Translations$tabs$pt {
   /// pt: 'Esta parte do app ainda está sendo preparada.'
   String get soonText => 'Esta parte do app ainda está sendo preparada.';
 
-  /// pt: 'Juntos'
-  String get segmentTogether => 'Juntos';
+  /// pt: 'Nós'
+  String get segmentTogether => 'Nós';
+
+  /// pt: 'Ferramentas privadas. Nunca compartilhadas.'
+  String get forMeFooter => 'Ferramentas privadas. Nunca compartilhadas.';
 
   /// pt: 'Para mim'
   String get segmentForMe => 'Para mim';
@@ -5884,8 +5895,8 @@ class Translations$tabs$pt {
   /// pt: 'PRÁTICO'
   String get logisticsLabel => 'PRÁTICO';
 
-  /// pt: 'Logística'
-  String get logisticsTitle => 'Logística';
+  /// pt: 'Reunião de logística'
+  String get logisticsTitle => 'Reunião de logística';
 
   /// pt: 'As coisas práticas, sem ninguém carregar sozinho.'
   String get logisticsText => 'As coisas práticas, sem ninguém carregar sozinho.';
@@ -5933,8 +5944,8 @@ class Translations$tabs$pt {
   /// pt: 'ENCONTRO'
   String get dateNightLabel => 'ENCONTRO';
 
-  /// pt: 'Date night'
-  String get dateNightTitle => 'Date night';
+  /// pt: 'Encontro'
+  String get dateNightTitle => 'Encontro';
 
   /// pt: 'Ideias para vocês dois, escolhidas juntos.'
   String get dateNightText => 'Ideias para vocês dois, escolhidas juntos.';
@@ -5951,8 +5962,8 @@ class Translations$tabs$pt {
   /// pt: 'CONVERSAR'
   String get chatLabel => 'CONVERSAR';
 
-  /// pt: 'Falar com a mascote'
-  String get chatTitle => 'Falar com a mascote';
+  /// pt: 'Mascote'
+  String get chatTitle => 'Mascote';
 
   /// pt: 'Uma conversa calma, que não fica guardada.'
   String get chatText => 'Uma conversa calma, que não fica guardada.';
@@ -6278,9 +6289,6 @@ class Translations$today$pt {
 
   /// pt: 'Convidar sua pessoa'
   String get invitePerson => 'Convidar sua pessoa';
-
-  /// pt: 'Sem conexão. Mostrando o que foi salvo.'
-  String get offline => 'Sem conexão. Mostrando o que foi salvo.';
 
   /// pt: 'Convite enviado'
   String get pendingInviteTitle => 'Convite enviado';
@@ -8661,14 +8669,20 @@ extension on Translations {
           'cardsList.responseQuote' => ({required Object label}) => '“${label}”',
           'cardsList.notFound' => 'Esse cartão não está mais disponível.',
           'cardsList.reactionQuoteMadeMyDay' => 'Isso fez a minha semana.',
-          'chat.title' => 'Conversar',
+          'chat.title' => 'Mascote',
           'chat.consentText' => 'Uma conversa calma com a mascote, para organizar o que você sente. Ela não substitui ajuda profissional e nunca toma partido.',
           'chat.consentPrivacy' => 'O que você escreve é enviado a um modelo de IA só para gerar a resposta. Nada da conversa é guardado, a menos que você transforme uma resposta em slip.',
           'chat.consentTurnOn' => 'Ligar a conversa',
           'chat.emptyHint' => 'Diga como você está, ou comece por uma coisa pequena.',
           'chat.inputHint' => 'Escreva aqui',
           'chat.send' => 'Enviar',
-          'chat.messagesLeft' => ({required Object count}) => 'Restam ${count} mensagens hoje',
+          'chat.messagesLeft' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'Resta 1 mensagem hoje',
+                  other: 'Restam ${count} mensagens hoje',
+                ),
           'chat.saveAsSlip' => 'Virar slip',
           'chat.slipSaved' => 'Slip guardado',
           'chat.saveLearning' => 'Salvar aprendizado',
@@ -8789,7 +8803,7 @@ extension on Translations {
           'connectUs.sentNote' => 'Enviado. Sem pressa de resposta.',
           'connectUs.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'connectUs.errors.other' => 'Não deu para enviar agora. Tente de novo.',
-          'dateNight.title' => 'Date night',
+          'dateNight.title' => 'Encontro',
           'dateNight.subtitle' => 'Ideias para vocês dois, escolhidas juntos.',
           'dateNight.hint' => 'Ex.: piquenique no parque',
           'dateNight.add' => 'Adicionar',
@@ -9981,6 +9995,7 @@ extension on Translations {
           'memories.titleLabel' => 'Uma memória',
           'memories.titleHint' => 'Ex.: nosso primeiro jantar',
           'memories.bodyHint' => 'Conte como foi (opcional)',
+          'memories.add' => 'Adicionar memória',
           'memories.save' => 'Guardar memória',
           'memories.delete' => 'Apagar',
           'memories.monthsShort.0' => 'jan',
@@ -10333,10 +10348,10 @@ extension on Translations {
           'plus.restoreFailedTitle' => 'Não deu para restaurar',
           'plus.restoreFailedHighlight' => 'restaurar',
           'plus.tryAgain' => 'Tentar de novo',
-          'plus.done' => 'Pronto',
           _ => null,
         } ??
         switch (path) {
+          'plus.done' => 'Pronto',
           'plus.errors.storeUnavailable' => 'A loja não está disponível neste aparelho agora.',
           'plus.errors.manageUnavailable' => 'Não há uma página da loja para esta assinatura aqui.',
           'plus.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
@@ -10858,8 +10873,8 @@ extension on Translations {
           'settingsHome.invitePartner' => 'Convide seu par',
           'settingsHome.notifications' => 'Notificações',
           'settingsHome.devices' => 'Dispositivos de notificação',
-          'settingsHome.on' => 'Ligadas',
-          'settingsHome.off' => 'Desligadas',
+          'settingsHome.on' => 'Ligadas no app',
+          'settingsHome.off' => 'Desligadas no app',
           'settingsHome.plan' => 'Plano',
           'settingsHome.planFree' => 'Grátis',
           'settingsHome.planPlus' => 'Plus',
@@ -10902,10 +10917,10 @@ extension on Translations {
           'slipDetail.monthsShort.6' => 'jul',
           'slipDetail.monthsShort.7' => 'ago',
           'slipDetail.monthsShort.8' => 'set',
-          'slipDetail.monthsShort.9' => 'out',
           _ => null,
         } ??
         switch (path) {
+          'slipDetail.monthsShort.9' => 'out',
           'slipDetail.monthsShort.10' => 'nov',
           'slipDetail.monthsShort.11' => 'dez',
           'slipDetail.kinds.quick' => 'Rápido',
@@ -11116,13 +11131,14 @@ extension on Translations {
           'tabs.capture' => 'Novo slip',
           'tabs.soonTitle' => 'Em construção',
           'tabs.soonText' => 'Esta parte do app ainda está sendo preparada.',
-          'tabs.segmentTogether' => 'Juntos',
+          'tabs.segmentTogether' => 'Nós',
+          'tabs.forMeFooter' => 'Ferramentas privadas. Nunca compartilhadas.',
           'tabs.segmentForMe' => 'Para mim',
           'tabs.checkinLabel' => 'CHECK-IN',
           'tabs.checkinTitle' => 'Check-in da semana',
           'tabs.checkinText' => 'Uma conversa curta, em privado primeiro.',
           'tabs.logisticsLabel' => 'PRÁTICO',
-          'tabs.logisticsTitle' => 'Logística',
+          'tabs.logisticsTitle' => 'Reunião de logística',
           'tabs.logisticsText' => 'As coisas práticas, sem ninguém carregar sozinho.',
           'tabs.listsLabel' => 'LISTAS',
           'tabs.listsTitle' => 'Listas',
@@ -11147,13 +11163,13 @@ extension on Translations {
           'tabs.ritualsTitle' => 'Rituais',
           'tabs.ritualsText' => 'Pequenos hábitos que vocês querem proteger.',
           'tabs.dateNightLabel' => 'ENCONTRO',
-          'tabs.dateNightTitle' => 'Date night',
+          'tabs.dateNightTitle' => 'Encontro',
           'tabs.dateNightText' => 'Ideias para vocês dois, escolhidas juntos.',
           'tabs.partnerLabel' => 'SÓ PARA VOCÊ',
           'tabs.partnerTitle' => 'Sobre seu par',
           'tabs.partnerText' => 'Notas privadas para lembrar do que ele ou ela gosta.',
           'tabs.chatLabel' => 'CONVERSAR',
-          'tabs.chatTitle' => 'Falar com a mascote',
+          'tabs.chatTitle' => 'Mascote',
           'tabs.chatText' => 'Uma conversa calma, que não fica guardada.',
           'tabs.hardTalkLabel' => 'CONVERSA DIFÍCIL',
           'tabs.hardTalkTitle' => 'Preparar uma conversa difícil',
@@ -11296,7 +11312,6 @@ extension on Translations {
             required Object second,
           }) => '${first} e ${second}',
           'today.invitePerson' => 'Convidar sua pessoa',
-          'today.offline' => 'Sem conexão. Mostrando o que foi salvo.',
           'today.pendingInviteTitle' => 'Convite enviado',
           'today.pendingInviteText' => 'A pessoa ainda não entrou. Reenviar ou revogar.',
           'today.pendingInviteAction' => 'Ver convite',
@@ -11519,10 +11534,10 @@ extension on Translations {
           'widgets.lockScreenClockTime' => '19:38',
           'widgets.lockScreenClockDate' => 'Sexta, 10 de abril',
           'widgets.lockScreenPauseTitle' => 'Pausa em andamento',
-          'widgets.lockScreenPauseUntil' => ({required Object time}) => 'até ${time}',
           _ => null,
         } ??
         switch (path) {
+          'widgets.lockScreenPauseUntil' => ({required Object time}) => 'até ${time}',
           'widgets.lockScreenPauseUntilDefault' => 'até 20:00',
           'widgets.lockScreenReadyAction' => 'Estou pronto',
           'widgets.lockScreenGenericPhrase' => 'Momento calmo',

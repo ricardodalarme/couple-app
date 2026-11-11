@@ -24,6 +24,8 @@ class MemoriesCubit({required final MemoriesRepository _memoriesRepository})
     }
   }
 
+  void openForm() => emit(state.copyWith(isFormOpen: true));
+
   void onTitleChanged(String title) => emit(state.copyWith(title: title));
 
   void onBodyChanged(String body) => emit(state.copyWith(body: body));
@@ -44,7 +46,15 @@ class MemoriesCubit({required final MemoriesRepository _memoriesRepository})
         happenedOn: DateTime.now(),
       );
       _pendingId = null;
-      emit(state.copyWith(title: '', body: '', place: '', saveAction: const Success(null)));
+      emit(
+        state.copyWith(
+          title: '',
+          body: '',
+          place: '',
+          isFormOpen: false,
+          saveAction: const Success(null),
+        ),
+      );
       await load();
     } catch (exception) {
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));

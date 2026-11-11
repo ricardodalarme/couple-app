@@ -23,7 +23,6 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
   @override
   Widget build(BuildContext context) {
     final home = context.select((TodayCubit cubit) => cubit.state.home);
-    final isOffline = context.select((TodayCubit cubit) => cubit.state.isOffline);
     final selfName = context.select((TodayCubit cubit) => cubit.state.selfName);
     final partnerHint = context.select((TodayCubit cubit) => cubit.state.partnerHint);
     final isFirstDay = context.select((TodayCubit cubit) => cubit.state.isFirstDay);
@@ -48,7 +47,6 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
                   fakeValue: const TodayHome.fake(),
                   successBuilder: (value) => TodayContent(
                     home: value,
-                    isOffline: isOffline,
                     selfName: selfName,
                     partnerHint: partnerHint,
                     isFirstDay: isFirstDay,

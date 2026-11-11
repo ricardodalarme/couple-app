@@ -21,6 +21,7 @@
   "titleLabel": "A memory",
   "titleHint": "E.g. our first dinner",
   "bodyHint": "Tell how it went (optional)",
+  "add": "Add a memory",
   "save": "Save memory",
   "delete": "Delete",
   "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],

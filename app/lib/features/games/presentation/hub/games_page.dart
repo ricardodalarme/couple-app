@@ -115,7 +115,6 @@ class const _GamesBody({required final GamesOverview overview}) extends Stateles
             ],
             overview: overview,
           ),
-          BaseNote(text: l10n.refreshNote, icon: AppIcons.refresh),
         ],
       ),
     );
