@@ -2661,21 +2661,6 @@ class Translations$notificationPreferences$pt {
     'other': '',
   };
 
-  /// pt: 'Horas de silêncio'
-  String get quietTitle => 'Horas de silêncio';
-
-  /// pt: 'Lembretes esperam até o silêncio acabar.'
-  String get quietText => 'Lembretes esperam até o silêncio acabar.';
-
-  /// pt: 'Começa às'
-  String get quietStart => 'Começa às';
-
-  /// pt: 'Termina às'
-  String get quietEnd => 'Termina às';
-
-  /// pt: 'O silêncio atravessa a madrugada.'
-  String get quietOvernight => 'O silêncio atravessa a madrugada.';
-
   /// pt: 'Cartão de domingo'
   String get cardTitle => 'Cartão de domingo';
 
@@ -7045,11 +7030,6 @@ extension on Translations {
           'notificationPreferences.types.daily_idea' => 'Ideia do dia',
           'notificationPreferences.types.date_coming' => 'Datas chegando',
           'notificationPreferences.types.other' => '',
-          'notificationPreferences.quietTitle' => 'Horas de silêncio',
-          'notificationPreferences.quietText' => 'Lembretes esperam até o silêncio acabar.',
-          'notificationPreferences.quietStart' => 'Começa às',
-          'notificationPreferences.quietEnd' => 'Termina às',
-          'notificationPreferences.quietOvernight' => 'O silêncio atravessa a madrugada.',
           'notificationPreferences.cardTitle' => 'Cartão de domingo',
           'notificationPreferences.cardDay' => 'Dia',
           'notificationPreferences.cardHour' => 'Horário',
@@ -7172,14 +7152,14 @@ extension on Translations {
           'plus.partnerPays' => 'Seu par cuida desta assinatura.',
           'plus.partnerCancel' =>
             'Se um dos parceiros cancelar, o Plus termina para os dois, com aviso claro.',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.storeIssueTitle' => 'A loja não abriu',
           'plus.restoreLoadingTitle' => 'Restaurando compras',
           'plus.restoreLoadingText' => 'Isso leva alguns segundos.',
           'plus.restoredTitle' => 'Compras restauradas',
           'plus.restoredHighlight' => 'restauradas',
+          _ => null,
+        } ??
+        switch (path) {
           'plus.restoredText' => 'Encontramos o seu Plus na loja.',
           'plus.pendingRestoreTitle' => 'Encontramos uma compra',
           'plus.pendingRestoreHighlight' => 'compra',
@@ -7729,14 +7709,14 @@ extension on Translations {
           'slipKind.ifThen.thenLabel' => 'Então…',
           'slipKind.ifThen.thenHint' => 'Ex.: peço um tempo de 10 minutos',
           'slipKind.invisible.title' => 'Coisas que ninguém percebe',
-          _ => null,
-        } ??
-        switch (path) {
           'slipKind.invisible.titleHighlight' => 'ninguém percebe',
           'slipKind.invisible.subtitle' => 'Só para você. Isto nunca vai para o cartão.',
           'slipKind.invisible.hint' => 'Ex.: lembrei da consulta das crianças',
           'slipKind.invisible.areaLabel' => 'Que tipo de trabalho?',
           'slipKind.invisible.private' => 'Fica só com você, não entra em nenhum cartão.',
+          _ => null,
+        } ??
+        switch (path) {
           'slipKind.workAreas.planning' => 'Planejar',
           'slipKind.workAreas.dates' => 'Datas',
           'slipKind.workAreas.kitchen' => 'Cozinha',

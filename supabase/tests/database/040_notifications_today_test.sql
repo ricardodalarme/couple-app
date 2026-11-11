@@ -1,6 +1,6 @@
 begin;
 set local search_path = tap, public, extensions;
-select plan(31);
+select plan(28);
 
 select tests.create_user('ana', 'Ana'); select tests.create_user('bia', 'Bia'); select tests.create_user('caio');
 
@@ -54,9 +54,6 @@ select is((select count(*)::int from realtime.messages where payload - 'id' <> '
 -- preference rules
 update public.profile_settings set time_zone = 'America/Sao_Paulo' where profile_id = tests.uid('bia');
 select is(private.should_send(tests.uid('bia'), 'card_received', '2026-11-10 15:00:00-03'), 'send', 'daytime: send');
-select is(private.should_send(tests.uid('bia'), 'card_received', '2026-11-10 23:30:00-03'), 'delay', 'quiet hours crossing midnight: delay');
-select is(private.should_send(tests.uid('bia'), 'card_received', '2026-11-11 07:59:00-03'), 'delay', 'still quiet before 08:00');
-select is(private.quiet_end_at(tests.uid('bia'), '2026-11-10 23:30:00-03'), '2026-11-11 08:00:00-03'::timestamptz, 'delayed until the end of quiet hours');
 update public.notification_settings set muted_types = '{card_received}' where profile_id = tests.uid('bia');
 select is(private.should_send(tests.uid('bia'), 'card_received', '2026-11-10 15:00:00-03'), 'drop', 'muted type: drop');
 update public.notification_settings set muted_types = '{}', enabled = false where profile_id = tests.uid('bia');

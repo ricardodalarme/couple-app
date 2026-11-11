@@ -29,8 +29,6 @@ class const NotificationPreferencesContent({super.key}) extends StatelessWidget 
           const SizedBox(height: AppSpace.s20),
           const _Types(),
           const SizedBox(height: AppSpace.s20),
-          const _QuietHours(),
-          const SizedBox(height: AppSpace.s20),
           const _SundayCard(),
           const SizedBox(height: AppSpace.s20),
           const _Preview(),
@@ -116,51 +114,6 @@ class const _Types() extends StatelessWidget {
 List<BaseSelectOption<int>> _hourOptions(String Function(int hour) format) => [
   for (var hour = 0; hour < 24; hour++) BaseSelectOption(value: hour, label: format(hour)),
 ];
-
-class const _QuietHours() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.notificationPreferences;
-    final preferences = context.select((NotificationPreferencesCubit cubit) => cubit.state.current);
-    if (preferences == null) return const SizedBox.shrink();
-
-    final cubit = context.read<NotificationPreferencesCubit>();
-    final options = _hourOptions((hour) => l10n.hourFormat(hour: hour.toString().padLeft(2, '0')));
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        BaseSectionHeader(title: l10n.quietTitle),
-        const SizedBox(height: AppSpace.s4),
-        Text(
-          l10n.quietText,
-          style: context.text.caption.copyWith(color: context.colors.textSecondary),
-        ),
-        const SizedBox(height: AppSpace.s12),
-        BaseSelect<int>(
-          label: l10n.quietStart,
-          options: options,
-          value: preferences.quietStart.hour,
-          onChanged: cubit.setQuietStart,
-        ),
-        const SizedBox(height: AppSpace.s12),
-        BaseSelect<int>(
-          label: l10n.quietEnd,
-          options: options,
-          value: preferences.quietEnd.hour,
-          onChanged: cubit.setQuietEnd,
-        ),
-        if (preferences.crossesMidnight) ...[
-          const SizedBox(height: AppSpace.s8),
-          Text(
-            l10n.quietOvernight,
-            style: context.text.caption.copyWith(color: context.colors.textSecondary),
-          ),
-        ],
-      ],
-    );
-  }
-}
 
 class const _SundayCard() extends StatelessWidget {
   @override

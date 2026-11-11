@@ -73,14 +73,12 @@ void main() {
       expect(scheduled!.map((request) => request.body).toSet(), {'Ideia', 'Cartão'});
     });
 
-    test('at most two per day and none during quiet hours', () async {
+    test('at most two per day', () async {
       await repository.reschedule(texts: _texts, now: DateTime(2026, 11, 9, 9));
 
       final perDay = <int, int>{};
       for (final request in scheduled!) {
         perDay.update(request.at.day, (count) => count + 1, ifAbsent: () => 1);
-        expect(request.at.hour, isNot(inInclusiveRange(22, 23)));
-        expect(request.at.hour, greaterThanOrEqualTo(8));
       }
       expect(perDay.values.every((count) => count <= 2), isTrue);
     });
@@ -109,12 +107,12 @@ void main() {
       expect(scheduled!.any((request) => request.at == DateTime(2026, 11, 10, 20)), isTrue);
     });
 
-    test('a custom reminder inside quiet hours moves out of them', () async {
+    test('a late custom reminder keeps its moment', () async {
       when(() => local.readCustom()).thenReturn([DateTime(2026, 11, 10, 23)]);
 
       await repository.reschedule(texts: _texts, now: DateTime(2026, 11, 9, 9));
 
-      expect(scheduled!.any((request) => request.at == DateTime(2026, 11, 11, 8)), isTrue);
+      expect(scheduled!.any((request) => request.at == DateTime(2026, 11, 10, 23)), isTrue);
     });
 
     test('adding a custom reminder drops the ones already in the past', () async {

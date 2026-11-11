@@ -351,7 +351,7 @@ grant execute on function public.chat_messages_left() to authenticated;
 create or replace function private.should_send(p_profile_id uuid, p_type text, p_at timestamptz) returns text
 language plpgsql stable security definer set search_path = '' as $$
 declare
-  v_s public.notification_settings; v_tz text; v_local time;
+  v_s public.notification_settings;
   v_from_partner boolean := p_type in ('card_received', 'card_reaction', 'partner_joined', 'unpaired', 'pause_started', 'partner_message', 'game_invite')
                             or p_type like 'signal_%';
 begin
@@ -370,13 +370,6 @@ begin
       return 'drop';
     end if;
   end if;
-  select time_zone into v_tz from public.profile_settings where profile_id = p_profile_id;
-  v_local := (p_at at time zone coalesce(v_tz, 'UTC'))::time;
-  if p_type <> 'pause_over' and v_s.quiet_start <> v_s.quiet_end and (
-       (v_s.quiet_start < v_s.quiet_end and v_local >= v_s.quiet_start and v_local < v_s.quiet_end)
-    or (v_s.quiet_start > v_s.quiet_end and (v_local >= v_s.quiet_start or v_local < v_s.quiet_end))) then
-    return 'delay';
-  end if;
   return 'send';
 end $$;
 
@@ -388,7 +381,7 @@ language sql immutable set search_path = '' as $$
     from generate_series(extract(year from p_from)::int, extract(year from p_from)::int + 1) y) c
   where d >= p_from;
 $$;
--- Hourly job, everything evaluated in each person's local time. Caps and quiet hours are applied at send time.
+-- Hourly job, everything evaluated in each person's local time. Caps are applied at send time.
 create function private.enqueue_daily_reminders() returns integer
 language plpgsql security definer set search_path = '' as $$
 declare v_n integer := 0; r record;

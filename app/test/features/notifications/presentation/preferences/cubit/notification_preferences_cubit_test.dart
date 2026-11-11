@@ -83,18 +83,6 @@ void main() {
     expect(saved.isPaused, isTrue);
   });
 
-  test('quiet hours that cross midnight are flagged', () async {
-    final cubit = build();
-    await cubit.load();
-
-    expect(cubit.state.current?.crossesMidnight, isTrue);
-
-    await cubit.setQuietStart(6);
-    await cubit.setQuietEnd(7);
-
-    expect(cubit.state.current?.crossesMidnight, isFalse);
-  });
-
   test('a failed save keeps the previous choice', () async {
     when(() => notifications.savePreferences(any()))
         .thenThrow(const LocalizedException(l10nKey: 'RATE_LIMITED'));

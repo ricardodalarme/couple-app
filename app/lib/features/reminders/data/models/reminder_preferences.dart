@@ -33,8 +33,6 @@ final class const ReminderPreferences({
     ReminderKind.weeklyCard,
   },
   final int maxPerDay = 2,
-  final TimeOfDayValue quietStart = const TimeOfDayValue(hour: 22, minute: 0),
-  final TimeOfDayValue quietEnd = const TimeOfDayValue(hour: 8, minute: 0),
   final bool isPaused = false,
   final bool isDiscreet = false,
 }) with Equatable {
@@ -44,12 +42,6 @@ final class const ReminderPreferences({
         ...ReminderKind.values.where((kind) => kind.name == name),
     },
     maxPerDay: (map['maxPerDay'] as int? ?? 2).clamp(1, 2),
-    quietStart: map['quietStart'] == null
-        ? const TimeOfDayValue(hour: 22, minute: 0)
-        : TimeOfDayValue.fromMap(map['quietStart'] as Map<String, dynamic>),
-    quietEnd: map['quietEnd'] == null
-        ? const TimeOfDayValue(hour: 8, minute: 0)
-        : TimeOfDayValue.fromMap(map['quietEnd'] as Map<String, dynamic>),
     isPaused: map['isPaused'] as bool? ?? false,
     isDiscreet: map['isDiscreet'] as bool? ?? false,
   );
@@ -57,15 +49,11 @@ final class const ReminderPreferences({
   ReminderPreferences copyWith({
     Set<ReminderKind>? enabled,
     int? maxPerDay,
-    TimeOfDayValue? quietStart,
-    TimeOfDayValue? quietEnd,
     bool? isPaused,
     bool? isDiscreet,
   }) => ReminderPreferences(
     enabled: enabled ?? this.enabled,
     maxPerDay: (maxPerDay ?? this.maxPerDay).clamp(1, 2),
-    quietStart: quietStart ?? this.quietStart,
-    quietEnd: quietEnd ?? this.quietEnd,
     isPaused: isPaused ?? this.isPaused,
     isDiscreet: isDiscreet ?? this.isDiscreet,
   );
@@ -73,12 +61,10 @@ final class const ReminderPreferences({
   Map<String, dynamic> toMap() => <String, dynamic>{
     'enabled': [for (final kind in enabled) kind.name],
     'maxPerDay': maxPerDay,
-    'quietStart': quietStart.toMap(),
-    'quietEnd': quietEnd.toMap(),
     'isPaused': isPaused,
     'isDiscreet': isDiscreet,
   };
 
   @override
-  List<Object?> get props => [enabled, maxPerDay, quietStart, quietEnd, isPaused, isDiscreet];
+  List<Object?> get props => [enabled, maxPerDay, isPaused, isDiscreet];
 }

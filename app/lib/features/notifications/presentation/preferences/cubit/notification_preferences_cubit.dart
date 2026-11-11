@@ -48,12 +48,6 @@ class NotificationPreferencesCubit({
     return current.copyWith(mutedTypes: muted);
   });
 
-  Future<void> setQuietStart(int hour) =>
-      _change((current) => current.copyWith(quietStart: TimeOfDayValue(hour: hour, minute: 0)));
-
-  Future<void> setQuietEnd(int hour) =>
-      _change((current) => current.copyWith(quietEnd: TimeOfDayValue(hour: hour, minute: 0)));
-
   Future<void> setCardDay(int day) => _change((current) => current.copyWith(cardDay: day));
 
   Future<void> setCardHour(int hour) => _change((current) => current.copyWith(cardHour: hour));
@@ -83,8 +77,6 @@ class NotificationPreferencesCubit({
     await _remindersRepository.savePreferences(
       local.copyWith(
         isPaused: !preferences.isEnabled,
-        quietStart: preferences.quietStart,
-        quietEnd: preferences.quietEnd,
         enabled: {
           if (preferences.allows('daily_idea')) ReminderKind.dailyIdea,
           if (preferences.allows('date_coming')) ReminderKind.dates,

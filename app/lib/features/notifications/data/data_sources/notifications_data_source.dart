@@ -18,8 +18,6 @@ class NotificationsDataSource({required final GQLClient _client}) {
     required bool enabled,
     required bool discreet,
     required List<String> mutedTypes,
-    required String quietStart,
-    required String quietEnd,
     required int cardDay,
     required int cardHour,
   }) async {
@@ -30,8 +28,6 @@ class NotificationsDataSource({required final GQLClient _client}) {
             enabled: enabled,
             discreet: discreet,
             mutedTypes: mutedTypes,
-            quietStart: quietStart,
-            quietEnd: quietEnd,
             cardDay: cardDay,
             cardHour: cardHour,
           ),

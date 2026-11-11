@@ -6,10 +6,9 @@ const int platformPendingLimit = 64;
 
 /// Decides which local reminders to schedule. Pure: no clock, no platform.
 ///
-/// The rules, in order: paused or disabled kinds are dropped; reminders inside quiet hours move
-/// once to the end of the quiet window; at most `maxPerDay` remain per calendar day, keeping
-/// the earliest; the nearest [platformPendingLimit] are kept. Texts come from the fixed lists
-/// passed in, never from user content.
+/// The rules, in order: paused or disabled kinds are dropped; at most `maxPerDay` remain per
+/// calendar day, keeping the earliest; the nearest [platformPendingLimit] are kept. Texts come
+/// from the fixed lists passed in, never from user content.
 class const ReminderPlanner({
   required final Map<ReminderKind, String> texts,
   required final String discreetText,
@@ -28,7 +27,7 @@ class const ReminderPlanner({
         continue;
       }
 
-      final at = _afterQuietHours(candidate.at, preferences);
+      final at = candidate.at;
       if (!at.isAfter(now)) continue;
       moved.add(ReminderCandidate(kind: candidate.kind, at: at, key: candidate.key));
     }
@@ -64,23 +63,5 @@ class const ReminderPlanner({
     }
 
     return hash;
-  }
-
-  DateTime _afterQuietHours(DateTime at, ReminderPreferences preferences) {
-    final start = preferences.quietStart.minutes;
-    final end = preferences.quietEnd.minutes;
-    if (start == end) return at;
-
-    final minute = at.hour * 60 + at.minute;
-    final crossesMidnight = start > end;
-    final isQuiet = crossesMidnight
-        ? (minute >= start || minute < end)
-        : (minute >= start && minute < end);
-    if (!isQuiet) return at;
-
-    final endToday = DateTime(at.year, at.month, at.day, end ~/ 60, end % 60);
-    if (endToday.isAfter(at)) return endToday;
-
-    return endToday.add(const Duration(days: 1));
   }
 }

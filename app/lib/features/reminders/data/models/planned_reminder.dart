@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
 
-/// Something that should happen at a given moment, before quiet hours and limits are applied.
+/// Something that should happen at a given moment, before limits are applied.
 final class const ReminderCandidate({
   required final ReminderKind kind,
   required final DateTime at,

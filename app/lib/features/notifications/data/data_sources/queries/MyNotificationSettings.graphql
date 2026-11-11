@@ -2,8 +2,6 @@ query MyNotificationSettings {
   myNotificationSettings {
     enabled
     discreet
-    quietStart
-    quietEnd
     cardDay
     cardHour
     mutedTypes

@@ -2184,16 +2184,6 @@ class _Translations$notificationPreferences$en extends Translations$notification
     'other': '',
   };
   @override
-  String get quietTitle => 'Quiet hours';
-  @override
-  String get quietText => 'Reminders wait until the quiet ends.';
-  @override
-  String get quietStart => 'Starts at';
-  @override
-  String get quietEnd => 'Ends at';
-  @override
-  String get quietOvernight => 'Quiet hours run through the night.';
-  @override
   String get cardTitle => 'Sunday card';
   @override
   String get cardDay => 'Day';
@@ -5905,11 +5895,6 @@ extension on TranslationsEn {
           'notificationPreferences.types.daily_idea' => 'Idea of the day',
           'notificationPreferences.types.date_coming' => 'Dates coming up',
           'notificationPreferences.types.other' => '',
-          'notificationPreferences.quietTitle' => 'Quiet hours',
-          'notificationPreferences.quietText' => 'Reminders wait until the quiet ends.',
-          'notificationPreferences.quietStart' => 'Starts at',
-          'notificationPreferences.quietEnd' => 'Ends at',
-          'notificationPreferences.quietOvernight' => 'Quiet hours run through the night.',
           'notificationPreferences.cardTitle' => 'Sunday card',
           'notificationPreferences.cardDay' => 'Day',
           'notificationPreferences.cardHour' => 'Time',
@@ -6028,14 +6013,14 @@ extension on TranslationsEn {
           'plus.partnerPays' => 'Your partner looks after this subscription.',
           'plus.partnerCancel' =>
             'If either partner cancels, Plus ends for both, with a clear notice.',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.storeIssueTitle' => 'The store didn\'t open',
           'plus.restoreLoadingTitle' => 'Restoring purchases',
           'plus.restoreLoadingText' => 'This takes a few seconds.',
           'plus.restoredTitle' => 'Purchases restored',
           'plus.restoredHighlight' => 'restored',
+          _ => null,
+        } ??
+        switch (path) {
           'plus.restoredText' => 'We found your Plus in the store.',
           'plus.pendingRestoreTitle' => 'We found a purchase',
           'plus.pendingRestoreHighlight' => 'purchase',
@@ -6584,14 +6569,14 @@ extension on TranslationsEn {
           'slipKind.ifThen.thenLabel' => 'Then…',
           'slipKind.ifThen.thenHint' => 'E.g. I ask for 10 minutes alone',
           'slipKind.invisible.title' => 'Things nobody notices',
-          _ => null,
-        } ??
-        switch (path) {
           'slipKind.invisible.titleHighlight' => 'nobody notices',
           'slipKind.invisible.subtitle' => 'Only for you. This never goes into a card.',
           'slipKind.invisible.hint' => 'E.g. remembered the kids\' appointment',
           'slipKind.invisible.areaLabel' => 'What kind of work?',
           'slipKind.invisible.private' => 'Stays with you and never enters a card.',
+          _ => null,
+        } ??
+        switch (path) {
           'slipKind.workAreas.planning' => 'Planning',
           'slipKind.workAreas.dates' => 'Dates',
           'slipKind.workAreas.kitchen' => 'Kitchen',

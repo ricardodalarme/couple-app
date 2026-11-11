@@ -93,20 +93,6 @@ const documentNodeQueryMyNotificationSettings = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'quietStart'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'quietEnd'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
                   name: NameNode(value: 'cardDay'),
                   alias: null,
                   arguments: [],
@@ -269,8 +255,6 @@ class QueryMyNotificationSettingsmyNotificationSettings {
   QueryMyNotificationSettingsmyNotificationSettings({
     required this.enabled,
     required this.discreet,
-    required this.quietStart,
-    required this.quietEnd,
     required this.cardDay,
     required this.cardHour,
     required this.mutedTypes,
@@ -280,8 +264,6 @@ class QueryMyNotificationSettingsmyNotificationSettings {
   factory QueryMyNotificationSettingsmyNotificationSettings.fromJson(Map<String, dynamic> json) {
     final l$enabled = json['enabled'];
     final l$discreet = json['discreet'];
-    final l$quietStart = json['quietStart'];
-    final l$quietEnd = json['quietEnd'];
     final l$cardDay = json['cardDay'];
     final l$cardHour = json['cardHour'];
     final l$mutedTypes = json['mutedTypes'];
@@ -289,8 +271,6 @@ class QueryMyNotificationSettingsmyNotificationSettings {
     return QueryMyNotificationSettingsmyNotificationSettings(
       enabled: (l$enabled as bool),
       discreet: (l$discreet as bool),
-      quietStart: (l$quietStart as String),
-      quietEnd: (l$quietEnd as String),
       cardDay: (l$cardDay as int),
       cardHour: (l$cardHour as int),
       mutedTypes: (l$mutedTypes as List<dynamic>).map((e) => (e as String?)).toList(),
@@ -301,10 +281,6 @@ class QueryMyNotificationSettingsmyNotificationSettings {
   final bool enabled;
 
   final bool discreet;
-
-  final String quietStart;
-
-  final String quietEnd;
 
   final int cardDay;
 
@@ -320,10 +296,6 @@ class QueryMyNotificationSettingsmyNotificationSettings {
     _resultData['enabled'] = l$enabled;
     final l$discreet = discreet;
     _resultData['discreet'] = l$discreet;
-    final l$quietStart = quietStart;
-    _resultData['quietStart'] = l$quietStart;
-    final l$quietEnd = quietEnd;
-    _resultData['quietEnd'] = l$quietEnd;
     final l$cardDay = cardDay;
     _resultData['cardDay'] = l$cardDay;
     final l$cardHour = cardHour;
@@ -339,8 +311,6 @@ class QueryMyNotificationSettingsmyNotificationSettings {
   int get hashCode {
     final l$enabled = enabled;
     final l$discreet = discreet;
-    final l$quietStart = quietStart;
-    final l$quietEnd = quietEnd;
     final l$cardDay = cardDay;
     final l$cardHour = cardHour;
     final l$mutedTypes = mutedTypes;
@@ -348,8 +318,6 @@ class QueryMyNotificationSettingsmyNotificationSettings {
     return Object.hashAll([
       l$enabled,
       l$discreet,
-      l$quietStart,
-      l$quietEnd,
       l$cardDay,
       l$cardHour,
       Object.hashAll(l$mutedTypes.map((v) => v)),
@@ -374,16 +342,6 @@ class QueryMyNotificationSettingsmyNotificationSettings {
     final l$discreet = discreet;
     final lOther$discreet = other.discreet;
     if (l$discreet != lOther$discreet) {
-      return false;
-    }
-    final l$quietStart = quietStart;
-    final lOther$quietStart = other.quietStart;
-    if (l$quietStart != lOther$quietStart) {
-      return false;
-    }
-    final l$quietEnd = quietEnd;
-    final lOther$quietEnd = other.quietEnd;
-    if (l$quietEnd != lOther$quietEnd) {
       return false;
     }
     final l$cardDay = cardDay;

@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc_starter/features/_shared/data/data_sources/device_marker_store.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/data_sources/notifications_data_source.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/models/notification_preferences.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
 import 'package:logger/logger.dart';
 import 'package:notification_service/notification_service.dart';
 import 'package:permission_service/permission_service.dart';
@@ -83,8 +82,6 @@ class NotificationsRepository({
         isEnabled: settings.enabled,
         discreet: settings.discreet,
         mutedTypes: {...settings.mutedTypes.whereType<String>()},
-        quietStart: _parseTime(settings.quietStart),
-        quietEnd: _parseTime(settings.quietEnd),
         cardDay: settings.cardDay,
         cardHour: settings.cardHour,
       );
@@ -101,8 +98,6 @@ class NotificationsRepository({
         enabled: preferences.isEnabled,
         discreet: preferences.discreet,
         mutedTypes: preferences.mutedTypes.toList(),
-        quietStart: _formatTime(preferences.quietStart),
-        quietEnd: _formatTime(preferences.quietEnd),
         cardDay: preferences.cardDay,
         cardHour: preferences.cardHour,
       );
@@ -111,15 +106,6 @@ class NotificationsRepository({
       rethrow;
     }
   }
-
-  TimeOfDayValue _parseTime(String value) {
-    final parts = value.split(':');
-
-    return TimeOfDayValue(hour: int.parse(parts[0]), minute: int.parse(parts[1]));
-  }
-
-  String _formatTime(TimeOfDayValue time) =>
-      '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:00';
 
   Future<bool> openSettings() => _permissionService.openAppSettings();
 

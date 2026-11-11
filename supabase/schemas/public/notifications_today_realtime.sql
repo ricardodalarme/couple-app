@@ -53,8 +53,6 @@ create table public.notification_settings (
   profile_id uuid primary key references public.profiles (id) on delete cascade,
   enabled boolean not null default true,
   discreet boolean not null default false,
-  quiet_start time not null default '22:00',
-  quiet_end time not null default '08:00',
   card_day smallint not null default 0 check (card_day between 0 and 6),
   card_hour smallint not null default 9 check (card_hour between 0 and 23),
   muted_types text[] not null default '{}',
@@ -65,7 +63,7 @@ create trigger notification_settings_set_updated_at before update on public.noti
   for each row execute function private.set_updated_at();
 alter table public.notification_settings enable row level security;
 grant select on public.notification_settings to authenticated;
-grant update (enabled, discreet, quiet_start, quiet_end, card_day, card_hour, muted_types) on public.notification_settings to authenticated;
+grant update (enabled, discreet, card_day, card_hour, muted_types) on public.notification_settings to authenticated;
 create policy notification_settings_select_own on public.notification_settings for select to authenticated
   using (profile_id = (select auth.uid()));
 create policy notification_settings_update_own on public.notification_settings for update to authenticated
@@ -112,34 +110,17 @@ returns void language sql security definer set search_path = '' as $$
   on conflict (dedupe_key) do nothing;
 $$;
 
--- Decision for one notification at a moment: 'send', 'drop', or 'delay' (quiet hours).
+-- Decision for one notification at a moment: 'send' or 'drop'.
 create function private.should_send(p_profile_id uuid, p_type text, p_at timestamptz) returns text
 language plpgsql stable security definer set search_path = '' as $$
-declare v_s public.notification_settings; v_tz text; v_local time;
+declare v_s public.notification_settings;
 begin
   select * into v_s from public.notification_settings where profile_id = p_profile_id;
   if not found or not v_s.enabled or p_type = any (v_s.muted_types) then
     return 'drop';
   end if;
-  select time_zone into v_tz from public.profile_settings where profile_id = p_profile_id;
-  v_local := (p_at at time zone coalesce(v_tz, 'UTC'))::time;
-  if v_s.quiet_start <> v_s.quiet_end and (
-       (v_s.quiet_start < v_s.quiet_end and v_local >= v_s.quiet_start and v_local < v_s.quiet_end)
-    or (v_s.quiet_start > v_s.quiet_end and (v_local >= v_s.quiet_start or v_local < v_s.quiet_end))) then
-    return 'delay';
-  end if;
   return 'send';
 end $$;
-
--- End of the current quiet window for a person, as an instant.
-create function private.quiet_end_at(p_profile_id uuid, p_at timestamptz) returns timestamptz
-language sql stable security definer set search_path = '' as $$
-  select case when cand > p_at then cand else cand + interval '1 day' end
-  from (
-    select (((p_at at time zone ps.time_zone)::date + ns.quiet_end) at time zone ps.time_zone) as cand
-    from public.notification_settings ns join public.profile_settings ps on ps.profile_id = ns.profile_id
-    where ns.profile_id = p_profile_id) q;
-$$;
 
 -- Shape handed to the sender. Payloads are generic: never names or content, only type and ref id.
 create view private.push_job with (security_invoker = true) as
@@ -159,8 +140,6 @@ begin
     v_decision := private.should_send(r.profile_id, r.type, now());
     if v_decision = 'drop' then
       update private.notification_outbox set sent_at = now(), outcome = 'dropped' where id = r.id;
-    elsif v_decision = 'delay' then
-      update private.notification_outbox set send_after = private.quiet_end_at(r.profile_id, now()) where id = r.id;
     else
       update private.notification_outbox set attempts = attempts + 1, send_after = now() + interval '5 minutes' where id = r.id;
       select r.id, r.profile_id, r.type, r.ref_id, ns.discreet,

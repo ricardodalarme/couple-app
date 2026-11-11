@@ -47,61 +47,8 @@ void main() {
     });
   });
 
-  group('quiet hours across midnight (22:00 to 08:00)', () {
-    test('late evening moves to the next morning', () {
-      expect(run([at(10, 23)]).single.at, DateTime(2026, 11, 11, 8));
-    });
-
-    test('the first quiet minute is quiet', () {
-      expect(run([at(10, 22)]).single.at, DateTime(2026, 11, 11, 8));
-    });
-
-    test('early morning moves to the same morning', () {
-      expect(run([at(10, 3)]).single.at, DateTime(2026, 11, 10, 8));
-    });
-
-    test('the end of the window is allowed', () {
-      expect(run([at(10, 8)]).single.at, DateTime(2026, 11, 10, 8));
-    });
-
-    test('the last allowed minute stays', () {
-      expect(run([at(10, 21, minute: 59)]).single.at, DateTime(2026, 11, 10, 21, 59));
-    });
-
-    test('daytime is untouched', () {
-      expect(run([at(10, 12)]).single.at, DateTime(2026, 11, 10, 12));
-    });
-
-    test('a move happens once and does not cascade', () {
-      final plan = run([at(10, 23)]);
-
-      expect(plan, hasLength(1));
-      expect(plan.single.at.hour, 8);
-    });
-  });
-
-  group('quiet hours inside one day', () {
-    final prefs = preferences.copyWith(
-      quietStart: const TimeOfDayValue(hour: 13, minute: 0),
-      quietEnd: const TimeOfDayValue(hour: 15, minute: 0),
-    );
-
-    test('inside the window moves to its end', () {
-      expect(run([at(10, 14)], prefs: prefs).single.at, DateTime(2026, 11, 10, 15));
-    });
-
-    test('outside the window stays', () {
-      expect(run([at(10, 16)], prefs: prefs).single.at, DateTime(2026, 11, 10, 16));
-    });
-  });
-
-  test('identical start and end means no quiet hours', () {
-    final prefs = preferences.copyWith(
-      quietStart: const TimeOfDayValue(hour: 8, minute: 0),
-      quietEnd: const TimeOfDayValue(hour: 8, minute: 0),
-    );
-
-    expect(run([at(10, 23)], prefs: prefs).single.at, DateTime(2026, 11, 10, 23));
+  test('a late-evening reminder keeps its moment', () {
+    expect(run([at(10, 23)]).single.at, DateTime(2026, 11, 10, 23));
   });
 
   group('daily limit', () {
@@ -126,13 +73,6 @@ void main() {
     test('a limit above two is brought back to two', () {
       expect(preferences.copyWith(maxPerDay: 5).maxPerDay, 2);
       expect(preferences.copyWith(maxPerDay: 0).maxPerDay, 1);
-    });
-
-    test('a reminder moved into a day counts against that day', () {
-      final plan = run([at(10, 23), at(11, 9), at(11, 10)]);
-
-      expect(plan.where((reminder) => reminder.at.day == 11), hasLength(2));
-      expect(plan, hasLength(2));
     });
   });
 
@@ -184,7 +124,6 @@ void main() {
       final prefs = preferences.copyWith(
         enabled: {ReminderKind.dates},
         maxPerDay: 1,
-        quietStart: const TimeOfDayValue(hour: 23, minute: 30),
         isPaused: true,
         isDiscreet: true,
       );
@@ -196,7 +135,6 @@ void main() {
       final prefs = ReminderPreferences.fromMap(const {});
 
       expect(prefs.maxPerDay, 2);
-      expect(prefs.quietStart, const TimeOfDayValue(hour: 22, minute: 0));
       expect(prefs.enabled, isEmpty);
     });
   });

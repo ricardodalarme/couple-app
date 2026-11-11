@@ -14,11 +14,6 @@
     "date_coming": "Dates coming up",
     "other": ""
   },
-  "quietTitle": "Quiet hours",
-  "quietText": "Reminders wait until the quiet ends.",
-  "quietStart": "Starts at",
-  "quietEnd": "Ends at",
-  "quietOvernight": "Quiet hours run through the night.",
   "cardTitle": "Sunday card",
   "cardDay": "Day",
   "cardHour": "Time",
