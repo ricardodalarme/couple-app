@@ -26,5 +26,7 @@
   "consentsNote": "Changes apply now.",
   "saveError": "Could not save now. Try again.",
   "errorTitle": "Could not load the consents",
-  "errorText": "Try again in a moment."
+  "errorText": "Try again in a moment.",
+  "sensitiveTracks": "Sensitive tracks and notices",
+  "heavyDayNotice": "Heavy-day notice"
 }

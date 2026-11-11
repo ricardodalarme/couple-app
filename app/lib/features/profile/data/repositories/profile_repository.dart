@@ -6,6 +6,7 @@ import 'package:flutter_bloc_starter/features/_shared/data/data_sources/generate
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/SaveIntroAnswers.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/SaveProfileSetup.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateDisplayName.graphql.dart';
+import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateHeavyDaySharing.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdatePronouns.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateRelationshipPhase.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateRelationshipStatus.graphql.dart';
@@ -151,6 +152,22 @@ class ProfileRepository({required final ProfileDataSource _profileDataSource}) {
       _notifyChanges();
     } catch (e, stack) {
       _logger.error('Failed to save the time zone', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  Future<void> updateHeavyDaySharing({
+    required String profileId,
+    required HeavyDaySharing sharing,
+  }) async {
+    try {
+      final affected = await _profileDataSource.updateHeavyDaySharing(
+        VariablesMutationUpdateHeavyDaySharing(profileId: profileId, sharing: sharing.toServer),
+      );
+      _ensureUpdated(affected);
+      _notifyChanges();
+    } catch (e, stack) {
+      _logger.error('Failed to save the heavy-day notice setting', error: e, stackTrace: stack);
       rethrow;
     }
   }

@@ -4,6 +4,7 @@ import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutation
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/SaveProfileSetup.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/SetWidgetInDiscreet.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateDisplayName.graphql.dart';
+import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateHeavyDaySharing.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdatePronouns.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateRelationshipPhase.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateRelationshipStatus.graphql.dart';
@@ -88,6 +89,17 @@ class ProfileDataSource({required final GQLClient _client}) {
 
   Future<int> updateTimeZone(VariablesMutationUpdateTimeZone variables) async {
     final response = await _client.mutate(OptionsMutationUpdateTimeZone(variables: variables));
+
+    return validateResponseData(
+      response,
+      getData: (data) => data.updateProfileSettingsCollection.affectedCount,
+    );
+  }
+
+  Future<int> updateHeavyDaySharing(VariablesMutationUpdateHeavyDaySharing variables) async {
+    final response = await _client.mutate(
+      OptionsMutationUpdateHeavyDaySharing(variables: variables),
+    );
 
     return validateResponseData(
       response,

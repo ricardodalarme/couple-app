@@ -6,6 +6,7 @@ final class const LessonState({
   final int day = 1,
   final LessonStatus? status,
   final bool hasPlus = false,
+  final bool hasSensitiveConsent = false,
   final Resource<void> action = const Initial(),
 }) with Equatable {
   Program? get currentProgram => switch (program) {
@@ -24,6 +25,7 @@ final class const LessonState({
 
     return program != null &&
         lesson != null &&
+        (!program.sensitive || hasSensitiveConsent) &&
         program.isLessonOpen(hasPlus: hasPlus, lesson: lesson);
   }
 
@@ -34,6 +36,7 @@ final class const LessonState({
     LessonStatus? status,
     bool clearStatus = false,
     bool? hasPlus,
+    bool? hasSensitiveConsent,
     Resource<void>? action,
   }) {
     return LessonState(
@@ -42,10 +45,19 @@ final class const LessonState({
       day: day ?? this.day,
       status: clearStatus ? null : (status ?? this.status),
       hasPlus: hasPlus ?? this.hasPlus,
+      hasSensitiveConsent: hasSensitiveConsent ?? this.hasSensitiveConsent,
       action: action ?? this.action,
     );
   }
 
   @override
-  List<Object?> get props => [program, enrollment, day, status, hasPlus, action];
+  List<Object?> get props => [
+    program,
+    enrollment,
+    day,
+    status,
+    hasPlus,
+    hasSensitiveConsent,
+    action,
+  ];
 }

@@ -39,6 +39,15 @@ void main() {
     expect(const Program(slug: 'grief-together', title: 'Luto, juntos').lessonCount, 0);
   });
 
+  test('the sensitive flag separates two otherwise equal programs', () {
+    const sensitive = Program(slug: 'grief-together', title: 'Luto, juntos', sensitive: true);
+    const plain = Program(slug: 'grief-together', title: 'Luto, juntos');
+
+    expect(sensitive.sensitive, isTrue);
+    expect(plain.sensitive, isFalse);
+    expect(sensitive, isNot(plain));
+  });
+
   test('the free preview follows the list order, not the day number', () {
     const spaced = Lesson(slug: 'd3', title: 'Terceira', day: 3);
     const later = Lesson(slug: 'd8', title: 'Oitava', day: 8);

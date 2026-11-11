@@ -39,6 +39,12 @@ class const PrivacyHubPage({super.key}) extends StatelessWidget {
               showsChevron: true,
               onTap: () => context.pushRoute(const ConsentsRoute()),
             ),
+            BaseListTile(
+              title: l10n.heavyDayNotice,
+              icon: AppIcons.bell,
+              showsChevron: true,
+              onTap: () => context.pushRoute(const HeavyDayRoute()),
+            ),
           ],
         ),
       ),

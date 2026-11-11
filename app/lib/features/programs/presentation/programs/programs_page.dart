@@ -96,6 +96,7 @@ class const _ProgramCard({required final Program program, required final bool is
       categoryLabel: program.plusOnly ? l10n.plus : l10n.free,
       title: program.title,
       supportText: support,
+      trailing: program.sensitive ? BaseTag(text: l10n.sensitive) : null,
       onTap: () => context.pushRoute(ProgramDetailRoute(slug: program.slug)),
     );
   }

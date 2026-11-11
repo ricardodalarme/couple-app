@@ -72,5 +72,15 @@
   },
   "diaryErrors(map)": {
     "other": "Não deu para salvar agora. Seu texto continua aqui."
-  }
+  },
+  "sensitive": "SENSÍVEL",
+  "sensitiveGateTitle": "Uma trilha só sua",
+  "sensitiveGateText": "Estas lições falam de luto, doença e confiança. Seu par não vê que você entrou nem o que você lê. Você pode sair quando quiser.",
+  "sensitiveGateAction": "Entrar nesta trilha",
+  "sensitiveConsentTitle": "Entrar nesta trilha?",
+  "sensitiveConsentText": "Estas lições falam de luto, doença e confiança. Elas ficam só para você: seu par não vê sua participação. Você pode retirar este consentimento em Privacidade e segurança.",
+  "sensitiveConsentConfirm": "Entrar",
+  "sensitiveConsentCancel": "Agora não",
+  "sensitiveLessonLockedTitle": "Trilha sensível",
+  "sensitiveLessonLockedText": "Para abrir esta lição, ative o consentimento das trilhas sensíveis."
 }

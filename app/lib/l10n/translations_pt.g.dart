@@ -88,6 +88,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$guides$pt guides = Translations$guides$pt.internal(_root);
   late final Translations$hardConversation$pt hardConversation =
       Translations$hardConversation$pt.internal(_root);
+  late final Translations$heavyDay$pt heavyDay = Translations$heavyDay$pt.internal(_root);
   late final Translations$help$pt help = Translations$help$pt.internal(_root);
   late final Translations$helpSupport$pt helpSupport = Translations$helpSupport$pt.internal(_root);
   late final Translations$history$pt history = Translations$history$pt.internal(_root);
@@ -1956,6 +1957,68 @@ class Translations$hardConversation$pt {
     'NOT_PAIRED': 'Para enviar, você precisa estar conectado com seu par no app.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
+}
+
+// Path: heavyDay
+class Translations$heavyDay$pt {
+  Translations$heavyDay$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Aviso de dias pesados'
+  String get title => 'Aviso de dias pesados';
+
+  /// pt: 'Aviso de dias pesados'
+  String get gateTitle => 'Aviso de dias pesados';
+
+  /// pt: 'Às vezes um dia pesa. Você pode avisar seu par com uma frase curta, sem detalhes. Seu par não vê seus programas nem o que você escreve.'
+  String get gateText =>
+      'Às vezes um dia pesa. Você pode avisar seu par com uma frase curta, sem detalhes. Seu par não vê seus programas nem o que você escreve.';
+
+  /// pt: 'Ligar'
+  String get activate => 'Ligar';
+
+  /// pt: 'Agora não'
+  String get notNow => 'Agora não';
+
+  /// pt: 'Um dia delicado. Um pouco mais de carinho ajuda.'
+  String get noticeBody => 'Um dia delicado. Um pouco mais de carinho ajuda.';
+
+  /// pt: '{name} veria: “Um dia delicado. Um pouco mais de carinho ajuda.”'
+  String previewPartner({required Object name}) =>
+      '${name} veria: “Um dia delicado. Um pouco mais de carinho ajuda.”';
+
+  /// pt: 'Seu par veria: “Um dia delicado. Um pouco mais de carinho ajuda.”'
+  String get previewGeneric => 'Seu par veria: “Um dia delicado. Um pouco mais de carinho ajuda.”';
+
+  /// pt: 'A cada vez'
+  String get frequencyAsk => 'A cada vez';
+
+  /// pt: 'Sempre'
+  String get frequencyAlways => 'Sempre';
+
+  /// pt: 'Compartilhar'
+  String get share => 'Compartilhar';
+
+  /// pt: 'Não compartilhar'
+  String get cancel => 'Não compartilhar';
+
+  /// pt: 'Aviso enviado para {name}'
+  String confirmationTitle({required Object name}) => 'Aviso enviado para ${name}';
+
+  /// pt: 'Aviso enviado'
+  String get confirmationGeneric => 'Aviso enviado';
+
+  /// pt: 'Seu par vê no widget de recados, se estiver ativado.'
+  String get confirmationHint => 'Seu par vê no widget de recados, se estiver ativado.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Não deu para fazer isso agora. Tente de novo.'
+  String get errorText => 'Não deu para fazer isso agora. Tente de novo.';
 }
 
 // Path: help
@@ -4331,6 +4394,12 @@ class Translations$privacy$pt {
 
   /// pt: 'Tente de novo em instantes.'
   String get errorText => 'Tente de novo em instantes.';
+
+  /// pt: 'Trilhas e avisos sensíveis'
+  String get sensitiveTracks => 'Trilhas e avisos sensíveis';
+
+  /// pt: 'Aviso de dias pesados'
+  String get heavyDayNotice => 'Aviso de dias pesados';
 }
 
 // Path: profileDetails
@@ -4710,6 +4779,39 @@ class Translations$programs$pt {
   Map<String, String> get diaryErrors => {
     'other': 'Não deu para salvar agora. Seu texto continua aqui.',
   };
+
+  /// pt: 'SENSÍVEL'
+  String get sensitive => 'SENSÍVEL';
+
+  /// pt: 'Uma trilha só sua'
+  String get sensitiveGateTitle => 'Uma trilha só sua';
+
+  /// pt: 'Estas lições falam de luto, doença e confiança. Seu par não vê que você entrou nem o que você lê. Você pode sair quando quiser.'
+  String get sensitiveGateText =>
+      'Estas lições falam de luto, doença e confiança. Seu par não vê que você entrou nem o que você lê. Você pode sair quando quiser.';
+
+  /// pt: 'Entrar nesta trilha'
+  String get sensitiveGateAction => 'Entrar nesta trilha';
+
+  /// pt: 'Entrar nesta trilha?'
+  String get sensitiveConsentTitle => 'Entrar nesta trilha?';
+
+  /// pt: 'Estas lições falam de luto, doença e confiança. Elas ficam só para você: seu par não vê sua participação. Você pode retirar este consentimento em Privacidade e segurança.'
+  String get sensitiveConsentText =>
+      'Estas lições falam de luto, doença e confiança. Elas ficam só para você: seu par não vê sua participação. Você pode retirar este consentimento em Privacidade e segurança.';
+
+  /// pt: 'Entrar'
+  String get sensitiveConsentConfirm => 'Entrar';
+
+  /// pt: 'Agora não'
+  String get sensitiveConsentCancel => 'Agora não';
+
+  /// pt: 'Trilha sensível'
+  String get sensitiveLessonLockedTitle => 'Trilha sensível';
+
+  /// pt: 'Para abrir esta lição, ative o consentimento das trilhas sensíveis.'
+  String get sensitiveLessonLockedText =>
+      'Para abrir esta lição, ative o consentimento das trilhas sensíveis.';
 }
 
 // Path: questions
@@ -9354,6 +9456,26 @@ extension on Translations {
           'hardConversation.errors.NOT_PAIRED' =>
             'Para enviar, você precisa estar conectado com seu par no app.',
           'hardConversation.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'heavyDay.title' => 'Aviso de dias pesados',
+          'heavyDay.gateTitle' => 'Aviso de dias pesados',
+          'heavyDay.gateText' => 'Às vezes um dia pesa. Você pode avisar seu par com uma frase curta, sem detalhes. Seu par não vê seus programas nem o que você escreve.',
+          'heavyDay.activate' => 'Ligar',
+          'heavyDay.notNow' => 'Agora não',
+          'heavyDay.noticeBody' => 'Um dia delicado. Um pouco mais de carinho ajuda.',
+          'heavyDay.previewPartner' => ({
+            required Object name,
+          }) => '${name} veria: “Um dia delicado. Um pouco mais de carinho ajuda.”',
+          'heavyDay.previewGeneric' =>
+            'Seu par veria: “Um dia delicado. Um pouco mais de carinho ajuda.”',
+          'heavyDay.frequencyAsk' => 'A cada vez',
+          'heavyDay.frequencyAlways' => 'Sempre',
+          'heavyDay.share' => 'Compartilhar',
+          'heavyDay.cancel' => 'Não compartilhar',
+          'heavyDay.confirmationTitle' => ({required Object name}) => 'Aviso enviado para ${name}',
+          'heavyDay.confirmationGeneric' => 'Aviso enviado',
+          'heavyDay.confirmationHint' => 'Seu par vê no widget de recados, se estiver ativado.',
+          'heavyDay.errorTitle' => 'Não deu para carregar',
+          'heavyDay.errorText' => 'Não deu para fazer isso agora. Tente de novo.',
           'help.badDayTitle' => 'Um dia difícil',
           'help.badDayText' => 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.',
           'help.starterTitle' => 'Começar uma conversa',
@@ -9759,6 +9881,9 @@ extension on Translations {
           'invite.copy' => 'Copiar convite',
           'invite.sentTitle' => 'Convite enviado',
           'invite.sentHighlight' => 'enviado',
+          _ => null,
+        } ??
+        switch (path) {
           'invite.sentText' => ({
             required Object name,
           }) => '${name} ainda não entrou. Enquanto isso, você pode usar o app sozinho.',
@@ -9779,9 +9904,6 @@ extension on Translations {
           'language.saveError' => 'Não foi possível salvar. Tente novamente.',
           'learned.title' => 'O que aprendi',
           'learned.intro' => 'Coisas que você escolheu guardar da conversa. Só você vê.',
-          _ => null,
-        } ??
-        switch (path) {
           'learned.pendingTitle' => 'Para revisar',
           'learned.confirmedTitle' => 'Confirmado',
           'learned.targets.partnerFact' => 'Sobre meu par',
@@ -10342,6 +10464,9 @@ extension on Translations {
           'plus.managePlan' => 'Gerenciar plano',
           'plus.restorePurchases' => 'Restaurar compras',
           'plus.partnerPays' => 'Seu par cuida desta assinatura.',
+          _ => null,
+        } ??
+        switch (path) {
           'plus.partnerCancel' =>
             'Se um dos parceiros cancelar, o Plus termina para os dois, com aviso claro.',
           'plus.storeIssueTitle' => 'A loja não abriu',
@@ -10360,9 +10485,6 @@ extension on Translations {
           'plus.restoreFailedHighlight' => 'restaurar',
           'plus.tryAgain' => 'Tentar de novo',
           'plus.done' => 'Pronto',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.errors.storeUnavailable' => 'A loja não está disponível neste aparelho agora.',
           'plus.errors.manageUnavailable' => 'Não há uma página da loja para esta assinatura aqui.',
           'plus.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
@@ -10394,6 +10516,8 @@ extension on Translations {
           'privacy.saveError' => 'Não deu para salvar agora. Tente de novo.',
           'privacy.errorTitle' => 'Não deu para carregar os consentimentos',
           'privacy.errorText' => 'Tente de novo em instantes.',
+          'privacy.sensitiveTracks' => 'Trilhas e avisos sensíveis',
+          'privacy.heavyDayNotice' => 'Aviso de dias pesados',
           'profileDetails.title' => 'Perfil',
           'profileDetails.nameLabel' => 'Seu nome',
           'profileDetails.nameHint' => 'Marina',
@@ -10554,6 +10678,17 @@ extension on Translations {
           'programs.moods.other' => 'Como estou',
           'programs.lessonErrors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'programs.diaryErrors.other' => 'Não deu para salvar agora. Seu texto continua aqui.',
+          'programs.sensitive' => 'SENSÍVEL',
+          'programs.sensitiveGateTitle' => 'Uma trilha só sua',
+          'programs.sensitiveGateText' => 'Estas lições falam de luto, doença e confiança. Seu par não vê que você entrou nem o que você lê. Você pode sair quando quiser.',
+          'programs.sensitiveGateAction' => 'Entrar nesta trilha',
+          'programs.sensitiveConsentTitle' => 'Entrar nesta trilha?',
+          'programs.sensitiveConsentText' => 'Estas lições falam de luto, doença e confiança. Elas ficam só para você: seu par não vê sua participação. Você pode retirar este consentimento em Privacidade e segurança.',
+          'programs.sensitiveConsentConfirm' => 'Entrar',
+          'programs.sensitiveConsentCancel' => 'Agora não',
+          'programs.sensitiveLessonLockedTitle' => 'Trilha sensível',
+          'programs.sensitiveLessonLockedText' =>
+            'Para abrir esta lição, ative o consentimento das trilhas sensíveis.',
           'questions.tag' => 'Pergunta para vocês dois',
           'questions.eyebrow' => 'Pergunta do dia',
           'questions.answerCta' => 'Responder',
@@ -10894,6 +11029,9 @@ extension on Translations {
           'settingsHome.discreetOn' => 'Ligado',
           'settingsHome.discreetOff' => 'Desligado',
           'settingsHome.privacy' => 'Privacidade e segurança',
+          _ => null,
+        } ??
+        switch (path) {
           'settingsHome.privacyStatus' => 'O que é compartilhado e consentimentos',
           'settingsHome.signOut' => 'Sair',
           'settingsHome.deleteAccount' => 'Apagar conta',
@@ -10929,9 +11067,6 @@ extension on Translations {
           'slipDetail.monthsShort.6' => 'jul',
           'slipDetail.monthsShort.7' => 'ago',
           'slipDetail.monthsShort.8' => 'set',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.monthsShort.9' => 'out',
           'slipDetail.monthsShort.10' => 'nov',
           'slipDetail.monthsShort.11' => 'dez',
@@ -11511,6 +11646,9 @@ extension on Translations {
           'widgets.configureRotationSixHours' => 'A cada 6h',
           'widgets.configureRotationManual' => 'Manual',
           'widgets.configurePrivacySection' => 'Privacidade',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.configureShowNames' => 'Mostrar nomes',
           'widgets.configureHideInDiscreet' => 'Ocultar em modo discreto',
           'widgets.configureAllowPartnerNotes' => 'Permitir recado do parceiro',
@@ -11546,9 +11684,6 @@ extension on Translations {
           'widgets.ownMediumIdeaAction' => 'Toque para ver',
           'widgets.ownMediumJarTitle' => 'Toque para abrir um slip guardado',
           'widgets.ownMediumJarPrivacy' => 'Privado: só aparece no seu aparelho',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.lockScreenPageTitle' => 'Tela de bloqueio',
           'widgets.lockScreenClockTime' => '19:38',
           'widgets.lockScreenClockDate' => 'Sexta, 10 de abril',

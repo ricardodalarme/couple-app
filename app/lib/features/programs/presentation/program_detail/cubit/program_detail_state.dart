@@ -6,6 +6,7 @@ final class const ProgramDetailState({
   final Set<int> doneDays = const {},
   final Set<int> savedDays = const {},
   final bool hasPlus = false,
+  final bool hasSensitiveConsent = false,
   final Resource<void> action = const Initial(),
 }) with Equatable {
   Program? get currentProgram => switch (program) {
@@ -33,6 +34,7 @@ final class const ProgramDetailState({
     Set<int>? doneDays,
     Set<int>? savedDays,
     bool? hasPlus,
+    bool? hasSensitiveConsent,
     Resource<void>? action,
   }) {
     return ProgramDetailState(
@@ -41,10 +43,19 @@ final class const ProgramDetailState({
       doneDays: doneDays ?? this.doneDays,
       savedDays: savedDays ?? this.savedDays,
       hasPlus: hasPlus ?? this.hasPlus,
+      hasSensitiveConsent: hasSensitiveConsent ?? this.hasSensitiveConsent,
       action: action ?? this.action,
     );
   }
 
   @override
-  List<Object?> get props => [program, enrollment, doneDays, savedDays, hasPlus, action];
+  List<Object?> get props => [
+    program,
+    enrollment,
+    doneDays,
+    savedDays,
+    hasPlus,
+    hasSensitiveConsent,
+    action,
+  ];
 }

@@ -26,5 +26,7 @@
   "consentsNote": "Mudanças valem agora.",
   "saveError": "Não deu para salvar agora. Tente de novo.",
   "errorTitle": "Não deu para carregar os consentimentos",
-  "errorText": "Tente de novo em instantes."
+  "errorText": "Tente de novo em instantes.",
+  "sensitiveTracks": "Trilhas e avisos sensíveis",
+  "heavyDayNotice": "Aviso de dias pesados"
 }

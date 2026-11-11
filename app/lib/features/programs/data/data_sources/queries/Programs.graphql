@@ -11,6 +11,7 @@ query Programs($locale: String!) {
         body
         position
         plusOnly
+        sensitive
       }
     }
   }
@@ -27,6 +28,7 @@ query Programs($locale: String!) {
         parentSlug
         position
         plusOnly
+        sensitive
       }
     }
   }

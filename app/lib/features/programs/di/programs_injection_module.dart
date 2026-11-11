@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
+import 'package:flutter_bloc_starter/features/privacy/data/repositories/privacy_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/programs/data/data_sources/programs_data_source.dart';
 import 'package:flutter_bloc_starter/features/programs/data/repositories/programs_repository.dart';
@@ -31,12 +32,14 @@ class ProgramsInjectionModule() implements InjectionModule {
       () => ProgramDetailCubit(
         programsRepository: injector.get<ProgramsRepository>(),
         plusRepository: injector.get<PlusRepository>(),
+        privacyRepository: injector.get<PrivacyRepository>(),
       ),
     )
     ..registerFactory<LessonCubit>(
       () => LessonCubit(
         programsRepository: injector.get<ProgramsRepository>(),
         plusRepository: injector.get<PlusRepository>(),
+        privacyRepository: injector.get<PrivacyRepository>(),
       ),
     )
     ..registerFactory<DiaryCubit>(

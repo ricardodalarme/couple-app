@@ -72,5 +72,15 @@
   },
   "diaryErrors(map)": {
     "other": "Couldn't save right now. Your text is still here."
-  }
+  },
+  "sensitive": "SENSITIVE",
+  "sensitiveGateTitle": "A track just for you",
+  "sensitiveGateText": "These lessons talk about grief, illness and trust. Your partner does not see that you joined or what you read. You can leave whenever you want.",
+  "sensitiveGateAction": "Join this track",
+  "sensitiveConsentTitle": "Join this track?",
+  "sensitiveConsentText": "These lessons talk about grief, illness and trust. They stay just for you: your partner does not see your participation. You can withdraw this consent in Privacy and security.",
+  "sensitiveConsentConfirm": "Join",
+  "sensitiveConsentCancel": "Not now",
+  "sensitiveLessonLockedTitle": "Sensitive track",
+  "sensitiveLessonLockedText": "To open this lesson, turn on the sensitive tracks consent."
 }

@@ -18,6 +18,7 @@ import 'package:flutter_bloc_starter/features/fight_style/di/fight_style_injecti
 import 'package:flutter_bloc_starter/features/games/di/games_injection_module.dart';
 import 'package:flutter_bloc_starter/features/gifts/di/gifts_injection_module.dart';
 import 'package:flutter_bloc_starter/features/guides/di/guides_injection_module.dart';
+import 'package:flutter_bloc_starter/features/heavy_day/di/heavy_day_injection_module.dart';
 import 'package:flutter_bloc_starter/features/help/di/help_injection_module.dart';
 import 'package:flutter_bloc_starter/features/history/di/history_injection_module.dart';
 import 'package:flutter_bloc_starter/features/ideas/di/ideas_injection_module.dart';
@@ -77,6 +78,7 @@ void _registerModules() {
     GamesInjectionModule(),
     GiftsInjectionModule(),
     GuidesInjectionModule(),
+    HeavyDayInjectionModule(),
     IdeasInjectionModule(),
     ListsInjectionModule(),
     NotesInjectionModule(),

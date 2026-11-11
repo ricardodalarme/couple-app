@@ -142,6 +142,13 @@ const documentNodeQueryMySettings = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'heavyDaySharing'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: 'phase'),
                   alias: null,
                   arguments: [],
@@ -301,6 +308,7 @@ class QueryMySettingsmySettings {
     this.onboardedAt,
     required this.shareReadReceipts,
     required this.widgetInDiscreet,
+    required this.heavyDaySharing,
     this.phase,
     required this.goals,
     required this.locale,
@@ -317,6 +325,7 @@ class QueryMySettingsmySettings {
     final l$onboardedAt = json['onboardedAt'];
     final l$shareReadReceipts = json['shareReadReceipts'];
     final l$widgetInDiscreet = json['widgetInDiscreet'];
+    final l$heavyDaySharing = json['heavyDaySharing'];
     final l$phase = json['phase'];
     final l$goals = json['goals'];
     final l$locale = json['locale'];
@@ -331,6 +340,7 @@ class QueryMySettingsmySettings {
       onboardedAt: l$onboardedAt == null ? null : DateTime.parse((l$onboardedAt as String)),
       shareReadReceipts: (l$shareReadReceipts as bool),
       widgetInDiscreet: (l$widgetInDiscreet as bool),
+      heavyDaySharing: (l$heavyDaySharing as String),
       phase: l$phase == null ? null : fromJsonEnumRelationshipPhase((l$phase as String)),
       goals: (l$goals as List<dynamic>).map((e) => (e as String?)).toList(),
       locale: (l$locale as String),
@@ -355,6 +365,8 @@ class QueryMySettingsmySettings {
   final bool shareReadReceipts;
 
   final bool widgetInDiscreet;
+
+  final String heavyDaySharing;
 
   final EnumRelationshipPhase? phase;
 
@@ -388,6 +400,8 @@ class QueryMySettingsmySettings {
     _resultData['shareReadReceipts'] = l$shareReadReceipts;
     final l$widgetInDiscreet = widgetInDiscreet;
     _resultData['widgetInDiscreet'] = l$widgetInDiscreet;
+    final l$heavyDaySharing = heavyDaySharing;
+    _resultData['heavyDaySharing'] = l$heavyDaySharing;
     final l$phase = phase;
     _resultData['phase'] = l$phase == null ? null : toJsonEnumRelationshipPhase(l$phase);
     final l$goals = goals;
@@ -410,6 +424,7 @@ class QueryMySettingsmySettings {
     final l$onboardedAt = onboardedAt;
     final l$shareReadReceipts = shareReadReceipts;
     final l$widgetInDiscreet = widgetInDiscreet;
+    final l$heavyDaySharing = heavyDaySharing;
     final l$phase = phase;
     final l$goals = goals;
     final l$locale = locale;
@@ -424,6 +439,7 @@ class QueryMySettingsmySettings {
       l$onboardedAt,
       l$shareReadReceipts,
       l$widgetInDiscreet,
+      l$heavyDaySharing,
       l$phase,
       Object.hashAll(l$goals.map((v) => v)),
       l$locale,
@@ -482,6 +498,11 @@ class QueryMySettingsmySettings {
     final l$widgetInDiscreet = widgetInDiscreet;
     final lOther$widgetInDiscreet = other.widgetInDiscreet;
     if (l$widgetInDiscreet != lOther$widgetInDiscreet) {
+      return false;
+    }
+    final l$heavyDaySharing = heavyDaySharing;
+    final lOther$heavyDaySharing = other.heavyDaySharing;
+    if (l$heavyDaySharing != lOther$heavyDaySharing) {
       return false;
     }
     final l$phase = phase;

@@ -36,6 +36,12 @@ void main() {
     plusOnly: true,
     lessons: [Lesson(slug: 'd1', title: 'Primeira', day: 1)],
   );
+  const sensitive = Program(
+    slug: 'grief-together',
+    title: 'Luto, juntos',
+    sensitive: true,
+    lessons: [Lesson(slug: 'd1', title: 'O que ajuda hoje?', day: 1)],
+  );
 
   setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
 
@@ -66,6 +72,16 @@ void main() {
     expect(find.text('Reencontro'), findsOneWidget);
     expect(find.text('PLUS'), findsOneWidget);
     expect(find.text('Diário'), findsOneWidget);
+  });
+
+  testWidgets('a sensitive program carries its tag', (tester) async {
+    when(() => repository.getPrograms()).thenAnswer((_) async => [sensitive]);
+    final cubit = await loaded();
+
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const ProgramsPage()));
+    await tester.pump();
+
+    expect(find.text('SENSÍVEL'), findsOneWidget);
   });
 
   testWidgets('the first frame is a skeleton, not a blank page', (tester) async {

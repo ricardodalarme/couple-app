@@ -1,0 +1,19 @@
+{
+  "title": "Heavy-day notice",
+  "gateTitle": "Heavy-day notice",
+  "gateText": "Some days weigh more. You can tell your partner with one short sentence, without details. Your partner does not see your programs or what you write.",
+  "activate": "Turn on",
+  "notNow": "Not now",
+  "noticeBody": "A delicate day. A little extra care helps.",
+  "previewPartner": "{name} would see: “A delicate day. A little extra care helps.”",
+  "previewGeneric": "Your partner would see: “A delicate day. A little extra care helps.”",
+  "frequencyAsk": "Each time",
+  "frequencyAlways": "Always",
+  "share": "Share",
+  "cancel": "Don't share",
+  "confirmationTitle": "Notice sent to {name}",
+  "confirmationGeneric": "Notice sent",
+  "confirmationHint": "Your partner sees it on the notes widget, if it is on.",
+  "errorTitle": "Couldn't load",
+  "errorText": "Couldn't do that right now. Try again."
+}

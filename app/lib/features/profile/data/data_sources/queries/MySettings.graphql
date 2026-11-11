@@ -9,6 +9,7 @@ query MySettings {
     onboardedAt
     shareReadReceipts
     widgetInDiscreet
+    heavyDaySharing
     phase
     goals
     locale

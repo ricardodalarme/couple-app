@@ -6,7 +6,8 @@ enum ConsentKind(final String value) {
   analytics('analytics'),
   marketing('marketing'),
   ai('ai'),
-  terms('terms');
+  terms('terms'),
+  sensitiveTracks('sensitive_tracks');
 
   /// Whether the consent is required to use the app.
   bool get isRequired => this == sensitiveData || this == terms;

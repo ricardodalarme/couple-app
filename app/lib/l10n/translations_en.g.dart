@@ -105,6 +105,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$hardConversation$en hardConversation =
       _Translations$hardConversation$en._(_root);
   @override
+  late final _Translations$heavyDay$en heavyDay = _Translations$heavyDay$en._(_root);
+  @override
   late final _Translations$help$en help = _Translations$help$en._(_root);
   @override
   late final _Translations$helpSupport$en helpSupport = _Translations$helpSupport$en._(_root);
@@ -1660,6 +1662,52 @@ class _Translations$hardConversation$en extends Translations$hardConversation$pt
     'NOT_PAIRED': 'To send this, you need to be connected with your partner in the app.',
     'other': 'Couldn\'t do that right now. Try again.',
   };
+}
+
+// Path: heavyDay
+class _Translations$heavyDay$en extends Translations$heavyDay$pt {
+  _Translations$heavyDay$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Heavy-day notice';
+  @override
+  String get gateTitle => 'Heavy-day notice';
+  @override
+  String get gateText =>
+      'Some days weigh more. You can tell your partner with one short sentence, without details. Your partner does not see your programs or what you write.';
+  @override
+  String get activate => 'Turn on';
+  @override
+  String get notNow => 'Not now';
+  @override
+  String get noticeBody => 'A delicate day. A little extra care helps.';
+  @override
+  String previewPartner({required Object name}) =>
+      '${name} would see: “A delicate day. A little extra care helps.”';
+  @override
+  String get previewGeneric =>
+      'Your partner would see: “A delicate day. A little extra care helps.”';
+  @override
+  String get frequencyAsk => 'Each time';
+  @override
+  String get frequencyAlways => 'Always';
+  @override
+  String get share => 'Share';
+  @override
+  String get cancel => 'Don\'t share';
+  @override
+  String confirmationTitle({required Object name}) => 'Notice sent to ${name}';
+  @override
+  String get confirmationGeneric => 'Notice sent';
+  @override
+  String get confirmationHint => 'Your partner sees it on the notes widget, if it is on.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Couldn\'t do that right now. Try again.';
 }
 
 // Path: help
@@ -3509,6 +3557,10 @@ class _Translations$privacy$en extends Translations$privacy$pt {
   String get errorTitle => 'Could not load the consents';
   @override
   String get errorText => 'Try again in a moment.';
+  @override
+  String get sensitiveTracks => 'Sensitive tracks and notices';
+  @override
+  String get heavyDayNotice => 'Heavy-day notice';
 }
 
 // Path: profileDetails
@@ -3798,6 +3850,29 @@ class _Translations$programs$en extends Translations$programs$pt {
   Map<String, String> get diaryErrors => {
     'other': 'Couldn\'t save right now. Your text is still here.',
   };
+  @override
+  String get sensitive => 'SENSITIVE';
+  @override
+  String get sensitiveGateTitle => 'A track just for you';
+  @override
+  String get sensitiveGateText =>
+      'These lessons talk about grief, illness and trust. Your partner does not see that you joined or what you read. You can leave whenever you want.';
+  @override
+  String get sensitiveGateAction => 'Join this track';
+  @override
+  String get sensitiveConsentTitle => 'Join this track?';
+  @override
+  String get sensitiveConsentText =>
+      'These lessons talk about grief, illness and trust. They stay just for you: your partner does not see your participation. You can withdraw this consent in Privacy and security.';
+  @override
+  String get sensitiveConsentConfirm => 'Join';
+  @override
+  String get sensitiveConsentCancel => 'Not now';
+  @override
+  String get sensitiveLessonLockedTitle => 'Sensitive track';
+  @override
+  String get sensitiveLessonLockedText =>
+      'To open this lesson, turn on the sensitive tracks consent.';
 }
 
 // Path: questions
@@ -7656,6 +7731,26 @@ extension on TranslationsEn {
           'hardConversation.errors.NOT_PAIRED' =>
             'To send this, you need to be connected with your partner in the app.',
           'hardConversation.errors.other' => 'Couldn\'t do that right now. Try again.',
+          'heavyDay.title' => 'Heavy-day notice',
+          'heavyDay.gateTitle' => 'Heavy-day notice',
+          'heavyDay.gateText' => 'Some days weigh more. You can tell your partner with one short sentence, without details. Your partner does not see your programs or what you write.',
+          'heavyDay.activate' => 'Turn on',
+          'heavyDay.notNow' => 'Not now',
+          'heavyDay.noticeBody' => 'A delicate day. A little extra care helps.',
+          'heavyDay.previewPartner' => ({
+            required Object name,
+          }) => '${name} would see: “A delicate day. A little extra care helps.”',
+          'heavyDay.previewGeneric' =>
+            'Your partner would see: “A delicate day. A little extra care helps.”',
+          'heavyDay.frequencyAsk' => 'Each time',
+          'heavyDay.frequencyAlways' => 'Always',
+          'heavyDay.share' => 'Share',
+          'heavyDay.cancel' => 'Don\'t share',
+          'heavyDay.confirmationTitle' => ({required Object name}) => 'Notice sent to ${name}',
+          'heavyDay.confirmationGeneric' => 'Notice sent',
+          'heavyDay.confirmationHint' => 'Your partner sees it on the notes widget, if it is on.',
+          'heavyDay.errorTitle' => 'Couldn\'t load',
+          'heavyDay.errorText' => 'Couldn\'t do that right now. Try again.',
           'help.badDayTitle' => 'A hard day',
           'help.badDayText' => 'Three small things that may help right now. Nothing required.',
           'help.starterTitle' => 'Start a conversation',
@@ -8059,6 +8154,9 @@ extension on TranslationsEn {
           'invite.copy' => 'Copy invite',
           'invite.sentTitle' => 'Invite sent',
           'invite.sentHighlight' => 'sent',
+          _ => null,
+        } ??
+        switch (path) {
           'invite.sentText' => ({
             required Object name,
           }) => '${name} has not joined yet. In the meantime you can use the app on your own.',
@@ -8079,9 +8177,6 @@ extension on TranslationsEn {
           'language.saveError' => 'Could not save. Try again.',
           'learned.title' => 'What I learned',
           'learned.intro' => 'Things you chose to keep from the conversation. Only you see them.',
-          _ => null,
-        } ??
-        switch (path) {
           'learned.pendingTitle' => 'To review',
           'learned.confirmedTitle' => 'Confirmed',
           'learned.targets.partnerFact' => 'About my partner',
@@ -8639,6 +8734,9 @@ extension on TranslationsEn {
           'plus.managePlan' => 'Manage plan',
           'plus.restorePurchases' => 'Restore purchases',
           'plus.partnerPays' => 'Your partner looks after this subscription.',
+          _ => null,
+        } ??
+        switch (path) {
           'plus.partnerCancel' =>
             'If either partner cancels, Plus ends for both, with a clear notice.',
           'plus.storeIssueTitle' => 'The store didn\'t open',
@@ -8658,9 +8756,6 @@ extension on TranslationsEn {
           'plus.restoreFailedHighlight' => 'restore',
           'plus.tryAgain' => 'Try again',
           'plus.done' => 'Done',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.errors.storeUnavailable' => 'The store isn\'t available on this device right now.',
           'plus.errors.manageUnavailable' => 'There\'s no store page for this subscription here.',
           'plus.errors.other' => 'Couldn\'t do that right now. Try again.',
@@ -8692,6 +8787,8 @@ extension on TranslationsEn {
           'privacy.saveError' => 'Could not save now. Try again.',
           'privacy.errorTitle' => 'Could not load the consents',
           'privacy.errorText' => 'Try again in a moment.',
+          'privacy.sensitiveTracks' => 'Sensitive tracks and notices',
+          'privacy.heavyDayNotice' => 'Heavy-day notice',
           'profileDetails.title' => 'Profile',
           'profileDetails.nameLabel' => 'Your name',
           'profileDetails.nameHint' => 'Marina',
@@ -8852,6 +8949,17 @@ extension on TranslationsEn {
           'programs.moods.other' => 'How I am',
           'programs.lessonErrors.other' => 'Couldn\'t do that right now. Try again.',
           'programs.diaryErrors.other' => 'Couldn\'t save right now. Your text is still here.',
+          'programs.sensitive' => 'SENSITIVE',
+          'programs.sensitiveGateTitle' => 'A track just for you',
+          'programs.sensitiveGateText' => 'These lessons talk about grief, illness and trust. Your partner does not see that you joined or what you read. You can leave whenever you want.',
+          'programs.sensitiveGateAction' => 'Join this track',
+          'programs.sensitiveConsentTitle' => 'Join this track?',
+          'programs.sensitiveConsentText' => 'These lessons talk about grief, illness and trust. They stay just for you: your partner does not see your participation. You can withdraw this consent in Privacy and security.',
+          'programs.sensitiveConsentConfirm' => 'Join',
+          'programs.sensitiveConsentCancel' => 'Not now',
+          'programs.sensitiveLessonLockedTitle' => 'Sensitive track',
+          'programs.sensitiveLessonLockedText' =>
+            'To open this lesson, turn on the sensitive tracks consent.',
           'questions.tag' => 'Question for you two',
           'questions.eyebrow' => 'Question of the day',
           'questions.answerCta' => 'Answer',
@@ -9190,6 +9298,9 @@ extension on TranslationsEn {
           'settingsHome.discreetOn' => 'On',
           'settingsHome.discreetOff' => 'Off',
           'settingsHome.privacy' => 'Privacy and security',
+          _ => null,
+        } ??
+        switch (path) {
           'settingsHome.privacyStatus' => 'What is shared and consents',
           'settingsHome.signOut' => 'Sign out',
           'settingsHome.deleteAccount' => 'Delete account',
@@ -9225,9 +9336,6 @@ extension on TranslationsEn {
           'slipDetail.monthsShort.6' => 'Jul',
           'slipDetail.monthsShort.7' => 'Aug',
           'slipDetail.monthsShort.8' => 'Sep',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.monthsShort.9' => 'Oct',
           'slipDetail.monthsShort.10' => 'Nov',
           'slipDetail.monthsShort.11' => 'Dec',
@@ -9805,6 +9913,9 @@ extension on TranslationsEn {
           'widgets.configureRotationSixHours' => 'Every 6h',
           'widgets.configureRotationManual' => 'Manual',
           'widgets.configurePrivacySection' => 'Privacy',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.configureShowNames' => 'Show names',
           'widgets.configureHideInDiscreet' => 'Hide in discreet mode',
           'widgets.configureAllowPartnerNotes' => 'Allow partner notes',
@@ -9840,9 +9951,6 @@ extension on TranslationsEn {
           'widgets.ownMediumIdeaAction' => 'Tap to view',
           'widgets.ownMediumJarTitle' => 'Tap to open a saved slip',
           'widgets.ownMediumJarPrivacy' => 'Private: only appears on your device',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.lockScreenPageTitle' => 'Lock screen',
           'widgets.lockScreenClockTime' => '19:38',
           'widgets.lockScreenClockDate' => 'Friday, April 10',

@@ -1,0 +1,9 @@
+mutation UpdateHeavyDaySharing($profileId: UUID!, $sharing: String!) {
+  updateProfileSettingsCollection(
+    set: { heavyDaySharing: $sharing }
+    filter: { profileId: { eq: $profileId } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

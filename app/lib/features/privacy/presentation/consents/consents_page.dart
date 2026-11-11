@@ -71,5 +71,6 @@ class const ConsentsPage({super.key}) extends StatelessWidget implements AutoRou
     ConsentKind.marketing => l10n.marketing,
     ConsentKind.ai => l10n.ai,
     ConsentKind.terms => l10n.terms,
+    ConsentKind.sensitiveTracks => l10n.sensitiveTracks,
   };
 }

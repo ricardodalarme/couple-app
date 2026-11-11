@@ -743,6 +743,22 @@ class HardConversationRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [HeavyDayPage]
+class HeavyDayRoute extends PageRouteInfo<void> {
+  const HeavyDayRoute({List<PageRouteInfo>? children})
+    : super(HeavyDayRoute.name, initialChildren: children);
+
+  static const String name = 'HeavyDayRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const HeavyDayPage());
+    },
+  );
+}
+
+/// generated route for
 /// [HelpPage]
 class HelpRoute extends PageRouteInfo<void> {
   const HelpRoute({List<PageRouteInfo>? children})

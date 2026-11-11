@@ -18,6 +18,7 @@ void main() {
     String slug,
     int position, {
     bool plusOnly = false,
+    bool sensitive = false,
     String? body = 'Um caminho curto.',
   }) => (
     slug: slug,
@@ -26,6 +27,7 @@ void main() {
     parentSlug: null,
     position: position,
     plusOnly: plusOnly,
+    sensitive: sensitive,
   );
 
   ContentItemRecord lessonRecord(
@@ -33,6 +35,7 @@ void main() {
     String programSlug,
     int day, {
     bool plusOnly = false,
+    bool sensitive = false,
   }) => (
     slug: slug,
     title: slug,
@@ -40,6 +43,7 @@ void main() {
     parentSlug: programSlug,
     position: day,
     plusOnly: plusOnly,
+    sensitive: sensitive,
   );
 
   setUpAll(() => registerFallbackValue(DateTime(2026)));
@@ -72,7 +76,22 @@ void main() {
     expect(programs.map((program) => program.slug), ['gratitude-7', 'reconnect-5']);
     expect(programs.first.lessons.map((lesson) => lesson.day), [1, 2]);
     expect(programs.first.lessonCount, 2);
+    expect(programs.first.sensitive, isFalse);
     expect(programs.last.lessons.single.slug, 'reconnect-5-d1');
+  });
+
+  test('a sensitive program keeps the flag after the read', () async {
+    when(() => dataSource.getPrograms('pt-BR')).thenAnswer(
+      (_) async => (
+        programs: [programRecord('grief-together', 10, sensitive: true)],
+        lessons: [lessonRecord('grief-together-d1', 'grief-together', 1, sensitive: true)],
+      ),
+    );
+
+    final programs = await repository.getPrograms();
+
+    expect(programs.single.sensitive, isTrue);
+    expect(programs.single.lessons.single.slug, 'grief-together-d1');
   });
 
   test('a language without programs stays empty instead of borrowing another one', () async {

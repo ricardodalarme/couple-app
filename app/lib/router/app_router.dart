@@ -28,6 +28,7 @@ import 'package:flutter_bloc_starter/features/games/presentation/hub/games_page.
 import 'package:flutter_bloc_starter/features/gifts/presentation/gifts/gifts_page.dart';
 import 'package:flutter_bloc_starter/features/guides/presentation/hub/guides_page.dart';
 import 'package:flutter_bloc_starter/features/guides/presentation/viewer/guide_page.dart';
+import 'package:flutter_bloc_starter/features/heavy_day/presentation/heavy_day/heavy_day_page.dart';
 import 'package:flutter_bloc_starter/features/help/data/models/support_topic.dart';
 import 'package:flutter_bloc_starter/features/help/presentation/help/help_page.dart';
 import 'package:flutter_bloc_starter/features/help/presentation/support/support_page.dart';
@@ -184,6 +185,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: PartnerViewRoute.page),
     AutoRoute(page: OurViewRoute.page),
     AutoRoute(page: ConsentsRoute.page),
+    AutoRoute(page: HeavyDayRoute.page),
     AutoRoute(page: DeleteAccountRoute.page),
     AutoRoute(page: SafeModeRoute.page),
     AutoRoute(page: NeutralRoute.page),

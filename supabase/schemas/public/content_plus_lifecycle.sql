@@ -176,7 +176,7 @@ create trigger cards_free_limit before update of status on public.cards
 create table public.consents (
   id uuid primary key default gen_random_uuid(),
   profile_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  kind text not null check (kind in ('sensitive_data', 'analytics', 'marketing', 'ai', 'terms')),
+  kind text not null check (kind in ('sensitive_data', 'analytics', 'marketing', 'ai', 'terms', 'sensitive_tracks')),
   granted boolean not null,
   version text not null check (char_length(version) between 1 and 20),
   created_at timestamptz not null default now()

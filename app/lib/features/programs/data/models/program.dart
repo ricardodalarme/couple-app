@@ -6,6 +6,7 @@ final class const Program({
   required final String title,
   final String? body,
   final bool plusOnly = false,
+  final bool sensitive = false,
   final List<Lesson> lessons = const [],
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
@@ -33,7 +34,7 @@ final class const Program({
   }
 
   @override
-  List<Object?> get props => [slug, title, body, plusOnly, lessons];
+  List<Object?> get props => [slug, title, body, plusOnly, sensitive, lessons];
 }
 
 /// One day of a program.

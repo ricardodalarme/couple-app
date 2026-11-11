@@ -13,6 +13,7 @@ extension MySettingsMapper on QueryMySettingsmySettings {
     onboardedAt: onboardedAt,
     shareReadReceipts: shareReadReceipts,
     widgetInDiscreet: widgetInDiscreet,
+    heavyDaySharing: HeavyDaySharing.fromServer(heavyDaySharing),
     phase: phase?.toJson(),
     goals: goals.whereType<String>().toList(),
     locale: locale,

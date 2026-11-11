@@ -1,0 +1,19 @@
+{
+  "title": "Aviso de dias pesados",
+  "gateTitle": "Aviso de dias pesados",
+  "gateText": "Às vezes um dia pesa. Você pode avisar seu par com uma frase curta, sem detalhes. Seu par não vê seus programas nem o que você escreve.",
+  "activate": "Ligar",
+  "notNow": "Agora não",
+  "noticeBody": "Um dia delicado. Um pouco mais de carinho ajuda.",
+  "previewPartner": "{name} veria: “Um dia delicado. Um pouco mais de carinho ajuda.”",
+  "previewGeneric": "Seu par veria: “Um dia delicado. Um pouco mais de carinho ajuda.”",
+  "frequencyAsk": "A cada vez",
+  "frequencyAlways": "Sempre",
+  "share": "Compartilhar",
+  "cancel": "Não compartilhar",
+  "confirmationTitle": "Aviso enviado para {name}",
+  "confirmationGeneric": "Aviso enviado",
+  "confirmationHint": "Seu par vê no widget de recados, se estiver ativado.",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "Não deu para fazer isso agora. Tente de novo."
+}
