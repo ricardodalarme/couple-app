@@ -11,6 +11,7 @@ import 'package:flutter_bloc_starter/features/settings/data/repositories/setting
 import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/home/cubit/settings_home_cubit.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/language/cubit/language_cubit.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:preferences_service/preferences_service.dart';
 
 class SettingsInjectionModule() implements InjectionModule {
@@ -30,7 +31,10 @@ class SettingsInjectionModule() implements InjectionModule {
       ),
     )
     ..registerLazySingleton<DiscreetModeCubit>(
-      () => DiscreetModeCubit(repository: injector.get<DiscreetRepository>()),
+      () => DiscreetModeCubit(
+        repository: injector.get<DiscreetRepository>(),
+        widgetsRepository: injector.get<WidgetsRepository>(),
+      ),
     )
     ..registerFactory<LanguageCubit>(
       () => LanguageCubit(repository: injector.get<SettingsRepository>()),

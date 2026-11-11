@@ -6,6 +6,7 @@ import 'package:flutter_bloc_starter/features/today/data/data_sources/today_data
 import 'package:flutter_bloc_starter/features/today/data/data_sources/today_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/today/data/repositories/today_repository.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/cubit/today_cubit.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:network/network.dart';
 import 'package:preferences_service/preferences_service.dart';
 
@@ -22,6 +23,7 @@ class TodayInjectionModule() implements InjectionModule {
       () => TodayRepository(
         dataSource: injector.get<TodayDataSource>(),
         localDataSource: injector.get<TodayLocalDataSource>(),
+        widgetsRepository: injector.get<WidgetsRepository>(),
       ),
     )
     ..registerFactory<TodayCubit>(

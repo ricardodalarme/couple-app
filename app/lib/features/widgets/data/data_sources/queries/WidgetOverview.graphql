@@ -1,0 +1,76 @@
+query WidgetOverview {
+  widget {
+    nodeId
+    profileId
+    discreet
+    isPaired
+    togetherSince
+    partnerName
+    nextDateTitle
+    nextDateOn
+    unopenedCards
+    pauseReturnAt
+    partnerNote
+    partnerNoteMedia
+    partnerNoteAt
+    partnerMood
+  }
+  today {
+    nodeId
+    isPaired
+    partnerName
+    localDate
+    cardId
+    cardStatus
+    unopenedCards
+    slipsThisWeek
+    slipsTotal
+    suggestionKey
+    togetherSince
+    pauseIsMine
+    pauseReturnAt
+    nextDateTitle
+    nextDateOn
+    hasPlus
+  }
+  mySettings {
+    nodeId
+    profileId
+    phase
+    partnerName
+    togetherSince
+    widgetAllowPartnerNotes
+    widgetOnLockScreen
+    widgetInDiscreet
+    widgetShowNames
+  }
+  idea: dailyContent(kind: "daily_idea") {
+    slug
+    title
+    body
+  }
+  ritualsCollection(
+    filter: { archivedAt: { is: NULL } }
+    orderBy: [{ createdAt: DescNullsLast }]
+    first: 1
+  ) {
+    edges {
+      node {
+        id
+        title
+        cadence
+        weekday
+        atTime
+      }
+    }
+  }
+  moodsCollection(first: 1, orderBy: [{ day: DescNullsLast }]) {
+    edges {
+      node {
+        id
+        day
+        mood
+      }
+    }
+  }
+}

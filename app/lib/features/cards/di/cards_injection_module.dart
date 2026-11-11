@@ -6,6 +6,7 @@ import 'package:flutter_bloc_starter/features/cards/presentation/draft/cubit/sun
 import 'package:flutter_bloc_starter/features/cards/presentation/list/cubit/cards_list_cubit.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:network/network.dart';
 
 class CardsInjectionModule() implements InjectionModule {
@@ -15,7 +16,10 @@ class CardsInjectionModule() implements InjectionModule {
       () => CardsDataSource(client: injector.get<GQLClient>()),
     )
     ..registerLazySingleton<CardsRepository>(
-      () => CardsRepository(dataSource: injector.get<CardsDataSource>()),
+      () => CardsRepository(
+        dataSource: injector.get<CardsDataSource>(),
+        widgetsRepository: injector.get<WidgetsRepository>(),
+      ),
     )
     ..registerFactory<CardsListCubit>(
       () => CardsListCubit(

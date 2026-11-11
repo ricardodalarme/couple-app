@@ -1,0 +1,38 @@
+import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/settings/data/data_sources/discreet_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/data_sources/widgets_data_source.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/data_sources/widgets_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/configure/cubit/widget_configure_cubit.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/gallery/cubit/widgets_gallery_cubit.dart';
+import 'package:network/network.dart';
+import 'package:preferences_service/preferences_service.dart';
+
+class WidgetsInjectionModule() implements InjectionModule {
+  @override
+  void registerDependencies({required Injector injector}) {
+    injector
+      ..registerLazySingleton<WidgetDataService>(WidgetDataService.new)
+      ..registerLazySingleton<WidgetsLocalDataSource>(
+        () => WidgetsLocalDataSource(preferencesService: injector.get<PreferencesService>()),
+      )
+      ..registerLazySingleton<WidgetsDataSource>(
+        () => WidgetsDataSource(client: injector.get<GQLClient>()),
+      )
+      ..registerLazySingleton<WidgetsRepository>(
+        () => WidgetsRepository(
+          dataSource: injector.get<WidgetsDataSource>(),
+          localDataSource: injector.get<WidgetsLocalDataSource>(),
+          discreetLocalDataSource: injector.get<DiscreetLocalDataSource>(),
+          widgetDataService: injector.get<WidgetDataService>(),
+        ),
+      )
+      ..registerFactory<WidgetsGalleryCubit>(
+        () => WidgetsGalleryCubit(repository: injector.get<WidgetsRepository>()),
+      )
+      ..registerFactory<WidgetConfigureCubit>(
+        () => WidgetConfigureCubit(repository: injector.get<WidgetsRepository>()),
+      );
+  }
+}

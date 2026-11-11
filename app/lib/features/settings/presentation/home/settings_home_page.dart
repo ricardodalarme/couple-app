@@ -109,6 +109,13 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
                   onTap: () => context.pushRoute(const DiscreetModeRoute()),
                 ),
                 BaseListTile(
+                  title: context.l10n.widgets.settingsTitle,
+                  subtitle: context.l10n.widgets.settingsSubtitle,
+                  icon: AppIcons.smartphone,
+                  showsChevron: true,
+                  onTap: () => context.pushRoute(const WidgetsGalleryRoute()),
+                ),
+                BaseListTile(
                   title: l10n.privacy,
                   subtitle: l10n.privacyStatus,
                   icon: AppIcons.lock,

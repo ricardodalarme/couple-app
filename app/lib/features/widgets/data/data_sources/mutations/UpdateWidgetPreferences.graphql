@@ -1,0 +1,20 @@
+mutation UpdateWidgetPreferences(
+  $profileId: UUID!
+  $widgetShowNames: Boolean!
+  $widgetInDiscreet: Boolean!
+  $widgetAllowPartnerNotes: Boolean!
+  $widgetOnLockScreen: Boolean!
+) {
+  updateProfileSettingsCollection(
+    set: {
+      widgetShowNames: $widgetShowNames
+      widgetInDiscreet: $widgetInDiscreet
+      widgetAllowPartnerNotes: $widgetAllowPartnerNotes
+      widgetOnLockScreen: $widgetOnLockScreen
+    }
+    filter: { profileId: { eq: $profileId } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

@@ -1,11 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter_bloc_starter/features/dates/data/data_sources/dates_data_source.dart';
 import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:logger/logger.dart';
 
 class DatesRepository({
   required final DatesDataSource _dataSource,
   required final TogetherRepository _togetherRepository,
+  final WidgetsRepository? _widgetsRepository,
 }) {
   final Logger _logger = Logger('DatesRepository');
 
@@ -36,9 +40,8 @@ class DatesRepository({
     bool isYearly = true,
     List<int> remindDays = const [7, 1],
     String? holidayKey,
-  }) => _run(
-    'add a date',
-    () async => _dataSource.addDate(
+  }) => _run('add a date', () async {
+    await _dataSource.addDate(
       id: id,
       title: title.trim(),
       kind: kind,
@@ -50,10 +53,14 @@ class DatesRepository({
       origin: holidayKey == null ? 'manual' : 'auto',
       holidayKey: holidayKey,
       coupleId: await _togetherRepository.getCoupleId(),
-    ),
-  );
+    );
+    unawaited(_widgetsRepository?.syncQuietly());
+  });
 
-  Future<void> deleteDate(String id) => _run('delete a date', () => _dataSource.deleteDate(id));
+  Future<void> deleteDate(String id) => _run('delete a date', () async {
+    await _dataSource.deleteDate(id);
+    unawaited(_widgetsRepository?.syncQuietly());
+  });
 
   Future<List<GiftIdea>> getGiftIdeas() => _run(
     'read gift ideas',

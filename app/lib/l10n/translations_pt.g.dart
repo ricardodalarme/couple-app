@@ -134,6 +134,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$today$pt today = Translations$today$pt.internal(_root);
   late final Translations$unpair$pt unpair = Translations$unpair$pt.internal(_root);
   late final Translations$welcome$pt welcome = Translations$welcome$pt.internal(_root);
+  late final Translations$widgets$pt widgets = Translations$widgets$pt.internal(_root);
 }
 
 // Path: acceptInvite
@@ -5118,6 +5119,229 @@ class Translations$welcome$pt {
   String get debugSignIn => 'Entrar (debug)';
 }
 
+// Path: widgets
+class Translations$widgets$pt {
+  Translations$widgets$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Widgets'
+  String get settingsTitle => 'Widgets';
+
+  /// pt: 'Na tela inicial e bloqueio'
+  String get settingsSubtitle => 'Na tela inicial e bloqueio';
+
+  /// pt: 'TELA INICIAL'
+  String get juntosCategory => 'TELA INICIAL';
+
+  /// pt: 'Widgets do Repara'
+  String get juntosTitle => 'Widgets do Repara';
+
+  /// pt: 'Lembretes calmos para você ou para vocês dois.'
+  String get juntosSubtitle => 'Lembretes calmos para você ou para vocês dois.';
+
+  /// pt: 'Widgets'
+  String get galleryTitle => 'Widgets';
+
+  /// pt: 'Só meus'
+  String get segmentOwn => 'Só meus';
+
+  /// pt: 'Do casal'
+  String get segmentCouple => 'Do casal';
+
+  /// pt: 'Como colocar na tela'
+  String get howToAddAction => 'Como colocar na tela';
+
+  /// pt: 'Configurar'
+  String get configureAction => 'Configurar';
+
+  /// pt: 'ANOTAR SLIP'
+  String get ownSlipLabel => 'ANOTAR SLIP';
+
+  /// pt: '+ Slip'
+  String get ownSlipTitle => '+ Slip';
+
+  /// pt: 'Toque para anotar'
+  String get ownSlipSubtitle => 'Toque para anotar';
+
+  /// pt: 'IDEIA DO DIA'
+  String get ownIdeaLabel => 'IDEIA DO DIA';
+
+  /// pt: 'Deixe um bilhete hoje'
+  String get ownIdeaDefault => 'Deixe um bilhete hoje';
+
+  /// pt: 'Toque para abrir'
+  String get ownIdeaHint => 'Toque para abrir';
+
+  /// pt: 'POTINHO DO DIA RUIM'
+  String get ownJarLabel => 'POTINHO DO DIA RUIM';
+
+  /// pt: 'Abrir um slip guardado'
+  String get ownJarTitle => 'Abrir um slip guardado';
+
+  /// pt: 'Privado: só no seu aparelho'
+  String get ownJarPrivacy => 'Privado: só no seu aparelho';
+
+  /// pt: 'TELA DE BLOQUEIO'
+  String get lockScreenLabel => 'TELA DE BLOQUEIO';
+
+  /// pt: 'Lembrete calmo · Sem nomes'
+  String get lockScreenDefault => 'Lembrete calmo · Sem nomes';
+
+  /// pt: 'CONTADOR'
+  String get coupleCounterLabel => 'CONTADOR';
+
+  /// pt: 'Defina a data do casal para ver os dias juntos'
+  String get coupleCounterUnset => 'Defina a data do casal para ver os dias juntos';
+
+  /// pt: '(one) {{count} dia juntos} (other) {{count} dias juntos}'
+  String coupleCounterDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '${count} dia juntos',
+        other: '${count} dias juntos',
+      );
+
+  /// pt: 'FOTOS DO CASAL · PLUS'
+  String get couplePhotosLabel => 'FOTOS DO CASAL · PLUS';
+
+  /// pt: '2 anos e 3 meses juntos'
+  String get couplePhotosNeutral => '2 anos e 3 meses juntos';
+
+  /// pt: 'Disponível no plano Plus'
+  String get couplePhotosPlusHint => 'Disponível no plano Plus';
+
+  /// pt: 'RECADO DO PAR'
+  String get partnerNoteLabel => 'RECADO DO PAR';
+
+  /// pt: 'Sem recado novo no momento'
+  String get partnerNoteEmpty => 'Sem recado novo no momento';
+
+  /// pt: 'De {name}'
+  String partnerNoteFrom({required Object name}) => 'De ${name}';
+
+  /// pt: 'Do seu par'
+  String get partnerNoteFromDefault => 'Do seu par';
+
+  /// pt: 'CARTÃO E ENCONTRO'
+  String get cardEncounterLabel => 'CARTÃO E ENCONTRO';
+
+  /// pt: 'Chegou um cartão · Toque para abrir'
+  String get cardStateReady => 'Chegou um cartão · Toque para abrir';
+
+  /// pt: 'Cartão enviado · Aguardando domingo'
+  String get cardStateSent => 'Cartão enviado · Aguardando domingo';
+
+  /// pt: 'Pausa em andamento'
+  String get cardStatePause => 'Pausa em andamento';
+
+  /// pt: 'Cartão de domingo em preparação'
+  String get cardStateNone => 'Cartão de domingo em preparação';
+
+  /// pt: 'Modo discreto ativo: nomes, fotos e recados estão ocultos nos widgets.'
+  String get discreetBanner =>
+      'Modo discreto ativo: nomes, fotos e recados estão ocultos nos widgets.';
+
+  /// pt: 'Sem par conectado: os widgets do casal mostram o estado neutro.'
+  String get unpairedBanner => 'Sem par conectado: os widgets do casal mostram o estado neutro.';
+
+  /// pt: 'Mostrando o último dado salvo. Atualiza quando voltar a internet.'
+  String get offlineBanner => 'Mostrando o último dado salvo. Atualiza quando voltar a internet.';
+
+  /// pt: 'Como adicionar'
+  String get howToAddTitle => 'Como adicionar';
+
+  /// pt: 'Segure a tela inicial'
+  String get howToAddStep1Title => 'Segure a tela inicial';
+
+  /// pt: 'Toque e segure um espaço vazio até os ícones tremerem.'
+  String get howToAddStep1Body => 'Toque e segure um espaço vazio até os ícones tremerem.';
+
+  /// pt: 'Toque no botão +'
+  String get howToAddStep2Title => 'Toque no botão +';
+
+  /// pt: 'No canto superior, busque por Repara.'
+  String get howToAddStep2Body => 'No canto superior, busque por Repara.';
+
+  /// pt: 'Escolha o tamanho'
+  String get howToAddStep3Title => 'Escolha o tamanho';
+
+  /// pt: 'Pequeno, médio ou tela de bloqueio.'
+  String get howToAddStep3Body => 'Pequeno, médio ou tela de bloqueio.';
+
+  /// pt: 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.'
+  String get howToAddAndroidLockNote =>
+      'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.';
+
+  /// pt: 'Entendi'
+  String get howToAddDone => 'Entendi';
+
+  /// pt: 'Configurar widget'
+  String get configureTitle => 'Configurar widget';
+
+  /// pt: 'PRÉVIA'
+  String get configurePreviewLabel => 'PRÉVIA';
+
+  /// pt: 'Conteúdo'
+  String get configureContentSection => 'Conteúdo';
+
+  /// pt: 'Favoritas'
+  String get configureContentFavorites => 'Favoritas';
+
+  /// pt: 'Recentes'
+  String get configureContentRecent => 'Recentes';
+
+  /// pt: 'Ideia do dia'
+  String get configureContentDailyIdea => 'Ideia do dia';
+
+  /// pt: 'Troca de foto'
+  String get configureRotationSection => 'Troca de foto';
+
+  /// pt: 'Todo dia'
+  String get configureRotationDaily => 'Todo dia';
+
+  /// pt: 'A cada 6h'
+  String get configureRotationSixHours => 'A cada 6h';
+
+  /// pt: 'Manual'
+  String get configureRotationManual => 'Manual';
+
+  /// pt: 'Privacidade'
+  String get configurePrivacySection => 'Privacidade';
+
+  /// pt: 'Mostrar nomes'
+  String get configureShowNames => 'Mostrar nomes';
+
+  /// pt: 'Ocultar em modo discreto'
+  String get configureHideInDiscreet => 'Ocultar em modo discreto';
+
+  /// pt: 'Permitir recado do parceiro'
+  String get configureAllowPartnerNotes => 'Permitir recado do parceiro';
+
+  /// pt: 'Permitir na tela de bloqueio'
+  String get configureOnLockScreen => 'Permitir na tela de bloqueio';
+
+  /// pt: 'Salvar'
+  String get configureSave => 'Salvar';
+
+  /// pt: 'Preferências do widget salvas.'
+  String get configureSavedToast => 'Preferências do widget salvas.';
+
+  /// pt: 'Não foi possível salvar as preferências agora.'
+  String get configureErrorToast => 'Não foi possível salvar as preferências agora.';
+
+  /// pt: 'Não foi possível carregar os widgets'
+  String get loadErrorTitle => 'Não foi possível carregar os widgets';
+
+  /// pt: 'Verifique sua conexão e tente novamente.'
+  String get loadErrorBody => 'Verifique sua conexão e tente novamente.';
+
+  /// pt: 'Tentar novamente'
+  String get retryAction => 'Tentar novamente';
+}
+
 // Path: acceptInvite.connected
 class Translations$acceptInvite$connected$pt {
   Translations$acceptInvite$connected$pt.internal(this._root);
@@ -8398,6 +8622,84 @@ extension on Translations {
           'welcome.start' => 'Começar',
           'welcome.haveAccount' => 'Já tenho conta',
           'welcome.debugSignIn' => 'Entrar (debug)',
+          'widgets.settingsTitle' => 'Widgets',
+          'widgets.settingsSubtitle' => 'Na tela inicial e bloqueio',
+          'widgets.juntosCategory' => 'TELA INICIAL',
+          'widgets.juntosTitle' => 'Widgets do Repara',
+          'widgets.juntosSubtitle' => 'Lembretes calmos para você ou para vocês dois.',
+          'widgets.galleryTitle' => 'Widgets',
+          'widgets.segmentOwn' => 'Só meus',
+          'widgets.segmentCouple' => 'Do casal',
+          'widgets.howToAddAction' => 'Como colocar na tela',
+          'widgets.configureAction' => 'Configurar',
+          'widgets.ownSlipLabel' => 'ANOTAR SLIP',
+          'widgets.ownSlipTitle' => '+ Slip',
+          'widgets.ownSlipSubtitle' => 'Toque para anotar',
+          'widgets.ownIdeaLabel' => 'IDEIA DO DIA',
+          'widgets.ownIdeaDefault' => 'Deixe um bilhete hoje',
+          'widgets.ownIdeaHint' => 'Toque para abrir',
+          'widgets.ownJarLabel' => 'POTINHO DO DIA RUIM',
+          'widgets.ownJarTitle' => 'Abrir um slip guardado',
+          'widgets.ownJarPrivacy' => 'Privado: só no seu aparelho',
+          'widgets.lockScreenLabel' => 'TELA DE BLOQUEIO',
+          'widgets.lockScreenDefault' => 'Lembrete calmo · Sem nomes',
+          'widgets.coupleCounterLabel' => 'CONTADOR',
+          'widgets.coupleCounterUnset' => 'Defina a data do casal para ver os dias juntos',
+          'widgets.coupleCounterDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '${count} dia juntos',
+                  other: '${count} dias juntos',
+                ),
+          'widgets.couplePhotosLabel' => 'FOTOS DO CASAL · PLUS',
+          'widgets.couplePhotosNeutral' => '2 anos e 3 meses juntos',
+          'widgets.couplePhotosPlusHint' => 'Disponível no plano Plus',
+          'widgets.partnerNoteLabel' => 'RECADO DO PAR',
+          'widgets.partnerNoteEmpty' => 'Sem recado novo no momento',
+          'widgets.partnerNoteFrom' => ({required Object name}) => 'De ${name}',
+          'widgets.partnerNoteFromDefault' => 'Do seu par',
+          'widgets.cardEncounterLabel' => 'CARTÃO E ENCONTRO',
+          'widgets.cardStateReady' => 'Chegou um cartão · Toque para abrir',
+          'widgets.cardStateSent' => 'Cartão enviado · Aguardando domingo',
+          'widgets.cardStatePause' => 'Pausa em andamento',
+          'widgets.cardStateNone' => 'Cartão de domingo em preparação',
+          'widgets.discreetBanner' =>
+            'Modo discreto ativo: nomes, fotos e recados estão ocultos nos widgets.',
+          'widgets.unpairedBanner' =>
+            'Sem par conectado: os widgets do casal mostram o estado neutro.',
+          'widgets.offlineBanner' =>
+            'Mostrando o último dado salvo. Atualiza quando voltar a internet.',
+          'widgets.howToAddTitle' => 'Como adicionar',
+          'widgets.howToAddStep1Title' => 'Segure a tela inicial',
+          'widgets.howToAddStep1Body' => 'Toque e segure um espaço vazio até os ícones tremerem.',
+          'widgets.howToAddStep2Title' => 'Toque no botão +',
+          'widgets.howToAddStep2Body' => 'No canto superior, busque por Repara.',
+          'widgets.howToAddStep3Title' => 'Escolha o tamanho',
+          'widgets.howToAddStep3Body' => 'Pequeno, médio ou tela de bloqueio.',
+          'widgets.howToAddAndroidLockNote' => 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.',
+          'widgets.howToAddDone' => 'Entendi',
+          'widgets.configureTitle' => 'Configurar widget',
+          'widgets.configurePreviewLabel' => 'PRÉVIA',
+          'widgets.configureContentSection' => 'Conteúdo',
+          'widgets.configureContentFavorites' => 'Favoritas',
+          'widgets.configureContentRecent' => 'Recentes',
+          'widgets.configureContentDailyIdea' => 'Ideia do dia',
+          'widgets.configureRotationSection' => 'Troca de foto',
+          'widgets.configureRotationDaily' => 'Todo dia',
+          'widgets.configureRotationSixHours' => 'A cada 6h',
+          'widgets.configureRotationManual' => 'Manual',
+          'widgets.configurePrivacySection' => 'Privacidade',
+          'widgets.configureShowNames' => 'Mostrar nomes',
+          'widgets.configureHideInDiscreet' => 'Ocultar em modo discreto',
+          'widgets.configureAllowPartnerNotes' => 'Permitir recado do parceiro',
+          'widgets.configureOnLockScreen' => 'Permitir na tela de bloqueio',
+          'widgets.configureSave' => 'Salvar',
+          'widgets.configureSavedToast' => 'Preferências do widget salvas.',
+          'widgets.configureErrorToast' => 'Não foi possível salvar as preferências agora.',
+          'widgets.loadErrorTitle' => 'Não foi possível carregar os widgets',
+          'widgets.loadErrorBody' => 'Verifique sua conexão e tente novamente.',
+          'widgets.retryAction' => 'Tentar novamente',
           _ => null,
         };
   }

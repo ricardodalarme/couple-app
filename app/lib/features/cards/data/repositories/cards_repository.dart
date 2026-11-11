@@ -1,15 +1,21 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/cards/data/data_sources/cards_data_source.dart';
 import 'package:flutter_bloc_starter/features/cards/data/mappers/card_mapper.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/card_detail.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/card_summary.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:logger/logger.dart';
 
 /// How many cards one page of the history holds.
 const int cardPageSize = 20;
 
-class CardsRepository({required final CardsDataSource _dataSource}) {
+class CardsRepository({
+  required final CardsDataSource _dataSource,
+  final WidgetsRepository? _widgetsRepository,
+}) {
   final Logger _logger = Logger('CardsRepository');
 
   /// This week's card, creating the draft from the week's slips when there is none yet.
@@ -78,6 +84,7 @@ class CardsRepository({required final CardsDataSource _dataSource}) {
   Future<void> markRead(String cardId) async {
     try {
       await _dataSource.markRead(cardId);
+      unawaited(_widgetsRepository?.syncQuietly());
     } catch (e, stack) {
       _logger.error('Failed to mark the card as read', error: e, stackTrace: stack);
       rethrow;
@@ -87,7 +94,9 @@ class CardsRepository({required final CardsDataSource _dataSource}) {
   /// Sets the recipient's one reaction to the card.
   Future<String?> react({required String cardId, required String reaction, String? reply}) async {
     try {
-      return await _dataSource.react(cardId: cardId, reaction: reaction, reply: reply);
+      final result = await _dataSource.react(cardId: cardId, reaction: reaction, reply: reply);
+      unawaited(_widgetsRepository?.syncQuietly());
+      return result;
     } catch (e, stack) {
       _logger.error('Failed to react to the card', error: e, stackTrace: stack);
       rethrow;
@@ -98,7 +107,9 @@ class CardsRepository({required final CardsDataSource _dataSource}) {
   /// the server rejects it and the caller reads the card again.
   Future<SundayCard> send(String cardId) async {
     try {
-      return (await _dataSource.sendCard(cardId)).toModel();
+      final model = (await _dataSource.sendCard(cardId)).toModel();
+      unawaited(_widgetsRepository?.syncQuietly());
+      return model;
     } catch (e, stack) {
       _logger.error('Failed to send the card', error: e, stackTrace: stack);
       rethrow;
@@ -108,7 +119,9 @@ class CardsRepository({required final CardsDataSource _dataSource}) {
   /// Keeps the card for later; nothing is lost and it can still be sent.
   Future<SundayCard> hold(String cardId) async {
     try {
-      return (await _dataSource.holdCard(cardId)).toModel();
+      final model = (await _dataSource.holdCard(cardId)).toModel();
+      unawaited(_widgetsRepository?.syncQuietly());
+      return model;
     } catch (e, stack) {
       _logger.error('Failed to hold the card', error: e, stackTrace: stack);
       rethrow;

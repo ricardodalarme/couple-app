@@ -13,6 +13,7 @@ import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_
 import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:network/network.dart';
 
 class AppInjectionModule() implements InjectionModule {
@@ -41,6 +42,7 @@ class AppInjectionModule() implements InjectionModule {
         connectivityService: injector.get<ConnectivityService>(),
         notificationsRepository: injector.get<NotificationsRepository>(),
         devicesRepository: injector.get<DevicesRepository>(),
+        widgetsRepository: injector.get<WidgetsRepository>(),
       ),
     );
 }

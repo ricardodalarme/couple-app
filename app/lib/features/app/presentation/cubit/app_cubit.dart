@@ -11,6 +11,7 @@ import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_
 import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 
 part 'app_state.dart';
 
@@ -24,6 +25,7 @@ class AppCubit({
   required final ConnectivityService _connectivityService,
   required final NotificationsRepository _notificationsRepository,
   required final DevicesRepository _devicesRepository,
+  final WidgetsRepository? _widgetsRepository,
 }) extends Cubit<AppState> {
   this : super(AppState.unauthenticated) {
     _authStateChangesSubscription = _authenticationRepository.isAuthenticatedStream.listen(
@@ -103,6 +105,7 @@ class AppCubit({
     if (!isAuthenticated) {
       _wasAuthenticated = false;
       await _clearSupportQueue();
+      unawaited(_widgetsRepository?.clearOnSignOut());
       if (epoch != _authEpoch || isClosed) return;
       emit(AppState.unauthenticated);
       return;
@@ -120,6 +123,7 @@ class AppCubit({
       unawaited(_slipRepository.flushPending());
       unawaited(_supportRepository.flushPending(authorId: profile.id));
       unawaited(_reminderSyncService.sync());
+      unawaited(_widgetsRepository?.syncQuietly());
       if (epoch != _authEpoch || isClosed) return;
       emit(settings.isOnboarded ? AppState.authenticated : AppState.onboarding);
     } on Object {

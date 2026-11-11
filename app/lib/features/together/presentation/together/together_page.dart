@@ -147,6 +147,13 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
                 supportText: l10n.temperatureText,
                 onTap: () => context.pushRoute(const TemperatureRoute()),
               ),
+              const SizedBox(height: AppSpace.s12),
+              BaseListCard(
+                categoryLabel: context.l10n.widgets.juntosCategory,
+                title: context.l10n.widgets.juntosTitle,
+                supportText: context.l10n.widgets.juntosSubtitle,
+                onTap: () => context.pushRoute(const WidgetsGalleryRoute()),
+              ),
             ] else ...[
               BaseListCard(
                 categoryLabel: l10n.plusLabel,

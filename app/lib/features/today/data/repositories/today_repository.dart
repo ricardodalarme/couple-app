@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/today/data/data_sources/today_data_source.dart';
 import 'package:flutter_bloc_starter/features/today/data/data_sources/today_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/today/data/mappers/today_home_mapper.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:logger/logger.dart';
 import 'package:network/network.dart';
 
@@ -17,6 +20,7 @@ typedef TodayResult = ({
 class TodayRepository({
   required final TodayDataSource _dataSource,
   required final TodayLocalDataSource _localDataSource,
+  final WidgetsRepository? _widgetsRepository,
 }) {
   final Logger _logger = Logger('TodayRepository');
 
@@ -51,6 +55,7 @@ class TodayRepository({
   Future<void> endPause() async {
     try {
       await _dataSource.endPause();
+      unawaited(_widgetsRepository?.syncQuietly());
     } catch (e, stack) {
       _logger.error('Failed to end the pause', error: e, stackTrace: stack);
       rethrow;

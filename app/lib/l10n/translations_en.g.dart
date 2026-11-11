@@ -189,6 +189,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$unpair$en unpair = _Translations$unpair$en._(_root);
   @override
   late final _Translations$welcome$en welcome = _Translations$welcome$en._(_root);
+  @override
+  late final _Translations$widgets$en widgets = _Translations$widgets$en._(_root);
 }
 
 // Path: acceptInvite
@@ -4104,6 +4106,160 @@ class _Translations$welcome$en extends Translations$welcome$pt {
   String get debugSignIn => 'Sign in (debug)';
 }
 
+// Path: widgets
+class _Translations$widgets$en extends Translations$widgets$pt {
+  _Translations$widgets$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get settingsTitle => 'Widgets';
+  @override
+  String get settingsSubtitle => 'Home screen and lock screen';
+  @override
+  String get juntosCategory => 'HOME SCREEN';
+  @override
+  String get juntosTitle => 'Repara widgets';
+  @override
+  String get juntosSubtitle => 'Calm reminders for you or for the two of you.';
+  @override
+  String get galleryTitle => 'Widgets';
+  @override
+  String get segmentOwn => 'Just mine';
+  @override
+  String get segmentCouple => 'Couple';
+  @override
+  String get howToAddAction => 'How to add to screen';
+  @override
+  String get configureAction => 'Configure';
+  @override
+  String get ownSlipLabel => 'LOG SLIP';
+  @override
+  String get ownSlipTitle => '+ Slip';
+  @override
+  String get ownSlipSubtitle => 'Tap to log';
+  @override
+  String get ownIdeaLabel => 'DAILY IDEA';
+  @override
+  String get ownIdeaDefault => 'Leave a small note today';
+  @override
+  String get ownIdeaHint => 'Tap to open';
+  @override
+  String get ownJarLabel => 'BAD DAY JAR';
+  @override
+  String get ownJarTitle => 'Open a saved slip';
+  @override
+  String get ownJarPrivacy => 'Private: only on your device';
+  @override
+  String get lockScreenLabel => 'LOCK SCREEN';
+  @override
+  String get lockScreenDefault => 'Calm reminder · No names';
+  @override
+  String get coupleCounterLabel => 'COUNTER';
+  @override
+  String get coupleCounterUnset => 'Set your relationship date to see days together';
+  @override
+  String coupleCounterDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '${count} day together',
+        other: '${count} days together',
+      );
+  @override
+  String get couplePhotosLabel => 'COUPLE PHOTOS · PLUS';
+  @override
+  String get couplePhotosNeutral => '2 years and 3 months together';
+  @override
+  String get couplePhotosPlusHint => 'Available with Plus';
+  @override
+  String get partnerNoteLabel => 'PARTNER NOTE';
+  @override
+  String get partnerNoteEmpty => 'No new note right now';
+  @override
+  String partnerNoteFrom({required Object name}) => 'From ${name}';
+  @override
+  String get partnerNoteFromDefault => 'From your partner';
+  @override
+  String get cardEncounterLabel => 'CARD & DATE';
+  @override
+  String get cardStateReady => 'A card arrived · Tap to open';
+  @override
+  String get cardStateSent => 'Card sent · Waiting for Sunday';
+  @override
+  String get cardStatePause => 'Pause in progress';
+  @override
+  String get cardStateNone => 'Sunday card in preparation';
+  @override
+  String get discreetBanner =>
+      'Discreet mode is on: names, photos and notes are hidden in widgets.';
+  @override
+  String get unpairedBanner => 'No partner connected: couple widgets show a neutral state.';
+  @override
+  String get offlineBanner => 'Showing the last saved data. Updates when back online.';
+  @override
+  String get howToAddTitle => 'How to add';
+  @override
+  String get howToAddStep1Title => 'Hold the home screen';
+  @override
+  String get howToAddStep1Body => 'Touch and hold an empty space until the icons jiggle.';
+  @override
+  String get howToAddStep2Title => 'Tap the + button';
+  @override
+  String get howToAddStep2Body => 'In the top corner, search for Repara.';
+  @override
+  String get howToAddStep3Title => 'Pick a size';
+  @override
+  String get howToAddStep3Body => 'Small, medium or lock screen.';
+  @override
+  String get howToAddAndroidLockNote =>
+      'On modern Android, widgets live on the home screen. The lock screen only shows neutral notification icons.';
+  @override
+  String get howToAddDone => 'Got it';
+  @override
+  String get configureTitle => 'Configure widget';
+  @override
+  String get configurePreviewLabel => 'PREVIEW';
+  @override
+  String get configureContentSection => 'Content';
+  @override
+  String get configureContentFavorites => 'Favorites';
+  @override
+  String get configureContentRecent => 'Recent';
+  @override
+  String get configureContentDailyIdea => 'Daily idea';
+  @override
+  String get configureRotationSection => 'Photo rotation';
+  @override
+  String get configureRotationDaily => 'Every day';
+  @override
+  String get configureRotationSixHours => 'Every 6h';
+  @override
+  String get configureRotationManual => 'Manual';
+  @override
+  String get configurePrivacySection => 'Privacy';
+  @override
+  String get configureShowNames => 'Show names';
+  @override
+  String get configureHideInDiscreet => 'Hide in discreet mode';
+  @override
+  String get configureAllowPartnerNotes => 'Allow partner notes';
+  @override
+  String get configureOnLockScreen => 'Allow on lock screen';
+  @override
+  String get configureSave => 'Save';
+  @override
+  String get configureSavedToast => 'Widget preferences saved.';
+  @override
+  String get configureErrorToast => 'Could not save widget preferences right now.';
+  @override
+  String get loadErrorTitle => 'Could not load widgets';
+  @override
+  String get loadErrorBody => 'Check your connection and try again.';
+  @override
+  String get retryAction => 'Try again';
+}
+
 // Path: acceptInvite.connected
 class _Translations$acceptInvite$connected$en extends Translations$acceptInvite$connected$pt {
   _Translations$acceptInvite$connected$en._(TranslationsEn root)
@@ -7201,6 +7357,82 @@ extension on TranslationsEn {
           'welcome.start' => 'Get started',
           'welcome.haveAccount' => 'I already have an account',
           'welcome.debugSignIn' => 'Sign in (debug)',
+          'widgets.settingsTitle' => 'Widgets',
+          'widgets.settingsSubtitle' => 'Home screen and lock screen',
+          'widgets.juntosCategory' => 'HOME SCREEN',
+          'widgets.juntosTitle' => 'Repara widgets',
+          'widgets.juntosSubtitle' => 'Calm reminders for you or for the two of you.',
+          'widgets.galleryTitle' => 'Widgets',
+          'widgets.segmentOwn' => 'Just mine',
+          'widgets.segmentCouple' => 'Couple',
+          'widgets.howToAddAction' => 'How to add to screen',
+          'widgets.configureAction' => 'Configure',
+          'widgets.ownSlipLabel' => 'LOG SLIP',
+          'widgets.ownSlipTitle' => '+ Slip',
+          'widgets.ownSlipSubtitle' => 'Tap to log',
+          'widgets.ownIdeaLabel' => 'DAILY IDEA',
+          'widgets.ownIdeaDefault' => 'Leave a small note today',
+          'widgets.ownIdeaHint' => 'Tap to open',
+          'widgets.ownJarLabel' => 'BAD DAY JAR',
+          'widgets.ownJarTitle' => 'Open a saved slip',
+          'widgets.ownJarPrivacy' => 'Private: only on your device',
+          'widgets.lockScreenLabel' => 'LOCK SCREEN',
+          'widgets.lockScreenDefault' => 'Calm reminder · No names',
+          'widgets.coupleCounterLabel' => 'COUNTER',
+          'widgets.coupleCounterUnset' => 'Set your relationship date to see days together',
+          'widgets.coupleCounterDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '${count} day together',
+                  other: '${count} days together',
+                ),
+          'widgets.couplePhotosLabel' => 'COUPLE PHOTOS · PLUS',
+          'widgets.couplePhotosNeutral' => '2 years and 3 months together',
+          'widgets.couplePhotosPlusHint' => 'Available with Plus',
+          'widgets.partnerNoteLabel' => 'PARTNER NOTE',
+          'widgets.partnerNoteEmpty' => 'No new note right now',
+          'widgets.partnerNoteFrom' => ({required Object name}) => 'From ${name}',
+          'widgets.partnerNoteFromDefault' => 'From your partner',
+          'widgets.cardEncounterLabel' => 'CARD & DATE',
+          'widgets.cardStateReady' => 'A card arrived · Tap to open',
+          'widgets.cardStateSent' => 'Card sent · Waiting for Sunday',
+          'widgets.cardStatePause' => 'Pause in progress',
+          'widgets.cardStateNone' => 'Sunday card in preparation',
+          'widgets.discreetBanner' =>
+            'Discreet mode is on: names, photos and notes are hidden in widgets.',
+          'widgets.unpairedBanner' => 'No partner connected: couple widgets show a neutral state.',
+          'widgets.offlineBanner' => 'Showing the last saved data. Updates when back online.',
+          'widgets.howToAddTitle' => 'How to add',
+          'widgets.howToAddStep1Title' => 'Hold the home screen',
+          'widgets.howToAddStep1Body' => 'Touch and hold an empty space until the icons jiggle.',
+          'widgets.howToAddStep2Title' => 'Tap the + button',
+          'widgets.howToAddStep2Body' => 'In the top corner, search for Repara.',
+          'widgets.howToAddStep3Title' => 'Pick a size',
+          'widgets.howToAddStep3Body' => 'Small, medium or lock screen.',
+          'widgets.howToAddAndroidLockNote' => 'On modern Android, widgets live on the home screen. The lock screen only shows neutral notification icons.',
+          'widgets.howToAddDone' => 'Got it',
+          'widgets.configureTitle' => 'Configure widget',
+          'widgets.configurePreviewLabel' => 'PREVIEW',
+          'widgets.configureContentSection' => 'Content',
+          'widgets.configureContentFavorites' => 'Favorites',
+          'widgets.configureContentRecent' => 'Recent',
+          'widgets.configureContentDailyIdea' => 'Daily idea',
+          'widgets.configureRotationSection' => 'Photo rotation',
+          'widgets.configureRotationDaily' => 'Every day',
+          'widgets.configureRotationSixHours' => 'Every 6h',
+          'widgets.configureRotationManual' => 'Manual',
+          'widgets.configurePrivacySection' => 'Privacy',
+          'widgets.configureShowNames' => 'Show names',
+          'widgets.configureHideInDiscreet' => 'Hide in discreet mode',
+          'widgets.configureAllowPartnerNotes' => 'Allow partner notes',
+          'widgets.configureOnLockScreen' => 'Allow on lock screen',
+          'widgets.configureSave' => 'Save',
+          'widgets.configureSavedToast' => 'Widget preferences saved.',
+          'widgets.configureErrorToast' => 'Could not save widget preferences right now.',
+          'widgets.loadErrorTitle' => 'Could not load widgets',
+          'widgets.loadErrorBody' => 'Check your connection and try again.',
+          'widgets.retryAction' => 'Try again',
           _ => null,
         };
   }

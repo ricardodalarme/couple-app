@@ -3,12 +3,15 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/settings/data/models/discreet_mode_values.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/discreet_repository.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 
 part 'discreet_mode_state.dart';
 
 /// One source of truth for discreet mode; widgets and the shield read this cubit.
-class DiscreetModeCubit({required final DiscreetRepository _repository})
-    extends Cubit<DiscreetModeState> {
+class DiscreetModeCubit({
+  required final DiscreetRepository _repository,
+  final WidgetsRepository? _widgetsRepository,
+}) extends Cubit<DiscreetModeState> {
   this : super(DiscreetModeState(values: _repository.local));
 
   bool _hasLoaded = false;
@@ -50,6 +53,7 @@ class DiscreetModeCubit({required final DiscreetRepository _repository})
     );
     try {
       await _repository.setHideWidgetText(value: value);
+      await _widgetsRepository?.applyDiscreetModeImmediately(discreet: value);
       emit(state.copyWith(saveAction: const Success(null)));
     } catch (exception) {
       emit(state.copyWith(values: previous, saveAction: Failure.fromObject(exception)));

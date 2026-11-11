@@ -91,6 +91,10 @@ import 'package:flutter_bloc_starter/features/together/presentation/logistics/lo
 import 'package:flutter_bloc_starter/features/together/presentation/ritual_edit/ritual_edit_page.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/rituals/rituals_page.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/together/together_page.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/configure/widget_configure_page.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/gallery/widgets_gallery_page.dart';
+import 'package:flutter_bloc_starter/features/widgets/presentation/how_to_add/widget_how_to_add_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -181,6 +185,9 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: HistoryAvatarRoute.page),
     AutoRoute(page: HistoryNumbersRoute.page),
     AutoRoute(page: DifferentDatesRoute.page),
+    AutoRoute(page: WidgetsGalleryRoute.page),
+    AutoRoute(page: WidgetHowToAddRoute.page),
+    AutoRoute(page: WidgetConfigureRoute.page),
     AutoRoute(
       page: HomeRoute.page,
       children: [
