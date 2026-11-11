@@ -203,9 +203,13 @@ data class ReparaWidgetPayload(
                 if (subtitle.isBlank()) View.GONE else View.VISIBLE,
             )
 
-            val bitmap = if (!imagePath.isNullOrBlank() && File(imagePath).exists()) {
-                BitmapFactory.decodeFile(imagePath)
-            } else {
+            val bitmap = try {
+                if (!imagePath.isNullOrBlank() && File(imagePath).exists()) {
+                    BitmapFactory.decodeFile(imagePath)
+                } else {
+                    null
+                }
+            } catch (_: Exception) {
                 null
             }
             if (bitmap != null) {

@@ -38,7 +38,7 @@ class CouplePhotosWidgetCubit({
   /// Opens the image picker, validates the file, uploads it, and refreshes the widget.
   Future<void> choosePhoto() async {
     if (state.chooseAction.isLoading || state.removeAction.isLoading) return;
-    if (!_canManagePhoto) return;
+    if (!_canChoosePhoto) return;
 
     final PlatformFile? picked;
     try {
@@ -51,7 +51,12 @@ class CouplePhotosWidgetCubit({
       );
       return;
     }
-    if (picked == null) return;
+    if (picked == null) {
+      if (state.chooseAction is! Initial) {
+        emit(state.copyWith(chooseAction: const Initial()));
+      }
+      return;
+    }
 
     final Uint8List bytes;
     try {
@@ -77,11 +82,13 @@ class CouplePhotosWidgetCubit({
 
     emit(state.copyWith(chooseAction: const Loading(), localPreview: bytes));
     try {
-      final overview = await _couplePhotoRepository.upload(bytes: bytes, contentType: contentType);
+      await _couplePhotoRepository.upload(bytes: bytes, contentType: contentType);
+      if (isClosed) return;
+      final refreshed = await _tryRefreshOverview();
       if (isClosed) return;
       emit(
         state.copyWith(
-          overview: Success(overview),
+          overview: Success(refreshed ?? _overviewWithPhoto(hasPhoto: true)),
           chooseAction: const Success(null),
           clearLocalPreview: true,
         ),
@@ -95,22 +102,50 @@ class CouplePhotosWidgetCubit({
   /// Deletes the couple photo, its storage file, and the local widget cache.
   Future<void> removePhoto() async {
     if (state.chooseAction.isLoading || state.removeAction.isLoading) return;
-    if (!_canManagePhoto) return;
+    if (!_canRemovePhoto) return;
 
     emit(state.copyWith(removeAction: const Loading(), clearLocalPreview: true));
     try {
-      final overview = await _couplePhotoRepository.remove();
+      await _couplePhotoRepository.remove();
       if (isClosed) return;
-      emit(state.copyWith(overview: Success(overview), removeAction: const Success(null)));
+      final refreshed = await _tryRefreshOverview();
+      if (isClosed) return;
+      emit(
+        state.copyWith(
+          overview: Success(refreshed ?? _overviewWithPhoto(hasPhoto: false)),
+          removeAction: const Success(null),
+        ),
+      );
     } catch (exception) {
       if (isClosed) return;
       emit(state.copyWith(removeAction: Failure.fromObject(exception)));
     }
   }
 
-  bool get _canManagePhoto {
+  Future<WidgetOverview?> _tryRefreshOverview() async {
+    try {
+      return await _widgetsRepository.loadAndSync();
+    } on Object {
+      return null;
+    }
+  }
+
+  WidgetOverview _overviewWithPhoto({required bool hasPhoto}) {
+    final overview = state.overview;
+    if (overview is Success<WidgetOverview>) {
+      return overview.value.copyWith(hasPhoto: hasPhoto);
+    }
+    return WidgetOverview.fake().copyWith(hasPhoto: hasPhoto);
+  }
+
+  bool get _canChoosePhoto {
     final payload = _payload;
     return payload != null && payload.isPaired && payload.hasPlus && !payload.discreet;
+  }
+
+  bool get _canRemovePhoto {
+    final payload = _payload;
+    return payload != null && payload.isPaired;
   }
 
   WidgetPayload? get _payload {

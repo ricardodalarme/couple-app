@@ -8,6 +8,7 @@ import 'package:flutter_bloc_starter/features/widgets/data/data_sources/widgets_
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/widgets_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/repositories/couple_photo_repository.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,11 +22,14 @@ class _MockDiscreetLocalDataSource() extends Mock implements DiscreetLocalDataSo
 
 class _MockWidgetDataService() extends Mock implements WidgetDataService;
 
+class _MockCouplePhotoRepository() extends Mock implements CouplePhotoRepository;
+
 void main() {
   late WidgetsDataSource dataSource;
   late WidgetsLocalDataSource localDataSource;
   late DiscreetLocalDataSource discreetLocalDataSource;
   late WidgetDataService widgetDataService;
+  late CouplePhotoRepository couplePhotoRepository;
   late WidgetsRepository repository;
   late List<WidgetPayload> writes;
   WidgetPayload? cached;
@@ -83,11 +87,13 @@ void main() {
     localDataSource = _MockWidgetsLocalDataSource();
     discreetLocalDataSource = _MockDiscreetLocalDataSource();
     widgetDataService = _MockWidgetDataService();
+    couplePhotoRepository = _MockCouplePhotoRepository();
     repository = WidgetsRepository(
       dataSource: dataSource,
       localDataSource: localDataSource,
       discreetLocalDataSource: discreetLocalDataSource,
       widgetDataService: widgetDataService,
+      couplePhotoRepository: couplePhotoRepository,
     );
     writes = <WidgetPayload>[];
     cached = WidgetPayload.fake();
@@ -115,6 +121,9 @@ void main() {
         hasPlus: any(named: 'hasPlus'),
       ),
     ).thenAnswer((_) async => null);
+    when(() => couplePhotoRepository.syncWidgetCache(cacheAllowed: any(named: 'cacheAllowed')))
+        .thenAnswer((_) async => false);
+    when(() => widgetDataService.clearCouplePhoto()).thenAnswer((_) async {});
     when(() => widgetDataService.readStoredPayload()).thenAnswer((_) async => cached);
     when(() => widgetDataService.writePayload(any(), referenceNow: any(named: 'referenceNow')))
         .thenAnswer((invocation) async {
@@ -181,5 +190,44 @@ void main() {
     expect(writes, isNotEmpty);
     expect(writes.last.discreet, isTrue);
     expect(writes.any((payload) => payload.partnerName != null), isFalse);
+  });
+
+  test('loadAndSync reads the couple photo row and exposes it on the overview', () async {
+    when(() => dataSource.getOverview()).thenAnswer((_) async => response());
+    when(() => couplePhotoRepository.syncWidgetCache(cacheAllowed: any(named: 'cacheAllowed')))
+        .thenAnswer((_) async => true);
+    when(
+      () => widgetDataService.readCachedPhotoPath(
+        discreet: any(named: 'discreet'),
+        hasPlus: any(named: 'hasPlus'),
+      ),
+    ).thenAnswer((_) async => '/tmp/repara_widget_photo.png');
+
+    final overview = await repository.loadAndSync(now: now);
+
+    expect(overview.hasPhoto, isTrue);
+    expect(overview.payload.cachedPhotoPath, '/tmp/repara_widget_photo.png');
+    verify(() => couplePhotoRepository.syncWidgetCache(cacheAllowed: true)).called(1);
+  });
+
+  test('loadAndSync clears the photo cache when the couple is unpaired', () async {
+    when(() => dataSource.getOverview()).thenAnswer((_) async {
+      final json = response();
+      return QueryWidgetOverview.fromJson(<String, dynamic>{
+        ...json.toJson(),
+        'widget': <String, dynamic>{
+          ...(json.toJson()['widget'] as Map<String, dynamic>),
+          'isPaired': false,
+        },
+      });
+    });
+
+    final overview = await repository.loadAndSync(now: now);
+
+    expect(overview.hasPhoto, isFalse);
+    verify(() => widgetDataService.clearCouplePhoto()).called(1);
+    verifyNever(
+      () => couplePhotoRepository.syncWidgetCache(cacheAllowed: any(named: 'cacheAllowed')),
+    );
   });
 }

@@ -86,16 +86,21 @@ final class const WidgetPreferences({
 final class const WidgetOverview({
   required final WidgetPayload payload,
   required final WidgetPreferences preferences,
+  final bool hasPhoto = false,
 }) with Equatable {
   factory fake() =>
       WidgetOverview(payload: WidgetPayload.fake(), preferences: WidgetPreferences.fake());
 
-  WidgetOverview copyWith({WidgetPayload? payload, WidgetPreferences? preferences}) =>
-      WidgetOverview(
-        payload: payload ?? this.payload,
-        preferences: preferences ?? this.preferences,
-      );
+  WidgetOverview copyWith({
+    WidgetPayload? payload,
+    WidgetPreferences? preferences,
+    bool? hasPhoto,
+  }) => WidgetOverview(
+    payload: payload ?? this.payload,
+    preferences: preferences ?? this.preferences,
+    hasPhoto: hasPhoto ?? this.hasPhoto,
+  );
 
   @override
-  List<Object?> get props => [payload, preferences];
+  List<Object?> get props => [payload, preferences, hasPhoto];
 }

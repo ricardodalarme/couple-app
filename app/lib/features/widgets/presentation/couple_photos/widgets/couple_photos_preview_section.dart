@@ -74,8 +74,8 @@ class const CouplePhotosPreviewSection({
         payload.cachedPhotoPath != null &&
         File(payload.cachedPhotoPath!).existsSync();
     final previewPhoto = switch ((localPreview, hasValidCachedPhoto)) {
-      (final Uint8List bytes, _) => Image.memory(bytes, height: 180, fit: BoxFit.cover),
-      (null, true) => Image.file(File(payload.cachedPhotoPath!), height: 180, fit: BoxFit.cover),
+      (final Uint8List bytes, _) => Image.memory(bytes, fit: BoxFit.cover),
+      (null, true) => Image.file(File(payload.cachedPhotoPath!), fit: BoxFit.cover),
       _ => null,
     };
 
@@ -85,7 +85,7 @@ class const CouplePhotosPreviewSection({
         if (previewPhoto != null) ...[
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(AppRadius.xxl)),
-            child: previewPhoto,
+            child: AspectRatio(aspectRatio: 16 / 9, child: previewPhoto),
           ),
           const SizedBox(height: AppSpace.s12),
         ],
@@ -93,12 +93,14 @@ class const CouplePhotosPreviewSection({
           categoryLabel: l10n.couplePhotosLabel,
           title: durationTitle,
           subtitle: payload.discreet ? l10n.discreetNeutralBody : l10n.ownIdeaHint,
-          badgeText: l10n.photosPlusBadge,
+          badgeText: payload.hasPlus ? null : l10n.photosPlusBadge,
           isDark: isDarkPreview,
           deepLinkUri: Uri.parse('repara://today'),
         ),
-        const SizedBox(height: AppSpace.s12),
-        BaseNote(text: l10n.photosNeutralFallbackNote, icon: AppIcons.info),
+        if (previewPhoto == null) ...[
+          const SizedBox(height: AppSpace.s12),
+          BaseNote(text: l10n.photosNeutralFallbackNote, icon: AppIcons.info),
+        ],
         if (!payload.hasPlus) ...[
           const SizedBox(height: AppSpace.s12),
           BaseButton(

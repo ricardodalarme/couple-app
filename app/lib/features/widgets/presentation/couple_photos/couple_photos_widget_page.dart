@@ -62,8 +62,12 @@ class const CouplePhotosWidgetPage({super.key})
           ),
           successBuilder: (overview) {
             final payload = overview.payload;
-            final canManage = payload.isPaired && payload.hasPlus && !payload.discreet;
-            final hasPhoto = payload.cachedPhotoPath != null || localPreview != null;
+            final canChoose = payload.isPaired && payload.hasPlus && !payload.discreet;
+            final showChoose = payload.isPaired && payload.hasPlus;
+            final hasPhoto =
+                overview.hasPhoto || payload.cachedPhotoPath != null || localPreview != null;
+            final showRemove = payload.isPaired && hasPhoto;
+            final isBusy = chooseAction.isLoading || removeAction.isLoading;
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -79,25 +83,21 @@ class const CouplePhotosWidgetPage({super.key})
                   isDarkPreview: isDarkPreview,
                   localPreview: localPreview,
                 ),
-                if (canManage) ...[
+                if (showChoose || showRemove) ...[
                   const SizedBox(height: AppSpace.s16),
-                  BaseButton(
-                    text: l10n.photosChooseAction,
-                    isLoading: chooseAction.isLoading,
-                    onPressed: chooseAction.isLoading || removeAction.isLoading
-                        ? null
-                        : () => _choose(context, cubit),
-                  ),
-                  if (hasPhoto) ...[
-                    const SizedBox(height: AppSpace.s12),
+                  if (showChoose)
+                    BaseButton(
+                      text: l10n.photosChooseAction,
+                      isLoading: chooseAction.isLoading,
+                      onPressed: canChoose && !isBusy ? () => _choose(context, cubit) : null,
+                    ),
+                  if (showChoose && showRemove) const SizedBox(height: AppSpace.s12),
+                  if (showRemove)
                     BaseButton.secondary(
                       text: l10n.photosRemoveAction,
                       isLoading: removeAction.isLoading,
-                      onPressed: chooseAction.isLoading || removeAction.isLoading
-                          ? null
-                          : () => _remove(context, cubit),
+                      onPressed: isBusy ? null : () => _remove(context, cubit),
                     ),
-                  ],
                 ],
               ],
             );

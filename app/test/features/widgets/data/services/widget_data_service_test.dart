@@ -161,6 +161,14 @@ void main() {
     expect(memoryStore[WidgetDataService.cachedPhotoStorageKey], newPath);
   });
 
+  test('cacheCouplePhoto stores the row updated_at marker', () async {
+    final updatedAt = DateTime.utc(2026, 11, 11, 12);
+
+    await service.cacheCouplePhoto(Uint8List.fromList([1]), 'png', updatedAt: updatedAt);
+
+    expect(await service.readCachedPhotoUpdatedAt(), updatedAt.toIso8601String());
+  });
+
   test('clearCouplePhoto deletes the file and clears the stored path', () async {
     final path = await service.cacheCouplePhoto(Uint8List.fromList([1]), 'jpg');
 
@@ -168,15 +176,25 @@ void main() {
 
     expect(File(path!).existsSync(), isFalse);
     expect(memoryStore[WidgetDataService.cachedPhotoStorageKey], isNull);
+    expect(memoryStore[WidgetDataService.cachedPhotoUpdatedAtKey], isNull);
   });
 
-  test('readCachedPhotoPath clears the path in discreet mode', () async {
+  test('readCachedPhotoPath deletes the file in discreet mode', () async {
     final path = await service.cacheCouplePhoto(Uint8List.fromList([1]), 'jpg');
 
     final resolved = await service.readCachedPhotoPath(discreet: true, hasPlus: true);
 
     expect(resolved, isNull);
-    expect(File(path!).existsSync(), isTrue);
+    expect(File(path!).existsSync(), isFalse);
+    expect(memoryStore[WidgetDataService.cachedPhotoStorageKey], isNull);
+  });
+
+  test('writePayload deletes the cached photo in discreet mode', () async {
+    final path = await service.cacheCouplePhoto(Uint8List.fromList([1]), 'jpg');
+
+    await service.writePayload(WidgetPayload.fake().copyWith(discreet: true));
+
+    expect(File(path!).existsSync(), isFalse);
     expect(memoryStore[WidgetDataService.cachedPhotoStorageKey], isNull);
   });
 }

@@ -62,8 +62,8 @@ void main() {
         bytes: any(named: 'bytes'),
         contentType: any(named: 'contentType'),
       ),
-    ).thenAnswer((_) async => WidgetOverview.fake());
-    when(() => couplePhotoRepository.remove()).thenAnswer((_) async => WidgetOverview.fake());
+    ).thenAnswer((_) async {});
+    when(() => couplePhotoRepository.remove()).thenAnswer((_) async {});
     when(
       () => filePickerService.pickFile(
         dialogTitle: any(named: 'dialogTitle'),
@@ -180,6 +180,50 @@ void main() {
 
       expect(cubit.state.chooseAction, isA<Failure>());
       expect(cubit.state.localPreview, isNull);
+    });
+
+    test('resets the action when the picker is cancelled so no stale toast fires', () async {
+      final cubit = build();
+      addTearDown(cubit.close);
+      await cubit.load();
+      await cubit.choosePhoto();
+      expect(cubit.state.chooseAction, const Success<void>(null));
+
+      when(
+        () => filePickerService.pickFile(
+          dialogTitle: any(named: 'dialogTitle'),
+          type: any(named: 'type'),
+          allowedExtensions: any(named: 'allowedExtensions'),
+        ),
+      ).thenAnswer((_) async => null);
+      await cubit.choosePhoto();
+
+      expect(cubit.state.chooseAction, const Initial());
+      verify(
+        () => couplePhotoRepository.upload(
+          bytes: any(named: 'bytes'),
+          contentType: any(named: 'contentType'),
+        ),
+      ).called(1);
+    });
+
+    test('keeps the photo saved when the post-upload refresh fails', () async {
+      var loads = 0;
+      when(() => widgetsRepository.loadAndSync()).thenAnswer((_) async {
+        loads++;
+        if (loads > 1) throw Exception('offline');
+        return WidgetOverview.fake();
+      });
+      final cubit = build();
+      addTearDown(cubit.close);
+      await cubit.load();
+
+      await cubit.choosePhoto();
+
+      expect(cubit.state.chooseAction, const Success<void>(null));
+      final overview = cubit.state.overview;
+      expect(overview, isA<Success<WidgetOverview>>());
+      expect((overview as Success<WidgetOverview>).value.hasPhoto, isTrue);
     });
 
     test('does nothing when the person has no partner', () async {

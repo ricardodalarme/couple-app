@@ -8,6 +8,7 @@ import 'package:flutter_bloc_starter/features/widgets/data/data_sources/widgets_
 import 'package:flutter_bloc_starter/features/widgets/data/mappers/widgets_mapper.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/repositories/couple_photo_repository.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
 import 'package:logger/logger.dart';
 
@@ -19,6 +20,7 @@ class WidgetsRepository({
   required final WidgetsLocalDataSource _localDataSource,
   required final DiscreetLocalDataSource _discreetLocalDataSource,
   required final WidgetDataService _widgetDataService,
+  required final CouplePhotoRepository _couplePhotoRepository,
 }) {
   final Logger _logger = Logger('WidgetsRepository');
   Future<void> _writeQueue = Future<void>.value();
@@ -36,7 +38,22 @@ class WidgetsRepository({
       final response = await _dataSource.getOverview();
       final localDiscreet = _discreetLocalDataSource.hideWidgetText;
       final isDiscreet = (response.widget?.discreet ?? false) || localDiscreet;
+      final isPaired = response.widget?.isPaired ?? response.today?.isPaired ?? false;
       final hasPlus = response.today?.hasPlus ?? false;
+
+      var hasPhoto = false;
+      if (generation == _generation && isPaired) {
+        try {
+          hasPhoto = await _couplePhotoRepository.syncWidgetCache(
+            cacheAllowed: hasPlus && !isDiscreet,
+          );
+        } on Object {
+          hasPhoto = false;
+        }
+      } else if (generation == _generation) {
+        await _widgetDataService.clearCouplePhoto();
+      }
+
       final cachedPhotoPath = await _widgetDataService.readCachedPhotoPath(
         discreet: isDiscreet,
         hasPlus: hasPlus,
@@ -47,6 +64,7 @@ class WidgetsRepository({
         contentSource: contentSource,
         rotationCadence: rotationCadence,
         cachedPhotoPath: cachedPhotoPath,
+        hasPhoto: hasPhoto,
         now: now,
       );
 
@@ -79,6 +97,7 @@ class WidgetsRepository({
             contentSource: contentSource,
             rotationCadence: rotationCadence,
           ),
+          hasPhoto: offlinePayload.cachedPhotoPath != null,
         );
       }
       _logger.error('Failed to load widget overview', error: e, stackTrace: stack);

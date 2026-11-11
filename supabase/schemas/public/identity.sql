@@ -261,6 +261,9 @@ begin
   if v_couple_id is null then
     return false;
   end if;
+  insert into private.storage_deletions (bucket, path)
+  select 'couple_photos', storage_path from public.couple_photos where couple_id = v_couple_id;
+  delete from public.couple_photos where couple_id = v_couple_id;
   update public.couple_members set left_at = now() where couple_id = v_couple_id and left_at is null;
   update public.couples set archived_at = now() where id = v_couple_id;
   return true;

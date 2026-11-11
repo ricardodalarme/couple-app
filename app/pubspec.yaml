@@ -38,6 +38,7 @@ dependencies:
   formatters:
     path: ../packages/formatters
   home_widget: ^0.10.0
+  http: ^1.6.0
   local_notification_service:
     path: ../packages/services/local_notification
   logger:

@@ -227,6 +227,14 @@ create function private.erase_profile(p_profile_id uuid) returns void
 language plpgsql security definer set search_path = '' as $$
 begin
   insert into private.storage_deletions (bucket, path)
+  select 'couple_photos', cp.storage_path
+  from public.couple_photos cp
+  join public.couple_members cm on cm.couple_id = cp.couple_id
+  where cm.profile_id = p_profile_id;
+  delete from public.couple_photos cp
+  using public.couple_members cm
+  where cm.couple_id = cp.couple_id and cm.profile_id = p_profile_id;
+  insert into private.storage_deletions (bucket, path)
   select o.bucket_id, o.name from storage.objects o
   where o.bucket_id in ('avatars', 'memories', 'messages') and (storage.foldername(o.name))[1] = p_profile_id::text;
   delete from private.rate_limits where key like '%:' || p_profile_id::text;

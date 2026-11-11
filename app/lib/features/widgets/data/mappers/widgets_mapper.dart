@@ -9,6 +9,7 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
     required WidgetContentSource contentSource,
     required WidgetRotationCadence rotationCadence,
     String? cachedPhotoPath,
+    bool hasPhoto = false,
     String? localeCode,
     DateTime? now,
   }) {
@@ -97,7 +98,7 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
       rotationCadence: rotationCadence,
     );
 
-    return WidgetOverview(payload: rawPayload, preferences: preferences);
+    return WidgetOverview(payload: rawPayload, preferences: preferences, hasPhoto: hasPhoto);
   }
 }
 

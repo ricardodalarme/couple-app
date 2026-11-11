@@ -35,14 +35,6 @@ class WidgetsInjectionModule() implements InjectionModule {
       ..registerLazySingleton<WidgetsDataSource>(
         () => WidgetsDataSource(client: injector.get<GQLClient>()),
       )
-      ..registerLazySingleton<WidgetsRepository>(
-        () => WidgetsRepository(
-          dataSource: injector.get<WidgetsDataSource>(),
-          localDataSource: injector.get<WidgetsLocalDataSource>(),
-          discreetLocalDataSource: injector.get<DiscreetLocalDataSource>(),
-          widgetDataService: injector.get<WidgetDataService>(),
-        ),
-      )
       ..registerLazySingleton<CouplePhotoDataSource>(
         () => CouplePhotoDataSource(client: injector.get<GQLClient>()),
       )
@@ -52,8 +44,16 @@ class WidgetsInjectionModule() implements InjectionModule {
           storageService: injector.get<StorageService>(),
           profileRepository: injector.get<ProfileRepository>(),
           authenticationRepository: injector.get<AuthenticationRepository>(),
-          widgetsRepository: injector.get<WidgetsRepository>(),
           widgetDataService: injector.get<WidgetDataService>(),
+        ),
+      )
+      ..registerLazySingleton<WidgetsRepository>(
+        () => WidgetsRepository(
+          dataSource: injector.get<WidgetsDataSource>(),
+          localDataSource: injector.get<WidgetsLocalDataSource>(),
+          discreetLocalDataSource: injector.get<DiscreetLocalDataSource>(),
+          widgetDataService: injector.get<WidgetDataService>(),
+          couplePhotoRepository: injector.get<CouplePhotoRepository>(),
         ),
       )
       ..registerFactory<WidgetsGalleryCubit>(

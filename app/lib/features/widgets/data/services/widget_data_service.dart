@@ -112,6 +112,7 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
   static const String appGroupId = 'group.com.ricardodalarme.flutterBlocStarter';
   static const String payloadStorageKey = 'repara_widget_payload';
   static const String cachedPhotoStorageKey = 'repara_widget_photo_path';
+  static const String cachedPhotoUpdatedAtKey = 'repara_widget_photo_updated_at';
   static const String _androidPackage = 'com.ricardodalarme.flutter_bloc_starter';
 
   static const List<NativeWidgetFamilyTarget> familyTargets = [
@@ -203,7 +204,7 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
     final sanitized = payload.sanitized(referenceNow: referenceNow);
 
     if (sanitized.discreet || !sanitized.isSignedIn || !sanitized.isPaired || !sanitized.hasPlus) {
-      await _clearCachedPhotoPathOnly();
+      await clearCouplePhoto();
     }
 
     try {
@@ -256,7 +257,7 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
   Future<String?> readCachedPhotoPath({required bool discreet, required bool hasPlus}) async {
     await initialize();
     if (discreet || !hasPlus) {
-      await _clearCachedPhotoPathOnly();
+      await clearCouplePhoto();
       return null;
     }
     try {
@@ -284,14 +285,25 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
     } on Object {
       // Best-effort file cleanup.
     }
-    await _clearCachedPhotoPathOnly();
+    await _clearCachedPhotoReference();
+  }
+
+  /// Reads the `updated_at` marker of the cached photo, if one was stored.
+  Future<String?> readCachedPhotoUpdatedAt() async {
+    await initialize();
+    try {
+      final value = await _store.getString(cachedPhotoUpdatedAtKey);
+      return value == null || value.isEmpty ? null : value;
+    } on Object {
+      return null;
+    }
   }
 
   /// Writes [bytes] to a widget-accessible folder and stores the path in the shared store.
   ///
   /// On iOS the folder is the App Group container; on Android it is app-private storage.
   /// Returns null when the folder or the shared store is unavailable.
-  Future<String?> cacheCouplePhoto(Uint8List bytes, String extension) async {
+  Future<String?> cacheCouplePhoto(Uint8List bytes, String extension, {DateTime? updatedAt}) async {
     await initialize();
     if (bytes.isEmpty || extension.isEmpty) return null;
     try {
@@ -307,6 +319,7 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
 
       await file.writeAsBytes(bytes, flush: true);
       await _store.saveString(cachedPhotoStorageKey, file.path);
+      await _store.saveString(cachedPhotoUpdatedAtKey, updatedAt?.toUtc().toIso8601String());
       return file.path;
     } on Object {
       return null;
@@ -377,6 +390,10 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
 
   Future<Directory?> _photoDirectory() async {
     final appGroup = await _store.getAppGroupPath();
+    if (Platform.isIOS && (appGroup == null || appGroup.isEmpty)) {
+      // The widget extension cannot read Application Support, so a path there is useless.
+      return null;
+    }
     final base = appGroup != null && appGroup.isNotEmpty
         ? Directory(appGroup)
         : await _store.getApplicationSupportDirectory();
@@ -385,9 +402,10 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
     return directory;
   }
 
-  Future<void> _clearCachedPhotoPathOnly() async {
+  Future<void> _clearCachedPhotoReference() async {
     try {
       await _store.saveString(cachedPhotoStorageKey, null);
+      await _store.saveString(cachedPhotoUpdatedAtKey, null);
     } on PlatformException {
       // Ignore platform errors.
     } on MissingPluginException {

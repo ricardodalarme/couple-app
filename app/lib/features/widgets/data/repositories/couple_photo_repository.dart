@@ -5,12 +5,15 @@ import 'package:flutter_bloc_starter/features/authentication/data/repositories/a
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/couple_photo_data_source.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/couple_photo.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/services/couple_photo_image.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
+import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:storage_service/storage_service.dart';
 import 'package:uuid/uuid.dart';
+
+typedef PhotoResizer = Future<Uint8List?> Function(Uint8List bytes);
+typedef PhotoDownloader = Future<Uint8List> Function(String url);
 
 /// Reads and writes the couple photo row and its private storage file.
 ///
@@ -20,8 +23,9 @@ class CouplePhotoRepository({
   required final StorageService _storageService,
   required final ProfileRepository _profileRepository,
   required final AuthenticationRepository _authenticationRepository,
-  required final WidgetsRepository _widgetsRepository,
   required final WidgetDataService _widgetDataService,
+  final PhotoResizer _resizePhoto = CouplePhotoImage.downscalePng,
+  final PhotoDownloader _downloadPhoto = _downloadSignedPhoto,
 }) {
   static const String bucket = 'couple_photos';
   static const int maxBytes = 8 * 1024 * 1024;
@@ -49,9 +53,66 @@ class CouplePhotoRepository({
     }
   }
 
-  /// Uploads [bytes] under the couple folder, replaces the row and the widget cache,
-  /// and returns the refreshed widget overview.
-  Future<WidgetOverview> upload({required Uint8List bytes, required String contentType}) async {
+  /// Synchronizes the widget cache with the couple photo row.
+  ///
+  /// Returns whether the couple has a photo row. When [cacheAllowed] is false the file is
+  /// deleted and nothing is downloaded.
+  Future<bool> syncWidgetCache({required bool cacheAllowed}) async {
+    try {
+      final snapshot = await _dataSource.getPhoto();
+      final photo = snapshot.photo;
+
+      if (!cacheAllowed) {
+        await _widgetDataService.clearCouplePhoto();
+        return photo != null;
+      }
+      if (photo == null) {
+        await _widgetDataService.clearCouplePhoto();
+        return false;
+      }
+
+      final cachedPath = await _widgetDataService.readCachedPhotoPath(
+        discreet: false,
+        hasPlus: true,
+      );
+      final marker = await _widgetDataService.readCachedPhotoUpdatedAt();
+      final updatedAt = photo.updatedAt.toUtc().toIso8601String();
+      if (cachedPath != null && marker == updatedAt) return true;
+
+      String? url;
+      try {
+        url = await _storageService.signedUrl(bucket: bucket, path: photo.storagePath);
+      } on Object {
+        url = null;
+      }
+      if (url == null) return cachedPath != null;
+
+      final downloaded = await _downloadPhoto(url);
+      final resized = await _resizePhoto(downloaded);
+      if (resized == null) return cachedPath != null;
+
+      await _widgetDataService.cacheCouplePhoto(resized, 'png', updatedAt: photo.updatedAt);
+      return true;
+    } catch (e, stack) {
+      _logger.error(
+        'Failed to sync the couple photo cache',
+        error: e.runtimeType,
+        stackTrace: stack,
+      );
+      if (!cacheAllowed) {
+        await _widgetDataService.clearCouplePhoto();
+        return false;
+      }
+      final cachedPath = await _widgetDataService.readCachedPhotoPath(
+        discreet: false,
+        hasPlus: true,
+      );
+      return cachedPath != null;
+    }
+  }
+
+  /// Uploads [bytes] under the couple folder, replaces the row, and caches a widget-sized copy.
+  Future<void> upload({required Uint8List bytes, required String contentType}) async {
     final userId = _authenticationRepository.currentUserId;
     if (userId == null) throw const LocalizedException(l10nKey: 'COUPLE_PHOTO_SIGNED_OUT');
 
@@ -59,6 +120,8 @@ class CouplePhotoRepository({
     if (extension == null || bytes.isEmpty || bytes.length > maxBytes) {
       throw const LocalizedException(l10nKey: 'COUPLE_PHOTO_INVALID');
     }
+    final resized = await _resizePhoto(bytes);
+    if (resized == null) throw const LocalizedException(l10nKey: 'COUPLE_PHOTO_INVALID');
 
     try {
       final snapshot = await _dataSource.getPhoto();
@@ -80,7 +143,14 @@ class CouplePhotoRepository({
           uploadedBy: profile.id,
         );
         if (updated == 0) {
-          await _dataSource.insert(coupleId: coupleId, storagePath: path, uploadedBy: profile.id);
+          final inserted = await _dataSource.insert(
+            coupleId: coupleId,
+            storagePath: path,
+            uploadedBy: profile.id,
+          );
+          if (inserted == 0) {
+            throw const LocalizedException(l10nKey: 'COUPLE_PHOTO_UPLOAD_FAILED');
+          }
         }
       } catch (_) {
         await _removeQuietly(path);
@@ -92,8 +162,14 @@ class CouplePhotoRepository({
         await _removeQuietly(previousPath);
       }
 
-      await _widgetDataService.cacheCouplePhoto(bytes, extension);
-      return await _widgetsRepository.loadAndSync();
+      DateTime? updatedAt;
+      try {
+        final stored = await _dataSource.getPhoto();
+        updatedAt = stored.photo?.updatedAt;
+      } on Object {
+        updatedAt = null;
+      }
+      await _widgetDataService.cacheCouplePhoto(resized, 'png', updatedAt: updatedAt);
     } catch (e, stack) {
       if (e is LocalizedException) rethrow;
       _logger.error('Failed to upload the couple photo', error: e.runtimeType, stackTrace: stack);
@@ -101,19 +177,20 @@ class CouplePhotoRepository({
     }
   }
 
-  /// Deletes the row and the storage file, clears the widget cache, and returns the refreshed overview.
-  Future<WidgetOverview> remove() async {
+  /// Deletes the row and the storage file, then clears the widget cache.
+  Future<void> remove() async {
     try {
       final snapshot = await _dataSource.getPhoto();
       final coupleId = snapshot.coupleId;
       if (coupleId == null) throw const LocalizedException(l10nKey: 'COUPLE_PHOTO_NOT_PAIRED');
 
-      await _dataSource.delete(coupleId);
+      final deleted = await _dataSource.delete(coupleId);
+      if (deleted == 0) throw const LocalizedException(l10nKey: 'COUPLE_PHOTO_REMOVE_FAILED');
+
       final path = snapshot.photo?.storagePath;
       if (path != null) await _removeQuietly(path);
 
       await _widgetDataService.clearCouplePhoto();
-      return await _widgetsRepository.loadAndSync();
     } catch (e, stack) {
       if (e is LocalizedException) rethrow;
       _logger.error('Failed to remove the couple photo', error: e.runtimeType, stackTrace: stack);
@@ -136,4 +213,12 @@ class CouplePhotoRepository({
     'image/heic' => 'heic',
     _ => null,
   };
+}
+
+Future<Uint8List> _downloadSignedPhoto(String url) async {
+  final response = await http.get(Uri.parse(url));
+  if (response.statusCode < 200 || response.statusCode >= 300) {
+    throw StateError('signed photo download failed');
+  }
+  return response.bodyBytes;
 }
