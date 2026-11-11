@@ -25,9 +25,8 @@ void main() {
   });
 
   test('upload sends the bytes with their type', () async {
-    when(
-      () => bucket.uploadBinary(any(), any(), fileOptions: any(named: 'fileOptions')),
-    ).thenAnswer((_) async => 'messages/u/d.png');
+    when(() => bucket.uploadBinary(any(), any(), fileOptions: any(named: 'fileOptions')))
+        .thenAnswer((_) async => 'messages/u/d.png');
 
     await StorageService(storage: storage).upload(
       bucket: 'messages',
@@ -41,17 +40,13 @@ void main() {
   });
 
   test('a failed upload is a FileStorageException', () {
-    when(
-      () => bucket.uploadBinary(any(), any(), fileOptions: any(named: 'fileOptions')),
-    ).thenThrow(Exception('offline'));
+    when(() => bucket.uploadBinary(any(), any(), fileOptions: any(named: 'fileOptions')))
+        .thenThrow(Exception('offline'));
 
     expect(
-      StorageService(storage: storage).upload(
-        bucket: 'messages',
-        path: 'u/d.png',
-        bytes: Uint8List(1),
-        contentType: 'image/png',
-      ),
+      StorageService(
+        storage: storage,
+      ).upload(bucket: 'messages', path: 'u/d.png', bytes: Uint8List(1), contentType: 'image/png'),
       throwsA(isA<FileStorageException>()),
     );
   });

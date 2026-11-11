@@ -3,7 +3,7 @@ resolution: workspace
 publish_to: "none"
 
 environment:
-  sdk: ^3.13.7
+  sdk: ^3.14.0
 
 dependencies:
   get_it: ^9.3.0

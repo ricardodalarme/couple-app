@@ -21,7 +21,11 @@ class const StorageService({final SupabaseStorageClient? _storage}) {
     try {
       await _client
           .from(bucket)
-          .uploadBinary(path, bytes, fileOptions: FileOptions(contentType: contentType, upsert: true));
+          .uploadBinary(
+            path,
+            bytes,
+            fileOptions: FileOptions(contentType: contentType, upsert: true),
+          );
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(FileStorageException(error), stackTrace);
     }
