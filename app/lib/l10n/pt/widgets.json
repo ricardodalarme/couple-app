@@ -119,6 +119,10 @@
   "photosPlusBadge": "PLUS",
   "photosNeutralFallbackNote": "Quando nenhuma foto local está salva (ou no modo discreto), o widget mostra apenas o cartão neutro com o tempo juntos.",
   "photosUnlockPlusAction": "Conhecer o Plus",
+  "photosChooseAction": "Escolher foto",
+  "photosRemoveAction": "Remover foto",
+  "photosSavedToast": "Foto salva no widget.",
+  "photosRemovedToast": "Foto removida do widget.",
   "partnerNotePageTitle": "Recado do parceiro",
   "partnerNoteMediumSection": "Médio",
   "partnerNoteReplyHint": "Responder com um coração",
@@ -152,6 +156,14 @@
   "statesPrecedenceNote": "Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).",
   "errors(map)": {
     "WIDGET_PREFERENCES_SAVE_FAILED": "Não foi possível salvar as preferências agora.",
+    "COUPLE_PHOTO_LOAD_FAILED": "Não foi possível carregar a foto do casal agora.",
+    "COUPLE_PHOTO_UPLOAD_FAILED": "Não foi possível salvar a foto do casal agora.",
+    "COUPLE_PHOTO_REMOVE_FAILED": "Não foi possível remover a foto do casal agora.",
+    "COUPLE_PHOTO_INVALID": "Escolha uma imagem JPG, PNG, WebP ou HEIC de até 8 MB.",
+    "COUPLE_PHOTO_READ_FAILED": "Não foi possível ler o arquivo escolhido.",
+    "COUPLE_PHOTO_PICK_FAILED": "Não foi possível abrir o seletor de fotos.",
+    "COUPLE_PHOTO_SIGNED_OUT": "Entre na sua conta para escolher uma foto do casal.",
+    "COUPLE_PHOTO_NOT_PAIRED": "Conecte-se com seu par para escolher uma foto do casal.",
     "other": "Não foi possível salvar as preferências agora."
   }
 }

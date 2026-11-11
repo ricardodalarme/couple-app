@@ -6728,6 +6728,18 @@ class Translations$widgets$pt {
   /// pt: 'Conhecer o Plus'
   String get photosUnlockPlusAction => 'Conhecer o Plus';
 
+  /// pt: 'Escolher foto'
+  String get photosChooseAction => 'Escolher foto';
+
+  /// pt: 'Remover foto'
+  String get photosRemoveAction => 'Remover foto';
+
+  /// pt: 'Foto salva no widget.'
+  String get photosSavedToast => 'Foto salva no widget.';
+
+  /// pt: 'Foto removida do widget.'
+  String get photosRemovedToast => 'Foto removida do widget.';
+
   /// pt: 'Recado do parceiro'
   String get partnerNotePageTitle => 'Recado do parceiro';
 
@@ -6827,6 +6839,14 @@ class Translations$widgets$pt {
 
   Map<String, String> get errors => {
     'WIDGET_PREFERENCES_SAVE_FAILED': 'Não foi possível salvar as preferências agora.',
+    'COUPLE_PHOTO_LOAD_FAILED': 'Não foi possível carregar a foto do casal agora.',
+    'COUPLE_PHOTO_UPLOAD_FAILED': 'Não foi possível salvar a foto do casal agora.',
+    'COUPLE_PHOTO_REMOVE_FAILED': 'Não foi possível remover a foto do casal agora.',
+    'COUPLE_PHOTO_INVALID': 'Escolha uma imagem JPG, PNG, WebP ou HEIC de até 8 MB.',
+    'COUPLE_PHOTO_READ_FAILED': 'Não foi possível ler o arquivo escolhido.',
+    'COUPLE_PHOTO_PICK_FAILED': 'Não foi possível abrir o seletor de fotos.',
+    'COUPLE_PHOTO_SIGNED_OUT': 'Entre na sua conta para escolher uma foto do casal.',
+    'COUPLE_PHOTO_NOT_PAIRED': 'Conecte-se com seu par para escolher uma foto do casal.',
     'other': 'Não foi possível salvar as preferências agora.',
   };
 }
@@ -11312,6 +11332,10 @@ extension on Translations {
           'widgets.photosPlusBadge' => 'PLUS',
           'widgets.photosNeutralFallbackNote' => 'Quando nenhuma foto local está salva (ou no modo discreto), o widget mostra apenas o cartão neutro com o tempo juntos.',
           'widgets.photosUnlockPlusAction' => 'Conhecer o Plus',
+          'widgets.photosChooseAction' => 'Escolher foto',
+          'widgets.photosRemoveAction' => 'Remover foto',
+          'widgets.photosSavedToast' => 'Foto salva no widget.',
+          'widgets.photosRemovedToast' => 'Foto removida do widget.',
           'widgets.partnerNotePageTitle' => 'Recado do parceiro',
           'widgets.partnerNoteMediumSection' => 'Médio',
           'widgets.partnerNoteReplyHint' => 'Responder com um coração',
@@ -11340,16 +11364,30 @@ extension on Translations {
           'widgets.statesDiscreetToggle' => 'Ativar modo discreto agora',
           'widgets.statesUnpairedSection' => 'Sem parceiro',
           'widgets.statesUnpairedTitle' => 'Convide para ver aqui',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.statesUnpairedAction' => 'Convidar',
           'widgets.statesOfflineSection' => 'Sem conexão',
           'widgets.statesOfflineTitle' => 'Mostrando o último dado',
           'widgets.statesOfflineSubtitle' => 'Atualiza quando voltar a internet',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.statesPrecedenceNote' => 'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).',
           'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
             'Não foi possível salvar as preferências agora.',
+          'widgets.errors.COUPLE_PHOTO_LOAD_FAILED' =>
+            'Não foi possível carregar a foto do casal agora.',
+          'widgets.errors.COUPLE_PHOTO_UPLOAD_FAILED' =>
+            'Não foi possível salvar a foto do casal agora.',
+          'widgets.errors.COUPLE_PHOTO_REMOVE_FAILED' =>
+            'Não foi possível remover a foto do casal agora.',
+          'widgets.errors.COUPLE_PHOTO_INVALID' =>
+            'Escolha uma imagem JPG, PNG, WebP ou HEIC de até 8 MB.',
+          'widgets.errors.COUPLE_PHOTO_READ_FAILED' => 'Não foi possível ler o arquivo escolhido.',
+          'widgets.errors.COUPLE_PHOTO_PICK_FAILED' => 'Não foi possível abrir o seletor de fotos.',
+          'widgets.errors.COUPLE_PHOTO_SIGNED_OUT' =>
+            'Entre na sua conta para escolher uma foto do casal.',
+          'widgets.errors.COUPLE_PHOTO_NOT_PAIRED' =>
+            'Conecte-se com seu par para escolher uma foto do casal.',
           'widgets.errors.other' => 'Não foi possível salvar as preferências agora.',
           _ => null,
         };

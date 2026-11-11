@@ -1,8 +1,13 @@
 import 'package:core/core.dart';
+import 'package:file_picker_service/file_picker_service.dart';
+import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/data/data_sources/discreet_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/data_sources/couple_photo_data_source.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/widgets_data_source.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/widgets_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/repositories/couple_photo_repository.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/card_encounter/cubit/card_encounter_widget_cubit.dart';
@@ -17,6 +22,7 @@ import 'package:flutter_bloc_starter/features/widgets/presentation/partner_note/
 import 'package:flutter_bloc_starter/features/widgets/presentation/states/cubit/widget_states_cubit.dart';
 import 'package:network/network.dart';
 import 'package:preferences_service/preferences_service.dart';
+import 'package:storage_service/storage_service.dart';
 
 class WidgetsInjectionModule() implements InjectionModule {
   @override
@@ -34,6 +40,19 @@ class WidgetsInjectionModule() implements InjectionModule {
           dataSource: injector.get<WidgetsDataSource>(),
           localDataSource: injector.get<WidgetsLocalDataSource>(),
           discreetLocalDataSource: injector.get<DiscreetLocalDataSource>(),
+          widgetDataService: injector.get<WidgetDataService>(),
+        ),
+      )
+      ..registerLazySingleton<CouplePhotoDataSource>(
+        () => CouplePhotoDataSource(client: injector.get<GQLClient>()),
+      )
+      ..registerLazySingleton<CouplePhotoRepository>(
+        () => CouplePhotoRepository(
+          dataSource: injector.get<CouplePhotoDataSource>(),
+          storageService: injector.get<StorageService>(),
+          profileRepository: injector.get<ProfileRepository>(),
+          authenticationRepository: injector.get<AuthenticationRepository>(),
+          widgetsRepository: injector.get<WidgetsRepository>(),
           widgetDataService: injector.get<WidgetDataService>(),
         ),
       )
@@ -59,7 +78,11 @@ class WidgetsInjectionModule() implements InjectionModule {
         () => CoupleCounterWidgetCubit(repository: injector.get<WidgetsRepository>()),
       )
       ..registerFactory<CouplePhotosWidgetCubit>(
-        () => CouplePhotosWidgetCubit(repository: injector.get<WidgetsRepository>()),
+        () => CouplePhotosWidgetCubit(
+          widgetsRepository: injector.get<WidgetsRepository>(),
+          couplePhotoRepository: injector.get<CouplePhotoRepository>(),
+          filePickerService: injector.get<FilePickerService>(),
+        ),
       )
       ..registerFactory<PartnerNoteWidgetCubit>(
         () => PartnerNoteWidgetCubit(repository: injector.get<WidgetsRepository>()),

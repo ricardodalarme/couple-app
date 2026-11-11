@@ -47,6 +47,7 @@ dependencies:
   notification_service:
     path: ../packages/services/notification
   package_info_plus: ^10.2.2
+  path_provider: ^2.1.6
   performance_service:
     path: ../packages/services/performance
   permission_service:

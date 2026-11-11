@@ -119,6 +119,10 @@
   "photosPlusBadge": "PLUS",
   "photosNeutralFallbackNote": "When no local photo is cached (or in discreet mode), the widget shows only a neutral card with your time together.",
   "photosUnlockPlusAction": "Explore Plus",
+  "photosChooseAction": "Choose photo",
+  "photosRemoveAction": "Remove photo",
+  "photosSavedToast": "Photo saved to the widget.",
+  "photosRemovedToast": "Photo removed from the widget.",
   "partnerNotePageTitle": "Partner note",
   "partnerNoteMediumSection": "Medium",
   "partnerNoteReplyHint": "Reply with a heart",
@@ -152,6 +156,14 @@
   "statesPrecedenceNote": "When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).",
   "errors(map)": {
     "WIDGET_PREFERENCES_SAVE_FAILED": "Could not save widget preferences right now.",
+    "COUPLE_PHOTO_LOAD_FAILED": "Could not load the couple photo right now.",
+    "COUPLE_PHOTO_UPLOAD_FAILED": "Could not save the couple photo right now.",
+    "COUPLE_PHOTO_REMOVE_FAILED": "Could not remove the couple photo right now.",
+    "COUPLE_PHOTO_INVALID": "Choose a JPG, PNG, WebP or HEIC image up to 8 MB.",
+    "COUPLE_PHOTO_READ_FAILED": "Could not read the selected file.",
+    "COUPLE_PHOTO_PICK_FAILED": "Could not open the photo picker.",
+    "COUPLE_PHOTO_SIGNED_OUT": "Sign in to choose a couple photo.",
+    "COUPLE_PHOTO_NOT_PAIRED": "Connect with your partner to choose a couple photo.",
     "other": "Could not save widget preferences right now."
   }
 }

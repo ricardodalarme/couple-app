@@ -1,0 +1,5 @@
+mutation DeleteCouplePhoto($coupleId: UUID!) {
+  deleteFromCouplePhotosCollection(filter: { coupleId: { eq: $coupleId } }, atMost: 1) {
+    affectedCount
+  }
+}

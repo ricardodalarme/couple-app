@@ -1,0 +1,15 @@
+query CouplePhoto {
+  myCouple {
+    id
+  }
+  couplePhotosCollection(first: 1) {
+    edges {
+      node {
+        coupleId
+        storagePath
+        uploadedBy
+        updatedAt
+      }
+    }
+  }
+}

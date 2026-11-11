@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/couple_photos/cubit/couple_photos_widget_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/couple_photos/widgets/couple_photos_preview_section.dart';
+import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
@@ -32,6 +33,15 @@ class const CouplePhotosWidgetPage({super.key})
     final isDarkPreview = context.select(
       (CouplePhotosWidgetCubit cubit) => cubit.state.isDarkPreview,
     );
+    final chooseAction = context.select(
+      (CouplePhotosWidgetCubit cubit) => cubit.state.chooseAction,
+    );
+    final removeAction = context.select(
+      (CouplePhotosWidgetCubit cubit) => cubit.state.removeAction,
+    );
+    final localPreview = context.select(
+      (CouplePhotosWidgetCubit cubit) => cubit.state.localPreview,
+    );
     final cubit = context.read<CouplePhotosWidgetCubit>();
 
     return BaseView(
@@ -50,20 +60,76 @@ class const CouplePhotosWidgetPage({super.key})
             actionText: l10n.retryAction,
             onAction: cubit.load,
           ),
-          successBuilder: (overview) => Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              BaseSegmented(
-                segments: [l10n.themeLight, l10n.themeDark],
-                selectedIndex: isDarkPreview ? 1 : 0,
-                onSelectionChanged: (index) => cubit.setDarkPreview(isDark: index == 1),
-              ),
-              const SizedBox(height: AppSpace.s16),
-              CouplePhotosPreviewSection(payload: overview.payload, isDarkPreview: isDarkPreview),
-            ],
-          ),
+          successBuilder: (overview) {
+            final payload = overview.payload;
+            final canManage = payload.isPaired && payload.hasPlus && !payload.discreet;
+            final hasPhoto = payload.cachedPhotoPath != null || localPreview != null;
+
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                BaseSegmented(
+                  segments: [l10n.themeLight, l10n.themeDark],
+                  selectedIndex: isDarkPreview ? 1 : 0,
+                  onSelectionChanged: (index) => cubit.setDarkPreview(isDark: index == 1),
+                ),
+                const SizedBox(height: AppSpace.s16),
+                CouplePhotosPreviewSection(
+                  payload: payload,
+                  isDarkPreview: isDarkPreview,
+                  localPreview: localPreview,
+                ),
+                if (canManage) ...[
+                  const SizedBox(height: AppSpace.s16),
+                  BaseButton(
+                    text: l10n.photosChooseAction,
+                    isLoading: chooseAction.isLoading,
+                    onPressed: chooseAction.isLoading || removeAction.isLoading
+                        ? null
+                        : () => _choose(context, cubit),
+                  ),
+                  if (hasPhoto) ...[
+                    const SizedBox(height: AppSpace.s12),
+                    BaseButton.secondary(
+                      text: l10n.photosRemoveAction,
+                      isLoading: removeAction.isLoading,
+                      onPressed: chooseAction.isLoading || removeAction.isLoading
+                          ? null
+                          : () => _remove(context, cubit),
+                    ),
+                  ],
+                ],
+              ],
+            );
+          },
         ),
       ),
     );
+  }
+
+  Future<void> _choose(BuildContext context, CouplePhotosWidgetCubit cubit) async {
+    final l10n = context.l10n.widgets;
+    await cubit.choosePhoto();
+    if (!context.mounted) return;
+
+    final action = cubit.state.chooseAction;
+    if (action is Failure) {
+      BaseToast.show(context, l10n.errors.selectOrFallback(action.exception.l10nKey));
+    } else if (action is Success) {
+      BaseToast.show(context, l10n.photosSavedToast);
+    }
+  }
+
+  Future<void> _remove(BuildContext context, CouplePhotosWidgetCubit cubit) async {
+    final l10n = context.l10n.widgets;
+    await cubit.removePhoto();
+    if (!context.mounted) return;
+
+    final action = cubit.state.removeAction;
+    if (action is Failure) {
+      BaseToast.show(context, l10n.errors.selectOrFallback(action.exception.l10nKey));
+    } else if (action is Success) {
+      BaseToast.show(context, l10n.photosRemovedToast);
+    }
   }
 }

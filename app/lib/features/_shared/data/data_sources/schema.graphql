@@ -1101,6 +1101,91 @@ input CoupleMembersOrderBy {
   leftAt: OrderByDirection
 }
 
+type CouplePhotos implements Node {
+  """Globally Unique Record Identifier"""
+  nodeId: ID!
+  coupleId: UUID!
+  storagePath: String!
+  uploadedBy: UUID!
+  updatedAt: Datetime!
+}
+
+type CouplePhotosConnection {
+  edges: [CouplePhotosEdge!]!
+  pageInfo: PageInfo!
+}
+
+type CouplePhotosDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CouplePhotos!]!
+}
+
+type CouplePhotosEdge {
+  cursor: String!
+  node: CouplePhotos!
+}
+
+input CouplePhotosFilter {
+  coupleId: UUIDFilter
+  storagePath: StringFilter
+  uploadedBy: UUIDFilter
+  updatedAt: DatetimeFilter
+  nodeId: IDFilter
+
+  """
+  Returns true only if all its inner filters are true, otherwise returns false
+  """
+  and: [CouplePhotosFilter!]
+
+  """
+  Returns true if at least one of its inner filters is true, otherwise returns false
+  """
+  or: [CouplePhotosFilter!]
+
+  """Negates a filter"""
+  not: CouplePhotosFilter
+}
+
+input CouplePhotosInsertInput {
+  coupleId: UUID
+  storagePath: String
+  uploadedBy: UUID
+  updatedAt: Datetime
+}
+
+type CouplePhotosInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CouplePhotos!]!
+}
+
+input CouplePhotosOrderBy {
+  coupleId: OrderByDirection
+  storagePath: OrderByDirection
+  uploadedBy: OrderByDirection
+  updatedAt: OrderByDirection
+}
+
+input CouplePhotosUpdateInput {
+  coupleId: UUID
+  storagePath: String
+  uploadedBy: UUID
+  updatedAt: Datetime
+}
+
+type CouplePhotosUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CouplePhotos!]!
+}
+
 type Couples implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -4587,6 +4672,36 @@ type Mutation {
   """Adds one or more `ConversationPreps` records to the collection"""
   insertIntoConversationPrepsCollection(objects: [ConversationPrepsInsertInput!]!): ConversationPrepsInsertResponse
 
+  """Adds one or more `CouplePhotos` records to the collection"""
+  insertIntoCouplePhotosCollection(objects: [CouplePhotosInsertInput!]!): CouplePhotosInsertResponse
+
+  """Updates zero or more records in the `CouplePhotos` collection"""
+  updateCouplePhotosCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: CouplePhotosUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CouplePhotosFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CouplePhotosUpdateResponse!
+
+  """Deletes zero or more records from the `CouplePhotos` collection"""
+  deleteFromCouplePhotosCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CouplePhotosFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CouplePhotosDeleteResponse!
+
   """Adds one or more `CycleDays` records to the collection"""
   insertIntoCycleDaysCollection(objects: [CycleDaysInsertInput!]!): CycleDaysInsertResponse
 
@@ -7678,6 +7793,38 @@ type Query {
     """The record's `id` value"""
     id: UUID!
   ): Couples
+
+  """Retrieve a record of type `CouplePhotos` by its primary key"""
+  couplePhotosByPk(
+    """The record's `coupleId` value"""
+    coupleId: UUID!
+  ): CouplePhotos
+
+  """A pagable collection of type `CouplePhotos`"""
+  couplePhotosCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: CouplePhotosFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [CouplePhotosOrderBy!]
+  ): CouplePhotosConnection!
 
   """A pagable collection of type `Couples`"""
   couplesCollection(

@@ -12,5 +12,20 @@ import UIKit
 
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
+
+    let channel = FlutterMethodChannel(
+      name: "repara/widgets",
+      binaryMessenger: engineBridge.applicationRegistrar.messenger()
+    )
+    channel.setMethodCallHandler { call, result in
+      guard call.method == "getAppGroupPath" else {
+        result(FlutterMethodNotImplemented)
+        return
+      }
+      let container = FileManager.default.containerURL(
+        forSecurityApplicationGroupIdentifier: "group.com.ricardodalarme.flutterBlocStarter"
+      )
+      result(container?.path)
+    }
   }
 }

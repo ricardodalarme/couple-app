@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -9,6 +12,7 @@ void main() {
   late List<String?> scheduledMidnightProviders;
   late List<String?> cancelledMidnightProviders;
   late String? configuredGroupId;
+  late Directory tempDir;
   late WidgetDataService service;
 
   setUp(() {
@@ -18,6 +22,10 @@ void main() {
     scheduledMidnightProviders = <String?>[];
     cancelledMidnightProviders = <String?>[];
     configuredGroupId = null;
+    tempDir = Directory.systemTemp.createTempSync('widget_photo_test');
+    addTearDown(() {
+      if (tempDir.existsSync()) tempDir.deleteSync(recursive: true);
+    });
 
     final driver = WidgetStoreDriver(
       setAppGroupIdFn: (groupId) async {
@@ -42,6 +50,8 @@ void main() {
       cancelScheduledWidgetUpdatesFn: ({name, androidName, qualifiedAndroidName}) async {
         cancelledMidnightProviders.add(qualifiedAndroidName);
       },
+      appGroupPathFn: () async => tempDir.path,
+      applicationSupportDirectoryFn: () async => tempDir,
     );
 
     service = WidgetDataService(driver: driver);
@@ -130,4 +140,43 @@ void main() {
       );
     },
   );
+
+  test('cacheCouplePhoto writes bytes to a widget-accessible folder and stores the path', () async {
+    final bytes = Uint8List.fromList([1, 2, 3, 4]);
+
+    final path = await service.cacheCouplePhoto(bytes, 'jpg');
+
+    expect(path, isNotNull);
+    expect(path, startsWith(tempDir.path));
+    expect(memoryStore[WidgetDataService.cachedPhotoStorageKey], path);
+    expect(File(path!).readAsBytesSync(), bytes);
+  });
+
+  test('cacheCouplePhoto deletes the previous file when the extension changes', () async {
+    final oldPath = await service.cacheCouplePhoto(Uint8List.fromList([1]), 'png');
+    final newPath = await service.cacheCouplePhoto(Uint8List.fromList([2]), 'jpg');
+
+    expect(File(oldPath!).existsSync(), isFalse);
+    expect(File(newPath!).existsSync(), isTrue);
+    expect(memoryStore[WidgetDataService.cachedPhotoStorageKey], newPath);
+  });
+
+  test('clearCouplePhoto deletes the file and clears the stored path', () async {
+    final path = await service.cacheCouplePhoto(Uint8List.fromList([1]), 'jpg');
+
+    await service.clearCouplePhoto();
+
+    expect(File(path!).existsSync(), isFalse);
+    expect(memoryStore[WidgetDataService.cachedPhotoStorageKey], isNull);
+  });
+
+  test('readCachedPhotoPath clears the path in discreet mode', () async {
+    final path = await service.cacheCouplePhoto(Uint8List.fromList([1]), 'jpg');
+
+    final resolved = await service.readCachedPhotoPath(discreet: true, hasPlus: true);
+
+    expect(resolved, isNull);
+    expect(File(path!).existsSync(), isTrue);
+    expect(memoryStore[WidgetDataService.cachedPhotoStorageKey], isNull);
+  });
 }

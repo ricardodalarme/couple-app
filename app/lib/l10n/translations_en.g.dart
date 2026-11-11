@@ -5352,6 +5352,14 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get photosUnlockPlusAction => 'Explore Plus';
   @override
+  String get photosChooseAction => 'Choose photo';
+  @override
+  String get photosRemoveAction => 'Remove photo';
+  @override
+  String get photosSavedToast => 'Photo saved to the widget.';
+  @override
+  String get photosRemovedToast => 'Photo removed from the widget.';
+  @override
   String get partnerNotePageTitle => 'Partner note';
   @override
   String get partnerNoteMediumSection => 'Medium';
@@ -5419,6 +5427,14 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   Map<String, String> get errors => {
     'WIDGET_PREFERENCES_SAVE_FAILED': 'Could not save widget preferences right now.',
+    'COUPLE_PHOTO_LOAD_FAILED': 'Could not load the couple photo right now.',
+    'COUPLE_PHOTO_UPLOAD_FAILED': 'Could not save the couple photo right now.',
+    'COUPLE_PHOTO_REMOVE_FAILED': 'Could not remove the couple photo right now.',
+    'COUPLE_PHOTO_INVALID': 'Choose a JPG, PNG, WebP or HEIC image up to 8 MB.',
+    'COUPLE_PHOTO_READ_FAILED': 'Could not read the selected file.',
+    'COUPLE_PHOTO_PICK_FAILED': 'Could not open the photo picker.',
+    'COUPLE_PHOTO_SIGNED_OUT': 'Sign in to choose a couple photo.',
+    'COUPLE_PHOTO_NOT_PAIRED': 'Connect with your partner to choose a couple photo.',
     'other': 'Could not save widget preferences right now.',
   };
 }
@@ -9656,6 +9672,10 @@ extension on TranslationsEn {
           'widgets.photosPlusBadge' => 'PLUS',
           'widgets.photosNeutralFallbackNote' => 'When no local photo is cached (or in discreet mode), the widget shows only a neutral card with your time together.',
           'widgets.photosUnlockPlusAction' => 'Explore Plus',
+          'widgets.photosChooseAction' => 'Choose photo',
+          'widgets.photosRemoveAction' => 'Remove photo',
+          'widgets.photosSavedToast' => 'Photo saved to the widget.',
+          'widgets.photosRemovedToast' => 'Photo removed from the widget.',
           'widgets.partnerNotePageTitle' => 'Partner note',
           'widgets.partnerNoteMediumSection' => 'Medium',
           'widgets.partnerNoteReplyHint' => 'Reply with a heart',
@@ -9685,16 +9705,28 @@ extension on TranslationsEn {
           'widgets.statesDiscreetToggle' => 'Enable discreet mode now',
           'widgets.statesUnpairedSection' => 'No partner',
           'widgets.statesUnpairedTitle' => 'Invite to see here',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.statesUnpairedAction' => 'Invite',
           'widgets.statesOfflineSection' => 'Offline',
           'widgets.statesOfflineTitle' => 'Showing the last saved data',
           'widgets.statesOfflineSubtitle' => 'Updates when back online',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.statesPrecedenceNote' => 'When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).',
           'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
             'Could not save widget preferences right now.',
+          'widgets.errors.COUPLE_PHOTO_LOAD_FAILED' => 'Could not load the couple photo right now.',
+          'widgets.errors.COUPLE_PHOTO_UPLOAD_FAILED' =>
+            'Could not save the couple photo right now.',
+          'widgets.errors.COUPLE_PHOTO_REMOVE_FAILED' =>
+            'Could not remove the couple photo right now.',
+          'widgets.errors.COUPLE_PHOTO_INVALID' =>
+            'Choose a JPG, PNG, WebP or HEIC image up to 8 MB.',
+          'widgets.errors.COUPLE_PHOTO_READ_FAILED' => 'Could not read the selected file.',
+          'widgets.errors.COUPLE_PHOTO_PICK_FAILED' => 'Could not open the photo picker.',
+          'widgets.errors.COUPLE_PHOTO_SIGNED_OUT' => 'Sign in to choose a couple photo.',
+          'widgets.errors.COUPLE_PHOTO_NOT_PAIRED' =>
+            'Connect with your partner to choose a couple photo.',
           'widgets.errors.other' => 'Could not save widget preferences right now.',
           _ => null,
         };

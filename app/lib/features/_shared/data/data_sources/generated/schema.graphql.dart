@@ -10166,6 +10166,662 @@ class InputCoupleMembersOrderBy {
   }
 }
 
+class InputCouplePhotosFilter {
+  factory InputCouplePhotosFilter({
+    InputUUIDFilter? coupleId,
+    InputStringFilter? storagePath,
+    InputUUIDFilter? uploadedBy,
+    InputDatetimeFilter? updatedAt,
+    InputIDFilter? nodeId,
+    List<InputCouplePhotosFilter>? and,
+    List<InputCouplePhotosFilter>? or,
+    InputCouplePhotosFilter? not,
+  }) => InputCouplePhotosFilter._({
+    if (coupleId != null) r'coupleId': coupleId,
+    if (storagePath != null) r'storagePath': storagePath,
+    if (uploadedBy != null) r'uploadedBy': uploadedBy,
+    if (updatedAt != null) r'updatedAt': updatedAt,
+    if (nodeId != null) r'nodeId': nodeId,
+    if (and != null) r'and': and,
+    if (or != null) r'or': or,
+    if (not != null) r'not': not,
+  });
+
+  InputCouplePhotosFilter._(this._$data);
+
+  factory InputCouplePhotosFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = l$coupleId == null
+          ? null
+          : InputUUIDFilter.fromJson((l$coupleId as Map<String, dynamic>));
+    }
+    if (data.containsKey('storagePath')) {
+      final l$storagePath = data['storagePath'];
+      result$data['storagePath'] = l$storagePath == null
+          ? null
+          : InputStringFilter.fromJson((l$storagePath as Map<String, dynamic>));
+    }
+    if (data.containsKey('uploadedBy')) {
+      final l$uploadedBy = data['uploadedBy'];
+      result$data['uploadedBy'] = l$uploadedBy == null
+          ? null
+          : InputUUIDFilter.fromJson((l$uploadedBy as Map<String, dynamic>));
+    }
+    if (data.containsKey('updatedAt')) {
+      final l$updatedAt = data['updatedAt'];
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : InputDatetimeFilter.fromJson((l$updatedAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('nodeId')) {
+      final l$nodeId = data['nodeId'];
+      result$data['nodeId'] = l$nodeId == null
+          ? null
+          : InputIDFilter.fromJson((l$nodeId as Map<String, dynamic>));
+    }
+    if (data.containsKey('and')) {
+      final l$and = data['and'];
+      result$data['and'] = (l$and as List<dynamic>?)
+          ?.map((e) => InputCouplePhotosFilter.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('or')) {
+      final l$or = data['or'];
+      result$data['or'] = (l$or as List<dynamic>?)
+          ?.map((e) => InputCouplePhotosFilter.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('not')) {
+      final l$not = data['not'];
+      result$data['not'] = l$not == null
+          ? null
+          : InputCouplePhotosFilter.fromJson((l$not as Map<String, dynamic>));
+    }
+    return InputCouplePhotosFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputUUIDFilter? get coupleId => (_$data['coupleId'] as InputUUIDFilter?);
+
+  InputStringFilter? get storagePath => (_$data['storagePath'] as InputStringFilter?);
+
+  InputUUIDFilter? get uploadedBy => (_$data['uploadedBy'] as InputUUIDFilter?);
+
+  InputDatetimeFilter? get updatedAt => (_$data['updatedAt'] as InputDatetimeFilter?);
+
+  InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
+
+  List<InputCouplePhotosFilter>? get and => (_$data['and'] as List<InputCouplePhotosFilter>?);
+
+  List<InputCouplePhotosFilter>? get or => (_$data['or'] as List<InputCouplePhotosFilter>?);
+
+  InputCouplePhotosFilter? get not => (_$data['not'] as InputCouplePhotosFilter?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId?.toJson();
+    }
+    if (_$data.containsKey('storagePath')) {
+      final l$storagePath = storagePath;
+      result$data['storagePath'] = l$storagePath?.toJson();
+    }
+    if (_$data.containsKey('uploadedBy')) {
+      final l$uploadedBy = uploadedBy;
+      result$data['uploadedBy'] = l$uploadedBy?.toJson();
+    }
+    if (_$data.containsKey('updatedAt')) {
+      final l$updatedAt = updatedAt;
+      result$data['updatedAt'] = l$updatedAt?.toJson();
+    }
+    if (_$data.containsKey('nodeId')) {
+      final l$nodeId = nodeId;
+      result$data['nodeId'] = l$nodeId?.toJson();
+    }
+    if (_$data.containsKey('and')) {
+      final l$and = and;
+      result$data['and'] = l$and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('or')) {
+      final l$or = or;
+      result$data['or'] = l$or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('not')) {
+      final l$not = not;
+      result$data['not'] = l$not?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputCouplePhotosFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$storagePath = storagePath;
+    final lOther$storagePath = other.storagePath;
+    if (_$data.containsKey('storagePath') != other._$data.containsKey('storagePath')) {
+      return false;
+    }
+    if (l$storagePath != lOther$storagePath) {
+      return false;
+    }
+    final l$uploadedBy = uploadedBy;
+    final lOther$uploadedBy = other.uploadedBy;
+    if (_$data.containsKey('uploadedBy') != other._$data.containsKey('uploadedBy')) {
+      return false;
+    }
+    if (l$uploadedBy != lOther$uploadedBy) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
+      return false;
+    }
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$nodeId = nodeId;
+    final lOther$nodeId = other.nodeId;
+    if (_$data.containsKey('nodeId') != other._$data.containsKey('nodeId')) {
+      return false;
+    }
+    if (l$nodeId != lOther$nodeId) {
+      return false;
+    }
+    final l$and = and;
+    final lOther$and = other.and;
+    if (_$data.containsKey('and') != other._$data.containsKey('and')) {
+      return false;
+    }
+    if (l$and != null && lOther$and != null) {
+      if (l$and.length != lOther$and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$and.length; i++) {
+        final l$and$entry = l$and[i];
+        final lOther$and$entry = lOther$and[i];
+        if (l$and$entry != lOther$and$entry) {
+          return false;
+        }
+      }
+    } else if (l$and != lOther$and) {
+      return false;
+    }
+    final l$or = or;
+    final lOther$or = other.or;
+    if (_$data.containsKey('or') != other._$data.containsKey('or')) {
+      return false;
+    }
+    if (l$or != null && lOther$or != null) {
+      if (l$or.length != lOther$or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$or.length; i++) {
+        final l$or$entry = l$or[i];
+        final lOther$or$entry = lOther$or[i];
+        if (l$or$entry != lOther$or$entry) {
+          return false;
+        }
+      }
+    } else if (l$or != lOther$or) {
+      return false;
+    }
+    final l$not = not;
+    final lOther$not = other.not;
+    if (_$data.containsKey('not') != other._$data.containsKey('not')) {
+      return false;
+    }
+    if (l$not != lOther$not) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$coupleId = coupleId;
+    final l$storagePath = storagePath;
+    final l$uploadedBy = uploadedBy;
+    final l$updatedAt = updatedAt;
+    final l$nodeId = nodeId;
+    final l$and = and;
+    final l$or = or;
+    final l$not = not;
+    return Object.hashAll([
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('storagePath') ? l$storagePath : const {},
+      _$data.containsKey('uploadedBy') ? l$uploadedBy : const {},
+      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+      _$data.containsKey('nodeId') ? l$nodeId : const {},
+      _$data.containsKey('and')
+          ? l$and == null
+                ? null
+                : Object.hashAll(l$and.map((v) => v))
+          : const {},
+      _$data.containsKey('or')
+          ? l$or == null
+                ? null
+                : Object.hashAll(l$or.map((v) => v))
+          : const {},
+      _$data.containsKey('not') ? l$not : const {},
+    ]);
+  }
+}
+
+class InputCouplePhotosInsertInput {
+  factory InputCouplePhotosInsertInput({
+    String? coupleId,
+    String? storagePath,
+    String? uploadedBy,
+    DateTime? updatedAt,
+  }) => InputCouplePhotosInsertInput._({
+    if (coupleId != null) r'coupleId': coupleId,
+    if (storagePath != null) r'storagePath': storagePath,
+    if (uploadedBy != null) r'uploadedBy': uploadedBy,
+    if (updatedAt != null) r'updatedAt': updatedAt,
+  });
+
+  InputCouplePhotosInsertInput._(this._$data);
+
+  factory InputCouplePhotosInsertInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = (l$coupleId as String?);
+    }
+    if (data.containsKey('storagePath')) {
+      final l$storagePath = data['storagePath'];
+      result$data['storagePath'] = (l$storagePath as String?);
+    }
+    if (data.containsKey('uploadedBy')) {
+      final l$uploadedBy = data['uploadedBy'];
+      result$data['uploadedBy'] = (l$uploadedBy as String?);
+    }
+    if (data.containsKey('updatedAt')) {
+      final l$updatedAt = data['updatedAt'];
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : DateTime.parse((l$updatedAt as String));
+    }
+    return InputCouplePhotosInsertInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get coupleId => (_$data['coupleId'] as String?);
+
+  String? get storagePath => (_$data['storagePath'] as String?);
+
+  String? get uploadedBy => (_$data['uploadedBy'] as String?);
+
+  DateTime? get updatedAt => (_$data['updatedAt'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId;
+    }
+    if (_$data.containsKey('storagePath')) {
+      final l$storagePath = storagePath;
+      result$data['storagePath'] = l$storagePath;
+    }
+    if (_$data.containsKey('uploadedBy')) {
+      final l$uploadedBy = uploadedBy;
+      result$data['uploadedBy'] = l$uploadedBy;
+    }
+    if (_$data.containsKey('updatedAt')) {
+      final l$updatedAt = updatedAt;
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputCouplePhotosInsertInput || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$storagePath = storagePath;
+    final lOther$storagePath = other.storagePath;
+    if (_$data.containsKey('storagePath') != other._$data.containsKey('storagePath')) {
+      return false;
+    }
+    if (l$storagePath != lOther$storagePath) {
+      return false;
+    }
+    final l$uploadedBy = uploadedBy;
+    final lOther$uploadedBy = other.uploadedBy;
+    if (_$data.containsKey('uploadedBy') != other._$data.containsKey('uploadedBy')) {
+      return false;
+    }
+    if (l$uploadedBy != lOther$uploadedBy) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
+      return false;
+    }
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$coupleId = coupleId;
+    final l$storagePath = storagePath;
+    final l$uploadedBy = uploadedBy;
+    final l$updatedAt = updatedAt;
+    return Object.hashAll([
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('storagePath') ? l$storagePath : const {},
+      _$data.containsKey('uploadedBy') ? l$uploadedBy : const {},
+      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+    ]);
+  }
+}
+
+class InputCouplePhotosOrderBy {
+  factory InputCouplePhotosOrderBy({
+    EnumOrderByDirection? coupleId,
+    EnumOrderByDirection? storagePath,
+    EnumOrderByDirection? uploadedBy,
+    EnumOrderByDirection? updatedAt,
+  }) => InputCouplePhotosOrderBy._({
+    if (coupleId != null) r'coupleId': coupleId,
+    if (storagePath != null) r'storagePath': storagePath,
+    if (uploadedBy != null) r'uploadedBy': uploadedBy,
+    if (updatedAt != null) r'updatedAt': updatedAt,
+  });
+
+  InputCouplePhotosOrderBy._(this._$data);
+
+  factory InputCouplePhotosOrderBy.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = l$coupleId == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$coupleId as String));
+    }
+    if (data.containsKey('storagePath')) {
+      final l$storagePath = data['storagePath'];
+      result$data['storagePath'] = l$storagePath == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$storagePath as String));
+    }
+    if (data.containsKey('uploadedBy')) {
+      final l$uploadedBy = data['uploadedBy'];
+      result$data['uploadedBy'] = l$uploadedBy == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$uploadedBy as String));
+    }
+    if (data.containsKey('updatedAt')) {
+      final l$updatedAt = data['updatedAt'];
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$updatedAt as String));
+    }
+    return InputCouplePhotosOrderBy._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumOrderByDirection? get coupleId => (_$data['coupleId'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get storagePath => (_$data['storagePath'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get uploadedBy => (_$data['uploadedBy'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get updatedAt => (_$data['updatedAt'] as EnumOrderByDirection?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId == null ? null : toJsonEnumOrderByDirection(l$coupleId);
+    }
+    if (_$data.containsKey('storagePath')) {
+      final l$storagePath = storagePath;
+      result$data['storagePath'] = l$storagePath == null
+          ? null
+          : toJsonEnumOrderByDirection(l$storagePath);
+    }
+    if (_$data.containsKey('uploadedBy')) {
+      final l$uploadedBy = uploadedBy;
+      result$data['uploadedBy'] = l$uploadedBy == null
+          ? null
+          : toJsonEnumOrderByDirection(l$uploadedBy);
+    }
+    if (_$data.containsKey('updatedAt')) {
+      final l$updatedAt = updatedAt;
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : toJsonEnumOrderByDirection(l$updatedAt);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputCouplePhotosOrderBy || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$storagePath = storagePath;
+    final lOther$storagePath = other.storagePath;
+    if (_$data.containsKey('storagePath') != other._$data.containsKey('storagePath')) {
+      return false;
+    }
+    if (l$storagePath != lOther$storagePath) {
+      return false;
+    }
+    final l$uploadedBy = uploadedBy;
+    final lOther$uploadedBy = other.uploadedBy;
+    if (_$data.containsKey('uploadedBy') != other._$data.containsKey('uploadedBy')) {
+      return false;
+    }
+    if (l$uploadedBy != lOther$uploadedBy) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
+      return false;
+    }
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$coupleId = coupleId;
+    final l$storagePath = storagePath;
+    final l$uploadedBy = uploadedBy;
+    final l$updatedAt = updatedAt;
+    return Object.hashAll([
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('storagePath') ? l$storagePath : const {},
+      _$data.containsKey('uploadedBy') ? l$uploadedBy : const {},
+      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+    ]);
+  }
+}
+
+class InputCouplePhotosUpdateInput {
+  factory InputCouplePhotosUpdateInput({
+    String? coupleId,
+    String? storagePath,
+    String? uploadedBy,
+    DateTime? updatedAt,
+  }) => InputCouplePhotosUpdateInput._({
+    if (coupleId != null) r'coupleId': coupleId,
+    if (storagePath != null) r'storagePath': storagePath,
+    if (uploadedBy != null) r'uploadedBy': uploadedBy,
+    if (updatedAt != null) r'updatedAt': updatedAt,
+  });
+
+  InputCouplePhotosUpdateInput._(this._$data);
+
+  factory InputCouplePhotosUpdateInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = (l$coupleId as String?);
+    }
+    if (data.containsKey('storagePath')) {
+      final l$storagePath = data['storagePath'];
+      result$data['storagePath'] = (l$storagePath as String?);
+    }
+    if (data.containsKey('uploadedBy')) {
+      final l$uploadedBy = data['uploadedBy'];
+      result$data['uploadedBy'] = (l$uploadedBy as String?);
+    }
+    if (data.containsKey('updatedAt')) {
+      final l$updatedAt = data['updatedAt'];
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : DateTime.parse((l$updatedAt as String));
+    }
+    return InputCouplePhotosUpdateInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get coupleId => (_$data['coupleId'] as String?);
+
+  String? get storagePath => (_$data['storagePath'] as String?);
+
+  String? get uploadedBy => (_$data['uploadedBy'] as String?);
+
+  DateTime? get updatedAt => (_$data['updatedAt'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId;
+    }
+    if (_$data.containsKey('storagePath')) {
+      final l$storagePath = storagePath;
+      result$data['storagePath'] = l$storagePath;
+    }
+    if (_$data.containsKey('uploadedBy')) {
+      final l$uploadedBy = uploadedBy;
+      result$data['uploadedBy'] = l$uploadedBy;
+    }
+    if (_$data.containsKey('updatedAt')) {
+      final l$updatedAt = updatedAt;
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputCouplePhotosUpdateInput || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$storagePath = storagePath;
+    final lOther$storagePath = other.storagePath;
+    if (_$data.containsKey('storagePath') != other._$data.containsKey('storagePath')) {
+      return false;
+    }
+    if (l$storagePath != lOther$storagePath) {
+      return false;
+    }
+    final l$uploadedBy = uploadedBy;
+    final lOther$uploadedBy = other.uploadedBy;
+    if (_$data.containsKey('uploadedBy') != other._$data.containsKey('uploadedBy')) {
+      return false;
+    }
+    if (l$uploadedBy != lOther$uploadedBy) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
+      return false;
+    }
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$coupleId = coupleId;
+    final l$storagePath = storagePath;
+    final l$uploadedBy = uploadedBy;
+    final l$updatedAt = updatedAt;
+    return Object.hashAll([
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('storagePath') ? l$storagePath : const {},
+      _$data.containsKey('uploadedBy') ? l$uploadedBy : const {},
+      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+    ]);
+  }
+}
+
 class InputCouplesFilter {
   factory InputCouplesFilter({
     InputUUIDFilter? id,
@@ -60141,6 +60797,7 @@ const possibleTypesMap = <String, Set<String>>{
     'ContentItems',
     'ConversationPreps',
     'CoupleMembers',
+    'CouplePhotos',
     'Couples',
     'CycleDays',
     'DecisionOptions',

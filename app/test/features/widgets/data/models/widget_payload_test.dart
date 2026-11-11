@@ -42,5 +42,22 @@ void main() {
       expect(payload.showNames, isFalse);
       expect(payload.allowPartnerNotes, isFalse);
     });
+
+    test('a cached photo survives only when paired and Plus', () {
+      const path = '/tmp/repara_widget_photo.jpg';
+      final payload = WidgetPayload.fake().copyWith(cachedPhotoPath: path);
+
+      expect(payload.sanitized(referenceNow: now).cachedPhotoPath, path);
+      expect(
+        payload.copyWith(isPaired: false).sanitized(referenceNow: now).cachedPhotoPath,
+        isNull,
+      );
+      expect(payload.copyWith(hasPlus: false).sanitized(referenceNow: now).cachedPhotoPath, isNull);
+      expect(payload.copyWith(discreet: true).sanitized(referenceNow: now).cachedPhotoPath, isNull);
+      expect(
+        payload.copyWith(isSignedIn: false).sanitized(referenceNow: now).cachedPhotoPath,
+        isNull,
+      );
+    });
   });
 }

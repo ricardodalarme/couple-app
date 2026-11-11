@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
 import 'package:home_widget/home_widget.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
 /// Native family descriptor pairing the iOS WidgetKit `kind` with the Android provider class.
 typedef NativeWidgetFamilyTarget = ({
@@ -37,7 +38,26 @@ class WidgetStoreDriver({
   cancelScheduledWidgetUpdatesFn,
   final Future<Uri?> Function()? initiallyLaunchedUriFn,
   final Stream<Uri?>? widgetClickedStream,
+  final Future<String?> Function()? appGroupPathFn,
+  final Future<Directory> Function()? applicationSupportDirectoryFn,
 }) {
+  static const MethodChannel _widgetsChannel = MethodChannel('repara/widgets');
+
+  static Future<String?> _defaultAppGroupPath() async {
+    if (!Platform.isIOS) return null;
+    try {
+      return await _widgetsChannel.invokeMethod<String>('getAppGroupPath');
+    } on PlatformException {
+      return null;
+    } on MissingPluginException {
+      return null;
+    }
+  }
+
+  Future<String?> getAppGroupPath() => (appGroupPathFn ?? _defaultAppGroupPath)();
+
+  Future<Directory> getApplicationSupportDirectory() =>
+      (applicationSupportDirectoryFn ?? path_provider.getApplicationSupportDirectory)();
   Future<bool?> setAppGroupId(String groupId) =>
       (setAppGroupIdFn ?? HomeWidget.setAppGroupId)(groupId);
 
@@ -267,6 +287,32 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
     await _clearCachedPhotoPathOnly();
   }
 
+  /// Writes [bytes] to a widget-accessible folder and stores the path in the shared store.
+  ///
+  /// On iOS the folder is the App Group container; on Android it is app-private storage.
+  /// Returns null when the folder or the shared store is unavailable.
+  Future<String?> cacheCouplePhoto(Uint8List bytes, String extension) async {
+    await initialize();
+    if (bytes.isEmpty || extension.isEmpty) return null;
+    try {
+      final directory = await _photoDirectory();
+      if (directory == null) return null;
+
+      final file = File('${directory.path}/repara_widget_photo.$extension');
+      final previous = await _store.getString(cachedPhotoStorageKey);
+      if (previous != null && previous.isNotEmpty && previous != file.path) {
+        final old = File(previous);
+        if (old.existsSync()) await old.delete();
+      }
+
+      await file.writeAsBytes(bytes, flush: true);
+      await _store.saveString(cachedPhotoStorageKey, file.path);
+      return file.path;
+    } on Object {
+      return null;
+    }
+  }
+
   /// Requests an immediate timeline reload for every registered widget family.
   Future<void> updateAllFamilies() async {
     await initialize();
@@ -327,6 +373,16 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
         // Test environment without native channel registration.
       }
     }
+  }
+
+  Future<Directory?> _photoDirectory() async {
+    final appGroup = await _store.getAppGroupPath();
+    final base = appGroup != null && appGroup.isNotEmpty
+        ? Directory(appGroup)
+        : await _store.getApplicationSupportDirectory();
+    final directory = Directory('${base.path}/repara_widget_photo');
+    if (!directory.existsSync()) await directory.create(recursive: true);
+    return directory;
   }
 
   Future<void> _clearCachedPhotoPathOnly() async {

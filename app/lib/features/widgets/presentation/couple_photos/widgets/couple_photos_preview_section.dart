@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_bloc_starter/router/app_router.dart';
 class const CouplePhotosPreviewSection({
   required final WidgetPayload payload,
   required final bool isDarkPreview,
+  final Uint8List? localPreview,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -71,14 +73,19 @@ class const CouplePhotosPreviewSection({
         payload.hasPlus &&
         payload.cachedPhotoPath != null &&
         File(payload.cachedPhotoPath!).existsSync();
+    final previewPhoto = switch ((localPreview, hasValidCachedPhoto)) {
+      (final Uint8List bytes, _) => Image.memory(bytes, height: 180, fit: BoxFit.cover),
+      (null, true) => Image.file(File(payload.cachedPhotoPath!), height: 180, fit: BoxFit.cover),
+      _ => null,
+    };
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        if (hasValidCachedPhoto) ...[
+        if (previewPhoto != null) ...[
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(AppRadius.xxl)),
-            child: Image.file(File(payload.cachedPhotoPath!), height: 180, fit: BoxFit.cover),
+            child: previewPhoto,
           ),
           const SizedBox(height: AppSpace.s12),
         ],
