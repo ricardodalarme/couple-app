@@ -77,6 +77,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$distance$pt distance = Translations$distance$pt.internal(_root);
   late final Translations$fightStyle$pt fightStyle = Translations$fightStyle$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
+  late final Translations$games$pt games = Translations$games$pt.internal(_root);
   late final Translations$gifts$pt gifts = Translations$gifts$pt.internal(_root);
   late final Translations$globalErrors$pt globalErrors = Translations$globalErrors$pt.internal(
     _root,
@@ -1484,6 +1485,40 @@ class Translations$firstSlip$pt {
 
   /// pt: 'Não deu para guardar agora. Tente de novo.'
   String get saveError => 'Não deu para guardar agora. Tente de novo.';
+}
+
+// Path: games
+class Translations$games$pt {
+  Translations$games$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+  late final Translations$games$hub$pt hub = Translations$games$hub$pt.internal(_root);
+  late final Translations$games$kinds$pt kinds = Translations$games$kinds$pt.internal(_root);
+  late final Translations$games$start$pt start = Translations$games$start$pt.internal(_root);
+  late final Translations$games$invitation$pt invitation =
+      Translations$games$invitation$pt.internal(_root);
+  late final Translations$games$waiting$pt waiting = Translations$games$waiting$pt.internal(_root);
+  late final Translations$games$active$pt active = Translations$games$active$pt.internal(_root);
+  late final Translations$games$cancel$pt cancel = Translations$games$cancel$pt.internal(_root);
+  late final Translations$games$noPartner$pt noPartner = Translations$games$noPartner$pt.internal(
+    _root,
+  );
+  late final Translations$games$common$pt common = Translations$games$common$pt.internal(_root);
+
+  /// pt: 'Não deu para abrir o jogo'
+  String get loadErrorTitle => 'Não deu para abrir o jogo';
+
+  /// pt: 'Nada foi perdido. Tente de novo.'
+  String get loadErrorText => 'Nada foi perdido. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'NOT_PAIRED': 'Os jogos precisam dos dois conectados.',
+    'NOT_FOUND': 'Esse jogo não existe mais. Vamos atualizar.',
+    'INVALID_GAME_ACTION': 'Esse jogo mudou. Vamos atualizar.',
+    'other': 'Não deu para fazer isso agora. Tente de novo.',
+  };
 }
 
 // Path: gifts
@@ -5774,6 +5809,18 @@ class Translations$tabs$pt {
 
   /// pt: 'Um passo de cada vez, só para você.'
   String get guidesText => 'Um passo de cada vez, só para você.';
+
+  /// pt: 'JOGOS'
+  String get gamesLabel => 'JOGOS';
+
+  /// pt: 'Jogar juntos'
+  String get gamesTitle => 'Jogar juntos';
+
+  /// pt: 'Jogos curtos, sem placar e sem vencedor.'
+  String get gamesText => 'Jogos curtos, sem placar e sem vencedor.';
+
+  /// pt: 'Precisa dos dois'
+  String get gamesLock => 'Precisa dos dois';
 }
 
 // Path: temperature
@@ -6671,6 +6718,243 @@ class Translations$acceptInvite$unusable$pt {
   String get close => 'Fechar';
 }
 
+// Path: games.hub
+class Translations$games$hub$pt {
+  Translations$games$hub$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Jogar'
+  String get title => 'Jogar';
+
+  /// pt: 'Jogos curtos para vocês dois. Sem placar e sem vencedor.'
+  String get subtitle => 'Jogos curtos para vocês dois. Sem placar e sem vencedor.';
+
+  /// pt: 'Palpites'
+  String get guessLabel => 'Palpites';
+
+  /// pt: 'Conversa'
+  String get talkLabel => 'Conversa';
+
+  /// pt: 'Desafio'
+  String get challengeLabel => 'Desafio';
+
+  /// pt: '{minutes} min'
+  String minutes({required Object minutes}) => '${minutes} min';
+
+  /// pt: '{name} chamou você'
+  String invitedTitle({required Object name}) => '${name} chamou você';
+
+  /// pt: 'Seu par chamou você'
+  String get invitedFallbackTitle => 'Seu par chamou você';
+
+  /// pt: 'Entrar'
+  String get join => 'Entrar';
+
+  /// pt: 'Aguardando {name}'
+  String stateWaiting({required Object name}) => 'Aguardando ${name}';
+
+  /// pt: 'Aguardando seu par'
+  String get stateWaitingFallback => 'Aguardando seu par';
+
+  /// pt: 'Chamou você'
+  String get stateInvited => 'Chamou você';
+
+  /// pt: 'Em andamento'
+  String get stateActive => 'Em andamento';
+
+  /// pt: 'Terminado'
+  String get stateFinished => 'Terminado';
+
+  /// pt: 'Convite cancelado'
+  String get stateCancelled => 'Convite cancelado';
+
+  /// pt: 'Convite expirado'
+  String get stateExpired => 'Convite expirado';
+
+  /// pt: 'Precisa dos dois'
+  String get lockChip => 'Precisa dos dois';
+
+  /// pt: 'Os jogos precisam dos dois. Quando seu par entrar, vocês podem jogar.'
+  String get noPartnerNote =>
+      'Os jogos precisam dos dois. Quando seu par entrar, vocês podem jogar.';
+
+  /// pt: 'Para ver se algo mudou, volte ao app ou puxe para atualizar.'
+  String get refreshNote => 'Para ver se algo mudou, volte ao app ou puxe para atualizar.';
+
+  /// pt: 'Não deu para abrir os jogos'
+  String get loadErrorTitle => 'Não deu para abrir os jogos';
+
+  /// pt: 'Nada foi perdido. Tente de novo.'
+  String get loadErrorText => 'Nada foi perdido. Tente de novo.';
+}
+
+// Path: games.kinds
+class Translations$games$kinds$pt {
+  Translations$games$kinds$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+  late final Translations$games$kinds$meOrYou$pt meOrYou =
+      Translations$games$kinds$meOrYou$pt.internal(_root);
+  late final Translations$games$kinds$howWell$pt howWell =
+      Translations$games$kinds$howWell$pt.internal(_root);
+  late final Translations$games$kinds$twentyQuestions$pt twentyQuestions =
+      Translations$games$kinds$twentyQuestions$pt.internal(_root);
+  late final Translations$games$kinds$neverHaveWe$pt neverHaveWe =
+      Translations$games$kinds$neverHaveWe$pt.internal(_root);
+  late final Translations$games$kinds$mission$pt mission =
+      Translations$games$kinds$mission$pt.internal(_root);
+}
+
+// Path: games.start
+class Translations$games$start$pt {
+  Translations$games$start$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Sem vencedor, sem pontos.'
+  String get noWinnerNote => 'Sem vencedor, sem pontos.';
+
+  /// pt: 'Chamar {name}'
+  String cta({required Object name}) => 'Chamar ${name}';
+
+  /// pt: 'Chamar seu par'
+  String get ctaFallback => 'Chamar seu par';
+
+  /// pt: 'O último convite foi cancelado. Vocês podem começar de novo quando quiserem.'
+  String get cancelledNote =>
+      'O último convite foi cancelado. Vocês podem começar de novo quando quiserem.';
+
+  /// pt: 'O convite anterior expirou. Chame de novo quando quiserem.'
+  String get expiredNote => 'O convite anterior expirou. Chame de novo quando quiserem.';
+
+  /// pt: 'Este jogo ainda não tem perguntas'
+  String get noContentTitle => 'Este jogo ainda não tem perguntas';
+
+  /// pt: 'Ainda não há conteúdo para jogar. Volte em breve.'
+  String get noContentText => 'Ainda não há conteúdo para jogar. Volte em breve.';
+}
+
+// Path: games.invitation
+class Translations$games$invitation$pt {
+  Translations$games$invitation$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: '{name} chamou você'
+  String title({required Object name}) => '${name} chamou você';
+
+  /// pt: 'Seu par chamou você'
+  String get titleFallback => 'Seu par chamou você';
+
+  /// pt: 'Jogar agora'
+  String get join => 'Jogar agora';
+
+  /// pt: 'Depois'
+  String get later => 'Depois';
+}
+
+// Path: games.waiting
+class Translations$games$waiting$pt {
+  Translations$games$waiting$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Convite enviado para {name}. Começa quando entrar.'
+  String text({required Object name}) => 'Convite enviado para ${name}. Começa quando entrar.';
+
+  /// pt: 'Convite enviado. Começa quando seu par entrar.'
+  String get textFallback => 'Convite enviado. Começa quando seu par entrar.';
+
+  /// pt: 'Aguardando…'
+  String get status => 'Aguardando…';
+
+  /// pt: 'O convite espera por até 48 horas.'
+  String get window => 'O convite espera por até 48 horas.';
+
+  /// pt: 'Ver se já entrou'
+  String get checkAgain => 'Ver se já entrou';
+
+  /// pt: 'Cancelar o convite'
+  String get cancel => 'Cancelar o convite';
+}
+
+// Path: games.active
+class Translations$games$active$pt {
+  Translations$games$active$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'O jogo começou'
+  String get title => 'O jogo começou';
+
+  /// pt: 'Os dois estão dentro. As telas deste jogo aparecem aqui.'
+  String get text => 'Os dois estão dentro. As telas deste jogo aparecem aqui.';
+
+  /// pt: 'Encerrar o jogo'
+  String get cancel => 'Encerrar o jogo';
+}
+
+// Path: games.cancel
+class Translations$games$cancel$pt {
+  Translations$games$cancel$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Encerrar o jogo?'
+  String get title => 'Encerrar o jogo?';
+
+  /// pt: 'O jogo termina para os dois. Vocês podem começar outro depois.'
+  String get text => 'O jogo termina para os dois. Vocês podem começar outro depois.';
+
+  /// pt: 'Encerrar'
+  String get confirm => 'Encerrar';
+
+  /// pt: 'Continuar'
+  String get keep => 'Continuar';
+}
+
+// Path: games.noPartner
+class Translations$games$noPartner$pt {
+  Translations$games$noPartner$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Os jogos são para os dois'
+  String get title => 'Os jogos são para os dois';
+
+  /// pt: 'Quando seu par entrar, vocês podem jogar juntos.'
+  String get text => 'Quando seu par entrar, vocês podem jogar juntos.';
+}
+
+// Path: games.common
+class Translations$games$common$pt {
+  Translations$games$common$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Fechar'
+  String get close => 'Fechar';
+}
+
 // Path: guides.hub
 class Translations$guides$hub$pt {
   Translations$guides$hub$pt.internal(this._root);
@@ -7533,6 +7817,84 @@ class Translations$unpair$partnerNotice$pt {
   String get ok => 'Ok';
 }
 
+// Path: games.kinds.meOrYou
+class Translations$games$kinds$meOrYou$pt {
+  Translations$games$kinds$meOrYou$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Eu ou ele'
+  String get title => 'Eu ou ele';
+
+  /// pt: 'Respondam em separado quem combina mais com cada frase. Depois vejam onde vocês pensaram igual.'
+  String get intro =>
+      'Respondam em separado quem combina mais com cada frase. Depois vejam onde vocês pensaram igual.';
+}
+
+// Path: games.kinds.howWell
+class Translations$games$kinds$howWell$pt {
+  Translations$games$kinds$howWell$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Quanto você me conhece'
+  String get title => 'Quanto você me conhece';
+
+  /// pt: 'Cada um responde sobre si e tenta adivinhar a resposta do outro. Depois vem a conversa.'
+  String get intro =>
+      'Cada um responde sobre si e tenta adivinhar a resposta do outro. Depois vem a conversa.';
+}
+
+// Path: games.kinds.twentyQuestions
+class Translations$games$kinds$twentyQuestions$pt {
+  Translations$games$kinds$twentyQuestions$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: '20 perguntas'
+  String get title => '20 perguntas';
+
+  /// pt: 'Perguntas leves para responder em privado e revelar juntos.'
+  String get intro => 'Perguntas leves para responder em privado e revelar juntos.';
+}
+
+// Path: games.kinds.neverHaveWe
+class Translations$games$kinds$neverHaveWe$pt {
+  Translations$games$kinds$neverHaveWe$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Eu nunca, nós dois'
+  String get title => 'Eu nunca, nós dois';
+
+  /// pt: 'Coisas que vocês nunca fizeram juntos. Cada um responde em privado e vocês veem os dois lados no fim.'
+  String get intro =>
+      'Coisas que vocês nunca fizeram juntos. Cada um responde em privado e vocês veem os dois lados no fim.';
+}
+
+// Path: games.kinds.mission
+class Translations$games$kinds$mission$pt {
+  Translations$games$kinds$mission$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Missão do encontro'
+  String get title => 'Missão do encontro';
+
+  /// pt: 'Uma ideia de encontro para fazer juntos e uma reflexão curta depois.'
+  String get intro => 'Uma ideia de encontro para fazer juntos e uma reflexão curta depois.';
+}
+
 // Path: temperature.result.good
 class Translations$temperature$result$good$pt {
   Translations$temperature$result$good$pt.internal(this._root);
@@ -8167,6 +8529,79 @@ extension on Translations {
           'firstSlip.localNote' => 'Fica salvo só neste celular.',
           'firstSlip.save' => 'Salvar',
           'firstSlip.saveError' => 'Não deu para guardar agora. Tente de novo.',
+          'games.hub.title' => 'Jogar',
+          'games.hub.subtitle' => 'Jogos curtos para vocês dois. Sem placar e sem vencedor.',
+          'games.hub.guessLabel' => 'Palpites',
+          'games.hub.talkLabel' => 'Conversa',
+          'games.hub.challengeLabel' => 'Desafio',
+          'games.hub.minutes' => ({required Object minutes}) => '${minutes} min',
+          'games.hub.invitedTitle' => ({required Object name}) => '${name} chamou você',
+          'games.hub.invitedFallbackTitle' => 'Seu par chamou você',
+          'games.hub.join' => 'Entrar',
+          'games.hub.stateWaiting' => ({required Object name}) => 'Aguardando ${name}',
+          'games.hub.stateWaitingFallback' => 'Aguardando seu par',
+          'games.hub.stateInvited' => 'Chamou você',
+          'games.hub.stateActive' => 'Em andamento',
+          'games.hub.stateFinished' => 'Terminado',
+          'games.hub.stateCancelled' => 'Convite cancelado',
+          'games.hub.stateExpired' => 'Convite expirado',
+          'games.hub.lockChip' => 'Precisa dos dois',
+          'games.hub.noPartnerNote' =>
+            'Os jogos precisam dos dois. Quando seu par entrar, vocês podem jogar.',
+          'games.hub.refreshNote' => 'Para ver se algo mudou, volte ao app ou puxe para atualizar.',
+          'games.hub.loadErrorTitle' => 'Não deu para abrir os jogos',
+          'games.hub.loadErrorText' => 'Nada foi perdido. Tente de novo.',
+          'games.kinds.meOrYou.title' => 'Eu ou ele',
+          'games.kinds.meOrYou.intro' => 'Respondam em separado quem combina mais com cada frase. Depois vejam onde vocês pensaram igual.',
+          'games.kinds.howWell.title' => 'Quanto você me conhece',
+          'games.kinds.howWell.intro' => 'Cada um responde sobre si e tenta adivinhar a resposta do outro. Depois vem a conversa.',
+          'games.kinds.twentyQuestions.title' => '20 perguntas',
+          _ => null,
+        } ??
+        switch (path) {
+          'games.kinds.twentyQuestions.intro' =>
+            'Perguntas leves para responder em privado e revelar juntos.',
+          'games.kinds.neverHaveWe.title' => 'Eu nunca, nós dois',
+          'games.kinds.neverHaveWe.intro' => 'Coisas que vocês nunca fizeram juntos. Cada um responde em privado e vocês veem os dois lados no fim.',
+          'games.kinds.mission.title' => 'Missão do encontro',
+          'games.kinds.mission.intro' =>
+            'Uma ideia de encontro para fazer juntos e uma reflexão curta depois.',
+          'games.start.noWinnerNote' => 'Sem vencedor, sem pontos.',
+          'games.start.cta' => ({required Object name}) => 'Chamar ${name}',
+          'games.start.ctaFallback' => 'Chamar seu par',
+          'games.start.cancelledNote' =>
+            'O último convite foi cancelado. Vocês podem começar de novo quando quiserem.',
+          'games.start.expiredNote' => 'O convite anterior expirou. Chame de novo quando quiserem.',
+          'games.start.noContentTitle' => 'Este jogo ainda não tem perguntas',
+          'games.start.noContentText' => 'Ainda não há conteúdo para jogar. Volte em breve.',
+          'games.invitation.title' => ({required Object name}) => '${name} chamou você',
+          'games.invitation.titleFallback' => 'Seu par chamou você',
+          'games.invitation.join' => 'Jogar agora',
+          'games.invitation.later' => 'Depois',
+          'games.waiting.text' => ({
+            required Object name,
+          }) => 'Convite enviado para ${name}. Começa quando entrar.',
+          'games.waiting.textFallback' => 'Convite enviado. Começa quando seu par entrar.',
+          'games.waiting.status' => 'Aguardando…',
+          'games.waiting.window' => 'O convite espera por até 48 horas.',
+          'games.waiting.checkAgain' => 'Ver se já entrou',
+          'games.waiting.cancel' => 'Cancelar o convite',
+          'games.active.title' => 'O jogo começou',
+          'games.active.text' => 'Os dois estão dentro. As telas deste jogo aparecem aqui.',
+          'games.active.cancel' => 'Encerrar o jogo',
+          'games.cancel.title' => 'Encerrar o jogo?',
+          'games.cancel.text' => 'O jogo termina para os dois. Vocês podem começar outro depois.',
+          'games.cancel.confirm' => 'Encerrar',
+          'games.cancel.keep' => 'Continuar',
+          'games.noPartner.title' => 'Os jogos são para os dois',
+          'games.noPartner.text' => 'Quando seu par entrar, vocês podem jogar juntos.',
+          'games.common.close' => 'Fechar',
+          'games.loadErrorTitle' => 'Não deu para abrir o jogo',
+          'games.loadErrorText' => 'Nada foi perdido. Tente de novo.',
+          'games.errors.NOT_PAIRED' => 'Os jogos precisam dos dois conectados.',
+          'games.errors.NOT_FOUND' => 'Esse jogo não existe mais. Vamos atualizar.',
+          'games.errors.INVALID_GAME_ACTION' => 'Esse jogo mudou. Vamos atualizar.',
+          'games.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'gifts.title' => 'Página de presentes',
           'gifts.subtitle' => 'Uma página que seu par vê no app. Você escolhe o que compartilhar.',
           'gifts.myTitle' => 'Meus desejos',
@@ -8194,9 +8629,6 @@ extension on Translations {
           'gifts.budgets.other' => '',
           'gifts.noBudget' => 'Sem orçamento',
           'gifts.shared' => 'Compartilhado',
-          _ => null,
-        } ??
-        switch (path) {
           'gifts.private' => 'Privado',
           'gifts.sharedHint' => 'Seu par pode ver este desejo.',
           'gifts.privateHint' => 'Só você vê este desejo.',
@@ -8808,6 +9240,9 @@ extension on Translations {
           'loveStyle.options4.gifts' => 'Um presente simples que tem a ver comigo.',
           'loveStyle.options4.touch' => 'Um carinho no cabelo ou na mão.',
           'loveStyle.options4.other' => '',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.options5.time' => 'Quando alguém escolhe passar tempo comigo.',
           'loveStyle.options5.words' => 'Quando alguém reconhece o que eu faço.',
           'loveStyle.options5.acts' => 'Quando alguém facilita o meu dia.',
@@ -8881,9 +9316,6 @@ extension on Translations {
           'memories.storyTitle' => 'Imagem para compartilhar',
           'memories.storyText' => 'Seus números em uma imagem, só com o que você escolher.',
           'memories.placesLabel' => 'LUGARES',
-          _ => null,
-        } ??
-        switch (path) {
           'memories.placesTitle' => 'Lugares onde vocês estiveram',
           'memories.placesText' => 'Só o nome do lugar, nunca a localização.',
           'memories.placeLabel' => 'Lugar (opcional)',
@@ -9398,6 +9830,9 @@ extension on Translations {
           'programs.saved' => 'Guardado para depois.',
           'programs.savedTag' => 'Guardado',
           'programs.lockedTitle' => 'Lição do Plus',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.lockedLessonText' => 'Esta lição faz parte do Plus.',
           'programs.lockedProgramText' => 'Este programa faz parte do Plus.',
           'programs.completeTitle' => 'Muito bem',
@@ -9468,9 +9903,6 @@ extension on Translations {
           'questions.you' => 'Você',
           'questions.partnerFallback' => 'Seu par',
           'questions.discardTitle' => 'Descartar esta resposta?',
-          _ => null,
-        } ??
-        switch (path) {
           'questions.discardText' => 'O texto que você escreveu não foi salvo.',
           'questions.discard' => 'Descartar',
           'questions.keepWriting' => 'Continuar escrevendo',
@@ -9963,6 +10395,9 @@ extension on Translations {
           'spice.turnOff' => 'Desligar',
           'spice.errorTitle' => 'Não deu para carregar',
           'spice.errorText' => 'Tente de novo em instantes.',
+          _ => null,
+        } ??
+        switch (path) {
           'spice.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'spice.errors.other' => 'Não deu para mudar agora. Tente de novo.',
           'story.title' => 'Imagem para compartilhar',
@@ -10035,9 +10470,6 @@ extension on Translations {
           'tabs.segmentForMe' => 'Para mim',
           'tabs.checkinLabel' => 'CHECK-IN',
           'tabs.checkinTitle' => 'Check-in da semana',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.checkinText' => 'Uma conversa curta, em privado primeiro.',
           'tabs.logisticsLabel' => 'PRÁTICO',
           'tabs.logisticsTitle' => 'Logística',
@@ -10121,6 +10553,10 @@ extension on Translations {
           'tabs.guidesLabel' => 'CONVERSAS',
           'tabs.guidesTitle' => 'Conversas difíceis',
           'tabs.guidesText' => 'Um passo de cada vez, só para você.',
+          'tabs.gamesLabel' => 'JOGOS',
+          'tabs.gamesTitle' => 'Jogar juntos',
+          'tabs.gamesText' => 'Jogos curtos, sem placar e sem vencedor.',
+          'tabs.gamesLock' => 'Precisa dos dois',
           'temperature.levelTitle' => 'Como está entre vocês?',
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',

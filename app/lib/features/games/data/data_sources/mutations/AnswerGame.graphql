@@ -1,0 +1,3 @@
+mutation AnswerGame($sessionId: UUID!, $idx: Int!, $answer: String!) {
+  answerGame(sessionId: $sessionId, idx: $idx, answer: $answer)
+}

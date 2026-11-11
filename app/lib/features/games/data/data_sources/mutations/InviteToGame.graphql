@@ -1,0 +1,5 @@
+mutation InviteToGame($game: String!, $itemSlugs: [String]) {
+  inviteToGame(game: $game, itemSlugs: $itemSlugs) {
+    ...GameSessionFragment
+  }
+}

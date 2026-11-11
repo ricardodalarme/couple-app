@@ -86,5 +86,9 @@
   "fightStyleText": "A short, private reflection on your own way.",
   "guidesLabel": "CONVERSATIONS",
   "guidesTitle": "Difficult conversations",
-  "guidesText": "One step at a time, just for you."
+  "guidesText": "One step at a time, just for you.",
+  "gamesLabel": "GAMES",
+  "gamesTitle": "Play together",
+  "gamesText": "Short games, no scores and no winner.",
+  "gamesLock": "Needs both of you"
 }

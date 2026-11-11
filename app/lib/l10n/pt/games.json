@@ -1,0 +1,96 @@
+{
+  "hub": {
+    "title": "Jogar",
+    "subtitle": "Jogos curtos para vocês dois. Sem placar e sem vencedor.",
+    "guessLabel": "Palpites",
+    "talkLabel": "Conversa",
+    "challengeLabel": "Desafio",
+    "minutes": "{minutes} min",
+    "invitedTitle": "{name} chamou você",
+    "invitedFallbackTitle": "Seu par chamou você",
+    "join": "Entrar",
+    "stateWaiting": "Aguardando {name}",
+    "stateWaitingFallback": "Aguardando seu par",
+    "stateInvited": "Chamou você",
+    "stateActive": "Em andamento",
+    "stateFinished": "Terminado",
+    "stateCancelled": "Convite cancelado",
+    "stateExpired": "Convite expirado",
+    "lockChip": "Precisa dos dois",
+    "noPartnerNote": "Os jogos precisam dos dois. Quando seu par entrar, vocês podem jogar.",
+    "refreshNote": "Para ver se algo mudou, volte ao app ou puxe para atualizar.",
+    "loadErrorTitle": "Não deu para abrir os jogos",
+    "loadErrorText": "Nada foi perdido. Tente de novo."
+  },
+  "kinds": {
+    "meOrYou": {
+      "title": "Eu ou ele",
+      "intro": "Respondam em separado quem combina mais com cada frase. Depois vejam onde vocês pensaram igual."
+    },
+    "howWell": {
+      "title": "Quanto você me conhece",
+      "intro": "Cada um responde sobre si e tenta adivinhar a resposta do outro. Depois vem a conversa."
+    },
+    "twentyQuestions": {
+      "title": "20 perguntas",
+      "intro": "Perguntas leves para responder em privado e revelar juntos."
+    },
+    "neverHaveWe": {
+      "title": "Eu nunca, nós dois",
+      "intro": "Coisas que vocês nunca fizeram juntos. Cada um responde em privado e vocês veem os dois lados no fim."
+    },
+    "mission": {
+      "title": "Missão do encontro",
+      "intro": "Uma ideia de encontro para fazer juntos e uma reflexão curta depois."
+    }
+  },
+  "start": {
+    "noWinnerNote": "Sem vencedor, sem pontos.",
+    "cta": "Chamar {name}",
+    "ctaFallback": "Chamar seu par",
+    "cancelledNote": "O último convite foi cancelado. Vocês podem começar de novo quando quiserem.",
+    "expiredNote": "O convite anterior expirou. Chame de novo quando quiserem.",
+    "noContentTitle": "Este jogo ainda não tem perguntas",
+    "noContentText": "Ainda não há conteúdo para jogar. Volte em breve."
+  },
+  "invitation": {
+    "title": "{name} chamou você",
+    "titleFallback": "Seu par chamou você",
+    "join": "Jogar agora",
+    "later": "Depois"
+  },
+  "waiting": {
+    "text": "Convite enviado para {name}. Começa quando entrar.",
+    "textFallback": "Convite enviado. Começa quando seu par entrar.",
+    "status": "Aguardando…",
+    "window": "O convite espera por até 48 horas.",
+    "checkAgain": "Ver se já entrou",
+    "cancel": "Cancelar o convite"
+  },
+  "active": {
+    "title": "O jogo começou",
+    "text": "Os dois estão dentro. As telas deste jogo aparecem aqui.",
+    "cancel": "Encerrar o jogo"
+  },
+  "cancel": {
+    "title": "Encerrar o jogo?",
+    "text": "O jogo termina para os dois. Vocês podem começar outro depois.",
+    "confirm": "Encerrar",
+    "keep": "Continuar"
+  },
+  "noPartner": {
+    "title": "Os jogos são para os dois",
+    "text": "Quando seu par entrar, vocês podem jogar juntos."
+  },
+  "common": {
+    "close": "Fechar"
+  },
+  "loadErrorTitle": "Não deu para abrir o jogo",
+  "loadErrorText": "Nada foi perdido. Tente de novo.",
+  "errors(map)": {
+    "NOT_PAIRED": "Os jogos precisam dos dois conectados.",
+    "NOT_FOUND": "Esse jogo não existe mais. Vamos atualizar.",
+    "INVALID_GAME_ACTION": "Esse jogo mudou. Vamos atualizar.",
+    "other": "Não deu para fazer isso agora. Tente de novo."
+  }
+}

@@ -1,0 +1,5 @@
+mutation UpdateGame($sessionId: UUID!, $action: String!, $outcome: String) {
+  updateGame(sessionId: $sessionId, action: $action, outcome: $outcome) {
+    ...GameSessionFragment
+  }
+}

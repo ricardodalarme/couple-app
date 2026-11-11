@@ -1,0 +1,20 @@
+query GameItems($kind: String!, $locale: String!, $first: Int!) {
+  contentItemsCollection(
+    first: $first
+    filter: {
+      kind: { eq: $kind }
+      locale: { eq: $locale }
+      plusOnly: { eq: false }
+      published: { eq: true }
+    }
+    orderBy: [{ position: AscNullsLast }]
+  ) {
+    edges {
+      node {
+        slug
+        title
+        body
+      }
+    }
+  }
+}

@@ -531,6 +531,72 @@ class FirstSlipRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [GamePage]
+class GameRoute extends PageRouteInfo<GameRouteArgs> {
+  GameRoute({String game = '', Key? key, List<PageRouteInfo>? children})
+    : super(
+        GameRoute.name,
+        args: GameRouteArgs(game: game, key: key),
+        rawPathParams: {'game': game},
+        initialChildren: children,
+      );
+
+  static const String name = 'GameRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<GameRouteArgs>(
+        orElse: () => GameRouteArgs(game: pathParams.getString('game', '')),
+      );
+      return WrappedRoute(
+        child: GamePage(game: args.game, key: args.key),
+      );
+    },
+  );
+}
+
+class GameRouteArgs {
+  const GameRouteArgs({this.game = '', this.key});
+
+  final String game;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'GameRouteArgs{game: $game, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! GameRouteArgs) return false;
+    return game == other.game && key == other.key;
+  }
+
+  @override
+  int get hashCode => game.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [GamesPage]
+class GamesRoute extends PageRouteInfo<void> {
+  const GamesRoute({List<PageRouteInfo>? children})
+    : super(GamesRoute.name, initialChildren: children);
+
+  static const String name = 'GamesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const GamesPage());
+    },
+  );
+}
+
+/// generated route for
 /// [GiftsPage]
 class GiftsRoute extends PageRouteInfo<void> {
   const GiftsRoute({List<PageRouteInfo>? children})

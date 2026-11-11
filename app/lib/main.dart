@@ -15,6 +15,7 @@ import 'package:flutter_bloc_starter/features/dates/di/dates_injection_module.da
 import 'package:flutter_bloc_starter/features/devices/di/devices_injection_module.dart';
 import 'package:flutter_bloc_starter/features/distance/di/distance_injection_module.dart';
 import 'package:flutter_bloc_starter/features/fight_style/di/fight_style_injection_module.dart';
+import 'package:flutter_bloc_starter/features/games/di/games_injection_module.dart';
 import 'package:flutter_bloc_starter/features/gifts/di/gifts_injection_module.dart';
 import 'package:flutter_bloc_starter/features/guides/di/guides_injection_module.dart';
 import 'package:flutter_bloc_starter/features/help/di/help_injection_module.dart';
@@ -73,6 +74,7 @@ void _registerModules() {
     SettingsInjectionModule(),
     DevicesInjectionModule(),
     FightStyleInjectionModule(),
+    GamesInjectionModule(),
     GiftsInjectionModule(),
     GuidesInjectionModule(),
     IdeasInjectionModule(),

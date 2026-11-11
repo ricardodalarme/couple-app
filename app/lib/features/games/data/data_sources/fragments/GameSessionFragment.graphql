@@ -1,0 +1,8 @@
+fragment GameSessionFragment on GameSessions {
+  id
+  game
+  status
+  invitedBy
+  itemSlugs
+  createdAt
+}

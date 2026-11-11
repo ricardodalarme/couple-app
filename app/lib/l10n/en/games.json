@@ -1,0 +1,96 @@
+{
+  "hub": {
+    "title": "Play",
+    "subtitle": "Short games for the two of you. No scores and no winner.",
+    "guessLabel": "Guesses",
+    "talkLabel": "Conversation",
+    "challengeLabel": "Challenge",
+    "minutes": "{minutes} min",
+    "invitedTitle": "{name} invited you",
+    "invitedFallbackTitle": "Your partner invited you",
+    "join": "Join",
+    "stateWaiting": "Waiting for {name}",
+    "stateWaitingFallback": "Waiting for your partner",
+    "stateInvited": "Invited you",
+    "stateActive": "In progress",
+    "stateFinished": "Finished",
+    "stateCancelled": "Invitation cancelled",
+    "stateExpired": "Invitation expired",
+    "lockChip": "Needs both of you",
+    "noPartnerNote": "Games need both of you. When your partner joins, you can play.",
+    "refreshNote": "To see if anything changed, come back to the app or pull to refresh.",
+    "loadErrorTitle": "Could not open the games",
+    "loadErrorText": "Nothing was lost. Try again."
+  },
+  "kinds": {
+    "meOrYou": {
+      "title": "Me or you",
+      "intro": "Answer separately who fits each phrase better. Then see where you thought alike."
+    },
+    "howWell": {
+      "title": "How well you know me",
+      "intro": "Each of you answers about yourself and guesses the other's answer. Then comes the conversation."
+    },
+    "twentyQuestions": {
+      "title": "20 questions",
+      "intro": "Light questions to answer in private and reveal together."
+    },
+    "neverHaveWe": {
+      "title": "Never have we",
+      "intro": "Things you have never done together. Each of you answers in private and you see both sides at the end."
+    },
+    "mission": {
+      "title": "Date mission",
+      "intro": "A date idea to do together and a short reflection afterwards."
+    }
+  },
+  "start": {
+    "noWinnerNote": "No winner, no points.",
+    "cta": "Invite {name}",
+    "ctaFallback": "Invite your partner",
+    "cancelledNote": "The last invitation was cancelled. You can start again whenever you like.",
+    "expiredNote": "The previous invitation expired. Invite again whenever you like.",
+    "noContentTitle": "This game has no questions yet",
+    "noContentText": "There is no content to play yet. Come back soon."
+  },
+  "invitation": {
+    "title": "{name} invited you",
+    "titleFallback": "Your partner invited you",
+    "join": "Play now",
+    "later": "Later"
+  },
+  "waiting": {
+    "text": "Invitation sent to {name}. It starts when they join.",
+    "textFallback": "Invitation sent. It starts when your partner joins.",
+    "status": "Waiting…",
+    "window": "The invitation waits for up to 48 hours.",
+    "checkAgain": "Check if they joined",
+    "cancel": "Cancel the invitation"
+  },
+  "active": {
+    "title": "The game has started",
+    "text": "Both of you are in. This game's screens appear here.",
+    "cancel": "End the game"
+  },
+  "cancel": {
+    "title": "End the game?",
+    "text": "The game ends for both of you. You can start another later.",
+    "confirm": "End game",
+    "keep": "Keep playing"
+  },
+  "noPartner": {
+    "title": "Games are for two",
+    "text": "When your partner joins, you can play together."
+  },
+  "common": {
+    "close": "Close"
+  },
+  "loadErrorTitle": "Could not open the game",
+  "loadErrorText": "Nothing was lost. Try again.",
+  "errors(map)": {
+    "NOT_PAIRED": "Games need both of you connected.",
+    "NOT_FOUND": "That game no longer exists. We'll refresh.",
+    "INVALID_GAME_ACTION": "That game changed. We'll refresh.",
+    "other": "Could not do that right now. Try again."
+  }
+}

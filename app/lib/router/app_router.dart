@@ -19,6 +19,8 @@ import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_
 import 'package:flutter_bloc_starter/features/devices/presentation/devices/devices_page.dart';
 import 'package:flutter_bloc_starter/features/distance/presentation/distance/distance_page.dart';
 import 'package:flutter_bloc_starter/features/fight_style/presentation/exercise/fight_style_page.dart';
+import 'package:flutter_bloc_starter/features/games/presentation/game/game_page.dart';
+import 'package:flutter_bloc_starter/features/games/presentation/hub/games_page.dart';
 import 'package:flutter_bloc_starter/features/gifts/presentation/gifts/gifts_page.dart';
 import 'package:flutter_bloc_starter/features/guides/presentation/hub/guides_page.dart';
 import 'package:flutter_bloc_starter/features/guides/presentation/viewer/guide_page.dart';
@@ -192,6 +194,8 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: ListsRoute.page),
     AutoRoute(page: GiftsRoute.page),
     AutoRoute(page: ListDetailRoute.page, path: '/list/:id'),
+    AutoRoute(page: GamesRoute.page, path: '/games'),
+    AutoRoute(page: GameRoute.page, path: '/games/:game'),
     AutoRoute(page: GuidesRoute.page, path: '/guides'),
     AutoRoute(page: GuideRoute.page, path: '/guide/:slug', fullscreenDialog: true),
     AutoRoute(page: NotificationPreferencesRoute.page),

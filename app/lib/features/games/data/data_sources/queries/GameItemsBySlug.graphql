@@ -1,0 +1,19 @@
+query GameItemsBySlug($kind: String!, $locale: String!, $slugs: [String!]!) {
+  contentItemsCollection(
+    first: 60
+    filter: {
+      kind: { eq: $kind }
+      locale: { eq: $locale }
+      slug: { in: $slugs }
+      published: { eq: true }
+    }
+  ) {
+    edges {
+      node {
+        slug
+        title
+        body
+      }
+    }
+  }
+}

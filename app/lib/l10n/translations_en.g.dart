@@ -92,6 +92,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$firstSlip$en firstSlip = _Translations$firstSlip$en._(_root);
   @override
+  late final _Translations$games$en games = _Translations$games$en._(_root);
+  @override
   late final _Translations$gifts$en gifts = _Translations$gifts$en._(_root);
   @override
   late final _Translations$globalErrors$en globalErrors = _Translations$globalErrors$en._(_root);
@@ -1281,6 +1283,46 @@ class _Translations$firstSlip$en extends Translations$firstSlip$pt {
   String get save => 'Save';
   @override
   String get saveError => 'Could not keep it right now. Try again.';
+}
+
+// Path: games
+class _Translations$games$en extends Translations$games$pt {
+  _Translations$games$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  late final _Translations$games$hub$en hub = _Translations$games$hub$en._(_root);
+  @override
+  late final _Translations$games$kinds$en kinds = _Translations$games$kinds$en._(_root);
+  @override
+  late final _Translations$games$start$en start = _Translations$games$start$en._(_root);
+  @override
+  late final _Translations$games$invitation$en invitation = _Translations$games$invitation$en._(
+    _root,
+  );
+  @override
+  late final _Translations$games$waiting$en waiting = _Translations$games$waiting$en._(_root);
+  @override
+  late final _Translations$games$active$en active = _Translations$games$active$en._(_root);
+  @override
+  late final _Translations$games$cancel$en cancel = _Translations$games$cancel$en._(_root);
+  @override
+  late final _Translations$games$noPartner$en noPartner = _Translations$games$noPartner$en._(_root);
+  @override
+  late final _Translations$games$common$en common = _Translations$games$common$en._(_root);
+  @override
+  String get loadErrorTitle => 'Could not open the game';
+  @override
+  String get loadErrorText => 'Nothing was lost. Try again.';
+  @override
+  Map<String, String> get errors => {
+    'NOT_PAIRED': 'Games need both of you connected.',
+    'NOT_FOUND': 'That game no longer exists. We\'ll refresh.',
+    'INVALID_GAME_ACTION': 'That game changed. We\'ll refresh.',
+    'other': 'Could not do that right now. Try again.',
+  };
 }
 
 // Path: gifts
@@ -4623,6 +4665,14 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get guidesTitle => 'Difficult conversations';
   @override
   String get guidesText => 'One step at a time, just for you.';
+  @override
+  String get gamesLabel => 'GAMES';
+  @override
+  String get gamesTitle => 'Play together';
+  @override
+  String get gamesText => 'Short games, no scores and no winner.';
+  @override
+  String get gamesLock => 'Needs both of you';
 }
 
 // Path: temperature
@@ -5282,6 +5332,204 @@ class _Translations$acceptInvite$unusable$en extends Translations$acceptInvite$u
   String get text => 'Check the code or ask for a new invite from whoever invited you.';
   @override
   String get tryAgain => 'Type again';
+  @override
+  String get close => 'Close';
+}
+
+// Path: games.hub
+class _Translations$games$hub$en extends Translations$games$hub$pt {
+  _Translations$games$hub$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Play';
+  @override
+  String get subtitle => 'Short games for the two of you. No scores and no winner.';
+  @override
+  String get guessLabel => 'Guesses';
+  @override
+  String get talkLabel => 'Conversation';
+  @override
+  String get challengeLabel => 'Challenge';
+  @override
+  String minutes({required Object minutes}) => '${minutes} min';
+  @override
+  String invitedTitle({required Object name}) => '${name} invited you';
+  @override
+  String get invitedFallbackTitle => 'Your partner invited you';
+  @override
+  String get join => 'Join';
+  @override
+  String stateWaiting({required Object name}) => 'Waiting for ${name}';
+  @override
+  String get stateWaitingFallback => 'Waiting for your partner';
+  @override
+  String get stateInvited => 'Invited you';
+  @override
+  String get stateActive => 'In progress';
+  @override
+  String get stateFinished => 'Finished';
+  @override
+  String get stateCancelled => 'Invitation cancelled';
+  @override
+  String get stateExpired => 'Invitation expired';
+  @override
+  String get lockChip => 'Needs both of you';
+  @override
+  String get noPartnerNote => 'Games need both of you. When your partner joins, you can play.';
+  @override
+  String get refreshNote => 'To see if anything changed, come back to the app or pull to refresh.';
+  @override
+  String get loadErrorTitle => 'Could not open the games';
+  @override
+  String get loadErrorText => 'Nothing was lost. Try again.';
+}
+
+// Path: games.kinds
+class _Translations$games$kinds$en extends Translations$games$kinds$pt {
+  _Translations$games$kinds$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  late final _Translations$games$kinds$meOrYou$en meOrYou = _Translations$games$kinds$meOrYou$en._(
+    _root,
+  );
+  @override
+  late final _Translations$games$kinds$howWell$en howWell = _Translations$games$kinds$howWell$en._(
+    _root,
+  );
+  @override
+  late final _Translations$games$kinds$twentyQuestions$en twentyQuestions =
+      _Translations$games$kinds$twentyQuestions$en._(_root);
+  @override
+  late final _Translations$games$kinds$neverHaveWe$en neverHaveWe =
+      _Translations$games$kinds$neverHaveWe$en._(_root);
+  @override
+  late final _Translations$games$kinds$mission$en mission = _Translations$games$kinds$mission$en._(
+    _root,
+  );
+}
+
+// Path: games.start
+class _Translations$games$start$en extends Translations$games$start$pt {
+  _Translations$games$start$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get noWinnerNote => 'No winner, no points.';
+  @override
+  String cta({required Object name}) => 'Invite ${name}';
+  @override
+  String get ctaFallback => 'Invite your partner';
+  @override
+  String get cancelledNote =>
+      'The last invitation was cancelled. You can start again whenever you like.';
+  @override
+  String get expiredNote => 'The previous invitation expired. Invite again whenever you like.';
+  @override
+  String get noContentTitle => 'This game has no questions yet';
+  @override
+  String get noContentText => 'There is no content to play yet. Come back soon.';
+}
+
+// Path: games.invitation
+class _Translations$games$invitation$en extends Translations$games$invitation$pt {
+  _Translations$games$invitation$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String title({required Object name}) => '${name} invited you';
+  @override
+  String get titleFallback => 'Your partner invited you';
+  @override
+  String get join => 'Play now';
+  @override
+  String get later => 'Later';
+}
+
+// Path: games.waiting
+class _Translations$games$waiting$en extends Translations$games$waiting$pt {
+  _Translations$games$waiting$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String text({required Object name}) => 'Invitation sent to ${name}. It starts when they join.';
+  @override
+  String get textFallback => 'Invitation sent. It starts when your partner joins.';
+  @override
+  String get status => 'Waiting…';
+  @override
+  String get window => 'The invitation waits for up to 48 hours.';
+  @override
+  String get checkAgain => 'Check if they joined';
+  @override
+  String get cancel => 'Cancel the invitation';
+}
+
+// Path: games.active
+class _Translations$games$active$en extends Translations$games$active$pt {
+  _Translations$games$active$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'The game has started';
+  @override
+  String get text => 'Both of you are in. This game\'s screens appear here.';
+  @override
+  String get cancel => 'End the game';
+}
+
+// Path: games.cancel
+class _Translations$games$cancel$en extends Translations$games$cancel$pt {
+  _Translations$games$cancel$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'End the game?';
+  @override
+  String get text => 'The game ends for both of you. You can start another later.';
+  @override
+  String get confirm => 'End game';
+  @override
+  String get keep => 'Keep playing';
+}
+
+// Path: games.noPartner
+class _Translations$games$noPartner$en extends Translations$games$noPartner$pt {
+  _Translations$games$noPartner$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Games are for two';
+  @override
+  String get text => 'When your partner joins, you can play together.';
+}
+
+// Path: games.common
+class _Translations$games$common$en extends Translations$games$common$pt {
+  _Translations$games$common$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
   @override
   String get close => 'Close';
 }
@@ -5993,6 +6241,85 @@ class _Translations$unpair$partnerNotice$en extends Translations$unpair$partnerN
   String get ok => 'Ok';
 }
 
+// Path: games.kinds.meOrYou
+class _Translations$games$kinds$meOrYou$en extends Translations$games$kinds$meOrYou$pt {
+  _Translations$games$kinds$meOrYou$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Me or you';
+  @override
+  String get intro =>
+      'Answer separately who fits each phrase better. Then see where you thought alike.';
+}
+
+// Path: games.kinds.howWell
+class _Translations$games$kinds$howWell$en extends Translations$games$kinds$howWell$pt {
+  _Translations$games$kinds$howWell$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'How well you know me';
+  @override
+  String get intro =>
+      'Each of you answers about yourself and guesses the other\'s answer. Then comes the conversation.';
+}
+
+// Path: games.kinds.twentyQuestions
+class _Translations$games$kinds$twentyQuestions$en
+    extends Translations$games$kinds$twentyQuestions$pt {
+  _Translations$games$kinds$twentyQuestions$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => '20 questions';
+  @override
+  String get intro => 'Light questions to answer in private and reveal together.';
+}
+
+// Path: games.kinds.neverHaveWe
+class _Translations$games$kinds$neverHaveWe$en extends Translations$games$kinds$neverHaveWe$pt {
+  _Translations$games$kinds$neverHaveWe$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Never have we';
+  @override
+  String get intro =>
+      'Things you have never done together. Each of you answers in private and you see both sides at the end.';
+}
+
+// Path: games.kinds.mission
+class _Translations$games$kinds$mission$en extends Translations$games$kinds$mission$pt {
+  _Translations$games$kinds$mission$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Date mission';
+  @override
+  String get intro => 'A date idea to do together and a short reflection afterwards.';
+}
+
 // Path: temperature.result.good
 class _Translations$temperature$result$good$en extends Translations$temperature$result$good$pt {
   _Translations$temperature$result$good$en._(TranslationsEn root)
@@ -6622,6 +6949,82 @@ extension on TranslationsEn {
           'firstSlip.localNote' => 'Stays saved on this phone only.',
           'firstSlip.save' => 'Save',
           'firstSlip.saveError' => 'Could not keep it right now. Try again.',
+          'games.hub.title' => 'Play',
+          'games.hub.subtitle' => 'Short games for the two of you. No scores and no winner.',
+          'games.hub.guessLabel' => 'Guesses',
+          'games.hub.talkLabel' => 'Conversation',
+          'games.hub.challengeLabel' => 'Challenge',
+          'games.hub.minutes' => ({required Object minutes}) => '${minutes} min',
+          'games.hub.invitedTitle' => ({required Object name}) => '${name} invited you',
+          'games.hub.invitedFallbackTitle' => 'Your partner invited you',
+          'games.hub.join' => 'Join',
+          'games.hub.stateWaiting' => ({required Object name}) => 'Waiting for ${name}',
+          'games.hub.stateWaitingFallback' => 'Waiting for your partner',
+          'games.hub.stateInvited' => 'Invited you',
+          'games.hub.stateActive' => 'In progress',
+          'games.hub.stateFinished' => 'Finished',
+          'games.hub.stateCancelled' => 'Invitation cancelled',
+          'games.hub.stateExpired' => 'Invitation expired',
+          'games.hub.lockChip' => 'Needs both of you',
+          'games.hub.noPartnerNote' =>
+            'Games need both of you. When your partner joins, you can play.',
+          'games.hub.refreshNote' =>
+            'To see if anything changed, come back to the app or pull to refresh.',
+          'games.hub.loadErrorTitle' => 'Could not open the games',
+          'games.hub.loadErrorText' => 'Nothing was lost. Try again.',
+          'games.kinds.meOrYou.title' => 'Me or you',
+          'games.kinds.meOrYou.intro' =>
+            'Answer separately who fits each phrase better. Then see where you thought alike.',
+          'games.kinds.howWell.title' => 'How well you know me',
+          'games.kinds.howWell.intro' => 'Each of you answers about yourself and guesses the other\'s answer. Then comes the conversation.',
+          'games.kinds.twentyQuestions.title' => '20 questions',
+          _ => null,
+        } ??
+        switch (path) {
+          'games.kinds.twentyQuestions.intro' =>
+            'Light questions to answer in private and reveal together.',
+          'games.kinds.neverHaveWe.title' => 'Never have we',
+          'games.kinds.neverHaveWe.intro' => 'Things you have never done together. Each of you answers in private and you see both sides at the end.',
+          'games.kinds.mission.title' => 'Date mission',
+          'games.kinds.mission.intro' =>
+            'A date idea to do together and a short reflection afterwards.',
+          'games.start.noWinnerNote' => 'No winner, no points.',
+          'games.start.cta' => ({required Object name}) => 'Invite ${name}',
+          'games.start.ctaFallback' => 'Invite your partner',
+          'games.start.cancelledNote' =>
+            'The last invitation was cancelled. You can start again whenever you like.',
+          'games.start.expiredNote' =>
+            'The previous invitation expired. Invite again whenever you like.',
+          'games.start.noContentTitle' => 'This game has no questions yet',
+          'games.start.noContentText' => 'There is no content to play yet. Come back soon.',
+          'games.invitation.title' => ({required Object name}) => '${name} invited you',
+          'games.invitation.titleFallback' => 'Your partner invited you',
+          'games.invitation.join' => 'Play now',
+          'games.invitation.later' => 'Later',
+          'games.waiting.text' => ({
+            required Object name,
+          }) => 'Invitation sent to ${name}. It starts when they join.',
+          'games.waiting.textFallback' => 'Invitation sent. It starts when your partner joins.',
+          'games.waiting.status' => 'Waiting…',
+          'games.waiting.window' => 'The invitation waits for up to 48 hours.',
+          'games.waiting.checkAgain' => 'Check if they joined',
+          'games.waiting.cancel' => 'Cancel the invitation',
+          'games.active.title' => 'The game has started',
+          'games.active.text' => 'Both of you are in. This game\'s screens appear here.',
+          'games.active.cancel' => 'End the game',
+          'games.cancel.title' => 'End the game?',
+          'games.cancel.text' => 'The game ends for both of you. You can start another later.',
+          'games.cancel.confirm' => 'End game',
+          'games.cancel.keep' => 'Keep playing',
+          'games.noPartner.title' => 'Games are for two',
+          'games.noPartner.text' => 'When your partner joins, you can play together.',
+          'games.common.close' => 'Close',
+          'games.loadErrorTitle' => 'Could not open the game',
+          'games.loadErrorText' => 'Nothing was lost. Try again.',
+          'games.errors.NOT_PAIRED' => 'Games need both of you connected.',
+          'games.errors.NOT_FOUND' => 'That game no longer exists. We\'ll refresh.',
+          'games.errors.INVALID_GAME_ACTION' => 'That game changed. We\'ll refresh.',
+          'games.errors.other' => 'Could not do that right now. Try again.',
           'gifts.title' => 'Gift page',
           'gifts.subtitle' => 'A page your partner can see in the app. You choose what to share.',
           'gifts.myTitle' => 'My wishes',
@@ -6649,9 +7052,6 @@ extension on TranslationsEn {
           'gifts.budgets.other' => '',
           'gifts.noBudget' => 'No budget',
           'gifts.shared' => 'Shared',
-          _ => null,
-        } ??
-        switch (path) {
           'gifts.private' => 'Private',
           'gifts.sharedHint' => 'Your partner can see this wish.',
           'gifts.privateHint' => 'Only you can see this wish.',
@@ -7257,6 +7657,9 @@ extension on TranslationsEn {
           'loveStyle.options4.gifts' => 'A simple gift that has to do with me.',
           'loveStyle.options4.touch' => 'A caress on my hair or hand.',
           'loveStyle.options4.other' => '',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.options5.time' => 'When someone chooses to spend time with me.',
           'loveStyle.options5.words' => 'When someone acknowledges what I do.',
           'loveStyle.options5.acts' => 'When someone makes my day easier.',
@@ -7334,9 +7737,6 @@ extension on TranslationsEn {
           'memories.storyTitle' => 'Image to share',
           'memories.storyText' => 'Your numbers in an image, with only what you choose.',
           'memories.placesLabel' => 'PLACES',
-          _ => null,
-        } ??
-        switch (path) {
           'memories.placesTitle' => 'Places you have been',
           'memories.placesText' => 'Only the name of the place, never the location.',
           'memories.placeLabel' => 'Place (optional)',
@@ -7846,6 +8246,9 @@ extension on TranslationsEn {
           'programs.saved' => 'Saved for later.',
           'programs.savedTag' => 'Saved',
           'programs.lockedTitle' => 'Plus lesson',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.lockedLessonText' => 'This lesson is part of Plus.',
           'programs.lockedProgramText' => 'This program is part of Plus.',
           'programs.completeTitle' => 'Well done',
@@ -7917,9 +8320,6 @@ extension on TranslationsEn {
           'questions.you' => 'You',
           'questions.partnerFallback' => 'Your partner',
           'questions.discardTitle' => 'Discard this answer?',
-          _ => null,
-        } ??
-        switch (path) {
           'questions.discardText' => 'The text you wrote was not saved.',
           'questions.discard' => 'Discard',
           'questions.keepWriting' => 'Keep writing',
@@ -8410,6 +8810,9 @@ extension on TranslationsEn {
           'spice.turnOff' => 'Turn off',
           'spice.errorTitle' => 'Couldn\'t load',
           'spice.errorText' => 'Try again in a moment.',
+          _ => null,
+        } ??
+        switch (path) {
           'spice.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'spice.errors.other' => 'Couldn\'t change that right now. Try again.',
           'story.title' => 'Image to share',
@@ -8482,9 +8885,6 @@ extension on TranslationsEn {
           'tabs.segmentForMe' => 'For me',
           'tabs.checkinLabel' => 'CHECK-IN',
           'tabs.checkinTitle' => 'Weekly check-in',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.checkinText' => 'A short conversation, private first.',
           'tabs.logisticsLabel' => 'PRACTICAL',
           'tabs.logisticsTitle' => 'Logistics',
@@ -8568,6 +8968,10 @@ extension on TranslationsEn {
           'tabs.guidesLabel' => 'CONVERSATIONS',
           'tabs.guidesTitle' => 'Difficult conversations',
           'tabs.guidesText' => 'One step at a time, just for you.',
+          'tabs.gamesLabel' => 'GAMES',
+          'tabs.gamesTitle' => 'Play together',
+          'tabs.gamesText' => 'Short games, no scores and no winner.',
+          'tabs.gamesLock' => 'Needs both of you',
           'temperature.levelTitle' => 'How is it between you?',
           'temperature.levelHighlight' => 'between you',
           'temperature.levelNote' => 'Private. Never becomes a score.',

@@ -86,5 +86,9 @@
   "fightStyleText": "Uma reflexão curta e privada sobre o seu jeito.",
   "guidesLabel": "CONVERSAS",
   "guidesTitle": "Conversas difíceis",
-  "guidesText": "Um passo de cada vez, só para você."
+  "guidesText": "Um passo de cada vez, só para você.",
+  "gamesLabel": "JOGOS",
+  "gamesTitle": "Jogar juntos",
+  "gamesText": "Jogos curtos, sem placar e sem vencedor.",
+  "gamesLock": "Precisa dos dois"
 }
