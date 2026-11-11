@@ -23,6 +23,7 @@ import 'package:remote_config_service/remote_config_service.dart';
 import 'package:review_service/review_service.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
 import 'package:share_service/share_service.dart';
+import 'package:storage_service/storage_service.dart';
 
 class SharedInjectionModule() implements InjectionModule {
   @override
@@ -64,6 +65,8 @@ class SharedInjectionModule() implements InjectionModule {
       ),
     )
     ..registerLazySingleton<ShareService>(ShareService.new)
+    ..registerLazySingleton<StorageService>(StorageService.new)
+    ..registerLazySingleton<StorageService>(StorageService.new)
     ..registerLazySingleton<ConnectivityService>(InternetConnectivityService.new)
     ..registerLazySingleton<BiometricService>(BiometricServiceImpl.new);
 }

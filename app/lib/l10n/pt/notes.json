@@ -1,0 +1,30 @@
+{
+  "title": "Bilhete ou desenho",
+  "intro": "Um recado curto que seu par recebe quando abrir o app. Sem contagem, sem cobrança.",
+  "kinds": ["Bilhete", "Desenho"],
+  "noteHint": "Ex.: boa sorte na reunião de hoje",
+  "canvasLabel": "Área do desenho",
+  "pens": ["Preto", "Laranja", "Roxo", "Verde"],
+  "pen": "Caneta",
+  "eraser": "Borracha",
+  "undo": "Desfazer",
+  "clear": "Limpar",
+  "emptyDrawing": "Faça um traço para poder enviar.",
+  "widgetLabel": "Pode aparecer no widget",
+  "widgetText": "Só aparece se seu par permitir recados no widget. Se não, ele vê só dentro do app.",
+  "send": "Enviar",
+  "sent": "Enviado",
+  "sentTitle": "Enviados",
+  "seen": "Visto",
+  "delivered": "Enviado",
+  "drawingAlt": "Desenho enviado",
+  "delete": "Apagar",
+  "emptyTitle": "Nada enviado ainda",
+  "emptyText": "Quando você mandar um bilhete ou desenho, ele aparece aqui.",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "Tente de novo em instantes.",
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para enviar agora. O que você escreveu continua aqui."
+  }
+}

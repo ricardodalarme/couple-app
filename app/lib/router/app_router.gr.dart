@@ -176,6 +176,22 @@ class CheckinRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ComposePage]
+class ComposeRoute extends PageRouteInfo<void> {
+  const ComposeRoute({List<PageRouteInfo>? children})
+    : super(ComposeRoute.name, initialChildren: children);
+
+  static const String name = 'ComposeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const ComposePage());
+    },
+  );
+}
+
+/// generated route for
 /// [ConsentsPage]
 class ConsentsRoute extends PageRouteInfo<void> {
   const ConsentsRoute({List<PageRouteInfo>? children})

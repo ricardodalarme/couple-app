@@ -348,3 +348,17 @@ grant execute on function public.start_pause(timestamptz, text), public.end_paus
   public.send_partner_message(text, text, text, boolean), public.mark_partner_message(uuid, boolean),
   public.partner_answered(text), public.invite_to_game(text, text[]), public.update_game(uuid, text, text),
   public.answer_game(uuid, integer, text) to authenticated;
+
+-- The sender can take back a note or drawing (mirrors migration 20261111000300_delete_partner_message.sql).
+create function public.delete_partner_message(message_id uuid) returns boolean
+language plpgsql security definer set search_path = '' as $$
+declare v_uid uuid := private.require_user(); v_recipient uuid;
+begin
+  delete from public.partner_messages m
+  where m.id = delete_partner_message.message_id and m.sender_id = v_uid
+  returning m.recipient_id into v_recipient;
+  if not found then return false; end if;
+  perform private.signal('user:' || v_recipient, 'partner_message');
+  return true;
+end $$;
+grant execute on function public.delete_partner_message(uuid) to authenticated;

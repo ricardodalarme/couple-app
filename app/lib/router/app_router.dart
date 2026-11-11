@@ -33,6 +33,7 @@ import 'package:flutter_bloc_starter/features/lists/presentation/lists/lists_pag
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/memories_page.dart';
 import 'package:flutter_bloc_starter/features/mood/presentation/mood/mood_page.dart';
 import 'package:flutter_bloc_starter/features/not_found/presentation/not_found/not_found_page.dart';
+import 'package:flutter_bloc_starter/features/notes/presentation/compose/compose_page.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/permission/notification_permission_page.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/preferences/notification_preferences_page.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/first_slip/first_slip_page.dart';
@@ -141,6 +142,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: LogisticsRoute.page),
     AutoRoute(page: RitualsRoute.page),
     AutoRoute(page: PartnerProfileRoute.page),
+    AutoRoute(page: ComposeRoute.page),
     AutoRoute(page: DatesRoute.page),
     AutoRoute(page: PlansRoute.page),
     AutoRoute(page: ManagePlusRoute.page),

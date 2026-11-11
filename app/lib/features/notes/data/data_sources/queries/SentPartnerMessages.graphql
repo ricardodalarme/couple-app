@@ -1,0 +1,19 @@
+query SentPartnerMessages($senderId: UUID!) {
+  partnerMessagesCollection(
+    filter: { senderId: { eq: $senderId } }
+    orderBy: [{ createdAt: DescNullsLast }]
+    first: 30
+  ) {
+    edges {
+      node {
+        id
+        kind
+        body
+        mediaPath
+        forWidget
+        seenAt
+        createdAt
+      }
+    }
+  }
+}

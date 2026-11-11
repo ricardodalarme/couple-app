@@ -61,6 +61,8 @@ dependencies:
     path: ../packages/services/review
   secure_storage_service:
     path: ../packages/services/secure_storage
+  storage_service:
+    path: ../packages/services/storage
   share_service:
     path: ../packages/services/share
   slang: ^4.19.2

@@ -1,0 +1,3 @@
+mutation DeletePartnerMessage($messageId: UUID!) {
+  deletePartnerMessage(messageId: $messageId)
+}

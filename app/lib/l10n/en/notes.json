@@ -1,0 +1,30 @@
+{
+  "title": "A note or a drawing",
+  "intro": "A short message your partner gets when they open the app. No counting, no pressure.",
+  "kinds": ["Note", "Drawing"],
+  "noteHint": "E.g. good luck at today's meeting",
+  "canvasLabel": "Drawing area",
+  "pens": ["Black", "Orange", "Purple", "Green"],
+  "pen": "Pen",
+  "eraser": "Eraser",
+  "undo": "Undo",
+  "clear": "Clear",
+  "emptyDrawing": "Draw something to be able to send it.",
+  "widgetLabel": "May show on the widget",
+  "widgetText": "It only shows if your partner allows notes on their widget. Otherwise they see it only inside the app.",
+  "send": "Send",
+  "sent": "Sent",
+  "sentTitle": "Sent",
+  "seen": "Seen",
+  "delivered": "Sent",
+  "drawingAlt": "Drawing you sent",
+  "delete": "Delete",
+  "emptyTitle": "Nothing sent yet",
+  "emptyText": "When you send a note or a drawing, it shows up here.",
+  "errorTitle": "Couldn't load",
+  "errorText": "Try again in a moment.",
+  "errors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't send right now. What you wrote is still here."
+  }
+}

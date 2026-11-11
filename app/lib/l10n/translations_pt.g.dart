@@ -90,6 +90,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$mood$pt mood = Translations$mood$pt.internal(_root);
   late final Translations$need$pt need = Translations$need$pt.internal(_root);
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
+  late final Translations$notes$pt notes = Translations$notes$pt.internal(_root);
   late final Translations$notificationPermission$pt notificationPermission =
       Translations$notificationPermission$pt.internal(_root);
   late final Translations$notificationPreferences$pt notificationPreferences =
@@ -2579,6 +2580,92 @@ class Translations$notFound$pt {
   String get buttonBack => 'Voltar para página inicial';
 }
 
+// Path: notes
+class Translations$notes$pt {
+  Translations$notes$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Bilhete ou desenho'
+  String get title => 'Bilhete ou desenho';
+
+  /// pt: 'Um recado curto que seu par recebe quando abrir o app. Sem contagem, sem cobrança.'
+  String get intro =>
+      'Um recado curto que seu par recebe quando abrir o app. Sem contagem, sem cobrança.';
+
+  List<String> get kinds => ['Bilhete', 'Desenho'];
+
+  /// pt: 'Ex.: boa sorte na reunião de hoje'
+  String get noteHint => 'Ex.: boa sorte na reunião de hoje';
+
+  /// pt: 'Área do desenho'
+  String get canvasLabel => 'Área do desenho';
+
+  List<String> get pens => ['Preto', 'Laranja', 'Roxo', 'Verde'];
+
+  /// pt: 'Caneta'
+  String get pen => 'Caneta';
+
+  /// pt: 'Borracha'
+  String get eraser => 'Borracha';
+
+  /// pt: 'Desfazer'
+  String get undo => 'Desfazer';
+
+  /// pt: 'Limpar'
+  String get clear => 'Limpar';
+
+  /// pt: 'Faça um traço para poder enviar.'
+  String get emptyDrawing => 'Faça um traço para poder enviar.';
+
+  /// pt: 'Pode aparecer no widget'
+  String get widgetLabel => 'Pode aparecer no widget';
+
+  /// pt: 'Só aparece se seu par permitir recados no widget. Se não, ele vê só dentro do app.'
+  String get widgetText =>
+      'Só aparece se seu par permitir recados no widget. Se não, ele vê só dentro do app.';
+
+  /// pt: 'Enviar'
+  String get send => 'Enviar';
+
+  /// pt: 'Enviado'
+  String get sent => 'Enviado';
+
+  /// pt: 'Enviados'
+  String get sentTitle => 'Enviados';
+
+  /// pt: 'Visto'
+  String get seen => 'Visto';
+
+  /// pt: 'Enviado'
+  String get delivered => 'Enviado';
+
+  /// pt: 'Desenho enviado'
+  String get drawingAlt => 'Desenho enviado';
+
+  /// pt: 'Apagar'
+  String get delete => 'Apagar';
+
+  /// pt: 'Nada enviado ainda'
+  String get emptyTitle => 'Nada enviado ainda';
+
+  /// pt: 'Quando você mandar um bilhete ou desenho, ele aparece aqui.'
+  String get emptyText => 'Quando você mandar um bilhete ou desenho, ele aparece aqui.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Tente de novo em instantes.'
+  String get errorText => 'Tente de novo em instantes.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para enviar agora. O que você escreveu continua aqui.',
+  };
+}
+
 // Path: notificationPermission
 class Translations$notificationPermission$pt {
   Translations$notificationPermission$pt.internal(this._root);
@@ -4658,6 +4745,15 @@ class Translations$tabs$pt {
 
   /// pt: 'Notas privadas para lembrar do que ele ou ela gosta.'
   String get partnerText => 'Notas privadas para lembrar do que ele ou ela gosta.';
+
+  /// pt: 'PARA SEU PAR'
+  String get notesLabel => 'PARA SEU PAR';
+
+  /// pt: 'Bilhete ou desenho'
+  String get notesTitle => 'Bilhete ou desenho';
+
+  /// pt: 'Mande algo curto e carinhoso, quando quiser.'
+  String get notesText => 'Mande algo curto e carinhoso, quando quiser.';
 
   /// pt: 'DATAS'
   String get datesLabel => 'DATAS';
@@ -7692,6 +7788,38 @@ extension on Translations {
           'notFound.title' => '404',
           'notFound.description' => 'Página não encontrada',
           'notFound.buttonBack' => 'Voltar para página inicial',
+          'notes.title' => 'Bilhete ou desenho',
+          'notes.intro' =>
+            'Um recado curto que seu par recebe quando abrir o app. Sem contagem, sem cobrança.',
+          'notes.kinds.0' => 'Bilhete',
+          'notes.kinds.1' => 'Desenho',
+          'notes.noteHint' => 'Ex.: boa sorte na reunião de hoje',
+          'notes.canvasLabel' => 'Área do desenho',
+          'notes.pens.0' => 'Preto',
+          'notes.pens.1' => 'Laranja',
+          'notes.pens.2' => 'Roxo',
+          'notes.pens.3' => 'Verde',
+          'notes.pen' => 'Caneta',
+          'notes.eraser' => 'Borracha',
+          'notes.undo' => 'Desfazer',
+          'notes.clear' => 'Limpar',
+          'notes.emptyDrawing' => 'Faça um traço para poder enviar.',
+          'notes.widgetLabel' => 'Pode aparecer no widget',
+          'notes.widgetText' =>
+            'Só aparece se seu par permitir recados no widget. Se não, ele vê só dentro do app.',
+          'notes.send' => 'Enviar',
+          'notes.sent' => 'Enviado',
+          'notes.sentTitle' => 'Enviados',
+          'notes.seen' => 'Visto',
+          'notes.delivered' => 'Enviado',
+          'notes.drawingAlt' => 'Desenho enviado',
+          'notes.delete' => 'Apagar',
+          'notes.emptyTitle' => 'Nada enviado ainda',
+          'notes.emptyText' => 'Quando você mandar um bilhete ou desenho, ele aparece aqui.',
+          'notes.errorTitle' => 'Não deu para carregar',
+          'notes.errorText' => 'Tente de novo em instantes.',
+          'notes.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'notes.errors.other' => 'Não deu para enviar agora. O que você escreveu continua aqui.',
           'notificationPermission.label' => 'Lembretes',
           'notificationPermission.title' => 'Lembretes gentis?',
           'notificationPermission.titleHighlight' => 'gentis',
@@ -7814,6 +7942,9 @@ extension on Translations {
           'plus.subscribe' => 'Assinar',
           'plus.started' => 'Plus ativado. Obrigado.',
           'plus.pending' => 'Compra recebida. Estamos confirmando, o Plus aparece em instantes.',
+          _ => null,
+        } ??
+        switch (path) {
           'plus.purchaseError' => 'Não deu para concluir a compra. Nada foi cobrado.',
           'plus.billingTitle' => 'Problema no pagamento',
           'plus.billingText' => 'O último pagamento não passou. O Plus continua por enquanto. Abra suas assinaturas na loja e atualize a forma de pagamento.',
@@ -7845,9 +7976,6 @@ extension on Translations {
           'plus.restoreLoadingText' => 'Isso leva alguns segundos.',
           'plus.restoredTitle' => 'Compras restauradas',
           'plus.restoredHighlight' => 'restauradas',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.restoredText' => 'Encontramos o seu Plus na loja.',
           'plus.pendingRestoreTitle' => 'Encontramos uma compra',
           'plus.pendingRestoreHighlight' => 'compra',
@@ -8463,6 +8591,9 @@ extension on Translations {
           'slipDetail.notFoundTitle' => 'Este slip não existe mais',
           'slipDetail.notFoundText' => 'Ele pode ter sido apagado.',
           'slipDetail.errorTitle' => 'Não deu para abrir este slip',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.errorText' => 'Ele continua salvo. Tente de novo.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'Este slip não existe mais.',
           'slipDetail.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
@@ -8645,6 +8776,9 @@ extension on Translations {
           'tabs.partnerLabel' => 'SÓ PARA VOCÊ',
           'tabs.partnerTitle' => 'Sobre seu par',
           'tabs.partnerText' => 'Notas privadas para lembrar do que ele ou ela gosta.',
+          'tabs.notesLabel' => 'PARA SEU PAR',
+          'tabs.notesTitle' => 'Bilhete ou desenho',
+          'tabs.notesText' => 'Mande algo curto e carinhoso, quando quiser.',
           'tabs.datesLabel' => 'DATAS',
           'tabs.datesTitle' => 'Datas importantes',
           'tabs.datesText' => 'Aniversários, presentes e feriados, com aviso antes.',

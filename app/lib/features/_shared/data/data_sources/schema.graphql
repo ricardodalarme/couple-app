@@ -4147,6 +4147,7 @@ type Mutation {
   createInvite: InviteCreated
   createSupportRequest(topic: String!, message: String!, replyEmail: String, appVersion: String): Boolean
   deleteCard(cardId: UUID!): Boolean
+  deletePartnerMessage(messageId: UUID!): Boolean
 
   """Deletes zero or more records from the `Agreements` collection"""
   deleteFromAgreementsCollection(

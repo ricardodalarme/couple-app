@@ -114,6 +114,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$notFound$en notFound = _Translations$notFound$en._(_root);
   @override
+  late final _Translations$notes$en notes = _Translations$notes$en._(_root);
+  @override
   late final _Translations$notificationPermission$en notificationPermission =
       _Translations$notificationPermission$en._(_root);
   @override
@@ -2119,6 +2121,70 @@ class _Translations$notFound$en extends Translations$notFound$pt {
   String get buttonBack => 'Go back home';
 }
 
+// Path: notes
+class _Translations$notes$en extends Translations$notes$pt {
+  _Translations$notes$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'A note or a drawing';
+  @override
+  String get intro =>
+      'A short message your partner gets when they open the app. No counting, no pressure.';
+  @override
+  List<String> get kinds => ['Note', 'Drawing'];
+  @override
+  String get noteHint => 'E.g. good luck at today\'s meeting';
+  @override
+  String get canvasLabel => 'Drawing area';
+  @override
+  List<String> get pens => ['Black', 'Orange', 'Purple', 'Green'];
+  @override
+  String get pen => 'Pen';
+  @override
+  String get eraser => 'Eraser';
+  @override
+  String get undo => 'Undo';
+  @override
+  String get clear => 'Clear';
+  @override
+  String get emptyDrawing => 'Draw something to be able to send it.';
+  @override
+  String get widgetLabel => 'May show on the widget';
+  @override
+  String get widgetText =>
+      'It only shows if your partner allows notes on their widget. Otherwise they see it only inside the app.';
+  @override
+  String get send => 'Send';
+  @override
+  String get sent => 'Sent';
+  @override
+  String get sentTitle => 'Sent';
+  @override
+  String get seen => 'Seen';
+  @override
+  String get delivered => 'Sent';
+  @override
+  String get drawingAlt => 'Drawing you sent';
+  @override
+  String get delete => 'Delete';
+  @override
+  String get emptyTitle => 'Nothing sent yet';
+  @override
+  String get emptyText => 'When you send a note or a drawing, it shows up here.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Try again in a moment.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t send right now. What you wrote is still here.',
+  };
+}
+
 // Path: notificationPermission
 class _Translations$notificationPermission$en extends Translations$notificationPermission$pt {
   _Translations$notificationPermission$en._(TranslationsEn root)
@@ -3751,6 +3817,12 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get partnerTitle => 'About your partner';
   @override
   String get partnerText => 'Private notes to remember what they like.';
+  @override
+  String get notesLabel => 'FOR YOUR PARTNER';
+  @override
+  String get notesTitle => 'A note or a drawing';
+  @override
+  String get notesText => 'Send something short and kind, whenever you like.';
   @override
   String get datesLabel => 'DATES';
   @override
@@ -6353,6 +6425,37 @@ extension on TranslationsEn {
           'notFound.title' => '404',
           'notFound.description' => 'Page not found',
           'notFound.buttonBack' => 'Go back home',
+          'notes.title' => 'A note or a drawing',
+          'notes.intro' =>
+            'A short message your partner gets when they open the app. No counting, no pressure.',
+          'notes.kinds.0' => 'Note',
+          'notes.kinds.1' => 'Drawing',
+          'notes.noteHint' => 'E.g. good luck at today\'s meeting',
+          'notes.canvasLabel' => 'Drawing area',
+          'notes.pens.0' => 'Black',
+          'notes.pens.1' => 'Orange',
+          'notes.pens.2' => 'Purple',
+          'notes.pens.3' => 'Green',
+          'notes.pen' => 'Pen',
+          'notes.eraser' => 'Eraser',
+          'notes.undo' => 'Undo',
+          'notes.clear' => 'Clear',
+          'notes.emptyDrawing' => 'Draw something to be able to send it.',
+          'notes.widgetLabel' => 'May show on the widget',
+          'notes.widgetText' => 'It only shows if your partner allows notes on their widget. Otherwise they see it only inside the app.',
+          'notes.send' => 'Send',
+          'notes.sent' => 'Sent',
+          'notes.sentTitle' => 'Sent',
+          'notes.seen' => 'Seen',
+          'notes.delivered' => 'Sent',
+          'notes.drawingAlt' => 'Drawing you sent',
+          'notes.delete' => 'Delete',
+          'notes.emptyTitle' => 'Nothing sent yet',
+          'notes.emptyText' => 'When you send a note or a drawing, it shows up here.',
+          'notes.errorTitle' => 'Couldn\'t load',
+          'notes.errorText' => 'Try again in a moment.',
+          'notes.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'notes.errors.other' => 'Couldn\'t send right now. What you wrote is still here.',
           'notificationPermission.label' => 'Reminders',
           'notificationPermission.title' => 'Gentle reminders?',
           'notificationPermission.titleHighlight' => 'Gentle',
@@ -6471,6 +6574,9 @@ extension on TranslationsEn {
           'plus.subscribe' => 'Subscribe',
           'plus.started' => 'Plus is on. Thank you.',
           'plus.pending' => 'Purchase received. We\'re confirming, Plus will show up shortly.',
+          _ => null,
+        } ??
+        switch (path) {
           'plus.purchaseError' => 'Couldn\'t complete the purchase. Nothing was charged.',
           'plus.billingTitle' => 'Payment problem',
           'plus.billingText' => 'The last payment didn\'t go through. Plus stays on for now. Open your subscriptions in the store and update the payment method.',
@@ -6502,9 +6608,6 @@ extension on TranslationsEn {
           'plus.restoreLoadingText' => 'This takes a few seconds.',
           'plus.restoredTitle' => 'Purchases restored',
           'plus.restoredHighlight' => 'restored',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.restoredText' => 'We found your Plus in the store.',
           'plus.pendingRestoreTitle' => 'We found a purchase',
           'plus.pendingRestoreHighlight' => 'purchase',
@@ -7119,6 +7222,9 @@ extension on TranslationsEn {
           'slipDetail.notFoundTitle' => 'This slip no longer exists',
           'slipDetail.notFoundText' => 'It may have been deleted.',
           'slipDetail.errorTitle' => 'Couldn\'t open this slip',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.errorText' => 'It is still saved. Try again.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'This slip no longer exists.',
           'slipDetail.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
@@ -7301,6 +7407,9 @@ extension on TranslationsEn {
           'tabs.partnerLabel' => 'JUST FOR YOU',
           'tabs.partnerTitle' => 'About your partner',
           'tabs.partnerText' => 'Private notes to remember what they like.',
+          'tabs.notesLabel' => 'FOR YOUR PARTNER',
+          'tabs.notesTitle' => 'A note or a drawing',
+          'tabs.notesText' => 'Send something short and kind, whenever you like.',
           'tabs.datesLabel' => 'DATES',
           'tabs.datesTitle' => 'Important dates',
           'tabs.datesText' => 'Birthdays, gifts and holidays, with a heads-up.',

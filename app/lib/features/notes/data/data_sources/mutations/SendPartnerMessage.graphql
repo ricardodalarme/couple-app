@@ -1,0 +1,5 @@
+mutation SendPartnerMessage($kind: String!, $body: String, $mediaPath: String, $forWidget: Boolean) {
+  sendPartnerMessage(kind: $kind, body: $body, mediaPath: $mediaPath, forWidget: $forWidget) {
+    id
+  }
+}

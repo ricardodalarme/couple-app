@@ -1,0 +1,17 @@
+name: storage_service
+resolution: workspace
+publish_to: "none"
+
+environment:
+  sdk: ^3.13.7
+  flutter: ^3.47.9
+
+dependencies:
+  flutter:
+    sdk: flutter
+  supabase_flutter: ^2.18.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.5
