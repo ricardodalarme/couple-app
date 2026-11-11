@@ -7,7 +7,8 @@
 //        { type: "error", code }       CHAT_UNAVAILABLE | CHAT_DISABLED | CHAT_LIMIT | UPSTREAM
 // Nothing the person writes and nothing the model answers is stored: a row without text counts against the
 // daily limit, and that is all. Message texts and the model reply are never logged.
-// Requires secrets CHAT_API_URL (an OpenAI-compatible base, e.g. https://host/v1), CHAT_API_KEY and CHAT_MODEL.
+// Requires secrets CHAT_API_URL (an OpenAI-compatible base, e.g. https://host/v1), CHAT_API_KEY and CHAT_MODEL;
+// CHAT_EXTRA_BODY and CHAT_EXTRA_HEADERS (JSON objects) are optional.
 // verify_jwt = true only proves the token is valid, and the public anon key is a valid JWT, so the role is checked here.
 import { cors, json, log, sql } from "../_shared/db.ts";
 import { type ChatEvent, relay } from "./relay.ts";
@@ -52,8 +53,8 @@ const oneEvent = (event: Record<string, unknown>, status = 200) => {
 function systemPrompt(locale: string, mode: string): string {
   const pt = locale.startsWith("pt");
   const base = pt
-    ? "Você é a mascote de um app para casais: calma, acolhedora e curta. Responda em português do Brasil, em no máximo 90 palavras, com no máximo uma pergunta. Nunca diagnostique, nunca dê conselho médico, jurídico ou clínico, nunca tome partido contra a outra pessoa e nunca pressione a pessoa a ficar ou a terminar. Não use pontuação, ranking ou cobrança. Se houver sinal de perigo, sugira procurar alguém de confiança ou o serviço de emergência da região. Termine sempre com uma última linha no formato [[options: resposta curta 1 | resposta curta 2 | resposta curta 3]], com no máximo três opções de até quatro palavras."
-    : "You are the mascot of a couples app: calm, warm and brief. Answer in English, in at most 90 words, with at most one question. Never diagnose, never give medical, legal or clinical advice, never take sides against the other person and never push the person to stay or to leave. No scores, rankings or guilt. If there is any sign of danger, suggest reaching someone they trust or local emergency services. Always end with a last line in the format [[options: short answer 1 | short answer 2 | short answer 3]], with at most three options of up to four words.";
+    ? "Você é a mascote de um app para casais: calma, acolhedora e curta. Responda em português do Brasil, em no máximo 90 palavras, com no máximo uma pergunta. Nunca diagnostique, nunca dê conselho médico, jurídico ou clínico, nunca tome partido contra a outra pessoa e nunca pressione a pessoa a ficar ou a terminar. Não use pontuação, ranking ou cobrança. Só se a pessoa descrever perigo real, sugira procurar alguém de confiança ou o serviço de emergência da região; em qualquer outra conversa não mencione isso. Termine sempre com uma última linha no formato [[options: resposta curta 1 | resposta curta 2 | resposta curta 3]], com no máximo três opções de até quatro palavras."
+    : "You are the mascot of a couples app: calm, warm and brief. Answer in English, in at most 90 words, with at most one question. Never diagnose, never give medical, legal or clinical advice, never take sides against the other person and never push the person to stay or to leave. No scores, rankings or guilt. Only if the person describes real danger, suggest reaching someone they trust or local emergency services; in any other conversation do not mention it. Always end with a last line in the format [[options: short answer 1 | short answer 2 | short answer 3]], with at most three options of up to four words.";
   if (mode !== "hard_conversation") return base;
 
   return base + (pt
@@ -62,6 +63,26 @@ function systemPrompt(locale: string, mode: string): string {
 }
 
 type Turn = { role: "user" | "mascot"; text: string };
+
+// Optional provider settings, as JSON objects in secrets: CHAT_EXTRA_BODY merges into the request body
+// (for example to switch a model's thinking off) and CHAT_EXTRA_HEADERS adds headers, where "{session}"
+// becomes a fresh id for gateways that route by session.
+function jsonEnv(name: string): Record<string, unknown> {
+  try {
+    const value = JSON.parse(Deno.env.get(name) ?? "{}");
+    return value && typeof value === "object" && !Array.isArray(value) ? value : {};
+  } catch {
+    return {};
+  }
+}
+const extraBody = () => jsonEnv("CHAT_EXTRA_BODY");
+const extraHeaders = (): Record<string, string> =>
+  Object.fromEntries(
+    Object.entries(jsonEnv("CHAT_EXTRA_HEADERS")).map(([k, v]) => [
+      k,
+      String(v).replace("{session}", crypto.randomUUID()),
+    ]),
+  );
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: cors });
@@ -111,8 +132,19 @@ Deno.serve(async (req) => {
 
   const upstream = await fetch(`${apiUrl.replace(/\/$/, "")}/chat/completions`, {
     method: "POST",
-    headers: { "content-type": "application/json", authorization: `Bearer ${apiKey}` },
-    body: JSON.stringify({ model, messages, stream: true, temperature: 0.6, max_tokens: 400 }),
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${apiKey}`,
+      ...extraHeaders(),
+    },
+    body: JSON.stringify({
+      model,
+      messages,
+      stream: true,
+      temperature: 0.6,
+      max_tokens: 600,
+      ...extraBody(),
+    }),
   }).catch(() => null);
   if (!upstream || !upstream.ok || !upstream.body) {
     log("chat_upstream_failed", { status: upstream?.status ?? 0 });
