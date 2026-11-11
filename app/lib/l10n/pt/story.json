@@ -1,0 +1,18 @@
+{
+  "title": "Imagem para compartilhar",
+  "privacyNote": "A imagem é feita no seu aparelho e não leva nomes nem texto, a menos que você escolha.",
+  "days": "dias",
+  "together": "juntos",
+  "namesLabel": "Incluir os nomes",
+  "namesText": "Desligado por padrão.",
+  "phraseLabel": "Uma frase (opcional)",
+  "phraseHint": "Ex.: ainda tem muito pela frente",
+  "share": "Compartilhar imagem",
+  "emptyTitle": "Falta a data de vocês",
+  "emptyText": "Defina desde quando vocês estão juntos em Nossa história para gerar a imagem.",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "Tente de novo em instantes.",
+  "errors(map)": {
+    "other": "Não deu para compartilhar agora. Tente de novo."
+  }
+}

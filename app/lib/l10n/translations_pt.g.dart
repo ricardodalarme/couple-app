@@ -138,6 +138,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$slipKind$pt slipKind = Translations$slipKind$pt.internal(_root);
   late final Translations$slipsList$pt slipsList = Translations$slipsList$pt.internal(_root);
   late final Translations$spice$pt spice = Translations$spice$pt.internal(_root);
+  late final Translations$story$pt story = Translations$story$pt.internal(_root);
   late final Translations$sundayCard$pt sundayCard = Translations$sundayCard$pt.internal(_root);
   late final Translations$tabs$pt tabs = Translations$tabs$pt.internal(_root);
   late final Translations$temperature$pt temperature = Translations$temperature$pt.internal(_root);
@@ -2765,6 +2766,15 @@ class Translations$memories$pt {
   /// pt: 'Marcos, datas, lugares e a nossa história em números.'
   String get historyText => 'Marcos, datas, lugares e a nossa história em números.';
 
+  /// pt: 'COMPARTILHAR'
+  String get storyLabel => 'COMPARTILHAR';
+
+  /// pt: 'Imagem para compartilhar'
+  String get storyTitle => 'Imagem para compartilhar';
+
+  /// pt: 'Seus números em uma imagem, só com o que você escolher.'
+  String get storyText => 'Seus números em uma imagem, só com o que você escolher.';
+
   /// pt: 'LUGARES'
   String get placesLabel => 'LUGARES';
 
@@ -5173,6 +5183,58 @@ class Translations$spice$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para mudar agora. Tente de novo.',
   };
+}
+
+// Path: story
+class Translations$story$pt {
+  Translations$story$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Imagem para compartilhar'
+  String get title => 'Imagem para compartilhar';
+
+  /// pt: 'A imagem é feita no seu aparelho e não leva nomes nem texto, a menos que você escolha.'
+  String get privacyNote =>
+      'A imagem é feita no seu aparelho e não leva nomes nem texto, a menos que você escolha.';
+
+  /// pt: 'dias'
+  String get days => 'dias';
+
+  /// pt: 'juntos'
+  String get together => 'juntos';
+
+  /// pt: 'Incluir os nomes'
+  String get namesLabel => 'Incluir os nomes';
+
+  /// pt: 'Desligado por padrão.'
+  String get namesText => 'Desligado por padrão.';
+
+  /// pt: 'Uma frase (opcional)'
+  String get phraseLabel => 'Uma frase (opcional)';
+
+  /// pt: 'Ex.: ainda tem muito pela frente'
+  String get phraseHint => 'Ex.: ainda tem muito pela frente';
+
+  /// pt: 'Compartilhar imagem'
+  String get share => 'Compartilhar imagem';
+
+  /// pt: 'Falta a data de vocês'
+  String get emptyTitle => 'Falta a data de vocês';
+
+  /// pt: 'Defina desde quando vocês estão juntos em Nossa história para gerar a imagem.'
+  String get emptyText =>
+      'Defina desde quando vocês estão juntos em Nossa história para gerar a imagem.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Tente de novo em instantes.'
+  String get errorText => 'Tente de novo em instantes.';
+
+  Map<String, String> get errors => {'other': 'Não deu para compartilhar agora. Tente de novo.'};
 }
 
 // Path: sundayCard
@@ -8519,6 +8581,9 @@ extension on Translations {
           'memories.historyLabel' => 'NOSSA HISTÓRIA',
           'memories.historyTitle' => 'Nossa história',
           'memories.historyText' => 'Marcos, datas, lugares e a nossa história em números.',
+          'memories.storyLabel' => 'COMPARTILHAR',
+          'memories.storyTitle' => 'Imagem para compartilhar',
+          'memories.storyText' => 'Seus números em uma imagem, só com o que você escolher.',
           'memories.placesLabel' => 'LUGARES',
           'memories.placesTitle' => 'Lugares onde vocês estiveram',
           'memories.placesText' => 'Só o nome do lugar, nunca a localização.',
@@ -8593,12 +8658,12 @@ extension on Translations {
           'mood.errors.TIMEOUT' => 'Não deu para salvar seu humor a tempo. Tente de novo.',
           'mood.errors.other' => 'Não deu para salvar seu humor. Tente de novo.',
           'mood.entryCategory' => 'Humor do dia',
-          'mood.entryTitle' => 'Como você está hoje?',
-          'mood.entryText' => 'Um toque. Só você vê até compartilhar.',
-          'mood.partnerLabel' => 'Humor do seu par',
           _ => null,
         } ??
         switch (path) {
+          'mood.entryTitle' => 'Como você está hoje?',
+          'mood.entryText' => 'Um toque. Só você vê até compartilhar.',
+          'mood.partnerLabel' => 'Humor do seu par',
           'mood.partnerFallback' => 'Seu par',
           'mood.partnerHappy' => ({required Object name}) => '${name} está feliz hoje',
           'mood.partnerTired' => ({required Object name}) => '${name} está sem energia hoje',
@@ -9180,12 +9245,12 @@ extension on Translations {
           'received.responses.other' => '',
           'received.seen' => 'Entendi',
           'received.doneTitle' => 'Tudo certo',
-          'received.doneText' => 'Obrigado por ler com calma.',
-          'received.emptyTitle' => 'Nada novo',
-          'received.emptyText' => 'Quando seu par mandar algo, aparece aqui.',
           _ => null,
         } ??
         switch (path) {
+          'received.doneText' => 'Obrigado por ler com calma.',
+          'received.emptyTitle' => 'Nada novo',
+          'received.emptyText' => 'Quando seu par mandar algo, aparece aqui.',
           'received.close' => 'Fechar',
           'received.errorTitle' => 'Não deu para abrir',
           'received.errorText' => 'Nada se perdeu. Tente de novo.',
@@ -9604,6 +9669,21 @@ extension on Translations {
           'spice.errorText' => 'Tente de novo em instantes.',
           'spice.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'spice.errors.other' => 'Não deu para mudar agora. Tente de novo.',
+          'story.title' => 'Imagem para compartilhar',
+          'story.privacyNote' => 'A imagem é feita no seu aparelho e não leva nomes nem texto, a menos que você escolha.',
+          'story.days' => 'dias',
+          'story.together' => 'juntos',
+          'story.namesLabel' => 'Incluir os nomes',
+          'story.namesText' => 'Desligado por padrão.',
+          'story.phraseLabel' => 'Uma frase (opcional)',
+          'story.phraseHint' => 'Ex.: ainda tem muito pela frente',
+          'story.share' => 'Compartilhar imagem',
+          'story.emptyTitle' => 'Falta a data de vocês',
+          'story.emptyText' =>
+            'Defina desde quando vocês estão juntos em Nossa história para gerar a imagem.',
+          'story.errorTitle' => 'Não deu para carregar',
+          'story.errorText' => 'Tente de novo em instantes.',
+          'story.errors.other' => 'Não deu para compartilhar agora. Tente de novo.',
           'sundayCard.title' => 'Seu cartão',
           'sundayCard.edit' => 'Editar',
           'sundayCard.save' => 'Salvar',
@@ -9737,6 +9817,9 @@ extension on Translations {
           'tabs.guidesTitle' => 'Conversas difíceis',
           'tabs.guidesText' => 'Um passo de cada vez, só para você.',
           'temperature.levelTitle' => 'Como está entre vocês?',
+          _ => null,
+        } ??
+        switch (path) {
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',
           'temperature.levels.good' => 'Bem',
@@ -9755,9 +9838,6 @@ extension on Translations {
           'temperature.intensityLow' => 'Fraca',
           'temperature.intensityTop' => 'Muito forte',
           'temperature.intensityLabel' => 'Intensidade',
-          _ => null,
-        } ??
-        switch (path) {
           'temperature.result.good.title' => 'Que bom',
           'temperature.result.good.text' => 'Registrado só para você. Siga o seu dia.',
           'temperature.result.pause.title' => 'Primeiro, respirar',

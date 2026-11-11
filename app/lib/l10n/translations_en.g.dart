@@ -194,6 +194,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$spice$en spice = _Translations$spice$en._(_root);
   @override
+  late final _Translations$story$en story = _Translations$story$en._(_root);
+  @override
   late final _Translations$sundayCard$en sundayCard = _Translations$sundayCard$en._(_root);
   @override
   late final _Translations$tabs$en tabs = _Translations$tabs$en._(_root);
@@ -2287,6 +2289,12 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get historyText => 'Milestones, dates, places and our story in numbers.';
   @override
+  String get storyLabel => 'SHARE';
+  @override
+  String get storyTitle => 'Image to share';
+  @override
+  String get storyText => 'Your numbers in an image, with only what you choose.';
+  @override
   String get placesLabel => 'PLACES';
   @override
   String get placesTitle => 'Places you have been';
@@ -4187,6 +4195,44 @@ class _Translations$spice$en extends Translations$spice$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t change that right now. Try again.',
   };
+}
+
+// Path: story
+class _Translations$story$en extends Translations$story$pt {
+  _Translations$story$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Image to share';
+  @override
+  String get privacyNote =>
+      'The image is made on your device and carries no names or text unless you choose.';
+  @override
+  String get days => 'days';
+  @override
+  String get together => 'together';
+  @override
+  String get namesLabel => 'Include the names';
+  @override
+  String get namesText => 'Off by default.';
+  @override
+  String get phraseLabel => 'A line (optional)';
+  @override
+  String get phraseHint => 'E.g. so much still ahead';
+  @override
+  String get share => 'Share image';
+  @override
+  String get emptyTitle => 'Your date is missing';
+  @override
+  String get emptyText => 'Set since when you are together in Our history to create the image.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Try again in a moment.';
+  @override
+  Map<String, String> get errors => {'other': 'Couldn\'t share right now. Try again.'};
 }
 
 // Path: sundayCard
@@ -7049,6 +7095,9 @@ extension on TranslationsEn {
           'memories.historyLabel' => 'OUR HISTORY',
           'memories.historyTitle' => 'Our history',
           'memories.historyText' => 'Milestones, dates, places and our story in numbers.',
+          'memories.storyLabel' => 'SHARE',
+          'memories.storyTitle' => 'Image to share',
+          'memories.storyText' => 'Your numbers in an image, with only what you choose.',
           'memories.placesLabel' => 'PLACES',
           'memories.placesTitle' => 'Places you have been',
           'memories.placesText' => 'Only the name of the place, never the location.',
@@ -7122,12 +7171,12 @@ extension on TranslationsEn {
           'mood.errors.TIMEOUT' => 'Couldn\'t save your mood in time. Try again.',
           'mood.errors.other' => 'Couldn\'t save your mood. Try again.',
           'mood.entryCategory' => 'Mood of the day',
-          'mood.entryTitle' => 'How are you today?',
-          'mood.entryText' => 'One tap. Only you see it until you share.',
-          'mood.partnerLabel' => 'Your partner\'s mood',
           _ => null,
         } ??
         switch (path) {
+          'mood.entryTitle' => 'How are you today?',
+          'mood.entryText' => 'One tap. Only you see it until you share.',
+          'mood.partnerLabel' => 'Your partner\'s mood',
           'mood.partnerFallback' => 'Your partner',
           'mood.partnerHappy' => ({required Object name}) => '${name} is happy today',
           'mood.partnerTired' => ({required Object name}) => '${name} is out of energy today',
@@ -7706,12 +7755,12 @@ extension on TranslationsEn {
           'received.responses.other' => '',
           'received.seen' => 'Got it',
           'received.doneTitle' => 'All good',
-          'received.doneText' => 'Thanks for reading it calmly.',
-          'received.emptyTitle' => 'Nothing new',
-          'received.emptyText' => 'When your partner sends something, it shows up here.',
           _ => null,
         } ??
         switch (path) {
+          'received.doneText' => 'Thanks for reading it calmly.',
+          'received.emptyTitle' => 'Nothing new',
+          'received.emptyText' => 'When your partner sends something, it shows up here.',
           'received.close' => 'Close',
           'received.errorTitle' => 'Couldn\'t open this',
           'received.errorText' => 'Nothing was lost. Try again.',
@@ -8128,6 +8177,22 @@ extension on TranslationsEn {
           'spice.errorText' => 'Try again in a moment.',
           'spice.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'spice.errors.other' => 'Couldn\'t change that right now. Try again.',
+          'story.title' => 'Image to share',
+          'story.privacyNote' =>
+            'The image is made on your device and carries no names or text unless you choose.',
+          'story.days' => 'days',
+          'story.together' => 'together',
+          'story.namesLabel' => 'Include the names',
+          'story.namesText' => 'Off by default.',
+          'story.phraseLabel' => 'A line (optional)',
+          'story.phraseHint' => 'E.g. so much still ahead',
+          'story.share' => 'Share image',
+          'story.emptyTitle' => 'Your date is missing',
+          'story.emptyText' =>
+            'Set since when you are together in Our history to create the image.',
+          'story.errorTitle' => 'Couldn\'t load',
+          'story.errorText' => 'Try again in a moment.',
+          'story.errors.other' => 'Couldn\'t share right now. Try again.',
           'sundayCard.title' => 'Your card',
           'sundayCard.edit' => 'Edit',
           'sundayCard.save' => 'Save',
@@ -8260,6 +8325,9 @@ extension on TranslationsEn {
           'tabs.guidesTitle' => 'Difficult conversations',
           'tabs.guidesText' => 'One step at a time, just for you.',
           'temperature.levelTitle' => 'How is it between you?',
+          _ => null,
+        } ??
+        switch (path) {
           'temperature.levelHighlight' => 'between you',
           'temperature.levelNote' => 'Private. Never becomes a score.',
           'temperature.levels.good' => 'Good',
@@ -8277,9 +8345,6 @@ extension on TranslationsEn {
           'temperature.intensityLow' => 'Mild',
           'temperature.intensityTop' => 'Very strong',
           'temperature.intensityLabel' => 'Intensity',
-          _ => null,
-        } ??
-        switch (path) {
           'temperature.result.good.title' => 'That\'s good',
           'temperature.result.good.text' => 'Saved just for you. Carry on with your day.',
           'temperature.result.pause.title' => 'First, breathe',

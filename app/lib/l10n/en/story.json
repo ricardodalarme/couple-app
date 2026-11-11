@@ -1,0 +1,18 @@
+{
+  "title": "Image to share",
+  "privacyNote": "The image is made on your device and carries no names or text unless you choose.",
+  "days": "days",
+  "together": "together",
+  "namesLabel": "Include the names",
+  "namesText": "Off by default.",
+  "phraseLabel": "A line (optional)",
+  "phraseHint": "E.g. so much still ahead",
+  "share": "Share image",
+  "emptyTitle": "Your date is missing",
+  "emptyText": "Set since when you are together in Our history to create the image.",
+  "errorTitle": "Couldn't load",
+  "errorText": "Try again in a moment.",
+  "errors(map)": {
+    "other": "Couldn't share right now. Try again."
+  }
+}

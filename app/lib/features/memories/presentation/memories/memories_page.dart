@@ -62,6 +62,13 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
                   onTap: () => context.pushRoute(const PlacesRoute()),
                 ),
                 const SizedBox(height: AppSpace.s12),
+                BaseListCard(
+                  categoryLabel: l10n.storyLabel,
+                  title: l10n.storyTitle,
+                  supportText: l10n.storyText,
+                  onTap: () => context.pushRoute(const StoryRoute()),
+                ),
+                const SizedBox(height: AppSpace.s12),
                 const _Jar(),
                 const SizedBox(height: AppSpace.s20),
                 BaseTextField(

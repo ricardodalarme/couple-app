@@ -2095,6 +2095,22 @@ class StoryDatesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [StoryPage]
+class StoryRoute extends PageRouteInfo<void> {
+  const StoryRoute({List<PageRouteInfo>? children})
+    : super(StoryRoute.name, initialChildren: children);
+
+  static const String name = 'StoryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const StoryPage());
+    },
+  );
+}
+
+/// generated route for
 /// [SundayCardPage]
 class SundayCardRoute extends PageRouteInfo<void> {
   const SundayCardRoute({List<PageRouteInfo>? children})
