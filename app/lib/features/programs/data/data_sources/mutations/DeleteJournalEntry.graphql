@@ -1,0 +1,5 @@
+mutation DeleteJournalEntry($id: UUID!) {
+  deleteFromJournalEntriesCollection(filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}

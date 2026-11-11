@@ -1,0 +1,15 @@
+query JournalEntries {
+  journalEntriesCollection(
+    orderBy: [{ entryDate: DescNullsLast }, { createdAt: DescNullsLast }]
+    first: 100
+  ) {
+    edges {
+      node {
+        id
+        entryDate
+        body
+        mood
+      }
+    }
+  }
+}

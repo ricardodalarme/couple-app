@@ -1,0 +1,13 @@
+mutation UpdateLessonProgress(
+  $programSlug: String!
+  $lessonDay: Int!
+  $status: String!
+) {
+  updateLessonProgressCollection(
+    set: { status: $status }
+    filter: { programSlug: { eq: $programSlug }, lessonDay: { eq: $lessonDay } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

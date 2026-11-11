@@ -1,0 +1,11 @@
+mutation InsertProgramEnrollment(
+  $programSlug: String!
+  $currentDay: Int!
+  $completedAt: Datetime
+) {
+  insertIntoProgramEnrollmentsCollection(
+    objects: [{ programSlug: $programSlug, currentDay: $currentDay, completedAt: $completedAt }]
+  ) {
+    affectedCount
+  }
+}

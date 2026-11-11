@@ -25,6 +25,7 @@ import 'package:flutter_bloc_starter/features/partner/di/partner_injection_modul
 import 'package:flutter_bloc_starter/features/plus/di/plus_injection_module.dart';
 import 'package:flutter_bloc_starter/features/privacy/di/privacy_injection_module.dart';
 import 'package:flutter_bloc_starter/features/profile/di/profile_injection_module.dart';
+import 'package:flutter_bloc_starter/features/programs/di/programs_injection_module.dart';
 import 'package:flutter_bloc_starter/features/questions/di/questions_injection_module.dart';
 import 'package:flutter_bloc_starter/features/reminders/di/reminders_injection_module.dart';
 import 'package:flutter_bloc_starter/features/repair/di/repair_injection_module.dart';
@@ -76,6 +77,7 @@ void _registerModules() {
     PartnerInjectionModule(),
     PlusInjectionModule(),
     ProfileInjectionModule(),
+    ProgramsInjectionModule(),
     QuestionsInjectionModule(),
     CardsInjectionModule(),
     CheckinInjectionModule(),

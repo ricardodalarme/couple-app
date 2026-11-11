@@ -1,0 +1,9 @@
+mutation UpdateProgramEnrollment($programSlug: String!, $currentDay: Int!) {
+  updateProgramEnrollmentsCollection(
+    set: { currentDay: $currentDay }
+    filter: { programSlug: { eq: $programSlug } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

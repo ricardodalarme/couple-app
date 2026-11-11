@@ -1,0 +1,12 @@
+mutation InsertJournalEntry($entryDate: Date!, $body: String!, $mood: String) {
+  insertIntoJournalEntriesCollection(
+    objects: [{ entryDate: $entryDate, body: $body, mood: $mood }]
+  ) {
+    records {
+      id
+      entryDate
+      body
+      mood
+    }
+  }
+}

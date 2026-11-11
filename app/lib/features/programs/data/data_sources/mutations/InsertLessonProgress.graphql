@@ -1,0 +1,11 @@
+mutation InsertLessonProgress(
+  $programSlug: String!
+  $lessonDay: Int!
+  $status: String!
+) {
+  insertIntoLessonProgressCollection(
+    objects: [{ programSlug: $programSlug, lessonDay: $lessonDay, status: $status }]
+  ) {
+    affectedCount
+  }
+}

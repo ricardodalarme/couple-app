@@ -138,6 +138,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
   @override
+  late final _Translations$programs$en programs = _Translations$programs$en._(_root);
+  @override
   late final _Translations$questions$en questions = _Translations$questions$en._(_root);
   @override
   late final _Translations$questionsEntry$en questionsEntry = _Translations$questionsEntry$en._(
@@ -2672,6 +2674,164 @@ class _Translations$profileSetup$en extends Translations$profileSetup$pt {
     'INVALID_DATE': 'That date does not look right. Pick one between 1950 and today.',
     'NETWORK': 'No connection. Your answers are still here, try again.',
     'other': 'Could not save right now. Try again.',
+  };
+}
+
+// Path: programs
+class _Translations$programs$en extends Translations$programs$pt {
+  _Translations$programs$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get label => 'PROGRAMS';
+  @override
+  String get title => 'Programs';
+  @override
+  String get entryText => 'Short guided programs, at your own pace.';
+  @override
+  String get hubSubtitle => 'One idea a day. No rush, no pressure.';
+  @override
+  String get free => 'FREE';
+  @override
+  String get plus => 'PLUS';
+  @override
+  String lessonCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 lesson',
+        other: '${count} lessons',
+      );
+  @override
+  String get noLessons => 'Lessons coming';
+  @override
+  String get emptyTitle => 'No programs here yet';
+  @override
+  String get emptyText => 'New programs are on the way. Come back whenever you like.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'The programs are still here. Try again.';
+  @override
+  String get diaryLabel => 'JUST ME';
+  @override
+  String get diaryTitle => 'Diary';
+  @override
+  String get diaryText => 'A private place to write how you are.';
+  @override
+  String get start => 'Start';
+  @override
+  String get kContinue => 'Continue';
+  @override
+  String get restart => 'Start over';
+  @override
+  String get restartConfirmTitle => 'Start over?';
+  @override
+  String get restartConfirmText => 'This clears your lesson marks and returns to the first lesson.';
+  @override
+  String get restartConfirm => 'Start over';
+  @override
+  String get completed => 'Completed';
+  @override
+  String get lessonsTitle => 'Lessons';
+  @override
+  String get lessonsComingTitle => 'Lessons coming';
+  @override
+  String get lessonsComingText => 'This program is still being prepared. Come back soon.';
+  @override
+  String get lessonGoneTitle => 'Lesson not here';
+  @override
+  String get lessonGoneText => 'This day is no longer part of the program. Choose another lesson.';
+  @override
+  String get dayOneHint => 'The first lesson is always open in this program.';
+  @override
+  String dayLabel({required Object day}) => 'Day ${day}';
+  @override
+  String get shortRead => 'A short idea for today.';
+  @override
+  String get ready => 'Done';
+  @override
+  String get saveForLater => 'Save for later';
+  @override
+  String get saved => 'Saved for later.';
+  @override
+  String get savedTag => 'Saved';
+  @override
+  String get lockedTitle => 'Plus lesson';
+  @override
+  String get lockedLessonText => 'This lesson is part of Plus.';
+  @override
+  String get lockedProgramText => 'This program is part of Plus.';
+  @override
+  String get completeTitle => 'Well done';
+  @override
+  String completeText({required Object title}) => 'You completed ${title}.';
+  @override
+  String get completeHint => 'Choose another whenever you want.';
+  @override
+  String get seePrograms => 'See programs';
+  @override
+  String get diaryPrivacy => 'Just me. Never shared.';
+  @override
+  String get diaryPrompt => 'Today I felt...';
+  @override
+  String get diaryHint => 'Write without hurry. Only you can see this.';
+  @override
+  String get diarySave => 'Save';
+  @override
+  String get diaryNew => 'New entry';
+  @override
+  String get diaryEdit => 'Edit';
+  @override
+  String get diaryDelete => 'Delete';
+  @override
+  String get diaryDeleteTitle => 'Delete this entry?';
+  @override
+  String get diaryDeleteText => 'This can\'t be undone.';
+  @override
+  String get diaryDeleteConfirm => 'Delete';
+  @override
+  String get diaryCapHint => 'Showing your last 100 entries.';
+  @override
+  String get diaryEmptyTitle => 'Nothing written yet';
+  @override
+  String get diaryEmptyText => 'When you want, write how you are. Only you can see it.';
+  @override
+  String get diaryErrorTitle => 'Couldn\'t load';
+  @override
+  String get diaryErrorText => 'Your entries are still saved. Try again.';
+  @override
+  List<String> get monthsShort => [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  @override
+  String dateLine({required Object month, required Object day, required Object year}) =>
+      '${month} ${day}, ${year}';
+  @override
+  Map<String, String> get moods => {
+    'calm': 'At peace',
+    'tender': 'Held',
+    'tired': 'Tired',
+    'heavy': 'Heavy',
+    'other': 'How I am',
+  };
+  @override
+  Map<String, String> get lessonErrors => {'other': 'Couldn\'t do that right now. Try again.'};
+  @override
+  Map<String, String> get diaryErrors => {
+    'other': 'Couldn\'t save right now. Your text is still here.',
   };
 }
 
@@ -6136,6 +6296,94 @@ extension on TranslationsEn {
             'That date does not look right. Pick one between 1950 and today.',
           'profileSetup.errors.NETWORK' => 'No connection. Your answers are still here, try again.',
           'profileSetup.errors.other' => 'Could not save right now. Try again.',
+          'programs.label' => 'PROGRAMS',
+          'programs.title' => 'Programs',
+          'programs.entryText' => 'Short guided programs, at your own pace.',
+          'programs.hubSubtitle' => 'One idea a day. No rush, no pressure.',
+          'programs.free' => 'FREE',
+          'programs.plus' => 'PLUS',
+          'programs.lessonCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 lesson',
+                  other: '${count} lessons',
+                ),
+          'programs.noLessons' => 'Lessons coming',
+          'programs.emptyTitle' => 'No programs here yet',
+          'programs.emptyText' => 'New programs are on the way. Come back whenever you like.',
+          'programs.errorTitle' => 'Couldn\'t load',
+          'programs.errorText' => 'The programs are still here. Try again.',
+          'programs.diaryLabel' => 'JUST ME',
+          'programs.diaryTitle' => 'Diary',
+          'programs.diaryText' => 'A private place to write how you are.',
+          'programs.start' => 'Start',
+          'programs.kContinue' => 'Continue',
+          'programs.restart' => 'Start over',
+          'programs.restartConfirmTitle' => 'Start over?',
+          'programs.restartConfirmText' =>
+            'This clears your lesson marks and returns to the first lesson.',
+          'programs.restartConfirm' => 'Start over',
+          'programs.completed' => 'Completed',
+          'programs.lessonsTitle' => 'Lessons',
+          'programs.lessonsComingTitle' => 'Lessons coming',
+          'programs.lessonsComingText' => 'This program is still being prepared. Come back soon.',
+          'programs.lessonGoneTitle' => 'Lesson not here',
+          'programs.lessonGoneText' =>
+            'This day is no longer part of the program. Choose another lesson.',
+          'programs.dayOneHint' => 'The first lesson is always open in this program.',
+          'programs.dayLabel' => ({required Object day}) => 'Day ${day}',
+          'programs.shortRead' => 'A short idea for today.',
+          'programs.ready' => 'Done',
+          'programs.saveForLater' => 'Save for later',
+          'programs.saved' => 'Saved for later.',
+          'programs.savedTag' => 'Saved',
+          'programs.lockedTitle' => 'Plus lesson',
+          'programs.lockedLessonText' => 'This lesson is part of Plus.',
+          'programs.lockedProgramText' => 'This program is part of Plus.',
+          'programs.completeTitle' => 'Well done',
+          'programs.completeText' => ({required Object title}) => 'You completed ${title}.',
+          'programs.completeHint' => 'Choose another whenever you want.',
+          'programs.seePrograms' => 'See programs',
+          'programs.diaryPrivacy' => 'Just me. Never shared.',
+          'programs.diaryPrompt' => 'Today I felt...',
+          'programs.diaryHint' => 'Write without hurry. Only you can see this.',
+          'programs.diarySave' => 'Save',
+          'programs.diaryNew' => 'New entry',
+          'programs.diaryEdit' => 'Edit',
+          'programs.diaryDelete' => 'Delete',
+          'programs.diaryDeleteTitle' => 'Delete this entry?',
+          'programs.diaryDeleteText' => 'This can\'t be undone.',
+          'programs.diaryDeleteConfirm' => 'Delete',
+          'programs.diaryCapHint' => 'Showing your last 100 entries.',
+          'programs.diaryEmptyTitle' => 'Nothing written yet',
+          'programs.diaryEmptyText' => 'When you want, write how you are. Only you can see it.',
+          'programs.diaryErrorTitle' => 'Couldn\'t load',
+          'programs.diaryErrorText' => 'Your entries are still saved. Try again.',
+          'programs.monthsShort.0' => 'Jan',
+          'programs.monthsShort.1' => 'Feb',
+          'programs.monthsShort.2' => 'Mar',
+          'programs.monthsShort.3' => 'Apr',
+          'programs.monthsShort.4' => 'May',
+          'programs.monthsShort.5' => 'Jun',
+          'programs.monthsShort.6' => 'Jul',
+          'programs.monthsShort.7' => 'Aug',
+          'programs.monthsShort.8' => 'Sep',
+          'programs.monthsShort.9' => 'Oct',
+          'programs.monthsShort.10' => 'Nov',
+          'programs.monthsShort.11' => 'Dec',
+          'programs.dateLine' => ({
+            required Object month,
+            required Object day,
+            required Object year,
+          }) => '${month} ${day}, ${year}',
+          'programs.moods.calm' => 'At peace',
+          'programs.moods.tender' => 'Held',
+          'programs.moods.tired' => 'Tired',
+          'programs.moods.heavy' => 'Heavy',
+          'programs.moods.other' => 'How I am',
+          'programs.lessonErrors.other' => 'Couldn\'t do that right now. Try again.',
+          'programs.diaryErrors.other' => 'Couldn\'t save right now. Your text is still here.',
           'questions.tag' => 'Question for you two',
           'questions.eyebrow' => 'Question of the day',
           'questions.answerCta' => 'Answer',
@@ -6498,6 +6746,9 @@ extension on TranslationsEn {
           'slipDetail.weekdays.5' => 'Saturday',
           'slipDetail.weekdays.6' => 'Sunday',
           'slipDetail.monthsShort.0' => 'Jan',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.monthsShort.1' => 'Feb',
           'slipDetail.monthsShort.2' => 'Mar',
           'slipDetail.monthsShort.3' => 'Apr',
@@ -6574,9 +6825,6 @@ extension on TranslationsEn {
           'slipKind.invisible.hint' => 'E.g. remembered the kids\' appointment',
           'slipKind.invisible.areaLabel' => 'What kind of work?',
           'slipKind.invisible.private' => 'Stays with you and never enters a card.',
-          _ => null,
-        } ??
-        switch (path) {
           'slipKind.workAreas.planning' => 'Planning',
           'slipKind.workAreas.dates' => 'Dates',
           'slipKind.workAreas.kitchen' => 'Kitchen',

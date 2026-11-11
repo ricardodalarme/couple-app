@@ -1,0 +1,5 @@
+mutation DeleteLessonProgress($programSlug: String!) {
+  deleteFromLessonProgressCollection(filter: { programSlug: { eq: $programSlug } }) {
+    affectedCount
+  }
+}

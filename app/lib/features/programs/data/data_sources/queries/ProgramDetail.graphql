@@ -1,0 +1,42 @@
+query ProgramDetail($slug: String!, $locale: String!) {
+  program: contentItemsCollection(
+    filter: {
+      kind: { eq: "program" }
+      slug: { eq: $slug }
+      locale: { eq: $locale }
+      published: { eq: true }
+    }
+    first: 1
+  ) {
+    edges {
+      node {
+        slug
+        title
+        body
+        position
+        plusOnly
+      }
+    }
+  }
+  lessons: contentItemsCollection(
+    filter: {
+      kind: { eq: "lesson" }
+      parentSlug: { eq: $slug }
+      locale: { eq: $locale }
+      published: { eq: true }
+    }
+    orderBy: [{ position: AscNullsLast }]
+    first: 100
+  ) {
+    edges {
+      node {
+        slug
+        title
+        body
+        parentSlug
+        position
+        plusOnly
+      }
+    }
+  }
+}

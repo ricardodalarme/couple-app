@@ -288,6 +288,22 @@ class DevicesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [DiaryPage]
+class DiaryRoute extends PageRouteInfo<void> {
+  const DiaryRoute({List<PageRouteInfo>? children})
+    : super(DiaryRoute.name, initialChildren: children);
+
+  static const String name = 'DiaryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const DiaryPage());
+    },
+  );
+}
+
+/// generated route for
 /// [DifferentDatesPage]
 class DifferentDatesRoute extends PageRouteInfo<void> {
   const DifferentDatesRoute({List<PageRouteInfo>? children})
@@ -727,6 +743,65 @@ class LearningRouteArgs {
 }
 
 /// generated route for
+/// [LessonPage]
+class LessonRoute extends PageRouteInfo<LessonRouteArgs> {
+  LessonRoute({
+    required String slug,
+    required int day,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         LessonRoute.name,
+         args: LessonRouteArgs(slug: slug, day: day, key: key),
+         rawPathParams: {'slug': slug, 'day': day},
+         initialChildren: children,
+       );
+
+  static const String name = 'LessonRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<LessonRouteArgs>(
+        orElse: () => LessonRouteArgs(
+          slug: pathParams.getString('slug'),
+          day: pathParams.getInt('day'),
+        ),
+      );
+      return WrappedRoute(
+        child: LessonPage(slug: args.slug, day: args.day, key: args.key),
+      );
+    },
+  );
+}
+
+class LessonRouteArgs {
+  const LessonRouteArgs({required this.slug, required this.day, this.key});
+
+  final String slug;
+
+  final int day;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'LessonRouteArgs{slug: $slug, day: $day, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! LessonRouteArgs) return false;
+    return slug == other.slug && day == other.day && key == other.key;
+  }
+
+  @override
+  int get hashCode => slug.hashCode ^ day.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [ListDetailPage]
 class ListDetailRoute extends PageRouteInfo<ListDetailRouteArgs> {
   ListDetailRoute({
@@ -1158,6 +1233,123 @@ class ProfileSetupRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const ProfileSetupPage());
+    },
+  );
+}
+
+/// generated route for
+/// [ProgramCompletePage]
+class ProgramCompleteRoute extends PageRouteInfo<ProgramCompleteRouteArgs> {
+  ProgramCompleteRoute({
+    required String title,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ProgramCompleteRoute.name,
+         args: ProgramCompleteRouteArgs(title: title, key: key),
+         initialChildren: children,
+       );
+
+  static const String name = 'ProgramCompleteRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ProgramCompleteRouteArgs>();
+      return ProgramCompletePage(title: args.title, key: args.key);
+    },
+  );
+}
+
+class ProgramCompleteRouteArgs {
+  const ProgramCompleteRouteArgs({required this.title, this.key});
+
+  final String title;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ProgramCompleteRouteArgs{title: $title, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ProgramCompleteRouteArgs) return false;
+    return title == other.title && key == other.key;
+  }
+
+  @override
+  int get hashCode => title.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [ProgramDetailPage]
+class ProgramDetailRoute extends PageRouteInfo<ProgramDetailRouteArgs> {
+  ProgramDetailRoute({
+    required String slug,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ProgramDetailRoute.name,
+         args: ProgramDetailRouteArgs(slug: slug, key: key),
+         rawPathParams: {'slug': slug},
+         initialChildren: children,
+       );
+
+  static const String name = 'ProgramDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<ProgramDetailRouteArgs>(
+        orElse: () =>
+            ProgramDetailRouteArgs(slug: pathParams.getString('slug')),
+      );
+      return WrappedRoute(
+        child: ProgramDetailPage(slug: args.slug, key: args.key),
+      );
+    },
+  );
+}
+
+class ProgramDetailRouteArgs {
+  const ProgramDetailRouteArgs({required this.slug, this.key});
+
+  final String slug;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ProgramDetailRouteArgs{slug: $slug, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ProgramDetailRouteArgs) return false;
+    return slug == other.slug && key == other.key;
+  }
+
+  @override
+  int get hashCode => slug.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [ProgramsPage]
+class ProgramsRoute extends PageRouteInfo<void> {
+  const ProgramsRoute({List<PageRouteInfo>? children})
+    : super(ProgramsRoute.name, initialChildren: children);
+
+  static const String name = 'ProgramsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const ProgramsPage());
     },
   );
 }

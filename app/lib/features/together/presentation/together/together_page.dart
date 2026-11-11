@@ -57,6 +57,13 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
                 const SizedBox(height: AppSpace.s12),
               ],
               BaseListCard(
+                categoryLabel: context.l10n.programs.label,
+                title: context.l10n.programs.title,
+                supportText: context.l10n.programs.entryText,
+                onTap: () => context.pushRoute(const ProgramsRoute()),
+              ),
+              const SizedBox(height: AppSpace.s12),
+              BaseListCard(
                 categoryLabel: entry.label,
                 title: questionTitle ?? entry.title,
                 supportText: entry.text,

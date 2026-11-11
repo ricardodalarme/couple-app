@@ -1,0 +1,9 @@
+mutation RestartProgramEnrollment($programSlug: String!) {
+  updateProgramEnrollmentsCollection(
+    set: { currentDay: 1, completedAt: null }
+    filter: { programSlug: { eq: $programSlug } }
+    atMost: 1
+  ) {
+    affectedCount
+  }
+}

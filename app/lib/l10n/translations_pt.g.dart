@@ -105,6 +105,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
     _root,
   );
+  late final Translations$programs$pt programs = Translations$programs$pt.internal(_root);
   late final Translations$questions$pt questions = Translations$questions$pt.internal(_root);
   late final Translations$questionsEntry$pt questionsEntry =
       Translations$questionsEntry$pt.internal(_root);
@@ -3300,6 +3301,221 @@ class Translations$profileSetup$pt {
     'INVALID_DATE': 'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
     'NETWORK': 'Sem conexão. Seus dados continuam aqui, tente de novo.',
     'other': 'Não deu para salvar agora. Tente de novo.',
+  };
+}
+
+// Path: programs
+class Translations$programs$pt {
+  Translations$programs$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'PROGRAMAS'
+  String get label => 'PROGRAMAS';
+
+  /// pt: 'Programas'
+  String get title => 'Programas';
+
+  /// pt: 'Programas curtos e guiados, no seu ritmo.'
+  String get entryText => 'Programas curtos e guiados, no seu ritmo.';
+
+  /// pt: 'Uma ideia por dia. Sem pressa, sem cobrança.'
+  String get hubSubtitle => 'Uma ideia por dia. Sem pressa, sem cobrança.';
+
+  /// pt: 'GRÁTIS'
+  String get free => 'GRÁTIS';
+
+  /// pt: 'PLUS'
+  String get plus => 'PLUS';
+
+  /// pt: '(one) {1 lição} (other) {{count} lições}'
+  String lessonCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 lição',
+        other: '${count} lições',
+      );
+
+  /// pt: 'Lições chegando'
+  String get noLessons => 'Lições chegando';
+
+  /// pt: 'Nenhum programa por aqui ainda'
+  String get emptyTitle => 'Nenhum programa por aqui ainda';
+
+  /// pt: 'Novos programas chegam em breve. Volte quando quiser.'
+  String get emptyText => 'Novos programas chegam em breve. Volte quando quiser.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Os programas continuam aqui. Tente de novo.'
+  String get errorText => 'Os programas continuam aqui. Tente de novo.';
+
+  /// pt: 'SÓ EU'
+  String get diaryLabel => 'SÓ EU';
+
+  /// pt: 'Diário'
+  String get diaryTitle => 'Diário';
+
+  /// pt: 'Um lugar privado para escrever como você está.'
+  String get diaryText => 'Um lugar privado para escrever como você está.';
+
+  /// pt: 'Começar'
+  String get start => 'Começar';
+
+  /// pt: 'Continuar'
+  String get kContinue => 'Continuar';
+
+  /// pt: 'Começar de novo'
+  String get restart => 'Começar de novo';
+
+  /// pt: 'Começar de novo?'
+  String get restartConfirmTitle => 'Começar de novo?';
+
+  /// pt: 'Isto limpa suas marcações e volta à primeira lição.'
+  String get restartConfirmText => 'Isto limpa suas marcações e volta à primeira lição.';
+
+  /// pt: 'Começar de novo'
+  String get restartConfirm => 'Começar de novo';
+
+  /// pt: 'Concluído'
+  String get completed => 'Concluído';
+
+  /// pt: 'Lições'
+  String get lessonsTitle => 'Lições';
+
+  /// pt: 'Lições chegando'
+  String get lessonsComingTitle => 'Lições chegando';
+
+  /// pt: 'Este programa ainda está sendo preparado. Volte em breve.'
+  String get lessonsComingText => 'Este programa ainda está sendo preparado. Volte em breve.';
+
+  /// pt: 'Lição indisponível'
+  String get lessonGoneTitle => 'Lição indisponível';
+
+  /// pt: 'Este dia não faz mais parte do programa. Escolha outra lição.'
+  String get lessonGoneText => 'Este dia não faz mais parte do programa. Escolha outra lição.';
+
+  /// pt: 'A primeira lição é sempre aberta neste programa.'
+  String get dayOneHint => 'A primeira lição é sempre aberta neste programa.';
+
+  /// pt: 'Dia {day}'
+  String dayLabel({required Object day}) => 'Dia ${day}';
+
+  /// pt: 'Uma ideia curta para hoje.'
+  String get shortRead => 'Uma ideia curta para hoje.';
+
+  /// pt: 'Pronto'
+  String get ready => 'Pronto';
+
+  /// pt: 'Salvar para depois'
+  String get saveForLater => 'Salvar para depois';
+
+  /// pt: 'Guardado para depois.'
+  String get saved => 'Guardado para depois.';
+
+  /// pt: 'Guardado'
+  String get savedTag => 'Guardado';
+
+  /// pt: 'Lição do Plus'
+  String get lockedTitle => 'Lição do Plus';
+
+  /// pt: 'Esta lição faz parte do Plus.'
+  String get lockedLessonText => 'Esta lição faz parte do Plus.';
+
+  /// pt: 'Este programa faz parte do Plus.'
+  String get lockedProgramText => 'Este programa faz parte do Plus.';
+
+  /// pt: 'Muito bem'
+  String get completeTitle => 'Muito bem';
+
+  /// pt: 'Você concluiu {title}.'
+  String completeText({required Object title}) => 'Você concluiu ${title}.';
+
+  /// pt: 'Escolha outro quando quiser.'
+  String get completeHint => 'Escolha outro quando quiser.';
+
+  /// pt: 'Ver programas'
+  String get seePrograms => 'Ver programas';
+
+  /// pt: 'Só eu. Nunca é compartilhado.'
+  String get diaryPrivacy => 'Só eu. Nunca é compartilhado.';
+
+  /// pt: 'Hoje eu me senti...'
+  String get diaryPrompt => 'Hoje eu me senti...';
+
+  /// pt: 'Escreva sem pressa. Só você vê isto.'
+  String get diaryHint => 'Escreva sem pressa. Só você vê isto.';
+
+  /// pt: 'Salvar'
+  String get diarySave => 'Salvar';
+
+  /// pt: 'Nova entrada'
+  String get diaryNew => 'Nova entrada';
+
+  /// pt: 'Editar'
+  String get diaryEdit => 'Editar';
+
+  /// pt: 'Apagar'
+  String get diaryDelete => 'Apagar';
+
+  /// pt: 'Apagar esta entrada?'
+  String get diaryDeleteTitle => 'Apagar esta entrada?';
+
+  /// pt: 'Isto não pode ser desfeito.'
+  String get diaryDeleteText => 'Isto não pode ser desfeito.';
+
+  /// pt: 'Apagar'
+  String get diaryDeleteConfirm => 'Apagar';
+
+  /// pt: 'Mostrando suas últimas 100 entradas.'
+  String get diaryCapHint => 'Mostrando suas últimas 100 entradas.';
+
+  /// pt: 'Nada escrito ainda'
+  String get diaryEmptyTitle => 'Nada escrito ainda';
+
+  /// pt: 'Quando quiser, escreva como você está. Só você vê.'
+  String get diaryEmptyText => 'Quando quiser, escreva como você está. Só você vê.';
+
+  /// pt: 'Não deu para carregar'
+  String get diaryErrorTitle => 'Não deu para carregar';
+
+  /// pt: 'Suas entradas continuam guardadas. Tente de novo.'
+  String get diaryErrorText => 'Suas entradas continuam guardadas. Tente de novo.';
+
+  List<String> get monthsShort => [
+    'jan',
+    'fev',
+    'mar',
+    'abr',
+    'mai',
+    'jun',
+    'jul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dez',
+  ];
+
+  /// pt: '{day} {month} {year}'
+  String dateLine({required Object day, required Object month, required Object year}) =>
+      '${day} ${month} ${year}';
+
+  Map<String, String> get moods => {
+    'calm': 'Em paz',
+    'tender': 'Acolhido(a)',
+    'tired': 'Cansado(a)',
+    'heavy': 'Pesado',
+    'other': 'Como estou',
+  };
+  Map<String, String> get lessonErrors => {
+    'other': 'Não deu para fazer isso agora. Tente de novo.',
+  };
+  Map<String, String> get diaryErrors => {
+    'other': 'Não deu para salvar agora. Seu texto continua aqui.',
   };
 }
 
@@ -7274,6 +7490,94 @@ extension on Translations {
             'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
           'profileSetup.errors.NETWORK' => 'Sem conexão. Seus dados continuam aqui, tente de novo.',
           'profileSetup.errors.other' => 'Não deu para salvar agora. Tente de novo.',
+          'programs.label' => 'PROGRAMAS',
+          'programs.title' => 'Programas',
+          'programs.entryText' => 'Programas curtos e guiados, no seu ritmo.',
+          'programs.hubSubtitle' => 'Uma ideia por dia. Sem pressa, sem cobrança.',
+          'programs.free' => 'GRÁTIS',
+          'programs.plus' => 'PLUS',
+          'programs.lessonCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 lição',
+                  other: '${count} lições',
+                ),
+          'programs.noLessons' => 'Lições chegando',
+          'programs.emptyTitle' => 'Nenhum programa por aqui ainda',
+          'programs.emptyText' => 'Novos programas chegam em breve. Volte quando quiser.',
+          'programs.errorTitle' => 'Não deu para carregar',
+          'programs.errorText' => 'Os programas continuam aqui. Tente de novo.',
+          'programs.diaryLabel' => 'SÓ EU',
+          'programs.diaryTitle' => 'Diário',
+          'programs.diaryText' => 'Um lugar privado para escrever como você está.',
+          'programs.start' => 'Começar',
+          'programs.kContinue' => 'Continuar',
+          'programs.restart' => 'Começar de novo',
+          'programs.restartConfirmTitle' => 'Começar de novo?',
+          'programs.restartConfirmText' => 'Isto limpa suas marcações e volta à primeira lição.',
+          'programs.restartConfirm' => 'Começar de novo',
+          'programs.completed' => 'Concluído',
+          'programs.lessonsTitle' => 'Lições',
+          'programs.lessonsComingTitle' => 'Lições chegando',
+          'programs.lessonsComingText' =>
+            'Este programa ainda está sendo preparado. Volte em breve.',
+          'programs.lessonGoneTitle' => 'Lição indisponível',
+          'programs.lessonGoneText' =>
+            'Este dia não faz mais parte do programa. Escolha outra lição.',
+          'programs.dayOneHint' => 'A primeira lição é sempre aberta neste programa.',
+          'programs.dayLabel' => ({required Object day}) => 'Dia ${day}',
+          'programs.shortRead' => 'Uma ideia curta para hoje.',
+          'programs.ready' => 'Pronto',
+          'programs.saveForLater' => 'Salvar para depois',
+          'programs.saved' => 'Guardado para depois.',
+          'programs.savedTag' => 'Guardado',
+          'programs.lockedTitle' => 'Lição do Plus',
+          'programs.lockedLessonText' => 'Esta lição faz parte do Plus.',
+          'programs.lockedProgramText' => 'Este programa faz parte do Plus.',
+          'programs.completeTitle' => 'Muito bem',
+          'programs.completeText' => ({required Object title}) => 'Você concluiu ${title}.',
+          'programs.completeHint' => 'Escolha outro quando quiser.',
+          'programs.seePrograms' => 'Ver programas',
+          'programs.diaryPrivacy' => 'Só eu. Nunca é compartilhado.',
+          'programs.diaryPrompt' => 'Hoje eu me senti...',
+          'programs.diaryHint' => 'Escreva sem pressa. Só você vê isto.',
+          'programs.diarySave' => 'Salvar',
+          'programs.diaryNew' => 'Nova entrada',
+          'programs.diaryEdit' => 'Editar',
+          'programs.diaryDelete' => 'Apagar',
+          'programs.diaryDeleteTitle' => 'Apagar esta entrada?',
+          'programs.diaryDeleteText' => 'Isto não pode ser desfeito.',
+          'programs.diaryDeleteConfirm' => 'Apagar',
+          'programs.diaryCapHint' => 'Mostrando suas últimas 100 entradas.',
+          'programs.diaryEmptyTitle' => 'Nada escrito ainda',
+          'programs.diaryEmptyText' => 'Quando quiser, escreva como você está. Só você vê.',
+          'programs.diaryErrorTitle' => 'Não deu para carregar',
+          'programs.diaryErrorText' => 'Suas entradas continuam guardadas. Tente de novo.',
+          'programs.monthsShort.0' => 'jan',
+          'programs.monthsShort.1' => 'fev',
+          'programs.monthsShort.2' => 'mar',
+          'programs.monthsShort.3' => 'abr',
+          'programs.monthsShort.4' => 'mai',
+          'programs.monthsShort.5' => 'jun',
+          'programs.monthsShort.6' => 'jul',
+          'programs.monthsShort.7' => 'ago',
+          'programs.monthsShort.8' => 'set',
+          'programs.monthsShort.9' => 'out',
+          'programs.monthsShort.10' => 'nov',
+          'programs.monthsShort.11' => 'dez',
+          'programs.dateLine' => ({
+            required Object day,
+            required Object month,
+            required Object year,
+          }) => '${day} ${month} ${year}',
+          'programs.moods.calm' => 'Em paz',
+          'programs.moods.tender' => 'Acolhido(a)',
+          'programs.moods.tired' => 'Cansado(a)',
+          'programs.moods.heavy' => 'Pesado',
+          'programs.moods.other' => 'Como estou',
+          'programs.lessonErrors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'programs.diaryErrors.other' => 'Não deu para salvar agora. Seu texto continua aqui.',
           'questions.tag' => 'Pergunta para vocês dois',
           'questions.eyebrow' => 'Pergunta do dia',
           'questions.answerCta' => 'Responder',
@@ -7638,6 +7942,9 @@ extension on Translations {
           'slipDetail.weekdays.5' => 'sábado',
           'slipDetail.weekdays.6' => 'domingo',
           'slipDetail.monthsShort.0' => 'jan',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.monthsShort.1' => 'fev',
           'slipDetail.monthsShort.2' => 'mar',
           'slipDetail.monthsShort.3' => 'abr',
@@ -7714,9 +8021,6 @@ extension on Translations {
           'slipKind.invisible.hint' => 'Ex.: lembrei da consulta das crianças',
           'slipKind.invisible.areaLabel' => 'Que tipo de trabalho?',
           'slipKind.invisible.private' => 'Fica só com você, não entra em nenhum cartão.',
-          _ => null,
-        } ??
-        switch (path) {
           'slipKind.workAreas.planning' => 'Planejar',
           'slipKind.workAreas.dates' => 'Datas',
           'slipKind.workAreas.kitchen' => 'Cozinha',
