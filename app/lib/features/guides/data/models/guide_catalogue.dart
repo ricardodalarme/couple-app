@@ -165,4 +165,113 @@ const List<GuideDefinition> guideCatalogue = [
     ],
     isSensitive: true,
   ),
+  GuideDefinition(
+    slug: 'year',
+    guideType: 'transition',
+    title: GuideText(pt: 'O nosso ano', en: 'Our year'),
+    description: GuideText(
+      pt: 'Olhar para o ano sem notas nem comparações.',
+      en: 'Look back on the year, no grades, no comparing.',
+    ),
+    prompts: [
+      GuideText(
+        pt: 'Que coisas boas você notou em nós neste ano?',
+        en: 'What good things did you notice about us this year?',
+      ),
+      GuideText(
+        pt: 'Qual foi um momento em que você se sentiu cuidado ou cuidada?',
+        en: 'When did you feel cared for this year?',
+      ),
+      GuideText(
+        pt: 'O que foi mais difícil, e o que ajudou a atravessar?',
+        en: 'What was hardest, and what helped you through?',
+      ),
+      GuideText(
+        pt: 'O que você deseja para o próximo ano, em uma frase?',
+        en: 'What do you wish for next year, in one sentence?',
+      ),
+    ],
+  ),
+  GuideDefinition(
+    slug: 'cycle',
+    guideType: 'difficult',
+    title: GuideText(pt: 'Ciclos e energia', en: 'Cycles and energy'),
+    description: GuideText(
+      pt: 'Como o corpo e o humor mudam ao longo do mês.',
+      en: 'How body and mood shift through the month.',
+    ),
+    prompts: [
+      GuideText(
+        pt: 'Como você costuma se sentir ao longo do mês, do seu jeito?',
+        en: 'How do you usually feel through the month, in your own words?',
+      ),
+      GuideText(
+        pt: 'Em quais dias você precisa de mais calma ou espaço?',
+        en: 'On which days do you need more calm or space?',
+      ),
+      GuideText(
+        pt: 'O que ajuda você nesses dias, e o que não ajuda?',
+        en: 'What helps you on those days, and what does not?',
+      ),
+      GuideText(
+        pt: 'Como vocês podem combinar isso sem nenhum julgamento?',
+        en: 'How can you agree on this with no judgment?',
+      ),
+    ],
+    isSensitive: true,
+  ),
+  GuideDefinition(
+    slug: 'apology',
+    guideType: 'apology',
+    title: GuideText(pt: 'Um pedido de desculpas', en: 'An apology'),
+    description: GuideText(
+      pt: 'Orienta, não escreve por você.',
+      en: 'It guides you, it does not write for you.',
+    ),
+    prompts: [
+      GuideText(
+        pt: 'O que aconteceu, dito sem culpar ninguém?',
+        en: 'What happened, said without blaming anyone?',
+      ),
+      GuideText(
+        pt: 'Como você acha que isso foi para a outra pessoa?',
+        en: 'How do you think it was for the other person?',
+      ),
+      GuideText(
+        pt: 'O que você assume como seu, sem “mas”?',
+        en: 'What do you own, with no “but”?',
+      ),
+      GuideText(
+        pt: 'O que você pode fazer diferente da próxima vez?',
+        en: 'What can you do differently next time?',
+      ),
+    ],
+  ),
+  GuideDefinition(
+    slug: 'distance',
+    guideType: 'difficult',
+    title: GuideText(pt: 'Distância', en: 'Distance'),
+    description: GuideText(
+      pt: 'Manter a proximidade mesmo longe.',
+      en: 'Staying close, even when apart.',
+    ),
+    prompts: [
+      GuideText(
+        pt: 'O que mais pesa para você na distância agora?',
+        en: 'What weighs on you most about the distance right now?',
+      ),
+      GuideText(
+        pt: 'Que pequeno hábito faz você se sentir perto de mim?',
+        en: 'What small habit makes you feel close to me?',
+      ),
+      GuideText(
+        pt: 'Como você prefere falar nos dias corridos?',
+        en: 'How do you prefer we talk on busy days?',
+      ),
+      GuideText(
+        pt: 'Que combinado leve ajudaria a gente esta semana?',
+        en: 'What light agreement would help us this week?',
+      ),
+    ],
+  ),
 ];

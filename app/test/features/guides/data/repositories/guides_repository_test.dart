@@ -50,7 +50,7 @@ void main() {
 
     expect(guides, hasLength(guideCatalogue.length));
     expect(guides.first.title, 'Transition');
-    expect(guides.last.title, 'Intimacy');
+    expect(guides.last.title, 'Distance');
     expect(guides.every((guide) => guide.prompts.length == 4), isTrue);
     verifyNever(
       () => dataSource.insertPrep(

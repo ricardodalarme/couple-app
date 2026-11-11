@@ -2,7 +2,7 @@ import 'package:flutter_bloc_starter/features/guides/data/models/guide_catalogue
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('the catalogue holds the six guides in the product order', () {
+  test('the catalogue holds the ten guides in the product order', () {
     expect(guideCatalogue.map((guide) => guide.slug), [
       'transition',
       'money',
@@ -10,6 +10,10 @@ void main() {
       'chores',
       'plans',
       'intimacy',
+      'year',
+      'cycle',
+      'apology',
+      'distance',
     ]);
   });
 
@@ -34,11 +38,15 @@ void main() {
         'chores': 'difficult',
         'plans': 'difficult',
         'intimacy': 'difficult',
+        'year': 'transition',
+        'cycle': 'difficult',
+        'apology': 'apology',
+        'distance': 'difficult',
       },
     );
   });
 
-  test('only intimacy is a sensitive topic', () {
+  test('only intimacy and cycles are sensitive topics', () {
     expect(
       {for (final guide in guideCatalogue) guide.slug: guide.isSensitive},
       {
@@ -48,6 +56,10 @@ void main() {
         'chores': false,
         'plans': false,
         'intimacy': true,
+        'year': false,
+        'cycle': true,
+        'apology': false,
+        'distance': false,
       },
     );
   });

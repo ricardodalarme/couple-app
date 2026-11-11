@@ -5,6 +5,7 @@ import 'package:flutter_bloc_starter/features/authentication/presentation/existi
 import 'package:flutter_bloc_starter/features/authentication/presentation/session_expired/session_expired_page.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/sign_in/sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/welcome/welcome_page.dart';
+import 'package:flutter_bloc_starter/features/capsules/presentation/capsules/capsules_page.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/detail/card_detail_page.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/draft/sunday_card_page.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/list/cards_list_page.dart';
@@ -149,6 +150,7 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: UsRoute.page),
     AutoRoute(page: TouchRoute.page),
     AutoRoute(page: DistanceRoute.page),
+    AutoRoute(page: CapsulesRoute.page),
     AutoRoute(page: DatesRoute.page),
     AutoRoute(page: PlansRoute.page),
     AutoRoute(page: ManagePlusRoute.page),

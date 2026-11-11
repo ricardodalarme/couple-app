@@ -1,0 +1,13 @@
+query Capsules {
+  capsulesCollection(orderBy: [{ opensOn: AscNullsLast }], first: 100) {
+    edges {
+      node {
+        id
+        authorId
+        coupleId
+        body
+        opensOn
+      }
+    }
+  }
+}

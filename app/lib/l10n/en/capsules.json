@@ -1,0 +1,39 @@
+{
+  "title": "Time capsule",
+  "text": "Write something to be opened on a future date. Until then nobody reads it, not even you.",
+  "bodyHint": "What do you want to say to the future?",
+  "dateLabel": "Opens on",
+  "dateHint": "Pick a date",
+  "dateFormat": "{month} {day}, {year}",
+  "months": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ],
+  "sharedLabel": "For both of us",
+  "sharedText": "Your partner reads it too when the date comes. Off, only you read it.",
+  "save": "Save capsule",
+  "saved": "Capsule saved",
+  "closedUntil": "Closed until {date}",
+  "ownerSharedBy": "Yours, for both",
+  "ownerPrivate": "Only yours",
+  "fromPartner": "From your partner",
+  "delete": "Delete",
+  "emptyTitle": "No capsules yet",
+  "emptyText": "Write one and choose the day it opens.",
+  "errorTitle": "Couldn't load",
+  "errorText": "Your capsules are still saved. Try again.",
+  "errors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't save right now. Your text is still here."
+  }
+}

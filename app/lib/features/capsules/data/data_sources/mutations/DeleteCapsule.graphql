@@ -1,0 +1,5 @@
+mutation DeleteCapsule($id: UUID!) {
+  deleteFromCapsulesCollection(filter: { id: { eq: $id } }) {
+    affectedCount
+  }
+}

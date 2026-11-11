@@ -1,0 +1,39 @@
+{
+  "title": "Cápsula do tempo",
+  "text": "Escreva algo para ser aberto em uma data futura. Até lá, ninguém lê, nem você.",
+  "bodyHint": "O que você quer dizer para o futuro?",
+  "dateLabel": "Abre em",
+  "dateHint": "Escolha uma data",
+  "dateFormat": "{day} de {month} de {year}",
+  "months": [
+    "janeiro",
+    "fevereiro",
+    "março",
+    "abril",
+    "maio",
+    "junho",
+    "julho",
+    "agosto",
+    "setembro",
+    "outubro",
+    "novembro",
+    "dezembro"
+  ],
+  "sharedLabel": "Para nós dois",
+  "sharedText": "Seu par também lê quando a data chegar. Desligado, só você lê.",
+  "save": "Guardar cápsula",
+  "saved": "Cápsula guardada",
+  "closedUntil": "Fechada até {date}",
+  "ownerSharedBy": "Sua, para os dois",
+  "ownerPrivate": "Só sua",
+  "fromPartner": "Do seu par",
+  "delete": "Apagar",
+  "emptyTitle": "Nenhuma cápsula ainda",
+  "emptyText": "Escreva uma e escolha o dia em que ela abre.",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "Suas cápsulas continuam guardadas. Tente de novo.",
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para guardar agora. Seu texto continua aqui."
+  }
+}

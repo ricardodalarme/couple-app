@@ -54,7 +54,7 @@ void main() {
 
   tearDown(() => guidesCubit.close());
 
-  testWidgets('the hub lists all six guides with their step count and no score', (tester) async {
+  testWidgets('the hub lists all ten guides with their step count and no score', (tester) async {
     final calls = <MethodCall>[];
     tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(SystemChannels.platform, (
       call,
@@ -76,7 +76,7 @@ void main() {
     for (final title in ['Transição', 'Dinheiro', 'Família', 'Tarefas', 'Planos', 'Intimidade']) {
       expect(find.text(title), findsOneWidget);
     }
-    expect(find.text('4 PASSOS'), findsNWidgets(6));
+    expect(find.text('4 PASSOS'), findsNWidgets(10));
     expect(find.textContaining('pontuação'), findsNothing);
     expect(
       calls.where(

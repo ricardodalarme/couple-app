@@ -75,6 +75,22 @@ class CalmRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CapsulesPage]
+class CapsulesRoute extends PageRouteInfo<void> {
+  const CapsulesRoute({List<PageRouteInfo>? children})
+    : super(CapsulesRoute.name, initialChildren: children);
+
+  static const String name = 'CapsulesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const CapsulesPage());
+    },
+  );
+}
+
+/// generated route for
 /// [CardDetailPage]
 class CardDetailRoute extends PageRouteInfo<CardDetailRouteArgs> {
   CardDetailRoute({
