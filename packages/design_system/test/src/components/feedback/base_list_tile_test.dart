@@ -36,6 +36,17 @@ void main() {
     expect(_divider(), findsOneWidget);
   });
 
+  testWidgets('a long title ellipsizes when titleMaxLines is set', (tester) async {
+    const title = 'A very long gift name that would not fit on a single line of the tile';
+
+    await tester.pumpWidget(_host(const BaseListTile(title: title, titleMaxLines: 1)));
+
+    final text = tester.widget<Text>(find.text(title));
+    expect(text.maxLines, 1);
+    expect(text.overflow, TextOverflow.ellipsis);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('the list tile keeps the value next to the chevron at the right', (tester) async {
     await tester.pumpWidget(
       _host(

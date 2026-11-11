@@ -1,0 +1,5 @@
+mutation ClearGiftWishBudget($id: UUID!) {
+  updateGiftIdeasCollection(set: { budget: null }, filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}

@@ -161,6 +161,10 @@ const documentNodeMutationAddGiftIdea = DocumentNode(
                           name: NameNode(value: 'title'),
                           value: VariableNode(name: NameNode(value: 'title')),
                         ),
+                        ObjectFieldNode(
+                          name: NameNode(value: 'kind'),
+                          value: StringValueNode(value: 'idea', isBlock: false),
+                        ),
                       ],
                     ),
                   ],

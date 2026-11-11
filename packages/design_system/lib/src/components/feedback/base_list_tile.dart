@@ -8,7 +8,9 @@ const double _tileSize = 32;
 /// Set [showsDivider] for a hairline above the row outside a [BaseListGroup].
 class const BaseListTile({
   required final String title,
+  final int? titleMaxLines,
   final String? subtitle,
+  final int? subtitleMaxLines,
   final IconData? icon,
   final Widget? leading,
   final String? value,
@@ -126,12 +128,19 @@ class const BaseListTile({
       children: [
         Text(
           title,
+          maxLines: titleMaxLines,
+          overflow: titleMaxLines == null ? null : TextOverflow.ellipsis,
           style: context.text.body.copyWith(
             color: isDestructive ? AppPalette.errorInk : colors.textPrimary,
           ),
         ),
         if (subtitle != null)
-          Text(subtitle, style: context.text.caption.copyWith(color: colors.textSecondary)),
+          Text(
+            subtitle,
+            maxLines: subtitleMaxLines,
+            overflow: subtitleMaxLines == null ? null : TextOverflow.ellipsis,
+            style: context.text.caption.copyWith(color: colors.textSecondary),
+          ),
       ],
     );
   }

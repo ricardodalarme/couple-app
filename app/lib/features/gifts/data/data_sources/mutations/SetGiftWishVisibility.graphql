@@ -1,0 +1,5 @@
+mutation SetGiftWishVisibility($id: UUID!, $coupleId: UUID) {
+  updateGiftIdeasCollection(set: { coupleId: $coupleId }, filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}

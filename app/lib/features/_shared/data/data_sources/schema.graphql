@@ -2431,6 +2431,8 @@ type GiftIdeas implements Node {
   nodeId: ID!
   id: UUID!
   authorId: UUID!
+  coupleId: UUID
+  kind: String!
   title: String!
   note: String
   occasionDateId: UUID
@@ -2463,6 +2465,8 @@ type GiftIdeasEdge {
 input GiftIdeasFilter {
   id: UUIDFilter
   authorId: UUIDFilter
+  coupleId: UUIDFilter
+  kind: StringFilter
   title: StringFilter
   note: StringFilter
   occasionDateId: UUIDFilter
@@ -2489,6 +2493,8 @@ input GiftIdeasFilter {
 input GiftIdeasInsertInput {
   id: UUID
   authorId: UUID
+  coupleId: UUID
+  kind: String
   title: String
   note: String
   occasionDateId: UUID
@@ -2509,6 +2515,8 @@ type GiftIdeasInsertResponse {
 input GiftIdeasOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
+  coupleId: OrderByDirection
+  kind: OrderByDirection
   title: OrderByDirection
   note: OrderByDirection
   occasionDateId: OrderByDirection
@@ -2521,6 +2529,8 @@ input GiftIdeasOrderBy {
 input GiftIdeasUpdateInput {
   id: UUID
   authorId: UUID
+  coupleId: UUID
+  kind: String
   title: String
   note: String
   occasionDateId: UUID

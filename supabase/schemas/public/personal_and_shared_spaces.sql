@@ -106,6 +106,8 @@ create table public.partner_facts (
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.gift_ideas (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
+  couple_id uuid references public.couples (id) on delete set null,
+  kind text not null default 'idea' check (kind in ('idea', 'wish')),
   title text not null check (char_length(title) between 1 and 120), note text check (char_length(note) <= 1000),
   occasion_date_id uuid, status text not null default 'idea' check (status in ('idea', 'planned', 'given')), budget text check (budget in ('free', 'low', 'medium', 'high')),
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
@@ -245,7 +247,7 @@ declare t text;
 begin
   -- pattern 1: owner only
   foreach t in array array['temperature_checks', 'repair_sessions', 'repair_learnings', 'journal_entries', 'conversation_preps',
-    'partner_facts', 'gift_ideas', 'manual_entries', 'moods', 'cycle_days', 'idea_responses', 'program_enrollments',
+    'partner_facts', 'manual_entries', 'moods', 'cycle_days', 'idea_responses', 'program_enrollments',
     'lesson_progress', 'quiz_results', 'decision_ranks'] loop
     execute format('alter table public.%I enable row level security', t);
     execute format('grant select, insert, update, delete on public.%I to authenticated', t);
@@ -270,6 +272,23 @@ begin
     execute format('create trigger %I before update on public.%I for each row execute function private.set_updated_at()', t || '_set_updated_at', t);
   end loop;
 end $$;
+
+-- Gift ideas: the author writes, and the partner reads the ones shared with the current couple.
+alter table public.gift_ideas enable row level security;
+grant select, insert, update, delete on public.gift_ideas to authenticated;
+create policy gift_ideas_select_own_or_couple on public.gift_ideas for select to authenticated
+  using (author_id = (select auth.uid()) or couple_id = (select private.current_couple_id()));
+create policy gift_ideas_insert_own on public.gift_ideas for insert to authenticated
+  with check (author_id = (select auth.uid()) and (couple_id is null or couple_id = (select private.current_couple_id())));
+create policy gift_ideas_update_own on public.gift_ideas for update to authenticated
+  using (author_id = (select auth.uid()))
+  with check (author_id = (select auth.uid()) and (couple_id is null or couple_id = (select private.current_couple_id())));
+create policy gift_ideas_delete_own on public.gift_ideas for delete to authenticated
+  using (author_id = (select auth.uid()));
+create index if not exists gift_ideas_author_idx on public.gift_ideas (author_id, created_at desc);
+create index if not exists gift_ideas_couple_idx on public.gift_ideas (couple_id);
+create trigger gift_ideas_set_updated_at before update on public.gift_ideas
+  for each row execute function private.set_updated_at();
 
 -- pattern 3: children are visible and writable exactly when their parent row is visible
 do $$

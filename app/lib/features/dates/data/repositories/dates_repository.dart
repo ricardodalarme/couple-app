@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/dates/data/data_sources/dates_data_source.dart';
 import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
@@ -9,6 +10,7 @@ import 'package:logger/logger.dart';
 class DatesRepository({
   required final DatesDataSource _dataSource,
   required final TogetherRepository _togetherRepository,
+  required final AuthenticationRepository _authenticationRepository,
   final WidgetsRepository? _widgetsRepository,
 }) {
   final Logger _logger = Logger('DatesRepository');
@@ -62,13 +64,15 @@ class DatesRepository({
     unawaited(_widgetsRepository?.syncQuietly());
   });
 
-  Future<List<GiftIdea>> getGiftIdeas() => _run(
-    'read gift ideas',
-    () async => [
-      for (final node in await _dataSource.getGiftIdeas())
+  Future<List<GiftIdea>> getGiftIdeas() => _run('read gift ideas', () async {
+    final authorId = _authenticationRepository.currentUserId;
+    if (authorId == null) return <GiftIdea>[];
+
+    return [
+      for (final node in await _dataSource.getGiftIdeas(authorId: authorId))
         GiftIdea(id: node.id, title: node.title, status: node.status),
-    ],
-  );
+    ];
+  });
 
   Future<void> addGiftIdea({required String id, required String title}) =>
       _run('add a gift idea', () => _dataSource.addGiftIdea(id: id, title: title.trim()));

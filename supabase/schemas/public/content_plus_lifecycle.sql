@@ -254,7 +254,7 @@ declare v_uid uuid := private.require_user(); t text;
 begin
   if private.current_couple_id() is not null then raise exception 'STILL_PAIRED' using errcode = 'P0001'; end if;
   foreach t in array array['rituals', 'logistic_items', 'logistics_meetings', 'planning_areas', 'saved_date_ideas', 'important_dates',
-    'memories', 'story_events', 'lists', 'agreements', 'capsules', 'decisions'] loop
+    'memories', 'story_events', 'lists', 'agreements', 'capsules', 'decisions', 'gift_ideas'] loop
     if keep then
       execute format('update public.%I set couple_id = null where author_id = $1 and couple_id is not null', t) using v_uid;
     else

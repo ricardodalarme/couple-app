@@ -90,6 +90,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$firstSlip$en firstSlip = _Translations$firstSlip$en._(_root);
   @override
+  late final _Translations$gifts$en gifts = _Translations$gifts$en._(_root);
+  @override
   late final _Translations$globalErrors$en globalErrors = _Translations$globalErrors$en._(_root);
   @override
   late final _Translations$griefSupport$en griefSupport = _Translations$griefSupport$en._(_root);
@@ -1216,6 +1218,97 @@ class _Translations$firstSlip$en extends Translations$firstSlip$pt {
   String get save => 'Save';
   @override
   String get saveError => 'Could not keep it right now. Try again.';
+}
+
+// Path: gifts
+class _Translations$gifts$en extends Translations$gifts$pt {
+  _Translations$gifts$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Gift page';
+  @override
+  String get subtitle => 'A page your partner can see in the app. You choose what to share.';
+  @override
+  String get myTitle => 'My wishes';
+  @override
+  String get partnerTitle => 'From your partner';
+  @override
+  String get emptyPageTitle => 'No wishes yet';
+  @override
+  String get emptyPageTextShared => 'Add a wish, or wait for your partner to share one.';
+  @override
+  String get emptyPageTextSolo =>
+      'Add what you would love to receive. It stays private until you pair.';
+  @override
+  String get emptyMineTitle => 'No wishes yet';
+  @override
+  String get emptyMineText => 'Add what you would love to receive.';
+  @override
+  String get emptyPartnerTitle => 'Nothing shared yet';
+  @override
+  String get emptyPartnerText => 'When your partner shares a wish, it shows up here.';
+  @override
+  String get addTitle => 'New wish';
+  @override
+  String get editTitle => 'Edit wish';
+  @override
+  String get titleLabel => 'Gift';
+  @override
+  String get titleHint => 'E.g. a book of poems';
+  @override
+  String get titleTooLong => 'Keep it to 120 characters or fewer.';
+  @override
+  String get noteHint => 'Size, color, where to find it.';
+  @override
+  String get noteTooLong => 'Keep the note under 1000 characters.';
+  @override
+  String get budgetLabel => 'Budget (optional)';
+  @override
+  Map<String, String> get budgets => {
+    'free': 'Free',
+    'low': 'Low',
+    'medium': 'Medium',
+    'high': 'High',
+    'other': '',
+  };
+  @override
+  String get noBudget => 'No budget';
+  @override
+  String get shared => 'Shared';
+  @override
+  String get private => 'Private';
+  @override
+  String get sharedHint => 'Your partner can see this wish.';
+  @override
+  String get privateHint => 'Only you can see this wish.';
+  @override
+  String get sharedNeedsPartner => 'Pair with your partner to share a wish.';
+  @override
+  String get save => 'Save';
+  @override
+  String get add => 'Add';
+  @override
+  String get delete => 'Delete';
+  @override
+  String get deleteTitle => 'Delete this wish?';
+  @override
+  String get deleteText => 'It disappears for you and your partner.';
+  @override
+  String get deleteConfirm => 'Delete';
+  @override
+  String get entryLabel => 'GIFTS';
+  @override
+  String get entryTitle => 'Gift page';
+  @override
+  String get entryText => 'Wishes you choose to share, or keep to yourself.';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t do that right now. Try again.',
+  };
 }
 
 // Path: globalErrors
@@ -6429,6 +6522,48 @@ extension on TranslationsEn {
           'firstSlip.localNote' => 'Stays saved on this phone only.',
           'firstSlip.save' => 'Save',
           'firstSlip.saveError' => 'Could not keep it right now. Try again.',
+          'gifts.title' => 'Gift page',
+          'gifts.subtitle' => 'A page your partner can see in the app. You choose what to share.',
+          'gifts.myTitle' => 'My wishes',
+          'gifts.partnerTitle' => 'From your partner',
+          'gifts.emptyPageTitle' => 'No wishes yet',
+          'gifts.emptyPageTextShared' => 'Add a wish, or wait for your partner to share one.',
+          'gifts.emptyPageTextSolo' =>
+            'Add what you would love to receive. It stays private until you pair.',
+          'gifts.emptyMineTitle' => 'No wishes yet',
+          'gifts.emptyMineText' => 'Add what you would love to receive.',
+          'gifts.emptyPartnerTitle' => 'Nothing shared yet',
+          'gifts.emptyPartnerText' => 'When your partner shares a wish, it shows up here.',
+          'gifts.addTitle' => 'New wish',
+          'gifts.editTitle' => 'Edit wish',
+          'gifts.titleLabel' => 'Gift',
+          'gifts.titleHint' => 'E.g. a book of poems',
+          'gifts.titleTooLong' => 'Keep it to 120 characters or fewer.',
+          'gifts.noteHint' => 'Size, color, where to find it.',
+          'gifts.noteTooLong' => 'Keep the note under 1000 characters.',
+          'gifts.budgetLabel' => 'Budget (optional)',
+          'gifts.budgets.free' => 'Free',
+          'gifts.budgets.low' => 'Low',
+          'gifts.budgets.medium' => 'Medium',
+          'gifts.budgets.high' => 'High',
+          'gifts.budgets.other' => '',
+          'gifts.noBudget' => 'No budget',
+          'gifts.shared' => 'Shared',
+          'gifts.private' => 'Private',
+          'gifts.sharedHint' => 'Your partner can see this wish.',
+          'gifts.privateHint' => 'Only you can see this wish.',
+          'gifts.sharedNeedsPartner' => 'Pair with your partner to share a wish.',
+          'gifts.save' => 'Save',
+          'gifts.add' => 'Add',
+          'gifts.delete' => 'Delete',
+          'gifts.deleteTitle' => 'Delete this wish?',
+          'gifts.deleteText' => 'It disappears for you and your partner.',
+          'gifts.deleteConfirm' => 'Delete',
+          'gifts.entryLabel' => 'GIFTS',
+          'gifts.entryTitle' => 'Gift page',
+          'gifts.entryText' => 'Wishes you choose to share, or keep to yourself.',
+          'gifts.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'gifts.errors.other' => 'Couldn\'t do that right now. Try again.',
           'globalErrors.offline' => 'No connection. Your notes stay saved and sync later.',
           'globalErrors.errorTitle' => 'Something went wrong',
           'globalErrors.errorText' => 'Try again in a moment.',
@@ -6439,6 +6574,9 @@ extension on TranslationsEn {
           'globalErrors.rateTitle' => 'Easy there',
           'globalErrors.rateText' => 'Too many tries in a row. Wait a little and try again.',
           'globalErrors.notFoundTitle' => 'Not found',
+          _ => null,
+        } ??
+        switch (path) {
           'globalErrors.notFoundText' => 'Maybe this is no longer available.',
           'globalErrors.retry' => 'Try again',
           'globalErrors.retryIn' => ({required Object seconds}) => 'Try in ${seconds}s',
@@ -6489,9 +6627,6 @@ extension on TranslationsEn {
           'guides.finish.start' => 'Start a conversation',
           'guides.finish.other' => 'Back to topics',
           'help.badDayTitle' => 'A hard day',
-          _ => null,
-        } ??
-        switch (path) {
           'help.badDayText' => 'Three small things that may help right now. Nothing required.',
           'help.starterTitle' => 'Start a conversation',
           'help.starterText' => 'A question to open with, no rush.',
@@ -7125,6 +7260,9 @@ extension on TranslationsEn {
           'memories.monthsShort.6' => 'Jul',
           'memories.monthsShort.7' => 'Aug',
           'memories.monthsShort.8' => 'Sep',
+          _ => null,
+        } ??
+        switch (path) {
           'memories.monthsShort.9' => 'Oct',
           'memories.monthsShort.10' => 'Nov',
           'memories.monthsShort.11' => 'Dec',
@@ -7171,9 +7309,6 @@ extension on TranslationsEn {
           'mood.errors.TIMEOUT' => 'Couldn\'t save your mood in time. Try again.',
           'mood.errors.other' => 'Couldn\'t save your mood. Try again.',
           'mood.entryCategory' => 'Mood of the day',
-          _ => null,
-        } ??
-        switch (path) {
           'mood.entryTitle' => 'How are you today?',
           'mood.entryText' => 'One tap. Only you see it until you share.',
           'mood.partnerLabel' => 'Your partner\'s mood',
@@ -7711,6 +7846,9 @@ extension on TranslationsEn {
           'quickSlip.monthsShort.4' => 'May',
           'quickSlip.monthsShort.5' => 'Jun',
           'quickSlip.monthsShort.6' => 'Jul',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.monthsShort.7' => 'Aug',
           'quickSlip.monthsShort.8' => 'Sep',
           'quickSlip.monthsShort.9' => 'Oct',
@@ -7755,9 +7893,6 @@ extension on TranslationsEn {
           'received.responses.other' => '',
           'received.seen' => 'Got it',
           'received.doneTitle' => 'All good',
-          _ => null,
-        } ??
-        switch (path) {
           'received.doneText' => 'Thanks for reading it calmly.',
           'received.emptyTitle' => 'Nothing new',
           'received.emptyText' => 'When your partner sends something, it shows up here.',
@@ -8284,6 +8419,9 @@ extension on TranslationsEn {
           'tabs.notesText' => 'Send something short and kind, whenever you like.',
           'tabs.usLabel' => 'US',
           'tabs.usTitle' => 'I miss us',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.usText' => 'A light tap for your partner, no pressure.',
           'tabs.touchLabel' => 'TOUCH',
           'tabs.touchTitle' => 'Touch cards',
@@ -8325,9 +8463,6 @@ extension on TranslationsEn {
           'tabs.guidesTitle' => 'Difficult conversations',
           'tabs.guidesText' => 'One step at a time, just for you.',
           'temperature.levelTitle' => 'How is it between you?',
-          _ => null,
-        } ??
-        switch (path) {
           'temperature.levelHighlight' => 'between you',
           'temperature.levelNote' => 'Private. Never becomes a score.',
           'temperature.levels.good' => 'Good',

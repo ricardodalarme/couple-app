@@ -18047,6 +18047,8 @@ class InputGiftIdeasFilter {
   factory InputGiftIdeasFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
+    InputUUIDFilter? coupleId,
+    InputStringFilter? kind,
     InputStringFilter? title,
     InputStringFilter? note,
     InputUUIDFilter? occasionDateId,
@@ -18061,6 +18063,8 @@ class InputGiftIdeasFilter {
   }) => InputGiftIdeasFilter._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (kind != null) r'kind': kind,
     if (title != null) r'title': title,
     if (note != null) r'note': note,
     if (occasionDateId != null) r'occasionDateId': occasionDateId,
@@ -18089,6 +18093,18 @@ class InputGiftIdeasFilter {
       result$data['authorId'] = l$authorId == null
           ? null
           : InputUUIDFilter.fromJson((l$authorId as Map<String, dynamic>));
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = l$coupleId == null
+          ? null
+          : InputUUIDFilter.fromJson((l$coupleId as Map<String, dynamic>));
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = l$kind == null
+          ? null
+          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
     }
     if (data.containsKey('title')) {
       final l$title = data['title'];
@@ -18165,6 +18181,10 @@ class InputGiftIdeasFilter {
 
   InputUUIDFilter? get authorId => (_$data['authorId'] as InputUUIDFilter?);
 
+  InputUUIDFilter? get coupleId => (_$data['coupleId'] as InputUUIDFilter?);
+
+  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
+
   InputStringFilter? get title => (_$data['title'] as InputStringFilter?);
 
   InputStringFilter? get note => (_$data['note'] as InputStringFilter?);
@@ -18196,6 +18216,14 @@ class InputGiftIdeasFilter {
     if (_$data.containsKey('authorId')) {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId?.toJson();
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId?.toJson();
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind?.toJson();
     }
     if (_$data.containsKey('title')) {
       final l$title = title;
@@ -18266,6 +18294,22 @@ class InputGiftIdeasFilter {
       return false;
     }
     if (l$authorId != lOther$authorId) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
       return false;
     }
     final l$title = title;
@@ -18385,6 +18429,8 @@ class InputGiftIdeasFilter {
   int get hashCode {
     final l$id = id;
     final l$authorId = authorId;
+    final l$coupleId = coupleId;
+    final l$kind = kind;
     final l$title = title;
     final l$note = note;
     final l$occasionDateId = occasionDateId;
@@ -18399,6 +18445,8 @@ class InputGiftIdeasFilter {
     return Object.hashAll([
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('occasionDateId') ? l$occasionDateId : const {},
@@ -18426,6 +18474,8 @@ class InputGiftIdeasInsertInput {
   factory InputGiftIdeasInsertInput({
     String? id,
     String? authorId,
+    String? coupleId,
+    String? kind,
     String? title,
     String? note,
     String? occasionDateId,
@@ -18436,6 +18486,8 @@ class InputGiftIdeasInsertInput {
   }) => InputGiftIdeasInsertInput._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (kind != null) r'kind': kind,
     if (title != null) r'title': title,
     if (note != null) r'note': note,
     if (occasionDateId != null) r'occasionDateId': occasionDateId,
@@ -18456,6 +18508,14 @@ class InputGiftIdeasInsertInput {
     if (data.containsKey('authorId')) {
       final l$authorId = data['authorId'];
       result$data['authorId'] = (l$authorId as String?);
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = (l$coupleId as String?);
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = (l$kind as String?);
     }
     if (data.containsKey('title')) {
       final l$title = data['title'];
@@ -18498,6 +18558,10 @@ class InputGiftIdeasInsertInput {
 
   String? get authorId => (_$data['authorId'] as String?);
 
+  String? get coupleId => (_$data['coupleId'] as String?);
+
+  String? get kind => (_$data['kind'] as String?);
+
   String? get title => (_$data['title'] as String?);
 
   String? get note => (_$data['note'] as String?);
@@ -18521,6 +18585,14 @@ class InputGiftIdeasInsertInput {
     if (_$data.containsKey('authorId')) {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId;
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId;
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind;
     }
     if (_$data.containsKey('title')) {
       final l$title = title;
@@ -18579,6 +18651,22 @@ class InputGiftIdeasInsertInput {
       return false;
     }
     if (l$authorId != lOther$authorId) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
       return false;
     }
     final l$title = title;
@@ -18644,6 +18732,8 @@ class InputGiftIdeasInsertInput {
   int get hashCode {
     final l$id = id;
     final l$authorId = authorId;
+    final l$coupleId = coupleId;
+    final l$kind = kind;
     final l$title = title;
     final l$note = note;
     final l$occasionDateId = occasionDateId;
@@ -18654,6 +18744,8 @@ class InputGiftIdeasInsertInput {
     return Object.hashAll([
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('occasionDateId') ? l$occasionDateId : const {},
@@ -18669,6 +18761,8 @@ class InputGiftIdeasOrderBy {
   factory InputGiftIdeasOrderBy({
     EnumOrderByDirection? id,
     EnumOrderByDirection? authorId,
+    EnumOrderByDirection? coupleId,
+    EnumOrderByDirection? kind,
     EnumOrderByDirection? title,
     EnumOrderByDirection? note,
     EnumOrderByDirection? occasionDateId,
@@ -18679,6 +18773,8 @@ class InputGiftIdeasOrderBy {
   }) => InputGiftIdeasOrderBy._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (kind != null) r'kind': kind,
     if (title != null) r'title': title,
     if (note != null) r'note': note,
     if (occasionDateId != null) r'occasionDateId': occasionDateId,
@@ -18701,6 +18797,18 @@ class InputGiftIdeasOrderBy {
       result$data['authorId'] = l$authorId == null
           ? null
           : fromJsonEnumOrderByDirection((l$authorId as String));
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = l$coupleId == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$coupleId as String));
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = l$kind == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$kind as String));
     }
     if (data.containsKey('title')) {
       final l$title = data['title'];
@@ -18753,6 +18861,10 @@ class InputGiftIdeasOrderBy {
 
   EnumOrderByDirection? get authorId => (_$data['authorId'] as EnumOrderByDirection?);
 
+  EnumOrderByDirection? get coupleId => (_$data['coupleId'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get kind => (_$data['kind'] as EnumOrderByDirection?);
+
   EnumOrderByDirection? get title => (_$data['title'] as EnumOrderByDirection?);
 
   EnumOrderByDirection? get note => (_$data['note'] as EnumOrderByDirection?);
@@ -18776,6 +18888,14 @@ class InputGiftIdeasOrderBy {
     if (_$data.containsKey('authorId')) {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId == null ? null : toJsonEnumOrderByDirection(l$authorId);
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId == null ? null : toJsonEnumOrderByDirection(l$coupleId);
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumOrderByDirection(l$kind);
     }
     if (_$data.containsKey('title')) {
       final l$title = title;
@@ -18838,6 +18958,22 @@ class InputGiftIdeasOrderBy {
     if (l$authorId != lOther$authorId) {
       return false;
     }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
     final l$title = title;
     final lOther$title = other.title;
     if (_$data.containsKey('title') != other._$data.containsKey('title')) {
@@ -18901,6 +19037,8 @@ class InputGiftIdeasOrderBy {
   int get hashCode {
     final l$id = id;
     final l$authorId = authorId;
+    final l$coupleId = coupleId;
+    final l$kind = kind;
     final l$title = title;
     final l$note = note;
     final l$occasionDateId = occasionDateId;
@@ -18911,6 +19049,8 @@ class InputGiftIdeasOrderBy {
     return Object.hashAll([
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('occasionDateId') ? l$occasionDateId : const {},
@@ -18926,6 +19066,8 @@ class InputGiftIdeasUpdateInput {
   factory InputGiftIdeasUpdateInput({
     String? id,
     String? authorId,
+    String? coupleId,
+    String? kind,
     String? title,
     String? note,
     String? occasionDateId,
@@ -18936,6 +19078,8 @@ class InputGiftIdeasUpdateInput {
   }) => InputGiftIdeasUpdateInput._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (kind != null) r'kind': kind,
     if (title != null) r'title': title,
     if (note != null) r'note': note,
     if (occasionDateId != null) r'occasionDateId': occasionDateId,
@@ -18956,6 +19100,14 @@ class InputGiftIdeasUpdateInput {
     if (data.containsKey('authorId')) {
       final l$authorId = data['authorId'];
       result$data['authorId'] = (l$authorId as String?);
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = (l$coupleId as String?);
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = (l$kind as String?);
     }
     if (data.containsKey('title')) {
       final l$title = data['title'];
@@ -18998,6 +19150,10 @@ class InputGiftIdeasUpdateInput {
 
   String? get authorId => (_$data['authorId'] as String?);
 
+  String? get coupleId => (_$data['coupleId'] as String?);
+
+  String? get kind => (_$data['kind'] as String?);
+
   String? get title => (_$data['title'] as String?);
 
   String? get note => (_$data['note'] as String?);
@@ -19021,6 +19177,14 @@ class InputGiftIdeasUpdateInput {
     if (_$data.containsKey('authorId')) {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId;
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId;
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind;
     }
     if (_$data.containsKey('title')) {
       final l$title = title;
@@ -19081,6 +19245,22 @@ class InputGiftIdeasUpdateInput {
     if (l$authorId != lOther$authorId) {
       return false;
     }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
     final l$title = title;
     final lOther$title = other.title;
     if (_$data.containsKey('title') != other._$data.containsKey('title')) {
@@ -19144,6 +19324,8 @@ class InputGiftIdeasUpdateInput {
   int get hashCode {
     final l$id = id;
     final l$authorId = authorId;
+    final l$coupleId = coupleId;
+    final l$kind = kind;
     final l$title = title;
     final l$note = note;
     final l$occasionDateId = occasionDateId;
@@ -19154,6 +19336,8 @@ class InputGiftIdeasUpdateInput {
     return Object.hashAll([
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('occasionDateId') ? l$occasionDateId : const {},

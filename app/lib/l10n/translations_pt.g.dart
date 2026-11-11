@@ -76,6 +76,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$distance$pt distance = Translations$distance$pt.internal(_root);
   late final Translations$fightStyle$pt fightStyle = Translations$fightStyle$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
+  late final Translations$gifts$pt gifts = Translations$gifts$pt.internal(_root);
   late final Translations$globalErrors$pt globalErrors = Translations$globalErrors$pt.internal(
     _root,
   );
@@ -1400,6 +1401,131 @@ class Translations$firstSlip$pt {
 
   /// pt: 'Não deu para guardar agora. Tente de novo.'
   String get saveError => 'Não deu para guardar agora. Tente de novo.';
+}
+
+// Path: gifts
+class Translations$gifts$pt {
+  Translations$gifts$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Página de presentes'
+  String get title => 'Página de presentes';
+
+  /// pt: 'Uma página que seu par vê no app. Você escolhe o que compartilhar.'
+  String get subtitle => 'Uma página que seu par vê no app. Você escolhe o que compartilhar.';
+
+  /// pt: 'Meus desejos'
+  String get myTitle => 'Meus desejos';
+
+  /// pt: 'Do seu par'
+  String get partnerTitle => 'Do seu par';
+
+  /// pt: 'Nenhum desejo ainda'
+  String get emptyPageTitle => 'Nenhum desejo ainda';
+
+  /// pt: 'Adicione um desejo ou espere seu par compartilhar um.'
+  String get emptyPageTextShared => 'Adicione um desejo ou espere seu par compartilhar um.';
+
+  /// pt: 'Adicione o que você gostaria de ganhar. Fica privado até vocês se conectarem.'
+  String get emptyPageTextSolo =>
+      'Adicione o que você gostaria de ganhar. Fica privado até vocês se conectarem.';
+
+  /// pt: 'Nenhum desejo ainda'
+  String get emptyMineTitle => 'Nenhum desejo ainda';
+
+  /// pt: 'Adicione o que você gostaria de ganhar.'
+  String get emptyMineText => 'Adicione o que você gostaria de ganhar.';
+
+  /// pt: 'Nada compartilhado ainda'
+  String get emptyPartnerTitle => 'Nada compartilhado ainda';
+
+  /// pt: 'Quando seu par compartilhar um desejo, ele aparece aqui.'
+  String get emptyPartnerText => 'Quando seu par compartilhar um desejo, ele aparece aqui.';
+
+  /// pt: 'Novo desejo'
+  String get addTitle => 'Novo desejo';
+
+  /// pt: 'Editar desejo'
+  String get editTitle => 'Editar desejo';
+
+  /// pt: 'Presente'
+  String get titleLabel => 'Presente';
+
+  /// pt: 'Ex.: livro de poemas'
+  String get titleHint => 'Ex.: livro de poemas';
+
+  /// pt: 'Use no máximo 120 caracteres.'
+  String get titleTooLong => 'Use no máximo 120 caracteres.';
+
+  /// pt: 'Tamanho, cor, onde encontrar.'
+  String get noteHint => 'Tamanho, cor, onde encontrar.';
+
+  /// pt: 'Use no máximo 1000 caracteres na nota.'
+  String get noteTooLong => 'Use no máximo 1000 caracteres na nota.';
+
+  /// pt: 'Orçamento (opcional)'
+  String get budgetLabel => 'Orçamento (opcional)';
+
+  Map<String, String> get budgets => {
+    'free': 'Grátis',
+    'low': 'Baixo',
+    'medium': 'Médio',
+    'high': 'Alto',
+    'other': '',
+  };
+
+  /// pt: 'Sem orçamento'
+  String get noBudget => 'Sem orçamento';
+
+  /// pt: 'Compartilhado'
+  String get shared => 'Compartilhado';
+
+  /// pt: 'Privado'
+  String get private => 'Privado';
+
+  /// pt: 'Seu par pode ver este desejo.'
+  String get sharedHint => 'Seu par pode ver este desejo.';
+
+  /// pt: 'Só você vê este desejo.'
+  String get privateHint => 'Só você vê este desejo.';
+
+  /// pt: 'Conecte-se com seu par para compartilhar um desejo.'
+  String get sharedNeedsPartner => 'Conecte-se com seu par para compartilhar um desejo.';
+
+  /// pt: 'Salvar'
+  String get save => 'Salvar';
+
+  /// pt: 'Adicionar'
+  String get add => 'Adicionar';
+
+  /// pt: 'Excluir'
+  String get delete => 'Excluir';
+
+  /// pt: 'Excluir este desejo?'
+  String get deleteTitle => 'Excluir este desejo?';
+
+  /// pt: 'Ele desaparece para você e seu par.'
+  String get deleteText => 'Ele desaparece para você e seu par.';
+
+  /// pt: 'Excluir'
+  String get deleteConfirm => 'Excluir';
+
+  /// pt: 'PRESENTES'
+  String get entryLabel => 'PRESENTES';
+
+  /// pt: 'Página de presentes'
+  String get entryTitle => 'Página de presentes';
+
+  /// pt: 'Desejos que você escolhe compartilhar, ou guardar só para você.'
+  String get entryText => 'Desejos que você escolhe compartilhar, ou guardar só para você.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um momento.',
+    'other': 'Não foi possível agora. Tente de novo.',
+  };
 }
 
 // Path: globalErrors
@@ -7913,6 +8039,48 @@ extension on Translations {
           'firstSlip.localNote' => 'Fica salvo só neste celular.',
           'firstSlip.save' => 'Salvar',
           'firstSlip.saveError' => 'Não deu para guardar agora. Tente de novo.',
+          'gifts.title' => 'Página de presentes',
+          'gifts.subtitle' => 'Uma página que seu par vê no app. Você escolhe o que compartilhar.',
+          'gifts.myTitle' => 'Meus desejos',
+          'gifts.partnerTitle' => 'Do seu par',
+          'gifts.emptyPageTitle' => 'Nenhum desejo ainda',
+          'gifts.emptyPageTextShared' => 'Adicione um desejo ou espere seu par compartilhar um.',
+          'gifts.emptyPageTextSolo' =>
+            'Adicione o que você gostaria de ganhar. Fica privado até vocês se conectarem.',
+          'gifts.emptyMineTitle' => 'Nenhum desejo ainda',
+          'gifts.emptyMineText' => 'Adicione o que você gostaria de ganhar.',
+          'gifts.emptyPartnerTitle' => 'Nada compartilhado ainda',
+          'gifts.emptyPartnerText' => 'Quando seu par compartilhar um desejo, ele aparece aqui.',
+          'gifts.addTitle' => 'Novo desejo',
+          'gifts.editTitle' => 'Editar desejo',
+          'gifts.titleLabel' => 'Presente',
+          'gifts.titleHint' => 'Ex.: livro de poemas',
+          'gifts.titleTooLong' => 'Use no máximo 120 caracteres.',
+          'gifts.noteHint' => 'Tamanho, cor, onde encontrar.',
+          'gifts.noteTooLong' => 'Use no máximo 1000 caracteres na nota.',
+          'gifts.budgetLabel' => 'Orçamento (opcional)',
+          'gifts.budgets.free' => 'Grátis',
+          'gifts.budgets.low' => 'Baixo',
+          'gifts.budgets.medium' => 'Médio',
+          'gifts.budgets.high' => 'Alto',
+          'gifts.budgets.other' => '',
+          'gifts.noBudget' => 'Sem orçamento',
+          'gifts.shared' => 'Compartilhado',
+          'gifts.private' => 'Privado',
+          'gifts.sharedHint' => 'Seu par pode ver este desejo.',
+          'gifts.privateHint' => 'Só você vê este desejo.',
+          'gifts.sharedNeedsPartner' => 'Conecte-se com seu par para compartilhar um desejo.',
+          'gifts.save' => 'Salvar',
+          'gifts.add' => 'Adicionar',
+          'gifts.delete' => 'Excluir',
+          'gifts.deleteTitle' => 'Excluir este desejo?',
+          'gifts.deleteText' => 'Ele desaparece para você e seu par.',
+          'gifts.deleteConfirm' => 'Excluir',
+          'gifts.entryLabel' => 'PRESENTES',
+          'gifts.entryTitle' => 'Página de presentes',
+          'gifts.entryText' => 'Desejos que você escolhe compartilhar, ou guardar só para você.',
+          'gifts.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um momento.',
+          'gifts.errors.other' => 'Não foi possível agora. Tente de novo.',
           'globalErrors.offline' =>
             'Sem conexão. Suas anotações ficam salvas e sincronizam depois.',
           'globalErrors.errorTitle' => 'Não deu certo',
@@ -7924,6 +8092,9 @@ extension on Translations {
           'globalErrors.rateTitle' => 'Calma aí',
           'globalErrors.rateText' => 'Muitas tentativas seguidas. Espere um pouco e tente de novo.',
           'globalErrors.notFoundTitle' => 'Não encontramos',
+          _ => null,
+        } ??
+        switch (path) {
           'globalErrors.notFoundText' => 'Talvez isso não esteja mais disponível.',
           'globalErrors.retry' => 'Tentar de novo',
           'globalErrors.retryIn' => ({required Object seconds}) => 'Tentar em ${seconds}s',
@@ -7976,9 +8147,6 @@ extension on Translations {
           'guides.finish.start' => 'Começar uma conversa',
           'guides.finish.other' => 'Voltar aos temas',
           'help.badDayTitle' => 'Um dia difícil',
-          _ => null,
-        } ??
-        switch (path) {
           'help.badDayText' => 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.',
           'help.starterTitle' => 'Começar uma conversa',
           'help.starterText' => 'Uma pergunta para abrir, sem pressa.',
@@ -8611,6 +8779,9 @@ extension on Translations {
           'memories.monthsShort.6' => 'jul',
           'memories.monthsShort.7' => 'ago',
           'memories.monthsShort.8' => 'set',
+          _ => null,
+        } ??
+        switch (path) {
           'memories.monthsShort.9' => 'out',
           'memories.monthsShort.10' => 'nov',
           'memories.monthsShort.11' => 'dez',
@@ -8658,9 +8829,6 @@ extension on Translations {
           'mood.errors.TIMEOUT' => 'Não deu para salvar seu humor a tempo. Tente de novo.',
           'mood.errors.other' => 'Não deu para salvar seu humor. Tente de novo.',
           'mood.entryCategory' => 'Humor do dia',
-          _ => null,
-        } ??
-        switch (path) {
           'mood.entryTitle' => 'Como você está hoje?',
           'mood.entryText' => 'Um toque. Só você vê até compartilhar.',
           'mood.partnerLabel' => 'Humor do seu par',
@@ -9201,6 +9369,9 @@ extension on Translations {
           'quickSlip.monthsShort.4' => 'mai',
           'quickSlip.monthsShort.5' => 'jun',
           'quickSlip.monthsShort.6' => 'jul',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.monthsShort.7' => 'ago',
           'quickSlip.monthsShort.8' => 'set',
           'quickSlip.monthsShort.9' => 'out',
@@ -9245,9 +9416,6 @@ extension on Translations {
           'received.responses.other' => '',
           'received.seen' => 'Entendi',
           'received.doneTitle' => 'Tudo certo',
-          _ => null,
-        } ??
-        switch (path) {
           'received.doneText' => 'Obrigado por ler com calma.',
           'received.emptyTitle' => 'Nada novo',
           'received.emptyText' => 'Quando seu par mandar algo, aparece aqui.',
@@ -9776,6 +9944,9 @@ extension on Translations {
           'tabs.notesText' => 'Mande algo curto e carinhoso, quando quiser.',
           'tabs.usLabel' => 'NÓS',
           'tabs.usTitle' => 'Sinto saudade de nós',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.usText' => 'Um toque leve para o seu par, sem cobrança.',
           'tabs.touchLabel' => 'TOQUE',
           'tabs.touchTitle' => 'Cartas de toque',
@@ -9817,9 +9988,6 @@ extension on Translations {
           'tabs.guidesTitle' => 'Conversas difíceis',
           'tabs.guidesText' => 'Um passo de cada vez, só para você.',
           'temperature.levelTitle' => 'Como está entre vocês?',
-          _ => null,
-        } ??
-        switch (path) {
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',
           'temperature.levels.good' => 'Bem',

@@ -480,6 +480,22 @@ class FirstSlipRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [GiftsPage]
+class GiftsRoute extends PageRouteInfo<void> {
+  const GiftsRoute({List<PageRouteInfo>? children})
+    : super(GiftsRoute.name, initialChildren: children);
+
+  static const String name = 'GiftsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const GiftsPage());
+    },
+  );
+}
+
+/// generated route for
 /// [GriefSupportPage]
 class GriefSupportRoute extends PageRouteInfo<void> {
   const GriefSupportRoute({List<PageRouteInfo>? children})
