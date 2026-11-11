@@ -3405,231 +3405,6 @@ class InputCapsulesOrderBy {
   }
 }
 
-class InputCapsulesUpdateInput {
-  factory InputCapsulesUpdateInput({
-    String? id,
-    String? authorId,
-    String? coupleId,
-    String? body,
-    DateTime? opensOn,
-    DateTime? openedAt,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-  }) => InputCapsulesUpdateInput._({
-    if (id != null) r'id': id,
-    if (authorId != null) r'authorId': authorId,
-    if (coupleId != null) r'coupleId': coupleId,
-    if (body != null) r'body': body,
-    if (opensOn != null) r'opensOn': opensOn,
-    if (openedAt != null) r'openedAt': openedAt,
-    if (createdAt != null) r'createdAt': createdAt,
-    if (updatedAt != null) r'updatedAt': updatedAt,
-  });
-
-  InputCapsulesUpdateInput._(this._$data);
-
-  factory InputCapsulesUpdateInput.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = (l$id as String?);
-    }
-    if (data.containsKey('authorId')) {
-      final l$authorId = data['authorId'];
-      result$data['authorId'] = (l$authorId as String?);
-    }
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = (l$coupleId as String?);
-    }
-    if (data.containsKey('body')) {
-      final l$body = data['body'];
-      result$data['body'] = (l$body as String?);
-    }
-    if (data.containsKey('opensOn')) {
-      final l$opensOn = data['opensOn'];
-      result$data['opensOn'] = l$opensOn == null ? null : DateTime.parse((l$opensOn as String));
-    }
-    if (data.containsKey('openedAt')) {
-      final l$openedAt = data['openedAt'];
-      result$data['openedAt'] = l$openedAt == null ? null : DateTime.parse((l$openedAt as String));
-    }
-    if (data.containsKey('createdAt')) {
-      final l$createdAt = data['createdAt'];
-      result$data['createdAt'] = l$createdAt == null
-          ? null
-          : DateTime.parse((l$createdAt as String));
-    }
-    if (data.containsKey('updatedAt')) {
-      final l$updatedAt = data['updatedAt'];
-      result$data['updatedAt'] = l$updatedAt == null
-          ? null
-          : DateTime.parse((l$updatedAt as String));
-    }
-    return InputCapsulesUpdateInput._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  String? get id => (_$data['id'] as String?);
-
-  String? get authorId => (_$data['authorId'] as String?);
-
-  String? get coupleId => (_$data['coupleId'] as String?);
-
-  String? get body => (_$data['body'] as String?);
-
-  DateTime? get opensOn => (_$data['opensOn'] as DateTime?);
-
-  DateTime? get openedAt => (_$data['openedAt'] as DateTime?);
-
-  DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
-
-  DateTime? get updatedAt => (_$data['updatedAt'] as DateTime?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id;
-    }
-    if (_$data.containsKey('authorId')) {
-      final l$authorId = authorId;
-      result$data['authorId'] = l$authorId;
-    }
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId;
-    }
-    if (_$data.containsKey('body')) {
-      final l$body = body;
-      result$data['body'] = l$body;
-    }
-    if (_$data.containsKey('opensOn')) {
-      final l$opensOn = opensOn;
-      result$data['opensOn'] = l$opensOn == null
-          ? null
-          : ((v) => v.toIso8601String().substring(0, 10))(l$opensOn);
-    }
-    if (_$data.containsKey('openedAt')) {
-      final l$openedAt = openedAt;
-      result$data['openedAt'] = l$openedAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$openedAt);
-    }
-    if (_$data.containsKey('createdAt')) {
-      final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
-    }
-    if (_$data.containsKey('updatedAt')) {
-      final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
-    }
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! InputCapsulesUpdateInput || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (_$data.containsKey('authorId') != other._$data.containsKey('authorId')) {
-      return false;
-    }
-    if (l$authorId != lOther$authorId) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
-    final l$body = body;
-    final lOther$body = other.body;
-    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
-      return false;
-    }
-    if (l$body != lOther$body) {
-      return false;
-    }
-    final l$opensOn = opensOn;
-    final lOther$opensOn = other.opensOn;
-    if (_$data.containsKey('opensOn') != other._$data.containsKey('opensOn')) {
-      return false;
-    }
-    if (l$opensOn != lOther$opensOn) {
-      return false;
-    }
-    final l$openedAt = openedAt;
-    final lOther$openedAt = other.openedAt;
-    if (_$data.containsKey('openedAt') != other._$data.containsKey('openedAt')) {
-      return false;
-    }
-    if (l$openedAt != lOther$openedAt) {
-      return false;
-    }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
-      return false;
-    }
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
-    final l$updatedAt = updatedAt;
-    final lOther$updatedAt = other.updatedAt;
-    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
-      return false;
-    }
-    if (l$updatedAt != lOther$updatedAt) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$authorId = authorId;
-    final l$coupleId = coupleId;
-    final l$body = body;
-    final l$opensOn = opensOn;
-    final l$openedAt = openedAt;
-    final l$createdAt = createdAt;
-    final l$updatedAt = updatedAt;
-    return Object.hashAll([
-      _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('authorId') ? l$authorId : const {},
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
-      _$data.containsKey('body') ? l$body : const {},
-      _$data.containsKey('opensOn') ? l$opensOn : const {},
-      _$data.containsKey('openedAt') ? l$openedAt : const {},
-      _$data.containsKey('createdAt') ? l$createdAt : const {},
-      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
-    ]);
-  }
-}
-
 class InputCardItemsFilter {
   factory InputCardItemsFilter({
     InputUUIDFilter? id,
@@ -10396,6 +10171,7 @@ class InputCouplesFilter {
     InputUUIDFilter? id,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? archivedAt,
+    InputBooleanFilter? touchTopicsEnabled,
     InputIDFilter? nodeId,
     List<InputCouplesFilter>? and,
     List<InputCouplesFilter>? or,
@@ -10404,6 +10180,7 @@ class InputCouplesFilter {
     if (id != null) r'id': id,
     if (createdAt != null) r'createdAt': createdAt,
     if (archivedAt != null) r'archivedAt': archivedAt,
+    if (touchTopicsEnabled != null) r'touchTopicsEnabled': touchTopicsEnabled,
     if (nodeId != null) r'nodeId': nodeId,
     if (and != null) r'and': and,
     if (or != null) r'or': or,
@@ -10431,6 +10208,12 @@ class InputCouplesFilter {
       result$data['archivedAt'] = l$archivedAt == null
           ? null
           : InputDatetimeFilter.fromJson((l$archivedAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('touchTopicsEnabled')) {
+      final l$touchTopicsEnabled = data['touchTopicsEnabled'];
+      result$data['touchTopicsEnabled'] = l$touchTopicsEnabled == null
+          ? null
+          : InputBooleanFilter.fromJson((l$touchTopicsEnabled as Map<String, dynamic>));
     }
     if (data.containsKey('nodeId')) {
       final l$nodeId = data['nodeId'];
@@ -10467,6 +10250,9 @@ class InputCouplesFilter {
 
   InputDatetimeFilter? get archivedAt => (_$data['archivedAt'] as InputDatetimeFilter?);
 
+  InputBooleanFilter? get touchTopicsEnabled =>
+      (_$data['touchTopicsEnabled'] as InputBooleanFilter?);
+
   InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
 
   List<InputCouplesFilter>? get and => (_$data['and'] as List<InputCouplesFilter>?);
@@ -10488,6 +10274,10 @@ class InputCouplesFilter {
     if (_$data.containsKey('archivedAt')) {
       final l$archivedAt = archivedAt;
       result$data['archivedAt'] = l$archivedAt?.toJson();
+    }
+    if (_$data.containsKey('touchTopicsEnabled')) {
+      final l$touchTopicsEnabled = touchTopicsEnabled;
+      result$data['touchTopicsEnabled'] = l$touchTopicsEnabled?.toJson();
     }
     if (_$data.containsKey('nodeId')) {
       final l$nodeId = nodeId;
@@ -10538,6 +10328,15 @@ class InputCouplesFilter {
       return false;
     }
     if (l$archivedAt != lOther$archivedAt) {
+      return false;
+    }
+    final l$touchTopicsEnabled = touchTopicsEnabled;
+    final lOther$touchTopicsEnabled = other.touchTopicsEnabled;
+    if (_$data.containsKey('touchTopicsEnabled') !=
+        other._$data.containsKey('touchTopicsEnabled')) {
+      return false;
+    }
+    if (l$touchTopicsEnabled != lOther$touchTopicsEnabled) {
       return false;
     }
     final l$nodeId = nodeId;
@@ -10602,6 +10401,7 @@ class InputCouplesFilter {
     final l$id = id;
     final l$createdAt = createdAt;
     final l$archivedAt = archivedAt;
+    final l$touchTopicsEnabled = touchTopicsEnabled;
     final l$nodeId = nodeId;
     final l$and = and;
     final l$or = or;
@@ -10610,6 +10410,7 @@ class InputCouplesFilter {
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('archivedAt') ? l$archivedAt : const {},
+      _$data.containsKey('touchTopicsEnabled') ? l$touchTopicsEnabled : const {},
       _$data.containsKey('nodeId') ? l$nodeId : const {},
       _$data.containsKey('and')
           ? l$and == null
@@ -10631,10 +10432,12 @@ class InputCouplesOrderBy {
     EnumOrderByDirection? id,
     EnumOrderByDirection? createdAt,
     EnumOrderByDirection? archivedAt,
+    EnumOrderByDirection? touchTopicsEnabled,
   }) => InputCouplesOrderBy._({
     if (id != null) r'id': id,
     if (createdAt != null) r'createdAt': createdAt,
     if (archivedAt != null) r'archivedAt': archivedAt,
+    if (touchTopicsEnabled != null) r'touchTopicsEnabled': touchTopicsEnabled,
   });
 
   InputCouplesOrderBy._(this._$data);
@@ -10657,6 +10460,12 @@ class InputCouplesOrderBy {
           ? null
           : fromJsonEnumOrderByDirection((l$archivedAt as String));
     }
+    if (data.containsKey('touchTopicsEnabled')) {
+      final l$touchTopicsEnabled = data['touchTopicsEnabled'];
+      result$data['touchTopicsEnabled'] = l$touchTopicsEnabled == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$touchTopicsEnabled as String));
+    }
     return InputCouplesOrderBy._(result$data);
   }
 
@@ -10667,6 +10476,9 @@ class InputCouplesOrderBy {
   EnumOrderByDirection? get createdAt => (_$data['createdAt'] as EnumOrderByDirection?);
 
   EnumOrderByDirection? get archivedAt => (_$data['archivedAt'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get touchTopicsEnabled =>
+      (_$data['touchTopicsEnabled'] as EnumOrderByDirection?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -10685,6 +10497,12 @@ class InputCouplesOrderBy {
       result$data['archivedAt'] = l$archivedAt == null
           ? null
           : toJsonEnumOrderByDirection(l$archivedAt);
+    }
+    if (_$data.containsKey('touchTopicsEnabled')) {
+      final l$touchTopicsEnabled = touchTopicsEnabled;
+      result$data['touchTopicsEnabled'] = l$touchTopicsEnabled == null
+          ? null
+          : toJsonEnumOrderByDirection(l$touchTopicsEnabled);
     }
     return result$data;
   }
@@ -10721,6 +10539,15 @@ class InputCouplesOrderBy {
     if (l$archivedAt != lOther$archivedAt) {
       return false;
     }
+    final l$touchTopicsEnabled = touchTopicsEnabled;
+    final lOther$touchTopicsEnabled = other.touchTopicsEnabled;
+    if (_$data.containsKey('touchTopicsEnabled') !=
+        other._$data.containsKey('touchTopicsEnabled')) {
+      return false;
+    }
+    if (l$touchTopicsEnabled != lOther$touchTopicsEnabled) {
+      return false;
+    }
     return true;
   }
 
@@ -10729,10 +10556,12 @@ class InputCouplesOrderBy {
     final l$id = id;
     final l$createdAt = createdAt;
     final l$archivedAt = archivedAt;
+    final l$touchTopicsEnabled = touchTopicsEnabled;
     return Object.hashAll([
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('archivedAt') ? l$archivedAt : const {},
+      _$data.containsKey('touchTopicsEnabled') ? l$touchTopicsEnabled : const {},
     ]);
   }
 }
@@ -18047,8 +17876,6 @@ class InputGiftIdeasFilter {
   factory InputGiftIdeasFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
-    InputUUIDFilter? coupleId,
-    InputStringFilter? kind,
     InputStringFilter? title,
     InputStringFilter? note,
     InputUUIDFilter? occasionDateId,
@@ -18056,6 +17883,8 @@ class InputGiftIdeasFilter {
     InputStringFilter? budget,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
+    InputUUIDFilter? coupleId,
+    InputStringFilter? kind,
     InputIDFilter? nodeId,
     List<InputGiftIdeasFilter>? and,
     List<InputGiftIdeasFilter>? or,
@@ -18063,8 +17892,6 @@ class InputGiftIdeasFilter {
   }) => InputGiftIdeasFilter._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
-    if (coupleId != null) r'coupleId': coupleId,
-    if (kind != null) r'kind': kind,
     if (title != null) r'title': title,
     if (note != null) r'note': note,
     if (occasionDateId != null) r'occasionDateId': occasionDateId,
@@ -18072,6 +17899,8 @@ class InputGiftIdeasFilter {
     if (budget != null) r'budget': budget,
     if (createdAt != null) r'createdAt': createdAt,
     if (updatedAt != null) r'updatedAt': updatedAt,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (kind != null) r'kind': kind,
     if (nodeId != null) r'nodeId': nodeId,
     if (and != null) r'and': and,
     if (or != null) r'or': or,
@@ -18093,18 +17922,6 @@ class InputGiftIdeasFilter {
       result$data['authorId'] = l$authorId == null
           ? null
           : InputUUIDFilter.fromJson((l$authorId as Map<String, dynamic>));
-    }
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = l$coupleId == null
-          ? null
-          : InputUUIDFilter.fromJson((l$coupleId as Map<String, dynamic>));
-    }
-    if (data.containsKey('kind')) {
-      final l$kind = data['kind'];
-      result$data['kind'] = l$kind == null
-          ? null
-          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
     }
     if (data.containsKey('title')) {
       final l$title = data['title'];
@@ -18148,6 +17965,18 @@ class InputGiftIdeasFilter {
           ? null
           : InputDatetimeFilter.fromJson((l$updatedAt as Map<String, dynamic>));
     }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = l$coupleId == null
+          ? null
+          : InputUUIDFilter.fromJson((l$coupleId as Map<String, dynamic>));
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = l$kind == null
+          ? null
+          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
+    }
     if (data.containsKey('nodeId')) {
       final l$nodeId = data['nodeId'];
       result$data['nodeId'] = l$nodeId == null
@@ -18181,10 +18010,6 @@ class InputGiftIdeasFilter {
 
   InputUUIDFilter? get authorId => (_$data['authorId'] as InputUUIDFilter?);
 
-  InputUUIDFilter? get coupleId => (_$data['coupleId'] as InputUUIDFilter?);
-
-  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
-
   InputStringFilter? get title => (_$data['title'] as InputStringFilter?);
 
   InputStringFilter? get note => (_$data['note'] as InputStringFilter?);
@@ -18198,6 +18023,10 @@ class InputGiftIdeasFilter {
   InputDatetimeFilter? get createdAt => (_$data['createdAt'] as InputDatetimeFilter?);
 
   InputDatetimeFilter? get updatedAt => (_$data['updatedAt'] as InputDatetimeFilter?);
+
+  InputUUIDFilter? get coupleId => (_$data['coupleId'] as InputUUIDFilter?);
+
+  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
 
   InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
 
@@ -18216,14 +18045,6 @@ class InputGiftIdeasFilter {
     if (_$data.containsKey('authorId')) {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId?.toJson();
-    }
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId?.toJson();
-    }
-    if (_$data.containsKey('kind')) {
-      final l$kind = kind;
-      result$data['kind'] = l$kind?.toJson();
     }
     if (_$data.containsKey('title')) {
       final l$title = title;
@@ -18252,6 +18073,14 @@ class InputGiftIdeasFilter {
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
       result$data['updatedAt'] = l$updatedAt?.toJson();
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId?.toJson();
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind?.toJson();
     }
     if (_$data.containsKey('nodeId')) {
       final l$nodeId = nodeId;
@@ -18294,22 +18123,6 @@ class InputGiftIdeasFilter {
       return false;
     }
     if (l$authorId != lOther$authorId) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
-    final l$kind = kind;
-    final lOther$kind = other.kind;
-    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
-      return false;
-    }
-    if (l$kind != lOther$kind) {
       return false;
     }
     final l$title = title;
@@ -18366,6 +18179,22 @@ class InputGiftIdeasFilter {
       return false;
     }
     if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
       return false;
     }
     final l$nodeId = nodeId;
@@ -18429,8 +18258,6 @@ class InputGiftIdeasFilter {
   int get hashCode {
     final l$id = id;
     final l$authorId = authorId;
-    final l$coupleId = coupleId;
-    final l$kind = kind;
     final l$title = title;
     final l$note = note;
     final l$occasionDateId = occasionDateId;
@@ -18438,6 +18265,8 @@ class InputGiftIdeasFilter {
     final l$budget = budget;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
+    final l$coupleId = coupleId;
+    final l$kind = kind;
     final l$nodeId = nodeId;
     final l$and = and;
     final l$or = or;
@@ -18445,8 +18274,6 @@ class InputGiftIdeasFilter {
     return Object.hashAll([
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
-      _$data.containsKey('kind') ? l$kind : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('occasionDateId') ? l$occasionDateId : const {},
@@ -18454,6 +18281,8 @@ class InputGiftIdeasFilter {
       _$data.containsKey('budget') ? l$budget : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
       _$data.containsKey('nodeId') ? l$nodeId : const {},
       _$data.containsKey('and')
           ? l$and == null
@@ -18474,8 +18303,6 @@ class InputGiftIdeasInsertInput {
   factory InputGiftIdeasInsertInput({
     String? id,
     String? authorId,
-    String? coupleId,
-    String? kind,
     String? title,
     String? note,
     String? occasionDateId,
@@ -18483,11 +18310,11 @@ class InputGiftIdeasInsertInput {
     String? budget,
     DateTime? createdAt,
     DateTime? updatedAt,
+    String? coupleId,
+    String? kind,
   }) => InputGiftIdeasInsertInput._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
-    if (coupleId != null) r'coupleId': coupleId,
-    if (kind != null) r'kind': kind,
     if (title != null) r'title': title,
     if (note != null) r'note': note,
     if (occasionDateId != null) r'occasionDateId': occasionDateId,
@@ -18495,6 +18322,8 @@ class InputGiftIdeasInsertInput {
     if (budget != null) r'budget': budget,
     if (createdAt != null) r'createdAt': createdAt,
     if (updatedAt != null) r'updatedAt': updatedAt,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (kind != null) r'kind': kind,
   });
 
   InputGiftIdeasInsertInput._(this._$data);
@@ -18508,14 +18337,6 @@ class InputGiftIdeasInsertInput {
     if (data.containsKey('authorId')) {
       final l$authorId = data['authorId'];
       result$data['authorId'] = (l$authorId as String?);
-    }
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = (l$coupleId as String?);
-    }
-    if (data.containsKey('kind')) {
-      final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
     }
     if (data.containsKey('title')) {
       final l$title = data['title'];
@@ -18549,6 +18370,14 @@ class InputGiftIdeasInsertInput {
           ? null
           : DateTime.parse((l$updatedAt as String));
     }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = (l$coupleId as String?);
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = (l$kind as String?);
+    }
     return InputGiftIdeasInsertInput._(result$data);
   }
 
@@ -18557,10 +18386,6 @@ class InputGiftIdeasInsertInput {
   String? get id => (_$data['id'] as String?);
 
   String? get authorId => (_$data['authorId'] as String?);
-
-  String? get coupleId => (_$data['coupleId'] as String?);
-
-  String? get kind => (_$data['kind'] as String?);
 
   String? get title => (_$data['title'] as String?);
 
@@ -18576,6 +18401,10 @@ class InputGiftIdeasInsertInput {
 
   DateTime? get updatedAt => (_$data['updatedAt'] as DateTime?);
 
+  String? get coupleId => (_$data['coupleId'] as String?);
+
+  String? get kind => (_$data['kind'] as String?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('id')) {
@@ -18585,14 +18414,6 @@ class InputGiftIdeasInsertInput {
     if (_$data.containsKey('authorId')) {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId;
-    }
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId;
-    }
-    if (_$data.containsKey('kind')) {
-      final l$kind = kind;
-      result$data['kind'] = l$kind;
     }
     if (_$data.containsKey('title')) {
       final l$title = title;
@@ -18626,6 +18447,14 @@ class InputGiftIdeasInsertInput {
           ? null
           : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId;
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind;
+    }
     return result$data;
   }
 
@@ -18651,22 +18480,6 @@ class InputGiftIdeasInsertInput {
       return false;
     }
     if (l$authorId != lOther$authorId) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
-    final l$kind = kind;
-    final lOther$kind = other.kind;
-    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
-      return false;
-    }
-    if (l$kind != lOther$kind) {
       return false;
     }
     final l$title = title;
@@ -18725,6 +18538,22 @@ class InputGiftIdeasInsertInput {
     if (l$updatedAt != lOther$updatedAt) {
       return false;
     }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
     return true;
   }
 
@@ -18732,8 +18561,6 @@ class InputGiftIdeasInsertInput {
   int get hashCode {
     final l$id = id;
     final l$authorId = authorId;
-    final l$coupleId = coupleId;
-    final l$kind = kind;
     final l$title = title;
     final l$note = note;
     final l$occasionDateId = occasionDateId;
@@ -18741,11 +18568,11 @@ class InputGiftIdeasInsertInput {
     final l$budget = budget;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
+    final l$coupleId = coupleId;
+    final l$kind = kind;
     return Object.hashAll([
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
-      _$data.containsKey('kind') ? l$kind : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('occasionDateId') ? l$occasionDateId : const {},
@@ -18753,6 +18580,8 @@ class InputGiftIdeasInsertInput {
       _$data.containsKey('budget') ? l$budget : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
     ]);
   }
 }
@@ -18761,8 +18590,6 @@ class InputGiftIdeasOrderBy {
   factory InputGiftIdeasOrderBy({
     EnumOrderByDirection? id,
     EnumOrderByDirection? authorId,
-    EnumOrderByDirection? coupleId,
-    EnumOrderByDirection? kind,
     EnumOrderByDirection? title,
     EnumOrderByDirection? note,
     EnumOrderByDirection? occasionDateId,
@@ -18770,11 +18597,11 @@ class InputGiftIdeasOrderBy {
     EnumOrderByDirection? budget,
     EnumOrderByDirection? createdAt,
     EnumOrderByDirection? updatedAt,
+    EnumOrderByDirection? coupleId,
+    EnumOrderByDirection? kind,
   }) => InputGiftIdeasOrderBy._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
-    if (coupleId != null) r'coupleId': coupleId,
-    if (kind != null) r'kind': kind,
     if (title != null) r'title': title,
     if (note != null) r'note': note,
     if (occasionDateId != null) r'occasionDateId': occasionDateId,
@@ -18782,6 +18609,8 @@ class InputGiftIdeasOrderBy {
     if (budget != null) r'budget': budget,
     if (createdAt != null) r'createdAt': createdAt,
     if (updatedAt != null) r'updatedAt': updatedAt,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (kind != null) r'kind': kind,
   });
 
   InputGiftIdeasOrderBy._(this._$data);
@@ -18797,18 +18626,6 @@ class InputGiftIdeasOrderBy {
       result$data['authorId'] = l$authorId == null
           ? null
           : fromJsonEnumOrderByDirection((l$authorId as String));
-    }
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = l$coupleId == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$coupleId as String));
-    }
-    if (data.containsKey('kind')) {
-      final l$kind = data['kind'];
-      result$data['kind'] = l$kind == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$kind as String));
     }
     if (data.containsKey('title')) {
       final l$title = data['title'];
@@ -18852,6 +18669,18 @@ class InputGiftIdeasOrderBy {
           ? null
           : fromJsonEnumOrderByDirection((l$updatedAt as String));
     }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = l$coupleId == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$coupleId as String));
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = l$kind == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$kind as String));
+    }
     return InputGiftIdeasOrderBy._(result$data);
   }
 
@@ -18860,10 +18689,6 @@ class InputGiftIdeasOrderBy {
   EnumOrderByDirection? get id => (_$data['id'] as EnumOrderByDirection?);
 
   EnumOrderByDirection? get authorId => (_$data['authorId'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get coupleId => (_$data['coupleId'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get kind => (_$data['kind'] as EnumOrderByDirection?);
 
   EnumOrderByDirection? get title => (_$data['title'] as EnumOrderByDirection?);
 
@@ -18879,6 +18704,10 @@ class InputGiftIdeasOrderBy {
 
   EnumOrderByDirection? get updatedAt => (_$data['updatedAt'] as EnumOrderByDirection?);
 
+  EnumOrderByDirection? get coupleId => (_$data['coupleId'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get kind => (_$data['kind'] as EnumOrderByDirection?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('id')) {
@@ -18888,14 +18717,6 @@ class InputGiftIdeasOrderBy {
     if (_$data.containsKey('authorId')) {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId == null ? null : toJsonEnumOrderByDirection(l$authorId);
-    }
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId == null ? null : toJsonEnumOrderByDirection(l$coupleId);
-    }
-    if (_$data.containsKey('kind')) {
-      final l$kind = kind;
-      result$data['kind'] = l$kind == null ? null : toJsonEnumOrderByDirection(l$kind);
     }
     if (_$data.containsKey('title')) {
       final l$title = title;
@@ -18931,6 +18752,14 @@ class InputGiftIdeasOrderBy {
           ? null
           : toJsonEnumOrderByDirection(l$updatedAt);
     }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId == null ? null : toJsonEnumOrderByDirection(l$coupleId);
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumOrderByDirection(l$kind);
+    }
     return result$data;
   }
 
@@ -18956,22 +18785,6 @@ class InputGiftIdeasOrderBy {
       return false;
     }
     if (l$authorId != lOther$authorId) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
-    final l$kind = kind;
-    final lOther$kind = other.kind;
-    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
-      return false;
-    }
-    if (l$kind != lOther$kind) {
       return false;
     }
     final l$title = title;
@@ -19030,6 +18843,22 @@ class InputGiftIdeasOrderBy {
     if (l$updatedAt != lOther$updatedAt) {
       return false;
     }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
     return true;
   }
 
@@ -19037,8 +18866,6 @@ class InputGiftIdeasOrderBy {
   int get hashCode {
     final l$id = id;
     final l$authorId = authorId;
-    final l$coupleId = coupleId;
-    final l$kind = kind;
     final l$title = title;
     final l$note = note;
     final l$occasionDateId = occasionDateId;
@@ -19046,11 +18873,11 @@ class InputGiftIdeasOrderBy {
     final l$budget = budget;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
+    final l$coupleId = coupleId;
+    final l$kind = kind;
     return Object.hashAll([
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
-      _$data.containsKey('kind') ? l$kind : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('occasionDateId') ? l$occasionDateId : const {},
@@ -19058,6 +18885,8 @@ class InputGiftIdeasOrderBy {
       _$data.containsKey('budget') ? l$budget : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
     ]);
   }
 }
@@ -19066,8 +18895,6 @@ class InputGiftIdeasUpdateInput {
   factory InputGiftIdeasUpdateInput({
     String? id,
     String? authorId,
-    String? coupleId,
-    String? kind,
     String? title,
     String? note,
     String? occasionDateId,
@@ -19075,11 +18902,11 @@ class InputGiftIdeasUpdateInput {
     String? budget,
     DateTime? createdAt,
     DateTime? updatedAt,
+    String? coupleId,
+    String? kind,
   }) => InputGiftIdeasUpdateInput._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
-    if (coupleId != null) r'coupleId': coupleId,
-    if (kind != null) r'kind': kind,
     if (title != null) r'title': title,
     if (note != null) r'note': note,
     if (occasionDateId != null) r'occasionDateId': occasionDateId,
@@ -19087,6 +18914,8 @@ class InputGiftIdeasUpdateInput {
     if (budget != null) r'budget': budget,
     if (createdAt != null) r'createdAt': createdAt,
     if (updatedAt != null) r'updatedAt': updatedAt,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (kind != null) r'kind': kind,
   });
 
   InputGiftIdeasUpdateInput._(this._$data);
@@ -19100,14 +18929,6 @@ class InputGiftIdeasUpdateInput {
     if (data.containsKey('authorId')) {
       final l$authorId = data['authorId'];
       result$data['authorId'] = (l$authorId as String?);
-    }
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = (l$coupleId as String?);
-    }
-    if (data.containsKey('kind')) {
-      final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
     }
     if (data.containsKey('title')) {
       final l$title = data['title'];
@@ -19141,6 +18962,14 @@ class InputGiftIdeasUpdateInput {
           ? null
           : DateTime.parse((l$updatedAt as String));
     }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = (l$coupleId as String?);
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = (l$kind as String?);
+    }
     return InputGiftIdeasUpdateInput._(result$data);
   }
 
@@ -19149,10 +18978,6 @@ class InputGiftIdeasUpdateInput {
   String? get id => (_$data['id'] as String?);
 
   String? get authorId => (_$data['authorId'] as String?);
-
-  String? get coupleId => (_$data['coupleId'] as String?);
-
-  String? get kind => (_$data['kind'] as String?);
 
   String? get title => (_$data['title'] as String?);
 
@@ -19168,6 +18993,10 @@ class InputGiftIdeasUpdateInput {
 
   DateTime? get updatedAt => (_$data['updatedAt'] as DateTime?);
 
+  String? get coupleId => (_$data['coupleId'] as String?);
+
+  String? get kind => (_$data['kind'] as String?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('id')) {
@@ -19177,14 +19006,6 @@ class InputGiftIdeasUpdateInput {
     if (_$data.containsKey('authorId')) {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId;
-    }
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId;
-    }
-    if (_$data.containsKey('kind')) {
-      final l$kind = kind;
-      result$data['kind'] = l$kind;
     }
     if (_$data.containsKey('title')) {
       final l$title = title;
@@ -19218,6 +19039,14 @@ class InputGiftIdeasUpdateInput {
           ? null
           : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
     }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId;
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind;
+    }
     return result$data;
   }
 
@@ -19243,22 +19072,6 @@ class InputGiftIdeasUpdateInput {
       return false;
     }
     if (l$authorId != lOther$authorId) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
-    final l$kind = kind;
-    final lOther$kind = other.kind;
-    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
-      return false;
-    }
-    if (l$kind != lOther$kind) {
       return false;
     }
     final l$title = title;
@@ -19317,6 +19130,22 @@ class InputGiftIdeasUpdateInput {
     if (l$updatedAt != lOther$updatedAt) {
       return false;
     }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
     return true;
   }
 
@@ -19324,8 +19153,6 @@ class InputGiftIdeasUpdateInput {
   int get hashCode {
     final l$id = id;
     final l$authorId = authorId;
-    final l$coupleId = coupleId;
-    final l$kind = kind;
     final l$title = title;
     final l$note = note;
     final l$occasionDateId = occasionDateId;
@@ -19333,11 +19160,11 @@ class InputGiftIdeasUpdateInput {
     final l$budget = budget;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
+    final l$coupleId = coupleId;
+    final l$kind = kind;
     return Object.hashAll([
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
-      _$data.containsKey('kind') ? l$kind : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('occasionDateId') ? l$occasionDateId : const {},
@@ -19345,6 +19172,8 @@ class InputGiftIdeasUpdateInput {
       _$data.containsKey('budget') ? l$budget : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
     ]);
   }
 }
@@ -34586,8 +34415,6 @@ class InputNotificationSettingsFilter {
     InputUUIDFilter? profileId,
     InputBooleanFilter? enabled,
     InputBooleanFilter? discreet,
-    InputTimeFilter? quietStart,
-    InputTimeFilter? quietEnd,
     InputIntFilter? cardDay,
     InputIntFilter? cardHour,
     InputStringListFilter? mutedTypes,
@@ -34601,8 +34428,6 @@ class InputNotificationSettingsFilter {
     if (profileId != null) r'profileId': profileId,
     if (enabled != null) r'enabled': enabled,
     if (discreet != null) r'discreet': discreet,
-    if (quietStart != null) r'quietStart': quietStart,
-    if (quietEnd != null) r'quietEnd': quietEnd,
     if (cardDay != null) r'cardDay': cardDay,
     if (cardHour != null) r'cardHour': cardHour,
     if (mutedTypes != null) r'mutedTypes': mutedTypes,
@@ -34635,18 +34460,6 @@ class InputNotificationSettingsFilter {
       result$data['discreet'] = l$discreet == null
           ? null
           : InputBooleanFilter.fromJson((l$discreet as Map<String, dynamic>));
-    }
-    if (data.containsKey('quietStart')) {
-      final l$quietStart = data['quietStart'];
-      result$data['quietStart'] = l$quietStart == null
-          ? null
-          : InputTimeFilter.fromJson((l$quietStart as Map<String, dynamic>));
-    }
-    if (data.containsKey('quietEnd')) {
-      final l$quietEnd = data['quietEnd'];
-      result$data['quietEnd'] = l$quietEnd == null
-          ? null
-          : InputTimeFilter.fromJson((l$quietEnd as Map<String, dynamic>));
     }
     if (data.containsKey('cardDay')) {
       final l$cardDay = data['cardDay'];
@@ -34713,10 +34526,6 @@ class InputNotificationSettingsFilter {
 
   InputBooleanFilter? get discreet => (_$data['discreet'] as InputBooleanFilter?);
 
-  InputTimeFilter? get quietStart => (_$data['quietStart'] as InputTimeFilter?);
-
-  InputTimeFilter? get quietEnd => (_$data['quietEnd'] as InputTimeFilter?);
-
   InputIntFilter? get cardDay => (_$data['cardDay'] as InputIntFilter?);
 
   InputIntFilter? get cardHour => (_$data['cardHour'] as InputIntFilter?);
@@ -34750,14 +34559,6 @@ class InputNotificationSettingsFilter {
     if (_$data.containsKey('discreet')) {
       final l$discreet = discreet;
       result$data['discreet'] = l$discreet?.toJson();
-    }
-    if (_$data.containsKey('quietStart')) {
-      final l$quietStart = quietStart;
-      result$data['quietStart'] = l$quietStart?.toJson();
-    }
-    if (_$data.containsKey('quietEnd')) {
-      final l$quietEnd = quietEnd;
-      result$data['quietEnd'] = l$quietEnd?.toJson();
     }
     if (_$data.containsKey('cardDay')) {
       final l$cardDay = cardDay;
@@ -34828,22 +34629,6 @@ class InputNotificationSettingsFilter {
       return false;
     }
     if (l$discreet != lOther$discreet) {
-      return false;
-    }
-    final l$quietStart = quietStart;
-    final lOther$quietStart = other.quietStart;
-    if (_$data.containsKey('quietStart') != other._$data.containsKey('quietStart')) {
-      return false;
-    }
-    if (l$quietStart != lOther$quietStart) {
-      return false;
-    }
-    final l$quietEnd = quietEnd;
-    final lOther$quietEnd = other.quietEnd;
-    if (_$data.containsKey('quietEnd') != other._$data.containsKey('quietEnd')) {
-      return false;
-    }
-    if (l$quietEnd != lOther$quietEnd) {
       return false;
     }
     final l$cardDay = cardDay;
@@ -34948,8 +34733,6 @@ class InputNotificationSettingsFilter {
     final l$profileId = profileId;
     final l$enabled = enabled;
     final l$discreet = discreet;
-    final l$quietStart = quietStart;
-    final l$quietEnd = quietEnd;
     final l$cardDay = cardDay;
     final l$cardHour = cardHour;
     final l$mutedTypes = mutedTypes;
@@ -34963,8 +34746,6 @@ class InputNotificationSettingsFilter {
       _$data.containsKey('profileId') ? l$profileId : const {},
       _$data.containsKey('enabled') ? l$enabled : const {},
       _$data.containsKey('discreet') ? l$discreet : const {},
-      _$data.containsKey('quietStart') ? l$quietStart : const {},
-      _$data.containsKey('quietEnd') ? l$quietEnd : const {},
       _$data.containsKey('cardDay') ? l$cardDay : const {},
       _$data.containsKey('cardHour') ? l$cardHour : const {},
       _$data.containsKey('mutedTypes') ? l$mutedTypes : const {},
@@ -34991,8 +34772,6 @@ class InputNotificationSettingsOrderBy {
     EnumOrderByDirection? profileId,
     EnumOrderByDirection? enabled,
     EnumOrderByDirection? discreet,
-    EnumOrderByDirection? quietStart,
-    EnumOrderByDirection? quietEnd,
     EnumOrderByDirection? cardDay,
     EnumOrderByDirection? cardHour,
     EnumOrderByDirection? updatedAt,
@@ -35001,8 +34780,6 @@ class InputNotificationSettingsOrderBy {
     if (profileId != null) r'profileId': profileId,
     if (enabled != null) r'enabled': enabled,
     if (discreet != null) r'discreet': discreet,
-    if (quietStart != null) r'quietStart': quietStart,
-    if (quietEnd != null) r'quietEnd': quietEnd,
     if (cardDay != null) r'cardDay': cardDay,
     if (cardHour != null) r'cardHour': cardHour,
     if (updatedAt != null) r'updatedAt': updatedAt,
@@ -35030,18 +34807,6 @@ class InputNotificationSettingsOrderBy {
       result$data['discreet'] = l$discreet == null
           ? null
           : fromJsonEnumOrderByDirection((l$discreet as String));
-    }
-    if (data.containsKey('quietStart')) {
-      final l$quietStart = data['quietStart'];
-      result$data['quietStart'] = l$quietStart == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$quietStart as String));
-    }
-    if (data.containsKey('quietEnd')) {
-      final l$quietEnd = data['quietEnd'];
-      result$data['quietEnd'] = l$quietEnd == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$quietEnd as String));
     }
     if (data.containsKey('cardDay')) {
       final l$cardDay = data['cardDay'];
@@ -35078,10 +34843,6 @@ class InputNotificationSettingsOrderBy {
 
   EnumOrderByDirection? get discreet => (_$data['discreet'] as EnumOrderByDirection?);
 
-  EnumOrderByDirection? get quietStart => (_$data['quietStart'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get quietEnd => (_$data['quietEnd'] as EnumOrderByDirection?);
-
   EnumOrderByDirection? get cardDay => (_$data['cardDay'] as EnumOrderByDirection?);
 
   EnumOrderByDirection? get cardHour => (_$data['cardHour'] as EnumOrderByDirection?);
@@ -35105,16 +34866,6 @@ class InputNotificationSettingsOrderBy {
     if (_$data.containsKey('discreet')) {
       final l$discreet = discreet;
       result$data['discreet'] = l$discreet == null ? null : toJsonEnumOrderByDirection(l$discreet);
-    }
-    if (_$data.containsKey('quietStart')) {
-      final l$quietStart = quietStart;
-      result$data['quietStart'] = l$quietStart == null
-          ? null
-          : toJsonEnumOrderByDirection(l$quietStart);
-    }
-    if (_$data.containsKey('quietEnd')) {
-      final l$quietEnd = quietEnd;
-      result$data['quietEnd'] = l$quietEnd == null ? null : toJsonEnumOrderByDirection(l$quietEnd);
     }
     if (_$data.containsKey('cardDay')) {
       final l$cardDay = cardDay;
@@ -35169,22 +34920,6 @@ class InputNotificationSettingsOrderBy {
     if (l$discreet != lOther$discreet) {
       return false;
     }
-    final l$quietStart = quietStart;
-    final lOther$quietStart = other.quietStart;
-    if (_$data.containsKey('quietStart') != other._$data.containsKey('quietStart')) {
-      return false;
-    }
-    if (l$quietStart != lOther$quietStart) {
-      return false;
-    }
-    final l$quietEnd = quietEnd;
-    final lOther$quietEnd = other.quietEnd;
-    if (_$data.containsKey('quietEnd') != other._$data.containsKey('quietEnd')) {
-      return false;
-    }
-    if (l$quietEnd != lOther$quietEnd) {
-      return false;
-    }
     final l$cardDay = cardDay;
     final lOther$cardDay = other.cardDay;
     if (_$data.containsKey('cardDay') != other._$data.containsKey('cardDay')) {
@@ -35225,8 +34960,6 @@ class InputNotificationSettingsOrderBy {
     final l$profileId = profileId;
     final l$enabled = enabled;
     final l$discreet = discreet;
-    final l$quietStart = quietStart;
-    final l$quietEnd = quietEnd;
     final l$cardDay = cardDay;
     final l$cardHour = cardHour;
     final l$updatedAt = updatedAt;
@@ -35235,8 +34968,6 @@ class InputNotificationSettingsOrderBy {
       _$data.containsKey('profileId') ? l$profileId : const {},
       _$data.containsKey('enabled') ? l$enabled : const {},
       _$data.containsKey('discreet') ? l$discreet : const {},
-      _$data.containsKey('quietStart') ? l$quietStart : const {},
-      _$data.containsKey('quietEnd') ? l$quietEnd : const {},
       _$data.containsKey('cardDay') ? l$cardDay : const {},
       _$data.containsKey('cardHour') ? l$cardHour : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
@@ -35249,8 +34980,6 @@ class InputNotificationSettingsUpdateInput {
   factory InputNotificationSettingsUpdateInput({
     bool? enabled,
     bool? discreet,
-    String? quietStart,
-    String? quietEnd,
     int? cardDay,
     int? cardHour,
     List<String?>? mutedTypes,
@@ -35258,8 +34987,6 @@ class InputNotificationSettingsUpdateInput {
   }) => InputNotificationSettingsUpdateInput._({
     if (enabled != null) r'enabled': enabled,
     if (discreet != null) r'discreet': discreet,
-    if (quietStart != null) r'quietStart': quietStart,
-    if (quietEnd != null) r'quietEnd': quietEnd,
     if (cardDay != null) r'cardDay': cardDay,
     if (cardHour != null) r'cardHour': cardHour,
     if (mutedTypes != null) r'mutedTypes': mutedTypes,
@@ -35277,14 +35004,6 @@ class InputNotificationSettingsUpdateInput {
     if (data.containsKey('discreet')) {
       final l$discreet = data['discreet'];
       result$data['discreet'] = (l$discreet as bool?);
-    }
-    if (data.containsKey('quietStart')) {
-      final l$quietStart = data['quietStart'];
-      result$data['quietStart'] = (l$quietStart as String?);
-    }
-    if (data.containsKey('quietEnd')) {
-      final l$quietEnd = data['quietEnd'];
-      result$data['quietEnd'] = (l$quietEnd as String?);
     }
     if (data.containsKey('cardDay')) {
       final l$cardDay = data['cardDay'];
@@ -35313,10 +35032,6 @@ class InputNotificationSettingsUpdateInput {
 
   bool? get discreet => (_$data['discreet'] as bool?);
 
-  String? get quietStart => (_$data['quietStart'] as String?);
-
-  String? get quietEnd => (_$data['quietEnd'] as String?);
-
   int? get cardDay => (_$data['cardDay'] as int?);
 
   int? get cardHour => (_$data['cardHour'] as int?);
@@ -35334,14 +35049,6 @@ class InputNotificationSettingsUpdateInput {
     if (_$data.containsKey('discreet')) {
       final l$discreet = discreet;
       result$data['discreet'] = l$discreet;
-    }
-    if (_$data.containsKey('quietStart')) {
-      final l$quietStart = quietStart;
-      result$data['quietStart'] = l$quietStart;
-    }
-    if (_$data.containsKey('quietEnd')) {
-      final l$quietEnd = quietEnd;
-      result$data['quietEnd'] = l$quietEnd;
     }
     if (_$data.containsKey('cardDay')) {
       final l$cardDay = cardDay;
@@ -35384,22 +35091,6 @@ class InputNotificationSettingsUpdateInput {
       return false;
     }
     if (l$discreet != lOther$discreet) {
-      return false;
-    }
-    final l$quietStart = quietStart;
-    final lOther$quietStart = other.quietStart;
-    if (_$data.containsKey('quietStart') != other._$data.containsKey('quietStart')) {
-      return false;
-    }
-    if (l$quietStart != lOther$quietStart) {
-      return false;
-    }
-    final l$quietEnd = quietEnd;
-    final lOther$quietEnd = other.quietEnd;
-    if (_$data.containsKey('quietEnd') != other._$data.containsKey('quietEnd')) {
-      return false;
-    }
-    if (l$quietEnd != lOther$quietEnd) {
       return false;
     }
     final l$cardDay = cardDay;
@@ -35452,8 +35143,6 @@ class InputNotificationSettingsUpdateInput {
   int get hashCode {
     final l$enabled = enabled;
     final l$discreet = discreet;
-    final l$quietStart = quietStart;
-    final l$quietEnd = quietEnd;
     final l$cardDay = cardDay;
     final l$cardHour = cardHour;
     final l$mutedTypes = mutedTypes;
@@ -35461,8 +35150,6 @@ class InputNotificationSettingsUpdateInput {
     return Object.hashAll([
       _$data.containsKey('enabled') ? l$enabled : const {},
       _$data.containsKey('discreet') ? l$discreet : const {},
-      _$data.containsKey('quietStart') ? l$quietStart : const {},
-      _$data.containsKey('quietEnd') ? l$quietEnd : const {},
       _$data.containsKey('cardDay') ? l$cardDay : const {},
       _$data.containsKey('cardHour') ? l$cardHour : const {},
       _$data.containsKey('mutedTypes')

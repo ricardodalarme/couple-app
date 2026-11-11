@@ -324,25 +324,6 @@ input CapsulesOrderBy {
   updatedAt: OrderByDirection
 }
 
-input CapsulesUpdateInput {
-  id: UUID
-  authorId: UUID
-  coupleId: UUID
-  body: String
-  opensOn: Date
-  openedAt: Datetime
-  createdAt: Datetime
-  updatedAt: Datetime
-}
-
-type CapsulesUpdateResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [Capsules!]!
-}
-
 type CardItems implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -506,9 +487,9 @@ type Cards implements Node {
   updatedAt: Datetime!
   deletedAt: Datetime
   kind: String!
+  author: Profiles
   recipient: Profiles
   couple: Couples
-  author: Profiles
   items(
     """Query the first `n` records in the collection"""
     first: Int
@@ -1076,8 +1057,8 @@ type CoupleMembers implements Node {
   role: MemberRole!
   joinedAt: Datetime!
   leftAt: Datetime
-  profile: Profiles
   couple: Couples
+  profile: Profiles
 }
 
 type CoupleMembersConnection {
@@ -1127,30 +1108,6 @@ type Couples implements Node {
   createdAt: Datetime!
   archivedAt: Datetime
   touchTopicsEnabled: Boolean!
-  cardsCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: CardsFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [CardsOrderBy!]
-  ): CardsConnection
   members(
     """Query the first `n` records in the collection"""
     first: Int
@@ -1175,6 +1132,30 @@ type Couples implements Node {
     """Sort order to apply to the collection"""
     orderBy: [CoupleMembersOrderBy!]
   ): CoupleMembersConnection
+  cardsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: CardsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [CardsOrderBy!]
+  ): CardsConnection
   ritualsCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -1559,6 +1540,30 @@ type Couples implements Node {
     """Sort order to apply to the collection"""
     orderBy: [GameSessionsOrderBy!]
   ): GameSessionsConnection
+  giftIdeasCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: GiftIdeasFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [GiftIdeasOrderBy!]
+  ): GiftIdeasConnection
 }
 
 type CouplesConnection {
@@ -1575,6 +1580,7 @@ input CouplesFilter {
   id: UUIDFilter
   createdAt: DatetimeFilter
   archivedAt: DatetimeFilter
+  touchTopicsEnabled: BooleanFilter
   nodeId: IDFilter
 
   """
@@ -1595,6 +1601,7 @@ input CouplesOrderBy {
   id: OrderByDirection
   createdAt: OrderByDirection
   archivedAt: OrderByDirection
+  touchTopicsEnabled: OrderByDirection
 }
 
 """
@@ -2431,8 +2438,6 @@ type GiftIdeas implements Node {
   nodeId: ID!
   id: UUID!
   authorId: UUID!
-  coupleId: UUID
-  kind: String!
   title: String!
   note: String
   occasionDateId: UUID
@@ -2440,8 +2445,11 @@ type GiftIdeas implements Node {
   budget: String
   createdAt: Datetime!
   updatedAt: Datetime!
+  coupleId: UUID
+  kind: String!
   author: Profiles
   occasionDate: ImportantDates
+  couple: Couples
 }
 
 type GiftIdeasConnection {
@@ -2465,8 +2473,6 @@ type GiftIdeasEdge {
 input GiftIdeasFilter {
   id: UUIDFilter
   authorId: UUIDFilter
-  coupleId: UUIDFilter
-  kind: StringFilter
   title: StringFilter
   note: StringFilter
   occasionDateId: UUIDFilter
@@ -2474,6 +2480,8 @@ input GiftIdeasFilter {
   budget: StringFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
+  coupleId: UUIDFilter
+  kind: StringFilter
   nodeId: IDFilter
 
   """
@@ -2493,8 +2501,6 @@ input GiftIdeasFilter {
 input GiftIdeasInsertInput {
   id: UUID
   authorId: UUID
-  coupleId: UUID
-  kind: String
   title: String
   note: String
   occasionDateId: UUID
@@ -2502,6 +2508,8 @@ input GiftIdeasInsertInput {
   budget: String
   createdAt: Datetime
   updatedAt: Datetime
+  coupleId: UUID
+  kind: String
 }
 
 type GiftIdeasInsertResponse {
@@ -2515,8 +2523,6 @@ type GiftIdeasInsertResponse {
 input GiftIdeasOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
-  coupleId: OrderByDirection
-  kind: OrderByDirection
   title: OrderByDirection
   note: OrderByDirection
   occasionDateId: OrderByDirection
@@ -2524,13 +2530,13 @@ input GiftIdeasOrderBy {
   budget: OrderByDirection
   createdAt: OrderByDirection
   updatedAt: OrderByDirection
+  coupleId: OrderByDirection
+  kind: OrderByDirection
 }
 
 input GiftIdeasUpdateInput {
   id: UUID
   authorId: UUID
-  coupleId: UUID
-  kind: String
   title: String
   note: String
   occasionDateId: UUID
@@ -2538,6 +2544,8 @@ input GiftIdeasUpdateInput {
   budget: String
   createdAt: Datetime
   updatedAt: Datetime
+  coupleId: UUID
+  kind: String
 }
 
 type GiftIdeasUpdateResponse {
@@ -4158,7 +4166,6 @@ type Mutation {
   createInvite: InviteCreated
   createSupportRequest(topic: String!, message: String!, replyEmail: String, appVersion: String): Boolean
   deleteCard(cardId: UUID!): Boolean
-  deletePartnerMessage(messageId: UUID!): Boolean
 
   """Deletes zero or more records from the `Agreements` collection"""
   deleteFromAgreementsCollection(
@@ -4413,6 +4420,17 @@ type Mutation {
     atMost: Int! = 1
   ): PartnerFactsDeleteResponse!
 
+  """Deletes zero or more records from the `PartnerMessages` collection"""
+  deleteFromPartnerMessagesCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: PartnerMessagesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): PartnerMessagesDeleteResponse!
+
   """Deletes zero or more records from the `PlanningAreas` collection"""
   deleteFromPlanningAreasCollection(
     """Restricts the mutation's impact to records matching the criteria"""
@@ -4533,6 +4551,7 @@ type Mutation {
     """
     atMost: Int! = 1
   ): TemperatureChecksDeleteResponse!
+  deletePartnerMessage(messageId: UUID!): Boolean
   deleteSlip(id: UUID!): Boolean
   drawFromJar: Slips
   endPause: Boolean
@@ -4653,8 +4672,8 @@ type Mutation {
   sendPartnerMessage(kind: String!, body: String, mediaPath: String, forWidget: Boolean = false): PartnerMessages
   sendSignal(kind: String!, value: String, body: String): Signals
   sendSlipNow(slipId: UUID!, note: String): Cards
-  setTouchTopics(enabled: Boolean!): Boolean
   setSlipDetails(id: UUID!, category: String, workArea: String, inJar: Boolean): Slips
+  setTouchTopics(enabled: Boolean!): Boolean
   startPause(returnAt: Datetime!, message: String): Pauses
   unpair: Boolean
   unregisterDevice(token: String!): Boolean
@@ -4674,22 +4693,6 @@ type Mutation {
     """
     atMost: Int! = 1
   ): AgreementsUpdateResponse!
-
-  """Updates zero or more records in the `Capsules` collection"""
-  updateCapsulesCollection(
-    """
-    Fields that are set will be updated for all records matching the `filter`
-    """
-    set: CapsulesUpdateInput!
-
-    """Restricts the mutation's impact to records matching the criteria"""
-    filter: CapsulesFilter
-
-    """
-    The maximum number of records in the collection permitted to be affected
-    """
-    atMost: Int! = 1
-  ): CapsulesUpdateResponse!
   updateCardDraft(cardId: UUID!, slipIds: [UUID]!, note: String): Cards
 
   """Updates zero or more records in the `CheckinAnswers` collection"""
@@ -5236,8 +5239,6 @@ type NotificationSettings implements Node {
   profileId: UUID!
   enabled: Boolean!
   discreet: Boolean!
-  quietStart: Time!
-  quietEnd: Time!
   cardDay: Int!
   cardHour: Int!
   mutedTypes: [String]!
@@ -5260,8 +5261,6 @@ input NotificationSettingsFilter {
   profileId: UUIDFilter
   enabled: BooleanFilter
   discreet: BooleanFilter
-  quietStart: TimeFilter
-  quietEnd: TimeFilter
   cardDay: IntFilter
   cardHour: IntFilter
   mutedTypes: StringListFilter
@@ -5287,8 +5286,6 @@ input NotificationSettingsOrderBy {
   profileId: OrderByDirection
   enabled: OrderByDirection
   discreet: OrderByDirection
-  quietStart: OrderByDirection
-  quietEnd: OrderByDirection
   cardDay: OrderByDirection
   cardHour: OrderByDirection
   updatedAt: OrderByDirection
@@ -5298,8 +5295,6 @@ input NotificationSettingsOrderBy {
 input NotificationSettingsUpdateInput {
   enabled: Boolean
   discreet: Boolean
-  quietStart: Time
-  quietEnd: Time
   cardDay: Int
   cardHour: Int
   mutedTypes: [String]
@@ -5473,6 +5468,14 @@ type PartnerMessages implements Node {
 type PartnerMessagesConnection {
   edges: [PartnerMessagesEdge!]!
   pageInfo: PageInfo!
+}
+
+type PartnerMessagesDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [PartnerMessages!]!
 }
 
 type PartnerMessagesEdge {
@@ -5801,78 +5804,7 @@ type Profiles implements Node {
   city: String
   avatarKind: String!
   pronouns: String
-  invitesCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: InvitesFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [InvitesOrderBy!]
-  ): InvitesConnection
-  receivedCards(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: CardsFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [CardsOrderBy!]
-  ): CardsConnection
-  devicesCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: DevicesFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [DevicesOrderBy!]
-  ): DevicesConnection
+  profileSettings: ProfileSettings
   memberships(
     """Query the first `n` records in the collection"""
     first: Int
@@ -5897,7 +5829,30 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [CoupleMembersOrderBy!]
   ): CoupleMembersConnection
-  profileSettings: ProfileSettings
+  invitesCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: InvitesFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [InvitesOrderBy!]
+  ): InvitesConnection
   slips(
     """Query the first `n` records in the collection"""
     first: Int
@@ -5946,7 +5901,7 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [CardsOrderBy!]
   ): CardsConnection
-  conversationPrepsCollection(
+  receivedCards(
     """Query the first `n` records in the collection"""
     first: Int
 
@@ -5965,13 +5920,37 @@ type Profiles implements Node {
     offset: Int
 
     """Filters to apply to the results set when querying from the collection"""
-    filter: ConversationPrepsFilter
+    filter: CardsFilter
 
     """Sort order to apply to the collection"""
-    orderBy: [ConversationPrepsOrderBy!]
-  ): ConversationPrepsConnection
+    orderBy: [CardsOrderBy!]
+  ): CardsConnection
+  devicesCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: DevicesFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [DevicesOrderBy!]
+  ): DevicesConnection
   notificationSettings: NotificationSettings
-  giftIdeasCollection(
+  cycleDaysCollection(
     """Query the first `n` records in the collection"""
     first: Int
 
@@ -5990,35 +5969,11 @@ type Profiles implements Node {
     offset: Int
 
     """Filters to apply to the results set when querying from the collection"""
-    filter: GiftIdeasFilter
+    filter: CycleDaysFilter
 
     """Sort order to apply to the collection"""
-    orderBy: [GiftIdeasOrderBy!]
-  ): GiftIdeasConnection
-  signalsCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: SignalsFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [SignalsOrderBy!]
-  ): SignalsConnection
+    orderBy: [CycleDaysOrderBy!]
+  ): CycleDaysConnection
   temperatureChecksCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -6115,6 +6070,30 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [JournalEntriesOrderBy!]
   ): JournalEntriesConnection
+  conversationPrepsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: ConversationPrepsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [ConversationPrepsOrderBy!]
+  ): ConversationPrepsConnection
   partnerFactsCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -6139,6 +6118,30 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [PartnerFactsOrderBy!]
   ): PartnerFactsConnection
+  giftIdeasCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: GiftIdeasFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [GiftIdeasOrderBy!]
+  ): GiftIdeasConnection
   manualEntriesCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -6187,30 +6190,6 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [MoodsOrderBy!]
   ): MoodsConnection
-  cycleDaysCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: CycleDaysFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [CycleDaysOrderBy!]
-  ): CycleDaysConnection
   ideaResponsesCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -6739,6 +6718,30 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [PartnerMessagesOrderBy!]
   ): PartnerMessagesConnection
+  signalsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: SignalsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [SignalsOrderBy!]
+  ): SignalsConnection
   questionAnswersCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -6763,30 +6766,6 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [QuestionAnswersOrderBy!]
   ): QuestionAnswersConnection
-  chatMessagesCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: ChatMessagesFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [ChatMessagesOrderBy!]
-  ): ChatMessagesConnection
   checkinAnswersCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -6885,6 +6864,30 @@ type Profiles implements Node {
     orderBy: [ConsentsOrderBy!]
   ): ConsentsConnection
   deletionRequests: DeletionRequests
+  chatMessagesCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: ChatMessagesFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [ChatMessagesOrderBy!]
+  ): ChatMessagesConnection
   learnedItemsCollection(
     """Query the first `n` records in the collection"""
     first: Int
