@@ -18,6 +18,8 @@ import 'package:flutter_bloc_starter/features/help/presentation/help/help_page.d
 import 'package:flutter_bloc_starter/features/help/presentation/support/support_page.dart';
 import 'package:flutter_bloc_starter/features/home/presentation/home/home_page.dart';
 import 'package:flutter_bloc_starter/features/ideas/presentation/detail/idea_detail_page.dart';
+import 'package:flutter_bloc_starter/features/lists/presentation/detail/list_detail_page.dart';
+import 'package:flutter_bloc_starter/features/lists/presentation/lists/lists_page.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/memories_page.dart';
 import 'package:flutter_bloc_starter/features/mood/presentation/mood/mood_page.dart';
 import 'package:flutter_bloc_starter/features/not_found/presentation/not_found/not_found_page.dart';
@@ -138,6 +140,8 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: SoftStartRoute.page, fullscreenDialog: true),
     AutoRoute(page: QuickRepairRoute.page, fullscreenDialog: true),
     AutoRoute(page: SlipDetailRoute.page, path: '/slip/:id'),
+    AutoRoute(page: ListsRoute.page),
+    AutoRoute(page: ListDetailRoute.page, path: '/list/:id'),
     AutoRoute(page: NotificationPreferencesRoute.page),
     AutoRoute(page: DevicesRoute.page),
     AutoRoute(page: SundayCardRoute.page),

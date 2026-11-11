@@ -10,15 +10,22 @@ final class const TogetherState({
   final TogetherView view = TogetherView.together,
   final bool hasPartner = true,
   final bool showCheckin = true,
+  final int listCount = 0,
 }) with Equatable {
-  TogetherState copyWith({TogetherView? view, bool? hasPartner, bool? showCheckin}) {
+  TogetherState copyWith({
+    TogetherView? view,
+    bool? hasPartner,
+    bool? showCheckin,
+    int? listCount,
+  }) {
     return TogetherState(
       view: view ?? this.view,
       hasPartner: hasPartner ?? this.hasPartner,
       showCheckin: showCheckin ?? this.showCheckin,
+      listCount: listCount ?? this.listCount,
     );
   }
 
   @override
-  List<Object?> get props => [view, hasPartner, showCheckin];
+  List<Object?> get props => [view, hasPartner, showCheckin, listCount];
 }

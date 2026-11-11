@@ -98,6 +98,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$language$en language = _Translations$language$en._(_root);
   @override
+  late final _Translations$lists$en lists = _Translations$lists$en._(_root);
+  @override
   late final _Translations$logistics$en logistics = _Translations$logistics$en._(_root);
   @override
   late final _Translations$memories$en memories = _Translations$memories$en._(_root);
@@ -1313,6 +1315,121 @@ class _Translations$language$en extends Translations$language$pt {
   String get languageNote => 'English is finished later.';
   @override
   String get saveError => 'Could not save. Try again.';
+}
+
+// Path: lists
+class _Translations$lists$en extends Translations$lists$pt {
+  _Translations$lists$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Lists';
+  @override
+  String get subtitle => 'Trips, places and films, shared or just for you.';
+  @override
+  String get newList => 'New list';
+  @override
+  String get createTitle => 'New list';
+  @override
+  String get titleLabel => 'Name';
+  @override
+  String get titleHint => 'E.g. Trips of our dreams';
+  @override
+  String get kindLabel => 'Type';
+  @override
+  String get visibilityLabel => 'Who can see it';
+  @override
+  String get sharedHint => 'You both can see and change this list.';
+  @override
+  String get privateHint => 'Only you can see this list.';
+  @override
+  Map<String, String> get kinds => {
+    'travel': 'Travel',
+    'restaurants': 'Restaurants',
+    'movies': 'Movies',
+    'custom': 'Other',
+    'other': '',
+  };
+  @override
+  String get shared => 'Shared';
+  @override
+  String get private => 'Private';
+  @override
+  String get emptyTitle => 'No lists yet';
+  @override
+  String get emptyTextShared => 'Start a list of things you want to do together.';
+  @override
+  String get emptyTextPrivate => 'Start a list of things you want to keep for yourself.';
+  @override
+  String get create => 'Create list';
+  @override
+  String get rename => 'Rename';
+  @override
+  String get delete => 'Delete';
+  @override
+  String get renameTitle => 'Rename list';
+  @override
+  String get save => 'Save';
+  @override
+  String get deleteTitle => 'Delete list?';
+  @override
+  String get deleteTextShared => 'The list and everything in it will be gone for both of you.';
+  @override
+  String get deleteTextPrivate => 'The list and everything in it will be gone for good.';
+  @override
+  String get deleteConfirm => 'Delete';
+  @override
+  String get itemDeleteTitle => 'Delete item?';
+  @override
+  String get itemDeleteTextShared => 'This item will be gone for both of you.';
+  @override
+  String get itemDeleteTextPrivate => 'This item will be gone for good.';
+  @override
+  String get itemDeleteConfirm => 'Delete item';
+  @override
+  String get makePrivate => 'Make private';
+  @override
+  String get shareWithPartner => 'Share with your partner';
+  @override
+  String get addItem => 'Add item';
+  @override
+  String get itemHint => 'E.g. Lisbon';
+  @override
+  String get add => 'Add';
+  @override
+  String get itemEmptyTitle => 'Nothing here yet';
+  @override
+  String get itemEmptyTextShared => 'Add the first thing you want to do together.';
+  @override
+  String get itemEmptyTextPrivate => 'Add the first thing to this list.';
+  @override
+  Map<String, String> get statuses => {
+    'dream': 'Dream',
+    'planned': 'Planned',
+    'done': 'Done',
+    'other': '',
+  };
+  @override
+  String get markDream => 'Back to dreams';
+  @override
+  String get markPlanned => 'Mark as planned';
+  @override
+  String get markDone => 'Mark as done';
+  @override
+  String get moveUp => 'Move up';
+  @override
+  String get moveDown => 'Move down';
+  @override
+  String get itemOptions => 'Item options';
+  @override
+  String get listOptions => 'List options';
+  @override
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t do that right now. Try again.',
+  };
 }
 
 // Path: logistics
@@ -2926,6 +3043,28 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get logisticsTitle => 'Logistics';
   @override
   String get logisticsText => 'The practical things, with nobody carrying them alone.';
+  @override
+  String get listsLabel => 'LISTS';
+  @override
+  String get listsTitle => 'Lists';
+  @override
+  String get listsEmpty => 'No lists yet. Start one together.';
+  @override
+  String get listsEmptyPrivate => 'No lists yet. Start one of your own.';
+  @override
+  String listsSharedCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 list, shared',
+        other: '${count} lists, shared',
+      );
+  @override
+  String listsPrivateCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 list, private',
+        other: '${count} lists, private',
+      );
   @override
   String get soloNote => 'When your partner joins, shared things show up here.';
   @override
@@ -4627,6 +4766,60 @@ extension on TranslationsEn {
           'language.comingSoon' => 'Coming soon',
           'language.languageNote' => 'English is finished later.',
           'language.saveError' => 'Could not save. Try again.',
+          'lists.title' => 'Lists',
+          'lists.subtitle' => 'Trips, places and films, shared or just for you.',
+          'lists.newList' => 'New list',
+          'lists.createTitle' => 'New list',
+          'lists.titleLabel' => 'Name',
+          'lists.titleHint' => 'E.g. Trips of our dreams',
+          'lists.kindLabel' => 'Type',
+          'lists.visibilityLabel' => 'Who can see it',
+          'lists.sharedHint' => 'You both can see and change this list.',
+          'lists.privateHint' => 'Only you can see this list.',
+          'lists.kinds.travel' => 'Travel',
+          'lists.kinds.restaurants' => 'Restaurants',
+          'lists.kinds.movies' => 'Movies',
+          'lists.kinds.custom' => 'Other',
+          'lists.kinds.other' => '',
+          'lists.shared' => 'Shared',
+          'lists.private' => 'Private',
+          'lists.emptyTitle' => 'No lists yet',
+          'lists.emptyTextShared' => 'Start a list of things you want to do together.',
+          'lists.emptyTextPrivate' => 'Start a list of things you want to keep for yourself.',
+          'lists.create' => 'Create list',
+          'lists.rename' => 'Rename',
+          'lists.delete' => 'Delete',
+          'lists.renameTitle' => 'Rename list',
+          'lists.save' => 'Save',
+          'lists.deleteTitle' => 'Delete list?',
+          'lists.deleteTextShared' => 'The list and everything in it will be gone for both of you.',
+          'lists.deleteTextPrivate' => 'The list and everything in it will be gone for good.',
+          'lists.deleteConfirm' => 'Delete',
+          'lists.itemDeleteTitle' => 'Delete item?',
+          'lists.itemDeleteTextShared' => 'This item will be gone for both of you.',
+          'lists.itemDeleteTextPrivate' => 'This item will be gone for good.',
+          'lists.itemDeleteConfirm' => 'Delete item',
+          'lists.makePrivate' => 'Make private',
+          'lists.shareWithPartner' => 'Share with your partner',
+          'lists.addItem' => 'Add item',
+          'lists.itemHint' => 'E.g. Lisbon',
+          'lists.add' => 'Add',
+          'lists.itemEmptyTitle' => 'Nothing here yet',
+          'lists.itemEmptyTextShared' => 'Add the first thing you want to do together.',
+          'lists.itemEmptyTextPrivate' => 'Add the first thing to this list.',
+          'lists.statuses.dream' => 'Dream',
+          'lists.statuses.planned' => 'Planned',
+          'lists.statuses.done' => 'Done',
+          'lists.statuses.other' => '',
+          'lists.markDream' => 'Back to dreams',
+          'lists.markPlanned' => 'Mark as planned',
+          'lists.markDone' => 'Mark as done',
+          'lists.moveUp' => 'Move up',
+          'lists.moveDown' => 'Move down',
+          'lists.itemOptions' => 'Item options',
+          'lists.listOptions' => 'List options',
+          'lists.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'lists.errors.other' => 'Couldn\'t do that right now. Try again.',
           'logistics.title' => 'Logistics',
           'logistics.subtitle' => 'The practical things, with nobody carrying them alone.',
           'logistics.hint' => 'E.g. call the plumber',
@@ -5092,6 +5285,9 @@ extension on TranslationsEn {
           'relationshipChanged.title' => 'Something changed?',
           'relationshipChanged.highlight' => 'changed',
           'relationshipChanged.subtitle' => 'Take your time. This only changes what the app shows.',
+          _ => null,
+        } ??
+        switch (path) {
           'relationshipChanged.optionEnded' => 'We broke up',
           'relationshipChanged.optionBereaved' => 'I lost them',
           'relationshipChanged.optionOnBreak' => 'A break',
@@ -5151,9 +5347,6 @@ extension on TranslationsEn {
           'reminders.discreet' => 'Open the app to see.',
           'repair.calm.title' => 'A moment to breathe',
           'repair.calm.titleHighlight' => 'breathe',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.calm.cadence' =>
             'Breathe in slowly for 4. Breathe out slowly for 6. Repeat at your own pace.',
           'repair.calm.text' => 'There\'s no rush and no timer. Leave whenever you like.',
@@ -5546,6 +5739,24 @@ extension on TranslationsEn {
           'tabs.logisticsLabel' => 'PRACTICAL',
           'tabs.logisticsTitle' => 'Logistics',
           'tabs.logisticsText' => 'The practical things, with nobody carrying them alone.',
+          'tabs.listsLabel' => 'LISTS',
+          'tabs.listsTitle' => 'Lists',
+          'tabs.listsEmpty' => 'No lists yet. Start one together.',
+          'tabs.listsEmptyPrivate' => 'No lists yet. Start one of your own.',
+          'tabs.listsSharedCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 list, shared',
+                  other: '${count} lists, shared',
+                ),
+          'tabs.listsPrivateCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 list, private',
+                  other: '${count} lists, private',
+                ),
           'tabs.soloNote' => 'When your partner joins, shared things show up here.',
           'tabs.ritualsLabel' => 'ROUTINE',
           'tabs.ritualsTitle' => 'Rituals',
@@ -5667,6 +5878,9 @@ extension on TranslationsEn {
           'today.pendingInviteTitle' => 'Invite sent',
           'today.pendingInviteText' => 'They have not joined yet. Send again or revoke.',
           'today.pendingInviteAction' => 'See invite',
+          _ => null,
+        } ??
+        switch (path) {
           'today.answer' => 'Answer',
           'today.slipsThisWeek' =>
             ({required num count}) =>
@@ -5756,9 +5970,6 @@ extension on TranslationsEn {
           'unpair.relationship.title' => 'Relationship',
           'unpair.relationship.unpair' => ({required Object name}) => 'Unpair from ${name}',
           'unpair.relationship.ended' => 'The relationship ended',
-          _ => null,
-        } ??
-        switch (path) {
           'unpair.breakup.appBarTitle' => 'We broke up',
           'unpair.breakup.title' => 'I am sorry',
           'unpair.breakup.highlight' => 'sorry',

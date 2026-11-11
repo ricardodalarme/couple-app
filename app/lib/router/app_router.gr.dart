@@ -581,6 +581,75 @@ class LearningRouteArgs {
 }
 
 /// generated route for
+/// [ListDetailPage]
+class ListDetailRoute extends PageRouteInfo<ListDetailRouteArgs> {
+  ListDetailRoute({
+    required String listId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ListDetailRoute.name,
+         args: ListDetailRouteArgs(listId: listId, key: key),
+         rawPathParams: {'id': listId},
+         initialChildren: children,
+       );
+
+  static const String name = 'ListDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<ListDetailRouteArgs>(
+        orElse: () => ListDetailRouteArgs(listId: pathParams.getString('id')),
+      );
+      return WrappedRoute(
+        child: ListDetailPage(listId: args.listId, key: args.key),
+      );
+    },
+  );
+}
+
+class ListDetailRouteArgs {
+  const ListDetailRouteArgs({required this.listId, this.key});
+
+  final String listId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ListDetailRouteArgs{listId: $listId, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ListDetailRouteArgs) return false;
+    return listId == other.listId && key == other.key;
+  }
+
+  @override
+  int get hashCode => listId.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [ListsPage]
+class ListsRoute extends PageRouteInfo<void> {
+  const ListsRoute({List<PageRouteInfo>? children})
+    : super(ListsRoute.name, initialChildren: children);
+
+  static const String name = 'ListsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const ListsPage());
+    },
+  );
+}
+
+/// generated route for
 /// [LogisticsPage]
 class LogisticsRoute extends PageRouteInfo<void> {
   const LogisticsRoute({List<PageRouteInfo>? children})

@@ -28,7 +28,9 @@ class TogetherDataSource({required final GQLClient _client}) {
       OptionsQueryMyCouple(fetchPolicy: FetchPolicy.networkOnly),
     );
 
-    return validateResponseData(response, getData: (data) => data.myCouple?.id);
+    validateResponse(response);
+
+    return response.parsedData?.myCouple?.id;
   }
 
   Future<List<QueryLogisticItemslogisticItemsCollectionedgesnode>> getLogisticItems() async {

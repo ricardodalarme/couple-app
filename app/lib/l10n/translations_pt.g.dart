@@ -82,6 +82,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
   late final Translations$language$pt language = Translations$language$pt.internal(_root);
+  late final Translations$lists$pt lists = Translations$lists$pt.internal(_root);
   late final Translations$logistics$pt logistics = Translations$logistics$pt.internal(_root);
   late final Translations$memories$pt memories = Translations$memories$pt.internal(_root);
   late final Translations$mood$pt mood = Translations$mood$pt.internal(_root);
@@ -1553,6 +1554,164 @@ class Translations$language$pt {
 
   /// pt: 'Não foi possível salvar. Tente novamente.'
   String get saveError => 'Não foi possível salvar. Tente novamente.';
+}
+
+// Path: lists
+class Translations$lists$pt {
+  Translations$lists$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Listas'
+  String get title => 'Listas';
+
+  /// pt: 'Viagens, lugares e filmes, compartilhados ou só seus.'
+  String get subtitle => 'Viagens, lugares e filmes, compartilhados ou só seus.';
+
+  /// pt: 'Nova lista'
+  String get newList => 'Nova lista';
+
+  /// pt: 'Nova lista'
+  String get createTitle => 'Nova lista';
+
+  /// pt: 'Nome'
+  String get titleLabel => 'Nome';
+
+  /// pt: 'Ex.: Viagens dos nossos sonhos'
+  String get titleHint => 'Ex.: Viagens dos nossos sonhos';
+
+  /// pt: 'Tipo'
+  String get kindLabel => 'Tipo';
+
+  /// pt: 'Quem pode ver'
+  String get visibilityLabel => 'Quem pode ver';
+
+  /// pt: 'Vocês dois podem ver e mudar esta lista.'
+  String get sharedHint => 'Vocês dois podem ver e mudar esta lista.';
+
+  /// pt: 'Só você vê esta lista.'
+  String get privateHint => 'Só você vê esta lista.';
+
+  Map<String, String> get kinds => {
+    'travel': 'Viagem',
+    'restaurants': 'Restaurantes',
+    'movies': 'Filmes',
+    'custom': 'Outra',
+    'other': '',
+  };
+
+  /// pt: 'Compartilhada'
+  String get shared => 'Compartilhada';
+
+  /// pt: 'Privada'
+  String get private => 'Privada';
+
+  /// pt: 'Nenhuma lista ainda'
+  String get emptyTitle => 'Nenhuma lista ainda';
+
+  /// pt: 'Comece uma lista de coisas que vocês querem fazer juntos.'
+  String get emptyTextShared => 'Comece uma lista de coisas que vocês querem fazer juntos.';
+
+  /// pt: 'Comece uma lista de coisas para você guardar.'
+  String get emptyTextPrivate => 'Comece uma lista de coisas para você guardar.';
+
+  /// pt: 'Criar lista'
+  String get create => 'Criar lista';
+
+  /// pt: 'Renomear'
+  String get rename => 'Renomear';
+
+  /// pt: 'Apagar'
+  String get delete => 'Apagar';
+
+  /// pt: 'Renomear lista'
+  String get renameTitle => 'Renomear lista';
+
+  /// pt: 'Guardar'
+  String get save => 'Guardar';
+
+  /// pt: 'Apagar lista?'
+  String get deleteTitle => 'Apagar lista?';
+
+  /// pt: 'A lista e tudo o que está nela somem para vocês dois.'
+  String get deleteTextShared => 'A lista e tudo o que está nela somem para vocês dois.';
+
+  /// pt: 'A lista e tudo o que está nela somem de vez.'
+  String get deleteTextPrivate => 'A lista e tudo o que está nela somem de vez.';
+
+  /// pt: 'Apagar'
+  String get deleteConfirm => 'Apagar';
+
+  /// pt: 'Apagar item?'
+  String get itemDeleteTitle => 'Apagar item?';
+
+  /// pt: 'Este item some para vocês dois.'
+  String get itemDeleteTextShared => 'Este item some para vocês dois.';
+
+  /// pt: 'Este item some de vez.'
+  String get itemDeleteTextPrivate => 'Este item some de vez.';
+
+  /// pt: 'Apagar item'
+  String get itemDeleteConfirm => 'Apagar item';
+
+  /// pt: 'Tornar privada'
+  String get makePrivate => 'Tornar privada';
+
+  /// pt: 'Compartilhar com seu par'
+  String get shareWithPartner => 'Compartilhar com seu par';
+
+  /// pt: 'Adicionar item'
+  String get addItem => 'Adicionar item';
+
+  /// pt: 'Ex.: Lisboa'
+  String get itemHint => 'Ex.: Lisboa';
+
+  /// pt: 'Adicionar'
+  String get add => 'Adicionar';
+
+  /// pt: 'Nada por aqui ainda'
+  String get itemEmptyTitle => 'Nada por aqui ainda';
+
+  /// pt: 'Adicione a primeira coisa que vocês querem fazer juntos.'
+  String get itemEmptyTextShared => 'Adicione a primeira coisa que vocês querem fazer juntos.';
+
+  /// pt: 'Adicione a primeira coisa a esta lista.'
+  String get itemEmptyTextPrivate => 'Adicione a primeira coisa a esta lista.';
+
+  Map<String, String> get statuses => {
+    'dream': 'Sonho',
+    'planned': 'Planejado',
+    'done': 'Feito',
+    'other': '',
+  };
+
+  /// pt: 'Voltar para sonhos'
+  String get markDream => 'Voltar para sonhos';
+
+  /// pt: 'Marcar como planejado'
+  String get markPlanned => 'Marcar como planejado';
+
+  /// pt: 'Marcar como feito'
+  String get markDone => 'Marcar como feito';
+
+  /// pt: 'Mover para cima'
+  String get moveUp => 'Mover para cima';
+
+  /// pt: 'Mover para baixo'
+  String get moveDown => 'Mover para baixo';
+
+  /// pt: 'Opções do item'
+  String get itemOptions => 'Opções do item';
+
+  /// pt: 'Opções da lista'
+  String get listOptions => 'Opções da lista';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para fazer isso agora. Tente de novo.',
+  };
 }
 
 // Path: logistics
@@ -3576,6 +3735,34 @@ class Translations$tabs$pt {
   /// pt: 'As coisas práticas, sem ninguém carregar sozinho.'
   String get logisticsText => 'As coisas práticas, sem ninguém carregar sozinho.';
 
+  /// pt: 'LISTAS'
+  String get listsLabel => 'LISTAS';
+
+  /// pt: 'Listas'
+  String get listsTitle => 'Listas';
+
+  /// pt: 'Nenhuma lista ainda. Comecem uma juntos.'
+  String get listsEmpty => 'Nenhuma lista ainda. Comecem uma juntos.';
+
+  /// pt: 'Nenhuma lista ainda. Comece uma só sua.'
+  String get listsEmptyPrivate => 'Nenhuma lista ainda. Comece uma só sua.';
+
+  /// pt: '(one) {1 lista, compartilhada} (other) {{count} listas, compartilhadas}'
+  String listsSharedCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 lista, compartilhada',
+        other: '${count} listas, compartilhadas',
+      );
+
+  /// pt: '(one) {1 lista, privada} (other) {{count} listas, privadas}'
+  String listsPrivateCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 lista, privada',
+        other: '${count} listas, privadas',
+      );
+
   /// pt: 'Quando seu par entrar, as coisas compartilhadas aparecem aqui.'
   String get soloNote => 'Quando seu par entrar, as coisas compartilhadas aparecem aqui.';
 
@@ -5534,6 +5721,60 @@ extension on Translations {
           'language.comingSoon' => 'Em breve',
           'language.languageNote' => 'O inglês fica completo depois.',
           'language.saveError' => 'Não foi possível salvar. Tente novamente.',
+          'lists.title' => 'Listas',
+          'lists.subtitle' => 'Viagens, lugares e filmes, compartilhados ou só seus.',
+          'lists.newList' => 'Nova lista',
+          'lists.createTitle' => 'Nova lista',
+          'lists.titleLabel' => 'Nome',
+          'lists.titleHint' => 'Ex.: Viagens dos nossos sonhos',
+          'lists.kindLabel' => 'Tipo',
+          'lists.visibilityLabel' => 'Quem pode ver',
+          'lists.sharedHint' => 'Vocês dois podem ver e mudar esta lista.',
+          'lists.privateHint' => 'Só você vê esta lista.',
+          'lists.kinds.travel' => 'Viagem',
+          'lists.kinds.restaurants' => 'Restaurantes',
+          'lists.kinds.movies' => 'Filmes',
+          'lists.kinds.custom' => 'Outra',
+          'lists.kinds.other' => '',
+          'lists.shared' => 'Compartilhada',
+          'lists.private' => 'Privada',
+          'lists.emptyTitle' => 'Nenhuma lista ainda',
+          'lists.emptyTextShared' => 'Comece uma lista de coisas que vocês querem fazer juntos.',
+          'lists.emptyTextPrivate' => 'Comece uma lista de coisas para você guardar.',
+          'lists.create' => 'Criar lista',
+          'lists.rename' => 'Renomear',
+          'lists.delete' => 'Apagar',
+          'lists.renameTitle' => 'Renomear lista',
+          'lists.save' => 'Guardar',
+          'lists.deleteTitle' => 'Apagar lista?',
+          'lists.deleteTextShared' => 'A lista e tudo o que está nela somem para vocês dois.',
+          'lists.deleteTextPrivate' => 'A lista e tudo o que está nela somem de vez.',
+          'lists.deleteConfirm' => 'Apagar',
+          'lists.itemDeleteTitle' => 'Apagar item?',
+          'lists.itemDeleteTextShared' => 'Este item some para vocês dois.',
+          'lists.itemDeleteTextPrivate' => 'Este item some de vez.',
+          'lists.itemDeleteConfirm' => 'Apagar item',
+          'lists.makePrivate' => 'Tornar privada',
+          'lists.shareWithPartner' => 'Compartilhar com seu par',
+          'lists.addItem' => 'Adicionar item',
+          'lists.itemHint' => 'Ex.: Lisboa',
+          'lists.add' => 'Adicionar',
+          'lists.itemEmptyTitle' => 'Nada por aqui ainda',
+          'lists.itemEmptyTextShared' => 'Adicione a primeira coisa que vocês querem fazer juntos.',
+          'lists.itemEmptyTextPrivate' => 'Adicione a primeira coisa a esta lista.',
+          'lists.statuses.dream' => 'Sonho',
+          'lists.statuses.planned' => 'Planejado',
+          'lists.statuses.done' => 'Feito',
+          'lists.statuses.other' => '',
+          'lists.markDream' => 'Voltar para sonhos',
+          'lists.markPlanned' => 'Marcar como planejado',
+          'lists.markDone' => 'Marcar como feito',
+          'lists.moveUp' => 'Mover para cima',
+          'lists.moveDown' => 'Mover para baixo',
+          'lists.itemOptions' => 'Opções do item',
+          'lists.listOptions' => 'Opções da lista',
+          'lists.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'lists.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'logistics.title' => 'Logística',
           'logistics.subtitle' => 'As coisas práticas, sem ninguém carregar sozinho.',
           'logistics.hint' => 'Ex.: ligar para o encanador',
@@ -6007,6 +6248,9 @@ extension on Translations {
           'relationshipChanged.title' => 'Algo mudou?',
           'relationshipChanged.highlight' => 'mudou',
           'relationshipChanged.subtitle' => 'Conte com calma. Isso só muda o que o app mostra.',
+          _ => null,
+        } ??
+        switch (path) {
           'relationshipChanged.optionEnded' => 'Terminamos',
           'relationshipChanged.optionBereaved' => 'Perdi a pessoa',
           'relationshipChanged.optionOnBreak' => 'Um tempo',
@@ -6066,9 +6310,6 @@ extension on Translations {
           'reminders.discreet' => 'Abra o app para ver.',
           'repair.calm.title' => 'Um momento para respirar',
           'repair.calm.titleHighlight' => 'respirar',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.calm.cadence' =>
             'Inspire devagar por 4. Solte devagar por 6. Repita no seu ritmo.',
           'repair.calm.text' => 'Não tem pressa e não tem tempo contado. Saia quando quiser.',
@@ -6464,6 +6705,24 @@ extension on Translations {
           'tabs.logisticsLabel' => 'PRÁTICO',
           'tabs.logisticsTitle' => 'Logística',
           'tabs.logisticsText' => 'As coisas práticas, sem ninguém carregar sozinho.',
+          'tabs.listsLabel' => 'LISTAS',
+          'tabs.listsTitle' => 'Listas',
+          'tabs.listsEmpty' => 'Nenhuma lista ainda. Comecem uma juntos.',
+          'tabs.listsEmptyPrivate' => 'Nenhuma lista ainda. Comece uma só sua.',
+          'tabs.listsSharedCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 lista, compartilhada',
+                  other: '${count} listas, compartilhadas',
+                ),
+          'tabs.listsPrivateCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 lista, privada',
+                  other: '${count} listas, privadas',
+                ),
           'tabs.soloNote' => 'Quando seu par entrar, as coisas compartilhadas aparecem aqui.',
           'tabs.ritualsLabel' => 'ROTINA',
           'tabs.ritualsTitle' => 'Rituais',
@@ -6586,6 +6845,9 @@ extension on Translations {
           'today.pendingInviteTitle' => 'Convite enviado',
           'today.pendingInviteText' => 'A pessoa ainda não entrou. Reenviar ou revogar.',
           'today.pendingInviteAction' => 'Ver convite',
+          _ => null,
+        } ??
+        switch (path) {
           'today.answer' => 'Responder',
           'today.slipsThisWeek' =>
             ({required num count}) =>
@@ -6675,9 +6937,6 @@ extension on Translations {
           'unpair.relationship.title' => 'Relacionamento',
           'unpair.relationship.unpair' => ({required Object name}) => 'Desvincular da ${name}',
           'unpair.relationship.ended' => 'A relação terminou',
-          _ => null,
-        } ??
-        switch (path) {
           'unpair.breakup.appBarTitle' => 'Terminamos',
           'unpair.breakup.title' => 'Sinto muito',
           'unpair.breakup.highlight' => 'muito',

@@ -14,6 +14,18 @@
   "logisticsLabel": "PRACTICAL",
   "logisticsTitle": "Logistics",
   "logisticsText": "The practical things, with nobody carrying them alone.",
+  "listsLabel": "LISTS",
+  "listsTitle": "Lists",
+  "listsEmpty": "No lists yet. Start one together.",
+  "listsEmptyPrivate": "No lists yet. Start one of your own.",
+  "listsSharedCount(plural, param=count)": {
+    "one": "1 list, shared",
+    "other": "{count} lists, shared"
+  },
+  "listsPrivateCount(plural, param=count)": {
+    "one": "1 list, private",
+    "other": "{count} lists, private"
+  },
   "soloNote": "When your partner joins, shared things show up here.",
   "ritualsLabel": "ROUTINE",
   "ritualsTitle": "Rituals",

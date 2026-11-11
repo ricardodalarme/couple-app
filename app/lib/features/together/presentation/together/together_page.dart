@@ -23,6 +23,7 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
     final view = context.select((TogetherCubit cubit) => cubit.state.view);
     final hasPartner = context.select((TogetherCubit cubit) => cubit.state.hasPartner);
     final showCheckin = context.select((TogetherCubit cubit) => cubit.state.showCheckin);
+    final listCount = context.select((TogetherCubit cubit) => cubit.state.listCount);
     final cubit = context.read<TogetherCubit>();
 
     return BaseView(
@@ -58,6 +59,21 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
                 title: l10n.logisticsTitle,
                 supportText: l10n.logisticsText,
                 onTap: () => context.pushRoute(const LogisticsRoute()),
+              ),
+              const SizedBox(height: AppSpace.s12),
+              BaseListCard(
+                categoryLabel: l10n.listsLabel,
+                title: l10n.listsTitle,
+                supportText: switch ((hasPartner, listCount)) {
+                  (true, 0) => l10n.listsEmpty,
+                  (false, 0) => l10n.listsEmptyPrivate,
+                  (true, final count) => l10n.listsSharedCount(count: count),
+                  (false, final count) => l10n.listsPrivateCount(count: count),
+                },
+                onTap: () async {
+                  await context.pushRoute(const ListsRoute());
+                  if (context.mounted) await cubit.load();
+                },
               ),
               const SizedBox(height: AppSpace.s12),
               BaseListCard(

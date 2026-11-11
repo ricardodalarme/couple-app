@@ -1,0 +1,5 @@
+mutation SetListItemStatus($id: UUID!, $status: String!) {
+  updateListItemsCollection(set: { status: $status }, filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}

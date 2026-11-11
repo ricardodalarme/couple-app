@@ -1,0 +1,13 @@
+query Lists {
+  listsCollection(orderBy: [{ createdAt: DescNullsLast }], first: 100) {
+    edges {
+      node {
+        id
+        authorId
+        title
+        kind
+        coupleId
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation CreateList($id: UUID!, $title: String!, $kind: String!, $coupleId: UUID) {
+  insertIntoListsCollection(objects: [{ id: $id, title: $title, kind: $kind, coupleId: $coupleId }]) {
+    affectedCount
+  }
+}

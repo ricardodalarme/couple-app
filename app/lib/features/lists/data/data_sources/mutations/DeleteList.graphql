@@ -1,0 +1,5 @@
+mutation DeleteList($id: UUID!) {
+  deleteFromListsCollection(filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}

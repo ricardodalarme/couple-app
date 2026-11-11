@@ -13,6 +13,7 @@ import 'package:flutter_bloc_starter/features/devices/di/devices_injection_modul
 import 'package:flutter_bloc_starter/features/fight_style/di/fight_style_injection_module.dart';
 import 'package:flutter_bloc_starter/features/help/di/help_injection_module.dart';
 import 'package:flutter_bloc_starter/features/ideas/di/ideas_injection_module.dart';
+import 'package:flutter_bloc_starter/features/lists/di/lists_injection_module.dart';
 import 'package:flutter_bloc_starter/features/memories/di/memories_injection_module.dart';
 import 'package:flutter_bloc_starter/features/mood/di/mood_injection_module.dart';
 import 'package:flutter_bloc_starter/features/notifications/di/notifications_injection_module.dart';
@@ -59,6 +60,7 @@ void _registerModules() {
     DevicesInjectionModule(),
     FightStyleInjectionModule(),
     IdeasInjectionModule(),
+    ListsInjectionModule(),
     NotificationsInjectionModule(),
     OnboardingInjectionModule(),
     PairingInjectionModule(),

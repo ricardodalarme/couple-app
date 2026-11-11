@@ -1,0 +1,5 @@
+mutation RenameList($id: UUID!, $title: String!) {
+  updateListsCollection(set: { title: $title }, filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}

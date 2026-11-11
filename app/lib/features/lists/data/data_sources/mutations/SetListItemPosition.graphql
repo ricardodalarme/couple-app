@@ -1,0 +1,5 @@
+mutation SetListItemPosition($id: UUID!, $position: Int!) {
+  updateListItemsCollection(set: { position: $position }, filter: { id: { eq: $id } }, atMost: 1) {
+    affectedCount
+  }
+}
