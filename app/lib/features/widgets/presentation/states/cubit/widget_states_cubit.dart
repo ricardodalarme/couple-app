@@ -1,13 +1,16 @@
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 
 part 'widget_states_state.dart';
 
-class WidgetStatesCubit({required final WidgetsRepository _repository})
-    extends Cubit<WidgetStatesState> {
+class WidgetStatesCubit({
+  required final WidgetsRepository _repository,
+  final DiscreetModeCubit? _discreetModeCubit,
+}) extends Cubit<WidgetStatesState> {
   this : super(const WidgetStatesState());
 
   Future<void> load() async {
@@ -34,7 +37,11 @@ class WidgetStatesCubit({required final WidgetsRepository _repository})
     };
     emit(state.copyWith(discreetToggleAction: const Loading()));
     try {
-      final updatedPayload = await _repository.applyDiscreetModeImmediately(discreet: discreet);
+      final cubit = _discreetModeCubit;
+      final updatedPayload = cubit != null
+          ? await cubit.setHideWidgetText(value: discreet)
+          : await _repository.applyDiscreetModeImmediately(discreet: discreet);
+      if (updatedPayload == null) throw Exception('Discreet mode save failed');
       if (isClosed) return;
       if (current != null) {
         emit(

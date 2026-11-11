@@ -4,9 +4,9 @@ final class const WidgetConfigureState({
   final Resource<WidgetOverview> overview = const Loading(),
   final WidgetPreferences draft = const WidgetPreferences(
     profileId: '',
-    showNames: true,
+    showNames: false,
     hideInDiscreet: true,
-    allowPartnerNotes: true,
+    allowPartnerNotes: false,
     onLockScreen: false,
     contentSource: WidgetContentSource.favorites,
     rotationCadence: WidgetRotationCadence.daily,

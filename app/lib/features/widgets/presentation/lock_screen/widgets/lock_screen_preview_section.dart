@@ -1,35 +1,26 @@
+import 'dart:io';
+
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/shared/widget_surface_preview.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// Lock-screen widget preview (`X-148`): shows only a symbol and generic phrase,
-/// never a name or personal message, and becomes even more neutral in discreet mode.
-class const LockScreenPreviewSection({
-  required final WidgetPayload payload,
-  required final VoidCallback onReadyFromPause,
-  super.key,
-}) extends StatelessWidget {
+/// never a name, personal message, pause status, or time.
+class const LockScreenPreviewSection({required final WidgetPayload payload, super.key})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.widgets;
     final colors = context.colors;
-    final now = DateTime.now();
-    final isPauseActive = payload.isPauseActiveOn(now);
-    final timeLabel = payload.pauseUntilTimeLabel();
 
-    final rectangularTitle = switch ((payload.discreet, isPauseActive)) {
-      (true, _) => l10n.lockScreenDiscreetPhrase,
-      (false, true) => l10n.lockScreenPauseTitle,
-      (false, false) => l10n.lockScreenGenericPhrase,
-    };
-
-    final rectangularSubtitle = switch ((payload.discreet, isPauseActive, timeLabel)) {
-      (true, _, _) => l10n.discreetNeutralBody,
-      (false, true, final t?) => l10n.lockScreenPauseUntil(time: t),
-      (false, true, null) => l10n.lockScreenPauseUntilDefault,
-      (false, false, _) => l10n.lockScreenDefault,
-    };
+    final title = payload.discreet ? l10n.lockScreenDiscreetPhrase : l10n.lockScreenGenericPhrase;
+    final subtitle = payload.discreet ? l10n.discreetNeutralBody : l10n.lockScreenDefault;
+    final deepLink = !payload.isSignedIn
+        ? 'repara://sign-in'
+        : (payload.discreet
+              ? 'repara://settings/discreet'
+              : (!payload.onLockScreen ? 'repara://settings/widgets' : 'repara://today'));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -56,17 +47,9 @@ class const LockScreenPreviewSection({
                 const SizedBox(height: AppSpace.s20),
                 WidgetSurfacePreview(
                   categoryLabel: l10n.lockScreenLabel,
-                  title: rectangularTitle,
-                  subtitle: rectangularSubtitle,
-                  badgeText: (!payload.discreet && isPauseActive)
-                      ? l10n.lockScreenReadyAction
-                      : null,
-                  deepLinkUri: Uri.parse(
-                    payload.discreet
-                        ? 'repara://settings/discreet'
-                        : (isPauseActive ? 'repara://pause' : 'repara://today'),
-                  ),
-                  onTapOverride: (!payload.discreet && isPauseActive) ? onReadyFromPause : null,
+                  title: title,
+                  subtitle: subtitle,
+                  deepLinkUri: Uri.parse(deepLink),
                 ),
               ],
             ),
@@ -78,16 +61,23 @@ class const LockScreenPreviewSection({
         BaseListGroup(
           children: [
             BaseListTile(
-              title: rectangularTitle,
-              subtitle: rectangularSubtitle,
+              title: title,
+              subtitle: subtitle,
               icon: payload.discreet ? AppIcons.eye_off : AppIcons.moon,
             ),
           ],
         ),
         const SizedBox(height: AppSpace.s12),
         BaseNote(text: l10n.lockScreenPrivacyRule),
+        if (!payload.onLockScreen) ...[
+          const SizedBox(height: AppSpace.s8),
+          BaseNote(text: l10n.lockScreenDisabledNote, icon: AppIcons.info),
+        ],
         const SizedBox(height: AppSpace.s8),
-        BaseNote(text: l10n.howToAddAndroidLockNote, icon: AppIcons.info),
+        BaseNote(
+          text: Platform.isAndroid ? l10n.howToAddAndroidLockNote : l10n.howToAddIosLockNote,
+          icon: AppIcons.info,
+        ),
       ],
     );
   }

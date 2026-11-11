@@ -18,7 +18,6 @@ query WidgetOverview {
   today {
     nodeId
     isPaired
-    partnerName
     localDate
     cardId
     cardStatus
@@ -27,17 +26,12 @@ query WidgetOverview {
     slipsTotal
     suggestionKey
     togetherSince
-    pauseIsMine
-    pauseReturnAt
-    nextDateTitle
-    nextDateOn
     hasPlus
   }
   mySettings {
     nodeId
     profileId
     phase
-    partnerName
     togetherSince
     widgetAllowPartnerNotes
     widgetOnLockScreen

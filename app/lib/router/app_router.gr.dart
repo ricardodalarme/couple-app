@@ -208,6 +208,38 @@ class CounterVariationsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CoupleCounterWidgetPage]
+class CoupleCounterWidgetRoute extends PageRouteInfo<void> {
+  const CoupleCounterWidgetRoute({List<PageRouteInfo>? children})
+    : super(CoupleCounterWidgetRoute.name, initialChildren: children);
+
+  static const String name = 'CoupleCounterWidgetRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const CoupleCounterWidgetPage());
+    },
+  );
+}
+
+/// generated route for
+/// [CouplePhotosWidgetPage]
+class CouplePhotosWidgetRoute extends PageRouteInfo<void> {
+  const CouplePhotosWidgetRoute({List<PageRouteInfo>? children})
+    : super(CouplePhotosWidgetRoute.name, initialChildren: children);
+
+  static const String name = 'CouplePhotosWidgetRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const CouplePhotosWidgetPage());
+    },
+  );
+}
+
+/// generated route for
 /// [DateNightPage]
 class DateNightRoute extends PageRouteInfo<void> {
   const DateNightRoute({List<PageRouteInfo>? children})

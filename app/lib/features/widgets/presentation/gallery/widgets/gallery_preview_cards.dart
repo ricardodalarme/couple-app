@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
@@ -43,36 +45,50 @@ class const GalleryPreviewSection({
             supportText: l10n.ownJarPrivacy,
             onTap: () => onSelectFamily(WidgetFamilyKind.ownMedium),
           ),
-          const SizedBox(height: AppSpace.s12),
-          BaseListCard(
-            categoryLabel: l10n.lockScreenLabel,
-            title: payload.isPauseActiveOn(now) ? l10n.cardStatePause : l10n.lockScreenDefault,
-            supportText: l10n.ownIdeaHint,
-            onTap: () => onSelectFamily(WidgetFamilyKind.lockScreen),
-          ),
+          if (!Platform.isAndroid) ...[
+            const SizedBox(height: AppSpace.s12),
+            BaseListCard(
+              categoryLabel: l10n.lockScreenLabel,
+              title: l10n.lockScreenDefault,
+              supportText: payload.onLockScreen ? l10n.ownIdeaHint : l10n.lockScreenDisabledNote,
+              onTap: () => onSelectFamily(WidgetFamilyKind.lockScreen),
+            ),
+          ],
         ],
       );
     }
 
     final daysTogether = payload.daysTogetherOn(now);
-    final counterTitle = switch ((payload.discreet, daysTogether)) {
-      (true, _) => l10n.lockScreenDefault,
-      (false, final count?) => l10n.coupleCounterDays(count: count),
-      (false, null) => l10n.coupleCounterUnset,
+    final counterTitle = switch ((payload.discreet, payload.isPaired, daysTogether)) {
+      (true, _, _) => l10n.lockScreenDefault,
+      (false, false, _) => l10n.statesUnpairedTitle,
+      (false, true, final count?) => l10n.coupleCounterDays(count: count),
+      (false, true, null) => l10n.coupleCounterUnset,
+    };
+    final photosTitle = switch ((payload.discreet, payload.isPaired, daysTogether)) {
+      (true, _, _) => l10n.lockScreenDefault,
+      (false, false, _) => l10n.statesUnpairedTitle,
+      (false, true, final count?) => l10n.coupleCounterDays(count: count),
+      (false, true, null) => l10n.couplePhotosPrompt,
     };
 
-    final noteFrom = switch (payload.partnerName) {
-      final name? when name.isNotEmpty => l10n.partnerNoteFrom(name: name),
+    final noteFrom = switch ((payload.showNames, payload.partnerName)) {
+      (true, final name?) when name.isNotEmpty => l10n.partnerNoteFrom(name: name),
       _ => l10n.partnerNoteFromDefault,
     };
-    final noteTitle = payload.discreet
-        ? l10n.lockScreenDefault
-        : (payload.partnerNote ?? l10n.partnerNoteEmpty);
+    final noteTitle = switch ((payload.discreet, payload.isPaired, payload.allowPartnerNotes)) {
+      (true, _, _) => l10n.lockScreenDefault,
+      (false, false, _) => l10n.statesUnpairedTitle,
+      (false, true, true) => payload.partnerNote ?? l10n.partnerNoteEmpty,
+      (false, true, false) => l10n.partnerNoteEmpty,
+    };
 
-    final cardText = switch (payload.cardState) {
-      'pause' => l10n.cardStatePause,
-      'ready' => l10n.cardStateReady,
-      'sent' => l10n.cardStateSent,
+    final cardText = switch ((payload.discreet, payload.isPaired, payload.cardState)) {
+      (true, _, _) => l10n.lockScreenDefault,
+      (false, false, _) => l10n.statesUnpairedTitle,
+      (false, true, 'pause') => l10n.cardStatePause,
+      (false, true, 'ready') => l10n.cardStateReady,
+      (false, true, 'sent') => l10n.cardStateSent,
       _ => l10n.cardStateNone,
     };
 
@@ -88,7 +104,7 @@ class const GalleryPreviewSection({
         const SizedBox(height: AppSpace.s12),
         BaseListCard(
           categoryLabel: l10n.couplePhotosLabel,
-          title: payload.discreet ? l10n.lockScreenDefault : l10n.couplePhotosNeutral,
+          title: photosTitle,
           supportText: payload.hasPlus ? l10n.ownIdeaHint : l10n.couplePhotosPlusHint,
           onTap: () => onSelectFamily(WidgetFamilyKind.couplePhotos),
         ),
@@ -96,14 +112,18 @@ class const GalleryPreviewSection({
         BaseListCard(
           categoryLabel: l10n.partnerNoteLabel,
           title: noteTitle,
-          supportText: payload.partnerNote != null ? noteFrom : l10n.ownIdeaHint,
+          supportText: (!payload.discreet && payload.isPaired && payload.partnerNote != null)
+              ? noteFrom
+              : l10n.ownIdeaHint,
           onTap: () => onSelectFamily(WidgetFamilyKind.partnerNote),
         ),
         const SizedBox(height: AppSpace.s12),
         BaseListCard(
           categoryLabel: l10n.cardEncounterLabel,
-          title: payload.discreet ? l10n.lockScreenDefault : cardText,
-          supportText: payload.nextDateTitle ?? l10n.ownIdeaHint,
+          title: cardText,
+          supportText: (!payload.discreet && payload.isPaired && payload.nextDateTitle != null)
+              ? payload.nextDateTitle!
+              : l10n.ownIdeaHint,
           onTap: () => onSelectFamily(WidgetFamilyKind.cardEncounter),
         ),
       ],

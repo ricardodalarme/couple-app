@@ -3,6 +3,7 @@ package com.ricardodalarme.flutter_bloc_starter.widgets
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import com.ricardodalarme.flutter_bloc_starter.R
 
 class ReparaOwnMediumWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(
@@ -12,32 +13,28 @@ class ReparaOwnMediumWidgetProvider : AppWidgetProvider() {
     ) {
         val payload = ReparaWidgetPayload.load(context)
         for (appWidgetId in appWidgetIds) {
-            when {
-                !payload.isSignedIn -> ReparaWidgetPayload.renderCard(
+            if (payload.renderGuardState(context, appWidgetManager, appWidgetId, requirePaired = false)) {
+                continue
+            }
+            if (payload.dailyIdeaTitle.isNullOrBlank() && payload.slipsCount > 0) {
+                ReparaWidgetPayload.renderCard(
                     context = context,
                     appWidgetManager = appWidgetManager,
                     appWidgetId = appWidgetId,
-                    label = "REPARA",
-                    title = "Toque para entrar",
-                    subtitle = "Sua conta não está conectada",
-                    deepLink = "repara://sign-in?homeWidget=1",
+                    label = context.getString(R.string.repara_widget_jar_label),
+                    title = context.getString(R.string.repara_widget_jar_saved_count, payload.slipsCount),
+                    subtitle = context.getString(R.string.repara_widget_jar_subtitle),
+                    deepLink = "repara://jar?homeWidget=1",
                 )
-                payload.discreet -> ReparaWidgetPayload.renderCard(
+            } else {
+                ReparaWidgetPayload.renderCard(
                     context = context,
                     appWidgetManager = appWidgetManager,
                     appWidgetId = appWidgetId,
-                    label = "LEMBRETE",
-                    title = "Texto neutro",
-                    subtitle = "Toque para abrir",
-                    deepLink = "repara://settings/discreet?homeWidget=1",
-                )
-                else -> ReparaWidgetPayload.renderCard(
-                    context = context,
-                    appWidgetManager = appWidgetManager,
-                    appWidgetId = appWidgetId,
-                    label = "IDEIA DO DIA",
-                    title = payload.dailyIdeaTitle ?: "Deixe um bilhete hoje",
-                    subtitle = "Toque para ver · Privado no seu aparelho",
+                    label = context.getString(R.string.repara_widget_idea_label),
+                    title = payload.dailyIdeaTitle
+                        ?: context.getString(R.string.repara_widget_idea_default),
+                    subtitle = context.getString(R.string.repara_widget_idea_subtitle),
                     deepLink = "repara://today?homeWidget=1",
                 )
             }

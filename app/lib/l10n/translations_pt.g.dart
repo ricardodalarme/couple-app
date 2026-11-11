@@ -5207,8 +5207,8 @@ class Translations$widgets$pt {
   /// pt: 'FOTOS DO CASAL · PLUS'
   String get couplePhotosLabel => 'FOTOS DO CASAL · PLUS';
 
-  /// pt: '2 anos e 3 meses juntos'
-  String get couplePhotosNeutral => '2 anos e 3 meses juntos';
+  /// pt: 'Escolha uma foto de vocês dois'
+  String get couplePhotosPrompt => 'Escolha uma foto de vocês dois';
 
   /// pt: 'Disponível no plano Plus'
   String get couplePhotosPlusHint => 'Disponível no plano Plus';
@@ -5262,18 +5262,22 @@ class Translations$widgets$pt {
   /// pt: 'Toque no botão +'
   String get howToAddStep2Title => 'Toque no botão +';
 
-  /// pt: 'No canto superior, busque por Repara.'
-  String get howToAddStep2Body => 'No canto superior, busque por Repara.';
+  /// pt: 'No canto superior, busque por QS-Flutter.'
+  String get howToAddStep2Body => 'No canto superior, busque por QS-Flutter.';
 
   /// pt: 'Escolha o tamanho'
   String get howToAddStep3Title => 'Escolha o tamanho';
 
-  /// pt: 'Pequeno, médio ou tela de bloqueio.'
-  String get howToAddStep3Body => 'Pequeno, médio ou tela de bloqueio.';
+  /// pt: 'Pequeno ou médio.'
+  String get howToAddStep3Body => 'Pequeno ou médio.';
 
   /// pt: 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.'
   String get howToAddAndroidLockNote =>
       'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.';
+
+  /// pt: 'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.'
+  String get howToAddIosLockNote =>
+      'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.';
 
   /// pt: 'Entendi'
   String get howToAddDone => 'Entendi';
@@ -5328,9 +5332,6 @@ class Translations$widgets$pt {
 
   /// pt: 'Preferências do widget salvas.'
   String get configureSavedToast => 'Preferências do widget salvas.';
-
-  /// pt: 'Não foi possível salvar as preferências agora.'
-  String get configureErrorToast => 'Não foi possível salvar as preferências agora.';
 
   /// pt: 'Não foi possível carregar os widgets'
   String get loadErrorTitle => 'Não foi possível carregar os widgets';
@@ -5435,6 +5436,10 @@ class Translations$widgets$pt {
 
   /// pt: 'Sem nomes nem mensagens na tela bloqueada.'
   String get lockScreenPrivacyRule => 'Sem nomes nem mensagens na tela bloqueada.';
+
+  /// pt: 'O widget da tela de bloqueio está desativado nas configurações.'
+  String get lockScreenDisabledNote =>
+      'O widget da tela de bloqueio está desativado nas configurações.';
 
   /// pt: 'Formatos no iOS (Circular, Retangular e Linha)'
   String get lockScreenFamiliesTitle => 'Formatos no iOS (Circular, Retangular e Linha)';
@@ -5578,6 +5583,11 @@ class Translations$widgets$pt {
   /// pt: 'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).'
   String get statesPrecedenceNote =>
       'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).';
+
+  Map<String, String> get errors => {
+    'WIDGET_PREFERENCES_SAVE_FAILED': 'Não foi possível salvar as preferências agora.',
+    'other': 'Não foi possível salvar as preferências agora.',
+  };
 }
 
 // Path: acceptInvite.connected
@@ -8891,7 +8901,7 @@ extension on Translations {
                   other: '${count} dias juntos',
                 ),
           'widgets.couplePhotosLabel' => 'FOTOS DO CASAL · PLUS',
-          'widgets.couplePhotosNeutral' => '2 anos e 3 meses juntos',
+          'widgets.couplePhotosPrompt' => 'Escolha uma foto de vocês dois',
           'widgets.couplePhotosPlusHint' => 'Disponível no plano Plus',
           'widgets.partnerNoteLabel' => 'RECADO DO PAR',
           'widgets.partnerNoteEmpty' => 'Sem recado novo no momento',
@@ -8912,10 +8922,12 @@ extension on Translations {
           'widgets.howToAddStep1Title' => 'Segure a tela inicial',
           'widgets.howToAddStep1Body' => 'Toque e segure um espaço vazio até os ícones tremerem.',
           'widgets.howToAddStep2Title' => 'Toque no botão +',
-          'widgets.howToAddStep2Body' => 'No canto superior, busque por Repara.',
+          'widgets.howToAddStep2Body' => 'No canto superior, busque por QS-Flutter.',
           'widgets.howToAddStep3Title' => 'Escolha o tamanho',
-          'widgets.howToAddStep3Body' => 'Pequeno, médio ou tela de bloqueio.',
+          'widgets.howToAddStep3Body' => 'Pequeno ou médio.',
           'widgets.howToAddAndroidLockNote' => 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.',
+          'widgets.howToAddIosLockNote' =>
+            'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.',
           'widgets.howToAddDone' => 'Entendi',
           'widgets.configureTitle' => 'Configurar widget',
           'widgets.configurePreviewLabel' => 'PRÉVIA',
@@ -8934,7 +8946,6 @@ extension on Translations {
           'widgets.configureOnLockScreen' => 'Permitir na tela de bloqueio',
           'widgets.configureSave' => 'Salvar',
           'widgets.configureSavedToast' => 'Preferências do widget salvas.',
-          'widgets.configureErrorToast' => 'Não foi possível salvar as preferências agora.',
           'widgets.loadErrorTitle' => 'Não foi possível carregar os widgets',
           'widgets.loadErrorBody' => 'Verifique sua conexão e tente novamente.',
           'widgets.retryAction' => 'Tentar novamente',
@@ -8974,6 +8985,8 @@ extension on Translations {
           'widgets.lockScreenGenericPhrase' => 'Momento calmo',
           'widgets.lockScreenDiscreetPhrase' => 'Lembrete',
           'widgets.lockScreenPrivacyRule' => 'Sem nomes nem mensagens na tela bloqueada.',
+          'widgets.lockScreenDisabledNote' =>
+            'O widget da tela de bloqueio está desativado nas configurações.',
           'widgets.lockScreenFamiliesTitle' => 'Formatos no iOS (Circular, Retangular e Linha)',
           'widgets.counterPageTitle' => 'Widget · Contador',
           'widgets.counterYearsMonthsTitle' => ({
@@ -9027,7 +9040,13 @@ extension on Translations {
           'widgets.statesOfflineSection' => 'Sem conexão',
           'widgets.statesOfflineTitle' => 'Mostrando o último dado',
           'widgets.statesOfflineSubtitle' => 'Atualiza quando voltar a internet',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.statesPrecedenceNote' => 'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).',
+          'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
+            'Não foi possível salvar as preferências agora.',
+          'widgets.errors.other' => 'Não foi possível salvar as preferências agora.',
           _ => null,
         };
   }

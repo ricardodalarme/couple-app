@@ -15,6 +15,44 @@ class const CouplePhotosPreviewSection({
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.widgets;
+    if (!payload.isSignedIn) {
+      return WidgetSurfacePreview(
+        categoryLabel: l10n.signedOutLabel,
+        title: l10n.signedOutBody,
+        subtitle: l10n.ownIdeaHint,
+        isDark: isDarkPreview,
+        deepLinkUri: Uri.parse('repara://sign-in'),
+      );
+    }
+
+    if (payload.discreet) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          WidgetSurfacePreview(
+            categoryLabel: l10n.couplePhotosLabel,
+            title: l10n.discreetReminderLabel,
+            subtitle: l10n.discreetNeutralBody,
+            isDark: isDarkPreview,
+            deepLinkUri: Uri.parse('repara://settings/discreet'),
+          ),
+          const SizedBox(height: AppSpace.s12),
+          BaseNote(text: l10n.photosNeutralFallbackNote, icon: AppIcons.info),
+        ],
+      );
+    }
+
+    if (!payload.isPaired) {
+      return WidgetSurfacePreview(
+        categoryLabel: l10n.couplePhotosLabel,
+        title: l10n.statesUnpairedTitle,
+        subtitle: l10n.unpairedBanner,
+        badgeText: l10n.statesUnpairedAction,
+        isDark: isDarkPreview,
+        onTapOverride: () => context.pushRoute(const InviteRoute()),
+      );
+    }
+
     final now = DateTime.now();
     final breakdown = payload.durationBreakdownOn(now);
 
@@ -25,7 +63,7 @@ class const CouplePhotosPreviewSection({
         months: b.months,
       ),
       (false, final b?) => l10n.coupleCounterDays(count: b.totalDays),
-      (false, null) => l10n.couplePhotosNeutral,
+      (false, null) => l10n.couplePhotosPrompt,
     };
 
     final hasValidCachedPhoto =

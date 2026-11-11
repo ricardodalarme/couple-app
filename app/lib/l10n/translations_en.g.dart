@@ -4169,7 +4169,7 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get couplePhotosLabel => 'COUPLE PHOTOS · PLUS';
   @override
-  String get couplePhotosNeutral => '2 years and 3 months together';
+  String get couplePhotosPrompt => 'Choose a photo of you two';
   @override
   String get couplePhotosPlusHint => 'Available with Plus';
   @override
@@ -4206,14 +4206,16 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get howToAddStep2Title => 'Tap the + button';
   @override
-  String get howToAddStep2Body => 'In the top corner, search for Repara.';
+  String get howToAddStep2Body => 'In the top corner, search for QS-Flutter.';
   @override
   String get howToAddStep3Title => 'Pick a size';
   @override
-  String get howToAddStep3Body => 'Small, medium or lock screen.';
+  String get howToAddStep3Body => 'Small or medium.';
   @override
   String get howToAddAndroidLockNote =>
       'On modern Android, widgets live on the home screen. The lock screen only shows neutral notification icons.';
+  @override
+  String get howToAddIosLockNote => 'On iOS 16 or newer, you can also add the lock-screen widget.';
   @override
   String get howToAddDone => 'Got it';
   @override
@@ -4250,8 +4252,6 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   String get configureSave => 'Save';
   @override
   String get configureSavedToast => 'Widget preferences saved.';
-  @override
-  String get configureErrorToast => 'Could not save widget preferences right now.';
   @override
   String get loadErrorTitle => 'Could not load widgets';
   @override
@@ -4323,6 +4323,8 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   String get lockScreenDiscreetPhrase => 'Reminder';
   @override
   String get lockScreenPrivacyRule => 'Never shows names or messages on the lock screen.';
+  @override
+  String get lockScreenDisabledNote => 'The lock-screen widget is turned off in widget settings.';
   @override
   String get lockScreenFamiliesTitle => 'iOS formats (Circular, Rectangular and Inline)';
   @override
@@ -4419,6 +4421,11 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get statesPrecedenceNote =>
       'When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).';
+  @override
+  Map<String, String> get errors => {
+    'WIDGET_PREFERENCES_SAVE_FAILED': 'Could not save widget preferences right now.',
+    'other': 'Could not save widget preferences right now.',
+  };
 }
 
 // Path: acceptInvite.connected
@@ -7549,7 +7556,7 @@ extension on TranslationsEn {
                   other: '${count} days together',
                 ),
           'widgets.couplePhotosLabel' => 'COUPLE PHOTOS · PLUS',
-          'widgets.couplePhotosNeutral' => '2 years and 3 months together',
+          'widgets.couplePhotosPrompt' => 'Choose a photo of you two',
           'widgets.couplePhotosPlusHint' => 'Available with Plus',
           'widgets.partnerNoteLabel' => 'PARTNER NOTE',
           'widgets.partnerNoteEmpty' => 'No new note right now',
@@ -7568,10 +7575,12 @@ extension on TranslationsEn {
           'widgets.howToAddStep1Title' => 'Hold the home screen',
           'widgets.howToAddStep1Body' => 'Touch and hold an empty space until the icons jiggle.',
           'widgets.howToAddStep2Title' => 'Tap the + button',
-          'widgets.howToAddStep2Body' => 'In the top corner, search for Repara.',
+          'widgets.howToAddStep2Body' => 'In the top corner, search for QS-Flutter.',
           'widgets.howToAddStep3Title' => 'Pick a size',
-          'widgets.howToAddStep3Body' => 'Small, medium or lock screen.',
+          'widgets.howToAddStep3Body' => 'Small or medium.',
           'widgets.howToAddAndroidLockNote' => 'On modern Android, widgets live on the home screen. The lock screen only shows neutral notification icons.',
+          'widgets.howToAddIosLockNote' =>
+            'On iOS 16 or newer, you can also add the lock-screen widget.',
           'widgets.howToAddDone' => 'Got it',
           'widgets.configureTitle' => 'Configure widget',
           'widgets.configurePreviewLabel' => 'PREVIEW',
@@ -7590,7 +7599,6 @@ extension on TranslationsEn {
           'widgets.configureOnLockScreen' => 'Allow on lock screen',
           'widgets.configureSave' => 'Save',
           'widgets.configureSavedToast' => 'Widget preferences saved.',
-          'widgets.configureErrorToast' => 'Could not save widget preferences right now.',
           'widgets.loadErrorTitle' => 'Could not load widgets',
           'widgets.loadErrorBody' => 'Check your connection and try again.',
           'widgets.retryAction' => 'Try again',
@@ -7630,6 +7638,8 @@ extension on TranslationsEn {
           'widgets.lockScreenGenericPhrase' => 'Calm moment',
           'widgets.lockScreenDiscreetPhrase' => 'Reminder',
           'widgets.lockScreenPrivacyRule' => 'Never shows names or messages on the lock screen.',
+          'widgets.lockScreenDisabledNote' =>
+            'The lock-screen widget is turned off in widget settings.',
           'widgets.lockScreenFamiliesTitle' => 'iOS formats (Circular, Rectangular and Inline)',
           'widgets.counterPageTitle' => 'Widget · Counter',
           'widgets.counterYearsMonthsTitle' => ({
@@ -7683,7 +7693,13 @@ extension on TranslationsEn {
           'widgets.statesOfflineSection' => 'Offline',
           'widgets.statesOfflineTitle' => 'Showing the last saved data',
           'widgets.statesOfflineSubtitle' => 'Updates when back online',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.statesPrecedenceNote' => 'When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).',
+          'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
+            'Could not save widget preferences right now.',
+          'widgets.errors.other' => 'Could not save widget preferences right now.',
           _ => null,
         };
   }

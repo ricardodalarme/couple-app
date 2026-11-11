@@ -1,13 +1,16 @@
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 
 part 'widget_configure_state.dart';
 
-class WidgetConfigureCubit({required final WidgetsRepository _repository})
-    extends Cubit<WidgetConfigureState> {
+class WidgetConfigureCubit({
+  required final WidgetsRepository _repository,
+  final DiscreetModeCubit? _discreetModeCubit,
+}) extends Cubit<WidgetConfigureState> {
   this : super(const WidgetConfigureState());
 
   Future<void> load() async {
@@ -50,6 +53,7 @@ class WidgetConfigureCubit({required final WidgetsRepository _repository})
     emit(state.copyWith(saveAction: const Loading()));
     try {
       final updated = await _repository.savePreferences(state.draft);
+      _discreetModeCubit?.adoptHideWidgetText(value: updated.preferences.hideInDiscreet);
       if (isClosed) return;
       emit(
         state.copyWith(

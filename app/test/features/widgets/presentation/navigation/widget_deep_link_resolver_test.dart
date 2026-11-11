@@ -39,5 +39,23 @@ void main() {
       appState: AppState.authenticated,
     );
     expect(discreetRoutes!.last.routeName, DiscreetModeRoute.name);
+
+    final togetherRoutes = resolveWidgetDeepLinkUri(
+      Uri.parse('repara://together?homeWidget=1'),
+      appState: AppState.authenticated,
+    );
+    expect(togetherRoutes!.first.initialChildren?.first.routeName, TogetherRoute.name);
+
+    final memoriesRoutes = resolveWidgetDeepLinkUri(
+      Uri.parse('repara://memories?homeWidget=1'),
+      appState: AppState.authenticated,
+    );
+    expect(memoriesRoutes!.first.initialChildren?.first.routeName, MemoriesRoute.name);
+
+    final inviteRoutes = resolveWidgetDeepLinkUri(
+      Uri.parse('repara://invite?homeWidget=1'),
+      appState: AppState.authenticated,
+    );
+    expect(inviteRoutes!.last.routeName, InviteRoute.name);
   });
 }

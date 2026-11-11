@@ -3,6 +3,7 @@ package com.ricardodalarme.flutter_bloc_starter.widgets
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import com.ricardodalarme.flutter_bloc_starter.R
 
 class ReparaCouplePhotosWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(
@@ -12,71 +13,45 @@ class ReparaCouplePhotosWidgetProvider : AppWidgetProvider() {
     ) {
         val payload = ReparaWidgetPayload.load(context)
         for (appWidgetId in appWidgetIds) {
-            when {
-                !payload.isSignedIn -> {
-                    ReparaWidgetPayload.renderCard(
-                        context = context,
-                        appWidgetManager = appWidgetManager,
-                        appWidgetId = appWidgetId,
-                        label = "REPARA",
-                        title = "Toque para entrar",
-                        subtitle = "",
-                        deepLink = "repara://sign-in?homeWidget=1",
-                    )
+            if (payload.renderGuardState(context, appWidgetManager, appWidgetId, requirePaired = true)) {
+                continue
+            }
+            if (!payload.hasPlus) {
+                ReparaWidgetPayload.renderCard(
+                    context = context,
+                    appWidgetManager = appWidgetManager,
+                    appWidgetId = appWidgetId,
+                    label = context.getString(R.string.repara_widget_photo_label),
+                    title = context.getString(R.string.repara_widget_photo_plus_only),
+                    subtitle = "",
+                    deepLink = "repara://memories?homeWidget=1",
+                )
+            } else {
+                val days = payload.daysTogether()
+                val fallbackTitle = if (days != null) {
+                    context.getString(R.string.repara_widget_photo_days_together, days.toInt())
+                } else {
+                    context.getString(R.string.repara_widget_photo_fallback_title)
                 }
-
-                payload.discreet -> {
-                    ReparaWidgetPayload.renderCard(
-                        context = context,
-                        appWidgetManager = appWidgetManager,
-                        appWidgetId = appWidgetId,
-                        label = "LEMBRETE",
-                        title = "Texto neutro",
-                        subtitle = "",
-                        deepLink = "repara://settings/discreet?homeWidget=1",
-                        imagePath = null,
-                    )
-                }
-
-                !payload.isPaired -> {
-                    ReparaWidgetPayload.renderCard(
-                        context = context,
-                        appWidgetManager = appWidgetManager,
-                        appWidgetId = appWidgetId,
-                        label = "JUNTOS",
-                        title = "Convide para ver aqui",
-                        subtitle = "Convidar",
-                        deepLink = "repara://together?homeWidget=1",
-                    )
-                }
-
-                !payload.hasPlus -> {
-                    ReparaWidgetPayload.renderCard(
-                        context = context,
-                        appWidgetManager = appWidgetManager,
-                        appWidgetId = appWidgetId,
-                        label = "MEMÓRIA",
-                        title = "Disponível no Plus",
-                        subtitle = "",
-                        deepLink = "repara://memories?homeWidget=1",
-                    )
-                }
-
-                else -> {
-                    val days = payload.daysTogether()
-                    val fallbackTitle = if (days != null) "$days dias juntos" else "Um momento nosso"
-                    val hasCachedPhoto = !payload.cachedPhotoPath.isNullOrBlank()
-                    ReparaWidgetPayload.renderCard(
-                        context = context,
-                        appWidgetManager = appWidgetManager,
-                        appWidgetId = appWidgetId,
-                        label = "MEMÓRIA",
-                        title = if (hasCachedPhoto) "Memória salva neste aparelho" else fallbackTitle,
-                        subtitle = if (hasCachedPhoto) "" else "Sem foto selecionada",
-                        deepLink = "repara://memories?homeWidget=1",
-                        imagePath = payload.cachedPhotoPath,
-                    )
-                }
+                val hasCachedPhoto = !payload.cachedPhotoPath.isNullOrBlank()
+                ReparaWidgetPayload.renderCard(
+                    context = context,
+                    appWidgetManager = appWidgetManager,
+                    appWidgetId = appWidgetId,
+                    label = context.getString(R.string.repara_widget_photo_label),
+                    title = if (hasCachedPhoto) {
+                        context.getString(R.string.repara_widget_photo_cached_title)
+                    } else {
+                        fallbackTitle
+                    },
+                    subtitle = if (hasCachedPhoto) {
+                        ""
+                    } else {
+                        context.getString(R.string.repara_widget_photo_no_photo)
+                    },
+                    deepLink = "repara://memories?homeWidget=1",
+                    imagePath = payload.cachedPhotoPath,
+                )
             }
         }
     }

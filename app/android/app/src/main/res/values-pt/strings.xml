@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="repara_widget_own_small_label">Repara · Meu (pequeno)</string>
+    <string name="repara_widget_own_medium_label">Repara · Meu (médio)</string>
+    <string name="repara_widget_couple_counter_label">Repara · Contador do casal</string>
+    <string name="repara_widget_couple_photos_label">Repara · Fotos do casal</string>
+    <string name="repara_widget_partner_note_label">Repara · Recado do parceiro</string>
+    <string name="repara_widget_card_encounter_label">Repara · Cartão e encontro</string>
+
+    <string name="repara_widget_own_small_desc">Anotar slip, próxima data, humor ou ritual.</string>
+    <string name="repara_widget_own_medium_desc">Ideia do dia ou potinho do dia ruim.</string>
+    <string name="repara_widget_couple_counter_desc">Dias juntos, atualizado à meia-noite.</string>
+    <string name="repara_widget_couple_photos_desc">Foto em cache local ou cartão neutro.</string>
+    <string name="repara_widget_partner_note_desc">Recado curto marcado pelo seu par para o widget.</string>
+    <string name="repara_widget_card_encounter_desc">Estado do cartão e próxima data, sem nomes nem texto do cartão.</string>
+
+    <string name="repara_widget_signed_out_label">REPARA</string>
+    <string name="repara_widget_signed_out_title">Toque para entrar</string>
+    <string name="repara_widget_discreet_label">LEMBRETE</string>
+    <string name="repara_widget_discreet_title">Texto neutro</string>
+    <string name="repara_widget_unpaired_label">JUNTOS</string>
+    <string name="repara_widget_unpaired_title">Convide para ver aqui</string>
+    <string name="repara_widget_unpaired_action">Convidar</string>
+
+    <string name="repara_widget_next_date_label">PRÓXIMA DATA</string>
+    <string name="repara_widget_days_count">%1$d dias</string>
+    <string name="repara_widget_ritual_label">RITUAL</string>
+    <string name="repara_widget_ritual_default_schedule">Momento da semana</string>
+    <string name="repara_widget_mood_label">MEU HUMOR</string>
+    <string name="repara_widget_mood_subtitle">Toque para atualizar</string>
+    <string name="repara_widget_slip_label">ANOTAR SLIP</string>
+    <string name="repara_widget_slip_title">+ Slip</string>
+    <string name="repara_widget_slip_subtitle">Toque para anotar</string>
+
+    <string name="repara_widget_jar_label">POTINHO DO DIA RUIM</string>
+    <string name="repara_widget_jar_saved_count">%1$d motivos guardados</string>
+    <string name="repara_widget_jar_subtitle">Para abrir quando precisar</string>
+    <string name="repara_widget_idea_label">IDEIA DO DIA</string>
+    <string name="repara_widget_idea_default">Deixe um bilhete hoje</string>
+    <string name="repara_widget_idea_subtitle">Toque para ver · Privado no seu aparelho</string>
+
+    <string name="repara_widget_counter_label">JUNTOS HÁ</string>
+    <string name="repara_widget_counter_unset">Começando agora</string>
+    <string name="repara_widget_counter_default_subtitle">Tempo juntos</string>
+
+    <string name="repara_widget_photo_label">MEMÓRIA</string>
+    <string name="repara_widget_photo_plus_only">Disponível no Plus</string>
+    <string name="repara_widget_photo_cached_title">Memória salva neste aparelho</string>
+    <string name="repara_widget_photo_days_together">%1$d dias juntos</string>
+    <string name="repara_widget_photo_fallback_title">Um momento nosso</string>
+    <string name="repara_widget_photo_no_photo">Sem foto selecionada</string>
+
+    <string name="repara_widget_note_from_named">DE %1$s</string>
+    <string name="repara_widget_note_from_default">RECADO DO PAR</string>
+    <string name="repara_widget_note_reply_hint">Responder com um coração</string>
+    <string name="repara_widget_note_empty">Sem recado novo no momento</string>
+
+    <string name="repara_widget_card_pause_label">CARTÃO E ENCONTRO</string>
+    <string name="repara_widget_card_pause_title">Pausa em andamento</string>
+    <string name="repara_widget_card_pause_subtitle">Toque quando estiver pronto</string>
+    <string name="repara_widget_card_weekly_label">CARTÃO DA SEMANA</string>
+    <string name="repara_widget_card_ready_title">Chegou um cartão</string>
+    <string name="repara_widget_card_sent_title">Cartão enviado</string>
+    <string name="repara_widget_card_default_title">Cartão de domingo</string>
+    <string name="repara_widget_card_next_date_default">Próximo encontro</string>
+    <string name="repara_widget_card_encounter_subtitle">%1$d dias · %2$s</string>
+    <string name="repara_widget_card_ready_subtitle">Toque para abrir</string>
+    <string name="repara_widget_card_preparing_subtitle">Em preparação</string>
+</resources>

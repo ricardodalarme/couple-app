@@ -15,6 +15,16 @@ class const PartnerNotePreviewSection({
   Widget build(BuildContext context) {
     final l10n = context.l10n.widgets;
 
+    if (!payload.isSignedIn) {
+      return WidgetSurfacePreview(
+        isDark: isDarkPreview,
+        categoryLabel: l10n.signedOutLabel,
+        title: l10n.signedOutBody,
+        subtitle: l10n.ownIdeaHint,
+        deepLinkUri: Uri.parse('repara://sign-in'),
+      );
+    }
+
     if (payload.discreet) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -39,8 +49,9 @@ class const PartnerNotePreviewSection({
           WidgetSurfacePreview(
             isDark: isDarkPreview,
             categoryLabel: l10n.partnerNoteLabel,
-            title: l10n.unpairedBanner,
-            subtitle: l10n.ownIdeaHint,
+            title: l10n.statesUnpairedTitle,
+            subtitle: l10n.unpairedBanner,
+            badgeText: l10n.statesUnpairedAction,
             onTapOverride: () => context.pushRoute(const InviteRoute()),
           ),
         ],

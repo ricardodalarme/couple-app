@@ -43,8 +43,7 @@ class const LockScreenWidgetPage({super.key}) extends StatelessWidget implements
             actionText: l10n.retryAction,
             onAction: cubit.load,
           ),
-          successBuilder: (overview) =>
-              LockScreenPreviewSection(payload: overview.payload, onReadyFromPause: cubit.endPause),
+          successBuilder: (overview) => LockScreenPreviewSection(payload: overview.payload),
         ),
       ),
     );

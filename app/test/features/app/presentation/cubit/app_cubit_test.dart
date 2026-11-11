@@ -15,6 +15,8 @@ import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_s
 import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -36,6 +38,8 @@ class _MockNotificationsRepository() extends Mock implements NotificationsReposi
 
 class _MockDevicesRepository() extends Mock implements DevicesRepository;
 
+class _MockWidgetsRepository() extends Mock implements WidgetsRepository;
+
 void main() {
   late AuthenticationRepository authenticationRepository;
   late ProfileRepository profileRepository;
@@ -46,6 +50,7 @@ void main() {
   late ConnectivityService connectivityService;
   late NotificationsRepository notificationsRepository;
   late DevicesRepository devicesRepository;
+  late WidgetsRepository widgetsRepository;
 
   AppCubit build() => AppCubit(
     authenticationRepository: authenticationRepository,
@@ -57,6 +62,7 @@ void main() {
     connectivityService: connectivityService,
     notificationsRepository: notificationsRepository,
     devicesRepository: devicesRepository,
+    widgetsRepository: widgetsRepository,
   );
 
   setUpAll(() => registerFallbackValue(const Settings.empty()));
@@ -71,8 +77,12 @@ void main() {
     connectivityService = _MockConnectivityService();
     notificationsRepository = _MockNotificationsRepository();
     devicesRepository = _MockDevicesRepository();
+    widgetsRepository = _MockWidgetsRepository();
     when(() => notificationsRepository.unregisterCurrentDevice()).thenAnswer((_) async => true);
     when(() => devicesRepository.revokeCurrentDevice()).thenAnswer((_) async {});
+    when(() => widgetsRepository.clearOnSignOut())
+        .thenAnswer((_) async => WidgetPayload.signedOut());
+    when(() => widgetsRepository.syncQuietly()).thenAnswer((_) async {});
     when(() => reminderSyncService.sync()).thenAnswer((_) async {});
     when(() => slipRepository.flushPending()).thenAnswer((_) async {});
     when(() => supportRepository.flushPending(authorId: any(named: 'authorId')))
@@ -154,7 +164,7 @@ void main() {
       await cubit.close();
     });
 
-    test('an auth loss after signing in expires the session without clearing drafts', () async {
+    test('an auth loss after signing in expires the session and wipes widget data', () async {
       final statuses = StreamController<bool>();
       when(() => authenticationRepository.isAuthenticatedStream).thenAnswer((_) => statuses.stream);
       final cubit = build();
@@ -168,9 +178,27 @@ void main() {
       await pumpEventQueue();
 
       expect(cubit.state, AppState.sessionExpired);
+      verify(() => widgetsRepository.clearOnSignOut()).called(1);
       verifyNever(() => supportRepository.clearPending());
       verifyNever(() => authenticationRepository.logOut());
       verifyNever(() => notificationsRepository.unregisterCurrentDevice());
+    });
+
+    test('an auth stream error expires the session and wipes widget data', () async {
+      final statuses = StreamController<bool>();
+      when(() => authenticationRepository.isAuthenticatedStream).thenAnswer((_) => statuses.stream);
+      final cubit = build();
+      addTearDown(() async {
+        await statuses.close();
+        await cubit.close();
+      });
+
+      await cubit.initialize();
+      statuses.addError(Exception('auth stream failed'));
+      await pumpEventQueue();
+
+      expect(cubit.state, AppState.sessionExpired);
+      verify(() => widgetsRepository.clearOnSignOut()).called(1);
     });
 
     test('a late profile read cannot overwrite the expired state', () async {
@@ -211,6 +239,7 @@ void main() {
 
       expect(cubit.state, AppState.unauthenticated);
       verify(() => supportRepository.clearPending()).called(1);
+      verify(() => widgetsRepository.clearOnSignOut()).called(1);
     });
 
     blocTest<AppCubit, AppState>(

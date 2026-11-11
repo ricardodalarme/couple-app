@@ -2,14 +2,17 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
 import 'package:home_widget/home_widget.dart';
 
 /// Native family descriptor pairing the iOS WidgetKit `kind` with the Android provider class.
 typedef NativeWidgetFamilyTarget = ({
+  WidgetFamilyKind family,
   String iOSKind,
   String? androidProviderName,
   String? qualifiedAndroidProviderName,
+  bool refreshesAtMidnight,
 });
 
 /// Low-level driver over `home_widget` so tests can verify shared-store writes without channels.
@@ -23,6 +26,15 @@ class WidgetStoreDriver({
     String? qualifiedAndroidName,
   })?
   updateWidgetFn,
+  final Future<void> Function(
+    List<DateTime> dates, {
+    String? name,
+    String? androidName,
+    String? qualifiedAndroidName,
+  })?
+  scheduleWidgetUpdatesFn,
+  final Future<void> Function({String? name, String? androidName, String? qualifiedAndroidName})?
+  cancelScheduledWidgetUpdatesFn,
   final Future<Uri?> Function()? initiallyLaunchedUriFn,
   final Stream<Uri?>? widgetClickedStream,
 }) {
@@ -45,6 +57,28 @@ class WidgetStoreDriver({
     qualifiedAndroidName: qualifiedAndroidName,
   );
 
+  Future<void> scheduleWidgetUpdates(
+    List<DateTime> dates, {
+    String? name,
+    String? androidName,
+    String? qualifiedAndroidName,
+  }) => (scheduleWidgetUpdatesFn ?? HomeWidget.scheduleWidgetUpdates)(
+    dates,
+    name: name,
+    androidName: androidName,
+    qualifiedAndroidName: qualifiedAndroidName,
+  );
+
+  Future<void> cancelScheduledWidgetUpdates({
+    String? name,
+    String? androidName,
+    String? qualifiedAndroidName,
+  }) => (cancelScheduledWidgetUpdatesFn ?? HomeWidget.cancelScheduledWidgetUpdates)(
+    name: name,
+    androidName: androidName,
+    qualifiedAndroidName: qualifiedAndroidName,
+  );
+
   Future<Uri?> initiallyLaunchedFromHomeWidget() =>
       (initiallyLaunchedUriFn ?? HomeWidget.initiallyLaunchedFromHomeWidget)();
 
@@ -62,39 +96,53 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
 
   static const List<NativeWidgetFamilyTarget> familyTargets = [
     (
+      family: WidgetFamilyKind.ownSmall,
       iOSKind: 'ReparaOwnSmallWidget',
       androidProviderName: 'widgets.ReparaOwnSmallWidgetProvider',
       qualifiedAndroidProviderName: '$_androidPackage.widgets.ReparaOwnSmallWidgetProvider',
+      refreshesAtMidnight: false,
     ),
     (
+      family: WidgetFamilyKind.ownMedium,
       iOSKind: 'ReparaOwnMediumWidget',
       androidProviderName: 'widgets.ReparaOwnMediumWidgetProvider',
       qualifiedAndroidProviderName: '$_androidPackage.widgets.ReparaOwnMediumWidgetProvider',
+      refreshesAtMidnight: false,
     ),
     (
+      family: WidgetFamilyKind.lockScreen,
       iOSKind: 'ReparaLockScreenWidget',
       androidProviderName: null,
       qualifiedAndroidProviderName: null,
+      refreshesAtMidnight: false,
     ),
     (
+      family: WidgetFamilyKind.coupleCounter,
       iOSKind: 'ReparaCoupleCounterWidget',
       androidProviderName: 'widgets.ReparaCoupleCounterWidgetProvider',
       qualifiedAndroidProviderName: '$_androidPackage.widgets.ReparaCoupleCounterWidgetProvider',
+      refreshesAtMidnight: true,
     ),
     (
+      family: WidgetFamilyKind.couplePhotos,
       iOSKind: 'ReparaCouplePhotosWidget',
       androidProviderName: 'widgets.ReparaCouplePhotosWidgetProvider',
       qualifiedAndroidProviderName: '$_androidPackage.widgets.ReparaCouplePhotosWidgetProvider',
+      refreshesAtMidnight: true,
     ),
     (
+      family: WidgetFamilyKind.partnerNote,
       iOSKind: 'ReparaPartnerNoteWidget',
       androidProviderName: 'widgets.ReparaPartnerNoteWidgetProvider',
       qualifiedAndroidProviderName: '$_androidPackage.widgets.ReparaPartnerNoteWidgetProvider',
+      refreshesAtMidnight: false,
     ),
     (
+      family: WidgetFamilyKind.cardEncounter,
       iOSKind: 'ReparaCardEncounterWidget',
       androidProviderName: 'widgets.ReparaCardEncounterWidgetProvider',
       qualifiedAndroidProviderName: '$_androidPackage.widgets.ReparaCardEncounterWidgetProvider',
+      refreshesAtMidnight: true,
     ),
   ];
 
@@ -129,7 +177,7 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
   }
 
   /// Sanitizes and writes a single compact JSON payload to the shared native store,
-  /// then requests an immediate reload for all widget families.
+  /// schedules or cancels midnight rollover alarms, and reloads all widget families.
   Future<WidgetPayload> writePayload(WidgetPayload payload, {DateTime? referenceNow}) async {
     await initialize();
     final sanitized = payload.sanitized(referenceNow: referenceNow);
@@ -147,6 +195,11 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
     }
 
     await updateAllFamilies();
+    if (sanitized.isSignedIn && !sanitized.discreet) {
+      await scheduleMidnightRollover(referenceNow: referenceNow);
+    } else {
+      await cancelMidnightRollover();
+    }
     return sanitized;
   }
 
@@ -166,6 +219,7 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
   Future<WidgetPayload> clearForSignOut({DateTime? referenceNow}) async {
     await initialize();
     await clearCouplePhoto();
+    await cancelMidnightRollover();
     final neutral = WidgetPayload.signedOut(now: referenceNow);
     try {
       await _store.saveString(payloadStorageKey, neutral.toJsonString());
@@ -178,39 +232,13 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
     return neutral;
   }
 
-  /// Caches a chosen couple photo locally for the photo widget (`X-150`).
-  ///
-  /// Never writes or keeps a photo when [discreet] is active or [hasPlus] is false.
-  Future<String?> cacheCouplePhotoBytes(
-    Uint8List bytes, {
-    required bool discreet,
-    required bool hasPlus,
-    Directory? directoryOverride,
-  }) async {
-    await initialize();
-    if (discreet || !hasPlus || bytes.isEmpty) {
-      await clearCouplePhoto();
-      return null;
-    }
-
-    try {
-      final dir = directoryOverride ?? Directory.systemTemp;
-      final file = File('${dir.path}/repara_widget_couple_photo.jpg');
-      await file.writeAsBytes(bytes, flush: true);
-      await _store.saveString(cachedPhotoStorageKey, file.path);
-      return file.path;
-    } on Object {
-      return null;
-    }
-  }
-
   /// Reads the local cached couple photo path, returning `null` in discreet mode or without Plus.
   Future<String?> readCachedPhotoPath({required bool discreet, required bool hasPlus}) async {
+    await initialize();
     if (discreet || !hasPlus) {
       await _clearCachedPhotoPathOnly();
       return null;
     }
-    await initialize();
     try {
       final path = await _store.getString(cachedPhotoStorageKey);
       if (path == null || path.isEmpty) return null;
@@ -251,6 +279,50 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
         );
       } on PlatformException {
         // Family not supported on the current OS (e.g. lock screen on Android).
+      } on MissingPluginException {
+        // Test environment without native channel registration.
+      }
+    }
+  }
+
+  /// Schedules a widget refresh at the next local midnight for date-sensitive families.
+  ///
+  /// On iOS this is a no-op because WidgetKit timelines already schedule `.after(nextMidnight)`;
+  /// on Android it arms `HomeWidgetScheduledUpdateReceiver` via `AlarmManager`.
+  Future<void> scheduleMidnightRollover({DateTime? referenceNow}) async {
+    await initialize();
+    final now = (referenceNow ?? DateTime.now()).toLocal();
+    final nextMidnight = DateTime(now.year, now.month, now.day + 1);
+    for (final target in familyTargets.where((t) => t.refreshesAtMidnight)) {
+      if (target.qualifiedAndroidProviderName == null) continue;
+      try {
+        await _store.scheduleWidgetUpdates(
+          [nextMidnight],
+          name: target.androidProviderName,
+          androidName: target.androidProviderName,
+          qualifiedAndroidName: target.qualifiedAndroidProviderName,
+        );
+      } on PlatformException {
+        // Ignore on platforms where scheduled updates are unsupported.
+      } on MissingPluginException {
+        // Test environment without native channel registration.
+      }
+    }
+  }
+
+  /// Cancels any pending midnight widget update alarms.
+  Future<void> cancelMidnightRollover() async {
+    await initialize();
+    for (final target in familyTargets.where((t) => t.refreshesAtMidnight)) {
+      if (target.qualifiedAndroidProviderName == null) continue;
+      try {
+        await _store.cancelScheduledWidgetUpdates(
+          name: target.androidProviderName,
+          androidName: target.androidProviderName,
+          qualifiedAndroidName: target.qualifiedAndroidProviderName,
+        );
+      } on PlatformException {
+        // Ignore on platforms where scheduled updates are unsupported.
       } on MissingPluginException {
         // Test environment without native channel registration.
       }

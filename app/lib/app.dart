@@ -59,6 +59,7 @@ class const App({super.key}) extends StatelessWidget {
                           onGenerateTitle: (context) => context.l10n.common.appName,
                           routerConfig: appRouter.config(
                             navigatorObservers: () => navigatorObservers,
+                            deepLinkTransformer: transformWidgetDeepLinkUri,
                             deepLinkBuilder: _deepLinkBuilder,
                           ),
                           locale: TranslationProvider.of(context).flutterLocale,

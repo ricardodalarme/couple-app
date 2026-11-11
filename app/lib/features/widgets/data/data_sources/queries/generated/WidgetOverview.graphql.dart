@@ -294,13 +294,6 @@ const documentNodeQueryWidgetOverview = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'partnerName'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
                   name: NameNode(value: 'localDate'),
                   alias: null,
                   arguments: [],
@@ -357,34 +350,6 @@ const documentNodeQueryWidgetOverview = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'pauseIsMine'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'pauseReturnAt'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'nextDateTitle'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'nextDateOn'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
                   name: NameNode(value: 'hasPlus'),
                   alias: null,
                   arguments: [],
@@ -424,13 +389,6 @@ const documentNodeQueryWidgetOverview = DocumentNode(
                 ),
                 FieldNode(
                   name: NameNode(value: 'phase'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'partnerName'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -1112,7 +1070,6 @@ class QueryWidgetOverviewtoday {
   QueryWidgetOverviewtoday({
     required this.nodeId,
     this.isPaired,
-    this.partnerName,
     this.localDate,
     this.cardId,
     this.cardStatus,
@@ -1121,10 +1078,6 @@ class QueryWidgetOverviewtoday {
     this.slipsTotal,
     this.suggestionKey,
     this.togetherSince,
-    this.pauseIsMine,
-    this.pauseReturnAt,
-    this.nextDateTitle,
-    this.nextDateOn,
     this.hasPlus,
     this.$__typename = 'TodayState',
   });
@@ -1132,7 +1085,6 @@ class QueryWidgetOverviewtoday {
   factory QueryWidgetOverviewtoday.fromJson(Map<String, dynamic> json) {
     final l$nodeId = json['nodeId'];
     final l$isPaired = json['isPaired'];
-    final l$partnerName = json['partnerName'];
     final l$localDate = json['localDate'];
     final l$cardId = json['cardId'];
     final l$cardStatus = json['cardStatus'];
@@ -1141,16 +1093,11 @@ class QueryWidgetOverviewtoday {
     final l$slipsTotal = json['slipsTotal'];
     final l$suggestionKey = json['suggestionKey'];
     final l$togetherSince = json['togetherSince'];
-    final l$pauseIsMine = json['pauseIsMine'];
-    final l$pauseReturnAt = json['pauseReturnAt'];
-    final l$nextDateTitle = json['nextDateTitle'];
-    final l$nextDateOn = json['nextDateOn'];
     final l$hasPlus = json['hasPlus'];
     final l$$__typename = json['__typename'];
     return QueryWidgetOverviewtoday(
       nodeId: (l$nodeId as String),
       isPaired: (l$isPaired as bool?),
-      partnerName: (l$partnerName as String?),
       localDate: l$localDate == null ? null : DateTime.parse((l$localDate as String)),
       cardId: (l$cardId as String?),
       cardStatus: (l$cardStatus as String?),
@@ -1159,10 +1106,6 @@ class QueryWidgetOverviewtoday {
       slipsTotal: (l$slipsTotal as int?),
       suggestionKey: (l$suggestionKey as String?),
       togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
-      pauseIsMine: (l$pauseIsMine as bool?),
-      pauseReturnAt: l$pauseReturnAt == null ? null : DateTime.parse((l$pauseReturnAt as String)),
-      nextDateTitle: (l$nextDateTitle as String?),
-      nextDateOn: l$nextDateOn == null ? null : DateTime.parse((l$nextDateOn as String)),
       hasPlus: (l$hasPlus as bool?),
       $__typename: (l$$__typename as String),
     );
@@ -1171,8 +1114,6 @@ class QueryWidgetOverviewtoday {
   final String nodeId;
 
   final bool? isPaired;
-
-  final String? partnerName;
 
   final DateTime? localDate;
 
@@ -1190,14 +1131,6 @@ class QueryWidgetOverviewtoday {
 
   final DateTime? togetherSince;
 
-  final bool? pauseIsMine;
-
-  final DateTime? pauseReturnAt;
-
-  final String? nextDateTitle;
-
-  final DateTime? nextDateOn;
-
   final bool? hasPlus;
 
   final String $__typename;
@@ -1208,8 +1141,6 @@ class QueryWidgetOverviewtoday {
     _resultData['nodeId'] = l$nodeId;
     final l$isPaired = isPaired;
     _resultData['isPaired'] = l$isPaired;
-    final l$partnerName = partnerName;
-    _resultData['partnerName'] = l$partnerName;
     final l$localDate = localDate;
     _resultData['localDate'] = l$localDate == null
         ? null
@@ -1230,18 +1161,6 @@ class QueryWidgetOverviewtoday {
     _resultData['togetherSince'] = l$togetherSince == null
         ? null
         : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
-    final l$pauseIsMine = pauseIsMine;
-    _resultData['pauseIsMine'] = l$pauseIsMine;
-    final l$pauseReturnAt = pauseReturnAt;
-    _resultData['pauseReturnAt'] = l$pauseReturnAt == null
-        ? null
-        : ((v) => v.toUtc().toIso8601String())(l$pauseReturnAt);
-    final l$nextDateTitle = nextDateTitle;
-    _resultData['nextDateTitle'] = l$nextDateTitle;
-    final l$nextDateOn = nextDateOn;
-    _resultData['nextDateOn'] = l$nextDateOn == null
-        ? null
-        : ((v) => v.toIso8601String().substring(0, 10))(l$nextDateOn);
     final l$hasPlus = hasPlus;
     _resultData['hasPlus'] = l$hasPlus;
     final l$$__typename = $__typename;
@@ -1253,7 +1172,6 @@ class QueryWidgetOverviewtoday {
   int get hashCode {
     final l$nodeId = nodeId;
     final l$isPaired = isPaired;
-    final l$partnerName = partnerName;
     final l$localDate = localDate;
     final l$cardId = cardId;
     final l$cardStatus = cardStatus;
@@ -1262,16 +1180,11 @@ class QueryWidgetOverviewtoday {
     final l$slipsTotal = slipsTotal;
     final l$suggestionKey = suggestionKey;
     final l$togetherSince = togetherSince;
-    final l$pauseIsMine = pauseIsMine;
-    final l$pauseReturnAt = pauseReturnAt;
-    final l$nextDateTitle = nextDateTitle;
-    final l$nextDateOn = nextDateOn;
     final l$hasPlus = hasPlus;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$nodeId,
       l$isPaired,
-      l$partnerName,
       l$localDate,
       l$cardId,
       l$cardStatus,
@@ -1280,10 +1193,6 @@ class QueryWidgetOverviewtoday {
       l$slipsTotal,
       l$suggestionKey,
       l$togetherSince,
-      l$pauseIsMine,
-      l$pauseReturnAt,
-      l$nextDateTitle,
-      l$nextDateOn,
       l$hasPlus,
       l$$__typename,
     ]);
@@ -1305,11 +1214,6 @@ class QueryWidgetOverviewtoday {
     final l$isPaired = isPaired;
     final lOther$isPaired = other.isPaired;
     if (l$isPaired != lOther$isPaired) {
-      return false;
-    }
-    final l$partnerName = partnerName;
-    final lOther$partnerName = other.partnerName;
-    if (l$partnerName != lOther$partnerName) {
       return false;
     }
     final l$localDate = localDate;
@@ -1352,26 +1256,6 @@ class QueryWidgetOverviewtoday {
     if (l$togetherSince != lOther$togetherSince) {
       return false;
     }
-    final l$pauseIsMine = pauseIsMine;
-    final lOther$pauseIsMine = other.pauseIsMine;
-    if (l$pauseIsMine != lOther$pauseIsMine) {
-      return false;
-    }
-    final l$pauseReturnAt = pauseReturnAt;
-    final lOther$pauseReturnAt = other.pauseReturnAt;
-    if (l$pauseReturnAt != lOther$pauseReturnAt) {
-      return false;
-    }
-    final l$nextDateTitle = nextDateTitle;
-    final lOther$nextDateTitle = other.nextDateTitle;
-    if (l$nextDateTitle != lOther$nextDateTitle) {
-      return false;
-    }
-    final l$nextDateOn = nextDateOn;
-    final lOther$nextDateOn = other.nextDateOn;
-    if (l$nextDateOn != lOther$nextDateOn) {
-      return false;
-    }
     final l$hasPlus = hasPlus;
     final lOther$hasPlus = other.hasPlus;
     if (l$hasPlus != lOther$hasPlus) {
@@ -1391,7 +1275,6 @@ class QueryWidgetOverviewmySettings {
     required this.nodeId,
     required this.profileId,
     this.phase,
-    this.partnerName,
     this.togetherSince,
     required this.widgetAllowPartnerNotes,
     required this.widgetOnLockScreen,
@@ -1404,7 +1287,6 @@ class QueryWidgetOverviewmySettings {
     final l$nodeId = json['nodeId'];
     final l$profileId = json['profileId'];
     final l$phase = json['phase'];
-    final l$partnerName = json['partnerName'];
     final l$togetherSince = json['togetherSince'];
     final l$widgetAllowPartnerNotes = json['widgetAllowPartnerNotes'];
     final l$widgetOnLockScreen = json['widgetOnLockScreen'];
@@ -1415,7 +1297,6 @@ class QueryWidgetOverviewmySettings {
       nodeId: (l$nodeId as String),
       profileId: (l$profileId as String),
       phase: l$phase == null ? null : fromJsonEnumRelationshipPhase((l$phase as String)),
-      partnerName: (l$partnerName as String?),
       togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
       widgetAllowPartnerNotes: (l$widgetAllowPartnerNotes as bool),
       widgetOnLockScreen: (l$widgetOnLockScreen as bool),
@@ -1430,8 +1311,6 @@ class QueryWidgetOverviewmySettings {
   final String profileId;
 
   final EnumRelationshipPhase? phase;
-
-  final String? partnerName;
 
   final DateTime? togetherSince;
 
@@ -1453,8 +1332,6 @@ class QueryWidgetOverviewmySettings {
     _resultData['profileId'] = l$profileId;
     final l$phase = phase;
     _resultData['phase'] = l$phase == null ? null : toJsonEnumRelationshipPhase(l$phase);
-    final l$partnerName = partnerName;
-    _resultData['partnerName'] = l$partnerName;
     final l$togetherSince = togetherSince;
     _resultData['togetherSince'] = l$togetherSince == null
         ? null
@@ -1477,7 +1354,6 @@ class QueryWidgetOverviewmySettings {
     final l$nodeId = nodeId;
     final l$profileId = profileId;
     final l$phase = phase;
-    final l$partnerName = partnerName;
     final l$togetherSince = togetherSince;
     final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
     final l$widgetOnLockScreen = widgetOnLockScreen;
@@ -1488,7 +1364,6 @@ class QueryWidgetOverviewmySettings {
       l$nodeId,
       l$profileId,
       l$phase,
-      l$partnerName,
       l$togetherSince,
       l$widgetAllowPartnerNotes,
       l$widgetOnLockScreen,
@@ -1519,11 +1394,6 @@ class QueryWidgetOverviewmySettings {
     final l$phase = phase;
     final lOther$phase = other.phase;
     if (l$phase != lOther$phase) {
-      return false;
-    }
-    final l$partnerName = partnerName;
-    final lOther$partnerName = other.partnerName;
-    if (l$partnerName != lOther$partnerName) {
       return false;
     }
     final l$togetherSince = togetherSince;

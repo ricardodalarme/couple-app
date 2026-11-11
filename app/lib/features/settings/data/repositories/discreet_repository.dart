@@ -31,7 +31,7 @@ class DiscreetRepository({
 
       return DiscreetModeValues(
         neutralNotifications: notifications.discreet,
-        hideWidgetText: settings.widgetInDiscreet,
+        hideWidgetText: !settings.widgetInDiscreet,
         neutralIcon: mirror.neutralIcon,
       );
     } catch (e, stack) {
@@ -54,7 +54,7 @@ class DiscreetRepository({
   Future<void> setHideWidgetText({required bool value}) async {
     try {
       final profile = await _profileRepository.getMyProfile();
-      await _profileRepository.setWidgetInDiscreet(profileId: profile.id, hide: value);
+      await _profileRepository.setWidgetInDiscreet(profileId: profile.id, hide: !value);
       await _localDataSource.setHideWidgetText(value: value);
     } catch (e, stack) {
       _logger.error('Could not save the widget text setting', error: e, stackTrace: stack);

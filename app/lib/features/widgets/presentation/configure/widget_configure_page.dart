@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/configure/cubit/widget_configure_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/configure/widgets/configure_form_section.dart';
+import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// Widget configuration screen (`X-154`): content source, photo rotation cadence,
@@ -40,8 +41,8 @@ class const WidgetConfigurePage({final WidgetFamilyKind? initialFamily, super.ke
             case Success():
               BaseToast.show(context, l10n.configureSavedToast);
               context.maybePop(true);
-            case Failure():
-              BaseToast.show(context, l10n.configureErrorToast);
+            case Failure(:final exception):
+              BaseToast.show(context, l10n.errors.selectOrFallback(exception.l10nKey));
             case Initial() || Loading():
               break;
           }

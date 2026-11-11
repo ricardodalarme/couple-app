@@ -85,8 +85,8 @@ final class const WidgetPayload({
     discreet: json['discreet'] as bool? ?? false,
     isPaired: json['isPaired'] as bool? ?? false,
     hasPlus: json['hasPlus'] as bool? ?? false,
-    showNames: json['showNames'] as bool? ?? true,
-    allowPartnerNotes: json['allowPartnerNotes'] as bool? ?? true,
+    showNames: json['showNames'] as bool? ?? false,
+    allowPartnerNotes: json['allowPartnerNotes'] as bool? ?? false,
     onLockScreen: json['onLockScreen'] as bool? ?? false,
     isOffline: json['isOffline'] as bool? ?? false,
     togetherSince: json['togetherSince'] as String?,
@@ -126,7 +126,7 @@ final class const WidgetPayload({
       return WidgetPayload.signedOut(now: now);
     }
 
-    final activePause = isPauseActiveOn(now) ? pauseReturnAt : null;
+    final activePause = isPaired && isPauseActiveOn(now) ? pauseReturnAt : null;
     final rawDaysUntilDate = _daysUntilDateString(nextDateOn, now);
     final validDateOn = rawDaysUntilDate != null && rawDaysUntilDate >= 0 ? nextDateOn : null;
     final validDateTitle = validDateOn != null ? _nonEmpty(nextDateTitle) : null;
@@ -142,8 +142,7 @@ final class const WidgetPayload({
         onLockScreen: onLockScreen,
         isOffline: isOffline,
         unopenedCards: 0,
-        cardState: activePause != null ? 'pause' : 'none',
-        pauseReturnAt: activePause,
+        cardState: 'none',
         slipsCount: 0,
         updatedAt: now.toUtc().toIso8601String(),
       );
@@ -204,17 +203,6 @@ final class const WidgetPayload({
     final parsed = DateTime.tryParse(raw);
     if (parsed == null) return false;
     return parsed.toUtc().isAfter(now.toUtc());
-  }
-
-  /// Formatted `HH:mm` local time when the active pause ends.
-  String? pauseUntilTimeLabel() {
-    final raw = pauseReturnAt;
-    if (raw == null || raw.isEmpty) return null;
-    final parsed = DateTime.tryParse(raw)?.toLocal();
-    if (parsed == null) return null;
-    final hour = parsed.hour.toString().padLeft(2, '0');
-    final minute = parsed.minute.toString().padLeft(2, '0');
-    return '$hour:$minute';
   }
 
   /// Exact days together at local midnight for [localNow], or `null` when unset or discreet.

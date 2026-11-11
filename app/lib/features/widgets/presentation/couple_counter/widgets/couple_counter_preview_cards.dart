@@ -15,6 +15,16 @@ class const CoupleCounterPreviewCards({
     final l10n = context.l10n.widgets;
     final now = DateTime.now();
 
+    if (!payload.isSignedIn) {
+      return WidgetSurfacePreview(
+        categoryLabel: l10n.signedOutLabel,
+        title: l10n.signedOutBody,
+        subtitle: l10n.ownIdeaHint,
+        isDark: isDarkPreview,
+        deepLinkUri: Uri.parse('repara://sign-in'),
+      );
+    }
+
     if (payload.discreet) {
       return WidgetSurfacePreview(
         categoryLabel: l10n.coupleCounterLabel,
@@ -22,6 +32,17 @@ class const CoupleCounterPreviewCards({
         subtitle: l10n.discreetNeutralBody,
         isDark: isDarkPreview,
         deepLinkUri: Uri.parse('repara://settings/discreet'),
+      );
+    }
+
+    if (!payload.isPaired) {
+      return WidgetSurfacePreview(
+        categoryLabel: l10n.coupleCounterLabel,
+        title: l10n.statesUnpairedTitle,
+        subtitle: l10n.unpairedBanner,
+        badgeText: l10n.statesUnpairedAction,
+        isDark: isDarkPreview,
+        onTapOverride: () => context.pushRoute(const InviteRoute()),
       );
     }
 
@@ -58,8 +79,8 @@ class const CoupleCounterPreviewCards({
       years: breakdown.years,
       months: breakdown.months,
     );
-    final mediumSubtitle = switch (payload.partnerName) {
-      final name? when name.isNotEmpty =>
+    final mediumSubtitle = switch ((payload.showNames, payload.partnerName)) {
+      (true, final name?) when name.isNotEmpty =>
         '${l10n.counterMonthsDaysSubtitle(months: breakdown.months, days: breakdown.days)} · $name',
       _ => l10n.counterMonthsDaysSubtitle(months: breakdown.months, days: breakdown.days),
     };

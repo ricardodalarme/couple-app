@@ -1,9 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="repara_widget_own_small_desc">Anotar slip, próxima data, humor ou ritual.</string>
-    <string name="repara_widget_own_medium_desc">Ideia do dia ou potinho do dia ruim.</string>
-    <string name="repara_widget_couple_counter_desc">Dias juntos, atualizado à meia-noite.</string>
-    <string name="repara_widget_couple_photos_desc">Foto em cache local ou cartão neutro.</string>
-    <string name="repara_widget_partner_note_desc">Recado curto marcado pelo seu par para o widget.</string>
-    <string name="repara_widget_card_encounter_desc">Estado do cartão e próxima data, sem nomes nem texto do cartão.</string>
+    <string name="repara_widget_own_small_label">Repara · Mine (small)</string>
+    <string name="repara_widget_own_medium_label">Repara · Mine (medium)</string>
+    <string name="repara_widget_couple_counter_label">Repara · Couple counter</string>
+    <string name="repara_widget_couple_photos_label">Repara · Couple photos</string>
+    <string name="repara_widget_partner_note_label">Repara · Partner note</string>
+    <string name="repara_widget_card_encounter_label">Repara · Card &amp; date</string>
+
+    <string name="repara_widget_own_small_desc">Quick slip, next date, mood, or ritual.</string>
+    <string name="repara_widget_own_medium_desc">Idea of the day or bad-day jar.</string>
+    <string name="repara_widget_couple_counter_desc">Days together, updated at midnight.</string>
+    <string name="repara_widget_couple_photos_desc">Locally cached photo or neutral card.</string>
+    <string name="repara_widget_partner_note_desc">Short note marked by your partner for the widget.</string>
+    <string name="repara_widget_card_encounter_desc">Weekly card state and next date, without names or card text.</string>
+
+    <string name="repara_widget_signed_out_label">REPARA</string>
+    <string name="repara_widget_signed_out_title">Tap to sign in</string>
+    <string name="repara_widget_discreet_label">REMINDER</string>
+    <string name="repara_widget_discreet_title">Neutral text</string>
+    <string name="repara_widget_unpaired_label">TOGETHER</string>
+    <string name="repara_widget_unpaired_title">Invite to see here</string>
+    <string name="repara_widget_unpaired_action">Invite</string>
+
+    <string name="repara_widget_next_date_label">NEXT DATE</string>
+    <string name="repara_widget_days_count">%1$d days</string>
+    <string name="repara_widget_ritual_label">RITUAL</string>
+    <string name="repara_widget_ritual_default_schedule">Weekly moment</string>
+    <string name="repara_widget_mood_label">MY MOOD</string>
+    <string name="repara_widget_mood_subtitle">Tap to update</string>
+    <string name="repara_widget_slip_label">QUICK SLIP</string>
+    <string name="repara_widget_slip_title">+ Slip</string>
+    <string name="repara_widget_slip_subtitle">Tap to capture</string>
+
+    <string name="repara_widget_jar_label">BAD-DAY JAR</string>
+    <string name="repara_widget_jar_saved_count">%1$d saved reasons</string>
+    <string name="repara_widget_jar_subtitle">To open when you need it</string>
+    <string name="repara_widget_idea_label">IDEA OF THE DAY</string>
+    <string name="repara_widget_idea_default">Leave a short note today</string>
+    <string name="repara_widget_idea_subtitle">Tap to view · Private on your device</string>
+
+    <string name="repara_widget_counter_label">TOGETHER FOR</string>
+    <string name="repara_widget_counter_unset">Starting now</string>
+    <string name="repara_widget_counter_default_subtitle">Time together</string>
+
+    <string name="repara_widget_photo_label">MEMORY</string>
+    <string name="repara_widget_photo_plus_only">Available on Plus</string>
+    <string name="repara_widget_photo_cached_title">Memory saved on this device</string>
+    <string name="repara_widget_photo_days_together">%1$d days together</string>
+    <string name="repara_widget_photo_fallback_title">A moment of ours</string>
+    <string name="repara_widget_photo_no_photo">No photo selected</string>
+
+    <string name="repara_widget_note_from_named">FROM %1$s</string>
+    <string name="repara_widget_note_from_default">PARTNER NOTE</string>
+    <string name="repara_widget_note_reply_hint">Reply with a heart</string>
+    <string name="repara_widget_note_empty">No new note right now</string>
+
+    <string name="repara_widget_card_pause_label">CARD &amp; DATE</string>
+    <string name="repara_widget_card_pause_title">Pause in progress</string>
+    <string name="repara_widget_card_pause_subtitle">Tap when you are ready</string>
+    <string name="repara_widget_card_weekly_label">WEEKLY CARD</string>
+    <string name="repara_widget_card_ready_title">A card arrived</string>
+    <string name="repara_widget_card_sent_title">Card sent</string>
+    <string name="repara_widget_card_default_title">Sunday card</string>
+    <string name="repara_widget_card_next_date_default">Next date</string>
+    <string name="repara_widget_card_encounter_subtitle">%1$d days · %2$s</string>
+    <string name="repara_widget_card_ready_subtitle">Tap to open</string>
+    <string name="repara_widget_card_preparing_subtitle">In preparation</string>
 </resources>

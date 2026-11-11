@@ -3,6 +3,7 @@ package com.ricardodalarme.flutter_bloc_starter.widgets
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import com.ricardodalarme.flutter_bloc_starter.R
 
 class ReparaOwnSmallWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(
@@ -12,44 +13,46 @@ class ReparaOwnSmallWidgetProvider : AppWidgetProvider() {
     ) {
         val payload = ReparaWidgetPayload.load(context)
         for (appWidgetId in appWidgetIds) {
+            if (payload.renderGuardState(context, appWidgetManager, appWidgetId, requirePaired = false)) {
+                continue
+            }
+            val days = payload.daysUntilNextDate()
             when {
-                !payload.isSignedIn -> ReparaWidgetPayload.renderCard(
+                days != null && !payload.nextDateTitle.isNullOrBlank() -> ReparaWidgetPayload.renderCard(
                     context = context,
                     appWidgetManager = appWidgetManager,
                     appWidgetId = appWidgetId,
-                    label = "REPARA",
-                    title = "Toque para entrar",
-                    subtitle = "Sua conta não está conectada",
-                    deepLink = "repara://sign-in?homeWidget=1",
+                    label = context.getString(R.string.repara_widget_next_date_label),
+                    title = context.getString(R.string.repara_widget_days_count, days.toInt()),
+                    subtitle = payload.nextDateTitle,
+                    deepLink = "repara://dates?homeWidget=1",
                 )
-                payload.discreet -> ReparaWidgetPayload.renderCard(
+                !payload.ritualTitle.isNullOrBlank() -> ReparaWidgetPayload.renderCard(
                     context = context,
                     appWidgetManager = appWidgetManager,
                     appWidgetId = appWidgetId,
-                    label = "LEMBRETE",
-                    title = "Texto neutro",
-                    subtitle = "Toque para abrir",
-                    deepLink = "repara://settings/discreet?homeWidget=1",
+                    label = context.getString(R.string.repara_widget_ritual_label),
+                    title = payload.ritualTitle,
+                    subtitle = payload.ritualSchedule
+                        ?: context.getString(R.string.repara_widget_ritual_default_schedule),
+                    deepLink = "repara://rituals?homeWidget=1",
                 )
-                payload.daysUntilNextDate() != null && payload.nextDateTitle != null -> {
-                    val days = payload.daysUntilNextDate() ?: 0L
-                    ReparaWidgetPayload.renderCard(
-                        context = context,
-                        appWidgetManager = appWidgetManager,
-                        appWidgetId = appWidgetId,
-                        label = "PRÓXIMA DATA",
-                        title = "$days dias",
-                        subtitle = payload.nextDateTitle,
-                        deepLink = "repara://dates?homeWidget=1",
-                    )
-                }
+                !payload.myMood.isNullOrBlank() -> ReparaWidgetPayload.renderCard(
+                    context = context,
+                    appWidgetManager = appWidgetManager,
+                    appWidgetId = appWidgetId,
+                    label = context.getString(R.string.repara_widget_mood_label),
+                    title = payload.myMood,
+                    subtitle = context.getString(R.string.repara_widget_mood_subtitle),
+                    deepLink = "repara://mood?homeWidget=1",
+                )
                 else -> ReparaWidgetPayload.renderCard(
                     context = context,
                     appWidgetManager = appWidgetManager,
                     appWidgetId = appWidgetId,
-                    label = "ANOTAR SLIP",
-                    title = "+ Slip",
-                    subtitle = "Toque para anotar",
+                    label = context.getString(R.string.repara_widget_slip_label),
+                    title = context.getString(R.string.repara_widget_slip_title),
+                    subtitle = context.getString(R.string.repara_widget_slip_subtitle),
                     deepLink = "repara://capture?homeWidget=1",
                 )
             }

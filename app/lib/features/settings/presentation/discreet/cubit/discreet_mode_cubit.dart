@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/settings/data/models/discreet_mode_values.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/discreet_repository.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 
 part 'discreet_mode_state.dart';
@@ -43,7 +44,7 @@ class DiscreetModeCubit({
     }
   }
 
-  Future<void> setHideWidgetText({required bool value}) async {
+  Future<WidgetPayload?> setHideWidgetText({required bool value}) async {
     final previous = state.values;
     emit(
       state.copyWith(
@@ -53,11 +54,19 @@ class DiscreetModeCubit({
     );
     try {
       await _repository.setHideWidgetText(value: value);
-      await _widgetsRepository?.applyDiscreetModeImmediately(discreet: value);
+      final payload = await _widgetsRepository?.applyDiscreetModeImmediately(discreet: value);
       emit(state.copyWith(saveAction: const Success(null)));
+      return payload;
     } catch (exception) {
       emit(state.copyWith(values: previous, saveAction: Failure.fromObject(exception)));
+      return null;
     }
+  }
+
+  /// Adopts a discreet value already persisted elsewhere, keeping the shield in sync.
+  void adoptHideWidgetText({required bool value}) {
+    if (state.values.hideWidgetText == value) return;
+    emit(state.copyWith(values: state.values.copyWith(hideWidgetText: value)));
   }
 
   Future<void> setNeutralIcon({required bool value}) async {

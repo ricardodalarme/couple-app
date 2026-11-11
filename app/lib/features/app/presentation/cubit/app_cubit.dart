@@ -52,6 +52,7 @@ class AppCubit({
     }
 
     _authEpoch++;
+    final epoch = _authEpoch;
     if (_explicitSignOut) {
       _explicitSignOut = false;
       unawaited(_resolve(false));
@@ -60,7 +61,7 @@ class AppCubit({
 
     if (_wasAuthenticated) {
       _wasAuthenticated = false;
-      if (!isClosed) emit(AppState.sessionExpired);
+      unawaited(_expireSession(epoch));
       return;
     }
 
@@ -69,13 +70,20 @@ class AppCubit({
 
   void _onAuthError(Object error, StackTrace stackTrace) {
     _authEpoch++;
+    final epoch = _authEpoch;
     if (_wasAuthenticated) {
       _wasAuthenticated = false;
-      if (!isClosed) emit(AppState.sessionExpired);
+      unawaited(_expireSession(epoch));
       return;
     }
 
     unawaited(_resolve(false));
+  }
+
+  Future<void> _expireSession(int epoch) async {
+    await _clearWidgetData();
+    if (epoch != _authEpoch || isClosed) return;
+    emit(AppState.sessionExpired);
   }
 
   Future<void> initialize() => _resolve(_authenticationRepository.isAuthenticated);
@@ -105,7 +113,7 @@ class AppCubit({
     if (!isAuthenticated) {
       _wasAuthenticated = false;
       await _clearSupportQueue();
-      unawaited(_widgetsRepository?.clearOnSignOut());
+      await _clearWidgetData();
       if (epoch != _authEpoch || isClosed) return;
       emit(AppState.unauthenticated);
       return;
@@ -145,6 +153,14 @@ class AppCubit({
       await _supportRepository.clearPending();
     } on Object {
       // Local storage is unavailable; sign-out still proceeds.
+    }
+  }
+
+  Future<void> _clearWidgetData() async {
+    try {
+      await _widgetsRepository?.clearOnSignOut();
+    } on Object {
+      // Widget cleanup is best-effort; auth state still moves on.
     }
   }
 

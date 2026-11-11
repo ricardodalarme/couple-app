@@ -31,7 +31,7 @@ class const ConfigureFormSection({
       (false, WidgetFamilyKind.partnerNote, _) =>
         previewPayload.partnerNote ?? l10n.partnerNoteEmpty,
       (false, _, final count?) => l10n.coupleCounterDays(count: count),
-      (false, _, null) => l10n.couplePhotosNeutral,
+      (false, _, null) => l10n.couplePhotosPrompt,
     };
 
     final previewSubtitle = switch (previewPayload.partnerName) {

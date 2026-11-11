@@ -27,7 +27,7 @@
     "other": "{count} days together"
   },
   "couplePhotosLabel": "COUPLE PHOTOS · PLUS",
-  "couplePhotosNeutral": "2 years and 3 months together",
+  "couplePhotosPrompt": "Choose a photo of you two",
   "couplePhotosPlusHint": "Available with Plus",
   "partnerNoteLabel": "PARTNER NOTE",
   "partnerNoteEmpty": "No new note right now",
@@ -45,10 +45,11 @@
   "howToAddStep1Title": "Hold the home screen",
   "howToAddStep1Body": "Touch and hold an empty space until the icons jiggle.",
   "howToAddStep2Title": "Tap the + button",
-  "howToAddStep2Body": "In the top corner, search for Repara.",
+  "howToAddStep2Body": "In the top corner, search for QS-Flutter.",
   "howToAddStep3Title": "Pick a size",
-  "howToAddStep3Body": "Small, medium or lock screen.",
+  "howToAddStep3Body": "Small or medium.",
   "howToAddAndroidLockNote": "On modern Android, widgets live on the home screen. The lock screen only shows neutral notification icons.",
+  "howToAddIosLockNote": "On iOS 16 or newer, you can also add the lock-screen widget.",
   "howToAddDone": "Got it",
   "configureTitle": "Configure widget",
   "configurePreviewLabel": "PREVIEW",
@@ -67,7 +68,6 @@
   "configureOnLockScreen": "Allow on lock screen",
   "configureSave": "Save",
   "configureSavedToast": "Widget preferences saved.",
-  "configureErrorToast": "Could not save widget preferences right now.",
   "loadErrorTitle": "Could not load widgets",
   "loadErrorBody": "Check your connection and try again.",
   "retryAction": "Try again",
@@ -104,6 +104,7 @@
   "lockScreenGenericPhrase": "Calm moment",
   "lockScreenDiscreetPhrase": "Reminder",
   "lockScreenPrivacyRule": "Never shows names or messages on the lock screen.",
+  "lockScreenDisabledNote": "The lock-screen widget is turned off in widget settings.",
   "lockScreenFamiliesTitle": "iOS formats (Circular, Rectangular and Inline)",
   "counterPageTitle": "Widget · Counter",
   "counterYearsMonthsTitle": "{years} years · {months} months",
@@ -148,5 +149,9 @@
   "statesOfflineSection": "Offline",
   "statesOfflineTitle": "Showing the last saved data",
   "statesOfflineSubtitle": "Updates when back online",
-  "statesPrecedenceNote": "When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder)."
+  "statesPrecedenceNote": "When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).",
+  "errors(map)": {
+    "WIDGET_PREFERENCES_SAVE_FAILED": "Could not save widget preferences right now.",
+    "other": "Could not save widget preferences right now."
+  }
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
@@ -29,7 +31,10 @@ class const HowToAddStepsList({super.key}) extends StatelessWidget {
           ],
         ),
         const SizedBox(height: AppSpace.s16),
-        BaseNote(text: l10n.howToAddAndroidLockNote, icon: AppIcons.info),
+        BaseNote(
+          text: Platform.isAndroid ? l10n.howToAddAndroidLockNote : l10n.howToAddIosLockNote,
+          icon: AppIcons.info,
+        ),
       ],
     );
   }

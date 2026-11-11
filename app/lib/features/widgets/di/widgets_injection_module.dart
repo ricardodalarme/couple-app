@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/settings/data/data_sources/discreet_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/today/data/repositories/today_repository.dart';
+import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/widgets_data_source.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/widgets_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
@@ -41,7 +41,10 @@ class WidgetsInjectionModule() implements InjectionModule {
         () => WidgetsGalleryCubit(repository: injector.get<WidgetsRepository>()),
       )
       ..registerFactory<WidgetConfigureCubit>(
-        () => WidgetConfigureCubit(repository: injector.get<WidgetsRepository>()),
+        () => WidgetConfigureCubit(
+          repository: injector.get<WidgetsRepository>(),
+          discreetModeCubit: injector.get<DiscreetModeCubit>(),
+        ),
       )
       ..registerFactory<OwnSmallWidgetsCubit>(
         () => OwnSmallWidgetsCubit(repository: injector.get<WidgetsRepository>()),
@@ -50,10 +53,7 @@ class WidgetsInjectionModule() implements InjectionModule {
         () => OwnMediumWidgetsCubit(repository: injector.get<WidgetsRepository>()),
       )
       ..registerFactory<LockScreenWidgetCubit>(
-        () => LockScreenWidgetCubit(
-          repository: injector.get<WidgetsRepository>(),
-          todayRepository: injector.get<TodayRepository>(),
-        ),
+        () => LockScreenWidgetCubit(repository: injector.get<WidgetsRepository>()),
       )
       ..registerFactory<CoupleCounterWidgetCubit>(
         () => CoupleCounterWidgetCubit(repository: injector.get<WidgetsRepository>()),
@@ -68,7 +68,10 @@ class WidgetsInjectionModule() implements InjectionModule {
         () => CardEncounterWidgetCubit(repository: injector.get<WidgetsRepository>()),
       )
       ..registerFactory<WidgetStatesCubit>(
-        () => WidgetStatesCubit(repository: injector.get<WidgetsRepository>()),
+        () => WidgetStatesCubit(
+          repository: injector.get<WidgetsRepository>(),
+          discreetModeCubit: injector.get<DiscreetModeCubit>(),
+        ),
       );
   }
 }
