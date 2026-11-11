@@ -38,7 +38,10 @@ class const TimeInAppPage({super.key}) extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            BaseButton(text: l10n.pause, onPressed: () => context.pushRoute(const PauseRoute())),
+            BaseButton(
+              text: l10n.pause,
+              onPressed: () => context.router.replace(const PauseRoute()),
+            ),
             const SizedBox(height: AppSpace.s10),
             BaseButton(
               text: l10n.cancel,

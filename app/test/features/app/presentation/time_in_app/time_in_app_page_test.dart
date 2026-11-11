@@ -71,5 +71,6 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(router.stack.map((route) => route.name), contains(PauseRoute.name));
+    expect(router.stack.map((route) => route.name), isNot(contains(TimeInAppRoute.name)));
   });
 }
