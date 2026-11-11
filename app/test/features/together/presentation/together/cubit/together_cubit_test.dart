@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/questions/data/models/question_thread.dart';
 import 'package:flutter_bloc_starter/features/questions/data/repositories/questions_repository.dart';
@@ -25,6 +28,7 @@ void main() {
   late ListsRepository listsRepository;
   late QuestionsRepository questionsRepository;
   late ProfileRepository profileRepository;
+  late StreamController<void> profileChanges;
 
   setUp(() {
     pairingRepository = _MockPairingRepository();
@@ -32,6 +36,8 @@ void main() {
     listsRepository = _MockListsRepository();
     questionsRepository = _MockQuestionsRepository();
     profileRepository = _MockProfileRepository();
+    profileChanges = StreamController<void>.broadcast();
+    when(() => profileRepository.onChanged).thenAnswer((_) => profileChanges.stream);
     when(profileRepository.getMySettings).thenThrow(Exception('none'));
     when(pairingRepository.getPartner).thenAnswer((_) async => null);
     when(checkinRepository.isCurrentWeekDismissed).thenAnswer((_) async => false);
@@ -45,6 +51,8 @@ void main() {
       ),
     );
   });
+
+  tearDown(() => profileChanges.close());
 
   TogetherCubit build() => TogetherCubit(
     pairingRepository: pairingRepository,
@@ -93,5 +101,33 @@ void main() {
     await cubit.load();
 
     expect(cubit.state.listCount, 0);
+  });
+
+  test('a saved phase change reloads the hub and swaps its variant card', () async {
+    when(profileRepository.getMySettings)
+        .thenAnswer((_) async => const AccountSettings(theme: .rose, phase: 'long_distance'));
+    final cubit = build();
+    addTearDown(cubit.close);
+    await cubit.load();
+    expect(cubit.state.phase, 'long_distance');
+
+    when(profileRepository.getMySettings)
+        .thenAnswer((_) async => const AccountSettings(theme: .rose, phase: 'with_parents'));
+    profileChanges.add(null);
+    await pumpEventQueue();
+
+    expect(cubit.state.phase, 'with_parents');
+  });
+
+  test('closing stops listening for profile changes', () async {
+    final cubit = build();
+    await cubit.close();
+    when(profileRepository.getMySettings)
+        .thenAnswer((_) async => const AccountSettings(theme: .rose, phase: 'long_distance'));
+
+    profileChanges.add(null);
+    await pumpEventQueue();
+
+    expect(profileChanges.hasListener, isFalse);
   });
 }

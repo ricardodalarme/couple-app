@@ -12,6 +12,7 @@ void main() {
     expect(analyticsScreenNameFor('CapsulesRoute'), 'settings');
     expect(analyticsScreenNameFor('GuidesRoute'), 'settings');
     expect(analyticsScreenNameFor('GuideRoute'), 'settings');
+    expect(analyticsScreenNameFor('DistanceRoute'), 'settings');
     expect(analyticsScreenNameFor('CheckinRoute'), 'settings');
   });
 

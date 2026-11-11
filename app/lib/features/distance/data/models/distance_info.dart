@@ -34,6 +34,8 @@ final class const DistanceInfo({
 }
 
 /// The next day on or after [today] that a date falls on, or null when a one-off date has passed.
+///
+/// The result is a UTC midnight so day counts ignore daylight-saving shifts.
 DateTime? nextOccurrence({
   required int month,
   required int day,
@@ -41,14 +43,14 @@ DateTime? nextOccurrence({
   required bool isYearly,
   required DateTime today,
 }) {
-  final start = DateTime(today.year, today.month, today.day);
+  final start = DateTime.utc(today.year, today.month, today.day);
   if (!isYearly && year != null) {
-    final date = DateTime(year, month, day);
+    final date = DateTime.utc(year, month, day);
 
     return date.isBefore(start) ? null : date;
   }
-  var candidate = DateTime(start.year, month, day);
-  if (candidate.isBefore(start)) candidate = DateTime(start.year + 1, month, day);
+  var candidate = DateTime.utc(start.year, month, day);
+  if (candidate.isBefore(start)) candidate = DateTime.utc(start.year + 1, month, day);
 
   return candidate;
 }

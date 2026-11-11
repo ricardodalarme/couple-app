@@ -7,6 +7,7 @@ import 'package:flutter_bloc_starter/features/guides/presentation/viewer/widgets
 import 'package:flutter_bloc_starter/features/guides/presentation/viewer/widgets/guide_step_view.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// One conversation guide, step by step and private.
 @RoutePage()
@@ -27,6 +28,7 @@ class const GuidePage({@PathParam('slug') final String slug = '', super.key})
     final guide = context.select((GuideCubit cubit) => cubit.state.currentGuide);
     final resource = context.select((GuideCubit cubit) => cubit.state.guide);
     final isFinished = context.select((GuideCubit cubit) => cubit.state.isFinished);
+    final isLocked = context.select((GuideCubit cubit) => cubit.state.isLocked);
     final cubit = context.read<GuideCubit>();
 
     return BlocListener<GuideCubit, GuideState>(
@@ -67,6 +69,12 @@ class const GuidePage({@PathParam('slug') final String slug = '', super.key})
             text: l10n.loadErrorText,
             actionText: context.l10n.common.retry,
             onAction: () => cubit.start(slug),
+          ),
+          _ when isLocked => BaseEmptyState(
+            title: guide?.title ?? l10n.loadErrorTitle,
+            text: context.l10n.plus.lockText,
+            actionText: context.l10n.plus.seePlus,
+            onAction: () => context.pushRoute(const PlansRoute()),
           ),
           _ => isFinished ? const GuideFinishView() : const GuideStepView(),
         },

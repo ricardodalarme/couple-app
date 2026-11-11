@@ -59,6 +59,48 @@ void main() {
     expect(info.reunionTitle, 'Natal');
   });
 
+  test('a saved one-off reunion sets the countdown', () async {
+    when(() => datesRepository.getDates()).thenAnswer(
+      (_) async => const [
+        ImportantDate(
+          id: 'r',
+          title: 'Reencontro',
+          kind: 'reunion',
+          month: 12,
+          day: 23,
+          year: 2026,
+          isYearly: false,
+        ),
+      ],
+    );
+
+    final info = await build().getDistance(now: DateTime(2026, 11, 11, 12));
+
+    expect(info.daysToReunion, 42);
+    expect(info.reunionTitle, 'Reencontro');
+  });
+
+  test('a daylight-saving change does not shift the day count', () async {
+    when(() => datesRepository.getDates()).thenAnswer(
+      (_) async => const [
+        ImportantDate(
+          id: 'r',
+          title: 'Reencontro',
+          kind: 'reunion',
+          month: 3,
+          day: 9,
+          year: 2026,
+          isYearly: false,
+        ),
+      ],
+    );
+
+    final info = await build().getDistance(now: DateTime(2026, 3, 7, 12));
+
+    expect(info.daysToReunion, 2);
+    expect(info.nextReunion, DateTime.utc(2026, 3, 9));
+  });
+
   test('without a partner there is only one clock', () async {
     when(() => dataSource.getPartnerTimeZone()).thenAnswer((_) async => null);
 
@@ -73,7 +115,7 @@ void main() {
     expect(nextOccurrence(month: 3, day: 1, year: 2026, isYearly: false, today: today), isNull);
     expect(
       nextOccurrence(month: 3, day: 1, year: 2020, isYearly: true, today: today),
-      DateTime(2027, 3),
+      DateTime.utc(2027, 3),
     );
   });
 }

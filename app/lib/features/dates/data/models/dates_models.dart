@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 /// The kinds of date a person can add by hand, matching the server kinds.
-const List<String> dateKinds = ['relationship', 'birthday', 'first', 'trip', 'custom'];
+const List<String> dateKinds = ['relationship', 'birthday', 'first', 'trip', 'reunion', 'custom'];
 
 /// The days before a date that a reminder is sent, offered as choices.
 const List<int> remindDayOptions = [30, 7, 1, 0];

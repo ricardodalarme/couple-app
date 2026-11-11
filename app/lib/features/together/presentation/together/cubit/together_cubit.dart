@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
@@ -15,7 +17,11 @@ class TogetherCubit({
   required final QuestionsRepository _questionsRepository,
   required final ProfileRepository _profileRepository,
 }) extends Cubit<TogetherState> {
-  this : super(const TogetherState());
+  this : super(const TogetherState()) {
+    _profileChanges = _profileRepository.onChanged.listen((_) => load());
+  }
+
+  StreamSubscription<void>? _profileChanges;
 
   /// Finds the partner, the check-in entry, the list count and the current question title.
   Future<void> load() async {
@@ -54,6 +60,7 @@ class TogetherCubit({
       // The card falls back to its own title when the question cannot be read.
     }
 
+    if (isClosed) return;
     emit(
       state.copyWith(
         hasPartner: hasPartner,
@@ -66,4 +73,11 @@ class TogetherCubit({
   }
 
   void onViewChanged(TogetherView view) => emit(state.copyWith(view: view));
+
+  @override
+  Future<void> close() async {
+    await _profileChanges?.cancel();
+
+    return super.close();
+  }
 }

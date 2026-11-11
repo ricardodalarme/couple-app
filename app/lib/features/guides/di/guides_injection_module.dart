@@ -36,6 +36,7 @@ class GuidesInjectionModule() implements InjectionModule {
     ..registerFactory<GuideCubit>(
       () => GuideCubit(
         repository: injector.get<GuidesRepository>(),
+        plusRepository: injector.get<PlusRepository>(),
         session: injector.get<GuideSession>(),
       ),
     );

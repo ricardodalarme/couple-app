@@ -15,6 +15,7 @@ const Set<String> _sensitiveRouteNames = {
   'CapsulesRoute',
   'GuidesRoute',
   'GuideRoute',
+  'DistanceRoute',
   'CheckinRoute',
 };
 

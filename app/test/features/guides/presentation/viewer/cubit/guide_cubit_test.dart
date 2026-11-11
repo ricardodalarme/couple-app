@@ -5,18 +5,24 @@ import 'package:flutter_bloc_starter/features/guides/data/models/guide_catalogue
 import 'package:flutter_bloc_starter/features/guides/data/models/guide_progress.dart';
 import 'package:flutter_bloc_starter/features/guides/data/repositories/guides_repository.dart';
 import 'package:flutter_bloc_starter/features/guides/presentation/viewer/cubit/guide_cubit.dart';
+import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
+import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockGuidesRepository() extends Mock implements GuidesRepository;
 
+class _MockPlusRepository() extends Mock implements PlusRepository;
+
 void main() {
   late GuidesRepository repository;
+  late PlusRepository plusRepository;
 
   final moneyDefinition = guideCatalogue.firstWhere((guide) => guide.slug == 'money');
   final money = moneyDefinition.localized('pt');
   final intimacy = guideCatalogue.firstWhere((guide) => guide.slug == 'intimacy').localized('pt');
+  final plusGuide = guideCatalogue.firstWhere((guide) => guide.isPlusOnly).localized('pt');
 
   setUpAll(() {
     LocaleSettings.setLocaleSync(AppLocale.pt);
@@ -33,6 +39,8 @@ void main() {
 
   setUp(() {
     repository = _MockGuidesRepository();
+    plusRepository = _MockPlusRepository();
+    when(() => plusRepository.getPlus()).thenAnswer((_) async => const PlusState(hasPlus: true));
     when(() => repository.currentUserId).thenReturn('user-a');
     when(() => repository.getGuide(any(), languageCode: any(named: 'languageCode')))
         .thenAnswer((_) async => money);
@@ -49,8 +57,11 @@ void main() {
     ).thenAnswer((_) async => 'prep-1');
   });
 
-  GuideCubit build({GuideSession? session}) =>
-      GuideCubit(repository: repository, session: session ?? GuideSession());
+  GuideCubit build({GuideSession? session}) => GuideCubit(
+    repository: repository,
+    plusRepository: plusRepository,
+    session: session ?? GuideSession(),
+  );
 
   Future<GuideCubit> started({GuideSession? session}) async {
     final cubit = build(session: session);
@@ -250,5 +261,42 @@ void main() {
     addTearDown(otherUser.close);
 
     expect(otherUser.state.showSensitiveGate, isTrue);
+  });
+
+  test('a Plus guide stays locked for a person without Plus', () async {
+    when(() => plusRepository.getPlus()).thenAnswer((_) async => const PlusState(hasPlus: false));
+    when(() => repository.getGuide(any(), languageCode: any(named: 'languageCode')))
+        .thenAnswer((_) async => plusGuide);
+
+    final cubit = await started();
+    addTearDown(cubit.close);
+
+    expect(cubit.state.isLocked, isTrue);
+    expect(cubit.state.currentGuide, plusGuide);
+    expect(cubit.state.answers, isEmpty);
+    verifyNever(() => repository.getProgress(any()));
+  });
+
+  test('a Plus guide opens for a person with Plus', () async {
+    when(() => repository.getGuide(any(), languageCode: any(named: 'languageCode')))
+        .thenAnswer((_) async => plusGuide);
+
+    final cubit = await started();
+    addTearDown(cubit.close);
+
+    expect(cubit.state.isLocked, isFalse);
+    expect(cubit.state.currentGuide, plusGuide);
+    expect(cubit.state.answers, hasLength(plusGuide.stepCount));
+  });
+
+  test('an unreadable plan keeps a Plus guide locked', () async {
+    when(() => plusRepository.getPlus()).thenThrow(Exception('offline'));
+    when(() => repository.getGuide(any(), languageCode: any(named: 'languageCode')))
+        .thenAnswer((_) async => plusGuide);
+
+    final cubit = await started();
+    addTearDown(cubit.close);
+
+    expect(cubit.state.isLocked, isTrue);
   });
 }

@@ -55,7 +55,7 @@ class DistanceRepository({
   }
 
   Future<({DateTime date, int days, String title})?> _nextReunion(DateTime moment) async {
-    final today = DateTime(moment.year, moment.month, moment.day);
+    final today = DateTime.utc(moment.year, moment.month, moment.day);
     ({DateTime date, int days, String title})? best;
     for (final item in await _datesRepository.getDates()) {
       if (item.kind != _reunionKind) continue;

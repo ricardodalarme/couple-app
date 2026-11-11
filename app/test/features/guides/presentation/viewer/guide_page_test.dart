@@ -10,6 +10,8 @@ import 'package:flutter_bloc_starter/features/guides/data/models/guide_progress.
 import 'package:flutter_bloc_starter/features/guides/data/repositories/guides_repository.dart';
 import 'package:flutter_bloc_starter/features/guides/presentation/viewer/cubit/guide_cubit.dart';
 import 'package:flutter_bloc_starter/features/guides/presentation/viewer/guide_page.dart';
+import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
+import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/soft_start/cubit/soft_start_cubit.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/soft_start/soft_start_page.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -20,6 +22,8 @@ import 'package:mocktail/mocktail.dart';
 import '../../../../test_helpers/pump_app.dart';
 
 class _MockGuidesRepository() extends Mock implements GuidesRepository;
+
+class _MockPlusRepository() extends Mock implements PlusRepository;
 
 class _TestRouter() extends RootStackRouter {
   @override
@@ -32,6 +36,7 @@ class _TestRouter() extends RootStackRouter {
 
 void main() {
   late GuidesRepository repository;
+  late PlusRepository plusRepository;
 
   final money = guideCatalogue.firstWhere((guide) => guide.slug == 'money').localized('pt');
   final intimacy = guideCatalogue.firstWhere((guide) => guide.slug == 'intimacy').localized('pt');
@@ -52,6 +57,8 @@ void main() {
 
   setUp(() {
     repository = _MockGuidesRepository();
+    plusRepository = _MockPlusRepository();
+    when(() => plusRepository.getPlus()).thenAnswer((_) async => const PlusState(hasPlus: true));
     when(() => repository.currentUserId).thenReturn('user-a');
     when(() => repository.getGuide(any(), languageCode: any(named: 'languageCode')))
         .thenAnswer((_) async => money);
@@ -69,7 +76,11 @@ void main() {
   });
 
   Future<GuideCubit> startCubit({GuideSession? session}) async {
-    final cubit = GuideCubit(repository: repository, session: session ?? GuideSession());
+    final cubit = GuideCubit(
+      repository: repository,
+      plusRepository: plusRepository,
+      session: session ?? GuideSession(),
+    );
     await cubit.start('money');
 
     return cubit;
@@ -96,7 +107,11 @@ void main() {
     when(() => repository.getGuide(any(), languageCode: any(named: 'languageCode')))
         .thenAnswer((_) async => intimacy);
     final session = GuideSession();
-    final first = GuideCubit(repository: repository, session: session);
+    final first = GuideCubit(
+      repository: repository,
+      plusRepository: plusRepository,
+      session: session,
+    );
     addTearDown(first.close);
     await tester.pumpApp(
       BlocProvider.value(
@@ -117,7 +132,11 @@ void main() {
     expect(find.text('Um tema sensível'), findsNothing);
     expect(first.state.showSensitiveGate, isFalse);
 
-    final second = GuideCubit(repository: repository, session: session);
+    final second = GuideCubit(
+      repository: repository,
+      plusRepository: plusRepository,
+      session: session,
+    );
     addTearDown(second.close);
     await tester.pumpApp(
       BlocProvider.value(
@@ -135,7 +154,11 @@ void main() {
   testWidgets('the cycle gate talks about body and mood, not intimacy', (tester) async {
     when(() => repository.getGuide(any(), languageCode: any(named: 'languageCode')))
         .thenAnswer((_) async => cycle);
-    final cubit = GuideCubit(repository: repository, session: GuideSession());
+    final cubit = GuideCubit(
+      repository: repository,
+      plusRepository: plusRepository,
+      session: GuideSession(),
+    );
     addTearDown(cubit.close);
     await tester.pumpApp(
       BlocProvider.value(
@@ -257,5 +280,32 @@ void main() {
 
     expect(find.byType(SoftStartPage), findsOneWidget);
     expect(router.stack.last.name, SoftStartRoute.name);
+  });
+
+  testWidgets('a Plus guide deep link shows the lock for a free user', (tester) async {
+    when(() => plusRepository.getPlus()).thenAnswer((_) async => const PlusState(hasPlus: false));
+    final plusGuide = guideCatalogue.firstWhere((guide) => guide.isPlusOnly).localized('pt');
+    when(() => repository.getGuide(any(), languageCode: any(named: 'languageCode')))
+        .thenAnswer((_) async => plusGuide);
+    final cubit = GuideCubit(
+      repository: repository,
+      plusRepository: plusRepository,
+      session: GuideSession(),
+    );
+    addTearDown(cubit.close);
+    await tester.pumpApp(
+      BlocProvider.value(
+        value: cubit,
+        child: GuidePage(slug: plusGuide.slug),
+      ),
+    );
+    await tester.pump();
+    await cubit.start(plusGuide.slug);
+    await tester.pump();
+
+    expect(find.text('Disponível no Plus. Toque para ver os planos.'), findsOneWidget);
+    expect(find.text('Ver o Plus'), findsOneWidget);
+    expect(find.byType(BaseTextArea), findsNothing);
+    expect(cubit.state.isLocked, isTrue);
   });
 }

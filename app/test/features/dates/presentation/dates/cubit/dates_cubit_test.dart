@@ -98,6 +98,30 @@ void main() {
     expect(cubit.state.title, '');
   });
 
+  test('a reunion is saved as a single meeting, not a yearly date', () async {
+    final cubit = build()
+      ..onTitleChanged('Reencontro')
+      ..onKindChosen('reunion')
+      ..onMonthChosen(12)
+      ..onDayChosen(23)
+      ..onYearChanged('2026');
+
+    await cubit.saveDate();
+
+    verify(
+      () => repository.addDate(
+        id: any(named: 'id'),
+        title: 'Reencontro',
+        kind: 'reunion',
+        month: 12,
+        day: 23,
+        year: 2026,
+        isYearly: false,
+        holidayKey: null,
+      ),
+    ).called(1);
+  });
+
   test('load reads dates, gift ideas and the holiday calendar', () async {
     final cubit = build();
 

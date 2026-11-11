@@ -55,6 +55,8 @@ class DatesCubit({
   void onGiftTitleChanged(String title) => emit(state.copyWith(giftTitle: title));
 
   /// Saves the date being typed; an unknown year still repeats every year.
+  ///
+  /// A reunion is a single meeting, so it never repeats yearly.
   Future<void> saveDate() async {
     if (!state.canSaveDate || state.saveAction.isLoading) return;
 
@@ -67,6 +69,7 @@ class DatesCubit({
         month: state.month!,
         day: state.day!,
         year: state.yearValue,
+        isYearly: state.kind != 'reunion',
       );
       emit(state.copyWith(title: '', year: '', saveAction: const Success(null)));
       await load();

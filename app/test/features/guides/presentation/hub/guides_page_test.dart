@@ -106,6 +106,7 @@ void main() {
     final listsRepository = _MockListsRepository();
     final questionsRepository = _MockQuestionsRepository();
     final profileRepository = _MockProfileRepository();
+    when(() => profileRepository.onChanged).thenAnswer((_) => const Stream<void>.empty());
     when(profileRepository.getMySettings).thenThrow(Exception('none'));
     when(pairingRepository.getPartner).thenAnswer((_) async => null);
     when(checkinRepository.isCurrentWeekDismissed).thenAnswer((_) async => false);

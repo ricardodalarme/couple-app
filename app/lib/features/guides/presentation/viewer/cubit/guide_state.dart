@@ -7,6 +7,7 @@ final class const GuideState({
   final String? prepId,
   final bool showSensitiveGate = false,
   final bool isFinished = false,
+  final bool isLocked = false,
   final Resource<void> saveAction = const Initial(),
 }) with Equatable {
   Guide? get currentGuide => switch (guide) {
@@ -29,6 +30,7 @@ final class const GuideState({
     String? prepId,
     bool? showSensitiveGate,
     bool? isFinished,
+    bool? isLocked,
     Resource<void>? saveAction,
   }) {
     return GuideState(
@@ -38,6 +40,7 @@ final class const GuideState({
       prepId: prepId ?? this.prepId,
       showSensitiveGate: showSensitiveGate ?? this.showSensitiveGate,
       isFinished: isFinished ?? this.isFinished,
+      isLocked: isLocked ?? this.isLocked,
       saveAction: saveAction ?? this.saveAction,
     );
   }
@@ -50,6 +53,7 @@ final class const GuideState({
     prepId,
     showSensitiveGate,
     isFinished,
+    isLocked,
     saveAction,
   ];
 }

@@ -5,12 +5,14 @@ import 'package:flutter_bloc_starter/features/guides/data/data_sources/guide_ses
 import 'package:flutter_bloc_starter/features/guides/data/models/guide.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide_progress.dart';
 import 'package:flutter_bloc_starter/features/guides/data/repositories/guides_repository.dart';
+import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 part 'guide_state.dart';
 
 class GuideCubit({
   required final GuidesRepository _repository,
+  required final PlusRepository _plusRepository,
   required final GuideSession _session,
 }) extends Cubit<GuideState> {
   this : super(const GuideState());
@@ -27,6 +29,13 @@ class GuideCubit({
       if (guide == null) {
         if (isClosed) return;
         emit(state.copyWith(guide: Failure.fromObject(const LocalizedException(l10nKey: 'other'))));
+
+        return;
+      }
+
+      if (guide.isPlusOnly && !await _hasPlus()) {
+        if (isClosed) return;
+        emit(GuideState(guide: Success(guide), isLocked: true));
 
         return;
       }
@@ -64,6 +73,14 @@ class GuideCubit({
   void hideSensitiveGate() {
     if (!state.showSensitiveGate) return;
     emit(state.copyWith(showSensitiveGate: false));
+  }
+
+  Future<bool> _hasPlus() async {
+    try {
+      return (await _plusRepository.getPlus()).hasPlus;
+    } on Object {
+      return false;
+    }
   }
 
   /// Edits the current step and keeps the answer for this person.
