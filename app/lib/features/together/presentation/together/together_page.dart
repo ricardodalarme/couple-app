@@ -140,6 +140,22 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
                 supportText: l10n.dayText,
                 onTap: () => context.pushRoute(const DayRoute()),
               ),
+              if (hasPartner) ...[
+                const SizedBox(height: AppSpace.s12),
+                BaseListCard(
+                  categoryLabel: l10n.usLabel,
+                  title: l10n.usTitle,
+                  supportText: l10n.usText,
+                  onTap: () => context.pushRoute(const UsRoute()),
+                ),
+                const SizedBox(height: AppSpace.s12),
+                BaseListCard(
+                  categoryLabel: l10n.touchLabel,
+                  title: l10n.touchTitle,
+                  supportText: l10n.touchText,
+                  onTap: () => context.pushRoute(const TouchRoute()),
+                ),
+              ],
               const SizedBox(height: AppSpace.s12),
               BaseListCard(
                 categoryLabel: l10n.temperatureLabel,

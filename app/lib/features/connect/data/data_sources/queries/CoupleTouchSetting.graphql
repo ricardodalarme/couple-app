@@ -1,0 +1,10 @@
+query CoupleTouchSetting {
+  couplesCollection(first: 1) {
+    edges {
+      node {
+        id
+        touchTopicsEnabled
+      }
+    }
+  }
+}

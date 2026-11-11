@@ -1,0 +1,11 @@
+{
+  "title": "Nós",
+  "text": "Envie “sinto saudade de nós” com um toque. Leve, sem culpa. Seu par não precisa responder.",
+  "send": "Enviar com carinho",
+  "plan": "Sugerir um plano pequeno",
+  "sentNote": "Enviado. Sem pressa de resposta.",
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para enviar agora. Tente de novo."
+  }
+}

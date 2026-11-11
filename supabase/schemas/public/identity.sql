@@ -34,7 +34,8 @@ comment on table public.profile_settings is e'@graphql({"description": "Private 
 create table public.couples (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz not null default now(),
-  archived_at timestamptz
+  archived_at timestamptz,
+  touch_topics_enabled boolean not null default true
 );
 
 create table public.couple_members (

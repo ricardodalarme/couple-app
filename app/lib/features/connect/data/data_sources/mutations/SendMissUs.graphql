@@ -1,0 +1,5 @@
+mutation SendMissUs {
+  sendSignal(kind: "miss_us") {
+    id
+  }
+}

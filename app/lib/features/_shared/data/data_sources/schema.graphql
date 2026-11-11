@@ -1126,6 +1126,7 @@ type Couples implements Node {
   id: UUID!
   createdAt: Datetime!
   archivedAt: Datetime
+  touchTopicsEnabled: Boolean!
   cardsCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -4642,6 +4643,7 @@ type Mutation {
   sendPartnerMessage(kind: String!, body: String, mediaPath: String, forWidget: Boolean = false): PartnerMessages
   sendSignal(kind: String!, value: String, body: String): Signals
   sendSlipNow(slipId: UUID!, note: String): Cards
+  setTouchTopics(enabled: Boolean!): Boolean
   setSlipDetails(id: UUID!, category: String, workArea: String, inJar: Boolean): Slips
   startPause(returnAt: Datetime!, message: String): Pauses
   unpair: Boolean

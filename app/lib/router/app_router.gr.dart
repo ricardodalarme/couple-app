@@ -2081,6 +2081,22 @@ class TogetherRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [TouchPage]
+class TouchRoute extends PageRouteInfo<void> {
+  const TouchRoute({List<PageRouteInfo>? children})
+    : super(TouchRoute.name, initialChildren: children);
+
+  static const String name = 'TouchRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const TouchPage());
+    },
+  );
+}
+
+/// generated route for
 /// [UnpairDonePage]
 class UnpairDoneRoute extends PageRouteInfo<void> {
   const UnpairDoneRoute({List<PageRouteInfo>? children})
@@ -2108,6 +2124,22 @@ class UnpairRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const UnpairPage());
+    },
+  );
+}
+
+/// generated route for
+/// [UsPage]
+class UsRoute extends PageRouteInfo<void> {
+  const UsRoute({List<PageRouteInfo>? children})
+    : super(UsRoute.name, initialChildren: children);
+
+  static const String name = 'UsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const UsPage());
     },
   );
 }

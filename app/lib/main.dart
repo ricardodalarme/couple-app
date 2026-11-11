@@ -8,6 +8,7 @@ import 'package:flutter_bloc_starter/features/app/di/app_injection_module.dart';
 import 'package:flutter_bloc_starter/features/authentication/di/authentication_injection_module.dart';
 import 'package:flutter_bloc_starter/features/cards/di/cards_injection_module.dart';
 import 'package:flutter_bloc_starter/features/checkin/di/checkin_injection_module.dart';
+import 'package:flutter_bloc_starter/features/connect/di/connect_injection_module.dart';
 import 'package:flutter_bloc_starter/features/dates/di/dates_injection_module.dart';
 import 'package:flutter_bloc_starter/features/devices/di/devices_injection_module.dart';
 import 'package:flutter_bloc_starter/features/fight_style/di/fight_style_injection_module.dart';
@@ -69,6 +70,7 @@ void _registerModules() {
     IdeasInjectionModule(),
     ListsInjectionModule(),
     NotesInjectionModule(),
+    ConnectInjectionModule(),
     NotificationsInjectionModule(),
     OnboardingInjectionModule(),
     PairingInjectionModule(),

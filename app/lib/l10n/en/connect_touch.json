@@ -1,0 +1,18 @@
+{
+  "title": "Touch",
+  "text": "Neutral cards, nothing spicy. Do it or skip it, no pressure.",
+  "switchTitle": "Touch topics",
+  "switchText": "Applies to both of you: if one turns it off, it goes away for both.",
+  "offTitle": "Touch topics are off",
+  "offText": "You or your partner turned them off. You can turn them back on here anytime.",
+  "emptyTitle": "No cards right now",
+  "emptyText": "Come back later.",
+  "done": "Done",
+  "skip": "Skip",
+  "errorTitle": "Couldn't load",
+  "errorText": "Try again in a moment.",
+  "errors(map)": {
+    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
+    "other": "Couldn't change that right now. Try again."
+  }
+}

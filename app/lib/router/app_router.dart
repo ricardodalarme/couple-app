@@ -9,6 +9,8 @@ import 'package:flutter_bloc_starter/features/cards/presentation/detail/card_det
 import 'package:flutter_bloc_starter/features/cards/presentation/draft/sunday_card_page.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/list/cards_list_page.dart';
 import 'package:flutter_bloc_starter/features/checkin/presentation/checkin/checkin_page.dart';
+import 'package:flutter_bloc_starter/features/connect/presentation/touch/touch_page.dart';
+import 'package:flutter_bloc_starter/features/connect/presentation/us/us_page.dart';
 import 'package:flutter_bloc_starter/features/dates/presentation/dates/dates_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
 import 'package:flutter_bloc_starter/features/devices/presentation/devices/devices_page.dart';
@@ -143,6 +145,8 @@ class AppRouter() extends RootStackRouter {
     AutoRoute(page: RitualsRoute.page),
     AutoRoute(page: PartnerProfileRoute.page),
     AutoRoute(page: ComposeRoute.page),
+    AutoRoute(page: UsRoute.page),
+    AutoRoute(page: TouchRoute.page),
     AutoRoute(page: DatesRoute.page),
     AutoRoute(page: PlansRoute.page),
     AutoRoute(page: ManagePlusRoute.page),

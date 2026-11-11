@@ -1,0 +1,18 @@
+{
+  "title": "Toque",
+  "text": "Cartas neutras, sem tempero. Fazer ou pular, sem pressão.",
+  "switchTitle": "Temas de toque",
+  "switchText": "Vale para vocês dois: se um desligar, some para os dois.",
+  "offTitle": "Temas de toque desligados",
+  "offText": "Você ou seu par desligou. Podem religar aqui quando quiserem.",
+  "emptyTitle": "Nenhuma carta agora",
+  "emptyText": "Volte mais tarde.",
+  "done": "Pronto",
+  "skip": "Pular",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "Tente de novo em instantes.",
+  "errors(map)": {
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para mudar agora. Tente de novo."
+  }
+}
