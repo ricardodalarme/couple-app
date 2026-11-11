@@ -11,7 +11,7 @@ import 'package:uuid/uuid.dart';
 const int _slipMaxLength = 280;
 
 /// What the app knows before the first message.
-typedef ChatStatus = ({int messagesLeft, bool isEnabled, bool hasPlus});
+typedef ChatStatus = ({int messagesLeft, int limit, bool isEnabled, bool hasPlus});
 
 class ChatRepository({
   required final ChatDataSource _dataSource,
@@ -32,6 +32,7 @@ class ChatRepository({
 
       return (
         messagesLeft: status.messagesLeft,
+        limit: plus.hasPlus ? status.plusLimit : status.freeLimit,
         isEnabled: status.isEnabled,
         hasPlus: plus.hasPlus,
       );
@@ -48,6 +49,17 @@ class ChatRepository({
       await _dataSource.setEnabled(profileId: settings.profileId, enabled: true);
     } catch (e, stack) {
       _logger.error('Failed to turn the chat on', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Turns the chat off, so no message is sent until the person consents again.
+  Future<void> disable() async {
+    try {
+      final settings = await _profileRepository.getMySettings();
+      await _dataSource.setEnabled(profileId: settings.profileId, enabled: false);
+    } catch (e, stack) {
+      _logger.error('Failed to turn the chat off', error: e, stackTrace: stack);
       rethrow;
     }
   }

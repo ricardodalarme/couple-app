@@ -227,6 +227,22 @@ class ChatRouteArgs {
 }
 
 /// generated route for
+/// [ChatSettingsPage]
+class ChatSettingsRoute extends PageRouteInfo<void> {
+  const ChatSettingsRoute({List<PageRouteInfo>? children})
+    : super(ChatSettingsRoute.name, initialChildren: children);
+
+  static const String name = 'ChatSettingsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const ChatSettingsPage());
+    },
+  );
+}
+
+/// generated route for
 /// [CheckinPage]
 class CheckinRoute extends PageRouteInfo<void> {
   const CheckinRoute({List<PageRouteInfo>? children})
@@ -706,6 +722,22 @@ class GuidesRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const GuidesPage());
+    },
+  );
+}
+
+/// generated route for
+/// [HardConversationPage]
+class HardConversationRoute extends PageRouteInfo<void> {
+  const HardConversationRoute({List<PageRouteInfo>? children})
+    : super(HardConversationRoute.name, initialChildren: children);
+
+  static const String name = 'HardConversationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const HardConversationPage());
     },
   );
 }

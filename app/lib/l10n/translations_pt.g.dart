@@ -86,6 +86,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$guides$pt guides = Translations$guides$pt.internal(_root);
+  late final Translations$hardConversation$pt hardConversation =
+      Translations$hardConversation$pt.internal(_root);
   late final Translations$help$pt help = Translations$help$pt.internal(_root);
   late final Translations$helpSupport$pt helpSupport = Translations$helpSupport$pt.internal(_root);
   late final Translations$history$pt history = Translations$history$pt.internal(_root);
@@ -627,6 +629,45 @@ class Translations$chat$pt {
 
   /// pt: 'O que aprendi'
   String get learnedLink => 'O que aprendi';
+
+  /// pt: 'Configurações da conversa'
+  String get settingsTitle => 'Configurações da conversa';
+
+  /// pt: 'Conversar com a mascote'
+  String get toggleLabel => 'Conversar com a mascote';
+
+  /// pt: 'Só você decide quando a conversa está ligada.'
+  String get toggleSubtitle => 'Só você decide quando a conversa está ligada.';
+
+  /// pt: 'Plano Plus'
+  String get planPlus => 'Plano Plus';
+
+  /// pt: 'Plano gratuito'
+  String get planFree => 'Plano gratuito';
+
+  /// pt: 'Restam {left} de {limit} mensagens hoje'
+  String usagePlus({required Object left, required Object limit}) =>
+      'Restam ${left} de ${limit} mensagens hoje';
+
+  /// pt: 'A conversa faz parte do Plus. O plano gratuito não tem mensagens.'
+  String get usageFree => 'A conversa faz parte do Plus. O plano gratuito não tem mensagens.';
+
+  /// pt: 'O que é enviado'
+  String get sendingTitle => 'O que é enviado';
+
+  /// pt: 'Só o texto que você escreve e os últimos turnos da conversa vão para o modelo, para gerar a resposta. Nada é guardado, a menos que você salve como slip ou aprendizado.'
+  String get sendingText =>
+      'Só o texto que você escreve e os últimos turnos da conversa vão para o modelo, para gerar a resposta. Nada é guardado, a menos que você salve como slip ou aprendizado.';
+
+  /// pt: 'Ao desligar, o passo de consentimento volta. A próxima mensagem só é enviada depois que você ligar de novo.'
+  String get disableNote =>
+      'Ao desligar, o passo de consentimento volta. A próxima mensagem só é enviada depois que você ligar de novo.';
+
+  /// pt: 'Conversa ligada'
+  String get settingsOn => 'Conversa ligada';
+
+  /// pt: 'Conversa desligada'
+  String get settingsOff => 'Conversa desligada';
 
   /// pt: 'Sem conexão. A conversa volta quando você reconectar.'
   String get offline => 'Sem conexão. A conversa volta quando você reconectar.';
@@ -1795,6 +1836,121 @@ class Translations$guides$pt {
   late final Translations$guides$viewer$pt viewer = Translations$guides$viewer$pt.internal(_root);
   late final Translations$guides$gate$pt gate = Translations$guides$gate$pt.internal(_root);
   late final Translations$guides$finish$pt finish = Translations$guides$finish$pt.internal(_root);
+}
+
+// Path: hardConversation
+class Translations$hardConversation$pt {
+  Translations$hardConversation$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Preparar uma conversa difícil'
+  String get title => 'Preparar uma conversa difícil';
+
+  /// pt: 'Passo {current} de {total}'
+  String stepOf({required Object current, required Object total}) => 'Passo ${current} de ${total}';
+
+  /// pt: 'O que aconteceu?'
+  String get whatTitle => 'O que aconteceu?';
+
+  /// pt: 'Se quiser, conte do seu jeito'
+  String get whatHint => 'Se quiser, conte do seu jeito';
+
+  /// pt: 'Ela se sentiu ignorada'
+  String get whatIgnored => 'Ela se sentiu ignorada';
+
+  /// pt: 'Brigamos por dinheiro'
+  String get whatMoney => 'Brigamos por dinheiro';
+
+  /// pt: 'Foi um mal-entendido'
+  String get whatMisunderstanding => 'Foi um mal-entendido';
+
+  /// pt: 'Outro: escrever'
+  String get whatOther => 'Outro: escrever';
+
+  /// pt: 'Do que eu preciso?'
+  String get needTitle => 'Do que eu preciso?';
+
+  /// pt: 'Se quiser, acrescente algo'
+  String get needHint => 'Se quiser, acrescente algo';
+
+  /// pt: 'Ser ouvido'
+  String get needHeard => 'Ser ouvido';
+
+  /// pt: 'Pedir desculpa'
+  String get needApology => 'Pedir desculpa';
+
+  /// pt: 'Combinar algo'
+  String get needAgree => 'Combinar algo';
+
+  /// pt: 'Como dizer'
+  String get sayTitle => 'Como dizer';
+
+  /// pt: 'Um ponto de partida para você editar antes de enviar.'
+  String get sayIntro => 'Um ponto de partida para você editar antes de enviar.';
+
+  /// pt: 'Sua frase de abertura'
+  String get sayHint => 'Sua frase de abertura';
+
+  /// pt: 'Escrevendo uma abertura gentil…'
+  String get generating => 'Escrevendo uma abertura gentil…';
+
+  /// pt: 'Mais gentil'
+  String get gentler => 'Mais gentil';
+
+  /// pt: 'Mais direto'
+  String get moreDirect => 'Mais direto';
+
+  /// pt: 'Copiar'
+  String get copy => 'Copiar';
+
+  /// pt: 'Copiado'
+  String get copied => 'Copiado';
+
+  /// pt: 'Enviar como recado'
+  String get sendAsNote => 'Enviar como recado';
+
+  /// pt: 'Recado enviado'
+  String get sent => 'Recado enviado';
+
+  /// pt: 'Sair'
+  String get exit => 'Sair';
+
+  /// pt: 'Próximo'
+  String get next => 'Próximo';
+
+  /// pt: 'Voltar'
+  String get back => 'Voltar';
+
+  /// pt: 'Tentar de novo'
+  String get retry => 'Tentar de novo';
+
+  /// pt: 'Não deu para escrever uma frase agora.'
+  String get generationFailed => 'Não deu para escrever uma frase agora.';
+
+  /// pt: 'A mascote só vê o que você escreve aqui. Os dados do seu par nunca são enviados.'
+  String get privateNote =>
+      'A mascote só vê o que você escreve aqui. Os dados do seu par nunca são enviados.';
+
+  /// pt: 'Sem conexão. A frase de abertura precisa de internet.'
+  String get offline => 'Sem conexão. A frase de abertura precisa de internet.';
+
+  /// pt: 'Não deu para carregar'
+  String get emptyTitle => 'Não deu para carregar';
+
+  /// pt: 'Tente de novo em instantes.'
+  String get emptyText => 'Tente de novo em instantes.';
+
+  Map<String, String> get errors => {
+    'CHAT_LIMIT': 'As mensagens de hoje acabaram.',
+    'CHAT_DISABLED': 'A conversa está desligada. Ligue para usar a mascote.',
+    'CHAT_UNAVAILABLE': 'A conversa não está disponível agora.',
+    'UPSTREAM': 'Não deu para escrever uma frase agora. Tente de novo.',
+    'NOT_PAIRED': 'Para enviar, você precisa estar conectado com seu par no app.',
+    'other': 'Não deu para fazer isso agora. Tente de novo.',
+  };
 }
 
 // Path: help
@@ -8522,6 +8678,21 @@ extension on Translations {
           'chat.learningSave' => 'Guardar',
           'chat.learningSaved' => 'Aprendizado guardado',
           'chat.learnedLink' => 'O que aprendi',
+          'chat.settingsTitle' => 'Configurações da conversa',
+          'chat.toggleLabel' => 'Conversar com a mascote',
+          'chat.toggleSubtitle' => 'Só você decide quando a conversa está ligada.',
+          'chat.planPlus' => 'Plano Plus',
+          'chat.planFree' => 'Plano gratuito',
+          'chat.usagePlus' => ({
+            required Object left,
+            required Object limit,
+          }) => 'Restam ${left} de ${limit} mensagens hoje',
+          'chat.usageFree' => 'A conversa faz parte do Plus. O plano gratuito não tem mensagens.',
+          'chat.sendingTitle' => 'O que é enviado',
+          'chat.sendingText' => 'Só o texto que você escreve e os últimos turnos da conversa vão para o modelo, para gerar a resposta. Nada é guardado, a menos que você salve como slip ou aprendizado.',
+          'chat.disableNote' => 'Ao desligar, o passo de consentimento volta. A próxima mensagem só é enviada depois que você ligar de novo.',
+          'chat.settingsOn' => 'Conversa ligada',
+          'chat.settingsOff' => 'Conversa desligada',
           'chat.offline' => 'Sem conexão. A conversa volta quando você reconectar.',
           'chat.interrupted' => 'A resposta foi interrompida.',
           'chat.retry' => 'Tentar de novo',
@@ -8885,6 +9056,9 @@ extension on Translations {
           'games.hub.subtitle' => 'Jogos curtos para vocês dois. Sem placar e sem vencedor.',
           'games.hub.guessLabel' => 'Palpites',
           'games.hub.talkLabel' => 'Conversa',
+          _ => null,
+        } ??
+        switch (path) {
           'games.hub.challengeLabel' => 'Desafio',
           'games.hub.minutes' => ({required Object minutes}) => '${minutes} min',
           'games.hub.invitedTitle' => ({required Object name}) => '${name} chamou você',
@@ -8897,9 +9071,6 @@ extension on Translations {
           'games.hub.stateFinished' => 'Terminado',
           'games.hub.stateCancelled' => 'Convite cancelado',
           'games.hub.stateExpired' => 'Convite expirado',
-          _ => null,
-        } ??
-        switch (path) {
           'games.hub.lockChip' => 'Precisa dos dois',
           'games.hub.noPartnerNote' =>
             'Os jogos precisam dos dois. Quando seu par entrar, vocês podem jogar.',
@@ -9112,6 +9283,51 @@ extension on Translations {
           'guides.finish.finishSaved' => 'Salvo só para você.',
           'guides.finish.start' => 'Começar uma conversa',
           'guides.finish.other' => 'Voltar aos temas',
+          'hardConversation.title' => 'Preparar uma conversa difícil',
+          'hardConversation.stepOf' => ({
+            required Object current,
+            required Object total,
+          }) => 'Passo ${current} de ${total}',
+          'hardConversation.whatTitle' => 'O que aconteceu?',
+          'hardConversation.whatHint' => 'Se quiser, conte do seu jeito',
+          'hardConversation.whatIgnored' => 'Ela se sentiu ignorada',
+          'hardConversation.whatMoney' => 'Brigamos por dinheiro',
+          'hardConversation.whatMisunderstanding' => 'Foi um mal-entendido',
+          'hardConversation.whatOther' => 'Outro: escrever',
+          'hardConversation.needTitle' => 'Do que eu preciso?',
+          'hardConversation.needHint' => 'Se quiser, acrescente algo',
+          'hardConversation.needHeard' => 'Ser ouvido',
+          'hardConversation.needApology' => 'Pedir desculpa',
+          'hardConversation.needAgree' => 'Combinar algo',
+          'hardConversation.sayTitle' => 'Como dizer',
+          'hardConversation.sayIntro' => 'Um ponto de partida para você editar antes de enviar.',
+          'hardConversation.sayHint' => 'Sua frase de abertura',
+          'hardConversation.generating' => 'Escrevendo uma abertura gentil…',
+          'hardConversation.gentler' => 'Mais gentil',
+          'hardConversation.moreDirect' => 'Mais direto',
+          'hardConversation.copy' => 'Copiar',
+          'hardConversation.copied' => 'Copiado',
+          'hardConversation.sendAsNote' => 'Enviar como recado',
+          'hardConversation.sent' => 'Recado enviado',
+          'hardConversation.exit' => 'Sair',
+          'hardConversation.next' => 'Próximo',
+          'hardConversation.back' => 'Voltar',
+          'hardConversation.retry' => 'Tentar de novo',
+          'hardConversation.generationFailed' => 'Não deu para escrever uma frase agora.',
+          'hardConversation.privateNote' =>
+            'A mascote só vê o que você escreve aqui. Os dados do seu par nunca são enviados.',
+          'hardConversation.offline' => 'Sem conexão. A frase de abertura precisa de internet.',
+          'hardConversation.emptyTitle' => 'Não deu para carregar',
+          'hardConversation.emptyText' => 'Tente de novo em instantes.',
+          'hardConversation.errors.CHAT_LIMIT' => 'As mensagens de hoje acabaram.',
+          'hardConversation.errors.CHAT_DISABLED' =>
+            'A conversa está desligada. Ligue para usar a mascote.',
+          'hardConversation.errors.CHAT_UNAVAILABLE' => 'A conversa não está disponível agora.',
+          'hardConversation.errors.UPSTREAM' =>
+            'Não deu para escrever uma frase agora. Tente de novo.',
+          'hardConversation.errors.NOT_PAIRED' =>
+            'Para enviar, você precisa estar conectado com seu par no app.',
+          'hardConversation.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'help.badDayTitle' => 'Um dia difícil',
           'help.badDayText' => 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.',
           'help.starterTitle' => 'Começar uma conversa',
@@ -9537,6 +9753,9 @@ extension on Translations {
           'language.saveError' => 'Não foi possível salvar. Tente novamente.',
           'learned.title' => 'O que aprendi',
           'learned.intro' => 'Coisas que você escolheu guardar da conversa. Só você vê.',
+          _ => null,
+        } ??
+        switch (path) {
           'learned.pendingTitle' => 'Para revisar',
           'learned.confirmedTitle' => 'Confirmado',
           'learned.targets.partnerFact' => 'Sobre meu par',
@@ -9588,9 +9807,6 @@ extension on Translations {
           'lists.delete' => 'Apagar',
           'lists.renameTitle' => 'Renomear lista',
           'lists.save' => 'Guardar',
-          _ => null,
-        } ??
-        switch (path) {
           'lists.deleteTitle' => 'Apagar lista?',
           'lists.deleteTextShared' => 'A lista e tudo o que está nela somem para vocês dois.',
           'lists.deleteTextPrivate' => 'A lista e tudo o que está nela somem de vez.',
@@ -10118,6 +10334,9 @@ extension on Translations {
           'plus.restoreFailedHighlight' => 'restaurar',
           'plus.tryAgain' => 'Tentar de novo',
           'plus.done' => 'Pronto',
+          _ => null,
+        } ??
+        switch (path) {
           'plus.errors.storeUnavailable' => 'A loja não está disponível neste aparelho agora.',
           'plus.errors.manageUnavailable' => 'Não há uma página da loja para esta assinatura aqui.',
           'plus.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
@@ -10168,9 +10387,6 @@ extension on Translations {
           'profileDetails.loadErrorTitle' => 'Não deu para carregar seu perfil',
           'profileDetails.loadErrorText' => 'Confira a conexão e tente de novo.',
           'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
-          _ => null,
-        } ??
-        switch (path) {
           'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
           'profileDetails.timeZones.America/Bogota' => 'Bogotá',
           'profileDetails.timeZones.America/Mexico_City' => 'Cidade do México',
@@ -10687,6 +10903,9 @@ extension on Translations {
           'slipDetail.monthsShort.7' => 'ago',
           'slipDetail.monthsShort.8' => 'set',
           'slipDetail.monthsShort.9' => 'out',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.monthsShort.10' => 'nov',
           'slipDetail.monthsShort.11' => 'dez',
           'slipDetail.kinds.quick' => 'Rápido',
@@ -10737,9 +10956,6 @@ extension on Translations {
           'slipKind.kinds.other' => '',
           'slipKind.specific.title' => 'O que exatamente ele fez?',
           'slipKind.specific.titleHighlight' => 'exatamente',
-          _ => null,
-        } ??
-        switch (path) {
           'slipKind.specific.subtitle' => 'Detalhes ajudam a lembrar por que importou.',
           'slipKind.specific.hint' => 'Ex.: levou o lixo sem eu pedir',
           'slipKind.specific.feelingLabel' => 'Como você se sentiu?',
@@ -11304,6 +11520,9 @@ extension on Translations {
           'widgets.lockScreenClockDate' => 'Sexta, 10 de abril',
           'widgets.lockScreenPauseTitle' => 'Pausa em andamento',
           'widgets.lockScreenPauseUntil' => ({required Object time}) => 'até ${time}',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.lockScreenPauseUntilDefault' => 'até 20:00',
           'widgets.lockScreenReadyAction' => 'Estou pronto',
           'widgets.lockScreenGenericPhrase' => 'Momento calmo',
@@ -11364,9 +11583,6 @@ extension on Translations {
           'widgets.statesDiscreetToggle' => 'Ativar modo discreto agora',
           'widgets.statesUnpairedSection' => 'Sem parceiro',
           'widgets.statesUnpairedTitle' => 'Convide para ver aqui',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.statesUnpairedAction' => 'Convidar',
           'widgets.statesOfflineSection' => 'Sem conexão',
           'widgets.statesOfflineTitle' => 'Mostrando o último dado',

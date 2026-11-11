@@ -6,7 +6,7 @@ import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart'
 import 'package:network/network.dart';
 
 /// What the server knows before the first message.
-typedef ChatSettings = ({int messagesLeft, bool isEnabled});
+typedef ChatSettings = ({int messagesLeft, bool isEnabled, int plusLimit, int freeLimit});
 
 class ChatDataSource({
   required final GQLClient _client,
@@ -26,10 +26,16 @@ class ChatDataSource({
       response,
       getData: (data) {
         final edges = data.profileSettingsCollection.edges;
+        final limits = {
+          for (final edge in data.appConfigCollection.edges)
+            edge.node.key: int.tryParse(edge.node.value) ?? 0,
+        };
 
         return (
           messagesLeft: data.chatMessagesLeft ?? 0,
           isEnabled: edges.isNotEmpty && edges.first.node.chatEnabled,
+          plusLimit: limits['chat_messages_per_day_plus'] ?? 0,
+          freeLimit: limits['chat_messages_per_day_free'] ?? 0,
         );
       },
     );

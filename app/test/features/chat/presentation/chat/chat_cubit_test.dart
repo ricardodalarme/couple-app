@@ -27,7 +27,7 @@ void main() {
     repository = _MockChatRepository();
     learnedItemsRepository = _MockLearnedItemsRepository();
     when(repository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 5, isEnabled: true, hasPlus: true));
+        .thenAnswer((_) async => (messagesLeft: 5, limit: 20, isEnabled: true, hasPlus: true));
     when(repository.enable).thenAnswer((_) async {});
     when(() => repository.saveAsSlip(any())).thenAnswer((_) async {});
     when(
@@ -56,7 +56,7 @@ void main() {
 
   test('without the consent the chat asks first and sends nothing', () async {
     when(repository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 5, isEnabled: false, hasPlus: true));
+        .thenAnswer((_) async => (messagesLeft: 5, limit: 20, isEnabled: false, hasPlus: true));
     final cubit = build();
 
     await cubit.load();
@@ -75,7 +75,7 @@ void main() {
 
   test('no messages left shows the limit', () async {
     when(repository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 0, isEnabled: true, hasPlus: true));
+        .thenAnswer((_) async => (messagesLeft: 0, limit: 20, isEnabled: true, hasPlus: true));
     final cubit = build();
 
     await cubit.load();
@@ -200,7 +200,7 @@ void main() {
 
   test('a free person sees the Plus gate before the consent step', () async {
     when(repository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 0, isEnabled: false, hasPlus: false));
+        .thenAnswer((_) async => (messagesLeft: 0, limit: 0, isEnabled: false, hasPlus: false));
     final cubit = build();
 
     await cubit.load();

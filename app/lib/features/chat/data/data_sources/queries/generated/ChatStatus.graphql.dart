@@ -54,16 +54,21 @@ class VariablesQueryChatStatus {
 class QueryChatStatus {
   QueryChatStatus({
     this.chatMessagesLeft,
+    required this.appConfigCollection,
     required this.profileSettingsCollection,
     this.$__typename = 'Query',
   });
 
   factory QueryChatStatus.fromJson(Map<String, dynamic> json) {
     final l$chatMessagesLeft = json['chatMessagesLeft'];
+    final l$appConfigCollection = json['appConfigCollection'];
     final l$profileSettingsCollection = json['profileSettingsCollection'];
     final l$$__typename = json['__typename'];
     return QueryChatStatus(
       chatMessagesLeft: (l$chatMessagesLeft as int?),
+      appConfigCollection: QueryChatStatusappConfigCollection.fromJson(
+        (l$appConfigCollection as Map<String, dynamic>),
+      ),
       profileSettingsCollection: QueryChatStatusprofileSettingsCollection.fromJson(
         (l$profileSettingsCollection as Map<String, dynamic>),
       ),
@@ -73,6 +78,8 @@ class QueryChatStatus {
 
   final int? chatMessagesLeft;
 
+  final QueryChatStatusappConfigCollection appConfigCollection;
+
   final QueryChatStatusprofileSettingsCollection profileSettingsCollection;
 
   final String $__typename;
@@ -81,6 +88,8 @@ class QueryChatStatus {
     final _resultData = <String, dynamic>{};
     final l$chatMessagesLeft = chatMessagesLeft;
     _resultData['chatMessagesLeft'] = l$chatMessagesLeft;
+    final l$appConfigCollection = appConfigCollection;
+    _resultData['appConfigCollection'] = l$appConfigCollection.toJson();
     final l$profileSettingsCollection = profileSettingsCollection;
     _resultData['profileSettingsCollection'] = l$profileSettingsCollection.toJson();
     final l$$__typename = $__typename;
@@ -91,9 +100,15 @@ class QueryChatStatus {
   @override
   int get hashCode {
     final l$chatMessagesLeft = chatMessagesLeft;
+    final l$appConfigCollection = appConfigCollection;
     final l$profileSettingsCollection = profileSettingsCollection;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$chatMessagesLeft, l$profileSettingsCollection, l$$__typename]);
+    return Object.hashAll([
+      l$chatMessagesLeft,
+      l$appConfigCollection,
+      l$profileSettingsCollection,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -107,6 +122,11 @@ class QueryChatStatus {
     final l$chatMessagesLeft = chatMessagesLeft;
     final lOther$chatMessagesLeft = other.chatMessagesLeft;
     if (l$chatMessagesLeft != lOther$chatMessagesLeft) {
+      return false;
+    }
+    final l$appConfigCollection = appConfigCollection;
+    final lOther$appConfigCollection = other.appConfigCollection;
+    if (l$appConfigCollection != lOther$appConfigCollection) {
       return false;
     }
     final l$profileSettingsCollection = profileSettingsCollection;
@@ -145,6 +165,101 @@ const documentNodeQueryChatStatus = DocumentNode(
             arguments: [],
             directives: [],
             selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'appConfigCollection'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'filter'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'key'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: 'in'),
+                            value: ListValueNode(
+                              values: [
+                                StringValueNode(
+                                  value: 'chat_messages_per_day_plus',
+                                  isBlock: false,
+                                ),
+                                StringValueNode(
+                                  value: 'chat_messages_per_day_free',
+                                  isBlock: false,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'edges'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FieldNode(
+                        name: NameNode(value: 'node'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(
+                          selections: [
+                            FieldNode(
+                              name: NameNode(value: 'key'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'value'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                          ],
+                        ),
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
           ),
           FieldNode(
             name: NameNode(value: 'profileSettingsCollection'),
@@ -371,6 +486,196 @@ extension ClientExtensionQueryChatStatus on graphql.GraphQLClient {
       optimistic: optimistic,
     );
     return result == null ? null : QueryChatStatus.fromJson(result);
+  }
+}
+
+class QueryChatStatusappConfigCollection {
+  QueryChatStatusappConfigCollection({
+    required this.edges,
+    this.$__typename = 'AppConfigConnection',
+  });
+
+  factory QueryChatStatusappConfigCollection.fromJson(Map<String, dynamic> json) {
+    final l$edges = json['edges'];
+    final l$$__typename = json['__typename'];
+    return QueryChatStatusappConfigCollection(
+      edges: (l$edges as List<dynamic>)
+          .map((e) => QueryChatStatusappConfigCollectionedges.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<QueryChatStatusappConfigCollectionedges> edges;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$edges = edges;
+    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$edges = edges;
+    final l$$__typename = $__typename;
+    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryChatStatusappConfigCollection || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$edges = edges;
+    final lOther$edges = other.edges;
+    if (l$edges.length != lOther$edges.length) {
+      return false;
+    }
+    for (int i = 0; i < l$edges.length; i++) {
+      final l$edges$entry = l$edges[i];
+      final lOther$edges$entry = lOther$edges[i];
+      if (l$edges$entry != lOther$edges$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryChatStatusappConfigCollectionedges {
+  QueryChatStatusappConfigCollectionedges({required this.node, this.$__typename = 'AppConfigEdge'});
+
+  factory QueryChatStatusappConfigCollectionedges.fromJson(Map<String, dynamic> json) {
+    final l$node = json['node'];
+    final l$$__typename = json['__typename'];
+    return QueryChatStatusappConfigCollectionedges(
+      node: QueryChatStatusappConfigCollectionedgesnode.fromJson((l$node as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final QueryChatStatusappConfigCollectionedgesnode node;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$node = node;
+    _resultData['node'] = l$node.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$node = node;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$node, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryChatStatusappConfigCollectionedges || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$node = node;
+    final lOther$node = other.node;
+    if (l$node != lOther$node) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryChatStatusappConfigCollectionedgesnode {
+  QueryChatStatusappConfigCollectionedgesnode({
+    required this.key,
+    required this.value,
+    this.$__typename = 'AppConfig',
+  });
+
+  factory QueryChatStatusappConfigCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+    final l$key = json['key'];
+    final l$value = json['value'];
+    final l$$__typename = json['__typename'];
+    return QueryChatStatusappConfigCollectionedgesnode(
+      key: (l$key as String),
+      value: (l$value as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String key;
+
+  final String value;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$key = key;
+    _resultData['key'] = l$key;
+    final l$value = value;
+    _resultData['value'] = l$value;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$key = key;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$key, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryChatStatusappConfigCollectionedgesnode || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$key = key;
+    final lOther$key = other.key;
+    if (l$key != lOther$key) {
+      return false;
+    }
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
   }
 }
 

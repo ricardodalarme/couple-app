@@ -35,9 +35,20 @@ class const ChatPage({final ChatMode mode = ChatMode.free, super.key})
 
     return BaseView(
       appBar: BaseAppBar(
-        trailing: BaseTextLink(
-          text: l10n.learnedLink,
-          onPressed: () => context.pushRoute(const LearnedItemsRoute()),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            BaseRoundButton(
+              icon: AppIcons.settings,
+              semanticLabel: l10n.settingsTitle,
+              onPressed: () => _openSettings(context, cubit),
+            ),
+            const SizedBox(width: AppSpace.s4),
+            BaseTextLink(
+              text: l10n.learnedLink,
+              onPressed: () => context.pushRoute(const LearnedItemsRoute()),
+            ),
+          ],
         ),
       ),
       body: BlocListener<ChatCubit, ChatState>(
@@ -115,6 +126,12 @@ class const ChatPage({final ChatMode mode = ChatMode.free, super.key})
       ),
     );
   }
+}
+
+/// Re-reads the consent when the person comes back, so turning it off closes the composer.
+Future<void> _openSettings(BuildContext context, ChatCubit cubit) async {
+  await context.pushRoute(const ChatSettingsRoute());
+  if (!cubit.isClosed) await cubit.load();
 }
 
 class const _Conversation({required final bool isLimitReached}) extends StatelessWidget {

@@ -78,7 +78,12 @@ class ChatCubit({
   /// Sends [text] and streams the reply; crisis wording is answered locally and never leaves the device.
   Future<void> send(String text) async {
     final message = text.trim();
-    if (message.isEmpty || message.length > chatMessageMaxLength || state.isReplying) return;
+    if (state.stage != const Success(ChatStage.ready) ||
+        message.isEmpty ||
+        message.length > chatMessageMaxLength ||
+        state.isReplying) {
+      return;
+    }
 
     final isCrisis = looksLikeCrisis(message);
     final userMessage = ChatMessage(

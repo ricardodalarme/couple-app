@@ -102,6 +102,9 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$guides$en guides = _Translations$guides$en._(_root);
   @override
+  late final _Translations$hardConversation$en hardConversation =
+      _Translations$hardConversation$en._(_root);
+  @override
   late final _Translations$help$en help = _Translations$help$en._(_root);
   @override
   late final _Translations$helpSupport$en helpSupport = _Translations$helpSupport$en._(_root);
@@ -598,6 +601,33 @@ class _Translations$chat$en extends Translations$chat$pt {
   String get learningSaved => 'Learning saved';
   @override
   String get learnedLink => 'What I learned';
+  @override
+  String get settingsTitle => 'Conversation settings';
+  @override
+  String get toggleLabel => 'Talk with the mascot';
+  @override
+  String get toggleSubtitle => 'Only you decide when the conversation is on.';
+  @override
+  String get planPlus => 'Plus plan';
+  @override
+  String get planFree => 'Free plan';
+  @override
+  String usagePlus({required Object left, required Object limit}) =>
+      '${left} of ${limit} messages left today';
+  @override
+  String get usageFree => 'The chat is part of Plus. The free plan has no messages.';
+  @override
+  String get sendingTitle => 'What is sent';
+  @override
+  String get sendingText =>
+      'Only the text you type and the last turns of the conversation go to the model, to produce the reply. Nothing is stored unless you save it as a slip or a learning.';
+  @override
+  String get disableNote =>
+      'Turning it off brings back the consent step. The next message is only sent after you turn it on again.';
+  @override
+  String get settingsOn => 'Chat turned on';
+  @override
+  String get settingsOff => 'Chat turned off';
   @override
   String get offline => 'You\'re offline. The chat resumes when you reconnect.';
   @override
@@ -1540,6 +1570,91 @@ class _Translations$guides$en extends Translations$guides$pt {
   late final _Translations$guides$gate$en gate = _Translations$guides$gate$en._(_root);
   @override
   late final _Translations$guides$finish$en finish = _Translations$guides$finish$en._(_root);
+}
+
+// Path: hardConversation
+class _Translations$hardConversation$en extends Translations$hardConversation$pt {
+  _Translations$hardConversation$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Prepare a hard conversation';
+  @override
+  String stepOf({required Object current, required Object total}) => 'Step ${current} of ${total}';
+  @override
+  String get whatTitle => 'What happened?';
+  @override
+  String get whatHint => 'If you want, tell me in your own words';
+  @override
+  String get whatIgnored => 'She felt ignored';
+  @override
+  String get whatMoney => 'We fought about money';
+  @override
+  String get whatMisunderstanding => 'It was a misunderstanding';
+  @override
+  String get whatOther => 'Other: write it';
+  @override
+  String get needTitle => 'What do I need?';
+  @override
+  String get needHint => 'If you want, add something';
+  @override
+  String get needHeard => 'To be heard';
+  @override
+  String get needApology => 'To apologize';
+  @override
+  String get needAgree => 'To agree on something';
+  @override
+  String get sayTitle => 'How to say it';
+  @override
+  String get sayIntro => 'A starting point for you to edit before sending.';
+  @override
+  String get sayHint => 'Your opening sentence';
+  @override
+  String get generating => 'Writing a gentle opening…';
+  @override
+  String get gentler => 'More gentle';
+  @override
+  String get moreDirect => 'More direct';
+  @override
+  String get copy => 'Copy';
+  @override
+  String get copied => 'Copied';
+  @override
+  String get sendAsNote => 'Send as a note';
+  @override
+  String get sent => 'Note sent';
+  @override
+  String get exit => 'Leave';
+  @override
+  String get next => 'Next';
+  @override
+  String get back => 'Back';
+  @override
+  String get retry => 'Try again';
+  @override
+  String get generationFailed => 'Couldn\'t write a sentence right now.';
+  @override
+  String get privateNote =>
+      'The mascot only sees what you write here. Your partner\'s data is never sent.';
+  @override
+  String get offline => 'You\'re offline. The opening sentence needs a connection.';
+  @override
+  String get emptyTitle => 'Couldn\'t load';
+  @override
+  String get emptyText => 'Try again in a moment.';
+  @override
+  Map<String, String> get errors => {
+    'CHAT_LIMIT': 'Today\'s messages are used up.',
+    'CHAT_DISABLED': 'The chat is off. Turn it on to use the mascot.',
+    'CHAT_UNAVAILABLE': 'The chat is not available right now.',
+    'UPSTREAM': 'Couldn\'t write a sentence right now. Try again.',
+    'NOT_PAIRED': 'To send this, you need to be connected with your partner in the app.',
+    'other': 'Couldn\'t do that right now. Try again.',
+  };
 }
 
 // Path: help
@@ -6870,6 +6985,21 @@ extension on TranslationsEn {
           'chat.learningSave' => 'Save',
           'chat.learningSaved' => 'Learning saved',
           'chat.learnedLink' => 'What I learned',
+          'chat.settingsTitle' => 'Conversation settings',
+          'chat.toggleLabel' => 'Talk with the mascot',
+          'chat.toggleSubtitle' => 'Only you decide when the conversation is on.',
+          'chat.planPlus' => 'Plus plan',
+          'chat.planFree' => 'Free plan',
+          'chat.usagePlus' => ({
+            required Object left,
+            required Object limit,
+          }) => '${left} of ${limit} messages left today',
+          'chat.usageFree' => 'The chat is part of Plus. The free plan has no messages.',
+          'chat.sendingTitle' => 'What is sent',
+          'chat.sendingText' => 'Only the text you type and the last turns of the conversation go to the model, to produce the reply. Nothing is stored unless you save it as a slip or a learning.',
+          'chat.disableNote' => 'Turning it off brings back the consent step. The next message is only sent after you turn it on again.',
+          'chat.settingsOn' => 'Chat turned on',
+          'chat.settingsOff' => 'Chat turned off',
           'chat.offline' => 'You\'re offline. The chat resumes when you reconnect.',
           'chat.interrupted' => 'The reply was interrupted.',
           'chat.retry' => 'Try again',
@@ -7233,6 +7363,9 @@ extension on TranslationsEn {
           'games.hub.subtitle' => 'Short games for the two of you. No scores and no winner.',
           'games.hub.guessLabel' => 'Guesses',
           'games.hub.talkLabel' => 'Conversation',
+          _ => null,
+        } ??
+        switch (path) {
           'games.hub.challengeLabel' => 'Challenge',
           'games.hub.minutes' => ({required Object minutes}) => '${minutes} min',
           'games.hub.invitedTitle' => ({required Object name}) => '${name} invited you',
@@ -7245,9 +7378,6 @@ extension on TranslationsEn {
           'games.hub.stateFinished' => 'Finished',
           'games.hub.stateCancelled' => 'Invitation cancelled',
           'games.hub.stateExpired' => 'Invitation expired',
-          _ => null,
-        } ??
-        switch (path) {
           'games.hub.lockChip' => 'Needs both of you',
           'games.hub.noPartnerNote' =>
             'Games need both of you. When your partner joins, you can play.',
@@ -7461,6 +7591,50 @@ extension on TranslationsEn {
           'guides.finish.finishSaved' => 'Saved only for you.',
           'guides.finish.start' => 'Start a conversation',
           'guides.finish.other' => 'Back to topics',
+          'hardConversation.title' => 'Prepare a hard conversation',
+          'hardConversation.stepOf' => ({
+            required Object current,
+            required Object total,
+          }) => 'Step ${current} of ${total}',
+          'hardConversation.whatTitle' => 'What happened?',
+          'hardConversation.whatHint' => 'If you want, tell me in your own words',
+          'hardConversation.whatIgnored' => 'She felt ignored',
+          'hardConversation.whatMoney' => 'We fought about money',
+          'hardConversation.whatMisunderstanding' => 'It was a misunderstanding',
+          'hardConversation.whatOther' => 'Other: write it',
+          'hardConversation.needTitle' => 'What do I need?',
+          'hardConversation.needHint' => 'If you want, add something',
+          'hardConversation.needHeard' => 'To be heard',
+          'hardConversation.needApology' => 'To apologize',
+          'hardConversation.needAgree' => 'To agree on something',
+          'hardConversation.sayTitle' => 'How to say it',
+          'hardConversation.sayIntro' => 'A starting point for you to edit before sending.',
+          'hardConversation.sayHint' => 'Your opening sentence',
+          'hardConversation.generating' => 'Writing a gentle opening…',
+          'hardConversation.gentler' => 'More gentle',
+          'hardConversation.moreDirect' => 'More direct',
+          'hardConversation.copy' => 'Copy',
+          'hardConversation.copied' => 'Copied',
+          'hardConversation.sendAsNote' => 'Send as a note',
+          'hardConversation.sent' => 'Note sent',
+          'hardConversation.exit' => 'Leave',
+          'hardConversation.next' => 'Next',
+          'hardConversation.back' => 'Back',
+          'hardConversation.retry' => 'Try again',
+          'hardConversation.generationFailed' => 'Couldn\'t write a sentence right now.',
+          'hardConversation.privateNote' =>
+            'The mascot only sees what you write here. Your partner\'s data is never sent.',
+          'hardConversation.offline' => 'You\'re offline. The opening sentence needs a connection.',
+          'hardConversation.emptyTitle' => 'Couldn\'t load',
+          'hardConversation.emptyText' => 'Try again in a moment.',
+          'hardConversation.errors.CHAT_LIMIT' => 'Today\'s messages are used up.',
+          'hardConversation.errors.CHAT_DISABLED' =>
+            'The chat is off. Turn it on to use the mascot.',
+          'hardConversation.errors.CHAT_UNAVAILABLE' => 'The chat is not available right now.',
+          'hardConversation.errors.UPSTREAM' => 'Couldn\'t write a sentence right now. Try again.',
+          'hardConversation.errors.NOT_PAIRED' =>
+            'To send this, you need to be connected with your partner in the app.',
+          'hardConversation.errors.other' => 'Couldn\'t do that right now. Try again.',
           'help.badDayTitle' => 'A hard day',
           'help.badDayText' => 'Three small things that may help right now. Nothing required.',
           'help.starterTitle' => 'Start a conversation',
@@ -7884,6 +8058,9 @@ extension on TranslationsEn {
           'language.saveError' => 'Could not save. Try again.',
           'learned.title' => 'What I learned',
           'learned.intro' => 'Things you chose to keep from the conversation. Only you see them.',
+          _ => null,
+        } ??
+        switch (path) {
           'learned.pendingTitle' => 'To review',
           'learned.confirmedTitle' => 'Confirmed',
           'learned.targets.partnerFact' => 'About my partner',
@@ -7935,9 +8112,6 @@ extension on TranslationsEn {
           'lists.delete' => 'Delete',
           'lists.renameTitle' => 'Rename list',
           'lists.save' => 'Save',
-          _ => null,
-        } ??
-        switch (path) {
           'lists.deleteTitle' => 'Delete list?',
           'lists.deleteTextShared' => 'The list and everything in it will be gone for both of you.',
           'lists.deleteTextPrivate' => 'The list and everything in it will be gone for good.',
@@ -8463,6 +8637,9 @@ extension on TranslationsEn {
           'plus.restoreFailedHighlight' => 'restore',
           'plus.tryAgain' => 'Try again',
           'plus.done' => 'Done',
+          _ => null,
+        } ??
+        switch (path) {
           'plus.errors.storeUnavailable' => 'The store isn\'t available on this device right now.',
           'plus.errors.manageUnavailable' => 'There\'s no store page for this subscription here.',
           'plus.errors.other' => 'Couldn\'t do that right now. Try again.',
@@ -8513,9 +8690,6 @@ extension on TranslationsEn {
           'profileDetails.loadErrorTitle' => 'Could not load your profile',
           'profileDetails.loadErrorText' => 'Check your connection and try again.',
           'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
-          _ => null,
-        } ??
-        switch (path) {
           'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
           'profileDetails.timeZones.America/Bogota' => 'Bogotá',
           'profileDetails.timeZones.America/Mexico_City' => 'Mexico City',
@@ -9030,6 +9204,9 @@ extension on TranslationsEn {
           'slipDetail.monthsShort.7' => 'Aug',
           'slipDetail.monthsShort.8' => 'Sep',
           'slipDetail.monthsShort.9' => 'Oct',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.monthsShort.10' => 'Nov',
           'slipDetail.monthsShort.11' => 'Dec',
           'slipDetail.kinds.quick' => 'Quick',
@@ -9080,9 +9257,6 @@ extension on TranslationsEn {
           'slipKind.kinds.other' => '',
           'slipKind.specific.title' => 'What exactly did they do?',
           'slipKind.specific.titleHighlight' => 'exactly',
-          _ => null,
-        } ??
-        switch (path) {
           'slipKind.specific.subtitle' => 'Details help you remember why it mattered.',
           'slipKind.specific.hint' => 'E.g. took out the trash without being asked',
           'slipKind.specific.feelingLabel' => 'How did you feel?',
@@ -9645,6 +9819,9 @@ extension on TranslationsEn {
           'widgets.lockScreenClockDate' => 'Friday, April 10',
           'widgets.lockScreenPauseTitle' => 'Pause in progress',
           'widgets.lockScreenPauseUntil' => ({required Object time}) => 'until ${time}',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.lockScreenPauseUntilDefault' => 'until 20:00',
           'widgets.lockScreenReadyAction' => 'I am ready',
           'widgets.lockScreenGenericPhrase' => 'Calm moment',
@@ -9705,9 +9882,6 @@ extension on TranslationsEn {
           'widgets.statesDiscreetToggle' => 'Enable discreet mode now',
           'widgets.statesUnpairedSection' => 'No partner',
           'widgets.statesUnpairedTitle' => 'Invite to see here',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.statesUnpairedAction' => 'Invite',
           'widgets.statesOfflineSection' => 'Offline',
           'widgets.statesOfflineTitle' => 'Showing the last saved data',

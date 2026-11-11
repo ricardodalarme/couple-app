@@ -48,7 +48,7 @@ void main() {
       (_) async => AccountSettings(theme: AppThemeVariant.rose, onboardedAt: DateTime(2026)),
     );
     when(() => dataSource.getStatus(any()))
-        .thenAnswer((_) async => (messagesLeft: 3, isEnabled: true));
+        .thenAnswer((_) async => (messagesLeft: 3, isEnabled: true, plusLimit: 20, freeLimit: 0));
     when(plusRepository.getPlus).thenAnswer((_) async => const PlusState(hasPlus: true));
     when(() => authenticationRepository.getAccessToken()).thenReturn('token');
   });
