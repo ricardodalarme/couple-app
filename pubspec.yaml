@@ -24,7 +24,6 @@ dev_dependencies:
       ref: 12d7c8569e6b43b1439bc0162bb9b5c38f0fed19
   husky: ^0.1.7
   melos: ^8.10.1
-  very_good_cli: ^1.3.0
 
 melos:
   ide:

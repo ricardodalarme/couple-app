@@ -25,7 +25,7 @@ Agent-Skills-compatible tool can load them.
 | `melos l10n`                                                                             | Regenerate app + design-system slang translations                                  |
 | `melos l10n:analyze`                                                                     | Fails on missing/unused translation keys (CI + pre-push)                           |
 | `melos lint`                                                                             | `flutter analyze` + format check                                                   |
-| `melos test`                                                                             | Full workspace test run (very_good_cli)                                            |
+| `melos test`                                                                             | Run tests in every workspace package only (app + packages).                         |
 | `melos format`                                                                           | Format all Dart files (100-col page width)                                         |
 | `cd app && flutter test test/path_test.dart [--plain-name "..."]`                        | Single test file                                                                   |
 | `cd packages/core && dart test`                                                          | Pure-Dart package tests                                                            |

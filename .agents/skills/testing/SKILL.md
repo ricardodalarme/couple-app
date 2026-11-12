@@ -297,5 +297,5 @@ void main() {
   theme.
 - Do not generate mocks or add codegen for tests; hand-write them with
   `mocktail`.
-- New test files are picked up by `melos test` automatically (very_good runner) —
+- New test files are picked up by `melos test` automatically (workspace `melos exec`) —
   there is no test registration list.
