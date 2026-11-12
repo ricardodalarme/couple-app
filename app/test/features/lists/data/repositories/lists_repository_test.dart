@@ -146,7 +146,7 @@ void main() {
 
   test('a list that is no longer visible is reported as not found', () {
     when(() => dataSource.getList(any()))
-        .thenAnswer((_) => Future<QueryListDetaillistsCollectionedgesnode?>.value(null));
+        .thenAnswer((_) => Future<QueryListDetaillistsCollectionedgesnode?>.syncValue(null));
 
     expect(
       repository.getList('l1'),

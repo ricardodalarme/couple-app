@@ -28,7 +28,7 @@ void main() {
     group('read', () {
       test('returns value when FlutterSecureStorage returns successfully', () async {
         when(() => flutterSecureStorage.read(key: any(named: 'key')))
-            .thenAnswer((_) => Future.value(mockValue));
+            .thenAnswer((_) => Future.syncValue(mockValue));
         final actual = await secureStorage.read(key: mockKey);
         expect(actual, mockValue);
       });
