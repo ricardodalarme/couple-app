@@ -113,6 +113,60 @@ void main() {
         expect(tester.takeException(), isNull);
       });
 
+      testWidgets('a compact notice keeps the action on the text row', (tester) async {
+        const text = 'Reminders are off. Turn them on in settings.';
+        const action = 'Close';
+
+        await tester.pumpWidget(
+          materialAppFor(
+            BaseBanner(
+              text: text,
+              variant: BaseBannerVariant.notice,
+              actionLabel: action,
+              onAction: () {},
+              isCompact: true,
+            ),
+            variant: variant,
+          ),
+        );
+
+        expect(
+          tester.getTopLeft(find.text(action)).dy,
+          lessThan(tester.getBottomLeft(find.text(text)).dy),
+          reason: 'the action stays on the text row',
+        );
+        expect(tester.getSize(find.byType(BaseBanner)).height, lessThan(90));
+        expect(tester.takeException(), isNull);
+      });
+
+      testWidgets('a compact notice stacks the action on a narrow banner', (tester) async {
+        const text = 'Reminders are off. Turn them on in settings.';
+        const action = 'Close';
+
+        await tester.pumpWidget(
+          materialAppFor(
+            SizedBox(
+              width: 240,
+              child: BaseBanner(
+                text: text,
+                variant: BaseBannerVariant.notice,
+                actionLabel: action,
+                onAction: () {},
+                isCompact: true,
+              ),
+            ),
+            variant: variant,
+          ),
+        );
+
+        expect(
+          tester.getTopLeft(find.text(action)).dy,
+          greaterThanOrEqualTo(tester.getBottomLeft(find.text(text)).dy),
+          reason: 'the action moves below the text when the banner is narrow',
+        );
+        expect(tester.takeException(), isNull);
+      });
+
       testWidgets('banner action and dismiss stay tappable', (tester) async {
         var actions = 0;
         var dismissals = 0;

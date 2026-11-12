@@ -1942,6 +1942,9 @@ class Translations$hardConversation$pt {
   /// pt: 'Voltar'
   String get back => 'Voltar';
 
+  /// pt: 'Preciso de pausa'
+  String get needPause => 'Preciso de pausa';
+
   /// pt: 'Tentar de novo'
   String get retry => 'Tentar de novo';
 
@@ -3848,9 +3851,6 @@ class Translations$notificationPermission$pt {
 
   /// pt: 'Os lembretes estão desligados. Ligue nas configurações.'
   String get offBanner => 'Os lembretes estão desligados. Ligue nas configurações.';
-
-  /// pt: 'Abrir configurações'
-  String get openSettings => 'Abrir configurações';
 
   /// pt: 'Fechar'
   String get close => 'Fechar';
@@ -9629,6 +9629,7 @@ extension on Translations {
           'hardConversation.exit' => 'Sair',
           'hardConversation.next' => 'Próximo',
           'hardConversation.back' => 'Voltar',
+          'hardConversation.needPause' => 'Preciso de pausa',
           'hardConversation.retry' => 'Tentar de novo',
           'hardConversation.generationFailed' => 'Não deu para escrever uma frase agora.',
           'hardConversation.privateNote' =>
@@ -10059,10 +10060,10 @@ extension on Translations {
           'intro.theme.footnote' => 'Dá para trocar depois em Configurações, Aparência.',
           'invite.title' => ({required Object name}) => 'Convidar ${name}',
           'invite.titleNoName' => 'Convidar sua pessoa',
-          'invite.messageIntro' => 'Esta mensagem será enviada:',
           _ => null,
         } ??
         switch (path) {
+          'invite.messageIntro' => 'Esta mensagem será enviada:',
           'invite.message' => ({
             required Object code,
           }) => 'Comecei uma coisa pequena para nós. Para nos conectar no app, use o código ${code}.',
@@ -10500,7 +10501,6 @@ extension on Translations {
           'notificationPermission.allow' => 'Permitir',
           'notificationPermission.offBanner' =>
             'Os lembretes estão desligados. Ligue nas configurações.',
-          'notificationPermission.openSettings' => 'Abrir configurações',
           'notificationPermission.close' => 'Fechar',
           'notificationPreferences.title' => 'Notificações',
           'notificationPreferences.subtitle' => 'Escolha o que chega e quando. Nada de cobrança.',

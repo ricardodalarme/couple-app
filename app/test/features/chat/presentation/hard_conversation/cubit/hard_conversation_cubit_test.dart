@@ -134,6 +134,22 @@ void main() {
     expect(cubit.state.gate, HardConversationGate.ready);
   });
 
+  test('the first step waits for a choice or text before moving on', () async {
+    final cubit = build();
+    await cubit.load();
+
+    expect(cubit.state.canContinueWhat, isFalse);
+
+    await cubit.next();
+    expect(cubit.state.step, HardConversationStep.whatHappened);
+
+    await cubit.onWhatTextChanged('Um texto');
+    expect(cubit.state.canContinueWhat, isTrue);
+
+    await cubit.next();
+    expect(cubit.state.step, HardConversationStep.whatINeed);
+  });
+
   test('the steps move forward and the model writes the sentence', () async {
     stubReply(
       () => Stream.fromIterable([

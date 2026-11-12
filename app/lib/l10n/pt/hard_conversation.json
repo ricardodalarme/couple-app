@@ -25,6 +25,7 @@
   "exit": "Sair",
   "next": "Próximo",
   "back": "Voltar",
+  "needPause": "Preciso de pausa",
   "retry": "Tentar de novo",
   "generationFailed": "Não deu para escrever uma frase agora.",
   "privateNote": "A mascote só vê o que você escreve aqui. Os dados do seu par nunca são enviados.",

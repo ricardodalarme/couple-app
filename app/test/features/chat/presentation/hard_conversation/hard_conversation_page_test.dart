@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_service/connectivity_service.dart';
+import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +13,10 @@ import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_reposi
 import 'package:flutter_bloc_starter/features/chat/data/repositories/hard_conversation_repository.dart';
 import 'package:flutter_bloc_starter/features/chat/presentation/hard_conversation/cubit/hard_conversation_cubit.dart';
 import 'package:flutter_bloc_starter/features/chat/presentation/hard_conversation/hard_conversation_page.dart';
+import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
+import 'package:flutter_bloc_starter/features/repair/presentation/pause/cubit/pause_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -22,6 +27,16 @@ class _MockHardConversationRepository() extends Mock implements HardConversation
 class _MockChatRepository() extends Mock implements ChatRepository;
 
 class _MockConnectivityService() extends Mock implements ConnectivityService;
+
+class _MockRepairRepository() extends Mock implements RepairRepository;
+
+class _TestRouter() extends RootStackRouter {
+  @override
+  List<AutoRoute> get routes => [
+    AutoRoute(page: HardConversationRoute.page, initial: true),
+    AutoRoute(page: PauseRoute.page, fullscreenDialog: true),
+  ];
+}
 
 void main() {
   late HardConversationRepository repository;
@@ -112,9 +127,25 @@ void main() {
     expect(find.text('O que aconteceu?'), findsOneWidget);
     expect(find.text('Ela se sentiu ignorada'), findsOneWidget);
     expect(find.text('Outro: escrever'), findsOneWidget);
+    expect(find.byType(BaseOptionTile), findsNWidgets(4));
+    expect(find.byType(BaseChoiceChip), findsNothing);
+    expect(
+      tester.widget<BaseButton>(find.widgetWithText(BaseButton, 'Próximo')).isEnabled,
+      isFalse,
+    );
 
     await tester.tap(find.text('Ela se sentiu ignorada'));
     await tester.pump();
+
+    expect(cubit.state.whatChoice, 'Ela se sentiu ignorada');
+    expect(
+      tester
+          .widget<BaseOptionTile>(find.widgetWithText(BaseOptionTile, 'Ela se sentiu ignorada'))
+          .isSelected,
+      isTrue,
+    );
+    expect(tester.widget<BaseButton>(find.widgetWithText(BaseButton, 'Próximo')).isEnabled, isTrue);
+
     await tester.tap(find.text('Próximo'));
     await tester.pump();
 
@@ -130,6 +161,44 @@ void main() {
     expect(find.text('Como dizer'), findsOneWidget);
     expect(find.text('Percebi que fiquei no celular. Posso te ouvir agora?'), findsOneWidget);
     expect(cubit.state.step, HardConversationStep.howToSay);
+  });
+
+  testWidgets('the first step can open the pause flow', (tester) async {
+    AppInjector.instance.registerFactory<HardConversationCubit>(
+      () => HardConversationCubit(repository: repository, chatRepository: chatRepository),
+    );
+    AppInjector.instance.registerFactory<PauseCubit>(
+      () => PauseCubit(repairRepository: _MockRepairRepository()),
+    );
+    addTearDown(() {
+      AppInjector.instance.unregister<HardConversationCubit>();
+      AppInjector.instance.unregister<PauseCubit>();
+    });
+
+    final router = _TestRouter();
+    await tester.pumpWidget(
+      TranslationProvider(
+        child: AppThemeHost(
+          initialVariant: AppThemeVariant.rose,
+          child: Builder(
+            builder: (context) => BaseApp.router(
+              routerConfig: router.config(),
+              theme: AppTheme.light(AppThemeScope.of(context)),
+              supportedLocales: AppLocaleUtils.supportedLocales,
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.pump();
+
+    expect(find.text('Preciso de pausa'), findsOneWidget);
+
+    await tester.tap(find.text('Preciso de pausa'));
+    await tester.pumpAndSettle();
+
+    expect(router.stack.map((route) => route.name), contains(PauseRoute.name));
   });
 
   testWidgets('the sentence can be edited, copied and sent as a note', (tester) async {

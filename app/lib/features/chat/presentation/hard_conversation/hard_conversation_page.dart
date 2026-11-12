@@ -8,6 +8,7 @@ import 'package:flutter_bloc_starter/features/chat/presentation/hard_conversatio
 import 'package:flutter_bloc_starter/features/plus/presentation/lock/plus_lock.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// Three steps that end with a sentence the person edits and sends themselves.
 @RoutePage()
@@ -165,27 +166,26 @@ class const _WhatStep() extends StatelessWidget {
         children: [
           Semantics(header: true, child: Text(l10n.whatTitle, style: context.text.titleXl)),
           const SizedBox(height: AppSpace.s16),
-          Wrap(
-            spacing: AppSpace.s8,
-            runSpacing: AppSpace.s8,
+          Column(
+            spacing: AppSpace.s10,
             children: [
-              BaseChoiceChip(
-                label: l10n.whatIgnored,
+              BaseOptionTile(
+                title: l10n.whatIgnored,
                 isSelected: choice == l10n.whatIgnored,
                 onTap: () => cubit.selectWhat(l10n.whatIgnored),
               ),
-              BaseChoiceChip(
-                label: l10n.whatMoney,
+              BaseOptionTile(
+                title: l10n.whatMoney,
                 isSelected: choice == l10n.whatMoney,
                 onTap: () => cubit.selectWhat(l10n.whatMoney),
               ),
-              BaseChoiceChip(
-                label: l10n.whatMisunderstanding,
+              BaseOptionTile(
+                title: l10n.whatMisunderstanding,
                 isSelected: choice == l10n.whatMisunderstanding,
                 onTap: () => cubit.selectWhat(l10n.whatMisunderstanding),
               ),
-              BaseChoiceChip(
-                label: l10n.whatOther,
+              BaseOptionTile(
+                title: l10n.whatOther,
                 isSelected: choice == hardConversationOtherChoice,
                 onTap: () => cubit.selectWhat(hardConversationOtherChoice),
               ),
@@ -197,7 +197,18 @@ class const _WhatStep() extends StatelessWidget {
           BaseNote(text: l10n.privateNote),
         ],
       ),
-      footer: BaseButton(text: l10n.next, isEnabled: canContinue, onPressed: cubit.next),
+      footer: Row(
+        children: [
+          BaseButton.secondary(
+            text: l10n.needPause,
+            onPressed: () => context.pushRoute(const PauseRoute()),
+          ),
+          const SizedBox(width: AppSpace.s10),
+          Expanded(
+            child: BaseButton(text: l10n.next, isEnabled: canContinue, onPressed: cubit.next),
+          ),
+        ],
+      ),
     );
   }
 }

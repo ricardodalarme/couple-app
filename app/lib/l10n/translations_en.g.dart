@@ -1649,6 +1649,8 @@ class _Translations$hardConversation$en extends Translations$hardConversation$pt
   @override
   String get back => 'Back';
   @override
+  String get needPause => 'I need a pause';
+  @override
   String get retry => 'Try again';
   @override
   String get generationFailed => 'Couldn\'t write a sentence right now.';
@@ -3136,8 +3138,6 @@ class _Translations$notificationPermission$en extends Translations$notificationP
   String get allow => 'Allow';
   @override
   String get offBanner => 'Reminders are off. Turn them on in settings.';
-  @override
-  String get openSettings => 'Open settings';
   @override
   String get close => 'Close';
 }
@@ -7854,6 +7854,7 @@ extension on TranslationsEn {
           'hardConversation.exit' => 'Leave',
           'hardConversation.next' => 'Next',
           'hardConversation.back' => 'Back',
+          'hardConversation.needPause' => 'I need a pause',
           'hardConversation.retry' => 'Try again',
           'hardConversation.generationFailed' => 'Couldn\'t write a sentence right now.',
           'hardConversation.privateNote' =>
@@ -8281,10 +8282,10 @@ extension on TranslationsEn {
           'intro.theme.footnote' => 'You can change it later in Settings, Appearance.',
           'invite.title' => ({required Object name}) => 'Invite ${name}',
           'invite.titleNoName' => 'Invite your person',
-          'invite.messageIntro' => 'This message will be sent:',
           _ => null,
         } ??
         switch (path) {
+          'invite.messageIntro' => 'This message will be sent:',
           'invite.message' => ({
             required Object code,
           }) => 'I started something small for us. To connect in the app, use the code ${code}.',
@@ -8721,7 +8722,6 @@ extension on TranslationsEn {
           'notificationPermission.notNow' => 'Not now',
           'notificationPermission.allow' => 'Allow',
           'notificationPermission.offBanner' => 'Reminders are off. Turn them on in settings.',
-          'notificationPermission.openSettings' => 'Open settings',
           'notificationPermission.close' => 'Close',
           'notificationPreferences.title' => 'Notifications',
           'notificationPreferences.subtitle' => 'Choose what arrives and when. No pressure.',

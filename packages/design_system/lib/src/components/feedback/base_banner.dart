@@ -14,10 +14,14 @@ enum BaseBannerVariant() {
   notice,
 }
 
+const double _compactMinWidth = 280;
+
 /// An inline notice that scrolls with the content.
 ///
 /// The tone selects the status ink and surface; every string comes from the caller.
 /// The action sits on its own row below the text so it never breaks mid-word.
+/// In [isCompact] the action sits at the end of the text row, and falls back to
+/// the stacked layout on a narrow banner.
 class const BaseBanner({
   required final String text,
   final String? title,
@@ -27,6 +31,7 @@ class const BaseBanner({
   final VoidCallback? onAction,
   final VoidCallback? onDismiss,
   final String? dismissLabel,
+  final bool isCompact = false,
   super.key,
 }) extends StatelessWidget {
   AppStatus? get _status => switch (variant) {
@@ -57,11 +62,6 @@ class const BaseBanner({
       .notice => AppStatus.warning.inkColor(colors),
       _ => ink,
     };
-    final bannerTitle = title;
-    final action = actionLabel;
-    final dismiss = onDismiss;
-    final hasAction = action != null && onAction != null;
-
     return Semantics(
       container: true,
       liveRegion: true,
@@ -73,70 +73,130 @@ class const BaseBanner({
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppSpace.s16, vertical: AppSpace.s14),
-          child: Row(
+          child: isCompact
+              ? LayoutBuilder(
+                  builder: (context, constraints) => constraints.maxWidth < _compactMinWidth
+                      ? _stacked(context, ink: ink, iconColor: iconColor)
+                      : _compactRow(context, ink: ink, iconColor: iconColor),
+                )
+              : _stacked(context, ink: ink, iconColor: iconColor),
+        ),
+      ),
+    );
+  }
+
+  Widget _stacked(BuildContext context, {required Color ink, required Color iconColor}) {
+    final bannerTitle = title;
+    final action = actionLabel;
+    final dismiss = onDismiss;
+    final hasAction = action != null && onAction != null;
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: AppSpace.s2),
+          child: AppIcon(icon: icon ?? _defaultIcon, color: iconColor),
+        ),
+        const SizedBox(width: AppSpace.s12),
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: AppSpace.s2),
-                child: AppIcon(icon: icon ?? _defaultIcon, color: iconColor),
-              ),
-              const SizedBox(width: AppSpace.s12),
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (bannerTitle != null)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: AppSpace.s2),
-                        child: Text(
-                          bannerTitle,
-                          style: context.text.bodySm.copyWith(
-                            color: ink,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    Text(text, style: context.text.caption.copyWith(color: ink)),
-                    if (hasAction) ...[
-                      const SizedBox(height: AppSpace.s8),
-                      Align(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: AppPressable(
-                          onTap: onAction,
-                          borderRadius: BorderRadius.circular(AppRadius.sm),
-                          enforceMinTapTarget: true,
-                          child: Text(
-                            action,
-                            textAlign: TextAlign.end,
-                            style: context.text.bodySm.copyWith(
-                              color: ink,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-              if (dismiss != null) ...[
-                const SizedBox(width: AppSpace.s8),
+              if (bannerTitle != null)
                 Padding(
-                  padding: const EdgeInsets.only(top: AppSpace.s2),
+                  padding: const EdgeInsets.only(bottom: AppSpace.s2),
+                  child: Text(
+                    bannerTitle,
+                    style: context.text.bodySm.copyWith(color: ink, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              Text(text, style: context.text.caption.copyWith(color: ink)),
+              if (hasAction) ...[
+                const SizedBox(height: AppSpace.s8),
+                Align(
+                  alignment: AlignmentDirectional.centerEnd,
                   child: AppPressable(
-                    onTap: dismiss,
-                    borderRadius: BorderRadius.circular(AppRadius.pill),
-                    semanticLabel: dismissLabel ?? _closeLabel(context),
+                    onTap: onAction,
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
                     enforceMinTapTarget: true,
-                    child: AppIcon(icon: AppIcons.close, color: ink),
+                    child: Text(
+                      action,
+                      textAlign: TextAlign.end,
+                      style: context.text.bodySm.copyWith(color: ink, fontWeight: FontWeight.w500),
+                    ),
                   ),
                 ),
               ],
             ],
           ),
         ),
-      ),
+        if (dismiss != null) ...[
+          const SizedBox(width: AppSpace.s8),
+          Padding(
+            padding: const EdgeInsets.only(top: AppSpace.s2),
+            child: _dismissButton(context, ink),
+          ),
+        ],
+      ],
+    );
+  }
+
+  Widget _compactRow(BuildContext context, {required Color ink, required Color iconColor}) {
+    final bannerTitle = title;
+    final action = actionLabel;
+    final dismiss = onDismiss;
+    final hasAction = action != null && onAction != null;
+    final actionInk = _status == null ? context.colors.accentLabel : ink;
+
+    return Row(
+      children: [
+        AppIcon(icon: icon ?? _defaultIcon, color: iconColor),
+        const SizedBox(width: AppSpace.s12),
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (bannerTitle != null)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: AppSpace.s2),
+                  child: Text(
+                    bannerTitle,
+                    style: context.text.bodySm.copyWith(color: ink, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              Text(text, style: context.text.caption.copyWith(color: ink)),
+            ],
+          ),
+        ),
+        if (hasAction) ...[
+          const SizedBox(width: AppSpace.s8),
+          AppPressable(
+            onTap: onAction,
+            borderRadius: BorderRadius.circular(AppRadius.sm),
+            enforceMinTapTarget: true,
+            child: Text(
+              action,
+              maxLines: 1,
+              softWrap: false,
+              style: context.text.bodySm.copyWith(color: actionInk, fontWeight: FontWeight.w600),
+            ),
+          ),
+        ],
+        if (dismiss != null) ...[const SizedBox(width: AppSpace.s8), _dismissButton(context, ink)],
+      ],
+    );
+  }
+
+  Widget _dismissButton(BuildContext context, Color ink) {
+    return AppPressable(
+      onTap: onDismiss,
+      borderRadius: BorderRadius.circular(AppRadius.pill),
+      semanticLabel: dismissLabel ?? _closeLabel(context),
+      enforceMinTapTarget: true,
+      child: AppIcon(icon: AppIcons.close, color: ink),
     );
   }
 

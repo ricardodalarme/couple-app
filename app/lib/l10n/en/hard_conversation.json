@@ -25,6 +25,7 @@
   "exit": "Leave",
   "next": "Next",
   "back": "Back",
+  "needPause": "I need a pause",
   "retry": "Try again",
   "generationFailed": "Couldn't write a sentence right now.",
   "privateNote": "The mascot only sees what you write here. Your partner's data is never sent.",
