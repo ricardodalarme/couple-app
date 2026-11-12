@@ -90,10 +90,15 @@ input AgreementsOrderBy {
 }
 
 input AgreementsUpdateInput {
+  id: UUID
+  authorId: UUID
   coupleId: UUID
   title: String
   body: String
+  agreedBy: [UUID]
   reviewOn: Date
+  createdAt: Datetime
+  updatedAt: Datetime
 }
 
 type AgreementsUpdateResponse {
@@ -114,6 +119,14 @@ type AppConfig implements Node {
 type AppConfigConnection {
   edges: [AppConfigEdge!]!
   pageInfo: PageInfo!
+}
+
+type AppConfigDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [AppConfig!]!
 }
 
 type AppConfigEdge {
@@ -140,9 +153,35 @@ input AppConfigFilter {
   not: AppConfigFilter
 }
 
+input AppConfigInsertInput {
+  key: String
+  value: String
+}
+
+type AppConfigInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [AppConfig!]!
+}
+
 input AppConfigOrderBy {
   key: OrderByDirection
   value: OrderByDirection
+}
+
+input AppConfigUpdateInput {
+  key: String
+  value: String
+}
+
+type AppConfigUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [AppConfig!]!
 }
 
 enum AppTheme {
@@ -324,6 +363,25 @@ input CapsulesOrderBy {
   updatedAt: OrderByDirection
 }
 
+input CapsulesUpdateInput {
+  id: UUID
+  authorId: UUID
+  coupleId: UUID
+  body: String
+  opensOn: Date
+  openedAt: Datetime
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+type CapsulesUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Capsules!]!
+}
+
 type CardItems implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -340,6 +398,14 @@ type CardItems implements Node {
 type CardItemsConnection {
   edges: [CardItemsEdge!]!
   pageInfo: PageInfo!
+}
+
+type CardItemsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CardItems!]!
 }
 
 type CardItemsEdge {
@@ -370,6 +436,23 @@ input CardItemsFilter {
   not: CardItemsFilter
 }
 
+input CardItemsInsertInput {
+  id: UUID
+  cardId: UUID
+  slipId: UUID
+  body: String
+  feeling: String
+  position: Int
+}
+
+type CardItemsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CardItems!]!
+}
+
 input CardItemsOrderBy {
   id: OrderByDirection
   cardId: OrderByDirection
@@ -377,6 +460,23 @@ input CardItemsOrderBy {
   body: OrderByDirection
   feeling: OrderByDirection
   position: OrderByDirection
+}
+
+input CardItemsUpdateInput {
+  id: UUID
+  cardId: UUID
+  slipId: UUID
+  body: String
+  feeling: String
+  position: Int
+}
+
+type CardItemsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CardItems!]!
 }
 
 type CardOpens implements Node {
@@ -390,6 +490,14 @@ type CardOpens implements Node {
 type CardOpensConnection {
   edges: [CardOpensEdge!]!
   pageInfo: PageInfo!
+}
+
+type CardOpensDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CardOpens!]!
 }
 
 type CardOpensEdge {
@@ -416,9 +524,35 @@ input CardOpensFilter {
   not: CardOpensFilter
 }
 
+input CardOpensInsertInput {
+  cardId: UUID
+  openedAt: Datetime
+}
+
+type CardOpensInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CardOpens!]!
+}
+
 input CardOpensOrderBy {
   cardId: OrderByDirection
   openedAt: OrderByDirection
+}
+
+input CardOpensUpdateInput {
+  cardId: UUID
+  openedAt: Datetime
+}
+
+type CardOpensUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CardOpens!]!
 }
 
 type CardReactions implements Node {
@@ -435,6 +569,14 @@ type CardReactions implements Node {
 type CardReactionsConnection {
   edges: [CardReactionsEdge!]!
   pageInfo: PageInfo!
+}
+
+type CardReactionsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CardReactions!]!
 }
 
 type CardReactionsEdge {
@@ -464,12 +606,44 @@ input CardReactionsFilter {
   not: CardReactionsFilter
 }
 
+input CardReactionsInsertInput {
+  cardId: UUID
+  reaction: String
+  reply: String
+  fromGuest: Boolean
+  reactedAt: Datetime
+}
+
+type CardReactionsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CardReactions!]!
+}
+
 input CardReactionsOrderBy {
   cardId: OrderByDirection
   reaction: OrderByDirection
   reply: OrderByDirection
   fromGuest: OrderByDirection
   reactedAt: OrderByDirection
+}
+
+input CardReactionsUpdateInput {
+  cardId: UUID
+  reaction: String
+  reply: String
+  fromGuest: Boolean
+  reactedAt: Datetime
+}
+
+type CardReactionsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CardReactions!]!
 }
 
 type Cards implements Node {
@@ -550,6 +724,14 @@ type CardsConnection {
   totalCount: Int!
 }
 
+type CardsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Cards!]!
+}
+
 type CardsEdge {
   cursor: String!
   node: Cards!
@@ -584,6 +766,29 @@ input CardsFilter {
   not: CardsFilter
 }
 
+input CardsInsertInput {
+  id: UUID
+  authorId: UUID
+  recipientId: UUID
+  coupleId: UUID
+  weekStart: Date
+  status: CardStatus
+  note: String
+  sentAt: Datetime
+  createdAt: Datetime
+  updatedAt: Datetime
+  deletedAt: Datetime
+  kind: String
+}
+
+type CardsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Cards!]!
+}
+
 input CardsOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -613,6 +818,29 @@ input CardStatusFilter {
   in: [CardStatus!]
   is: FilterIs
   neq: CardStatus
+}
+
+input CardsUpdateInput {
+  id: UUID
+  authorId: UUID
+  recipientId: UUID
+  coupleId: UUID
+  weekStart: Date
+  status: CardStatus
+  note: String
+  sentAt: Datetime
+  createdAt: Datetime
+  updatedAt: Datetime
+  deletedAt: Datetime
+  kind: String
+}
+
+type CardsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Cards!]!
 }
 
 type ChatMessages implements Node {
@@ -670,6 +898,24 @@ input ChatMessagesFilter {
   not: ChatMessagesFilter
 }
 
+input ChatMessagesInsertInput {
+  id: UUID
+  authorId: UUID
+  role: String
+  body: String
+  component: String
+  componentData: String
+  createdAt: Datetime
+}
+
+type ChatMessagesInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [ChatMessages!]!
+}
+
 input ChatMessagesOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -678,6 +924,24 @@ input ChatMessagesOrderBy {
   component: OrderByDirection
   componentData: OrderByDirection
   createdAt: OrderByDirection
+}
+
+input ChatMessagesUpdateInput {
+  id: UUID
+  authorId: UUID
+  role: String
+  body: String
+  component: String
+  componentData: String
+  createdAt: Datetime
+}
+
+type ChatMessagesUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [ChatMessages!]!
 }
 
 type CheckinAnswers implements Node {
@@ -804,6 +1068,14 @@ type ConsentsConnection {
   pageInfo: PageInfo!
 }
 
+type ConsentsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Consents!]!
+}
+
 type ConsentsEdge {
   cursor: String!
   node: Consents!
@@ -858,6 +1130,23 @@ input ConsentsOrderBy {
   createdAt: OrderByDirection
 }
 
+input ConsentsUpdateInput {
+  id: UUID
+  profileId: UUID
+  kind: String
+  granted: Boolean
+  version: String
+  createdAt: Datetime
+}
+
+type ConsentsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Consents!]!
+}
+
 """
 Editorial content. tags carry filters (phase, goal, budget, time, energy, place). holiday rows use month/day/country.
 """
@@ -887,6 +1176,14 @@ type ContentItemsConnection {
 
   """The total number of records matching the `filter` criteria"""
   totalCount: Int!
+}
+
+type ContentItemsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [ContentItems!]!
 }
 
 type ContentItemsEdge {
@@ -926,6 +1223,32 @@ input ContentItemsFilter {
   not: ContentItemsFilter
 }
 
+input ContentItemsInsertInput {
+  id: UUID
+  kind: String
+  slug: String
+  locale: String
+  title: String
+  body: String
+  parentSlug: String
+  position: Int
+  tags: [String]
+  month: Int
+  day: Int
+  country: String
+  plusOnly: Boolean
+  sensitive: Boolean
+  published: Boolean
+}
+
+type ContentItemsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [ContentItems!]!
+}
+
 input ContentItemsOrderBy {
   id: OrderByDirection
   kind: OrderByDirection
@@ -941,6 +1264,32 @@ input ContentItemsOrderBy {
   plusOnly: OrderByDirection
   sensitive: OrderByDirection
   published: OrderByDirection
+}
+
+input ContentItemsUpdateInput {
+  id: UUID
+  kind: String
+  slug: String
+  locale: String
+  title: String
+  body: String
+  parentSlug: String
+  position: Int
+  tags: [String]
+  month: Int
+  day: Int
+  country: String
+  plusOnly: Boolean
+  sensitive: Boolean
+  published: Boolean
+}
+
+type ContentItemsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [ContentItems!]!
 }
 
 type ConversationPreps implements Node {
@@ -1066,6 +1415,14 @@ type CoupleMembersConnection {
   pageInfo: PageInfo!
 }
 
+type CoupleMembersDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CoupleMembers!]!
+}
+
 type CoupleMembersEdge {
   cursor: String!
   node: CoupleMembers!
@@ -1093,6 +1450,22 @@ input CoupleMembersFilter {
   not: CoupleMembersFilter
 }
 
+input CoupleMembersInsertInput {
+  coupleId: UUID
+  profileId: UUID
+  role: MemberRole
+  joinedAt: Datetime
+  leftAt: Datetime
+}
+
+type CoupleMembersInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CoupleMembers!]!
+}
+
 input CoupleMembersOrderBy {
   coupleId: OrderByDirection
   profileId: OrderByDirection
@@ -1101,6 +1474,23 @@ input CoupleMembersOrderBy {
   leftAt: OrderByDirection
 }
 
+input CoupleMembersUpdateInput {
+  coupleId: UUID
+  profileId: UUID
+  role: MemberRole
+  joinedAt: Datetime
+  leftAt: Datetime
+}
+
+type CoupleMembersUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [CoupleMembers!]!
+}
+
+"""The photo a couple chose for their widget. Visible to the two members."""
 type CouplePhotos implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -1108,6 +1498,8 @@ type CouplePhotos implements Node {
   storagePath: String!
   uploadedBy: UUID!
   updatedAt: Datetime!
+  couple: Couples
+  profiles: Profiles
 }
 
 type CouplePhotosConnection {
@@ -1649,11 +2041,20 @@ type Couples implements Node {
     """Sort order to apply to the collection"""
     orderBy: [GiftIdeasOrderBy!]
   ): GiftIdeasConnection
+  couplePhotos: CouplePhotos
 }
 
 type CouplesConnection {
   edges: [CouplesEdge!]!
   pageInfo: PageInfo!
+}
+
+type CouplesDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Couples!]!
 }
 
 type CouplesEdge {
@@ -1682,11 +2083,41 @@ input CouplesFilter {
   not: CouplesFilter
 }
 
+input CouplesInsertInput {
+  id: UUID
+  createdAt: Datetime
+  archivedAt: Datetime
+  touchTopicsEnabled: Boolean
+}
+
+type CouplesInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Couples!]!
+}
+
 input CouplesOrderBy {
   id: OrderByDirection
   createdAt: OrderByDirection
   archivedAt: OrderByDirection
   touchTopicsEnabled: OrderByDirection
+}
+
+input CouplesUpdateInput {
+  id: UUID
+  createdAt: Datetime
+  archivedAt: Datetime
+  touchTopicsEnabled: Boolean
+}
+
+type CouplesUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Couples!]!
 }
 
 """
@@ -2204,6 +2635,14 @@ type DeletionRequestsConnection {
   pageInfo: PageInfo!
 }
 
+type DeletionRequestsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [DeletionRequests!]!
+}
+
 type DeletionRequestsEdge {
   cursor: String!
   node: DeletionRequests!
@@ -2229,10 +2668,38 @@ input DeletionRequestsFilter {
   not: DeletionRequestsFilter
 }
 
+input DeletionRequestsInsertInput {
+  profileId: UUID
+  requestedAt: Datetime
+  purgeAfter: Datetime
+}
+
+type DeletionRequestsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [DeletionRequests!]!
+}
+
 input DeletionRequestsOrderBy {
   profileId: OrderByDirection
   requestedAt: OrderByDirection
   purgeAfter: OrderByDirection
+}
+
+input DeletionRequestsUpdateInput {
+  profileId: UUID
+  requestedAt: Datetime
+  purgeAfter: Datetime
+}
+
+type DeletionRequestsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [DeletionRequests!]!
 }
 
 type Devices implements Node {
@@ -2240,8 +2707,10 @@ type Devices implements Node {
   nodeId: ID!
   id: UUID!
   profileId: UUID!
+  token: String!
   platform: String!
   label: String
+  failureCount: Int!
   createdAt: Datetime!
   lastSeenAt: Datetime!
   profile: Profiles
@@ -2252,6 +2721,14 @@ type DevicesConnection {
   pageInfo: PageInfo!
 }
 
+type DevicesDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Devices!]!
+}
+
 type DevicesEdge {
   cursor: String!
   node: Devices!
@@ -2260,8 +2737,10 @@ type DevicesEdge {
 input DevicesFilter {
   id: UUIDFilter
   profileId: UUIDFilter
+  token: StringFilter
   platform: StringFilter
   label: StringFilter
+  failureCount: IntFilter
   createdAt: DatetimeFilter
   lastSeenAt: DatetimeFilter
   nodeId: IDFilter
@@ -2280,13 +2759,53 @@ input DevicesFilter {
   not: DevicesFilter
 }
 
+input DevicesInsertInput {
+  id: UUID
+  profileId: UUID
+  token: String
+  platform: String
+  label: String
+  failureCount: Int
+  createdAt: Datetime
+  lastSeenAt: Datetime
+}
+
+type DevicesInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Devices!]!
+}
+
 input DevicesOrderBy {
   id: OrderByDirection
   profileId: OrderByDirection
+  token: OrderByDirection
   platform: OrderByDirection
   label: OrderByDirection
+  failureCount: OrderByDirection
   createdAt: OrderByDirection
   lastSeenAt: OrderByDirection
+}
+
+input DevicesUpdateInput {
+  id: UUID
+  profileId: UUID
+  token: String
+  platform: String
+  label: String
+  failureCount: Int
+  createdAt: Datetime
+  lastSeenAt: Datetime
+}
+
+type DevicesUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Devices!]!
 }
 
 type Entitlements implements Node {
@@ -2305,6 +2824,14 @@ type Entitlements implements Node {
 type EntitlementsConnection {
   edges: [EntitlementsEdge!]!
   pageInfo: PageInfo!
+}
+
+type EntitlementsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Entitlements!]!
 }
 
 type EntitlementsEdge {
@@ -2336,6 +2863,24 @@ input EntitlementsFilter {
   not: EntitlementsFilter
 }
 
+input EntitlementsInsertInput {
+  profileId: UUID
+  plan: String
+  status: String
+  expiresAt: Datetime
+  willRenew: Boolean
+  store: String
+  updatedAt: Datetime
+}
+
+type EntitlementsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Entitlements!]!
+}
+
 input EntitlementsOrderBy {
   profileId: OrderByDirection
   plan: OrderByDirection
@@ -2344,6 +2889,24 @@ input EntitlementsOrderBy {
   willRenew: OrderByDirection
   store: OrderByDirection
   updatedAt: OrderByDirection
+}
+
+input EntitlementsUpdateInput {
+  profileId: UUID
+  plan: String
+  status: String
+  expiresAt: Datetime
+  willRenew: Boolean
+  store: String
+  updatedAt: Datetime
+}
+
+type EntitlementsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Entitlements!]!
 }
 
 enum FilterIs {
@@ -2394,6 +2957,14 @@ type GameAnswersConnection {
   pageInfo: PageInfo!
 }
 
+type GameAnswersDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GameAnswers!]!
+}
+
 type GameAnswersEdge {
   cursor: String!
   node: GameAnswers!
@@ -2422,6 +2993,23 @@ input GameAnswersFilter {
   not: GameAnswersFilter
 }
 
+input GameAnswersInsertInput {
+  id: UUID
+  sessionId: UUID
+  authorId: UUID
+  idx: Int
+  answer: String
+  createdAt: Datetime
+}
+
+type GameAnswersInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GameAnswers!]!
+}
+
 input GameAnswersOrderBy {
   id: OrderByDirection
   sessionId: OrderByDirection
@@ -2429,6 +3017,23 @@ input GameAnswersOrderBy {
   idx: OrderByDirection
   answer: OrderByDirection
   createdAt: OrderByDirection
+}
+
+input GameAnswersUpdateInput {
+  id: UUID
+  sessionId: UUID
+  authorId: UUID
+  idx: Int
+  answer: String
+  createdAt: Datetime
+}
+
+type GameAnswersUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GameAnswers!]!
 }
 
 type GameSessions implements Node {
@@ -2476,6 +3081,14 @@ type GameSessionsConnection {
   pageInfo: PageInfo!
 }
 
+type GameSessionsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GameSessions!]!
+}
+
 type GameSessionsEdge {
   cursor: String!
   node: GameSessions!
@@ -2507,6 +3120,26 @@ input GameSessionsFilter {
   not: GameSessionsFilter
 }
 
+input GameSessionsInsertInput {
+  id: UUID
+  coupleId: UUID
+  game: String
+  invitedBy: UUID
+  status: String
+  itemSlugs: [String]
+  outcome: String
+  createdAt: Datetime
+  finishedAt: Datetime
+}
+
+type GameSessionsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GameSessions!]!
+}
+
 input GameSessionsOrderBy {
   id: OrderByDirection
   coupleId: OrderByDirection
@@ -2516,6 +3149,26 @@ input GameSessionsOrderBy {
   outcome: OrderByDirection
   createdAt: OrderByDirection
   finishedAt: OrderByDirection
+}
+
+input GameSessionsUpdateInput {
+  id: UUID
+  coupleId: UUID
+  game: String
+  invitedBy: UUID
+  status: String
+  itemSlugs: [String]
+  outcome: String
+  createdAt: Datetime
+  finishedAt: Datetime
+}
+
+type GameSessionsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GameSessions!]!
 }
 
 type GiftIdeas implements Node {
@@ -2657,6 +3310,14 @@ type GuestLinkCreatedConnection {
   pageInfo: PageInfo!
 }
 
+type GuestLinkCreatedDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GuestLinkCreated!]!
+}
+
 type GuestLinkCreatedEdge {
   cursor: String!
   node: GuestLinkCreated!
@@ -2682,10 +3343,38 @@ input GuestLinkCreatedFilter {
   not: GuestLinkCreatedFilter
 }
 
+input GuestLinkCreatedInsertInput {
+  id: UUID
+  token: String
+  expiresAt: Datetime
+}
+
+type GuestLinkCreatedInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GuestLinkCreated!]!
+}
+
 input GuestLinkCreatedOrderBy {
   id: OrderByDirection
   token: OrderByDirection
   expiresAt: OrderByDirection
+}
+
+input GuestLinkCreatedUpdateInput {
+  id: UUID
+  token: String
+  expiresAt: Datetime
+}
+
+type GuestLinkCreatedUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GuestLinkCreated!]!
 }
 
 type GuestLinks implements Node {
@@ -2693,8 +3382,10 @@ type GuestLinks implements Node {
   nodeId: ID!
   id: UUID!
   cardId: UUID!
+  tokenHash: Opaque!
   expiresAt: Datetime!
   revokedAt: Datetime
+  openedAt: Datetime
   createdAt: Datetime!
   card: Cards
 }
@@ -2702,6 +3393,14 @@ type GuestLinks implements Node {
 type GuestLinksConnection {
   edges: [GuestLinksEdge!]!
   pageInfo: PageInfo!
+}
+
+type GuestLinksDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GuestLinks!]!
 }
 
 type GuestLinksEdge {
@@ -2712,8 +3411,10 @@ type GuestLinksEdge {
 input GuestLinksFilter {
   id: UUIDFilter
   cardId: UUIDFilter
+  tokenHash: OpaqueFilter
   expiresAt: DatetimeFilter
   revokedAt: DatetimeFilter
+  openedAt: DatetimeFilter
   createdAt: DatetimeFilter
   nodeId: IDFilter
 
@@ -2731,12 +3432,50 @@ input GuestLinksFilter {
   not: GuestLinksFilter
 }
 
+input GuestLinksInsertInput {
+  id: UUID
+  cardId: UUID
+  tokenHash: Opaque
+  expiresAt: Datetime
+  revokedAt: Datetime
+  openedAt: Datetime
+  createdAt: Datetime
+}
+
+type GuestLinksInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GuestLinks!]!
+}
+
 input GuestLinksOrderBy {
   id: OrderByDirection
   cardId: OrderByDirection
+  tokenHash: OrderByDirection
   expiresAt: OrderByDirection
   revokedAt: OrderByDirection
+  openedAt: OrderByDirection
   createdAt: OrderByDirection
+}
+
+input GuestLinksUpdateInput {
+  id: UUID
+  cardId: UUID
+  tokenHash: Opaque
+  expiresAt: Datetime
+  revokedAt: Datetime
+  openedAt: Datetime
+  createdAt: Datetime
+}
+
+type GuestLinksUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GuestLinks!]!
 }
 
 type IdeaResponses implements Node {
@@ -3051,6 +3790,14 @@ type InviteCreatedConnection {
   pageInfo: PageInfo!
 }
 
+type InviteCreatedDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [InviteCreated!]!
+}
+
 type InviteCreatedEdge {
   cursor: String!
   node: InviteCreated!
@@ -3076,10 +3823,38 @@ input InviteCreatedFilter {
   not: InviteCreatedFilter
 }
 
+input InviteCreatedInsertInput {
+  id: UUID
+  code: String
+  expiresAt: Datetime
+}
+
+type InviteCreatedInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [InviteCreated!]!
+}
+
 input InviteCreatedOrderBy {
   id: OrderByDirection
   code: OrderByDirection
   expiresAt: OrderByDirection
+}
+
+input InviteCreatedUpdateInput {
+  id: UUID
+  code: String
+  expiresAt: Datetime
+}
+
+type InviteCreatedUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [InviteCreated!]!
 }
 
 type Invites implements Node {
@@ -3087,8 +3862,10 @@ type Invites implements Node {
   nodeId: ID!
   id: UUID!
   createdBy: UUID!
+  codeHash: Opaque!
   expiresAt: Datetime!
   usedAt: Datetime
+  usedBy: UUID
   cancelledAt: Datetime
   createdAt: Datetime!
   profiles: Profiles
@@ -3099,6 +3876,14 @@ type InvitesConnection {
   pageInfo: PageInfo!
 }
 
+type InvitesDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Invites!]!
+}
+
 type InvitesEdge {
   cursor: String!
   node: Invites!
@@ -3107,8 +3892,10 @@ type InvitesEdge {
 input InvitesFilter {
   id: UUIDFilter
   createdBy: UUIDFilter
+  codeHash: OpaqueFilter
   expiresAt: DatetimeFilter
   usedAt: DatetimeFilter
+  usedBy: UUIDFilter
   cancelledAt: DatetimeFilter
   createdAt: DatetimeFilter
   nodeId: IDFilter
@@ -3127,13 +3914,53 @@ input InvitesFilter {
   not: InvitesFilter
 }
 
+input InvitesInsertInput {
+  id: UUID
+  createdBy: UUID
+  codeHash: Opaque
+  expiresAt: Datetime
+  usedAt: Datetime
+  usedBy: UUID
+  cancelledAt: Datetime
+  createdAt: Datetime
+}
+
+type InvitesInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Invites!]!
+}
+
 input InvitesOrderBy {
   id: OrderByDirection
   createdBy: OrderByDirection
+  codeHash: OrderByDirection
   expiresAt: OrderByDirection
   usedAt: OrderByDirection
+  usedBy: OrderByDirection
   cancelledAt: OrderByDirection
   createdAt: OrderByDirection
+}
+
+input InvitesUpdateInput {
+  id: UUID
+  createdBy: UUID
+  codeHash: Opaque
+  expiresAt: Datetime
+  usedAt: Datetime
+  usedBy: UUID
+  cancelledAt: Datetime
+  createdAt: Datetime
+}
+
+type InvitesUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Invites!]!
 }
 
 type JournalEntries implements Node {
@@ -3298,9 +4125,14 @@ input LearnedItemsFilter {
 }
 
 input LearnedItemsInsertInput {
+  id: UUID
+  authorId: UUID
   target: String
   text: String
   excerpt: String
+  status: String
+  createdAt: Datetime
+  updatedAt: Datetime
 }
 
 type LearnedItemsInsertResponse {
@@ -3323,8 +4155,14 @@ input LearnedItemsOrderBy {
 }
 
 input LearnedItemsUpdateInput {
+  id: UUID
+  authorId: UUID
+  target: String
   text: String
+  excerpt: String
   status: String
+  createdAt: Datetime
+  updatedAt: Datetime
 }
 
 type LearnedItemsUpdateResponse {
@@ -4277,6 +5115,17 @@ type Mutation {
     atMost: Int! = 1
   ): AgreementsDeleteResponse!
 
+  """Deletes zero or more records from the `AppConfig` collection"""
+  deleteFromAppConfigCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: AppConfigFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): AppConfigDeleteResponse!
+
   """Deletes zero or more records from the `Capsules` collection"""
   deleteFromCapsulesCollection(
     """Restricts the mutation's impact to records matching the criteria"""
@@ -4287,6 +5136,50 @@ type Mutation {
     """
     atMost: Int! = 1
   ): CapsulesDeleteResponse!
+
+  """Deletes zero or more records from the `CardItems` collection"""
+  deleteFromCardItemsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CardItemsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CardItemsDeleteResponse!
+
+  """Deletes zero or more records from the `CardOpens` collection"""
+  deleteFromCardOpensCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CardOpensFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CardOpensDeleteResponse!
+
+  """Deletes zero or more records from the `CardReactions` collection"""
+  deleteFromCardReactionsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CardReactionsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CardReactionsDeleteResponse!
+
+  """Deletes zero or more records from the `Cards` collection"""
+  deleteFromCardsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CardsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CardsDeleteResponse!
 
   """Deletes zero or more records from the `ChatMessages` collection"""
   deleteFromChatMessagesCollection(
@@ -4310,6 +5203,28 @@ type Mutation {
     atMost: Int! = 1
   ): CheckinAnswersDeleteResponse!
 
+  """Deletes zero or more records from the `Consents` collection"""
+  deleteFromConsentsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: ConsentsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): ConsentsDeleteResponse!
+
+  """Deletes zero or more records from the `ContentItems` collection"""
+  deleteFromContentItemsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: ContentItemsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): ContentItemsDeleteResponse!
+
   """Deletes zero or more records from the `ConversationPreps` collection"""
   deleteFromConversationPrepsCollection(
     """Restricts the mutation's impact to records matching the criteria"""
@@ -4320,6 +5235,39 @@ type Mutation {
     """
     atMost: Int! = 1
   ): ConversationPrepsDeleteResponse!
+
+  """Deletes zero or more records from the `CoupleMembers` collection"""
+  deleteFromCoupleMembersCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CoupleMembersFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CoupleMembersDeleteResponse!
+
+  """Deletes zero or more records from the `CouplePhotos` collection"""
+  deleteFromCouplePhotosCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CouplePhotosFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CouplePhotosDeleteResponse!
+
+  """Deletes zero or more records from the `Couples` collection"""
+  deleteFromCouplesCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CouplesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CouplesDeleteResponse!
 
   """Deletes zero or more records from the `CycleDays` collection"""
   deleteFromCycleDaysCollection(
@@ -4365,6 +5313,61 @@ type Mutation {
     atMost: Int! = 1
   ): DecisionsDeleteResponse!
 
+  """Deletes zero or more records from the `DeletionRequests` collection"""
+  deleteFromDeletionRequestsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: DeletionRequestsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): DeletionRequestsDeleteResponse!
+
+  """Deletes zero or more records from the `Devices` collection"""
+  deleteFromDevicesCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: DevicesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): DevicesDeleteResponse!
+
+  """Deletes zero or more records from the `Entitlements` collection"""
+  deleteFromEntitlementsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: EntitlementsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): EntitlementsDeleteResponse!
+
+  """Deletes zero or more records from the `GameAnswers` collection"""
+  deleteFromGameAnswersCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: GameAnswersFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): GameAnswersDeleteResponse!
+
+  """Deletes zero or more records from the `GameSessions` collection"""
+  deleteFromGameSessionsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: GameSessionsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): GameSessionsDeleteResponse!
+
   """Deletes zero or more records from the `GiftIdeas` collection"""
   deleteFromGiftIdeasCollection(
     """Restricts the mutation's impact to records matching the criteria"""
@@ -4375,6 +5378,28 @@ type Mutation {
     """
     atMost: Int! = 1
   ): GiftIdeasDeleteResponse!
+
+  """Deletes zero or more records from the `GuestLinkCreated` collection"""
+  deleteFromGuestLinkCreatedCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: GuestLinkCreatedFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): GuestLinkCreatedDeleteResponse!
+
+  """Deletes zero or more records from the `GuestLinks` collection"""
+  deleteFromGuestLinksCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: GuestLinksFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): GuestLinksDeleteResponse!
 
   """Deletes zero or more records from the `IdeaResponses` collection"""
   deleteFromIdeaResponsesCollection(
@@ -4397,6 +5422,28 @@ type Mutation {
     """
     atMost: Int! = 1
   ): ImportantDatesDeleteResponse!
+
+  """Deletes zero or more records from the `InviteCreated` collection"""
+  deleteFromInviteCreatedCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: InviteCreatedFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): InviteCreatedDeleteResponse!
+
+  """Deletes zero or more records from the `Invites` collection"""
+  deleteFromInvitesCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: InvitesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): InvitesDeleteResponse!
 
   """Deletes zero or more records from the `JournalEntries` collection"""
   deleteFromJournalEntriesCollection(
@@ -4508,6 +5555,19 @@ type Mutation {
     atMost: Int! = 1
   ): MoodsDeleteResponse!
 
+  """
+  Deletes zero or more records from the `NotificationSettings` collection
+  """
+  deleteFromNotificationSettingsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: NotificationSettingsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): NotificationSettingsDeleteResponse!
+
   """Deletes zero or more records from the `PartnerFacts` collection"""
   deleteFromPartnerFactsCollection(
     """Restricts the mutation's impact to records matching the criteria"""
@@ -4530,6 +5590,28 @@ type Mutation {
     atMost: Int! = 1
   ): PartnerMessagesDeleteResponse!
 
+  """Deletes zero or more records from the `PartnerMood` collection"""
+  deleteFromPartnerMoodCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: PartnerMoodFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): PartnerMoodDeleteResponse!
+
+  """Deletes zero or more records from the `Pauses` collection"""
+  deleteFromPausesCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: PausesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): PausesDeleteResponse!
+
   """Deletes zero or more records from the `PlanningAreas` collection"""
   deleteFromPlanningAreasCollection(
     """Restricts the mutation's impact to records matching the criteria"""
@@ -4540,6 +5622,39 @@ type Mutation {
     """
     atMost: Int! = 1
   ): PlanningAreasDeleteResponse!
+
+  """Deletes zero or more records from the `PlusState` collection"""
+  deleteFromPlusStateCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: PlusStateFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): PlusStateDeleteResponse!
+
+  """Deletes zero or more records from the `ProfileSettings` collection"""
+  deleteFromProfileSettingsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: ProfileSettingsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): ProfileSettingsDeleteResponse!
+
+  """Deletes zero or more records from the `Profiles` collection"""
+  deleteFromProfilesCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: ProfilesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): ProfilesDeleteResponse!
 
   """Deletes zero or more records from the `ProgramEnrollments` collection"""
   deleteFromProgramEnrollmentsCollection(
@@ -4629,6 +5744,28 @@ type Mutation {
     atMost: Int! = 1
   ): SavedDateIdeasDeleteResponse!
 
+  """Deletes zero or more records from the `Signals` collection"""
+  deleteFromSignalsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: SignalsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): SignalsDeleteResponse!
+
+  """Deletes zero or more records from the `Slips` collection"""
+  deleteFromSlipsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: SlipsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): SlipsDeleteResponse!
+
   """Deletes zero or more records from the `StoryEvents` collection"""
   deleteFromStoryEventsCollection(
     """Restricts the mutation's impact to records matching the criteria"""
@@ -4650,6 +5787,50 @@ type Mutation {
     """
     atMost: Int! = 1
   ): TemperatureChecksDeleteResponse!
+
+  """Deletes zero or more records from the `TimelineItems` collection"""
+  deleteFromTimelineItemsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: TimelineItemsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): TimelineItemsDeleteResponse!
+
+  """Deletes zero or more records from the `TodayState` collection"""
+  deleteFromTodayStateCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: TodayStateFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): TodayStateDeleteResponse!
+
+  """Deletes zero or more records from the `WidgetState` collection"""
+  deleteFromWidgetStateCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: WidgetStateFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): WidgetStateDeleteResponse!
+
+  """Deletes zero or more records from the `YearRecap` collection"""
+  deleteFromYearRecapCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: YearRecapFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): YearRecapDeleteResponse!
   deletePartnerMessage(messageId: UUID!): Boolean
   deleteSlip(id: UUID!): Boolean
   drawFromJar: Slips
@@ -4660,8 +5841,26 @@ type Mutation {
   """Adds one or more `Agreements` records to the collection"""
   insertIntoAgreementsCollection(objects: [AgreementsInsertInput!]!): AgreementsInsertResponse
 
+  """Adds one or more `AppConfig` records to the collection"""
+  insertIntoAppConfigCollection(objects: [AppConfigInsertInput!]!): AppConfigInsertResponse
+
   """Adds one or more `Capsules` records to the collection"""
   insertIntoCapsulesCollection(objects: [CapsulesInsertInput!]!): CapsulesInsertResponse
+
+  """Adds one or more `CardItems` records to the collection"""
+  insertIntoCardItemsCollection(objects: [CardItemsInsertInput!]!): CardItemsInsertResponse
+
+  """Adds one or more `CardOpens` records to the collection"""
+  insertIntoCardOpensCollection(objects: [CardOpensInsertInput!]!): CardOpensInsertResponse
+
+  """Adds one or more `CardReactions` records to the collection"""
+  insertIntoCardReactionsCollection(objects: [CardReactionsInsertInput!]!): CardReactionsInsertResponse
+
+  """Adds one or more `Cards` records to the collection"""
+  insertIntoCardsCollection(objects: [CardsInsertInput!]!): CardsInsertResponse
+
+  """Adds one or more `ChatMessages` records to the collection"""
+  insertIntoChatMessagesCollection(objects: [ChatMessagesInsertInput!]!): ChatMessagesInsertResponse
 
   """Adds one or more `CheckinAnswers` records to the collection"""
   insertIntoCheckinAnswersCollection(objects: [CheckinAnswersInsertInput!]!): CheckinAnswersInsertResponse
@@ -4669,38 +5868,20 @@ type Mutation {
   """Adds one or more `Consents` records to the collection"""
   insertIntoConsentsCollection(objects: [ConsentsInsertInput!]!): ConsentsInsertResponse
 
+  """Adds one or more `ContentItems` records to the collection"""
+  insertIntoContentItemsCollection(objects: [ContentItemsInsertInput!]!): ContentItemsInsertResponse
+
   """Adds one or more `ConversationPreps` records to the collection"""
   insertIntoConversationPrepsCollection(objects: [ConversationPrepsInsertInput!]!): ConversationPrepsInsertResponse
+
+  """Adds one or more `CoupleMembers` records to the collection"""
+  insertIntoCoupleMembersCollection(objects: [CoupleMembersInsertInput!]!): CoupleMembersInsertResponse
 
   """Adds one or more `CouplePhotos` records to the collection"""
   insertIntoCouplePhotosCollection(objects: [CouplePhotosInsertInput!]!): CouplePhotosInsertResponse
 
-  """Updates zero or more records in the `CouplePhotos` collection"""
-  updateCouplePhotosCollection(
-    """
-    Fields that are set will be updated for all records matching the `filter`
-    """
-    set: CouplePhotosUpdateInput!
-
-    """Restricts the mutation's impact to records matching the criteria"""
-    filter: CouplePhotosFilter
-
-    """
-    The maximum number of records in the collection permitted to be affected
-    """
-    atMost: Int! = 1
-  ): CouplePhotosUpdateResponse!
-
-  """Deletes zero or more records from the `CouplePhotos` collection"""
-  deleteFromCouplePhotosCollection(
-    """Restricts the mutation's impact to records matching the criteria"""
-    filter: CouplePhotosFilter
-
-    """
-    The maximum number of records in the collection permitted to be affected
-    """
-    atMost: Int! = 1
-  ): CouplePhotosDeleteResponse!
+  """Adds one or more `Couples` records to the collection"""
+  insertIntoCouplesCollection(objects: [CouplesInsertInput!]!): CouplesInsertResponse
 
   """Adds one or more `CycleDays` records to the collection"""
   insertIntoCycleDaysCollection(objects: [CycleDaysInsertInput!]!): CycleDaysInsertResponse
@@ -4714,14 +5895,41 @@ type Mutation {
   """Adds one or more `Decisions` records to the collection"""
   insertIntoDecisionsCollection(objects: [DecisionsInsertInput!]!): DecisionsInsertResponse
 
+  """Adds one or more `DeletionRequests` records to the collection"""
+  insertIntoDeletionRequestsCollection(objects: [DeletionRequestsInsertInput!]!): DeletionRequestsInsertResponse
+
+  """Adds one or more `Devices` records to the collection"""
+  insertIntoDevicesCollection(objects: [DevicesInsertInput!]!): DevicesInsertResponse
+
+  """Adds one or more `Entitlements` records to the collection"""
+  insertIntoEntitlementsCollection(objects: [EntitlementsInsertInput!]!): EntitlementsInsertResponse
+
+  """Adds one or more `GameAnswers` records to the collection"""
+  insertIntoGameAnswersCollection(objects: [GameAnswersInsertInput!]!): GameAnswersInsertResponse
+
+  """Adds one or more `GameSessions` records to the collection"""
+  insertIntoGameSessionsCollection(objects: [GameSessionsInsertInput!]!): GameSessionsInsertResponse
+
   """Adds one or more `GiftIdeas` records to the collection"""
   insertIntoGiftIdeasCollection(objects: [GiftIdeasInsertInput!]!): GiftIdeasInsertResponse
+
+  """Adds one or more `GuestLinkCreated` records to the collection"""
+  insertIntoGuestLinkCreatedCollection(objects: [GuestLinkCreatedInsertInput!]!): GuestLinkCreatedInsertResponse
+
+  """Adds one or more `GuestLinks` records to the collection"""
+  insertIntoGuestLinksCollection(objects: [GuestLinksInsertInput!]!): GuestLinksInsertResponse
 
   """Adds one or more `IdeaResponses` records to the collection"""
   insertIntoIdeaResponsesCollection(objects: [IdeaResponsesInsertInput!]!): IdeaResponsesInsertResponse
 
   """Adds one or more `ImportantDates` records to the collection"""
   insertIntoImportantDatesCollection(objects: [ImportantDatesInsertInput!]!): ImportantDatesInsertResponse
+
+  """Adds one or more `InviteCreated` records to the collection"""
+  insertIntoInviteCreatedCollection(objects: [InviteCreatedInsertInput!]!): InviteCreatedInsertResponse
+
+  """Adds one or more `Invites` records to the collection"""
+  insertIntoInvitesCollection(objects: [InvitesInsertInput!]!): InvitesInsertResponse
 
   """Adds one or more `JournalEntries` records to the collection"""
   insertIntoJournalEntriesCollection(objects: [JournalEntriesInsertInput!]!): JournalEntriesInsertResponse
@@ -4753,11 +5961,32 @@ type Mutation {
   """Adds one or more `Moods` records to the collection"""
   insertIntoMoodsCollection(objects: [MoodsInsertInput!]!): MoodsInsertResponse
 
+  """Adds one or more `NotificationSettings` records to the collection"""
+  insertIntoNotificationSettingsCollection(objects: [NotificationSettingsInsertInput!]!): NotificationSettingsInsertResponse
+
   """Adds one or more `PartnerFacts` records to the collection"""
   insertIntoPartnerFactsCollection(objects: [PartnerFactsInsertInput!]!): PartnerFactsInsertResponse
 
+  """Adds one or more `PartnerMessages` records to the collection"""
+  insertIntoPartnerMessagesCollection(objects: [PartnerMessagesInsertInput!]!): PartnerMessagesInsertResponse
+
+  """Adds one or more `PartnerMood` records to the collection"""
+  insertIntoPartnerMoodCollection(objects: [PartnerMoodInsertInput!]!): PartnerMoodInsertResponse
+
+  """Adds one or more `Pauses` records to the collection"""
+  insertIntoPausesCollection(objects: [PausesInsertInput!]!): PausesInsertResponse
+
   """Adds one or more `PlanningAreas` records to the collection"""
   insertIntoPlanningAreasCollection(objects: [PlanningAreasInsertInput!]!): PlanningAreasInsertResponse
+
+  """Adds one or more `PlusState` records to the collection"""
+  insertIntoPlusStateCollection(objects: [PlusStateInsertInput!]!): PlusStateInsertResponse
+
+  """Adds one or more `ProfileSettings` records to the collection"""
+  insertIntoProfileSettingsCollection(objects: [ProfileSettingsInsertInput!]!): ProfileSettingsInsertResponse
+
+  """Adds one or more `Profiles` records to the collection"""
+  insertIntoProfilesCollection(objects: [ProfilesInsertInput!]!): ProfilesInsertResponse
 
   """Adds one or more `ProgramEnrollments` records to the collection"""
   insertIntoProgramEnrollmentsCollection(objects: [ProgramEnrollmentsInsertInput!]!): ProgramEnrollmentsInsertResponse
@@ -4783,11 +6012,29 @@ type Mutation {
   """Adds one or more `SavedDateIdeas` records to the collection"""
   insertIntoSavedDateIdeasCollection(objects: [SavedDateIdeasInsertInput!]!): SavedDateIdeasInsertResponse
 
+  """Adds one or more `Signals` records to the collection"""
+  insertIntoSignalsCollection(objects: [SignalsInsertInput!]!): SignalsInsertResponse
+
+  """Adds one or more `Slips` records to the collection"""
+  insertIntoSlipsCollection(objects: [SlipsInsertInput!]!): SlipsInsertResponse
+
   """Adds one or more `StoryEvents` records to the collection"""
   insertIntoStoryEventsCollection(objects: [StoryEventsInsertInput!]!): StoryEventsInsertResponse
 
   """Adds one or more `TemperatureChecks` records to the collection"""
   insertIntoTemperatureChecksCollection(objects: [TemperatureChecksInsertInput!]!): TemperatureChecksInsertResponse
+
+  """Adds one or more `TimelineItems` records to the collection"""
+  insertIntoTimelineItemsCollection(objects: [TimelineItemsInsertInput!]!): TimelineItemsInsertResponse
+
+  """Adds one or more `TodayState` records to the collection"""
+  insertIntoTodayStateCollection(objects: [TodayStateInsertInput!]!): TodayStateInsertResponse
+
+  """Adds one or more `WidgetState` records to the collection"""
+  insertIntoWidgetStateCollection(objects: [WidgetStateInsertInput!]!): WidgetStateInsertResponse
+
+  """Adds one or more `YearRecap` records to the collection"""
+  insertIntoYearRecapCollection(objects: [YearRecapInsertInput!]!): YearRecapInsertResponse
   inviteToGame(game: String!, itemSlugs: [String]): GameSessions
   markCardRead(cardId: UUID!): Boolean
   markPartnerMessage(messageId: UUID!, hearted: Boolean = false): PartnerMessages
@@ -4825,7 +6072,119 @@ type Mutation {
     """
     atMost: Int! = 1
   ): AgreementsUpdateResponse!
+
+  """Updates zero or more records in the `AppConfig` collection"""
+  updateAppConfigCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: AppConfigUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: AppConfigFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): AppConfigUpdateResponse!
+
+  """Updates zero or more records in the `Capsules` collection"""
+  updateCapsulesCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: CapsulesUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CapsulesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CapsulesUpdateResponse!
   updateCardDraft(cardId: UUID!, slipIds: [UUID]!, note: String): Cards
+
+  """Updates zero or more records in the `CardItems` collection"""
+  updateCardItemsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: CardItemsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CardItemsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CardItemsUpdateResponse!
+
+  """Updates zero or more records in the `CardOpens` collection"""
+  updateCardOpensCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: CardOpensUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CardOpensFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CardOpensUpdateResponse!
+
+  """Updates zero or more records in the `CardReactions` collection"""
+  updateCardReactionsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: CardReactionsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CardReactionsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CardReactionsUpdateResponse!
+
+  """Updates zero or more records in the `Cards` collection"""
+  updateCardsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: CardsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CardsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CardsUpdateResponse!
+
+  """Updates zero or more records in the `ChatMessages` collection"""
+  updateChatMessagesCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: ChatMessagesUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: ChatMessagesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): ChatMessagesUpdateResponse!
 
   """Updates zero or more records in the `CheckinAnswers` collection"""
   updateCheckinAnswersCollection(
@@ -4843,6 +6202,38 @@ type Mutation {
     atMost: Int! = 1
   ): CheckinAnswersUpdateResponse!
 
+  """Updates zero or more records in the `Consents` collection"""
+  updateConsentsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: ConsentsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: ConsentsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): ConsentsUpdateResponse!
+
+  """Updates zero or more records in the `ContentItems` collection"""
+  updateContentItemsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: ContentItemsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: ContentItemsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): ContentItemsUpdateResponse!
+
   """Updates zero or more records in the `ConversationPreps` collection"""
   updateConversationPrepsCollection(
     """
@@ -4858,6 +6249,54 @@ type Mutation {
     """
     atMost: Int! = 1
   ): ConversationPrepsUpdateResponse!
+
+  """Updates zero or more records in the `CoupleMembers` collection"""
+  updateCoupleMembersCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: CoupleMembersUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CoupleMembersFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CoupleMembersUpdateResponse!
+
+  """Updates zero or more records in the `CouplePhotos` collection"""
+  updateCouplePhotosCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: CouplePhotosUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CouplePhotosFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CouplePhotosUpdateResponse!
+
+  """Updates zero or more records in the `Couples` collection"""
+  updateCouplesCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: CouplesUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: CouplesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): CouplesUpdateResponse!
 
   """Updates zero or more records in the `CycleDays` collection"""
   updateCycleDaysCollection(
@@ -4922,7 +6361,87 @@ type Mutation {
     """
     atMost: Int! = 1
   ): DecisionsUpdateResponse!
+
+  """Updates zero or more records in the `DeletionRequests` collection"""
+  updateDeletionRequestsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: DeletionRequestsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: DeletionRequestsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): DeletionRequestsUpdateResponse!
+
+  """Updates zero or more records in the `Devices` collection"""
+  updateDevicesCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: DevicesUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: DevicesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): DevicesUpdateResponse!
+
+  """Updates zero or more records in the `Entitlements` collection"""
+  updateEntitlementsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: EntitlementsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: EntitlementsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): EntitlementsUpdateResponse!
   updateGame(sessionId: UUID!, action: String!, outcome: String): GameSessions
+
+  """Updates zero or more records in the `GameAnswers` collection"""
+  updateGameAnswersCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: GameAnswersUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: GameAnswersFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): GameAnswersUpdateResponse!
+
+  """Updates zero or more records in the `GameSessions` collection"""
+  updateGameSessionsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: GameSessionsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: GameSessionsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): GameSessionsUpdateResponse!
 
   """Updates zero or more records in the `GiftIdeas` collection"""
   updateGiftIdeasCollection(
@@ -4939,6 +6458,38 @@ type Mutation {
     """
     atMost: Int! = 1
   ): GiftIdeasUpdateResponse!
+
+  """Updates zero or more records in the `GuestLinkCreated` collection"""
+  updateGuestLinkCreatedCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: GuestLinkCreatedUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: GuestLinkCreatedFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): GuestLinkCreatedUpdateResponse!
+
+  """Updates zero or more records in the `GuestLinks` collection"""
+  updateGuestLinksCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: GuestLinksUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: GuestLinksFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): GuestLinksUpdateResponse!
 
   """Updates zero or more records in the `IdeaResponses` collection"""
   updateIdeaResponsesCollection(
@@ -4971,6 +6522,38 @@ type Mutation {
     """
     atMost: Int! = 1
   ): ImportantDatesUpdateResponse!
+
+  """Updates zero or more records in the `InviteCreated` collection"""
+  updateInviteCreatedCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: InviteCreatedUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: InviteCreatedFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): InviteCreatedUpdateResponse!
+
+  """Updates zero or more records in the `Invites` collection"""
+  updateInvitesCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: InvitesUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: InvitesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): InvitesUpdateResponse!
 
   """Updates zero or more records in the `JournalEntries` collection"""
   updateJournalEntriesCollection(
@@ -5164,6 +6747,54 @@ type Mutation {
     atMost: Int! = 1
   ): PartnerFactsUpdateResponse!
 
+  """Updates zero or more records in the `PartnerMessages` collection"""
+  updatePartnerMessagesCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: PartnerMessagesUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: PartnerMessagesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): PartnerMessagesUpdateResponse!
+
+  """Updates zero or more records in the `PartnerMood` collection"""
+  updatePartnerMoodCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: PartnerMoodUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: PartnerMoodFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): PartnerMoodUpdateResponse!
+
+  """Updates zero or more records in the `Pauses` collection"""
+  updatePausesCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: PausesUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: PausesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): PausesUpdateResponse!
+
   """Updates zero or more records in the `PlanningAreas` collection"""
   updatePlanningAreasCollection(
     """
@@ -5179,6 +6810,22 @@ type Mutation {
     """
     atMost: Int! = 1
   ): PlanningAreasUpdateResponse!
+
+  """Updates zero or more records in the `PlusState` collection"""
+  updatePlusStateCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: PlusStateUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: PlusStateFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): PlusStateUpdateResponse!
 
   """Updates zero or more records in the `ProfileSettings` collection"""
   updateProfileSettingsCollection(
@@ -5227,6 +6874,22 @@ type Mutation {
     """
     atMost: Int! = 1
   ): ProgramEnrollmentsUpdateResponse!
+
+  """Updates zero or more records in the `QuestionAnswers` collection"""
+  updateQuestionAnswersCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: QuestionAnswersUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: QuestionAnswersFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): QuestionAnswersUpdateResponse!
 
   """Updates zero or more records in the `QuizResults` collection"""
   updateQuizResultsCollection(
@@ -5324,6 +6987,38 @@ type Mutation {
     atMost: Int! = 1
   ): SavedDateIdeasUpdateResponse!
 
+  """Updates zero or more records in the `Signals` collection"""
+  updateSignalsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: SignalsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: SignalsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): SignalsUpdateResponse!
+
+  """Updates zero or more records in the `Slips` collection"""
+  updateSlipsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: SlipsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: SlipsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): SlipsUpdateResponse!
+
   """Updates zero or more records in the `StoryEvents` collection"""
   updateStoryEventsCollection(
     """
@@ -5355,6 +7050,70 @@ type Mutation {
     """
     atMost: Int! = 1
   ): TemperatureChecksUpdateResponse!
+
+  """Updates zero or more records in the `TimelineItems` collection"""
+  updateTimelineItemsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: TimelineItemsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: TimelineItemsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): TimelineItemsUpdateResponse!
+
+  """Updates zero or more records in the `TodayState` collection"""
+  updateTodayStateCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: TodayStateUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: TodayStateFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): TodayStateUpdateResponse!
+
+  """Updates zero or more records in the `WidgetState` collection"""
+  updateWidgetStateCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: WidgetStateUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: WidgetStateFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): WidgetStateUpdateResponse!
+
+  """Updates zero or more records in the `YearRecap` collection"""
+  updateYearRecapCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: YearRecapUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: YearRecapFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): YearRecapUpdateResponse!
 }
 
 interface Node {
@@ -5382,6 +7141,14 @@ type NotificationSettings implements Node {
 type NotificationSettingsConnection {
   edges: [NotificationSettingsEdge!]!
   pageInfo: PageInfo!
+}
+
+type NotificationSettingsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [NotificationSettings!]!
 }
 
 type NotificationSettingsEdge {
@@ -5414,6 +7181,25 @@ input NotificationSettingsFilter {
   not: NotificationSettingsFilter
 }
 
+input NotificationSettingsInsertInput {
+  profileId: UUID
+  enabled: Boolean
+  discreet: Boolean
+  cardDay: Int
+  cardHour: Int
+  mutedTypes: [String]
+  updatedAt: Datetime
+  dailyMax: Int
+}
+
+type NotificationSettingsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [NotificationSettings!]!
+}
+
 input NotificationSettingsOrderBy {
   profileId: OrderByDirection
   enabled: OrderByDirection
@@ -5425,11 +7211,13 @@ input NotificationSettingsOrderBy {
 }
 
 input NotificationSettingsUpdateInput {
+  profileId: UUID
   enabled: Boolean
   discreet: Boolean
   cardDay: Int
   cardHour: Int
   mutedTypes: [String]
+  updatedAt: Datetime
   dailyMax: Int
 }
 
@@ -5642,6 +7430,27 @@ input PartnerMessagesFilter {
   not: PartnerMessagesFilter
 }
 
+input PartnerMessagesInsertInput {
+  id: UUID
+  senderId: UUID
+  recipientId: UUID
+  kind: String
+  body: String
+  mediaPath: String
+  forWidget: Boolean
+  seenAt: Datetime
+  heartedAt: Datetime
+  createdAt: Datetime
+}
+
+type PartnerMessagesInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [PartnerMessages!]!
+}
+
 input PartnerMessagesOrderBy {
   id: OrderByDirection
   senderId: OrderByDirection
@@ -5653,6 +7462,27 @@ input PartnerMessagesOrderBy {
   seenAt: OrderByDirection
   heartedAt: OrderByDirection
   createdAt: OrderByDirection
+}
+
+input PartnerMessagesUpdateInput {
+  id: UUID
+  senderId: UUID
+  recipientId: UUID
+  kind: String
+  body: String
+  mediaPath: String
+  forWidget: Boolean
+  seenAt: Datetime
+  heartedAt: Datetime
+  createdAt: Datetime
+}
+
+type PartnerMessagesUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [PartnerMessages!]!
 }
 
 type PartnerMood implements Node {
@@ -5667,6 +7497,14 @@ type PartnerMood implements Node {
 type PartnerMoodConnection {
   edges: [PartnerMoodEdge!]!
   pageInfo: PageInfo!
+}
+
+type PartnerMoodDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [PartnerMood!]!
 }
 
 type PartnerMoodEdge {
@@ -5695,11 +7533,41 @@ input PartnerMoodFilter {
   not: PartnerMoodFilter
 }
 
+input PartnerMoodInsertInput {
+  id: UUID
+  day: Date
+  mood: String
+  need: String
+}
+
+type PartnerMoodInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [PartnerMood!]!
+}
+
 input PartnerMoodOrderBy {
   id: OrderByDirection
   day: OrderByDirection
   mood: OrderByDirection
   need: OrderByDirection
+}
+
+input PartnerMoodUpdateInput {
+  id: UUID
+  day: Date
+  mood: String
+  need: String
+}
+
+type PartnerMoodUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [PartnerMood!]!
 }
 
 type Pauses implements Node {
@@ -5719,6 +7587,14 @@ type Pauses implements Node {
 type PausesConnection {
   edges: [PausesEdge!]!
   pageInfo: PageInfo!
+}
+
+type PausesDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Pauses!]!
 }
 
 type PausesEdge {
@@ -5750,6 +7626,24 @@ input PausesFilter {
   not: PausesFilter
 }
 
+input PausesInsertInput {
+  id: UUID
+  startedBy: UUID
+  coupleId: UUID
+  returnAt: Datetime
+  message: String
+  startedAt: Datetime
+  endedAt: Datetime
+}
+
+type PausesInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Pauses!]!
+}
+
 input PausesOrderBy {
   id: OrderByDirection
   startedBy: OrderByDirection
@@ -5758,6 +7652,24 @@ input PausesOrderBy {
   message: OrderByDirection
   startedAt: OrderByDirection
   endedAt: OrderByDirection
+}
+
+input PausesUpdateInput {
+  id: UUID
+  startedBy: UUID
+  coupleId: UUID
+  returnAt: Datetime
+  message: String
+  startedAt: Datetime
+  endedAt: Datetime
+}
+
+type PausesUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Pauses!]!
 }
 
 type PlanningAreas implements Node {
@@ -5881,6 +7793,14 @@ type PlusStateConnection {
   pageInfo: PageInfo!
 }
 
+type PlusStateDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [PlusState!]!
+}
+
 type PlusStateEdge {
   cursor: String!
   node: PlusState!
@@ -5911,6 +7831,25 @@ input PlusStateFilter {
   not: PlusStateFilter
 }
 
+input PlusStateInsertInput {
+  profileId: UUID
+  hasPlus: Boolean
+  paidByPartner: Boolean
+  plan: String
+  status: String
+  expiresAt: Datetime
+  slipsLeftThisMonth: Int
+  cardsLeftThisMonth: Int
+}
+
+type PlusStateInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [PlusState!]!
+}
+
 input PlusStateOrderBy {
   profileId: OrderByDirection
   hasPlus: OrderByDirection
@@ -5920,6 +7859,25 @@ input PlusStateOrderBy {
   expiresAt: OrderByDirection
   slipsLeftThisMonth: OrderByDirection
   cardsLeftThisMonth: OrderByDirection
+}
+
+input PlusStateUpdateInput {
+  profileId: UUID
+  hasPlus: Boolean
+  paidByPartner: Boolean
+  plan: String
+  status: String
+  expiresAt: Datetime
+  slipsLeftThisMonth: Int
+  cardsLeftThisMonth: Int
+}
+
+type PlusStateUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [PlusState!]!
 }
 
 """
@@ -7044,11 +9002,43 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [LearnedItemsOrderBy!]
   ): LearnedItemsConnection
+  couplePhotosCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: CouplePhotosFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [CouplePhotosOrderBy!]
+  ): CouplePhotosConnection
 }
 
 type ProfilesConnection {
   edges: [ProfilesEdge!]!
   pageInfo: PageInfo!
+}
+
+type ProfilesDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Profiles!]!
 }
 
 type ProfilesEdge {
@@ -7094,6 +9084,14 @@ type ProfileSettings implements Node {
 type ProfileSettingsConnection {
   edges: [ProfileSettingsEdge!]!
   pageInfo: PageInfo!
+}
+
+type ProfileSettingsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [ProfileSettings!]!
 }
 
 type ProfileSettingsEdge {
@@ -7146,6 +9144,45 @@ input ProfileSettingsFilter {
   not: ProfileSettingsFilter
 }
 
+input ProfileSettingsInsertInput {
+  profileId: UUID
+  theme: AppTheme
+  locale: String
+  timeZone: String
+  goal: RelationshipGoal
+  phase: RelationshipPhase
+  partnerName: String
+  onboardedAt: Datetime
+  createdAt: Datetime
+  updatedAt: Datetime
+  shareReadReceipts: Boolean
+  goals: [String]
+  togetherSince: Date
+  relationshipStatus: RelationshipStatus
+  appPausedUntil: Datetime
+  holidayCountries: [String]
+  cardChannel: String
+  cardTheme: String
+  slipsDefaultForCard: Boolean
+  widgetAllowPartnerNotes: Boolean
+  widgetOnLockScreen: Boolean
+  widgetInDiscreet: Boolean
+  widgetShowNames: Boolean
+  spiceEnabled: Boolean
+  lowStimulation: Boolean
+  chatEnabled: Boolean
+  chatStoreFacts: Boolean
+  heavyDaySharing: String
+}
+
+type ProfileSettingsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [ProfileSettings!]!
+}
+
 input ProfileSettingsOrderBy {
   profileId: OrderByDirection
   theme: OrderByDirection
@@ -7176,6 +9213,7 @@ input ProfileSettingsOrderBy {
 }
 
 input ProfileSettingsUpdateInput {
+  profileId: UUID
   theme: AppTheme
   locale: String
   timeZone: String
@@ -7183,6 +9221,8 @@ input ProfileSettingsUpdateInput {
   phase: RelationshipPhase
   partnerName: String
   onboardedAt: Datetime
+  createdAt: Datetime
+  updatedAt: Datetime
   shareReadReceipts: Boolean
   goals: [String]
   togetherSince: Date
@@ -7236,6 +9276,25 @@ input ProfilesFilter {
   not: ProfilesFilter
 }
 
+input ProfilesInsertInput {
+  id: UUID
+  displayName: String
+  avatarPath: String
+  createdAt: Datetime
+  updatedAt: Datetime
+  city: String
+  avatarKind: String
+  pronouns: String
+}
+
+type ProfilesInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Profiles!]!
+}
+
 input ProfilesOrderBy {
   id: OrderByDirection
   displayName: OrderByDirection
@@ -7248,8 +9307,11 @@ input ProfilesOrderBy {
 }
 
 input ProfilesUpdateInput {
+  id: UUID
   displayName: String
   avatarPath: String
+  createdAt: Datetime
+  updatedAt: Datetime
   city: String
   avatarKind: String
   pronouns: String
@@ -7788,15 +9850,9 @@ type Query {
     orderBy: [CoupleMembersOrderBy!]
   ): CoupleMembersConnection!
 
-  """Retrieve a record of type `Couples` by its primary key"""
-  couplesByPk(
-    """The record's `id` value"""
-    id: UUID!
-  ): Couples
-
   """Retrieve a record of type `CouplePhotos` by its primary key"""
   couplePhotosByPk(
-    """The record's `coupleId` value"""
+    """The record's `couple_id` value"""
     coupleId: UUID!
   ): CouplePhotos
 
@@ -7825,6 +9881,12 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [CouplePhotosOrderBy!]
   ): CouplePhotosConnection!
+
+  """Retrieve a record of type `Couples` by its primary key"""
+  couplesByPk(
+    """The record's `id` value"""
+    id: UUID!
+  ): Couples
 
   """A pagable collection of type `Couples`"""
   couplesCollection(
@@ -9636,6 +11698,23 @@ input QuestionAnswersOrderBy {
   createdAt: OrderByDirection
 }
 
+input QuestionAnswersUpdateInput {
+  id: UUID
+  authorId: UUID
+  coupleId: UUID
+  questionSlug: String
+  body: String
+  createdAt: Datetime
+}
+
+type QuestionAnswersUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [QuestionAnswers!]!
+}
+
 type QuizResults implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -10420,6 +12499,14 @@ type SignalsConnection {
   pageInfo: PageInfo!
 }
 
+type SignalsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Signals!]!
+}
+
 type SignalsEdge {
   cursor: String!
   node: Signals!
@@ -10452,6 +12539,27 @@ input SignalsFilter {
   not: SignalsFilter
 }
 
+input SignalsInsertInput {
+  id: UUID
+  senderId: UUID
+  recipientId: UUID
+  kind: String
+  value: String
+  body: String
+  response: String
+  respondedAt: Datetime
+  seenAt: Datetime
+  createdAt: Datetime
+}
+
+type SignalsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Signals!]!
+}
+
 input SignalsOrderBy {
   id: OrderByDirection
   senderId: OrderByDirection
@@ -10463,6 +12571,27 @@ input SignalsOrderBy {
   respondedAt: OrderByDirection
   seenAt: OrderByDirection
   createdAt: OrderByDirection
+}
+
+input SignalsUpdateInput {
+  id: UUID
+  senderId: UUID
+  recipientId: UUID
+  kind: String
+  value: String
+  body: String
+  response: String
+  respondedAt: Datetime
+  seenAt: Datetime
+  createdAt: Datetime
+}
+
+type SignalsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Signals!]!
 }
 
 enum SlipKind {
@@ -10540,6 +12669,14 @@ type SlipsConnection {
   totalCount: Int!
 }
 
+type SlipsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Slips!]!
+}
+
 type SlipsEdge {
   cursor: String!
   node: Slips!
@@ -10579,6 +12716,34 @@ input SlipsFilter {
   not: SlipsFilter
 }
 
+input SlipsInsertInput {
+  id: UUID
+  authorId: UUID
+  kind: SlipKind
+  body: String
+  feeling: String
+  planNote: String
+  tags: [String]
+  forCard: Boolean
+  photoPath: String
+  occurredOn: Date
+  createdAt: Datetime
+  updatedAt: Datetime
+  archivedAt: Datetime
+  deletedAt: Datetime
+  category: String
+  workArea: String
+  inJar: Boolean
+}
+
+type SlipsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Slips!]!
+}
+
 input SlipsOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -10596,6 +12761,34 @@ input SlipsOrderBy {
   category: OrderByDirection
   workArea: OrderByDirection
   inJar: OrderByDirection
+}
+
+input SlipsUpdateInput {
+  id: UUID
+  authorId: UUID
+  kind: SlipKind
+  body: String
+  feeling: String
+  planNote: String
+  tags: [String]
+  forCard: Boolean
+  photoPath: String
+  occurredOn: Date
+  createdAt: Datetime
+  updatedAt: Datetime
+  archivedAt: Datetime
+  deletedAt: Datetime
+  category: String
+  workArea: String
+  inJar: Boolean
+}
+
+type SlipsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Slips!]!
 }
 
 type StoryEvents implements Node {
@@ -10873,6 +13066,14 @@ type TimelineItemsConnection {
   totalCount: Int!
 }
 
+type TimelineItemsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [TimelineItems!]!
+}
+
 type TimelineItemsEdge {
   cursor: String!
   node: TimelineItems!
@@ -10902,6 +13103,24 @@ input TimelineItemsFilter {
   not: TimelineItemsFilter
 }
 
+input TimelineItemsInsertInput {
+  id: UUID
+  kind: String
+  title: String
+  day: Date
+  authorId: UUID
+  shared: Boolean
+  photoPath: String
+}
+
+type TimelineItemsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [TimelineItems!]!
+}
+
 input TimelineItemsOrderBy {
   id: OrderByDirection
   kind: OrderByDirection
@@ -10910,6 +13129,24 @@ input TimelineItemsOrderBy {
   authorId: OrderByDirection
   shared: OrderByDirection
   photoPath: OrderByDirection
+}
+
+input TimelineItemsUpdateInput {
+  id: UUID
+  kind: String
+  title: String
+  day: Date
+  authorId: UUID
+  shared: Boolean
+  photoPath: String
+}
+
+type TimelineItemsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [TimelineItems!]!
 }
 
 """
@@ -10960,6 +13197,14 @@ type TodayStateConnection {
   pageInfo: PageInfo!
 }
 
+type TodayStateDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [TodayState!]!
+}
+
 type TodayStateEdge {
   cursor: String!
   node: TodayState!
@@ -11006,6 +13251,41 @@ input TodayStateFilter {
   not: TodayStateFilter
 }
 
+input TodayStateInsertInput {
+  profileId: UUID
+  isPaired: Boolean
+  partnerName: String
+  localDate: Date
+  cardId: UUID
+  cardStatus: String
+  unopenedCards: Int
+  slipsThisWeek: Int
+  slipsTotal: Int
+  hasPendingInvite: Boolean
+  suggestionKey: String
+  togetherSince: Date
+  pauseId: UUID
+  pauseIsMine: Boolean
+  pauseReturnAt: Datetime
+  pauseMessage: String
+  temperature: String
+  nextDateId: UUID
+  nextDateTitle: String
+  nextDateOn: Date
+  unseenSignals: Int
+  hasPlus: Boolean
+  deletionPending: Boolean
+  relationshipStatus: String
+}
+
+type TodayStateInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [TodayState!]!
+}
+
 input TodayStateOrderBy {
   profileId: OrderByDirection
   isPaired: OrderByDirection
@@ -11031,6 +13311,41 @@ input TodayStateOrderBy {
   hasPlus: OrderByDirection
   deletionPending: OrderByDirection
   relationshipStatus: OrderByDirection
+}
+
+input TodayStateUpdateInput {
+  profileId: UUID
+  isPaired: Boolean
+  partnerName: String
+  localDate: Date
+  cardId: UUID
+  cardStatus: String
+  unopenedCards: Int
+  slipsThisWeek: Int
+  slipsTotal: Int
+  hasPendingInvite: Boolean
+  suggestionKey: String
+  togetherSince: Date
+  pauseId: UUID
+  pauseIsMine: Boolean
+  pauseReturnAt: Datetime
+  pauseMessage: String
+  temperature: String
+  nextDateId: UUID
+  nextDateTitle: String
+  nextDateOn: Date
+  unseenSignals: Int
+  hasPlus: Boolean
+  deletionPending: Boolean
+  relationshipStatus: String
+}
+
+type TodayStateUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [TodayState!]!
 }
 
 """A universally unique identifier"""
@@ -11080,6 +13395,14 @@ type WidgetStateConnection {
   pageInfo: PageInfo!
 }
 
+type WidgetStateDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [WidgetState!]!
+}
+
 type WidgetStateEdge {
   cursor: String!
   node: WidgetState!
@@ -11115,6 +13438,30 @@ input WidgetStateFilter {
   not: WidgetStateFilter
 }
 
+input WidgetStateInsertInput {
+  profileId: UUID
+  discreet: Boolean
+  isPaired: Boolean
+  togetherSince: Date
+  partnerName: String
+  nextDateTitle: String
+  nextDateOn: Date
+  unopenedCards: Int
+  pauseReturnAt: Datetime
+  partnerNote: String
+  partnerNoteMedia: String
+  partnerNoteAt: Datetime
+  partnerMood: String
+}
+
+type WidgetStateInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [WidgetState!]!
+}
+
 input WidgetStateOrderBy {
   profileId: OrderByDirection
   discreet: OrderByDirection
@@ -11129,6 +13476,30 @@ input WidgetStateOrderBy {
   partnerNoteMedia: OrderByDirection
   partnerNoteAt: OrderByDirection
   partnerMood: OrderByDirection
+}
+
+input WidgetStateUpdateInput {
+  profileId: UUID
+  discreet: Boolean
+  isPaired: Boolean
+  togetherSince: Date
+  partnerName: String
+  nextDateTitle: String
+  nextDateOn: Date
+  unopenedCards: Int
+  pauseReturnAt: Datetime
+  partnerNote: String
+  partnerNoteMedia: String
+  partnerNoteAt: Datetime
+  partnerMood: String
+}
+
+type WidgetStateUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [WidgetState!]!
 }
 
 type YearRecap implements Node {
@@ -11147,6 +13518,14 @@ type YearRecap implements Node {
 type YearRecapConnection {
   edges: [YearRecapEdge!]!
   pageInfo: PageInfo!
+}
+
+type YearRecapDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [YearRecap!]!
 }
 
 type YearRecapEdge {
@@ -11179,6 +13558,25 @@ input YearRecapFilter {
   not: YearRecapFilter
 }
 
+input YearRecapInsertInput {
+  profileId: UUID
+  year: Int
+  slips: Int
+  cardsSent: Int
+  cardsReceived: Int
+  memories: Int
+  firsts: Int
+  ritualsDone: Int
+}
+
+type YearRecapInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [YearRecap!]!
+}
+
 input YearRecapOrderBy {
   profileId: OrderByDirection
   year: OrderByDirection
@@ -11188,5 +13586,24 @@ input YearRecapOrderBy {
   memories: OrderByDirection
   firsts: OrderByDirection
   ritualsDone: OrderByDirection
+}
+
+input YearRecapUpdateInput {
+  profileId: UUID
+  year: Int
+  slips: Int
+  cardsSent: Int
+  cardsReceived: Int
+  memories: Int
+  firsts: Int
+  ritualsDone: Int
+}
+
+type YearRecapUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [YearRecap!]!
 }
 

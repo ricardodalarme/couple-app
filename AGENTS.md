@@ -49,10 +49,14 @@ Melos config is the `melos:` key in the **root `pubspec.yaml`** — there is no
 
 `melos graphql:schema` runs an inline shell command in the root
 `pubspec.yaml`. It reads `SERVER_URL` and `SERVER_API_KEY` from
-`.env.development` and calls the npm `get-graphql-schema` CLI. Install it
-globally with `npm install -g get-graphql-schema@2.1.2`. For schemas with
-authenticated-only tables (notifications), also set `SCHEMA_AUTH_TOKEN` to a
-service-role token; the script sends it as a Bearer header.
+`.env.development` (or the process environment) and calls the npm
+`get-graphql-schema` CLI. Install it globally with
+`npm install -g get-graphql-schema@2.1.2`. It authenticates with
+`SCHEMA_AUTH_TOKEN` when set; otherwise it obtains the legacy `service_role`
+key from the logged-in Supabase CLI (`supabase projects api-keys`). The
+resulting snapshot is the complete service_role schema: never hand-edit it.
+For CI, set `SCHEMA_AUTH_TOKEN` to the legacy service_role JWT.
+`get-graphql-schema` must be installed in the CI job as well.
 
 `supabase db schema declarative sync` is local-only and requires Docker. When
 Docker is unavailable, edit the declarative schema and migration together and

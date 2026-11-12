@@ -97,16 +97,24 @@ melos:
 
     graphql:schema:
       run: |
-        . ./.env.development
-        if [ -n "${SCHEMA_AUTH_TOKEN:-}" ]; then
-          get-graphql-schema "$SERVER_URL" --header "apikey=$SERVER_API_KEY" \
-            --header "Authorization=Bearer $SCHEMA_AUTH_TOKEN" \
-            > app/lib/features/_shared/data/data_sources/schema.graphql
-        else
-          get-graphql-schema "$SERVER_URL" --header "apikey=$SERVER_API_KEY" \
-            > app/lib/features/_shared/data/data_sources/schema.graphql
+        set -e
+        token="${SCHEMA_AUTH_TOKEN:-}"
+        if [ -z "${SERVER_URL:-}" ] || [ -z "${SERVER_API_KEY:-}" ]; then
+          . ./.env.development
         fi
-      description: Download the GraphQL schema from the configured Supabase endpoint.
+        token="${token:-${SCHEMA_AUTH_TOKEN:-}}"
+        if [ -z "$token" ]; then
+          ref=$(printf '%s' "$SUPABASE_URL" | sed -E 's#https://([^.]+)\.supabase\.co.*#\1#')
+          token=$(supabase projects api-keys --project-ref "$ref" 2>/dev/null | python3 -c 'import sys,json; s=sys.stdin.read(); i=s.find("{"); d=json.loads(s[i:]); print(next(k["api_key"] for k in d["keys"] if k.get("id") == "service_role"))')
+        fi
+        if [ -z "$token" ]; then
+          echo "No service_role token: set SCHEMA_AUTH_TOKEN or log in with the Supabase CLI." >&2
+          exit 1
+        fi
+        get-graphql-schema "$SERVER_URL" --header "apikey=$SERVER_API_KEY" \
+          --header "Authorization=Bearer $token" \
+          > app/lib/features/_shared/data/data_sources/schema.graphql
+      description: Regenerate the complete GraphQL schema with a service_role token.
 
     splash_screen:
       exec: flutter pub run flutter_native_splash:create
