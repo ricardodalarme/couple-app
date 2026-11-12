@@ -65,8 +65,19 @@ melos:
       description: Run `dart format` for all packages and fail if any files need to be formatted.
 
     test:
-      run: dart run very_good_cli:very_good test -r -- --no-pub
-      description: Run all tests available.
+      exec: |
+        if ! find test -name '*_test.dart' -print -quit | grep -q .; then
+          echo "No test files; skipping."
+          exit 0
+        fi
+        if grep -q "sdk: flutter" pubspec.yaml; then
+          flutter test --no-pub
+        else
+          dart test
+        fi
+      description: Run tests in every workspace package only.
+      packageFilters:
+        dirExists: test
 
     # App commands
     l10n:
