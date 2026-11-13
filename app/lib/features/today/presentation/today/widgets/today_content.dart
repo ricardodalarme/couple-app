@@ -30,9 +30,43 @@ class const TodayContent({
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n.today;
-    final moodL10n = context.l10n.mood;
     final idea = home.idea;
+
+    if (home.isPausedAt(DateTime.now())) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TodayHeader(home: home, selfName: selfName, isFirstDay: isFirstDay),
+          const SizedBox(height: AppSpace.s20),
+          TodayPause(home: home),
+        ],
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _HeroSection(home: home, selfName: selfName, isFirstDay: isFirstDay),
+        _PartnerSection(
+          home: home,
+          isFirstDay: isFirstDay,
+          isDiscreet: isDiscreet,
+          partnerHint: partnerHint,
+        ),
+        if (idea != null) _IdeaSection(idea: idea),
+      ],
+    );
+  }
+}
+
+class const _HeroSection({
+  required final TodayHome home,
+  required final String? selfName,
+  required final bool isFirstDay,
+}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.today;
     final isAlone = !home.isPaired;
     final today = home.localDate ?? DateTime.now();
     final weekStart = DateTime(
@@ -44,26 +78,6 @@ class const TodayContent({
     for (final day in home.slipDays) {
       final index = DateTime(day.year, day.month, day.day).difference(weekStart).inDays;
       if (index >= 0 && index < 7) weekCounts[index]++;
-    }
-    const homeMoods = [
-      // Hoje shows the board's five-mood subset; the Mood screen keeps all six.
-      MoodKind.happy,
-      MoodKind.loving,
-      MoodKind.tired,
-      MoodKind.stressed,
-      MoodKind.sad,
-    ];
-    final selectedMood = home.myMood == null ? null : homeMoods.indexOf(home.myMood!);
-
-    if (home.isPausedAt(DateTime.now())) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TodayHeader(home: home, selfName: selfName, isFirstDay: isFirstDay),
-          const SizedBox(height: AppSpace.s20),
-          TodayPause(home: home),
-        ],
-      );
     }
 
     return Column(
@@ -133,6 +147,35 @@ class const TodayContent({
             ),
           ),
         ],
+      ],
+    );
+  }
+}
+
+class const _PartnerSection({
+  required final TodayHome home,
+  required final bool isFirstDay,
+  required final bool isDiscreet,
+  required final String? partnerHint,
+}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.today;
+    final moodL10n = context.l10n.mood;
+    final isAlone = !home.isPaired;
+    const homeMoods = [
+      // Hoje shows the board's five-mood subset; the Mood screen keeps all six.
+      MoodKind.happy,
+      MoodKind.loving,
+      MoodKind.tired,
+      MoodKind.stressed,
+      MoodKind.sad,
+    ];
+    final selectedMood = home.myMood == null ? null : homeMoods.indexOf(home.myMood!);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
         if (!isDiscreet && home.isPaired && home.partnerMood?.isVisible == true) ...[
           const SizedBox(height: AppSpace.s12),
           PartnerMoodHint(
@@ -182,19 +225,30 @@ class const TodayContent({
             onTap: () => context.pushRoute(const InviteRoute()),
           ),
         ],
-        if (idea != null) ...[
-          const SizedBox(height: AppSpace.s24),
-          BaseSectionHeader(title: l10n.forToday),
-          const SizedBox(height: AppSpace.s10),
-          BaseListCard(
-            categoryLabel: l10n.ideaLabel,
-            category: AppCategory.idea,
-            title: idea.title,
-            supportText: idea.body,
-            face: FaceKind.smile,
-            onTap: () => context.pushRoute(IdeaDetailRoute(slug: idea.slug)),
-          ),
-        ],
+      ],
+    );
+  }
+}
+
+class const _IdeaSection({required final Suggestion idea}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.today;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const SizedBox(height: AppSpace.s24),
+        BaseSectionHeader(title: l10n.forToday),
+        const SizedBox(height: AppSpace.s10),
+        BaseListCard(
+          categoryLabel: l10n.ideaLabel,
+          category: AppCategory.idea,
+          title: idea.title,
+          supportText: idea.body,
+          face: FaceKind.smile,
+          onTap: () => context.pushRoute(IdeaDetailRoute(slug: idea.slug)),
+        ),
       ],
     );
   }
