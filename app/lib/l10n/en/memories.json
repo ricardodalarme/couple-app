@@ -33,6 +33,9 @@
   "add": "Add a memory",
   "save": "Save memory",
   "delete": "Delete",
+  "deleteTitle": "Delete this memory?",
+  "deleteText": "It disappears from the timeline for both of you.",
+  "deleteConfirm": "Delete",
   "monthsShort": [
     "Jan",
     "Feb",

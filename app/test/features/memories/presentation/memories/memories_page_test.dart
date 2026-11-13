@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/memories/data/models/memory.dart';
 import 'package:flutter_bloc_starter/features/memories/data/repositories/memories_repository.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/cubit/memories_cubit.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/memories_page.dart';
@@ -19,6 +20,7 @@ void main() {
   setUp(() {
     repository = _MockMemoriesRepository();
     when(() => repository.getMemories()).thenAnswer((_) async => []);
+    when(() => repository.deleteMemory(any())).thenAnswer((_) async {});
     when(
       () => repository.addMemory(
         id: any(named: 'id'),
@@ -95,5 +97,28 @@ void main() {
         happenedOn: any(named: 'happenedOn'),
       ),
     );
+  });
+
+  testWidgets('deleting a memory asks before removing it', (tester) async {
+    when(() => repository.getMemories()).thenAnswer(
+      (_) async => [
+        Memory(id: 'm1', title: 'Primeiro jantar', happenedOn: DateTime(2026, 5, 12)),
+      ],
+    );
+    final cubit = await build();
+
+    await pumpPage(tester, cubit);
+    await tester.tap(find.text('Apagar'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Apagar esta memória?'), findsOneWidget);
+    verifyNever(() => repository.deleteMemory(any()));
+
+    await tester.tap(
+      find.descendant(of: find.byType(BaseConfirmSheet), matching: find.text('Apagar')),
+    );
+    await tester.pumpAndSettle();
+
+    verify(() => repository.deleteMemory('m1')).called(1);
   });
 }

@@ -1207,6 +1207,15 @@ class Translations$dates$pt {
   /// pt: 'Apagar'
   String get delete => 'Apagar';
 
+  /// pt: 'Apagar esta data?'
+  String get deleteTitle => 'Apagar esta data?';
+
+  /// pt: 'Ela some do calendário para vocês dois.'
+  String get deleteText => 'Ela some do calendário para vocês dois.';
+
+  /// pt: 'Apagar'
+  String get deleteConfirm => 'Apagar';
+
   /// pt: 'Adicionar'
   String get add => 'Adicionar';
 
@@ -3530,6 +3539,15 @@ class Translations$memories$pt {
   /// pt: 'Apagar'
   String get delete => 'Apagar';
 
+  /// pt: 'Apagar esta memória?'
+  String get deleteTitle => 'Apagar esta memória?';
+
+  /// pt: 'Ela some da linha do tempo para vocês dois.'
+  String get deleteText => 'Ela some da linha do tempo para vocês dois.';
+
+  /// pt: 'Apagar'
+  String get deleteConfirm => 'Apagar';
+
   List<String> get monthsShort => [
     'jan',
     'fev',
@@ -3942,9 +3960,6 @@ class Translations$notificationPermission$pt {
 
   /// pt: 'Os lembretes estão desligados. Ligue nas configurações.'
   String get offBanner => 'Os lembretes estão desligados. Ligue nas configurações.';
-
-  /// pt: 'Abrir ajustes'
-  String get openSettings => 'Abrir ajustes';
 
   /// pt: 'Fechar'
   String get close => 'Fechar';
@@ -9362,6 +9377,9 @@ extension on Translations {
           'dates.dayOnly' => ({required Object day, required Object month}) => '${day} ${month}',
           'dates.saveDate' => 'Guardar data',
           'dates.delete' => 'Apagar',
+          'dates.deleteTitle' => 'Apagar esta data?',
+          'dates.deleteText' => 'Ela some do calendário para vocês dois.',
+          'dates.deleteConfirm' => 'Apagar',
           'dates.add' => 'Adicionar',
           'dates.emptyDatesTitle' => 'Nenhuma data ainda',
           'dates.emptyDatesText' => 'Guarde aniversários e datas que importam. Avisamos antes.',
@@ -9515,14 +9533,14 @@ extension on Translations {
             'Isso ajuda a retomar depois da briga. Um pedido de desculpas curto costuma bastar.',
           'fightStyle.practices.avoid' =>
             'Isso ajuda a pausar antes de piorar. Marque um momento curto para retomar.',
+          _ => null,
+        } ??
+        switch (path) {
           'fightStyle.practices.other' => '',
           'fightStyle.partnerSignal' => ({
             required Object name,
           }) => 'Combine com ${name} um sinal de volta.',
           'fightStyle.addToTools' => 'Adicionar às minhas ferramentas de reparo',
-          _ => null,
-        } ??
-        switch (path) {
           'fightStyle.addedToTools' => 'Já está nas suas ferramentas',
           'fightStyle.keepMine' => 'Guardar só para mim',
           'fightStyle.retake' => 'Refazer o exercício',
@@ -10222,12 +10240,12 @@ extension on Translations {
           'intro.continueButton' => 'Continuar',
           'intro.phase.title' => 'Onde vocês estão agora?',
           'intro.phase.titleHighlight' => 'agora',
-          'intro.phase.subtitle' => 'Escolha o mais próximo. Você pode mudar depois.',
-          'intro.phase.options.dating' => 'Namorando',
-          'intro.phase.options.living_together' => 'Moramos juntos',
           _ => null,
         } ??
         switch (path) {
+          'intro.phase.subtitle' => 'Escolha o mais próximo. Você pode mudar depois.',
+          'intro.phase.options.dating' => 'Namorando',
+          'intro.phase.options.living_together' => 'Moramos juntos',
           'intro.phase.options.engaged' => 'Noivos',
           'intro.phase.options.married' => 'Casados',
           'intro.phase.options.with_kids' => 'Com filhos',
@@ -10525,6 +10543,9 @@ extension on Translations {
           'memories.add' => 'Adicionar memória',
           'memories.save' => 'Guardar memória',
           'memories.delete' => 'Apagar',
+          'memories.deleteTitle' => 'Apagar esta memória?',
+          'memories.deleteText' => 'Ela some da linha do tempo para vocês dois.',
+          'memories.deleteConfirm' => 'Apagar',
           'memories.monthsShort.0' => 'jan',
           'memories.monthsShort.1' => 'fev',
           'memories.monthsShort.2' => 'mar',
@@ -10707,7 +10728,6 @@ extension on Translations {
           'notificationPermission.allow' => 'Permitir',
           'notificationPermission.offBanner' =>
             'Os lembretes estão desligados. Ligue nas configurações.',
-          'notificationPermission.openSettings' => 'Abrir ajustes',
           'notificationPermission.close' => 'Fechar',
           'notificationPreferences.title' => 'Notificações',
           'notificationPreferences.subtitle' => 'Escolha o que chega e quando. Nada de cobrança.',
@@ -10798,14 +10818,14 @@ extension on Translations {
           'pause.sentTitle' => 'Pausa enviada',
           'pause.sentText' =>
             'O Hoje fica em pausa para os dois. Quando estiver pronto(a), volte por lá.',
+          _ => null,
+        } ??
+        switch (path) {
           'pause.done' => 'Pronto',
           'pause.errors.INVALID_RETURN_TIME' => 'Esse horário de volta não vale. Escolha outro.',
           'pause.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'pause.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
           'places.title' => 'Lugares',
-          _ => null,
-        } ??
-        switch (path) {
           'places.privacyNote' => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.',
           'places.memoryOne' => '1 memória',
           'places.memoryMany' => ({required Object count}) => '${count} memórias',
@@ -11366,14 +11386,14 @@ extension on Translations {
           'repair.learning.subtitle' => 'Fica só com você e pode ser apagado quando quiser.',
           'repair.learning.kinds.trigger' => 'O que me incomoda',
           'repair.learning.kinds.need' => 'O que eu preciso',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.learning.kinds.good_fix' => 'O que ajudou',
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Escreva em uma ou duas frases',
           'repair.learning.noteErrors.empty' => 'Escreva o que você aprendeu',
           'repair.learning.noteErrors.tooLong' => 'A nota está muito longa',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.learning.save' => 'Salvar',
           'repair.learning.listTitle' => 'Seus aprendizados',
           'repair.learning.delete' => 'Apagar',
@@ -11963,14 +11983,14 @@ extension on Translations {
                   one: 'Seus slips privados: 1 esta semana',
                   other: 'Seus slips privados: ${count} esta semana',
                 ),
+          _ => null,
+        } ??
+        switch (path) {
           'today.sundayCardLabel' => 'Cartão de domingo',
           'today.sundayCardTitle' => 'Seu cartão desta semana',
           'today.inviteCardLabel' => 'Convite',
           'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
           'today.inviteCardTitleNoName' => 'Convidar sua pessoa',
-          _ => null,
-        } ??
-        switch (path) {
           'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
           'today.privateTag' => 'Só seu',
           'today.privateQuestion' => 'Como foi o seu dia, de verdade?',

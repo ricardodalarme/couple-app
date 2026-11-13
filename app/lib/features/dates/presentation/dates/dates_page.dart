@@ -147,6 +147,17 @@ class const _DatesList() extends StatelessWidget {
     final dates = context.select((DatesCubit cubit) => cubit.state.dates);
     final cubit = context.read<DatesCubit>();
 
+    Future<void> confirmDelete(ImportantDate date) async {
+      final confirmed = await BaseConfirmSheet.show(
+        context: context,
+        title: l10n.deleteTitle,
+        text: l10n.deleteText,
+        confirmText: l10n.deleteConfirm,
+        isDestructive: true,
+      );
+      if (confirmed) await cubit.deleteDate(date);
+    }
+
     return SkeletonizerResourceWidget<List<ImportantDate>>(
       dates,
       fakeValue: [ImportantDate.fake()],
@@ -164,7 +175,7 @@ class const _DatesList() extends StatelessWidget {
                     ),
                     trailing: BaseTextLink(
                       text: l10n.delete,
-                      onPressed: () => cubit.deleteDate(date),
+                      onPressed: () => confirmDelete(date),
                     ),
                   ),
               ],

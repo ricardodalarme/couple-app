@@ -1057,6 +1057,12 @@ class _Translations$dates$en extends Translations$dates$pt {
   @override
   String get delete => 'Delete';
   @override
+  String get deleteTitle => 'Delete this date?';
+  @override
+  String get deleteText => 'It disappears from the calendar for both of you.';
+  @override
+  String get deleteConfirm => 'Delete';
+  @override
   String get add => 'Add';
   @override
   String get emptyDatesTitle => 'No dates yet';
@@ -2906,6 +2912,12 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get delete => 'Delete';
   @override
+  String get deleteTitle => 'Delete this memory?';
+  @override
+  String get deleteText => 'It disappears from the timeline for both of you.';
+  @override
+  String get deleteConfirm => 'Delete';
+  @override
   List<String> get monthsShort => [
     'Jan',
     'Feb',
@@ -3236,8 +3248,6 @@ class _Translations$notificationPermission$en extends Translations$notificationP
   String get allow => 'Allow';
   @override
   String get offBanner => 'Reminders are off. Turn them on in settings.';
-  @override
-  String get openSettings => 'Open settings';
   @override
   String get close => 'Close';
 }
@@ -7599,6 +7609,9 @@ extension on TranslationsEn {
           'dates.dayOnly' => ({required Object month, required Object day}) => '${month} ${day}',
           'dates.saveDate' => 'Save date',
           'dates.delete' => 'Delete',
+          'dates.deleteTitle' => 'Delete this date?',
+          'dates.deleteText' => 'It disappears from the calendar for both of you.',
+          'dates.deleteConfirm' => 'Delete',
           'dates.add' => 'Add',
           'dates.emptyDatesTitle' => 'No dates yet',
           'dates.emptyDatesText' => 'Keep birthdays and dates that matter. We remind you ahead.',
@@ -7749,14 +7762,14 @@ extension on TranslationsEn {
             'That helps you return after a fight. A short apology often does it.',
           'fightStyle.practices.avoid' =>
             'That helps you pause before it gets worse. Choose a short moment to come back to it.',
+          _ => null,
+        } ??
+        switch (path) {
           'fightStyle.practices.other' => '',
           'fightStyle.partnerSignal' => ({
             required Object name,
           }) => 'Agree on a signal with ${name} to come back.',
           'fightStyle.addToTools' => 'Add to my repair tools',
-          _ => null,
-        } ??
-        switch (path) {
           'fightStyle.addedToTools' => 'Already in your repair tools',
           'fightStyle.keepMine' => 'Keep it to myself',
           'fightStyle.retake' => 'Take it again',
@@ -8453,12 +8466,12 @@ extension on TranslationsEn {
           'intro.continueButton' => 'Continue',
           'intro.phase.title' => 'Where are you two right now?',
           'intro.phase.titleHighlight' => 'right now',
-          'intro.phase.subtitle' => 'Pick the closest one. You can change it later.',
-          'intro.phase.options.dating' => 'Dating',
-          'intro.phase.options.living_together' => 'Living together',
           _ => null,
         } ??
         switch (path) {
+          'intro.phase.subtitle' => 'Pick the closest one. You can change it later.',
+          'intro.phase.options.dating' => 'Dating',
+          'intro.phase.options.living_together' => 'Living together',
           'intro.phase.options.engaged' => 'Engaged',
           'intro.phase.options.married' => 'Married',
           'intro.phase.options.with_kids' => 'With kids',
@@ -8760,6 +8773,9 @@ extension on TranslationsEn {
           'memories.add' => 'Add a memory',
           'memories.save' => 'Save memory',
           'memories.delete' => 'Delete',
+          'memories.deleteTitle' => 'Delete this memory?',
+          'memories.deleteText' => 'It disappears from the timeline for both of you.',
+          'memories.deleteConfirm' => 'Delete',
           'memories.monthsShort.0' => 'Jan',
           'memories.monthsShort.1' => 'Feb',
           'memories.monthsShort.2' => 'Mar',
@@ -8938,7 +8954,6 @@ extension on TranslationsEn {
           'notificationPermission.notNow' => 'Not now',
           'notificationPermission.allow' => 'Allow',
           'notificationPermission.offBanner' => 'Reminders are off. Turn them on in settings.',
-          'notificationPermission.openSettings' => 'Open settings',
           'notificationPermission.close' => 'Close',
           'notificationPreferences.title' => 'Notifications',
           'notificationPreferences.subtitle' => 'Choose what arrives and when. No pressure.',
@@ -9027,14 +9042,14 @@ extension on TranslationsEn {
           'pause.sentTitle' => 'Pause sent',
           'pause.sentText' =>
             'Today is on pause for both of you. When you\'re ready, come back there.',
+          _ => null,
+        } ??
+        switch (path) {
           'pause.done' => 'Done',
           'pause.errors.INVALID_RETURN_TIME' => 'That return time doesn\'t work. Pick another.',
           'pause.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'pause.errors.other' => 'Couldn\'t send right now. Your message is still here.',
           'places.title' => 'Places',
-          _ => null,
-        } ??
-        switch (path) {
           'places.privacyNote' =>
             'Only the name of the place. The app never reads or stores your location.',
           'places.memoryOne' => '1 memory',
@@ -9597,14 +9612,14 @@ extension on TranslationsEn {
           'repair.learning.subtitle' => 'It stays with you and can be deleted whenever you like.',
           'repair.learning.kinds.trigger' => 'What bothers me',
           'repair.learning.kinds.need' => 'What I need',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.learning.kinds.good_fix' => 'What helped',
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Write one or two sentences',
           'repair.learning.noteErrors.empty' => 'Write what you learned',
           'repair.learning.noteErrors.tooLong' => 'The note is too long',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.learning.save' => 'Save',
           'repair.learning.listTitle' => 'Your learnings',
           'repair.learning.delete' => 'Delete',
@@ -10191,14 +10206,14 @@ extension on TranslationsEn {
                   one: 'Your private slips: 1 this week',
                   other: 'Your private slips: ${count} this week',
                 ),
+          _ => null,
+        } ??
+        switch (path) {
           'today.sundayCardLabel' => 'Sunday card',
           'today.sundayCardTitle' => 'Your card for this week',
           'today.inviteCardLabel' => 'Invite',
           'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',
           'today.inviteCardTitleNoName' => 'Invite your person',
-          _ => null,
-        } ??
-        switch (path) {
           'today.inviteCardText' => 'Shared cards and tools need both of you.',
           'today.privateTag' => 'Only yours',
           'today.privateQuestion' => 'How was your day, really?',

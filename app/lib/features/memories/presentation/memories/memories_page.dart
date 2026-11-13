@@ -72,6 +72,17 @@ class const _MemoriesTimeline() extends StatelessWidget {
     final memories = context.select((MemoriesCubit cubit) => cubit.state.memories);
     final cubit = context.read<MemoriesCubit>();
 
+    Future<void> confirmDelete(Memory memory) async {
+      final confirmed = await BaseConfirmSheet.show(
+        context: context,
+        title: l10n.deleteTitle,
+        text: l10n.deleteText,
+        confirmText: l10n.deleteConfirm,
+        isDestructive: true,
+      );
+      if (confirmed) await cubit.delete(memory);
+    }
+
     return SkeletonizerResourceWidget<List<Memory>>(
       memories,
       fakeValue: [Memory.fake()],
@@ -96,7 +107,7 @@ class const _MemoriesTimeline() extends StatelessWidget {
                     ].join(' · '),
                     trailing: BaseTextLink(
                       text: l10n.delete,
-                      onPressed: () => cubit.delete(memory),
+                      onPressed: () => confirmDelete(memory),
                     ),
                   ),
               ],

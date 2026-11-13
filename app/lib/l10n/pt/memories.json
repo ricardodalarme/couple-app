@@ -33,6 +33,9 @@
   "add": "Adicionar memória",
   "save": "Guardar memória",
   "delete": "Apagar",
+  "deleteTitle": "Apagar esta memória?",
+  "deleteText": "Ela some da linha do tempo para vocês dois.",
+  "deleteConfirm": "Apagar",
   "monthsShort": [
     "jan",
     "fev",
