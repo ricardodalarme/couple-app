@@ -23,6 +23,7 @@
   "ai": "AI (when available)",
   "terms": "Terms",
   "required": "Required",
+  "requiredNote": "Sensitive data and Terms are required to use the app.",
   "consentsNote": "Changes apply now.",
   "saveError": "Could not save now. Try again.",
   "errorTitle": "Could not load the consents",

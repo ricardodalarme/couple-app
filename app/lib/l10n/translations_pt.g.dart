@@ -4527,6 +4527,9 @@ class Translations$privacy$pt {
   /// pt: 'Obrigatório'
   String get required => 'Obrigatório';
 
+  /// pt: 'Dados sensíveis e Termos são obrigatórios para usar o app.'
+  String get requiredNote => 'Dados sensíveis e Termos são obrigatórios para usar o app.';
+
   /// pt: 'Mudanças valem agora.'
   String get consentsNote => 'Mudanças valem agora.';
 
@@ -10926,6 +10929,7 @@ extension on Translations {
           'privacy.ai' => 'IA (quando disponível)',
           'privacy.terms' => 'Termos',
           'privacy.required' => 'Obrigatório',
+          'privacy.requiredNote' => 'Dados sensíveis e Termos são obrigatórios para usar o app.',
           'privacy.consentsNote' => 'Mudanças valem agora.',
           'privacy.saveError' => 'Não deu para salvar agora. Tente de novo.',
           'privacy.errorTitle' => 'Não deu para carregar os consentimentos',
@@ -11372,10 +11376,10 @@ extension on Translations {
           'repair.learning.kinds.good_fix' => 'O que ajudou',
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Escreva em uma ou duas frases',
-          'repair.learning.noteErrors.empty' => 'Escreva o que você aprendeu',
           _ => null,
         } ??
         switch (path) {
+          'repair.learning.noteErrors.empty' => 'Escreva o que você aprendeu',
           'repair.learning.noteErrors.tooLong' => 'A nota está muito longa',
           'repair.learning.save' => 'Salvar',
           'repair.learning.listTitle' => 'Seus aprendizados',
@@ -11969,10 +11973,10 @@ extension on Translations {
           'today.sundayCardLabel' => 'Cartão de domingo',
           'today.sundayCardTitle' => 'Seu cartão desta semana',
           'today.inviteCardLabel' => 'Convite',
-          'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
           _ => null,
         } ??
         switch (path) {
+          'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
           'today.inviteCardTitleNoName' => 'Convidar sua pessoa',
           'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
           'today.privateTag' => 'Só seu',

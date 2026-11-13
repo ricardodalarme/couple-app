@@ -3691,6 +3691,8 @@ class _Translations$privacy$en extends Translations$privacy$pt {
   @override
   String get required => 'Required';
   @override
+  String get requiredNote => 'Sensitive data and Terms are required to use the app.';
+  @override
   String get consentsNote => 'Changes apply now.';
   @override
   String get saveError => 'Could not save now. Try again.';
@@ -9156,6 +9158,7 @@ extension on TranslationsEn {
           'privacy.ai' => 'AI (when available)',
           'privacy.terms' => 'Terms',
           'privacy.required' => 'Required',
+          'privacy.requiredNote' => 'Sensitive data and Terms are required to use the app.',
           'privacy.consentsNote' => 'Changes apply now.',
           'privacy.saveError' => 'Could not save now. Try again.',
           'privacy.errorTitle' => 'Could not load the consents',
@@ -9603,10 +9606,10 @@ extension on TranslationsEn {
           'repair.learning.kinds.good_fix' => 'What helped',
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Write one or two sentences',
-          'repair.learning.noteErrors.empty' => 'Write what you learned',
           _ => null,
         } ??
         switch (path) {
+          'repair.learning.noteErrors.empty' => 'Write what you learned',
           'repair.learning.noteErrors.tooLong' => 'The note is too long',
           'repair.learning.save' => 'Save',
           'repair.learning.listTitle' => 'Your learnings',
@@ -10197,10 +10200,10 @@ extension on TranslationsEn {
           'today.sundayCardLabel' => 'Sunday card',
           'today.sundayCardTitle' => 'Your card for this week',
           'today.inviteCardLabel' => 'Invite',
-          'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',
           _ => null,
         } ??
         switch (path) {
+          'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',
           'today.inviteCardTitleNoName' => 'Invite your person',
           'today.inviteCardText' => 'Shared cards and tools need both of you.',
           'today.privateTag' => 'Only yours',

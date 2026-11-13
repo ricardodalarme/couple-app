@@ -36,18 +36,27 @@ class const ConsentsPage({super.key}) extends StatelessWidget implements AutoRou
                 BaseListGroup(
                   children: [
                     for (final kind in ConsentKind.values)
-                      BaseListTile(
-                        title: _label(l10n, kind),
-                        subtitle: kind.isRequired ? l10n.required : null,
-                        control: BaseSwitch(
-                          value: value[kind] ?? false,
-                          semanticLabel: _label(l10n, kind),
-                          onChanged: kind.isRequired ? (_) {} : (_) => cubit.toggle(kind),
+                      if (kind.isRequired)
+                        BaseListTile(
+                          title: _label(l10n, kind),
+                          value: l10n.required,
+                          icon: AppIcons.lock,
+                        )
+                      else
+                        BaseListTile(
+                          title: _label(l10n, kind),
+                          onTap: () => cubit.toggle(kind),
+                          control: BaseSwitch(
+                            value: value[kind] ?? false,
+                            semanticLabel: _label(l10n, kind),
+                            onChanged: (_) => cubit.toggle(kind),
+                          ),
                         ),
-                      ),
                   ],
                 ),
                 const SizedBox(height: AppSpace.s12),
+                BaseNote(text: l10n.requiredNote),
+                const SizedBox(height: AppSpace.s8),
                 BaseNote(text: l10n.consentsNote, icon: AppIcons.info),
               ],
             ),

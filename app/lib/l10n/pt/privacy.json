@@ -23,6 +23,7 @@
   "ai": "IA (quando disponível)",
   "terms": "Termos",
   "required": "Obrigatório",
+  "requiredNote": "Dados sensíveis e Termos são obrigatórios para usar o app.",
   "consentsNote": "Mudanças valem agora.",
   "saveError": "Não deu para salvar agora. Tente de novo.",
   "errorTitle": "Não deu para carregar os consentimentos",
