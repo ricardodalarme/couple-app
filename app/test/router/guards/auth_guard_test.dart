@@ -35,7 +35,9 @@ void main() {
     LocaleSettings.setLocaleSync(AppLocale.pt);
     authentication = _MockAuthenticationRepository();
     pending = PendingRoute();
-    router = AppRouter(guard: AuthGuard(authentication: authentication, pending: pending));
+    router = AppRouter(
+      guard: AuthGuard(authentication: authentication, pending: pending),
+    );
 
     final slips = _MockSlipRepository();
     when(() => slips.getSlip('s1')).thenAnswer((_) async => _slip);
