@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -118,7 +119,7 @@ class const _RelationshipForm() extends StatelessWidget {
             ),
             onChanged: cubit.onDateChanged,
           ),
-          if (togetherSince != null && togetherSince.isAfter(DateTime.now())) ...[
+          if (togetherSince != null && togetherSince.isAfter(clock.now())) ...[
             const SizedBox(height: AppSpace.s8),
             BaseNote(text: l10n.futureDateNote, icon: AppIcons.calendar),
           ],

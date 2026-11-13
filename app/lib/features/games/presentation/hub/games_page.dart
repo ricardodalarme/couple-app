@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -70,8 +71,8 @@ class const _GamesBody({required final GamesOverview overview}) extends Stateles
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.games.hub;
-    final entries = overview.entries(DateTime.now());
-    final invitation = overview.pendingInvitation(DateTime.now());
+    final entries = overview.entries(clock.now());
+    final invitation = overview.pendingInvitation(clock.now());
 
     return BaseStackedContent(
       body: Column(

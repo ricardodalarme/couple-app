@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_play.dart';
 import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_active_view.dart';
@@ -12,7 +13,7 @@ import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/ga
 class const GamePlayView({required final GamePlay play, super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return switch (play.stage(DateTime.now())) {
+    return switch (play.stage(clock.now())) {
       GameStage.noPartner => GameNoPartnerView(play: play),
       GameStage.noContent => GameNoContentView(play: play),
       GameStage.start => GameStartView(play: play),

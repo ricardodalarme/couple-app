@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,7 +63,7 @@ class SlipKindCubit({required final SlipRepository _slipRepository}) extends Cub
       final outcome = await _slipRepository.saveQuick(
         id: id,
         body: state.text.trim(),
-        createdAt: DateTime.now(),
+        createdAt: clock.now(),
         kind: kind,
         feeling: kind == 'specific' ? _trimmedOrNull(state.feeling) : null,
         planNote: kind == 'if_then' ? state.plan.trim() : null,

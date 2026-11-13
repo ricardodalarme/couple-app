@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:design_system/design_system_l10n.dart';
 
@@ -135,7 +136,7 @@ class _BaseCalendarGridState() extends State<BaseCalendarGrid> {
     final colors = context.colors;
     final text = context.text;
     final calendarL10n = context.designSystemL10nOrBase.input.calendar;
-    final today = widget.today ?? DateTime.now();
+    final today = widget.today ?? clock.now();
     final first = DateTime(_visibleMonth.year, _visibleMonth.month);
     final daysInMonth = DateTime(first.year, first.month + 1, 0).day;
     final offset = _firstWeekdayOffset;

@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +26,7 @@ class StoryDatesCubit({required final HistoryRepository _historyRepository})
   }
 
   void selectKind(String kind, {DateTime? currentDate}) {
-    emit(state.copyWith(selectedKind: kind, draftDate: currentDate ?? DateTime.now()));
+    emit(state.copyWith(selectedKind: kind, draftDate: currentDate ?? clock.now()));
   }
 
   void onDraftDateChanged(DateTime date) => emit(state.copyWith(draftDate: date));

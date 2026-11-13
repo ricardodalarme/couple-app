@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clock/clock.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/local/hard_conversation_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
@@ -29,7 +30,7 @@ class HardConversationRepository({
 
     try {
       final draft = HardConversationDraft.fromMap(jsonDecode(raw) as Map<String, dynamic>);
-      if (DateTime.now().difference(draft.savedAt) < hardConversationDraftTtl) return draft;
+      if (clock.now().difference(draft.savedAt) < hardConversationDraftTtl) return draft;
     } on Object {
       // A malformed draft is treated like an expired one.
     }

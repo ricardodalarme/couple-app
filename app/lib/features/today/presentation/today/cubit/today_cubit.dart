@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
@@ -90,7 +91,7 @@ class TodayCubit({
     final returnAt = home.pauseReturnAt;
     if (returnAt == null) return;
 
-    final wait = returnAt.difference(DateTime.now());
+    final wait = returnAt.difference(clock.now());
     if (wait.isNegative) return;
 
     _pauseTimer = Timer(wait + const Duration(seconds: 1), load);
@@ -118,7 +119,7 @@ class TodayCubit({
   bool _isFirstDay(AccountSettings? settings) {
     final onboardedAt = settings?.onboardedAt?.toLocal();
     if (onboardedAt == null) return false;
-    final now = DateTime.now();
+    final now = clock.now();
 
     return onboardedAt.year == now.year &&
         onboardedAt.month == now.month &&

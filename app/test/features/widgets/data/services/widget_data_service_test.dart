@@ -91,7 +91,7 @@ void main() {
       final discreetPayload = WidgetPayload.fake().copyWith(
         discreet: true,
         cachedPhotoPath: '/shared/home_widget/repara_widget_photo_path.jpg',
-        pauseReturnAt: DateTime.now().add(const Duration(hours: 1)).toUtc().toIso8601String(),
+        pauseReturnAt: DateTime.utc(2026, 11, 11, 13).toIso8601String(),
         cardState: 'pause',
       );
 

@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +30,7 @@ class MilestoneCubit({required final HistoryRepository _historyRepository})
           body: existing.body ?? '',
           kind: existing.kind,
           precision: existing.precision,
-          date: existing.date ?? DateTime.now(),
+          date: existing.date ?? clock.now(),
           isShared: existing.isShared,
         ),
       );
@@ -38,7 +39,7 @@ class MilestoneCubit({required final HistoryRepository _historyRepository})
         state.copyWith(
           title: initialTitle ?? '',
           kind: initialKind ?? MilestoneKind.custom,
-          date: DateTime.now(),
+          date: clock.now(),
         ),
       );
     }
@@ -84,7 +85,7 @@ class MilestoneCubit({required final HistoryRepository _historyRepository})
         kind: state.kind,
         precision: state.precision,
         isShared: state.isShared,
-        date: state.isUnknownDate ? null : (state.date ?? DateTime.now()),
+        date: state.isUnknownDate ? null : (state.date ?? clock.now()),
         place: state.place,
         body: state.body,
         coupleId: state.coupleId,

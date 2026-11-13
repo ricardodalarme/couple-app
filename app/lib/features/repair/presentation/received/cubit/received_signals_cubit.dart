@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,7 +57,7 @@ class ReceivedSignalsCubit({
   }
 
   Future<void> _scheduleReminder() async {
-    final now = DateTime.now();
+    final now = clock.now();
     final tonight = DateTime(now.year, now.month, now.day, reminderHour);
     final at = tonight.isAfter(now.add(const Duration(minutes: 30)))
         ? tonight

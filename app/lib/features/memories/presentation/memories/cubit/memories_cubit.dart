@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,7 +51,7 @@ class MemoriesCubit({required final MemoriesRepository _memoriesRepository})
         title: state.title,
         body: state.body,
         place: state.place,
-        happenedOn: DateTime.now(),
+        happenedOn: clock.now(),
       );
       _pendingId = null;
       emit(

@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/shared/widget_surface_preview.dart';
@@ -13,7 +14,7 @@ class const OwnSmallWidgetsGrid({
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.widgets;
-    final now = DateTime.now();
+    final now = clock.now();
 
     if (!payload.isSignedIn) {
       return WidgetSurfacePreview(

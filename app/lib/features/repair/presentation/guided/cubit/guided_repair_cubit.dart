@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,7 +82,7 @@ class GuidedRepairCubit({
 
     emit(state.copyWith(completeAction: const Loading()));
     try {
-      final now = DateTime.now();
+      final now = clock.now();
       await _repairRepository.completeSession(id: session.id, now: now, feeling: state.feeling);
       if (state.followUp != FollowUp.none) {
         final days = state.followUp == FollowUp.tomorrow ? 1 : 3;

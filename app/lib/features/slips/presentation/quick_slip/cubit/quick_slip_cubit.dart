@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +28,7 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
 
   /// Restores a draft left less than an hour ago.
   void start() {
-    final draft = _slipRepository.readDraft(DateTime.now());
+    final draft = _slipRepository.readDraft(clock.now());
     if (draft == null) return;
 
     emit(state.copyWith(text: draft.text, category: draft.category));
@@ -53,7 +54,7 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
       final outcome = await _slipRepository.saveQuick(
         id: id,
         body: state.text.trim(),
-        createdAt: DateTime.now(),
+        createdAt: clock.now(),
         category: state.category,
       );
       await _slipRepository.clearDraft();
@@ -81,7 +82,7 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
   }
 
   Future<void> _persistDraft() =>
-      _slipRepository.saveDraft(text: state.text, category: state.category, now: DateTime.now());
+      _slipRepository.saveDraft(text: state.text, category: state.category, now: clock.now());
 
   @override
   Future<void> close() {

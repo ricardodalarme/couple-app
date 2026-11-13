@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_play.dart';
@@ -17,7 +18,7 @@ class const GameStartView({required final GamePlay play, super.key}) extends Sta
     final session = play.session;
     final note = switch (session) {
       GameSession(status: GameStatus.cancelled) => l10n.cancelledNote,
-      GameSession() when session.isExpired(DateTime.now()) => l10n.expiredNote,
+      GameSession() when session.isExpired(clock.now()) => l10n.expiredNote,
       _ => null,
     };
 

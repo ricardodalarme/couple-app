@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -80,7 +81,7 @@ class RitualEditCubit({
 
     emit(state.copyWith(saveAction: const Loading()));
     try {
-      await _togetherRepository.archiveRitual(state.ritual.id, now: DateTime.now());
+      await _togetherRepository.archiveRitual(state.ritual.id, now: clock.now());
       await _reminderService.update(await _togetherRepository.getRituals());
       emit(state.copyWith(saveAction: const Success(null)));
     } catch (exception) {

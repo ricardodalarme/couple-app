@@ -289,6 +289,29 @@ void main() {
 - Some packages have no tests yet — adding the first `test/<topic>_service_test.dart`
   following the SDK-mock pattern is fine.
 
+## Time
+
+Time comes from `package:clock`, never from `DateTime.now()`.
+
+- Production code calls `clock.now()`; this is why models, cubits and services
+  take no `DateTime` for "now".
+- A test that depends on the current time wraps its body in
+  `withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () { ... })` and derives
+  every fixture and expectation from that instant. Never assert against a
+  wall-clock value and never offset from `DateTime.now()` (a run near midnight
+  or across DST will flip it).
+- Timers still use `FakeAsync`/`blocTest`'s own fake clock; `withClock` only
+  fixes `clock.now()`.
+
+```dart
+test('yesterday is relative to the injected clock', () {
+  withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () {
+    final item = LearnedItem(createdAt: clock.now().subtract(const Duration(hours: 25)));
+    expect(labelFor(item), 'yesterday');
+  });
+});
+```
+
 ## Gotchas
 
 - Always `tearDown(() => cubit.close())` — leaked cubits fail the suite.

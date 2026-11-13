@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/queries/generated/WidgetOverview.graphql.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
@@ -55,7 +56,7 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
         : null;
 
     final moodNode = moodsCollection.edges.firstOrNull?.node;
-    final referenceNow = now ?? DateTime.now();
+    final referenceNow = now ?? clock.now();
 
     final rawPayload = WidgetPayload(
       isSignedIn: true,

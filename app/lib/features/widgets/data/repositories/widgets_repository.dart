@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/settings/data/data_sources/local/discreet_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
@@ -198,7 +199,7 @@ class WidgetsRepository({
       unopenedCards: 0,
       cardState: 'none',
       slipsCount: 0,
-      updatedAt: (now ?? DateTime.now()).toUtc().toIso8601String(),
+      updatedAt: (now ?? clock.now()).toUtc().toIso8601String(),
     ).sanitized(referenceNow: now);
     await _widgetDataService.writePayload(fallback, referenceNow: now);
     return fallback;

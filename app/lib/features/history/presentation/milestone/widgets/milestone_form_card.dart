@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
@@ -174,7 +175,7 @@ class const MilestoneFormCard({super.key}) extends StatelessWidget {
         if (!state.isUnknownDate) ...[
           const SizedBox(height: AppSpace.s12),
           BaseDateField(
-            value: state.date ?? DateTime.now(),
+            value: state.date ?? clock.now(),
             label: l10n.dateRowLabel,
             formatter: (date) => HistoryDateFormatter.formatMilestoneDate(
               l10n,

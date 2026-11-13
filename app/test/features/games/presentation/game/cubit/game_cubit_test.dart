@@ -20,7 +20,7 @@ void main() {
   late GamesRepository repository;
   late ProfileRepository profileRepository;
 
-  final created = DateTime.now();
+  final created = DateTime(2026, 3, 10, 12);
   const failure = LocalizedException(l10nKey: 'other');
   const alreadyOpen = LocalizedException(l10nKey: 'GAME_ALREADY_OPEN');
   const invalidIndex = LocalizedException(l10nKey: 'INVALID_GAME_INDEX');
@@ -146,7 +146,7 @@ void main() {
     },
     verify: (cubit) {
       verify(() => repository.invite(any())).called(1);
-      expect(cubit.state.current?.stage(DateTime.now()), GameStage.waiting);
+      expect(cubit.state.current?.stage(created), GameStage.waiting);
       expect(cubit.state.action, const Initial());
     },
   );
@@ -350,7 +350,7 @@ void main() {
     expect: () => [const GameState(), GameState(play: Success(finished))],
     verify: (cubit) {
       verify(() => repository.finishIfComplete(any())).called(1);
-      expect(cubit.state.current?.stage(DateTime.now()), GameStage.finished);
+      expect(cubit.state.current?.stage(created), GameStage.finished);
     },
   );
 
@@ -372,7 +372,7 @@ void main() {
     expect: () => [const GameState(), GameState(play: Success(ownDone))],
     verify: (cubit) {
       verify(() => repository.finishIfComplete(any())).called(1);
-      expect(cubit.state.current?.stage(DateTime.now()), GameStage.waitingForPartner);
+      expect(cubit.state.current?.stage(created), GameStage.waitingForPartner);
     },
   );
 

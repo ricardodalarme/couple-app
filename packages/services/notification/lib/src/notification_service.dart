@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:notification_service/src/notification_exception.dart';
@@ -87,11 +88,11 @@ class NotificationService({
   }
 
   Future<bool> _waitForApnsToken() async {
-    final deadline = DateTime.now().add(_apnsTokenTimeout);
+    final deadline = clock.now().add(_apnsTokenTimeout);
     while (true) {
       final token = await _client.getAPNSToken();
       if (token != null && token.isNotEmpty) return true;
-      if (!DateTime.now().isBefore(deadline)) return false;
+      if (!clock.now().isBefore(deadline)) return false;
       await _delayFor(_apnsTokenPollInterval);
     }
   }

@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +19,7 @@ class DayCubit({
   this : super(DayState(day: _today()));
 
   static DateTime _today() {
-    final now = DateTime.now();
+    final now = clock.now();
 
     return DateTime(now.year, now.month, now.day);
   }

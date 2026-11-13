@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clock/clock.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide_progress.dart';
 import 'package:preferences_service/preferences_service.dart';
 
@@ -21,7 +22,7 @@ class GuidesLocalDataSource({required final PreferencesService _preferencesServi
     if (raw == null) return null;
 
     final progress = _decode(raw);
-    if (progress == null || progress.isExpiredAt(now ?? DateTime.now())) {
+    if (progress == null || progress.isExpiredAt(now ?? clock.now())) {
       await deleteProgress(slug, ownerId: ownerId);
 
       return null;

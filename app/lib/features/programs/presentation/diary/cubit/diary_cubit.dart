@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +24,7 @@ class DiaryCubit({required final ProgramsRepository _programsRepository})
 
         return;
       }
-      final today = entries.where((entry) => entry.isOn(DateTime.now())).firstOrNull;
+      final today = entries.where((entry) => entry.isOn(clock.now())).firstOrNull;
       emit(
         state.copyWith(
           entries: Success(entries),
@@ -63,7 +64,7 @@ class DiaryCubit({required final ProgramsRepository _programsRepository})
   /// Opens today's entry when one exists, so a day never gets a second entry.
   void newEntry() {
     final today = switch (state.entries) {
-      Success(:final value) => value.where((entry) => entry.isOn(DateTime.now())).firstOrNull,
+      Success(:final value) => value.where((entry) => entry.isOn(clock.now())).firstOrNull,
       _ => null,
     };
     if (today != null) {
@@ -81,7 +82,7 @@ class DiaryCubit({required final ProgramsRepository _programsRepository})
     emit(state.copyWith(saveAction: const Loading()));
     try {
       final id = await _programsRepository.saveDiaryEntry(
-        entryDate: DateTime.now(),
+        entryDate: clock.now(),
         body: state.body.trim(),
         mood: state.mood,
         id: state.editingId,

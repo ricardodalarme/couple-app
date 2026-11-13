@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/games_data_source.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_item.dart';
@@ -35,7 +36,7 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
         }
 
         final session = overview.latestFor(kind);
-        final isOpen = session != null && session.isOpen(now ?? DateTime.now());
+        final isOpen = session != null && session.isOpen(now ?? clock.now());
         final isFinished = session?.status == GameStatus.finished;
         final available = isOpen ? const <GameItem>[] : await _available(kind, locale);
         if (session == null) {

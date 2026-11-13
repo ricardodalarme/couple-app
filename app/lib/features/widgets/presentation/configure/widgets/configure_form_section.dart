@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
@@ -25,7 +26,7 @@ class const ConfigureFormSection({
         )
         .sanitized();
 
-    final daysCount = previewPayload.daysTogetherOn(DateTime.now());
+    final daysCount = previewPayload.daysTogetherOn(clock.now());
     final previewTitle = switch ((previewPayload.discreet, initialFamily, daysCount)) {
       (true, _, _) => l10n.lockScreenDefault,
       (false, WidgetFamilyKind.partnerNote, _) =>

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:clock/clock.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
@@ -399,7 +400,7 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
   /// on Android it arms `HomeWidgetScheduledUpdateReceiver` via `AlarmManager`.
   Future<void> scheduleMidnightRollover({DateTime? referenceNow}) async {
     await initialize();
-    final now = (referenceNow ?? DateTime.now()).toLocal();
+    final now = (referenceNow ?? clock.now()).toLocal();
     final nextMidnight = DateTime(now.year, now.month, now.day + 1);
     for (final target in familyTargets.where((t) => t.refreshesAtMidnight)) {
       if (target.qualifiedAndroidProviderName == null) continue;

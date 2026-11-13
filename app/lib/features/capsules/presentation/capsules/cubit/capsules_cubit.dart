@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +34,7 @@ class CapsulesCubit({required final CapsulesRepository _capsulesRepository})
   /// Saves the capsule; on failure the text stays so it can be sent again.
   Future<void> save({DateTime? now}) async {
     final opensOn = state.opensOn;
-    if (opensOn == null || !state.canSave(now ?? DateTime.now()) || state.saveAction.isLoading) {
+    if (opensOn == null || !state.canSave(now ?? clock.now()) || state.saveAction.isLoading) {
       return;
     }
 

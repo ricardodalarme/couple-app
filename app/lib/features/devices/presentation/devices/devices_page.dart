@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -101,7 +102,7 @@ class const _DeviceTile({required final Device device, required final bool isRev
 
   String _registered(Translations$devices$pt l10n) {
     final local = device.lastSeenAt.toLocal();
-    final now = DateTime.now();
+    final now = clock.now();
     final today = DateTime(now.year, now.month, now.day);
     final day = DateTime(local.year, local.month, local.day);
 

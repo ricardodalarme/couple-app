@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +37,11 @@ void main() {
   late GamesRepository repository;
   late ProfileRepository profileRepository;
 
-  final created = DateTime.now().subtract(const Duration(hours: 1));
+  final fixedNow = DateTime(2026, 3, 10, 12);
+  final created = fixedNow.subtract(const Duration(hours: 1));
+
+  void testWithClock(String description, WidgetTesterCallback body) =>
+      testWidgets(description, (tester) => withClock(Clock.fixed(fixedNow), () => body(tester)));
 
   const a = GameItem(slug: 'a', title: 'Pergunta A');
   const b = GameItem(slug: 'b', title: 'Pergunta B');
@@ -121,7 +126,7 @@ void main() {
     await tester.pump();
   }
 
-  testWidgets('pick shows the prompt and both people as options', (tester) async {
+  testWithClock('pick shows the prompt and both people as options', (tester) async {
     final cubit = await loaded(gamePlay());
 
     await pumpPlay(tester, cubit);
@@ -144,7 +149,7 @@ void main() {
     expect(find.text('Pergunta B'), findsOneWidget);
   });
 
-  testWidgets('talk saves a written answer and advances', (tester) async {
+  testWithClock('talk saves a written answer and advances', (tester) async {
     final cubit = await loaded(
       gamePlay(
         kind: GameKind.neverHaveWe,
@@ -169,7 +174,7 @@ void main() {
     expect(find.text('Pergunta B'), findsOneWidget);
   });
 
-  testWidgets('talk can skip a question without an answer', (tester) async {
+  testWithClock('talk can skip a question without an answer', (tester) async {
     final cubit = await loaded(
       gamePlay(
         kind: GameKind.neverHaveWe,
@@ -192,7 +197,7 @@ void main() {
     expect(find.text('Pergunta B'), findsOneWidget);
   });
 
-  testWidgets('guess answers about the person and then guesses the partner', (tester) async {
+  testWithClock('guess answers about the person and then guesses the partner', (tester) async {
     final cubit = await loaded(
       gamePlay(
         kind: GameKind.howWell,
@@ -236,7 +241,7 @@ void main() {
     expect(find.text('Você respondeu tudo'), findsOneWidget);
   });
 
-  testWidgets('date starts the mission and saves the reflection', (tester) async {
+  testWithClock('date starts the mission and saves the reflection', (tester) async {
     final cubit = await loaded(
       gamePlay(
         kind: GameKind.mission,
@@ -272,7 +277,7 @@ void main() {
     expect(find.text('Foi ótimo'), findsOneWidget);
   });
 
-  testWidgets('waiting shows what was saved and checks again', (tester) async {
+  testWithClock('waiting shows what was saved and checks again', (tester) async {
     final cubit = await loaded(
       gamePlay(
         kind: GameKind.neverHaveWe,
@@ -299,7 +304,7 @@ void main() {
     ).called(2);
   });
 
-  testWidgets('finished pick reveals both choices without a cancel action', (tester) async {
+  testWithClock('finished pick reveals both choices without a cancel action', (tester) async {
     final cubit = await loaded(
       gamePlay(
         sessionOverride: session(status: GameStatus.finished, slugs: const ['a']),
@@ -321,7 +326,7 @@ void main() {
     );
   });
 
-  testWidgets('finished guess reveals the answers and the matches warmly', (tester) async {
+  testWithClock('finished guess reveals the answers and the matches warmly', (tester) async {
     final cubit = await loaded(
       gamePlay(
         kind: GameKind.howWell,
@@ -348,7 +353,7 @@ void main() {
     );
   });
 
-  testWidgets('finished talk shows both answers side by side', (tester) async {
+  testWithClock('finished talk shows both answers side by side', (tester) async {
     final cubit = await loaded(
       gamePlay(
         kind: GameKind.neverHaveWe,
@@ -370,7 +375,7 @@ void main() {
     expect(find.text('Encerrar o jogo'), findsNothing);
   });
 
-  testWidgets('finished date shows both reflections', (tester) async {
+  testWithClock('finished date shows both reflections', (tester) async {
     final cubit = await loaded(
       gamePlay(
         kind: GameKind.mission,
@@ -392,7 +397,7 @@ void main() {
     expect(find.text('Encerrar o jogo'), findsNothing);
   });
 
-  testWidgets('a cancelled session explains itself on the start screen', (tester) async {
+  testWithClock('a cancelled session explains itself on the start screen', (tester) async {
     final cubit = await loaded(
       gamePlay(
         sessionOverride: session(status: GameStatus.cancelled),
@@ -405,12 +410,12 @@ void main() {
     expect(find.textContaining('O último convite foi cancelado'), findsOneWidget);
   });
 
-  testWidgets('an expired invitation explains itself on the start screen', (tester) async {
+  testWithClock('an expired invitation explains itself on the start screen', (tester) async {
     final cubit = await loaded(
       gamePlay(
         sessionOverride: session(
           status: GameStatus.invited,
-          at: DateTime.now().subtract(const Duration(hours: 49)),
+          at: fixedNow.subtract(const Duration(hours: 49)),
         ),
         available: const [a],
       ),

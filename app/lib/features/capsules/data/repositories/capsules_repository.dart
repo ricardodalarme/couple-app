@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/capsules/data/data_sources/remote/capsules_data_source.dart';
 import 'package:flutter_bloc_starter/features/capsules/data/models/capsule.dart';
@@ -14,7 +15,7 @@ class CapsulesRepository({
   /// The capsules the person can see, soonest first; text is kept only once the day has come.
   Future<List<Capsule>> getCapsules({DateTime? now}) async {
     try {
-      final moment = now ?? DateTime.now();
+      final moment = now ?? clock.now();
       final today = DateTime(moment.year, moment.month, moment.day);
       final selfId = _authenticationRepository.currentUserId;
 

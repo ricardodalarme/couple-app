@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_entry.dart';
@@ -13,7 +14,7 @@ class const SlipsGroups({required final List<SlipEntry> slips, super.key}) exten
   Widget build(BuildContext context) {
     final isLoadingMore = context.select((SlipsListCubit cubit) => cubit.state.isLoadingMore);
     final groups = groupByWeek(slips);
-    final thisMonday = _monday(DateTime.now());
+    final thisMonday = _monday(clock.now());
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

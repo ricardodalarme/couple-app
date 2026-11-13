@@ -126,7 +126,7 @@ void main() {
       (_) async => GuideProgress(
         stepIndex: 3,
         answers: const ['um', 'dois', 'três', 'quatro'],
-        savedAt: DateTime.now(),
+        savedAt: DateTime(2026, 3, 10, 12),
         contentVersion: money.contentVersion,
         prepId: 'prep-1',
       ),
@@ -200,7 +200,7 @@ void main() {
       (_) async => GuideProgress(
         stepIndex: 3,
         answers: const ['um', 'dois', 'três', 'quatro'],
-        savedAt: DateTime.now(),
+        savedAt: DateTime(2026, 3, 10, 12),
         contentVersion: money.contentVersion,
         prepId: 'prep-1',
       ),

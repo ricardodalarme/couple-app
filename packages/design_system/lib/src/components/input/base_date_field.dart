@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:design_system/design_system_l10n.dart';
 
@@ -61,7 +62,7 @@ class const BaseDateField({
       context: context,
       title: label,
       child: _DateStepper(
-        initial: value ?? minimum ?? DateTime.now(),
+        initial: value ?? minimum ?? clock.now(),
         mode: mode,
         minimum: minimum,
         maximum: maximum,

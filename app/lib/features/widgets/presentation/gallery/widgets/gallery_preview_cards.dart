@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
@@ -15,7 +16,7 @@ class const GalleryPreviewSection({
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.widgets;
-    final now = DateTime.now();
+    final now = clock.now();
 
     if (segment == WidgetGallerySegment.own) {
       final ideaTitle = payload.discreet

@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
@@ -78,7 +79,7 @@ class const StoryDatesList({required final HistoryOverview overview, super.key})
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 BaseDateField(
-                  value: state.draftDate ?? DateTime.now(),
+                  value: state.draftDate ?? clock.now(),
                   label: l10n.dateRowLabel,
                   formatter: (date) => HistoryDateFormatter.formatMilestoneDate(
                     l10n,

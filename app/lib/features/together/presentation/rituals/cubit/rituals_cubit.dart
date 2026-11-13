@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,7 +33,7 @@ class RitualsCubit({
 
     emit(state.copyWith(completeAction: const Loading()));
     try {
-      await _togetherRepository.completeRitual(ritual.id, now: DateTime.now());
+      await _togetherRepository.completeRitual(ritual.id, now: clock.now());
       emit(state.copyWith(completeAction: const Success(null)));
       await load();
     } catch (exception) {

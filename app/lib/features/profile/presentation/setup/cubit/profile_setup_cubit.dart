@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:equatable/equatable.dart';
@@ -32,7 +33,7 @@ class ProfileSetupCubit({
     if (!state.canSave || state.saveAction.isLoading) return;
 
     final date = state.togetherSince;
-    if (date != null && (date.isAfter(DateTime.now()) || date.isBefore(earliestTogetherSince))) {
+    if (date != null && (date.isAfter(clock.now()) || date.isBefore(earliestTogetherSince))) {
       emit(state.copyWith(saveAction: const Failure(LocalizedException(l10nKey: 'INVALID_DATE'))));
       emit(state.copyWith(saveAction: const Initial()));
       return;

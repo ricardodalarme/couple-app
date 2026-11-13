@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/programs_data_source.dart';
 import 'package:flutter_bloc_starter/features/programs/data/models/diary_entry.dart';
@@ -69,7 +70,7 @@ class ProgramsRepository({
     required int currentDay,
     required bool completed,
   }) => _run('advance the program', () async {
-    final completedAt = completed ? DateTime.now() : null;
+    final completedAt = completed ? clock.now() : null;
     final advanced = completed
         ? await _dataSource.completeEnrollment(
             programSlug: slug,

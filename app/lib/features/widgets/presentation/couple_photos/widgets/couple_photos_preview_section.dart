@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/shared/widget_surface_preview.dart';
@@ -55,7 +56,7 @@ class const CouplePhotosPreviewSection({
       );
     }
 
-    final now = DateTime.now();
+    final now = clock.now();
     final breakdown = payload.durationBreakdownOn(now);
 
     final durationTitle = switch ((payload.discreet, breakdown)) {

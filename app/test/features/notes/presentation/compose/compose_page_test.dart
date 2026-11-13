@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/notes/data/models/sent_message.dart';
@@ -24,7 +25,7 @@ void main() {
   final message = SentMessage(
     id: 'm1',
     kind: MessageKind.note,
-    createdAt: DateTime.now(),
+    createdAt: DateTime(2026, 3, 10, 12),
     forWidget: true,
     body: 'Boa sorte',
   );
@@ -93,10 +94,12 @@ void main() {
   });
 
   testWidgets('the sent list shows a relative time and no seen state', (tester) async {
-    await pumpCompose(tester);
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      await pumpCompose(tester);
 
-    expect(find.text('Agora'), findsOneWidget);
-    expect(find.text('Visto'), findsNothing);
+      expect(find.text('Agora'), findsOneWidget);
+      expect(find.text('Visto'), findsNothing);
+    });
   });
 
   testWidgets('without a partner the page says so and cannot send', (tester) async {

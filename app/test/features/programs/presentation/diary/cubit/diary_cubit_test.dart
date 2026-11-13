@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/programs/data/models/diary_entry.dart';
 import 'package:flutter_bloc_starter/features/programs/data/repositories/programs_repository.dart';
@@ -12,6 +13,11 @@ class _MockProgramsRepository() extends Mock implements ProgramsRepository;
 void main() {
   late ProgramsRepository repository;
 
+  final fixedNow = DateTime(2026, 3, 10, 12);
+
+  void testWithClock(String description, FutureOr<void> Function() body) =>
+      test(description, () => withClock(Clock.fixed(fixedNow), body));
+
   setUpAll(() => registerFallbackValue(DateTime(2026)));
 
   setUp(() {
@@ -22,10 +28,10 @@ void main() {
 
   DiaryCubit build() => DiaryCubit(programsRepository: repository);
 
-  test('today entry is prefilled and stays private', () async {
+  testWithClock('today entry is prefilled and stays private', () async {
     final today = DiaryEntry(
       id: 'j1',
-      entryDate: DateTime.now(),
+      entryDate: clock.now(),
       body: 'Hoje eu me senti em paz.',
       mood: 'calm',
     );
@@ -41,7 +47,7 @@ void main() {
     expect((cubit.state.entries as Success<List<DiaryEntry>>).value.single.id, 'j1');
   });
 
-  test('a new entry inserts today and can then be edited', () async {
+  testWithClock('a new entry inserts today and can then be edited', () async {
     when(
       () => repository.saveDiaryEntry(
         entryDate: any(named: 'entryDate'),
@@ -70,7 +76,7 @@ void main() {
     expect(cubit.state.editingId, 'j1');
   });
 
-  test('editing an existing entry updates the same row', () async {
+  testWithClock('editing an existing entry updates the same row', () async {
     when(
       () => repository.saveDiaryEntry(
         entryDate: any(named: 'entryDate'),
@@ -81,7 +87,7 @@ void main() {
     ).thenAnswer((_) async => 'j1');
     final entry = DiaryEntry(
       id: 'j1',
-      entryDate: DateTime.now(),
+      entryDate: clock.now(),
       body: 'Texto antigo.',
       mood: 'tired',
     );
@@ -103,7 +109,7 @@ void main() {
     ).called(1);
   });
 
-  test('a failed save keeps the text and the chosen mood', () async {
+  testWithClock('a failed save keeps the text and the chosen mood', () async {
     when(
       () => repository.saveDiaryEntry(
         entryDate: any(named: 'entryDate'),
@@ -126,13 +132,8 @@ void main() {
     expect(cubit.state.saveAction, isA<Initial>());
   });
 
-  test('deleting removes the entry and clears it from the form', () async {
-    final entry = DiaryEntry(
-      id: 'j1',
-      entryDate: DateTime.now(),
-      body: 'Para apagar.',
-      mood: 'calm',
-    );
+  testWithClock('deleting removes the entry and clears it from the form', () async {
+    final entry = DiaryEntry(id: 'j1', entryDate: clock.now(), body: 'Para apagar.', mood: 'calm');
     when(() => repository.getDiaryEntries()).thenAnswer((_) async => [entry]);
     final cubit = build();
     addTearDown(cubit.close);
@@ -146,8 +147,8 @@ void main() {
     expect(cubit.state.mood, isNull);
   });
 
-  test('editing a mood-less entry clears the previous mood', () async {
-    final entry = DiaryEntry(id: 'j1', entryDate: DateTime.now(), body: 'Sem humor.');
+  testWithClock('editing a mood-less entry clears the previous mood', () async {
+    final entry = DiaryEntry(id: 'j1', entryDate: clock.now(), body: 'Sem humor.');
     when(() => repository.getDiaryEntries()).thenAnswer((_) async => [entry]);
     final cubit = build();
     addTearDown(cubit.close);
@@ -159,8 +160,8 @@ void main() {
     expect(cubit.state.mood, isNull);
   });
 
-  test('a new entry opens today instead of creating a second one', () async {
-    final today = DiaryEntry(id: 'j1', entryDate: DateTime.now(), body: 'Hoje.');
+  testWithClock('a new entry opens today instead of creating a second one', () async {
+    final today = DiaryEntry(id: 'j1', entryDate: clock.now(), body: 'Hoje.');
     when(() => repository.getDiaryEntries()).thenAnswer((_) async => [today]);
     final cubit = build();
     addTearDown(cubit.close);
@@ -173,7 +174,7 @@ void main() {
     expect(cubit.state.body, 'Hoje.');
   });
 
-  test('a load that resolves after typing keeps the typed text', () async {
+  testWithClock('a load that resolves after typing keeps the typed text', () async {
     final response = Completer<List<DiaryEntry>>();
     when(() => repository.getDiaryEntries()).thenAnswer((_) => response.future);
     final cubit = build();
@@ -188,7 +189,7 @@ void main() {
     expect(cubit.state.editingId, isNull);
   });
 
-  test('a failed load is honest and retryable', () async {
+  testWithClock('a failed load is honest and retryable', () async {
     when(() => repository.getDiaryEntries())
         .thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
     final cubit = build();
@@ -199,7 +200,7 @@ void main() {
     expect(cubit.state.entries, isA<Failure>());
   });
 
-  test('an empty body cannot be saved', () {
+  testWithClock('an empty body cannot be saved', () {
     final cubit = build();
     addTearDown(cubit.close);
 

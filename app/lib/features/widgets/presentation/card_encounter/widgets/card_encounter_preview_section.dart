@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/shared/widget_surface_preview.dart';
@@ -57,7 +58,7 @@ class const CardEncounterPreviewSection({
       );
     }
 
-    final now = DateTime.now();
+    final now = clock.now();
     final isPaused = payload.isPauseActiveOn(now);
     final (cardTitle, cardSubtitle) = switch ((isPaused, payload.cardState)) {
       (true, _) => (l10n.cardPauseTitle, l10n.cardPauseSubtitle),

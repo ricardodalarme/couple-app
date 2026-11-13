@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc_starter/features/plus/data/data_sources/remote/plus_data_source.dart';
@@ -122,8 +123,8 @@ class PlusRepository({
   }
 
   Future<bool> _waitForPlus() async {
-    final deadline = DateTime.now().add(_confirmationWindow);
-    while (DateTime.now().isBefore(deadline)) {
+    final deadline = clock.now().add(_confirmationWindow);
+    while (clock.now().isBefore(deadline)) {
       if ((await getPlus()).hasPlus) return true;
       await Future<void>.delayed(_confirmationStep);
     }

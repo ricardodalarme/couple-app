@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/help/data/data_sources/local/support_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/help/data/data_sources/remote/support_data_source.dart';
@@ -41,7 +42,7 @@ class SupportRepository({
       authorId: authorId,
       topic: topic,
       message: message,
-      createdAt: DateTime.now(),
+      createdAt: clock.now(),
       replyEmail: replyEmail,
       appVersion: appVersion,
     );

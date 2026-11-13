@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/queries/generated/HistoryOverview.graphql.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
@@ -5,7 +6,7 @@ import 'package:flutter_bloc_starter/features/profile/data/models/relationship_s
 
 extension HistoryOverviewMapper on QueryHistoryOverview {
   HistoryOverview toModel({DateTime? now}) {
-    final currentNow = now ?? DateTime.now();
+    final currentNow = now ?? clock.now();
     final selfProfile = myProfile;
     final partnerProfile = myPartner;
     final settings = mySettings;

@@ -269,7 +269,7 @@ void main() {
                   hasPendingInvite: false,
                   hasPlus: false,
                   pauseIsMine: true,
-                  pauseReturnAt: DateTime.now().add(const Duration(hours: 2)),
+                  pauseReturnAt: DateTime(2026, 3, 10, 14),
                 )
               : home,
         );

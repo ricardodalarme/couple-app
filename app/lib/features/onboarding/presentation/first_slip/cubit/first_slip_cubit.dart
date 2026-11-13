@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +31,7 @@ class FirstSlipCubit({
       await _slipRepository.keepOnDevice(
         id: const Uuid().v4(),
         body: state.text.trim(),
-        createdAt: DateTime.now(),
+        createdAt: clock.now(),
       );
       await _markStepDone();
       emit(state.copyWith(saveAction: const Success(null)));

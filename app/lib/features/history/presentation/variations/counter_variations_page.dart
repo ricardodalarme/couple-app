@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -43,7 +44,7 @@ class const CounterVariationsPage({super.key}) extends StatelessWidget implement
             fakeValue: HistoryOverview.fake(),
             successBuilder: (overview) {
               final reunionDays = overview.isOngoing
-                  ? overview.daysUntilReunion(DateTime.now())
+                  ? overview.daysUntilReunion(clock.now())
                   : null;
               final partnerInitials = overview.partnerInitials;
               final duration = HistoryDateFormatter.formatDurationHeadline(

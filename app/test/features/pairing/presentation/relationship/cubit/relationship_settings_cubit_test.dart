@@ -154,7 +154,7 @@ void main() {
         togetherSince: any(named: 'togetherSince'),
       ),
     ).thenAnswer((_) async {});
-    final future = DateTime.now().add(const Duration(days: 30));
+    final future = DateTime(2026, 4, 9);
 
     await cubit.onDateChanged(future);
 

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +25,7 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
   Future<void> load() async {
     if (state.slips is! Success) emit(state.copyWith(slips: const Loading()));
     try {
-      final page = await _slipRepository.getSlips(since: _since(state.scope, DateTime.now()));
+      final page = await _slipRepository.getSlips(since: _since(state.scope, clock.now()));
       emit(
         SlipsListState(
           slips: Success(page.items),
@@ -63,7 +64,7 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
     try {
       final page = await _slipRepository.getSlips(
         after: state.cursor,
-        since: _since(state.scope, DateTime.now()),
+        since: _since(state.scope, clock.now()),
       );
       final knownIds = current.value.map((slip) => slip.id).toSet();
       emit(

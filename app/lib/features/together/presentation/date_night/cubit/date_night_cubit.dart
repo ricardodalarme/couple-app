@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,7 +76,7 @@ class DateNightCubit({
 
   /// Plans [idea] for [choice], which also adds the shared date with its reminder.
   Future<void> plan(DateIdea idea, PlanChoice choice) =>
-      _change(() => _togetherRepository.planDateIdea(idea, day: planDay(choice, DateTime.now())));
+      _change(() => _togetherRepository.planDateIdea(idea, day: planDay(choice, clock.now())));
 
   Future<void> toggleDone(DateIdea idea) =>
       _change(() => _togetherRepository.setDateIdeaDone(id: idea.id, isDone: !idea.isDone));

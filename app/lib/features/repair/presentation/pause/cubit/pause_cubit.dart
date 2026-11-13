@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +26,7 @@ class PauseCubit({required final RepairRepository _repairRepository}) extends Cu
     emit(state.copyWith(sendAction: const Loading()));
     try {
       await _repairRepository.startPause(
-        returnAt: state.returnChoice.returnAt(DateTime.now()),
+        returnAt: state.returnChoice.returnAt(clock.now()),
         message: state.message,
       );
       emit(state.copyWith(sendAction: const Success(null)));

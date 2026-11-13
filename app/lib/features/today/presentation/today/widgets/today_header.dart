@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/dev_menu_page.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
@@ -19,7 +20,7 @@ class const TodayHeader({
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.today;
-    final now = DateTime.now();
+    final now = clock.now();
     final name = selfName;
     final greeting = name == null
         ? l10n.greetingNoName
@@ -128,7 +129,7 @@ class const _TogetherChip({required final DateTime since}) extends StatelessWidg
   }
 
   String _label(Translations$today$pt l10n, DateTime since) {
-    final now = DateTime.now();
+    final now = clock.now();
     final months =
         (now.year - since.year) * 12 + now.month - since.month - (now.day < since.day ? 1 : 0);
     if (months < 1) return l10n.togetherDays(count: now.difference(since).inDays.clamp(0, 31));

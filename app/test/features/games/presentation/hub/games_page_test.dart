@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_session.dart';
@@ -16,12 +17,17 @@ class _MockGamesRepository() extends Mock implements GamesRepository;
 void main() {
   late GamesRepository repository;
 
+  final fixedNow = DateTime(2026, 3, 10, 12);
+
+  void testWithClock(String description, WidgetTesterCallback body) =>
+      testWidgets(description, (tester) => withClock(Clock.fixed(fixedNow), () => body(tester)));
+
   GameSession session(GameKind game, GameStatus status, {String invitedBy = 'me'}) => GameSession(
     id: game.key,
     game: game,
     status: status,
     invitedBy: invitedBy,
-    createdAt: DateTime.now().subtract(const Duration(hours: 1)),
+    createdAt: fixedNow.subtract(const Duration(hours: 1)),
   );
 
   Future<GamesCubit> loaded(GamesOverview overview) async {
@@ -37,7 +43,7 @@ void main() {
 
   setUp(() => repository = _MockGamesRepository());
 
-  testWidgets('lists the games and shows no score, ranking or streak', (tester) async {
+  testWithClock('lists the games and shows no score, ranking or streak', (tester) async {
     final cubit = await loaded(const GamesOverview(selfId: 'me', hasPartner: true));
 
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const GamesPage()));
@@ -56,7 +62,7 @@ void main() {
     );
   });
 
-  testWidgets('shows a lock chip on every game when there is no partner', (tester) async {
+  testWithClock('shows a lock chip on every game when there is no partner', (tester) async {
     final cubit = await loaded(const GamesOverview(selfId: 'me', hasPartner: false));
 
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const GamesPage()));
@@ -69,7 +75,7 @@ void main() {
     expect(find.textContaining('Os jogos precisam dos dois'), findsOneWidget);
   });
 
-  testWidgets('shows the partner invitation and the state of each game', (tester) async {
+  testWithClock('shows the partner invitation and the state of each game', (tester) async {
     final cubit = await loaded(
       GamesOverview(
         selfId: 'me',
@@ -96,7 +102,7 @@ void main() {
     expect(find.text('20 perguntas'), findsNothing);
   });
 
-  testWidgets('shows a cancelled session on the hub tile', (tester) async {
+  testWithClock('shows a cancelled session on the hub tile', (tester) async {
     final cubit = await loaded(
       GamesOverview(
         selfId: 'me',
@@ -111,7 +117,7 @@ void main() {
     expect(find.textContaining('Convite cancelado'), findsOneWidget);
   });
 
-  testWidgets('a failed read offers to try again', (tester) async {
+  testWithClock('a failed read offers to try again', (tester) async {
     when(() => repository.getOverview()).thenThrow(Exception('offline'));
     final cubit = GamesCubit(repository: repository);
     addTearDown(cubit.close);

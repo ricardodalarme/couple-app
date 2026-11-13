@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -27,8 +28,8 @@ class const CapsulesPage({super.key}) extends StatelessWidget implements AutoRou
     final isShared = context.select((CapsulesCubit cubit) => cubit.state.isShared);
     final isSaving = context.select((CapsulesCubit cubit) => cubit.state.saveAction.isLoading);
     final cubit = context.read<CapsulesCubit>();
-    final today = DateTime.now();
-    final canSave = context.select((CapsulesCubit cubit) => cubit.state.canSave(DateTime.now()));
+    final today = clock.now();
+    final canSave = context.select((CapsulesCubit cubit) => cubit.state.canSave(clock.now()));
 
     return BaseView(
       body: BlocListener<CapsulesCubit, CapsulesState>(

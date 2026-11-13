@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
 import 'package:flutter_bloc_starter/features/distance/data/data_sources/remote/distance_data_source.dart';
 import 'package:flutter_bloc_starter/features/distance/data/models/distance_info.dart';
@@ -19,7 +20,7 @@ class DistanceRepository({
   /// Both clocks and the days until the next saved reunion date.
   Future<DistanceInfo> getDistance({DateTime? now}) async {
     try {
-      final moment = now ?? DateTime.now();
+      final moment = now ?? clock.now();
       final settings = await _profileRepository.getMySettings();
       final partnerZone = await _dataSource.getPartnerTimeZone();
       final reunion = await _nextReunion(moment);

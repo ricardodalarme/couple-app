@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clock/clock.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/local/hard_conversation_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
@@ -47,41 +48,45 @@ void main() {
   });
 
   test('a draft from the last day is read back', () async {
-    final draft = HardConversationDraft(
-      step: HardConversationStep.whatINeed,
-      whatChoice: 'Ela se sentiu ignorada',
-      whatText: '',
-      needChoice: 'Ser ouvido',
-      needText: '',
-      message: '',
-      savedAt: DateTime.now(),
-    );
-    when(() => localDataSource.read('u1')).thenReturn(jsonEncode(draft.toMap()));
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      final draft = HardConversationDraft(
+        step: HardConversationStep.whatINeed,
+        whatChoice: 'Ela se sentiu ignorada',
+        whatText: '',
+        needChoice: 'Ser ouvido',
+        needText: '',
+        message: '',
+        savedAt: clock.now(),
+      );
+      when(() => localDataSource.read('u1')).thenReturn(jsonEncode(draft.toMap()));
 
-    final read = await repository.readDraft();
+      final read = await repository.readDraft();
 
-    expect(read?.step, HardConversationStep.whatINeed);
-    expect(read?.whatChoice, 'Ela se sentiu ignorada');
-    expect(read?.needChoice, 'Ser ouvido');
+      expect(read?.step, HardConversationStep.whatINeed);
+      expect(read?.whatChoice, 'Ela se sentiu ignorada');
+      expect(read?.needChoice, 'Ser ouvido');
+    });
   });
 
   test('a draft older than a day is cleared and forgotten', () async {
-    final draft = HardConversationDraft(
-      step: HardConversationStep.howToSay,
-      whatChoice: 'Brigamos por dinheiro',
-      whatText: '',
-      needChoice: 'Combinar algo',
-      needText: '',
-      message: 'Podemos falar com calma?',
-      savedAt: DateTime.now().subtract(const Duration(hours: 25)),
-    );
-    when(() => localDataSource.read('u1')).thenReturn(jsonEncode(draft.toMap()));
-    when(() => localDataSource.clear(any())).thenAnswer((_) async {});
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      final draft = HardConversationDraft(
+        step: HardConversationStep.howToSay,
+        whatChoice: 'Brigamos por dinheiro',
+        whatText: '',
+        needChoice: 'Combinar algo',
+        needText: '',
+        message: 'Podemos falar com calma?',
+        savedAt: clock.now().subtract(const Duration(hours: 25)),
+      );
+      when(() => localDataSource.read('u1')).thenReturn(jsonEncode(draft.toMap()));
+      when(() => localDataSource.clear(any())).thenAnswer((_) async {});
 
-    final read = await repository.readDraft();
+      final read = await repository.readDraft();
 
-    expect(read, isNull);
-    verify(() => localDataSource.clear('u1')).called(1);
+      expect(read, isNull);
+      verify(() => localDataSource.clear('u1')).called(1);
+    });
   });
 
   test('a malformed draft is cleared and forgotten', () async {
@@ -109,7 +114,7 @@ void main() {
       needChoice: '',
       needText: '',
       message: '',
-      savedAt: DateTime.now(),
+      savedAt: DateTime(2026, 3, 10, 12),
     );
 
     await repository.saveDraft(draft);

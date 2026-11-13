@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clock/clock.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/together_data_source.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/logistic_item.dart';
@@ -57,10 +58,7 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
   Future<void> setLogisticItemDone({required String id, required bool isDone, DateTime? now}) =>
       _run(
         'update a logistic item',
-        () => _dataSource.setLogisticItemDone(
-          id: id,
-          doneAt: isDone ? (now ?? DateTime.now()) : null,
-        ),
+        () => _dataSource.setLogisticItemDone(id: id, doneAt: isDone ? (now ?? clock.now()) : null),
       );
 
   Future<void> setLogisticItemAssignee({required String id, String? assigneeId}) => _run(

@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -23,7 +24,7 @@ class ReminderSyncService({
 
       final texts = l10n.reminders;
       await _remindersRepository.reschedule(
-        now: now ?? DateTime.now(),
+        now: now ?? clock.now(),
         texts: (
           title: texts.title,
           dailyIdea: texts.dailyIdea,

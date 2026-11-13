@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart' show RefreshIndicator, RefreshIndicatorStatus;
@@ -36,10 +37,10 @@ class _BaseRefreshableState() extends State<BaseRefreshable> {
         _pullProgress = 1;
       });
     }
-    final startedAt = DateTime.now();
+    final startedAt = clock.now();
     try {
       await widget.onRefresh();
-      final elapsed = DateTime.now().difference(startedAt);
+      final elapsed = clock.now().difference(startedAt);
       if (elapsed < _minRefreshDuration) {
         await Future<void>.delayed(_minRefreshDuration - elapsed);
       }

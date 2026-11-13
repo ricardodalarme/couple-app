@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -87,7 +88,7 @@ class IdeaDetailCubit({
 
   /// Sets a local reminder. It is kept even when notifications are off.
   Future<void> remindLater(ReminderChoice choice) async {
-    final now = DateTime.now();
+    final now = clock.now();
     try {
       await _remindersRepository.addCustomReminder(reminderMoment(choice, now), now: now);
       await _reminderSyncService.sync(now: now);

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -130,7 +131,7 @@ class const _DateField() extends StatelessWidget {
       hint: l10n.dateHint,
       value: date,
       minimum: earliestTogetherSince,
-      maximum: DateTime.now(),
+      maximum: clock.now(),
       formatter: (value) =>
           l10n.dateFormat(day: value.day, month: l10n.months[value.month - 1], year: value.year),
       onChanged: context.read<ProfileSetupCubit>().onDateChanged,

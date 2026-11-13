@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/models/active_invite.dart';
@@ -56,7 +57,7 @@ class const InviteCompose({required final ActiveInvite invite, super.key}) exten
   }
 
   int _days(ActiveInvite invite) {
-    final remaining = (invite.expiresAt.difference(DateTime.now()).inHours / 24).ceil();
+    final remaining = (invite.expiresAt.difference(clock.now()).inHours / 24).ceil();
 
     return remaining < 1 ? 1 : remaining;
   }

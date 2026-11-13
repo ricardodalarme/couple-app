@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart' show Skeletonizer;
 import 'package:equatable/equatable.dart';
 
@@ -50,7 +51,7 @@ final class const WidgetPayload({
     unopenedCards: 0,
     cardState: 'none',
     slipsCount: 0,
-    updatedAt: (now ?? DateTime.now().toUtc()).toUtc().toIso8601String(),
+    updatedAt: (now ?? clock.now().toUtc()).toUtc().toIso8601String(),
   );
 
   /// Placeholder payload used only by [Skeletonizer] while loading.
@@ -121,7 +122,7 @@ final class const WidgetPayload({
 
   /// Applies privacy, discreet, pairing, Plus, and date-expiration rules before persisting.
   WidgetPayload sanitized({DateTime? referenceNow}) {
-    final now = referenceNow ?? DateTime.now();
+    final now = referenceNow ?? clock.now();
     if (!isSignedIn) {
       return WidgetPayload.signedOut(now: now);
     }

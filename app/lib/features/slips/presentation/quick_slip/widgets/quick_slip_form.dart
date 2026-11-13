@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
@@ -50,7 +51,7 @@ class const _DateLine() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.quickSlip;
-    final now = DateTime.now();
+    final now = clock.now();
     final text = l10n.dateLine(
       weekday: l10n.weekdays[now.weekday - 1],
       day: now.day,

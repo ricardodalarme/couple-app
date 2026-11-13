@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
@@ -264,7 +265,7 @@ class HardConversationCubit({
       needChoice: state.needChoice,
       needText: state.needText,
       message: state.message,
-      savedAt: DateTime.now(),
+      savedAt: clock.now(),
     );
     if (draft.isEmpty) {
       await _repository.clearDraft();

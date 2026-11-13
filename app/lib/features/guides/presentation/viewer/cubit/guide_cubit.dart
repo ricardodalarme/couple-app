@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -146,7 +147,7 @@ class GuideCubit({
         GuideProgress(
           stepIndex: state.stepIndex,
           answers: state.answers,
-          savedAt: DateTime.now(),
+          savedAt: clock.now(),
           contentVersion: guide.contentVersion,
           prepId: state.prepId,
         ),

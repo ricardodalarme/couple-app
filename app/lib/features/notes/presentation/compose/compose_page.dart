@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -188,7 +189,7 @@ class const _SentSection() extends StatelessWidget {
 String _sentAt(BuildContext context, DateTime createdAt) {
   final l10n = context.l10n.notes;
   final local = createdAt.toLocal();
-  final elapsed = DateTime.now().difference(local);
+  final elapsed = clock.now().difference(local);
 
   if (elapsed.inMinutes < 1) return l10n.justNow;
   if (elapsed.inHours < 1) return l10n.minutesAgo(count: elapsed.inMinutes);

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -123,7 +124,7 @@ class const _Ideas({required final List<DateIdea> ideas}) extends StatelessWidge
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.dateNight;
-    final today = DateTime.now();
+    final today = clock.now();
     final upcoming =
         ideas
             .where(

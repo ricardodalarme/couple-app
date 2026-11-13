@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,26 +37,28 @@ void main() {
   }
 
   testWidgets('the diary says it is private and starts on today', (tester) async {
-    when(() => repository.getDiaryEntries()).thenAnswer(
-      (_) async => [
-        DiaryEntry(
-          id: 'j1',
-          entryDate: DateTime.now(),
-          body: 'Hoje eu me senti em paz.',
-          mood: 'calm',
-        ),
-      ],
-    );
-    final cubit = await loaded();
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      when(() => repository.getDiaryEntries()).thenAnswer(
+        (_) async => [
+          DiaryEntry(
+            id: 'j1',
+            entryDate: clock.now(),
+            body: 'Hoje eu me senti em paz.',
+            mood: 'calm',
+          ),
+        ],
+      );
+      final cubit = await loaded();
 
-    await tester.pumpApp(BlocProvider.value(value: cubit, child: const DiaryPage()));
-    await tester.pump();
+      await tester.pumpApp(BlocProvider.value(value: cubit, child: const DiaryPage()));
+      await tester.pump();
 
-    expect(find.text('Só eu. Nunca é compartilhado.'), findsOneWidget);
-    expect(find.text('Hoje eu me senti...'), findsWidgets);
-    expect(find.text('Em paz'), findsOneWidget);
-    expect(find.text('Cansado(a)'), findsOneWidget);
-    expect(find.textContaining('Hoje eu me senti em paz.'), findsWidgets);
+      expect(find.text('Só eu. Nunca é compartilhado.'), findsOneWidget);
+      expect(find.text('Hoje eu me senti...'), findsWidgets);
+      expect(find.text('Em paz'), findsOneWidget);
+      expect(find.text('Cansado(a)'), findsOneWidget);
+      expect(find.textContaining('Hoje eu me senti em paz.'), findsWidgets);
+    });
   });
 
   testWidgets('an empty diary invites a first entry', (tester) async {

@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/chat_data_source.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
@@ -96,7 +97,7 @@ class ChatRepository({
       await _slipRepository.saveQuick(
         id: _uuid.v4(),
         body: body.length > _slipMaxLength ? body.substring(0, _slipMaxLength) : body,
-        createdAt: DateTime.now(),
+        createdAt: clock.now(),
       );
     } catch (e, stack) {
       _logger.error('Failed to save a reply as a slip', error: e, stackTrace: stack);

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_entry.dart';
@@ -67,37 +68,41 @@ void main() {
   });
 
   testWidgets('a populated list keeps the scopes, search and the history link', (tester) async {
-    stubPage([SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: DateTime.now())]);
-    final cubit = await build();
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      stubPage([SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: clock.now())]);
+      final cubit = await build();
 
-    await pumpPage(tester, cubit);
+      await pumpPage(tester, cubit);
 
-    expect(find.byType(BaseEmptyState), findsNothing);
-    expect(find.byType(BaseChoiceChip), findsNWidgets(2));
-    expect(find.byType(BaseTextLink), findsOneWidget);
-    expect(find.byType(BaseRoundButton), findsOneWidget);
-    expect(find.byType(SlipsGroups), findsOneWidget);
-    expect(find.text('Fez café sem eu pedir'), findsOneWidget);
+      expect(find.byType(BaseEmptyState), findsNothing);
+      expect(find.byType(BaseChoiceChip), findsNWidgets(2));
+      expect(find.byType(BaseTextLink), findsOneWidget);
+      expect(find.byType(BaseRoundButton), findsOneWidget);
+      expect(find.byType(SlipsGroups), findsOneWidget);
+      expect(find.text('Fez café sem eu pedir'), findsOneWidget);
+    });
   });
 
   testWidgets('search filters the loaded slips and reports no matches', (tester) async {
-    stubPage([SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: DateTime.now())]);
-    final cubit = await build();
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      stubPage([SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: clock.now())]);
+      final cubit = await build();
 
-    await pumpPage(tester, cubit);
-    cubit
-      ..openSearch()
-      ..onQueryChanged('café');
-    await tester.pump();
-    await tester.pump();
+      await pumpPage(tester, cubit);
+      cubit
+        ..openSearch()
+        ..onQueryChanged('café');
+      await tester.pump();
+      await tester.pump();
 
-    expect(find.text('Fez café sem eu pedir'), findsOneWidget);
+      expect(find.text('Fez café sem eu pedir'), findsOneWidget);
 
-    cubit.onQueryChanged('xyz');
-    await tester.pump();
-    await tester.pump();
+      cubit.onQueryChanged('xyz');
+      await tester.pump();
+      await tester.pump();
 
-    expect(find.byType(SlipsGroups), findsNothing);
-    expect(find.byType(BaseEmptyState), findsOneWidget);
+      expect(find.byType(SlipsGroups), findsNothing);
+      expect(find.byType(BaseEmptyState), findsOneWidget);
+    });
   });
 }

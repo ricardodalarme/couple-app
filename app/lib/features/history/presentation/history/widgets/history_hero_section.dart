@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/history/widgets/history_date_formatter.dart';
@@ -17,7 +18,7 @@ class const HistoryHeroSection({
     final colors = context.colors;
     final text = context.text;
     final togetherSince = overview.togetherSince;
-    final reunionDays = overview.isOngoing ? overview.daysUntilReunion(DateTime.now()) : null;
+    final reunionDays = overview.isOngoing ? overview.daysUntilReunion(clock.now()) : null;
 
     final String headline;
     if (overview.phase == RelationshipPhase.beginning ||

@@ -14,7 +14,7 @@ void main() {
   });
 
   final pausePayload = WidgetPayload.fake().copyWith(
-    pauseReturnAt: DateTime.now().add(const Duration(hours: 1)).toUtc().toIso8601String(),
+    pauseReturnAt: DateTime.utc(2026, 3, 10, 13).toIso8601String(),
     cardState: 'pause',
   );
 

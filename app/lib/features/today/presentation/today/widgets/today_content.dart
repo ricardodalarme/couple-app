@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/shared/widgets/received_card.dart';
@@ -32,7 +33,7 @@ class const TodayContent({
   Widget build(BuildContext context) {
     final idea = home.idea;
 
-    if (home.isPausedAt(DateTime.now())) {
+    if (home.isPausedAt(clock.now())) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -68,7 +69,7 @@ class const _HeroSection({
   Widget build(BuildContext context) {
     final l10n = context.l10n.today;
     final isAlone = !home.isPaired;
-    final today = home.localDate ?? DateTime.now();
+    final today = home.localDate ?? clock.now();
     final weekStart = DateTime(
       today.year,
       today.month,

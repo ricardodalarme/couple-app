@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
@@ -97,12 +98,12 @@ void main() {
     blocTest<ProfileSetupCubit, ProfileSetupState>(
       'rejects a date in the future without calling the server',
       build: build,
-      act: (cubit) async {
+      act: (cubit) => withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
         cubit
           ..onNameChanged('Marina')
-          ..onDateChanged(DateTime.now().add(const Duration(days: 30)));
+          ..onDateChanged(clock.now().add(const Duration(days: 30)));
         await cubit.save();
-      },
+      }),
       verify: (cubit) {
         expect(cubit.state.saveAction, const Initial());
         verifyNever(() => profileRepository.getMyProfile());

@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
@@ -21,7 +22,7 @@ class InviteCubit({
     emit(state.copyWith(invite: const Loading()));
     final partnerName = await _readPartnerName();
     try {
-      final invite = await _pairingRepository.getOrCreateInvite(DateTime.now());
+      final invite = await _pairingRepository.getOrCreateInvite(clock.now());
       emit(state.copyWith(invite: Success(invite), partnerName: partnerName));
     } catch (exception) {
       emit(state.copyWith(invite: Failure.fromObject(exception), partnerName: partnerName));

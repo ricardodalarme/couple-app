@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/history_data_source.dart';
 import 'package:flutter_bloc_starter/features/history/data/mappers/history_mapper.dart';
@@ -12,7 +13,7 @@ class HistoryRepository({required final HistoryDataSource _dataSource}) {
   final Logger _logger = Logger('HistoryRepository');
 
   Future<HistoryOverview> getOverview({DateTime? now}) => _run('load history overview', () async {
-    final currentNow = now ?? DateTime.now();
+    final currentNow = now ?? clock.now();
     final raw = await _dataSource.getOverview(year: currentNow.year);
     return raw.toModel(now: currentNow);
   });
