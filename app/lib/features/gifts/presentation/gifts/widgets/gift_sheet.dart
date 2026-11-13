@@ -1,8 +1,9 @@
 import 'package:design_system/design_system.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea.dart';
+import 'package:flutter_bloc_starter/features/gifts/presentation/gifts/widgets/cubit/gift_sheet_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:form_inputs/form_inputs.dart';
 
 /// What the gift sheet hands back to the page.
 final class const GiftDraft({
@@ -15,42 +16,47 @@ final class const GiftDraft({
 
 /// The sheet that adds or edits one wish.
 class const GiftSheet({required final bool hasPartner, final GiftIdea? gift, super.key})
-    extends StatefulWidget {
+    extends StatelessWidget {
   @override
-  State<GiftSheet> createState() => _GiftSheetState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => GiftSheetCubit()..start(hasPartner: hasPartner, gift: gift),
+      child: const _GiftSheetContent(),
+    );
+  }
 }
 
-class _GiftSheetState() extends State<GiftSheet> {
-  late FormInput<String> _title = FormInput(widget.gift?.title ?? '');
-  late FormInput<String> _note = FormInput(widget.gift?.note ?? '');
-  late String? _budget = widget.gift?.budget;
-  late bool _isShared = widget.gift?.isShared ?? false;
-
-  bool get _isEditing => widget.gift != null;
-
+class const _GiftSheetContent() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.gifts;
+    final title = context.select((GiftSheetCubit cubit) => cubit.state.title);
+    final note = context.select((GiftSheetCubit cubit) => cubit.state.note);
+    final budget = context.select((GiftSheetCubit cubit) => cubit.state.budget);
+    final isShared = context.select((GiftSheetCubit cubit) => cubit.state.isShared);
+    final isEditing = context.select((GiftSheetCubit cubit) => cubit.state.isEditing);
+    final hasPartner = context.select((GiftSheetCubit cubit) => cubit.state.hasPartner);
+    final cubit = context.read<GiftSheetCubit>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         BaseTextField(
-          text: _title.value,
+          text: title.value,
           label: l10n.titleLabel,
           hint: l10n.titleHint,
-          errorText: l10n.titleErrors.selectOrNull(_title.errorName),
-          onChanged: (title) => setState(() => _title = FormInput(title)),
+          errorText: l10n.titleErrors.selectOrNull(title.errorName),
+          onChanged: cubit.onTitleChanged,
         ),
         const SizedBox(height: AppSpace.s16),
         BaseTextArea(
-          text: _note.value,
+          text: note.value,
           hint: l10n.noteHint,
           maxLength: giftNoteMaxLength,
           maxLines: 4,
-          hasError: !_note.isValid,
-          errorText: l10n.noteErrors.selectOrNull(_note.errorName),
-          onChanged: (note) => setState(() => _note = FormInput(note)),
+          hasError: !note.isValid,
+          errorText: l10n.noteErrors.selectOrNull(note.errorName),
+          onChanged: cubit.onNoteChanged,
         ),
         const SizedBox(height: AppSpace.s16),
         Text(
@@ -64,77 +70,65 @@ class _GiftSheetState() extends State<GiftSheet> {
           children: [
             BaseChoiceChip(
               label: l10n.noBudget,
-              isSelected: _budget == null,
-              onTap: () => setState(() => _budget = null),
+              isSelected: budget == null,
+              onTap: () => cubit.onBudgetChanged(null),
             ),
-            for (final budget in giftBudgets)
+            for (final option in giftBudgets)
               BaseChoiceChip(
-                label: l10n.budgets.selectOrFallback(budget),
-                isSelected: _budget == budget,
-                onTap: () => setState(() => _budget = budget),
+                label: l10n.budgets.selectOrFallback(option),
+                isSelected: budget == option,
+                onTap: () => cubit.onBudgetChanged(option),
               ),
           ],
         ),
-        if (!_isEditing) ...[
+        if (!isEditing) ...[
           const SizedBox(height: AppSpace.s16),
           Row(
             children: [
               Expanded(
                 child: Text(
-                  widget.hasPartner
-                      ? (_isShared ? l10n.sharedHint : l10n.privateHint)
+                  hasPartner
+                      ? (isShared ? l10n.sharedHint : l10n.privateHint)
                       : l10n.sharedNeedsPartner,
                   style: context.text.caption.copyWith(color: context.colors.textSecondary),
                 ),
               ),
-              if (widget.hasPartner) ...[
+              if (hasPartner) ...[
                 const SizedBox(width: AppSpace.s12),
                 BaseSwitch(
-                  value: _isShared,
-                  semanticLabel: _isShared ? l10n.shared : l10n.private,
-                  onChanged: (shared) => setState(() => _isShared = shared),
+                  value: isShared,
+                  semanticLabel: isShared ? l10n.shared : l10n.private,
+                  onChanged: cubit.onSharedChanged,
                 ),
               ],
             ],
           ),
         ],
         const SizedBox(height: AppSpace.s24),
-        BaseButton(text: _isEditing ? l10n.save : l10n.add, onPressed: _save),
-        if (_isEditing) ...[
+        BaseButton(text: isEditing ? l10n.save : l10n.add, onPressed: () => _save(context)),
+        if (isEditing) ...[
           const SizedBox(height: AppSpace.s10),
-          BaseButton(text: l10n.delete, variant: .secondary, onPressed: _delete),
+          BaseButton(
+            text: l10n.delete,
+            variant: .secondary,
+            onPressed: () => Navigator.of(context).pop(const GiftDraft(isDelete: true)),
+          ),
         ],
       ],
     );
   }
 
-  void _save() {
-    final validatedTitle = _title.validate(
-      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(giftTitleMaxLength)]),
-    );
-    final validatedNote = _note.validate(MaxLengthValidator(giftNoteMaxLength));
-
-    setState(() {
-      _title = validatedTitle;
-      _note = validatedNote;
-    });
-    if (!validatedTitle.isValid || !validatedNote.isValid) return;
+  void _save(BuildContext context) {
+    final draft = context.read<GiftSheetCubit>().submit();
+    if (draft == null) return;
 
     Navigator.of(context).pop(
       GiftDraft(
-        title: validatedTitle.value.trim(),
-        note: _clean(validatedNote.value),
-        budget: _budget,
-        isShared: _isShared,
+        title: draft.title,
+        note: draft.note,
+        budget: draft.budget,
+        isShared: draft.isShared,
       ),
     );
-  }
-
-  void _delete() => Navigator.of(context).pop(const GiftDraft(isDelete: true));
-
-  String? _clean(String value) {
-    final trimmed = value.trim();
-
-    return trimmed.isEmpty ? null : trimmed;
   }
 }
