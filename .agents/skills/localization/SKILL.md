@@ -142,7 +142,7 @@ the pattern for server or validation codes whose key is only known at runtime:
 
 ```dart
 // field-level validation from form_inputs
-errorText: context.l10n.authentication.login.emailErrors[errorKey],
+errorText: context.l10n.memories.titleErrors.selectOrNull(title.errorName),
 
 // exceptions (l10nKey comes from LocalizedException)
 BaseToast.show(
@@ -153,6 +153,10 @@ BaseToast.show(
 
 - Every map **must contain an `other` entry** — `selectOrFallback` falls back to
   it and also handles a `null` key.
+- Validation maps are named `<field>Errors` and their keys are the validator
+  enum names: `empty`, `tooLong`, `tooShort`, `invalid`, `outOfRange`. Read them
+  with `selectOrNull(field.errorName)`, which returns `null` for a valid field —
+  never `selectOrFallback`, or a valid field would show the `other` copy.
 - Reference shared copy with `@:common.genericError` instead of duplicating it.
 - Prefer `selectOrFallback` over raw `[]` whenever the key is dynamic
   (`app/lib/l10n/l10n_map_extension.dart`).

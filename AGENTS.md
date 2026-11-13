@@ -157,6 +157,14 @@ and `BaseTabBar`:
   work as an initializer, not inline in `main.dart`.
 - **Errors**: `LocalizedException(l10nKey:)` from data layers, shown via
   `context.l10n.<namespace>.<errors>.selectOrFallback(exception.l10nKey)`.
+- **Forms**: text fields back `FormInput<T>` values from `package:form_inputs`
+  (see the `async-state` skill). A cubit has one `_validate()` that validates
+  each field into a `validated<Field>` local, emits them together, and returns
+  their `isValid`; `save()`/`send()` calls it before doing anything else. Submit
+  buttons stay enabled (only a loading action disables them) — do not gate them
+  on `canSave`. Field errors render from a per-field `…Errors(map)` l10n map via
+  `selectOrNull(field.errorName)`. A sheet with form state gets its own cubit,
+  created in a `BlocProvider` inside the sheet, never local `setState` fields.
 - **Tests**: `app/test` mirrors `app/lib`; `blocTest` + `mocktail` + `pumpApp`.
 
 ### Constructors

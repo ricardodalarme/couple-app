@@ -303,5 +303,9 @@ melos test         # or: cd app && flutter test test/features/posts
   `material_ui` in `app/lib` — use `package:design_system/design_system.dart`.
 - Do not use `BlocProvider.value` in app code (tests only). Pages always create
   their cubit in `wrappedRoute`.
+- A sheet with text input gets its own zero-dependency cubit, created in a
+  `BlocProvider` inside the sheet; do not keep `FormInput` fields in a
+  `StatefulWidget` (see `async-state` → form validation, canonical
+  `app/lib/features/gifts/presentation/gifts/widgets/`).
 - Do not invent server data. If the service cannot confirm a value, the UI says
   so — empty and unknown are valid states.

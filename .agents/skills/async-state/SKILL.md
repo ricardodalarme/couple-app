@@ -182,15 +182,46 @@ Rules:
 - Explicit `copyWith`; no `freezed`, no `json_serializable`, no generated state.
 - `props` lists **every** field, or equality tests and `listenWhen` silently
   break.
-- Form states hold `FormInput<String>` fields from `package:form_inputs` and
-  mix in only `Equatable`. Change handlers emit `FormInput(value)`, which clears
-  that field's error. Validation runs on submit: the cubit emits the validated
-  state, returns early when any input is invalid, and only then performs the
-  action. Validate with `NonEmptyValidator`, `EmailValidator`,
-  `PasswordValidator`, `ConfirmValueValidator`, or `CompositeValidator`.
-  Widgets read `state.email.errorName` for `errorText`; submit buttons stay
-  enabled and are not gated on validity. Canonical form state:
-  `app/lib/features/authentication/presentation/login/cubit/login_state.dart`.
+- Form states hold `FormInput<T>` fields from `package:form_inputs`. Change
+  handlers emit `FormInput(value)`, which clears that field's error. Validation
+  runs on submit, never by disabling the button:
+
+```dart
+bool _validate() {
+  final validatedTitle = state.title.validate(
+    CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(titleMaxLength)]),
+  );
+  final validatedBody = state.body.validate(MaxLengthValidator(bodyMaxLength));
+
+  emit(state.copyWith(title: validatedTitle, body: validatedBody));
+
+  return validatedTitle.isValid && validatedBody.isValid;
+}
+
+Future<void> save() async {
+  if (state.saveAction.isLoading || !_validate()) return;
+  // ...
+}
+```
+
+  Name the locals `validated<Field>`; never inline `.validate(...)` inside
+  `copyWith`. Submit buttons stay enabled and validate on press.
+  Validators are **non-const** (`NonEmptyValidator()`,
+  `MaxLengthValidator(n)`, `MinLengthValidator(n)`, `PatternValidator(regex)`,
+  `NumberRangeValidator(min, max)`, `EmailValidator`, `PasswordValidator`,
+  `ConfirmValueValidator(value)`, `CompositeValidator([...])`). Keep domain
+  rules (limits, regex, date windows) in the feature: compose the generic
+  validators, or implement a local `Validator<T>` class. `FormInput` itself
+  keeps its const constructor.
+  Widgets render `errorText: l10n.<field>Errors.selectOrNull(field.errorName)`.
+  Canonical form: `app/lib/features/memories/presentation/memories/cubit/memories_cubit.dart`.
+
+- **Sheets own their form cubit.** A sheet with text input is a `StatelessWidget`
+  returning `BlocProvider(create: (_) => XSheetCubit()..start(...), child: ...)`;
+  the cubit has no constructor dependencies, seeds initial values in `start()`,
+  and exposes `submit()` returning the sheet's result (or null when invalid).
+  Never keep `FormInput` fields in `State`/`setState`. Canonical sheet:
+  `app/lib/features/gifts/presentation/gifts/widgets/` (cubit, state, sheet).
 
 ## Page consumption
 

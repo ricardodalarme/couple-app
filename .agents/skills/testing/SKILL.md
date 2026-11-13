@@ -152,6 +152,23 @@ void main() {
 }
 ```
 
+## Form validation tests
+
+Validation lives in the cubit, so assert it there — no widget needed:
+
+- submitting with a required field empty emits that field's error
+  (`expect(state.title.error, NonEmptyValidationError.empty)`) and performs no
+  write (`verifyNever(() => repository.add(...))`);
+- an over-limit value reports the length error (`MaxLengthValidationError.tooLong`);
+- typing after a failed submit clears the error, because the setter emits a new
+  `FormInput(value)`;
+- a valid form writes through with the trimmed value.
+
+Widget tests need one case: pressing the submit button shows the field error and
+does not pop/save. `BaseTextArea` only renders `errorText` when `hasError: true`.
+
+Canonical: `app/test/features/memories/presentation/memories/cubit/memories_cubit_test.dart`.
+
 ## Widget test template
 
 ```dart
