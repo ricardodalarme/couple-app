@@ -726,6 +726,9 @@ class Translations$chat$pt {
   /// pt: 'A mascote está disponível no Plus, com 20 mensagens por dia.'
   String get plusText => 'A mascote está disponível no Plus, com 20 mensagens por dia.';
 
+  /// pt: 'Ver planos'
+  String get plusCta => 'Ver planos';
+
   /// pt: 'Você não está sozinho'
   String get crisisTitle => 'Você não está sozinho';
 
@@ -9182,6 +9185,7 @@ extension on Translations {
           'chat.limitText' => 'Volte amanhã, ou veja o Plus para conversar mais.',
           'chat.plusTitle' => 'A conversa faz parte do Plus',
           'chat.plusText' => 'A mascote está disponível no Plus, com 20 mensagens por dia.',
+          'chat.plusCta' => 'Ver planos',
           'chat.crisisTitle' => 'Você não está sozinho',
           'chat.crisisText' => 'Parece que você está passando por algo muito pesado. Se estiver em perigo agora, ligue para o serviço de emergência da sua região ou procure alguém de confiança. Eu não sou a ajuda certa para isso.',
           'chat.crisisSafeMode' => 'Esconder o app (modo seguro)',
@@ -9522,12 +9526,12 @@ extension on Translations {
           'fightStyle.practices.avoid' =>
             'Isso ajuda a pausar antes de piorar. Marque um momento curto para retomar.',
           'fightStyle.practices.other' => '',
-          'fightStyle.partnerSignal' => ({
-            required Object name,
-          }) => 'Combine com ${name} um sinal de volta.',
           _ => null,
         } ??
         switch (path) {
+          'fightStyle.partnerSignal' => ({
+            required Object name,
+          }) => 'Combine com ${name} um sinal de volta.',
           'fightStyle.addToTools' => 'Adicionar às minhas ferramentas de reparo',
           'fightStyle.addedToTools' => 'Já está nas suas ferramentas',
           'fightStyle.keepMine' => 'Guardar só para mim',
@@ -10229,10 +10233,10 @@ extension on Translations {
           'intro.phase.title' => 'Onde vocês estão agora?',
           'intro.phase.titleHighlight' => 'agora',
           'intro.phase.subtitle' => 'Escolha o mais próximo. Você pode mudar depois.',
-          'intro.phase.options.dating' => 'Namorando',
           _ => null,
         } ??
         switch (path) {
+          'intro.phase.options.dating' => 'Namorando',
           'intro.phase.options.living_together' => 'Moramos juntos',
           'intro.phase.options.engaged' => 'Noivos',
           'intro.phase.options.married' => 'Casados',
@@ -10807,10 +10811,10 @@ extension on Translations {
           'pause.errors.INVALID_RETURN_TIME' => 'Esse horário de volta não vale. Escolha outro.',
           'pause.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'pause.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
-          'places.title' => 'Lugares',
           _ => null,
         } ??
         switch (path) {
+          'places.title' => 'Lugares',
           'places.privacyNote' => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.',
           'places.memoryOne' => '1 memória',
           'places.memoryMany' => ({required Object count}) => '${count} memórias',
@@ -11375,10 +11379,10 @@ extension on Translations {
           'repair.learning.kinds.need' => 'O que eu preciso',
           'repair.learning.kinds.good_fix' => 'O que ajudou',
           'repair.learning.kinds.other' => '',
-          'repair.learning.hint' => 'Escreva em uma ou duas frases',
           _ => null,
         } ??
         switch (path) {
+          'repair.learning.hint' => 'Escreva em uma ou duas frases',
           'repair.learning.noteErrors.empty' => 'Escreva o que você aprendeu',
           'repair.learning.noteErrors.tooLong' => 'A nota está muito longa',
           'repair.learning.save' => 'Salvar',
@@ -11972,10 +11976,10 @@ extension on Translations {
                 ),
           'today.sundayCardLabel' => 'Cartão de domingo',
           'today.sundayCardTitle' => 'Seu cartão desta semana',
-          'today.inviteCardLabel' => 'Convite',
           _ => null,
         } ??
         switch (path) {
+          'today.inviteCardLabel' => 'Convite',
           'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
           'today.inviteCardTitleNoName' => 'Convidar sua pessoa',
           'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',

@@ -679,6 +679,8 @@ class _Translations$chat$en extends Translations$chat$pt {
   @override
   String get plusText => 'The mascot is available on Plus, with 20 messages a day.';
   @override
+  String get plusCta => 'See plans';
+  @override
   String get crisisTitle => 'You are not alone';
   @override
   String get crisisText =>
@@ -7415,6 +7417,7 @@ extension on TranslationsEn {
           'chat.limitText' => 'Come back tomorrow, or see Plus to talk more.',
           'chat.plusTitle' => 'The chat is part of Plus',
           'chat.plusText' => 'The mascot is available on Plus, with 20 messages a day.',
+          'chat.plusCta' => 'See plans',
           'chat.crisisTitle' => 'You are not alone',
           'chat.crisisText' => 'It sounds like you are going through something very heavy. If you are in danger right now, call your local emergency service or reach someone you trust. I am not the right help for this.',
           'chat.crisisSafeMode' => 'Hide the app (safe mode)',
@@ -7755,12 +7758,12 @@ extension on TranslationsEn {
           'fightStyle.practices.avoid' =>
             'That helps you pause before it gets worse. Choose a short moment to come back to it.',
           'fightStyle.practices.other' => '',
-          'fightStyle.partnerSignal' => ({
-            required Object name,
-          }) => 'Agree on a signal with ${name} to come back.',
           _ => null,
         } ??
         switch (path) {
+          'fightStyle.partnerSignal' => ({
+            required Object name,
+          }) => 'Agree on a signal with ${name} to come back.',
           'fightStyle.addToTools' => 'Add to my repair tools',
           'fightStyle.addedToTools' => 'Already in your repair tools',
           'fightStyle.keepMine' => 'Keep it to myself',
@@ -8459,10 +8462,10 @@ extension on TranslationsEn {
           'intro.phase.title' => 'Where are you two right now?',
           'intro.phase.titleHighlight' => 'right now',
           'intro.phase.subtitle' => 'Pick the closest one. You can change it later.',
-          'intro.phase.options.dating' => 'Dating',
           _ => null,
         } ??
         switch (path) {
+          'intro.phase.options.dating' => 'Dating',
           'intro.phase.options.living_together' => 'Living together',
           'intro.phase.options.engaged' => 'Engaged',
           'intro.phase.options.married' => 'Married',
@@ -9035,10 +9038,10 @@ extension on TranslationsEn {
           'pause.errors.INVALID_RETURN_TIME' => 'That return time doesn\'t work. Pick another.',
           'pause.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'pause.errors.other' => 'Couldn\'t send right now. Your message is still here.',
-          'places.title' => 'Places',
           _ => null,
         } ??
         switch (path) {
+          'places.title' => 'Places',
           'places.privacyNote' =>
             'Only the name of the place. The app never reads or stores your location.',
           'places.memoryOne' => '1 memory',
@@ -9605,10 +9608,10 @@ extension on TranslationsEn {
           'repair.learning.kinds.need' => 'What I need',
           'repair.learning.kinds.good_fix' => 'What helped',
           'repair.learning.kinds.other' => '',
-          'repair.learning.hint' => 'Write one or two sentences',
           _ => null,
         } ??
         switch (path) {
+          'repair.learning.hint' => 'Write one or two sentences',
           'repair.learning.noteErrors.empty' => 'Write what you learned',
           'repair.learning.noteErrors.tooLong' => 'The note is too long',
           'repair.learning.save' => 'Save',
@@ -10199,10 +10202,10 @@ extension on TranslationsEn {
                 ),
           'today.sundayCardLabel' => 'Sunday card',
           'today.sundayCardTitle' => 'Your card for this week',
-          'today.inviteCardLabel' => 'Invite',
           _ => null,
         } ??
         switch (path) {
+          'today.inviteCardLabel' => 'Invite',
           'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',
           'today.inviteCardTitleNoName' => 'Invite your person',
           'today.inviteCardText' => 'Shared cards and tools need both of you.',

@@ -119,6 +119,7 @@ void main() {
     await pumpChat(tester, cubits.chat, cubits.connectivity);
 
     expect(find.text('A conversa faz parte do Plus'), findsOneWidget);
+    expect(find.widgetWithText(BaseButton, 'Ver planos'), findsOneWidget);
     expect(find.text('Ligar a conversa'), findsNothing);
   });
 
