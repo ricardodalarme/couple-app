@@ -16,7 +16,7 @@ dependencies:
   auto_route: ^11.2.0
   biometric_service:
     path: ../packages/services/biometric
-  clock: ^1.1.2
+  clock: ^1.1.3
   common_ui:
     path: ../packages/common_ui
   connectivity_service:
