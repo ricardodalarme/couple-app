@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:design_system/design_system.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -135,4 +137,45 @@ void main() {
 
     await tester.pumpWidget(const SizedBox());
   });
+
+  for (final variant in AppThemeVariant.values) {
+    testWidgets('the message is readable text on the toast surface for ${variant.name}', (
+      tester,
+    ) async {
+      final colors = colorsOf(variant);
+      const message = 'Não foi possível salvar as preferências agora.';
+
+      await tester.pumpWidget(
+        scaffoldHost(
+          const BaseToast(message: message, variant: BaseToastVariant.error),
+          variant: variant,
+          textScale: 1,
+        ),
+      );
+
+      final style = tester.widget<Text>(find.text(message)).style!;
+      expect(style.color, colors.textOnAction);
+      expect(style.color!.a, 1, reason: 'the message is not dimmed');
+      expect(style.fontSize, greaterThanOrEqualTo(15));
+      expect(_contrastRatio(style.color!, colors.actionPrimary), greaterThanOrEqualTo(4.5));
+
+      final surface = tester.widget<ColoredBox>(
+        find.descendant(of: find.byType(BaseToast), matching: find.byType(ColoredBox)).first,
+      );
+      expect(surface.color, colors.actionPrimary);
+      expect(tester.getSize(find.text(message)).height, greaterThan(0));
+
+      await tester.pumpWidget(const SizedBox());
+    });
+  }
+}
+
+/// WCAG 2.x contrast ratio between an opaque [foreground] and [background].
+double _contrastRatio(Color foreground, Color background) {
+  final foregroundLuminance = foreground.computeLuminance();
+  final backgroundLuminance = background.computeLuminance();
+  final lighter = math.max(foregroundLuminance, backgroundLuminance);
+  final darker = math.min(foregroundLuminance, backgroundLuminance);
+
+  return (lighter + .05) / (darker + .05);
 }
