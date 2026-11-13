@@ -60,20 +60,23 @@ void main() {
     expect(build().state.forWidget, isTrue);
   });
 
-  test('a note needs text within the limit', () {
+  test('a note needs text within the limit', () async {
     final cubit = build();
-    expect(cubit.state.canSend, isFalse);
+
+    await cubit.send();
+    expect(cubit.state.text.errorName, 'empty');
 
     cubit.onTextChanged('a' * (noteMaxLength + 1));
-    expect(cubit.state.canSend, isFalse);
+    await cubit.send();
+    expect(cubit.state.text.errorName, 'tooLong');
 
     cubit.onTextChanged('Boa sorte');
-    expect(cubit.state.canSend, isTrue);
+    await cubit.send();
+    verify(() => repository.sendNote(body: 'Boa sorte', forWidget: true)).called(1);
   });
 
   test('an empty drawing cannot be sent', () async {
     final cubit = build()..onKindChanged(MessageKind.drawing);
-    expect(cubit.state.canSend, isFalse);
 
     await cubit.send();
 
@@ -85,17 +88,23 @@ void main() {
     );
   });
 
-  test('a stroke makes the drawing sendable and undo takes it back', () {
+  test('a stroke makes the drawing sendable and undo takes it back', () async {
     final cubit = build()
       ..onKindChanged(MessageKind.drawing)
       ..onStrokeStarted(const Offset(0.1, 0.1))
       ..onStrokeUpdated(const Offset(0.2, 0.2));
 
-    expect(cubit.state.canSend, isTrue);
     expect(cubit.state.strokes.single.points, hasLength(2));
 
     cubit.undo();
-    expect(cubit.state.canSend, isFalse);
+    await cubit.send();
+
+    verifyNever(
+      () => repository.sendDrawing(
+        png: any(named: 'png'),
+        forWidget: any(named: 'forWidget'),
+      ),
+    );
   });
 
   test('the eraser removes the strokes it touches', () {
@@ -119,7 +128,7 @@ void main() {
     await cubit.send();
 
     verify(() => repository.sendNote(body: 'Boa sorte', forWidget: true)).called(1);
-    expect(cubit.state.text, '');
+    expect(cubit.state.text.value, '');
     expect(cubit.state.strokes, isNotEmpty);
     verify(() => repository.getSent()).called(1);
   });
@@ -134,7 +143,7 @@ void main() {
 
     verify(() => repository.sendDrawing(png: Uint8List.fromList([1]), forWidget: false)).called(1);
     expect(cubit.state.strokes, isEmpty);
-    expect(cubit.state.text, 'Boa sorte');
+    expect(cubit.state.text.value, 'Boa sorte');
   });
 
   test('a failed send keeps what was written', () async {
@@ -148,7 +157,7 @@ void main() {
 
     await cubit.send();
 
-    expect(cubit.state.text, 'Boa sorte');
+    expect(cubit.state.text.value, 'Boa sorte');
     expect(cubit.state.sendAction, isA<Initial>());
   });
 
@@ -159,7 +168,15 @@ void main() {
     await cubit.load();
 
     expect(cubit.state.isUnpaired, isTrue);
-    expect(cubit.state.canSend, isFalse);
+
+    await cubit.send();
+
+    verifyNever(
+      () => repository.sendNote(
+        body: any(named: 'body'),
+        forWidget: any(named: 'forWidget'),
+      ),
+    );
   });
 
   test('deleting a message reads the list again', () async {

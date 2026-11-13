@@ -19,6 +19,16 @@
   "jarClose": "Close",
   "titleLabel": "A memory",
   "titleHint": "E.g. our first dinner",
+  "titleErrors(map)": {
+    "empty": "Give this memory a title",
+    "tooLong": "The title is too long"
+  },
+  "placeErrors(map)": {
+    "tooLong": "The place is too long"
+  },
+  "bodyErrors(map)": {
+    "tooLong": "The note is too long"
+  },
   "bodyHint": "Tell how it went (optional)",
   "add": "Add a memory",
   "save": "Save memory",

@@ -70,20 +70,16 @@ class const _ProfileForm() extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n.profileDetails;
     final cubit = context.read<ProfileSettingsCubit>();
-    final name = context.select(
-      (ProfileSettingsCubit cubit) =>
-          cubit.state.nameDraft ?? cubit.state.current?.displayName ?? '',
+    final name = context.select((ProfileSettingsCubit cubit) => cubit.state.nameDraft);
+    final currentName = context.select(
+      (ProfileSettingsCubit cubit) => cubit.state.current?.displayName,
     );
-    final pronouns = context.select(
-      (ProfileSettingsCubit cubit) =>
-          cubit.state.pronounsDraft ?? cubit.state.current?.pronouns ?? '',
+    final pronouns = context.select((ProfileSettingsCubit cubit) => cubit.state.pronounsDraft);
+    final currentPronouns = context.select(
+      (ProfileSettingsCubit cubit) => cubit.state.current?.pronouns,
     );
     final timeZone = context.select((ProfileSettingsCubit cubit) => cubit.state.current?.timeZone);
     final theme = context.select((ProfileSettingsCubit cubit) => cubit.state.current?.theme);
-    final hasNameError = context.select((ProfileSettingsCubit cubit) => cubit.state.hasNameError);
-    final hasPronounsError = context.select(
-      (ProfileSettingsCubit cubit) => cubit.state.hasPronounsError,
-    );
     final loginProvider = context.select((ProfileSettingsCubit cubit) => cubit.state.loginProvider);
 
     final zones = [...l10n.timeZones.keys];
@@ -96,8 +92,8 @@ class const _ProfileForm() extends StatelessWidget {
           BaseTextField(
             label: l10n.nameLabel,
             hint: l10n.nameHint,
-            text: name,
-            errorText: hasNameError ? l10n.nameError : null,
+            text: name?.value ?? currentName ?? '',
+            errorText: l10n.nameErrors.selectOrNull(name?.errorName),
             onChanged: cubit.onNameChanged,
             onSubmitted: (_) => cubit.saveName(),
           ),
@@ -105,8 +101,8 @@ class const _ProfileForm() extends StatelessWidget {
           BaseTextField(
             label: l10n.pronounsLabel,
             hint: l10n.pronounsHint,
-            text: pronouns,
-            errorText: hasPronounsError ? l10n.pronounsError : null,
+            text: pronouns?.value ?? currentPronouns ?? '',
+            errorText: l10n.pronounsErrors.selectOrNull(pronouns?.errorName),
             onChanged: cubit.onPronounsChanged,
             onSubmitted: (_) => cubit.savePronouns(),
           ),

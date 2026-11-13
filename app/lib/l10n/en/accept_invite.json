@@ -4,6 +4,12 @@
   "subtitle": "Type the code the other person sent so you can connect.",
   "codeLabel": "Invite code",
   "codeHint": "ABCD2345",
+  "codeErrors(map)": {
+    "empty": "Type the invite code.",
+    "tooShort": "The code has 8 characters.",
+    "tooLong": "The code has 8 characters.",
+    "invalid": "Use letters and numbers only."
+  },
   "privacyNote": "Accepting shares cards and tools. Your private notes stay private.",
   "accept": "Accept",
   "connected": {

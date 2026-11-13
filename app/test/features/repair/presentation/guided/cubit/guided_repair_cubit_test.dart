@@ -193,10 +193,9 @@ void main() {
       ).thenAnswer((_) async {});
       when(() => repair.getLearnings()).thenAnswer((_) async => const []);
       final cubit = LearningCubit(repairRepository: repair)..onNoteChanged('Preciso de calma');
-      expect(cubit.state.canSave, isFalse);
+      expect(cubit.state.note.isValid, isTrue);
 
       cubit.onKindChosen('need');
-      expect(cubit.state.canSave, isTrue);
 
       await cubit.save(sessionId: 's1');
 
@@ -208,7 +207,7 @@ void main() {
           sessionId: 's1',
         ),
       ).called(1);
-      expect(cubit.state.note, '');
+      expect(cubit.state.note.value, '');
       expect(cubit.state.kind, isNull);
     });
 

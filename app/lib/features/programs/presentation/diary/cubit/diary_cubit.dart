@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/programs/data/models/diary_entry.dart';
 import 'package:flutter_bloc_starter/features/programs/data/repositories/programs_repository.dart';
+import 'package:form_inputs/form_inputs.dart';
 
 part 'diary_state.dart';
 
@@ -28,7 +29,7 @@ class DiaryCubit({required final ProgramsRepository _programsRepository})
       emit(
         state.copyWith(
           entries: Success(entries),
-          body: today?.body ?? '',
+          body: FormInput(today?.body ?? ''),
           mood: today?.mood,
           editingId: today?.id,
           clearMood: today == null,
@@ -41,7 +42,7 @@ class DiaryCubit({required final ProgramsRepository _programsRepository})
     }
   }
 
-  void onBodyChanged(String body) => emit(state.copyWith(body: body, isDirty: true));
+  void onBodyChanged(String body) => emit(state.copyWith(body: FormInput(body), isDirty: true));
 
   void onMoodChanged(String mood) => emit(
     state.copyWith(
@@ -53,7 +54,7 @@ class DiaryCubit({required final ProgramsRepository _programsRepository})
 
   void edit(DiaryEntry entry) => emit(
     state.copyWith(
-      body: entry.body,
+      body: FormInput(entry.body),
       mood: entry.mood,
       editingId: entry.id,
       clearMood: entry.mood == null,
@@ -72,18 +73,20 @@ class DiaryCubit({required final ProgramsRepository _programsRepository})
 
       return;
     }
-    emit(state.copyWith(body: '', clearMood: true, clearEditing: true, isDirty: true));
+    emit(
+      state.copyWith(body: const FormInput(''), clearMood: true, clearEditing: true, isDirty: true),
+    );
   }
 
   /// Saves the text; a failed save leaves the text and the selected mood in place.
   Future<void> save() async {
-    if (!state.canSave || state.saveAction.isLoading) return;
+    if (state.saveAction.isLoading || !_validate()) return;
 
     emit(state.copyWith(saveAction: const Loading()));
     try {
       final id = await _programsRepository.saveDiaryEntry(
         entryDate: clock.now(),
-        body: state.body.trim(),
+        body: state.body.value.trim(),
         mood: state.mood,
         id: state.editingId,
       );
@@ -97,6 +100,16 @@ class DiaryCubit({required final ProgramsRepository _programsRepository})
     }
   }
 
+  bool _validate() {
+    final validatedBody = state.body.validate(
+      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(journalBodyMaxLength)]),
+    );
+
+    emit(state.copyWith(body: validatedBody));
+
+    return validatedBody.isValid;
+  }
+
   Future<void> delete(DiaryEntry entry) async {
     if (state.saveAction.isLoading) return;
 
@@ -105,7 +118,7 @@ class DiaryCubit({required final ProgramsRepository _programsRepository})
       await _programsRepository.deleteDiaryEntry(entry.id);
       if (isClosed) return;
       if (state.editingId == entry.id) {
-        emit(state.copyWith(body: '', clearMood: true, clearEditing: true));
+        emit(state.copyWith(body: const FormInput(''), clearMood: true, clearEditing: true));
       }
       emit(state.copyWith(saveAction: const Success(null)));
       await _reloadEntries();

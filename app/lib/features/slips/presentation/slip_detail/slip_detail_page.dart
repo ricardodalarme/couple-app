@@ -29,7 +29,8 @@ class const SlipDetailPage({@PathParam('id') required final String id, super.key
     final current = context.select((SlipDetailCubit cubit) => cubit.state.current);
     final isEditing = context.select((SlipDetailCubit cubit) => cubit.state.isEditing);
     final draftBody = context.select((SlipDetailCubit cubit) => cubit.state.draftBody);
-    final hasUnsavedDraft = isEditing && current != null && draftBody.trim() != current.body.trim();
+    final hasUnsavedDraft =
+        isEditing && current != null && draftBody.value.trim() != current.body.trim();
 
     return BaseView(
       body: DirtyFormGuard(

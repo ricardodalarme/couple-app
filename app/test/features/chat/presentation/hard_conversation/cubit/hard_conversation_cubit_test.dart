@@ -96,7 +96,7 @@ void main() {
     expect(cubit.state.step, HardConversationStep.howToSay);
     expect(cubit.state.whatChoice, 'Brigamos por dinheiro');
     expect(cubit.state.needChoice, 'Combinar algo');
-    expect(cubit.state.message, 'Podemos falar com calma?');
+    expect(cubit.state.message.value, 'Podemos falar com calma?');
   });
 
   test('the gate follows Plus, consent and today usage', () async {
@@ -164,7 +164,7 @@ void main() {
     await advanceToSay(cubit);
 
     expect(cubit.state.step, HardConversationStep.howToSay);
-    expect(cubit.state.message, 'Percebi que fiquei no celular. Posso te ouvir agora?');
+    expect(cubit.state.message.value, 'Percebi que fiquei no celular. Posso te ouvir agora?');
     expect(cubit.state.isGenerating, isFalse);
     verify(
       () => repository.generate(
@@ -200,7 +200,7 @@ void main() {
     stubReply(() => Stream.fromIterable([const ChatDelta('Mais direta.'), const ChatDone([])]));
     await cubit.regenerate(HardConversationTone.moreDirect);
 
-    expect(cubit.state.message, 'Mais direta.');
+    expect(cubit.state.message.value, 'Mais direta.');
     verify(
       () => repository.generate(
         what: 'Ela se sentiu ignorada',
@@ -220,7 +220,7 @@ void main() {
 
     await cubit.onMessageChanged('Uma frase editada.');
 
-    expect(cubit.state.message, 'Uma frase editada.');
+    expect(cubit.state.message.value, 'Uma frase editada.');
     verify(
       () => repository.generate(
         what: any(named: 'what'),
@@ -245,7 +245,7 @@ void main() {
       await advanceToSay(cubit);
 
       expect(cubit.state.gate, gate, reason: code);
-      expect(cubit.state.message, isEmpty);
+      expect(cubit.state.message.value, isEmpty);
     }
   });
 
@@ -300,7 +300,7 @@ void main() {
 
     await cubit.send();
 
-    expect(cubit.state.message, 'Podemos conversar?');
+    expect(cubit.state.message.value, 'Podemos conversar?');
     expect(cubit.state.sendAction, const Initial());
   });
 

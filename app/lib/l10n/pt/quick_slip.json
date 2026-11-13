@@ -6,6 +6,10 @@
   "titleHighlight": "feliz",
   "subtitle": "Uma linha basta. 30 segundos.",
   "hint": "Ex.: fez café antes de eu acordar",
+  "textErrors(map)": {
+    "empty": "Escreva o slip primeiro",
+    "tooLong": "Este slip está muito longo"
+  },
   "categories(map)": {
     "said": "Disse algo",
     "did": "Fez algo",

@@ -3,6 +3,10 @@
   "intro": "Um recado curto para seu par, ou um desenho que fica na sua lista de enviados.",
   "kinds": ["Bilhete", "Desenho"],
   "noteHint": "Ex.: boa sorte na reunião de hoje",
+  "textErrors(map)": {
+    "empty": "Escreva o recado primeiro",
+    "tooLong": "Este recado está muito longo"
+  },
   "canvasLabel": "Área do desenho",
   "pens": ["Preto", "Laranja", "Roxo", "Verde"],
   "eraser": "Borracha",

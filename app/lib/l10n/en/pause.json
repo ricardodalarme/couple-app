@@ -9,6 +9,10 @@
     "other": ""
   },
   "hint": "Write my own",
+  "messageErrors(map)": {
+    "empty": "Write a short message",
+    "tooLong": "The message is too long"
+  },
   "returnTitle": "I'll be back in",
   "returns(map)": {
     "oneHour": "1 hour",

@@ -14,10 +14,10 @@ final class const HardConversationState({
   final HardConversationGate gate = HardConversationGate.ready,
   final HardConversationStep step = HardConversationStep.whatHappened,
   final String whatChoice = '',
-  final String whatText = '',
+  final FormInput<String> whatText = const FormInput(''),
   final String needChoice = '',
-  final String needText = '',
-  final String message = '',
+  final FormInput<String> needText = const FormInput(''),
+  final FormInput<String> message = const FormInput(''),
   final HardConversationTone tone = HardConversationTone.neutral,
   final bool hasPlus = false,
   final bool isGenerating = false,
@@ -29,24 +29,22 @@ final class const HardConversationState({
   bool get isReady => gate == HardConversationGate.ready;
 
   bool get canContinueWhat => whatChoice == hardConversationOtherChoice
-      ? whatText.trim().isNotEmpty
-      : whatChoice.isNotEmpty || whatText.trim().isNotEmpty;
+      ? whatText.value.trim().isNotEmpty
+      : whatChoice.isNotEmpty || whatText.value.trim().isNotEmpty;
 
-  bool get canContinueNeed => needChoice.isNotEmpty || needText.trim().isNotEmpty;
+  bool get canContinueNeed => needChoice.isNotEmpty || needText.value.trim().isNotEmpty;
 
-  bool get canCopy => message.trim().isNotEmpty;
-
-  bool get canSend => message.trim().isNotEmpty && !sendAction.isLoading;
+  bool get canCopy => message.value.trim().isNotEmpty;
 
   HardConversationState copyWith({
     Resource<void>? status,
     HardConversationGate? gate,
     HardConversationStep? step,
     String? whatChoice,
-    String? whatText,
+    FormInput<String>? whatText,
     String? needChoice,
-    String? needText,
-    String? message,
+    FormInput<String>? needText,
+    FormInput<String>? message,
     HardConversationTone? tone,
     bool? hasPlus,
     bool? isGenerating,

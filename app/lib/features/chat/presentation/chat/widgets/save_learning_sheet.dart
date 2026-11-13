@@ -2,6 +2,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:form_inputs/form_inputs.dart';
 
 /// Picks what a reply becomes before it is saved as a pending learning.
 class const SaveLearningSheet({
@@ -14,13 +15,17 @@ class const SaveLearningSheet({
 }
 
 class _SaveLearningSheetState() extends State<SaveLearningSheet> {
-  late String _text = _cut(widget.initialText);
+  late FormInput<String> _text = FormInput(_cut(widget.initialText));
   LearnedTarget? _target;
 
-  bool get _canSave {
-    final trimmed = _text.trim();
+  bool _validate() {
+    final validatedText = _text.validate(
+      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(learnedItemMaxLength)]),
+    );
 
-    return _target != null && trimmed.isNotEmpty && trimmed.length <= learnedItemMaxLength;
+    setState(() => _text = validatedText);
+
+    return validatedText.isValid;
   }
 
   @override
@@ -50,25 +55,23 @@ class _SaveLearningSheetState() extends State<SaveLearningSheet> {
         ),
         const SizedBox(height: AppSpace.s16),
         BaseTextArea(
-          text: _text,
+          text: _text.value,
           hint: l10n.learningSheetHint,
           maxLength: learnedItemMaxLength,
-          onChanged: (text) => setState(() => _text = text),
+          errorText: l10n.learningTextErrors.selectOrNull(_text.errorName),
+          hasError: _text.errorName != null,
+          onChanged: (text) => setState(() => _text = FormInput(text)),
         ),
         const SizedBox(height: AppSpace.s16),
-        BaseButton(
-          text: l10n.learningSave,
-          isEnabled: _canSave,
-          onPressed: _canSave ? _save : null,
-        ),
+        BaseButton(text: l10n.learningSave, onPressed: _save),
       ],
     );
   }
 
   void _save() {
     final target = _target;
-    if (target == null || !_canSave) return;
-    widget.onSave(target, _text.trim());
+    if (target == null || !_validate()) return;
+    widget.onSave(target, _text.value.trim());
     Navigator.of(context).maybePop();
   }
 

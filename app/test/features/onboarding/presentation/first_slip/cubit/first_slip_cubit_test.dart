@@ -3,6 +3,7 @@ import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockSlipRepository() extends Mock implements SlipRepository;
@@ -35,10 +36,11 @@ void main() {
   FirstSlipCubit build() =>
       FirstSlipCubit(slipRepository: slipRepository, settingsRepository: settingsRepository);
 
-  test('an empty or space-only slip cannot be saved', () async {
+  test('an empty or space-only slip reports the field error and is not saved', () async {
     final cubit = build()..onTextChanged('   ');
     await cubit.save();
 
+    expect(cubit.state.text.error, NonEmptyValidationError.empty);
     verifyNever(
       () => slipRepository.keepOnDevice(
         id: any(named: 'id'),

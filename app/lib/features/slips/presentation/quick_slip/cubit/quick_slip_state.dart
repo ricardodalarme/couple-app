@@ -1,20 +1,17 @@
 part of 'quick_slip_cubit.dart';
 
 final class const QuickSlipState({
-  final String text = '',
+  final FormInput<String> text = const FormInput(''),
   final String? category,
   final Resource<SlipSaveOutcome> saveAction = const Initial(),
   final Resource<void> undoAction = const Initial(),
   final bool canUndo = false,
 }) with Equatable {
-  /// Whether the text can be saved.
-  bool get canSave => text.trim().isNotEmpty && text.length <= quickSlipMaxLength;
-
   /// Whether the saved confirmation is showing.
   bool get isSaved => saveAction is Success;
 
   QuickSlipState copyWith({
-    String? text,
+    FormInput<String>? text,
     String? category,
     bool clearCategory = false,
     Resource<SlipSaveOutcome>? saveAction,

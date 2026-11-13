@@ -3,6 +3,7 @@ import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact.d
 import 'package:flutter_bloc_starter/features/partner/data/repositories/partner_repository.dart';
 import 'package:flutter_bloc_starter/features/partner/presentation/profile/cubit/partner_profile_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockPartnerRepository() extends Mock implements PartnerRepository;
@@ -28,15 +29,23 @@ void main() {
 
   PartnerProfileCubit build() => PartnerProfileCubit(partnerRepository: repository);
 
-  test('a note needs a label and a value within their limits', () {
+  test('saving an incomplete note reports the field errors and stops', () async {
     final cubit = build()..onLabelChanged('Café');
-    expect(cubit.state.canSave, isFalse);
+    await cubit.save();
+    expect(cubit.state.value.error, NonEmptyValidationError.empty);
 
     cubit.onValueChanged('a' * (partnerFactValueMaxLength + 1));
-    expect(cubit.state.canSave, isFalse);
+    await cubit.save();
+    expect(cubit.state.value.error, MaxLengthValidationError.tooLong);
 
-    cubit.onValueChanged('Sem açúcar');
-    expect(cubit.state.canSave, isTrue);
+    verifyNever(
+      () => repository.addFact(
+        id: any(named: 'id'),
+        label: any(named: 'label'),
+        value: any(named: 'value'),
+        category: any(named: 'category'),
+      ),
+    );
   });
 
   test('saving clears the form and reads the notes again', () async {
@@ -55,7 +64,7 @@ void main() {
         category: 'likes',
       ),
     ).called(1);
-    expect(cubit.state.label, '');
+    expect(cubit.state.label.value, '');
     expect(cubit.state.category, isNull);
     verify(() => repository.getFacts()).called(1);
   });
@@ -78,7 +87,7 @@ void main() {
       ..onValueChanged('Sem açúcar');
 
     await cubit.save();
-    expect(cubit.state.label, 'Café');
+    expect(cubit.state.label.value, 'Café');
 
     await cubit.save();
     expect(ids.first, ids.last);

@@ -86,6 +86,17 @@ void main() {
     expect(find.text('Só você vê esta lista.'), findsOneWidget);
   });
 
+  testWidgets('the create sheet asks for a name instead of creating', (tester) async {
+    var created = 0;
+    await tester.pumpApp(CreateListSheet(hasPartner: false, onCreate: (_, _, _) => created++));
+
+    await tester.tap(find.text('Criar lista'));
+    await tester.pump();
+
+    expect(find.text('Dê um nome para a lista.'), findsOneWidget);
+    expect(created, 0);
+  });
+
   testWidgets('creating a list is unavailable until the lists load', (tester) async {
     when(repository.getLists).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
     final cubit = ListsCubit(listsRepository: repository);

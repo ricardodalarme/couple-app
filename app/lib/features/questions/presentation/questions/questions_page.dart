@@ -46,7 +46,7 @@ class _QuestionsPageState() extends State<QuestionsPage> with WidgetsBindingObse
     final cubit = context.read<QuestionsCubit>();
     final current = cubit.state;
     if (current.view != QuestionsView.waiting || current.isEditing) return;
-    final text = current.draft.trim();
+    final text = current.draft.value.trim();
     if (text.isNotEmpty && text != (current.current?.ownAnswer?.body.trim() ?? '')) return;
     cubit.load();
   }
@@ -58,7 +58,7 @@ class _QuestionsPageState() extends State<QuestionsPage> with WidgetsBindingObse
     final hasUnsavedDraft = context.select((QuestionsCubit cubit) {
       final current = cubit.state;
       if (!current.showsAnswerForm) return false;
-      final text = current.draft.trim();
+      final text = current.draft.value.trim();
       if (text.isEmpty) return false;
       final saved = current.current?.ownAnswer?.body.trim() ?? '';
 

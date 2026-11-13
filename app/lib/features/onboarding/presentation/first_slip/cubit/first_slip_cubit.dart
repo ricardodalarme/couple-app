@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:uuid/uuid.dart';
 
 part 'first_slip_state.dart';
@@ -21,16 +22,16 @@ class FirstSlipCubit({
 }) extends Cubit<FirstSlipState> {
   this : super(const FirstSlipState());
 
-  void onTextChanged(String text) => emit(state.copyWith(text: text));
+  void onTextChanged(String text) => emit(state.copyWith(text: FormInput(text)));
 
   Future<void> save() async {
-    if (!state.canSave || state.saveAction.isLoading) return;
+    if (state.saveAction.isLoading || !_validate()) return;
 
     emit(state.copyWith(saveAction: const Loading()));
     try {
       await _slipRepository.keepOnDevice(
         id: const Uuid().v4(),
-        body: state.text.trim(),
+        body: state.text.value.trim(),
         createdAt: clock.now(),
       );
       await _markStepDone();
@@ -42,6 +43,16 @@ class FirstSlipCubit({
   }
 
   Future<void> skip() => _markStepDone();
+
+  bool _validate() {
+    final validatedText = state.text.validate(
+      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(quickSlipMaxLength)]),
+    );
+
+    emit(state.copyWith(text: validatedText));
+
+    return validatedText.isValid;
+  }
 
   Future<void> _markStepDone() {
     final settings = _settingsRepository.get();

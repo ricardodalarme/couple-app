@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/memories/data/models/memory.dart';
 import 'package:flutter_bloc_starter/features/memories/data/repositories/memories_repository.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:uuid/uuid.dart';
 
 part 'memories_state.dart';
@@ -34,31 +35,31 @@ class MemoriesCubit({required final MemoriesRepository _memoriesRepository})
 
   void openForm() => emit(state.copyWith(isFormOpen: true));
 
-  void onTitleChanged(String title) => emit(state.copyWith(title: title));
+  void onTitleChanged(String title) => emit(state.copyWith(title: FormInput(title)));
 
-  void onBodyChanged(String body) => emit(state.copyWith(body: body));
+  void onBodyChanged(String body) => emit(state.copyWith(body: FormInput(body)));
 
-  void onPlaceChanged(String place) => emit(state.copyWith(place: place));
+  void onPlaceChanged(String place) => emit(state.copyWith(place: FormInput(place)));
 
   /// Saves the typed memory dated today; on failure the text stays so it can be sent again.
   Future<void> save() async {
-    if (!state.canSave || state.saveAction.isLoading) return;
+    if (state.saveAction.isLoading || !_validate()) return;
 
     emit(state.copyWith(saveAction: const Loading()));
     try {
       await _memoriesRepository.addMemory(
         id: _pendingId ??= _uuid.v4(),
-        title: state.title,
-        body: state.body,
-        place: state.place,
+        title: state.title.value,
+        body: state.body.value,
+        place: state.place.value,
         happenedOn: clock.now(),
       );
       _pendingId = null;
       emit(
         state.copyWith(
-          title: '',
-          body: '',
-          place: '',
+          title: const FormInput(''),
+          body: const FormInput(''),
+          place: const FormInput(''),
           isFormOpen: false,
           saveAction: const Success(null),
         ),
@@ -68,6 +69,19 @@ class MemoriesCubit({required final MemoriesRepository _memoriesRepository})
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));
+  }
+
+  /// Validates every field in one pass and reports whether the form can be saved.
+  bool _validate() {
+    final validatedTitle = state.title.validate(
+      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(memoryTitleMaxLength)]),
+    );
+    final validatedBody = state.body.validate(MaxLengthValidator(memoryBodyMaxLength));
+    final validatedPlace = state.place.validate(MaxLengthValidator(memoryPlaceMaxLength));
+
+    emit(state.copyWith(title: validatedTitle, body: validatedBody, place: validatedPlace));
+
+    return validatedTitle.isValid && validatedBody.isValid && validatedPlace.isValid;
   }
 
   Future<void> delete(Memory memory) async {

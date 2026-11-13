@@ -4,6 +4,10 @@
   "answerCta": "Responder",
   "editCta": "Editar minha resposta",
   "answerHint": "Escreva o quanto quiser.",
+  "answerErrors(map)": {
+    "empty": "Escreva uma resposta",
+    "tooLong": "A resposta está muito longa"
+  },
   "privateNote": "Só você vê isto até seu par responder também.",
   "partnerAnsweredNote": "Seu par já respondeu. Envie a sua para ver as duas.",
   "soloNote": "Sua resposta fica privada. Seu par vai ver depois que vocês se conectarem.",

@@ -81,7 +81,6 @@ class const MilestonePage({
                           Expanded(
                             child: BaseButton(
                               text: l10n.saveMilestone,
-                              isEnabled: state.canSave,
                               isLoading: state.saveAction.isLoading,
                               onPressed: cubit.save,
                             ),
@@ -90,7 +89,6 @@ class const MilestonePage({
                       )
                     : BaseButton(
                         text: l10n.saveMilestone,
-                        isEnabled: state.canSave,
                         isLoading: state.saveAction.isLoading,
                         onPressed: cubit.save,
                       )

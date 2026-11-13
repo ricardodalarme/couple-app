@@ -19,6 +19,10 @@
   "discardConfirm": "Descartar",
   "editTitle": "Editar aprendizado",
   "editHint": "O que você quer guardar",
+  "textErrors(map)": {
+    "empty": "Escreva o que quer guardar",
+    "tooLong": "Isto está muito longo"
+  },
   "save": "Guardar",
   "partnerFactLabel": "Da conversa",
   "updated": "Aprendizado atualizado",

@@ -246,6 +246,7 @@ Future<void> _addItem(BuildContext context) async {
       hint: l10n.itemHint,
       maxLength: listItemTitleMaxLength,
       confirmText: l10n.add,
+      errors: l10n.itemTitleErrors,
       onConfirm: cubit.addItem,
     ),
   );

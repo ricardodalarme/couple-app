@@ -4,10 +4,8 @@ final class const ProfileSettingsState({
   final Resource<ProfileDetails> details = const Loading(),
   final Resource<void> saveAction = const Initial(),
   final String? loginProvider,
-  final String? nameDraft,
-  final String? pronounsDraft,
-  final bool hasNameError = false,
-  final bool hasPronounsError = false,
+  final FormInput<String>? nameDraft,
+  final FormInput<String>? pronounsDraft,
 }) with Equatable {
   /// The loaded fields, or null while loading or failed.
   ProfileDetails? get current => switch (details) {
@@ -19,10 +17,8 @@ final class const ProfileSettingsState({
     Resource<ProfileDetails>? details,
     Resource<void>? saveAction,
     String? loginProvider,
-    String? nameDraft,
-    String? pronounsDraft,
-    bool? hasNameError,
-    bool? hasPronounsError,
+    FormInput<String>? nameDraft,
+    FormInput<String>? pronounsDraft,
   }) {
     return ProfileSettingsState(
       details: details ?? this.details,
@@ -30,19 +26,9 @@ final class const ProfileSettingsState({
       loginProvider: loginProvider ?? this.loginProvider,
       nameDraft: nameDraft ?? this.nameDraft,
       pronounsDraft: pronounsDraft ?? this.pronounsDraft,
-      hasNameError: hasNameError ?? this.hasNameError,
-      hasPronounsError: hasPronounsError ?? this.hasPronounsError,
     );
   }
 
   @override
-  List<Object?> get props => [
-    details,
-    saveAction,
-    loginProvider,
-    nameDraft,
-    pronounsDraft,
-    hasNameError,
-    hasPronounsError,
-  ];
+  List<Object?> get props => [details, saveAction, loginProvider, nameDraft, pronounsDraft];
 }

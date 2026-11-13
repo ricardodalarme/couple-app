@@ -1,13 +1,14 @@
 part of 'milestone_cubit.dart';
 
 const int milestoneTitleMaxLength = 120;
+const int milestonePlaceMaxLength = 120;
 const int milestoneBodyMaxLength = 500;
 
 final class const MilestoneState({
   final HistoryMilestone? existing,
-  final String title = '',
-  final String place = '',
-  final String body = '',
+  final FormInput<String> title = const FormInput(''),
+  final FormInput<String> place = const FormInput(''),
+  final FormInput<String> body = const FormInput(''),
   final MilestoneKind kind = MilestoneKind.custom,
   final MilestoneDatePrecision precision = MilestoneDatePrecision.day,
   final DateTime? date,
@@ -26,17 +27,11 @@ final class const MilestoneState({
 
   bool get isUnknownDate => precision == MilestoneDatePrecision.unknown;
 
-  bool get canSave =>
-      canEdit &&
-      title.trim().isNotEmpty &&
-      title.trim().length <= milestoneTitleMaxLength &&
-      body.length <= milestoneBodyMaxLength;
-
   MilestoneState copyWith({
     HistoryMilestone? existing,
-    String? title,
-    String? place,
-    String? body,
+    FormInput<String>? title,
+    FormInput<String>? place,
+    FormInput<String>? body,
     MilestoneKind? kind,
     MilestoneDatePrecision? precision,
     DateTime? date,

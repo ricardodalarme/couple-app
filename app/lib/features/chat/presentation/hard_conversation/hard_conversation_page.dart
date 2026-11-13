@@ -192,7 +192,7 @@ class const _WhatStep() extends StatelessWidget {
             ],
           ),
           const SizedBox(height: AppSpace.s16),
-          BaseTextField(text: text, hint: l10n.whatHint, onChanged: cubit.onWhatTextChanged),
+          BaseTextField(text: text.value, hint: l10n.whatHint, onChanged: cubit.onWhatTextChanged),
           const SizedBox(height: AppSpace.s16),
           BaseNote(text: l10n.privateNote),
         ],
@@ -253,7 +253,7 @@ class const _NeedStep() extends StatelessWidget {
             ],
           ),
           const SizedBox(height: AppSpace.s16),
-          BaseTextField(text: text, hint: l10n.needHint, onChanged: cubit.onNeedTextChanged),
+          BaseTextField(text: text.value, hint: l10n.needHint, onChanged: cubit.onNeedTextChanged),
           if (isOffline) ...[
             const SizedBox(height: AppSpace.s16),
             BaseNote(text: l10n.offline, icon: AppIcons.wifi_off),
@@ -280,7 +280,6 @@ class const _SayStep() extends StatelessWidget {
     final message = context.select((HardConversationCubit cubit) => cubit.state.message);
     final isGenerating = context.select((HardConversationCubit cubit) => cubit.state.isGenerating);
     final canCopy = context.select((HardConversationCubit cubit) => cubit.state.canCopy);
-    final canSend = context.select((HardConversationCubit cubit) => cubit.state.canSend);
     final isSending = context.select(
       (HardConversationCubit cubit) => cubit.state.sendAction.isLoading,
     );
@@ -312,10 +311,12 @@ class const _SayStep() extends StatelessWidget {
             const SizedBox(height: AppSpace.s16),
           ],
           BaseTextArea(
-            text: message,
+            text: message.value,
             hint: l10n.sayHint,
             maxLength: hardConversationMessageMaxLength,
             isEnabled: !isGenerating,
+            errorText: l10n.messageErrors.selectOrNull(message.errorName),
+            hasError: message.errorName != null,
             onChanged: cubit.onMessageChanged,
           ),
           const SizedBox(height: AppSpace.s12),
@@ -337,7 +338,7 @@ class const _SayStep() extends StatelessWidget {
               ),
             ],
           ),
-          if (generateFailed || (!isGenerating && message.trim().isEmpty)) ...[
+          if (generateFailed || (!isGenerating && message.value.trim().isEmpty)) ...[
             const SizedBox(height: AppSpace.s8),
             BaseTextLink(text: l10n.retry, onPressed: isOffline ? null : cubit.retry),
           ],
@@ -353,7 +354,7 @@ class const _SayStep() extends StatelessWidget {
         children: [
           BaseButton(
             text: l10n.sendAsNote,
-            isEnabled: canSend && !isGenerating,
+            isEnabled: !isGenerating,
             isLoading: isSending,
             onPressed: cubit.send,
           ),

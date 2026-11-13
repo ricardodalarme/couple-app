@@ -2,6 +2,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:form_inputs/form_inputs.dart';
 
 /// What the gift sheet hands back to the page.
 final class const GiftDraft({
@@ -20,26 +21,12 @@ class const GiftSheet({required final bool hasPartner, final GiftIdea? gift, sup
 }
 
 class _GiftSheetState() extends State<GiftSheet> {
-  late String _title = widget.gift?.title ?? '';
-  late String _note = widget.gift?.note ?? '';
+  late FormInput<String> _title = FormInput(widget.gift?.title ?? '');
+  late FormInput<String> _note = FormInput(widget.gift?.note ?? '');
   late String? _budget = widget.gift?.budget;
   late bool _isShared = widget.gift?.isShared ?? false;
 
   bool get _isEditing => widget.gift != null;
-
-  String? get _titleError =>
-      _title.trim().length > giftTitleMaxLength ? context.l10n.gifts.titleTooLong : null;
-
-  String? get _noteError =>
-      _note.trim().length > giftNoteMaxLength ? context.l10n.gifts.noteTooLong : null;
-
-  bool get _canSave {
-    final title = _title.trim();
-
-    return title.isNotEmpty &&
-        title.length <= giftTitleMaxLength &&
-        _note.trim().length <= giftNoteMaxLength;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,21 +36,21 @@ class _GiftSheetState() extends State<GiftSheet> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         BaseTextField(
-          text: _title,
+          text: _title.value,
           label: l10n.titleLabel,
           hint: l10n.titleHint,
-          errorText: _titleError,
-          onChanged: (title) => setState(() => _title = title),
+          errorText: l10n.titleErrors.selectOrNull(_title.errorName),
+          onChanged: (title) => setState(() => _title = FormInput(title)),
         ),
         const SizedBox(height: AppSpace.s16),
         BaseTextArea(
-          text: _note,
+          text: _note.value,
           hint: l10n.noteHint,
           maxLength: giftNoteMaxLength,
           maxLines: 4,
-          hasError: _noteError != null,
-          errorText: _noteError,
-          onChanged: (note) => setState(() => _note = note),
+          hasError: !_note.isValid,
+          errorText: l10n.noteErrors.selectOrNull(_note.errorName),
+          onChanged: (note) => setState(() => _note = FormInput(note)),
         ),
         const SizedBox(height: AppSpace.s16),
         Text(
@@ -112,7 +99,7 @@ class _GiftSheetState() extends State<GiftSheet> {
           ),
         ],
         const SizedBox(height: AppSpace.s24),
-        BaseButton(text: _isEditing ? l10n.save : l10n.add, onPressed: _canSave ? _save : null),
+        BaseButton(text: _isEditing ? l10n.save : l10n.add, onPressed: _save),
         if (_isEditing) ...[
           const SizedBox(height: AppSpace.s10),
           BaseButton(text: l10n.delete, variant: .secondary, onPressed: _delete),
@@ -122,9 +109,24 @@ class _GiftSheetState() extends State<GiftSheet> {
   }
 
   void _save() {
-    if (!_canSave) return;
+    final validatedTitle = _title.validate(
+      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(giftTitleMaxLength)]),
+    );
+    final validatedNote = _note.validate(MaxLengthValidator(giftNoteMaxLength));
+
+    setState(() {
+      _title = validatedTitle;
+      _note = validatedNote;
+    });
+    if (!validatedTitle.isValid || !validatedNote.isValid) return;
+
     Navigator.of(context).pop(
-      GiftDraft(title: _title.trim(), note: _clean(_note), budget: _budget, isShared: _isShared),
+      GiftDraft(
+        title: validatedTitle.value.trim(),
+        note: _clean(validatedNote.value),
+        budget: _budget,
+        isShared: _isShared,
+      ),
     );
   }
 

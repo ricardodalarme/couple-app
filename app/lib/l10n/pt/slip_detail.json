@@ -45,6 +45,10 @@
   "previewTitle": "O que seu par leria",
   "previewText": "Se este slip entrar no cartão, é este texto que aparece.",
   "sentNote": "Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.",
+  "draftBodyErrors(map)": {
+    "empty": "Escreva o slip primeiro",
+    "tooLong": "Este slip está muito longo"
+  },
   "edit": "Editar",
   "editSave": "Salvar",
   "editCancel": "Cancelar",

@@ -10,16 +10,13 @@ enum AcceptOutcome() {
 }
 
 final class const AcceptInviteState({
-  final String code = '',
+  final FormInput<String> code = const FormInput(''),
   final Resource<AcceptOutcome> acceptAction = const Initial(),
   final String? partnerName,
   final String? selfName,
 }) with Equatable {
-  /// Whether the code has the length the server issues.
-  bool get canAccept => code.length == inviteCodeLength;
-
   AcceptInviteState copyWith({
-    String? code,
+    FormInput<String>? code,
     Resource<AcceptOutcome>? acceptAction,
     String? partnerName,
     String? selfName,

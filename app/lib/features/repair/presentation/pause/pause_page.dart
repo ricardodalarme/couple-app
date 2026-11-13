@@ -44,7 +44,6 @@ class const _Form() extends StatelessWidget {
     final message = context.select((PauseCubit cubit) => cubit.state.message);
     final preset = context.select((PauseCubit cubit) => cubit.state.preset);
     final returnChoice = context.select((PauseCubit cubit) => cubit.state.returnChoice);
-    final canSend = context.select((PauseCubit cubit) => cubit.state.canSend);
     final isLoading = context.select((PauseCubit cubit) => cubit.state.sendAction.isLoading);
     final cubit = context.read<PauseCubit>();
 
@@ -80,9 +79,10 @@ class const _Form() extends StatelessWidget {
           ),
           const SizedBox(height: AppSpace.s12),
           BaseTextArea(
-            text: message,
+            text: message.value,
             hint: l10n.hint,
             maxLength: pauseMessageMaxLength,
+            errorText: l10n.messageErrors.selectOrNull(message.errorName),
             onChanged: cubit.onMessageChanged,
           ),
           const SizedBox(height: AppSpace.s20),
@@ -104,12 +104,7 @@ class const _Form() extends StatelessWidget {
           BaseNote(text: l10n.note),
         ],
       ),
-      footer: BaseButton(
-        text: l10n.send,
-        isEnabled: canSend,
-        isLoading: isLoading,
-        onPressed: cubit.send,
-      ),
+      footer: BaseButton(text: l10n.send, isLoading: isLoading, onPressed: cubit.send),
     );
   }
 }

@@ -1,15 +1,12 @@
 part of 'quick_repair_cubit.dart';
 
 final class const QuickRepairState({
-  final String text = '',
+  final FormInput<String> text = const FormInput(''),
   final String? preset,
   final Resource<void> sendAction = const Initial(),
 }) with Equatable {
-  /// Whether the message can be sent.
-  bool get canSend => text.trim().isNotEmpty && text.length <= repairMessageMaxLength;
-
   QuickRepairState copyWith({
-    String? text,
+    FormInput<String>? text,
     String? preset,
     bool clearPreset = false,
     Resource<void>? sendAction,

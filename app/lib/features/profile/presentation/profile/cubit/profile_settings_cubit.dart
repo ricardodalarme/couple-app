@@ -9,6 +9,7 @@ import 'package:flutter_bloc_starter/features/profile/data/models/profile_detail
 import 'package:flutter_bloc_starter/features/profile/data/models/profile_name.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
+import 'package:form_inputs/form_inputs.dart';
 
 part 'profile_settings_state.dart';
 
@@ -45,11 +46,9 @@ class ProfileSettingsCubit({
       emit(
         state.copyWith(
           details: Success(details),
-          nameDraft: details.displayName,
-          pronounsDraft: details.pronouns ?? '',
+          nameDraft: FormInput(details.displayName),
+          pronounsDraft: FormInput(details.pronouns ?? ''),
           loginProvider: _authenticationRepository.loginProvider,
-          hasNameError: false,
-          hasPronounsError: false,
         ),
       );
     } catch (exception) {
@@ -62,9 +61,11 @@ class ProfileSettingsCubit({
     if (!_canEmit) return;
 
     _nameTimer?.cancel();
-    final clean = sanitizeDisplayName(value);
-    emit(state.copyWith(nameDraft: value, hasNameError: clean.isEmpty));
-    if (clean.isEmpty) return;
+    emit(state.copyWith(nameDraft: FormInput(value)));
+    if (sanitizeDisplayName(value).isEmpty) {
+      _validateName();
+      return;
+    }
 
     _nameTimer = Timer(_editDebounce, saveName);
   }
@@ -75,14 +76,12 @@ class ProfileSettingsCubit({
 
     final current = state.current;
     if (current == null || !_canEmit) return;
+    if (!_validateName()) return;
 
-    final name = sanitizeDisplayName(state.nameDraft ?? current.displayName);
-    if (name.isEmpty) {
-      emit(state.copyWith(hasNameError: true));
-      return;
-    }
+    final name = sanitizeDisplayName(state.nameDraft?.value ?? current.displayName);
+    if (name.isEmpty) return;
     if (name == _savedName) {
-      emit(state.copyWith(nameDraft: name, hasNameError: false));
+      emit(state.copyWith(nameDraft: FormInput(name)));
       return;
     }
 
@@ -105,7 +104,7 @@ class ProfileSettingsCubit({
       emit(
         state.copyWith(
           details: Success(latest.copyWith(displayName: name)),
-          nameDraft: name,
+          nameDraft: FormInput(name),
           saveAction: const Initial(),
         ),
       );
@@ -115,7 +114,7 @@ class ProfileSettingsCubit({
       emit(
         state.copyWith(
           details: Success(latest.copyWith(displayName: _savedName)),
-          nameDraft: _savedName,
+          nameDraft: FormInput(_savedName),
           saveAction: Failure.fromObject(exception),
         ),
       );
@@ -127,9 +126,11 @@ class ProfileSettingsCubit({
     if (!_canEmit) return;
 
     _pronounsTimer?.cancel();
-    final tooLong = value.trim().runes.length > maxPronounsLength;
-    emit(state.copyWith(pronounsDraft: value, hasPronounsError: tooLong));
-    if (tooLong) return;
+    emit(state.copyWith(pronounsDraft: FormInput(value)));
+    if (value.trim().runes.length > maxPronounsLength) {
+      _validatePronouns();
+      return;
+    }
 
     _pronounsTimer = Timer(_editDebounce, savePronouns);
   }
@@ -140,17 +141,12 @@ class ProfileSettingsCubit({
 
     final current = state.current;
     if (current == null || !_canEmit) return;
+    if (!_validatePronouns()) return;
 
-    final raw = state.pronounsDraft ?? current.pronouns ?? '';
-    final trimmed = raw.trim();
-    if (trimmed.runes.length > maxPronounsLength) {
-      emit(state.copyWith(hasPronounsError: true));
-      return;
-    }
-
-    final pronouns = trimmed.isEmpty ? null : trimmed;
+    final raw = (state.pronounsDraft?.value ?? current.pronouns ?? '').trim();
+    final pronouns = raw.isEmpty ? null : raw;
     if (pronouns == _savedPronouns) {
-      emit(state.copyWith(pronounsDraft: pronouns ?? '', hasPronounsError: false));
+      emit(state.copyWith(pronounsDraft: FormInput(pronouns ?? '')));
       return;
     }
 
@@ -173,8 +169,7 @@ class ProfileSettingsCubit({
       emit(
         state.copyWith(
           details: Success(latest.copyWith(pronouns: pronouns, clearPronouns: pronouns == null)),
-          pronounsDraft: pronouns ?? '',
-          hasPronounsError: false,
+          pronounsDraft: FormInput(pronouns ?? ''),
           saveAction: const Initial(),
         ),
       );
@@ -186,7 +181,7 @@ class ProfileSettingsCubit({
           details: Success(
             latest.copyWith(pronouns: _savedPronouns, clearPronouns: _savedPronouns == null),
           ),
-          pronounsDraft: _savedPronouns ?? '',
+          pronounsDraft: FormInput(_savedPronouns ?? ''),
           saveAction: Failure.fromObject(exception),
         ),
       );
@@ -276,6 +271,30 @@ class ProfileSettingsCubit({
     }
   }
 
+  bool _validateName() {
+    final draft = state.nameDraft;
+    if (draft == null) return true;
+
+    final validatedName = draft.validate(
+      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(maxNameLength)]),
+    );
+
+    emit(state.copyWith(nameDraft: validatedName));
+
+    return validatedName.isValid;
+  }
+
+  bool _validatePronouns() {
+    final draft = state.pronounsDraft;
+    if (draft == null) return true;
+
+    final validatedPronouns = draft.validate(MaxLengthValidator(maxPronounsLength));
+
+    emit(state.copyWith(pronounsDraft: validatedPronouns));
+
+    return validatedPronouns.isValid;
+  }
+
   Future<void> _rememberLocalTheme(AppThemeVariant theme) async {
     try {
       final settings = _settingsRepository.get();
@@ -295,7 +314,7 @@ class ProfileSettingsCubit({
 
     final current = state.current;
     if (current != null) {
-      final name = sanitizeDisplayName(state.nameDraft ?? current.displayName);
+      final name = sanitizeDisplayName(state.nameDraft?.value ?? current.displayName);
       if (name.isNotEmpty && name != _savedName) {
         try {
           await _profileRepository.updateDisplayName(
@@ -307,7 +326,7 @@ class ProfileSettingsCubit({
         }
       }
 
-      final rawPronouns = (state.pronounsDraft ?? current.pronouns ?? '').trim();
+      final rawPronouns = (state.pronounsDraft?.value ?? current.pronouns ?? '').trim();
       if (rawPronouns.runes.length <= maxPronounsLength) {
         final pronouns = rawPronouns.isEmpty ? null : rawPronouns;
         if (pronouns != _savedPronouns) {

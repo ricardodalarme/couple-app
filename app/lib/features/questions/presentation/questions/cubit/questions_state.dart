@@ -1,5 +1,7 @@
 part of 'questions_cubit.dart';
 
+const int answerMaxLength = 1000;
+
 enum QuestionsView() {
   answer,
   waiting,
@@ -8,7 +10,7 @@ enum QuestionsView() {
 
 final class const QuestionsState({
   final Resource<QuestionThread> thread = const Loading(),
-  final String draft = '',
+  final FormInput<String> draft = const FormInput(''),
   final bool isEditing = false,
   final Resource<void> saveAction = const Initial(),
 }) with Equatable {
@@ -19,8 +21,6 @@ final class const QuestionsState({
   };
 
   bool get isSaving => saveAction.isLoading;
-
-  bool get canSave => draft.trim().isNotEmpty && !isSaving;
 
   QuestionsView get view {
     final thread = current;
@@ -35,7 +35,7 @@ final class const QuestionsState({
 
   QuestionsState copyWith({
     Resource<QuestionThread>? thread,
-    String? draft,
+    FormInput<String>? draft,
     bool? isEditing,
     Resource<void>? saveAction,
   }) {

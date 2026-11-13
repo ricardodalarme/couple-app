@@ -4,6 +4,12 @@
   "subtitle": "Digite o código que a outra pessoa enviou para vocês se conectarem.",
   "codeLabel": "Código do convite",
   "codeHint": "ABCD2345",
+  "codeErrors(map)": {
+    "empty": "Digite o código do convite.",
+    "tooShort": "O código tem 8 caracteres.",
+    "tooLong": "O código tem 8 caracteres.",
+    "invalid": "Use só letras e números."
+  },
   "privacyNote": "Aceitar compartilha cartões e ferramentas. Suas notas privadas continuam privadas.",
   "accept": "Aceitar",
   "connected": {

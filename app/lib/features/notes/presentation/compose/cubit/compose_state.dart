@@ -8,7 +8,7 @@ enum DrawingTool() {
 final class const ComposeState({
   final Resource<List<SentMessage>> sent = const Loading(),
   final MessageKind kind = MessageKind.note,
-  final String text = '',
+  final FormInput<String> text = const FormInput(''),
   final List<DrawingStroke> strokes = const [],
   final DrawingTool tool = DrawingTool.pen,
   final int penIndex = 0,
@@ -20,18 +20,10 @@ final class const ComposeState({
   /// Whether the person is known to have no partner to send to.
   bool get isUnpaired => isPaired == false;
 
-  /// Whether there is something to send: a note within the limit, or at least one stroke.
-  bool get canSend =>
-      !isUnpaired &&
-      switch (kind) {
-        MessageKind.note => text.trim().isNotEmpty && text.length <= noteMaxLength,
-        MessageKind.drawing => strokes.isNotEmpty,
-      };
-
   ComposeState copyWith({
     Resource<List<SentMessage>>? sent,
     MessageKind? kind,
-    String? text,
+    FormInput<String>? text,
     List<DrawingStroke>? strokes,
     DrawingTool? tool,
     int? penIndex,

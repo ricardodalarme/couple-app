@@ -14,9 +14,14 @@
   "editTitle": "Editar desejo",
   "titleLabel": "Presente",
   "titleHint": "Ex.: livro de poemas",
-  "titleTooLong": "Use no máximo 120 caracteres.",
+  "titleErrors(map)": {
+    "empty": "Dê um nome ao presente.",
+    "tooLong": "Use no máximo 120 caracteres."
+  },
   "noteHint": "Tamanho, cor, onde encontrar.",
-  "noteTooLong": "Use no máximo 1000 caracteres na nota.",
+  "noteErrors(map)": {
+    "tooLong": "Use no máximo 1000 caracteres na nota."
+  },
   "budgetLabel": "Orçamento (opcional)",
   "budgets(map)": {
     "free": "Grátis",

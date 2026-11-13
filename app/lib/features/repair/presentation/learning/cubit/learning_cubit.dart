@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/repair/data/models/guided_session.dart';
 import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:uuid/uuid.dart';
 
 part 'learning_state.dart';
@@ -29,27 +30,40 @@ class LearningCubit({required final RepairRepository _repairRepository})
 
   void onKindChosen(String kind) => emit(state.copyWith(kind: kind));
 
-  void onNoteChanged(String note) => emit(state.copyWith(note: note));
+  void onNoteChanged(String note) => emit(state.copyWith(note: FormInput(note)));
 
   /// Saves the note, private to the person, tied to [sessionId] when it came from a repair.
   Future<void> save({String? sessionId}) async {
-    if (!state.canSave || state.saveAction.isLoading) return;
+    final kind = state.kind;
+    if (state.saveAction.isLoading || !_validate() || kind == null) return;
 
     emit(state.copyWith(saveAction: const Loading()));
     try {
       await _repairRepository.saveLearning(
         id: _pendingId ??= _uuid.v4(),
-        kind: state.kind!,
-        note: state.note,
+        kind: kind,
+        note: state.note.value,
         sessionId: sessionId,
       );
       _pendingId = null;
-      emit(state.copyWith(note: '', clearKind: true, saveAction: const Success(null)));
+      emit(
+        state.copyWith(note: const FormInput(''), clearKind: true, saveAction: const Success(null)),
+      );
       await load();
     } catch (exception) {
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));
+  }
+
+  bool _validate() {
+    final validatedNote = state.note.validate(
+      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(learningMaxLength)]),
+    );
+
+    emit(state.copyWith(note: validatedNote));
+
+    return validatedNote.isValid;
   }
 
   Future<void> delete(String id) async {

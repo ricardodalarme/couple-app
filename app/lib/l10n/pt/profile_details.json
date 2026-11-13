@@ -2,10 +2,15 @@
   "title": "Perfil",
   "nameLabel": "Seu nome",
   "nameHint": "Marina",
-  "nameError": "Seu nome não pode ficar vazio.",
+  "nameErrors(map)": {
+    "empty": "Seu nome não pode ficar vazio.",
+    "tooLong": "Use no máximo 30 caracteres."
+  },
   "pronounsLabel": "Pronomes",
   "pronounsHint": "Opcional",
-  "pronounsError": "Use no máximo 30 caracteres.",
+  "pronounsErrors(map)": {
+    "tooLong": "Use no máximo 30 caracteres."
+  },
   "timeZoneLabel": "Fuso horário",
   "timeZonePlaceholder": "Escolha um fuso",
   "loginLabel": "Login",

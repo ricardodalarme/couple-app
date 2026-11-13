@@ -12,7 +12,15 @@
   },
   "labelLabel": "Topic",
   "labelHint": "E.g. coffee",
+  "labelErrors(map)": {
+    "empty": "Give the note a topic.",
+    "tooLong": "Use at most 80 characters."
+  },
   "valueHint": "E.g. no sugar, very hot",
+  "valueErrors(map)": {
+    "empty": "Write what you want to remember.",
+    "tooLong": "Use at most 500 characters."
+  },
   "save": "Save note",
   "delete": "Delete",
   "emptyTitle": "No notes yet",

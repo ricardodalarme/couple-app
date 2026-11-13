@@ -105,8 +105,10 @@ class const _EditField() extends StatelessWidget {
     final text = context.select((SlipDetailCubit cubit) => cubit.state.draftBody);
 
     return BaseTextArea(
-      text: text,
+      text: text.value,
       maxLength: slipKindMaxLength,
+      errorText: context.l10n.slipDetail.draftBodyErrors.selectOrNull(text.errorName),
+      hasError: text.errorName != null,
       onChanged: context.read<SlipDetailCubit>().onBodyChanged,
     );
   }
@@ -221,19 +223,13 @@ class const _EditActions() extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n.slipDetail;
     final cubit = context.read<SlipDetailCubit>();
-    final canSave = context.select((SlipDetailCubit cubit) => cubit.state.canSaveEdit);
     final isLoading = context.select((SlipDetailCubit cubit) => cubit.state.saveAction.isLoading);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        BaseButton(
-          text: l10n.editSave,
-          isEnabled: canSave,
-          isLoading: isLoading,
-          onPressed: cubit.saveEdit,
-        ),
+        BaseButton(text: l10n.editSave, isLoading: isLoading, onPressed: cubit.saveEdit),
         const SizedBox(height: AppSpace.s10),
         BaseButton(text: l10n.editCancel, variant: .secondary, onPressed: cubit.cancelEditing),
       ],

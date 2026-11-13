@@ -23,7 +23,6 @@ class const DiaryPage({super.key}) extends StatelessWidget implements AutoRouteW
     final body = context.select((DiaryCubit cubit) => cubit.state.body);
     final mood = context.select((DiaryCubit cubit) => cubit.state.mood);
     final editingId = context.select((DiaryCubit cubit) => cubit.state.editingId);
-    final canSave = context.select((DiaryCubit cubit) => cubit.state.canSave);
     final saveAction = context.select((DiaryCubit cubit) => cubit.state.saveAction);
     final cubit = context.read<DiaryCubit>();
 
@@ -63,10 +62,11 @@ class const DiaryPage({super.key}) extends StatelessWidget implements AutoRouteW
               ),
               const SizedBox(height: AppSpace.s12),
               BaseTextArea(
-                text: body,
+                text: body.value,
                 hint: l10n.diaryHint,
                 maxLength: journalBodyMaxLength,
                 maxLines: 6,
+                errorText: l10n.diaryBodyErrors.selectOrNull(body.errorName),
                 onChanged: cubit.onBodyChanged,
               ),
               const SizedBox(height: AppSpace.s24),
@@ -125,7 +125,6 @@ class const DiaryPage({super.key}) extends StatelessWidget implements AutoRouteW
             children: [
               BaseButton(
                 text: l10n.diarySave,
-                isEnabled: canSave,
                 isLoading: saveAction.isLoading,
                 onPressed: cubit.save,
               ),

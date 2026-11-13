@@ -5,33 +5,19 @@ final class const DatesState({
   final Resource<List<ImportantDate>> dates = const Loading(),
   final Resource<List<GiftIdea>> gifts = const Loading(),
   final Resource<List<Holiday>> holidays = const Loading(),
-  final String title = '',
+  final FormInput<String> title = const FormInput(''),
   final String kind = 'birthday',
   final int? month,
   final int? day,
-  final String year = '',
-  final String giftTitle = '',
+  final FormInput<String> year = const FormInput(''),
+  final FormInput<String> giftTitle = const FormInput(''),
   final Resource<void> saveAction = const Initial(),
 }) with Equatable {
   /// The typed year, or null when it is empty or not a plausible year.
   int? get yearValue {
-    final value = int.tryParse(year.trim());
+    final value = int.tryParse(year.value.trim());
 
     return value != null && value >= 1900 && value <= 2200 ? value : null;
-  }
-
-  /// Whether the date being typed can be saved.
-  bool get canSaveDate {
-    final month = this.month;
-    final day = this.day;
-    final yearIsValid = year.trim().isEmpty || yearValue != null;
-
-    return title.trim().isNotEmpty &&
-        title.length <= dateTitleMaxLength &&
-        month != null &&
-        day != null &&
-        isValidMonthDay(month, day) &&
-        yearIsValid;
   }
 
   DatesState copyWith({
@@ -39,12 +25,12 @@ final class const DatesState({
     Resource<List<ImportantDate>>? dates,
     Resource<List<GiftIdea>>? gifts,
     Resource<List<Holiday>>? holidays,
-    String? title,
+    FormInput<String>? title,
     String? kind,
     int? month,
     int? day,
-    String? year,
-    String? giftTitle,
+    FormInput<String>? year,
+    FormInput<String>? giftTitle,
     Resource<void>? saveAction,
   }) {
     return DatesState(

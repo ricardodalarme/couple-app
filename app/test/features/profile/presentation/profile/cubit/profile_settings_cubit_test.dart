@@ -7,6 +7,7 @@ import 'package:flutter_bloc_starter/features/profile/presentation/profile/cubit
 import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockProfileRepository() extends Mock implements ProfileRepository;
@@ -68,8 +69,8 @@ void main() {
     cubit.onNameChanged('   ');
     await cubit.saveName();
 
-    expect(cubit.state.hasNameError, isTrue);
-    expect(cubit.state.nameDraft, '   ');
+    expect(cubit.state.nameDraft?.error, NonEmptyValidationError.empty);
+    expect(cubit.state.nameDraft?.value, '   ');
     expect(cubit.state.current?.displayName, 'Marina Sobrenome');
     verifyNever(
       () => profile.updateDisplayName(
@@ -98,8 +99,8 @@ void main() {
 
     verify(() => profile.updateDisplayName(profileId: 'p1', displayName: 'Marina')).called(1);
     expect(cubit.state.current?.displayName, 'Marina');
-    expect(cubit.state.nameDraft, 'Marina');
-    expect(cubit.state.hasNameError, isFalse);
+    expect(cubit.state.nameDraft?.value, 'Marina');
+    expect(cubit.state.nameDraft?.isValid, isTrue);
     expect(actions.whereType<Success<void>>(), isEmpty);
   });
 
@@ -136,7 +137,7 @@ void main() {
     await pumpEventQueue();
 
     expect(cubit.state.current?.displayName, 'Marina Sobrenome');
-    expect(cubit.state.nameDraft, 'Marina Sobrenome');
+    expect(cubit.state.nameDraft?.value, 'Marina Sobrenome');
     expect(actions.whereType<Failure>(), isNotEmpty);
   });
 
@@ -167,7 +168,7 @@ void main() {
     cubit.onPronounsChanged('a' * 31);
     await cubit.savePronouns();
 
-    expect(cubit.state.hasPronounsError, isTrue);
+    expect(cubit.state.pronounsDraft?.error, MaxLengthValidationError.tooLong);
     verifyNever(
       () => profile.updatePronouns(
         profileId: any(named: 'profileId'),

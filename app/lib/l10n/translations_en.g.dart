@@ -244,6 +244,13 @@ class _Translations$acceptInvite$en extends Translations$acceptInvite$pt {
   @override
   String get codeHint => 'ABCD2345';
   @override
+  Map<String, String> get codeErrors => {
+    'empty': 'Type the invite code.',
+    'tooShort': 'The code has 8 characters.',
+    'tooLong': 'The code has 8 characters.',
+    'invalid': 'Use letters and numbers only.',
+  };
+  @override
   String get privacyNote => 'Accepting shares cards and tools. Your private notes stay private.';
   @override
   String get accept => 'Accept';
@@ -376,9 +383,19 @@ class _Translations$capsules$en extends Translations$capsules$pt {
   @override
   String get bodyHint => 'What do you want to say to the future?';
   @override
+  Map<String, String> get bodyErrors => {
+    'empty': 'Write the message',
+    'tooLong': 'The message is too long',
+  };
+  @override
   String get dateLabel => 'Opens on';
   @override
   String get dateHint => 'Pick a date';
+  @override
+  Map<String, String> get dateErrors => {
+    'empty': 'Pick the day it opens',
+    'outOfRange': 'Pick a date between a week and 50 years ahead',
+  };
   @override
   String dateFormat({required Object month, required Object day, required Object year}) =>
       '${month} ${day}, ${year}';
@@ -582,6 +599,11 @@ class _Translations$chat$en extends Translations$chat$pt {
   @override
   String get inputHint => 'Write here';
   @override
+  Map<String, String> get draftErrors => {
+    'empty': 'Write something to send',
+    'tooLong': 'This message is too long',
+  };
+  @override
   String get send => 'Send';
   @override
   String messagesLeft({required num count}) =>
@@ -602,6 +624,11 @@ class _Translations$chat$en extends Translations$chat$pt {
   String get learningSheetTarget => 'What is it about?';
   @override
   String get learningSheetHint => 'What you want to keep';
+  @override
+  Map<String, String> get learningTextErrors => {
+    'empty': 'Write what you want to keep',
+    'tooLong': 'This is too long',
+  };
   @override
   String get learningSave => 'Save';
   @override
@@ -963,6 +990,11 @@ class _Translations$dates$en extends Translations$dates$pt {
   @override
   String get titleHint => 'E.g. their birthday';
   @override
+  Map<String, String> get titleErrors => {
+    'empty': 'Give this date a name',
+    'tooLong': 'The name is too long',
+  };
+  @override
   Map<String, String> get kinds => {
     'relationship': 'Relationship',
     'birthday': 'Birthday',
@@ -983,6 +1015,8 @@ class _Translations$dates$en extends Translations$dates$pt {
   String get yearHint => 'E.g. 1994';
   @override
   String get yearHelp => 'Without the year the date just repeats, with no age.';
+  @override
+  Map<String, String> get yearErrors => {'invalid': 'Use a year between 1900 and 2200'};
   @override
   List<String> get months => [
     'January',
@@ -1032,6 +1066,11 @@ class _Translations$dates$en extends Translations$dates$pt {
   String get giftsPrivate => 'Gift ideas only you see.';
   @override
   String get giftHint => 'E.g. book of poems';
+  @override
+  Map<String, String> get giftErrors => {
+    'empty': 'Write the gift idea',
+    'tooLong': 'The gift idea is too long',
+  };
   @override
   String get given => 'Given';
   @override
@@ -1347,6 +1386,11 @@ class _Translations$firstSlip$en extends Translations$firstSlip$pt {
   @override
   String get hint => 'E.g. made coffee before I woke up';
   @override
+  Map<String, String> get textErrors => {
+    'empty': 'Write one good thing first.',
+    'tooLong': 'Use at most 140 characters.',
+  };
+  @override
   String get localNote => 'Stays saved on this phone only.';
   @override
   String get save => 'Save';
@@ -1454,11 +1498,14 @@ class _Translations$gifts$en extends Translations$gifts$pt {
   @override
   String get titleHint => 'E.g. a book of poems';
   @override
-  String get titleTooLong => 'Keep it to 120 characters or fewer.';
+  Map<String, String> get titleErrors => {
+    'empty': 'Give the wish a name.',
+    'tooLong': 'Keep it to 120 characters or fewer.',
+  };
   @override
   String get noteHint => 'Size, color, where to find it.';
   @override
-  String get noteTooLong => 'Keep the note under 1000 characters.';
+  Map<String, String> get noteErrors => {'tooLong': 'Keep the note under 1000 characters.'};
   @override
   String get budgetLabel => 'Budget (optional)';
   @override
@@ -1628,6 +1675,11 @@ class _Translations$hardConversation$en extends Translations$hardConversation$pt
   String get sayIntro => 'A starting point for you to edit before sending.';
   @override
   String get sayHint => 'Your opening sentence';
+  @override
+  Map<String, String> get messageErrors => {
+    'empty': 'Write the sentence first',
+    'tooLong': 'This sentence is too long',
+  };
   @override
   String get generating => 'Writing a gentle opening…';
   @override
@@ -1799,11 +1851,19 @@ class _Translations$helpSupport$en extends Translations$helpSupport$pt {
   @override
   String get messageHint => 'Tell us what happened, with as much detail as you like.';
   @override
+  Map<String, String> get messageErrors => {
+    'empty': 'Write your message first',
+    'tooLong': 'The message is too long',
+  };
+  @override
   String get replyEmailLabel => 'Reply email';
   @override
   String get replyEmailHint => 'you@email.com';
   @override
-  String get replyEmailInvalid => 'Check the email address.';
+  Map<String, String> get replyEmailErrors => {
+    'invalid': 'Check the email address.',
+    'tooLong': 'This email is too long',
+  };
   @override
   String get replyTime => 'We reply within 2 business days.';
   @override
@@ -2008,11 +2068,20 @@ class _Translations$history$en extends Translations$history$pt {
   @override
   String get milestoneTitleHint => 'E.g. First trip together';
   @override
+  Map<String, String> get milestoneTitleErrors => {
+    'empty': 'Say what happened',
+    'tooLong': 'The title is too long',
+  };
+  @override
   String get milestonePlaceLabel => 'Place (optional)';
   @override
   String get milestonePlaceHint => 'E.g. Paraty';
   @override
+  Map<String, String> get milestonePlaceErrors => {'tooLong': 'The place is too long'};
+  @override
   String get milestoneBodyHint => 'A note about this moment (optional)';
+  @override
+  Map<String, String> get milestoneBodyErrors => {'tooLong': 'The note is too long'};
   @override
   String get milestoneKindLabel => 'Milestone kind';
   @override
@@ -2406,6 +2475,11 @@ class _Translations$learned$en extends Translations$learned$pt {
   @override
   String get editHint => 'What you want to keep';
   @override
+  Map<String, String> get textErrors => {
+    'empty': 'Write what you want to keep',
+    'tooLong': 'This is too long',
+  };
+  @override
   String get save => 'Save';
   @override
   String get partnerFactLabel => 'From the conversation';
@@ -2445,6 +2519,11 @@ class _Translations$lists$en extends Translations$lists$pt {
   String get titleLabel => 'Name';
   @override
   String get titleHint => 'E.g. Trips of our dreams';
+  @override
+  Map<String, String> get titleErrors => {
+    'empty': 'Give the list a name.',
+    'tooLong': 'Use at most 80 characters.',
+  };
   @override
   String get kindLabel => 'Type';
   @override
@@ -2505,6 +2584,11 @@ class _Translations$lists$en extends Translations$lists$pt {
   String get addItem => 'Add item';
   @override
   String get itemHint => 'E.g. Lisbon';
+  @override
+  Map<String, String> get itemTitleErrors => {
+    'empty': 'Type the item name.',
+    'tooLong': 'Use at most 160 characters.',
+  };
   @override
   String get add => 'Add';
   @override
@@ -2805,6 +2889,15 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get titleHint => 'E.g. our first dinner';
   @override
+  Map<String, String> get titleErrors => {
+    'empty': 'Give this memory a title',
+    'tooLong': 'The title is too long',
+  };
+  @override
+  Map<String, String> get placeErrors => {'tooLong': 'The place is too long'};
+  @override
+  Map<String, String> get bodyErrors => {'tooLong': 'The note is too long'};
+  @override
   String get bodyHint => 'Tell how it went (optional)';
   @override
   String get add => 'Add a memory';
@@ -3027,6 +3120,11 @@ class _Translations$notes$en extends Translations$notes$pt {
   @override
   String get noteHint => 'E.g. good luck at today\'s meeting';
   @override
+  Map<String, String> get textErrors => {
+    'empty': 'Write the note first',
+    'tooLong': 'This note is too long',
+  };
+  @override
   String get canvasLabel => 'Drawing area';
   @override
   List<String> get pens => ['Black', 'Orange', 'Purple', 'Green'];
@@ -3235,7 +3333,17 @@ class _Translations$partnerProfile$en extends Translations$partnerProfile$pt {
   @override
   String get labelHint => 'E.g. coffee';
   @override
+  Map<String, String> get labelErrors => {
+    'empty': 'Give the note a topic.',
+    'tooLong': 'Use at most 80 characters.',
+  };
+  @override
   String get valueHint => 'E.g. no sugar, very hot';
+  @override
+  Map<String, String> get valueErrors => {
+    'empty': 'Write what you want to remember.',
+    'tooLong': 'Use at most 500 characters.',
+  };
   @override
   String get save => 'Save note';
   @override
@@ -3304,6 +3412,11 @@ class _Translations$pause$en extends Translations$pause$pt {
   };
   @override
   String get hint => 'Write my own';
+  @override
+  Map<String, String> get messageErrors => {
+    'empty': 'Write a short message',
+    'tooLong': 'The message is too long',
+  };
   @override
   String get returnTitle => 'I\'ll be back in';
   @override
@@ -3603,13 +3716,16 @@ class _Translations$profileDetails$en extends Translations$profileDetails$pt {
   @override
   String get nameHint => 'Marina';
   @override
-  String get nameError => 'Your name cannot be empty.';
+  Map<String, String> get nameErrors => {
+    'empty': 'Your name cannot be empty.',
+    'tooLong': 'Use at most 30 characters.',
+  };
   @override
   String get pronounsLabel => 'Pronouns';
   @override
   String get pronounsHint => 'Optional';
   @override
-  String get pronounsError => 'Use at most 30 characters.';
+  Map<String, String> get pronounsErrors => {'tooLong': 'Use at most 30 characters.'};
   @override
   String get timeZoneLabel => 'Time zone';
   @override
@@ -3675,9 +3791,16 @@ class _Translations$profileSetup$en extends Translations$profileSetup$pt {
   @override
   String get nameHint => 'Marina';
   @override
+  Map<String, String> get nameErrors => {
+    'empty': 'Your name cannot be empty.',
+    'tooLong': 'Use at most 30 characters.',
+  };
+  @override
   String get partnerNameLabel => 'Partner\'s name';
   @override
   String get partnerNameHint => 'Ricardo';
+  @override
+  Map<String, String> get partnerNameErrors => {'tooLong': 'Use at most 30 characters.'};
   @override
   String get partnerNameNote => 'Your partner\'s name stays on your account only.';
   @override
@@ -3821,6 +3944,11 @@ class _Translations$programs$en extends Translations$programs$pt {
   @override
   String get diaryHint => 'Write without hurry. Only you can see this.';
   @override
+  Map<String, String> get diaryBodyErrors => {
+    'empty': 'Write a little before saving',
+    'tooLong': 'The entry is too long',
+  };
+  @override
   String get diarySave => 'Save';
   @override
   String get diaryNew => 'New entry';
@@ -3920,6 +4048,11 @@ class _Translations$questions$en extends Translations$questions$pt {
   String get editCta => 'Edit my answer';
   @override
   String get answerHint => 'Write as much or as little as you want.';
+  @override
+  Map<String, String> get answerErrors => {
+    'empty': 'Write an answer',
+    'tooLong': 'The answer is too long',
+  };
   @override
   String get privateNote => 'Only you can see this until your partner answers too.';
   @override
@@ -4031,6 +4164,11 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   String get subtitle => 'One line is enough. 30 seconds.';
   @override
   String get hint => 'E.g. made coffee before I woke up';
+  @override
+  Map<String, String> get textErrors => {
+    'empty': 'Write the slip first',
+    'tooLong': 'This slip is too long',
+  };
   @override
   Map<String, String> get categories => {
     'said': 'Said something',
@@ -4544,6 +4682,11 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   String get sentNote =>
       'This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.';
   @override
+  Map<String, String> get draftBodyErrors => {
+    'empty': 'Write the slip first',
+    'tooLong': 'This slip is too long',
+  };
+  @override
   String get edit => 'Edit';
   @override
   String get editSave => 'Save';
@@ -4623,6 +4766,18 @@ class _Translations$slipKind$en extends Translations$slipKind$pt {
     'emotional': 'Emotional',
     'finances': 'Finances',
     'other': 'Other',
+  };
+  @override
+  Map<String, String> get textErrors => {
+    'empty': 'Write the slip first',
+    'tooLong': 'This slip is too long',
+  };
+  @override
+  Map<String, String> get feelingErrors => {'tooLong': 'This is too long'};
+  @override
+  Map<String, String> get planErrors => {
+    'empty': 'Say what you will do',
+    'tooLong': 'This is too long',
   };
   @override
   String get save => 'Save';
@@ -6389,13 +6544,19 @@ class _Translations$repair$softStart$en extends Translations$repair$softStart$pt
   @override
   String get feelingHint => 'E.g. tired';
   @override
+  Map<String, String> get feelingErrors => {'empty': 'Say how you feel'};
+  @override
   String get situation => 'When…';
   @override
   String get situationHint => 'E.g. the dishes wait until later';
   @override
+  Map<String, String> get situationErrors => {'empty': 'Say when it happens'};
+  @override
   String get need => 'I need…';
   @override
   String get needHint => 'E.g. a little help';
+  @override
+  Map<String, String> get needErrors => {'empty': 'Say what you need'};
   @override
   String template({required Object feeling, required Object situation, required Object need}) =>
       'I feel ${feeling} when ${situation}. I need ${need}.';
@@ -6426,6 +6587,11 @@ class _Translations$repair$quick$en extends Translations$repair$quick$pt {
   };
   @override
   String get hint => 'Write my own';
+  @override
+  Map<String, String> get textErrors => {
+    'empty': 'Write a message',
+    'tooLong': 'The message is too long',
+  };
   @override
   String get send => 'Send';
   @override
@@ -6528,6 +6694,11 @@ class _Translations$repair$learning$en extends Translations$repair$learning$pt {
   };
   @override
   String get hint => 'Write one or two sentences';
+  @override
+  Map<String, String> get noteErrors => {
+    'empty': 'Write what you learned',
+    'tooLong': 'The note is too long',
+  };
   @override
   String get save => 'Save';
   @override
@@ -6989,6 +7160,10 @@ extension on TranslationsEn {
           'acceptInvite.subtitle' => 'Type the code the other person sent so you can connect.',
           'acceptInvite.codeLabel' => 'Invite code',
           'acceptInvite.codeHint' => 'ABCD2345',
+          'acceptInvite.codeErrors.empty' => 'Type the invite code.',
+          'acceptInvite.codeErrors.tooShort' => 'The code has 8 characters.',
+          'acceptInvite.codeErrors.tooLong' => 'The code has 8 characters.',
+          'acceptInvite.codeErrors.invalid' => 'Use letters and numbers only.',
           'acceptInvite.privacyNote' =>
             'Accepting shares cards and tools. Your private notes stay private.',
           'acceptInvite.accept' => 'Accept',
@@ -7065,8 +7240,12 @@ extension on TranslationsEn {
           'capsules.title' => 'Time capsule',
           'capsules.text' => 'Write something to be opened on a future date. Until then nobody reads it, not even you.',
           'capsules.bodyHint' => 'What do you want to say to the future?',
+          'capsules.bodyErrors.empty' => 'Write the message',
+          'capsules.bodyErrors.tooLong' => 'The message is too long',
           'capsules.dateLabel' => 'Opens on',
           'capsules.dateHint' => 'Pick a date',
+          'capsules.dateErrors.empty' => 'Pick the day it opens',
+          'capsules.dateErrors.outOfRange' => 'Pick a date between a week and 50 years ahead',
           'capsules.dateFormat' => ({
             required Object month,
             required Object day,
@@ -7184,6 +7363,8 @@ extension on TranslationsEn {
           'chat.consentTurnOn' => 'Turn on the chat',
           'chat.emptyHint' => 'Say how you are, or start with something small.',
           'chat.inputHint' => 'Write here',
+          'chat.draftErrors.empty' => 'Write something to send',
+          'chat.draftErrors.tooLong' => 'This message is too long',
           'chat.send' => 'Send',
           'chat.messagesLeft' =>
             ({required num count}) =>
@@ -7198,6 +7379,8 @@ extension on TranslationsEn {
           'chat.learningSheetTitle' => 'Save as learning',
           'chat.learningSheetTarget' => 'What is it about?',
           'chat.learningSheetHint' => 'What you want to keep',
+          'chat.learningTextErrors.empty' => 'Write what you want to keep',
+          'chat.learningTextErrors.tooLong' => 'This is too long',
           'chat.learningSave' => 'Save',
           'chat.learningSaved' => 'Learning saved',
           'chat.learnedLink' => 'What I learned',
@@ -7364,6 +7547,8 @@ extension on TranslationsEn {
           'dates.segmentHolidays' => 'Holidays',
           'dates.titleLabel' => 'Name',
           'dates.titleHint' => 'E.g. their birthday',
+          'dates.titleErrors.empty' => 'Give this date a name',
+          'dates.titleErrors.tooLong' => 'The name is too long',
           'dates.kinds.relationship' => 'Relationship',
           'dates.kinds.birthday' => 'Birthday',
           'dates.kinds.first' => 'A first time',
@@ -7377,6 +7562,7 @@ extension on TranslationsEn {
           'dates.yearLabel' => 'Year (optional)',
           'dates.yearHint' => 'E.g. 1994',
           'dates.yearHelp' => 'Without the year the date just repeats, with no age.',
+          'dates.yearErrors.invalid' => 'Use a year between 1900 and 2200',
           'dates.months.0' => 'January',
           'dates.months.1' => 'February',
           'dates.months.2' => 'March',
@@ -7414,6 +7600,8 @@ extension on TranslationsEn {
           'dates.emptyDatesText' => 'Keep birthdays and dates that matter. We remind you ahead.',
           'dates.giftsPrivate' => 'Gift ideas only you see.',
           'dates.giftHint' => 'E.g. book of poems',
+          'dates.giftErrors.empty' => 'Write the gift idea',
+          'dates.giftErrors.tooLong' => 'The gift idea is too long',
           'dates.given' => 'Given',
           'dates.emptyGiftsTitle' => 'No ideas yet',
           'dates.emptyGiftsText' => 'Jot down gifts when you think of them.',
@@ -7562,6 +7750,9 @@ extension on TranslationsEn {
             required Object name,
           }) => 'Agree on a signal with ${name} to come back.',
           'fightStyle.addToTools' => 'Add to my repair tools',
+          _ => null,
+        } ??
+        switch (path) {
           'fightStyle.addedToTools' => 'Already in your repair tools',
           'fightStyle.keepMine' => 'Keep it to myself',
           'fightStyle.retake' => 'Take it again',
@@ -7576,12 +7767,11 @@ extension on TranslationsEn {
           'firstSlip.titleHighlight' => 'one good thing',
           'firstSlip.subtitle' => 'What did your partner do lately that made you smile? 30 seconds is enough. No account yet.',
           'firstSlip.hint' => 'E.g. made coffee before I woke up',
+          'firstSlip.textErrors.empty' => 'Write one good thing first.',
+          'firstSlip.textErrors.tooLong' => 'Use at most 140 characters.',
           'firstSlip.localNote' => 'Stays saved on this phone only.',
           'firstSlip.save' => 'Save',
           'firstSlip.saveError' => 'Could not keep it right now. Try again.',
-          _ => null,
-        } ??
-        switch (path) {
           'games.hub.title' => 'Play',
           'games.hub.subtitle' => 'Short games for the two of you. No scores and no winner.',
           'games.hub.guessLabel' => 'Guesses',
@@ -7740,9 +7930,10 @@ extension on TranslationsEn {
           'gifts.editTitle' => 'Edit wish',
           'gifts.titleLabel' => 'Gift',
           'gifts.titleHint' => 'E.g. a book of poems',
-          'gifts.titleTooLong' => 'Keep it to 120 characters or fewer.',
+          'gifts.titleErrors.empty' => 'Give the wish a name.',
+          'gifts.titleErrors.tooLong' => 'Keep it to 120 characters or fewer.',
           'gifts.noteHint' => 'Size, color, where to find it.',
-          'gifts.noteTooLong' => 'Keep the note under 1000 characters.',
+          'gifts.noteErrors.tooLong' => 'Keep the note under 1000 characters.',
           'gifts.budgetLabel' => 'Budget (optional)',
           'gifts.budgets.free' => 'Free',
           'gifts.budgets.low' => 'Low',
@@ -7844,6 +8035,8 @@ extension on TranslationsEn {
           'hardConversation.sayTitle' => 'How to say it',
           'hardConversation.sayIntro' => 'A starting point for you to edit before sending.',
           'hardConversation.sayHint' => 'Your opening sentence',
+          'hardConversation.messageErrors.empty' => 'Write the sentence first',
+          'hardConversation.messageErrors.tooLong' => 'This sentence is too long',
           'hardConversation.generating' => 'Writing a gentle opening…',
           'hardConversation.gentler' => 'More gentle',
           'hardConversation.moreDirect' => 'More direct',
@@ -7924,9 +8117,12 @@ extension on TranslationsEn {
           'helpSupport.topics.other' => 'Other',
           'helpSupport.messageLabel' => 'Message',
           'helpSupport.messageHint' => 'Tell us what happened, with as much detail as you like.',
+          'helpSupport.messageErrors.empty' => 'Write your message first',
+          'helpSupport.messageErrors.tooLong' => 'The message is too long',
           'helpSupport.replyEmailLabel' => 'Reply email',
           'helpSupport.replyEmailHint' => 'you@email.com',
-          'helpSupport.replyEmailInvalid' => 'Check the email address.',
+          'helpSupport.replyEmailErrors.invalid' => 'Check the email address.',
+          'helpSupport.replyEmailErrors.tooLong' => 'This email is too long',
           'helpSupport.replyTime' => 'We reply within 2 business days.',
           'helpSupport.send' => 'Send',
           'helpSupport.sentTitle' => 'Message sent',
@@ -8077,9 +8273,13 @@ extension on TranslationsEn {
           'history.milestoneDefaultHighlight' => 'together',
           'history.milestoneTitleLabel' => 'What happened',
           'history.milestoneTitleHint' => 'E.g. First trip together',
+          'history.milestoneTitleErrors.empty' => 'Say what happened',
+          'history.milestoneTitleErrors.tooLong' => 'The title is too long',
           'history.milestonePlaceLabel' => 'Place (optional)',
           'history.milestonePlaceHint' => 'E.g. Paraty',
+          'history.milestonePlaceErrors.tooLong' => 'The place is too long',
           'history.milestoneBodyHint' => 'A note about this moment (optional)',
+          'history.milestoneBodyErrors.tooLong' => 'The note is too long',
           'history.milestoneKindLabel' => 'Milestone kind',
           'history.kindFirst' => 'First time',
           'history.kindTrip' => 'Trip',
@@ -8252,6 +8452,9 @@ extension on TranslationsEn {
           'intro.phase.subtitle' => 'Pick the closest one. You can change it later.',
           'intro.phase.options.dating' => 'Dating',
           'intro.phase.options.living_together' => 'Living together',
+          _ => null,
+        } ??
+        switch (path) {
           'intro.phase.options.engaged' => 'Engaged',
           'intro.phase.options.married' => 'Married',
           'intro.phase.options.with_kids' => 'With kids',
@@ -8282,9 +8485,6 @@ extension on TranslationsEn {
           'intro.theme.footnote' => 'You can change it later in Settings, Appearance.',
           'invite.title' => ({required Object name}) => 'Invite ${name}',
           'invite.titleNoName' => 'Invite your person',
-          _ => null,
-        } ??
-        switch (path) {
           'invite.messageIntro' => 'This message will be sent:',
           'invite.message' => ({
             required Object code,
@@ -8332,6 +8532,8 @@ extension on TranslationsEn {
           'learned.discardConfirm' => 'Discard',
           'learned.editTitle' => 'Edit learning',
           'learned.editHint' => 'What you want to keep',
+          'learned.textErrors.empty' => 'Write what you want to keep',
+          'learned.textErrors.tooLong' => 'This is too long',
           'learned.save' => 'Save',
           'learned.partnerFactLabel' => 'From the conversation',
           'learned.updated' => 'Learning updated',
@@ -8348,6 +8550,8 @@ extension on TranslationsEn {
           'lists.createTitle' => 'New list',
           'lists.titleLabel' => 'Name',
           'lists.titleHint' => 'E.g. Trips of our dreams',
+          'lists.titleErrors.empty' => 'Give the list a name.',
+          'lists.titleErrors.tooLong' => 'Use at most 80 characters.',
           'lists.kindLabel' => 'Type',
           'lists.visibilityLabel' => 'Who can see it',
           'lists.sharedHint' => 'You both can see and change this list.',
@@ -8379,6 +8583,8 @@ extension on TranslationsEn {
           'lists.shareWithPartner' => 'Share with your partner',
           'lists.addItem' => 'Add item',
           'lists.itemHint' => 'E.g. Lisbon',
+          'lists.itemTitleErrors.empty' => 'Type the item name.',
+          'lists.itemTitleErrors.tooLong' => 'Use at most 160 characters.',
           'lists.add' => 'Add',
           'lists.itemEmptyTitle' => 'Nothing here yet',
           'lists.itemEmptyTextShared' => 'Add the first thing you want to do together.',
@@ -8542,6 +8748,10 @@ extension on TranslationsEn {
           'memories.jarClose' => 'Close',
           'memories.titleLabel' => 'A memory',
           'memories.titleHint' => 'E.g. our first dinner',
+          'memories.titleErrors.empty' => 'Give this memory a title',
+          'memories.titleErrors.tooLong' => 'The title is too long',
+          'memories.placeErrors.tooLong' => 'The place is too long',
+          'memories.bodyErrors.tooLong' => 'The note is too long',
           'memories.bodyHint' => 'Tell how it went (optional)',
           'memories.add' => 'Add a memory',
           'memories.save' => 'Save memory',
@@ -8655,6 +8865,8 @@ extension on TranslationsEn {
           'notes.kinds.0' => 'Note',
           'notes.kinds.1' => 'Drawing',
           'notes.noteHint' => 'E.g. good luck at today\'s meeting',
+          'notes.textErrors.empty' => 'Write the note first',
+          'notes.textErrors.tooLong' => 'This note is too long',
           'notes.canvasLabel' => 'Drawing area',
           'notes.pens.0' => 'Black',
           'notes.pens.1' => 'Orange',
@@ -8767,7 +8979,11 @@ extension on TranslationsEn {
           'partnerProfile.categories.other' => 'Other',
           'partnerProfile.labelLabel' => 'Topic',
           'partnerProfile.labelHint' => 'E.g. coffee',
+          'partnerProfile.labelErrors.empty' => 'Give the note a topic.',
+          'partnerProfile.labelErrors.tooLong' => 'Use at most 80 characters.',
           'partnerProfile.valueHint' => 'E.g. no sugar, very hot',
+          'partnerProfile.valueErrors.empty' => 'Write what you want to remember.',
+          'partnerProfile.valueErrors.tooLong' => 'Use at most 500 characters.',
           'partnerProfile.save' => 'Save note',
           'partnerProfile.delete' => 'Delete',
           'partnerProfile.emptyTitle' => 'No notes yet',
@@ -8793,6 +9009,8 @@ extension on TranslationsEn {
           'pause.presets.calm' => 'I want to listen well. I need to calm down first.',
           'pause.presets.other' => '',
           'pause.hint' => 'Write my own',
+          'pause.messageErrors.empty' => 'Write a short message',
+          'pause.messageErrors.tooLong' => 'The message is too long',
           'pause.returnTitle' => 'I\'ll be back in',
           'pause.returns.oneHour' => '1 hour',
           'pause.returns.threeHours' => '3 hours',
@@ -8811,6 +9029,9 @@ extension on TranslationsEn {
           'places.title' => 'Places',
           'places.privacyNote' =>
             'Only the name of the place. The app never reads or stores your location.',
+          _ => null,
+        } ??
+        switch (path) {
           'places.memoryOne' => '1 memory',
           'places.memoryMany' => ({required Object count}) => '${count} memories',
           'places.monthsShort.0' => 'Jan',
@@ -8866,9 +9087,6 @@ extension on TranslationsEn {
           'plus.lockText' => 'Available with Plus. Tap to see the plans.',
           'plus.errorTitle' => 'Couldn\'t load',
           'plus.errorText' => 'Try again in a moment.',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.manageTitle' => 'Manage Plus',
           'plus.planRow' => 'Plan',
           'plus.statusRow' => 'Status',
@@ -8940,10 +9158,11 @@ extension on TranslationsEn {
           'profileDetails.title' => 'Profile',
           'profileDetails.nameLabel' => 'Your name',
           'profileDetails.nameHint' => 'Marina',
-          'profileDetails.nameError' => 'Your name cannot be empty.',
+          'profileDetails.nameErrors.empty' => 'Your name cannot be empty.',
+          'profileDetails.nameErrors.tooLong' => 'Use at most 30 characters.',
           'profileDetails.pronounsLabel' => 'Pronouns',
           'profileDetails.pronounsHint' => 'Optional',
-          'profileDetails.pronounsError' => 'Use at most 30 characters.',
+          'profileDetails.pronounsErrors.tooLong' => 'Use at most 30 characters.',
           'profileDetails.timeZoneLabel' => 'Time zone',
           'profileDetails.timeZonePlaceholder' => 'Pick a time zone',
           'profileDetails.loginLabel' => 'Login',
@@ -8978,8 +9197,11 @@ extension on TranslationsEn {
             'Used for the words in the app and for the first date of your story.',
           'profileSetup.nameLabel' => 'Your name',
           'profileSetup.nameHint' => 'Marina',
+          'profileSetup.nameErrors.empty' => 'Your name cannot be empty.',
+          'profileSetup.nameErrors.tooLong' => 'Use at most 30 characters.',
           'profileSetup.partnerNameLabel' => 'Partner\'s name',
           'profileSetup.partnerNameHint' => 'Ricardo',
+          'profileSetup.partnerNameErrors.tooLong' => 'Use at most 30 characters.',
           'profileSetup.partnerNameNote' => 'Your partner\'s name stays on your account only.',
           'profileSetup.themeLabel' => 'Your app colour',
           'profileSetup.themeRose' => 'Rose',
@@ -9061,6 +9283,8 @@ extension on TranslationsEn {
           'programs.diaryPrivacy' => 'Just me. Never shared.',
           'programs.diaryPrompt' => 'Today I felt...',
           'programs.diaryHint' => 'Write without hurry. Only you can see this.',
+          'programs.diaryBodyErrors.empty' => 'Write a little before saving',
+          'programs.diaryBodyErrors.tooLong' => 'The entry is too long',
           'programs.diarySave' => 'Save',
           'programs.diaryNew' => 'New entry',
           'programs.diaryEdit' => 'Edit',
@@ -9114,6 +9338,8 @@ extension on TranslationsEn {
           'questions.answerCta' => 'Answer',
           'questions.editCta' => 'Edit my answer',
           'questions.answerHint' => 'Write as much or as little as you want.',
+          'questions.answerErrors.empty' => 'Write an answer',
+          'questions.answerErrors.tooLong' => 'The answer is too long',
           'questions.privateNote' => 'Only you can see this until your partner answers too.',
           'questions.partnerAnsweredNote' =>
             'Your partner already answered. Send yours to see both.',
@@ -9173,6 +9399,8 @@ extension on TranslationsEn {
           'quickSlip.titleHighlight' => 'happy',
           'quickSlip.subtitle' => 'One line is enough. 30 seconds.',
           'quickSlip.hint' => 'E.g. made coffee before I woke up',
+          'quickSlip.textErrors.empty' => 'Write the slip first',
+          'quickSlip.textErrors.tooLong' => 'This slip is too long',
           'quickSlip.categories.said' => 'Said something',
           'quickSlip.categories.did' => 'Did something',
           'quickSlip.categories.noticed' => 'Noticed me',
@@ -9291,10 +9519,13 @@ extension on TranslationsEn {
           'repair.softStart.subtitle' => 'A blame-free template to open the conversation.',
           'repair.softStart.feeling' => 'I feel…',
           'repair.softStart.feelingHint' => 'E.g. tired',
+          'repair.softStart.feelingErrors.empty' => 'Say how you feel',
           'repair.softStart.situation' => 'When…',
           'repair.softStart.situationHint' => 'E.g. the dishes wait until later',
+          'repair.softStart.situationErrors.empty' => 'Say when it happens',
           'repair.softStart.need' => 'I need…',
           'repair.softStart.needHint' => 'E.g. a little help',
+          'repair.softStart.needErrors.empty' => 'Say what you need',
           'repair.softStart.template' => ({
             required Object feeling,
             required Object situation,
@@ -9310,6 +9541,8 @@ extension on TranslationsEn {
           'repair.quick.presets.love' => 'I love you, even now.',
           'repair.quick.presets.other' => '',
           'repair.quick.hint' => 'Write my own',
+          'repair.quick.textErrors.empty' => 'Write a message',
+          'repair.quick.textErrors.tooLong' => 'The message is too long',
           'repair.quick.send' => 'Send',
           'repair.quick.sentTitle' => 'Sent',
           'repair.quick.sentText' => 'Your partner will see it when they open the app.',
@@ -9362,7 +9595,12 @@ extension on TranslationsEn {
           'repair.learning.kinds.good_fix' => 'What helped',
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Write one or two sentences',
+          'repair.learning.noteErrors.empty' => 'Write what you learned',
+          'repair.learning.noteErrors.tooLong' => 'The note is too long',
           'repair.learning.save' => 'Save',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.learning.listTitle' => 'Your learnings',
           'repair.learning.delete' => 'Delete',
           'repair.learning.emptyTitle' => 'Nothing yet',
@@ -9430,9 +9668,6 @@ extension on TranslationsEn {
           'sessionExpired.action' => 'Sign in',
           'settingsHome.title' => 'Settings',
           'settingsHome.safety' => 'Safety and support',
-          _ => null,
-        } ??
-        switch (path) {
           'settingsHome.safetyStatus' => 'Safe mode',
           'settingsHome.profile' => 'Profile',
           'settingsHome.relationship' => 'Relationship',
@@ -9512,6 +9747,8 @@ extension on TranslationsEn {
           'slipDetail.previewTitle' => 'What your partner would read',
           'slipDetail.previewText' => 'If this slip goes in the card, this is the text that shows.',
           'slipDetail.sentNote' => 'This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.',
+          'slipDetail.draftBodyErrors.empty' => 'Write the slip first',
+          'slipDetail.draftBodyErrors.tooLong' => 'This slip is too long',
           'slipDetail.edit' => 'Edit',
           'slipDetail.editSave' => 'Save',
           'slipDetail.editCancel' => 'Cancel',
@@ -9565,6 +9802,11 @@ extension on TranslationsEn {
           'slipKind.workAreas.emotional' => 'Emotional',
           'slipKind.workAreas.finances' => 'Finances',
           'slipKind.workAreas.other' => 'Other',
+          'slipKind.textErrors.empty' => 'Write the slip first',
+          'slipKind.textErrors.tooLong' => 'This slip is too long',
+          'slipKind.feelingErrors.tooLong' => 'This is too long',
+          'slipKind.planErrors.empty' => 'Say what you will do',
+          'slipKind.planErrors.tooLong' => 'This is too long',
           'slipKind.save' => 'Save',
           'slipKind.saved.title' => 'Saved',
           'slipKind.saved.added' => 'Written down.',
@@ -9950,6 +10192,9 @@ extension on TranslationsEn {
           'today.inviteCardTitleNoName' => 'Invite your person',
           'today.inviteCardText' => 'Shared cards and tools need both of you.',
           'today.privateTag' => 'Only yours',
+          _ => null,
+        } ??
+        switch (path) {
           'today.privateQuestion' => 'How was your day, really?',
           'today.privateHighlight' => 'day',
           'today.privateAction' => 'Note a slip',
@@ -10037,9 +10282,6 @@ extension on TranslationsEn {
           'widgets.settingsSubtitle' => 'Home screen',
           'widgets.juntosCategory' => 'HOME SCREEN',
           'widgets.juntosTitle' => 'Repara widgets',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.juntosSubtitle' => 'Calm reminders for you or for the two of you.',
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Just mine',

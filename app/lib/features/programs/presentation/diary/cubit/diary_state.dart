@@ -2,17 +2,15 @@ part of 'diary_cubit.dart';
 
 final class const DiaryState({
   final Resource<List<DiaryEntry>> entries = const Loading(),
-  final String body = '',
+  final FormInput<String> body = const FormInput(''),
   final String? mood,
   final String? editingId,
   final bool isDirty = false,
   final Resource<void> saveAction = const Initial(),
 }) with Equatable {
-  bool get canSave => body.trim().isNotEmpty && body.length <= journalBodyMaxLength;
-
   DiaryState copyWith({
     Resource<List<DiaryEntry>>? entries,
-    String? body,
+    FormInput<String>? body,
     String? mood,
     String? editingId,
     bool clearMood = false,

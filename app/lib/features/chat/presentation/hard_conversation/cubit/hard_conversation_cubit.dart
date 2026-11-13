@@ -8,6 +8,7 @@ import 'package:flutter_bloc_starter/features/chat/data/models/hard_conversation
 import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
 import 'package:flutter_bloc_starter/features/chat/data/repositories/hard_conversation_repository.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:uuid/uuid.dart';
 
 part 'hard_conversation_state.dart';
@@ -41,10 +42,10 @@ class HardConversationCubit({
           hasPlus: status.hasPlus,
           step: draft?.step ?? HardConversationStep.whatHappened,
           whatChoice: draft?.whatChoice ?? '',
-          whatText: draft?.whatText ?? '',
+          whatText: FormInput(draft?.whatText ?? ''),
           needChoice: draft?.needChoice ?? '',
-          needText: draft?.needText ?? '',
-          message: draft?.message ?? '',
+          needText: FormInput(draft?.needText ?? ''),
+          message: FormInput(draft?.message ?? ''),
         ),
       );
     } catch (exception) {
@@ -78,7 +79,7 @@ class HardConversationCubit({
   }
 
   Future<void> onWhatTextChanged(String text) async {
-    emit(state.copyWith(whatText: text));
+    emit(state.copyWith(whatText: FormInput(text)));
     await _persist();
   }
 
@@ -89,13 +90,13 @@ class HardConversationCubit({
   }
 
   Future<void> onNeedTextChanged(String text) async {
-    emit(state.copyWith(needText: text));
+    emit(state.copyWith(needText: FormInput(text)));
     await _persist();
   }
 
   /// Keeps the edited sentence; editing never asks the model again.
   Future<void> onMessageChanged(String text) async {
-    emit(state.copyWith(message: text));
+    emit(state.copyWith(message: FormInput(text)));
     await _persist();
   }
 
@@ -109,7 +110,7 @@ class HardConversationCubit({
         await _persist();
       case HardConversationStep.whatINeed:
         if (!state.canContinueNeed) return;
-        emit(state.copyWith(step: HardConversationStep.howToSay, message: ''));
+        emit(state.copyWith(step: HardConversationStep.howToSay, message: const FormInput('')));
         await _persist();
         await generate();
       case HardConversationStep.howToSay:
@@ -144,7 +145,7 @@ class HardConversationCubit({
   Future<void> copy() async {
     if (!state.canCopy) return;
 
-    await Clipboard.setData(ClipboardData(text: state.message.trim()));
+    await Clipboard.setData(ClipboardData(text: state.message.value.trim()));
     if (isClosed) return;
     emit(state.copyWith(copyAction: const Success(null)));
     emit(state.copyWith(copyAction: const Initial()));
@@ -152,11 +153,11 @@ class HardConversationCubit({
 
   /// Sends the edited sentence as a widget note and forgets the local draft.
   Future<void> send() async {
-    if (!state.canSend) return;
+    if (state.sendAction.isLoading || !_validateMessage()) return;
 
     emit(state.copyWith(sendAction: const Loading()));
     try {
-      await _repository.sendAsNote(state.message.trim());
+      await _repository.sendAsNote(state.message.value.trim());
       await _repository.clearDraft();
       if (isClosed) return;
       emit(state.copyWith(sendAction: const Success(null)));
@@ -168,15 +169,33 @@ class HardConversationCubit({
     emit(state.copyWith(sendAction: const Initial()));
   }
 
+  bool _validateMessage() {
+    final validatedMessage = state.message.validate(
+      CompositeValidator<String>([
+        NonEmptyValidator(),
+        MaxLengthValidator(hardConversationMessageMaxLength),
+      ]),
+    );
+
+    emit(state.copyWith(message: validatedMessage));
+
+    return validatedMessage.isValid;
+  }
+
   Future<void> generate({HardConversationTone tone = HardConversationTone.neutral}) async {
     if (!state.isReady || state.isGenerating) return;
 
-    final what = _answer(state.whatChoice, state.whatText);
-    final need = _answer(state.needChoice, state.needText);
+    final what = _answer(state.whatChoice, state.whatText.value);
+    final need = _answer(state.needChoice, state.needText.value);
     if (what.isEmpty && need.isEmpty) return;
 
     emit(
-      state.copyWith(tone: tone, message: '', isGenerating: true, generateAction: const Loading()),
+      state.copyWith(
+        tone: tone,
+        message: const FormInput(''),
+        isGenerating: true,
+        generateAction: const Loading(),
+      ),
     );
 
     final buffer = StringBuffer();
@@ -194,14 +213,14 @@ class HardConversationCubit({
         switch (event) {
           case ChatDelta(:final text):
             buffer.write(text);
-            emit(state.copyWith(message: buffer.toString()));
+            emit(state.copyWith(message: FormInput(buffer.toString())));
           case ChatDone():
             break;
           case ChatCrisis():
             emit(
               state.copyWith(
                 gate: HardConversationGate.unavailable,
-                message: '',
+                message: const FormInput(''),
                 isGenerating: false,
                 generateAction: const Initial(),
               ),
@@ -241,7 +260,7 @@ class HardConversationCubit({
       emit(
         state.copyWith(
           gate: gate,
-          message: '',
+          message: const FormInput(''),
           isGenerating: false,
           generateAction: const Initial(),
         ),
@@ -261,10 +280,10 @@ class HardConversationCubit({
     final draft = HardConversationDraft(
       step: state.step,
       whatChoice: state.whatChoice,
-      whatText: state.whatText,
+      whatText: state.whatText.value,
       needChoice: state.needChoice,
-      needText: state.needText,
-      message: state.message,
+      needText: state.needText.value,
+      message: state.message.value,
       savedAt: clock.now(),
     );
     if (draft.isEmpty) {

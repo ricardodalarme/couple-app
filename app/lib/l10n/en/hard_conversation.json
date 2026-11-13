@@ -15,6 +15,10 @@
   "sayTitle": "How to say it",
   "sayIntro": "A starting point for you to edit before sending.",
   "sayHint": "Your opening sentence",
+  "messageErrors(map)": {
+    "empty": "Write the sentence first",
+    "tooLong": "This sentence is too long"
+  },
   "generating": "Writing a gentle opening…",
   "gentler": "More gentle",
   "moreDirect": "More direct",

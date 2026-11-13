@@ -8,6 +8,7 @@ import 'package:flutter_bloc_starter/features/notes/data/models/sent_message.dar
 import 'package:flutter_bloc_starter/features/notes/data/repositories/notes_repository.dart';
 import 'package:flutter_bloc_starter/features/notes/presentation/compose/cubit/drawing_stroke.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:form_inputs/form_inputs.dart';
 
 part 'compose_state.dart';
 
@@ -36,7 +37,7 @@ class ComposeCubit({
 
   void onKindChanged(MessageKind kind) => emit(state.copyWith(kind: kind));
 
-  void onTextChanged(String text) => emit(state.copyWith(text: text));
+  void onTextChanged(String text) => emit(state.copyWith(text: FormInput(text)));
 
   void onForWidgetChanged(bool value) => emit(state.copyWith(forWidget: value));
 
@@ -79,14 +80,14 @@ class ComposeCubit({
 
   /// Sends what was composed; on failure it stays so it can be sent again.
   Future<void> send() async {
-    if (!state.canSend || state.sendAction.isLoading) return;
+    if (state.isUnpaired || state.sendAction.isLoading || !_validate()) return;
 
     emit(state.copyWith(sendAction: const Loading()));
     try {
       switch (state.kind) {
         case MessageKind.note:
-          await _notesRepository.sendNote(body: state.text, forWidget: state.forWidget);
-          emit(state.copyWith(text: '', sendAction: const Success(null)));
+          await _notesRepository.sendNote(body: state.text.value, forWidget: state.forWidget);
+          emit(state.copyWith(text: const FormInput(''), sendAction: const Success(null)));
         case MessageKind.drawing:
           await _notesRepository.sendDrawing(
             png: await _exportDrawing(state.strokes),
@@ -99,6 +100,18 @@ class ComposeCubit({
       emit(state.copyWith(sendAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(sendAction: const Initial()));
+  }
+
+  bool _validate() {
+    if (state.kind == MessageKind.drawing) return state.strokes.isNotEmpty;
+
+    final validatedText = state.text.validate(
+      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(noteMaxLength)]),
+    );
+
+    emit(state.copyWith(text: validatedText));
+
+    return validatedText.isValid;
   }
 
   Future<void> delete(SentMessage message) async {

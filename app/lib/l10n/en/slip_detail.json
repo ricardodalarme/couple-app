@@ -45,6 +45,10 @@
   "previewTitle": "What your partner would read",
   "previewText": "If this slip goes in the card, this is the text that shows.",
   "sentNote": "This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.",
+  "draftBodyErrors(map)": {
+    "empty": "Write the slip first",
+    "tooLong": "This slip is too long"
+  },
   "edit": "Edit",
   "editSave": "Save",
   "editCancel": "Cancel",

@@ -12,8 +12,6 @@ class const SupportForm({super.key}) extends StatelessWidget {
     final topic = context.select((SupportCubit cubit) => cubit.state.topic);
     final message = context.select((SupportCubit cubit) => cubit.state.message);
     final replyEmail = context.select((SupportCubit cubit) => cubit.state.replyEmail);
-    final isEmailValid = context.select((SupportCubit cubit) => cubit.state.isEmailValid);
-    final canSend = context.select((SupportCubit cubit) => cubit.state.canSend);
     final isLoading = context.select((SupportCubit cubit) => cubit.state.sendAction.isLoading);
     final cubit = context.read<SupportCubit>();
 
@@ -46,30 +44,27 @@ class const SupportForm({super.key}) extends StatelessWidget {
           Text(l10n.messageLabel, style: context.text.label),
           const SizedBox(height: AppSpace.s8),
           BaseTextArea(
-            text: message,
+            text: message.value,
             hint: l10n.messageHint,
             maxLength: supportMessageMaxLength,
+            errorText: l10n.messageErrors.selectOrNull(message.errorName),
+            hasError: message.errorName != null,
             onChanged: cubit.onMessageChanged,
           ),
           const SizedBox(height: AppSpace.s16),
           BaseTextField(
-            text: replyEmail,
+            text: replyEmail.value,
             label: l10n.replyEmailLabel,
             hint: l10n.replyEmailHint,
             type: BaseTextFieldType.email,
-            errorText: isEmailValid ? null : l10n.replyEmailInvalid,
+            errorText: l10n.replyEmailErrors.selectOrNull(replyEmail.errorName),
             onChanged: cubit.onReplyEmailChanged,
           ),
           const SizedBox(height: AppSpace.s20),
           BaseNote(text: l10n.replyTime, icon: AppIcons.clock),
         ],
       ),
-      footer: BaseButton(
-        text: l10n.send,
-        isEnabled: canSend,
-        isLoading: isLoading,
-        onPressed: cubit.send,
-      ),
+      footer: BaseButton(text: l10n.send, isLoading: isLoading, onPressed: cubit.send),
     );
   }
 }

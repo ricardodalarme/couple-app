@@ -3,6 +3,10 @@
   "titleHighlight": "one good thing",
   "subtitle": "What did your partner do lately that made you smile? 30 seconds is enough. No account yet.",
   "hint": "E.g. made coffee before I woke up",
+  "textErrors(map)": {
+    "empty": "Write one good thing first.",
+    "tooLong": "Use at most 140 characters."
+  },
   "localNote": "Stays saved on this phone only.",
   "save": "Save",
   "saveError": "Could not keep it right now. Try again."

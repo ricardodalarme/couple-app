@@ -5,6 +5,10 @@
   "segmentHolidays": "Feriados",
   "titleLabel": "Nome",
   "titleHint": "Ex.: aniversário dele",
+  "titleErrors(map)": {
+    "empty": "Dê um nome a esta data",
+    "tooLong": "O nome está muito longo"
+  },
   "kinds(map)": {
     "relationship": "Namoro",
     "birthday": "Aniversário",
@@ -20,6 +24,9 @@
   "yearLabel": "Ano (opcional)",
   "yearHint": "Ex.: 1994",
   "yearHelp": "Sem o ano, a data só se repete, sem idade.",
+  "yearErrors(map)": {
+    "invalid": "Use um ano entre 1900 e 2200"
+  },
   "months": ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"],
   "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
   "dayLine": "{day} {month} · {kind}",
@@ -31,6 +38,10 @@
   "emptyDatesText": "Guarde aniversários e datas que importam. Avisamos antes.",
   "giftsPrivate": "Ideias de presente só você vê.",
   "giftHint": "Ex.: livro de poemas",
+  "giftErrors(map)": {
+    "empty": "Escreva a ideia de presente",
+    "tooLong": "A ideia de presente está muito longa"
+  },
   "given": "Já dei",
   "emptyGiftsTitle": "Nenhuma ideia ainda",
   "emptyGiftsText": "Anote presentes quando pensar neles.",

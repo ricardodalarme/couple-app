@@ -84,10 +84,13 @@ class const _NameField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.profileSetup;
+    final name = context.select((ProfileSetupCubit cubit) => cubit.state.name);
 
     return BaseTextField(
+      text: name.value,
       label: l10n.nameLabel,
       hint: l10n.nameHint,
+      errorText: l10n.nameErrors.selectOrNull(name.errorName),
       onChanged: context.read<ProfileSetupCubit>().onNameChanged,
     );
   }
@@ -97,10 +100,13 @@ class const _PartnerNameField() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.profileSetup;
+    final partnerName = context.select((ProfileSetupCubit cubit) => cubit.state.partnerName);
 
     return BaseTextField(
+      text: partnerName.value,
       label: l10n.partnerNameLabel,
       hint: l10n.partnerNameHint,
+      errorText: l10n.partnerNameErrors.selectOrNull(partnerName.errorName),
       onChanged: context.read<ProfileSetupCubit>().onPartnerNameChanged,
     );
   }
@@ -143,12 +149,10 @@ class const _ContinueButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.profileSetup;
-    final canSave = context.select((ProfileSetupCubit cubit) => cubit.state.canSave);
     final isLoading = context.select((ProfileSetupCubit cubit) => cubit.state.saveAction.isLoading);
 
     return BaseButton(
       text: l10n.continueButton,
-      isEnabled: canSave,
       isLoading: isLoading,
       onPressed: context.read<ProfileSetupCubit>().save,
     );

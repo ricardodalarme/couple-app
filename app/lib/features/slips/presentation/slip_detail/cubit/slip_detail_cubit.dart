@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_detail.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
+import 'package:form_inputs/form_inputs.dart';
 
 part 'slip_detail_state.dart';
 
@@ -25,18 +26,31 @@ class SlipDetailCubit({required final SlipRepository _slipRepository})
     final slip = state.current;
     if (slip == null) return;
 
-    emit(state.copyWith(isEditing: true, draftBody: slip.body));
+    emit(state.copyWith(isEditing: true, draftBody: FormInput(slip.body)));
   }
 
   void cancelEditing() => emit(state.copyWith(isEditing: false));
 
-  void onBodyChanged(String body) => emit(state.copyWith(draftBody: body));
+  void onBodyChanged(String body) => emit(state.copyWith(draftBody: FormInput(body)));
 
   Future<void> saveEdit() async {
     final slip = state.current;
-    if (slip == null || !state.canSaveEdit) return;
+    if (slip == null || !_validate()) return;
 
-    await _update(slip.copyWith(body: state.draftBody.trim()), editing: false);
+    final body = state.draftBody.value.trim();
+    if (body == slip.body.trim()) return;
+
+    await _update(slip.copyWith(body: body), editing: false);
+  }
+
+  bool _validate() {
+    final validatedBody = state.draftBody.validate(
+      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(slipKindMaxLength)]),
+    );
+
+    emit(state.copyWith(draftBody: validatedBody));
+
+    return validatedBody.isValid;
   }
 
   Future<void> setForCard({required bool value}) async {

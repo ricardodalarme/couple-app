@@ -8,6 +8,7 @@ import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart
 import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
 import 'package:flutter_bloc_starter/features/chat/data/repositories/learned_items_repository.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:uuid/uuid.dart';
 
 part 'chat_state.dart';
@@ -66,13 +67,25 @@ class ChatCubit({
     emit(state.copyWith(enableAction: const Initial()));
   }
 
-  void onDraftChanged(String draft) => emit(state.copyWith(draft: draft));
+  void onDraftChanged(String draft) => emit(state.copyWith(draft: FormInput(draft)));
 
   /// Sends the typed message.
   Future<void> sendDraft() async {
-    final text = state.draft.trim();
-    emit(state.copyWith(draft: ''));
+    if (!_validateDraft()) return;
+
+    final text = state.draft.value.trim();
+    emit(state.copyWith(draft: const FormInput('')));
     await send(text);
+  }
+
+  bool _validateDraft() {
+    final validatedDraft = state.draft.validate(
+      CompositeValidator([NonEmptyValidator(), MaxLengthValidator(chatMessageMaxLength)]),
+    );
+
+    emit(state.copyWith(draft: validatedDraft));
+
+    return validatedDraft.isValid;
   }
 
   /// Sends [text] and streams the reply; crisis wording is answered locally and never leaves the device.

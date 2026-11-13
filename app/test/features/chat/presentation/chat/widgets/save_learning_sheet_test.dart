@@ -32,7 +32,11 @@ void main() {
     );
 
     final save = tester.widget<BaseButton>(find.widgetWithText(BaseButton, 'Guardar'));
-    expect(save.onPressed, isNull);
+    expect(save.onPressed, isNotNull);
+
+    await tester.tap(find.widgetWithText(BaseButton, 'Guardar'));
+    await tester.pumpAndSettle();
+    expect(savedTarget, isNull);
 
     await tester.tap(find.text('Um date'));
     await tester.pump();

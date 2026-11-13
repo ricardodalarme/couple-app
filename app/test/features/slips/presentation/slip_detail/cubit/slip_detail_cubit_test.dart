@@ -60,13 +60,18 @@ void main() {
     await cubit.load('s1');
     cubit.startEditing();
 
-    expect(cubit.state.canSaveEdit, isFalse);
+    await cubit.saveEdit();
+    verifyNever(() => repository.updateSlip(any()));
 
     cubit.onBodyChanged('   ');
-    expect(cubit.state.canSaveEdit, isFalse);
+    await cubit.saveEdit();
+    expect(cubit.state.draftBody.errorName, 'empty');
+    verifyNever(() => repository.updateSlip(any()));
 
     cubit.onBodyChanged('Fez café e pão');
-    expect(cubit.state.canSaveEdit, isTrue);
+    await cubit.saveEdit();
+    expect(cubit.state.draftBody.isValid, isTrue);
+    verify(() => repository.updateSlip(any())).called(1);
   });
 
   test('saveEdit updates the slip and leaves edit mode', () async {

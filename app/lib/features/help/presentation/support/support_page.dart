@@ -28,7 +28,7 @@ class const SupportPage({final SupportTopic topic = SupportTopic.account, super.
     final sendAction = context.select((SupportCubit cubit) => cubit.state.sendAction);
     final message = context.select((SupportCubit cubit) => cubit.state.message);
     final hasUnsavedMessage =
-        message.trim().isNotEmpty && sendAction is! Success && !sendAction.isLoading;
+        message.value.trim().isNotEmpty && sendAction is! Success && !sendAction.isLoading;
 
     return BaseView(
       appBar: BaseAppBar(title: l10n.supportTitle),

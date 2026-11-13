@@ -196,6 +196,7 @@ class const _ListTile({required final CoupleList list}) extends StatelessWidget 
         initialText: list.title,
         maxLength: listTitleMaxLength,
         confirmText: l10n.save,
+        errors: l10n.titleErrors,
         onConfirm: (title) => cubit.rename(list, title),
       ),
     );

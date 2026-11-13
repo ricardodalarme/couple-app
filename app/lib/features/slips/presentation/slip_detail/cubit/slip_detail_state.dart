@@ -3,7 +3,7 @@ part of 'slip_detail_cubit.dart';
 final class const SlipDetailState({
   final Resource<SlipDetail?> slip = const Loading(),
   final bool isEditing = false,
-  final String draftBody = '',
+  final FormInput<String> draftBody = const FormInput(''),
   final Resource<void> saveAction = const Initial(),
   final Resource<void> deleteAction = const Initial(),
 }) with Equatable {
@@ -13,19 +13,10 @@ final class const SlipDetailState({
     _ => null,
   };
 
-  /// Whether the edited text can be saved.
-  bool get canSaveEdit {
-    final trimmed = draftBody.trim();
-
-    return trimmed.isNotEmpty &&
-        trimmed.length <= slipKindMaxLength &&
-        trimmed != current?.body.trim();
-  }
-
   SlipDetailState copyWith({
     Resource<SlipDetail?>? slip,
     bool? isEditing,
-    String? draftBody,
+    FormInput<String>? draftBody,
     Resource<void>? saveAction,
     Resource<void>? deleteAction,
   }) {

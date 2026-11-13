@@ -15,6 +15,10 @@
   "sayTitle": "Como dizer",
   "sayIntro": "Um ponto de partida para você editar antes de enviar.",
   "sayHint": "Sua frase de abertura",
+  "messageErrors(map)": {
+    "empty": "Escreva a frase primeiro",
+    "tooLong": "Esta frase está muito longa"
+  },
   "generating": "Escrevendo uma abertura gentil…",
   "gentler": "Mais gentil",
   "moreDirect": "Mais direto",

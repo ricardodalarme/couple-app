@@ -2,22 +2,15 @@ part of 'partner_profile_cubit.dart';
 
 final class const PartnerProfileState({
   final Resource<List<PartnerFact>> facts = const Loading(),
-  final String label = '',
-  final String value = '',
+  final FormInput<String> label = const FormInput(''),
+  final FormInput<String> value = const FormInput(''),
   final String? category,
   final Resource<void> saveAction = const Initial(),
 }) with Equatable {
-  /// Whether both the label and the value are filled within their limits.
-  bool get canSave =>
-      label.trim().isNotEmpty &&
-      label.length <= partnerFactLabelMaxLength &&
-      value.trim().isNotEmpty &&
-      value.length <= partnerFactValueMaxLength;
-
   PartnerProfileState copyWith({
     Resource<List<PartnerFact>>? facts,
-    String? label,
-    String? value,
+    FormInput<String>? label,
+    FormInput<String>? value,
     String? category,
     bool clearCategory = false,
     Resource<void>? saveAction,

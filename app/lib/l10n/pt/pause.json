@@ -9,6 +9,10 @@
     "other": ""
   },
   "hint": "Escrever a minha",
+  "messageErrors(map)": {
+    "empty": "Escreva uma mensagem curta",
+    "tooLong": "A mensagem está muito longa"
+  },
   "returnTitle": "Volto em",
   "returns(map)": {
     "oneHour": "1 hora",

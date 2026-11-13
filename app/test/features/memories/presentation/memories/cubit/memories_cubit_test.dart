@@ -3,6 +3,7 @@ import 'package:flutter_bloc_starter/features/memories/data/models/memory.dart';
 import 'package:flutter_bloc_starter/features/memories/data/repositories/memories_repository.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/cubit/memories_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockMemoriesRepository() extends Mock implements MemoriesRepository;
@@ -31,15 +32,41 @@ void main() {
 
   MemoriesCubit build() => MemoriesCubit(memoriesRepository: repository);
 
-  test('a memory needs a title and a note within its limit', () {
+  test('saving validates the title and the note limits', () async {
+    final cubit = build()
+      ..onBodyChanged('a' * (memoryBodyMaxLength + 1))
+      ..onTitleChanged('Primeiro jantar');
+
+    await cubit.save();
+
+    expect(cubit.state.body.error, MaxLengthValidationError.tooLong);
+    verifyNever(
+      () => repository.addMemory(
+        id: any(named: 'id'),
+        title: any(named: 'title'),
+        body: any(named: 'body'),
+        place: any(named: 'place'),
+        happenedOn: any(named: 'happenedOn'),
+      ),
+    );
+  });
+
+  test('saving without a title reports the field error', () async {
     final cubit = build();
-    expect(cubit.state.canSave, isFalse);
+
+    await cubit.save();
+
+    expect(cubit.state.title.error, NonEmptyValidationError.empty);
+  });
+
+  test('typing clears a field error', () async {
+    final cubit = build();
+    await cubit.save();
+    expect(cubit.state.title.isValid, isFalse);
 
     cubit.onTitleChanged('Primeiro jantar');
-    expect(cubit.state.canSave, isTrue);
 
-    cubit.onBodyChanged('a' * (memoryBodyMaxLength + 1));
-    expect(cubit.state.canSave, isFalse);
+    expect(cubit.state.title.isValid, isTrue);
   });
 
   test('saving clears the form and reads again', () async {
@@ -59,7 +86,7 @@ void main() {
         happenedOn: any(named: 'happenedOn'),
       ),
     ).called(1);
-    expect(cubit.state.title, '');
+    expect(cubit.state.title.value, '');
     verify(() => repository.getMemories()).called(1);
   });
 
@@ -77,7 +104,7 @@ void main() {
 
     await cubit.save();
 
-    expect(cubit.state.title, 'Primeiro jantar');
+    expect(cubit.state.title.value, 'Primeiro jantar');
     expect(cubit.state.saveAction, isA<Initial>());
   });
 

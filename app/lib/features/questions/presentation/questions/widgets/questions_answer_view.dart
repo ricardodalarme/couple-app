@@ -2,6 +2,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/questions/data/models/question_thread.dart';
 import 'package:flutter_bloc_starter/features/questions/presentation/questions/cubit/questions_cubit.dart';
+import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 class const QuestionsAnswerView({required final QuestionThread thread, super.key})
@@ -12,7 +13,6 @@ class const QuestionsAnswerView({required final QuestionThread thread, super.key
     final draft = context.select((QuestionsCubit cubit) => cubit.state.draft);
     final isSaving = context.select((QuestionsCubit cubit) => cubit.state.isSaving);
     final isEditing = context.select((QuestionsCubit cubit) => cubit.state.isEditing);
-    final canSave = context.select((QuestionsCubit cubit) => cubit.state.canSave);
     final cubit = context.read<QuestionsCubit>();
 
     return BaseStackedContent(
@@ -31,10 +31,11 @@ class const QuestionsAnswerView({required final QuestionThread thread, super.key
           ],
           const SizedBox(height: AppSpace.s22),
           BaseTextArea(
-            text: draft,
+            text: draft.value,
             hint: l10n.answerHint,
-            maxLength: 1000,
+            maxLength: answerMaxLength,
             isEnabled: !isSaving,
+            errorText: l10n.answerErrors.selectOrNull(draft.errorName),
             onChanged: cubit.onDraftChanged,
           ),
           const SizedBox(height: AppSpace.s16),
@@ -61,12 +62,7 @@ class const QuestionsAnswerView({required final QuestionThread thread, super.key
       ),
       footer: Column(
         children: [
-          BaseButton.primary(
-            text: l10n.save,
-            isLoading: isSaving,
-            isEnabled: canSave,
-            onPressed: cubit.save,
-          ),
+          BaseButton.primary(text: l10n.save, isLoading: isSaving, onPressed: cubit.save),
           if (isEditing) ...[
             const SizedBox(height: AppSpace.s6),
             BaseButton.text(

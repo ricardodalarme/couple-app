@@ -3,6 +3,7 @@ import 'package:flutter_bloc_starter/features/questions/data/models/question_thr
 import 'package:flutter_bloc_starter/features/questions/data/repositories/questions_repository.dart';
 import 'package:flutter_bloc_starter/features/questions/presentation/questions/cubit/questions_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';
 
@@ -96,7 +97,7 @@ void main() {
 
     expect(cubit.state.view, QuestionsView.waiting);
     expect(cubit.state.current?.ownAnswer?.body, 'Minha resposta.');
-    expect(cubit.state.draft, isEmpty);
+    expect(cubit.state.draft.value, isEmpty);
     expect(cubit.state.saveAction, isA<Success<void>>());
   });
 
@@ -114,7 +115,7 @@ void main() {
     await cubit.save();
 
     expect(cubit.state.view, QuestionsView.revealed);
-    expect(cubit.state.draft, isEmpty);
+    expect(cubit.state.draft.value, isEmpty);
     expect(cubit.state.isEditing, isFalse);
   });
 
@@ -132,7 +133,7 @@ void main() {
     await cubit.save();
 
     expect(cubit.state.showsAnswerForm, isTrue);
-    expect(cubit.state.draft, 'Não quero perder isto');
+    expect(cubit.state.draft.value, 'Não quero perder isto');
     expect(cubit.state.saveAction, isA<Initial>());
   });
 
@@ -145,7 +146,7 @@ void main() {
 
     expect(cubit.state.isEditing, isTrue);
     expect(cubit.state.showsAnswerForm, isTrue);
-    expect(cubit.state.draft, 'Minha resposta.');
+    expect(cubit.state.draft.value, 'Minha resposta.');
 
     cubit.cancelEditing();
 
@@ -169,14 +170,14 @@ void main() {
     expect(cubit.state.showsAnswerForm, isFalse);
   });
 
-  test('a blank answer cannot be saved', () async {
+  test('a blank answer is reported as a field error', () async {
     final cubit = build();
     await cubit.load();
     cubit.onDraftChanged('   ');
 
     await cubit.save();
 
-    expect(cubit.state.canSave, isFalse);
+    expect(cubit.state.draft.error, NonEmptyValidationError.empty);
     verifyNever(
       () => repository.saveAnswer(
         thread: any(named: 'thread'),

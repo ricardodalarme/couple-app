@@ -216,7 +216,7 @@ void main() {
 
     await tester.enterText(find.byType(BaseTextArea), 'Uma frase que eu editei.');
     await tester.pump();
-    expect(cubit.state.message, 'Uma frase que eu editei.');
+    expect(cubit.state.message.value, 'Uma frase que eu editei.');
 
     await tester.tap(find.text('Copiar'));
     await tester.pump();

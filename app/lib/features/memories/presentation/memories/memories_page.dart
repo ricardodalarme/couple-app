@@ -180,9 +180,10 @@ class const _MemoryTitleField() extends StatelessWidget {
     final cubit = context.read<MemoriesCubit>();
 
     return BaseTextField(
-      text: title,
+      text: title.value,
       label: l10n.titleLabel,
       hint: l10n.titleHint,
+      errorText: l10n.titleErrors.selectOrNull(title.errorName),
       onChanged: cubit.onTitleChanged,
     );
   }
@@ -199,10 +200,11 @@ class const _MemoryPlaceField() extends StatelessWidget {
     final cubit = context.read<MemoriesCubit>();
 
     return BaseTextField(
-      text: place,
+      text: place.value,
       label: l10n.placeLabel,
       hint: l10n.placeHint,
       helpText: looksLikeAddress ? l10n.placeAddressNote : null,
+      errorText: l10n.placeErrors.selectOrNull(place.errorName),
       onChanged: cubit.onPlaceChanged,
     );
   }
@@ -216,10 +218,11 @@ class const _MemoryBodyField() extends StatelessWidget {
     final cubit = context.read<MemoriesCubit>();
 
     return BaseTextArea(
-      text: body,
+      text: body.value,
       hint: l10n.bodyHint,
       maxLength: memoryBodyMaxLength,
       maxLines: 3,
+      errorText: l10n.bodyErrors.selectOrNull(body.errorName),
       onChanged: cubit.onBodyChanged,
     );
   }
@@ -228,16 +231,10 @@ class const _MemoryBodyField() extends StatelessWidget {
 class const _SaveButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final canSave = context.select((MemoriesCubit cubit) => cubit.state.canSave);
     final isSaving = context.select((MemoriesCubit cubit) => cubit.state.saveAction.isLoading);
     final cubit = context.read<MemoriesCubit>();
 
-    return BaseButton(
-      text: context.l10n.memories.save,
-      isEnabled: canSave,
-      isLoading: isSaving,
-      onPressed: cubit.save,
-    );
+    return BaseButton(text: context.l10n.memories.save, isLoading: isSaving, onPressed: cubit.save);
   }
 }
 

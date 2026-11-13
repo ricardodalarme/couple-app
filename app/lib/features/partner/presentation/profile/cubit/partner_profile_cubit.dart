@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact.dart';
 import 'package:flutter_bloc_starter/features/partner/data/repositories/partner_repository.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:uuid/uuid.dart';
 
 part 'partner_profile_state.dart';
@@ -24,9 +25,9 @@ class PartnerProfileCubit({required final PartnerRepository _partnerRepository})
     }
   }
 
-  void onLabelChanged(String label) => emit(state.copyWith(label: label));
+  void onLabelChanged(String label) => emit(state.copyWith(label: FormInput(label)));
 
-  void onValueChanged(String value) => emit(state.copyWith(value: value));
+  void onValueChanged(String value) => emit(state.copyWith(value: FormInput(value)));
 
   void onCategoryToggled(String category) {
     final isSame = state.category == category;
@@ -35,19 +36,24 @@ class PartnerProfileCubit({required final PartnerRepository _partnerRepository})
 
   /// Saves the typed note; on failure the text stays so it can be sent again.
   Future<void> save() async {
-    if (!state.canSave || state.saveAction.isLoading) return;
+    if (state.saveAction.isLoading || !_validate()) return;
 
     emit(state.copyWith(saveAction: const Loading()));
     try {
       await _partnerRepository.addFact(
         id: _pendingId ??= _uuid.v4(),
-        label: state.label,
-        value: state.value,
+        label: state.label.value,
+        value: state.value.value,
         category: state.category,
       );
       _pendingId = null;
       emit(
-        state.copyWith(label: '', value: '', clearCategory: true, saveAction: const Success(null)),
+        state.copyWith(
+          label: const FormInput(''),
+          value: const FormInput(''),
+          clearCategory: true,
+          saveAction: const Success(null),
+        ),
       );
       await load();
     } catch (exception) {
@@ -64,5 +70,24 @@ class PartnerProfileCubit({required final PartnerRepository _partnerRepository})
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }
+  }
+
+  bool _validate() {
+    final validatedLabel = state.label.validate(
+      CompositeValidator<String>([
+        NonEmptyValidator(),
+        MaxLengthValidator(partnerFactLabelMaxLength),
+      ]),
+    );
+    final validatedValue = state.value.validate(
+      CompositeValidator<String>([
+        NonEmptyValidator(),
+        MaxLengthValidator(partnerFactValueMaxLength),
+      ]),
+    );
+
+    emit(state.copyWith(label: validatedLabel, value: validatedValue));
+
+    return validatedLabel.isValid && validatedValue.isValid;
   }
 }

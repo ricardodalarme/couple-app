@@ -2,6 +2,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:form_inputs/form_inputs.dart';
 
 /// The sheet that names a new list, chooses its kind and who can see it.
 class const CreateListSheet({
@@ -14,15 +15,9 @@ class const CreateListSheet({
 }
 
 class _CreateListSheetState() extends State<CreateListSheet> {
-  String _title = '';
+  FormInput<String> _title = const FormInput('');
   String _kind = listKinds.first;
   late bool _isShared = widget.hasPartner;
-
-  bool get _canCreate {
-    final trimmed = _title.trim();
-
-    return trimmed.isNotEmpty && trimmed.length <= listTitleMaxLength;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +27,11 @@ class _CreateListSheetState() extends State<CreateListSheet> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         BaseTextField(
-          text: _title,
+          text: _title.value,
           label: l10n.titleLabel,
           hint: l10n.titleHint,
-          onChanged: (title) => setState(() => _title = title),
+          errorText: l10n.titleErrors.selectOrNull(_title.errorName),
+          onChanged: (title) => setState(() => _title = FormInput(title)),
           onSubmitted: (_) => _submit(),
         ),
         const SizedBox(height: AppSpace.s16),
@@ -94,14 +90,20 @@ class _CreateListSheetState() extends State<CreateListSheet> {
           ),
         ],
         const SizedBox(height: AppSpace.s20),
-        BaseButton(text: l10n.create, onPressed: _canCreate ? _submit : null),
+        BaseButton(text: l10n.create, onPressed: _submit),
       ],
     );
   }
 
   void _submit() {
-    if (!_canCreate) return;
-    widget.onCreate(_title.trim(), _kind, _isShared);
+    final validatedTitle = _title.validate(
+      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(listTitleMaxLength)]),
+    );
+
+    setState(() => _title = validatedTitle);
+    if (!validatedTitle.isValid) return;
+
+    widget.onCreate(validatedTitle.value.trim(), _kind, _isShared);
     Navigator.of(context).maybePop();
   }
 }

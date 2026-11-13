@@ -4,6 +4,7 @@ import 'package:flutter_bloc_starter/features/pairing/presentation/accept/cubit/
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockPairingRepository() extends Mock implements PairingRepository;
@@ -31,14 +32,15 @@ void main() {
   test('the code is cleaned up, upper-cased and capped at the issued length', () {
     final cubit = build()..onCodeChanged(' abcd 2345 extra ');
 
-    expect(cubit.state.code, 'ABCD2345');
-    expect(cubit.state.canAccept, isTrue);
+    expect(cubit.state.code.value, 'ABCD2345');
+    expect(cubit.state.code.isValid, isTrue);
   });
 
   test('a short code cannot be sent', () async {
     final cubit = build()..onCodeChanged('abc');
     await cubit.accept();
 
+    expect(cubit.state.code.error, MinLengthValidationError.tooShort);
     verifyNever(() => pairing.acceptInvite(any()));
   });
 
@@ -61,7 +63,7 @@ void main() {
 
     cubit.tryAgain();
     expect(cubit.state.acceptAction, const Initial());
-    expect(cubit.state.code, 'ABCD2345');
+    expect(cubit.state.code.value, 'ABCD2345');
   });
 
   test('a server error is reported and reset', () async {

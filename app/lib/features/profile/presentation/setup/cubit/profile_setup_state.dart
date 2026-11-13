@@ -1,18 +1,15 @@
 part of 'profile_setup_cubit.dart';
 
 final class const ProfileSetupState({
-  final String name = '',
-  final String partnerName = '',
+  final FormInput<String> name = const FormInput(''),
+  final FormInput<String> partnerName = const FormInput(''),
   final AppThemeVariant theme = AppThemeVariant.rose,
   final DateTime? togetherSince,
   final Resource<void> saveAction = const Initial(),
 }) with Equatable {
-  /// Whether the name holds something to save.
-  bool get canSave => ProfileSetupCubit.sanitizeName(name).isNotEmpty;
-
   ProfileSetupState copyWith({
-    String? name,
-    String? partnerName,
+    FormInput<String>? name,
+    FormInput<String>? partnerName,
     AppThemeVariant? theme,
     DateTime? togetherSince,
     Resource<void>? saveAction,

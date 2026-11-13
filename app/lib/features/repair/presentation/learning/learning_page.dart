@@ -27,7 +27,6 @@ class const LearningPage({@QueryParam('sessionId') final String? sessionId, supe
     final learnings = context.select((LearningCubit cubit) => cubit.state.learnings);
     final kind = context.select((LearningCubit cubit) => cubit.state.kind);
     final note = context.select((LearningCubit cubit) => cubit.state.note);
-    final canSave = context.select((LearningCubit cubit) => cubit.state.canSave);
     final isSaving = context.select((LearningCubit cubit) => cubit.state.saveAction.isLoading);
     final cubit = context.read<LearningCubit>();
 
@@ -72,9 +71,10 @@ class const LearningPage({@QueryParam('sessionId') final String? sessionId, supe
               ),
               const SizedBox(height: AppSpace.s12),
               BaseTextArea(
-                text: note,
+                text: note.value,
                 hint: l10n.hint,
                 maxLength: learningMaxLength,
+                errorText: l10n.noteErrors.selectOrNull(note.errorName),
                 onChanged: cubit.onNoteChanged,
               ),
               const SizedBox(height: AppSpace.s12),
@@ -114,7 +114,6 @@ class const LearningPage({@QueryParam('sessionId') final String? sessionId, supe
             children: [
               BaseButton(
                 text: l10n.save,
-                isEnabled: canSave,
                 isLoading: isSaving,
                 onPressed: () => cubit.save(sessionId: sessionId),
               ),

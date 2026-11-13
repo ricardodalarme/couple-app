@@ -3,6 +3,7 @@ import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_re
 import 'package:flutter_bloc_starter/features/repair/presentation/quick_repair/cubit/quick_repair_cubit.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/soft_start/cubit/soft_start_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockRepairRepository() extends Mock implements RepairRepository;
@@ -22,11 +23,12 @@ void main() {
 
   QuickRepairCubit build() => QuickRepairCubit(repairRepository: repository);
 
-  test('send is disabled for an empty message', () async {
+  test('send reports an empty message as a field error', () async {
     final cubit = build()..onTextChanged('   ');
 
     await cubit.send();
 
+    expect(cubit.state.text.error, NonEmptyValidationError.empty);
     verifyNever(
       () => repository.sendRepair(
         message: any(named: 'message'),
@@ -60,23 +62,24 @@ void main() {
 
     await cubit.send();
 
-    expect(cubit.state.text, 'Desculpa');
+    expect(cubit.state.text.value, 'Desculpa');
     expect(cubit.state.sendAction, isA<Initial>());
   });
 
   test('start carries over the soft start sentence', () {
     final cubit = build()..start('Eu sinto cansaço quando x. Eu preciso de y.');
 
-    expect(cubit.state.text, 'Eu sinto cansaço quando x. Eu preciso de y.');
+    expect(cubit.state.text.value, 'Eu sinto cansaço quando x. Eu preciso de y.');
   });
 
   test('the soft start needs all three blanks', () {
     final cubit = SoftStartCubit()
       ..onFeelingChanged('cansado')
       ..onSituationChanged('a louça fica');
-    expect(cubit.state.isComplete, isFalse);
+    expect(cubit.validate(), isFalse);
+    expect(cubit.state.need.error, NonEmptyValidationError.empty);
 
     cubit.onNeedChanged('ajuda');
-    expect(cubit.state.isComplete, isTrue);
+    expect(cubit.validate(), isTrue);
   });
 }

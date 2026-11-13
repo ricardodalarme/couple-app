@@ -14,10 +14,19 @@
     "subtitle": "A blame-free template to open the conversation.",
     "feeling": "I feel…",
     "feelingHint": "E.g. tired",
+    "feelingErrors(map)": {
+      "empty": "Say how you feel"
+    },
     "situation": "When…",
     "situationHint": "E.g. the dishes wait until later",
+    "situationErrors(map)": {
+      "empty": "Say when it happens"
+    },
     "need": "I need…",
     "needHint": "E.g. a little help",
+    "needErrors(map)": {
+      "empty": "Say what you need"
+    },
     "template": "I feel {feeling} when {situation}. I need {need}.",
     "use": "Use this template"
   },
@@ -33,6 +42,10 @@
       "other": ""
     },
     "hint": "Write my own",
+    "textErrors(map)": {
+      "empty": "Write a message",
+      "tooLong": "The message is too long"
+    },
     "send": "Send",
     "sentTitle": "Sent",
     "sentText": "Your partner will see it when they open the app.",
@@ -88,6 +101,10 @@
       "other": ""
     },
     "hint": "Write one or two sentences",
+    "noteErrors(map)": {
+      "empty": "Write what you learned",
+      "tooLong": "The note is too long"
+    },
     "save": "Save",
     "listTitle": "Your learnings",
     "delete": "Delete",

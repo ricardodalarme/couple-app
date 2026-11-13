@@ -8,6 +8,7 @@ import 'package:flutter_bloc_starter/features/profile/presentation/setup/cubit/p
 import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockProfileRepository() extends Mock implements ProfileRepository;
@@ -48,17 +49,19 @@ void main() {
 
   group('ProfileSetupCubit', () {
     blocTest<ProfileSetupCubit, ProfileSetupState>(
-      'cannot save while the name is empty',
+      'reports an empty name without saving',
       build: build,
       act: (cubit) => cubit.save(),
-      expect: () => const <ProfileSetupState>[],
-      verify: (_) => verifyNever(
-        () => profileRepository.saveProfileSetup(
-          profileId: any(named: 'profileId'),
-          displayName: any(named: 'displayName'),
-          theme: any(named: 'theme'),
-        ),
-      ),
+      verify: (cubit) {
+        expect(cubit.state.name.error, NonEmptyValidationError.empty);
+        verifyNever(
+          () => profileRepository.saveProfileSetup(
+            profileId: any(named: 'profileId'),
+            displayName: any(named: 'displayName'),
+            theme: any(named: 'theme'),
+          ),
+        );
+      },
     );
 
     blocTest<ProfileSetupCubit, ProfileSetupState>(

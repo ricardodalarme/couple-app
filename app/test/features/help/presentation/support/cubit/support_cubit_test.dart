@@ -101,7 +101,7 @@ void main() {
     await cubit.send();
 
     expect(cubit.state.sendAction, const Initial());
-    expect(cubit.state.message, 'Cobrança');
+    expect(cubit.state.message.value, 'Cobrança');
     expect(cubit.state.topic, SupportTopic.billing);
   });
 
@@ -112,7 +112,7 @@ void main() {
     await cubit.send();
 
     expect(cubit.state.sendAction, const Initial());
-    expect(cubit.state.message, 'Oi');
+    expect(cubit.state.message.value, 'Oi');
     verifyNever(
       () => repository.send(
         authorId: any(named: 'authorId'),
@@ -140,28 +140,31 @@ void main() {
     );
   });
 
-  test('counts message length in code points, like the server', () {
-    cubit.onMessageChanged('😀' * supportMessageMaxLength);
-
-    expect(cubit.state.canSend, isTrue);
-
+  test('counts message length in code points, like the server', () async {
     cubit.onMessageChanged('😀' * (supportMessageMaxLength + 1));
 
-    expect(cubit.state.canSend, isFalse);
+    await cubit.send();
+    expect(cubit.state.message.errorName, 'tooLong');
+
+    cubit.onMessageChanged('😀' * supportMessageMaxLength);
+
+    expect(cubit.state.message.isValid, isTrue);
   });
 
   test('rejects an invalid or over-long reply email', () async {
     cubit
       ..onMessageChanged('Oi')
       ..onReplyEmailChanged('sem-arroba');
-    expect(cubit.state.canSend, isFalse);
+
+    await cubit.send();
+    expect(cubit.state.replyEmail.errorName, 'invalid');
 
     final longEmail = '${'a' * 250}@x.io';
     expect(longEmail.length, greaterThan(supportReplyEmailMaxLength));
     cubit.onReplyEmailChanged(longEmail);
     await cubit.send();
 
-    expect(cubit.state.canSend, isFalse);
+    expect(cubit.state.replyEmail.errorName, 'tooLong');
     verifyNever(
       () => repository.send(
         authorId: any(named: 'authorId'),

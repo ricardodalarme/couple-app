@@ -5,6 +5,10 @@
   "consentTurnOn": "Ligar a conversa",
   "emptyHint": "Diga como você está, ou comece por uma coisa pequena.",
   "inputHint": "Escreva aqui",
+  "draftErrors(map)": {
+    "empty": "Escreva algo para enviar",
+    "tooLong": "Esta mensagem está muito longa"
+  },
   "send": "Enviar",
   "messagesLeft(plural, param=count)": {
     "one": "Resta 1 mensagem hoje",
@@ -16,6 +20,10 @@
   "learningSheetTitle": "Salvar aprendizado",
   "learningSheetTarget": "Sobre o que é?",
   "learningSheetHint": "O que você quer guardar",
+  "learningTextErrors(map)": {
+    "empty": "Escreva o que quer guardar",
+    "tooLong": "Isto está muito longo"
+  },
   "learningSave": "Guardar",
   "learningSaved": "Aprendizado guardado",
   "learnedLink": "O que aprendi",

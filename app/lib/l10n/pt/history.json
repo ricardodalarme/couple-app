@@ -88,9 +88,19 @@
   "milestoneDefaultHighlight": "juntos",
   "milestoneTitleLabel": "O que aconteceu",
   "milestoneTitleHint": "Ex.: Primeira viagem juntos",
+  "milestoneTitleErrors(map)": {
+    "empty": "Conte o que aconteceu",
+    "tooLong": "O título está muito longo"
+  },
   "milestonePlaceLabel": "Lugar (opcional)",
   "milestonePlaceHint": "Ex.: Paraty",
+  "milestonePlaceErrors(map)": {
+    "tooLong": "O lugar está muito longo"
+  },
   "milestoneBodyHint": "Uma nota sobre esse momento (opcional)",
+  "milestoneBodyErrors(map)": {
+    "tooLong": "A nota está muito longa"
+  },
   "milestoneKindLabel": "Tipo de marco",
   "kindFirst": "Primeira vez",
   "kindTrip": "Viagem",

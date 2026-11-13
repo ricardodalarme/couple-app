@@ -6,6 +6,7 @@ import 'package:flutter_bloc_starter/features/programs/data/models/diary_entry.d
 import 'package:flutter_bloc_starter/features/programs/data/repositories/programs_repository.dart';
 import 'package:flutter_bloc_starter/features/programs/presentation/diary/cubit/diary_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockProgramsRepository() extends Mock implements ProgramsRepository;
@@ -24,6 +25,14 @@ void main() {
     repository = _MockProgramsRepository();
     when(() => repository.getDiaryEntries()).thenAnswer((_) async => []);
     when(() => repository.deleteDiaryEntry(any())).thenAnswer((_) async {});
+    when(
+      () => repository.saveDiaryEntry(
+        entryDate: any(named: 'entryDate'),
+        body: any(named: 'body'),
+        mood: any(named: 'mood'),
+        id: any(named: 'id'),
+      ),
+    ).thenAnswer((_) async => 'new');
   });
 
   DiaryCubit build() => DiaryCubit(programsRepository: repository);
@@ -41,7 +50,7 @@ void main() {
 
     await cubit.load();
 
-    expect(cubit.state.body, 'Hoje eu me senti em paz.');
+    expect(cubit.state.body.value, 'Hoje eu me senti em paz.');
     expect(cubit.state.mood, 'calm');
     expect(cubit.state.editingId, 'j1');
     expect((cubit.state.entries as Success<List<DiaryEntry>>).value.single.id, 'j1');
@@ -127,7 +136,7 @@ void main() {
 
     await cubit.save();
 
-    expect(cubit.state.body, 'Não quero perder isto');
+    expect(cubit.state.body.value, 'Não quero perder isto');
     expect(cubit.state.mood, 'heavy');
     expect(cubit.state.saveAction, isA<Initial>());
   });
@@ -142,7 +151,7 @@ void main() {
     await cubit.delete(entry);
 
     verify(() => repository.deleteDiaryEntry('j1')).called(1);
-    expect(cubit.state.body, '');
+    expect(cubit.state.body.value, '');
     expect(cubit.state.editingId, isNull);
     expect(cubit.state.mood, isNull);
   });
@@ -171,7 +180,7 @@ void main() {
       ..newEntry();
 
     expect(cubit.state.editingId, 'j1');
-    expect(cubit.state.body, 'Hoje.');
+    expect(cubit.state.body.value, 'Hoje.');
   });
 
   testWithClock('a load that resolves after typing keeps the typed text', () async {
@@ -185,7 +194,7 @@ void main() {
     response.complete([]);
     await loading;
 
-    expect(cubit.state.body, 'Texto enquanto carrega.');
+    expect(cubit.state.body.value, 'Texto enquanto carrega.');
     expect(cubit.state.editingId, isNull);
   });
 
@@ -200,14 +209,19 @@ void main() {
     expect(cubit.state.entries, isA<Failure>());
   });
 
-  testWithClock('an empty body cannot be saved', () {
+  testWithClock('an empty body cannot be saved', () async {
     final cubit = build();
     addTearDown(cubit.close);
 
-    expect(cubit.state.canSave, isFalse);
+    await cubit.save();
+    expect(cubit.state.body.error, NonEmptyValidationError.empty);
+
     cubit.onBodyChanged('a' * (journalBodyMaxLength + 1));
-    expect(cubit.state.canSave, isFalse);
+    await cubit.save();
+    expect(cubit.state.body.error, MaxLengthValidationError.tooLong);
+
     cubit.onBodyChanged('Um texto.');
-    expect(cubit.state.canSave, isTrue);
+    await cubit.save();
+    expect(cubit.state.body.isValid, isTrue);
   });
 }

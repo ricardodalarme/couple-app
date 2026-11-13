@@ -1,15 +1,15 @@
 part of 'soft_start_cubit.dart';
 
 final class const SoftStartState({
-  final String feeling = '',
-  final String situation = '',
-  final String need = '',
+  final FormInput<String> feeling = const FormInput(''),
+  final FormInput<String> situation = const FormInput(''),
+  final FormInput<String> need = const FormInput(''),
 }) with Equatable {
-  /// Whether all three blanks are filled.
-  bool get isComplete =>
-      feeling.trim().isNotEmpty && situation.trim().isNotEmpty && need.trim().isNotEmpty;
-
-  SoftStartState copyWith({String? feeling, String? situation, String? need}) {
+  SoftStartState copyWith({
+    FormInput<String>? feeling,
+    FormInput<String>? situation,
+    FormInput<String>? need,
+  }) {
     return SoftStartState(
       feeling: feeling ?? this.feeling,
       situation: situation ?? this.situation,

@@ -3,6 +3,7 @@ import 'package:flutter_bloc_starter/features/history/data/models/history_models
 import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/milestone/cubit/milestone_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockHistoryRepository() extends Mock implements HistoryRepository;
@@ -50,7 +51,7 @@ void main() {
 
     expect(cubit.state.isUnknownDate, isTrue);
     expect(cubit.state.isShared, isFalse);
-    expect(cubit.state.canSave, isTrue);
+    expect(cubit.state.title.isValid, isTrue);
 
     await cubit.save();
 
@@ -69,6 +70,29 @@ void main() {
       ),
     ).called(1);
     expect(cubit.state.saveAction, isA<Success<void>>());
+  });
+
+  test('saving without a title reports the field error', () async {
+    final cubit = build();
+    await cubit.initialize();
+
+    await cubit.save();
+
+    expect(cubit.state.title.error, NonEmptyValidationError.empty);
+    verifyNever(
+      () => repository.saveMilestone(
+        id: any(named: 'id'),
+        title: any(named: 'title'),
+        kind: any(named: 'kind'),
+        precision: any(named: 'precision'),
+        isShared: any(named: 'isShared'),
+        date: any(named: 'date'),
+        place: any(named: 'place'),
+        body: any(named: 'body'),
+        coupleId: any(named: 'coupleId'),
+        existing: any(named: 'existing'),
+      ),
+    );
   });
 
   test('deletes an existing milestone', () async {

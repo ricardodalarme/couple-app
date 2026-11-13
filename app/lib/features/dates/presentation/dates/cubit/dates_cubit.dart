@@ -4,9 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
 import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:uuid/uuid.dart';
 
 part 'dates_state.dart';
+
+final RegExp _yearPattern = RegExp(r'^\s*$|^\s*(?:19\d{2}|20\d{2}|21\d{2}|2200)\s*$');
 
 /// The three views of the dates screen.
 enum DatesView() {
@@ -42,7 +45,7 @@ class DatesCubit({
     if (state.holidays is! Success) await _loadHolidays();
   }
 
-  void onTitleChanged(String title) => emit(state.copyWith(title: title));
+  void onTitleChanged(String title) => emit(state.copyWith(title: FormInput(title)));
 
   void onKindChosen(String kind) => emit(state.copyWith(kind: kind));
 
@@ -50,33 +53,57 @@ class DatesCubit({
 
   void onDayChosen(int day) => emit(state.copyWith(day: day));
 
-  void onYearChanged(String year) => emit(state.copyWith(year: year));
+  void onYearChanged(String year) => emit(state.copyWith(year: FormInput(year)));
 
-  void onGiftTitleChanged(String title) => emit(state.copyWith(giftTitle: title));
+  void onGiftTitleChanged(String title) => emit(state.copyWith(giftTitle: FormInput(title)));
 
   /// Saves the date being typed; an unknown year still repeats every year.
   ///
   /// A reunion is a single meeting, so it never repeats yearly.
   Future<void> saveDate() async {
-    if (!state.canSaveDate || state.saveAction.isLoading) return;
+    if (state.saveAction.isLoading || !_validate()) return;
 
     emit(state.copyWith(saveAction: const Loading()));
     try {
       await _datesRepository.addDate(
         id: _uuid.v4(),
-        title: state.title,
+        title: state.title.value,
         kind: state.kind,
         month: state.month!,
         day: state.day!,
         year: state.yearValue,
         isYearly: state.kind != 'reunion',
       );
-      emit(state.copyWith(title: '', year: '', saveAction: const Success(null)));
+      emit(
+        state.copyWith(
+          title: const FormInput(''),
+          year: const FormInput(''),
+          saveAction: const Success(null),
+        ),
+      );
       await load();
     } catch (exception) {
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));
+  }
+
+  bool _validate() {
+    final validatedTitle = state.title.validate(
+      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(dateTitleMaxLength)]),
+    );
+    final validatedYear = state.year.validate(PatternValidator(_yearPattern));
+
+    emit(state.copyWith(title: validatedTitle, year: validatedYear));
+
+    final month = state.month;
+    final day = state.day;
+
+    return validatedTitle.isValid &&
+        validatedYear.isValid &&
+        month != null &&
+        day != null &&
+        isValidMonthDay(month, day);
   }
 
   Future<void> addHoliday(Holiday holiday) => _change(
@@ -94,11 +121,17 @@ class DatesCubit({
       _change(() => _datesRepository.deleteDate(date.id));
 
   Future<void> addGift() async {
-    final title = state.giftTitle;
-    if (title.trim().isEmpty || title.length > dateTitleMaxLength) return;
+    final validatedGiftTitle = state.giftTitle.validate(
+      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(dateTitleMaxLength)]),
+    );
 
-    await _change(() => _datesRepository.addGiftIdea(id: _uuid.v4(), title: title));
-    emit(state.copyWith(giftTitle: ''));
+    emit(state.copyWith(giftTitle: validatedGiftTitle));
+    if (!validatedGiftTitle.isValid) return;
+
+    await _change(
+      () => _datesRepository.addGiftIdea(id: _uuid.v4(), title: validatedGiftTitle.value),
+    );
+    emit(state.copyWith(giftTitle: const FormInput('')));
   }
 
   Future<void> toggleGift(GiftIdea gift) =>

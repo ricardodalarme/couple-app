@@ -30,7 +30,6 @@ class const ComposePage({super.key}) extends StatelessWidget implements AutoRout
     final kind = context.select((ComposeCubit cubit) => cubit.state.kind);
     final text = context.select((ComposeCubit cubit) => cubit.state.text);
     final forWidget = context.select((ComposeCubit cubit) => cubit.state.forWidget);
-    final canSend = context.select((ComposeCubit cubit) => cubit.state.canSend);
     final isUnpaired = context.select((ComposeCubit cubit) => cubit.state.isUnpaired);
     final isSending = context.select((ComposeCubit cubit) => cubit.state.sendAction.isLoading);
     final cubit = context.read<ComposeCubit>();
@@ -85,11 +84,13 @@ class const ComposePage({super.key}) extends StatelessWidget implements AutoRout
               const SizedBox(height: AppSpace.s16),
               if (kind == MessageKind.note)
                 BaseTextArea(
-                  text: text,
+                  text: text.value,
                   hint: l10n.noteHint,
                   maxLength: noteMaxLength,
                   maxLines: 4,
                   isEnabled: !isSending,
+                  errorText: l10n.textErrors.selectOrNull(text.errorName),
+                  hasError: text.errorName != null,
                   onChanged: cubit.onTextChanged,
                 )
               else
@@ -117,7 +118,7 @@ class const ComposePage({super.key}) extends StatelessWidget implements AutoRout
           ),
           footer: BaseButton(
             text: l10n.send,
-            isEnabled: canSend && !isSending,
+            isEnabled: !isUnpaired && !isSending,
             isLoading: isSending,
             onPressed: cubit.send,
           ),

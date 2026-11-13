@@ -60,13 +60,11 @@ class const DatesPage({super.key}) extends StatelessWidget implements AutoRouteW
 class const _SaveDateButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final canSaveDate = context.select((DatesCubit cubit) => cubit.state.canSaveDate);
     final isSaving = context.select((DatesCubit cubit) => cubit.state.saveAction.isLoading);
     final cubit = context.read<DatesCubit>();
 
     return BaseButton(
       text: context.l10n.dates.saveDate,
-      isEnabled: canSaveDate,
       isLoading: isSaving,
       onPressed: cubit.saveDate,
     );
@@ -88,9 +86,10 @@ class const _DatesView() extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         BaseTextField(
-          text: title,
+          text: title.value,
           label: l10n.titleLabel,
           hint: l10n.titleHint,
+          errorText: l10n.titleErrors.selectOrNull(title.errorName),
           onChanged: cubit.onTitleChanged,
         ),
         const SizedBox(height: AppSpace.s12),
@@ -127,10 +126,11 @@ class const _DatesView() extends StatelessWidget {
         ),
         const SizedBox(height: AppSpace.s12),
         BaseTextField(
-          text: year,
+          text: year.value,
           label: l10n.yearLabel,
           hint: l10n.yearHint,
           helpText: l10n.yearHelp,
+          errorText: l10n.yearErrors.selectOrNull(year.errorName),
           onChanged: cubit.onYearChanged,
         ),
         const SizedBox(height: AppSpace.s24),
@@ -192,14 +192,12 @@ class const _GiftsView() extends StatelessWidget {
         BaseNote(text: l10n.giftsPrivate),
         const SizedBox(height: AppSpace.s12),
         BaseTextField(
-          text: giftTitle,
+          text: giftTitle.value,
           hint: l10n.giftHint,
+          errorText: l10n.giftErrors.selectOrNull(giftTitle.errorName),
           onChanged: cubit.onGiftTitleChanged,
           onSubmitted: (_) => cubit.addGift(),
-          trailingAction: BaseTextLink(
-            text: l10n.add,
-            onPressed: giftTitle.trim().isEmpty ? null : cubit.addGift,
-          ),
+          trailingAction: BaseTextLink(text: l10n.add, onPressed: cubit.addGift),
         ),
         const SizedBox(height: AppSpace.s16),
         const _GiftsList(),

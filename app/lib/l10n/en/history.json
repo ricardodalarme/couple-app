@@ -88,9 +88,19 @@
   "milestoneDefaultHighlight": "together",
   "milestoneTitleLabel": "What happened",
   "milestoneTitleHint": "E.g. First trip together",
+  "milestoneTitleErrors(map)": {
+    "empty": "Say what happened",
+    "tooLong": "The title is too long"
+  },
   "milestonePlaceLabel": "Place (optional)",
   "milestonePlaceHint": "E.g. Paraty",
+  "milestonePlaceErrors(map)": {
+    "tooLong": "The place is too long"
+  },
   "milestoneBodyHint": "A note about this moment (optional)",
+  "milestoneBodyErrors(map)": {
+    "tooLong": "The note is too long"
+  },
   "milestoneKindLabel": "Milestone kind",
   "kindFirst": "First time",
   "kindTrip": "Trip",

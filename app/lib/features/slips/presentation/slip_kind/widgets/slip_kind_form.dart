@@ -71,9 +71,11 @@ class const _MainText({required final String hint}) extends StatelessWidget {
     final text = context.select((SlipKindCubit cubit) => cubit.state.text);
 
     return BaseTextArea(
-      text: text,
+      text: text.value,
       hint: hint,
       maxLength: slipKindMaxLength,
+      errorText: context.l10n.slipKind.textErrors.selectOrNull(text.errorName),
+      hasError: text.errorName != null,
       onChanged: context.read<SlipKindCubit>().onTextChanged,
     );
   }
@@ -91,9 +93,10 @@ class const _SpecificFields() extends StatelessWidget {
         _MainText(hint: l10n.hint),
         const SizedBox(height: AppSpace.s16),
         BaseTextField(
-          text: feeling,
+          text: feeling.value,
           label: l10n.feelingLabel,
           hint: l10n.feelingHint,
+          errorText: context.l10n.slipKind.feelingErrors.selectOrNull(feeling.errorName),
           onChanged: context.read<SlipKindCubit>().onFeelingChanged,
         ),
       ],
@@ -116,9 +119,10 @@ class const _IfThenFields() extends StatelessWidget {
         _MainText(hint: l10n.ifHint),
         const SizedBox(height: AppSpace.s16),
         BaseTextField(
-          text: plan,
+          text: plan.value,
           label: l10n.thenLabel,
           hint: l10n.thenHint,
+          errorText: context.l10n.slipKind.planErrors.selectOrNull(plan.errorName),
           onChanged: cubit.onPlanChanged,
         ),
       ],
@@ -162,12 +166,10 @@ class const _InvisibleFields() extends StatelessWidget {
 class const _SaveButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final canSave = context.select((SlipKindCubit cubit) => cubit.state.canSave);
     final isLoading = context.select((SlipKindCubit cubit) => cubit.state.saveAction.isLoading);
 
     return BaseButton(
       text: context.l10n.slipKind.save,
-      isEnabled: canSave,
       isLoading: isLoading,
       onPressed: context.read<SlipKindCubit>().save,
     );

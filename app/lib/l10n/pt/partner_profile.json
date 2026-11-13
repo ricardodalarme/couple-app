@@ -12,7 +12,15 @@
   },
   "labelLabel": "Assunto",
   "labelHint": "Ex.: café",
+  "labelErrors(map)": {
+    "empty": "Dê um assunto à nota.",
+    "tooLong": "Use no máximo 80 caracteres."
+  },
   "valueHint": "Ex.: sem açúcar, bem quente",
+  "valueErrors(map)": {
+    "empty": "Escreva o que quer lembrar.",
+    "tooLong": "Use no máximo 500 caracteres."
+  },
   "save": "Guardar nota",
   "delete": "Apagar",
   "emptyTitle": "Nenhuma nota ainda",

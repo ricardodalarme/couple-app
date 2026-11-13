@@ -28,9 +28,16 @@
   },
   "messageLabel": "Mensagem",
   "messageHint": "Conte o que aconteceu, com o máximo de detalhes que quiser.",
+  "messageErrors(map)": {
+    "empty": "Escreva sua mensagem primeiro",
+    "tooLong": "A mensagem está muito longa"
+  },
   "replyEmailLabel": "E-mail para resposta",
   "replyEmailHint": "voce@email.com",
-  "replyEmailInvalid": "Confira o e-mail.",
+  "replyEmailErrors(map)": {
+    "invalid": "Confira o e-mail.",
+    "tooLong": "Este e-mail é muito longo"
+  },
   "replyTime": "Respondemos em até 2 dias úteis.",
   "send": "Enviar",
   "sentTitle": "Mensagem enviada",

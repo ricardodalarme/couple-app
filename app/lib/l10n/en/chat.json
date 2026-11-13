@@ -5,6 +5,10 @@
   "consentTurnOn": "Turn on the chat",
   "emptyHint": "Say how you are, or start with something small.",
   "inputHint": "Write here",
+  "draftErrors(map)": {
+    "empty": "Write something to send",
+    "tooLong": "This message is too long"
+  },
   "send": "Send",
   "messagesLeft(plural, param=count)": {
     "one": "1 message left today",
@@ -16,6 +20,10 @@
   "learningSheetTitle": "Save as learning",
   "learningSheetTarget": "What is it about?",
   "learningSheetHint": "What you want to keep",
+  "learningTextErrors(map)": {
+    "empty": "Write what you want to keep",
+    "tooLong": "This is too long"
+  },
   "learningSave": "Save",
   "learningSaved": "Learning saved",
   "learnedLink": "What I learned",

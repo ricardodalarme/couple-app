@@ -28,11 +28,24 @@ void main() {
 
   SlipKindCubit build() => SlipKindCubit(slipRepository: repository);
 
+  void verifyNoSave() => verifyNever(
+    () => repository.saveQuick(
+      id: any(named: 'id'),
+      body: any(named: 'body'),
+      createdAt: any(named: 'createdAt'),
+      category: any(named: 'category'),
+      kind: any(named: 'kind'),
+      feeling: any(named: 'feeling'),
+      planNote: any(named: 'planNote'),
+      workArea: any(named: 'workArea'),
+    ),
+  );
+
   test('start keeps the carried text and falls back to specific for unknown kinds', () {
     final cubit = build()..start(kind: 'nope', text: 'Fez café');
 
     expect(cubit.state.kind, 'specific');
-    expect(cubit.state.text, 'Fez café');
+    expect(cubit.state.text.value, 'Fez café');
   });
 
   test('switching the kind keeps the text', () {
@@ -41,31 +54,50 @@ void main() {
       ..onKindChanged('invisible');
 
     expect(cubit.state.kind, 'invisible');
-    expect(cubit.state.text, 'Fez café');
+    expect(cubit.state.text.value, 'Fez café');
   });
 
-  test('if-then cannot save with only one half filled', () {
+  test('if-then needs the plan before saving', () async {
     final cubit = build()
       ..start(kind: 'if_then', text: 'Quando eu estiver cansada')
       ..onPlanChanged('  ');
 
-    expect(cubit.state.canSave, isFalse);
+    await cubit.save();
+    expect(cubit.state.plan.errorName, 'empty');
+    verifyNoSave();
 
-    cubit.onPlanChanged('peço um tempo');
-    expect(cubit.state.canSave, isTrue);
+    cubit.onTextChanged('');
+    await cubit.save();
+    expect(cubit.state.text.errorName, 'empty');
+    verifyNoSave();
 
     cubit
-      ..onPlanChanged('peço um tempo')
-      ..onTextChanged('');
-    expect(cubit.state.canSave, isFalse);
+      ..onTextChanged('Quando eu estiver cansada')
+      ..onPlanChanged('peço um tempo');
+    await cubit.save();
+
+    verify(
+      () => repository.saveQuick(
+        id: any(named: 'id'),
+        body: 'Quando eu estiver cansada',
+        createdAt: any(named: 'createdAt'),
+        kind: 'if_then',
+        feeling: null,
+        planNote: 'peço um tempo',
+        workArea: null,
+      ),
+    ).called(1);
   });
 
-  test('specific rejects an over-long feeling', () {
+  test('specific rejects an over-long feeling', () async {
     final cubit = build()
       ..start(kind: 'specific', text: 'Fez café')
       ..onFeelingChanged('a' * (slipKindNoteMaxLength + 1));
 
-    expect(cubit.state.canSave, isFalse);
+    await cubit.save();
+
+    expect(cubit.state.feeling.errorName, 'tooLong');
+    verifyNoSave();
   });
 
   test('invisible work area can be toggled off', () {

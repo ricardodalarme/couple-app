@@ -3,6 +3,10 @@
   "titleHighlight": "uma coisa boa",
   "subtitle": "O que seu parceiro fez ultimamente que te fez sorrir? 30 segundos bastam. Ainda sem conta.",
   "hint": "Ex.: fez café antes de eu acordar",
+  "textErrors(map)": {
+    "empty": "Escreva uma coisa boa primeiro.",
+    "tooLong": "Use no máximo 140 caracteres."
+  },
   "localNote": "Fica salvo só neste celular.",
   "save": "Salvar",
   "saveError": "Não deu para guardar agora. Tente de novo."

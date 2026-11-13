@@ -2,8 +2,16 @@
   "title": "Cápsula do tempo",
   "text": "Escreva algo para ser aberto em uma data futura. Até lá, ninguém lê, nem você.",
   "bodyHint": "O que você quer dizer para o futuro?",
+  "bodyErrors(map)": {
+    "empty": "Escreva a mensagem",
+    "tooLong": "A mensagem está muito longa"
+  },
   "dateLabel": "Abre em",
   "dateHint": "Escolha uma data",
+  "dateErrors(map)": {
+    "empty": "Escolha o dia em que ela abre",
+    "outOfRange": "Escolha uma data entre uma semana e 50 anos à frente"
+  },
   "dateFormat": "{day} de {month} de {year}",
   "months": [
     "janeiro",

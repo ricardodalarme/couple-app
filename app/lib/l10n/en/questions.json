@@ -4,6 +4,10 @@
   "answerCta": "Answer",
   "editCta": "Edit my answer",
   "answerHint": "Write as much or as little as you want.",
+  "answerErrors(map)": {
+    "empty": "Write an answer",
+    "tooLong": "The answer is too long"
+  },
   "privateNote": "Only you can see this until your partner answers too.",
   "partnerAnsweredNote": "Your partner already answered. Send yours to see both.",
   "soloNote": "Your answer stays private. Your partner will see it after you connect.",

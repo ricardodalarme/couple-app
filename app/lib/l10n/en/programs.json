@@ -46,6 +46,10 @@
   "diaryPrivacy": "Just me. Never shared.",
   "diaryPrompt": "Today I felt...",
   "diaryHint": "Write without hurry. Only you can see this.",
+  "diaryBodyErrors(map)": {
+    "empty": "Write a little before saving",
+    "tooLong": "The entry is too long"
+  },
   "diarySave": "Save",
   "diaryNew": "New entry",
   "diaryEdit": "Edit",

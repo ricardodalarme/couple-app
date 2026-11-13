@@ -3,6 +3,10 @@
   "intro": "A short note for your partner, or a drawing that stays in your sent list.",
   "kinds": ["Note", "Drawing"],
   "noteHint": "E.g. good luck at today's meeting",
+  "textErrors(map)": {
+    "empty": "Write the note first",
+    "tooLong": "This note is too long"
+  },
   "canvasLabel": "Drawing area",
   "pens": ["Black", "Orange", "Purple", "Green"],
   "eraser": "Eraser",

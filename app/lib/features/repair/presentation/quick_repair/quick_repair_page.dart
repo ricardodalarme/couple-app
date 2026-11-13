@@ -49,7 +49,6 @@ class const _Form() extends StatelessWidget {
     final l10n = context.l10n.repair.quick;
     final text = context.select((QuickRepairCubit cubit) => cubit.state.text);
     final preset = context.select((QuickRepairCubit cubit) => cubit.state.preset);
-    final canSend = context.select((QuickRepairCubit cubit) => cubit.state.canSend);
     final isLoading = context.select((QuickRepairCubit cubit) => cubit.state.sendAction.isLoading);
     final cubit = context.read<QuickRepairCubit>();
 
@@ -85,19 +84,15 @@ class const _Form() extends StatelessWidget {
           ),
           const SizedBox(height: AppSpace.s16),
           BaseTextArea(
-            text: text,
+            text: text.value,
             hint: l10n.hint,
             maxLength: repairMessageMaxLength,
+            errorText: l10n.textErrors.selectOrNull(text.errorName),
             onChanged: cubit.onTextChanged,
           ),
         ],
       ),
-      footer: BaseButton(
-        text: l10n.send,
-        isEnabled: canSend,
-        isLoading: isLoading,
-        onPressed: cubit.send,
-      ),
+      footer: BaseButton(text: l10n.send, isLoading: isLoading, onPressed: cubit.send),
     );
   }
 }

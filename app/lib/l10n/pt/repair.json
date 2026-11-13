@@ -14,10 +14,19 @@
     "subtitle": "Um modelo sem culpa para abrir a conversa.",
     "feeling": "Eu sinto…",
     "feelingHint": "Ex.: cansado(a)",
+    "feelingErrors(map)": {
+      "empty": "Diga como você se sente"
+    },
     "situation": "Quando…",
     "situationHint": "Ex.: a louça fica para depois",
+    "situationErrors(map)": {
+      "empty": "Diga quando acontece"
+    },
     "need": "Eu preciso de…",
     "needHint": "Ex.: um pouco de ajuda",
+    "needErrors(map)": {
+      "empty": "Diga o que você precisa"
+    },
     "template": "Eu sinto {feeling} quando {situation}. Eu preciso de {need}.",
     "use": "Usar este modelo"
   },
@@ -33,6 +42,10 @@
       "other": ""
     },
     "hint": "Escrever o meu",
+    "textErrors(map)": {
+      "empty": "Escreva uma mensagem",
+      "tooLong": "A mensagem está muito longa"
+    },
     "send": "Enviar",
     "sentTitle": "Enviado",
     "sentText": "Seu par vai ver quando abrir o app.",
@@ -88,6 +101,10 @@
       "other": ""
     },
     "hint": "Escreva em uma ou duas frases",
+    "noteErrors(map)": {
+      "empty": "Escreva o que você aprendeu",
+      "tooLong": "A nota está muito longa"
+    },
     "save": "Salvar",
     "listTitle": "Seus aprendizados",
     "delete": "Apagar",

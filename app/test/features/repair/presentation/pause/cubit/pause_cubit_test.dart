@@ -3,6 +3,7 @@ import 'package:flutter_bloc_starter/features/repair/data/models/pause_return.da
 import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/pause/cubit/pause_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockRepairRepository() extends Mock implements RepairRepository;
@@ -33,11 +34,12 @@ void main() {
     }
   });
 
-  test('an empty message cannot be sent', () async {
+  test('an empty message is reported as a field error', () async {
     final cubit = build()..onMessageChanged('  ');
 
     await cubit.send();
 
+    expect(cubit.state.message.error, NonEmptyValidationError.empty);
     verifyNever(
       () => repository.startPause(
         returnAt: any(named: 'returnAt'),
@@ -73,7 +75,7 @@ void main() {
 
     await cubit.send();
 
-    expect(cubit.state.message, 'Preciso de um tempo');
+    expect(cubit.state.message.value, 'Preciso de um tempo');
     expect(cubit.state.sendAction, isA<Initial>());
   });
 }

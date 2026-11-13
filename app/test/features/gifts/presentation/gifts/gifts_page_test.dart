@@ -170,4 +170,14 @@ void main() {
 
     expect(find.text('Só você vê este desejo.'), findsOneWidget);
   });
+
+  testWidgets('the add sheet asks for a name instead of closing', (tester) async {
+    await tester.pumpApp(const GiftSheet(hasPartner: true));
+
+    await tester.tap(find.text('Adicionar'));
+    await tester.pump();
+
+    expect(find.text('Dê um nome ao presente.'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
 }

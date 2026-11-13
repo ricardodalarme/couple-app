@@ -8,6 +8,7 @@ import 'package:flutter_bloc_starter/features/capsules/data/repositories/capsule
 import 'package:flutter_bloc_starter/features/capsules/presentation/capsules/cubit/capsules_cubit.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockCapsulesRepository() extends Mock implements CapsulesRepository;
@@ -39,24 +40,46 @@ void main() {
 
     CapsulesCubit build() => CapsulesCubit(capsulesRepository: repository);
 
-    test('a capsule needs text and a date between eight days and just under fifty years', () {
-      final cubit = build()..onBodyChanged('Oi, futuro');
-      expect(cubit.state.canSave(today), isFalse);
+    test('saving reports a missing or out-of-window open date', () async {
+      final missing = build()..onBodyChanged('Oi, futuro');
+      await missing.save(now: today);
+      expect(missing.state.opensOn.error, CapsuleDateValidationError.empty);
 
-      cubit.onOpensOnChanged(DateTime(2026, 11, 11));
-      expect(cubit.state.canSave(today), isFalse);
+      final tooSoon = build()
+        ..onBodyChanged('Oi, futuro')
+        ..onOpensOnChanged(DateTime(2026, 11, 18));
+      await tooSoon.save(now: today);
+      expect(tooSoon.state.opensOn.error, CapsuleDateValidationError.outOfRange);
 
-      cubit.onOpensOnChanged(DateTime(2026, 11, 18));
-      expect(cubit.state.canSave(today), isFalse);
+      final tooFar = build()
+        ..onBodyChanged('Oi, futuro')
+        ..onOpensOnChanged(DateTime(2076, 11, 11));
+      await tooFar.save(now: today);
+      expect(tooFar.state.opensOn.error, CapsuleDateValidationError.outOfRange);
 
-      cubit.onOpensOnChanged(DateTime(2026, 11, 19));
-      expect(cubit.state.canSave(today), isTrue);
+      final justRight = build()
+        ..onBodyChanged('Oi, futuro')
+        ..onOpensOnChanged(DateTime(2026, 11, 19));
+      await justRight.save(now: today);
+      expect(justRight.state.opensOn.isValid, isTrue);
+    });
 
-      cubit.onOpensOnChanged(DateTime(2076, 11, 10));
-      expect(cubit.state.canSave(today), isTrue);
+    test('saving reports a body over the limit', () async {
+      final cubit = build()
+        ..onBodyChanged('a' * (capsuleBodyMaxLength + 1))
+        ..onOpensOnChanged(DateTime(2027));
 
-      cubit.onOpensOnChanged(DateTime(2076, 11, 11));
-      expect(cubit.state.canSave(today), isFalse);
+      await cubit.save(now: today);
+
+      expect(cubit.state.body.error, MaxLengthValidationError.tooLong);
+      verifyNever(
+        () => repository.add(
+          id: any(named: 'id'),
+          body: any(named: 'body'),
+          opensOn: any(named: 'opensOn'),
+          isShared: any(named: 'isShared'),
+        ),
+      );
     });
 
     test('saving clears the form and reads the list again', () async {
@@ -75,8 +98,8 @@ void main() {
           isShared: true,
         ),
       ).called(1);
-      expect(cubit.state.body, '');
-      expect(cubit.state.opensOn, isNull);
+      expect(cubit.state.body.value, '');
+      expect(cubit.state.opensOn.value, isNull);
       verify(() => repository.getCapsules()).called(1);
     });
 

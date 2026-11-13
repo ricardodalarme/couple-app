@@ -5,6 +5,10 @@
   "segmentHolidays": "Holidays",
   "titleLabel": "Name",
   "titleHint": "E.g. their birthday",
+  "titleErrors(map)": {
+    "empty": "Give this date a name",
+    "tooLong": "The name is too long"
+  },
   "kinds(map)": {
     "relationship": "Relationship",
     "birthday": "Birthday",
@@ -20,6 +24,9 @@
   "yearLabel": "Year (optional)",
   "yearHint": "E.g. 1994",
   "yearHelp": "Without the year the date just repeats, with no age.",
+  "yearErrors(map)": {
+    "invalid": "Use a year between 1900 and 2200"
+  },
   "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
   "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
   "dayLine": "{month} {day} · {kind}",
@@ -31,6 +38,10 @@
   "emptyDatesText": "Keep birthdays and dates that matter. We remind you ahead.",
   "giftsPrivate": "Gift ideas only you see.",
   "giftHint": "E.g. book of poems",
+  "giftErrors(map)": {
+    "empty": "Write the gift idea",
+    "tooLong": "The gift idea is too long"
+  },
   "given": "Given",
   "emptyGiftsTitle": "No ideas yet",
   "emptyGiftsText": "Jot down gifts when you think of them.",

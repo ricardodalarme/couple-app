@@ -2,8 +2,16 @@
   "title": "Time capsule",
   "text": "Write something to be opened on a future date. Until then nobody reads it, not even you.",
   "bodyHint": "What do you want to say to the future?",
+  "bodyErrors(map)": {
+    "empty": "Write the message",
+    "tooLong": "The message is too long"
+  },
   "dateLabel": "Opens on",
   "dateHint": "Pick a date",
+  "dateErrors(map)": {
+    "empty": "Pick the day it opens",
+    "outOfRange": "Pick a date between a week and 50 years ahead"
+  },
   "dateFormat": "{month} {day}, {year}",
   "months": [
     "January",

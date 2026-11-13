@@ -2,10 +2,15 @@
   "title": "Profile",
   "nameLabel": "Your name",
   "nameHint": "Marina",
-  "nameError": "Your name cannot be empty.",
+  "nameErrors(map)": {
+    "empty": "Your name cannot be empty.",
+    "tooLong": "Use at most 30 characters."
+  },
   "pronounsLabel": "Pronouns",
   "pronounsHint": "Optional",
-  "pronounsError": "Use at most 30 characters.",
+  "pronounsErrors(map)": {
+    "tooLong": "Use at most 30 characters."
+  },
   "timeZoneLabel": "Time zone",
   "timeZonePlaceholder": "Pick a time zone",
   "loginLabel": "Login",

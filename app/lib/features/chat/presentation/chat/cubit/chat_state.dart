@@ -21,7 +21,7 @@ final class const ChatState({
   final Resource<ChatStage> stage = const Loading(),
   final List<ChatMessage> messages = const [],
   final List<String> options = const [],
-  final String draft = '',
+  final FormInput<String> draft = const FormInput(''),
   final ChatMode mode = ChatMode.free,
   final int messagesLeft = 0,
   final bool hasPlus = false,
@@ -30,15 +30,11 @@ final class const ChatState({
   final Resource<void> saveAction = const Initial(),
   final Resource<void> saveLearningAction = const Initial(),
 }) with Equatable {
-  /// Whether the draft can be sent now.
-  bool get canSend =>
-      !isReplying && draft.trim().isNotEmpty && draft.length <= chatMessageMaxLength;
-
   ChatState copyWith({
     Resource<ChatStage>? stage,
     List<ChatMessage>? messages,
     List<String>? options,
-    String? draft,
+    FormInput<String>? draft,
     ChatMode? mode,
     int? messagesLeft,
     bool? hasPlus,

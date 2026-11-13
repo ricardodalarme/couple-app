@@ -4,6 +4,7 @@ import 'package:flutter_bloc_starter/features/slips/data/models/slip_draft.dart'
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockSlipRepository() extends Mock implements SlipRepository;
@@ -45,7 +46,7 @@ void main() {
       return build();
     },
     act: (cubit) => cubit.start(),
-    expect: () => const [QuickSlipState(text: 'Fez café', category: 'did')],
+    expect: () => const [QuickSlipState(text: FormInput('Fez café'), category: 'did')],
   );
 
   blocTest<QuickSlipCubit, QuickSlipState>(
@@ -115,7 +116,7 @@ void main() {
       await cubit.save();
     },
     verify: (cubit) {
-      expect(cubit.state.text, 'Fez café');
+      expect(cubit.state.text.value, 'Fez café');
       expect(cubit.state.saveAction, const Initial());
     },
   );

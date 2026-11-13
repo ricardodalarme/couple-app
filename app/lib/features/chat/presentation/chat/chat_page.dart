@@ -265,10 +265,10 @@ class const _Composer() extends StatelessWidget {
     final l10n = context.l10n.chat;
     final isOffline = context.select((ConnectivityCubit cubit) => cubit.state.isOffline);
     final draft = context.select((ChatCubit cubit) => cubit.state.draft);
-    final canSend = context.select((ChatCubit cubit) => cubit.state.canSend);
     final isReplying = context.select((ChatCubit cubit) => cubit.state.isReplying);
     final messagesLeft = context.select((ChatCubit cubit) => cubit.state.messagesLeft);
     final cubit = context.read<ChatCubit>();
+    final isComposerEnabled = !isReplying && !isOffline;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -277,17 +277,18 @@ class const _Composer() extends StatelessWidget {
           children: [
             Expanded(
               child: BaseTextField(
-                text: draft,
+                text: draft.value,
                 hint: l10n.inputHint,
+                errorText: l10n.draftErrors.selectOrNull(draft.errorName),
                 isEnabled: !isReplying && !isOffline,
                 onChanged: cubit.onDraftChanged,
-                onSubmitted: (_) => canSend && !isOffline ? cubit.sendDraft() : null,
+                onSubmitted: (_) => cubit.sendDraft(),
               ),
             ),
             const SizedBox(width: AppSpace.s8),
             _SendButton(
               key: const ValueKey('chatSend'),
-              isEnabled: canSend && !isOffline,
+              isEnabled: isComposerEnabled,
               onPressed: cubit.sendDraft,
               semanticLabel: l10n.send,
             ),

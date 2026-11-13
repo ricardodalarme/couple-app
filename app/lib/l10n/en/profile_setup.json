@@ -4,8 +4,15 @@
   "subtitle": "Used for the words in the app and for the first date of your story.",
   "nameLabel": "Your name",
   "nameHint": "Marina",
+  "nameErrors(map)": {
+    "empty": "Your name cannot be empty.",
+    "tooLong": "Use at most 30 characters."
+  },
   "partnerNameLabel": "Partner's name",
   "partnerNameHint": "Ricardo",
+  "partnerNameErrors(map)": {
+    "tooLong": "Use at most 30 characters."
+  },
   "partnerNameNote": "Your partner's name stays on your account only.",
   "themeLabel": "Your app colour",
   "themeRose": "Rose",

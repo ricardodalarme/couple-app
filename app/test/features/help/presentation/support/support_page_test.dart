@@ -5,6 +5,7 @@ import 'package:flutter_bloc_starter/features/help/presentation/support/cubit/su
 import 'package:flutter_bloc_starter/features/help/presentation/support/support_page.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../test_helpers/pump_app.dart';
@@ -41,7 +42,8 @@ void main() {
 
   testWidgets('a send in flight leaves without the discard prompt', (tester) async {
     final cubit = _MockSupportCubit();
-    when(() => cubit.state).thenReturn(const SupportState(message: 'Oi', sendAction: Loading()));
+    when(() => cubit.state)
+        .thenReturn(const SupportState(message: FormInput('Oi'), sendAction: Loading()));
     when(() => cubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpApp(_Host(cubit: cubit));

@@ -69,8 +69,10 @@ class const _TextField() extends StatelessWidget {
     final text = context.select((QuickSlipCubit cubit) => cubit.state.text);
 
     return BaseTextArea(
-      text: text,
+      text: text.value,
       hint: l10n.hint,
+      errorText: l10n.textErrors.selectOrNull(text.errorName),
+      hasError: text.errorName != null,
       onChanged: context.read<QuickSlipCubit>().onTextChanged,
     );
   }
@@ -127,7 +129,7 @@ class const _OtherKinds() extends StatelessWidget {
   }
 
   void _open(BuildContext context, String kind) {
-    final text = context.read<QuickSlipCubit>().state.text;
+    final text = context.read<QuickSlipCubit>().state.text.value;
     context.router.replace(SlipKindRoute(kind: kind, text: text));
   }
 }
@@ -135,12 +137,10 @@ class const _OtherKinds() extends StatelessWidget {
 class const _SaveButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final canSave = context.select((QuickSlipCubit cubit) => cubit.state.canSave);
     final isLoading = context.select((QuickSlipCubit cubit) => cubit.state.saveAction.isLoading);
 
     return BaseButton(
       text: context.l10n.quickSlip.save,
-      isEnabled: canSave,
       isLoading: isLoading,
       onPressed: context.read<QuickSlipCubit>().save,
     );

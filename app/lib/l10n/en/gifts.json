@@ -14,9 +14,14 @@
   "editTitle": "Edit wish",
   "titleLabel": "Gift",
   "titleHint": "E.g. a book of poems",
-  "titleTooLong": "Keep it to 120 characters or fewer.",
+  "titleErrors(map)": {
+    "empty": "Give the wish a name.",
+    "tooLong": "Keep it to 120 characters or fewer."
+  },
   "noteHint": "Size, color, where to find it.",
-  "noteTooLong": "Keep the note under 1000 characters.",
+  "noteErrors(map)": {
+    "tooLong": "Keep the note under 1000 characters."
+  },
   "budgetLabel": "Budget (optional)",
   "budgets(map)": {
     "free": "Free",

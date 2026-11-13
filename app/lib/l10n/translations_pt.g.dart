@@ -179,6 +179,13 @@ class Translations$acceptInvite$pt {
   /// pt: 'ABCD2345'
   String get codeHint => 'ABCD2345';
 
+  Map<String, String> get codeErrors => {
+    'empty': 'Digite o código do convite.',
+    'tooShort': 'O código tem 8 caracteres.',
+    'tooLong': 'O código tem 8 caracteres.',
+    'invalid': 'Use só letras e números.',
+  };
+
   /// pt: 'Aceitar compartilha cartões e ferramentas. Suas notas privadas continuam privadas.'
   String get privacyNote =>
       'Aceitar compartilha cartões e ferramentas. Suas notas privadas continuam privadas.';
@@ -340,11 +347,21 @@ class Translations$capsules$pt {
   /// pt: 'O que você quer dizer para o futuro?'
   String get bodyHint => 'O que você quer dizer para o futuro?';
 
+  Map<String, String> get bodyErrors => {
+    'empty': 'Escreva a mensagem',
+    'tooLong': 'A mensagem está muito longa',
+  };
+
   /// pt: 'Abre em'
   String get dateLabel => 'Abre em';
 
   /// pt: 'Escolha uma data'
   String get dateHint => 'Escolha uma data';
+
+  Map<String, String> get dateErrors => {
+    'empty': 'Escolha o dia em que ela abre',
+    'outOfRange': 'Escolha uma data entre uma semana e 50 anos à frente',
+  };
 
   /// pt: '{day} de {month} de {year}'
   String dateFormat({required Object day, required Object month, required Object year}) =>
@@ -598,6 +615,11 @@ class Translations$chat$pt {
   /// pt: 'Escreva aqui'
   String get inputHint => 'Escreva aqui';
 
+  Map<String, String> get draftErrors => {
+    'empty': 'Escreva algo para enviar',
+    'tooLong': 'Esta mensagem está muito longa',
+  };
+
   /// pt: 'Enviar'
   String get send => 'Enviar';
 
@@ -626,6 +648,11 @@ class Translations$chat$pt {
 
   /// pt: 'O que você quer guardar'
   String get learningSheetHint => 'O que você quer guardar';
+
+  Map<String, String> get learningTextErrors => {
+    'empty': 'Escreva o que quer guardar',
+    'tooLong': 'Isto está muito longo',
+  };
 
   /// pt: 'Guardar'
   String get learningSave => 'Guardar';
@@ -1107,6 +1134,10 @@ class Translations$dates$pt {
   /// pt: 'Ex.: aniversário dele'
   String get titleHint => 'Ex.: aniversário dele';
 
+  Map<String, String> get titleErrors => {
+    'empty': 'Dê um nome a esta data',
+    'tooLong': 'O nome está muito longo',
+  };
   Map<String, String> get kinds => {
     'relationship': 'Namoro',
     'birthday': 'Aniversário',
@@ -1133,6 +1164,7 @@ class Translations$dates$pt {
   /// pt: 'Sem o ano, a data só se repete, sem idade.'
   String get yearHelp => 'Sem o ano, a data só se repete, sem idade.';
 
+  Map<String, String> get yearErrors => {'invalid': 'Use um ano entre 1900 e 2200'};
   List<String> get months => [
     'janeiro',
     'fevereiro',
@@ -1189,6 +1221,11 @@ class Translations$dates$pt {
 
   /// pt: 'Ex.: livro de poemas'
   String get giftHint => 'Ex.: livro de poemas';
+
+  Map<String, String> get giftErrors => {
+    'empty': 'Escreva a ideia de presente',
+    'tooLong': 'A ideia de presente está muito longa',
+  };
 
   /// pt: 'Já dei'
   String get given => 'Já dei';
@@ -1568,6 +1605,11 @@ class Translations$firstSlip$pt {
   /// pt: 'Ex.: fez café antes de eu acordar'
   String get hint => 'Ex.: fez café antes de eu acordar';
 
+  Map<String, String> get textErrors => {
+    'empty': 'Escreva uma coisa boa primeiro.',
+    'tooLong': 'Use no máximo 140 caracteres.',
+  };
+
   /// pt: 'Fica salvo só neste celular.'
   String get localNote => 'Fica salvo só neste celular.';
 
@@ -1685,14 +1727,15 @@ class Translations$gifts$pt {
   /// pt: 'Ex.: livro de poemas'
   String get titleHint => 'Ex.: livro de poemas';
 
-  /// pt: 'Use no máximo 120 caracteres.'
-  String get titleTooLong => 'Use no máximo 120 caracteres.';
+  Map<String, String> get titleErrors => {
+    'empty': 'Dê um nome ao presente.',
+    'tooLong': 'Use no máximo 120 caracteres.',
+  };
 
   /// pt: 'Tamanho, cor, onde encontrar.'
   String get noteHint => 'Tamanho, cor, onde encontrar.';
 
-  /// pt: 'Use no máximo 1000 caracteres na nota.'
-  String get noteTooLong => 'Use no máximo 1000 caracteres na nota.';
+  Map<String, String> get noteErrors => {'tooLong': 'Use no máximo 1000 caracteres na nota.'};
 
   /// pt: 'Orçamento (opcional)'
   String get budgetLabel => 'Orçamento (opcional)';
@@ -1911,6 +1954,11 @@ class Translations$hardConversation$pt {
 
   /// pt: 'Sua frase de abertura'
   String get sayHint => 'Sua frase de abertura';
+
+  Map<String, String> get messageErrors => {
+    'empty': 'Escreva a frase primeiro',
+    'tooLong': 'Esta frase está muito longa',
+  };
 
   /// pt: 'Escrevendo uma abertura gentil…'
   String get generating => 'Escrevendo uma abertura gentil…';
@@ -2134,14 +2182,21 @@ class Translations$helpSupport$pt {
   /// pt: 'Conte o que aconteceu, com o máximo de detalhes que quiser.'
   String get messageHint => 'Conte o que aconteceu, com o máximo de detalhes que quiser.';
 
+  Map<String, String> get messageErrors => {
+    'empty': 'Escreva sua mensagem primeiro',
+    'tooLong': 'A mensagem está muito longa',
+  };
+
   /// pt: 'E-mail para resposta'
   String get replyEmailLabel => 'E-mail para resposta';
 
   /// pt: 'voce@email.com'
   String get replyEmailHint => 'voce@email.com';
 
-  /// pt: 'Confira o e-mail.'
-  String get replyEmailInvalid => 'Confira o e-mail.';
+  Map<String, String> get replyEmailErrors => {
+    'invalid': 'Confira o e-mail.',
+    'tooLong': 'Este e-mail é muito longo',
+  };
 
   /// pt: 'Respondemos em até 2 dias úteis.'
   String get replyTime => 'Respondemos em até 2 dias úteis.';
@@ -2399,14 +2454,23 @@ class Translations$history$pt {
   /// pt: 'Ex.: Primeira viagem juntos'
   String get milestoneTitleHint => 'Ex.: Primeira viagem juntos';
 
+  Map<String, String> get milestoneTitleErrors => {
+    'empty': 'Conte o que aconteceu',
+    'tooLong': 'O título está muito longo',
+  };
+
   /// pt: 'Lugar (opcional)'
   String get milestonePlaceLabel => 'Lugar (opcional)';
 
   /// pt: 'Ex.: Paraty'
   String get milestonePlaceHint => 'Ex.: Paraty';
 
+  Map<String, String> get milestonePlaceErrors => {'tooLong': 'O lugar está muito longo'};
+
   /// pt: 'Uma nota sobre esse momento (opcional)'
   String get milestoneBodyHint => 'Uma nota sobre esse momento (opcional)';
+
+  Map<String, String> get milestoneBodyErrors => {'tooLong': 'A nota está muito longa'};
 
   /// pt: 'Tipo de marco'
   String get milestoneKindLabel => 'Tipo de marco';
@@ -2929,6 +2993,11 @@ class Translations$learned$pt {
   /// pt: 'O que você quer guardar'
   String get editHint => 'O que você quer guardar';
 
+  Map<String, String> get textErrors => {
+    'empty': 'Escreva o que quer guardar',
+    'tooLong': 'Isto está muito longo',
+  };
+
   /// pt: 'Guardar'
   String get save => 'Guardar';
 
@@ -2981,6 +3050,11 @@ class Translations$lists$pt {
 
   /// pt: 'Ex.: Viagens dos nossos sonhos'
   String get titleHint => 'Ex.: Viagens dos nossos sonhos';
+
+  Map<String, String> get titleErrors => {
+    'empty': 'Dê um nome para a lista.',
+    'tooLong': 'Use no máximo 80 caracteres.',
+  };
 
   /// pt: 'Tipo'
   String get kindLabel => 'Tipo';
@@ -3067,6 +3141,11 @@ class Translations$lists$pt {
 
   /// pt: 'Ex.: Lisboa'
   String get itemHint => 'Ex.: Lisboa';
+
+  Map<String, String> get itemTitleErrors => {
+    'empty': 'Escreva o nome do item.',
+    'tooLong': 'Use no máximo 160 caracteres.',
+  };
 
   /// pt: 'Adicionar'
   String get add => 'Adicionar';
@@ -3432,6 +3511,13 @@ class Translations$memories$pt {
   /// pt: 'Ex.: nosso primeiro jantar'
   String get titleHint => 'Ex.: nosso primeiro jantar';
 
+  Map<String, String> get titleErrors => {
+    'empty': 'Dê um título a esta memória',
+    'tooLong': 'O título está muito longo',
+  };
+  Map<String, String> get placeErrors => {'tooLong': 'O lugar está muito longo'};
+  Map<String, String> get bodyErrors => {'tooLong': 'A nota está muito longa'};
+
   /// pt: 'Conte como foi (opcional)'
   String get bodyHint => 'Conte como foi (opcional)';
 
@@ -3703,6 +3789,11 @@ class Translations$notes$pt {
   /// pt: 'Ex.: boa sorte na reunião de hoje'
   String get noteHint => 'Ex.: boa sorte na reunião de hoje';
 
+  Map<String, String> get textErrors => {
+    'empty': 'Escreva o recado primeiro',
+    'tooLong': 'Este recado está muito longo',
+  };
+
   /// pt: 'Área do desenho'
   String get canvasLabel => 'Área do desenho';
 
@@ -3958,8 +4049,18 @@ class Translations$partnerProfile$pt {
   /// pt: 'Ex.: café'
   String get labelHint => 'Ex.: café';
 
+  Map<String, String> get labelErrors => {
+    'empty': 'Dê um assunto à nota.',
+    'tooLong': 'Use no máximo 80 caracteres.',
+  };
+
   /// pt: 'Ex.: sem açúcar, bem quente'
   String get valueHint => 'Ex.: sem açúcar, bem quente';
+
+  Map<String, String> get valueErrors => {
+    'empty': 'Escreva o que quer lembrar.',
+    'tooLong': 'Use no máximo 500 caracteres.',
+  };
 
   /// pt: 'Guardar nota'
   String get save => 'Guardar nota';
@@ -4047,6 +4148,11 @@ class Translations$pause$pt {
 
   /// pt: 'Escrever a minha'
   String get hint => 'Escrever a minha';
+
+  Map<String, String> get messageErrors => {
+    'empty': 'Escreva uma mensagem curta',
+    'tooLong': 'A mensagem está muito longa',
+  };
 
   /// pt: 'Volto em'
   String get returnTitle => 'Volto em';
@@ -4454,8 +4560,10 @@ class Translations$profileDetails$pt {
   /// pt: 'Marina'
   String get nameHint => 'Marina';
 
-  /// pt: 'Seu nome não pode ficar vazio.'
-  String get nameError => 'Seu nome não pode ficar vazio.';
+  Map<String, String> get nameErrors => {
+    'empty': 'Seu nome não pode ficar vazio.',
+    'tooLong': 'Use no máximo 30 caracteres.',
+  };
 
   /// pt: 'Pronomes'
   String get pronounsLabel => 'Pronomes';
@@ -4463,8 +4571,7 @@ class Translations$profileDetails$pt {
   /// pt: 'Opcional'
   String get pronounsHint => 'Opcional';
 
-  /// pt: 'Use no máximo 30 caracteres.'
-  String get pronounsError => 'Use no máximo 30 caracteres.';
+  Map<String, String> get pronounsErrors => {'tooLong': 'Use no máximo 30 caracteres.'};
 
   /// pt: 'Fuso horário'
   String get timeZoneLabel => 'Fuso horário';
@@ -4545,11 +4652,18 @@ class Translations$profileSetup$pt {
   /// pt: 'Marina'
   String get nameHint => 'Marina';
 
+  Map<String, String> get nameErrors => {
+    'empty': 'Seu nome não pode ficar vazio.',
+    'tooLong': 'Use no máximo 30 caracteres.',
+  };
+
   /// pt: 'Nome do parceiro'
   String get partnerNameLabel => 'Nome do parceiro';
 
   /// pt: 'Ricardo'
   String get partnerNameHint => 'Ricardo';
+
+  Map<String, String> get partnerNameErrors => {'tooLong': 'Use no máximo 30 caracteres.'};
 
   /// pt: 'O nome do parceiro fica só na sua conta.'
   String get partnerNameNote => 'O nome do parceiro fica só na sua conta.';
@@ -4746,6 +4860,11 @@ class Translations$programs$pt {
   /// pt: 'Escreva sem pressa. Só você vê isto.'
   String get diaryHint => 'Escreva sem pressa. Só você vê isto.';
 
+  Map<String, String> get diaryBodyErrors => {
+    'empty': 'Escreva um pouco antes de salvar',
+    'tooLong': 'A entrada está muito longa',
+  };
+
   /// pt: 'Salvar'
   String get diarySave => 'Salvar';
 
@@ -4874,6 +4993,11 @@ class Translations$questions$pt {
 
   /// pt: 'Escreva o quanto quiser.'
   String get answerHint => 'Escreva o quanto quiser.';
+
+  Map<String, String> get answerErrors => {
+    'empty': 'Escreva uma resposta',
+    'tooLong': 'A resposta está muito longa',
+  };
 
   /// pt: 'Só você vê isto até seu par responder também.'
   String get privateNote => 'Só você vê isto até seu par responder também.';
@@ -5017,6 +5141,10 @@ class Translations$quickSlip$pt {
   /// pt: 'Ex.: fez café antes de eu acordar'
   String get hint => 'Ex.: fez café antes de eu acordar';
 
+  Map<String, String> get textErrors => {
+    'empty': 'Escreva o slip primeiro',
+    'tooLong': 'Este slip está muito longo',
+  };
   Map<String, String> get categories => {
     'said': 'Disse algo',
     'did': 'Fez algo',
@@ -5650,6 +5778,11 @@ class Translations$slipDetail$pt {
   String get sentNote =>
       'Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.';
 
+  Map<String, String> get draftBodyErrors => {
+    'empty': 'Escreva o slip primeiro',
+    'tooLong': 'Este slip está muito longo',
+  };
+
   /// pt: 'Editar'
   String get edit => 'Editar';
 
@@ -5744,6 +5877,15 @@ class Translations$slipKind$pt {
     'emotional': 'Emocional',
     'finances': 'Finanças',
     'other': 'Outro',
+  };
+  Map<String, String> get textErrors => {
+    'empty': 'Escreva o slip primeiro',
+    'tooLong': 'Este slip está muito longo',
+  };
+  Map<String, String> get feelingErrors => {'tooLong': 'Isto está muito longo'};
+  Map<String, String> get planErrors => {
+    'empty': 'Diga o que você vai fazer',
+    'tooLong': 'Isto está muito longo',
   };
 
   /// pt: 'Salvar'
@@ -8066,17 +8208,23 @@ class Translations$repair$softStart$pt {
   /// pt: 'Ex.: cansado(a)'
   String get feelingHint => 'Ex.: cansado(a)';
 
+  Map<String, String> get feelingErrors => {'empty': 'Diga como você se sente'};
+
   /// pt: 'Quando…'
   String get situation => 'Quando…';
 
   /// pt: 'Ex.: a louça fica para depois'
   String get situationHint => 'Ex.: a louça fica para depois';
 
+  Map<String, String> get situationErrors => {'empty': 'Diga quando acontece'};
+
   /// pt: 'Eu preciso de…'
   String get need => 'Eu preciso de…';
 
   /// pt: 'Ex.: um pouco de ajuda'
   String get needHint => 'Ex.: um pouco de ajuda';
+
+  Map<String, String> get needErrors => {'empty': 'Diga o que você precisa'};
 
   /// pt: 'Eu sinto {feeling} quando {situation}. Eu preciso de {need}.'
   String template({required Object feeling, required Object situation, required Object need}) =>
@@ -8113,6 +8261,11 @@ class Translations$repair$quick$pt {
 
   /// pt: 'Escrever o meu'
   String get hint => 'Escrever o meu';
+
+  Map<String, String> get textErrors => {
+    'empty': 'Escreva uma mensagem',
+    'tooLong': 'A mensagem está muito longa',
+  };
 
   /// pt: 'Enviar'
   String get send => 'Enviar';
@@ -8238,6 +8391,11 @@ class Translations$repair$learning$pt {
 
   /// pt: 'Escreva em uma ou duas frases'
   String get hint => 'Escreva em uma ou duas frases';
+
+  Map<String, String> get noteErrors => {
+    'empty': 'Escreva o que você aprendeu',
+    'tooLong': 'A nota está muito longa',
+  };
 
   /// pt: 'Salvar'
   String get save => 'Salvar';
@@ -8761,6 +8919,10 @@ extension on Translations {
             'Digite o código que a outra pessoa enviou para vocês se conectarem.',
           'acceptInvite.codeLabel' => 'Código do convite',
           'acceptInvite.codeHint' => 'ABCD2345',
+          'acceptInvite.codeErrors.empty' => 'Digite o código do convite.',
+          'acceptInvite.codeErrors.tooShort' => 'O código tem 8 caracteres.',
+          'acceptInvite.codeErrors.tooLong' => 'O código tem 8 caracteres.',
+          'acceptInvite.codeErrors.invalid' => 'Use só letras e números.',
           'acceptInvite.privacyNote' =>
             'Aceitar compartilha cartões e ferramentas. Suas notas privadas continuam privadas.',
           'acceptInvite.accept' => 'Aceitar',
@@ -8839,8 +9001,13 @@ extension on Translations {
           'capsules.text' =>
             'Escreva algo para ser aberto em uma data futura. Até lá, ninguém lê, nem você.',
           'capsules.bodyHint' => 'O que você quer dizer para o futuro?',
+          'capsules.bodyErrors.empty' => 'Escreva a mensagem',
+          'capsules.bodyErrors.tooLong' => 'A mensagem está muito longa',
           'capsules.dateLabel' => 'Abre em',
           'capsules.dateHint' => 'Escolha uma data',
+          'capsules.dateErrors.empty' => 'Escolha o dia em que ela abre',
+          'capsules.dateErrors.outOfRange' =>
+            'Escolha uma data entre uma semana e 50 anos à frente',
           'capsules.dateFormat' => ({
             required Object day,
             required Object month,
@@ -8960,6 +9127,8 @@ extension on Translations {
           'chat.consentTurnOn' => 'Ligar a conversa',
           'chat.emptyHint' => 'Diga como você está, ou comece por uma coisa pequena.',
           'chat.inputHint' => 'Escreva aqui',
+          'chat.draftErrors.empty' => 'Escreva algo para enviar',
+          'chat.draftErrors.tooLong' => 'Esta mensagem está muito longa',
           'chat.send' => 'Enviar',
           'chat.messagesLeft' =>
             ({required num count}) =>
@@ -8974,6 +9143,8 @@ extension on Translations {
           'chat.learningSheetTitle' => 'Salvar aprendizado',
           'chat.learningSheetTarget' => 'Sobre o que é?',
           'chat.learningSheetHint' => 'O que você quer guardar',
+          'chat.learningTextErrors.empty' => 'Escreva o que quer guardar',
+          'chat.learningTextErrors.tooLong' => 'Isto está muito longo',
           'chat.learningSave' => 'Guardar',
           'chat.learningSaved' => 'Aprendizado guardado',
           'chat.learnedLink' => 'O que aprendi',
@@ -9137,6 +9308,8 @@ extension on Translations {
           'dates.segmentHolidays' => 'Feriados',
           'dates.titleLabel' => 'Nome',
           'dates.titleHint' => 'Ex.: aniversário dele',
+          'dates.titleErrors.empty' => 'Dê um nome a esta data',
+          'dates.titleErrors.tooLong' => 'O nome está muito longo',
           'dates.kinds.relationship' => 'Namoro',
           'dates.kinds.birthday' => 'Aniversário',
           'dates.kinds.first' => 'Uma primeira vez',
@@ -9150,6 +9323,7 @@ extension on Translations {
           'dates.yearLabel' => 'Ano (opcional)',
           'dates.yearHint' => 'Ex.: 1994',
           'dates.yearHelp' => 'Sem o ano, a data só se repete, sem idade.',
+          'dates.yearErrors.invalid' => 'Use um ano entre 1900 e 2200',
           'dates.months.0' => 'janeiro',
           'dates.months.1' => 'fevereiro',
           'dates.months.2' => 'março',
@@ -9187,6 +9361,8 @@ extension on Translations {
           'dates.emptyDatesText' => 'Guarde aniversários e datas que importam. Avisamos antes.',
           'dates.giftsPrivate' => 'Ideias de presente só você vê.',
           'dates.giftHint' => 'Ex.: livro de poemas',
+          'dates.giftErrors.empty' => 'Escreva a ideia de presente',
+          'dates.giftErrors.tooLong' => 'A ideia de presente está muito longa',
           'dates.given' => 'Já dei',
           'dates.emptyGiftsTitle' => 'Nenhuma ideia ainda',
           'dates.emptyGiftsText' => 'Anote presentes quando pensar neles.',
@@ -9338,6 +9514,9 @@ extension on Translations {
             required Object name,
           }) => 'Combine com ${name} um sinal de volta.',
           'fightStyle.addToTools' => 'Adicionar às minhas ferramentas de reparo',
+          _ => null,
+        } ??
+        switch (path) {
           'fightStyle.addedToTools' => 'Já está nas suas ferramentas',
           'fightStyle.keepMine' => 'Guardar só para mim',
           'fightStyle.retake' => 'Refazer o exercício',
@@ -9352,12 +9531,11 @@ extension on Translations {
           'firstSlip.titleHighlight' => 'uma coisa boa',
           'firstSlip.subtitle' => 'O que seu parceiro fez ultimamente que te fez sorrir? 30 segundos bastam. Ainda sem conta.',
           'firstSlip.hint' => 'Ex.: fez café antes de eu acordar',
+          'firstSlip.textErrors.empty' => 'Escreva uma coisa boa primeiro.',
+          'firstSlip.textErrors.tooLong' => 'Use no máximo 140 caracteres.',
           'firstSlip.localNote' => 'Fica salvo só neste celular.',
           'firstSlip.save' => 'Salvar',
           'firstSlip.saveError' => 'Não deu para guardar agora. Tente de novo.',
-          _ => null,
-        } ??
-        switch (path) {
           'games.hub.title' => 'Jogar',
           'games.hub.subtitle' => 'Jogos curtos para vocês dois. Sem placar e sem vencedor.',
           'games.hub.guessLabel' => 'Palpites',
@@ -9512,9 +9690,10 @@ extension on Translations {
           'gifts.editTitle' => 'Editar desejo',
           'gifts.titleLabel' => 'Presente',
           'gifts.titleHint' => 'Ex.: livro de poemas',
-          'gifts.titleTooLong' => 'Use no máximo 120 caracteres.',
+          'gifts.titleErrors.empty' => 'Dê um nome ao presente.',
+          'gifts.titleErrors.tooLong' => 'Use no máximo 120 caracteres.',
           'gifts.noteHint' => 'Tamanho, cor, onde encontrar.',
-          'gifts.noteTooLong' => 'Use no máximo 1000 caracteres na nota.',
+          'gifts.noteErrors.tooLong' => 'Use no máximo 1000 caracteres na nota.',
           'gifts.budgetLabel' => 'Orçamento (opcional)',
           'gifts.budgets.free' => 'Grátis',
           'gifts.budgets.low' => 'Baixo',
@@ -9619,6 +9798,8 @@ extension on Translations {
           'hardConversation.sayTitle' => 'Como dizer',
           'hardConversation.sayIntro' => 'Um ponto de partida para você editar antes de enviar.',
           'hardConversation.sayHint' => 'Sua frase de abertura',
+          'hardConversation.messageErrors.empty' => 'Escreva a frase primeiro',
+          'hardConversation.messageErrors.tooLong' => 'Esta frase está muito longa',
           'hardConversation.generating' => 'Escrevendo uma abertura gentil…',
           'hardConversation.gentler' => 'Mais gentil',
           'hardConversation.moreDirect' => 'Mais direto',
@@ -9703,9 +9884,12 @@ extension on Translations {
           'helpSupport.messageLabel' => 'Mensagem',
           'helpSupport.messageHint' =>
             'Conte o que aconteceu, com o máximo de detalhes que quiser.',
+          'helpSupport.messageErrors.empty' => 'Escreva sua mensagem primeiro',
+          'helpSupport.messageErrors.tooLong' => 'A mensagem está muito longa',
           'helpSupport.replyEmailLabel' => 'E-mail para resposta',
           'helpSupport.replyEmailHint' => 'voce@email.com',
-          'helpSupport.replyEmailInvalid' => 'Confira o e-mail.',
+          'helpSupport.replyEmailErrors.invalid' => 'Confira o e-mail.',
+          'helpSupport.replyEmailErrors.tooLong' => 'Este e-mail é muito longo',
           'helpSupport.replyTime' => 'Respondemos em até 2 dias úteis.',
           'helpSupport.send' => 'Enviar',
           'helpSupport.sentTitle' => 'Mensagem enviada',
@@ -9856,9 +10040,13 @@ extension on Translations {
           'history.milestoneDefaultHighlight' => 'juntos',
           'history.milestoneTitleLabel' => 'O que aconteceu',
           'history.milestoneTitleHint' => 'Ex.: Primeira viagem juntos',
+          'history.milestoneTitleErrors.empty' => 'Conte o que aconteceu',
+          'history.milestoneTitleErrors.tooLong' => 'O título está muito longo',
           'history.milestonePlaceLabel' => 'Lugar (opcional)',
           'history.milestonePlaceHint' => 'Ex.: Paraty',
+          'history.milestonePlaceErrors.tooLong' => 'O lugar está muito longo',
           'history.milestoneBodyHint' => 'Uma nota sobre esse momento (opcional)',
+          'history.milestoneBodyErrors.tooLong' => 'A nota está muito longa',
           'history.milestoneKindLabel' => 'Tipo de marco',
           'history.kindFirst' => 'Primeira vez',
           'history.kindTrip' => 'Viagem',
@@ -10031,6 +10219,9 @@ extension on Translations {
           'intro.phase.subtitle' => 'Escolha o mais próximo. Você pode mudar depois.',
           'intro.phase.options.dating' => 'Namorando',
           'intro.phase.options.living_together' => 'Moramos juntos',
+          _ => null,
+        } ??
+        switch (path) {
           'intro.phase.options.engaged' => 'Noivos',
           'intro.phase.options.married' => 'Casados',
           'intro.phase.options.with_kids' => 'Com filhos',
@@ -10060,9 +10251,6 @@ extension on Translations {
           'intro.theme.footnote' => 'Dá para trocar depois em Configurações, Aparência.',
           'invite.title' => ({required Object name}) => 'Convidar ${name}',
           'invite.titleNoName' => 'Convidar sua pessoa',
-          _ => null,
-        } ??
-        switch (path) {
           'invite.messageIntro' => 'Esta mensagem será enviada:',
           'invite.message' => ({
             required Object code,
@@ -10110,6 +10298,8 @@ extension on Translations {
           'learned.discardConfirm' => 'Descartar',
           'learned.editTitle' => 'Editar aprendizado',
           'learned.editHint' => 'O que você quer guardar',
+          'learned.textErrors.empty' => 'Escreva o que quer guardar',
+          'learned.textErrors.tooLong' => 'Isto está muito longo',
           'learned.save' => 'Guardar',
           'learned.partnerFactLabel' => 'Da conversa',
           'learned.updated' => 'Aprendizado atualizado',
@@ -10126,6 +10316,8 @@ extension on Translations {
           'lists.createTitle' => 'Nova lista',
           'lists.titleLabel' => 'Nome',
           'lists.titleHint' => 'Ex.: Viagens dos nossos sonhos',
+          'lists.titleErrors.empty' => 'Dê um nome para a lista.',
+          'lists.titleErrors.tooLong' => 'Use no máximo 80 caracteres.',
           'lists.kindLabel' => 'Tipo',
           'lists.visibilityLabel' => 'Quem pode ver',
           'lists.sharedHint' => 'Vocês dois podem ver e mudar esta lista.',
@@ -10157,6 +10349,8 @@ extension on Translations {
           'lists.shareWithPartner' => 'Compartilhar com seu par',
           'lists.addItem' => 'Adicionar item',
           'lists.itemHint' => 'Ex.: Lisboa',
+          'lists.itemTitleErrors.empty' => 'Escreva o nome do item.',
+          'lists.itemTitleErrors.tooLong' => 'Use no máximo 160 caracteres.',
           'lists.add' => 'Adicionar',
           'lists.itemEmptyTitle' => 'Nada por aqui ainda',
           'lists.itemEmptyTextShared' => 'Adicione a primeira coisa que vocês querem fazer juntos.',
@@ -10317,6 +10511,10 @@ extension on Translations {
           'memories.jarClose' => 'Fechar',
           'memories.titleLabel' => 'Uma memória',
           'memories.titleHint' => 'Ex.: nosso primeiro jantar',
+          'memories.titleErrors.empty' => 'Dê um título a esta memória',
+          'memories.titleErrors.tooLong' => 'O título está muito longo',
+          'memories.placeErrors.tooLong' => 'O lugar está muito longo',
+          'memories.bodyErrors.tooLong' => 'A nota está muito longa',
           'memories.bodyHint' => 'Conte como foi (opcional)',
           'memories.add' => 'Adicionar memória',
           'memories.save' => 'Guardar memória',
@@ -10434,6 +10632,8 @@ extension on Translations {
           'notes.kinds.0' => 'Bilhete',
           'notes.kinds.1' => 'Desenho',
           'notes.noteHint' => 'Ex.: boa sorte na reunião de hoje',
+          'notes.textErrors.empty' => 'Escreva o recado primeiro',
+          'notes.textErrors.tooLong' => 'Este recado está muito longo',
           'notes.canvasLabel' => 'Área do desenho',
           'notes.pens.0' => 'Preto',
           'notes.pens.1' => 'Laranja',
@@ -10546,7 +10746,11 @@ extension on Translations {
           'partnerProfile.categories.other' => 'Outro',
           'partnerProfile.labelLabel' => 'Assunto',
           'partnerProfile.labelHint' => 'Ex.: café',
+          'partnerProfile.labelErrors.empty' => 'Dê um assunto à nota.',
+          'partnerProfile.labelErrors.tooLong' => 'Use no máximo 80 caracteres.',
           'partnerProfile.valueHint' => 'Ex.: sem açúcar, bem quente',
+          'partnerProfile.valueErrors.empty' => 'Escreva o que quer lembrar.',
+          'partnerProfile.valueErrors.tooLong' => 'Use no máximo 500 caracteres.',
           'partnerProfile.save' => 'Guardar nota',
           'partnerProfile.delete' => 'Apagar',
           'partnerProfile.emptyTitle' => 'Nenhuma nota ainda',
@@ -10574,6 +10778,8 @@ extension on Translations {
           'pause.presets.calm' => 'Quero te ouvir bem. Preciso me acalmar antes.',
           'pause.presets.other' => '',
           'pause.hint' => 'Escrever a minha',
+          'pause.messageErrors.empty' => 'Escreva uma mensagem curta',
+          'pause.messageErrors.tooLong' => 'A mensagem está muito longa',
           'pause.returnTitle' => 'Volto em',
           'pause.returns.oneHour' => '1 hora',
           'pause.returns.threeHours' => '3 horas',
@@ -10591,6 +10797,9 @@ extension on Translations {
           'pause.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
           'places.title' => 'Lugares',
           'places.privacyNote' => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.',
+          _ => null,
+        } ??
+        switch (path) {
           'places.memoryOne' => '1 memória',
           'places.memoryMany' => ({required Object count}) => '${count} memórias',
           'places.monthsShort.0' => 'jan',
@@ -10647,9 +10856,6 @@ extension on Translations {
           'plus.lockText' => 'Disponível no Plus. Toque para ver os planos.',
           'plus.errorTitle' => 'Não deu para carregar',
           'plus.errorText' => 'Tente de novo daqui a pouco.',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.manageTitle' => 'Gerenciar Plus',
           'plus.planRow' => 'Plano',
           'plus.statusRow' => 'Status',
@@ -10720,10 +10926,11 @@ extension on Translations {
           'profileDetails.title' => 'Perfil',
           'profileDetails.nameLabel' => 'Seu nome',
           'profileDetails.nameHint' => 'Marina',
-          'profileDetails.nameError' => 'Seu nome não pode ficar vazio.',
+          'profileDetails.nameErrors.empty' => 'Seu nome não pode ficar vazio.',
+          'profileDetails.nameErrors.tooLong' => 'Use no máximo 30 caracteres.',
           'profileDetails.pronounsLabel' => 'Pronomes',
           'profileDetails.pronounsHint' => 'Opcional',
-          'profileDetails.pronounsError' => 'Use no máximo 30 caracteres.',
+          'profileDetails.pronounsErrors.tooLong' => 'Use no máximo 30 caracteres.',
           'profileDetails.timeZoneLabel' => 'Fuso horário',
           'profileDetails.timeZonePlaceholder' => 'Escolha um fuso',
           'profileDetails.loginLabel' => 'Login',
@@ -10758,8 +10965,11 @@ extension on Translations {
             'Usado para as palavras do app e para a primeira data da sua história.',
           'profileSetup.nameLabel' => 'Seu nome',
           'profileSetup.nameHint' => 'Marina',
+          'profileSetup.nameErrors.empty' => 'Seu nome não pode ficar vazio.',
+          'profileSetup.nameErrors.tooLong' => 'Use no máximo 30 caracteres.',
           'profileSetup.partnerNameLabel' => 'Nome do parceiro',
           'profileSetup.partnerNameHint' => 'Ricardo',
+          'profileSetup.partnerNameErrors.tooLong' => 'Use no máximo 30 caracteres.',
           'profileSetup.partnerNameNote' => 'O nome do parceiro fica só na sua conta.',
           'profileSetup.themeLabel' => 'Cor do seu app',
           'profileSetup.themeRose' => 'Rosa',
@@ -10841,6 +11051,8 @@ extension on Translations {
           'programs.diaryPrivacy' => 'Só eu. Nunca é compartilhado.',
           'programs.diaryPrompt' => 'Hoje eu me senti...',
           'programs.diaryHint' => 'Escreva sem pressa. Só você vê isto.',
+          'programs.diaryBodyErrors.empty' => 'Escreva um pouco antes de salvar',
+          'programs.diaryBodyErrors.tooLong' => 'A entrada está muito longa',
           'programs.diarySave' => 'Salvar',
           'programs.diaryNew' => 'Nova entrada',
           'programs.diaryEdit' => 'Editar',
@@ -10894,6 +11106,8 @@ extension on Translations {
           'questions.answerCta' => 'Responder',
           'questions.editCta' => 'Editar minha resposta',
           'questions.answerHint' => 'Escreva o quanto quiser.',
+          'questions.answerErrors.empty' => 'Escreva uma resposta',
+          'questions.answerErrors.tooLong' => 'A resposta está muito longa',
           'questions.privateNote' => 'Só você vê isto até seu par responder também.',
           'questions.partnerAnsweredNote' => 'Seu par já respondeu. Envie a sua para ver as duas.',
           'questions.soloNote' =>
@@ -10952,6 +11166,8 @@ extension on Translations {
           'quickSlip.titleHighlight' => 'feliz',
           'quickSlip.subtitle' => 'Uma linha basta. 30 segundos.',
           'quickSlip.hint' => 'Ex.: fez café antes de eu acordar',
+          'quickSlip.textErrors.empty' => 'Escreva o slip primeiro',
+          'quickSlip.textErrors.tooLong' => 'Este slip está muito longo',
           'quickSlip.categories.said' => 'Disse algo',
           'quickSlip.categories.did' => 'Fez algo',
           'quickSlip.categories.noticed' => 'Me notou',
@@ -11070,10 +11286,13 @@ extension on Translations {
           'repair.softStart.subtitle' => 'Um modelo sem culpa para abrir a conversa.',
           'repair.softStart.feeling' => 'Eu sinto…',
           'repair.softStart.feelingHint' => 'Ex.: cansado(a)',
+          'repair.softStart.feelingErrors.empty' => 'Diga como você se sente',
           'repair.softStart.situation' => 'Quando…',
           'repair.softStart.situationHint' => 'Ex.: a louça fica para depois',
+          'repair.softStart.situationErrors.empty' => 'Diga quando acontece',
           'repair.softStart.need' => 'Eu preciso de…',
           'repair.softStart.needHint' => 'Ex.: um pouco de ajuda',
+          'repair.softStart.needErrors.empty' => 'Diga o que você precisa',
           'repair.softStart.template' => ({
             required Object feeling,
             required Object situation,
@@ -11089,6 +11308,8 @@ extension on Translations {
           'repair.quick.presets.love' => 'Eu te amo, mesmo agora.',
           'repair.quick.presets.other' => '',
           'repair.quick.hint' => 'Escrever o meu',
+          'repair.quick.textErrors.empty' => 'Escreva uma mensagem',
+          'repair.quick.textErrors.tooLong' => 'A mensagem está muito longa',
           'repair.quick.send' => 'Enviar',
           'repair.quick.sentTitle' => 'Enviado',
           'repair.quick.sentText' => 'Seu par vai ver quando abrir o app.',
@@ -11141,7 +11362,12 @@ extension on Translations {
           'repair.learning.kinds.good_fix' => 'O que ajudou',
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Escreva em uma ou duas frases',
+          'repair.learning.noteErrors.empty' => 'Escreva o que você aprendeu',
+          'repair.learning.noteErrors.tooLong' => 'A nota está muito longa',
           'repair.learning.save' => 'Salvar',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.learning.listTitle' => 'Seus aprendizados',
           'repair.learning.delete' => 'Apagar',
           'repair.learning.emptyTitle' => 'Nada ainda',
@@ -11212,9 +11438,6 @@ extension on Translations {
           'sessionExpired.action' => 'Entrar',
           'settingsHome.title' => 'Configurações',
           'settingsHome.safety' => 'Segurança e apoio',
-          _ => null,
-        } ??
-        switch (path) {
           'settingsHome.safetyStatus' => 'Modo seguro',
           'settingsHome.profile' => 'Perfil',
           'settingsHome.relationship' => 'Relacionamento',
@@ -11294,6 +11517,8 @@ extension on Translations {
           'slipDetail.previewTitle' => 'O que seu par leria',
           'slipDetail.previewText' => 'Se este slip entrar no cartão, é este texto que aparece.',
           'slipDetail.sentNote' => 'Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.',
+          'slipDetail.draftBodyErrors.empty' => 'Escreva o slip primeiro',
+          'slipDetail.draftBodyErrors.tooLong' => 'Este slip está muito longo',
           'slipDetail.edit' => 'Editar',
           'slipDetail.editSave' => 'Salvar',
           'slipDetail.editCancel' => 'Cancelar',
@@ -11347,6 +11572,11 @@ extension on Translations {
           'slipKind.workAreas.emotional' => 'Emocional',
           'slipKind.workAreas.finances' => 'Finanças',
           'slipKind.workAreas.other' => 'Outro',
+          'slipKind.textErrors.empty' => 'Escreva o slip primeiro',
+          'slipKind.textErrors.tooLong' => 'Este slip está muito longo',
+          'slipKind.feelingErrors.tooLong' => 'Isto está muito longo',
+          'slipKind.planErrors.empty' => 'Diga o que você vai fazer',
+          'slipKind.planErrors.tooLong' => 'Isto está muito longo',
           'slipKind.save' => 'Salvar',
           'slipKind.saved.title' => 'Salvo',
           'slipKind.saved.added' => 'Registrado.',
@@ -11732,6 +11962,9 @@ extension on Translations {
           'today.inviteCardTitleNoName' => 'Convidar sua pessoa',
           'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
           'today.privateTag' => 'Só seu',
+          _ => null,
+        } ??
+        switch (path) {
           'today.privateQuestion' => 'Como foi o seu dia, de verdade?',
           'today.privateHighlight' => 'dia',
           'today.privateAction' => 'Anotar um slip',
@@ -11819,9 +12052,6 @@ extension on Translations {
           'widgets.settingsSubtitle' => 'Na tela inicial',
           'widgets.juntosCategory' => 'TELA INICIAL',
           'widgets.juntosTitle' => 'Widgets do Repara',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.juntosSubtitle' => 'Lembretes calmos para você ou para vocês dois.',
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Só meus',

@@ -4,6 +4,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/first_slip/cubit/first_slip_cubit.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/intro/widgets/intro_scaffold.dart';
+import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 
@@ -17,6 +18,7 @@ class const FirstSlipPage({super.key}) extends StatelessWidget implements AutoRo
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.firstSlip;
+    final text = context.select((FirstSlipCubit cubit) => cubit.state.text);
 
     return BlocListener<FirstSlipCubit, FirstSlipState>(
       listenWhen: (previous, current) => previous.saveAction != current.saveAction,
@@ -38,7 +40,12 @@ class const FirstSlipPage({super.key}) extends StatelessWidget implements AutoRo
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            BaseTextArea(hint: l10n.hint, onChanged: context.read<FirstSlipCubit>().onTextChanged),
+            BaseTextArea(
+              text: text.value,
+              hint: l10n.hint,
+              errorText: l10n.textErrors.selectOrNull(text.errorName),
+              onChanged: context.read<FirstSlipCubit>().onTextChanged,
+            ),
             const SizedBox(height: AppSpace.s16),
             BaseNote(text: l10n.localNote),
           ],
@@ -53,7 +60,6 @@ class const _Footer() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.firstSlip;
-    final canSave = context.select((FirstSlipCubit cubit) => cubit.state.canSave);
     final isLoading = context.select((FirstSlipCubit cubit) => cubit.state.saveAction.isLoading);
     final cubit = context.read<FirstSlipCubit>();
 
@@ -70,12 +76,7 @@ class const _Footer() extends StatelessWidget {
         ),
         const SizedBox(width: AppSpace.s12),
         Expanded(
-          child: BaseButton(
-            text: l10n.save,
-            isEnabled: canSave,
-            isLoading: isLoading,
-            onPressed: cubit.save,
-          ),
+          child: BaseButton(text: l10n.save, isLoading: isLoading, onPressed: cubit.save),
         ),
       ],
     );

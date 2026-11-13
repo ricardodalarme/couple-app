@@ -5,6 +5,10 @@
   "createTitle": "Nova lista",
   "titleLabel": "Nome",
   "titleHint": "Ex.: Viagens dos nossos sonhos",
+  "titleErrors(map)": {
+    "empty": "Dê um nome para a lista.",
+    "tooLong": "Use no máximo 80 caracteres."
+  },
   "kindLabel": "Tipo",
   "visibilityLabel": "Quem pode ver",
   "sharedHint": "Vocês dois podem ver e mudar esta lista.",
@@ -38,6 +42,10 @@
   "shareWithPartner": "Compartilhar com seu par",
   "addItem": "Adicionar item",
   "itemHint": "Ex.: Lisboa",
+  "itemTitleErrors(map)": {
+    "empty": "Escreva o nome do item.",
+    "tooLong": "Use no máximo 160 caracteres."
+  },
   "add": "Adicionar",
   "itemEmptyTitle": "Nada por aqui ainda",
   "itemEmptyTextShared": "Adicione a primeira coisa que vocês querem fazer juntos.",

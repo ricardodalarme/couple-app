@@ -23,6 +23,8 @@ class const PartnerProfilePage({super.key}) extends StatelessWidget implements A
   Widget build(BuildContext context) {
     final l10n = context.l10n.partnerProfile;
     final state = context.select((PartnerProfileCubit cubit) => cubit.state);
+    final label = context.select((PartnerProfileCubit cubit) => cubit.state.label);
+    final value = context.select((PartnerProfileCubit cubit) => cubit.state.value);
     final cubit = context.read<PartnerProfileCubit>();
 
     return BaseView(
@@ -56,17 +58,19 @@ class const PartnerProfilePage({super.key}) extends StatelessWidget implements A
               ),
               const SizedBox(height: AppSpace.s12),
               BaseTextField(
-                text: state.label,
+                text: label.value,
                 label: l10n.labelLabel,
                 hint: l10n.labelHint,
+                errorText: l10n.labelErrors.selectOrNull(label.errorName),
                 onChanged: cubit.onLabelChanged,
               ),
               const SizedBox(height: AppSpace.s12),
               BaseTextArea(
-                text: state.value,
+                text: value.value,
                 hint: l10n.valueHint,
                 maxLength: partnerFactValueMaxLength,
                 maxLines: 3,
+                errorText: l10n.valueErrors.selectOrNull(value.errorName),
                 onChanged: cubit.onValueChanged,
               ),
               const SizedBox(height: AppSpace.s24),
@@ -99,7 +103,6 @@ class const PartnerProfilePage({super.key}) extends StatelessWidget implements A
           ),
           footer: BaseButton(
             text: l10n.save,
-            isEnabled: state.canSave,
             isLoading: state.saveAction.isLoading,
             onPressed: cubit.save,
           ),

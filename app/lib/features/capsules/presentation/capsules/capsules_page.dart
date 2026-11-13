@@ -29,7 +29,6 @@ class const CapsulesPage({super.key}) extends StatelessWidget implements AutoRou
     final isSaving = context.select((CapsulesCubit cubit) => cubit.state.saveAction.isLoading);
     final cubit = context.read<CapsulesCubit>();
     final today = clock.now();
-    final canSave = context.select((CapsulesCubit cubit) => cubit.state.canSave(clock.now()));
 
     return BaseView(
       body: BlocListener<CapsulesCubit, CapsulesState>(
@@ -64,18 +63,20 @@ class const CapsulesPage({super.key}) extends StatelessWidget implements AutoRou
               ),
               const SizedBox(height: AppSpace.s16),
               BaseTextArea(
-                text: body,
+                text: body.value,
                 hint: l10n.bodyHint,
                 maxLength: capsuleBodyMaxLength,
+                errorText: l10n.bodyErrors.selectOrNull(body.errorName),
                 onChanged: cubit.onBodyChanged,
               ),
               const SizedBox(height: AppSpace.s12),
               BaseDateField(
                 label: l10n.dateLabel,
                 hint: l10n.dateHint,
-                value: opensOn,
+                value: opensOn.value,
                 minimum: capsuleEarliest(today),
                 maximum: capsuleLatest(today),
+                errorText: l10n.dateErrors.selectOrNull(opensOn.errorName),
                 formatter: (value) => l10n.dateFormat(
                   day: value.day,
                   month: l10n.months[value.month - 1],
@@ -97,12 +98,7 @@ class const CapsulesPage({super.key}) extends StatelessWidget implements AutoRou
               const _CapsuleList(),
             ],
           ),
-          footer: BaseButton(
-            text: l10n.save,
-            isEnabled: canSave,
-            isLoading: isSaving,
-            onPressed: cubit.save,
-          ),
+          footer: BaseButton(text: l10n.save, isLoading: isSaving, onPressed: cubit.save),
         ),
       ),
     );

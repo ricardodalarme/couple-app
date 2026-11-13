@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile_name.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
+import 'package:form_inputs/form_inputs.dart';
 
 part 'profile_setup_state.dart';
 
@@ -21,16 +22,16 @@ class ProfileSetupCubit({
   /// Removes emoji, trims and caps a typed name at [maxNameLength] characters.
   static String sanitizeName(String value) => sanitizeDisplayName(value);
 
-  void onNameChanged(String name) => emit(state.copyWith(name: name));
+  void onNameChanged(String name) => emit(state.copyWith(name: FormInput(name)));
 
-  void onPartnerNameChanged(String name) => emit(state.copyWith(partnerName: name));
+  void onPartnerNameChanged(String name) => emit(state.copyWith(partnerName: FormInput(name)));
 
   void onThemeChanged(AppThemeVariant theme) => emit(state.copyWith(theme: theme));
 
   void onDateChanged(DateTime date) => emit(state.copyWith(togetherSince: date));
 
   Future<void> save() async {
-    if (!state.canSave || state.saveAction.isLoading) return;
+    if (state.saveAction.isLoading || !_validate()) return;
 
     final date = state.togetherSince;
     if (date != null && (date.isAfter(clock.now()) || date.isBefore(earliestTogetherSince))) {
@@ -42,10 +43,10 @@ class ProfileSetupCubit({
     emit(state.copyWith(saveAction: const Loading()));
     try {
       final profile = await _profileRepository.getMyProfile();
-      final partner = sanitizeName(state.partnerName);
+      final partner = sanitizeName(state.partnerName.value);
       await _profileRepository.saveProfileSetup(
         profileId: profile.id,
-        displayName: sanitizeName(state.name),
+        displayName: sanitizeName(state.name.value),
         theme: state.theme,
         partnerName: partner.isEmpty ? null : partner,
         togetherSince: date,
@@ -57,5 +58,16 @@ class ProfileSetupCubit({
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }
+  }
+
+  bool _validate() {
+    final validatedName = state.name.validate(
+      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(maxNameLength)]),
+    );
+    final validatedPartnerName = state.partnerName.validate(MaxLengthValidator(maxNameLength));
+
+    emit(state.copyWith(name: validatedName, partnerName: validatedPartnerName));
+
+    return validatedName.isValid && validatedPartnerName.isValid;
   }
 }

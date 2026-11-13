@@ -2,29 +2,17 @@ part of 'slip_kind_cubit.dart';
 
 final class const SlipKindState({
   final String kind = 'specific',
-  final String text = '',
-  final String feeling = '',
-  final String plan = '',
+  final FormInput<String> text = const FormInput(''),
+  final FormInput<String> feeling = const FormInput(''),
+  final FormInput<String> plan = const FormInput(''),
   final String? workArea,
   final Resource<SlipSaveOutcome> saveAction = const Initial(),
 }) with Equatable {
-  /// Whether the fields the current kind needs are filled and within their limits.
-  bool get canSave {
-    final hasText = text.trim().isNotEmpty && text.length <= slipKindMaxLength;
-    if (!hasText) return false;
-
-    return switch (kind) {
-      'specific' => feeling.length <= slipKindNoteMaxLength,
-      'if_then' => plan.trim().isNotEmpty && plan.length <= slipKindNoteMaxLength,
-      _ => true,
-    };
-  }
-
   SlipKindState copyWith({
     String? kind,
-    String? text,
-    String? feeling,
-    String? plan,
+    FormInput<String>? text,
+    FormInput<String>? feeling,
+    FormInput<String>? plan,
     String? workArea,
     bool clearWorkArea = false,
     Resource<SlipSaveOutcome>? saveAction,

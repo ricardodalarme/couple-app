@@ -1,6 +1,7 @@
 import 'package:flutter_bloc_starter/features/repair/data/models/pause_return.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/pause/cubit/pause_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 
 void main() {
   test('clearPreset drops the preset', () {
@@ -18,11 +19,12 @@ void main() {
     expect(updated.returnChoice, PauseReturn.tomorrow);
   });
 
-  test('canSend needs a message inside the limit', () {
-    expect(const PauseState().canSend, isFalse);
-    expect(const PauseState(message: 'Preciso de um tempo').canSend, isTrue);
+  test('validating the message reports the empty and too long cases', () {
+    final empty = const PauseState().message.validate(NonEmptyValidator());
+    final tooLong = FormInput('a' * (pauseMessageMaxLength + 1))
+        .validate(MaxLengthValidator(pauseMessageMaxLength));
 
-    const valid = PauseState(message: 'Preciso de um tempo');
-    expect(valid.copyWith(message: 'a' * (pauseMessageMaxLength + 1)).canSend, isFalse);
+    expect(empty.error, NonEmptyValidationError.empty);
+    expect(tooLong.error, MaxLengthValidationError.tooLong);
   });
 }

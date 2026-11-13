@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact.dart';
 import 'package:flutter_bloc_starter/features/partner/presentation/profile/cubit/partner_profile_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 
 void main() {
   test('clearCategory drops the category', () {
@@ -12,18 +12,18 @@ void main() {
   test('changing the label keeps the category', () {
     const state = PartnerProfileState(category: 'gifts');
 
-    final updated = state.copyWith(label: 'Café favorito');
+    final updated = state.copyWith(label: const FormInput('Café favorito'));
 
     expect(updated.category, 'gifts');
-    expect(updated.label, 'Café favorito');
+    expect(updated.label.value, 'Café favorito');
   });
 
-  test('canSave needs both fields inside their limits', () {
-    expect(const PartnerProfileState().canSave, isFalse);
+  test('both fields start empty and valid', () {
+    const state = PartnerProfileState();
 
-    const valid = PartnerProfileState(label: 'Café', value: 'Coado');
-    expect(valid.canSave, isTrue);
-    expect(valid.copyWith(label: 'a' * (partnerFactLabelMaxLength + 1)).canSave, isFalse);
-    expect(valid.copyWith(value: '   ').canSave, isFalse);
+    expect(state.label.value, '');
+    expect(state.label.isValid, isTrue);
+    expect(state.value.value, '');
+    expect(state.value.isValid, isTrue);
   });
 }

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc_starter/features/repair/presentation/quick_repair/cubit/quick_repair_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 
 void main() {
   test('clearPreset drops the preset', () {
@@ -11,17 +12,18 @@ void main() {
   test('changing the text keeps the preset', () {
     const state = QuickRepairState(preset: 'sorry');
 
-    final updated = state.copyWith(text: 'Desculpa');
+    final updated = state.copyWith(text: const FormInput('Desculpa'));
 
     expect(updated.preset, 'sorry');
-    expect(updated.text, 'Desculpa');
+    expect(updated.text.value, 'Desculpa');
   });
 
-  test('canSend needs a text inside the limit', () {
-    expect(const QuickRepairState().canSend, isFalse);
-    expect(const QuickRepairState(text: 'Desculpa').canSend, isTrue);
+  test('validating the text reports the empty and too long cases', () {
+    final empty = const QuickRepairState().text.validate(NonEmptyValidator());
+    final tooLong = FormInput('a' * (repairMessageMaxLength + 1))
+        .validate(MaxLengthValidator(repairMessageMaxLength));
 
-    const valid = QuickRepairState(text: 'Desculpa');
-    expect(valid.copyWith(text: 'a' * (repairMessageMaxLength + 1)).canSend, isFalse);
+    expect(empty.error, NonEmptyValidationError.empty);
+    expect(tooLong.error, MaxLengthValidationError.tooLong);
   });
 }

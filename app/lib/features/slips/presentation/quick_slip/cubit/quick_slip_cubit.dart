@@ -5,6 +5,7 @@ import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:uuid/uuid.dart';
 
 part 'quick_slip_state.dart';
@@ -31,11 +32,11 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
     final draft = _slipRepository.readDraft(clock.now());
     if (draft == null) return;
 
-    emit(state.copyWith(text: draft.text, category: draft.category));
+    emit(state.copyWith(text: FormInput(draft.text), category: draft.category));
   }
 
   void onTextChanged(String text) {
-    emit(state.copyWith(text: text));
+    emit(state.copyWith(text: FormInput(text)));
     unawaited(_persistDraft());
   }
 
@@ -46,14 +47,14 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
   }
 
   Future<void> save() async {
-    if (!state.canSave || state.saveAction.isLoading || state.isSaved) return;
+    if (state.saveAction.isLoading || state.isSaved || !_validate()) return;
 
     emit(state.copyWith(saveAction: const Loading()));
     final id = _savedId ??= _uuid.v4();
     try {
       final outcome = await _slipRepository.saveQuick(
         id: id,
-        body: state.text.trim(),
+        body: state.text.value.trim(),
         createdAt: clock.now(),
         category: state.category,
       );
@@ -81,8 +82,18 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
     }
   }
 
+  bool _validate() {
+    final validatedText = state.text.validate(
+      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(quickSlipMaxLength)]),
+    );
+
+    emit(state.copyWith(text: validatedText));
+
+    return validatedText.isValid;
+  }
+
   Future<void> _persistDraft() =>
-      _slipRepository.saveDraft(text: state.text, category: state.category, now: clock.now());
+      _slipRepository.saveDraft(text: state.text.value, category: state.category, now: clock.now());
 
   @override
   Future<void> close() {

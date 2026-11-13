@@ -28,9 +28,16 @@
   },
   "messageLabel": "Message",
   "messageHint": "Tell us what happened, with as much detail as you like.",
+  "messageErrors(map)": {
+    "empty": "Write your message first",
+    "tooLong": "The message is too long"
+  },
   "replyEmailLabel": "Reply email",
   "replyEmailHint": "you@email.com",
-  "replyEmailInvalid": "Check the email address.",
+  "replyEmailErrors(map)": {
+    "invalid": "Check the email address.",
+    "tooLong": "This email is too long"
+  },
   "replyTime": "We reply within 2 business days.",
   "send": "Send",
   "sentTitle": "Message sent",

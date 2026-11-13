@@ -19,6 +19,16 @@
   "jarClose": "Fechar",
   "titleLabel": "Uma memória",
   "titleHint": "Ex.: nosso primeiro jantar",
+  "titleErrors(map)": {
+    "empty": "Dê um título a esta memória",
+    "tooLong": "O título está muito longo"
+  },
+  "placeErrors(map)": {
+    "tooLong": "O lugar está muito longo"
+  },
+  "bodyErrors(map)": {
+    "tooLong": "A nota está muito longa"
+  },
   "bodyHint": "Conte como foi (opcional)",
   "add": "Adicionar memória",
   "save": "Guardar memória",

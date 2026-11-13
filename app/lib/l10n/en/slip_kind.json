@@ -42,6 +42,17 @@
     "finances": "Finances",
     "other": "Other"
   },
+  "textErrors(map)": {
+    "empty": "Write the slip first",
+    "tooLong": "This slip is too long"
+  },
+  "feelingErrors(map)": {
+    "tooLong": "This is too long"
+  },
+  "planErrors(map)": {
+    "empty": "Say what you will do",
+    "tooLong": "This is too long"
+  },
   "save": "Save",
   "saved": {
     "title": "Saved",

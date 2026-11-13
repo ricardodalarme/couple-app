@@ -1,5 +1,6 @@
 import 'package:flutter_bloc_starter/features/repair/presentation/learning/cubit/learning_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 
 void main() {
   test('clearKind drops the kind', () {
@@ -11,17 +12,18 @@ void main() {
   test('changing the note keeps the kind', () {
     const state = LearningState(kind: 'communication');
 
-    final updated = state.copyWith(note: 'Ouvir mais');
+    final updated = state.copyWith(note: const FormInput('Ouvir mais'));
 
     expect(updated.kind, 'communication');
-    expect(updated.note, 'Ouvir mais');
+    expect(updated.note.value, 'Ouvir mais');
   });
 
-  test('canSave needs a kind and a note inside the limit', () {
-    expect(const LearningState(note: 'Ouvir mais').canSave, isFalse);
-    expect(const LearningState(kind: 'communication', note: 'Ouvir mais').canSave, isTrue);
+  test('validating the note reports the empty and too long cases', () {
+    final empty = const LearningState().note.validate(NonEmptyValidator());
+    final tooLong = FormInput('a' * (learningMaxLength + 1))
+        .validate(MaxLengthValidator(learningMaxLength));
 
-    const valid = LearningState(kind: 'communication', note: 'Ouvir mais');
-    expect(valid.copyWith(note: 'a' * (learningMaxLength + 1)).canSave, isFalse);
+    expect(empty.error, NonEmptyValidationError.empty);
+    expect(tooLong.error, MaxLengthValidationError.tooLong);
   });
 }

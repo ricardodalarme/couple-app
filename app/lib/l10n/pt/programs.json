@@ -46,6 +46,10 @@
   "diaryPrivacy": "Só eu. Nunca é compartilhado.",
   "diaryPrompt": "Hoje eu me senti...",
   "diaryHint": "Escreva sem pressa. Só você vê isto.",
+  "diaryBodyErrors(map)": {
+    "empty": "Escreva um pouco antes de salvar",
+    "tooLong": "A entrada está muito longa"
+  },
   "diarySave": "Salvar",
   "diaryNew": "Nova entrada",
   "diaryEdit": "Editar",
