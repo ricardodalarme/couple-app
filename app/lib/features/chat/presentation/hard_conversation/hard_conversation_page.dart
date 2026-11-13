@@ -100,8 +100,15 @@ class const _Body({
               child: Text(context.l10n.hardConversation.title, style: context.text.titleXl),
             ),
             const SizedBox(height: AppSpace.s16),
-            PlusLock(title: chat.plusTitle, text: chat.plusText),
+            PlusLock(
+              title: context.l10n.hardConversation.plusTitle,
+              text: context.l10n.hardConversation.plusText,
+            ),
           ],
+        ),
+        footer: BaseButton(
+          text: context.l10n.hardConversation.plusCta,
+          onPressed: () => context.pushRoute(const PlansRoute()),
         ),
       ),
       HardConversationGate.needsConsent => BaseStackedContent(
@@ -132,8 +139,15 @@ class const _Body({
               child: Text(context.l10n.hardConversation.title, style: context.text.titleXl),
             ),
             const SizedBox(height: AppSpace.s16),
-            PlusLock(title: chat.limitTitle, text: chat.limitText),
+            PlusLock(
+              title: context.l10n.hardConversation.limitTitle,
+              text: context.l10n.hardConversation.limitText,
+            ),
           ],
+        ),
+        footer: BaseButton(
+          text: context.l10n.hardConversation.plusCta,
+          onPressed: () => context.pushRoute(const PlansRoute()),
         ),
       ),
       HardConversationGate.unavailable => BaseEmptyState(

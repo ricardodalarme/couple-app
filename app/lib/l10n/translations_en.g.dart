@@ -1720,6 +1720,16 @@ class _Translations$hardConversation$en extends Translations$hardConversation$pt
   @override
   String get emptyText => 'Try again in a moment.';
   @override
+  String get plusTitle => 'Preparing a conversation is part of Plus';
+  @override
+  String get plusText => 'The three steps and the opening suggestion are in Plus.';
+  @override
+  String get plusCta => 'See plans';
+  @override
+  String get limitTitle => 'Today\'s messages are used up';
+  @override
+  String get limitText => 'Come back tomorrow, or see Plus to prepare more conversations.';
+  @override
   Map<String, String> get errors => {
     'CHAT_LIMIT': 'Today\'s messages are used up.',
     'CHAT_DISABLED': 'The chat is off. Turn it on to use the mascot.',
@@ -8067,6 +8077,12 @@ extension on TranslationsEn {
           'hardConversation.offline' => 'You\'re offline. The opening sentence needs a connection.',
           'hardConversation.emptyTitle' => 'Couldn\'t load',
           'hardConversation.emptyText' => 'Try again in a moment.',
+          'hardConversation.plusTitle' => 'Preparing a conversation is part of Plus',
+          'hardConversation.plusText' => 'The three steps and the opening suggestion are in Plus.',
+          'hardConversation.plusCta' => 'See plans',
+          'hardConversation.limitTitle' => 'Today\'s messages are used up',
+          'hardConversation.limitText' =>
+            'Come back tomorrow, or see Plus to prepare more conversations.',
           'hardConversation.errors.CHAT_LIMIT' => 'Today\'s messages are used up.',
           'hardConversation.errors.CHAT_DISABLED' =>
             'The chat is off. Turn it on to use the mascot.',
@@ -8457,14 +8473,14 @@ extension on TranslationsEn {
           'ideaDetail.emptyText' => 'Come back later. In the meantime, note a slip.',
           'ideaDetail.errorTitle' => 'Could not load the idea',
           'ideaDetail.errorText' => 'Try again in a moment.',
+          _ => null,
+        } ??
+        switch (path) {
           'intro.skip' => 'Skip',
           'intro.continueButton' => 'Continue',
           'intro.phase.title' => 'Where are you two right now?',
           'intro.phase.titleHighlight' => 'right now',
           'intro.phase.subtitle' => 'Pick the closest one. You can change it later.',
-          _ => null,
-        } ??
-        switch (path) {
           'intro.phase.options.dating' => 'Dating',
           'intro.phase.options.living_together' => 'Living together',
           'intro.phase.options.engaged' => 'Engaged',
@@ -9032,15 +9048,15 @@ extension on TranslationsEn {
           'pause.note' => 'You both see Today on pause. You can come back whenever you like.',
           'pause.send' => 'Send and pause',
           'pause.sentTitle' => 'Pause sent',
+          _ => null,
+        } ??
+        switch (path) {
           'pause.sentText' =>
             'Today is on pause for both of you. When you\'re ready, come back there.',
           'pause.done' => 'Done',
           'pause.errors.INVALID_RETURN_TIME' => 'That return time doesn\'t work. Pick another.',
           'pause.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'pause.errors.other' => 'Couldn\'t send right now. Your message is still here.',
-          _ => null,
-        } ??
-        switch (path) {
           'places.title' => 'Places',
           'places.privacyNote' =>
             'Only the name of the place. The app never reads or stores your location.',
@@ -9603,14 +9619,14 @@ extension on TranslationsEn {
           'repair.guided.loadErrorText' => 'Nothing was lost. Try again.',
           'repair.learning.title' => 'What did you learn?',
           'repair.learning.titleHighlight' => 'learn',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.learning.subtitle' => 'It stays with you and can be deleted whenever you like.',
           'repair.learning.kinds.trigger' => 'What bothers me',
           'repair.learning.kinds.need' => 'What I need',
           'repair.learning.kinds.good_fix' => 'What helped',
           'repair.learning.kinds.other' => '',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.learning.hint' => 'Write one or two sentences',
           'repair.learning.noteErrors.empty' => 'Write what you learned',
           'repair.learning.noteErrors.tooLong' => 'The note is too long',
@@ -10190,6 +10206,9 @@ extension on TranslationsEn {
                 ),
           'today.weekHintEmpty' => 'no rush',
           'today.weekHint' => 'card on Sunday',
+          _ => null,
+        } ??
+        switch (path) {
           'today.forToday' => 'For today',
           'today.ideaLabel' => 'Idea of the day',
           'today.slipsThisWeekPrivate' =>
@@ -10202,9 +10221,6 @@ extension on TranslationsEn {
                 ),
           'today.sundayCardLabel' => 'Sunday card',
           'today.sundayCardTitle' => 'Your card for this week',
-          _ => null,
-        } ??
-        switch (path) {
           'today.inviteCardLabel' => 'Invite',
           'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',
           'today.inviteCardTitleNoName' => 'Invite your person',

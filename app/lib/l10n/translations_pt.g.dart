@@ -2018,6 +2018,21 @@ class Translations$hardConversation$pt {
   /// pt: 'Tente de novo em instantes.'
   String get emptyText => 'Tente de novo em instantes.';
 
+  /// pt: 'Preparar uma conversa faz parte do Plus'
+  String get plusTitle => 'Preparar uma conversa faz parte do Plus';
+
+  /// pt: 'As três etapas e a sugestão de abertura estão no Plus.'
+  String get plusText => 'As três etapas e a sugestão de abertura estão no Plus.';
+
+  /// pt: 'Ver planos'
+  String get plusCta => 'Ver planos';
+
+  /// pt: 'As mensagens de hoje acabaram'
+  String get limitTitle => 'As mensagens de hoje acabaram';
+
+  /// pt: 'Volte amanhã, ou veja o Plus para preparar mais conversas.'
+  String get limitText => 'Volte amanhã, ou veja o Plus para preparar mais conversas.';
+
   Map<String, String> get errors => {
     'CHAT_LIMIT': 'As mensagens de hoje acabaram.',
     'CHAT_DISABLED': 'A conversa está desligada. Ligue para usar a mascote.',
@@ -9834,6 +9849,12 @@ extension on Translations {
           'hardConversation.offline' => 'Sem conexão. A frase de abertura precisa de internet.',
           'hardConversation.emptyTitle' => 'Não deu para carregar',
           'hardConversation.emptyText' => 'Tente de novo em instantes.',
+          'hardConversation.plusTitle' => 'Preparar uma conversa faz parte do Plus',
+          'hardConversation.plusText' => 'As três etapas e a sugestão de abertura estão no Plus.',
+          'hardConversation.plusCta' => 'Ver planos',
+          'hardConversation.limitTitle' => 'As mensagens de hoje acabaram',
+          'hardConversation.limitText' =>
+            'Volte amanhã, ou veja o Plus para preparar mais conversas.',
           'hardConversation.errors.CHAT_LIMIT' => 'As mensagens de hoje acabaram.',
           'hardConversation.errors.CHAT_DISABLED' =>
             'A conversa está desligada. Ligue para usar a mascote.',
@@ -10228,14 +10249,14 @@ extension on Translations {
           'ideaDetail.emptyText' => 'Volte mais tarde. Enquanto isso, anote um slip.',
           'ideaDetail.errorTitle' => 'Não deu para carregar a ideia',
           'ideaDetail.errorText' => 'Tente de novo em instantes.',
+          _ => null,
+        } ??
+        switch (path) {
           'intro.skip' => 'Pular',
           'intro.continueButton' => 'Continuar',
           'intro.phase.title' => 'Onde vocês estão agora?',
           'intro.phase.titleHighlight' => 'agora',
           'intro.phase.subtitle' => 'Escolha o mais próximo. Você pode mudar depois.',
-          _ => null,
-        } ??
-        switch (path) {
           'intro.phase.options.dating' => 'Namorando',
           'intro.phase.options.living_together' => 'Moramos juntos',
           'intro.phase.options.engaged' => 'Noivos',
@@ -10805,15 +10826,15 @@ extension on Translations {
           'pause.note' => 'Os dois veem o Hoje em pausa. Você pode voltar quando quiser.',
           'pause.send' => 'Enviar e pausar',
           'pause.sentTitle' => 'Pausa enviada',
+          _ => null,
+        } ??
+        switch (path) {
           'pause.sentText' =>
             'O Hoje fica em pausa para os dois. Quando estiver pronto(a), volte por lá.',
           'pause.done' => 'Pronto',
           'pause.errors.INVALID_RETURN_TIME' => 'Esse horário de volta não vale. Escolha outro.',
           'pause.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'pause.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
-          _ => null,
-        } ??
-        switch (path) {
           'places.title' => 'Lugares',
           'places.privacyNote' => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.',
           'places.memoryOne' => '1 memória',
@@ -11374,14 +11395,14 @@ extension on Translations {
           'repair.guided.loadErrorText' => 'Nada se perdeu. Tente de novo.',
           'repair.learning.title' => 'O que você aprendeu?',
           'repair.learning.titleHighlight' => 'aprendeu',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.learning.subtitle' => 'Fica só com você e pode ser apagado quando quiser.',
           'repair.learning.kinds.trigger' => 'O que me incomoda',
           'repair.learning.kinds.need' => 'O que eu preciso',
           'repair.learning.kinds.good_fix' => 'O que ajudou',
           'repair.learning.kinds.other' => '',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.learning.hint' => 'Escreva em uma ou duas frases',
           'repair.learning.noteErrors.empty' => 'Escreva o que você aprendeu',
           'repair.learning.noteErrors.tooLong' => 'A nota está muito longa',
@@ -11964,6 +11985,9 @@ extension on Translations {
                 ),
           'today.weekHintEmpty' => 'sem pressa',
           'today.weekHint' => 'cartão no domingo',
+          _ => null,
+        } ??
+        switch (path) {
           'today.forToday' => 'Para hoje',
           'today.ideaLabel' => 'Ideia do dia',
           'today.slipsThisWeekPrivate' =>
@@ -11976,9 +12000,6 @@ extension on Translations {
                 ),
           'today.sundayCardLabel' => 'Cartão de domingo',
           'today.sundayCardTitle' => 'Seu cartão desta semana',
-          _ => null,
-        } ??
-        switch (path) {
           'today.inviteCardLabel' => 'Convite',
           'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
           'today.inviteCardTitleNoName' => 'Convidar sua pessoa',

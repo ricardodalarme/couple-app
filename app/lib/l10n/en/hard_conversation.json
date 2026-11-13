@@ -36,6 +36,11 @@
   "offline": "You're offline. The opening sentence needs a connection.",
   "emptyTitle": "Couldn't load",
   "emptyText": "Try again in a moment.",
+  "plusTitle": "Preparing a conversation is part of Plus",
+  "plusText": "The three steps and the opening suggestion are in Plus.",
+  "plusCta": "See plans",
+  "limitTitle": "Today's messages are used up",
+  "limitText": "Come back tomorrow, or see Plus to prepare more conversations.",
   "errors(map)": {
     "CHAT_LIMIT": "Today's messages are used up.",
     "CHAT_DISABLED": "The chat is off. Turn it on to use the mascot.",

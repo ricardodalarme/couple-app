@@ -36,6 +36,11 @@
   "offline": "Sem conexão. A frase de abertura precisa de internet.",
   "emptyTitle": "Não deu para carregar",
   "emptyText": "Tente de novo em instantes.",
+  "plusTitle": "Preparar uma conversa faz parte do Plus",
+  "plusText": "As três etapas e a sugestão de abertura estão no Plus.",
+  "plusCta": "Ver planos",
+  "limitTitle": "As mensagens de hoje acabaram",
+  "limitText": "Volte amanhã, ou veja o Plus para preparar mais conversas.",
   "errors(map)": {
     "CHAT_LIMIT": "As mensagens de hoje acabaram.",
     "CHAT_DISABLED": "A conversa está desligada. Ligue para usar a mascote.",

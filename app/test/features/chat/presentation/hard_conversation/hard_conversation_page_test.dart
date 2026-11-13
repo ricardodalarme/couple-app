@@ -264,6 +264,18 @@ void main() {
     expect(find.text('O que aconteceu?'), findsOneWidget);
   });
 
+  testWidgets('a free person sees the hard-conversation gate with a plans action', (tester) async {
+    when(chatRepository.getStatus)
+        .thenAnswer((_) async => (messagesLeft: 0, limit: 0, isEnabled: false, hasPlus: false));
+
+    await pumpPage(tester);
+
+    expect(find.text('Preparar uma conversa faz parte do Plus'), findsOneWidget);
+    expect(find.text('As três etapas e a sugestão de abertura estão no Plus.'), findsOneWidget);
+    expect(find.widgetWithText(BaseButton, 'Ver planos'), findsOneWidget);
+    expect(find.text('A conversa faz parte do Plus'), findsNothing);
+  });
+
   testWidgets('the daily limit shows the Plus limit card', (tester) async {
     when(chatRepository.getStatus)
         .thenAnswer((_) async => (messagesLeft: 0, limit: 20, isEnabled: true, hasPlus: true));
