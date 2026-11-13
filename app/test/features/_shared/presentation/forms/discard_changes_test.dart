@@ -5,7 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../test_helpers/pump_app.dart';
 
-class const _Host({final bool isDirty = true, final VoidCallback? onDiscard}) extends StatelessWidget {
+class const _Host({final bool isDirty = true, final VoidCallback? onDiscard})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView(
@@ -23,7 +24,8 @@ class const _Host({final bool isDirty = true, final VoidCallback? onDiscard}) ex
   }
 }
 
-class const _DirtyPage({final bool isDirty = true, final VoidCallback? onDiscard}) extends StatelessWidget {
+class const _DirtyPage({final bool isDirty = true, final VoidCallback? onDiscard})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView(
