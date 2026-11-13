@@ -135,4 +135,13 @@ void main() {
       expect(cubit.state.canUndo, isFalse);
     },
   );
+
+  test('discarding clears the stored draft', () {
+    final cubit = build()..onTextChanged('Rascunho');
+    addTearDown(cubit.close);
+
+    cubit.discardDraft();
+
+    verify(() => repository.clearDraft()).called(1);
+  });
 }

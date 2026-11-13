@@ -28,6 +28,7 @@ class const SlipKindPage({
     final l10n = context.l10n.slipKind;
     final isSaved = context.select((SlipKindCubit cubit) => cubit.state.saveAction is Success);
     final hasDraft = context.select((SlipKindCubit cubit) => cubit.state.hasDraft);
+    final cubit = context.read<SlipKindCubit>();
 
     return BaseView(
       appBar: BaseAppBar(onClose: () => context.router.maybePop()),
@@ -35,6 +36,7 @@ class const SlipKindPage({
         isDirty: !isSaved && hasDraft,
         title: l10n.discardTitle,
         text: context.l10n.common.discardText,
+        onDiscard: cubit.discardDraft,
         child: BlocListener<SlipKindCubit, SlipKindState>(
           listenWhen: (previous, current) => previous.saveAction != current.saveAction,
           listener: _onStateChanged,

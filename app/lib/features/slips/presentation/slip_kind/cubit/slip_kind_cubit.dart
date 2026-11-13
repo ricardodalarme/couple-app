@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
@@ -44,6 +45,9 @@ class SlipKindCubit({required final SlipRepository _slipRepository}) extends Cub
   void onKindChanged(String kind) => emit(state.copyWith(kind: kind));
 
   /// Keeps the text for the quick form when another kind is opened from it.
+  /// Forgets the stored draft so the next visit starts clean.
+  void discardDraft() => unawaited(_slipRepository.clearDraft());
+
   Future<void> keepQuickDraft() =>
       _slipRepository.saveDraft(text: state.text.value, now: clock.now());
 

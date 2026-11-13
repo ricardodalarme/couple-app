@@ -21,6 +21,7 @@ class const DirtyFormGuard({
   required final String title,
   required final String text,
   required final Widget child,
+  final VoidCallback? onDiscard,
   super.key,
 }) extends StatefulWidget {
   @override
@@ -39,6 +40,7 @@ class _DirtyFormGuardState() extends State<DirtyFormGuard> {
         final shouldDiscard = await confirmDiscard(context, title: widget.title, text: widget.text);
         if (!shouldDiscard || !context.mounted) return;
 
+        widget.onDiscard?.call();
         setState(() => _isDiscarding = true);
         Navigator.of(context).pop(result);
       },

@@ -24,6 +24,7 @@ class const QuickSlipPage({super.key}) extends StatelessWidget implements AutoRo
     final l10n = context.l10n.quickSlip;
     final isSaved = context.select((QuickSlipCubit cubit) => cubit.state.isSaved);
     final hasDraft = context.select((QuickSlipCubit cubit) => cubit.state.hasDraft);
+    final cubit = context.read<QuickSlipCubit>();
 
     return BaseView(
       appBar: BaseAppBar(onClose: () => context.router.maybePop()),
@@ -31,6 +32,7 @@ class const QuickSlipPage({super.key}) extends StatelessWidget implements AutoRo
         isDirty: !isSaved && hasDraft,
         title: l10n.discardTitle,
         text: context.l10n.common.discardText,
+        onDiscard: cubit.discardDraft,
         child: BlocListener<QuickSlipCubit, QuickSlipState>(
           listenWhen: (previous, current) =>
               previous.saveAction != current.saveAction ||

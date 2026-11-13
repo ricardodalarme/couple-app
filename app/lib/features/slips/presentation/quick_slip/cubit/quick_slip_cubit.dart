@@ -46,6 +46,9 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
     unawaited(_persistDraft());
   }
 
+  /// Forgets the stored draft so the next visit starts clean.
+  void discardDraft() => unawaited(_slipRepository.clearDraft());
+
   Future<void> save() async {
     if (state.saveAction.isLoading || state.isSaved || !_validate()) return;
 

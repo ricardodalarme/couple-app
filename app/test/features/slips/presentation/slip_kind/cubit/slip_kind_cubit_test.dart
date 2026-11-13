@@ -30,6 +30,7 @@ void main() {
         now: any(named: 'now'),
       ),
     ).thenAnswer((_) async {});
+    when(() => repository.clearDraft()).thenAnswer((_) async {});
   });
 
   SlipKindCubit build() => SlipKindCubit(slipRepository: repository);
@@ -169,5 +170,14 @@ void main() {
       ),
     ).called(1);
     expect(cubit.state.saveAction.isLoading, isFalse);
+  });
+
+  test('discarding clears the stored draft', () {
+    final cubit = build();
+    addTearDown(cubit.close);
+
+    cubit.discardDraft();
+
+    verify(() => repository.clearDraft()).called(1);
   });
 }
