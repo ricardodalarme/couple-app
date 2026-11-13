@@ -2729,7 +2729,7 @@ class _Translations$lists$en extends Translations$lists$pt {
     'other': '',
   };
   @override
-  String get markDream => 'Back to dreams';
+  String get markDream => 'Mark as a dream';
   @override
   String get markPlanned => 'Mark as planned';
   @override
@@ -8927,7 +8927,7 @@ extension on TranslationsEn {
           'lists.statuses.planned' => 'Planned',
           'lists.statuses.done' => 'Done',
           'lists.statuses.other' => '',
-          'lists.markDream' => 'Back to dreams',
+          'lists.markDream' => 'Mark as a dream',
           'lists.markPlanned' => 'Mark as planned',
           'lists.markDone' => 'Mark as done',
           'lists.moveUp' => 'Move up',

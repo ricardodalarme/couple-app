@@ -3306,8 +3306,8 @@ class Translations$lists$pt {
     'other': '',
   };
 
-  /// pt: 'Voltar para sonhos'
-  String get markDream => 'Voltar para sonhos';
+  /// pt: 'Marcar como sonho'
+  String get markDream => 'Marcar como sonho';
 
   /// pt: 'Marcar como planejado'
   String get markPlanned => 'Marcar como planejado';
@@ -10734,7 +10734,7 @@ extension on Translations {
           'lists.statuses.planned' => 'Planejado',
           'lists.statuses.done' => 'Feito',
           'lists.statuses.other' => '',
-          'lists.markDream' => 'Voltar para sonhos',
+          'lists.markDream' => 'Marcar como sonho',
           'lists.markPlanned' => 'Marcar como planejado',
           'lists.markDone' => 'Marcar como feito',
           'lists.moveUp' => 'Mover para cima',
