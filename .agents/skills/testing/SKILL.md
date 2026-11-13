@@ -1,13 +1,13 @@
 ---
 name: testing
-description: Write and run tests for the app and packages — cubit tests with blocTest and mocktail for one-shot repository reads, Equatable state copyWith tests, widget tests with MockCubit and the pumpApp helper, and package tests with package:test. Use when adding or fixing tests, when the user says "write tests", "add coverage", "spec", or "test this cubit/widget", or when a code change needs verification.
+description: Write and run tests for the app and packages — cubit tests with blocTest and mocktail for one-shot repository reads, state tests only where copyWith encodes behaviour, widget tests with MockCubit and the pumpApp helper, and package tests with package:test. Use when adding or fixing tests, when the user says "write tests", "add coverage", "spec", or "test this cubit/widget", or when a code change needs verification.
 ---
 
 # Testing
 
 Tests mirror the source tree: `app/test/features/<feature>/...` mirrors
-`app/lib/features/<feature>/...`. A cubit test sits next to its state test, and
-page and widget tests live in the matching presentation folder.
+`app/lib/features/<feature>/...`. A state test is optional and sits next to its
+cubit test; page and widget tests live in the matching presentation folder.
 
 The canonical feature is `post`; these are the reference tests:
 
@@ -123,30 +123,34 @@ Notes:
 
 ## State test template
 
+A state class does not need its own test by default: `blocTest` already asserts
+the states a cubit emits, and `props`/`copyWith` passthrough is visible there.
+Write a `<name>_state_test.dart` only when `copyWith` carries behaviour a cubit
+test cannot see:
+
+- a `clearX` flag that nulls a field,
+- a nullable reset,
+- a derived getter with branching (e.g. `isVisible`, `canSend`).
+
+Do not test the default constructor, plain field passthrough, or `Equatable`
+equality.
+
 ```dart
-import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
-import 'package:flutter_bloc_starter/features/post/presentation/list/cubit/posts_list_cubit.dart';
+import 'package:flutter_bloc_starter/features/slips/presentation/need/cubit/need_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  const posts = [Post(id: '1', title: 'title', body: 'body')];
+  const state = NeedState(need: 'sleep');
 
-  test('returns same object when no properties are passed', () {
-    expect(const PostsListState().copyWith(), const PostsListState());
+  test('clearNeed nulls the field', () {
+    expect(state.copyWith(clearNeed: true).need, isNull);
   });
 
-  test('returns object with updated posts when posts is passed', () {
-    expect(
-      const PostsListState().copyWith(posts: const Success(posts)),
-      const PostsListState(posts: Success(posts)),
-    );
+  test('changing another field keeps the need', () {
+    expect(state.copyWith(sendAction: const Loading()).need, 'sleep');
   });
 }
 ```
-
-Cover every `copyWith` parameter plus the default constructor, and assert the
-default resource is `const Loading()`.
 
 ## Widget test template
 
