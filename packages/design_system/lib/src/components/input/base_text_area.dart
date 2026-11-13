@@ -42,14 +42,15 @@ class _BaseTextAreaState() extends State<BaseTextArea> {
   @override
   void didUpdateWidget(BaseTextArea oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.text case final text?) {
-      if (text != _controller.text) {
-        _length = text.length;
-        _controller.value = TextEditingValue(
-          text: text,
-          selection: TextSelection.collapsed(offset: text.length),
-        );
-      }
+    // Only follow a value the parent actually changed; a rebuild that repeats
+    // the same text must not overwrite what the person just typed.
+    final text = widget.text;
+    if (text != null && text != oldWidget.text && text != _controller.text) {
+      _length = text.length;
+      _controller.value = TextEditingValue(
+        text: text,
+        selection: TextSelection.collapsed(offset: text.length),
+      );
     }
   }
 

@@ -81,4 +81,19 @@ void main() {
     expect(find.text('Write something first.'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('a rebuild that repeats the same text keeps what was typed', (tester) async {
+    Widget host({required String text, String? error}) => inputHost(
+      SizedBox(width: 350, child: BaseTextArea(text: text, errorText: error)),
+      variant: AppThemeVariant.rose,
+    );
+
+    await tester.pumpWidget(host(text: ''));
+    await tester.enterText(find.byType(TextField), 'hello');
+    await tester.pumpWidget(host(text: '', error: 'Required'));
+    await tester.pump();
+
+    expect(tester.widget<TextField>(find.byType(TextField)).controller?.text, 'hello');
+    expect(tester.takeException(), isNull);
+  });
 }
