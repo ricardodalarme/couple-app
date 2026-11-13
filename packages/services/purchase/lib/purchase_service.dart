@@ -9,8 +9,6 @@ export 'package:purchases_flutter/purchases_flutter.dart'
         PurchasesErrorCode,
         PurchasesErrorHelper,
         StoreProduct;
-export 'package:purchases_ui_flutter/purchases_ui_flutter.dart' show PaywallResult;
 
 export 'src/purchase_exception.dart';
 export 'src/purchase_service.dart';
-export 'src/purchase_ui.dart';
