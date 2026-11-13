@@ -92,6 +92,7 @@ class const _StatTile({
       onTap: onTap,
       borderRadius: BorderRadius.circular(AppRadius.xxl),
       child: Container(
+        width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: AppSpace.s8, vertical: AppSpace.s14),
         decoration: BoxDecoration(
           color: colors.bgSurface,
