@@ -12,7 +12,7 @@
     "title": "Comece com suavidade",
     "titleHighlight": "suavidade",
     "subtitle": "Um modelo sem culpa para abrir a conversa.",
-    "feeling": "Eu sinto…",
+    "feeling": "Eu me sinto…",
     "feelingHint": "Ex.: cansado(a)",
     "feelingErrors(map)": {
       "empty": "Diga como você se sente"
@@ -27,7 +27,7 @@
     "needErrors(map)": {
       "empty": "Diga o que você precisa"
     },
-    "template": "Eu sinto {feeling} quando {situation}. Eu preciso de {need}.",
+    "template": "Eu me sinto {feeling} quando {situation}. Eu preciso de {need}.",
     "use": "Usar este modelo"
   },
   "quick": {

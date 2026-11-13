@@ -5249,8 +5249,8 @@ class Translations$received$pt {
   /// pt: 'Tudo certo'
   String get doneTitle => 'Tudo certo';
 
-  /// pt: 'Obrigado por ler com calma.'
-  String get doneText => 'Obrigado por ler com calma.';
+  /// pt: 'Que bom que você leu com calma.'
+  String get doneText => 'Que bom que você leu com calma.';
 
   /// pt: 'Nada novo'
   String get emptyTitle => 'Nada novo';
@@ -8248,8 +8248,8 @@ class Translations$repair$softStart$pt {
   /// pt: 'Um modelo sem culpa para abrir a conversa.'
   String get subtitle => 'Um modelo sem culpa para abrir a conversa.';
 
-  /// pt: 'Eu sinto…'
-  String get feeling => 'Eu sinto…';
+  /// pt: 'Eu me sinto…'
+  String get feeling => 'Eu me sinto…';
 
   /// pt: 'Ex.: cansado(a)'
   String get feelingHint => 'Ex.: cansado(a)';
@@ -8272,9 +8272,9 @@ class Translations$repair$softStart$pt {
 
   Map<String, String> get needErrors => {'empty': 'Diga o que você precisa'};
 
-  /// pt: 'Eu sinto {feeling} quando {situation}. Eu preciso de {need}.'
+  /// pt: 'Eu me sinto {feeling} quando {situation}. Eu preciso de {need}.'
   String template({required Object feeling, required Object situation, required Object need}) =>
-      'Eu sinto ${feeling} quando ${situation}. Eu preciso de ${need}.';
+      'Eu me sinto ${feeling} quando ${situation}. Eu preciso de ${need}.';
 
   /// pt: 'Usar este modelo'
   String get use => 'Usar este modelo';
@@ -11274,7 +11274,7 @@ extension on Translations {
           'received.seen' => 'Entendi',
           'received.suggestPlan' => 'Sugerir um plano pequeno',
           'received.doneTitle' => 'Tudo certo',
-          'received.doneText' => 'Obrigado por ler com calma.',
+          'received.doneText' => 'Que bom que você leu com calma.',
           'received.emptyTitle' => 'Nada novo',
           'received.emptyText' => 'Quando seu par mandar algo, aparece aqui.',
           'received.close' => 'Fechar',
@@ -11355,7 +11355,7 @@ extension on Translations {
           'repair.softStart.title' => 'Comece com suavidade',
           'repair.softStart.titleHighlight' => 'suavidade',
           'repair.softStart.subtitle' => 'Um modelo sem culpa para abrir a conversa.',
-          'repair.softStart.feeling' => 'Eu sinto…',
+          'repair.softStart.feeling' => 'Eu me sinto…',
           'repair.softStart.feelingHint' => 'Ex.: cansado(a)',
           'repair.softStart.feelingErrors.empty' => 'Diga como você se sente',
           'repair.softStart.situation' => 'Quando…',
@@ -11368,7 +11368,7 @@ extension on Translations {
             required Object feeling,
             required Object situation,
             required Object need,
-          }) => 'Eu sinto ${feeling} quando ${situation}. Eu preciso de ${need}.',
+          }) => 'Eu me sinto ${feeling} quando ${situation}. Eu preciso de ${need}.',
           'repair.softStart.use' => 'Usar este modelo',
           'repair.quick.title' => 'Um pequeno reparo',
           'repair.quick.titleHighlight' => 'reparo',
