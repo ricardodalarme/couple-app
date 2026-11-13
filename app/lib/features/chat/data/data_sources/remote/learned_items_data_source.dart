@@ -1,5 +1,6 @@
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/AddLearnedItem.graphql.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/DeleteLearnedItem.graphql.dart';
+import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/SetLearnedItemStatus.graphql.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/UpdateLearnedItem.graphql.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/queries/generated/LearnedItems.graphql.dart';
 import 'package:network/network.dart';

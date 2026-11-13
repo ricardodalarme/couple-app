@@ -7,11 +7,3 @@ mutation UpsertCouplePhoto($coupleId: UUID!, $storagePath: String!, $uploadedBy:
     affectedCount
   }
 }
-
-mutation InsertCouplePhoto($coupleId: UUID!, $storagePath: String!, $uploadedBy: UUID!) {
-  insertIntoCouplePhotosCollection(
-    objects: [{ coupleId: $coupleId, storagePath: $storagePath, uploadedBy: $uploadedBy }]
-  ) {
-    affectedCount
-  }
-}

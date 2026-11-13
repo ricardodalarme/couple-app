@@ -1,0 +1,5 @@
+mutation SetLearnedItemStatus($id: UUID!, $status: String!) {
+  updateLearnedItemsCollection(set: { status: $status }, filter: { id: { eq: $id } }) {
+    affectedCount
+  }
+}

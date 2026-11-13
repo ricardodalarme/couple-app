@@ -3,9 +3,3 @@ mutation UpdateLearnedItem($id: UUID!, $text: String!) {
     affectedCount
   }
 }
-
-mutation SetLearnedItemStatus($id: UUID!, $status: String!) {
-  updateLearnedItemsCollection(set: { status: $status }, filter: { id: { eq: $id } }) {
-    affectedCount
-  }
-}

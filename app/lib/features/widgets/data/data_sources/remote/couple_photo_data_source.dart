@@ -1,4 +1,5 @@
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/mutations/generated/DeleteCouplePhoto.graphql.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/mutations/generated/InsertCouplePhoto.graphql.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/mutations/generated/UpsertCouplePhoto.graphql.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/queries/generated/CouplePhoto.graphql.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/mappers/couple_photo_mapper.dart';
