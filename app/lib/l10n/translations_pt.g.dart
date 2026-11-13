@@ -177,8 +177,8 @@ class Translations$acceptInvite$pt {
   /// pt: 'Código do convite'
   String get codeLabel => 'Código do convite';
 
-  /// pt: 'ABCD2345'
-  String get codeHint => 'ABCD2345';
+  /// pt: 'Ex.: ABCD2345'
+  String get codeHint => 'Ex.: ABCD2345';
 
   Map<String, String> get codeErrors => {
     'empty': 'Digite o código do convite.',
@@ -8964,7 +8964,7 @@ extension on Translations {
           'acceptInvite.subtitle' =>
             'Digite o código que a outra pessoa enviou para vocês se conectarem.',
           'acceptInvite.codeLabel' => 'Código do convite',
-          'acceptInvite.codeHint' => 'ABCD2345',
+          'acceptInvite.codeHint' => 'Ex.: ABCD2345',
           'acceptInvite.codeErrors.empty' => 'Digite o código do convite.',
           'acceptInvite.codeErrors.tooShort' => 'O código tem 8 caracteres.',
           'acceptInvite.codeErrors.tooLong' => 'O código tem 8 caracteres.',

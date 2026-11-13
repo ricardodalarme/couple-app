@@ -3,7 +3,7 @@
   "titleHighlight": "invite",
   "subtitle": "Type the code the other person sent so you can connect.",
   "codeLabel": "Invite code",
-  "codeHint": "ABCD2345",
+  "codeHint": "E.g. ABCD2345",
   "codeErrors(map)": {
     "empty": "Type the invite code.",
     "tooShort": "The code has 8 characters.",

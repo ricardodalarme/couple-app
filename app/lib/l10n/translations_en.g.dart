@@ -244,7 +244,7 @@ class _Translations$acceptInvite$en extends Translations$acceptInvite$pt {
   @override
   String get codeLabel => 'Invite code';
   @override
-  String get codeHint => 'ABCD2345';
+  String get codeHint => 'E.g. ABCD2345';
   @override
   Map<String, String> get codeErrors => {
     'empty': 'Type the invite code.',
@@ -7198,7 +7198,7 @@ extension on TranslationsEn {
           'acceptInvite.titleHighlight' => 'invite',
           'acceptInvite.subtitle' => 'Type the code the other person sent so you can connect.',
           'acceptInvite.codeLabel' => 'Invite code',
-          'acceptInvite.codeHint' => 'ABCD2345',
+          'acceptInvite.codeHint' => 'E.g. ABCD2345',
           'acceptInvite.codeErrors.empty' => 'Type the invite code.',
           'acceptInvite.codeErrors.tooShort' => 'The code has 8 characters.',
           'acceptInvite.codeErrors.tooLong' => 'The code has 8 characters.',

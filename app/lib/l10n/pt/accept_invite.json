@@ -3,7 +3,7 @@
   "titleHighlight": "convite",
   "subtitle": "Digite o código que a outra pessoa enviou para vocês se conectarem.",
   "codeLabel": "Código do convite",
-  "codeHint": "ABCD2345",
+  "codeHint": "Ex.: ABCD2345",
   "codeErrors(map)": {
     "empty": "Digite o código do convite.",
     "tooShort": "O código tem 8 caracteres.",
