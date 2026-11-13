@@ -1,3 +1,4 @@
+import 'package:app_info_service/app_info_service.dart';
 import 'package:auto_route/auto_route.dart' hide PageInfo;
 import 'package:connectivity_service/connectivity_service.dart';
 import 'package:core/core.dart';
@@ -36,7 +37,10 @@ class AppInjectionModule() implements InjectionModule {
       () => ConnectivityCubit(connectivityService: injector.get<ConnectivityService>()),
     )
     ..registerLazySingleton<VersionGateCubit>(
-      () => VersionGateCubit(repository: injector.get<AppConfigRepository>()),
+      () => VersionGateCubit(
+        repository: injector.get<AppConfigRepository>(),
+        appInfoService: injector.get<AppInfoService>(),
+      ),
     )
     ..registerLazySingleton<TimeInAppCubit>(
       () => TimeInAppCubit(preferencesService: injector.get<PreferencesService>()),

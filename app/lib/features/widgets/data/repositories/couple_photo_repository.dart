@@ -7,7 +7,6 @@ import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/c
 import 'package:flutter_bloc_starter/features/widgets/data/models/couple_photo.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/services/couple_photo_image.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
-import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:storage_service/storage_service.dart';
 import 'package:uuid/uuid.dart';
@@ -25,13 +24,15 @@ class CouplePhotoRepository({
   required final AuthenticationRepository _authenticationRepository,
   required final WidgetDataService _widgetDataService,
   final PhotoResizer _resizePhoto = CouplePhotoImage.downscalePng,
-  final PhotoDownloader _downloadPhoto = _downloadSignedPhoto,
+  final PhotoDownloader? _downloadPhoto,
 }) {
   static const String bucket = 'couple_photos';
   static const int maxBytes = 8 * 1024 * 1024;
 
   final Logger _logger = Logger('CouplePhotoRepository');
   final Uuid _uuid = const Uuid();
+
+  PhotoDownloader get _photoDownloader => _downloadPhoto ?? _storageService.download;
 
   /// The couple's current photo with a short-lived read URL, or null when none was chosen.
   Future<CouplePhoto?> getPhoto() async {
@@ -87,7 +88,7 @@ class CouplePhotoRepository({
       }
       if (url == null) return cachedPath != null;
 
-      final downloaded = await _downloadPhoto(url);
+      final downloaded = await _photoDownloader(url);
       final resized = await _resizePhoto(downloaded);
       if (resized == null) return cachedPath != null;
 
@@ -213,12 +214,4 @@ class CouplePhotoRepository({
     'image/heic' => 'heic',
     _ => null,
   };
-}
-
-Future<Uint8List> _downloadSignedPhoto(String url) async {
-  final response = await http.get(Uri.parse(url));
-  if (response.statusCode < 200 || response.statusCode >= 300) {
-    throw StateError('signed photo download failed');
-  }
-  return response.bodyBytes;
 }

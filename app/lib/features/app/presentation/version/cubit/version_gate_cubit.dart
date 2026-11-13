@@ -1,13 +1,14 @@
+import 'package:app_info_service/app_info_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/app/data/repositories/app_config_repository.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 part 'version_gate_state.dart';
 
 /// Blocks the app when the installed version is below the server minimum.
 class VersionGateCubit({
   required final AppConfigRepository _repository,
+  required final AppInfoService _appInfoService,
   final Future<String> Function()? installedVersion,
 }) extends Cubit<VersionGateState> {
   this : super(const VersionGateState());
@@ -41,7 +42,10 @@ class VersionGateCubit({
     final provided = installedVersion;
     if (provided != null) return provided();
 
-    return (await PackageInfo.fromPlatform()).version;
+    final installed = await _appInfoService.version();
+    if (installed == null) throw StateError('installed version unavailable');
+
+    return installed;
   }
 }
 

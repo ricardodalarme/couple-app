@@ -1,0 +1,16 @@
+name: link_launcher_service
+resolution: workspace
+publish_to: "none"
+
+environment:
+  sdk: ^3.14.0
+  flutter: ^3.50.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  url_launcher: ^6.3.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

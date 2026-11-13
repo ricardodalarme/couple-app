@@ -1,3 +1,4 @@
+import 'package:app_info_service/app_info_service.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/help/data/data_sources/local/support_local_data_source.dart';
@@ -18,7 +19,9 @@ class HelpInjectionModule() implements InjectionModule {
     ..registerLazySingleton<SupportLocalDataSource>(
       () => SupportLocalDataSource(preferencesService: injector.get<PreferencesService>()),
     )
-    ..registerLazySingleton<SupportAppVersionService>(SupportAppVersionService.new)
+    ..registerLazySingleton<SupportAppVersionService>(
+      () => SupportAppVersionService(appInfoService: injector.get<AppInfoService>()),
+    )
     ..registerLazySingleton<SupportRepository>(
       () => SupportRepository(
         dataSource: injector.get<SupportDataSource>(),

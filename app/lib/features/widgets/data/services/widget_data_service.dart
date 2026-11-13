@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
-import 'package:home_widget/home_widget.dart';
+import 'package:home_widget_service/home_widget_service.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
 /// Native family descriptor pairing the iOS WidgetKit `kind` with the Android provider class.
@@ -16,8 +16,9 @@ typedef NativeWidgetFamilyTarget = ({
   bool refreshesAtMidnight,
 });
 
-/// Low-level driver over `home_widget` so tests can verify shared-store writes without channels.
+/// Low-level driver over the native widget store so tests can verify writes without channels.
 class WidgetStoreDriver({
+  final HomeWidgetService _homeWidgetService = const PlatformHomeWidgetService(),
   final Future<bool?> Function(String groupId)? setAppGroupIdFn,
   final Future<bool?> Function(String id, String? data)? saveStringFn,
   final Future<String?> Function(String id)? getStringFn,
@@ -58,51 +59,99 @@ class WidgetStoreDriver({
 
   Future<Directory> getApplicationSupportDirectory() =>
       (applicationSupportDirectoryFn ?? path_provider.getApplicationSupportDirectory)();
-  Future<bool?> setAppGroupId(String groupId) =>
-      (setAppGroupIdFn ?? HomeWidget.setAppGroupId)(groupId);
 
-  Future<bool?> saveString(String id, String? data) =>
-      (saveStringFn ?? (key, value) => HomeWidget.saveWidgetData<String>(key, value))(id, data);
+  Future<bool?> setAppGroupId(String groupId) async {
+    final provided = setAppGroupIdFn;
+    if (provided != null) return provided(groupId);
+    await _homeWidgetService.setAppGroupId(groupId);
+
+    return true;
+  }
+
+  Future<bool?> saveString(String id, String? data) async {
+    final provided = saveStringFn;
+    if (provided != null) return provided(id, data);
+    await _homeWidgetService.saveString(id, data);
+
+    return true;
+  }
 
   Future<String?> getString(String id) =>
-      (getStringFn ?? (key) => HomeWidget.getWidgetData<String>(key))(id);
+      getStringFn?.call(id) ?? _homeWidgetService.readString(id);
 
   Future<bool?> updateWidget({
     String? iOSName,
     String? androidName,
     String? qualifiedAndroidName,
-  }) => (updateWidgetFn ?? HomeWidget.updateWidget)(
-    iOSName: iOSName,
-    androidName: androidName,
-    qualifiedAndroidName: qualifiedAndroidName,
-  );
+  }) async {
+    final provided = updateWidgetFn;
+    if (provided != null) {
+      return provided(
+        iOSName: iOSName,
+        androidName: androidName,
+        qualifiedAndroidName: qualifiedAndroidName,
+      );
+    }
+    await _homeWidgetService.updateWidget(
+      iosName: iOSName,
+      androidName: androidName,
+      qualifiedAndroidName: qualifiedAndroidName,
+    );
+
+    return true;
+  }
 
   Future<void> scheduleWidgetUpdates(
     List<DateTime> dates, {
     String? name,
     String? androidName,
     String? qualifiedAndroidName,
-  }) => (scheduleWidgetUpdatesFn ?? HomeWidget.scheduleWidgetUpdates)(
-    dates,
-    name: name,
-    androidName: androidName,
-    qualifiedAndroidName: qualifiedAndroidName,
-  );
+  }) async {
+    final provided = scheduleWidgetUpdatesFn;
+    if (provided != null) {
+      await provided(
+        dates,
+        name: name,
+        androidName: androidName,
+        qualifiedAndroidName: qualifiedAndroidName,
+      );
+
+      return;
+    }
+    await _homeWidgetService.scheduleUpdates(
+      dates,
+      name: name,
+      androidName: androidName,
+      qualifiedAndroidName: qualifiedAndroidName,
+    );
+  }
 
   Future<void> cancelScheduledWidgetUpdates({
     String? name,
     String? androidName,
     String? qualifiedAndroidName,
-  }) => (cancelScheduledWidgetUpdatesFn ?? HomeWidget.cancelScheduledWidgetUpdates)(
-    name: name,
-    androidName: androidName,
-    qualifiedAndroidName: qualifiedAndroidName,
-  );
+  }) async {
+    final provided = cancelScheduledWidgetUpdatesFn;
+    if (provided != null) {
+      await provided(
+        name: name,
+        androidName: androidName,
+        qualifiedAndroidName: qualifiedAndroidName,
+      );
+
+      return;
+    }
+    await _homeWidgetService.cancelScheduledUpdates(
+      name: name,
+      androidName: androidName,
+      qualifiedAndroidName: qualifiedAndroidName,
+    );
+  }
 
   Future<Uri?> initiallyLaunchedFromHomeWidget() =>
-      (initiallyLaunchedUriFn ?? HomeWidget.initiallyLaunchedFromHomeWidget)();
+      initiallyLaunchedUriFn?.call() ?? _homeWidgetService.initiallyLaunched();
 
-  Stream<Uri?> get widgetClicked => widgetClickedStream ?? HomeWidget.widgetClicked;
+  Stream<Uri?> get widgetClicked => widgetClickedStream ?? _homeWidgetService.clicked;
 }
 
 /// Bridges Dart state to the iOS App Group and Android SharedPreferences widget stores.

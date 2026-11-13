@@ -1,8 +1,9 @@
 import 'dart:io';
 
+import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:link_launcher_service/link_launcher_service.dart';
 
 /// The blocking screen for an app below the minimum version. Local drafts are untouched.
 class const UpdateRequiredPage({super.key}) extends StatelessWidget {
@@ -41,7 +42,7 @@ class const UpdateRequiredPage({super.key}) extends StatelessWidget {
     final uri = Uri.parse(
       Platform.isIOS ? 'https://apps.apple.com/' : 'https://play.google.com/store/apps',
     );
-    final opened = await launchUrl(uri, mode: LaunchMode.externalApplication);
+    final opened = await AppInjector.instance.get<LinkLauncherService>().openExternal(uri);
     if (!opened && context.mounted) {
       BaseToast.show(context, context.l10n.globalErrors.updateUnavailable);
     }

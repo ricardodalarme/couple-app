@@ -1,0 +1,16 @@
+name: app_info_service
+resolution: workspace
+publish_to: "none"
+
+environment:
+  sdk: ^3.14.0
+  flutter: ^3.50.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  package_info_plus: ^10.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

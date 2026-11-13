@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:storage_service/storage_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -66,5 +68,26 @@ void main() {
     await StorageService(storage: storage).remove(bucket: 'messages', path: 'u/d.png');
 
     verify(() => bucket.remove(['u/d.png'])).called(1);
+  });
+
+  test('download returns the bytes behind an absolute url', () async {
+    final client = MockClient((request) async {
+      expect(request.url, Uri.parse('https://x/y'));
+
+      return http.Response.bytes([1, 2, 3], 200);
+    });
+
+    final bytes = await StorageService(httpClient: client).download('https://x/y');
+
+    expect(bytes, [1, 2, 3]);
+  });
+
+  test('a download outside 2xx is a FileStorageException', () {
+    final client = MockClient((_) async => http.Response('missing', 404));
+
+    expect(
+      StorageService(httpClient: client).download('https://x/y'),
+      throwsA(isA<FileStorageException>()),
+    );
   });
 }

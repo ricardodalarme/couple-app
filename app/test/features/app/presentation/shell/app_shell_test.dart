@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app_info_service/app_info_service.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:connectivity_service/connectivity_service.dart';
@@ -22,6 +23,8 @@ class _MockTimeInAppCubit() extends MockCubit<TimeInAppState> implements TimeInA
 
 class _MockAppConfigRepository() extends Mock implements AppConfigRepository;
 
+class _MockAppInfoService() extends Mock implements AppInfoService;
+
 class _MockConnectivityService() extends Mock implements ConnectivityService;
 
 class _TestRouter() extends RootStackRouter {
@@ -43,7 +46,10 @@ void main() {
     appCubit = _MockAppCubit();
     timeInAppCubit = _MockTimeInAppCubit();
     timeStates = StreamController<TimeInAppState>.broadcast();
-    versionGateCubit = VersionGateCubit(repository: _MockAppConfigRepository());
+    versionGateCubit = VersionGateCubit(
+      repository: _MockAppConfigRepository(),
+      appInfoService: _MockAppInfoService(),
+    );
     connectivityCubit = ConnectivityCubit(connectivityService: _MockConnectivityService());
     whenListen(timeInAppCubit, timeStates.stream, initialState: const TimeInAppState());
   });

@@ -8,7 +8,7 @@ import 'package:flutter_bloc_starter/features/plus/presentation/manage/cubit/man
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:link_launcher_service/link_launcher_service.dart';
 
 /// The current plan, what each plan includes and the way to the store page.
 @RoutePage()
@@ -148,7 +148,7 @@ class const ManagePlusPage({super.key}) extends StatelessWidget implements AutoR
 
 Future<bool> _openStore(Uri url) async {
   try {
-    return await launchUrl(url, mode: LaunchMode.externalApplication);
+    return await AppInjector.instance.get<LinkLauncherService>().openExternal(url);
   } catch (_) {
     return false;
   }

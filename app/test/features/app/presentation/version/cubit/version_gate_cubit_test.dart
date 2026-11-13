@@ -1,3 +1,4 @@
+import 'package:app_info_service/app_info_service.dart';
 import 'package:flutter_bloc_starter/features/app/data/repositories/app_config_repository.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/version/cubit/version_gate_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -5,13 +6,24 @@ import 'package:mocktail/mocktail.dart';
 
 class _MockAppConfigRepository() extends Mock implements AppConfigRepository;
 
+class _StubAppInfoService() implements AppInfoService {
+  @override
+  Future<String?> version() async => '0.1.1';
+
+  @override
+  Future<String?> buildNumber() async => '3';
+}
+
 void main() {
   late AppConfigRepository repository;
 
   setUp(() => repository = _MockAppConfigRepository());
 
-  VersionGateCubit build({String installed = '0.1.1'}) =>
-      VersionGateCubit(repository: repository, installedVersion: () async => installed);
+  VersionGateCubit build({String installed = '0.1.1'}) => VersionGateCubit(
+    repository: repository,
+    appInfoService: _StubAppInfoService(),
+    installedVersion: () async => installed,
+  );
 
   test('a lower minimum allows the app', () async {
     when(() => repository.getMinAppVersion()).thenAnswer((_) async => '0.1.0');

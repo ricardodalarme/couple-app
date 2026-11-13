@@ -1,4 +1,5 @@
 import 'package:analytics_service/analytics_service.dart';
+import 'package:app_info_service/app_info_service.dart';
 import 'package:auto_route/auto_route.dart' hide PageInfo;
 import 'package:biometric_service/biometric_service.dart';
 import 'package:connectivity_service/connectivity_service.dart';
@@ -12,6 +13,8 @@ import 'package:flutter_bloc_starter/infrastructure/config/env_variables.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
 import 'package:flutter_bloc_starter/router/observers/analytics_router_observer.dart';
 import 'package:flutter_bloc_starter/router/observers/log_router_observer.dart';
+import 'package:home_widget_service/home_widget_service.dart';
+import 'package:link_launcher_service/link_launcher_service.dart';
 import 'package:network/network.dart';
 import 'package:notification_service/notification_service.dart';
 import 'package:performance_service/performance_service.dart';
@@ -62,6 +65,9 @@ class SharedInjectionModule() implements InjectionModule {
     )
     ..registerLazySingleton<ShareService>(ShareService.new)
     ..registerLazySingleton<StorageService>(StorageService.new)
+    ..registerLazySingleton<AppInfoService>(PackageAppInfoService.new)
+    ..registerLazySingleton<LinkLauncherService>(UrlLauncherService.new)
+    ..registerLazySingleton<HomeWidgetService>(PlatformHomeWidgetService.new)
     ..registerLazySingleton<ConnectivityService>(InternetConnectivityService.new)
     ..registerLazySingleton<BiometricService>(BiometricServiceImpl.new);
 }
