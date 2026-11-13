@@ -36,6 +36,7 @@ class const DiscreetModePage({super.key}) extends StatelessWidget implements Aut
                 children: [
                   BaseListTile(
                     title: l10n.neutralIcon,
+                    onTap: () => cubit.setNeutralIcon(value: !values.neutralIcon),
                     control: BaseSwitch(
                       value: values.neutralIcon,
                       semanticLabel: l10n.neutralIcon,
@@ -44,6 +45,7 @@ class const DiscreetModePage({super.key}) extends StatelessWidget implements Aut
                   ),
                   BaseListTile(
                     title: l10n.neutralNotifications,
+                    onTap: () => cubit.setNeutralNotifications(value: !values.neutralNotifications),
                     control: BaseSwitch(
                       value: values.neutralNotifications,
                       semanticLabel: l10n.neutralNotifications,
@@ -52,6 +54,7 @@ class const DiscreetModePage({super.key}) extends StatelessWidget implements Aut
                   ),
                   BaseListTile(
                     title: l10n.hideWidgetText,
+                    onTap: () => cubit.setHideWidgetText(value: !values.hideWidgetText),
                     control: BaseSwitch(
                       value: values.hideWidgetText,
                       semanticLabel: l10n.hideWidgetText,
