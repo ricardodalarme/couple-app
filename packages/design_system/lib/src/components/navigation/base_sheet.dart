@@ -31,7 +31,7 @@ class const BaseSheet({
     final action = primaryAction;
     final bottomInset = MediaQuery.paddingOf(context).bottom;
     final screenHeight = MediaQuery.sizeOf(context).height;
-    final aboveKeyboard = math.max(0.0, screenHeight - MediaQuery.viewInsetsOf(context).bottom);
+    final aboveKeyboard = math.max(0, screenHeight - MediaQuery.viewInsetsOf(context).bottom).toDouble();
     final maxHeight = math.min(screenHeight * _maxHeightFactor, aboveKeyboard);
 
     final hasHeader = sheetTitle != null || sheetSubtitle != null || onClose != null;

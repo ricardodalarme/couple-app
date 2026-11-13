@@ -123,9 +123,9 @@ void main() {
                 text: 'Save memory',
                 onPressed: () => hasSaved = true,
               ),
-              child: Column(
+              child: const Column(
                 mainAxisSize: MainAxisSize.min,
-                children: const <Widget>[
+                children: <Widget>[
                   BaseTextField(label: 'Title'),
                   SizedBox(height: AppSpace.s12),
                   BaseTextField(label: 'Place'),
