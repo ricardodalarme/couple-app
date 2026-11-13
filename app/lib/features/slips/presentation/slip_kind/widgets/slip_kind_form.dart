@@ -90,7 +90,6 @@ class const _MainText({required final String hint}) extends StatelessWidget {
       hint: hint,
       maxLength: slipKindMaxLength,
       errorText: context.l10n.slipKind.textErrors.selectOrNull(text.errorName),
-      hasError: text.errorName != null,
       onChanged: context.read<SlipKindCubit>().onTextChanged,
     );
   }

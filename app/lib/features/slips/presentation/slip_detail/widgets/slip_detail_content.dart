@@ -108,7 +108,6 @@ class const _EditField() extends StatelessWidget {
       text: text.value,
       maxLength: slipKindMaxLength,
       errorText: context.l10n.slipDetail.draftBodyErrors.selectOrNull(text.errorName),
-      hasError: text.errorName != null,
       onChanged: context.read<SlipDetailCubit>().onBodyChanged,
     );
   }

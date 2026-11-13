@@ -64,7 +64,6 @@ class const _SaveLearningContent({
           hint: l10n.learningSheetHint,
           maxLength: learnedItemMaxLength,
           errorText: l10n.learningTextErrors.selectOrNull(text.errorName),
-          hasError: text.errorName != null,
           onChanged: context.read<SaveLearningSheetCubit>().onTextChanged,
         ),
         const SizedBox(height: AppSpace.s16),

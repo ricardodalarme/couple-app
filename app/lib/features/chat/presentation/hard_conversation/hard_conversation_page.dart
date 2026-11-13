@@ -330,7 +330,6 @@ class const _SayStep() extends StatelessWidget {
             maxLength: hardConversationMessageMaxLength,
             isEnabled: !isGenerating,
             errorText: l10n.messageErrors.selectOrNull(message.errorName),
-            hasError: message.errorName != null,
             onChanged: cubit.onMessageChanged,
           ),
           const SizedBox(height: AppSpace.s12),

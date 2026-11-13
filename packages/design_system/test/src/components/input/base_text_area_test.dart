@@ -10,7 +10,7 @@ Widget _gallery() {
     children: [
       BaseTextArea(hint: 'One line is enough.'),
       SizedBox(height: AppSpace.s16),
-      BaseTextArea(hasError: true, errorText: 'Could not save. Try again.'),
+      BaseTextArea(errorText: 'Could not save. Try again.'),
     ],
   );
 }

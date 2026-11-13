@@ -48,7 +48,6 @@ class const SupportForm({super.key}) extends StatelessWidget {
             hint: l10n.messageHint,
             maxLength: supportMessageMaxLength,
             errorText: l10n.messageErrors.selectOrNull(message.errorName),
-            hasError: message.errorName != null,
             onChanged: cubit.onMessageChanged,
           ),
           const SizedBox(height: AppSpace.s16),

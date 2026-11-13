@@ -38,7 +38,6 @@ final WidgetbookNode textAreaExample = WidgetbookComponent(
               GallerySurface(
                 child: BaseTextArea(
                   hint: 'One line is enough.',
-                  hasError: true,
                   errorText: 'Write a little more before saving.',
                 ),
               ),

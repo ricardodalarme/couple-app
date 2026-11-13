@@ -72,7 +72,6 @@ class const _TextField() extends StatelessWidget {
       text: text.value,
       hint: l10n.hint,
       errorText: l10n.textErrors.selectOrNull(text.errorName),
-      hasError: text.errorName != null,
       onChanged: context.read<QuickSlipCubit>().onTextChanged,
     );
   }

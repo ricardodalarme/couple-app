@@ -9,13 +9,12 @@ const double _cursorHeight = 22;
 
 /// A multi-line text field that grows up to [maxLines].
 ///
-/// Shows a counter near [maxLength] and an error below the field when [hasError].
+/// Shows a counter near [maxLength] and an error below the field when [errorText] is set.
 class const BaseTextArea({
   final String? text,
   final String? hint,
   final int maxLength = 140,
   final bool showCounter = true,
-  final bool hasError = false,
   final String? errorText,
   final ValueChanged<String>? onChanged,
   final bool isEnabled = true,
@@ -72,8 +71,7 @@ class _BaseTextAreaState() extends State<BaseTextArea> {
     final text = context.text;
     final threshold = (widget.maxLength * _counterThresholdRatio).ceil();
     final showsCounter = !widget.isReadOnly && widget.showCounter && _length >= threshold;
-    // Same contract as BaseTextField/BaseSelect: a message means an error.
-    final hasError = widget.hasError || widget.errorText != null;
+    final hasError = widget.errorText != null;
 
     final field = DecoratedBox(
       decoration: BoxDecoration(

@@ -39,7 +39,6 @@ class const _LearnedItemEditContent({required final ValueChanged<String> onSave}
           hint: l10n.editHint,
           maxLength: learnedItemMaxLength,
           errorText: l10n.textErrors.selectOrNull(text.errorName),
-          hasError: text.errorName != null,
           onChanged: context.read<LearnedItemEditSheetCubit>().onTextChanged,
         ),
         const SizedBox(height: AppSpace.s16),

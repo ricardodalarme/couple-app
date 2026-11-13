@@ -90,7 +90,6 @@ class const ComposePage({super.key}) extends StatelessWidget implements AutoRout
                   maxLines: 4,
                   isEnabled: !isSending,
                   errorText: l10n.textErrors.selectOrNull(text.errorName),
-                  hasError: text.errorName != null,
                   onChanged: cubit.onTextChanged,
                 )
               else

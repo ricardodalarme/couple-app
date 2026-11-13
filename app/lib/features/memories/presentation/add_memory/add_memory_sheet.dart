@@ -57,7 +57,6 @@ class const _AddMemorySheetContent() extends StatelessWidget {
           hint: l10n.bodyHint,
           maxLength: memoryBodyMaxLength,
           maxLines: 3,
-          hasError: !body.isValid,
           errorText: l10n.bodyErrors.selectOrNull(body.errorName),
           onChanged: cubit.onBodyChanged,
         ),

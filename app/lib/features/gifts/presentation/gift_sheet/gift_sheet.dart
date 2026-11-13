@@ -54,7 +54,6 @@ class const _GiftSheetContent() extends StatelessWidget {
           hint: l10n.noteHint,
           maxLength: giftNoteMaxLength,
           maxLines: 4,
-          hasError: !note.isValid,
           errorText: l10n.noteErrors.selectOrNull(note.errorName),
           onChanged: cubit.onNoteChanged,
         ),
