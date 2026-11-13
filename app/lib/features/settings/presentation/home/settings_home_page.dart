@@ -26,48 +26,20 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.settingsHome;
-    final state = context.select((SettingsHomeCubit cubit) => cubit.state);
-    final locale = AppInjector.instance.get<SettingsRepository>().get().locale;
-    final safeModeOn = context.select((SafeModeCubit cubit) => cubit.state.isOn);
-
-    final relationship = switch (state.hasPartner) {
-      null => null,
-      true =>
-        state.partnerName == null ? l10n.connected : l10n.connectedWith(name: state.partnerName!),
-      false => l10n.invitePartner,
-    };
-    final notifications = switch (state.notificationsOn) {
-      null => null,
-      true => l10n.on,
-      false => l10n.off,
-    };
-    final plan = switch (state.hasPlus) {
-      null => null,
-      true => l10n.planPlus,
-      false => l10n.planFree,
-    };
 
     return BaseView(
       appBar: BaseAppBar(title: l10n.title),
-      body: BaseStackedContent(
+      body: const BaseStackedContent(
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _AccountSection(
-              deletionPending: state.deletionPending,
-              relationship: relationship,
-              plan: plan,
-            ),
-            const SizedBox(height: AppSpace.s20),
-            _PreferencesSection(
-              notifications: notifications,
-              locale: locale,
-              safeModeOn: safeModeOn,
-            ),
-            const SizedBox(height: AppSpace.s20),
-            _PrivacySection(discreetOn: state.discreetOn),
-            const SizedBox(height: AppSpace.s20),
-            const _AccountActions(),
+            _AccountSection(),
+            SizedBox(height: AppSpace.s20),
+            _PreferencesSection(),
+            SizedBox(height: AppSpace.s20),
+            _PrivacySection(),
+            SizedBox(height: AppSpace.s20),
+            _AccountActions(),
           ],
         ),
       ),
@@ -75,14 +47,27 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
   }
 }
 
-class const _AccountSection({
-  required final bool deletionPending,
-  required final String? relationship,
-  required final String? plan,
-}) extends StatelessWidget {
+class const _AccountSection() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.settingsHome;
+    final deletionPending = context.select(
+      (SettingsHomeCubit cubit) => cubit.state.deletionPending,
+    );
+    final hasPartner = context.select((SettingsHomeCubit cubit) => cubit.state.hasPartner);
+    final partnerName = context.select((SettingsHomeCubit cubit) => cubit.state.partnerName);
+    final hasPlus = context.select((SettingsHomeCubit cubit) => cubit.state.hasPlus);
+
+    final relationship = switch (hasPartner) {
+      null => null,
+      true => partnerName == null ? l10n.connected : l10n.connectedWith(name: partnerName),
+      false => l10n.invitePartner,
+    };
+    final plan = switch (hasPlus) {
+      null => null,
+      true => l10n.planPlus,
+      false => l10n.planFree,
+    };
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -128,14 +113,21 @@ class const _AccountSection({
   }
 }
 
-class const _PreferencesSection({
-  required final String? notifications,
-  required final String locale,
-  required final bool safeModeOn,
-}) extends StatelessWidget {
+class const _PreferencesSection() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.settingsHome;
+    final notificationsOn = context.select(
+      (SettingsHomeCubit cubit) => cubit.state.notificationsOn,
+    );
+    final locale = AppInjector.instance.get<SettingsRepository>().get().locale;
+    final safeModeOn = context.select((SafeModeCubit cubit) => cubit.state.isOn);
+
+    final notifications = switch (notificationsOn) {
+      null => null,
+      true => l10n.on,
+      false => l10n.off,
+    };
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -193,10 +185,11 @@ class const _PreferencesSection({
   }
 }
 
-class const _PrivacySection({required final bool discreetOn}) extends StatelessWidget {
+class const _PrivacySection() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.settingsHome;
+    final discreetOn = context.select((SettingsHomeCubit cubit) => cubit.state.discreetOn);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

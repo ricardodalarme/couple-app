@@ -184,14 +184,6 @@ class const _Conversation({required final bool isLimitReached}) extends Stateles
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.chat;
-    final isOffline = context.select((ConnectivityCubit cubit) => cubit.state.isOffline);
-    final messages = context.select((ChatCubit cubit) => cubit.state.messages);
-    final options = context.select((ChatCubit cubit) => cubit.state.options);
-    final draft = context.select((ChatCubit cubit) => cubit.state.draft);
-    final canSend = context.select((ChatCubit cubit) => cubit.state.canSend) && !isOffline;
-    final isReplying = context.select((ChatCubit cubit) => cubit.state.isReplying);
-    final messagesLeft = context.select((ChatCubit cubit) => cubit.state.messagesLeft);
-    final cubit = context.read<ChatCubit>();
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppSpace.screenMargin),
@@ -199,80 +191,116 @@ class const _Conversation({required final bool isLimitReached}) extends Stateles
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: AppSpace.s8),
-          Expanded(
-            child: messages.isEmpty
-                ? Align(
-                    alignment: Alignment.topLeft,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [BaseBubble(text: l10n.emptyHint)],
-                    ),
-                  )
-                : ListView.separated(
-                    reverse: true,
-                    itemCount: messages.length,
-                    separatorBuilder: (_, _) => const SizedBox(height: AppSpace.s8),
-                    itemBuilder: (context, index) =>
-                        _Message(message: messages[messages.length - 1 - index]),
-                  ),
-          ),
-          if (messages.isEmpty && options.isEmpty) ...[
-            const SizedBox(height: AppSpace.s8),
-            Wrap(
-              spacing: AppSpace.s8,
-              runSpacing: AppSpace.s8,
-              children: [
-                for (final starter in [l10n.starterHard, l10n.starterIdea, l10n.starterPlan])
-                  BaseChoiceChip(label: starter, onTap: () => cubit.send(starter)),
-              ],
-            ),
-          ],
-          if (options.isNotEmpty) ...[
-            const SizedBox(height: AppSpace.s8),
-            Wrap(
-              spacing: AppSpace.s8,
-              runSpacing: AppSpace.s8,
-              children: [
-                for (final option in options)
-                  BaseChoiceChip(label: option, onTap: () => cubit.send(option)),
-              ],
-            ),
-          ],
+          const Expanded(child: _MessageList()),
           const SizedBox(height: AppSpace.s12),
           if (isLimitReached)
             PlusLock(title: l10n.limitTitle, text: l10n.limitText)
-          else ...[
-            Row(
-              children: [
-                Expanded(
-                  child: BaseTextField(
-                    text: draft,
-                    hint: l10n.inputHint,
-                    isEnabled: !isReplying && !isOffline,
-                    onChanged: cubit.onDraftChanged,
-                    onSubmitted: (_) => canSend ? cubit.sendDraft() : null,
-                  ),
-                ),
-                const SizedBox(width: AppSpace.s8),
-                _SendButton(
-                  key: const ValueKey('chatSend'),
-                  isEnabled: canSend,
-                  onPressed: cubit.sendDraft,
-                  semanticLabel: l10n.send,
-                ),
-              ],
-            ),
-            if (isOffline || messagesLeft <= 2) ...[
-              const SizedBox(height: AppSpace.s4),
-              Text(
-                isOffline ? l10n.offline : l10n.messagesLeft(count: messagesLeft),
-                style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
-              ),
-            ],
-          ],
+          else
+            const _Composer(),
           const SizedBox(height: AppSpace.s12),
         ],
       ),
+    );
+  }
+}
+
+class const _MessageList() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.chat;
+    final messages = context.select((ChatCubit cubit) => cubit.state.messages);
+    final options = context.select((ChatCubit cubit) => cubit.state.options);
+    final cubit = context.read<ChatCubit>();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          child: messages.isEmpty
+              ? Align(
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [BaseBubble(text: l10n.emptyHint)],
+                  ),
+                )
+              : ListView.separated(
+                  reverse: true,
+                  itemCount: messages.length,
+                  separatorBuilder: (_, _) => const SizedBox(height: AppSpace.s8),
+                  itemBuilder: (context, index) =>
+                      _Message(message: messages[messages.length - 1 - index]),
+                ),
+        ),
+        if (messages.isEmpty && options.isEmpty) ...[
+          const SizedBox(height: AppSpace.s8),
+          Wrap(
+            spacing: AppSpace.s8,
+            runSpacing: AppSpace.s8,
+            children: [
+              for (final starter in [l10n.starterHard, l10n.starterIdea, l10n.starterPlan])
+                BaseChoiceChip(label: starter, onTap: () => cubit.send(starter)),
+            ],
+          ),
+        ],
+        if (options.isNotEmpty) ...[
+          const SizedBox(height: AppSpace.s8),
+          Wrap(
+            spacing: AppSpace.s8,
+            runSpacing: AppSpace.s8,
+            children: [
+              for (final option in options)
+                BaseChoiceChip(label: option, onTap: () => cubit.send(option)),
+            ],
+          ),
+        ],
+      ],
+    );
+  }
+}
+
+class const _Composer() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.chat;
+    final isOffline = context.select((ConnectivityCubit cubit) => cubit.state.isOffline);
+    final draft = context.select((ChatCubit cubit) => cubit.state.draft);
+    final canSend = context.select((ChatCubit cubit) => cubit.state.canSend);
+    final isReplying = context.select((ChatCubit cubit) => cubit.state.isReplying);
+    final messagesLeft = context.select((ChatCubit cubit) => cubit.state.messagesLeft);
+    final cubit = context.read<ChatCubit>();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: BaseTextField(
+                text: draft,
+                hint: l10n.inputHint,
+                isEnabled: !isReplying && !isOffline,
+                onChanged: cubit.onDraftChanged,
+                onSubmitted: (_) => canSend && !isOffline ? cubit.sendDraft() : null,
+              ),
+            ),
+            const SizedBox(width: AppSpace.s8),
+            _SendButton(
+              key: const ValueKey('chatSend'),
+              isEnabled: canSend && !isOffline,
+              onPressed: cubit.sendDraft,
+              semanticLabel: l10n.send,
+            ),
+          ],
+        ),
+        if (isOffline || messagesLeft <= 2) ...[
+          const SizedBox(height: AppSpace.s4),
+          Text(
+            isOffline ? l10n.offline : l10n.messagesLeft(count: messagesLeft),
+            style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
+          ),
+        ],
+      ],
     );
   }
 }

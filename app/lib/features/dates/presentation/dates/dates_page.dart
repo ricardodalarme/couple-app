@@ -19,7 +19,7 @@ class const DatesPage({super.key}) extends StatelessWidget implements AutoRouteW
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.dates;
-    final state = context.select((DatesCubit cubit) => cubit.state);
+    final view = context.select((DatesCubit cubit) => cubit.state.view);
     final cubit = context.read<DatesCubit>();
 
     return BaseView(
@@ -39,27 +39,36 @@ class const DatesPage({super.key}) extends StatelessWidget implements AutoRouteW
               const SizedBox(height: AppSpace.s16),
               BaseSegmented(
                 segments: [l10n.segmentDates, l10n.segmentGifts, l10n.segmentHolidays],
-                selectedIndex: state.view.index,
+                selectedIndex: view.index,
                 onSelectionChanged: (index) => cubit.onViewChanged(DatesView.values[index]),
               ),
               const SizedBox(height: AppSpace.s16),
-              switch (state.view) {
+              switch (view) {
                 DatesView.dates => const _DatesView(),
                 DatesView.gifts => const _GiftsView(),
                 DatesView.holidays => const _HolidaysView(),
               },
             ],
           ),
-          footer: state.view == DatesView.dates
-              ? BaseButton(
-                  text: l10n.saveDate,
-                  isEnabled: state.canSaveDate,
-                  isLoading: state.saveAction.isLoading,
-                  onPressed: cubit.saveDate,
-                )
-              : null,
+          footer: view == DatesView.dates ? const _SaveDateButton() : null,
         ),
       ),
+    );
+  }
+}
+
+class const _SaveDateButton() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final canSaveDate = context.select((DatesCubit cubit) => cubit.state.canSaveDate);
+    final isSaving = context.select((DatesCubit cubit) => cubit.state.saveAction.isLoading);
+    final cubit = context.read<DatesCubit>();
+
+    return BaseButton(
+      text: context.l10n.dates.saveDate,
+      isEnabled: canSaveDate,
+      isLoading: isSaving,
+      onPressed: cubit.saveDate,
     );
   }
 }
@@ -68,14 +77,18 @@ class const _DatesView() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.dates;
-    final state = context.select((DatesCubit cubit) => cubit.state);
+    final title = context.select((DatesCubit cubit) => cubit.state.title);
+    final kind = context.select((DatesCubit cubit) => cubit.state.kind);
+    final selectedMonth = context.select((DatesCubit cubit) => cubit.state.month);
+    final selectedDay = context.select((DatesCubit cubit) => cubit.state.day);
+    final year = context.select((DatesCubit cubit) => cubit.state.year);
     final cubit = context.read<DatesCubit>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         BaseTextField(
-          text: state.title,
+          text: title,
           label: l10n.titleLabel,
           hint: l10n.titleHint,
           onChanged: cubit.onTitleChanged,
@@ -85,11 +98,11 @@ class const _DatesView() extends StatelessWidget {
           spacing: AppSpace.s8,
           runSpacing: AppSpace.s8,
           children: [
-            for (final kind in dateKinds)
+            for (final kindOption in dateKinds)
               BaseChoiceChip(
-                label: l10n.kinds.selectOrFallback(kind),
-                isSelected: state.kind == kind,
-                onTap: () => cubit.onKindChosen(kind),
+                label: l10n.kinds.selectOrFallback(kindOption),
+                isSelected: kind == kindOption,
+                onTap: () => cubit.onKindChosen(kindOption),
               ),
           ],
         ),
@@ -100,7 +113,7 @@ class const _DatesView() extends StatelessWidget {
             for (var month = 1; month <= 12; month++)
               BaseSelectOption(value: month, label: l10n.months[month - 1]),
           ],
-          value: state.month,
+          value: selectedMonth,
           onChanged: cubit.onMonthChosen,
         ),
         const SizedBox(height: AppSpace.s12),
@@ -109,48 +122,59 @@ class const _DatesView() extends StatelessWidget {
           options: [
             for (var day = 1; day <= 31; day++) BaseSelectOption(value: day, label: '$day'),
           ],
-          value: state.day,
+          value: selectedDay,
           onChanged: cubit.onDayChosen,
         ),
         const SizedBox(height: AppSpace.s12),
         BaseTextField(
-          text: state.year,
+          text: year,
           label: l10n.yearLabel,
           hint: l10n.yearHint,
           helpText: l10n.yearHelp,
           onChanged: cubit.onYearChanged,
         ),
         const SizedBox(height: AppSpace.s24),
-        SkeletonizerResourceWidget<List<ImportantDate>>(
-          state.dates,
-          fakeValue: [ImportantDate.fake()],
-          successBuilder: (dates) => dates.isEmpty
-              ? BaseEmptyState(title: l10n.emptyDatesTitle, text: l10n.emptyDatesText)
-              : BaseListGroup(
-                  children: [
-                    for (final date in dates)
-                      BaseListTile(
-                        title: date.title,
-                        subtitle: l10n.dayLine(
-                          day: date.day,
-                          month: l10n.monthsShort[date.month - 1],
-                          kind: l10n.kinds.selectOrFallback(date.kind),
-                        ),
-                        trailing: BaseTextLink(
-                          text: l10n.delete,
-                          onPressed: () => cubit.deleteDate(date),
-                        ),
-                      ),
-                  ],
-                ),
-          failureBuilder: (_) => BaseEmptyState(
-            title: l10n.errorTitle,
-            text: l10n.errorText,
-            actionText: context.l10n.common.retry,
-            onAction: cubit.load,
-          ),
-        ),
+        const _DatesList(),
       ],
+    );
+  }
+}
+
+class const _DatesList() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.dates;
+    final dates = context.select((DatesCubit cubit) => cubit.state.dates);
+    final cubit = context.read<DatesCubit>();
+
+    return SkeletonizerResourceWidget<List<ImportantDate>>(
+      dates,
+      fakeValue: [ImportantDate.fake()],
+      successBuilder: (dates) => dates.isEmpty
+          ? BaseEmptyState(title: l10n.emptyDatesTitle, text: l10n.emptyDatesText)
+          : BaseListGroup(
+              children: [
+                for (final date in dates)
+                  BaseListTile(
+                    title: date.title,
+                    subtitle: l10n.dayLine(
+                      day: date.day,
+                      month: l10n.monthsShort[date.month - 1],
+                      kind: l10n.kinds.selectOrFallback(date.kind),
+                    ),
+                    trailing: BaseTextLink(
+                      text: l10n.delete,
+                      onPressed: () => cubit.deleteDate(date),
+                    ),
+                  ),
+              ],
+            ),
+      failureBuilder: (_) => BaseEmptyState(
+        title: l10n.errorTitle,
+        text: l10n.errorText,
+        actionText: context.l10n.common.retry,
+        onAction: cubit.load,
+      ),
     );
   }
 }
@@ -159,7 +183,7 @@ class const _GiftsView() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.dates;
-    final state = context.select((DatesCubit cubit) => cubit.state);
+    final giftTitle = context.select((DatesCubit cubit) => cubit.state.giftTitle);
     final cubit = context.read<DatesCubit>();
 
     return Column(
@@ -168,47 +192,58 @@ class const _GiftsView() extends StatelessWidget {
         BaseNote(text: l10n.giftsPrivate),
         const SizedBox(height: AppSpace.s12),
         BaseTextField(
-          text: state.giftTitle,
+          text: giftTitle,
           hint: l10n.giftHint,
           onChanged: cubit.onGiftTitleChanged,
           onSubmitted: (_) => cubit.addGift(),
           trailingAction: BaseTextLink(
             text: l10n.add,
-            onPressed: state.giftTitle.trim().isEmpty ? null : cubit.addGift,
+            onPressed: giftTitle.trim().isEmpty ? null : cubit.addGift,
           ),
         ),
         const SizedBox(height: AppSpace.s16),
-        SkeletonizerResourceWidget<List<GiftIdea>>(
-          state.gifts,
-          fakeValue: [GiftIdea.fake()],
-          successBuilder: (gifts) => gifts.isEmpty
-              ? BaseEmptyState(title: l10n.emptyGiftsTitle, text: l10n.emptyGiftsText)
-              : BaseListGroup(
-                  children: [
-                    for (final gift in gifts)
-                      BaseListTile(
-                        title: gift.title,
-                        subtitle: gift.isGiven ? l10n.given : null,
-                        leading: BaseCheckbox(
-                          value: gift.isGiven,
-                          semanticLabel: gift.title,
-                          onChanged: (_) => cubit.toggleGift(gift),
-                        ),
-                        trailing: BaseTextLink(
-                          text: l10n.delete,
-                          onPressed: () => cubit.deleteGift(gift),
-                        ),
-                      ),
-                  ],
-                ),
-          failureBuilder: (_) => BaseEmptyState(
-            title: l10n.errorTitle,
-            text: l10n.errorText,
-            actionText: context.l10n.common.retry,
-            onAction: cubit.load,
-          ),
-        ),
+        const _GiftsList(),
       ],
+    );
+  }
+}
+
+class const _GiftsList() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.dates;
+    final gifts = context.select((DatesCubit cubit) => cubit.state.gifts);
+    final cubit = context.read<DatesCubit>();
+
+    return SkeletonizerResourceWidget<List<GiftIdea>>(
+      gifts,
+      fakeValue: [GiftIdea.fake()],
+      successBuilder: (gifts) => gifts.isEmpty
+          ? BaseEmptyState(title: l10n.emptyGiftsTitle, text: l10n.emptyGiftsText)
+          : BaseListGroup(
+              children: [
+                for (final gift in gifts)
+                  BaseListTile(
+                    title: gift.title,
+                    subtitle: gift.isGiven ? l10n.given : null,
+                    leading: BaseCheckbox(
+                      value: gift.isGiven,
+                      semanticLabel: gift.title,
+                      onChanged: (_) => cubit.toggleGift(gift),
+                    ),
+                    trailing: BaseTextLink(
+                      text: l10n.delete,
+                      onPressed: () => cubit.deleteGift(gift),
+                    ),
+                  ),
+              ],
+            ),
+      failureBuilder: (_) => BaseEmptyState(
+        title: l10n.errorTitle,
+        text: l10n.errorText,
+        actionText: context.l10n.common.retry,
+        onAction: cubit.load,
+      ),
     );
   }
 }

@@ -23,7 +23,10 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.memories;
-    final state = context.select((MemoriesCubit cubit) => cubit.state);
+    final view = context.select((MemoriesCubit cubit) => cubit.state.view);
+    final showsFooter = context.select(
+      (MemoriesCubit cubit) => cubit.state.showsForm && cubit.state.view == MemoriesView.timeline,
+    );
     final cubit = context.read<MemoriesCubit>();
 
     return BaseView(
@@ -50,127 +53,190 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
                 const SizedBox(height: AppSpace.s16),
                 BaseSegmented(
                   segments: [l10n.segmentTimeline, l10n.segmentJar],
-                  selectedIndex: state.view.index,
+                  selectedIndex: view.index,
                   onSelectionChanged: (index) => cubit.onViewChanged(MemoriesView.values[index]),
                 ),
                 const SizedBox(height: AppSpace.s16),
-                if (state.view == MemoriesView.jar)
-                  const _JarResult()
-                else ...[
-                  SkeletonizerResourceWidget<List<Memory>>(
-                    state.memories,
-                    fakeValue: [Memory.fake()],
-                    successBuilder: (list) => Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        if (list.isEmpty)
-                          BaseEmptyState(title: l10n.emptyTitle, text: l10n.emptyText)
-                        else
-                          BaseListGroup(
-                            children: [
-                              for (final memory in list)
-                                BaseListTile(
-                                  title: memory.title,
-                                  subtitle: [
-                                    l10n.dateLine(
-                                      day: memory.happenedOn.day,
-                                      month: l10n.monthsShort[memory.happenedOn.month - 1],
-                                      year: memory.happenedOn.year,
-                                    ),
-                                    if (memory.place != null) memory.place!,
-                                  ].join(' · '),
-                                  trailing: BaseTextLink(
-                                    text: l10n.delete,
-                                    onPressed: () => cubit.delete(memory),
-                                  ),
-                                ),
-                            ],
-                          ),
-                        const SizedBox(height: AppSpace.s16),
-                        if (state.showsForm) ...[
-                          BaseTextField(
-                            text: state.title,
-                            label: l10n.titleLabel,
-                            hint: l10n.titleHint,
-                            onChanged: cubit.onTitleChanged,
-                          ),
-                          const SizedBox(height: AppSpace.s12),
-                          BaseTextField(
-                            text: state.place,
-                            label: l10n.placeLabel,
-                            hint: l10n.placeHint,
-                            helpText: state.placeLooksLikeAddress ? l10n.placeAddressNote : null,
-                            onChanged: cubit.onPlaceChanged,
-                          ),
-                          const SizedBox(height: AppSpace.s12),
-                          BaseTextArea(
-                            text: state.body,
-                            hint: l10n.bodyHint,
-                            maxLength: memoryBodyMaxLength,
-                            maxLines: 3,
-                            onChanged: cubit.onBodyChanged,
-                          ),
-                        ] else
-                          BaseListGroup(
-                            children: [
-                              BaseListTile(
-                                icon: AppIcons.plus,
-                                title: l10n.add,
-                                onTap: cubit.openForm,
-                              ),
-                            ],
-                          ),
-                        const SizedBox(height: AppSpace.s24),
-                        BaseSectionHeader(title: l10n.moreTitle),
-                        const SizedBox(height: AppSpace.s8),
-                        BaseListGroup(
-                          children: [
-                            BaseListTile(
-                              icon: AppIcons.book,
-                              title: l10n.historyTitle,
-                              showsChevron: true,
-                              titleMaxLines: 1,
-                              onTap: () => context.pushRoute(const HistoryRoute()),
-                            ),
-                            BaseListTile(
-                              icon: AppIcons.map_pin,
-                              title: l10n.placesTitle,
-                              showsChevron: true,
-                              titleMaxLines: 1,
-                              onTap: () => context.pushRoute(const PlacesRoute()),
-                            ),
-                            BaseListTile(
-                              icon: AppIcons.share,
-                              title: l10n.storyTitle,
-                              showsChevron: true,
-                              titleMaxLines: 1,
-                              onTap: () => context.pushRoute(const StoryRoute()),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    failureBuilder: (_) => BaseEmptyState(
-                      title: l10n.errorTitle,
-                      text: l10n.errorText,
-                      actionText: context.l10n.common.retry,
-                      onAction: cubit.load,
-                    ),
-                  ),
-                ],
+                if (view == MemoriesView.jar) const _JarResult() else const _MemoriesTimeline(),
               ],
             ),
-            footer: state.showsForm && state.view == MemoriesView.timeline
-                ? BaseButton(
-                    text: l10n.save,
-                    isEnabled: state.canSave,
-                    isLoading: state.saveAction.isLoading,
-                    onPressed: cubit.save,
-                  )
-                : null,
+            footer: showsFooter ? const _SaveButton() : null,
           ),
         ),
       ),
+    );
+  }
+}
+
+class const _MemoriesTimeline() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.memories;
+    final memories = context.select((MemoriesCubit cubit) => cubit.state.memories);
+    final cubit = context.read<MemoriesCubit>();
+
+    return SkeletonizerResourceWidget<List<Memory>>(
+      memories,
+      fakeValue: [Memory.fake()],
+      successBuilder: (list) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (list.isEmpty)
+            BaseEmptyState(title: l10n.emptyTitle, text: l10n.emptyText)
+          else
+            BaseListGroup(
+              children: [
+                for (final memory in list)
+                  BaseListTile(
+                    title: memory.title,
+                    subtitle: [
+                      l10n.dateLine(
+                        day: memory.happenedOn.day,
+                        month: l10n.monthsShort[memory.happenedOn.month - 1],
+                        year: memory.happenedOn.year,
+                      ),
+                      if (memory.place != null) memory.place!,
+                    ].join(' · '),
+                    trailing: BaseTextLink(
+                      text: l10n.delete,
+                      onPressed: () => cubit.delete(memory),
+                    ),
+                  ),
+              ],
+            ),
+          const SizedBox(height: AppSpace.s16),
+          const _MemoryComposer(),
+          const SizedBox(height: AppSpace.s24),
+          BaseSectionHeader(title: l10n.moreTitle),
+          const SizedBox(height: AppSpace.s8),
+          BaseListGroup(
+            children: [
+              BaseListTile(
+                icon: AppIcons.book,
+                title: l10n.historyTitle,
+                showsChevron: true,
+                titleMaxLines: 1,
+                onTap: () => context.pushRoute(const HistoryRoute()),
+              ),
+              BaseListTile(
+                icon: AppIcons.map_pin,
+                title: l10n.placesTitle,
+                showsChevron: true,
+                titleMaxLines: 1,
+                onTap: () => context.pushRoute(const PlacesRoute()),
+              ),
+              BaseListTile(
+                icon: AppIcons.share,
+                title: l10n.storyTitle,
+                showsChevron: true,
+                titleMaxLines: 1,
+                onTap: () => context.pushRoute(const StoryRoute()),
+              ),
+            ],
+          ),
+        ],
+      ),
+      failureBuilder: (_) => BaseEmptyState(
+        title: l10n.errorTitle,
+        text: l10n.errorText,
+        actionText: context.l10n.common.retry,
+        onAction: cubit.load,
+      ),
+    );
+  }
+}
+
+class const _MemoryComposer() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.memories;
+    final showsForm = context.select((MemoriesCubit cubit) => cubit.state.showsForm);
+    final cubit = context.read<MemoriesCubit>();
+
+    if (!showsForm) {
+      return BaseListGroup(
+        children: [BaseListTile(icon: AppIcons.plus, title: l10n.add, onTap: cubit.openForm)],
+      );
+    }
+
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _MemoryTitleField(),
+        SizedBox(height: AppSpace.s12),
+        _MemoryPlaceField(),
+        SizedBox(height: AppSpace.s12),
+        _MemoryBodyField(),
+      ],
+    );
+  }
+}
+
+class const _MemoryTitleField() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.memories;
+    final title = context.select((MemoriesCubit cubit) => cubit.state.title);
+    final cubit = context.read<MemoriesCubit>();
+
+    return BaseTextField(
+      text: title,
+      label: l10n.titleLabel,
+      hint: l10n.titleHint,
+      onChanged: cubit.onTitleChanged,
+    );
+  }
+}
+
+class const _MemoryPlaceField() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.memories;
+    final place = context.select((MemoriesCubit cubit) => cubit.state.place);
+    final looksLikeAddress = context.select(
+      (MemoriesCubit cubit) => cubit.state.placeLooksLikeAddress,
+    );
+    final cubit = context.read<MemoriesCubit>();
+
+    return BaseTextField(
+      text: place,
+      label: l10n.placeLabel,
+      hint: l10n.placeHint,
+      helpText: looksLikeAddress ? l10n.placeAddressNote : null,
+      onChanged: cubit.onPlaceChanged,
+    );
+  }
+}
+
+class const _MemoryBodyField() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.memories;
+    final body = context.select((MemoriesCubit cubit) => cubit.state.body);
+    final cubit = context.read<MemoriesCubit>();
+
+    return BaseTextArea(
+      text: body,
+      hint: l10n.bodyHint,
+      maxLength: memoryBodyMaxLength,
+      maxLines: 3,
+      onChanged: cubit.onBodyChanged,
+    );
+  }
+}
+
+class const _SaveButton() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final canSave = context.select((MemoriesCubit cubit) => cubit.state.canSave);
+    final isSaving = context.select((MemoriesCubit cubit) => cubit.state.saveAction.isLoading);
+    final cubit = context.read<MemoriesCubit>();
+
+    return BaseButton(
+      text: context.l10n.memories.save,
+      isEnabled: canSave,
+      isLoading: isSaving,
+      onPressed: cubit.save,
     );
   }
 }
