@@ -1061,6 +1061,12 @@ class _Translations$dates$en extends Translations$dates$pt {
   @override
   String get delete => 'Delete';
   @override
+  String get deleteTitle => 'Delete this date?';
+  @override
+  String get deleteText => 'It disappears from the calendar for both of you.';
+  @override
+  String get deleteConfirm => 'Delete';
+  @override
   String get add => 'Add';
   @override
   String get emptyDatesTitle => 'No dates yet';
@@ -2920,6 +2926,16 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get delete => 'Delete';
   @override
+  String get deleteTitle => 'Delete this memory?';
+  @override
+  String get deleteText => 'It disappears from the timeline for both of you.';
+  @override
+  String get deleteConfirm => 'Delete';
+  @override
+  String get detailPlace => 'Place';
+  @override
+  String get detailBody => 'How it went';
+  @override
   List<String> get monthsShort => [
     'Jan',
     'Feb',
@@ -3250,6 +3266,8 @@ class _Translations$notificationPermission$en extends Translations$notificationP
   String get allow => 'Allow';
   @override
   String get offBanner => 'Reminders are off. Turn them on in settings.';
+  @override
+  String get openSettings => 'Open settings';
   @override
   String get close => 'Close';
 }
@@ -4200,6 +4218,8 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   @override
   String get save => 'Save';
   @override
+  String get discardTitle => 'Discard this slip?';
+  @override
   late final _Translations$quickSlip$saved$en saved = _Translations$quickSlip$saved$en._(_root);
   @override
   Map<String, String> get errors => {
@@ -4756,6 +4776,8 @@ class _Translations$slipKind$en extends Translations$slipKind$pt {
   @override
   String get switcherTitle => 'Other ways to write it down';
   @override
+  String get quickEntry => 'Quick';
+  @override
   String get needEntry => 'I need…';
   @override
   Map<String, String> get kinds => {
@@ -4800,6 +4822,8 @@ class _Translations$slipKind$en extends Translations$slipKind$pt {
   @override
   String get save => 'Save';
   @override
+  String get discardTitle => 'Discard this slip?';
+  @override
   late final _Translations$slipKind$saved$en saved = _Translations$slipKind$saved$en._(_root);
   @override
   Map<String, String> get errors => {
@@ -4823,6 +4847,8 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   @override
   String get scopeAll => 'All';
   @override
+  String get scopeArchived => 'Archived';
+  @override
   String get search => 'Search';
   @override
   String get searchClose => 'Close search';
@@ -4832,6 +4858,8 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   String get searchEmptyTitle => 'Nothing found';
   @override
   String get searchEmptyText => 'Try another word.';
+  @override
+  String get clearSearch => 'Clear search';
   @override
   String get thisWeek => 'This week';
   @override
@@ -4865,6 +4893,14 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
     'did': 'Did something',
     'noticed': 'Noticed me',
     'helped': 'Helped',
+    'other': '',
+  };
+  @override
+  Map<String, String> get kinds => {
+    'quick': 'Quick',
+    'specific': 'Specific',
+    'if_then': 'If… then',
+    'invisible': 'Invisible',
     'other': '',
   };
   @override
@@ -7617,6 +7653,9 @@ extension on TranslationsEn {
           'dates.dayOnly' => ({required Object month, required Object day}) => '${month} ${day}',
           'dates.saveDate' => 'Save date',
           'dates.delete' => 'Delete',
+          'dates.deleteTitle' => 'Delete this date?',
+          'dates.deleteText' => 'It disappears from the calendar for both of you.',
+          'dates.deleteConfirm' => 'Delete',
           'dates.add' => 'Add',
           'dates.emptyDatesTitle' => 'No dates yet',
           'dates.emptyDatesText' => 'Keep birthdays and dates that matter. We remind you ahead.',
@@ -7763,14 +7802,14 @@ extension on TranslationsEn {
           'fightStyle.practices.pursue' => 'That helps you sort it out fast. Pausing before it gets worse and listening to the end is worth it.',
           'fightStyle.practices.withdraw' =>
             'That helps you pause before it gets worse. Pick a set way to come back.',
+          _ => null,
+        } ??
+        switch (path) {
           'fightStyle.practices.repair' =>
             'That helps you return after a fight. A short apology often does it.',
           'fightStyle.practices.avoid' =>
             'That helps you pause before it gets worse. Choose a short moment to come back to it.',
           'fightStyle.practices.other' => '',
-          _ => null,
-        } ??
-        switch (path) {
           'fightStyle.partnerSignal' => ({
             required Object name,
           }) => 'Agree on a signal with ${name} to come back.',
@@ -8470,12 +8509,12 @@ extension on TranslationsEn {
             'Reminder saved. Turn notifications on in settings to receive it.',
           'ideaDetail.reminderError' => 'Could not save the reminder. Try again.',
           'ideaDetail.emptyTitle' => 'No ideas right now',
-          'ideaDetail.emptyText' => 'Come back later. In the meantime, note a slip.',
-          'ideaDetail.errorTitle' => 'Could not load the idea',
-          'ideaDetail.errorText' => 'Try again in a moment.',
           _ => null,
         } ??
         switch (path) {
+          'ideaDetail.emptyText' => 'Come back later. In the meantime, note a slip.',
+          'ideaDetail.errorTitle' => 'Could not load the idea',
+          'ideaDetail.errorText' => 'Try again in a moment.',
           'intro.skip' => 'Skip',
           'intro.continueButton' => 'Continue',
           'intro.phase.title' => 'Where are you two right now?',
@@ -8784,6 +8823,11 @@ extension on TranslationsEn {
           'memories.add' => 'Add a memory',
           'memories.save' => 'Save memory',
           'memories.delete' => 'Delete',
+          'memories.deleteTitle' => 'Delete this memory?',
+          'memories.deleteText' => 'It disappears from the timeline for both of you.',
+          'memories.deleteConfirm' => 'Delete',
+          'memories.detailPlace' => 'Place',
+          'memories.detailBody' => 'How it went',
           'memories.monthsShort.0' => 'Jan',
           'memories.monthsShort.1' => 'Feb',
           'memories.monthsShort.2' => 'Mar',
@@ -8962,6 +9006,7 @@ extension on TranslationsEn {
           'notificationPermission.notNow' => 'Not now',
           'notificationPermission.allow' => 'Allow',
           'notificationPermission.offBanner' => 'Reminders are off. Turn them on in settings.',
+          'notificationPermission.openSettings' => 'Open settings',
           'notificationPermission.close' => 'Close',
           'notificationPreferences.title' => 'Notifications',
           'notificationPreferences.subtitle' => 'Choose what arrives and when. No pressure.',
@@ -9039,6 +9084,9 @@ extension on TranslationsEn {
           'pause.hint' => 'Write my own',
           'pause.messageErrors.empty' => 'Write a short message',
           'pause.messageErrors.tooLong' => 'The message is too long',
+          _ => null,
+        } ??
+        switch (path) {
           'pause.returnTitle' => 'I\'ll be back in',
           'pause.returns.oneHour' => '1 hour',
           'pause.returns.threeHours' => '3 hours',
@@ -9048,9 +9096,6 @@ extension on TranslationsEn {
           'pause.note' => 'You both see Today on pause. You can come back whenever you like.',
           'pause.send' => 'Send and pause',
           'pause.sentTitle' => 'Pause sent',
-          _ => null,
-        } ??
-        switch (path) {
           'pause.sentText' =>
             'Today is on pause for both of you. When you\'re ready, come back there.',
           'pause.done' => 'Done',
@@ -9439,6 +9484,7 @@ extension on TranslationsEn {
           'quickSlip.privacyNote' =>
             'It stays private. On Sunday you choose what goes on the card.',
           'quickSlip.save' => 'Save',
+          'quickSlip.discardTitle' => 'Discard this slip?',
           'quickSlip.saved.title' => 'Saved',
           'quickSlip.saved.added' => 'Slip added to this week.',
           'quickSlip.saved.queued' =>
@@ -9608,6 +9654,9 @@ extension on TranslationsEn {
           'repair.guided.followUpTitle' => 'Want a reminder to check in on how you are?',
           'repair.guided.followUps.none' => 'No need',
           'repair.guided.followUps.tomorrow' => 'Tomorrow',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.guided.followUps.inThreeDays' => 'In 3 days',
           'repair.guided.followUps.other' => '',
           'repair.guided.followUpNote' =>
@@ -9619,9 +9668,6 @@ extension on TranslationsEn {
           'repair.guided.loadErrorText' => 'Nothing was lost. Try again.',
           'repair.learning.title' => 'What did you learn?',
           'repair.learning.titleHighlight' => 'learn',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.learning.subtitle' => 'It stays with you and can be deleted whenever you like.',
           'repair.learning.kinds.trigger' => 'What bothers me',
           'repair.learning.kinds.need' => 'What I need',
@@ -9800,6 +9846,7 @@ extension on TranslationsEn {
           'slipDetail.errors.other' => 'Couldn\'t do that right now. Try again.',
           'slipDetail.discardTitle' => 'Discard this slip?',
           'slipKind.switcherTitle' => 'Other ways to write it down',
+          'slipKind.quickEntry' => 'Quick',
           'slipKind.needEntry' => 'I need…',
           'slipKind.kinds.specific' => 'Specific',
           'slipKind.kinds.if_then' => 'If… then',
@@ -9838,6 +9885,7 @@ extension on TranslationsEn {
           'slipKind.planErrors.empty' => 'Say what you will do',
           'slipKind.planErrors.tooLong' => 'This is too long',
           'slipKind.save' => 'Save',
+          'slipKind.discardTitle' => 'Discard this slip?',
           'slipKind.saved.title' => 'Saved',
           'slipKind.saved.added' => 'Written down.',
           'slipKind.saved.queued' =>
@@ -9850,11 +9898,13 @@ extension on TranslationsEn {
           'slipsList.title' => 'Slips',
           'slipsList.scopeWeek' => 'This week',
           'slipsList.scopeAll' => 'All',
+          'slipsList.scopeArchived' => 'Archived',
           'slipsList.search' => 'Search',
           'slipsList.searchClose' => 'Close search',
           'slipsList.searchHint' => 'Search your slips',
           'slipsList.searchEmptyTitle' => 'Nothing found',
           'slipsList.searchEmptyText' => 'Try another word.',
+          'slipsList.clearSearch' => 'Clear search',
           'slipsList.thisWeek' => 'This week',
           'slipsList.lastWeek' => 'Last week',
           'slipsList.weekRange' => ({
@@ -9893,6 +9943,11 @@ extension on TranslationsEn {
           'slipsList.categories.noticed' => 'Noticed me',
           'slipsList.categories.helped' => 'Helped',
           'slipsList.categories.other' => '',
+          'slipsList.kinds.quick' => 'Quick',
+          'slipsList.kinds.specific' => 'Specific',
+          'slipsList.kinds.if_then' => 'If… then',
+          'slipsList.kinds.invisible' => 'Invisible',
+          'slipsList.kinds.other' => '',
           'slipsList.pastCards' => 'Past cards',
           'slipsList.emptyTitle' => 'Nothing yet',
           'slipsList.emptyText' => 'A slip is one good thing, in one line.',
@@ -10159,6 +10214,9 @@ extension on TranslationsEn {
           'today.months.3' => 'April',
           'today.months.4' => 'May',
           'today.months.5' => 'June',
+          _ => null,
+        } ??
+        switch (path) {
           'today.months.6' => 'July',
           'today.months.7' => 'August',
           'today.months.8' => 'September',
@@ -10206,9 +10264,6 @@ extension on TranslationsEn {
                 ),
           'today.weekHintEmpty' => 'no rush',
           'today.weekHint' => 'card on Sunday',
-          _ => null,
-        } ??
-        switch (path) {
           'today.forToday' => 'For today',
           'today.ideaLabel' => 'Idea of the day',
           'today.slipsThisWeekPrivate' =>
