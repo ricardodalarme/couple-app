@@ -1,5 +1,5 @@
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/lists/presentation/widgets/text_prompt_sheet.dart';
+import 'package:flutter_bloc_starter/features/lists/presentation/text_prompt/text_prompt_sheet.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 

@@ -5,8 +5,8 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea.dart';
+import 'package:flutter_bloc_starter/features/gifts/presentation/gift_sheet/gift_sheet.dart';
 import 'package:flutter_bloc_starter/features/gifts/presentation/gifts/cubit/gifts_cubit.dart';
-import 'package:flutter_bloc_starter/features/gifts/presentation/gifts/widgets/gift_sheet.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 

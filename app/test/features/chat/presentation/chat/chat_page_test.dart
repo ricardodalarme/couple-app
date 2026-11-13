@@ -10,7 +10,7 @@ import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_reposi
 import 'package:flutter_bloc_starter/features/chat/data/repositories/learned_items_repository.dart';
 import 'package:flutter_bloc_starter/features/chat/presentation/chat/chat_page.dart';
 import 'package:flutter_bloc_starter/features/chat/presentation/chat/cubit/chat_cubit.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/chat/widgets/save_learning_sheet.dart';
+import 'package:flutter_bloc_starter/features/chat/presentation/save_learning/save_learning_sheet.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

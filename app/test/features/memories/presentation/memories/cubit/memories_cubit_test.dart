@@ -3,7 +3,6 @@ import 'package:flutter_bloc_starter/features/memories/data/models/memory.dart';
 import 'package:flutter_bloc_starter/features/memories/data/repositories/memories_repository.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/cubit/memories_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockMemoriesRepository() extends Mock implements MemoriesRepository;
@@ -32,50 +31,10 @@ void main() {
 
   MemoriesCubit build() => MemoriesCubit(memoriesRepository: repository);
 
-  test('saving validates the title and the note limits', () async {
-    final cubit = build()
-      ..onBodyChanged('a' * (memoryBodyMaxLength + 1))
-      ..onTitleChanged('Primeiro jantar');
-
-    await cubit.save();
-
-    expect(cubit.state.body.error, MaxLengthValidationError.tooLong);
-    verifyNever(
-      () => repository.addMemory(
-        id: any(named: 'id'),
-        title: any(named: 'title'),
-        body: any(named: 'body'),
-        place: any(named: 'place'),
-        happenedOn: any(named: 'happenedOn'),
-      ),
-    );
-  });
-
-  test('saving without a title reports the field error', () async {
+  test('adds the memory and reads the list again', () async {
     final cubit = build();
 
-    await cubit.save();
-
-    expect(cubit.state.title.error, NonEmptyValidationError.empty);
-  });
-
-  test('typing clears a field error', () async {
-    final cubit = build();
-    await cubit.save();
-    expect(cubit.state.title.isValid, isFalse);
-
-    cubit.onTitleChanged('Primeiro jantar');
-
-    expect(cubit.state.title.isValid, isTrue);
-  });
-
-  test('saving clears the form and reads again', () async {
-    final cubit = build()
-      ..onTitleChanged('Primeiro jantar')
-      ..onBodyChanged('Foi lindo')
-      ..onPlaceChanged('Paraty');
-
-    await cubit.save();
+    await cubit.add(title: 'Primeiro jantar', body: 'Foi lindo', place: 'Paraty');
 
     verify(
       () => repository.addMemory(
@@ -86,11 +45,11 @@ void main() {
         happenedOn: any(named: 'happenedOn'),
       ),
     ).called(1);
-    expect(cubit.state.title.value, '');
     verify(() => repository.getMemories()).called(1);
+    expect(cubit.state.saveAction, isA<Initial>());
   });
 
-  test('a failed save keeps the text', () async {
+  test('a failed add reports the failure and returns to initial', () async {
     when(
       () => repository.addMemory(
         id: any(named: 'id'),
@@ -100,11 +59,15 @@ void main() {
         happenedOn: any(named: 'happenedOn'),
       ),
     ).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
-    final cubit = build()..onTitleChanged('Primeiro jantar');
+    final cubit = build();
+    final actions = <Resource<void>>[];
+    final subscription = cubit.stream.listen((state) => actions.add(state.saveAction));
+    addTearDown(subscription.cancel);
 
-    await cubit.save();
+    await cubit.add(title: 'Primeiro jantar', body: '', place: '');
+    await pumpEventQueue();
 
-    expect(cubit.state.title.value, 'Primeiro jantar');
+    expect(actions.whereType<Failure>(), isNotEmpty);
     expect(cubit.state.saveAction, isA<Initial>());
   });
 

@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/memories/data/models/memory.dart';
+import 'package:flutter_bloc_starter/features/memories/presentation/add_memory/add_memory_sheet.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/cubit/memories_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -24,9 +25,6 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
   Widget build(BuildContext context) {
     final l10n = context.l10n.memories;
     final view = context.select((MemoriesCubit cubit) => cubit.state.view);
-    final showsFooter = context.select(
-      (MemoriesCubit cubit) => cubit.state.showsForm && cubit.state.view == MemoriesView.timeline,
-    );
     final cubit = context.read<MemoriesCubit>();
 
     return BaseView(
@@ -60,7 +58,6 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
                 if (view == MemoriesView.jar) const _JarResult() else const _MemoriesTimeline(),
               ],
             ),
-            footer: showsFooter ? const _SaveButton() : null,
           ),
         ),
       ),
@@ -105,7 +102,7 @@ class const _MemoriesTimeline() extends StatelessWidget {
               ],
             ),
           const SizedBox(height: AppSpace.s16),
-          const _MemoryComposer(),
+          const _AddMemoryTile(),
           const SizedBox(height: AppSpace.s24),
           BaseSectionHeader(title: l10n.moreTitle),
           const SizedBox(height: AppSpace.s8),
@@ -146,96 +143,31 @@ class const _MemoriesTimeline() extends StatelessWidget {
   }
 }
 
-class const _MemoryComposer() extends StatelessWidget {
+class const _AddMemoryTile() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n.memories;
-    final showsForm = context.select((MemoriesCubit cubit) => cubit.state.showsForm);
-    final cubit = context.read<MemoriesCubit>();
-
-    if (!showsForm) {
-      return BaseListGroup(
-        children: [BaseListTile(icon: AppIcons.plus, title: l10n.add, onTap: cubit.openForm)],
-      );
-    }
-
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return BaseListGroup(
       children: [
-        _MemoryTitleField(),
-        SizedBox(height: AppSpace.s12),
-        _MemoryPlaceField(),
-        SizedBox(height: AppSpace.s12),
-        _MemoryBodyField(),
+        BaseListTile(
+          icon: AppIcons.plus,
+          title: context.l10n.memories.add,
+          onTap: () => _openAddMemorySheet(context),
+        ),
       ],
     );
   }
 }
 
-class const _MemoryTitleField() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.memories;
-    final title = context.select((MemoriesCubit cubit) => cubit.state.title);
-    final cubit = context.read<MemoriesCubit>();
+Future<void> _openAddMemorySheet(BuildContext context) async {
+  final cubit = context.read<MemoriesCubit>();
+  final draft = await BaseSheet.show<AddMemoryDraft>(
+    context: context,
+    title: context.l10n.memories.add,
+    child: const AddMemorySheet(),
+  );
+  if (draft == null || !context.mounted) return;
 
-    return BaseTextField(
-      text: title.value,
-      label: l10n.titleLabel,
-      hint: l10n.titleHint,
-      errorText: l10n.titleErrors.selectOrNull(title.errorName),
-      onChanged: cubit.onTitleChanged,
-    );
-  }
-}
-
-class const _MemoryPlaceField() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.memories;
-    final place = context.select((MemoriesCubit cubit) => cubit.state.place);
-    final looksLikeAddress = context.select(
-      (MemoriesCubit cubit) => cubit.state.placeLooksLikeAddress,
-    );
-    final cubit = context.read<MemoriesCubit>();
-
-    return BaseTextField(
-      text: place.value,
-      label: l10n.placeLabel,
-      hint: l10n.placeHint,
-      helpText: looksLikeAddress ? l10n.placeAddressNote : null,
-      errorText: l10n.placeErrors.selectOrNull(place.errorName),
-      onChanged: cubit.onPlaceChanged,
-    );
-  }
-}
-
-class const _MemoryBodyField() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.memories;
-    final body = context.select((MemoriesCubit cubit) => cubit.state.body);
-    final cubit = context.read<MemoriesCubit>();
-
-    return BaseTextArea(
-      text: body.value,
-      hint: l10n.bodyHint,
-      maxLength: memoryBodyMaxLength,
-      maxLines: 3,
-      errorText: l10n.bodyErrors.selectOrNull(body.errorName),
-      onChanged: cubit.onBodyChanged,
-    );
-  }
-}
-
-class const _SaveButton() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final isSaving = context.select((MemoriesCubit cubit) => cubit.state.saveAction.isLoading);
-    final cubit = context.read<MemoriesCubit>();
-
-    return BaseButton(text: context.l10n.memories.save, isLoading: isSaving, onPressed: cubit.save);
-  }
+  await cubit.add(title: draft.title, body: draft.body, place: draft.place);
 }
 
 class const _JarResult() extends StatelessWidget {

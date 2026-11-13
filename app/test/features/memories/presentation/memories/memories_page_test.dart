@@ -19,7 +19,18 @@ void main() {
   setUp(() {
     repository = _MockMemoriesRepository();
     when(() => repository.getMemories()).thenAnswer((_) async => []);
+    when(
+      () => repository.addMemory(
+        id: any(named: 'id'),
+        title: any(named: 'title'),
+        body: any(named: 'body'),
+        place: any(named: 'place'),
+        happenedOn: any(named: 'happenedOn'),
+      ),
+    ).thenAnswer((_) async {});
   });
+
+  setUpAll(() => registerFallbackValue(DateTime(2026)));
 
   Future<MemoriesCubit> build() async {
     final cubit = MemoriesCubit(memoriesRepository: repository);
@@ -34,27 +45,55 @@ void main() {
     await tester.pump();
   }
 
-  testWidgets('the save footer waits for a dirty form', (tester) async {
+  testWidgets('adding a memory opens the form in a sheet and saves it', (tester) async {
     final cubit = await build();
 
     await pumpPage(tester, cubit);
 
     expect(find.byType(BaseEmptyState), findsOneWidget);
-    expect(find.byType(BaseButton), findsNothing);
     expect(find.text('Adicionar memória'), findsOneWidget);
-    expect(find.text('Uma memória'), findsNothing);
 
-    cubit.onTitleChanged('Primeiro jantar');
-    await tester.pump();
-    await tester.pump();
+    await tester.tap(find.text('Adicionar memória'));
+    await tester.pumpAndSettle();
 
-    expect(find.byType(BaseButton), findsOneWidget);
-    expect(tester.widget<BaseButton>(find.byType(BaseButton)).isEnabled, isTrue);
+    expect(find.text('Uma memória'), findsOneWidget);
+    expect(find.text('Guardar memória'), findsOneWidget);
 
-    cubit.onTitleChanged('');
-    await tester.pump();
-    await tester.pump();
+    await tester.enterText(find.byType(BaseTextField).first, 'Primeiro jantar');
+    await tester.tap(find.text('Guardar memória'));
+    await tester.pumpAndSettle();
 
-    expect(find.byType(BaseButton), findsNothing);
+    verify(
+      () => repository.addMemory(
+        id: any(named: 'id'),
+        title: 'Primeiro jantar',
+        body: '',
+        place: '',
+        happenedOn: any(named: 'happenedOn'),
+      ),
+    ).called(1);
+  });
+
+  testWidgets('an empty title keeps the sheet open with the field error', (tester) async {
+    final cubit = await build();
+
+    await pumpPage(tester, cubit);
+    await tester.tap(find.text('Adicionar memória'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Guardar memória'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Dê um título a esta memória'), findsOneWidget);
+    expect(find.text('Guardar memória'), findsOneWidget);
+    verifyNever(
+      () => repository.addMemory(
+        id: any(named: 'id'),
+        title: any(named: 'title'),
+        body: any(named: 'body'),
+        place: any(named: 'place'),
+        happenedOn: any(named: 'happenedOn'),
+      ),
+    );
   });
 }

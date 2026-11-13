@@ -1,6 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/chat/widgets/save_learning_sheet.dart';
+import 'package:flutter_bloc_starter/features/chat/presentation/save_learning/save_learning_sheet.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 

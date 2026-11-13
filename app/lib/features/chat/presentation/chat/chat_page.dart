@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
 import 'package:flutter_bloc_starter/features/chat/presentation/chat/cubit/chat_cubit.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/chat/widgets/save_learning_sheet.dart';
+import 'package:flutter_bloc_starter/features/chat/presentation/save_learning/save_learning_sheet.dart';
 import 'package:flutter_bloc_starter/features/plus/presentation/lock/plus_lock.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
