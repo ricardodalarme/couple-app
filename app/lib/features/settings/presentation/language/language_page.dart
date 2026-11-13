@@ -39,8 +39,8 @@ class const LanguagePage({super.key}) extends StatelessWidget implements AutoRou
                   ),
                   BaseListTile(
                     title: l10n.languageEnglish,
+                    subtitle: l10n.comingSoon,
                     icon: AppIcons.globe,
-                    trailing: BaseTag(text: l10n.comingSoon),
                   ),
                 ],
               ),

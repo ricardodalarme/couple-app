@@ -32,7 +32,7 @@ void main() {
     expect(portuguese.isSelected, isTrue);
     expect(find.byType(BaseOptionTile), findsOneWidget);
     expect(english.onTap, isNull);
-    expect(find.text('EM BREVE'), findsOneWidget);
+    expect(find.text('Em breve'), findsOneWidget);
     expect(find.text('O inglês fica completo depois.'), findsOneWidget);
   });
 }
