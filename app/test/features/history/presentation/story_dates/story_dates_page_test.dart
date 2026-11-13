@@ -1,4 +1,5 @@
 import 'package:design_system/design_system.dart';
+import 'package:design_system/design_system_l10n.dart' as design_system_l10n;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
 import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
@@ -14,7 +15,10 @@ class _MockHistoryRepository() extends Mock implements HistoryRepository;
 void main() {
   late HistoryRepository repository;
 
-  setUpAll(() => registerFallbackValue(DateTime(2026)));
+  setUpAll(() {
+    registerFallbackValue(DateTime(2026));
+    design_system_l10n.LocaleSettings.setLocaleSync(design_system_l10n.AppLocale.pt);
+  });
 
   setUp(() {
     repository = _MockHistoryRepository();
@@ -68,7 +72,7 @@ void main() {
       find.descendant(of: find.byType(BaseSheet), matching: find.text('Começamos a namorar')),
       findsOneWidget,
     );
-    expect(find.text('Confirm'), findsOneWidget);
+    expect(find.text('Confirmar'), findsOneWidget);
   });
 
   testWidgets('confirming the picker saves the story date', (tester) async {
@@ -76,7 +80,7 @@ void main() {
 
     await tester.tap(find.text('Começamos a namorar'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Confirm'));
+    await tester.tap(find.text('Confirmar'));
     await tester.pumpAndSettle();
 
     verify(
