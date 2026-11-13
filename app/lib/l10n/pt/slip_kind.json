@@ -55,6 +55,7 @@
     "tooLong": "Isto está muito longo"
   },
   "save": "Salvar",
+  "discardTitle": "Descartar este slip?",
   "saved": {
     "title": "Salvo",
     "added": "Registrado.",

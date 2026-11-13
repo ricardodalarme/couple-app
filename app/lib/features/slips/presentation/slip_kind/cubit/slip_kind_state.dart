@@ -8,6 +8,13 @@ final class const SlipKindState({
   final String? workArea,
   final Resource<SlipSaveOutcome> saveAction = const Initial(),
 }) with Equatable {
+  /// Whether the form holds text or a choice that would be lost.
+  bool get hasDraft =>
+      text.value.trim().isNotEmpty ||
+      feeling.value.trim().isNotEmpty ||
+      plan.value.trim().isNotEmpty ||
+      workArea != null;
+
   SlipKindState copyWith({
     String? kind,
     FormInput<String>? text,

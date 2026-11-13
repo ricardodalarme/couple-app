@@ -4198,6 +4198,8 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   @override
   String get save => 'Save';
   @override
+  String get discardTitle => 'Discard this slip?';
+  @override
   late final _Translations$quickSlip$saved$en saved = _Translations$quickSlip$saved$en._(_root);
   @override
   Map<String, String> get errors => {
@@ -4800,6 +4802,8 @@ class _Translations$slipKind$en extends Translations$slipKind$pt {
   @override
   String get save => 'Save';
   @override
+  String get discardTitle => 'Discard this slip?';
+  @override
   late final _Translations$slipKind$saved$en saved = _Translations$slipKind$saved$en._(_root);
   @override
   Map<String, String> get errors => {
@@ -4869,6 +4873,14 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
     'did': 'Did something',
     'noticed': 'Noticed me',
     'helped': 'Helped',
+    'other': '',
+  };
+  @override
+  Map<String, String> get kinds => {
+    'quick': 'Quick',
+    'specific': 'Specific',
+    'if_then': 'If… then',
+    'invisible': 'Invisible',
     'other': '',
   };
   @override
@@ -9441,6 +9453,7 @@ extension on TranslationsEn {
           'quickSlip.privacyNote' =>
             'It stays private. On Sunday you choose what goes on the card.',
           'quickSlip.save' => 'Save',
+          'quickSlip.discardTitle' => 'Discard this slip?',
           'quickSlip.saved.title' => 'Saved',
           'quickSlip.saved.added' => 'Slip added to this week.',
           'quickSlip.saved.queued' =>
@@ -9621,10 +9634,10 @@ extension on TranslationsEn {
           'repair.guided.loadErrorText' => 'Nothing was lost. Try again.',
           'repair.learning.title' => 'What did you learn?',
           'repair.learning.titleHighlight' => 'learn',
-          'repair.learning.subtitle' => 'It stays with you and can be deleted whenever you like.',
           _ => null,
         } ??
         switch (path) {
+          'repair.learning.subtitle' => 'It stays with you and can be deleted whenever you like.',
           'repair.learning.kinds.trigger' => 'What bothers me',
           'repair.learning.kinds.need' => 'What I need',
           'repair.learning.kinds.good_fix' => 'What helped',
@@ -9841,6 +9854,7 @@ extension on TranslationsEn {
           'slipKind.planErrors.empty' => 'Say what you will do',
           'slipKind.planErrors.tooLong' => 'This is too long',
           'slipKind.save' => 'Save',
+          'slipKind.discardTitle' => 'Discard this slip?',
           'slipKind.saved.title' => 'Saved',
           'slipKind.saved.added' => 'Written down.',
           'slipKind.saved.queued' =>
@@ -9898,6 +9912,11 @@ extension on TranslationsEn {
           'slipsList.categories.noticed' => 'Noticed me',
           'slipsList.categories.helped' => 'Helped',
           'slipsList.categories.other' => '',
+          'slipsList.kinds.quick' => 'Quick',
+          'slipsList.kinds.specific' => 'Specific',
+          'slipsList.kinds.if_then' => 'If… then',
+          'slipsList.kinds.invisible' => 'Invisible',
+          'slipsList.kinds.other' => '',
           'slipsList.pastCards' => 'Past cards',
           'slipsList.emptyTitle' => 'Nothing yet',
           'slipsList.emptyText' => 'A slip is one good thing, in one line.',
@@ -10192,6 +10211,9 @@ extension on TranslationsEn {
                   other: '${count} days',
                 ),
           'today.togetherChipAction' => 'Open our story',
+          _ => null,
+        } ??
+        switch (path) {
           'today.togetherJoin' => ({
             required Object first,
             required Object second,
@@ -10209,9 +10231,6 @@ extension on TranslationsEn {
                   one: '1 slip this week',
                   other: '${count} slips this week',
                 ),
-          _ => null,
-        } ??
-        switch (path) {
           'today.weekHintEmpty' => 'no rush',
           'today.weekHint' => 'card on Sunday',
           'today.forToday' => 'For today',

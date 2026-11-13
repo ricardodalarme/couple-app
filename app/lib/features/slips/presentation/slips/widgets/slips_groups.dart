@@ -55,9 +55,12 @@ class const SlipsGroups({required final List<SlipEntry> slips, super.key}) exten
     final l10n = context.l10n.slipsList;
     final day = l10n.weekdaysShort[slip.createdAt.toLocal().weekday - 1];
     final category = slip.category;
-    if (category == null) return day;
+    if (category != null) {
+      return l10n.dayLine(weekday: day, category: l10n.categories.selectOrFallback(category));
+    }
+    if (slip.kind == 'quick') return day;
 
-    return l10n.dayLine(weekday: day, category: l10n.categories.selectOrFallback(category));
+    return l10n.dayLine(weekday: day, category: l10n.kinds.selectOrFallback(slip.kind));
   }
 }
 

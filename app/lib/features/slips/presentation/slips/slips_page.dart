@@ -149,12 +149,15 @@ class const _Results({required final List<SlipEntry> items}) extends StatelessWi
       children: [
         SlipsGroups(slips: matches),
         const SizedBox(height: AppSpace.s16),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: BaseTextLink(
-            text: l10n.pastCards,
-            onPressed: () => context.pushRoute(const CardsListRoute()),
-          ),
+        BaseListGroup(
+          children: [
+            BaseListTile(
+              title: l10n.pastCards,
+              showsChevron: true,
+              titleMaxLines: 1,
+              onTap: () => context.pushRoute(const CardsListRoute()),
+            ),
+          ],
         ),
       ],
     );

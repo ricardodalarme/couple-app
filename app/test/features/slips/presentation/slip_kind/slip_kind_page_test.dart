@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/_shared/presentation/forms/discard_changes.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/slip_kind_page.dart';
@@ -27,6 +28,7 @@ void main() {
     expect(find.text('Invisível'), findsOneWidget);
     expect(find.text('Rápido'), findsOneWidget);
     expect(find.text('Preciso de…'), findsOneWidget);
+    expect(tester.widget<DirtyFormGuard>(find.byType(DirtyFormGuard)).isDirty, isTrue);
   });
 
   testWidgets('focusing the if-then form scrolls the plan into view', (tester) async {

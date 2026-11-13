@@ -55,6 +55,7 @@
     "tooLong": "This is too long"
   },
   "save": "Save",
+  "discardTitle": "Discard this slip?",
   "saved": {
     "title": "Saved",
     "added": "Written down.",

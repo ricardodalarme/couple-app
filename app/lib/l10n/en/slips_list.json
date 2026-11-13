@@ -23,6 +23,13 @@
     "helped": "Helped",
     "other": ""
   },
+  "kinds(map)": {
+    "quick": "Quick",
+    "specific": "Specific",
+    "if_then": "If… then",
+    "invisible": "Invisible",
+    "other": ""
+  },
   "pastCards": "Past cards",
   "emptyTitle": "Nothing yet",
   "emptyText": "A slip is one good thing, in one line.",

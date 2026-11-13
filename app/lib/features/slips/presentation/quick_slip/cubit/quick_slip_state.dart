@@ -10,6 +10,9 @@ final class const QuickSlipState({
   /// Whether the saved confirmation is showing.
   bool get isSaved => saveAction is Success;
 
+  /// Whether there is text or a category to lose.
+  bool get hasDraft => text.value.trim().isNotEmpty || category != null;
+
   QuickSlipState copyWith({
     FormInput<String>? text,
     String? category,

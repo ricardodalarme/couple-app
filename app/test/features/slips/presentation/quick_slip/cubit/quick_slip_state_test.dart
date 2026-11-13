@@ -25,4 +25,11 @@ void main() {
     expect(const QuickSlipState(saveAction: Success(SlipSaveOutcome.synced)).isSaved, isTrue);
     expect(const QuickSlipState(saveAction: Success(SlipSaveOutcome.queued)).isSaved, isTrue);
   });
+
+  test('hasDraft is true only while there is something to lose', () {
+    expect(const QuickSlipState().hasDraft, isFalse);
+    expect(const QuickSlipState(text: FormInput('  ')).hasDraft, isFalse);
+    expect(const QuickSlipState(text: FormInput('Fez café')).hasDraft, isTrue);
+    expect(const QuickSlipState(category: 'did').hasDraft, isTrue);
+  });
 }

@@ -181,6 +181,7 @@ class SlipRepository({
             SlipEntry(
               id: edge.node.id,
               body: edge.node.body,
+              kind: edge.node.kind.name,
               category: edge.node.category,
               createdAt: edge.node.createdAt,
             ),

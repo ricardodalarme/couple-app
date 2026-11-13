@@ -79,7 +79,8 @@ void main() {
       expect(find.byType(BaseEmptyState), findsNothing);
       expect(find.byType(BaseChoiceChip), findsNWidgets(3));
       expect(find.text('Arquivados'), findsOneWidget);
-      expect(find.byType(BaseTextLink), findsOneWidget);
+      expect(find.byType(BaseTextLink), findsNothing);
+      expect(find.text('Cartões anteriores'), findsOneWidget);
       expect(find.byType(BaseRoundButton), findsOneWidget);
       expect(find.byType(SlipsGroups), findsOneWidget);
       expect(find.text('Fez café sem eu pedir'), findsOneWidget);
@@ -125,5 +126,23 @@ void main() {
     expect(find.text('Nada encontrado'), findsOneWidget);
     expect(find.text('Nada ainda'), findsNothing);
     expect(find.text('Limpar busca'), findsOneWidget);
+  });
+
+  testWidgets('a detailed slip shows its kind on the list row', (tester) async {
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      stubPage([
+        SlipEntry(
+          id: 'a',
+          body: 'Deixou um bilhete no espelho',
+          kind: 'specific',
+          createdAt: clock.now(),
+        ),
+      ]);
+      final cubit = await build();
+
+      await pumpPage(tester, cubit);
+
+      expect(find.text('Ter · Específico'), findsOneWidget);
+    });
   });
 }

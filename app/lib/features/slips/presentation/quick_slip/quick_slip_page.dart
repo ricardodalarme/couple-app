@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/_shared/presentation/forms/discard_changes.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/widgets/quick_slip_form.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/widgets/quick_slip_saved.dart';
@@ -20,15 +21,23 @@ class const QuickSlipPage({super.key}) extends StatelessWidget implements AutoRo
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n.quickSlip;
     final isSaved = context.select((QuickSlipCubit cubit) => cubit.state.isSaved);
+    final hasDraft = context.select((QuickSlipCubit cubit) => cubit.state.hasDraft);
 
     return BaseView(
       appBar: BaseAppBar(onClose: () => context.router.maybePop()),
-      body: BlocListener<QuickSlipCubit, QuickSlipState>(
-        listenWhen: (previous, current) =>
-            previous.saveAction != current.saveAction || previous.undoAction != current.undoAction,
-        listener: _onStateChanged,
-        child: isSaved ? const QuickSlipSaved() : const QuickSlipForm(),
+      body: DirtyFormGuard(
+        isDirty: !isSaved && hasDraft,
+        title: l10n.discardTitle,
+        text: context.l10n.common.discardText,
+        child: BlocListener<QuickSlipCubit, QuickSlipState>(
+          listenWhen: (previous, current) =>
+              previous.saveAction != current.saveAction ||
+              previous.undoAction != current.undoAction,
+          listener: _onStateChanged,
+          child: isSaved ? const QuickSlipSaved() : const QuickSlipForm(),
+        ),
       ),
     );
   }

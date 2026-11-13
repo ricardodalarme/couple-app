@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/_shared/presentation/forms/discard_changes.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/widgets/slip_kind_form.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/widgets/slip_kind_saved.dart';
@@ -24,14 +25,21 @@ class const SlipKindPage({
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n.slipKind;
     final isSaved = context.select((SlipKindCubit cubit) => cubit.state.saveAction is Success);
+    final hasDraft = context.select((SlipKindCubit cubit) => cubit.state.hasDraft);
 
     return BaseView(
       appBar: BaseAppBar(onClose: () => context.router.maybePop()),
-      body: BlocListener<SlipKindCubit, SlipKindState>(
-        listenWhen: (previous, current) => previous.saveAction != current.saveAction,
-        listener: _onStateChanged,
-        child: isSaved ? const SlipKindSaved() : const SlipKindForm(),
+      body: DirtyFormGuard(
+        isDirty: !isSaved && hasDraft,
+        title: l10n.discardTitle,
+        text: context.l10n.common.discardText,
+        child: BlocListener<SlipKindCubit, SlipKindState>(
+          listenWhen: (previous, current) => previous.saveAction != current.saveAction,
+          listener: _onStateChanged,
+          child: isSaved ? const SlipKindSaved() : const SlipKindForm(),
+        ),
       ),
     );
   }

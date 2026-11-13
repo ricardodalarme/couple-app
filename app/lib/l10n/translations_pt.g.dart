@@ -5183,6 +5183,9 @@ class Translations$quickSlip$pt {
   /// pt: 'Salvar'
   String get save => 'Salvar';
 
+  /// pt: 'Descartar este slip?'
+  String get discardTitle => 'Descartar este slip?';
+
   late final Translations$quickSlip$saved$pt saved = Translations$quickSlip$saved$pt.internal(
     _root,
   );
@@ -5918,6 +5921,9 @@ class Translations$slipKind$pt {
   /// pt: 'Salvar'
   String get save => 'Salvar';
 
+  /// pt: 'Descartar este slip?'
+  String get discardTitle => 'Descartar este slip?';
+
   late final Translations$slipKind$saved$pt saved = Translations$slipKind$saved$pt.internal(_root);
   Map<String, String> get errors => {
     'FREE_LIMIT_REACHED': 'Você chegou ao limite de slips do plano grátis.',
@@ -5999,6 +6005,13 @@ class Translations$slipsList$pt {
     'did': 'Fez algo',
     'noticed': 'Me notou',
     'helped': 'Ajudou',
+    'other': '',
+  };
+  Map<String, String> get kinds => {
+    'quick': 'Rápido',
+    'specific': 'Específico',
+    'if_then': 'Se… então',
+    'invisible': 'Invisível',
     'other': '',
   };
 
@@ -11220,6 +11233,7 @@ extension on Translations {
           'quickSlip.privacyNote' =>
             'Fica privado. No domingo você escolhe o que vai para o cartão.',
           'quickSlip.save' => 'Salvar',
+          'quickSlip.discardTitle' => 'Descartar este slip?',
           'quickSlip.saved.title' => 'Salvo',
           'quickSlip.saved.added' => 'Slip adicionado a esta semana.',
           'quickSlip.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
@@ -11400,10 +11414,10 @@ extension on Translations {
           'repair.guided.loadErrorText' => 'Nada se perdeu. Tente de novo.',
           'repair.learning.title' => 'O que você aprendeu?',
           'repair.learning.titleHighlight' => 'aprendeu',
-          'repair.learning.subtitle' => 'Fica só com você e pode ser apagado quando quiser.',
           _ => null,
         } ??
         switch (path) {
+          'repair.learning.subtitle' => 'Fica só com você e pode ser apagado quando quiser.',
           'repair.learning.kinds.trigger' => 'O que me incomoda',
           'repair.learning.kinds.need' => 'O que eu preciso',
           'repair.learning.kinds.good_fix' => 'O que ajudou',
@@ -11623,6 +11637,7 @@ extension on Translations {
           'slipKind.planErrors.empty' => 'Diga o que você vai fazer',
           'slipKind.planErrors.tooLong' => 'Isto está muito longo',
           'slipKind.save' => 'Salvar',
+          'slipKind.discardTitle' => 'Descartar este slip?',
           'slipKind.saved.title' => 'Salvo',
           'slipKind.saved.added' => 'Registrado.',
           'slipKind.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
@@ -11679,6 +11694,11 @@ extension on Translations {
           'slipsList.categories.noticed' => 'Me notou',
           'slipsList.categories.helped' => 'Ajudou',
           'slipsList.categories.other' => '',
+          'slipsList.kinds.quick' => 'Rápido',
+          'slipsList.kinds.specific' => 'Específico',
+          'slipsList.kinds.if_then' => 'Se… então',
+          'slipsList.kinds.invisible' => 'Invisível',
+          'slipsList.kinds.other' => '',
           'slipsList.pastCards' => 'Cartões anteriores',
           'slipsList.emptyTitle' => 'Nada ainda',
           'slipsList.emptyText' => 'Um slip é uma coisa boa, em uma linha.',
@@ -11974,6 +11994,9 @@ extension on Translations {
                   other: '${count} dias',
                 ),
           'today.togetherChipAction' => 'Abrir nossa história',
+          _ => null,
+        } ??
+        switch (path) {
           'today.togetherJoin' => ({
             required Object first,
             required Object second,
@@ -11991,9 +12014,6 @@ extension on Translations {
                   one: '1 slip esta semana',
                   other: '${count} slips esta semana',
                 ),
-          _ => null,
-        } ??
-        switch (path) {
           'today.weekHintEmpty' => 'sem pressa',
           'today.weekHint' => 'cartão no domingo',
           'today.forToday' => 'Para hoje',

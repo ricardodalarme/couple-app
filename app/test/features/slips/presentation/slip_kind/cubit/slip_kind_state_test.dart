@@ -17,4 +17,13 @@ void main() {
     expect(updated.workArea, 'home');
     expect(updated.text.value, 'Mais uma');
   });
+
+  test('hasDraft is true only while there is something to lose', () {
+    expect(const SlipKindState().hasDraft, isFalse);
+    expect(const SlipKindState(text: FormInput('  ')).hasDraft, isFalse);
+    expect(const SlipKindState(text: FormInput('Mais uma')).hasDraft, isTrue);
+    expect(const SlipKindState(feeling: FormInput('Cansada')).hasDraft, isTrue);
+    expect(const SlipKindState(plan: FormInput('Peço um tempo')).hasDraft, isTrue);
+    expect(const SlipKindState(workArea: 'kids').hasDraft, isTrue);
+  });
 }
