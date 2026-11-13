@@ -33,7 +33,7 @@ class _SafeModeShieldState() extends State<SafeModeShield> with WidgetsBindingOb
 
   @override
   Widget build(BuildContext context) {
-    final safeMode = context.select((SafeModeCubit cubit) => cubit.state);
+    final safeMode = context.select((SafeModeCubit cubit) => cubit.state.isOn);
     final discreet = context.select((DiscreetModeCubit cubit) => cubit.state.isOn);
     final hides = safeMode || discreet;
 

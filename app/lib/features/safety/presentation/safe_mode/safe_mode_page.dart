@@ -20,7 +20,7 @@ class const SafeModePage({super.key}) extends StatelessWidget implements AutoRou
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.safeMode;
-    final isOn = context.select((SafeModeCubit cubit) => cubit.state);
+    final isOn = context.select((SafeModeCubit cubit) => cubit.state.isOn);
 
     return BaseView(
       body: BaseStackedContent(

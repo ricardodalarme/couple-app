@@ -16,7 +16,7 @@ void main() {
   test('it starts from what the device remembers, so a restart keeps it on', () {
     when(() => repository.isOn).thenReturn(true);
 
-    expect(SafeModeCubit(repository: repository).state, isTrue);
+    expect(SafeModeCubit(repository: repository).state.isOn, isTrue);
   });
 
   test('switching it stores the choice on the device only', () async {
@@ -25,7 +25,7 @@ void main() {
 
     await cubit.set(value: true);
 
-    expect(cubit.state, isTrue);
+    expect(cubit.state.isOn, isTrue);
     verify(() => repository.setOn(value: true)).called(1);
   });
 }

@@ -1,10 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// How the person wants to start: inviting now or on their own.
-enum PartnerChoice() {
-  invite,
-  alone,
-}
+part 'partner_step_state.dart';
 
 class PartnerStepCubit() extends Cubit<PartnerChoice> {
   this : super(PartnerChoice.invite);

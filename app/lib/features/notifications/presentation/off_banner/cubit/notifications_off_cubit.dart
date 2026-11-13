@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
 
+part 'notifications_off_state.dart';
+
 /// Tracks whether reminders are off so Hoje can say so quietly.
 ///
 /// Access is read again every time the app returns to the foreground, so turning it
@@ -47,13 +49,4 @@ class NotificationsOffCubit({required final NotificationsRepository _repository}
     WidgetsBinding.instance.removeObserver(this);
     return super.close();
   }
-}
-
-final class const NotificationsOffState({final bool isOff = false, final bool isDismissed = false})
-    with Equatable {
-  /// Whether the notice should show.
-  bool get isVisible => isOff && !isDismissed;
-
-  @override
-  List<Object?> get props => [isOff, isDismissed];
 }

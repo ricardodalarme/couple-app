@@ -28,7 +28,7 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
     final l10n = context.l10n.settingsHome;
     final state = context.select((SettingsHomeCubit cubit) => cubit.state);
     final locale = AppInjector.instance.get<SettingsRepository>().get().locale;
-    final safeModeOn = context.select((SafeModeCubit cubit) => cubit.state);
+    final safeModeOn = context.select((SafeModeCubit cubit) => cubit.state.isOn);
 
     final relationship = switch (state.hasPartner) {
       null => null,
