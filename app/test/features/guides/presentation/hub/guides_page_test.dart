@@ -2,6 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:flutter_bloc_starter/features/guides/data/data_sources/local/guides_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/guides/data/data_sources/remote/guides_data_source.dart';
 import 'package:flutter_bloc_starter/features/guides/data/repositories/guides_repository.dart';
@@ -39,6 +40,8 @@ class _MockListsRepository() extends Mock implements ListsRepository;
 class _MockQuestionsRepository() extends Mock implements QuestionsRepository;
 
 class _MockProfileRepository() extends Mock implements ProfileRepository;
+
+class _MockGiftsRepository() extends Mock implements GiftsRepository;
 
 void main() {
   late GuidesCubit guidesCubit;
@@ -106,11 +109,13 @@ void main() {
     final listsRepository = _MockListsRepository();
     final questionsRepository = _MockQuestionsRepository();
     final profileRepository = _MockProfileRepository();
+    final giftsRepository = _MockGiftsRepository();
     when(() => profileRepository.onChanged).thenAnswer((_) => const Stream<void>.empty());
     when(profileRepository.getMySettings).thenThrow(Exception('none'));
     when(pairingRepository.getPartner).thenAnswer((_) async => null);
     when(checkinRepository.isCurrentWeekDismissed).thenAnswer((_) async => false);
     when(listsRepository.getLists).thenAnswer((_) async => []);
+    when(giftsRepository.getGiftIdeas).thenAnswer((_) async => []);
     when(questionsRepository.getPrompt).thenAnswer(
       (_) async => const QuestionPrompt(
         slug: 'small-dream',
@@ -125,6 +130,7 @@ void main() {
       listsRepository: listsRepository,
       questionsRepository: questionsRepository,
       profileRepository: profileRepository,
+      giftsRepository: giftsRepository,
     );
     addTearDown(cubit.close);
     await cubit.load();

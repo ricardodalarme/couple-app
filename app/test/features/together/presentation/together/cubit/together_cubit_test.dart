@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
@@ -22,12 +24,15 @@ class _MockQuestionsRepository() extends Mock implements QuestionsRepository;
 
 class _MockProfileRepository() extends Mock implements ProfileRepository;
 
+class _MockGiftsRepository() extends Mock implements GiftsRepository;
+
 void main() {
   late PairingRepository pairingRepository;
   late CheckinRepository checkinRepository;
   late ListsRepository listsRepository;
   late QuestionsRepository questionsRepository;
   late ProfileRepository profileRepository;
+  late GiftsRepository giftsRepository;
   late StreamController<void> profileChanges;
 
   setUp(() {
@@ -36,12 +41,14 @@ void main() {
     listsRepository = _MockListsRepository();
     questionsRepository = _MockQuestionsRepository();
     profileRepository = _MockProfileRepository();
+    giftsRepository = _MockGiftsRepository();
     profileChanges = StreamController<void>.broadcast();
     when(() => profileRepository.onChanged).thenAnswer((_) => profileChanges.stream);
     when(profileRepository.getMySettings).thenThrow(Exception('none'));
     when(pairingRepository.getPartner).thenAnswer((_) async => null);
     when(checkinRepository.isCurrentWeekDismissed).thenAnswer((_) async => false);
     when(listsRepository.getLists).thenAnswer((_) async => const []);
+    when(giftsRepository.getGiftIdeas).thenAnswer((_) async => const []);
     when(questionsRepository.getPrompt).thenAnswer(
       (_) async => const QuestionPrompt(
         slug: 'first-meeting',
@@ -60,6 +67,7 @@ void main() {
     listsRepository: listsRepository,
     questionsRepository: questionsRepository,
     profileRepository: profileRepository,
+    giftsRepository: giftsRepository,
   );
 
   test('a dismissed week hides the check-in entry', () async {
@@ -101,6 +109,32 @@ void main() {
     await cubit.load();
 
     expect(cubit.state.listCount, 0);
+  });
+
+  test('the gifts entry counts the wishes shared with the partner', () async {
+    when(giftsRepository.getGiftIdeas).thenAnswer(
+      (_) async => const [
+        GiftIdea(id: 'g1', title: 'Livro', coupleId: 'c1', isMine: true),
+        GiftIdea(id: 'g2', title: 'Chá', isMine: true),
+        GiftIdea(id: 'g3', title: 'Flor', coupleId: 'c1'),
+      ],
+    );
+    final cubit = build();
+    addTearDown(cubit.close);
+
+    await cubit.load();
+
+    expect(cubit.state.sharedGiftCount, 2);
+  });
+
+  test('unreadable gifts leave the entry without a shared count', () async {
+    when(giftsRepository.getGiftIdeas).thenThrow(Exception());
+    final cubit = build();
+    addTearDown(cubit.close);
+
+    await cubit.load();
+
+    expect(cubit.state.sharedGiftCount, 0);
   });
 
   test('a saved phase change reloads the hub and swaps its variant card', () async {

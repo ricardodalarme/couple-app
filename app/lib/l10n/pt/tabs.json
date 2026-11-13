@@ -106,6 +106,10 @@
   "gamesMeta": "Sem placar",
   "datesMeta": "Com aviso antes",
   "giftsMeta": "Só para você",
+  "giftsMetaShared(plural, param=count)": {
+    "one": "1 desejo compartilhado",
+    "other": "{count} desejos compartilhados"
+  },
   "guidesMeta": "Um passo de cada vez",
   "starterMeta": "Uma pergunta",
   "dayMeta": "Um dia de cada vez",

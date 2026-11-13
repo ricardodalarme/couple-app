@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
@@ -16,6 +17,7 @@ class TogetherCubit({
   required final ListsRepository _listsRepository,
   required final QuestionsRepository _questionsRepository,
   required final ProfileRepository _profileRepository,
+  required final GiftsRepository _giftsRepository,
 }) extends Cubit<TogetherState> {
   this : super(const TogetherState()) {
     _profileChanges = _profileRepository.onChanged.listen((_) => load());
@@ -60,6 +62,15 @@ class TogetherCubit({
       // The card falls back to its own title when the question cannot be read.
     }
 
+    var sharedGiftCount = 0;
+    try {
+      sharedGiftCount = (await _giftsRepository.getGiftIdeas())
+          .where((gift) => gift.isShared)
+          .length;
+    } on Object {
+      // An unreadable count keeps the entry's neutral subtitle.
+    }
+
     if (isClosed) return;
     emit(
       state.copyWith(
@@ -68,6 +79,7 @@ class TogetherCubit({
         listCount: listCount,
         questionTitle: questionTitle,
         phase: phase,
+        sharedGiftCount: sharedGiftCount,
       ),
     );
   }

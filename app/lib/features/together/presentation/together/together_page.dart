@@ -24,6 +24,7 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
     final hasPartner = context.select((TogetherCubit cubit) => cubit.state.hasPartner);
     final showCheckin = context.select((TogetherCubit cubit) => cubit.state.showCheckin);
     final listCount = context.select((TogetherCubit cubit) => cubit.state.listCount);
+    final sharedGiftCount = context.select((TogetherCubit cubit) => cubit.state.sharedGiftCount);
     final phase = context.select((TogetherCubit cubit) => cubit.state.phase);
     final cubit = context.read<TogetherCubit>();
 
@@ -53,6 +54,7 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
                 showCheckin: showCheckin,
                 hasPartner: hasPartner,
                 listCount: listCount,
+                sharedGiftCount: sharedGiftCount,
               ),
               const SizedBox(height: AppSpace.s24),
               _TogetherMoreSection(hasPartner: hasPartner, phase: phase),
@@ -112,6 +114,7 @@ class const _ToolsSection({
   required final bool showCheckin,
   required final bool hasPartner,
   required final int listCount,
+  required final int sharedGiftCount,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -163,7 +166,9 @@ class const _ToolsSection({
         _row(
           icon: AppIcons.gift,
           title: context.l10n.gifts.entryTitle,
-          subtitle: l10n.giftsMeta,
+          subtitle: sharedGiftCount == 0
+              ? l10n.giftsMeta
+              : l10n.giftsMetaShared(count: sharedGiftCount),
           onTap: () => context.pushRoute(const GiftsRoute()),
         ),
         _row(

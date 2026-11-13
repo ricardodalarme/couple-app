@@ -11,6 +11,7 @@ final class const TogetherState({
   final bool hasPartner = true,
   final bool showCheckin = true,
   final int listCount = 0,
+  final int sharedGiftCount = 0,
   final String? questionTitle,
   final String? phase,
 }) with Equatable {
@@ -19,6 +20,7 @@ final class const TogetherState({
     bool? hasPartner,
     bool? showCheckin,
     int? listCount,
+    int? sharedGiftCount,
     String? questionTitle,
     String? phase,
   }) {
@@ -27,11 +29,20 @@ final class const TogetherState({
       hasPartner: hasPartner ?? this.hasPartner,
       showCheckin: showCheckin ?? this.showCheckin,
       listCount: listCount ?? this.listCount,
+      sharedGiftCount: sharedGiftCount ?? this.sharedGiftCount,
       questionTitle: questionTitle ?? this.questionTitle,
       phase: phase ?? this.phase,
     );
   }
 
   @override
-  List<Object?> get props => [view, hasPartner, showCheckin, listCount, questionTitle, phase];
+  List<Object?> get props => [
+    view,
+    hasPartner,
+    showCheckin,
+    listCount,
+    sharedGiftCount,
+    questionTitle,
+    phase,
+  ];
 }

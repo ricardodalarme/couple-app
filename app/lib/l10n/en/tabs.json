@@ -106,6 +106,10 @@
   "gamesMeta": "No score",
   "datesMeta": "With a heads-up",
   "giftsMeta": "Only for you",
+  "giftsMetaShared(plural, param=count)": {
+    "one": "1 shared wish",
+    "other": "{count} shared wishes"
+  },
   "guidesMeta": "One step at a time",
   "starterMeta": "One question",
   "dayMeta": "One day at a time",

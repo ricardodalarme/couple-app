@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
 import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
@@ -35,6 +36,7 @@ class TogetherInjectionModule() implements InjectionModule {
         listsRepository: injector.get<ListsRepository>(),
         questionsRepository: injector.get<QuestionsRepository>(),
         profileRepository: injector.get<ProfileRepository>(),
+        giftsRepository: injector.get<GiftsRepository>(),
       ),
     )
     ..registerLazySingleton<RitualReminderService>(
