@@ -40,6 +40,19 @@ updates:
     labels:
       - ":package: dependencies"
   - package-ecosystem: pub
+    directory: /packages/core
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-core-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
     directory: /packages/design_system
     schedule:
       interval: weekly
@@ -53,14 +66,14 @@ updates:
     labels:
       - ":package: dependencies"
   - package-ecosystem: pub
-    directory: /packages/core
+    directory: /packages/design_system/tool
     schedule:
       interval: weekly
     commit-message:
       prefix: chore
       include: scope
     groups:
-      packages-core-pub:
+      packages-design-system-tool-pub:
         patterns:
           - "*"
     labels:
@@ -157,6 +170,19 @@ updates:
     labels:
       - ":package: dependencies"
   - package-ecosystem: pub
+    directory: /packages/services/connectivity
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-connectivity-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
     directory: /packages/services/crash_report
     schedule:
       interval: weekly
@@ -183,6 +209,71 @@ updates:
     labels:
       - ":package: dependencies"
   - package-ecosystem: pub
+    directory: /packages/services/file_picker
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-file-picker-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
+    directory: /packages/services/local_notification
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-local-notification-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
+    directory: /packages/services/notification
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-notification-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
+    directory: /packages/services/performance
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-performance-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
+    directory: /packages/services/permission
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-permission-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
     directory: /packages/services/preferences
     schedule:
       interval: weekly
@@ -191,6 +282,19 @@ updates:
       include: scope
     groups:
       packages-services-preferences-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
+    directory: /packages/services/purchase
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-purchase-pub:
         patterns:
           - "*"
     labels:
@@ -209,6 +313,19 @@ updates:
     labels:
       - ":package: dependencies"
   - package-ecosystem: pub
+    directory: /packages/services/review
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-review-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
     directory: /packages/services/secure_storage
     schedule:
       interval: weekly
@@ -217,6 +334,32 @@ updates:
       include: scope
     groups:
       packages-services-secure-storage-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
+    directory: /packages/services/share
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-share-pub:
+        patterns:
+          - "*"
+    labels:
+      - ":package: dependencies"
+  - package-ecosystem: pub
+    directory: /packages/services/storage
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      packages-services-storage-pub:
         patterns:
           - "*"
     labels:
