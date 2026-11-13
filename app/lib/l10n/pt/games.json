@@ -121,6 +121,8 @@
     "title": "Que conversa boa",
     "text": "Sem placar, sem vencedor. Só vocês dois.",
     "you": "Você",
+    "youChose": "Você escolheu: {value}",
+    "partnerChose": "{name} escolheu: {value}",
     "yourGuess": "Seu palpite",
     "partnerGuess": "O palpite do seu par",
     "matched": "Acertou",

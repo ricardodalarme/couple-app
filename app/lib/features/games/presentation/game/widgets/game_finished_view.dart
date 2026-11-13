@@ -49,14 +49,17 @@ class const GameFinishedView({required final GamePlay play, super.key}) extends 
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  _AnswerLine(
-                    label: l10n.finished.you,
-                    value: gamePersonLabel(context, result.mine, partnerName: play.partnerName),
+                  _ChoiceLine(
+                    text: l10n.finished.youChose(
+                      value: gamePersonLabel(context, result.mine, partnerName: play.partnerName),
+                    ),
                   ),
                   const SizedBox(height: AppSpace.s6),
-                  _AnswerLine(
-                    label: name,
-                    value: gamePersonLabel(context, result.theirs, partnerName: play.partnerName),
+                  _ChoiceLine(
+                    text: l10n.finished.partnerChose(
+                      name: name,
+                      value: gamePersonLabel(context, result.theirs, partnerName: play.partnerName),
+                    ),
                   ),
                   if (result.agree) ...[
                     const SizedBox(height: AppSpace.s10),
@@ -154,6 +157,13 @@ class const _AnswerLine({required final String label, required final String valu
         Text(value, style: context.text.body),
       ],
     );
+  }
+}
+
+class const _ChoiceLine({required final String text}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text(text, style: context.text.body);
   }
 }
 

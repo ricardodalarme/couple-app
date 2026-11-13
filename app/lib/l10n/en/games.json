@@ -121,6 +121,8 @@
     "title": "That was a good conversation",
     "text": "No score, no winner. Just the two of you.",
     "you": "You",
+    "youChose": "You chose: {value}",
+    "partnerChose": "{name} chose: {value}",
     "yourGuess": "Your guess",
     "partnerGuess": "Their guess",
     "matched": "Matched",

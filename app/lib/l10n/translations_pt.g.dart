@@ -7846,6 +7846,13 @@ class Translations$games$finished$pt {
   /// pt: 'Você'
   String get you => 'Você';
 
+  /// pt: 'Você escolheu: {value}'
+  String youChose({required Object value}) => 'Você escolheu: ${value}';
+
+  /// pt: '{name} escolheu: {value}'
+  String partnerChose({required Object name, required Object value}) =>
+      '${name} escolheu: ${value}';
+
   /// pt: 'Seu palpite'
   String get yourGuess => 'Seu palpite';
 
@@ -9703,6 +9710,11 @@ extension on Translations {
           'games.finished.title' => 'Que conversa boa',
           'games.finished.text' => 'Sem placar, sem vencedor. Só vocês dois.',
           'games.finished.you' => 'Você',
+          'games.finished.youChose' => ({required Object value}) => 'Você escolheu: ${value}',
+          'games.finished.partnerChose' => ({
+            required Object name,
+            required Object value,
+          }) => '${name} escolheu: ${value}',
           'games.finished.yourGuess' => 'Seu palpite',
           'games.finished.partnerGuess' => 'O palpite do seu par',
           'games.finished.matched' => 'Acertou',
@@ -10256,11 +10268,11 @@ extension on Translations {
           'ideaDetail.yourGoal' => 'Seu objetivo',
           'ideaDetail.willDo' => 'Eu vou fazer',
           'ideaDetail.done' => 'Anotado. Que bom!',
-          'ideaDetail.another' => 'Outra ideia',
-          'ideaDetail.later' => 'Mais tarde',
           _ => null,
         } ??
         switch (path) {
+          'ideaDetail.another' => 'Outra ideia',
+          'ideaDetail.later' => 'Mais tarde',
           'ideaDetail.laterTitle' => 'Quando lembrar?',
           'ideaDetail.tonight' => 'Hoje à noite',
           'ideaDetail.tomorrow' => 'Amanhã de manhã',
@@ -10837,11 +10849,11 @@ extension on Translations {
           'pause.presets.space' => 'Preciso de um tempo para respirar. Volto logo.',
           'pause.presets.later' => 'Vamos conversar mais tarde, com calma?',
           'pause.presets.calm' => 'Quero te ouvir bem. Preciso me acalmar antes.',
-          'pause.presets.other' => '',
-          'pause.hint' => 'Escrever a minha',
           _ => null,
         } ??
         switch (path) {
+          'pause.presets.other' => '',
+          'pause.hint' => 'Escrever a minha',
           'pause.messageErrors.empty' => 'Escreva uma mensagem curta',
           'pause.messageErrors.tooLong' => 'A mensagem está muito longa',
           'pause.returnTitle' => 'Volto em',
@@ -11407,11 +11419,11 @@ extension on Translations {
           'repair.guided.later' => 'Guardar para depois',
           'repair.guided.savedLater' => 'Guardado. Você continua de onde parou.',
           'repair.guided.finalTitle' => 'Como você está agora?',
-          'repair.guided.finalHighlight' => 'agora',
-          'repair.guided.feelings.calmer' => 'Mais calmo(a)',
           _ => null,
         } ??
         switch (path) {
+          'repair.guided.finalHighlight' => 'agora',
+          'repair.guided.feelings.calmer' => 'Mais calmo(a)',
           'repair.guided.feelings.still_tense' => 'Ainda tenso(a)',
           'repair.guided.feelings.need_more_time' => 'Preciso de mais tempo',
           'repair.guided.feelings.other' => '',
@@ -11974,11 +11986,11 @@ extension on Translations {
           'today.months.4' => 'maio',
           'today.months.5' => 'junho',
           'today.months.6' => 'julho',
-          'today.months.7' => 'agosto',
-          'today.months.8' => 'setembro',
           _ => null,
         } ??
         switch (path) {
+          'today.months.7' => 'agosto',
+          'today.months.8' => 'setembro',
           'today.months.9' => 'outubro',
           'today.months.10' => 'novembro',
           'today.months.11' => 'dezembro',

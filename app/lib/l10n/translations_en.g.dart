@@ -6252,6 +6252,10 @@ class _Translations$games$finished$en extends Translations$games$finished$pt {
   @override
   String get you => 'You';
   @override
+  String youChose({required Object value}) => 'You chose: ${value}';
+  @override
+  String partnerChose({required Object name, required Object value}) => '${name} chose: ${value}';
+  @override
   String get yourGuess => 'Your guess';
   @override
   String get partnerGuess => 'Their guess';
@@ -7937,6 +7941,11 @@ extension on TranslationsEn {
           'games.finished.title' => 'That was a good conversation',
           'games.finished.text' => 'No score, no winner. Just the two of you.',
           'games.finished.you' => 'You',
+          'games.finished.youChose' => ({required Object value}) => 'You chose: ${value}',
+          'games.finished.partnerChose' => ({
+            required Object name,
+            required Object value,
+          }) => '${name} chose: ${value}',
           'games.finished.yourGuess' => 'Your guess',
           'games.finished.partnerGuess' => 'Their guess',
           'games.finished.matched' => 'Matched',
@@ -8483,11 +8492,11 @@ extension on TranslationsEn {
           'ideaDetail.yourGoal' => 'Your goal',
           'ideaDetail.willDo' => 'I will do it',
           'ideaDetail.done' => 'Noted. Nice!',
-          'ideaDetail.another' => 'Another idea',
-          'ideaDetail.later' => 'Later',
           _ => null,
         } ??
         switch (path) {
+          'ideaDetail.another' => 'Another idea',
+          'ideaDetail.later' => 'Later',
           'ideaDetail.laterTitle' => 'When should we remind you?',
           'ideaDetail.tonight' => 'Tonight',
           'ideaDetail.tomorrow' => 'Tomorrow morning',
@@ -9062,11 +9071,11 @@ extension on TranslationsEn {
           'pause.presets.space' => 'I need some time to breathe. I\'ll be back soon.',
           'pause.presets.later' => 'Can we talk later, calmly?',
           'pause.presets.calm' => 'I want to listen well. I need to calm down first.',
-          'pause.presets.other' => '',
-          'pause.hint' => 'Write my own',
           _ => null,
         } ??
         switch (path) {
+          'pause.presets.other' => '',
+          'pause.hint' => 'Write my own',
           'pause.messageErrors.empty' => 'Write a short message',
           'pause.messageErrors.tooLong' => 'The message is too long',
           'pause.returnTitle' => 'I\'ll be back in',
@@ -9635,11 +9644,11 @@ extension on TranslationsEn {
           'repair.guided.later' => 'Save for later',
           'repair.guided.savedLater' => 'Saved. You\'ll pick up where you left off.',
           'repair.guided.finalTitle' => 'How are you now?',
-          'repair.guided.finalHighlight' => 'now',
-          'repair.guided.feelings.calmer' => 'Calmer',
           _ => null,
         } ??
         switch (path) {
+          'repair.guided.finalHighlight' => 'now',
+          'repair.guided.feelings.calmer' => 'Calmer',
           'repair.guided.feelings.still_tense' => 'Still tense',
           'repair.guided.feelings.need_more_time' => 'I need more time',
           'repair.guided.feelings.other' => '',
@@ -10198,11 +10207,11 @@ extension on TranslationsEn {
           'today.months.4' => 'May',
           'today.months.5' => 'June',
           'today.months.6' => 'July',
-          'today.months.7' => 'August',
-          'today.months.8' => 'September',
           _ => null,
         } ??
         switch (path) {
+          'today.months.7' => 'August',
+          'today.months.8' => 'September',
           'today.months.9' => 'October',
           'today.months.10' => 'November',
           'today.months.11' => 'December',
