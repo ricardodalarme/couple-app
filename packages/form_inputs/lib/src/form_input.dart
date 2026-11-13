@@ -11,7 +11,8 @@ class const FormInput<T>(final T value, {final Enum? error}) with Equatable {
     final error = validator.validate(value);
 
     if (error != null) return FormInput(value, error: error);
-    return this;
+    if (this.error == null) return this;
+    return FormInput(value);
   }
 
   @override

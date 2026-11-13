@@ -34,6 +34,15 @@ void main() {
       expect(validated.error, NonEmptyValidationError.empty);
     });
 
+    test('validate clears an error left by a previous attempt', () {
+      const input = FormInput('value', error: NonEmptyValidationError.empty);
+      final validated = input.validate(const NonEmptyValidator());
+
+      expect(validated.value, 'value');
+      expect(validated.error, isNull);
+      expect(validated.isValid, isTrue);
+    });
+
     test('toPure clears the error and keeps the value', () {
       const input = FormInput('', error: NonEmptyValidationError.empty);
       final pure = input.toPure();
