@@ -127,7 +127,10 @@ import 'package:flutter_bloc_starter/features/widgets/presentation/states/widget
 part 'app_router.gr.dart';
 
 @AutoRouterConfig()
-class AppRouter() extends RootStackRouter {
+class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter {
+  @override
+  List<AutoRouteGuard> get guards => [_guard];
+
   @override
   List<AutoRoute> get routes => [
     AutoRoute(page: WelcomeRoute.page, initial: true),

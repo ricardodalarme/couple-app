@@ -18,6 +18,7 @@ import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_s
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
+import 'package:flutter_bloc_starter/router/pending_route.dart';
 import 'package:network/network.dart';
 import 'package:preferences_service/preferences_service.dart';
 
@@ -25,7 +26,10 @@ class AppInjectionModule() implements InjectionModule {
   @override
   void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<AppStateNavigator>(
-      () => AppStateNavigator(router: injector.get<RootStackRouter>()),
+      () => AppStateNavigator(
+        router: injector.get<RootStackRouter>(),
+        pending: injector.get<PendingRoute>(),
+      ),
     )
     ..registerLazySingleton<AppConfigDataSource>(
       () => AppConfigDataSource(client: injector.get<GQLClient>()),

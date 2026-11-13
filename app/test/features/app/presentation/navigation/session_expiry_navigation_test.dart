@@ -21,6 +21,8 @@ import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repos
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
+import 'package:flutter_bloc_starter/router/guards/auth_guard.dart';
+import 'package:flutter_bloc_starter/router/pending_route.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -63,6 +65,7 @@ void main() {
   late StreamController<bool> authStates;
   late SlipDetailCubit slipCubit;
   late AppRouter router;
+  late PendingRoute pending;
 
   AppCubit buildAppCubit() => AppCubit(
     authenticationRepository: authenticationRepository,
@@ -111,7 +114,10 @@ void main() {
     when(() => settingsRepository.save(any())).thenAnswer((_) async {});
 
     slipCubit = SlipDetailCubit(slipRepository: slipRepository);
-    router = AppRouter();
+    pending = PendingRoute();
+    router = AppRouter(
+      guard: AuthGuard(authentication: authenticationRepository, pending: pending),
+    );
     AppInjector.instance.registerFactory<SlipDetailCubit>(() => slipCubit);
     AppInjector.instance.registerFactory<SignInCubit>(
       () => SignInCubit(authenticationRepository: authenticationRepository),
@@ -157,7 +163,7 @@ void main() {
     final appCubit = buildAppCubit();
     addTearDown(appCubit.close);
     await appCubit.initialize();
-    final navigator = AppStateNavigator(router: router);
+    final navigator = AppStateNavigator(router: router, pending: pending);
     var previous = appCubit.state;
     final subscription = appCubit.stream.listen((current) {
       navigator.onStateChanged(previous, current);

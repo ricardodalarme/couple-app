@@ -11,8 +11,10 @@ import 'package:flutter_bloc_starter/features/_shared/data/data_sources/local/de
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/infrastructure/config/env_variables.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
+import 'package:flutter_bloc_starter/router/guards/auth_guard.dart';
 import 'package:flutter_bloc_starter/router/observers/analytics_router_observer.dart';
 import 'package:flutter_bloc_starter/router/observers/log_router_observer.dart';
+import 'package:flutter_bloc_starter/router/pending_route.dart';
 import 'package:home_widget_service/home_widget_service.dart';
 import 'package:link_launcher_service/link_launcher_service.dart';
 import 'package:network/network.dart';
@@ -30,7 +32,15 @@ import 'package:storage_service/storage_service.dart';
 class SharedInjectionModule() implements InjectionModule {
   @override
   void registerDependencies({required Injector injector}) => injector
-    ..registerLazySingleton<RootStackRouter>(AppRouter.new)
+    ..registerLazySingleton<RootStackRouter>(
+      () => AppRouter(
+        guard: AuthGuard(
+          authentication: injector.get<AuthenticationRepository>(),
+          pending: injector.get<PendingRoute>(),
+        ),
+      ),
+    )
+    ..registerLazySingleton(PendingRoute.new)
     ..registerLazySingleton(LogRouterObserver.new)
     ..registerLazySingleton<AnalyticsRouterObserver>(
       () => AnalyticsRouterObserver(analyticsService: injector.get<AnalyticsService>()),
