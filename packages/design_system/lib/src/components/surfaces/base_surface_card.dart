@@ -1,5 +1,14 @@
 import 'package:design_system/design_system.dart';
 
+/// The surface treatment of a [BaseSurfaceCard].
+enum BaseSurfaceCardStyle() {
+  /// A hairline border on the filled surface.
+  bordered,
+
+  /// A soft ring shadow with no border.
+  ring,
+}
+
 /// A neutral container for grouped content.
 ///
 /// The caller supplies the header and [child]; a surface card never nests
@@ -9,6 +18,8 @@ class const BaseSurfaceCard({
   final String? supportText,
   final String? privacyNote,
   final Widget? child,
+  final BaseSurfaceCardStyle style = BaseSurfaceCardStyle.bordered,
+  final EdgeInsetsGeometry padding = const EdgeInsets.all(AppSpace.s18),
   super.key,
 }) extends StatelessWidget {
   @override
@@ -21,11 +32,12 @@ class const BaseSurfaceCard({
       container: true,
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(AppSpace.s18),
+        padding: padding,
         decoration: BoxDecoration(
           color: colors.bgSurface,
           borderRadius: BorderRadius.circular(AppRadius.card),
-          border: AppBorders.hair(colors.borderDefault),
+          border: style == .bordered ? AppBorders.hair(colors.borderDefault) : null,
+          boxShadow: style == .ring ? AppShadows.ring : null,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

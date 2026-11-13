@@ -23,53 +23,47 @@ class const TodayPause({required final TodayHome home, super.key}) extends State
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        DecoratedBox(
-          decoration: BoxDecoration(
-            color: context.colors.bgSurface,
-            borderRadius: BorderRadius.circular(AppRadius.card),
-            boxShadow: AppShadows.ring,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(AppSpace.s20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const BaseFace(kind: FaceKind.tired, size: FaceSize.showcase),
-                const SizedBox(height: AppSpace.s16),
-                Semantics(
-                  header: true,
-                  child: Text(
-                    isMine ? l10n.pauseOwnTitle : l10n.pausePartnerTitle,
-                    style: context.text.titleXl,
-                  ),
+        BaseSurfaceCard(
+          style: .ring,
+          padding: const EdgeInsets.all(AppSpace.s20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const BaseFace(kind: FaceKind.tired, size: FaceSize.showcase),
+              const SizedBox(height: AppSpace.s16),
+              Semantics(
+                header: true,
+                child: Text(
+                  isMine ? l10n.pauseOwnTitle : l10n.pausePartnerTitle,
+                  style: context.text.titleXl,
                 ),
-                const SizedBox(height: AppSpace.s8),
-                Text(
-                  isMine ? l10n.pauseOwnText(time: time) : l10n.pausePartnerText,
-                  style: context.text.body.copyWith(color: context.colors.textSecondary),
+              ),
+              const SizedBox(height: AppSpace.s8),
+              Text(
+                isMine ? l10n.pauseOwnText(time: time) : l10n.pausePartnerText,
+                style: context.text.body.copyWith(color: context.colors.textSecondary),
+              ),
+              if (isMine) ...[
+                const SizedBox(height: AppSpace.s20),
+                BaseButton(
+                  text: l10n.pauseBack,
+                  isLoading: isLoading,
+                  onPressed: context.read<TodayCubit>().endPause,
                 ),
-                if (isMine) ...[
-                  const SizedBox(height: AppSpace.s20),
-                  BaseButton(
-                    text: l10n.pauseBack,
-                    isLoading: isLoading,
-                    onPressed: context.read<TodayCubit>().endPause,
-                  ),
-                  const SizedBox(height: AppSpace.s10),
-                  BaseButton(
-                    text: l10n.pauseBackRepair,
-                    variant: .secondary,
-                    isEnabled: !isLoading,
-                    onPressed: () async {
-                      final didEnd = await context.read<TodayCubit>().endPause();
-                      if (didEnd && context.mounted) {
-                        await context.router.root.push(const TemperatureRoute());
-                      }
-                    },
-                  ),
-                ],
+                const SizedBox(height: AppSpace.s10),
+                BaseButton(
+                  text: l10n.pauseBackRepair,
+                  variant: .secondary,
+                  isEnabled: !isLoading,
+                  onPressed: () async {
+                    final didEnd = await context.read<TodayCubit>().endPause();
+                    if (didEnd && context.mounted) {
+                      await context.router.root.push(const TemperatureRoute());
+                    }
+                  },
+                ),
               ],
-            ),
+            ],
           ),
         ),
         const SizedBox(height: AppSpace.s12),

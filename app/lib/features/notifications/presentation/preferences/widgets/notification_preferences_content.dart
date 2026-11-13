@@ -161,22 +161,16 @@ class const _Preview() extends StatelessWidget {
       children: [
         BaseSectionHeader(title: l10n.previewTitle),
         const SizedBox(height: AppSpace.s8),
-        DecoratedBox(
-          decoration: BoxDecoration(
-            color: context.colors.bgSurface,
-            borderRadius: BorderRadius.circular(AppRadius.card),
-            boxShadow: AppShadows.ring,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(AppSpace.s16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(reminders.title, style: context.text.label),
-                const SizedBox(height: AppSpace.s4),
-                Text(reminders.weeklyCard, style: context.text.body),
-              ],
-            ),
+        BaseSurfaceCard(
+          style: .ring,
+          padding: const EdgeInsets.all(AppSpace.s16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(reminders.title, style: context.text.label),
+              const SizedBox(height: AppSpace.s4),
+              Text(reminders.weeklyCard, style: context.text.body),
+            ],
           ),
         ),
         const SizedBox(height: AppSpace.s8),

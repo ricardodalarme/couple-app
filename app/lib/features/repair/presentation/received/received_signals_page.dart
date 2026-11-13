@@ -77,16 +77,10 @@ class const _SignalView({required final ReceivedSignal signal}) extends Stateles
           Semantics(header: true, child: Text(l10n.fromPartner, style: context.text.label)),
           if (text != null) ...[
             const SizedBox(height: AppSpace.s8),
-            DecoratedBox(
-              decoration: BoxDecoration(
-                color: context.colors.bgSurface,
-                borderRadius: BorderRadius.circular(AppRadius.card),
-                boxShadow: AppShadows.ring,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(AppSpace.s20),
-                child: Text(text, style: context.text.titleLg),
-              ),
+            BaseSurfaceCard(
+              style: .ring,
+              padding: const EdgeInsets.all(AppSpace.s20),
+              child: Text(text, style: context.text.titleLg),
             ),
           ],
           const SizedBox(height: AppSpace.s12),

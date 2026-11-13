@@ -48,6 +48,22 @@ final WidgetbookNode surfaceCardExample = WidgetbookComponent(
               ),
             ],
           ),
+          GallerySection(
+            title: 'Ring style',
+            children: <Widget>[
+              GallerySurface(
+                child: BaseSurfaceCard(
+                  style: .ring,
+                  title: 'This week',
+                  supportText: 'A soft ring shadow replaces the hairline border.',
+                  child: Text(
+                    'Sunday, 18:00',
+                    style: context.text.body.copyWith(color: context.colors.textSecondary),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     ),

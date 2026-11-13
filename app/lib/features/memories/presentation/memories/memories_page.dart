@@ -199,16 +199,10 @@ class const _JarResult() extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: AppSpace.s12),
-          DecoratedBox(
-            decoration: BoxDecoration(
-              color: context.colors.bgSurface,
-              borderRadius: BorderRadius.circular(AppRadius.card),
-              boxShadow: AppShadows.ring,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(AppSpace.s20),
-              child: Semantics(liveRegion: true, child: Text(text, style: context.text.titleLg)),
-            ),
+          BaseSurfaceCard(
+            style: .ring,
+            padding: const EdgeInsets.all(AppSpace.s20),
+            child: Semantics(liveRegion: true, child: Text(text, style: context.text.titleLg)),
           ),
           const SizedBox(height: AppSpace.s8),
           Row(

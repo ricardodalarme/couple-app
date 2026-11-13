@@ -149,16 +149,10 @@ class const _CardSection({required final SlipDetail slip}) extends StatelessWidg
               style: context.text.caption.copyWith(color: context.colors.textSecondary),
             ),
             const SizedBox(height: AppSpace.s8),
-            DecoratedBox(
-              decoration: BoxDecoration(
-                color: context.colors.bgSurface,
-                borderRadius: BorderRadius.circular(AppRadius.card),
-                boxShadow: AppShadows.ring,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(AppSpace.s16),
-                child: Text(slip.body, style: context.text.bodyLg),
-              ),
+            BaseSurfaceCard(
+              style: .ring,
+              padding: const EdgeInsets.all(AppSpace.s16),
+              child: Text(slip.body, style: context.text.bodyLg),
             ),
           ],
         ],
