@@ -149,9 +149,11 @@ create table public.partner_messages (
 create index partner_messages_recipient_idx on public.partner_messages (recipient_id, created_at desc);
 create index partner_messages_sender_idx on public.partner_messages (sender_id, created_at desc);
 alter table public.partner_messages enable row level security;
-grant select on public.partner_messages to authenticated;
+grant select, delete on public.partner_messages to authenticated;
 create policy partner_messages_select_sender_or_recipient on public.partner_messages for select to authenticated
   using (sender_id = (select auth.uid()) or recipient_id = (select auth.uid()));
+create policy partner_messages_delete_sender on public.partner_messages for delete to authenticated
+  using (sender_id = (select auth.uid()));
 
 create function public.send_partner_message(kind text, body text default null, media_path text default null, for_widget boolean default false)
 returns public.partner_messages language plpgsql security definer set search_path = '' as $$

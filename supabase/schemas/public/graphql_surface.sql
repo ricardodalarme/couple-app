@@ -39,10 +39,13 @@ comment on table public.decision_options is e'@graphql({"description": "An optio
 comment on table public.gift_ideas is e'@graphql({"max_rows": 200, "totalCount": {"enabled": true}, "aggregate": {"enabled": true}, "description": "A gift idea or wish. Shared with the partner while couple_id is set."})';
 
 -- Slips, cards, content ----------------------------------------------------------------------------
+comment on table public.slips is e'@graphql({"totalCount": {"enabled": true}, "aggregate": {"enabled": true}, "description": "Private to the author. Reaches the partner only as a frozen copy inside a sent card."})';
+comment on table public.cards is e'@graphql({"totalCount": {"enabled": true}, "aggregate": {"enabled": true}, "description": "A card made of slips. Drafts and held cards are private to the author; the recipient sees sent cards."})';
 comment on table public.card_items is e'@graphql({"description": "A frozen copy of a slip inside a card."})';
 comment on table public.card_reactions is e'@graphql({"description": "How the recipient reacted to a card."})';
 comment on table public.card_opens is e'@graphql({"description": "When the recipient opened a card."})';
 comment on table public.guest_links is e'@graphql({"description": "A shareable link to one card. The token is never stored, only its hash."})';
+comment on table public.content_items is e'@graphql({"max_rows": 500, "totalCount": {"enabled": true}, "aggregate": {"enabled": true}, "description": "Editorial content. tags carry filters (phase, goal, budget, time, energy, place). holiday rows use month/day/country."})';
 comment on table public.app_config is e'@graphql({"description": "Small key/value configuration readable by anyone, such as limits and the minimum app version."})';
 
 -- Couple flows -------------------------------------------------------------------------------------------
@@ -64,5 +67,14 @@ comment on table public.deletion_requests is e'@graphql({"description": "A pendi
 comment on table public.entitlements is e'@graphql({"description": "A person''s Plus subscription state. Readable by the person and their partner; written only by the purchase webhook."})';
 comment on table public.chat_messages is e'@graphql({"description": "A message in the mascot conversation. Private to the author; the Edge Function writes the mascot side."})';
 comment on table public.learned_items is e'@graphql({"totalCount": {"enabled": true}, "aggregate": {"enabled": true}, "description": "Something the assistant learned about the partner, waiting for the person to confirm or reject it."})';
+comment on table public.couple_photos is e'@graphql({"description": "The photo a couple chose for their widget. Visible to the two members."})';
+comment on table public.profiles is e'@graphql({"description": "Public part of a person: visible to the person and to the current partner."})';
+comment on table public.profile_settings is e'@graphql({"description": "Private settings of a person. Never visible to the partner."})';
+comment on table public.notification_settings is e'@graphql({"description": "card_day: 0 = Sunday. muted_types: notification type keys switched off."})';
 
 -- Views: primary key columns are required for them to appear in the schema -------------------------------
+comment on view public.partner_mood is e'@graphql({"primary_key_columns": ["id"], "description": "The mood the partner chose to share today. need is present only when they shared it."})';
+comment on view public.plus_state is e'@graphql({"primary_key_columns": ["profile_id"], "description": "Whether the person has Plus, and the free-plan usage this month."})';
+comment on view public.timeline_items is e'@graphql({"primary_key_columns": ["id"], "totalCount": {"enabled": true}, "description": "Memories, story events and important dates in one chronological feed."})';
+comment on view public.widget_state is e'@graphql({"primary_key_columns": ["profile_id"], "description": "Everything the home-screen widget shows."})';
+comment on view public.year_recap is e'@graphql({"primary_key_columns": ["profile_id"], "description": "A year in review for one person."})';

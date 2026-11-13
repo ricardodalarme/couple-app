@@ -91,7 +91,7 @@ create table public.repair_learnings (
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.journal_entries (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  entry_date date not null default current_date, body text not null check (char_length(body) between 1 and 5000), mood text check (char_length(mood) <= 30),
+  entry_date date not null, body text not null check (char_length(body) between 1 and 5000), mood text check (char_length(mood) <= 30),
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.conversation_preps (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
@@ -118,7 +118,7 @@ create table public.manual_entries (
   created_at timestamptz not null default now(), updated_at timestamptz not null default now(), unique (author_id, key));
 create table public.moods (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  day date not null default current_date, mood text not null check (mood in ('happy', 'tired', 'sad', 'stressed', 'loving', 'playful')),
+  day date not null, mood text not null check (mood in ('happy', 'tired', 'sad', 'stressed', 'loving', 'playful')),
   need text check (need in ('listen', 'opinion', 'hug', 'space')), share text not null default 'none' check (share in ('none', 'mood', 'mood_need')),
   created_at timestamptz not null default now(), updated_at timestamptz not null default now(), unique (author_id, day));
 create table public.cycle_days (
@@ -127,7 +127,7 @@ create table public.cycle_days (
   created_at timestamptz not null default now(), updated_at timestamptz not null default now(), unique (author_id, day));
 create table public.idea_responses (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  content_slug text not null, day date not null default current_date, response text not null check (response in ('will_do', 'done', 'skip', 'saved')),
+  content_slug text not null, day date not null, response text not null check (response in ('will_do', 'done', 'skip', 'saved')),
   created_at timestamptz not null default now(), updated_at timestamptz not null default now(), unique (author_id, content_slug, day));
 create table public.program_enrollments (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
@@ -185,7 +185,7 @@ create table public.memories (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
   couple_id uuid references public.couples (id) on delete set null,
   title text not null check (char_length(title) between 1 and 160), body text check (char_length(body) <= 3000),
-  happened_on date not null default current_date, date_precision text not null default 'day' check (date_precision in ('day', 'month', 'year')),
+  happened_on date not null, date_precision text not null default 'day' check (date_precision in ('day', 'month', 'year')),
   place text check (char_length(place) <= 120), photo_path text check (char_length(photo_path) <= 300),
   origin text not null default 'manual' check (origin in ('manual', 'slip', 'card', 'question', 'game', 'mission', 'share', 'chat', 'first')), source_id uuid,
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
@@ -221,7 +221,7 @@ create table public.decisions (
 create table public.ritual_logs (
   id uuid primary key default gen_random_uuid(), ritual_id uuid not null references public.rituals (id) on delete cascade,
   author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  done_on date not null default current_date, skipped boolean not null default false,
+  done_on date not null, skipped boolean not null default false,
   created_at timestamptz not null default now(), unique (ritual_id, done_on));
 create table public.list_items (
   id uuid primary key default gen_random_uuid(), list_id uuid not null references public.lists (id) on delete cascade,
@@ -309,6 +309,31 @@ begin
 end $$;
 create trigger list_items_set_updated_at before update on public.list_items
   for each row execute function private.set_updated_at();
+
+-- "Today" for daily rows is the author's local date, not the database's UTC date: a mood saved at 23:00 in Sao Paulo
+-- must not land on tomorrow. The column has no default; this trigger fills it from the author's time zone when the client sends none.
+create function private.set_local_date() returns trigger
+language plpgsql security definer set search_path = '' as $$
+declare v_tz text; v_day date;
+begin
+  if to_jsonb(new) ->> tg_argv[0] is null then
+    select s.time_zone into v_tz from public.profile_settings s where s.profile_id = new.author_id;
+    v_day := (now() at time zone coalesce(v_tz, 'America/Sao_Paulo'))::date;
+    new := jsonb_populate_record(new, jsonb_build_object(tg_argv[0], v_day));
+  end if;
+  return new;
+end $$;
+create trigger moods_local_date before insert on public.moods
+  for each row execute function private.set_local_date('day');
+create trigger idea_responses_local_date before insert on public.idea_responses
+  for each row execute function private.set_local_date('day');
+create trigger ritual_logs_local_date before insert on public.ritual_logs
+  for each row execute function private.set_local_date('done_on');
+create trigger journal_entries_local_date before insert on public.journal_entries
+  for each row execute function private.set_local_date('entry_date');
+create trigger memories_local_date before insert on public.memories
+  for each row execute function private.set_local_date('happened_on');
+
 create index decision_ranks_option_idx on public.decision_ranks (option_id);
 create index gift_ideas_occasion_idx on public.gift_ideas (occasion_date_id);
 create index logistic_items_assignee_idx on public.logistic_items (assignee_id);
