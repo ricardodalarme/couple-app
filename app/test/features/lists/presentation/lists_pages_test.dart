@@ -111,6 +111,42 @@ void main() {
     expect(cubit.state.lists, isA<Failure>());
   });
 
+  testWidgets('tapping an item toggles it done instead of opening the options sheet', (
+    tester,
+  ) async {
+    when(
+      () => repository.setItemStatus(
+        id: any(named: 'id'),
+        status: any(named: 'status'),
+      ),
+    ).thenAnswer((_) async {});
+    final cubit = ListDetailCubit(listsRepository: repository);
+    addTearDown(cubit.close);
+    await cubit.load('l1');
+
+    await tester.pumpApp(
+      BlocProvider.value(
+        value: cubit,
+        child: const ListDetailPage(listId: 'l1'),
+      ),
+    );
+    await tester.pump();
+
+    await tester.tap(find.text('Lisboa'));
+    await tester.pump();
+
+    final detail = cubit.state.detail;
+    expect(detail, isA<Success<ListDetail>>());
+    expect((detail as Success<ListDetail>).value.items.single.isDone, isTrue);
+    verify(() => repository.setItemStatus(id: 'i1', status: 'done')).called(1);
+    expect(find.text('Marcar como feito'), findsNothing);
+
+    await tester.tap(find.byIcon(AppIcons.more));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Marcar como feito'), findsOneWidget);
+  });
+
   testWidgets('the detail page shows the items and their status without platform calls', (
     tester,
   ) async {

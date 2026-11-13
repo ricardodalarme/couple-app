@@ -140,8 +140,14 @@ class const _ItemTile({required final ListItem item, required final bool isShare
         semanticLabel: item.title,
         onChanged: (_) => cubit.toggleDone(item),
       ),
-      showsChevron: true,
-      onTap: () => _showOptions(context, item),
+      trailing: AppPressable(
+        onTap: () => _showOptions(context, item),
+        semanticLabel: l10n.itemOptions,
+        borderRadius: BorderRadius.circular(AppRadius.pill),
+        enforceMinTapTarget: true,
+        child: AppIcon(icon: AppIcons.more, color: context.colors.iconMuted),
+      ),
+      onTap: () => cubit.toggleDone(item),
     );
   }
 
