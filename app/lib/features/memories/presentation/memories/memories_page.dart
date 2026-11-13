@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/memories/data/models/memory.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/add_memory/add_memory_sheet.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/cubit/memories_cubit.dart';
+import 'package:flutter_bloc_starter/features/memories/presentation/memories/widgets/memory_detail_sheet.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
@@ -105,6 +106,7 @@ class const _MemoriesTimeline() extends StatelessWidget {
                       ),
                       if (memory.place != null) memory.place!,
                     ].join(' · '),
+                    onTap: () => _openMemoryDetail(context, memory),
                     trailing: BaseTextLink(
                       text: l10n.delete,
                       onPressed: () => confirmDelete(memory),
@@ -168,6 +170,12 @@ class const _AddMemoryTile() extends StatelessWidget {
     );
   }
 }
+
+Future<void> _openMemoryDetail(BuildContext context, Memory memory) => BaseSheet.show<void>(
+  context: context,
+  title: memory.title,
+  child: MemoryDetailSheet(memory: memory),
+);
 
 Future<void> _openAddMemorySheet(BuildContext context) async {
   final cubit = context.read<MemoriesCubit>();

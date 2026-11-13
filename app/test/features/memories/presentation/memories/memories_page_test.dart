@@ -99,6 +99,30 @@ void main() {
     );
   });
 
+  testWidgets('tapping a memory shows its place and story', (tester) async {
+    when(() => repository.getMemories()).thenAnswer(
+      (_) async => [
+        Memory(
+          id: 'm1',
+          title: 'Primeiro jantar',
+          happenedOn: DateTime(2026, 5, 12),
+          place: 'Paraty',
+          body: 'Foi lindo',
+        ),
+      ],
+    );
+    final cubit = await build();
+
+    await pumpPage(tester, cubit);
+    await tester.tap(find.text('Primeiro jantar'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Lugar'), findsOneWidget);
+    expect(find.text('Paraty'), findsOneWidget);
+    expect(find.text('Como foi'), findsOneWidget);
+    expect(find.text('Foi lindo'), findsOneWidget);
+  });
+
   testWidgets('deleting a memory asks before removing it', (tester) async {
     when(() => repository.getMemories()).thenAnswer(
       (_) async => [

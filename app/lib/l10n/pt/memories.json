@@ -36,6 +36,8 @@
   "deleteTitle": "Apagar esta memória?",
   "deleteText": "Ela some da linha do tempo para vocês dois.",
   "deleteConfirm": "Apagar",
+  "detailPlace": "Lugar",
+  "detailBody": "Como foi",
   "monthsShort": [
     "jan",
     "fev",

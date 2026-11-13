@@ -2918,6 +2918,10 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get deleteConfirm => 'Delete';
   @override
+  String get detailPlace => 'Place';
+  @override
+  String get detailBody => 'How it went';
+  @override
   List<String> get monthsShort => [
     'Jan',
     'Feb',
@@ -8776,6 +8780,8 @@ extension on TranslationsEn {
           'memories.deleteTitle' => 'Delete this memory?',
           'memories.deleteText' => 'It disappears from the timeline for both of you.',
           'memories.deleteConfirm' => 'Delete',
+          'memories.detailPlace' => 'Place',
+          'memories.detailBody' => 'How it went',
           'memories.monthsShort.0' => 'Jan',
           'memories.monthsShort.1' => 'Feb',
           'memories.monthsShort.2' => 'Mar',
@@ -9039,12 +9045,12 @@ extension on TranslationsEn {
           'pause.returns.other' => '',
           'pause.note' => 'You both see Today on pause. You can come back whenever you like.',
           'pause.send' => 'Send and pause',
-          'pause.sentTitle' => 'Pause sent',
-          'pause.sentText' =>
-            'Today is on pause for both of you. When you\'re ready, come back there.',
           _ => null,
         } ??
         switch (path) {
+          'pause.sentTitle' => 'Pause sent',
+          'pause.sentText' =>
+            'Today is on pause for both of you. When you\'re ready, come back there.',
           'pause.done' => 'Done',
           'pause.errors.INVALID_RETURN_TIME' => 'That return time doesn\'t work. Pick another.',
           'pause.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
@@ -9610,11 +9616,11 @@ extension on TranslationsEn {
           'repair.learning.title' => 'What did you learn?',
           'repair.learning.titleHighlight' => 'learn',
           'repair.learning.subtitle' => 'It stays with you and can be deleted whenever you like.',
-          'repair.learning.kinds.trigger' => 'What bothers me',
-          'repair.learning.kinds.need' => 'What I need',
           _ => null,
         } ??
         switch (path) {
+          'repair.learning.kinds.trigger' => 'What bothers me',
+          'repair.learning.kinds.need' => 'What I need',
           'repair.learning.kinds.good_fix' => 'What helped',
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Write one or two sentences',
@@ -10197,6 +10203,9 @@ extension on TranslationsEn {
           'today.weekHintEmpty' => 'no rush',
           'today.weekHint' => 'card on Sunday',
           'today.forToday' => 'For today',
+          _ => null,
+        } ??
+        switch (path) {
           'today.ideaLabel' => 'Idea of the day',
           'today.slipsThisWeekPrivate' =>
             ({required num count}) =>
@@ -10206,9 +10215,6 @@ extension on TranslationsEn {
                   one: 'Your private slips: 1 this week',
                   other: 'Your private slips: ${count} this week',
                 ),
-          _ => null,
-        } ??
-        switch (path) {
           'today.sundayCardLabel' => 'Sunday card',
           'today.sundayCardTitle' => 'Your card for this week',
           'today.inviteCardLabel' => 'Invite',

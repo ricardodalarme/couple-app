@@ -36,6 +36,8 @@
   "deleteTitle": "Delete this memory?",
   "deleteText": "It disappears from the timeline for both of you.",
   "deleteConfirm": "Delete",
+  "detailPlace": "Place",
+  "detailBody": "How it went",
   "monthsShort": [
     "Jan",
     "Feb",
