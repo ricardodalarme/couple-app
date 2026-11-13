@@ -4301,9 +4301,25 @@ class Translations$plus$pt {
   /// pt: 'Seu par tem o Plus e ele vale para vocês dois.'
   String get paidByPartner => 'Seu par tem o Plus e ele vale para vocês dois.';
 
-  /// pt: 'Neste mês restam {slips} slips e {cards} cartões enviados no plano grátis.'
+  /// pt: 'No plano grátis, este mês: {slips} e {cards}.'
   String freeLeft({required Object slips, required Object cards}) =>
-      'Neste mês restam ${slips} slips e ${cards} cartões enviados no plano grátis.';
+      'No plano grátis, este mês: ${slips} e ${cards}.';
+
+  /// pt: '(one) {1 slip} (other) {{count} slips}'
+  String slipCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 slip',
+        other: '${count} slips',
+      );
+
+  /// pt: '(one) {1 cartão enviado} (other) {{count} cartões enviados}'
+  String cardCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 cartão enviado',
+        other: '${count} cartões enviados',
+      );
 
   /// pt: 'Grátis'
   String get freeName => 'Grátis';
@@ -10910,7 +10926,21 @@ extension on Translations {
           'plus.freeLeft' => ({
             required Object slips,
             required Object cards,
-          }) => 'Neste mês restam ${slips} slips e ${cards} cartões enviados no plano grátis.',
+          }) => 'No plano grátis, este mês: ${slips} e ${cards}.',
+          'plus.slipCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 slip',
+                  other: '${count} slips',
+                ),
+          'plus.cardCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 cartão enviado',
+                  other: '${count} cartões enviados',
+                ),
           'plus.freeName' => 'Grátis',
           'plus.freeFeatures' => 'Slips todo mês, um cartão enviado por mês, repair, pausa, segurança e tudo o que você já guardou.',
           'plus.plusName' => 'Plus',
@@ -11417,11 +11447,11 @@ extension on Translations {
           'repair.guided.next' => 'Continuar',
           'repair.guided.back' => 'Voltar',
           'repair.guided.later' => 'Guardar para depois',
-          'repair.guided.savedLater' => 'Guardado. Você continua de onde parou.',
-          'repair.guided.finalTitle' => 'Como você está agora?',
           _ => null,
         } ??
         switch (path) {
+          'repair.guided.savedLater' => 'Guardado. Você continua de onde parou.',
+          'repair.guided.finalTitle' => 'Como você está agora?',
           'repair.guided.finalHighlight' => 'agora',
           'repair.guided.feelings.calmer' => 'Mais calmo(a)',
           'repair.guided.feelings.still_tense' => 'Ainda tenso(a)',
@@ -11984,11 +12014,11 @@ extension on Translations {
           'today.months.2' => 'março',
           'today.months.3' => 'abril',
           'today.months.4' => 'maio',
-          'today.months.5' => 'junho',
-          'today.months.6' => 'julho',
           _ => null,
         } ??
         switch (path) {
+          'today.months.5' => 'junho',
+          'today.months.6' => 'julho',
           'today.months.7' => 'agosto',
           'today.months.8' => 'setembro',
           'today.months.9' => 'outubro',

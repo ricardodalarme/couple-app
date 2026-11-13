@@ -106,7 +106,10 @@ class const ManagePlusPage({super.key}) extends StatelessWidget implements AutoR
                   BaseNote(text: l10n.partnerCancel, icon: AppIcons.info),
                 ] else
                   BaseNote(
-                    text: l10n.freeLeft(slips: value.slipsLeft, cards: value.cardsLeft),
+                    text: l10n.freeLeft(
+                      slips: l10n.slipCount(count: value.slipsLeft),
+                      cards: l10n.cardCount(count: value.cardsLeft),
+                    ),
                   ),
                 const SizedBox(height: AppSpace.s20),
                 const _Comparison(),

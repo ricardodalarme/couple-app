@@ -3539,7 +3539,21 @@ class _Translations$plus$en extends Translations$plus$pt {
   String get paidByPartner => 'Your partner has Plus and it covers you both.';
   @override
   String freeLeft({required Object slips, required Object cards}) =>
-      'This month you have ${slips} slips and ${cards} sent cards left on the free plan.';
+      'Free plan, this month: ${slips} and ${cards}.';
+  @override
+  String slipCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 slip',
+        other: '${count} slips',
+      );
+  @override
+  String cardCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 sent card',
+        other: '${count} sent cards',
+      );
   @override
   String get freeName => 'Free';
   @override
@@ -9133,7 +9147,21 @@ extension on TranslationsEn {
           'plus.freeLeft' => ({
             required Object slips,
             required Object cards,
-          }) => 'This month you have ${slips} slips and ${cards} sent cards left on the free plan.',
+          }) => 'Free plan, this month: ${slips} and ${cards}.',
+          'plus.slipCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 slip',
+                  other: '${count} slips',
+                ),
+          'plus.cardCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 sent card',
+                  other: '${count} sent cards',
+                ),
           'plus.freeName' => 'Free',
           'plus.freeFeatures' => 'Slips every month, one sent card a month, repair, pause, safety and everything you already saved.',
           'plus.plusName' => 'Plus',
@@ -9642,11 +9670,11 @@ extension on TranslationsEn {
           'repair.guided.next' => 'Continue',
           'repair.guided.back' => 'Back',
           'repair.guided.later' => 'Save for later',
-          'repair.guided.savedLater' => 'Saved. You\'ll pick up where you left off.',
-          'repair.guided.finalTitle' => 'How are you now?',
           _ => null,
         } ??
         switch (path) {
+          'repair.guided.savedLater' => 'Saved. You\'ll pick up where you left off.',
+          'repair.guided.finalTitle' => 'How are you now?',
           'repair.guided.finalHighlight' => 'now',
           'repair.guided.feelings.calmer' => 'Calmer',
           'repair.guided.feelings.still_tense' => 'Still tense',
@@ -10205,11 +10233,11 @@ extension on TranslationsEn {
           'today.months.2' => 'March',
           'today.months.3' => 'April',
           'today.months.4' => 'May',
-          'today.months.5' => 'June',
-          'today.months.6' => 'July',
           _ => null,
         } ??
         switch (path) {
+          'today.months.5' => 'June',
+          'today.months.6' => 'July',
           'today.months.7' => 'August',
           'today.months.8' => 'September',
           'today.months.9' => 'October',

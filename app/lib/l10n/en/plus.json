@@ -4,7 +4,15 @@
   "activeTitle": "You have Plus",
   "activeText": "Thank you. Everything is unlocked for you and your partner.",
   "paidByPartner": "Your partner has Plus and it covers you both.",
-  "freeLeft": "This month you have {slips} slips and {cards} sent cards left on the free plan.",
+  "freeLeft": "Free plan, this month: {slips} and {cards}.",
+  "slipCount(plural, param=count)": {
+    "one": "1 slip",
+    "other": "{count} slips"
+  },
+  "cardCount(plural, param=count)": {
+    "one": "1 sent card",
+    "other": "{count} sent cards"
+  },
   "freeName": "Free",
   "freeFeatures": "Slips every month, one sent card a month, repair, pause, safety and everything you already saved.",
   "plusName": "Plus",
