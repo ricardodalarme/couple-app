@@ -12,6 +12,7 @@ import 'package:flutter_bloc_starter/features/chat/di/chat_injection_module.dart
 import 'package:flutter_bloc_starter/features/checkin/di/checkin_injection_module.dart';
 import 'package:flutter_bloc_starter/features/connect/di/connect_injection_module.dart';
 import 'package:flutter_bloc_starter/features/dates/di/dates_injection_module.dart';
+import 'package:flutter_bloc_starter/features/dev_menu/di/dev_menu_injection_module.dart';
 import 'package:flutter_bloc_starter/features/devices/di/devices_injection_module.dart';
 import 'package:flutter_bloc_starter/features/distance/di/distance_injection_module.dart';
 import 'package:flutter_bloc_starter/features/fight_style/di/fight_style_injection_module.dart';
@@ -69,6 +70,7 @@ void _registerModules() {
     SharedInjectionModule(),
     AppInjectionModule(),
     AuthenticationInjectionModule(),
+    DevMenuInjectionModule(),
     PrivacyInjectionModule(),
     AccountInjectionModule(),
     SafetyInjectionModule(),

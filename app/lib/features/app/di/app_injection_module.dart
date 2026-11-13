@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart' hide PageInfo;
 import 'package:connectivity_service/connectivity_service.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/app/data/data_sources/remote/app_config_data_source.dart';
 import 'package:flutter_bloc_starter/features/app/data/repositories/app_config_repository.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
+import 'package:flutter_bloc_starter/features/app/presentation/navigation/app_state_navigator.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/time_in_app/cubit/time_in_app_cubit.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/version/cubit/version_gate_cubit.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
@@ -21,6 +23,9 @@ import 'package:preferences_service/preferences_service.dart';
 class AppInjectionModule() implements InjectionModule {
   @override
   void registerDependencies({required Injector injector}) => injector
+    ..registerLazySingleton<AppStateNavigator>(
+      () => AppStateNavigator(router: injector.get<RootStackRouter>()),
+    )
     ..registerLazySingleton<AppConfigDataSource>(
       () => AppConfigDataSource(client: injector.get<GQLClient>()),
     )
