@@ -43,6 +43,10 @@ class SlipKindCubit({required final SlipRepository _slipRepository}) extends Cub
   /// Switches the kind, keeping the main text.
   void onKindChanged(String kind) => emit(state.copyWith(kind: kind));
 
+  /// Keeps the text for the quick form when another kind is opened from it.
+  Future<void> keepQuickDraft() =>
+      _slipRepository.saveDraft(text: state.text.value, now: clock.now());
+
   void onTextChanged(String text) => emit(state.copyWith(text: FormInput(text)));
 
   void onFeelingChanged(String feeling) => emit(state.copyWith(feeling: FormInput(feeling)));

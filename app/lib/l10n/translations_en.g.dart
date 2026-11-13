@@ -4754,6 +4754,8 @@ class _Translations$slipKind$en extends Translations$slipKind$pt {
   @override
   String get switcherTitle => 'Other ways to write it down';
   @override
+  String get quickEntry => 'Quick';
+  @override
   String get needEntry => 'I need…';
   @override
   Map<String, String> get kinds => {
@@ -9796,6 +9798,7 @@ extension on TranslationsEn {
           'slipDetail.errors.other' => 'Couldn\'t do that right now. Try again.',
           'slipDetail.discardTitle' => 'Discard this slip?',
           'slipKind.switcherTitle' => 'Other ways to write it down',
+          'slipKind.quickEntry' => 'Quick',
           'slipKind.needEntry' => 'I need…',
           'slipKind.kinds.specific' => 'Specific',
           'slipKind.kinds.if_then' => 'If… then',
@@ -10202,10 +10205,10 @@ extension on TranslationsEn {
                 ),
           'today.weekHintEmpty' => 'no rush',
           'today.weekHint' => 'card on Sunday',
-          'today.forToday' => 'For today',
           _ => null,
         } ??
         switch (path) {
+          'today.forToday' => 'For today',
           'today.ideaLabel' => 'Idea of the day',
           'today.slipsThisWeekPrivate' =>
             ({required num count}) =>

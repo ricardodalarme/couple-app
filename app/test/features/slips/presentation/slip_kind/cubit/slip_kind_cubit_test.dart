@@ -24,6 +24,12 @@ void main() {
         workArea: any(named: 'workArea'),
       ),
     ).thenAnswer((_) async => SlipSaveOutcome.synced);
+    when(
+      () => repository.saveDraft(
+        text: any(named: 'text'),
+        now: any(named: 'now'),
+      ),
+    ).thenAnswer((_) async {});
   });
 
   SlipKindCubit build() => SlipKindCubit(slipRepository: repository);
@@ -55,6 +61,18 @@ void main() {
 
     expect(cubit.state.kind, 'invisible');
     expect(cubit.state.text.value, 'Fez café');
+  });
+
+  test('keeping a quick draft saves the current text', () async {
+    final cubit = build()
+      ..start(kind: 'specific', text: 'Fez café')
+      ..onTextChanged('Fez café e pão');
+
+    await cubit.keepQuickDraft();
+
+    verify(
+      () => repository.saveDraft(text: 'Fez café e pão', now: any(named: 'now')),
+    ).called(1);
   });
 
   test('if-then needs the plan before saving', () async {

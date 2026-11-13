@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 class const SlipKindForm({super.key}) extends StatelessWidget {
   @override
@@ -48,6 +50,7 @@ class const _KindChips() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final labels = context.l10n.slipKind.kinds;
+    final switcherL10n = context.l10n.slipKind;
     final selected = context.select((SlipKindCubit cubit) => cubit.state.kind);
 
     return Wrap(
@@ -60,6 +63,18 @@ class const _KindChips() extends StatelessWidget {
             isSelected: selected == kind,
             onTap: () => context.read<SlipKindCubit>().onKindChanged(kind),
           ),
+        BaseChoiceChip(
+          label: switcherL10n.quickEntry,
+          onTap: () async {
+            await context.read<SlipKindCubit>().keepQuickDraft();
+            if (!context.mounted) return;
+            await context.router.replace(const QuickSlipRoute());
+          },
+        ),
+        BaseChoiceChip(
+          label: switcherL10n.needEntry,
+          onTap: () => context.router.replace(const NeedRoute()),
+        ),
       ],
     );
   }

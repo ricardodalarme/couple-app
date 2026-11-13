@@ -5876,6 +5876,9 @@ class Translations$slipKind$pt {
   /// pt: 'Outras formas de registrar'
   String get switcherTitle => 'Outras formas de registrar';
 
+  /// pt: 'Rápido'
+  String get quickEntry => 'Rápido';
+
   /// pt: 'Preciso de…'
   String get needEntry => 'Preciso de…';
 
@@ -11575,6 +11578,7 @@ extension on Translations {
           'slipDetail.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'slipDetail.discardTitle' => 'Descartar este slip?',
           'slipKind.switcherTitle' => 'Outras formas de registrar',
+          'slipKind.quickEntry' => 'Rápido',
           'slipKind.needEntry' => 'Preciso de…',
           'slipKind.kinds.specific' => 'Específico',
           'slipKind.kinds.if_then' => 'Se… então',
@@ -11981,10 +11985,10 @@ extension on Translations {
                 ),
           'today.weekHintEmpty' => 'sem pressa',
           'today.weekHint' => 'cartão no domingo',
-          'today.forToday' => 'Para hoje',
           _ => null,
         } ??
         switch (path) {
+          'today.forToday' => 'Para hoje',
           'today.ideaLabel' => 'Ideia do dia',
           'today.slipsThisWeekPrivate' =>
             ({required num count}) =>
