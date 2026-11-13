@@ -13,7 +13,6 @@ create table public.profiles (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
-comment on table public.profiles is e'@graphql({"description": "Public part of a person: visible to the person and to the current partner."})';
 
 -- What only the person sees.
 create table public.profile_settings (
@@ -29,7 +28,6 @@ create table public.profile_settings (
   updated_at timestamptz not null default now(),
   share_read_receipts boolean not null default false
 );
-comment on table public.profile_settings is e'@graphql({"description": "Private settings of a person. Never visible to the partner."})';
 
 create table public.couples (
   id uuid primary key default gen_random_uuid(),

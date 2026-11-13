@@ -6,7 +6,6 @@ create table public.couple_photos (
   uploaded_by uuid not null references public.profiles (id) on delete cascade,
   updated_at timestamptz not null default now()
 );
-comment on table public.couple_photos is e'@graphql({"description": "The photo a couple chose for their widget. Visible to the two members."})';
 
 alter table public.couple_photos enable row level security;
 grant select, insert, update, delete on public.couple_photos to authenticated;

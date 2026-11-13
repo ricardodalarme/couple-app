@@ -6,7 +6,6 @@ create schema if not exists private;
 revoke all on schema private from public, anon;
 grant usage on schema private to authenticated, service_role;
 
-comment on schema public is e'@graphql({"inflect_names": true, "max_rows": 50, "introspection": true})';
 
 -- Default deny: nothing created in `public` is reachable until granted explicitly.
 alter default privileges for role postgres in schema public revoke all on tables from anon, authenticated;

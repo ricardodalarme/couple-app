@@ -20,7 +20,6 @@ create table public.cards (
 );
 create index cards_recipient_idx on public.cards (recipient_id, sent_at desc) where status = 'sent';
 create index cards_couple_id_idx on public.cards (couple_id);
-comment on table public.cards is e'@graphql({"totalCount": {"enabled": true}})';
 comment on constraint cards_author_id_fkey on public.cards is e'@graphql({"foreign_name": "author", "local_name": "authoredCards"})';
 comment on constraint cards_recipient_id_fkey on public.cards is e'@graphql({"foreign_name": "recipient", "local_name": "receivedCards"})';
 create trigger cards_set_updated_at before update on public.cards

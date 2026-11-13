@@ -65,7 +65,6 @@ create table public.notification_settings (
   muted_types text[] not null default '{}',
   updated_at timestamptz not null default now()
 );
-comment on table public.notification_settings is e'@graphql({"description": "card_day: 0 = Sunday. muted_types: notification type keys switched off."})';
 create trigger notification_settings_set_updated_at before update on public.notification_settings
   for each row execute function private.set_updated_at();
 alter table public.notification_settings enable row level security;

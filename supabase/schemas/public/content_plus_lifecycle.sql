@@ -34,7 +34,6 @@ create table public.content_items (
 );
 create index content_items_kind_idx on public.content_items (kind, locale, position);
 create index content_items_parent_idx on public.content_items (parent_slug);
-comment on table public.content_items is e'@graphql({"totalCount": {"enabled": true}, "description": "Editorial content. tags carry filters (phase, goal, budget, time, energy, place). holiday rows use month/day/country."})';
 alter table public.content_items enable row level security;
 grant select on public.content_items to authenticated;
 -- Spice cards exist only for couples where both switched the mode on; unpublished rows never leave the database.
@@ -110,7 +109,6 @@ create view public.plus_state with (security_invoker = true) as
   select p.id as profile_id, false as has_plus, false as paid_by_partner, null::text as plan, null::text as status,
          null::timestamptz as expires_at, 0 as slips_left_this_month, 0 as cards_left_this_month
   from public.profiles p where false;
-comment on view public.plus_state is e'@graphql({"primary_key_columns": ["profile_id"]})';
 grant select on public.plus_state to authenticated;
 
 create function private.month_usage(p_profile_id uuid, p_what text) returns integer
@@ -510,7 +508,6 @@ create view public.timeline_items with (security_invoker = true) as
   union all
   select d.id, 'first', d.title, make_date(d.year, d.month, least(d.day, 28)), d.author_id, d.couple_id is not null, null
   from public.important_dates d where d.kind = 'first' and d.year is not null and not d.hidden;
-comment on view public.timeline_items is e'@graphql({"primary_key_columns": ["id"], "totalCount": {"enabled": true}})';
 grant select on public.timeline_items to authenticated;
 
 -- "Neste dia": my memories and slips from this calendar day in earlier years.
@@ -589,7 +586,6 @@ create view public.widget_state with (security_invoker = true) as
          null::text as next_date_title, null::date as next_date_on, 0 as unopened_cards, null::timestamptz as pause_return_at,
          null::text as partner_note, null::text as partner_note_media, null::timestamptz as partner_note_at, null::text as partner_mood
   from public.profiles p where false;
-comment on view public.widget_state is e'@graphql({"primary_key_columns": ["profile_id"]})';
 grant select on public.widget_state to authenticated;
 create function public.widget() returns public.widget_state
 language plpgsql stable security definer set search_path = '' as $$
@@ -622,7 +618,6 @@ grant execute on function public.widget() to authenticated;
 create view public.year_recap with (security_invoker = true) as
   select p.id as profile_id, 0 as year, 0 as slips, 0 as cards_sent, 0 as cards_received, 0 as memories, 0 as firsts, 0 as rituals_done
   from public.profiles p where false;
-comment on view public.year_recap is e'@graphql({"primary_key_columns": ["profile_id"]})';
 grant select on public.year_recap to authenticated;
 create function public.my_year(year integer) returns public.year_recap
 language sql stable security definer set search_path = '' as $$
