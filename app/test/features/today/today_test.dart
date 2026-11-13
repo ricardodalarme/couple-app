@@ -7,6 +7,7 @@ import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
+import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/today/data/data_sources/local/today_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
 import 'package:flutter_bloc_starter/features/today/data/data_sources/remote/today_data_source.dart';
@@ -28,6 +29,8 @@ class _MockProfileRepository() extends Mock implements ProfileRepository;
 class _MockPairingRepository() extends Mock implements PairingRepository;
 
 class _MockRepairRepository() extends Mock implements RepairRepository;
+
+class _MockSlipRepository() extends Mock implements SlipRepository;
 
 QueryTodayHome _query({
   QueryTodayHometoday? today,
@@ -224,15 +227,18 @@ void main() {
     late ProfileRepository profile;
     late PairingRepository pairing;
     late RepairRepository repair;
+    late SlipRepository slip;
 
     setUp(() {
       today = _MockTodayRepository();
       profile = _MockProfileRepository();
       pairing = _MockPairingRepository();
       repair = _MockRepairRepository();
+      slip = _MockSlipRepository();
       when(() => repair.onPauseChanged).thenAnswer((_) => const Stream.empty());
       when(() => pairing.onChanged).thenAnswer((_) => const Stream.empty());
       when(() => profile.onChanged).thenAnswer((_) => const Stream.empty());
+      when(() => slip.onChanged).thenAnswer((_) => const Stream.empty());
       when(() => profile.getMyProfile()).thenAnswer(
         (_) async => const Profile(id: 'me', avatarKind: 'initials', displayName: 'Ana'),
       );
@@ -246,6 +252,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         repairRepository: repair,
+        slipRepository: slip,
       );
 
       await cubit.load();
@@ -280,6 +287,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         repairRepository: repair,
+        slipRepository: slip,
       );
       await cubit.load();
       expect(cubit.state.home, isA<Success<TodayHome>>());
@@ -300,6 +308,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         repairRepository: repair,
+        slipRepository: slip,
       );
       await cubit.load();
 
@@ -319,6 +328,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         repairRepository: repair,
+        slipRepository: slip,
       );
 
       unawaited(Future<void>.microtask(cubit.start));
@@ -336,6 +346,68 @@ void main() {
       await changes.close();
     });
 
+    test('a saved slip reads Hoje again', () async {
+      final changes = StreamController<void>.broadcast();
+      when(() => slip.onChanged).thenAnswer((_) => changes.stream);
+      var reads = 0;
+      when(() => today.getToday()).thenAnswer((_) async {
+        reads++;
+
+        return result();
+      });
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        pairingRepository: pairing,
+        repairRepository: repair,
+        slipRepository: slip,
+      );
+
+      unawaited(Future<void>.microtask(cubit.start));
+      await pumpEventQueue();
+      expect(reads, 1);
+
+      changes.add(null);
+      await pumpEventQueue();
+
+      expect(reads, 2);
+      await cubit.close();
+      await changes.close();
+    });
+
+    test('a foreground refresh reads Hoje again', () async {
+      var reads = 0;
+      void Function()? tick;
+      when(() => today.getToday()).thenAnswer((_) async {
+        reads++;
+
+        return result();
+      });
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        pairingRepository: pairing,
+        repairRepository: repair,
+        slipRepository: slip,
+        refreshInterval: const Duration(seconds: 1),
+        timerFactory: (_, onTick) {
+          tick = onTick;
+
+          return Timer(const Duration(days: 1), () {});
+        },
+      );
+
+      unawaited(Future<void>.microtask(cubit.start));
+      await pumpEventQueue();
+      expect(reads, 1);
+
+      tick!();
+      await pumpEventQueue();
+
+      expect(reads, 2);
+      await cubit.close();
+    });
+
     test('a cached result sets the offline flag', () async {
       when(() => today.getToday()).thenAnswer((_) async => result(isFromCache: true));
       final cubit = TodayCubit(
@@ -343,6 +415,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         repairRepository: repair,
+        slipRepository: slip,
       );
 
       await cubit.load();
@@ -357,6 +430,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         repairRepository: repair,
+        slipRepository: slip,
       );
 
       await cubit.load();
@@ -371,6 +445,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         repairRepository: repair,
+        slipRepository: slip,
       );
       await cubit.load();
 
@@ -398,6 +473,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         repairRepository: repair,
+        slipRepository: slip,
       );
 
       await cubit.load();
@@ -418,6 +494,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         repairRepository: repair,
+        slipRepository: slip,
       );
 
       await cubit.load();
@@ -444,6 +521,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         repairRepository: repair,
+        slipRepository: slip,
       );
 
       await cubit.load();
