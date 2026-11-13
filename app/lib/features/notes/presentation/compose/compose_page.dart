@@ -213,6 +213,7 @@ class const _Thumbnail({required final String? url}) extends StatelessWidget {
             : Image.network(
                 url,
                 fit: BoxFit.cover,
+                cacheWidth: (_thumbSize * MediaQuery.devicePixelRatioOf(context)).round(),
                 errorBuilder: (_, _, _) => const BaseImagePlaceholder(),
               ),
       ),
