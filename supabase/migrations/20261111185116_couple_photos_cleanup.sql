@@ -1,6 +1,3 @@
--- Couple photos are couple-scoped: constrain their path and remove them when the pairing ends
--- or a profile is erased, queueing the storage file for the cleanup job.
-
 alter table public.couple_photos
   add constraint couple_photos_storage_path_couple
   check (storage_path like couple_id::text || '/%');

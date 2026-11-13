@@ -1,5 +1,3 @@
--- Question answers belong to the couple that was current when they were written. (APP-067)
-
 alter table public.question_answers drop constraint question_answers_once;
 alter table public.question_answers
   add constraint question_answers_once unique (author_id, couple_id, question_slug);

@@ -1,13 +1,11 @@
--- Gift pages: separate wishes from dates ideas, keep writes inside the current couple,
--- and normalize shared wishes when the couple unpairs. (APP-062)
 alter table public.gift_ideas
   add column kind text not null default 'idea' check (kind in ('idea', 'wish'));
 
-drop policy gift_ideas_insert_own on public.gift_ideas;
+drop policy if exists gift_ideas_insert_own on public.gift_ideas;
 create policy gift_ideas_insert_own on public.gift_ideas for insert to authenticated
   with check (author_id = (select auth.uid()) and (couple_id is null or couple_id = (select private.current_couple_id())));
 
-drop policy gift_ideas_update_own on public.gift_ideas;
+drop policy if exists gift_ideas_update_own on public.gift_ideas;
 create policy gift_ideas_update_own on public.gift_ideas for update to authenticated
   using (author_id = (select auth.uid()))
   with check (author_id = (select auth.uid()) and (couple_id is null or couple_id = (select private.current_couple_id())));

@@ -1,6 +1,3 @@
--- Games: only a complete grid finishes, answers stay couple-scoped, and one open session per game.
-
--- Collapse duplicate open sessions before the partial unique index (newest wins).
 with ranked as (
   select id, row_number() over (partition by couple_id, game order by created_at desc) as rn
   from public.game_sessions
@@ -37,7 +34,6 @@ begin
   return v_row;
 end $$;
 
--- Join, cancel, or finish (finish needs every member to have answered every item).
 create or replace function public.update_game(session_id uuid, action text, outcome text default null) returns public.game_sessions
 language plpgsql security definer set search_path = '' as $$
 declare v_uid uuid := private.require_user(); v_row public.game_sessions; v_n integer;

@@ -1,4 +1,3 @@
--- Gift pages: a gift idea is private until the author shares it with the current couple. (APP-062)
 alter table public.gift_ideas
   add column couple_id uuid references public.couples (id) on delete set null;
 create index if not exists gift_ideas_couple_idx on public.gift_ideas (couple_id);

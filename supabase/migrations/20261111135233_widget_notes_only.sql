@@ -1,6 +1,3 @@
--- A drawing has no text, so letting it win the newest-row lookup would blank the widget note.
--- Only text notes are eligible until the widget can render media.
-
 create or replace function public.widget() returns public.widget_state
 language plpgsql stable security definer set search_path = '' as $$
 declare v_uid uuid := private.require_user(); t public.today_state := public.today(); r public.widget_state; s public.profile_settings;

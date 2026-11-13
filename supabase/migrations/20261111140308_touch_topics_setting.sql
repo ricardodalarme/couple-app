@@ -1,8 +1,6 @@
--- Either person can switch touch topics off for both; the flag lives on the couple.
-
 alter table public.couples add column touch_topics_enabled boolean not null default true;
 
-create function public.set_touch_topics(enabled boolean) returns boolean
+create or replace function public.set_touch_topics(enabled boolean) returns boolean
 language plpgsql security definer set search_path = '' as $$
 declare v_uid uuid := private.require_user(); v_couple uuid := private.current_couple_id();
 begin

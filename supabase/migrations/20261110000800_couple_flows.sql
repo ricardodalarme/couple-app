@@ -151,6 +151,7 @@ grant select on public.partner_messages to authenticated;
 create policy partner_messages_select_sender_or_recipient on public.partner_messages for select to authenticated
   using (sender_id = (select auth.uid()) or recipient_id = (select auth.uid()));
 
+-- The widget shows a note only if the receiver allowed it; otherwise it is delivered in the app only.
 create function public.send_partner_message(kind text, body text default null, media_path text default null, for_widget boolean default false)
 returns public.partner_messages language plpgsql security definer set search_path = '' as $$
 declare v_uid uuid := private.require_user(); v_partner uuid := private.partner_id(); v_row public.partner_messages;
@@ -159,7 +160,6 @@ begin
   if not private.hit_rate_limit('partner_message:' || v_uid, 30, interval '1 day') then
     raise exception 'RATE_LIMITED' using errcode = 'P0001';
   end if;
-  -- The widget shows a note only if the receiver allowed it; otherwise it is delivered in the app only.
   insert into public.partner_messages (sender_id, recipient_id, kind, body, media_path, for_widget)
   values (v_uid, v_partner, send_partner_message.kind, nullif(btrim(send_partner_message.body), ''), send_partner_message.media_path,
           coalesce(send_partner_message.for_widget, false)

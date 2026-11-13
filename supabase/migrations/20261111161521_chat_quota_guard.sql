@@ -1,5 +1,3 @@
--- Chat quota: take a message atomically, keep the count stable when rows are deleted,
--- and stop a missing config row from bypassing the limit. (Z-06, APP-084)
 create or replace function private.chat_messages_left(p_profile_id uuid) returns integer
 language sql stable security definer set search_path = '' as $$
   select greatest(0,
@@ -9,7 +7,6 @@ language sql stable security definer set search_path = '' as $$
        where m.author_id = p_profile_id and m.role = 'user' and m.created_at >= date_trunc('day', now())));
 $$;
 
--- Reserves one message for the caller and returns its row id, or null when the allowance is gone.
 create or replace function private.take_chat_message(p_profile_id uuid) returns uuid
 language plpgsql security definer set search_path = '' as $$
 declare
@@ -29,6 +26,5 @@ language sql stable security definer set search_path = '' as $$
 $$;
 grant execute on function public.chat_messages_left() to authenticated;
 
--- The allowance is counted from the rows, so clients must not be able to delete today's rows.
 revoke delete on public.chat_messages from authenticated;
 drop policy if exists chat_messages_delete_own on public.chat_messages;

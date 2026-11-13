@@ -1,4 +1,3 @@
--- Couple photo for the couple-photos widget: one row per couple, file in the private couple_photos bucket.
 create table public.couple_photos (
   couple_id uuid primary key references public.couples (id) on delete cascade,
   storage_path text not null check (char_length(storage_path) <= 300),
@@ -23,7 +22,6 @@ create policy couple_photos_delete_member on public.couple_photos for delete to 
 create trigger couple_photos_set_updated_at before update on public.couple_photos
   for each row execute function private.set_updated_at();
 
--- Private bucket; the first path folder is the couple id, so a foreign couple cannot read or write the file.
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types) values
   ('couple_photos', 'couple_photos', false, 8388608, array['image/jpeg', 'image/png', 'image/webp', 'image/heic'])
 on conflict (id) do nothing;

@@ -20,8 +20,8 @@ select tests.as('bia');
 select is((select count(*)::int from public.capsules), 0, 'the partner cannot read a sealed capsule');
 select throws_ok($$update public.capsules set body = 'mudado' where id = (select id from ids where k = 'capsule')$$,
   '42501', null, 'the partner cannot edit a sealed capsule');
-select is((with d as (delete from public.capsules where id = (select id from ids where k = 'capsule') returning 1)
-  select count(*)::int from d), 0, 'the partner cannot delete a sealed capsule');
+with d as (delete from public.capsules where id = (select id from ids where k = 'capsule') returning 1)
+select is((select count(*)::int from d), 0, 'the partner cannot delete a sealed capsule');
 
 select tests.as_admin();
 update public.capsules set opens_on = current_date where id = (select id from ids where k = 'capsule');
@@ -29,8 +29,8 @@ select tests.as('bia');
 select is((select count(*)::int from public.capsules), 1, 'the partner reads the capsule once its day comes');
 
 select tests.as('ana');
-select is((with d as (delete from public.capsules where id = (select id from ids where k = 'capsule') returning 1)
-  select count(*)::int from d), 1, 'the author deletes their capsule');
+with d as (delete from public.capsules where id = (select id from ids where k = 'capsule') returning 1)
+select is((select count(*)::int from d), 1, 'the author deletes their capsule');
 
 select * from finish();
 rollback;

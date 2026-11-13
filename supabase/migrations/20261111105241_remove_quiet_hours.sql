@@ -1,5 +1,3 @@
--- Removes the time-of-day quiet window from notification settings and sending.
-
 drop function if exists private.quiet_end_at(uuid, timestamptz);
 alter table public.notification_settings
   drop column if exists quiet_start,

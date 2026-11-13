@@ -145,10 +145,10 @@ grant execute on function public.my_plus() to authenticated;
 
 -- Free limit: applies to NEW slips and to sending cards. Nothing existing is ever locked or deleted.
 -- Never applied to pause, repair, safety or deletion (those have no limit check at all).
+-- saveSlip is an upsert: editing an existing slip must keep working at the limit.
 create function private.enforce_free_slip_limit() returns trigger
 language plpgsql security definer set search_path = '' as $$
 begin
-  -- saveSlip is an upsert: editing an existing slip must keep working at the limit.
   if exists (select 1 from public.slips where id = new.id) then
     return new;
   end if;
@@ -205,13 +205,13 @@ create table private.storage_deletions (
 );
 alter table private.storage_deletions enable row level security;
 
+-- Deleting the account also ends the pairing right away; the partner sees a neutral "unpaired" state.
 create function public.request_account_deletion() returns public.deletion_requests
 language plpgsql security definer set search_path = '' as $$
 declare v_uid uuid := private.require_user(); v_row public.deletion_requests;
 begin
   insert into public.deletion_requests as d (profile_id, purge_after) values (v_uid, now() + interval '14 days')
   on conflict (profile_id) do update set profile_id = excluded.profile_id returning d.* into v_row;
-  -- Deleting the account also ends the pairing right away; the partner sees a neutral "unpaired" state.
   perform public.unpair();
   return v_row;
 end $$;
@@ -396,11 +396,13 @@ language sql immutable set search_path = '' as $$
   where d >= p_from;
 $$;
 -- Hourly job, everything evaluated in each person's local time. Caps and quiet hours are applied at send time.
+-- Covers: dates the person or the couple saved (N days before), holidays of the countries the person
+-- follows (7 and 1 days before, unless hidden), rituals with a reminder (at their hour, weekly ones on
+-- their weekday), and one small idea at noon plus a gentle return after a quiet week.
 create function private.enqueue_daily_reminders() returns integer
 language plpgsql security definer set search_path = '' as $$
 declare v_n integer := 0; r record;
 begin
-  -- dates the person or the couple saved, N days before
   for r in
     select d.id, s.profile_id as target, private.next_occurrence(d.month, d.day, (now() at time zone s.time_zone)::date) as occ,
            (now() at time zone s.time_zone)::date as today, d.remind_days
@@ -415,7 +417,6 @@ begin
       v_n := v_n + 1;
     end if;
   end loop;
-  -- holidays of the countries the person follows, 7 and 1 days before, unless they hid that holiday
   for r in
     select s.profile_id as target, h.slug, private.next_occurrence(h.month, h.day, (now() at time zone s.time_zone)::date) as occ,
            (now() at time zone s.time_zone)::date as today
@@ -429,7 +430,6 @@ begin
       v_n := v_n + 1;
     end if;
   end loop;
-  -- rituals with a reminder, at their hour (weekly ones on their weekday)
   for r in
     select rt.id, s.profile_id as target, (now() at time zone s.time_zone)::date as today
     from public.rituals rt
@@ -443,7 +443,6 @@ begin
     perform private.enqueue_notification(r.target, 'ritual', r.id, 'ritual:' || r.id || ':' || r.target || ':' || r.today);
     v_n := v_n + 1;
   end loop;
-  -- one small idea at noon, and a gentle return after a quiet week (never a guilt trip, at most once a week)
   for r in
     select s.profile_id as target, (now() at time zone s.time_zone)::date as today,
            (select max(sl.created_at) from public.slips sl where sl.author_id = s.profile_id) as last_slip
@@ -461,10 +460,10 @@ begin
 end $$;
 
 -- The same question (or idea) for both partners on the same day: a deterministic pick from the catalog.
+-- UTC day, so partners in different time zones still share the same pick
 create function public.daily_content(kind text) returns public.content_items
 language sql stable security definer set search_path = '' as $$
   with me as (
-    -- UTC day, so partners in different time zones still share the same pick
     select s.locale, (now() at time zone 'UTC')::date as today,
            coalesce(private.current_couple_id(), s.profile_id) as seed
     from public.profile_settings s where s.profile_id = auth.uid()),
