@@ -79,9 +79,7 @@ class _BaseTextAreaState() extends State<BaseTextArea> {
       decoration: BoxDecoration(
         color: colors.bgSurface,
         borderRadius: BorderRadius.circular(AppRadius.card),
-        border: hasError
-            ? Border.all(color: AppPalette.errorInk, width: AppBorder.selected)
-            : null,
+        border: hasError ? Border.all(color: AppPalette.errorInk, width: AppBorder.selected) : null,
       ),
       child: Stack(
         children: [

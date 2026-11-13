@@ -84,7 +84,10 @@ void main() {
 
   testWidgets('a rebuild that repeats the same text keeps what was typed', (tester) async {
     Widget host({required String text, String? error}) => inputHost(
-      SizedBox(width: 350, child: BaseTextArea(text: text, errorText: error)),
+      SizedBox(
+        width: 350,
+        child: BaseTextArea(text: text, errorText: error),
+      ),
       variant: AppThemeVariant.rose,
     );
 
