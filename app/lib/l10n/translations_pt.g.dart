@@ -3943,6 +3943,9 @@ class Translations$notificationPermission$pt {
   /// pt: 'Os lembretes estão desligados. Ligue nas configurações.'
   String get offBanner => 'Os lembretes estão desligados. Ligue nas configurações.';
 
+  /// pt: 'Abrir ajustes'
+  String get openSettings => 'Abrir ajustes';
+
   /// pt: 'Fechar'
   String get close => 'Fechar';
 }
@@ -10704,6 +10707,7 @@ extension on Translations {
           'notificationPermission.allow' => 'Permitir',
           'notificationPermission.offBanner' =>
             'Os lembretes estão desligados. Ligue nas configurações.',
+          'notificationPermission.openSettings' => 'Abrir ajustes',
           'notificationPermission.close' => 'Fechar',
           'notificationPreferences.title' => 'Notificações',
           'notificationPreferences.subtitle' => 'Escolha o que chega e quando. Nada de cobrança.',
@@ -10799,10 +10803,10 @@ extension on Translations {
           'pause.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'pause.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
           'places.title' => 'Lugares',
-          'places.privacyNote' => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.',
           _ => null,
         } ??
         switch (path) {
+          'places.privacyNote' => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.',
           'places.memoryOne' => '1 memória',
           'places.memoryMany' => ({required Object count}) => '${count} memórias',
           'places.monthsShort.0' => 'jan',
@@ -11367,10 +11371,10 @@ extension on Translations {
           'repair.learning.hint' => 'Escreva em uma ou duas frases',
           'repair.learning.noteErrors.empty' => 'Escreva o que você aprendeu',
           'repair.learning.noteErrors.tooLong' => 'A nota está muito longa',
-          'repair.learning.save' => 'Salvar',
           _ => null,
         } ??
         switch (path) {
+          'repair.learning.save' => 'Salvar',
           'repair.learning.listTitle' => 'Seus aprendizados',
           'repair.learning.delete' => 'Apagar',
           'repair.learning.emptyTitle' => 'Nada ainda',
@@ -11964,10 +11968,10 @@ extension on Translations {
           'today.inviteCardLabel' => 'Convite',
           'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
           'today.inviteCardTitleNoName' => 'Convidar sua pessoa',
-          'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
           _ => null,
         } ??
         switch (path) {
+          'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
           'today.privateTag' => 'Só seu',
           'today.privateQuestion' => 'Como foi o seu dia, de verdade?',
           'today.privateHighlight' => 'dia',

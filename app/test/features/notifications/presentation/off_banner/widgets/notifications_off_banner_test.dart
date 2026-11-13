@@ -14,9 +14,15 @@ class _MockNotificationsRepository() extends Mock implements NotificationsReposi
 void main() {
   setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
 
-  testWidgets('reminders notice is one compact row and can be dismissed', (tester) async {
+  testWidgets('reminders notice opens settings and dismisses through separate actions', (
+    tester,
+  ) async {
     final repository = _MockNotificationsRepository();
     when(repository.currentAccess).thenAnswer((_) async => NotificationAccess.denied);
+    when(() => repository.isOffBannerDismissed).thenReturn(false);
+    when(() => repository.setOffBannerDismissed(value: any(named: 'value')))
+        .thenAnswer((_) async {});
+    when(repository.openSettings).thenAnswer((_) async => true);
     AppInjector.instance.registerFactory<NotificationsOffCubit>(
       () => NotificationsOffCubit(repository: repository),
     );
@@ -28,17 +34,22 @@ void main() {
 
     const text = 'Os lembretes estão desligados. Ligue nas configurações.';
     expect(find.text(text), findsOneWidget);
-    expect(find.text('Fechar'), findsOneWidget);
+    expect(find.text('Abrir ajustes'), findsOneWidget);
     expect(tester.widget<BaseBanner>(find.byType(BaseBanner)).isCompact, isTrue);
     expect(
-      tester.getTopLeft(find.text('Fechar')).dy,
+      tester.getTopLeft(find.text('Abrir ajustes')).dy,
       lessThan(tester.getBottomLeft(find.text(text)).dy),
     );
-    expect(find.byIcon(AppIcons.close), findsNothing);
+    expect(find.byIcon(AppIcons.close), findsOneWidget);
 
-    await tester.tap(find.text('Fechar'));
+    await tester.tap(find.text('Abrir ajustes'));
+    await tester.pump();
+    verify(repository.openSettings).called(1);
+
+    await tester.tap(find.byIcon(AppIcons.close));
     await tester.pump();
 
     expect(find.byType(BaseBanner), findsNothing);
+    verify(() => repository.setOffBannerDismissed(value: true)).called(1);
   });
 }

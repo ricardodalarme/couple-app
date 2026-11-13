@@ -1,6 +1,7 @@
 import 'package:device_info_service/device_info_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc_starter/features/_shared/data/data_sources/local/device_marker_store.dart';
+import 'package:flutter_bloc_starter/features/notifications/data/data_sources/local/notifications_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/data_sources/remote/notifications_data_source.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/models/notification_preferences.dart';
 import 'package:logger/logger.dart';
@@ -15,6 +16,7 @@ enum NotificationAccess() {
 
 class NotificationsRepository({
   required final NotificationsDataSource _dataSource,
+  required final NotificationsLocalDataSource _localDataSource,
   required final NotificationService _notificationService,
   required final PermissionService _permissionService,
   required final DeviceInfoService _deviceInfoService,
@@ -106,6 +108,12 @@ class NotificationsRepository({
       rethrow;
     }
   }
+
+  /// Whether the person hid the reminders-off notice on this device.
+  bool get isOffBannerDismissed => _localDataSource.isOffBannerDismissed;
+
+  Future<void> setOffBannerDismissed({required bool value}) =>
+      _localDataSource.setOffBannerDismissed(value: value);
 
   Future<bool> openSettings() => _permissionService.openAppSettings();
 

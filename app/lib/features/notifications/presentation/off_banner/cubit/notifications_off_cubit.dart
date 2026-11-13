@@ -23,19 +23,24 @@ class NotificationsOffCubit({required final NotificationsRepository _repository}
     final NotificationAccess access;
     try {
       access = await _repository.currentAccess();
+      if (access == NotificationAccess.granted) {
+        await _repository.setOffBannerDismissed(value: false);
+      }
     } on Object {
       return;
     }
     if (isClosed) return;
+    final isOff = access == NotificationAccess.denied;
     emit(
-      NotificationsOffState(
-        isOff: access == NotificationAccess.denied,
-        isDismissed: state.isDismissed,
-      ),
+      NotificationsOffState(isOff: isOff, isDismissed: isOff && _repository.isOffBannerDismissed),
     );
   }
 
-  void dismiss() => emit(NotificationsOffState(isOff: state.isOff, isDismissed: true));
+  Future<void> dismiss() async {
+    await _repository.setOffBannerDismissed(value: true);
+    if (isClosed) return;
+    emit(NotificationsOffState(isOff: state.isOff, isDismissed: true));
+  }
 
   Future<void> openSettings() => _repository.openSettings();
 

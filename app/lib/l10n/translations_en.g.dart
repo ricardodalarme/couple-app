@@ -3237,6 +3237,8 @@ class _Translations$notificationPermission$en extends Translations$notificationP
   @override
   String get offBanner => 'Reminders are off. Turn them on in settings.';
   @override
+  String get openSettings => 'Open settings';
+  @override
   String get close => 'Close';
 }
 
@@ -8936,6 +8938,7 @@ extension on TranslationsEn {
           'notificationPermission.notNow' => 'Not now',
           'notificationPermission.allow' => 'Allow',
           'notificationPermission.offBanner' => 'Reminders are off. Turn them on in settings.',
+          'notificationPermission.openSettings' => 'Open settings',
           'notificationPermission.close' => 'Close',
           'notificationPreferences.title' => 'Notifications',
           'notificationPreferences.subtitle' => 'Choose what arrives and when. No pressure.',
@@ -9029,11 +9032,11 @@ extension on TranslationsEn {
           'pause.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'pause.errors.other' => 'Couldn\'t send right now. Your message is still here.',
           'places.title' => 'Places',
-          'places.privacyNote' =>
-            'Only the name of the place. The app never reads or stores your location.',
           _ => null,
         } ??
         switch (path) {
+          'places.privacyNote' =>
+            'Only the name of the place. The app never reads or stores your location.',
           'places.memoryOne' => '1 memory',
           'places.memoryMany' => ({required Object count}) => '${count} memories',
           'places.monthsShort.0' => 'Jan',
@@ -9599,10 +9602,10 @@ extension on TranslationsEn {
           'repair.learning.hint' => 'Write one or two sentences',
           'repair.learning.noteErrors.empty' => 'Write what you learned',
           'repair.learning.noteErrors.tooLong' => 'The note is too long',
-          'repair.learning.save' => 'Save',
           _ => null,
         } ??
         switch (path) {
+          'repair.learning.save' => 'Save',
           'repair.learning.listTitle' => 'Your learnings',
           'repair.learning.delete' => 'Delete',
           'repair.learning.emptyTitle' => 'Nothing yet',
@@ -10193,10 +10196,10 @@ extension on TranslationsEn {
           'today.inviteCardLabel' => 'Invite',
           'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',
           'today.inviteCardTitleNoName' => 'Invite your person',
-          'today.inviteCardText' => 'Shared cards and tools need both of you.',
           _ => null,
         } ??
         switch (path) {
+          'today.inviteCardText' => 'Shared cards and tools need both of you.',
           'today.privateTag' => 'Only yours',
           'today.privateQuestion' => 'How was your day, really?',
           'today.privateHighlight' => 'day',

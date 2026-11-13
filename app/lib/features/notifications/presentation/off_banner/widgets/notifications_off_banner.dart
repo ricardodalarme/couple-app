@@ -30,8 +30,10 @@ class const _Banner() extends StatelessWidget {
         text: l10n.offBanner,
         variant: BaseBannerVariant.notice,
         icon: AppIcons.bell_off,
-        actionLabel: l10n.close,
-        onAction: cubit.dismiss,
+        actionLabel: l10n.openSettings,
+        onAction: cubit.openSettings,
+        onDismiss: cubit.dismiss,
+        dismissLabel: l10n.close,
         isCompact: true,
       ),
     );
