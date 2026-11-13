@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/data/data_sources/local/discreet_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/mutations/generated/UpdateWidgetPreferences.graphql.dart';
@@ -22,6 +24,8 @@ class WidgetsRepository({
   required final DiscreetLocalDataSource _discreetLocalDataSource,
   required final WidgetDataService _widgetDataService,
   required final CouplePhotoRepository _couplePhotoRepository,
+  required final AuthenticationRepository _authenticationRepository,
+  required final ProfileRepository _profileRepository,
 }) {
   final Logger _logger = Logger('WidgetsRepository');
   Future<void> _writeQueue = Future<void>.value();
@@ -152,22 +156,24 @@ class WidgetsRepository({
   /// Saves the user's widget privacy and rotation settings and refreshes the native store.
   Future<WidgetOverview> savePreferences(WidgetPreferences preferences, {DateTime? now}) async {
     try {
-      if (preferences.profileId.isEmpty) {
-        throw const LocalizedException(l10nKey: 'WIDGET_PREFERENCES_SAVE_FAILED');
-      }
       await _localDataSource.setContentSource(preferences.contentSource);
       await _localDataSource.setRotationCadence(preferences.rotationCadence);
       await _discreetLocalDataSource.setHideWidgetText(value: preferences.hideInDiscreet);
 
-      final affected = await _dataSource.updatePreferences(
-        VariablesMutationUpdateWidgetPreferences(
-          profileId: preferences.profileId,
-          widgetShowNames: preferences.showNames,
-          widgetInDiscreet: !preferences.hideInDiscreet,
-          widgetAllowPartnerNotes: preferences.allowPartnerNotes,
-          widgetOnLockScreen: preferences.onLockScreen,
-        ),
-      );
+      var profileId = preferences.profileId.isEmpty
+          ? _authenticationRepository.currentUserId ?? ''
+          : preferences.profileId;
+      if (profileId.isEmpty) {
+        throw const LocalizedException(l10nKey: 'WIDGET_PREFERENCES_SAVE_FAILED');
+      }
+
+      var affected = await _updatePreferences(preferences, profileId: profileId);
+      if (affected == 0) {
+        // A cached overview can carry a missing id or a row that never reached the server.
+        final profile = await _profileRepository.ensureProfile();
+        profileId = profile.id;
+        affected = await _updatePreferences(preferences, profileId: profileId);
+      }
       if (affected == 0) {
         throw const LocalizedException(l10nKey: 'WIDGET_PREFERENCES_SAVE_FAILED');
       }
@@ -178,6 +184,17 @@ class WidgetsRepository({
       rethrow;
     }
   }
+
+  Future<int> _updatePreferences(WidgetPreferences preferences, {required String profileId}) =>
+      _dataSource.updatePreferences(
+        VariablesMutationUpdateWidgetPreferences(
+          profileId: profileId,
+          widgetShowNames: preferences.showNames,
+          widgetInDiscreet: !preferences.hideInDiscreet,
+          widgetAllowPartnerNotes: preferences.allowPartnerNotes,
+          widgetOnLockScreen: preferences.onLockScreen,
+        ),
+      );
 
   Future<WidgetPayload> _writeDiscreetFallback({
     required bool discreet,

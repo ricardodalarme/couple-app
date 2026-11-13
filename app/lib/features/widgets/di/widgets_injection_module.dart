@@ -54,6 +54,8 @@ class WidgetsInjectionModule() implements InjectionModule {
           discreetLocalDataSource: injector.get<DiscreetLocalDataSource>(),
           widgetDataService: injector.get<WidgetDataService>(),
           couplePhotoRepository: injector.get<CouplePhotoRepository>(),
+          authenticationRepository: injector.get<AuthenticationRepository>(),
+          profileRepository: injector.get<ProfileRepository>(),
         ),
       )
       ..registerFactory<WidgetsGalleryCubit>(

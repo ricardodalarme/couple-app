@@ -1,6 +1,8 @@
 import 'dart:async';
 
-import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
+import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/data/data_sources/local/discreet_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/mutations/generated/UpdateWidgetPreferences.graphql.dart';
@@ -24,12 +26,18 @@ class _MockWidgetDataService() extends Mock implements WidgetDataService;
 
 class _MockCouplePhotoRepository() extends Mock implements CouplePhotoRepository;
 
+class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
+
+class _MockProfileRepository() extends Mock implements ProfileRepository;
+
 void main() {
   late WidgetsDataSource dataSource;
   late WidgetsLocalDataSource localDataSource;
   late DiscreetLocalDataSource discreetLocalDataSource;
   late WidgetDataService widgetDataService;
   late CouplePhotoRepository couplePhotoRepository;
+  late AuthenticationRepository authenticationRepository;
+  late ProfileRepository profileRepository;
   late WidgetsRepository repository;
   late List<WidgetPayload> writes;
   WidgetPayload? cached;
@@ -88,12 +96,17 @@ void main() {
     discreetLocalDataSource = _MockDiscreetLocalDataSource();
     widgetDataService = _MockWidgetDataService();
     couplePhotoRepository = _MockCouplePhotoRepository();
+    authenticationRepository = _MockAuthenticationRepository();
+    profileRepository = _MockProfileRepository();
+    when(() => authenticationRepository.currentUserId).thenReturn('profile-1');
     repository = WidgetsRepository(
       dataSource: dataSource,
       localDataSource: localDataSource,
       discreetLocalDataSource: discreetLocalDataSource,
       widgetDataService: widgetDataService,
       couplePhotoRepository: couplePhotoRepository,
+      authenticationRepository: authenticationRepository,
+      profileRepository: profileRepository,
     );
     writes = <WidgetPayload>[];
     cached = WidgetPayload.fake();
@@ -136,14 +149,36 @@ void main() {
         .thenAnswer((_) async => WidgetPayload.signedOut());
   });
 
-  test('saving preferences without a profile id fails instead of succeeding silently', () async {
-    final preferences = WidgetPreferences.fake().copyWith(profileId: '');
+  test('saving preferences without a profile id uses the signed-in person', () async {
+    VariablesMutationUpdateWidgetPreferences? sent;
+    when(() => dataSource.updatePreferences(any())).thenAnswer((invocation) async {
+      sent = invocation.positionalArguments.first as VariablesMutationUpdateWidgetPreferences;
 
-    await expectLater(
-      repository.savePreferences(preferences, now: now),
-      throwsA(isA<LocalizedException>()),
+      return 1;
+    });
+    when(() => dataSource.getOverview()).thenAnswer((_) async => response());
+
+    await repository.savePreferences(WidgetPreferences.fake().copyWith(profileId: ''), now: now);
+
+    expect(sent?.profileId, 'profile-1');
+  });
+
+  test('a save that matches no row ensures the settings row and retries once', () async {
+    var calls = 0;
+    when(() => dataSource.updatePreferences(any())).thenAnswer((_) async {
+      calls++;
+
+      return calls == 1 ? 0 : 1;
+    });
+    when(() => profileRepository.ensureProfile()).thenAnswer(
+      (_) async => const Profile(id: 'profile-9', avatarKind: 'initials', displayName: 'Ana'),
     );
-    verifyNever(() => dataSource.updatePreferences(any()));
+    when(() => dataSource.getOverview()).thenAnswer((_) async => response());
+
+    await repository.savePreferences(WidgetPreferences.fake(), now: now);
+
+    expect(calls, 2);
+    verify(() => profileRepository.ensureProfile()).called(1);
   });
 
   test('saving preferences inverts the hide flag before sending it to the server', () async {
