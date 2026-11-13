@@ -1,5 +1,6 @@
 {
   "title": "Sign in (debug)",
   "signIn": "Sign in",
-  "createAccount": "Create account"
+  "createAccount": "Create account",
+  "confirmEmail": "Account created. Check your email to confirm it before signing in."
 }

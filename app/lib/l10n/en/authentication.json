@@ -1,7 +1,10 @@
 {
   "signInTitle": "Sign in",
   "signInSubtitle": "No email and password. Just Apple or Google.",
+  "signInDebugSubtitle": "In this test build, sign in with email and password.",
   "signInNote": "Signing in takes you straight to your Today.",
+  "providersUnavailable": "Apple and Google are off in this test build. Sign in with email and password.",
+  "emailSignInFallback": "Sign in with email and password",
   "existingAccountTitle": "You already have an account",
   "existingAccountSubtitle": "Sign in to pick up where you left off.",
   "continueWithApple": "Continue with Apple",

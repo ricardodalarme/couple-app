@@ -44,6 +44,7 @@ class const DebugSignInPage({super.key}) extends StatelessWidget implements Auto
               const _SignInButton(),
               const SizedBox(height: AppSpace.s8),
               const _SignUpButton(),
+              const _ConfirmationNote(),
             ],
           ),
         ),
@@ -74,6 +75,21 @@ class const _SignUpButton() extends StatelessWidget {
       text: context.l10n.debugSignIn.createAccount,
       variant: .secondary,
       onPressed: context.read<DebugSignInCubit>().signUp,
+    );
+  }
+}
+
+class const _ConfirmationNote() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final awaiting = context.select(
+      (DebugSignInCubit cubit) => cubit.state.awaitingEmailConfirmation,
+    );
+    if (!awaiting) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.only(top: AppSpace.s16),
+      child: BaseNote(text: context.l10n.debugSignIn.confirmEmail, icon: AppIcons.check),
     );
   }
 }

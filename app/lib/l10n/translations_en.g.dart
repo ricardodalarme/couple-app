@@ -354,7 +354,14 @@ class _Translations$authentication$en extends Translations$authentication$pt {
   @override
   String get signInSubtitle => 'No email and password. Just Apple or Google.';
   @override
+  String get signInDebugSubtitle => 'In this test build, sign in with email and password.';
+  @override
   String get signInNote => 'Signing in takes you straight to your Today.';
+  @override
+  String get providersUnavailable =>
+      'Apple and Google are off in this test build. Sign in with email and password.';
+  @override
+  String get emailSignInFallback => 'Sign in with email and password';
   @override
   String get existingAccountTitle => 'You already have an account';
   @override
@@ -1148,6 +1155,8 @@ class _Translations$debugSignIn$en extends Translations$debugSignIn$pt {
   String get signIn => 'Sign in';
   @override
   String get createAccount => 'Create account';
+  @override
+  String get confirmEmail => 'Account created. Check your email to confirm it before signing in.';
 }
 
 // Path: devices
@@ -7249,7 +7258,12 @@ extension on TranslationsEn {
           'account.errors.other' => 'Could not finish now. Try again.',
           'authentication.signInTitle' => 'Sign in',
           'authentication.signInSubtitle' => 'No email and password. Just Apple or Google.',
+          'authentication.signInDebugSubtitle' =>
+            'In this test build, sign in with email and password.',
           'authentication.signInNote' => 'Signing in takes you straight to your Today.',
+          'authentication.providersUnavailable' =>
+            'Apple and Google are off in this test build. Sign in with email and password.',
+          'authentication.emailSignInFallback' => 'Sign in with email and password',
           'authentication.existingAccountTitle' => 'You already have an account',
           'authentication.existingAccountSubtitle' => 'Sign in to pick up where you left off.',
           'authentication.continueWithApple' => 'Continue with Apple',
@@ -7657,6 +7671,8 @@ extension on TranslationsEn {
           'debugSignIn.title' => 'Sign in (debug)',
           'debugSignIn.signIn' => 'Sign in',
           'debugSignIn.createAccount' => 'Create account',
+          'debugSignIn.confirmEmail' =>
+            'Account created. Check your email to confirm it before signing in.',
           'devices.title' => 'Notification devices',
           'devices.subtitle' => 'Phones that receive notifications for this account. Removing one stops its notifications.',
           'devices.current' => 'This device',
@@ -7746,6 +7762,9 @@ extension on TranslationsEn {
           'fightStyle.options6.avoid' => 'Carrying on with the day as if nothing happened.',
           'fightStyle.options6.other' => '',
           'fightStyle.continueAction' => 'Continue',
+          _ => null,
+        } ??
+        switch (path) {
           'fightStyle.finishAction' => 'See result',
           'fightStyle.back' => 'Back',
           'fightStyle.privateNote' => 'Only you see your answers. Nothing is sent to your partner.',
@@ -8455,6 +8474,9 @@ extension on TranslationsEn {
           'ideaDetail.done' => 'Noted. Nice!',
           'ideaDetail.another' => 'Another idea',
           'ideaDetail.later' => 'Later',
+          _ => null,
+        } ??
+        switch (path) {
           'ideaDetail.laterTitle' => 'When should we remind you?',
           'ideaDetail.tonight' => 'Tonight',
           'ideaDetail.tomorrow' => 'Tomorrow morning',
@@ -9031,6 +9053,9 @@ extension on TranslationsEn {
           'pause.presets.calm' => 'I want to listen well. I need to calm down first.',
           'pause.presets.other' => '',
           'pause.hint' => 'Write my own',
+          _ => null,
+        } ??
+        switch (path) {
           'pause.messageErrors.empty' => 'Write a short message',
           'pause.messageErrors.tooLong' => 'The message is too long',
           'pause.returnTitle' => 'I\'ll be back in',
@@ -9601,6 +9626,9 @@ extension on TranslationsEn {
           'repair.guided.followUps.none' => 'No need',
           'repair.guided.followUps.tomorrow' => 'Tomorrow',
           'repair.guided.followUps.inThreeDays' => 'In 3 days',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.guided.followUps.other' => '',
           'repair.guided.followUpNote' =>
             'The reminder is short and says nothing about what happened.',
@@ -10179,6 +10207,9 @@ extension on TranslationsEn {
                   other: '${count} days',
                 ),
           'today.togetherChipAction' => 'Open our story',
+          _ => null,
+        } ??
+        switch (path) {
           'today.togetherJoin' => ({
             required Object first,
             required Object second,

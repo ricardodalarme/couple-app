@@ -30,11 +30,14 @@ class const SignInPage({super.key}) extends StatelessWidget implements AutoRoute
               Text(l10n.signInTitle, style: context.text.titleXl),
               const SizedBox(height: AppSpace.s8),
               Text(
-                l10n.signInSubtitle,
+                showProviderButtons ? l10n.signInSubtitle : l10n.signInDebugSubtitle,
                 style: context.text.body.copyWith(color: context.colors.textSecondary),
               ),
               const SizedBox(height: AppSpace.s28),
-              const ProviderButtons(),
+              ProviderButtons(
+                showProviders: showProviderButtons,
+                onEmailSignIn: () => context.pushRoute(const DebugSignInRoute()),
+              ),
               const SizedBox(height: AppSpace.s24),
               BaseNote(text: l10n.signInNote),
             ],

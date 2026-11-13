@@ -11,10 +11,14 @@ import '../../../test_helpers/pump_app.dart';
 class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
 
 void main() {
-  setUp(() => LocaleSettings.setLocaleSync(AppLocale.pt));
+  late AuthenticationRepository repository;
+
+  setUp(() {
+    LocaleSettings.setLocaleSync(AppLocale.pt);
+    repository = _MockAuthenticationRepository();
+  });
 
   testWidgets('renders the debug sign-in labels in Portuguese', (tester) async {
-    final repository = _MockAuthenticationRepository();
     final cubit = DebugSignInCubit(authenticationRepository: repository);
     addTearDown(cubit.close);
 
@@ -30,5 +34,31 @@ void main() {
     expect(find.text('Criar conta'), findsOneWidget);
     expect(find.text('Sign in'), findsNothing);
     expect(find.text('Create account'), findsNothing);
+  });
+
+  testWidgets('explains the confirmation email after creating an account', (tester) async {
+    when(
+      () => repository.signUpWithEmailAndPassword(
+        email: any(named: 'email'),
+        password: any(named: 'password'),
+      ),
+    ).thenAnswer((_) async {});
+    when(() => repository.isAuthenticated).thenReturn(false);
+    final cubit = DebugSignInCubit(authenticationRepository: repository);
+    addTearDown(cubit.close);
+
+    await tester.pumpApp(
+      BlocProvider.value(value: cubit, child: const DebugSignInPage()),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Criar conta'));
+    await tester.pump();
+    await tester.pump();
+
+    expect(
+      find.text('Conta criada. Confira seu e-mail para confirmar antes de entrar.'),
+      findsOneWidget,
+    );
   });
 }

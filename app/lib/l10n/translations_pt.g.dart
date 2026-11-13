@@ -309,8 +309,18 @@ class Translations$authentication$pt {
   /// pt: 'Sem e-mail e senha. Só Apple ou Google.'
   String get signInSubtitle => 'Sem e-mail e senha. Só Apple ou Google.';
 
+  /// pt: 'Neste build de teste, entre com e-mail e senha.'
+  String get signInDebugSubtitle => 'Neste build de teste, entre com e-mail e senha.';
+
   /// pt: 'Entrar leva direto para o seu Hoje.'
   String get signInNote => 'Entrar leva direto para o seu Hoje.';
+
+  /// pt: 'Apple e Google estão desativados neste build de teste. Entre com e-mail e senha.'
+  String get providersUnavailable =>
+      'Apple e Google estão desativados neste build de teste. Entre com e-mail e senha.';
+
+  /// pt: 'Entrar com e-mail e senha'
+  String get emailSignInFallback => 'Entrar com e-mail e senha';
 
   /// pt: 'Você já tem uma conta'
   String get existingAccountTitle => 'Você já tem uma conta';
@@ -1320,6 +1330,9 @@ class Translations$debugSignIn$pt {
 
   /// pt: 'Criar conta'
   String get createAccount => 'Criar conta';
+
+  /// pt: 'Conta criada. Confira seu e-mail para confirmar antes de entrar.'
+  String get confirmEmail => 'Conta criada. Confira seu e-mail para confirmar antes de entrar.';
 }
 
 // Path: devices
@@ -9012,7 +9025,11 @@ extension on Translations {
           'account.errors.other' => 'Não deu para concluir agora. Tente de novo.',
           'authentication.signInTitle' => 'Entrar',
           'authentication.signInSubtitle' => 'Sem e-mail e senha. Só Apple ou Google.',
+          'authentication.signInDebugSubtitle' => 'Neste build de teste, entre com e-mail e senha.',
           'authentication.signInNote' => 'Entrar leva direto para o seu Hoje.',
+          'authentication.providersUnavailable' =>
+            'Apple e Google estão desativados neste build de teste. Entre com e-mail e senha.',
+          'authentication.emailSignInFallback' => 'Entrar com e-mail e senha',
           'authentication.existingAccountTitle' => 'Você já tem uma conta',
           'authentication.existingAccountSubtitle' => 'Entre para continuar de onde parou.',
           'authentication.continueWithApple' => 'Continuar com a Apple',
@@ -9421,6 +9438,8 @@ extension on Translations {
           'debugSignIn.title' => 'Entrar (debug)',
           'debugSignIn.signIn' => 'Entrar',
           'debugSignIn.createAccount' => 'Criar conta',
+          'debugSignIn.confirmEmail' =>
+            'Conta criada. Confira seu e-mail para confirmar antes de entrar.',
           'devices.title' => 'Dispositivos de notificação',
           'devices.subtitle' =>
             'Celulares que recebem notificações desta conta. Remover um para as notificações dele.',
@@ -9512,6 +9531,9 @@ extension on Translations {
           'fightStyle.options6.avoid' => 'Seguir o dia como se nada tivesse acontecido.',
           'fightStyle.options6.other' => '',
           'fightStyle.continueAction' => 'Continuar',
+          _ => null,
+        } ??
+        switch (path) {
           'fightStyle.finishAction' => 'Ver resultado',
           'fightStyle.back' => 'Voltar',
           'fightStyle.privateNote' => 'Só você vê as respostas. Nada é enviado ao seu par.',
@@ -10225,6 +10247,9 @@ extension on Translations {
           'ideaDetail.done' => 'Anotado. Que bom!',
           'ideaDetail.another' => 'Outra ideia',
           'ideaDetail.later' => 'Mais tarde',
+          _ => null,
+        } ??
+        switch (path) {
           'ideaDetail.laterTitle' => 'Quando lembrar?',
           'ideaDetail.tonight' => 'Hoje à noite',
           'ideaDetail.tomorrow' => 'Amanhã de manhã',
@@ -10803,6 +10828,9 @@ extension on Translations {
           'pause.presets.calm' => 'Quero te ouvir bem. Preciso me acalmar antes.',
           'pause.presets.other' => '',
           'pause.hint' => 'Escrever a minha',
+          _ => null,
+        } ??
+        switch (path) {
           'pause.messageErrors.empty' => 'Escreva uma mensagem curta',
           'pause.messageErrors.tooLong' => 'A mensagem está muito longa',
           'pause.returnTitle' => 'Volto em',
@@ -11370,6 +11398,9 @@ extension on Translations {
           'repair.guided.followUps.none' => 'Não precisa',
           'repair.guided.followUps.tomorrow' => 'Amanhã',
           'repair.guided.followUps.inThreeDays' => 'Em 3 dias',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.guided.followUps.other' => '',
           'repair.guided.followUpNote' =>
             'O lembrete é curto e não diz nada sobre o que aconteceu.',
@@ -11952,6 +11983,9 @@ extension on Translations {
                   other: '${count} dias',
                 ),
           'today.togetherChipAction' => 'Abrir nossa história',
+          _ => null,
+        } ??
+        switch (path) {
           'today.togetherJoin' => ({
             required Object first,
             required Object second,

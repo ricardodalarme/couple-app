@@ -6,6 +6,7 @@ import 'package:flutter_bloc_starter/features/authentication/presentation/sign_i
 import 'package:flutter_bloc_starter/features/authentication/presentation/sign_in/widgets/provider_buttons.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 @RoutePage()
 class const ExistingAccountPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
@@ -37,7 +38,9 @@ class const ExistingAccountPage({super.key}) extends StatelessWidget implements 
                 style: context.text.body.copyWith(color: context.colors.textSecondary),
               ),
               const SizedBox(height: AppSpace.s28),
-              const ProviderButtons(),
+              ProviderButtons(
+                onEmailSignIn: () => context.pushRoute(const DebugSignInRoute()),
+              ),
             ],
           ),
         ),

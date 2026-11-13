@@ -1,5 +1,6 @@
 {
   "title": "Entrar (debug)",
   "signIn": "Entrar",
-  "createAccount": "Criar conta"
+  "createAccount": "Criar conta",
+  "confirmEmail": "Conta criada. Confira seu e-mail para confirmar antes de entrar."
 }

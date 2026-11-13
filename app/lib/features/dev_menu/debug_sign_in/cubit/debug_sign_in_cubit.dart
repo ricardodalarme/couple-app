@@ -20,12 +20,29 @@ class DebugSignInCubit({required final AuthenticationRepository _authenticationR
     ),
   );
 
-  Future<void> signUp() => _run(
-    () => _authenticationRepository.signUpWithEmailAndPassword(
-      email: state.email.trim(),
-      password: state.password,
-    ),
-  );
+  /// Creates the account; when the backend requires a confirmation email, no session exists yet.
+  Future<void> signUp() async {
+    if (state.signInAction.isLoading) return;
+
+    emit(state.copyWith(signInAction: const Loading(), awaitingEmailConfirmation: false));
+    try {
+      await _authenticationRepository.signUpWithEmailAndPassword(
+        email: state.email.trim(),
+        password: state.password,
+      );
+      if (isClosed) return;
+      emit(
+        state.copyWith(
+          signInAction: const Success(null),
+          awaitingEmailConfirmation: !_authenticationRepository.isAuthenticated,
+        ),
+      );
+    } catch (exception) {
+      if (isClosed) return;
+      emit(state.copyWith(signInAction: Failure.fromObject(exception)));
+      emit(state.copyWith(signInAction: const Initial()));
+    }
+  }
 
   Future<void> _run(Future<void> Function() action) async {
     emit(state.copyWith(signInAction: const Loading()));

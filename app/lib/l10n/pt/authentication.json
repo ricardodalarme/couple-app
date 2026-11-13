@@ -1,7 +1,10 @@
 {
   "signInTitle": "Entrar",
   "signInSubtitle": "Sem e-mail e senha. Só Apple ou Google.",
+  "signInDebugSubtitle": "Neste build de teste, entre com e-mail e senha.",
   "signInNote": "Entrar leva direto para o seu Hoje.",
+  "providersUnavailable": "Apple e Google estão desativados neste build de teste. Entre com e-mail e senha.",
+  "emailSignInFallback": "Entrar com e-mail e senha",
   "existingAccountTitle": "Você já tem uma conta",
   "existingAccountSubtitle": "Entre para continuar de onde parou.",
   "continueWithApple": "Continuar com a Apple",
