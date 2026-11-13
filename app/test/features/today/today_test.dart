@@ -408,6 +408,48 @@ void main() {
       await cubit.close();
     });
 
+    test('a foreground refresh clears the invite once the partner joins', () async {
+      const pending = TodayHome(
+        isPaired: false,
+        unopenedCards: 0,
+        slipsThisWeek: 0,
+        slipsTotal: 0,
+        hasPendingInvite: true,
+        hasPlus: false,
+      );
+      var reads = 0;
+      void Function()? tick;
+      when(() => today.getToday()).thenAnswer((_) async {
+        reads++;
+
+        return result(value: reads == 1 ? pending : home);
+      });
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        pairingRepository: pairing,
+        repairRepository: repair,
+        slipRepository: slip,
+        refreshInterval: const Duration(seconds: 1),
+        timerFactory: (_, onTick) {
+          tick = onTick;
+
+          return Timer(const Duration(days: 1), () {});
+        },
+      );
+
+      unawaited(Future<void>.microtask(cubit.start));
+      await pumpEventQueue();
+      expect((cubit.state.home as Success<TodayHome>).value.hasPendingInvite, isTrue);
+
+      tick!();
+      await pumpEventQueue();
+
+      expect(reads, 2);
+      expect((cubit.state.home as Success<TodayHome>).value.hasPendingInvite, isFalse);
+      await cubit.close();
+    });
+
     test('a cached result sets the offline flag', () async {
       when(() => today.getToday()).thenAnswer((_) async => result(isFromCache: true));
       final cubit = TodayCubit(
