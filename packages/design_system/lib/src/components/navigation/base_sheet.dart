@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:design_system/design_system.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -9,7 +11,8 @@ const double _dismissVelocity = 700;
 
 /// The sheet surface: grabber, optional header, scrollable body and fixed action.
 ///
-/// It grows to at most 90% of the screen height; the body scrolls.
+/// It grows to at most 90% of the screen height, or the height left above the
+/// software keyboard when one is open; the body scrolls.
 class const BaseSheet({
   required final Widget child,
   final String? title,
@@ -26,7 +29,9 @@ class const BaseSheet({
     final sheetSubtitle = subtitle;
     final action = primaryAction;
     final bottomInset = MediaQuery.paddingOf(context).bottom;
-    final maxHeight = MediaQuery.sizeOf(context).height * _maxHeightFactor;
+    final screenHeight = MediaQuery.sizeOf(context).height;
+    final aboveKeyboard = math.max(0.0, screenHeight - MediaQuery.viewInsetsOf(context).bottom);
+    final maxHeight = math.min(screenHeight * _maxHeightFactor, aboveKeyboard);
 
     final hasHeader = sheetTitle != null || sheetSubtitle != null || onClose != null;
 
@@ -148,15 +153,18 @@ class const BaseSheet({
         builder: (sheetContext) {
           return Align(
             alignment: Alignment.bottomCenter,
-            child: _DraggableSheet(
-              canDismiss: isDismissible,
-              child: BaseSheet(
-                title: title,
-                subtitle: subtitle,
-                primaryAction: primaryAction,
-                onClose: isDismissible ? () => Navigator.of(sheetContext).maybePop() : null,
-                closeSemanticLabel: localizations?.closeButtonTooltip,
-                child: child,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(sheetContext).bottom),
+              child: _DraggableSheet(
+                canDismiss: isDismissible,
+                child: BaseSheet(
+                  title: title,
+                  subtitle: subtitle,
+                  primaryAction: primaryAction,
+                  onClose: isDismissible ? () => Navigator.of(sheetContext).maybePop() : null,
+                  closeSemanticLabel: localizations?.closeButtonTooltip,
+                  child: child,
+                ),
               ),
             ),
           );
