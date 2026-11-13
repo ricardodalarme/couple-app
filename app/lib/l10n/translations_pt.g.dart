@@ -5961,6 +5961,9 @@ class Translations$slipsList$pt {
   /// pt: 'Tente outra palavra.'
   String get searchEmptyText => 'Tente outra palavra.';
 
+  /// pt: 'Limpar busca'
+  String get clearSearch => 'Limpar busca';
+
   /// pt: 'Esta semana'
   String get thisWeek => 'Esta semana';
 
@@ -11637,6 +11640,7 @@ extension on Translations {
           'slipsList.searchHint' => 'Buscar nos seus slips',
           'slipsList.searchEmptyTitle' => 'Nada encontrado',
           'slipsList.searchEmptyText' => 'Tente outra palavra.',
+          'slipsList.clearSearch' => 'Limpar busca',
           'slipsList.thisWeek' => 'Esta semana',
           'slipsList.lastWeek' => 'Semana passada',
           'slipsList.weekRange' => ({
@@ -11987,10 +11991,10 @@ extension on Translations {
                   one: '1 slip esta semana',
                   other: '${count} slips esta semana',
                 ),
-          'today.weekHintEmpty' => 'sem pressa',
           _ => null,
         } ??
         switch (path) {
+          'today.weekHintEmpty' => 'sem pressa',
           'today.weekHint' => 'cartão no domingo',
           'today.forToday' => 'Para hoje',
           'today.ideaLabel' => 'Ideia do dia',

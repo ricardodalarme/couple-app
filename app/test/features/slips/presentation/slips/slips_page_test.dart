@@ -106,6 +106,24 @@ void main() {
 
       expect(find.byType(SlipsGroups), findsNothing);
       expect(find.byType(BaseEmptyState), findsOneWidget);
+      expect(find.text('Nada encontrado'), findsOneWidget);
+      expect(find.text('Limpar busca'), findsOneWidget);
     });
+  });
+
+  testWidgets('search without a single slip still reports no matches', (tester) async {
+    stubPage(const []);
+    final cubit = await build();
+
+    await pumpPage(tester, cubit);
+    cubit
+      ..openSearch()
+      ..onQueryChanged('xyz');
+    await tester.pump();
+    await tester.pump();
+
+    expect(find.text('Nada encontrado'), findsOneWidget);
+    expect(find.text('Nada ainda'), findsNothing);
+    expect(find.text('Limpar busca'), findsOneWidget);
   });
 }

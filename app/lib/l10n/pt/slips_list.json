@@ -8,6 +8,7 @@
   "searchHint": "Buscar nos seus slips",
   "searchEmptyTitle": "Nada encontrado",
   "searchEmptyText": "Tente outra palavra.",
+  "clearSearch": "Limpar busca",
   "thisWeek": "Esta semana",
   "lastWeek": "Semana passada",
   "weekRange": "{start} – {end}",

@@ -100,13 +100,20 @@ class _SlipsPageState() extends State<SlipsPage> {
                 slips,
                 fakeValue: [SlipEntry.fake(), SlipEntry.fake(), SlipEntry.fake()],
                 successBuilder: (items) => items.isEmpty
-                    ? BaseEmptyState(
-                        title: l10n.emptyTitle,
-                        text: l10n.emptyText,
-                        face: FaceKind.thinking,
-                        actionText: l10n.emptyAction,
-                        onAction: () => context.router.root.push(const QuickSlipRoute()),
-                      )
+                    ? isSearching
+                          ? BaseEmptyState(
+                              title: l10n.searchEmptyTitle,
+                              text: l10n.searchEmptyText,
+                              actionText: l10n.clearSearch,
+                              onAction: cubit.closeSearch,
+                            )
+                          : BaseEmptyState(
+                              title: l10n.emptyTitle,
+                              text: l10n.emptyText,
+                              face: FaceKind.thinking,
+                              actionText: l10n.emptyAction,
+                              onAction: () => context.router.root.push(const QuickSlipRoute()),
+                            )
                     : _Results(items: items),
                 failureBuilder: (_) => BaseEmptyState(
                   title: l10n.errorTitle,
@@ -129,7 +136,12 @@ class const _Results({required final List<SlipEntry> items}) extends StatelessWi
     final l10n = context.l10n.slipsList;
     final matches = context.select((SlipsListCubit cubit) => cubit.state.matching(items));
     if (matches.isEmpty) {
-      return BaseEmptyState(title: l10n.searchEmptyTitle, text: l10n.searchEmptyText);
+      return BaseEmptyState(
+        title: l10n.searchEmptyTitle,
+        text: l10n.searchEmptyText,
+        actionText: l10n.clearSearch,
+        onAction: context.read<SlipsListCubit>().closeSearch,
+      );
     }
 
     return Column(

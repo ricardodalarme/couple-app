@@ -4835,6 +4835,8 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   @override
   String get searchEmptyText => 'Try another word.';
   @override
+  String get clearSearch => 'Clear search';
+  @override
   String get thisWeek => 'This week';
   @override
   String get lastWeek => 'Last week';
@@ -9857,6 +9859,7 @@ extension on TranslationsEn {
           'slipsList.searchHint' => 'Search your slips',
           'slipsList.searchEmptyTitle' => 'Nothing found',
           'slipsList.searchEmptyText' => 'Try another word.',
+          'slipsList.clearSearch' => 'Clear search',
           'slipsList.thisWeek' => 'This week',
           'slipsList.lastWeek' => 'Last week',
           'slipsList.weekRange' => ({
@@ -10206,10 +10209,10 @@ extension on TranslationsEn {
                   one: '1 slip this week',
                   other: '${count} slips this week',
                 ),
-          'today.weekHintEmpty' => 'no rush',
           _ => null,
         } ??
         switch (path) {
+          'today.weekHintEmpty' => 'no rush',
           'today.weekHint' => 'card on Sunday',
           'today.forToday' => 'For today',
           'today.ideaLabel' => 'Idea of the day',
