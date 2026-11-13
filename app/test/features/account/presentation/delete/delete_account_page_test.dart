@@ -11,11 +11,11 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../../test_helpers/pump_app.dart';
 
-class _MockAccountRepository() extends Mock implements AccountRepository {}
+class _MockAccountRepository() extends Mock implements AccountRepository;
 
-class _MockPairingRepository() extends Mock implements PairingRepository {}
+class _MockPairingRepository() extends Mock implements PairingRepository;
 
-class _MockBiometricService() extends Mock implements BiometricService {}
+class _MockBiometricService() extends Mock implements BiometricService;
 
 void main() {
   setUp(() => LocaleSettings.setLocaleSync(AppLocale.pt));
@@ -24,8 +24,8 @@ void main() {
     final account = _MockAccountRepository();
     final pairing = _MockPairingRepository();
     final biometric = _MockBiometricService();
-    when(() => account.getDeletion()).thenAnswer((_) async => null);
-    when(() => pairing.getPartner()).thenAnswer((_) async => null);
+    when(account.getDeletion).thenAnswer((_) async => null);
+    when(pairing.getPartner).thenAnswer((_) async => null);
 
     final cubit = DeleteAccountCubit(
       repository: account,

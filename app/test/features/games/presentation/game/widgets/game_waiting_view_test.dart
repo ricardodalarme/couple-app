@@ -15,9 +15,9 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../../../test_helpers/pump_app.dart';
 
-class _MockGamesRepository() extends Mock implements GamesRepository {}
+class _MockGamesRepository() extends Mock implements GamesRepository;
 
-class _MockProfileRepository() extends Mock implements ProfileRepository {}
+class _MockProfileRepository() extends Mock implements ProfileRepository;
 
 void main() {
   setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
@@ -44,7 +44,7 @@ void main() {
       ),
       items: const [GameItem(slug: 'a', title: 'A?')],
     );
-    when(() => profile.getMySettings())
+    when(profile.getMySettings)
         .thenAnswer((_) async => const AccountSettings(theme: AppThemeVariant.rose));
     when(
       () => repository.getPlay(

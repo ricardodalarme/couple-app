@@ -13,13 +13,13 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../../test_helpers/pump_app.dart';
 
-class _MockRepairRepository() extends Mock implements RepairRepository {}
+class _MockRepairRepository() extends Mock implements RepairRepository;
 
-class _MockProfileRepository() extends Mock implements ProfileRepository {}
+class _MockProfileRepository() extends Mock implements ProfileRepository;
 
-class _MockRemindersRepository() extends Mock implements RemindersRepository {}
+class _MockRemindersRepository() extends Mock implements RemindersRepository;
 
-class _MockSyncService() extends Mock implements ReminderSyncService {}
+class _MockSyncService() extends Mock implements ReminderSyncService;
 
 void main() {
   setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
@@ -32,7 +32,7 @@ void main() {
     final reminders = _MockRemindersRepository();
     final sync = _MockSyncService();
     when(
-      () => profile.getMyProfile(),
+      profile.getMyProfile,
     ).thenAnswer((_) async => const Profile(id: 'me', avatarKind: 'initials', displayName: 'Ana'));
     when(() => repair.getReceivedSignals('me')).thenAnswer(
       (_) async => [ReceivedSignal(id: 's1', kind: 'miss_us', createdAt: DateTime(2026, 11, 10))],

@@ -10,9 +10,9 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../../../test_helpers/pump_app.dart';
 
-class _MockPairingRepository() extends Mock implements PairingRepository {}
+class _MockPairingRepository() extends Mock implements PairingRepository;
 
-class _MockProfileRepository() extends Mock implements ProfileRepository {}
+class _MockProfileRepository() extends Mock implements ProfileRepository;
 
 void main() {
   setUp(() => LocaleSettings.setLocaleSync(AppLocale.pt));
