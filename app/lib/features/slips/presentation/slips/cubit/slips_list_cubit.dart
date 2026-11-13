@@ -25,7 +25,10 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
   Future<void> load() async {
     if (state.slips is! Success) emit(state.copyWith(slips: const Loading()));
     try {
-      final page = await _slipRepository.getSlips(since: _since(state.scope, clock.now()));
+      final page = await _slipRepository.getSlips(
+        since: _since(state.scope, clock.now()),
+        archived: state.scope == SlipsScope.archived,
+      );
       emit(
         SlipsListState(
           slips: Success(page.items),
@@ -65,6 +68,7 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
       final page = await _slipRepository.getSlips(
         after: state.cursor,
         since: _since(state.scope, clock.now()),
+        archived: state.scope == SlipsScope.archived,
       );
       final knownIds = current.value.map((slip) => slip.id).toSet();
       emit(
@@ -91,9 +95,9 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
     return super.close();
   }
 
-  /// Monday 00:00 of the week [now] falls in, or `null` for every slip.
+  /// Monday 00:00 of the week [now] falls in, or `null` for every slip or the archive.
   static DateTime? _since(SlipsScope scope, DateTime now) {
-    if (scope == SlipsScope.all) return null;
+    if (scope != SlipsScope.week) return null;
 
     final today = DateTime(now.year, now.month, now.day);
 

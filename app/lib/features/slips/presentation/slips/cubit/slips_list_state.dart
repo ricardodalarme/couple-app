@@ -7,6 +7,9 @@ enum SlipsScope() {
 
   /// Every slip.
   all,
+
+  /// Slips taken out of the week and the timeline.
+  archived,
 }
 
 final class const SlipsListState({

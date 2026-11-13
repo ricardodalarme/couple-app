@@ -35,6 +35,7 @@ void main() {
       () => repository.getSlips(
         after: any(named: 'after'),
         since: any(named: 'since'),
+        archived: any(named: 'archived'),
         pageSize: any(named: 'pageSize'),
       ),
     ).thenAnswer((_) async => SlipPage(items: items, hasNext: false));
@@ -60,7 +61,8 @@ void main() {
     await pumpPage(tester, cubit);
 
     expect(find.byType(BaseEmptyState), findsOneWidget);
-    expect(find.byType(BaseChoiceChip), findsNothing);
+    expect(find.byType(BaseChoiceChip), findsNWidgets(3));
+    expect(find.text('Arquivados'), findsOneWidget);
     expect(find.byType(BaseTextLink), findsNothing);
     expect(find.byType(BaseRoundButton), findsOneWidget);
     expect(find.byType(SlipsGroups), findsNothing);
@@ -75,7 +77,8 @@ void main() {
       await pumpPage(tester, cubit);
 
       expect(find.byType(BaseEmptyState), findsNothing);
-      expect(find.byType(BaseChoiceChip), findsNWidgets(2));
+      expect(find.byType(BaseChoiceChip), findsNWidgets(3));
+      expect(find.text('Arquivados'), findsOneWidget);
       expect(find.byType(BaseTextLink), findsOneWidget);
       expect(find.byType(BaseRoundButton), findsOneWidget);
       expect(find.byType(SlipsGroups), findsOneWidget);

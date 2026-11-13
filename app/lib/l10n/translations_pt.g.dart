@@ -5943,6 +5943,9 @@ class Translations$slipsList$pt {
   /// pt: 'Todos'
   String get scopeAll => 'Todos';
 
+  /// pt: 'Arquivados'
+  String get scopeArchived => 'Arquivados';
+
   /// pt: 'Buscar'
   String get search => 'Buscar';
 
@@ -11628,6 +11631,7 @@ extension on Translations {
           'slipsList.title' => 'Slips',
           'slipsList.scopeWeek' => 'Esta semana',
           'slipsList.scopeAll' => 'Todos',
+          'slipsList.scopeArchived' => 'Arquivados',
           'slipsList.search' => 'Buscar',
           'slipsList.searchClose' => 'Fechar busca',
           'slipsList.searchHint' => 'Buscar nos seus slips',
@@ -11984,10 +11988,10 @@ extension on Translations {
                   other: '${count} slips esta semana',
                 ),
           'today.weekHintEmpty' => 'sem pressa',
-          'today.weekHint' => 'cartão no domingo',
           _ => null,
         } ??
         switch (path) {
+          'today.weekHint' => 'cartão no domingo',
           'today.forToday' => 'Para hoje',
           'today.ideaLabel' => 'Ideia do dia',
           'today.slipsThisWeekPrivate' =>

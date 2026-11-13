@@ -159,9 +159,21 @@ class SlipRepository({
   }
 
   /// Reads a page of the person's slips, newest first; [since] limits it to recent ones.
-  Future<SlipPage> getSlips({String? after, DateTime? since, int pageSize = slipPageSize}) async {
+  ///
+  /// [archived] reads the slips taken out of the timeline instead.
+  Future<SlipPage> getSlips({
+    String? after,
+    DateTime? since,
+    bool archived = false,
+    int pageSize = slipPageSize,
+  }) async {
     try {
-      final result = await _slipDataSource.getSlips(first: pageSize, after: after, since: since);
+      final result = await _slipDataSource.getSlips(
+        first: pageSize,
+        after: after,
+        since: since,
+        archived: archived,
+      );
 
       return SlipPage(
         items: [

@@ -30,6 +30,7 @@ void main() {
     () => repository.getSlips(
       after: after,
       since: any(named: 'since'),
+      archived: any(named: 'archived'),
       pageSize: any(named: 'pageSize'),
     ),
   ).thenAnswer((_) async => page);
@@ -99,6 +100,7 @@ void main() {
         () => repository.getSlips(
           after: any(named: 'after'),
           since: any(named: 'since'),
+          archived: any(named: 'archived'),
           pageSize: any(named: 'pageSize'),
         ),
       ).called(1);
@@ -112,7 +114,29 @@ void main() {
       await cubit.changeScope(SlipsScope.all);
 
       expect(cubit.state.scope, SlipsScope.all);
-      verify(() => repository.getSlips(since: null, pageSize: any(named: 'pageSize'))).called(1);
+      verify(
+        () => repository.getSlips(
+          since: null,
+          archived: false,
+          pageSize: any(named: 'pageSize'),
+        ),
+      ).called(1);
+    });
+
+    test('the archived scope reads the slips taken out of the timeline', () async {
+      stubPage(const SlipPage(items: [], hasNext: false));
+      final cubit = build();
+      await cubit.load();
+
+      await cubit.changeScope(SlipsScope.archived);
+
+      verify(
+        () => repository.getSlips(
+          since: null,
+          archived: true,
+          pageSize: any(named: 'pageSize'),
+        ),
+      ).called(1);
     });
 
     test('a failed first load shows a failure', () async {
@@ -120,6 +144,7 @@ void main() {
         () => repository.getSlips(
           after: any(named: 'after'),
           since: any(named: 'since'),
+          archived: any(named: 'archived'),
           pageSize: any(named: 'pageSize'),
         ),
       ).thenAnswer((_) async => throw Exception());
@@ -142,6 +167,7 @@ void main() {
         () => repository.getSlips(
           after: any(named: 'after'),
           since: any(named: 'since'),
+          archived: any(named: 'archived'),
           pageSize: any(named: 'pageSize'),
         ),
       ).called(2);

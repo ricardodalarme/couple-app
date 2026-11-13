@@ -4823,6 +4823,8 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   @override
   String get scopeAll => 'All';
   @override
+  String get scopeArchived => 'Archived';
+  @override
   String get search => 'Search';
   @override
   String get searchClose => 'Close search';
@@ -9849,6 +9851,7 @@ extension on TranslationsEn {
           'slipsList.title' => 'Slips',
           'slipsList.scopeWeek' => 'This week',
           'slipsList.scopeAll' => 'All',
+          'slipsList.scopeArchived' => 'Archived',
           'slipsList.search' => 'Search',
           'slipsList.searchClose' => 'Close search',
           'slipsList.searchHint' => 'Search your slips',
@@ -10204,10 +10207,10 @@ extension on TranslationsEn {
                   other: '${count} slips this week',
                 ),
           'today.weekHintEmpty' => 'no rush',
-          'today.weekHint' => 'card on Sunday',
           _ => null,
         } ??
         switch (path) {
+          'today.weekHint' => 'card on Sunday',
           'today.forToday' => 'For today',
           'today.ideaLabel' => 'Idea of the day',
           'today.slipsThisWeekPrivate' =>

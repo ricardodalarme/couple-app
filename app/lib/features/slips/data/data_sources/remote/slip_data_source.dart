@@ -59,11 +59,14 @@ class SlipDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  /// Reads one page of the person's own slips, newest first, without deleted or archived ones.
+  /// Reads one page of the person's own slips, newest first, without deleted ones.
+  ///
+  /// When [archived] is true it reads only the slips taken out of the timeline.
   Future<QueryMySlipsslipsCollection> getSlips({
     required int first,
     String? after,
     DateTime? since,
+    bool archived = false,
   }) async {
     final response = await _client.query(
       OptionsQueryMySlips(
@@ -73,8 +76,10 @@ class SlipDataSource({required final GQLClient _client}) {
           after: after,
           filter: InputSlipsFilter(
             deletedAt: InputDatetimeFilter($is: EnumFilterIs.NULL),
-            archivedAt: InputDatetimeFilter($is: EnumFilterIs.NULL),
-            createdAt: since == null ? null : InputDatetimeFilter(gte: since),
+            archivedAt: InputDatetimeFilter(
+              $is: archived ? EnumFilterIs.NOT_NULL : EnumFilterIs.NULL,
+            ),
+            createdAt: since == null || archived ? null : InputDatetimeFilter(gte: since),
           ),
         ),
       ),

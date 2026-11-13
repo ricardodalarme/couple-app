@@ -54,7 +54,6 @@ class _SlipsPageState() extends State<SlipsPage> {
     final isSearching = context.select((SlipsListCubit cubit) => cubit.state.isSearching);
     final query = context.select((SlipsListCubit cubit) => cubit.state.query);
     final cubit = context.read<SlipsListCubit>();
-    final isEmpty = slips is Success<List<SlipEntry>> && slips.value.isEmpty;
 
     return BaseView(
       appBar: null,
@@ -80,21 +79,23 @@ class _SlipsPageState() extends State<SlipsPage> {
                 BaseTextField(text: query, hint: l10n.searchHint, onChanged: cubit.onQueryChanged),
                 const SizedBox(height: AppSpace.s16),
               ],
-              if (!isEmpty) ...[
-                Wrap(
-                  spacing: AppSpace.s8,
-                  runSpacing: AppSpace.s8,
-                  children: [
-                    for (final option in SlipsScope.values)
-                      BaseChoiceChip(
-                        label: option == SlipsScope.week ? l10n.scopeWeek : l10n.scopeAll,
-                        isSelected: scope == option,
-                        onTap: () => cubit.changeScope(option),
-                      ),
-                  ],
-                ),
-                const SizedBox(height: AppSpace.s16),
-              ],
+              Wrap(
+                spacing: AppSpace.s8,
+                runSpacing: AppSpace.s8,
+                children: [
+                  for (final option in SlipsScope.values)
+                    BaseChoiceChip(
+                      label: switch (option) {
+                        SlipsScope.week => l10n.scopeWeek,
+                        SlipsScope.all => l10n.scopeAll,
+                        SlipsScope.archived => l10n.scopeArchived,
+                      },
+                      isSelected: scope == option,
+                      onTap: () => cubit.changeScope(option),
+                    ),
+                ],
+              ),
+              const SizedBox(height: AppSpace.s16),
               SkeletonizerResourceWidget<List<SlipEntry>>(
                 slips,
                 fakeValue: [SlipEntry.fake(), SlipEntry.fake(), SlipEntry.fake()],
