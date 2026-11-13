@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/cubit/debug_sign_in_cubit.dart';
+import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
 class const DebugSignInPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
@@ -13,8 +14,10 @@ class const DebugSignInPage({super.key}) extends StatelessWidget implements Auto
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n.debugSignIn;
+
     return BaseView(
-      appBar: const BaseAppBar(title: 'Debug sign-in'),
+      appBar: BaseAppBar(title: l10n.title),
       body: BlocListener<DebugSignInCubit, DebugSignInState>(
         listenWhen: (previous, current) => previous.signInAction != current.signInAction,
         listener: (context, state) {
@@ -28,13 +31,13 @@ class const DebugSignInPage({super.key}) extends StatelessWidget implements Auto
             children: [
               BaseTextField(
                 type: BaseTextFieldType.email,
-                label: 'Email',
+                label: context.l10n.common.email,
                 onChanged: context.read<DebugSignInCubit>().onEmailChanged,
               ),
               const SizedBox(height: AppSpace.s12),
               BaseTextField(
                 type: BaseTextFieldType.password,
-                label: 'Password',
+                label: context.l10n.common.password,
                 onChanged: context.read<DebugSignInCubit>().onPasswordChanged,
               ),
               const SizedBox(height: AppSpace.s16),
@@ -57,7 +60,7 @@ class const _SignInButton() extends StatelessWidget {
     );
 
     return BaseButton(
-      text: 'Sign in',
+      text: context.l10n.debugSignIn.signIn,
       isLoading: isLoading,
       onPressed: context.read<DebugSignInCubit>().signIn,
     );
@@ -68,7 +71,7 @@ class const _SignUpButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseButton(
-      text: 'Create account',
+      text: context.l10n.debugSignIn.createAccount,
       variant: .secondary,
       onPressed: context.read<DebugSignInCubit>().signUp,
     );
