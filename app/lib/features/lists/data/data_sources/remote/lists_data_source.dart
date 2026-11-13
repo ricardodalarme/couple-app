@@ -78,7 +78,9 @@ class ListsDataSource({required final GQLClient _client}) {
   Future<void> setListVisibility({required String id, String? coupleId}) async {
     final response = await _client.mutate(
       OptionsMutationSetListVisibility(
-        variables: VariablesMutationSetListVisibility(id: id, coupleId: coupleId),
+        // fromJson keeps `coupleId` in the payload even when null; the generated
+        // constructor drops a null variable, which turns the update into a no-op.
+        variables: VariablesMutationSetListVisibility.fromJson({'id': id, 'coupleId': coupleId}),
       ),
     );
     final affected = validateResponseData(

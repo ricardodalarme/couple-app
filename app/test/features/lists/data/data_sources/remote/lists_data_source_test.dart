@@ -13,6 +13,22 @@ class const _StubGQLClient(final QueryResult<Object?> _result) implements GQLCli
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
+class const _CapturingGQLClient(final void Function(MutationOptions<Object?>) _onMutate)
+    implements GQLClient {
+  @override
+  Future<QueryResult<T>> mutate<T>(MutationOptions<T> options) async {
+    _onMutate(options);
+
+    return _result(options, {
+      'updateListsCollection': {'affectedCount': 1, '__typename': 'ListsUpdateResponse'},
+      '__typename': 'Mutation',
+    });
+  }
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
 QueryResult<T> _result<T>(MutationOptions<T> options, Map<String, dynamic> data) =>
     QueryResult.loading(options: options, data: data);
 
@@ -72,6 +88,21 @@ void main() {
     );
 
     expect(dataSource.deleteItem('i1'), throwsA(isA<NoDataException>()));
+  });
+
+  test('making a list private sends coupleId as null instead of dropping it', () async {
+    MutationOptions<Object?>? captured;
+    final dataSource = ListsDataSource(
+      client: _CapturingGQLClient((options) {
+        captured = options;
+      }),
+    );
+
+    await dataSource.setListVisibility(id: 'l1');
+
+    final variables = captured!.variables;
+    expect(variables.containsKey('coupleId'), isTrue);
+    expect(variables['coupleId'], isNull);
   });
 
   test('a mutation that touches one row succeeds', () async {
