@@ -211,10 +211,13 @@ class const _Thumbnail({required final String? url}) extends StatelessWidget {
         height: _thumbSize,
         child: url == null
             ? const BaseImagePlaceholder()
-            : Image.network(
-                url,
+            : CachedNetworkImage(
+                imageUrl: url,
+                cacheKey: Uri.tryParse(url)?.replace(query: '').toString(),
+                memCacheWidth: (_thumbSize * MediaQuery.devicePixelRatioOf(context)).round(),
                 fit: BoxFit.cover,
-                cacheWidth: (_thumbSize * MediaQuery.devicePixelRatioOf(context)).round(),
+                fadeInDuration: Duration.zero,
+                placeholder: (_, _) => const SizedBox.shrink(),
                 errorBuilder: (_, _, _) => const BaseImagePlaceholder(),
               ),
       ),
