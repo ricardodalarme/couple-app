@@ -735,6 +735,9 @@ class Translations$chat$pt {
   /// pt: 'Sobre o que é?'
   String get learningSheetTarget => 'Sobre o que é?';
 
+  /// pt: 'Escolha sobre o que é.'
+  String get learningTargetError => 'Escolha sobre o que é.';
+
   /// pt: 'O que você quer guardar'
   String get learningSheetHint => 'O que você quer guardar';
 
@@ -811,6 +814,9 @@ class Translations$chat$pt {
 
   /// pt: 'A mascote está disponível no Plus, com 20 mensagens por dia.'
   String get plusText => 'A mascote está disponível no Plus, com 20 mensagens por dia.';
+
+  /// pt: 'Ver planos'
+  String get plusCta => 'Ver planos';
 
   /// pt: 'Você não está sozinho'
   String get crisisTitle => 'Você não está sozinho';
@@ -1295,6 +1301,15 @@ class Translations$dates$pt {
 
   /// pt: 'Apagar'
   String get delete => 'Apagar';
+
+  /// pt: 'Apagar esta data?'
+  String get deleteTitle => 'Apagar esta data?';
+
+  /// pt: 'Ela some do calendário para vocês dois.'
+  String get deleteText => 'Ela some do calendário para vocês dois.';
+
+  /// pt: 'Apagar'
+  String get deleteConfirm => 'Apagar';
 
   /// pt: 'Adicionar'
   String get add => 'Adicionar';
@@ -2121,6 +2136,21 @@ class Translations$hardConversation$pt {
 
   /// pt: 'Tente de novo em instantes.'
   String get emptyText => 'Tente de novo em instantes.';
+
+  /// pt: 'Preparar uma conversa faz parte do Plus'
+  String get plusTitle => 'Preparar uma conversa faz parte do Plus';
+
+  /// pt: 'As três etapas e a sugestão de abertura estão no Plus.'
+  String get plusText => 'As três etapas e a sugestão de abertura estão no Plus.';
+
+  /// pt: 'Ver planos'
+  String get plusCta => 'Ver planos';
+
+  /// pt: 'As mensagens de hoje acabaram'
+  String get limitTitle => 'As mensagens de hoje acabaram';
+
+  /// pt: 'Volte amanhã, ou veja o Plus para preparar mais conversas.'
+  String get limitText => 'Volte amanhã, ou veja o Plus para preparar mais conversas.';
 
   Map<String, String> get errors => {
     'CHAT_LIMIT': 'As mensagens de hoje acabaram.',
@@ -3640,6 +3670,21 @@ class Translations$memories$pt {
   /// pt: 'Apagar'
   String get delete => 'Apagar';
 
+  /// pt: 'Apagar esta memória?'
+  String get deleteTitle => 'Apagar esta memória?';
+
+  /// pt: 'Ela some da linha do tempo para vocês dois.'
+  String get deleteText => 'Ela some da linha do tempo para vocês dois.';
+
+  /// pt: 'Apagar'
+  String get deleteConfirm => 'Apagar';
+
+  /// pt: 'Lugar'
+  String get detailPlace => 'Lugar';
+
+  /// pt: 'Como foi'
+  String get detailBody => 'Como foi';
+
   List<String> get monthsShort => [
     'jan',
     'fev',
@@ -4052,6 +4097,9 @@ class Translations$notificationPermission$pt {
 
   /// pt: 'Os lembretes estão desligados. Ligue nas configurações.'
   String get offBanner => 'Os lembretes estão desligados. Ligue nas configurações.';
+
+  /// pt: 'Abrir ajustes'
+  String get openSettings => 'Abrir ajustes';
 
   /// pt: 'Fechar'
   String get close => 'Fechar';
@@ -4650,6 +4698,9 @@ class Translations$privacy$pt {
   /// pt: 'Obrigatório'
   String get required => 'Obrigatório';
 
+  /// pt: 'Dados sensíveis e Termos são obrigatórios para usar o app.'
+  String get requiredNote => 'Dados sensíveis e Termos são obrigatórios para usar o app.';
+
   /// pt: 'Mudanças valem agora.'
   String get consentsNote => 'Mudanças valem agora.';
 
@@ -4811,6 +4862,8 @@ class Translations$profileSetup$pt {
 
   /// pt: 'Escolha uma data'
   String get dateHint => 'Escolha uma data';
+
+  Map<String, String> get dateErrors => {'empty': 'Escolha a data de vocês.'};
 
   /// pt: '{day} de {month} de {year}'
   String dateFormat({required Object day, required Object month, required Object year}) =>
@@ -5284,6 +5337,9 @@ class Translations$quickSlip$pt {
 
   /// pt: 'Salvar'
   String get save => 'Salvar';
+
+  /// pt: 'Descartar este slip?'
+  String get discardTitle => 'Descartar este slip?';
 
   late final Translations$quickSlip$saved$pt saved = Translations$quickSlip$saved$pt.internal(
     _root,
@@ -5989,6 +6045,9 @@ class Translations$slipKind$pt {
   /// pt: 'Outras formas de registrar'
   String get switcherTitle => 'Outras formas de registrar';
 
+  /// pt: 'Rápido'
+  String get quickEntry => 'Rápido';
+
   /// pt: 'Preciso de…'
   String get needEntry => 'Preciso de…';
 
@@ -6028,6 +6087,9 @@ class Translations$slipKind$pt {
   /// pt: 'Salvar'
   String get save => 'Salvar';
 
+  /// pt: 'Descartar este slip?'
+  String get discardTitle => 'Descartar este slip?';
+
   late final Translations$slipKind$saved$pt saved = Translations$slipKind$saved$pt.internal(_root);
   Map<String, String> get errors => {
     'FREE_LIMIT_REACHED': 'Você chegou ao limite de slips do plano grátis.',
@@ -6053,6 +6115,9 @@ class Translations$slipsList$pt {
   /// pt: 'Todos'
   String get scopeAll => 'Todos';
 
+  /// pt: 'Arquivados'
+  String get scopeArchived => 'Arquivados';
+
   /// pt: 'Buscar'
   String get search => 'Buscar';
 
@@ -6067,6 +6132,9 @@ class Translations$slipsList$pt {
 
   /// pt: 'Tente outra palavra.'
   String get searchEmptyText => 'Tente outra palavra.';
+
+  /// pt: 'Limpar busca'
+  String get clearSearch => 'Limpar busca';
 
   /// pt: 'Esta semana'
   String get thisWeek => 'Esta semana';
@@ -6103,6 +6171,13 @@ class Translations$slipsList$pt {
     'did': 'Fez algo',
     'noticed': 'Me notou',
     'helped': 'Ajudou',
+    'other': '',
+  };
+  Map<String, String> get kinds => {
+    'quick': 'Rápido',
+    'specific': 'Específico',
+    'if_then': 'Se… então',
+    'invisible': 'Invisível',
     'other': '',
   };
 
@@ -9420,6 +9495,7 @@ extension on Translations {
           'chat.saveLearning' => 'Salvar aprendizado',
           'chat.learningSheetTitle' => 'Salvar aprendizado',
           'chat.learningSheetTarget' => 'Sobre o que é?',
+          'chat.learningTargetError' => 'Escolha sobre o que é.',
           'chat.learningSheetHint' => 'O que você quer guardar',
           'chat.learningTextErrors.empty' => 'Escreva o que quer guardar',
           'chat.learningTextErrors.tooLong' => 'Isto está muito longo',
@@ -9448,6 +9524,7 @@ extension on Translations {
           'chat.limitText' => 'Volte amanhã, ou veja o Plus para conversar mais.',
           'chat.plusTitle' => 'A conversa faz parte do Plus',
           'chat.plusText' => 'A mascote está disponível no Plus, com 20 mensagens por dia.',
+          'chat.plusCta' => 'Ver planos',
           'chat.crisisTitle' => 'Você não está sozinho',
           'chat.crisisText' => 'Parece que você está passando por algo muito pesado. Se estiver em perigo agora, ligue para o serviço de emergência da sua região ou procure alguém de confiança. Eu não sou a ajuda certa para isso.',
           'chat.crisisSafeMode' => 'Esconder o app (modo seguro)',
@@ -9634,6 +9711,9 @@ extension on Translations {
           'dates.dayOnly' => ({required Object day, required Object month}) => '${day} ${month}',
           'dates.saveDate' => 'Guardar data',
           'dates.delete' => 'Apagar',
+          'dates.deleteTitle' => 'Apagar esta data?',
+          'dates.deleteText' => 'Ela some do calendário para vocês dois.',
+          'dates.deleteConfirm' => 'Apagar',
           'dates.add' => 'Adicionar',
           'dates.emptyDatesTitle' => 'Nenhuma data ainda',
           'dates.emptyDatesText' => 'Guarde aniversários e datas que importam. Avisamos antes.',
@@ -9690,6 +9770,9 @@ extension on Translations {
           'devices.registeredOn' => ({required Object date}) => 'Registrado em ${date}',
           'devices.platformIos' => 'iPhone',
           'devices.platformAndroid' => 'Android',
+          _ => null,
+        } ??
+        switch (path) {
           'devices.revokeTitle' => 'Parar notificações deste dispositivo?',
           'devices.revokeText' => ({
             required Object name,
@@ -9707,9 +9790,6 @@ extension on Translations {
             'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
           'discreet.title' => 'Modo discreto',
           'discreet.neutralIcon' => 'Ícone neutro',
-          _ => null,
-        } ??
-        switch (path) {
           'discreet.neutralNotifications' => 'Notificações neutras',
           'discreet.hideWidgetText' => 'Ocultar texto do widget',
           'discreet.note' =>
@@ -9787,9 +9867,6 @@ extension on Translations {
           'fightStyle.descriptions.avoid' =>
             'Você tende a deixar o assunto de lado para não piorar na hora.',
           'fightStyle.descriptions.other' => '',
-          _ => null,
-        } ??
-        switch (path) {
           'fightStyle.practices.pursue' =>
             'Isso ajuda a resolver rápido. Vale pausar antes de piorar e ouvir até o fim.',
           'fightStyle.practices.withdraw' =>
@@ -10110,6 +10187,12 @@ extension on Translations {
           'hardConversation.offline' => 'Sem conexão. A frase de abertura precisa de internet.',
           'hardConversation.emptyTitle' => 'Não deu para carregar',
           'hardConversation.emptyText' => 'Tente de novo em instantes.',
+          'hardConversation.plusTitle' => 'Preparar uma conversa faz parte do Plus',
+          'hardConversation.plusText' => 'As três etapas e a sugestão de abertura estão no Plus.',
+          'hardConversation.plusCta' => 'Ver planos',
+          'hardConversation.limitTitle' => 'As mensagens de hoje acabaram',
+          'hardConversation.limitText' =>
+            'Volte amanhã, ou veja o Plus para preparar mais conversas.',
           'hardConversation.errors.CHAT_LIMIT' => 'As mensagens de hoje acabaram.',
           'hardConversation.errors.CHAT_DISABLED' =>
             'A conversa está desligada. Ligue para usar a mascote.',
@@ -10347,6 +10430,9 @@ extension on Translations {
           'history.unknownDateToggle' => 'Data desconhecida',
           'history.precisionDay' => 'Dia exato',
           'history.precisionMonth' => 'Mês e ano',
+          _ => null,
+        } ??
+        switch (path) {
           'history.precisionYear' => 'Só o ano',
           'history.dateRowLabel' => 'Data',
           'history.addedByRowLabel' => 'Adicionado por',
@@ -10367,9 +10453,6 @@ extension on Translations {
           'history.storyMarried' => 'Casamos',
           'history.storyAdd' => 'Adicionar',
           'history.storyDateAddedBy' => ({required Object name}) => 'Adicionado por ${name}',
-          _ => null,
-        } ??
-        switch (path) {
           'history.storyDatesNote' => 'Tudo opcional. A data de início alimenta o contador.',
           'history.variationsTitle' => 'Como o contador aparece',
           'history.variationDating' => 'Namoro',
@@ -10504,9 +10587,6 @@ extension on Translations {
             'Guardamos o lembrete. Ligue as notificações nas configurações para recebê-lo.',
           'ideaDetail.reminderError' => 'Não deu para guardar o lembrete. Tente de novo.',
           'ideaDetail.emptyTitle' => 'Sem ideias agora',
-          _ => null,
-        } ??
-        switch (path) {
           'ideaDetail.emptyText' => 'Volte mais tarde. Enquanto isso, anote um slip.',
           'ideaDetail.errorTitle' => 'Não deu para carregar a ideia',
           'ideaDetail.errorText' => 'Tente de novo em instantes.',
@@ -10814,6 +10894,11 @@ extension on Translations {
           'memories.add' => 'Adicionar memória',
           'memories.save' => 'Guardar memória',
           'memories.delete' => 'Apagar',
+          'memories.deleteTitle' => 'Apagar esta memória?',
+          'memories.deleteText' => 'Ela some da linha do tempo para vocês dois.',
+          'memories.deleteConfirm' => 'Apagar',
+          'memories.detailPlace' => 'Lugar',
+          'memories.detailBody' => 'Como foi',
           'memories.monthsShort.0' => 'jan',
           'memories.monthsShort.1' => 'fev',
           'memories.monthsShort.2' => 'mar',
@@ -10983,6 +11068,9 @@ extension on Translations {
           'notes.errorTitle' => 'Não deu para carregar',
           'notes.errorText' => 'Tente de novo em instantes.',
           'notes.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          _ => null,
+        } ??
+        switch (path) {
           'notes.errors.NOT_PAIRED' => 'Para enviar, você precisa estar com seu par no app.',
           'notes.errors.other' => 'Não deu para enviar agora. O que você escreveu continua aqui.',
           'notificationPermission.label' => 'Lembretes',
@@ -10996,6 +11084,7 @@ extension on Translations {
           'notificationPermission.allow' => 'Permitir',
           'notificationPermission.offBanner' =>
             'Os lembretes estão desligados. Ligue nas configurações.',
+          'notificationPermission.openSettings' => 'Abrir ajustes',
           'notificationPermission.close' => 'Fechar',
           'notificationPreferences.title' => 'Notificações',
           'notificationPreferences.subtitle' => 'Escolha o que chega e quando. Nada de cobrança.',
@@ -11009,9 +11098,6 @@ extension on Translations {
           'notificationPreferences.types.card_reaction' => 'Resposta ao seu cartão',
           'notificationPreferences.types.daily_idea' => 'Ideia do dia',
           'notificationPreferences.types.date_coming' => 'Datas chegando',
-          _ => null,
-        } ??
-        switch (path) {
           'notificationPreferences.types.other' => '',
           'notificationPreferences.cardTitle' => 'Cartão de domingo',
           'notificationPreferences.cardDay' => 'Dia',
@@ -11084,9 +11170,6 @@ extension on Translations {
           'pause.returns.eightHours' => '8 horas',
           'pause.returns.tomorrow' => 'Amanhã',
           'pause.returns.other' => '',
-          _ => null,
-        } ??
-        switch (path) {
           'pause.note' => 'Os dois veem o Hoje em pausa. Você pode voltar quando quiser.',
           'pause.send' => 'Enviar e pausar',
           'pause.sentTitle' => 'Pausa enviada',
@@ -11229,6 +11312,7 @@ extension on Translations {
           'privacy.ai' => 'IA (quando disponível)',
           'privacy.terms' => 'Termos',
           'privacy.required' => 'Obrigatório',
+          'privacy.requiredNote' => 'Dados sensíveis e Termos são obrigatórios para usar o app.',
           'privacy.consentsNote' => 'Mudanças valem agora.',
           'privacy.saveError' => 'Não deu para salvar agora. Tente de novo.',
           'privacy.errorTitle' => 'Não deu para carregar os consentimentos',
@@ -11289,6 +11373,7 @@ extension on Translations {
           'profileSetup.themeNeutral' => 'Neutro',
           'profileSetup.dateLabel' => 'Quando começaram?',
           'profileSetup.dateHint' => 'Escolha uma data',
+          'profileSetup.dateErrors.empty' => 'Escolha a data de vocês.',
           'profileSetup.dateFormat' => ({
             required Object day,
             required Object month,
@@ -11488,6 +11573,7 @@ extension on Translations {
           'quickSlip.privacyNote' =>
             'Fica privado. No domingo você escolhe o que vai para o cartão.',
           'quickSlip.save' => 'Salvar',
+          'quickSlip.discardTitle' => 'Descartar este slip?',
           'quickSlip.saved.title' => 'Salvo',
           'quickSlip.saved.added' => 'Slip adicionado a esta semana.',
           'quickSlip.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
@@ -11554,6 +11640,9 @@ extension on Translations {
           'relationshipSettings.phases.long_distance' => 'Namoro à distância',
           'relationshipSettings.phases.with_parents' => 'Moramos com os pais',
           'relationshipSettings.phases.restarting' => 'Recomeçando',
+          _ => null,
+        } ??
+        switch (path) {
           'relationshipSettings.dateLabel' => 'Juntos desde',
           'relationshipSettings.dateHint' => 'Escolha uma data',
           'relationshipSettings.dateFormat' => ({
@@ -11598,9 +11687,6 @@ extension on Translations {
             'Inspire devagar por 4. Solte devagar por 6. Repita no seu ritmo.',
           'repair.calm.text' => 'Não tem pressa e não tem tempo contado. Saia quando quiser.',
           'repair.calm.ready' => 'Estou mais calmo(a)',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.calm.leave' => 'Sair',
           'repair.calm.askPause' => 'Pedir um tempo ao meu par',
           'repair.softStart.title' => 'Comece com suavidade',
@@ -11666,9 +11752,6 @@ extension on Translations {
           'repair.guided.followUpTitle' => 'Quer um lembrete para ver como estão?',
           'repair.guided.followUps.none' => 'Não precisa',
           'repair.guided.followUps.tomorrow' => 'Amanhã',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.guided.followUps.inThreeDays' => 'Em 3 dias',
           'repair.guided.followUps.other' => '',
           'repair.guided.followUpNote' =>
@@ -11862,6 +11945,7 @@ extension on Translations {
           'slipDetail.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'slipDetail.discardTitle' => 'Descartar este slip?',
           'slipKind.switcherTitle' => 'Outras formas de registrar',
+          'slipKind.quickEntry' => 'Rápido',
           'slipKind.needEntry' => 'Preciso de…',
           'slipKind.kinds.specific' => 'Específico',
           'slipKind.kinds.if_then' => 'Se… então',
@@ -11900,6 +11984,7 @@ extension on Translations {
           'slipKind.planErrors.empty' => 'Diga o que você vai fazer',
           'slipKind.planErrors.tooLong' => 'Isto está muito longo',
           'slipKind.save' => 'Salvar',
+          'slipKind.discardTitle' => 'Descartar este slip?',
           'slipKind.saved.title' => 'Salvo',
           'slipKind.saved.added' => 'Registrado.',
           'slipKind.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
@@ -11911,11 +11996,13 @@ extension on Translations {
           'slipsList.title' => 'Slips',
           'slipsList.scopeWeek' => 'Esta semana',
           'slipsList.scopeAll' => 'Todos',
+          'slipsList.scopeArchived' => 'Arquivados',
           'slipsList.search' => 'Buscar',
           'slipsList.searchClose' => 'Fechar busca',
           'slipsList.searchHint' => 'Buscar nos seus slips',
           'slipsList.searchEmptyTitle' => 'Nada encontrado',
           'slipsList.searchEmptyText' => 'Tente outra palavra.',
+          'slipsList.clearSearch' => 'Limpar busca',
           'slipsList.thisWeek' => 'Esta semana',
           'slipsList.lastWeek' => 'Semana passada',
           'slipsList.weekRange' => ({
@@ -11954,6 +12041,11 @@ extension on Translations {
           'slipsList.categories.noticed' => 'Me notou',
           'slipsList.categories.helped' => 'Ajudou',
           'slipsList.categories.other' => '',
+          'slipsList.kinds.quick' => 'Rápido',
+          'slipsList.kinds.specific' => 'Específico',
+          'slipsList.kinds.if_then' => 'Se… então',
+          'slipsList.kinds.invisible' => 'Invisível',
+          'slipsList.kinds.other' => '',
           'slipsList.pastCards' => 'Cartões anteriores',
           'slipsList.emptyTitle' => 'Nada ainda',
           'slipsList.emptyText' => 'Um slip é uma coisa boa, em uma linha.',
@@ -12120,6 +12212,9 @@ extension on Translations {
           'tabs.learningLabel' => 'SÓ PARA VOCÊ',
           'tabs.learningTitle' => 'O que você aprendeu',
           'tabs.learningText' => 'Anotações privadas que você pode apagar.',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.fightStyleLabel' => 'SÓ PARA VOCÊ',
           'tabs.fightStyleTitle' => 'Como eu reajo numa briga',
           'tabs.fightStyleText' => 'Uma reflexão curta e privada sobre o seu jeito.',
@@ -12174,9 +12269,6 @@ extension on Translations {
           'temperature.levelTitle' => 'Como está entre vocês?',
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',
-          _ => null,
-        } ??
-        switch (path) {
           'temperature.levels.good' => 'Bem',
           'temperature.levels.so_so' => 'Mais ou menos',
           'temperature.levels.turbulent' => 'Turbulento',
@@ -12251,9 +12343,6 @@ extension on Translations {
                   one: '1 mês',
                   other: '${count} meses',
                 ),
-          _ => null,
-        } ??
-        switch (path) {
           'today.togetherDays' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
