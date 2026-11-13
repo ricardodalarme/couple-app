@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_play.dart';
@@ -12,6 +13,7 @@ class const GameWaitingView({required final GamePlay play, super.key}) extends S
   Widget build(BuildContext context) {
     final l10n = context.l10n.games;
     final cubit = context.read<GameCubit>();
+    final isChecking = context.select((GameCubit cubit) => cubit.state.action.isLoading);
     final name = gamePartnerName(play.partnerName, '');
 
     return BaseMomentContent(
@@ -46,7 +48,17 @@ class const GameWaitingView({required final GamePlay play, super.key}) extends S
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          BaseButton.primary(text: l10n.waiting.checkAgain, onPressed: cubit.refresh),
+          BaseButton.primary(
+            text: l10n.waiting.checkAgain,
+            isLoading: isChecking,
+            onPressed: () async {
+              await cubit.checkAgain();
+              if (!context.mounted) return;
+              if (cubit.state.current?.stage(clock.now()) == GameStage.waiting) {
+                BaseToast.show(context, l10n.waiting.stillWaiting);
+              }
+            },
+          ),
           const SizedBox(height: AppSpace.s6),
           BaseButton.text(
             text: l10n.waiting.cancel,

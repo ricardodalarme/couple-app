@@ -6531,6 +6531,14 @@ class Translations$tabs$pt {
   /// pt: 'Só para você'
   String get giftsMeta => 'Só para você';
 
+  /// pt: '(one) {1 desejo compartilhado} (other) {{count} desejos compartilhados}'
+  String giftsMetaShared({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 desejo compartilhado',
+        other: '${count} desejos compartilhados',
+      );
+
   /// pt: 'Um passo de cada vez'
   String get guidesMeta => 'Um passo de cada vez';
 
@@ -7716,6 +7724,9 @@ class Translations$games$waiting$pt {
 
   /// pt: 'Ver se já entrou'
   String get checkAgain => 'Ver se já entrou';
+
+  /// pt: 'Ainda não entrou. O convite continua aqui.'
+  String get stillWaiting => 'Ainda não entrou. O convite continua aqui.';
 
   /// pt: 'Cancelar o convite'
   String get cancel => 'Cancelar o convite';
@@ -9565,9 +9576,6 @@ extension on Translations {
           'fightStyle.options6.avoid' => 'Seguir o dia como se nada tivesse acontecido.',
           'fightStyle.options6.other' => '',
           'fightStyle.continueAction' => 'Continuar',
-          _ => null,
-        } ??
-        switch (path) {
           'fightStyle.finishAction' => 'Ver resultado',
           'fightStyle.back' => 'Voltar',
           'fightStyle.privateNote' => 'Só você vê as respostas. Nada é enviado ao seu par.',
@@ -9582,6 +9590,9 @@ extension on Translations {
           'fightStyle.descriptions.avoid' =>
             'Você tende a deixar o assunto de lado para não piorar na hora.',
           'fightStyle.descriptions.other' => '',
+          _ => null,
+        } ??
+        switch (path) {
           'fightStyle.practices.pursue' =>
             'Isso ajuda a resolver rápido. Vale pausar antes de piorar e ouvir até o fim.',
           'fightStyle.practices.withdraw' =>
@@ -9590,9 +9601,6 @@ extension on Translations {
             'Isso ajuda a retomar depois da briga. Um pedido de desculpas curto costuma bastar.',
           'fightStyle.practices.avoid' =>
             'Isso ajuda a pausar antes de piorar. Marque um momento curto para retomar.',
-          _ => null,
-        } ??
-        switch (path) {
           'fightStyle.practices.other' => '',
           'fightStyle.partnerSignal' => ({
             required Object name,
@@ -9684,6 +9692,7 @@ extension on Translations {
           'games.waiting.status' => 'Aguardando…',
           'games.waiting.window' => 'O convite espera por até 48 horas.',
           'games.waiting.checkAgain' => 'Ver se já entrou',
+          'games.waiting.stillWaiting' => 'Ainda não entrou. O convite continua aqui.',
           'games.waiting.cancel' => 'Cancelar o convite',
           'games.active.title' => 'O jogo começou',
           'games.active.text' => 'Os dois estão dentro. As telas deste jogo aparecem aqui.',
@@ -10284,9 +10293,6 @@ extension on Translations {
           'ideaDetail.yourGoal' => 'Seu objetivo',
           'ideaDetail.willDo' => 'Eu vou fazer',
           'ideaDetail.done' => 'Anotado. Que bom!',
-          _ => null,
-        } ??
-        switch (path) {
           'ideaDetail.another' => 'Outra ideia',
           'ideaDetail.later' => 'Mais tarde',
           'ideaDetail.laterTitle' => 'Quando lembrar?',
@@ -10298,6 +10304,9 @@ extension on Translations {
             'Guardamos o lembrete. Ligue as notificações nas configurações para recebê-lo.',
           'ideaDetail.reminderError' => 'Não deu para guardar o lembrete. Tente de novo.',
           'ideaDetail.emptyTitle' => 'Sem ideias agora',
+          _ => null,
+        } ??
+        switch (path) {
           'ideaDetail.emptyText' => 'Volte mais tarde. Enquanto isso, anote um slip.',
           'ideaDetail.errorTitle' => 'Não deu para carregar a ideia',
           'ideaDetail.errorText' => 'Tente de novo em instantes.',
@@ -10305,9 +10314,6 @@ extension on Translations {
           'intro.continueButton' => 'Continuar',
           'intro.phase.title' => 'Onde vocês estão agora?',
           'intro.phase.titleHighlight' => 'agora',
-          _ => null,
-        } ??
-        switch (path) {
           'intro.phase.subtitle' => 'Escolha o mais próximo. Você pode mudar depois.',
           'intro.phase.options.dating' => 'Namorando',
           'intro.phase.options.living_together' => 'Moramos juntos',
@@ -10865,9 +10871,6 @@ extension on Translations {
           'pause.presets.space' => 'Preciso de um tempo para respirar. Volto logo.',
           'pause.presets.later' => 'Vamos conversar mais tarde, com calma?',
           'pause.presets.calm' => 'Quero te ouvir bem. Preciso me acalmar antes.',
-          _ => null,
-        } ??
-        switch (path) {
           'pause.presets.other' => '',
           'pause.hint' => 'Escrever a minha',
           'pause.messageErrors.empty' => 'Escreva uma mensagem curta',
@@ -10878,6 +10881,9 @@ extension on Translations {
           'pause.returns.eightHours' => '8 horas',
           'pause.returns.tomorrow' => 'Amanhã',
           'pause.returns.other' => '',
+          _ => null,
+        } ??
+        switch (path) {
           'pause.note' => 'Os dois veem o Hoje em pausa. Você pode voltar quando quiser.',
           'pause.send' => 'Enviar e pausar',
           'pause.sentTitle' => 'Pausa enviada',
@@ -10886,9 +10892,6 @@ extension on Translations {
           'pause.done' => 'Pronto',
           'pause.errors.INVALID_RETURN_TIME' => 'Esse horário de volta não vale. Escolha outro.',
           'pause.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          _ => null,
-        } ??
-        switch (path) {
           'pause.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
           'places.title' => 'Lugares',
           'places.privacyNote' => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.',
@@ -11447,9 +11450,6 @@ extension on Translations {
           'repair.guided.next' => 'Continuar',
           'repair.guided.back' => 'Voltar',
           'repair.guided.later' => 'Guardar para depois',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.guided.savedLater' => 'Guardado. Você continua de onde parou.',
           'repair.guided.finalTitle' => 'Como você está agora?',
           'repair.guided.finalHighlight' => 'agora',
@@ -11460,6 +11460,9 @@ extension on Translations {
           'repair.guided.followUpTitle' => 'Quer um lembrete para ver como estão?',
           'repair.guided.followUps.none' => 'Não precisa',
           'repair.guided.followUps.tomorrow' => 'Amanhã',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.guided.followUps.inThreeDays' => 'Em 3 dias',
           'repair.guided.followUps.other' => '',
           'repair.guided.followUpNote' =>
@@ -11478,9 +11481,6 @@ extension on Translations {
           'repair.learning.kinds.good_fix' => 'O que ajudou',
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Escreva em uma ou duas frases',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.learning.noteErrors.empty' => 'Escreva o que você aprendeu',
           'repair.learning.noteErrors.tooLong' => 'A nota está muito longa',
           'repair.learning.save' => 'Salvar',
@@ -11938,6 +11938,13 @@ extension on Translations {
           'tabs.gamesMeta' => 'Sem placar',
           'tabs.datesMeta' => 'Com aviso antes',
           'tabs.giftsMeta' => 'Só para você',
+          'tabs.giftsMetaShared' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 desejo compartilhado',
+                  other: '${count} desejos compartilhados',
+                ),
           'tabs.guidesMeta' => 'Um passo de cada vez',
           'tabs.starterMeta' => 'Uma pergunta',
           'tabs.dayMeta' => 'Um dia de cada vez',
@@ -12014,9 +12021,6 @@ extension on Translations {
           'today.months.2' => 'março',
           'today.months.3' => 'abril',
           'today.months.4' => 'maio',
-          _ => null,
-        } ??
-        switch (path) {
           'today.months.5' => 'junho',
           'today.months.6' => 'julho',
           'today.months.7' => 'agosto',
@@ -12038,6 +12042,9 @@ extension on Translations {
                   one: '1 mês',
                   other: '${count} meses',
                 ),
+          _ => null,
+        } ??
+        switch (path) {
           'today.togetherDays' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
@@ -12078,9 +12085,6 @@ extension on Translations {
           'today.sundayCardLabel' => 'Cartão de domingo',
           'today.sundayCardTitle' => 'Seu cartão desta semana',
           'today.inviteCardLabel' => 'Convite',
-          _ => null,
-        } ??
-        switch (path) {
           'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
           'today.inviteCardTitleNoName' => 'Convidar sua pessoa',
           'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',

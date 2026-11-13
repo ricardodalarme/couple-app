@@ -73,6 +73,7 @@
     "status": "Waiting…",
     "window": "The invitation waits for up to 48 hours.",
     "checkAgain": "Check if they joined",
+    "stillWaiting": "Not in yet. The invite is still here.",
     "cancel": "Cancel the invitation"
   },
   "active": {

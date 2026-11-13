@@ -151,6 +151,26 @@ void main() {
     },
   );
 
+  test('checking again shows a loading action while it reads', () async {
+    final cubit = build();
+    await cubit.load(GameKind.meOrYou);
+    final states = <GameState>[];
+    final subscription = cubit.stream.listen(states.add);
+
+    await cubit.checkAgain();
+    await subscription.cancel();
+
+    expect(states.first.action, const Loading());
+    expect(cubit.state.action, const Initial());
+    verify(
+      () => repository.getPlay(
+        kind: GameKind.meOrYou,
+        locale: any(named: 'locale'),
+        now: any(named: 'now'),
+      ),
+    ).called(2);
+  });
+
   blocTest<GameCubit, GameState>(
     'does not invite when the game has no content',
     build: build,

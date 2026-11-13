@@ -73,6 +73,7 @@
     "status": "Aguardando…",
     "window": "O convite espera por até 48 horas.",
     "checkAgain": "Ver se já entrou",
+    "stillWaiting": "Ainda não entrou. O convite continua aqui.",
     "cancel": "Cancelar o convite"
   },
   "active": {

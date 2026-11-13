@@ -44,6 +44,16 @@ class GameCubit({
     }
   }
 
+  /// Reads the invitation again and shows a loading action while it checks.
+  Future<void> checkAgain() async {
+    if (state.action.isLoading) return;
+
+    emit(state.copyWith(action: const Loading()));
+    await refresh();
+    if (isClosed) return;
+    emit(state.copyWith(action: const Initial()));
+  }
+
   void onDraftChanged(String draft) {
     if (state.isBusy) return;
     emit(state.copyWith(draft: draft));
