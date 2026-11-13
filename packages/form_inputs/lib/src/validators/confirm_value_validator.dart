@@ -4,7 +4,7 @@ enum ConfirmValueValidationError() {
   invalid,
 }
 
-class const ConfirmValueValidator(final String originalValue) implements Validator<String> {
+class ConfirmValueValidator(final String originalValue) implements Validator<String> {
   @override
   ConfirmValueValidationError? validate(String value) {
     if (originalValue != value) return .invalid;

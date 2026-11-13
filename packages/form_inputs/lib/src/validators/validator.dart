@@ -1,3 +1,3 @@
-abstract class const Validator<T>() {
+abstract class Validator<T>() {
   Enum? validate(T value);
 }

@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   group(EmailValidator, () {
-    const validator = EmailValidator();
+    final validator = EmailValidator();
 
     test('accepts valid email addresses', () {
       const emails = [

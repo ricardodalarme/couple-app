@@ -4,7 +4,7 @@ enum PasswordValidationError() {
   weak,
 }
 
-class const PasswordValidator() implements Validator<String> {
+class PasswordValidator() implements Validator<String> {
   static final _letterRegExp = RegExp('[a-zA-Z]');
   static final _numberRegExp = RegExp('[0-9]');
   static const _minimumLength = 8;

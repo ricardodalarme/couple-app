@@ -5,7 +5,7 @@ enum MaxLengthValidationError() {
 }
 
 /// Rejects text longer than [max] code points, matching Postgres `char_length`.
-class const MaxLengthValidator(final int max) implements Validator<String> {
+class MaxLengthValidator(final int max) implements Validator<String> {
   @override
   MaxLengthValidationError? validate(String value) {
     if (value.runes.length <= max) return null;

@@ -4,7 +4,7 @@ enum NonEmptyValidationError() {
   empty,
 }
 
-class const NonEmptyValidator() implements Validator<String> {
+class NonEmptyValidator() implements Validator<String> {
   @override
   NonEmptyValidationError? validate(String value) {
     if (value.trim().isEmpty) return .empty;

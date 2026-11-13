@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   group(NumberRangeValidator, () {
-    const validator = NumberRangeValidator(1, 12);
+    final validator = NumberRangeValidator(1, 12);
 
     test('accepts the bounds', () {
       expect(validator.validate(1), isNull);

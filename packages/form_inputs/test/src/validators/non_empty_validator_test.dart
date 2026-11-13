@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   group(NonEmptyValidator, () {
-    const validator = NonEmptyValidator();
+    final validator = NonEmptyValidator();
 
     test('accepts a non-empty value', () {
       expect(validator.validate('value'), isNull);

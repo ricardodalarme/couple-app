@@ -22,12 +22,12 @@ void main() {
     test('validate returns the same instance when valid', () {
       const input = FormInput('value');
 
-      expect(input.validate(const NonEmptyValidator()), same(input));
+      expect(input.validate(NonEmptyValidator()), same(input));
     });
 
     test('validate returns a new input carrying the error when invalid', () {
       const input = FormInput('  ');
-      final validated = input.validate(const NonEmptyValidator());
+      final validated = input.validate(NonEmptyValidator());
 
       expect(validated, isNot(same(input)));
       expect(validated.value, '  ');
@@ -36,7 +36,7 @@ void main() {
 
     test('validate clears an error left by a previous attempt', () {
       const input = FormInput('value', error: NonEmptyValidationError.empty);
-      final validated = input.validate(const NonEmptyValidator());
+      final validated = input.validate(NonEmptyValidator());
 
       expect(validated.value, 'value');
       expect(validated.error, isNull);

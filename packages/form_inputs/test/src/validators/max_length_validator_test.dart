@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   group(MaxLengthValidator, () {
-    const validator = MaxLengthValidator(4);
+    final validator = MaxLengthValidator(4);
 
     test('accepts a value at the limit', () {
       expect(validator.validate('abcd'), isNull);

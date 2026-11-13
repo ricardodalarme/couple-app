@@ -5,7 +5,7 @@ enum MinLengthValidationError() {
 }
 
 /// Rejects text shorter than [min] code points.
-class const MinLengthValidator(final int min) implements Validator<String> {
+class MinLengthValidator(final int min) implements Validator<String> {
   @override
   MinLengthValidationError? validate(String value) {
     if (value.runes.length >= min) return null;

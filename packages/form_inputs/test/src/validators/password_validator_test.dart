@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   group(PasswordValidator, () {
-    const validator = PasswordValidator();
+    final validator = PasswordValidator();
 
     test('accepts a password with letters, numbers and at least 8 characters', () {
       expect(validator.validate('password1'), isNull);

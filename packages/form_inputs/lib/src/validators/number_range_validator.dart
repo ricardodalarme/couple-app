@@ -5,7 +5,7 @@ enum NumberRangeValidationError() {
 }
 
 /// Rejects numbers outside [min]..[max].
-class const NumberRangeValidator<T extends num>(final T min, final T max) implements Validator<T> {
+class NumberRangeValidator<T extends num>(final T min, final T max) implements Validator<T> {
   @override
   NumberRangeValidationError? validate(T value) {
     if (value < min || value > max) return .outOfRange;
