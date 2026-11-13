@@ -1,7 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/device_info/device_info_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/language_selector/language_selector_page.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/preferences/preferences_page.dart';
@@ -20,10 +18,6 @@ class const DevMenuPage({super.key}) extends StatelessWidget {
         body: BaseListGroup(
           children: [
             BaseListTile(
-              title: 'Sign out',
-              onTap: () => AppInjector.instance.get<AppCubit>().logout(),
-            ),
-            BaseListTile(
               title: 'Invite partner',
               onTap: () => context.router.push(const InviteRoute()),
             ),
@@ -34,10 +28,6 @@ class const DevMenuPage({super.key}) extends StatelessWidget {
             BaseListTile(
               title: 'Notification permission',
               onTap: () => context.router.push(const NotificationPermissionRoute()),
-            ),
-            BaseListTile(
-              title: 'Relacionamento',
-              onTap: () => context.router.push(const RelationshipRoute()),
             ),
             BaseListTile(
               title: 'Storybook',
