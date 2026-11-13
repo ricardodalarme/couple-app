@@ -307,6 +307,8 @@ begin
     execute format('create index if not exists %I on public.%I (author_id)', r.child || '_author_idx', r.child);
   end loop;
 end $$;
+create trigger list_items_set_updated_at before update on public.list_items
+  for each row execute function private.set_updated_at();
 create index decision_ranks_option_idx on public.decision_ranks (option_id);
 create index gift_ideas_occasion_idx on public.gift_ideas (occasion_date_id);
 create index logistic_items_assignee_idx on public.logistic_items (assignee_id);
