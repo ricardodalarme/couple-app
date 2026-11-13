@@ -66,7 +66,6 @@ class SharedInjectionModule() implements InjectionModule {
     )
     ..registerLazySingleton<ShareService>(ShareService.new)
     ..registerLazySingleton<StorageService>(StorageService.new)
-    ..registerLazySingleton<StorageService>(StorageService.new)
     ..registerLazySingleton<ConnectivityService>(InternetConnectivityService.new)
     ..registerLazySingleton<BiometricService>(BiometricServiceImpl.new);
 }
