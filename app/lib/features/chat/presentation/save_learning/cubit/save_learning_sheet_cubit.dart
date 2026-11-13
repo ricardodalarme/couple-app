@@ -12,20 +12,25 @@ class SaveLearningSheetCubit() extends Cubit<SaveLearningSheetState> {
   void start({required String initialText}) =>
       emit(SaveLearningSheetState(text: FormInput(_cut(initialText))));
 
-  void onTargetChanged(LearnedTarget target) => emit(state.copyWith(target: target));
+  void onTargetChanged(LearnedTarget target) =>
+      emit(state.copyWith(target: target, showsTargetError: false));
 
   void onTextChanged(String text) => emit(state.copyWith(text: FormInput(text)));
 
   /// Validates the text and returns the picked target with it, or null when either is missing.
   ({LearnedTarget target, String text})? submit() {
     final target = state.target;
-    if (target == null) return null;
+    if (target == null) {
+      emit(state.copyWith(showsTargetError: true));
+
+      return null;
+    }
 
     final validatedText = state.text.validate(
       CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(learnedItemMaxLength)]),
     );
 
-    emit(state.copyWith(text: validatedText));
+    emit(state.copyWith(text: validatedText, showsTargetError: false));
 
     if (!validatedText.isValid) return null;
 

@@ -89,6 +89,24 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets('an empty send shows the field error instead of doing nothing', (tester) async {
+    final cubit = await loaded(thread());
+
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const QuestionsPage()));
+    await tester.pump();
+
+    await tester.tap(find.text('Enviar'));
+    await tester.pump();
+
+    expect(find.text('Escreva uma resposta'), findsOneWidget);
+    verifyNever(
+      () => repository.saveAnswer(
+        thread: any(named: 'thread'),
+        body: any(named: 'body'),
+      ),
+    );
+  });
+
   testWidgets('a saved answer waits quietly and can be checked again', (tester) async {
     final cubit = await loaded(thread(own: own, partnerAnswered: true));
 

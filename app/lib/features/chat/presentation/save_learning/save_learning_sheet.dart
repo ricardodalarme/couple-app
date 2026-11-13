@@ -27,6 +27,9 @@ class const _SaveLearningContent({
     final targets = context.l10n.learned.targets;
     final text = context.select((SaveLearningSheetCubit cubit) => cubit.state.text);
     final target = context.select((SaveLearningSheetCubit cubit) => cubit.state.target);
+    final showsTargetError = context.select(
+      (SaveLearningSheetCubit cubit) => cubit.state.showsTargetError,
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -48,6 +51,13 @@ class const _SaveLearningContent({
               ),
           ],
         ),
+        if (showsTargetError) ...[
+          const SizedBox(height: AppSpace.s6),
+          Text(
+            l10n.learningTargetError,
+            style: context.text.caption.copyWith(color: AppPalette.errorInk),
+          ),
+        ],
         const SizedBox(height: AppSpace.s16),
         BaseTextArea(
           text: text.value,

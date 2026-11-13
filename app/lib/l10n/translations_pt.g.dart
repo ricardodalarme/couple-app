@@ -646,6 +646,9 @@ class Translations$chat$pt {
   /// pt: 'Sobre o que é?'
   String get learningSheetTarget => 'Sobre o que é?';
 
+  /// pt: 'Escolha sobre o que é.'
+  String get learningTargetError => 'Escolha sobre o que é.';
+
   /// pt: 'O que você quer guardar'
   String get learningSheetHint => 'O que você quer guardar';
 
@@ -1206,15 +1209,6 @@ class Translations$dates$pt {
 
   /// pt: 'Apagar'
   String get delete => 'Apagar';
-
-  /// pt: 'Apagar esta data?'
-  String get deleteTitle => 'Apagar esta data?';
-
-  /// pt: 'Ela some do calendário para vocês dois.'
-  String get deleteText => 'Ela some do calendário para vocês dois.';
-
-  /// pt: 'Apagar'
-  String get deleteConfirm => 'Apagar';
 
   /// pt: 'Adicionar'
   String get add => 'Adicionar';
@@ -3539,21 +3533,6 @@ class Translations$memories$pt {
   /// pt: 'Apagar'
   String get delete => 'Apagar';
 
-  /// pt: 'Apagar esta memória?'
-  String get deleteTitle => 'Apagar esta memória?';
-
-  /// pt: 'Ela some da linha do tempo para vocês dois.'
-  String get deleteText => 'Ela some da linha do tempo para vocês dois.';
-
-  /// pt: 'Apagar'
-  String get deleteConfirm => 'Apagar';
-
-  /// pt: 'Lugar'
-  String get detailPlace => 'Lugar';
-
-  /// pt: 'Como foi'
-  String get detailBody => 'Como foi';
-
   List<String> get monthsShort => [
     'jan',
     'fev',
@@ -5183,9 +5162,6 @@ class Translations$quickSlip$pt {
   /// pt: 'Salvar'
   String get save => 'Salvar';
 
-  /// pt: 'Descartar este slip?'
-  String get discardTitle => 'Descartar este slip?';
-
   late final Translations$quickSlip$saved$pt saved = Translations$quickSlip$saved$pt.internal(
     _root,
   );
@@ -5879,9 +5855,6 @@ class Translations$slipKind$pt {
   /// pt: 'Outras formas de registrar'
   String get switcherTitle => 'Outras formas de registrar';
 
-  /// pt: 'Rápido'
-  String get quickEntry => 'Rápido';
-
   /// pt: 'Preciso de…'
   String get needEntry => 'Preciso de…';
 
@@ -5921,9 +5894,6 @@ class Translations$slipKind$pt {
   /// pt: 'Salvar'
   String get save => 'Salvar';
 
-  /// pt: 'Descartar este slip?'
-  String get discardTitle => 'Descartar este slip?';
-
   late final Translations$slipKind$saved$pt saved = Translations$slipKind$saved$pt.internal(_root);
   Map<String, String> get errors => {
     'FREE_LIMIT_REACHED': 'Você chegou ao limite de slips do plano grátis.',
@@ -5949,9 +5919,6 @@ class Translations$slipsList$pt {
   /// pt: 'Todos'
   String get scopeAll => 'Todos';
 
-  /// pt: 'Arquivados'
-  String get scopeArchived => 'Arquivados';
-
   /// pt: 'Buscar'
   String get search => 'Buscar';
 
@@ -5966,9 +5933,6 @@ class Translations$slipsList$pt {
 
   /// pt: 'Tente outra palavra.'
   String get searchEmptyText => 'Tente outra palavra.';
-
-  /// pt: 'Limpar busca'
-  String get clearSearch => 'Limpar busca';
 
   /// pt: 'Esta semana'
   String get thisWeek => 'Esta semana';
@@ -6005,13 +5969,6 @@ class Translations$slipsList$pt {
     'did': 'Fez algo',
     'noticed': 'Me notou',
     'helped': 'Ajudou',
-    'other': '',
-  };
-  Map<String, String> get kinds => {
-    'quick': 'Rápido',
-    'specific': 'Específico',
-    'if_then': 'Se… então',
-    'invisible': 'Invisível',
     'other': '',
   };
 
@@ -9191,6 +9148,7 @@ extension on Translations {
           'chat.saveLearning' => 'Salvar aprendizado',
           'chat.learningSheetTitle' => 'Salvar aprendizado',
           'chat.learningSheetTarget' => 'Sobre o que é?',
+          'chat.learningTargetError' => 'Escolha sobre o que é.',
           'chat.learningSheetHint' => 'O que você quer guardar',
           'chat.learningTextErrors.empty' => 'Escreva o que quer guardar',
           'chat.learningTextErrors.tooLong' => 'Isto está muito longo',
@@ -9405,9 +9363,6 @@ extension on Translations {
           'dates.dayOnly' => ({required Object day, required Object month}) => '${day} ${month}',
           'dates.saveDate' => 'Guardar data',
           'dates.delete' => 'Apagar',
-          'dates.deleteTitle' => 'Apagar esta data?',
-          'dates.deleteText' => 'Ela some do calendário para vocês dois.',
-          'dates.deleteConfirm' => 'Apagar',
           'dates.add' => 'Adicionar',
           'dates.emptyDatesTitle' => 'Nenhuma data ainda',
           'dates.emptyDatesText' => 'Guarde aniversários e datas que importam. Avisamos antes.',
@@ -9561,13 +9516,13 @@ extension on Translations {
             'Isso ajuda a retomar depois da briga. Um pedido de desculpas curto costuma bastar.',
           'fightStyle.practices.avoid' =>
             'Isso ajuda a pausar antes de piorar. Marque um momento curto para retomar.',
-          _ => null,
-        } ??
-        switch (path) {
           'fightStyle.practices.other' => '',
           'fightStyle.partnerSignal' => ({
             required Object name,
           }) => 'Combine com ${name} um sinal de volta.',
+          _ => null,
+        } ??
+        switch (path) {
           'fightStyle.addToTools' => 'Adicionar às minhas ferramentas de reparo',
           'fightStyle.addedToTools' => 'Já está nas suas ferramentas',
           'fightStyle.keepMine' => 'Guardar só para mim',
@@ -10268,11 +10223,11 @@ extension on Translations {
           'intro.continueButton' => 'Continuar',
           'intro.phase.title' => 'Onde vocês estão agora?',
           'intro.phase.titleHighlight' => 'agora',
+          'intro.phase.subtitle' => 'Escolha o mais próximo. Você pode mudar depois.',
+          'intro.phase.options.dating' => 'Namorando',
           _ => null,
         } ??
         switch (path) {
-          'intro.phase.subtitle' => 'Escolha o mais próximo. Você pode mudar depois.',
-          'intro.phase.options.dating' => 'Namorando',
           'intro.phase.options.living_together' => 'Moramos juntos',
           'intro.phase.options.engaged' => 'Noivos',
           'intro.phase.options.married' => 'Casados',
@@ -10571,11 +10526,6 @@ extension on Translations {
           'memories.add' => 'Adicionar memória',
           'memories.save' => 'Guardar memória',
           'memories.delete' => 'Apagar',
-          'memories.deleteTitle' => 'Apagar esta memória?',
-          'memories.deleteText' => 'Ela some da linha do tempo para vocês dois.',
-          'memories.deleteConfirm' => 'Apagar',
-          'memories.detailPlace' => 'Lugar',
-          'memories.detailBody' => 'Como foi',
           'memories.monthsShort.0' => 'jan',
           'memories.monthsShort.1' => 'fev',
           'memories.monthsShort.2' => 'mar',
@@ -10845,9 +10795,6 @@ extension on Translations {
           'pause.returns.other' => '',
           'pause.note' => 'Os dois veem o Hoje em pausa. Você pode voltar quando quiser.',
           'pause.send' => 'Enviar e pausar',
-          _ => null,
-        } ??
-        switch (path) {
           'pause.sentTitle' => 'Pausa enviada',
           'pause.sentText' =>
             'O Hoje fica em pausa para os dois. Quando estiver pronto(a), volte por lá.',
@@ -10856,6 +10803,9 @@ extension on Translations {
           'pause.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'pause.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
           'places.title' => 'Lugares',
+          _ => null,
+        } ??
+        switch (path) {
           'places.privacyNote' => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.',
           'places.memoryOne' => '1 memória',
           'places.memoryMany' => ({required Object count}) => '${count} memórias',
@@ -11233,7 +11183,6 @@ extension on Translations {
           'quickSlip.privacyNote' =>
             'Fica privado. No domingo você escolhe o que vai para o cartão.',
           'quickSlip.save' => 'Salvar',
-          'quickSlip.discardTitle' => 'Descartar este slip?',
           'quickSlip.saved.title' => 'Salvo',
           'quickSlip.saved.added' => 'Slip adicionado a esta semana.',
           'quickSlip.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
@@ -11414,9 +11363,6 @@ extension on Translations {
           'repair.guided.loadErrorText' => 'Nada se perdeu. Tente de novo.',
           'repair.learning.title' => 'O que você aprendeu?',
           'repair.learning.titleHighlight' => 'aprendeu',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.learning.subtitle' => 'Fica só com você e pode ser apagado quando quiser.',
           'repair.learning.kinds.trigger' => 'O que me incomoda',
           'repair.learning.kinds.need' => 'O que eu preciso',
@@ -11425,6 +11371,9 @@ extension on Translations {
           'repair.learning.hint' => 'Escreva em uma ou duas frases',
           'repair.learning.noteErrors.empty' => 'Escreva o que você aprendeu',
           'repair.learning.noteErrors.tooLong' => 'A nota está muito longa',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.learning.save' => 'Salvar',
           'repair.learning.listTitle' => 'Seus aprendizados',
           'repair.learning.delete' => 'Apagar',
@@ -11598,7 +11547,6 @@ extension on Translations {
           'slipDetail.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'slipDetail.discardTitle' => 'Descartar este slip?',
           'slipKind.switcherTitle' => 'Outras formas de registrar',
-          'slipKind.quickEntry' => 'Rápido',
           'slipKind.needEntry' => 'Preciso de…',
           'slipKind.kinds.specific' => 'Específico',
           'slipKind.kinds.if_then' => 'Se… então',
@@ -11637,7 +11585,6 @@ extension on Translations {
           'slipKind.planErrors.empty' => 'Diga o que você vai fazer',
           'slipKind.planErrors.tooLong' => 'Isto está muito longo',
           'slipKind.save' => 'Salvar',
-          'slipKind.discardTitle' => 'Descartar este slip?',
           'slipKind.saved.title' => 'Salvo',
           'slipKind.saved.added' => 'Registrado.',
           'slipKind.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
@@ -11649,13 +11596,11 @@ extension on Translations {
           'slipsList.title' => 'Slips',
           'slipsList.scopeWeek' => 'Esta semana',
           'slipsList.scopeAll' => 'Todos',
-          'slipsList.scopeArchived' => 'Arquivados',
           'slipsList.search' => 'Buscar',
           'slipsList.searchClose' => 'Fechar busca',
           'slipsList.searchHint' => 'Buscar nos seus slips',
           'slipsList.searchEmptyTitle' => 'Nada encontrado',
           'slipsList.searchEmptyText' => 'Tente outra palavra.',
-          'slipsList.clearSearch' => 'Limpar busca',
           'slipsList.thisWeek' => 'Esta semana',
           'slipsList.lastWeek' => 'Semana passada',
           'slipsList.weekRange' => ({
@@ -11694,11 +11639,6 @@ extension on Translations {
           'slipsList.categories.noticed' => 'Me notou',
           'slipsList.categories.helped' => 'Ajudou',
           'slipsList.categories.other' => '',
-          'slipsList.kinds.quick' => 'Rápido',
-          'slipsList.kinds.specific' => 'Específico',
-          'slipsList.kinds.if_then' => 'Se… então',
-          'slipsList.kinds.invisible' => 'Invisível',
-          'slipsList.kinds.other' => '',
           'slipsList.pastCards' => 'Cartões anteriores',
           'slipsList.emptyTitle' => 'Nada ainda',
           'slipsList.emptyText' => 'Um slip é uma coisa boa, em uma linha.',
@@ -11994,9 +11934,6 @@ extension on Translations {
                   other: '${count} dias',
                 ),
           'today.togetherChipAction' => 'Abrir nossa história',
-          _ => null,
-        } ??
-        switch (path) {
           'today.togetherJoin' => ({
             required Object first,
             required Object second,
@@ -12031,6 +11968,9 @@ extension on Translations {
           'today.inviteCardLabel' => 'Convite',
           'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
           'today.inviteCardTitleNoName' => 'Convidar sua pessoa',
+          _ => null,
+        } ??
+        switch (path) {
           'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
           'today.privateTag' => 'Só seu',
           'today.privateQuestion' => 'Como foi o seu dia, de verdade?',

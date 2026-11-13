@@ -37,9 +37,12 @@ void main() {
     await tester.tap(find.widgetWithText(BaseButton, 'Guardar'));
     await tester.pumpAndSettle();
     expect(savedTarget, isNull);
+    expect(find.text('Escolha sobre o que é.'), findsOneWidget);
 
     await tester.tap(find.text('Um date'));
     await tester.pump();
+
+    expect(find.text('Escolha sobre o que é.'), findsNothing);
 
     await tester.tap(find.widgetWithText(BaseButton, 'Guardar'));
     await tester.pumpAndSettle();

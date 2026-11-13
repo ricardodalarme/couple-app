@@ -19,6 +19,7 @@
   "saveLearning": "Save as learning",
   "learningSheetTitle": "Save as learning",
   "learningSheetTarget": "What is it about?",
+  "learningTargetError": "Pick what this is about.",
   "learningSheetHint": "What you want to keep",
   "learningTextErrors(map)": {
     "empty": "Write what you want to keep",
