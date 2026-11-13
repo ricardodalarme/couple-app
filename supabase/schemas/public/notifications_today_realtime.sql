@@ -18,19 +18,26 @@ grant select (id, profile_id, platform, label, created_at, last_seen_at) on publ
 create policy devices_select_own on public.devices for select to authenticated
   using (profile_id = (select auth.uid()));
 
--- Newest registration wins when a phone changes hands.
+-- A token belongs to the profile that registered it; only that profile may refresh it.
 create function public.register_device(token text, platform text, label text default null) returns boolean
 language plpgsql security definer set search_path = '' as $$
-declare v_uid uuid := private.require_user();
+declare
+  v_uid uuid := private.require_user();
+  v_device uuid;
 begin
   if platform not in ('ios', 'android') then
     raise exception 'INVALID_PLATFORM' using errcode = 'P0001';
   end if;
+  if not private.hit_rate_limit('register_device:' || v_uid, 20, interval '1 hour') then
+    raise exception 'RATE_LIMITED' using errcode = 'P0001';
+  end if;
   insert into public.devices as d (profile_id, token, platform, label)
   values (v_uid, register_device.token, register_device.platform, register_device.label)
   on conflict on constraint devices_token_key do update
-    set profile_id = v_uid, platform = excluded.platform, label = excluded.label, failure_count = 0, last_seen_at = now();
-  return true;
+    set platform = excluded.platform, label = excluded.label, failure_count = 0, last_seen_at = now()
+    where d.profile_id = v_uid
+  returning d.id into v_device;
+  return v_device is not null;
 end $$;
 create function public.unregister_device(token text) returns boolean
 language plpgsql security definer set search_path = '' as $$

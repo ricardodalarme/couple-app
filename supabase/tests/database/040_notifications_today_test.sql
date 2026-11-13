@@ -1,6 +1,6 @@
 begin;
 set local search_path = tap, public, extensions;
-select plan(28);
+select plan(32);
 
 select tests.create_user('ana', 'Ana'); select tests.create_user('bia', 'Bia'); select tests.create_user('caio');
 
@@ -23,9 +23,21 @@ select throws_ok('select token from public.devices', '42501', null, 'push tokens
 select throws_ok($$select public.register_device('token-ana-phone-0002', 'windows')$$, 'P0001', 'INVALID_PLATFORM', 'unknown platform rejected');
 select tests.as('bia');
 select is((select count(*)::int from public.devices), 0, 'others cannot see my devices');
-select public.register_device('token-ana-phone-0001', 'ios');
+select is(
+  public.register_device('token-ana-phone-0001', 'ios'),
+  false,
+  'a token another profile owns is not claimable'
+);
 select tests.as('ana');
-select is((select count(*)::int from public.devices), 0, 'a handed-over phone belongs to the newest sign-in');
+select is((select count(*)::int from public.devices), 1, 'the owner keeps the device after a claim attempt');
+select is((select platform from public.devices), 'ios', 'a claim attempt leaves the row untouched');
+select public.register_device('token-rate-' || i, 'ios') from generate_series(1, 18) i;
+select throws_ok(
+  $$select public.register_device('token-rate-last', 'ios')$$,
+  'P0001',
+  'RATE_LIMITED',
+  'registrations are rate limited per profile'
+);
 select is((select count(*)::int from public.notification_settings), 1, 'I only see my notification settings');
 
 -- pairing and card notifications
@@ -60,7 +72,19 @@ update public.notification_settings set muted_types = '{}', enabled = false wher
 select is(private.should_send(tests.uid('bia'), 'card_received', '2026-11-10 15:00:00-03'), 'drop', 'notifications off: drop');
 
 -- sender queue
-select is((select count(*)::int from private.claim_notifications(50)), 0, 'nothing is handed to the sender without a device or when dropped');
+select tests.as_admin();
+select private.enqueue_notification(tests.uid('caio'), 'partner_joined', null, 'caio:test');
+create temp table claimed on commit drop as select * from private.claim_notifications(50);
+select is(
+  (select count(*)::int from claimed where profile_id in (tests.uid('bia'), tests.uid('caio'))),
+  0,
+  'no device or notifications off: nothing is handed to the sender'
+);
+select is(
+  (select count(*)::int from claimed where profile_id = tests.uid('ana')),
+  2,
+  'due notifications with a device are handed to the sender'
+);
 
 select * from finish();
 rollback;
