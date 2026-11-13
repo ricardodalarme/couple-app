@@ -62,16 +62,38 @@ class const BaseDateField({
     };
   }
 
-  Future<void> _openPicker(BuildContext context) async {
-    final picked = await BaseSheet.show<DateTime>(
+  /// Opens the stepper sheet and resolves with the confirmed date, or null.
+  ///
+  /// The sheet starts at [initial], or today when it is null, clamped into
+  /// [minimum] and [maximum].
+  static Future<DateTime?> showPicker(
+    BuildContext context, {
+    required String title,
+    DateTime? initial,
+    BaseDateFieldMode mode = BaseDateFieldMode.date,
+    DateTime? minimum,
+    DateTime? maximum,
+  }) {
+    return BaseSheet.show<DateTime>(
       context: context,
-      title: label,
+      title: title,
       child: _DateStepper(
-        initial: value ?? clock.now(),
+        initial: initial ?? clock.now(),
         mode: mode,
         minimum: minimum,
         maximum: maximum,
       ),
+    );
+  }
+
+  Future<void> _openPicker(BuildContext context) async {
+    final picked = await showPicker(
+      context,
+      title: label ?? '',
+      initial: value,
+      mode: mode,
+      minimum: minimum,
+      maximum: maximum,
     );
 
     if (picked != null) onChanged?.call(picked);

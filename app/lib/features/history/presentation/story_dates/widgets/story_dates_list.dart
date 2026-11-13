@@ -1,4 +1,3 @@
-import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
@@ -11,8 +10,6 @@ class const StoryDatesList({required final HistoryOverview overview, super.key})
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.history;
-    final state = context.select((StoryDatesCubit cubit) => cubit.state);
-    final cubit = context.read<StoryDatesCubit>();
     final dates = overview.storyDates;
 
     String formatValue(StoryDateEntry entry) {
@@ -28,14 +25,6 @@ class const StoryDatesList({required final HistoryOverview overview, super.key})
         ? l10n.storyDateAddedBy(name: entry.authorName!)
         : null;
 
-    String titleForKind(String kind) => switch (kind) {
-      'met' => l10n.storyMet,
-      'dating' => l10n.storyDating,
-      'engaged' => l10n.storyEngaged,
-      'married' => l10n.storyMarried,
-      _ => l10n.storyMet,
-    };
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -46,61 +35,63 @@ class const StoryDatesList({required final HistoryOverview overview, super.key})
               subtitle: subtitleFor(dates.met),
               value: formatValue(dates.met),
               showsChevron: true,
-              onTap: () => cubit.selectKind('met', currentDate: dates.met.date),
+              onTap: () =>
+                  _pickDate(context, kind: 'met', title: l10n.storyMet, date: dates.met.date),
             ),
             BaseListTile(
               title: l10n.storyDating,
               subtitle: subtitleFor(dates.dating),
               value: formatValue(dates.dating),
               showsChevron: true,
-              onTap: () => cubit.selectKind('dating', currentDate: dates.dating.date),
+              onTap: () => _pickDate(
+                context,
+                kind: 'dating',
+                title: l10n.storyDating,
+                date: dates.dating.date,
+              ),
             ),
             BaseListTile(
               title: l10n.storyEngaged,
               subtitle: subtitleFor(dates.engaged),
               value: formatValue(dates.engaged),
               showsChevron: true,
-              onTap: () => cubit.selectKind('engaged', currentDate: dates.engaged.date),
+              onTap: () => _pickDate(
+                context,
+                kind: 'engaged',
+                title: l10n.storyEngaged,
+                date: dates.engaged.date,
+              ),
             ),
             BaseListTile(
               title: l10n.storyMarried,
               subtitle: subtitleFor(dates.married),
               value: formatValue(dates.married),
               showsChevron: true,
-              onTap: () => cubit.selectKind('married', currentDate: dates.married.date),
+              onTap: () => _pickDate(
+                context,
+                kind: 'married',
+                title: l10n.storyMarried,
+                date: dates.married.date,
+              ),
             ),
           ],
         ),
-        if (state.selectedKind != null) ...[
-          const SizedBox(height: AppSpace.s18),
-          BaseSurfaceCard(
-            title: titleForKind(state.selectedKind!),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                BaseDateField(
-                  value: state.draftDate ?? clock.now(),
-                  label: l10n.dateRowLabel,
-                  formatter: (date) => HistoryDateFormatter.formatMilestoneDate(
-                    l10n,
-                    date: date,
-                    precision: MilestoneDatePrecision.month,
-                  ),
-                  onChanged: cubit.onDraftDateChanged,
-                ),
-                const SizedBox(height: AppSpace.s12),
-                BaseButton(
-                  text: l10n.saveMilestone,
-                  isLoading: state.saveAction.isLoading,
-                  onPressed: () => cubit.saveSelectedDate(title: titleForKind(state.selectedKind!)),
-                ),
-              ],
-            ),
-          ),
-        ],
         const SizedBox(height: AppSpace.s16),
         BaseNote(icon: AppIcons.calendar, text: l10n.storyDatesNote),
       ],
     );
+  }
+
+  Future<void> _pickDate(
+    BuildContext context, {
+    required String kind,
+    required String title,
+    DateTime? date,
+  }) async {
+    final cubit = context.read<StoryDatesCubit>();
+    final picked = await BaseDateField.showPicker(context, title: title, initial: date);
+    if (picked == null || !context.mounted) return;
+
+    await cubit.saveDate(kind: kind, title: title, date: picked);
   }
 }

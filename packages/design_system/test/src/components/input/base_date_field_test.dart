@@ -139,4 +139,65 @@ void main() {
     expect(dateTaps, 1);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('showPicker resolves with the confirmed date', (tester) async {
+    DateTime? picked;
+
+    await tester.pumpWidget(
+      inputHost(
+        Builder(
+          builder: (context) => BaseButton(
+            text: 'Open picker',
+            onPressed: () async {
+              picked = await BaseDateField.showPicker(
+                context,
+                title: 'Pick a date',
+                initial: DateTime(2026, 11, 12),
+              );
+            },
+          ),
+        ),
+        variant: AppThemeVariant.rose,
+      ),
+    );
+
+    await tester.tap(find.text('Open picker'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Pick a date'), findsOneWidget);
+
+    await tester.tap(find.text('Confirm'));
+    await tester.pumpAndSettle();
+
+    expect(picked, DateTime(2026, 11, 12));
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('showPicker resolves null when the sheet is dismissed', (tester) async {
+    DateTime? picked;
+
+    await tester.pumpWidget(
+      inputHost(
+        Builder(
+          builder: (context) => BaseButton(
+            text: 'Open picker',
+            onPressed: () async {
+              picked = await BaseDateField.showPicker(context, title: 'Pick a date');
+            },
+          ),
+        ),
+        variant: AppThemeVariant.rose,
+      ),
+    );
+
+    await tester.tap(find.text('Open picker'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byIcon(AppIcons.close));
+    await tester.pumpAndSettle();
+
+    expect(picked, isNull);
+    expect(find.text('Confirm'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
 }

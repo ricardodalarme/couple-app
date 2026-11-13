@@ -1,4 +1,3 @@
-import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,22 +24,17 @@ class StoryDatesCubit({required final HistoryRepository _historyRepository})
     }
   }
 
-  void selectKind(String kind, {DateTime? currentDate}) {
-    emit(state.copyWith(selectedKind: kind, draftDate: currentDate ?? clock.now()));
-  }
-
-  void onDraftDateChanged(DateTime date) => emit(state.copyWith(draftDate: date));
-
-  Future<void> saveSelectedDate({required String title}) async {
-    final kind = state.selectedKind;
-    final date = state.draftDate;
+  /// Saves one of the four canonical dates the person picked.
+  Future<void> saveDate({
+    required String kind,
+    required String title,
+    required DateTime date,
+  }) async {
     final currentOverview = switch (state.overview) {
       Success(:final value) => value,
       _ => null,
     };
-    if (kind == null || date == null || currentOverview == null || state.saveAction.isLoading) {
-      return;
-    }
+    if (currentOverview == null || state.saveAction.isLoading) return;
 
     final entry = switch (kind) {
       'met' => currentOverview.storyDates.met,
@@ -64,7 +58,7 @@ class StoryDatesCubit({required final HistoryRepository _historyRepository})
         updateTogetherSince:
             kind == 'dating' || (kind == 'met' && currentOverview.togetherSince == null),
       );
-      emit(state.copyWith(clearSelectedKind: true, saveAction: const Success(null)));
+      emit(state.copyWith(saveAction: const Success(null)));
       await load();
     } catch (exception) {
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
