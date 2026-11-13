@@ -279,6 +279,25 @@ void main() {
       expect(cubit.state.removeAction, const Success<void>(null));
       verify(() => couplePhotoRepository.remove()).called(1);
     });
+
+    test('keeps the previous overview when the post-remove refresh fails', () async {
+      var loads = 0;
+      when(() => widgetsRepository.loadAndSync()).thenAnswer((_) async {
+        loads++;
+        if (loads > 1) throw Exception('offline');
+        return WidgetOverview.fake().copyWith(hasPhoto: true);
+      });
+      final cubit = build();
+      addTearDown(cubit.close);
+      await cubit.load();
+
+      await cubit.removePhoto();
+
+      expect(cubit.state.removeAction, const Success<void>(null));
+      final overview = cubit.state.overview;
+      expect(overview, isA<Success<WidgetOverview>>());
+      expect((overview as Success<WidgetOverview>).value.hasPhoto, isFalse);
+    });
   });
 
   test('discreet mode strips cachedPhotoPath so the photo widget never renders a photo', () {

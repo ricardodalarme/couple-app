@@ -84,11 +84,11 @@ class CouplePhotosWidgetCubit({
     try {
       await _couplePhotoRepository.upload(bytes: bytes, contentType: contentType);
       if (isClosed) return;
-      final refreshed = await _tryRefreshOverview();
+      final (refreshed, refreshError) = await _tryRefreshOverview();
       if (isClosed) return;
       emit(
         state.copyWith(
-          overview: Success(refreshed ?? _overviewWithPhoto(hasPhoto: true)),
+          overview: _overviewAfterRefresh(refreshed, refreshError, hasPhoto: true),
           chooseAction: const Success(null),
           clearLocalPreview: true,
         ),
@@ -108,11 +108,11 @@ class CouplePhotosWidgetCubit({
     try {
       await _couplePhotoRepository.remove();
       if (isClosed) return;
-      final refreshed = await _tryRefreshOverview();
+      final (refreshed, refreshError) = await _tryRefreshOverview();
       if (isClosed) return;
       emit(
         state.copyWith(
-          overview: Success(refreshed ?? _overviewWithPhoto(hasPhoto: false)),
+          overview: _overviewAfterRefresh(refreshed, refreshError, hasPhoto: false),
           removeAction: const Success(null),
         ),
       );
@@ -122,20 +122,33 @@ class CouplePhotosWidgetCubit({
     }
   }
 
-  Future<WidgetOverview?> _tryRefreshOverview() async {
+  Future<(WidgetOverview?, Object?)> _tryRefreshOverview() async {
     try {
-      return await _widgetsRepository.loadAndSync();
-    } on Object {
-      return null;
+      return (await _widgetsRepository.loadAndSync(), null);
+    } on Object catch (exception) {
+      return (null, exception);
     }
   }
 
-  WidgetOverview _overviewWithPhoto({required bool hasPhoto}) {
+  /// Keeps the last loaded overview when the refresh fails; a failure replaces it
+  /// rather than showing fabricated data.
+  Resource<WidgetOverview> _overviewAfterRefresh(
+    WidgetOverview? refreshed,
+    Object? refreshError, {
+    required bool hasPhoto,
+  }) {
+    if (refreshed != null) return Success(refreshed);
+    final previous = _overviewWithPhoto(hasPhoto: hasPhoto);
+    if (previous != null) return Success(previous);
+    return refreshError == null ? state.overview : Failure.fromObject(refreshError);
+  }
+
+  WidgetOverview? _overviewWithPhoto({required bool hasPhoto}) {
     final overview = state.overview;
     if (overview is Success<WidgetOverview>) {
       return overview.value.copyWith(hasPhoto: hasPhoto);
     }
-    return WidgetOverview.fake().copyWith(hasPhoto: hasPhoto);
+    return null;
   }
 
   bool get _canChoosePhoto {
