@@ -28,7 +28,8 @@ class ProfileSetupCubit({
 
   void onThemeChanged(AppThemeVariant theme) => emit(state.copyWith(theme: theme));
 
-  void onDateChanged(DateTime date) => emit(state.copyWith(togetherSince: date));
+  void onDateChanged(DateTime date) =>
+      emit(state.copyWith(togetherSince: date, showsDateError: false));
 
   Future<void> save() async {
     if (state.saveAction.isLoading || !_validate()) return;
@@ -65,9 +66,16 @@ class ProfileSetupCubit({
       CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(maxNameLength)]),
     );
     final validatedPartnerName = state.partnerName.validate(MaxLengthValidator(maxNameLength));
+    final hasDate = state.togetherSince != null;
 
-    emit(state.copyWith(name: validatedName, partnerName: validatedPartnerName));
+    emit(
+      state.copyWith(
+        name: validatedName,
+        partnerName: validatedPartnerName,
+        showsDateError: !hasDate,
+      ),
+    );
 
-    return validatedName.isValid && validatedPartnerName.isValid;
+    return validatedName.isValid && validatedPartnerName.isValid && hasDate;
   }
 }

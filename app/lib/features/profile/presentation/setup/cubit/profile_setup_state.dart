@@ -5,6 +5,7 @@ final class const ProfileSetupState({
   final FormInput<String> partnerName = const FormInput(''),
   final AppThemeVariant theme = AppThemeVariant.rose,
   final DateTime? togetherSince,
+  final bool showsDateError = false,
   final Resource<void> saveAction = const Initial(),
 }) with Equatable {
   ProfileSetupState copyWith({
@@ -12,6 +13,7 @@ final class const ProfileSetupState({
     FormInput<String>? partnerName,
     AppThemeVariant? theme,
     DateTime? togetherSince,
+    bool? showsDateError,
     Resource<void>? saveAction,
   }) {
     return ProfileSetupState(
@@ -19,10 +21,11 @@ final class const ProfileSetupState({
       partnerName: partnerName ?? this.partnerName,
       theme: theme ?? this.theme,
       togetherSince: togetherSince ?? this.togetherSince,
+      showsDateError: showsDateError ?? this.showsDateError,
       saveAction: saveAction ?? this.saveAction,
     );
   }
 
   @override
-  List<Object?> get props => [name, partnerName, theme, togetherSince, saveAction];
+  List<Object?> get props => [name, partnerName, theme, togetherSince, showsDateError, saveAction];
 }

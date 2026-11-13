@@ -3818,6 +3818,8 @@ class _Translations$profileSetup$en extends Translations$profileSetup$pt {
   @override
   String get dateHint => 'Pick a date';
   @override
+  Map<String, String> get dateErrors => {'empty': 'Pick the date you started.'};
+  @override
   String dateFormat({required Object month, required Object day, required Object year}) =>
       '${month} ${day}, ${year}';
   @override
@@ -9214,6 +9216,7 @@ extension on TranslationsEn {
           'profileSetup.themeNeutral' => 'Neutral',
           'profileSetup.dateLabel' => 'When did you start?',
           'profileSetup.dateHint' => 'Pick a date',
+          'profileSetup.dateErrors.empty' => 'Pick the date you started.',
           'profileSetup.dateFormat' => ({
             required Object month,
             required Object day,
@@ -9601,10 +9604,10 @@ extension on TranslationsEn {
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Write one or two sentences',
           'repair.learning.noteErrors.empty' => 'Write what you learned',
-          'repair.learning.noteErrors.tooLong' => 'The note is too long',
           _ => null,
         } ??
         switch (path) {
+          'repair.learning.noteErrors.tooLong' => 'The note is too long',
           'repair.learning.save' => 'Save',
           'repair.learning.listTitle' => 'Your learnings',
           'repair.learning.delete' => 'Delete',
@@ -10195,10 +10198,10 @@ extension on TranslationsEn {
           'today.sundayCardTitle' => 'Your card for this week',
           'today.inviteCardLabel' => 'Invite',
           'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',
-          'today.inviteCardTitleNoName' => 'Invite your person',
           _ => null,
         } ??
         switch (path) {
+          'today.inviteCardTitleNoName' => 'Invite your person',
           'today.inviteCardText' => 'Shared cards and tools need both of you.',
           'today.privateTag' => 'Only yours',
           'today.privateQuestion' => 'How was your day, really?',

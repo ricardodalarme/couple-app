@@ -131,6 +131,7 @@ class const _DateField() extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n.profileSetup;
     final date = context.select((ProfileSetupCubit cubit) => cubit.state.togetherSince);
+    final showsError = context.select((ProfileSetupCubit cubit) => cubit.state.showsDateError);
 
     return BaseDateField(
       label: l10n.dateLabel,
@@ -138,6 +139,7 @@ class const _DateField() extends StatelessWidget {
       value: date,
       minimum: earliestTogetherSince,
       maximum: clock.now(),
+      errorText: l10n.dateErrors.selectOrNull(showsError ? 'empty' : null),
       formatter: (value) =>
           l10n.dateFormat(day: value.day, month: l10n.months[value.month - 1], year: value.year),
       onChanged: context.read<ProfileSetupCubit>().onDateChanged,

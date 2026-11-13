@@ -20,6 +20,9 @@
   "themeNeutral": "Neutro",
   "dateLabel": "Quando começaram?",
   "dateHint": "Escolha uma data",
+  "dateErrors(map)": {
+    "empty": "Escolha a data de vocês."
+  },
   "dateFormat": "{day} de {month} de {year}",
   "months": [
     "janeiro",

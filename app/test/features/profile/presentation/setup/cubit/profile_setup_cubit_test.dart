@@ -54,6 +54,7 @@ void main() {
       act: (cubit) => cubit.save(),
       verify: (cubit) {
         expect(cubit.state.name.error, NonEmptyValidationError.empty);
+        expect(cubit.state.showsDateError, isTrue);
         verifyNever(
           () => profileRepository.saveProfileSetup(
             profileId: any(named: 'profileId'),
@@ -61,6 +62,19 @@ void main() {
             theme: any(named: 'theme'),
           ),
         );
+      },
+    );
+
+    blocTest<ProfileSetupCubit, ProfileSetupState>(
+      'requires a start date so the story image is never blocked later',
+      build: build,
+      act: (cubit) async {
+        cubit.onNameChanged('Marina');
+        await cubit.save();
+      },
+      verify: (cubit) {
+        expect(cubit.state.showsDateError, isTrue);
+        verifyNever(() => profileRepository.getMyProfile());
       },
     );
 
@@ -81,18 +95,20 @@ void main() {
       act: (cubit) async {
         cubit
           ..onNameChanged('Marina 💕')
-          ..onThemeChanged(AppThemeVariant.blue);
+          ..onThemeChanged(AppThemeVariant.blue)
+          ..onDateChanged(DateTime(2020, 5, 20));
         await cubit.save();
       },
       verify: (cubit) {
         expect(cubit.state.saveAction, const Success<void>(null));
+        expect(cubit.state.showsDateError, isFalse);
         verify(
           () => profileRepository.saveProfileSetup(
             profileId: 'fake',
             displayName: 'Marina',
             theme: AppThemeVariant.blue,
             partnerName: null,
-            togetherSince: null,
+            togetherSince: DateTime(2020, 5, 20),
           ),
         ).called(1);
       },
@@ -121,7 +137,9 @@ void main() {
         return build();
       },
       act: (cubit) async {
-        cubit.onNameChanged('Marina');
+        cubit
+          ..onNameChanged('Marina')
+          ..onDateChanged(DateTime(2020, 5, 20));
         await cubit.save();
       },
       verify: (cubit) => expect(cubit.state.saveAction, const Initial()),

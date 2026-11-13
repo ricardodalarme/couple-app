@@ -4689,6 +4689,8 @@ class Translations$profileSetup$pt {
   /// pt: 'Escolha uma data'
   String get dateHint => 'Escolha uma data';
 
+  Map<String, String> get dateErrors => {'empty': 'Escolha a data de vocês.'};
+
   /// pt: '{day} de {month} de {year}'
   String dateFormat({required Object day, required Object month, required Object year}) =>
       '${day} de ${month} de ${year}';
@@ -10984,6 +10986,7 @@ extension on Translations {
           'profileSetup.themeNeutral' => 'Neutro',
           'profileSetup.dateLabel' => 'Quando começaram?',
           'profileSetup.dateHint' => 'Escolha uma data',
+          'profileSetup.dateErrors.empty' => 'Escolha a data de vocês.',
           'profileSetup.dateFormat' => ({
             required Object day,
             required Object month,
@@ -11370,10 +11373,10 @@ extension on Translations {
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Escreva em uma ou duas frases',
           'repair.learning.noteErrors.empty' => 'Escreva o que você aprendeu',
-          'repair.learning.noteErrors.tooLong' => 'A nota está muito longa',
           _ => null,
         } ??
         switch (path) {
+          'repair.learning.noteErrors.tooLong' => 'A nota está muito longa',
           'repair.learning.save' => 'Salvar',
           'repair.learning.listTitle' => 'Seus aprendizados',
           'repair.learning.delete' => 'Apagar',
@@ -11967,10 +11970,10 @@ extension on Translations {
           'today.sundayCardTitle' => 'Seu cartão desta semana',
           'today.inviteCardLabel' => 'Convite',
           'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
-          'today.inviteCardTitleNoName' => 'Convidar sua pessoa',
           _ => null,
         } ??
         switch (path) {
+          'today.inviteCardTitleNoName' => 'Convidar sua pessoa',
           'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
           'today.privateTag' => 'Só seu',
           'today.privateQuestion' => 'Como foi o seu dia, de verdade?',
