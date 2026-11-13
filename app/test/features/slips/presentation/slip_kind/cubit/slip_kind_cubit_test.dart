@@ -71,7 +71,10 @@ void main() {
     await cubit.keepQuickDraft();
 
     verify(
-      () => repository.saveDraft(text: 'Fez café e pão', now: any(named: 'now')),
+      () => repository.saveDraft(
+        text: 'Fez café e pão',
+        now: any(named: 'now'),
+      ),
     ).called(1);
   });
 

@@ -173,10 +173,7 @@ class const _DatesList() extends StatelessWidget {
                       month: l10n.monthsShort[date.month - 1],
                       kind: l10n.kinds.selectOrFallback(date.kind),
                     ),
-                    trailing: BaseTextLink(
-                      text: l10n.delete,
-                      onPressed: () => confirmDelete(date),
-                    ),
+                    trailing: BaseTextLink(text: l10n.delete, onPressed: () => confirmDelete(date)),
                   ),
               ],
             ),

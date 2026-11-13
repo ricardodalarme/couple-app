@@ -22,9 +22,7 @@ void main() {
     final cubit = DebugSignInCubit(authenticationRepository: repository);
     addTearDown(cubit.close);
 
-    await tester.pumpApp(
-      BlocProvider.value(value: cubit, child: const DebugSignInPage()),
-    );
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const DebugSignInPage()));
     await tester.pumpAndSettle();
 
     expect(find.text('Entrar (debug)'), findsOneWidget);
@@ -47,9 +45,7 @@ void main() {
     final cubit = DebugSignInCubit(authenticationRepository: repository);
     addTearDown(cubit.close);
 
-    await tester.pumpApp(
-      BlocProvider.value(value: cubit, child: const DebugSignInPage()),
-    );
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const DebugSignInPage()));
     await tester.pumpAndSettle();
 
     await tester.tap(find.text('Criar conta'));

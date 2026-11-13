@@ -12,9 +12,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(
-      find.text(
-        'Apple e Google estão desativados neste build de teste. Entre com e-mail e senha.',
-      ),
+      find.text('Apple e Google estão desativados neste build de teste. Entre com e-mail e senha.'),
       findsOneWidget,
     );
     expect(find.text('Entrar com e-mail e senha'), findsOneWidget);

@@ -115,11 +115,7 @@ void main() {
 
       expect(cubit.state.scope, SlipsScope.all);
       verify(
-        () => repository.getSlips(
-          since: null,
-          archived: false,
-          pageSize: any(named: 'pageSize'),
-        ),
+        () => repository.getSlips(since: null, archived: false, pageSize: any(named: 'pageSize')),
       ).called(1);
     });
 
@@ -131,11 +127,7 @@ void main() {
       await cubit.changeScope(SlipsScope.archived);
 
       verify(
-        () => repository.getSlips(
-          since: null,
-          archived: true,
-          pageSize: any(named: 'pageSize'),
-        ),
+        () => repository.getSlips(since: null, archived: true, pageSize: any(named: 'pageSize')),
       ).called(1);
     });
 

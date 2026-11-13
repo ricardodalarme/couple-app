@@ -38,9 +38,7 @@ class const ExistingAccountPage({super.key}) extends StatelessWidget implements 
                 style: context.text.body.copyWith(color: context.colors.textSecondary),
               ),
               const SizedBox(height: AppSpace.s28),
-              ProviderButtons(
-                onEmailSignIn: () => context.pushRoute(const DebugSignInRoute()),
-              ),
+              ProviderButtons(onEmailSignIn: () => context.pushRoute(const DebugSignInRoute())),
             ],
           ),
         ),

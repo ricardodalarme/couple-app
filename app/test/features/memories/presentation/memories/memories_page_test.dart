@@ -125,9 +125,7 @@ void main() {
 
   testWidgets('deleting a memory asks before removing it', (tester) async {
     when(() => repository.getMemories()).thenAnswer(
-      (_) async => [
-        Memory(id: 'm1', title: 'Primeiro jantar', happenedOn: DateTime(2026, 5, 12)),
-      ],
+      (_) async => [Memory(id: 'm1', title: 'Primeiro jantar', happenedOn: DateTime(2026, 5, 12))],
     );
     final cubit = await build();
 
