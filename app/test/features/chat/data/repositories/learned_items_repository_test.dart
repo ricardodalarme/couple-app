@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/learned_items_data_source.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/mutations/generated/AddLearnedItem.graphql.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/queries/generated/LearnedItems.graphql.dart';
+import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/learned_items_data_source.dart';
+import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/AddLearnedItem.graphql.dart';
+import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/queries/generated/LearnedItems.graphql.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
 import 'package:flutter_bloc_starter/features/chat/data/repositories/learned_items_repository.dart';
 import 'package:flutter_test/flutter_test.dart';

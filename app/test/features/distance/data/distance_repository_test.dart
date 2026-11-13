@@ -1,6 +1,6 @@
 import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
 import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
-import 'package:flutter_bloc_starter/features/distance/data/data_sources/distance_data_source.dart';
+import 'package:flutter_bloc_starter/features/distance/data/data_sources/remote/distance_data_source.dart';
 import 'package:flutter_bloc_starter/features/distance/data/models/distance_info.dart';
 import 'package:flutter_bloc_starter/features/distance/data/repositories/distance_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';

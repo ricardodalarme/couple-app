@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/partner/data/data_sources/partner_data_source.dart';
+import 'package:flutter_bloc_starter/features/partner/data/data_sources/remote/partner_data_source.dart';
 import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact.dart';
 import 'package:logger/logger.dart';
 

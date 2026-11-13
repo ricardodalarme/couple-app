@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/history_data_source.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/queries/generated/HistoryOverview.graphql.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/history_data_source.dart';
+import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/queries/generated/HistoryOverview.graphql.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
 import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/dates/data/data_sources/dates_data_source.dart';
+import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/dates_data_source.dart';
 import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';

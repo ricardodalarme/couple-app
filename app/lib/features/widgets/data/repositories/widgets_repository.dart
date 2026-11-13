@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/settings/data/data_sources/discreet_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/mutations/generated/UpdateWidgetPreferences.graphql.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/widgets_data_source.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/widgets_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/settings/data/data_sources/local/discreet_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/mutations/generated/UpdateWidgetPreferences.graphql.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/widgets_data_source.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/mappers/widgets_mapper.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';

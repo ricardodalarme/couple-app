@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/data_sources/checkin_data_source.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/data_sources/checkin_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/checkin/data/data_sources/local/checkin_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/checkin/data/data_sources/remote/checkin_data_source.dart';
 import 'package:flutter_bloc_starter/features/checkin/data/models/checkin_answer.dart';
 import 'package:flutter_bloc_starter/features/checkin/data/models/checkin_week.dart';
 import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';

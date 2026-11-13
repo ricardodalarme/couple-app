@@ -2,7 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
-import 'package:flutter_bloc_starter/features/repair/data/data_sources/repair_data_source.dart';
+import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/repair_data_source.dart';
 import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/guided/cubit/guided_repair_cubit.dart';
 import 'package:flutter_bloc_starter/features/repair/presentation/learning/cubit/learning_cubit.dart';

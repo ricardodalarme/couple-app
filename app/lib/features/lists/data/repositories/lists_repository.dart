@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/lists_data_source.dart';
+import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/lists_data_source.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:logger/logger.dart';

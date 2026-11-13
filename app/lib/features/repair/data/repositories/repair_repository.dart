@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_bloc_starter/features/repair/data/data_sources/repair_data_source.dart';
+import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/repair_data_source.dart';
 import 'package:flutter_bloc_starter/features/repair/data/models/guided_session.dart';
 import 'package:flutter_bloc_starter/features/repair/data/models/received_signal.dart';
 import 'package:flutter_bloc_starter/features/repair/data/models/repair_path.dart';

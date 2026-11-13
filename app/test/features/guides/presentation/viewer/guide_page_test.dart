@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/guide_session.dart';
+import 'package:flutter_bloc_starter/features/guides/data/data_sources/local/guide_session.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide_catalogue.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide_progress.dart';
 import 'package:flutter_bloc_starter/features/guides/data/repositories/guides_repository.dart';

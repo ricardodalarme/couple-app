@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/plus/data/data_sources/plus_data_source.dart';
-import 'package:flutter_bloc_starter/features/plus/data/data_sources/queries/generated/MyPlus.graphql.dart';
+import 'package:flutter_bloc_starter/features/plus/data/data_sources/remote/plus_data_source.dart';
+import 'package:flutter_bloc_starter/features/plus/data/data_sources/remote/queries/generated/MyPlus.graphql.dart';
 import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
 import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
 import 'package:flutter_test/flutter_test.dart';

@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/memories/data/data_sources/memories_data_source.dart';
+import 'package:flutter_bloc_starter/features/memories/data/data_sources/remote/memories_data_source.dart';
 import 'package:flutter_bloc_starter/features/memories/data/repositories/memories_repository.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/memories/cubit/memories_cubit.dart';
 import 'package:flutter_bloc_starter/features/memories/presentation/places/cubit/places_cubit.dart';

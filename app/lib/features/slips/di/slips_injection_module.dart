@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/slip_data_source.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/slip_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/slips/data/data_sources/local/slip_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/need/cubit/need_cubit.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';

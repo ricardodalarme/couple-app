@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/help/data/data_sources/support_data_source.dart';
-import 'package:flutter_bloc_starter/features/help/data/data_sources/support_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/help/data/data_sources/local/support_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/help/data/data_sources/remote/support_data_source.dart';
 import 'package:flutter_bloc_starter/features/help/data/repositories/support_repository.dart';
 import 'package:flutter_bloc_starter/features/help/data/services/support_app_version_service.dart';
 import 'package:flutter_bloc_starter/features/help/presentation/help/cubit/help_hub_cubit.dart';

@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/data_sources/reminders_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/reminders/data/data_sources/local/reminders_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:local_notification_service/local_notification_service.dart';

@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/games/data/data_sources/games_data_source.dart';
+import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/games_data_source.dart';
 import 'package:flutter_bloc_starter/features/games/data/repositories/games_repository.dart';
 import 'package:flutter_bloc_starter/features/games/presentation/game/cubit/game_cubit.dart';
 import 'package:flutter_bloc_starter/features/games/presentation/hub/cubit/games_cubit.dart';

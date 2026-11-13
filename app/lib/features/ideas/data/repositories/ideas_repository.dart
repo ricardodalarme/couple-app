@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/ideas/data/data_sources/ideas_data_source.dart';
-import 'package:flutter_bloc_starter/features/ideas/data/data_sources/ideas_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/ideas/data/data_sources/local/ideas_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/ideas/data/data_sources/remote/ideas_data_source.dart';
 import 'package:flutter_bloc_starter/features/ideas/data/models/idea.dart';
 import 'package:logger/logger.dart';
 

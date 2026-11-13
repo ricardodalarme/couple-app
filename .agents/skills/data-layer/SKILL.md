@@ -32,14 +32,25 @@ matters.
 
 Location: `app/lib/features/<feature>/data/data_sources/`
 
+Every feature's data sources sit in a `remote/` folder, a `local/` folder, or
+both:
+
 ```text
 data_sources/
-├── post_data_source.dart
-├── queries/GetPosts.graphql
-├── queries/generated/GetPosts.graphql.dart       (generated, committed)
-├── fragments/PostFragment.graphql
-└── fragments/generated/PostFragment.graphql.dart (generated, committed)
+├── remote/
+│   ├── post_data_source.dart
+│   ├── queries/GetPosts.graphql
+│   ├── queries/generated/GetPosts.graphql.dart       (generated, committed)
+│   ├── fragments/PostFragment.graphql
+│   └── fragments/generated/PostFragment.graphql.dart (generated, committed)
+└── local/
+    └── post_local_data_source.dart                    (only when the feature caches)
 ```
+
+`remote/` holds everything that talks to the GraphQL server: `.graphql`
+operations, their `generated/` output, and the `XDataSource` classes.
+`local/` holds anything backed by device storage (`*_local_data_source.dart`,
+stores, in-memory sessions) and never imports `package:network`.
 
 Real example (`post`):
 
@@ -70,9 +81,10 @@ Conventions:
   The file name matches the operation (`GetPosts.graphql`).
 - Reuse fields through fragments; every feature owns its own fragment file.
 - The shared schema snapshot lives at
-  `app/lib/features/_shared/data/data_sources/schema.graphql` with generated
-  types in `.../generated/schema.graphql.dart`. Only `_shared` has a schema file;
-  features only add queries and fragments.
+  `app/lib/features/_shared/data/data_sources/remote/schema.graphql` with
+  generated types in `.../remote/generated/schema.graphql.dart`. Only `_shared`
+  has a schema file; features only add queries and fragments under their own
+  `remote/` folder.
 - Refresh the schema snapshot when the backend API changes, then run
   `melos gen`. Do not invent a table, field, query, or mutation the snapshot
   does not expose.
@@ -109,7 +121,7 @@ class PostDataSource({required GQLClient graphQLClient}) {
 ```
 
 - Name it `<Feature>DataSource` and keep it in
-  `data_sources/<feature>_data_source.dart`.
+  `data_sources/remote/<feature>_data_source.dart`.
 - `GQLClient` comes from `package:network/network.dart`; it is registered in
   `SharedInjectionModule` and must be constructor-injected.
 - Wrap every one-shot query and mutation in
@@ -244,7 +256,7 @@ class PostRepository({required final PostDataSource _postDataSource}) {
 
 This repository does not own the backend database or migrations. The GraphQL
 schema is a committed snapshot under
-`app/lib/features/_shared/data/data_sources/schema.graphql`.
+`app/lib/features/_shared/data/data_sources/remote/schema.graphql`.
 
 - When the API changes, refresh the snapshot, run `melos gen`, and commit the
   snapshot plus generated files.

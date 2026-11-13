@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/fragments/generated/CardFragment.graphql.dart';
+import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/fragments/generated/CardFragment.graphql.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
 
 extension CardFragmentMapper on FragmentCardFragment {

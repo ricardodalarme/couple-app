@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/today/data/data_sources/today_data_source.dart';
-import 'package:flutter_bloc_starter/features/today/data/data_sources/today_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/today/data/data_sources/local/today_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/today/data/data_sources/remote/today_data_source.dart';
 import 'package:flutter_bloc_starter/features/today/data/mappers/today_home_mapper.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';

@@ -1,6 +1,6 @@
 import 'package:connectivity_service/connectivity_service.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/app/data/data_sources/app_config_data_source.dart';
+import 'package:flutter_bloc_starter/features/app/data/data_sources/remote/app_config_data_source.dart';
 import 'package:flutter_bloc_starter/features/app/data/repositories/app_config_repository.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
 import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';

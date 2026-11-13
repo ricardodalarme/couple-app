@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/slip_data_source.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/slip_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/slips/data/data_sources/local/slip_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/pending_slip.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_draft.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';

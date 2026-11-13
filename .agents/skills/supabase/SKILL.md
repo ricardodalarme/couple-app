@@ -96,7 +96,7 @@ caller can select are exposed automatically; the starter's query is
 `postsCollection`.
 
 - The committed snapshot is
-  `app/lib/features/_shared/data/data_sources/schema.graphql`.
+  `app/lib/features/_shared/data/data_sources/remote/schema.graphql`.
 - It is downloaded by the inline `melos graphql:schema` script, which reads
   `SERVER_URL`/`SERVER_API_KEY` from `.env.development` and calls the npm
   `get-graphql-schema` CLI. Install it with
@@ -107,7 +107,7 @@ caller can select are exposed automatically; the starter's query is
 - Never hand-edit the snapshot or `*.graphql.dart` generated files.
 - After a schema change: `melos graphql:schema` then `melos gen`.
 - Feature queries/fragments belong in
-  `app/lib/features/<feature>/data/data_sources/`; only `_shared` owns the
+  `app/lib/features/<feature>/data/data_sources/remote/`; only `_shared` owns the
   schema snapshot.
 
 ## Seed and tests

@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/mood/data/data_sources/mood_data_source.dart';
+import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/mood_data_source.dart';
 import 'package:flutter_bloc_starter/features/mood/data/mappers/mood_record_mapper.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/mood_entry.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';

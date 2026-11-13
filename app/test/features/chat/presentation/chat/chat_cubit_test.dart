@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/chat_data_source.dart';
+import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/chat_data_source.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
 import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';

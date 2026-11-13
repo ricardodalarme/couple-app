@@ -1,6 +1,6 @@
 import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/settings/data/data_sources/discreet_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/settings/data/data_sources/local/discreet_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/settings/data/models/discreet_mode_values.dart';
 import 'package:logger/logger.dart';
 

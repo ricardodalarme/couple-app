@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/learned_items_data_source.dart';
+import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/learned_items_data_source.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
 import 'package:logger/logger.dart';
 

@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/guides_data_source.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/guides_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/guides/data/data_sources/local/guides_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/guides/data/data_sources/remote/guides_data_source.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide_catalogue.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide_progress.dart';

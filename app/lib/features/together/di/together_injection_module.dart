@@ -7,7 +7,7 @@ import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_
 import 'package:flutter_bloc_starter/features/questions/data/repositories/questions_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
-import 'package:flutter_bloc_starter/features/together/data/data_sources/together_data_source.dart';
+import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/together_data_source.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/services/ritual_reminder_service.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/date_night/cubit/date_night_cubit.dart';

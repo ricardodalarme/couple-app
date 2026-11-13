@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
-import 'package:flutter_bloc_starter/features/distance/data/data_sources/distance_data_source.dart';
+import 'package:flutter_bloc_starter/features/distance/data/data_sources/remote/distance_data_source.dart';
 import 'package:flutter_bloc_starter/features/distance/data/repositories/distance_repository.dart';
 import 'package:flutter_bloc_starter/features/distance/presentation/distance/cubit/distance_cubit.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/data_sources/gifts_data_source.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/data_sources/queries/generated/GiftPage.graphql.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/gifts_data_source.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/queries/generated/GiftPage.graphql.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_test/flutter_test.dart';

@@ -49,11 +49,12 @@ feature name — replace it with yours):
 app/lib/features/posts/
 ├── data/
 │   ├── data_sources/
-│   │   ├── post_data_source.dart
-│   │   ├── queries/GetPosts.graphql
-│   │   ├── queries/generated/GetPosts.graphql.dart       (generated)
-│   │   ├── fragments/PostFragment.graphql
-│   │   └── fragments/generated/PostFragment.graphql.dart (generated)
+│   │   └── remote/
+│   │       ├── post_data_source.dart
+│   │       ├── queries/GetPosts.graphql
+│   │       ├── queries/generated/GetPosts.graphql.dart       (generated)
+│   │       ├── fragments/PostFragment.graphql
+│   │       └── fragments/generated/PostFragment.graphql.dart (generated)
 │   ├── mappers/post_response_mapper.dart
 │   ├── models/post.dart
 │   └── repositories/post_repository.dart
@@ -69,9 +70,9 @@ app/lib/features/posts/
 
 Follow the `data-layer` skill. Minimum viable flow:
 
-1. Add `.graphql` query/fragment files under `data/data_sources/` against the
-   committed schema snapshot at
-   `app/lib/features/_shared/data/data_sources/schema.graphql`.
+1. Add `.graphql` query/fragment files under `data/data_sources/remote/` against
+   the committed schema snapshot at
+   `app/lib/features/_shared/data/data_sources/remote/schema.graphql`.
 2. Write model(s) and mapper(s) — hand-written Equatable models with a
    `static const fake`.
 3. Write an `XDataSource` with a one-shot `getX` returning the generated

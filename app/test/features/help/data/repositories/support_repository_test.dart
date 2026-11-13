@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/help/data/data_sources/support_data_source.dart';
-import 'package:flutter_bloc_starter/features/help/data/data_sources/support_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/help/data/data_sources/local/support_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/help/data/data_sources/remote/support_data_source.dart';
 import 'package:flutter_bloc_starter/features/help/data/models/pending_support_request.dart';
 import 'package:flutter_bloc_starter/features/help/data/models/support_topic.dart';
 import 'package:flutter_bloc_starter/features/help/data/repositories/support_repository.dart';

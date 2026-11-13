@@ -1,5 +1,5 @@
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/programs_data_source.dart';
+import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/programs_data_source.dart';
 import 'package:flutter_bloc_starter/features/programs/data/models/diary_entry.dart';
 import 'package:flutter_bloc_starter/features/programs/data/models/program.dart';
 import 'package:logger/logger.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/capsules/data/data_sources/capsules_data_source.dart';
+import 'package:flutter_bloc_starter/features/capsules/data/data_sources/remote/capsules_data_source.dart';
 import 'package:flutter_bloc_starter/features/capsules/data/models/capsule.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:logger/logger.dart';

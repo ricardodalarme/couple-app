@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_bloc_starter/features/together/data/data_sources/together_data_source.dart';
+import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/together_data_source.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/logistic_item.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/ritual.dart';

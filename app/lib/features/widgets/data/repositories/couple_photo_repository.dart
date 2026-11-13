@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/couple_photo_data_source.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/couple_photo_data_source.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/couple_photo.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/services/couple_photo_image.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';

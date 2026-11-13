@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/chat_data_source.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/hard_conversation_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/learned_items_data_source.dart';
+import 'package:flutter_bloc_starter/features/chat/data/data_sources/local/hard_conversation_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/chat_data_source.dart';
+import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/learned_items_data_source.dart';
 import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
 import 'package:flutter_bloc_starter/features/chat/data/repositories/hard_conversation_repository.dart';
 import 'package:flutter_bloc_starter/features/chat/data/repositories/learned_items_repository.dart';

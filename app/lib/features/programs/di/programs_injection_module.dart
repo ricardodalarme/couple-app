@@ -2,7 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
 import 'package:flutter_bloc_starter/features/privacy/data/repositories/privacy_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/programs_data_source.dart';
+import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/programs_data_source.dart';
 import 'package:flutter_bloc_starter/features/programs/data/repositories/programs_repository.dart';
 import 'package:flutter_bloc_starter/features/programs/presentation/diary/cubit/diary_cubit.dart';
 import 'package:flutter_bloc_starter/features/programs/presentation/lesson/cubit/lesson_cubit.dart';

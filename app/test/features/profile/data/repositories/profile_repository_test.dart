@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateDisplayName.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/mutations/generated/UpdateHeavyDaySharing.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/profile_data_source.dart';
+import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
+import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/UpdateHeavyDaySharing.graphql.dart';
+import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/profile_data_source.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';

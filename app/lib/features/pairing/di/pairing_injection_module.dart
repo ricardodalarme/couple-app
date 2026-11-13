@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/data_sources/pairing_data_source.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/data_sources/pairing_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/pairing/data/data_sources/local/pairing_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/pairing/data/data_sources/remote/pairing_data_source.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/accept/cubit/accept_invite_cubit.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/invite/cubit/invite_cubit.dart';

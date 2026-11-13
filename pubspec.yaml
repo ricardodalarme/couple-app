@@ -107,7 +107,7 @@ melos:
         fi
         get-graphql-schema "$SERVER_URL" --header "apikey=$SERVER_API_KEY" \
           --header "Authorization=Bearer $token" \
-          > app/lib/features/_shared/data/data_sources/schema.graphql
+          > app/lib/features/_shared/data/data_sources/remote/schema.graphql
       description: Regenerate the complete GraphQL schema with a service_role token.
 
     splash_screen:

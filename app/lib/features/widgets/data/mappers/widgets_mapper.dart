@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/queries/generated/WidgetOverview.graphql.dart';
+import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/queries/generated/WidgetOverview.graphql.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';

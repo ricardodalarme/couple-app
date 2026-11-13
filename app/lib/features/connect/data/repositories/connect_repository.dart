@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/connect/data/data_sources/connect_data_source.dart';
+import 'package:flutter_bloc_starter/features/connect/data/data_sources/remote/connect_data_source.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';

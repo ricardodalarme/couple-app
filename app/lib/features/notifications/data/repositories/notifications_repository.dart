@@ -1,7 +1,7 @@
 import 'package:device_info_service/device_info_service.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/device_marker_store.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/data_sources/notifications_data_source.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/local/device_marker_store.dart';
+import 'package:flutter_bloc_starter/features/notifications/data/data_sources/remote/notifications_data_source.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/models/notification_preferences.dart';
 import 'package:logger/logger.dart';
 import 'package:notification_service/notification_service.dart';

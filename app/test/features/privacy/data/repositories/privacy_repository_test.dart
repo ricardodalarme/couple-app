@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/privacy/data/data_sources/privacy_data_source.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/data_sources/queries/generated/MyConsents.graphql.dart';
+import 'package:flutter_bloc_starter/features/privacy/data/data_sources/remote/privacy_data_source.dart';
+import 'package:flutter_bloc_starter/features/privacy/data/data_sources/remote/queries/generated/MyConsents.graphql.dart';
 import 'package:flutter_bloc_starter/features/privacy/data/models/consent.dart';
 import 'package:flutter_bloc_starter/features/privacy/data/repositories/privacy_repository.dart';
 import 'package:flutter_test/flutter_test.dart';

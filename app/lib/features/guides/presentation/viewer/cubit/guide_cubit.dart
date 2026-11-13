@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/guide_session.dart';
+import 'package:flutter_bloc_starter/features/guides/data/data_sources/local/guide_session.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide_progress.dart';
 import 'package:flutter_bloc_starter/features/guides/data/repositories/guides_repository.dart';

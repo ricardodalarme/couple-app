@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/lists_data_source.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/queries/generated/ListDetail.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/queries/generated/Lists.graphql.dart';
+import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/lists_data_source.dart';
+import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/queries/generated/ListDetail.graphql.dart';
+import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/queries/generated/Lists.graphql.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';

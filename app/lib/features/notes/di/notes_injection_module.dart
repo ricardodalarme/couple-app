@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/notes/data/data_sources/notes_data_source.dart';
+import 'package:flutter_bloc_starter/features/notes/data/data_sources/remote/notes_data_source.dart';
 import 'package:flutter_bloc_starter/features/notes/data/repositories/notes_repository.dart';
 import 'package:flutter_bloc_starter/features/notes/presentation/compose/cubit/compose_cubit.dart';
 import 'package:flutter_bloc_starter/features/notes/presentation/compose/widgets/drawing_painter.dart';

@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/fight_style/data/data_sources/fight_style_data_source.dart';
+import 'package:flutter_bloc_starter/features/fight_style/data/data_sources/remote/fight_style_data_source.dart';
 import 'package:logger/logger.dart';
 import 'package:uuid/uuid.dart';
 

@@ -1,6 +1,6 @@
 import 'package:biometric_service/biometric_service.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/account/data/data_sources/account_data_source.dart';
+import 'package:flutter_bloc_starter/features/account/data/data_sources/remote/account_data_source.dart';
 import 'package:flutter_bloc_starter/features/account/data/repositories/account_repository.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/delete/cubit/delete_account_cubit.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/sign_out/cubit/sign_out_cubit.dart';

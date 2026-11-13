@@ -1,6 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/chat_data_source.dart';
+import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/chat_data_source.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
 import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
 import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';

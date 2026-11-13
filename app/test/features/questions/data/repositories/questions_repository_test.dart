@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/questions/data/data_sources/questions_data_source.dart';
+import 'package:flutter_bloc_starter/features/questions/data/data_sources/remote/questions_data_source.dart';
 import 'package:flutter_bloc_starter/features/questions/data/models/question_thread.dart';
 import 'package:flutter_bloc_starter/features/questions/data/repositories/questions_repository.dart';
 import 'package:flutter_test/flutter_test.dart';

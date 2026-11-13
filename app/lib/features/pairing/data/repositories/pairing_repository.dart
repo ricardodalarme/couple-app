@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter_bloc_starter/features/pairing/data/data_sources/pairing_data_source.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/data_sources/pairing_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/pairing/data/data_sources/local/pairing_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/pairing/data/data_sources/remote/pairing_data_source.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/models/active_invite.dart';
 import 'package:flutter_bloc_starter/features/profile/data/mappers/profile_mapper.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';

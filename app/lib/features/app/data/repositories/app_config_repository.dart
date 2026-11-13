@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/app/data/data_sources/app_config_data_source.dart';
+import 'package:flutter_bloc_starter/features/app/data/data_sources/remote/app_config_data_source.dart';
 import 'package:logger/logger.dart';
 
 class AppConfigRepository({required final AppConfigDataSource _dataSource}) {

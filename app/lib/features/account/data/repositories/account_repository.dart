@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/account/data/data_sources/account_data_source.dart';
+import 'package:flutter_bloc_starter/features/account/data/data_sources/remote/account_data_source.dart';
 import 'package:flutter_bloc_starter/features/account/data/models/deletion_request.dart';
 import 'package:logger/logger.dart';
 

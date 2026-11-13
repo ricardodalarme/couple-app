@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/cards_data_source.dart';
+import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/cards_data_source.dart';
 import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/draft/cubit/sunday_card_cubit.dart';

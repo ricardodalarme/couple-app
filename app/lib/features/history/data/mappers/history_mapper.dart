@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/history/data/data_sources/queries/generated/HistoryOverview.graphql.dart';
+import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/queries/generated/HistoryOverview.graphql.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_status.dart';

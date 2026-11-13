@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/cards_data_source.dart';
+import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/cards_data_source.dart';
 import 'package:flutter_bloc_starter/features/cards/data/mappers/card_mapper.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/card_detail.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/card_summary.dart';

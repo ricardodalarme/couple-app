@@ -89,7 +89,7 @@ app/lib/
 ├── features/<feature>/    # feature-first
 │   ├── di/<feature>_injection_module.dart
 │   ├── data/
-│   │   ├── data_sources/  # queries/, fragments/, generated/, XDataSource
+│   │   ├── data_sources/  # remote/ and/or local/, each with its own sources
 │   │   ├── models/        # hand-written Equatable models with `fake`
 │   │   ├── mappers/       # generated type → model extensions
 │   │   └── repositories/  # concrete classes, Logger, rethrow/map exceptions
@@ -184,9 +184,10 @@ allows them; use the body only for initializers and behavior.
 ## Data rules
 
 - **The starter's feature data uses GraphQL** (pg_graphql). The shared schema
-  snapshot lives at `app/lib/features/_shared/data/data_sources/schema.graphql`;
-  features add their own `queries/` and `fragments/` files under
-  `data/data_sources/`. `RestClient` exists for REST integrations; prefer
+  snapshot lives at
+  `app/lib/features/_shared/data/data_sources/remote/schema.graphql`; features
+  add their own `queries/` and `fragments/` files under
+  `data/data_sources/remote/`. `RestClient` exists for REST integrations; prefer
   GraphQL for feature reads unless the API requires REST.
 - **`supabase/schemas/` is the database source of truth.** Edit the declarative
   schema first, generate/review a migration, and keep the two together. The

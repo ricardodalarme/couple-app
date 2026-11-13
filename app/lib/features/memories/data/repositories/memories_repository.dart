@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/memories/data/data_sources/memories_data_source.dart';
+import 'package:flutter_bloc_starter/features/memories/data/data_sources/remote/memories_data_source.dart';
 import 'package:flutter_bloc_starter/features/memories/data/models/memory.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:logger/logger.dart';

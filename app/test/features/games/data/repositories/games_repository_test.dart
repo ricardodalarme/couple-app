@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/games/data/data_sources/games_data_source.dart';
+import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/games_data_source.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_item.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_play.dart';

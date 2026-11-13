@@ -1,6 +1,6 @@
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/queries/generated/MySettings.graphql.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/queries/generated/MySettings.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 
 extension MySettingsMapper on QueryMySettingsmySettings {

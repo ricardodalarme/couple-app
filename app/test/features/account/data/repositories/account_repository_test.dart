@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/account/data/data_sources/account_data_source.dart';
-import 'package:flutter_bloc_starter/features/account/data/data_sources/mutations/generated/RequestAccountDeletion.graphql.dart';
-import 'package:flutter_bloc_starter/features/account/data/data_sources/queries/generated/MyDeletionRequest.graphql.dart';
+import 'package:flutter_bloc_starter/features/account/data/data_sources/remote/account_data_source.dart';
+import 'package:flutter_bloc_starter/features/account/data/data_sources/remote/mutations/generated/RequestAccountDeletion.graphql.dart';
+import 'package:flutter_bloc_starter/features/account/data/data_sources/remote/queries/generated/MyDeletionRequest.graphql.dart';
 import 'package:flutter_bloc_starter/features/account/data/repositories/account_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

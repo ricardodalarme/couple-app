@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/ideas/data/data_sources/ideas_data_source.dart';
-import 'package:flutter_bloc_starter/features/ideas/data/data_sources/ideas_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/ideas/data/data_sources/local/ideas_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/ideas/data/data_sources/remote/ideas_data_source.dart';
 import 'package:flutter_bloc_starter/features/ideas/data/repositories/ideas_repository.dart';
 import 'package:flutter_bloc_starter/features/ideas/presentation/detail/cubit/idea_detail_cubit.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';

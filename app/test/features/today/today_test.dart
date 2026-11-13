@@ -7,9 +7,9 @@ import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
-import 'package:flutter_bloc_starter/features/today/data/data_sources/queries/generated/TodayHome.graphql.dart';
-import 'package:flutter_bloc_starter/features/today/data/data_sources/today_data_source.dart';
-import 'package:flutter_bloc_starter/features/today/data/data_sources/today_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/today/data/data_sources/local/today_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
+import 'package:flutter_bloc_starter/features/today/data/data_sources/remote/today_data_source.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
 import 'package:flutter_bloc_starter/features/today/data/repositories/today_repository.dart';
 import 'package:flutter_bloc_starter/features/today/presentation/today/cubit/today_cubit.dart';

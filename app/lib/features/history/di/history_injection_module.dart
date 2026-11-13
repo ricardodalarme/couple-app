@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/history_data_source.dart';
+import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/history_data_source.dart';
 import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/avatar/cubit/history_avatar_cubit.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/different_dates/cubit/different_dates_cubit.dart';

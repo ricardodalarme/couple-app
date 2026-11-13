@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/capsules/data/data_sources/capsules_data_source.dart';
+import 'package:flutter_bloc_starter/features/capsules/data/data_sources/remote/capsules_data_source.dart';
 import 'package:flutter_bloc_starter/features/capsules/data/repositories/capsules_repository.dart';
 import 'package:flutter_bloc_starter/features/capsules/presentation/capsules/cubit/capsules_cubit.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';

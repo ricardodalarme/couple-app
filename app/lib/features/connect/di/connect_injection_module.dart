@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/connect/data/data_sources/connect_data_source.dart';
+import 'package:flutter_bloc_starter/features/connect/data/data_sources/remote/connect_data_source.dart';
 import 'package:flutter_bloc_starter/features/connect/data/repositories/connect_repository.dart';
 import 'package:flutter_bloc_starter/features/connect/presentation/touch/cubit/touch_cubit.dart';
 import 'package:flutter_bloc_starter/features/connect/presentation/us/cubit/us_cubit.dart';

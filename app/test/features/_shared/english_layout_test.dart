@@ -13,8 +13,8 @@ import 'package:flutter_bloc_starter/features/distance/data/models/distance_info
 import 'package:flutter_bloc_starter/features/distance/data/repositories/distance_repository.dart';
 import 'package:flutter_bloc_starter/features/distance/presentation/distance/cubit/distance_cubit.dart';
 import 'package:flutter_bloc_starter/features/distance/presentation/distance/distance_page.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/guides_data_source.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/guides_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/guides/data/data_sources/local/guides_local_data_source.dart';
+import 'package:flutter_bloc_starter/features/guides/data/data_sources/remote/guides_data_source.dart';
 import 'package:flutter_bloc_starter/features/guides/data/repositories/guides_repository.dart';
 import 'package:flutter_bloc_starter/features/guides/presentation/hub/cubit/guides_cubit.dart';
 import 'package:flutter_bloc_starter/features/guides/presentation/hub/guides_page.dart';

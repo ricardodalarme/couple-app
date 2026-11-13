@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/guide_session.dart';
+import 'package:flutter_bloc_starter/features/guides/data/data_sources/local/guide_session.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide_catalogue.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide_progress.dart';
