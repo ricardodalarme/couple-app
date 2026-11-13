@@ -10,6 +10,7 @@ comment on table public.couple_photos is e'@graphql({"description": "The photo a
 
 alter table public.couple_photos enable row level security;
 grant select, insert, update, delete on public.couple_photos to authenticated;
+create index if not exists couple_photos_uploaded_by_idx on public.couple_photos (uploaded_by);
 
 create policy couple_photos_select_member on public.couple_photos for select to authenticated
   using (couple_id = (select private.current_couple_id()));
