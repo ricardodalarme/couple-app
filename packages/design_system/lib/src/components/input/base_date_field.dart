@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:design_system/design_system_l10n.dart';
@@ -17,11 +19,14 @@ const double _wheelConfirmGap = 20;
 const double _wheelValueGap = 4;
 const double _wheelValueMinHeight = 32;
 const double _disabledOpacity = .4;
+const Duration _repeatDelay = Duration(milliseconds: 400);
+const Duration _repeatInterval = Duration(milliseconds: 70);
 
 /// A read-only date, time or date-time field.
 ///
 /// Tapping opens a stepper sheet within [minimum] and [maximum]; [formatter]
-/// controls the visible value.
+/// controls the visible value. An empty field opens at today, clamped into
+/// that range.
 class const BaseDateField({
   final DateTime? value,
   final String? label,
@@ -62,7 +67,7 @@ class const BaseDateField({
       context: context,
       title: label,
       child: _DateStepper(
-        initial: value ?? minimum ?? clock.now(),
+        initial: value ?? clock.now(),
         mode: mode,
         minimum: minimum,
         maximum: maximum,
@@ -346,22 +351,10 @@ class const _WheelColumn({
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        AppPressable(
-          onTap: onIncrease,
-          borderRadius: BorderRadius.circular(AppRadius.pill),
+        _StepperButton(
+          icon: AppIcons.chevron_up,
           semanticLabel: increaseLabel,
-          enforceMinTapTarget: true,
-          child: Container(
-            width: AppIconSize.touch,
-            height: AppIconSize.touch,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: colors.bgSurface,
-              shape: BoxShape.circle,
-              border: Border.all(color: colors.borderDefault),
-            ),
-            child: AppIcon(icon: AppIcons.chevron_up, color: colors.iconDefault),
-          ),
+          onPressed: onIncrease,
         ),
         const SizedBox(height: _wheelValueGap),
         ConstrainedBox(
@@ -375,22 +368,10 @@ class const _WheelColumn({
           ),
         ),
         const SizedBox(height: _wheelValueGap),
-        AppPressable(
-          onTap: onDecrease,
-          borderRadius: BorderRadius.circular(AppRadius.pill),
+        _StepperButton(
+          icon: AppIcons.chevron_down,
           semanticLabel: decreaseLabel,
-          enforceMinTapTarget: true,
-          child: Container(
-            width: AppIconSize.touch,
-            height: AppIconSize.touch,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: colors.bgSurface,
-              shape: BoxShape.circle,
-              border: Border.all(color: colors.borderDefault),
-            ),
-            child: AppIcon(icon: AppIcons.chevron_down, color: colors.iconDefault),
-          ),
+          onPressed: onDecrease,
         ),
         const SizedBox(height: _wheelValueGap),
         Text(
@@ -400,6 +381,81 @@ class const _WheelColumn({
           style: context.text.micro.copyWith(color: colors.textSecondary),
         ),
       ],
+    );
+  }
+}
+
+class const _StepperButton({
+  required final IconData icon,
+  required final String semanticLabel,
+  required final VoidCallback onPressed,
+}) extends StatefulWidget {
+  @override
+  State<_StepperButton> createState() => _StepperButtonState();
+}
+
+class _StepperButtonState() extends State<_StepperButton> {
+  Timer? _holdDelay;
+  Timer? _repeat;
+  bool _hasRepeated = false;
+
+  @override
+  void dispose() {
+    _stopRepeat();
+    super.dispose();
+  }
+
+  void _stopRepeat() {
+    _holdDelay?.cancel();
+    _holdDelay = null;
+    _repeat?.cancel();
+    _repeat = null;
+  }
+
+  void _handlePressStart(PointerDownEvent _) {
+    _hasRepeated = false;
+    _holdDelay = Timer(_repeatDelay, () {
+      _hasRepeated = true;
+      widget.onPressed();
+      _repeat = Timer.periodic(_repeatInterval, (_) => widget.onPressed());
+    });
+  }
+
+  void _handlePressEnd() => _stopRepeat();
+
+  void _handleTap() {
+    if (_hasRepeated) {
+      _hasRepeated = false;
+      return;
+    }
+    widget.onPressed();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+
+    return Listener(
+      onPointerDown: _handlePressStart,
+      onPointerUp: (_) => _handlePressEnd(),
+      onPointerCancel: (_) => _handlePressEnd(),
+      child: AppPressable(
+        onTap: _handleTap,
+        borderRadius: BorderRadius.circular(AppRadius.pill),
+        semanticLabel: widget.semanticLabel,
+        enforceMinTapTarget: true,
+        child: Container(
+          width: AppIconSize.touch,
+          height: AppIconSize.touch,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: colors.bgSurface,
+            shape: BoxShape.circle,
+            border: Border.all(color: colors.borderDefault),
+          ),
+          child: AppIcon(icon: widget.icon, color: colors.iconDefault),
+        ),
+      ),
     );
   }
 }

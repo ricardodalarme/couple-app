@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -58,6 +59,67 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(picked, DateTime(2026, 11, 13));
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('an empty date field opens the stepper at today, not the minimum', (tester) async {
+    await withClock(Clock.fixed(DateTime(2026, 11, 13, 10)), () async {
+      await tester.pumpWidget(
+        inputHost(
+          BaseDateField(
+            label: 'Date',
+            hint: 'Pick a date',
+            minimum: DateTime(1950),
+            maximum: DateTime(2027, 12, 31),
+            onChanged: (_) {},
+          ),
+          variant: AppThemeVariant.rose,
+        ),
+      );
+
+      await tester.tap(find.text('Pick a date'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('2026'), findsOneWidget);
+      expect(find.text('11'), findsOneWidget);
+      expect(find.text('13'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+  });
+
+  testWidgets('holding a stepper arrow repeats instead of stepping once', (tester) async {
+    DateTime? picked;
+
+    await tester.pumpWidget(
+      inputHost(
+        BaseDateField(
+          label: 'Date',
+          value: DateTime(2026, 11, 12),
+          onChanged: (value) => picked = value,
+        ),
+        variant: AppThemeVariant.rose,
+      ),
+    );
+
+    await tester.tap(find.text('2026-11-12'));
+    await tester.pumpAndSettle();
+
+    final yearUp = find.ancestor(
+      of: find.byIcon(AppIcons.chevron_up),
+      matching: find.byType(AppPressable),
+    );
+    final gesture = await tester.startGesture(tester.getCenter(yearUp.last));
+    await tester.pump(const Duration(milliseconds: 400));
+    await tester.pump(const Duration(seconds: 1));
+    await gesture.up();
+    await tester.pump();
+
+    expect(find.text('2026'), findsNothing);
+
+    await tester.tap(find.text('Confirm'));
+    await tester.pumpAndSettle();
+
+    expect(picked!.year, greaterThan(2027));
     expect(tester.takeException(), isNull);
   });
 
