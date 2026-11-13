@@ -4,7 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc_starter/infrastructure/initializers/firebase_initializer.dart';
 import 'package:logger/logger.dart';
 
-final class CrashReportInitializer() extends Initializer {
+final class CrashReportInitializer({final CrashReportService? crashReportService})
+    extends Initializer {
   static final Logger _logger = Logger('CrashReportInitializer');
 
   @override
@@ -14,10 +15,16 @@ final class CrashReportInitializer() extends Initializer {
   List<Type> get dependencies => const [FirebaseInitializer];
 
   @override
-  void initialize() {
-    _logger.info('Installing crash report handlers');
+  Future<void> initialize() async {
+    final service = crashReportService ?? AppInjector.instance.get<CrashReportService>();
 
-    final service = AppInjector.instance.get<CrashReportService>();
+    try {
+      await service.setCrashlyticsCollectionEnabled(!kDebugMode);
+    } on Object catch (error) {
+      _logger.warning('Could not change the crash collection setting', error: error);
+    }
+
+    _logger.info('Installing crash report handlers');
 
     FlutterError.onError = (details) {
       service.recordFlutterFatalError(details);
