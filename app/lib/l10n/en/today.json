@@ -39,6 +39,7 @@
     "one": "1 day",
     "other": "{count} days"
   },
+  "togetherChipAction": "Open our story",
   "togetherJoin": "{first} and {second}",
   "invitePerson": "Invite your person",
   "pendingInviteTitle": "Invite sent",

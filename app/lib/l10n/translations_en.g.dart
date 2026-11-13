@@ -5385,6 +5385,8 @@ class _Translations$today$en extends Translations$today$pt {
         other: '${count} days',
       );
   @override
+  String get togetherChipAction => 'Open our story';
+  @override
   String togetherJoin({required Object first, required Object second}) => '${first} and ${second}';
   @override
   String get invitePerson => 'Invite your person';
@@ -10156,6 +10158,7 @@ extension on TranslationsEn {
                   one: '1 day',
                   other: '${count} days',
                 ),
+          'today.togetherChipAction' => 'Open our story',
           'today.togetherJoin' => ({
             required Object first,
             required Object second,
@@ -10191,10 +10194,10 @@ extension on TranslationsEn {
           'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',
           'today.inviteCardTitleNoName' => 'Invite your person',
           'today.inviteCardText' => 'Shared cards and tools need both of you.',
-          'today.privateTag' => 'Only yours',
           _ => null,
         } ??
         switch (path) {
+          'today.privateTag' => 'Only yours',
           'today.privateQuestion' => 'How was your day, really?',
           'today.privateHighlight' => 'day',
           'today.privateAction' => 'Note a slip',

@@ -74,4 +74,36 @@ void main() {
       expect(chip.style?.fontWeight, FontWeight.w500);
     });
   });
+
+  testWidgets('the together chip opens our story', (tester) async {
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      final l10n = Translations();
+
+      await tester.pumpApp(
+        TodayHeader(
+          home: TodayHome(
+            isPaired: true,
+            unopenedCards: 0,
+            slipsThisWeek: 2,
+            slipsTotal: 2,
+            hasPendingInvite: false,
+            hasPlus: false,
+            partnerName: 'Rui',
+            togetherSince: DateTime(2024, 3, 10),
+          ),
+          selfName: 'Ana',
+        ),
+      );
+
+      final pressable = tester.widget<AppPressable>(
+        find.ancestor(
+          of: find.text(l10n.today.togetherYears(count: 2)),
+          matching: find.byType(AppPressable),
+        ),
+      );
+
+      expect(pressable.onTap, isNotNull);
+      expect(pressable.semanticLabel, l10n.today.togetherChipAction);
+    });
+  });
 }

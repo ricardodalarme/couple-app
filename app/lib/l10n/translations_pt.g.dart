@@ -6692,6 +6692,9 @@ class Translations$today$pt {
         other: '${count} dias',
       );
 
+  /// pt: 'Abrir nossa história'
+  String get togetherChipAction => 'Abrir nossa história';
+
   /// pt: '{first} e {second}'
   String togetherJoin({required Object first, required Object second}) => '${first} e ${second}';
 
@@ -11926,6 +11929,7 @@ extension on Translations {
                   one: '1 dia',
                   other: '${count} dias',
                 ),
+          'today.togetherChipAction' => 'Abrir nossa história',
           'today.togetherJoin' => ({
             required Object first,
             required Object second,
@@ -11961,10 +11965,10 @@ extension on Translations {
           'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
           'today.inviteCardTitleNoName' => 'Convidar sua pessoa',
           'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
-          'today.privateTag' => 'Só seu',
           _ => null,
         } ??
         switch (path) {
+          'today.privateTag' => 'Só seu',
           'today.privateQuestion' => 'Como foi o seu dia, de verdade?',
           'today.privateHighlight' => 'dia',
           'today.privateAction' => 'Anotar um slip',

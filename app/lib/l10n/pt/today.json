@@ -39,6 +39,7 @@
     "one": "1 dia",
     "other": "{count} dias"
   },
+  "togetherChipAction": "Abrir nossa história",
   "togetherJoin": "{first} e {second}",
   "invitePerson": "Convidar sua pessoa",
   "pendingInviteTitle": "Convite enviado",

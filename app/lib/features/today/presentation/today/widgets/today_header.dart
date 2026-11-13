@@ -98,32 +98,42 @@ class const _TogetherChip({required final DateTime since}) extends StatelessWidg
     final colors = context.colors;
     final l10n = context.l10n.today;
 
-    return Container(
-      height: _chipHeight,
-      padding: const EdgeInsets.only(left: AppSpace.s4, right: AppSpace.s14),
-      decoration: BoxDecoration(
-        color: colors.bgSurface,
-        borderRadius: BorderRadius.circular(AppRadius.pill),
-        border: Border.all(color: colors.borderDefault),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: _chipDot,
-            height: _chipDot,
-            decoration: BoxDecoration(color: colors.accentSoft, shape: BoxShape.circle),
-            child: Icon(AppIcons.heart_filled, size: AppIconSize.xs, color: colors.accentHighlight),
-          ),
-          const SizedBox(width: AppSpace.s8),
-          Text(
-            _label(l10n, since),
-            style: context.text.bodySm.copyWith(
-              color: colors.textPrimary,
-              fontWeight: FontWeight.w500,
+    return AppPressable(
+      onTap: () => context.pushRoute(const HistoryRoute()),
+      semanticLabel: l10n.togetherChipAction,
+      borderRadius: BorderRadius.circular(AppRadius.pill),
+      enforceMinTapTarget: true,
+      child: Container(
+        height: _chipHeight,
+        padding: const EdgeInsets.only(left: AppSpace.s4, right: AppSpace.s14),
+        decoration: BoxDecoration(
+          color: colors.bgSurface,
+          borderRadius: BorderRadius.circular(AppRadius.pill),
+          border: Border.all(color: colors.borderDefault),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: _chipDot,
+              height: _chipDot,
+              decoration: BoxDecoration(color: colors.accentSoft, shape: BoxShape.circle),
+              child: Icon(
+                AppIcons.heart_filled,
+                size: AppIconSize.xs,
+                color: colors.accentHighlight,
+              ),
             ),
-          ),
-        ],
+            const SizedBox(width: AppSpace.s8),
+            Text(
+              _label(l10n, since),
+              style: context.text.bodySm.copyWith(
+                color: colors.textPrimary,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
