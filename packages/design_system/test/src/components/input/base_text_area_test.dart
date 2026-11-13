@@ -66,4 +66,19 @@ void main() {
     expect(find.byType(BaseTextArea), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('an errorText alone renders the message and the error border', (tester) async {
+    await tester.pumpWidget(
+      inputHost(
+        const SizedBox(
+          width: 350,
+          child: BaseTextArea(hint: 'Write a line', errorText: 'Write something first.'),
+        ),
+        variant: AppThemeVariant.rose,
+      ),
+    );
+
+    expect(find.text('Write something first.'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
 }

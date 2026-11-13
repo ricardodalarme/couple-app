@@ -71,12 +71,14 @@ class _BaseTextAreaState() extends State<BaseTextArea> {
     final text = context.text;
     final threshold = (widget.maxLength * _counterThresholdRatio).ceil();
     final showsCounter = !widget.isReadOnly && widget.showCounter && _length >= threshold;
+    // Same contract as BaseTextField/BaseSelect: a message means an error.
+    final hasError = widget.hasError || widget.errorText != null;
 
     final field = DecoratedBox(
       decoration: BoxDecoration(
         color: colors.bgSurface,
         borderRadius: BorderRadius.circular(AppRadius.card),
-        border: widget.hasError
+        border: hasError
             ? Border.all(color: AppPalette.errorInk, width: AppBorder.selected)
             : null,
       ),
@@ -134,7 +136,7 @@ class _BaseTextAreaState() extends State<BaseTextArea> {
       ),
     );
 
-    if (!widget.hasError || widget.errorText == null) {
+    if (!hasError || widget.errorText == null) {
       return AppCardRing(child: field);
     }
 
