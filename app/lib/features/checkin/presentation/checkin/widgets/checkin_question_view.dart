@@ -30,6 +30,8 @@ class const CheckinQuestionView({super.key}) extends StatelessWidget {
           Semantics(header: true, child: Text(question, style: context.text.question)),
           const SizedBox(height: AppSpace.s20),
           BaseTextArea(
+            // Each question gets its own controller, so its saved draft is the only text shown.
+            key: ValueKey(index),
             text: draft,
             hint: l10n.answerHint,
             maxLength: 1000,

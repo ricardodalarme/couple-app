@@ -98,6 +98,52 @@ void main() {
     verify(() => repository.getWeek()).called(2);
   });
 
+  testWidgets('resuming a missing answer shows the next saved answer in the field', (tester) async {
+    when(() => repository.getWeek()).thenAnswer((_) async => week(own: {1: answer(1)}));
+    when(
+      () => repository.saveAnswer(
+        week: any(named: 'week'),
+        question: any(named: 'question'),
+        body: any(named: 'body'),
+      ),
+    ).thenAnswer((invocation) async {
+      final question = invocation.namedArguments[#question] as int;
+      final body = invocation.namedArguments[#body] as String;
+
+      return answer(question, body);
+    });
+    final cubit = CheckinCubit(repository: repository);
+    addTearDown(cubit.close);
+    await cubit.load();
+
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const CheckinPage()));
+    await tester.pump();
+
+    await tester.tap(find.text('Pular esta pergunta'));
+    await tester.pump();
+    await tester.enterText(find.byType(EditableText), 'Estresse no trabalho');
+    await tester.tap(find.text('Próximo'));
+    await tester.pump();
+    await tester.pump();
+    await tester.enterText(find.byType(EditableText), 'Fim de semana');
+    await tester.tap(find.text('Concluir'));
+    await tester.pump();
+    await tester.pump();
+
+    await tester.tap(find.text('Responder as que faltam'));
+    await tester.pump();
+    await tester.enterText(find.byType(EditableText), 'Voltei');
+    await tester.tap(find.text('Próximo'));
+    await tester.pump();
+    await tester.pump();
+
+    expect(find.text('Pergunta 3 de 4'), findsOneWidget);
+    expect(
+      tester.widget<EditableText>(find.byType(EditableText)).controller.text,
+      'Estresse no trabalho',
+    );
+  });
+
   testWidgets('partner rows reveal both answers with no score', (tester) async {
     when(() => repository.getWeek()).thenAnswer(
       (_) async =>

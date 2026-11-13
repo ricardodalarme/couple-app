@@ -312,6 +312,39 @@ void main() {
     expect(reads, 2);
   });
 
+  test('resuming a missing answer keeps the next saved answer in the draft', () async {
+    when(() => repository.getWeek()).thenAnswer((_) async => week(own: {1: answer(1)}));
+    when(
+      () => repository.saveAnswer(
+        week: any(named: 'week'),
+        question: any(named: 'question'),
+        body: any(named: 'body'),
+      ),
+    ).thenAnswer((invocation) async {
+      final question = invocation.namedArguments[#question] as int;
+
+      return answer(question, 'Resposta $question');
+    });
+    final cubit = build();
+    await cubit.load();
+    await cubit.skip();
+    cubit.onDraftChanged('Estresse no trabalho');
+    await cubit.next();
+    cubit.onDraftChanged('Fim de semana');
+    await cubit.next();
+
+    expect(cubit.state.step, CheckinStep.waiting);
+
+    cubit.start();
+    expect(cubit.state.questionNumber, 2);
+
+    cubit.onDraftChanged('Voltei');
+    await cubit.next();
+
+    expect(cubit.state.questionNumber, 3);
+    expect(cubit.state.draft, 'Resposta 3');
+  });
+
   test('dismissing stores this week', () async {
     final cubit = build();
     await cubit.load();
