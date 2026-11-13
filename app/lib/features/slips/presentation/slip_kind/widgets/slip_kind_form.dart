@@ -119,28 +119,56 @@ class const _SpecificFields() extends StatelessWidget {
   }
 }
 
-class const _IfThenFields() extends StatelessWidget {
+class const _IfThenFields() extends StatefulWidget {
+  @override
+  State<_IfThenFields> createState() => _IfThenFieldsState();
+}
+
+class _IfThenFieldsState() extends State<_IfThenFields> {
+  final GlobalKey _planKey = GlobalKey();
+
+  void _keepPlanVisible(bool hasFocus) {
+    if (!hasFocus) return;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final planContext = _planKey.currentContext;
+      if (planContext == null || !planContext.mounted) return;
+
+      Scrollable.ensureVisible(
+        planContext,
+        alignment: .35,
+        duration: const Duration(milliseconds: 250),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.slipKind.ifThen;
     final plan = context.select((SlipKindCubit cubit) => cubit.state.plan);
     final cubit = context.read<SlipKindCubit>();
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(l10n.ifLabel, style: context.text.label),
-        const SizedBox(height: AppSpace.s8),
-        _MainText(hint: l10n.ifHint),
-        const SizedBox(height: AppSpace.s16),
-        BaseTextField(
-          text: plan.value,
-          label: l10n.thenLabel,
-          hint: l10n.thenHint,
-          errorText: context.l10n.slipKind.planErrors.selectOrNull(plan.errorName),
-          onChanged: cubit.onPlanChanged,
-        ),
-      ],
+    return Focus(
+      onFocusChange: _keepPlanVisible,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(l10n.ifLabel, style: context.text.label),
+          const SizedBox(height: AppSpace.s8),
+          _MainText(hint: l10n.ifHint),
+          const SizedBox(height: AppSpace.s16),
+          KeyedSubtree(
+            key: _planKey,
+            child: BaseTextField(
+              text: plan.value,
+              label: l10n.thenLabel,
+              hint: l10n.thenHint,
+              errorText: context.l10n.slipKind.planErrors.selectOrNull(plan.errorName),
+              onChanged: cubit.onPlanChanged,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
