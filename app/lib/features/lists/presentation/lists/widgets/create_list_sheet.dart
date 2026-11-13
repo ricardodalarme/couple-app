@@ -1,38 +1,44 @@
 import 'package:design_system/design_system.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
+import 'package:flutter_bloc_starter/features/lists/presentation/lists/widgets/cubit/create_list_sheet_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:form_inputs/form_inputs.dart';
 
 /// The sheet that names a new list, chooses its kind and who can see it.
 class const CreateListSheet({
   required final bool hasPartner,
   required final void Function(String title, String kind, bool isShared) onCreate,
   super.key,
-}) extends StatefulWidget {
+}) extends StatelessWidget {
   @override
-  State<CreateListSheet> createState() => _CreateListSheetState();
+  Widget build(BuildContext context) => BlocProvider(
+    create: (_) => CreateListSheetCubit()..start(hasPartner: hasPartner),
+    child: _CreateListContent(onCreate: onCreate),
+  );
 }
 
-class _CreateListSheetState() extends State<CreateListSheet> {
-  FormInput<String> _title = const FormInput('');
-  String _kind = listKinds.first;
-  late bool _isShared = widget.hasPartner;
-
+class const _CreateListContent({
+  required final void Function(String title, String kind, bool isShared) onCreate,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.lists;
+    final title = context.select((CreateListSheetCubit cubit) => cubit.state.title);
+    final kind = context.select((CreateListSheetCubit cubit) => cubit.state.kind);
+    final isShared = context.select((CreateListSheetCubit cubit) => cubit.state.isShared);
+    final hasPartner = context.select((CreateListSheetCubit cubit) => cubit.state.hasPartner);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         BaseTextField(
-          text: _title.value,
+          text: title.value,
           label: l10n.titleLabel,
           hint: l10n.titleHint,
-          errorText: l10n.titleErrors.selectOrNull(_title.errorName),
-          onChanged: (title) => setState(() => _title = FormInput(title)),
-          onSubmitted: (_) => _submit(),
+          errorText: l10n.titleErrors.selectOrNull(title.errorName),
+          onChanged: context.read<CreateListSheetCubit>().onTitleChanged,
+          onSubmitted: (_) => _submit(context),
         ),
         const SizedBox(height: AppSpace.s16),
         Text(
@@ -44,15 +50,15 @@ class _CreateListSheetState() extends State<CreateListSheet> {
           spacing: AppSpace.s8,
           runSpacing: AppSpace.s8,
           children: [
-            for (final kind in listKinds)
+            for (final kindOption in listKinds)
               BaseChoiceChip(
-                label: l10n.kinds.selectOrFallback(kind),
-                isSelected: _kind == kind,
-                onTap: () => setState(() => _kind = kind),
+                label: l10n.kinds.selectOrFallback(kindOption),
+                isSelected: kind == kindOption,
+                onTap: () => context.read<CreateListSheetCubit>().onKindChanged(kindOption),
               ),
           ],
         ),
-        if (widget.hasPartner) ...[
+        if (hasPartner) ...[
           const SizedBox(height: AppSpace.s16),
           Text(
             l10n.visibilityLabel,
@@ -66,20 +72,20 @@ class _CreateListSheetState() extends State<CreateListSheet> {
               BaseChoiceChip(
                 label: l10n.shared,
                 icon: AppIcons.users,
-                isSelected: _isShared,
-                onTap: () => setState(() => _isShared = true),
+                isSelected: isShared,
+                onTap: () => context.read<CreateListSheetCubit>().onSharedChanged(true),
               ),
               BaseChoiceChip(
                 label: l10n.private,
                 icon: AppIcons.lock,
-                isSelected: !_isShared,
-                onTap: () => setState(() => _isShared = false),
+                isSelected: !isShared,
+                onTap: () => context.read<CreateListSheetCubit>().onSharedChanged(false),
               ),
             ],
           ),
           const SizedBox(height: AppSpace.s8),
           Text(
-            _isShared ? l10n.sharedHint : l10n.privateHint,
+            isShared ? l10n.sharedHint : l10n.privateHint,
             style: context.text.caption.copyWith(color: context.colors.textSecondary),
           ),
         ] else ...[
@@ -90,20 +96,16 @@ class _CreateListSheetState() extends State<CreateListSheet> {
           ),
         ],
         const SizedBox(height: AppSpace.s20),
-        BaseButton(text: l10n.create, onPressed: _submit),
+        BaseButton(text: l10n.create, onPressed: () => _submit(context)),
       ],
     );
   }
 
-  void _submit() {
-    final validatedTitle = _title.validate(
-      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(listTitleMaxLength)]),
-    );
+  void _submit(BuildContext context) {
+    final draft = context.read<CreateListSheetCubit>().submit();
+    if (draft == null) return;
 
-    setState(() => _title = validatedTitle);
-    if (!validatedTitle.isValid) return;
-
-    widget.onCreate(validatedTitle.value.trim(), _kind, _isShared);
+    onCreate(draft.title, draft.kind, draft.isShared);
     Navigator.of(context).maybePop();
   }
 }

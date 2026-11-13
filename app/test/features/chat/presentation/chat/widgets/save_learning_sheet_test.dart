@@ -47,4 +47,23 @@ void main() {
     expect(savedTarget, LearnedTarget.date);
     expect(savedText, 'Um passo pequeno.');
   });
+
+  testWidgets('saving empty text shows the error and keeps the sheet open', (tester) async {
+    var saved = 0;
+    await tester.pumpApp(
+      SaveLearningSheet(initialText: 'Um passo pequeno.', onSave: (_, _) => saved++),
+    );
+
+    await tester.tap(find.text('Um date'));
+    await tester.pump();
+    await tester.enterText(find.byType(BaseTextArea), '');
+    await tester.pump();
+
+    await tester.tap(find.widgetWithText(BaseButton, 'Guardar'));
+    await tester.pump();
+
+    expect(find.text('Escreva o que quer guardar'), findsOneWidget);
+    expect(saved, 0);
+    expect(find.byType(SaveLearningSheet), findsOneWidget);
+  });
 }

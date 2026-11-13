@@ -1,61 +1,58 @@
 import 'package:design_system/design_system.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
+import 'package:flutter_bloc_starter/features/chat/presentation/learned/widgets/cubit/learned_item_edit_sheet_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:form_inputs/form_inputs.dart';
 
 /// Edits a learning's text; its target stays fixed.
 class const LearnedItemEditSheet({
   required final LearnedItem item,
   required final ValueChanged<String> onSave,
   super.key,
-}) extends StatefulWidget {
+}) extends StatelessWidget {
   @override
-  State<LearnedItemEditSheet> createState() => _LearnedItemEditSheetState();
+  Widget build(BuildContext context) => BlocProvider(
+    create: (_) => LearnedItemEditSheetCubit()..start(item: item),
+    child: _LearnedItemEditContent(onSave: onSave),
+  );
 }
 
-class _LearnedItemEditSheetState() extends State<LearnedItemEditSheet> {
-  late FormInput<String> _text = FormInput(widget.item.text);
-
-  bool _validate() {
-    final validatedText = _text.validate(
-      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(learnedItemMaxLength)]),
-    );
-
-    setState(() => _text = validatedText);
-
-    return validatedText.isValid;
-  }
-
+class const _LearnedItemEditContent({required final ValueChanged<String> onSave})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.learned;
+    final text = context.select((LearnedItemEditSheetCubit cubit) => cubit.state.text);
+    final target = context.select((LearnedItemEditSheetCubit cubit) => cubit.state.target);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          l10n.targets.selectOrFallback(widget.item.target.name),
+          l10n.targets.selectOrFallback(target?.name),
           style: context.text.caption.copyWith(color: context.colors.textSecondary),
         ),
         const SizedBox(height: AppSpace.s12),
         BaseTextArea(
-          text: _text.value,
+          text: text.value,
           hint: l10n.editHint,
           maxLength: learnedItemMaxLength,
-          errorText: l10n.textErrors.selectOrNull(_text.errorName),
-          hasError: _text.errorName != null,
-          onChanged: (text) => setState(() => _text = FormInput(text)),
+          errorText: l10n.textErrors.selectOrNull(text.errorName),
+          hasError: text.errorName != null,
+          onChanged: context.read<LearnedItemEditSheetCubit>().onTextChanged,
         ),
         const SizedBox(height: AppSpace.s16),
-        BaseButton(text: l10n.save, onPressed: _save),
+        BaseButton(text: l10n.save, onPressed: () => _save(context)),
       ],
     );
   }
 
-  void _save() {
-    if (!_validate()) return;
-    widget.onSave(_text.value.trim());
+  void _save(BuildContext context) {
+    final value = context.read<LearnedItemEditSheetCubit>().submit();
+    if (value == null) return;
+
+    onSave(value);
     Navigator.of(context).maybePop();
   }
 }
