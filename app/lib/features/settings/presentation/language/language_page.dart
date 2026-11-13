@@ -19,7 +19,6 @@ class const LanguagePage({super.key}) extends StatelessWidget implements AutoRou
     final locale = context.select((LanguageCubit cubit) => cubit.state.locale);
     final cubit = context.read<LanguageCubit>();
     final isPortuguese = locale == AppLocale.pt.languageCode;
-    final isEnglish = locale == AppLocale.en.languageCode;
 
     return BaseView(
       appBar: BaseAppBar(title: l10n.language),
@@ -38,11 +37,10 @@ class const LanguagePage({super.key}) extends StatelessWidget implements AutoRou
                     isSelected: isPortuguese,
                     onTap: isPortuguese ? null : () => cubit.setLocale(AppLocale.pt),
                   ),
-                  BaseOptionTile(
+                  BaseListTile(
                     title: l10n.languageEnglish,
-                    support: l10n.comingSoon,
-                    isSelected: isEnglish,
-                    isEnabled: false,
+                    icon: AppIcons.globe,
+                    trailing: BaseTag(text: l10n.comingSoon),
                   ),
                 ],
               ),

@@ -15,7 +15,7 @@ class _MockSettingsRepository() extends Mock implements SettingsRepository;
 void main() {
   setUp(() => LocaleSettings.setLocaleSync(AppLocale.pt));
 
-  testWidgets('Portuguese is selected and English is coming soon', (tester) async {
+  testWidgets('Portuguese is selected and English is shown as coming soon', (tester) async {
     final repository = _MockSettingsRepository();
     when(repository.get).thenReturn(const Settings.empty());
     final cubit = LanguageCubit(repository: repository);
@@ -27,13 +27,12 @@ void main() {
     final portuguese = tester.widget<BaseOptionTile>(
       find.widgetWithText(BaseOptionTile, 'Português (Brasil)'),
     );
-    final english = tester.widget<BaseOptionTile>(find.widgetWithText(BaseOptionTile, 'Inglês'));
+    final english = tester.widget<BaseListTile>(find.widgetWithText(BaseListTile, 'Inglês'));
 
     expect(portuguese.isSelected, isTrue);
-    expect(english.isSelected, isFalse);
-    expect(english.isEnabled, isFalse);
+    expect(find.byType(BaseOptionTile), findsOneWidget);
     expect(english.onTap, isNull);
-    expect(find.text('Em breve'), findsOneWidget);
+    expect(find.text('EM BREVE'), findsOneWidget);
     expect(find.text('O inglês fica completo depois.'), findsOneWidget);
   });
 }
