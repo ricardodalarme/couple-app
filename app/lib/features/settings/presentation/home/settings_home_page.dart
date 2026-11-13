@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/sign_out/sign_out_dialog.dart';
 import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
+import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/home/cubit/settings_home_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
@@ -189,7 +190,7 @@ class const _PrivacySection() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.settingsHome;
-    final discreetOn = context.select((SettingsHomeCubit cubit) => cubit.state.discreetOn);
+    final discreetOn = context.select((DiscreetModeCubit cubit) => cubit.state.isOn);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

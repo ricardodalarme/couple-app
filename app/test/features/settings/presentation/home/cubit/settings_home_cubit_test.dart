@@ -5,8 +5,6 @@ import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_
 import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
 import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
-import 'package:flutter_bloc_starter/features/settings/data/models/discreet_mode_values.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/discreet_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/home/cubit/settings_home_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -17,24 +15,19 @@ class _MockPlusRepository() extends Mock implements PlusRepository;
 
 class _MockNotificationsRepository() extends Mock implements NotificationsRepository;
 
-class _MockDiscreetRepository() extends Mock implements DiscreetRepository;
-
 class _MockAccountRepository() extends Mock implements AccountRepository;
 
 void main() {
   late PairingRepository pairing;
   late PlusRepository plus;
   late NotificationsRepository notifications;
-  late DiscreetRepository discreet;
   late AccountRepository account;
 
   setUp(() {
     pairing = _MockPairingRepository();
     plus = _MockPlusRepository();
     notifications = _MockNotificationsRepository();
-    discreet = _MockDiscreetRepository();
     account = _MockAccountRepository();
-    when(() => discreet.local).thenReturn(const DiscreetModeValues());
     when(() => account.getDeletion()).thenAnswer((_) async => null);
   });
 
@@ -42,7 +35,6 @@ void main() {
     pairingRepository: pairing,
     plusRepository: plus,
     notificationsRepository: notifications,
-    discreetRepository: discreet,
     accountRepository: account,
   );
 

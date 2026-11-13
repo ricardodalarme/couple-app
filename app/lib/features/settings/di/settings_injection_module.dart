@@ -44,7 +44,6 @@ class SettingsInjectionModule() implements InjectionModule {
         pairingRepository: injector.get<PairingRepository>(),
         plusRepository: injector.get<PlusRepository>(),
         notificationsRepository: injector.get<NotificationsRepository>(),
-        discreetRepository: injector.get<DiscreetRepository>(),
         accountRepository: injector.get<AccountRepository>(),
       ),
     )

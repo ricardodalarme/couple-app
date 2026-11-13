@@ -6,7 +6,6 @@ final class const SettingsHomeState({
   final bool? hasPartner,
   final bool? hasPlus,
   final bool? notificationsOn,
-  final bool discreetOn = false,
   final DateTime? deletionPurgeAfter,
 }) with Equatable {
   bool get deletionPending => deletionPurgeAfter != null;
@@ -17,7 +16,6 @@ final class const SettingsHomeState({
     hasPartner,
     hasPlus,
     notificationsOn,
-    discreetOn,
     deletionPurgeAfter,
   ];
 }
