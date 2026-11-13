@@ -59,7 +59,19 @@ android {
     buildTypes {
         getByName("release") {
             signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
         }
+    }
+
+    lint {
+        // The release lint task crashes analysing FlutterFirebaseCorePlugin.kt with this
+        // AGP/JDK pair; Dart analysis stays gated by `melos lint`.
+        checkReleaseBuilds = false
     }
 }
 
