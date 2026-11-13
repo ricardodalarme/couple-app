@@ -96,6 +96,7 @@ create table public.signals (
 );
 create index signals_recipient_idx on public.signals (recipient_id, created_at desc);
 create index signals_sender_idx on public.signals (sender_id, created_at desc);
+create index signals_recipient_unseen_idx on public.signals (recipient_id) where seen_at is null;
 alter table public.signals enable row level security;
 grant select on public.signals to authenticated;
 create policy signals_select_sender_or_recipient on public.signals for select to authenticated

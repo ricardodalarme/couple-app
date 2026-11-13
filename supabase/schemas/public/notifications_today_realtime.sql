@@ -101,6 +101,7 @@ create table private.notification_outbox (
 );
 create index notification_outbox_due_idx on private.notification_outbox (send_after) where sent_at is null;
 create index notification_outbox_profile_idx on private.notification_outbox (profile_id);
+create index notification_outbox_sent_idx on private.notification_outbox (profile_id, sent_at) where outcome = 'sent';
 alter table private.notification_outbox enable row level security;
 
 create function private.enqueue_notification(p_profile_id uuid, p_type text, p_ref_id uuid default null, p_dedupe_key text default null)

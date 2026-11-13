@@ -269,6 +269,7 @@ begin
     execute format('create policy %I on public.%I for delete to authenticated using (author_id = (select auth.uid()) or couple_id = (select private.current_couple_id()))', t || '_delete_own_or_couple', t);
     execute format('create index if not exists %I on public.%I (author_id, created_at desc)', t || '_author_idx', t);
     execute format('create index if not exists %I on public.%I (couple_id)', t || '_couple_idx', t);
+    execute format('create index if not exists %I on public.%I (couple_id, created_at desc)', t || '_couple_created_idx', t);
     execute format('create trigger %I before update on public.%I for each row execute function private.set_updated_at()', t || '_set_updated_at', t);
   end loop;
 end $$;
@@ -287,6 +288,7 @@ create policy gift_ideas_delete_own on public.gift_ideas for delete to authentic
   using (author_id = (select auth.uid()));
 create index if not exists gift_ideas_author_idx on public.gift_ideas (author_id, created_at desc);
 create index if not exists gift_ideas_couple_idx on public.gift_ideas (couple_id);
+create index if not exists gift_ideas_couple_created_idx on public.gift_ideas (couple_id, created_at desc);
 create trigger gift_ideas_set_updated_at before update on public.gift_ideas
   for each row execute function private.set_updated_at();
 
