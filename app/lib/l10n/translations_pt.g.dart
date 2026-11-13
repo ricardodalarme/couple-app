@@ -336,6 +336,84 @@ class Translations$authentication$pt {
 
   Map<String, String> get errors => {
     'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
+    'anonymous_provider_disabled': 'Entrar sem conta está desativado agora.',
+    'bad_code_verifier': 'Entre de novo para continuar.',
+    'bad_json': 'Não deu certo. Tente de novo.',
+    'bad_jwt': 'Sua sessão terminou. Entre de novo.',
+    'bad_oauth_callback': 'Entre de novo para continuar.',
+    'bad_oauth_state': 'Entre de novo para continuar.',
+    'captcha_failed': 'Não conseguimos confirmar que você é humano. Tente de novo.',
+    'conflict': 'Não passou. Tente de novo.',
+    'email_address_invalid': 'Esse e-mail não é válido.',
+    'email_address_not_authorized': 'Ainda não podemos enviar e-mail para esse endereço.',
+    'email_conflict_identity_not_deletable':
+        'É a sua única forma de entrar, então não pode ser removida.',
+    'email_exists': 'Esse e-mail já tem uma conta.',
+    'email_not_confirmed': 'Confirme seu e-mail antes de entrar.',
+    'email_provider_disabled': 'Novas contas por e-mail estão fechadas agora.',
+    'flow_state_expired': 'Entre de novo para continuar.',
+    'flow_state_not_found': 'Entre de novo para continuar.',
+    'hook_payload_invalid_content_type': 'Não deu certo. Tente de novo.',
+    'hook_payload_over_size_limit': 'Não deu certo. Tente de novo.',
+    'hook_timeout': 'Demorou demais. Tente de novo.',
+    'hook_timeout_after_retry': 'Demorou demais. Tente de novo.',
+    'identity_already_exists': 'Essa conta já está vinculada.',
+    'identity_not_found': 'Essa forma de entrar não está mais vinculada.',
+    'insufficient_aal': 'Conclua a etapa extra de segurança primeiro.',
+    'invalid_credentials': 'E-mail ou senha incorretos.',
+    'invite_not_found': 'Este convite expirou ou já foi usado.',
+    'manual_linking_disabled': 'Vincular contas está desativado agora.',
+    'mfa_challenge_expired': 'Essa verificação expirou. Tente de novo.',
+    'mfa_factor_name_conflict': 'Você já tem uma chave de segurança com esse nome.',
+    'mfa_factor_not_found': 'Essa chave de segurança não está mais configurada.',
+    'mfa_ip_address_mismatch': 'Comece e termine a configuração na mesma conexão.',
+    'mfa_phone_enroll_not_enabled': 'A verificação por telefone está desativada agora.',
+    'mfa_phone_verify_not_enabled': 'A verificação por telefone está desativada agora.',
+    'mfa_totp_enroll_not_enabled': 'Os códigos do autenticador estão desativados agora.',
+    'mfa_totp_verify_not_enabled': 'Os códigos do autenticador estão desativados agora.',
+    'mfa_verification_failed': 'Esse código não está certo. Tente de novo.',
+    'mfa_verification_rejected': 'Não foi possível verificar. Tente de novo mais tarde.',
+    'mfa_verified_factor_exists': 'Este telefone já está configurado para verificação.',
+    'mfa_web_authn_enroll_not_enabled': 'A configuração de passkey está desativada agora.',
+    'mfa_web_authn_verify_not_enabled': 'As passkeys estão desativadas agora.',
+    'no_authorization': 'Sua sessão terminou. Entre de novo.',
+    'oauth_provider_not_supported': 'Essa forma de entrar não está disponível.',
+    'otp_disabled': 'Os códigos de entrada estão desativados agora.',
+    'otp_expired': 'Esse código expirou. Peça um novo.',
+    'over_email_send_rate_limit': 'Muitos e-mails enviados. Espere um pouco e tente de novo.',
+    'over_request_rate_limit': 'Muitas tentativas seguidas. Espere um instante e tente de novo.',
+    'over_sms_send_rate_limit': 'Muitos textos enviados. Espere um pouco e tente de novo.',
+    'phone_exists': 'Esse telefone já tem uma conta.',
+    'phone_not_confirmed': 'Confirme seu telefone antes de entrar.',
+    'phone_provider_disabled': 'Novas contas por telefone estão fechadas agora.',
+    'provider_disabled': 'Essa forma de entrar não está disponível.',
+    'provider_email_needs_verification': 'Confira seu e-mail para concluir a entrada.',
+    'reauthentication_needed': 'Entre de novo para continuar.',
+    'reauthentication_not_valid': 'Esse código não está certo. Tente de novo.',
+    'refresh_token_already_used': 'Sua sessão terminou. Entre de novo.',
+    'refresh_token_not_found': 'Sua sessão terminou. Entre de novo.',
+    'request_timeout': 'Demorou demais. Tente de novo.',
+    'same_password': 'Escolha uma senha que você ainda não usou aqui.',
+    'saml_assertion_no_email': 'Sua organização não compartilhou um e-mail. Fale com ela.',
+    'saml_assertion_no_user_id': 'Sua organização não compartilhou um ID. Fale com ela.',
+    'saml_idp_not_found': 'A entrada da sua organização não está configurada.',
+    'saml_provider_disabled': 'A entrada por organização está desativada agora.',
+    'saml_relay_state_expired': 'Entre de novo para continuar.',
+    'saml_relay_state_not_found': 'Entre de novo para continuar.',
+    'session_expired': 'Sua sessão terminou. Entre de novo.',
+    'session_not_found': 'Sua sessão terminou. Entre de novo.',
+    'signup_disabled': 'Novas contas estão fechadas agora.',
+    'single_identity_not_deletable': 'É a sua única forma de entrar, então não pode ser removida.',
+    'sms_send_failed': 'Não conseguimos enviar o texto. Tente de novo.',
+    'sso_provider_not_found': 'A entrada da sua organização não está configurada.',
+    'too_many_enrolled_mfa_factors': 'Você atingiu o limite de chaves de segurança.',
+    'unexpected_failure': 'Não deu certo. Tente de novo.',
+    'user_already_exists': 'Essa conta já existe.',
+    'user_banned': 'Essa conta não está disponível agora.',
+    'user_not_found': 'Não encontramos essa conta.',
+    'user_sso_managed': 'Sua organização gerencia essa conta.',
+    'validation_failed': 'Confira as informações e tente de novo.',
+    'weak_password': 'Escolha uma senha mais forte.',
     'other': 'Não deu para entrar agora. Tente de novo.',
   };
 }
@@ -9080,6 +9158,122 @@ extension on Translations {
           'authentication.continueWithApple' => 'Continuar com a Apple',
           'authentication.continueWithGoogle' => 'Continuar com o Google',
           'authentication.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
+          'authentication.errors.anonymous_provider_disabled' =>
+            'Entrar sem conta está desativado agora.',
+          'authentication.errors.bad_code_verifier' => 'Entre de novo para continuar.',
+          'authentication.errors.bad_json' => 'Não deu certo. Tente de novo.',
+          'authentication.errors.bad_jwt' => 'Sua sessão terminou. Entre de novo.',
+          'authentication.errors.bad_oauth_callback' => 'Entre de novo para continuar.',
+          'authentication.errors.bad_oauth_state' => 'Entre de novo para continuar.',
+          'authentication.errors.captcha_failed' =>
+            'Não conseguimos confirmar que você é humano. Tente de novo.',
+          'authentication.errors.conflict' => 'Não passou. Tente de novo.',
+          'authentication.errors.email_address_invalid' => 'Esse e-mail não é válido.',
+          'authentication.errors.email_address_not_authorized' =>
+            'Ainda não podemos enviar e-mail para esse endereço.',
+          'authentication.errors.email_conflict_identity_not_deletable' =>
+            'É a sua única forma de entrar, então não pode ser removida.',
+          'authentication.errors.email_exists' => 'Esse e-mail já tem uma conta.',
+          'authentication.errors.email_not_confirmed' => 'Confirme seu e-mail antes de entrar.',
+          'authentication.errors.email_provider_disabled' =>
+            'Novas contas por e-mail estão fechadas agora.',
+          'authentication.errors.flow_state_expired' => 'Entre de novo para continuar.',
+          'authentication.errors.flow_state_not_found' => 'Entre de novo para continuar.',
+          'authentication.errors.hook_payload_invalid_content_type' =>
+            'Não deu certo. Tente de novo.',
+          'authentication.errors.hook_payload_over_size_limit' => 'Não deu certo. Tente de novo.',
+          'authentication.errors.hook_timeout' => 'Demorou demais. Tente de novo.',
+          'authentication.errors.hook_timeout_after_retry' => 'Demorou demais. Tente de novo.',
+          'authentication.errors.identity_already_exists' => 'Essa conta já está vinculada.',
+          'authentication.errors.identity_not_found' =>
+            'Essa forma de entrar não está mais vinculada.',
+          'authentication.errors.insufficient_aal' =>
+            'Conclua a etapa extra de segurança primeiro.',
+          'authentication.errors.invalid_credentials' => 'E-mail ou senha incorretos.',
+          'authentication.errors.invite_not_found' => 'Este convite expirou ou já foi usado.',
+          'authentication.errors.manual_linking_disabled' =>
+            'Vincular contas está desativado agora.',
+          'authentication.errors.mfa_challenge_expired' =>
+            'Essa verificação expirou. Tente de novo.',
+          'authentication.errors.mfa_factor_name_conflict' =>
+            'Você já tem uma chave de segurança com esse nome.',
+          'authentication.errors.mfa_factor_not_found' =>
+            'Essa chave de segurança não está mais configurada.',
+          'authentication.errors.mfa_ip_address_mismatch' =>
+            'Comece e termine a configuração na mesma conexão.',
+          'authentication.errors.mfa_phone_enroll_not_enabled' =>
+            'A verificação por telefone está desativada agora.',
+          'authentication.errors.mfa_phone_verify_not_enabled' =>
+            'A verificação por telefone está desativada agora.',
+          'authentication.errors.mfa_totp_enroll_not_enabled' =>
+            'Os códigos do autenticador estão desativados agora.',
+          'authentication.errors.mfa_totp_verify_not_enabled' =>
+            'Os códigos do autenticador estão desativados agora.',
+          'authentication.errors.mfa_verification_failed' =>
+            'Esse código não está certo. Tente de novo.',
+          'authentication.errors.mfa_verification_rejected' =>
+            'Não foi possível verificar. Tente de novo mais tarde.',
+          'authentication.errors.mfa_verified_factor_exists' =>
+            'Este telefone já está configurado para verificação.',
+          'authentication.errors.mfa_web_authn_enroll_not_enabled' =>
+            'A configuração de passkey está desativada agora.',
+          'authentication.errors.mfa_web_authn_verify_not_enabled' =>
+            'As passkeys estão desativadas agora.',
+          'authentication.errors.no_authorization' => 'Sua sessão terminou. Entre de novo.',
+          'authentication.errors.oauth_provider_not_supported' =>
+            'Essa forma de entrar não está disponível.',
+          'authentication.errors.otp_disabled' => 'Os códigos de entrada estão desativados agora.',
+          'authentication.errors.otp_expired' => 'Esse código expirou. Peça um novo.',
+          'authentication.errors.over_email_send_rate_limit' =>
+            'Muitos e-mails enviados. Espere um pouco e tente de novo.',
+          'authentication.errors.over_request_rate_limit' =>
+            'Muitas tentativas seguidas. Espere um instante e tente de novo.',
+          'authentication.errors.over_sms_send_rate_limit' =>
+            'Muitos textos enviados. Espere um pouco e tente de novo.',
+          'authentication.errors.phone_exists' => 'Esse telefone já tem uma conta.',
+          'authentication.errors.phone_not_confirmed' => 'Confirme seu telefone antes de entrar.',
+          'authentication.errors.phone_provider_disabled' =>
+            'Novas contas por telefone estão fechadas agora.',
+          'authentication.errors.provider_disabled' => 'Essa forma de entrar não está disponível.',
+          'authentication.errors.provider_email_needs_verification' =>
+            'Confira seu e-mail para concluir a entrada.',
+          'authentication.errors.reauthentication_needed' => 'Entre de novo para continuar.',
+          'authentication.errors.reauthentication_not_valid' =>
+            'Esse código não está certo. Tente de novo.',
+          'authentication.errors.refresh_token_already_used' =>
+            'Sua sessão terminou. Entre de novo.',
+          'authentication.errors.refresh_token_not_found' => 'Sua sessão terminou. Entre de novo.',
+          'authentication.errors.request_timeout' => 'Demorou demais. Tente de novo.',
+          'authentication.errors.same_password' =>
+            'Escolha uma senha que você ainda não usou aqui.',
+          'authentication.errors.saml_assertion_no_email' =>
+            'Sua organização não compartilhou um e-mail. Fale com ela.',
+          'authentication.errors.saml_assertion_no_user_id' =>
+            'Sua organização não compartilhou um ID. Fale com ela.',
+          'authentication.errors.saml_idp_not_found' =>
+            'A entrada da sua organização não está configurada.',
+          'authentication.errors.saml_provider_disabled' =>
+            'A entrada por organização está desativada agora.',
+          'authentication.errors.saml_relay_state_expired' => 'Entre de novo para continuar.',
+          'authentication.errors.saml_relay_state_not_found' => 'Entre de novo para continuar.',
+          'authentication.errors.session_expired' => 'Sua sessão terminou. Entre de novo.',
+          'authentication.errors.session_not_found' => 'Sua sessão terminou. Entre de novo.',
+          'authentication.errors.signup_disabled' => 'Novas contas estão fechadas agora.',
+          'authentication.errors.single_identity_not_deletable' =>
+            'É a sua única forma de entrar, então não pode ser removida.',
+          'authentication.errors.sms_send_failed' =>
+            'Não conseguimos enviar o texto. Tente de novo.',
+          'authentication.errors.sso_provider_not_found' =>
+            'A entrada da sua organização não está configurada.',
+          'authentication.errors.too_many_enrolled_mfa_factors' =>
+            'Você atingiu o limite de chaves de segurança.',
+          'authentication.errors.unexpected_failure' => 'Não deu certo. Tente de novo.',
+          'authentication.errors.user_already_exists' => 'Essa conta já existe.',
+          'authentication.errors.user_banned' => 'Essa conta não está disponível agora.',
+          'authentication.errors.user_not_found' => 'Não encontramos essa conta.',
+          'authentication.errors.user_sso_managed' => 'Sua organização gerencia essa conta.',
+          'authentication.errors.validation_failed' => 'Confira as informações e tente de novo.',
+          'authentication.errors.weak_password' => 'Escolha uma senha mais forte.',
           'authentication.errors.other' => 'Não deu para entrar agora. Tente de novo.',
           'capsules.title' => 'Cápsula do tempo',
           'capsules.text' =>
@@ -9513,6 +9707,9 @@ extension on Translations {
             'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
           'discreet.title' => 'Modo discreto',
           'discreet.neutralIcon' => 'Ícone neutro',
+          _ => null,
+        } ??
+        switch (path) {
           'discreet.neutralNotifications' => 'Notificações neutras',
           'discreet.hideWidgetText' => 'Ocultar texto do widget',
           'discreet.note' =>
@@ -10170,6 +10367,9 @@ extension on Translations {
           'history.storyMarried' => 'Casamos',
           'history.storyAdd' => 'Adicionar',
           'history.storyDateAddedBy' => ({required Object name}) => 'Adicionado por ${name}',
+          _ => null,
+        } ??
+        switch (path) {
           'history.storyDatesNote' => 'Tudo opcional. A data de início alimenta o contador.',
           'history.variationsTitle' => 'Como o contador aparece',
           'history.variationDating' => 'Namoro',
@@ -10809,6 +11009,9 @@ extension on Translations {
           'notificationPreferences.types.card_reaction' => 'Resposta ao seu cartão',
           'notificationPreferences.types.daily_idea' => 'Ideia do dia',
           'notificationPreferences.types.date_coming' => 'Datas chegando',
+          _ => null,
+        } ??
+        switch (path) {
           'notificationPreferences.types.other' => '',
           'notificationPreferences.cardTitle' => 'Cartão de domingo',
           'notificationPreferences.cardDay' => 'Dia',
@@ -11395,6 +11598,9 @@ extension on Translations {
             'Inspire devagar por 4. Solte devagar por 6. Repita no seu ritmo.',
           'repair.calm.text' => 'Não tem pressa e não tem tempo contado. Saia quando quiser.',
           'repair.calm.ready' => 'Estou mais calmo(a)',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.calm.leave' => 'Sair',
           'repair.calm.askPause' => 'Pedir um tempo ao meu par',
           'repair.softStart.title' => 'Comece com suavidade',
@@ -11968,6 +12174,9 @@ extension on Translations {
           'temperature.levelTitle' => 'Como está entre vocês?',
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',
+          _ => null,
+        } ??
+        switch (path) {
           'temperature.levels.good' => 'Bem',
           'temperature.levels.so_so' => 'Mais ou menos',
           'temperature.levels.turbulent' => 'Turbulento',

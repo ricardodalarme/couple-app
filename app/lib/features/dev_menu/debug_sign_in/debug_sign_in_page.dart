@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/cubit/debug_sign_in_cubit.dart';
+import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
@@ -14,15 +15,16 @@ class const DebugSignInPage({super.key}) extends StatelessWidget implements Auto
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n.debugSignIn;
-
     return BaseView(
-      appBar: BaseAppBar(title: l10n.title),
+      appBar: const BaseAppBar(title: 'Debug sign-in'),
       body: BlocListener<DebugSignInCubit, DebugSignInState>(
         listenWhen: (previous, current) => previous.signInAction != current.signInAction,
         listener: (context, state) {
           if (state.signInAction case Failure(:final exception)) {
-            BaseToast.show(context, exception.l10nKey);
+            BaseToast.show(
+              context,
+              context.l10n.authentication.errors.selectOrFallback(exception.l10nKey),
+            );
           }
         },
         child: BaseStackedContent(
@@ -31,20 +33,19 @@ class const DebugSignInPage({super.key}) extends StatelessWidget implements Auto
             children: [
               BaseTextField(
                 type: BaseTextFieldType.email,
-                label: context.l10n.common.email,
+                label: 'Email',
                 onChanged: context.read<DebugSignInCubit>().onEmailChanged,
               ),
               const SizedBox(height: AppSpace.s12),
               BaseTextField(
                 type: BaseTextFieldType.password,
-                label: context.l10n.common.password,
+                label: 'Password',
                 onChanged: context.read<DebugSignInCubit>().onPasswordChanged,
               ),
               const SizedBox(height: AppSpace.s16),
               const _SignInButton(),
               const SizedBox(height: AppSpace.s8),
               const _SignUpButton(),
-              const _ConfirmationNote(),
             ],
           ),
         ),
@@ -61,7 +62,7 @@ class const _SignInButton() extends StatelessWidget {
     );
 
     return BaseButton(
-      text: context.l10n.debugSignIn.signIn,
+      text: 'Sign in',
       isLoading: isLoading,
       onPressed: context.read<DebugSignInCubit>().signIn,
     );
@@ -72,24 +73,9 @@ class const _SignUpButton() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseButton(
-      text: context.l10n.debugSignIn.createAccount,
+      text: 'Create account',
       variant: .secondary,
       onPressed: context.read<DebugSignInCubit>().signUp,
-    );
-  }
-}
-
-class const _ConfirmationNote() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final awaiting = context.select(
-      (DebugSignInCubit cubit) => cubit.state.awaitingEmailConfirmation,
-    );
-    if (!awaiting) return const SizedBox.shrink();
-
-    return Padding(
-      padding: const EdgeInsets.only(top: AppSpace.s16),
-      child: BaseNote(text: context.l10n.debugSignIn.confirmEmail, icon: AppIcons.check),
     );
   }
 }

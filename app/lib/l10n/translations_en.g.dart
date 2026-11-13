@@ -373,6 +373,84 @@ class _Translations$authentication$en extends Translations$authentication$pt {
   @override
   Map<String, String> get errors => {
     'NETWORK': 'No connection. Check your internet and try again.',
+    'anonymous_provider_disabled': 'Signing in without an account is off right now.',
+    'bad_code_verifier': 'Sign in again to continue.',
+    'bad_json': 'Something went wrong. Try again.',
+    'bad_jwt': 'Your session ended. Sign in again.',
+    'bad_oauth_callback': 'Sign in again to continue.',
+    'bad_oauth_state': 'Sign in again to continue.',
+    'captcha_failed': 'We could not confirm you are human. Try again.',
+    'conflict': 'That did not go through. Try again.',
+    'email_address_invalid': 'That email address is not valid.',
+    'email_address_not_authorized': 'We cannot send email to that address yet.',
+    'email_conflict_identity_not_deletable':
+        'This is your only way to sign in, so it cannot be removed.',
+    'email_exists': 'This email already has an account.',
+    'email_not_confirmed': 'Confirm your email before signing in.',
+    'email_provider_disabled': 'New email accounts are closed right now.',
+    'flow_state_expired': 'Sign in again to continue.',
+    'flow_state_not_found': 'Sign in again to continue.',
+    'hook_payload_invalid_content_type': 'Something went wrong. Try again.',
+    'hook_payload_over_size_limit': 'Something went wrong. Try again.',
+    'hook_timeout': 'That took too long. Try again.',
+    'hook_timeout_after_retry': 'That took too long. Try again.',
+    'identity_already_exists': 'This account is already linked.',
+    'identity_not_found': 'That sign-in method is no longer linked.',
+    'insufficient_aal': 'Finish the extra security step first.',
+    'invalid_credentials': 'Email or password is incorrect.',
+    'invite_not_found': 'This invite expired or was already used.',
+    'manual_linking_disabled': 'Linking accounts is off right now.',
+    'mfa_challenge_expired': 'That check expired. Try again.',
+    'mfa_factor_name_conflict': 'You already have a security key with that name.',
+    'mfa_factor_not_found': 'That security key is no longer set up.',
+    'mfa_ip_address_mismatch': 'Start and finish setup on the same connection.',
+    'mfa_phone_enroll_not_enabled': 'Phone verification is off right now.',
+    'mfa_phone_verify_not_enabled': 'Phone verification is off right now.',
+    'mfa_totp_enroll_not_enabled': 'Authenticator codes are off right now.',
+    'mfa_totp_verify_not_enabled': 'Authenticator codes are off right now.',
+    'mfa_verification_failed': 'That code is not right. Try again.',
+    'mfa_verification_rejected': 'We could not verify that. Try again later.',
+    'mfa_verified_factor_exists': 'This phone is already set up for verification.',
+    'mfa_web_authn_enroll_not_enabled': 'Passkey setup is off right now.',
+    'mfa_web_authn_verify_not_enabled': 'Passkeys are off right now.',
+    'no_authorization': 'Your session ended. Sign in again.',
+    'oauth_provider_not_supported': 'That sign-in option is not available.',
+    'otp_disabled': 'Sign-in codes are off right now.',
+    'otp_expired': 'That code expired. Ask for a new one.',
+    'over_email_send_rate_limit': 'Too many emails sent. Wait a bit and try again.',
+    'over_request_rate_limit': 'Too many tries in a row. Wait a moment and try again.',
+    'over_sms_send_rate_limit': 'Too many texts sent. Wait a bit and try again.',
+    'phone_exists': 'This phone number already has an account.',
+    'phone_not_confirmed': 'Confirm your phone number before signing in.',
+    'phone_provider_disabled': 'New phone accounts are closed right now.',
+    'provider_disabled': 'That sign-in option is not available.',
+    'provider_email_needs_verification': 'Check your email to finish signing in.',
+    'reauthentication_needed': 'Sign in again to continue.',
+    'reauthentication_not_valid': 'That code is not right. Try again.',
+    'refresh_token_already_used': 'Your session ended. Sign in again.',
+    'refresh_token_not_found': 'Your session ended. Sign in again.',
+    'request_timeout': 'That took too long. Try again.',
+    'same_password': 'Choose a password you have not used here.',
+    'saml_assertion_no_email': 'Your organization did not share an email. Contact them.',
+    'saml_assertion_no_user_id': 'Your organization did not share an ID. Contact them.',
+    'saml_idp_not_found': 'Your organization\'s sign-in is not set up.',
+    'saml_provider_disabled': 'Organization sign-in is off right now.',
+    'saml_relay_state_expired': 'Sign in again to continue.',
+    'saml_relay_state_not_found': 'Sign in again to continue.',
+    'session_expired': 'Your session ended. Sign in again.',
+    'session_not_found': 'Your session ended. Sign in again.',
+    'signup_disabled': 'New accounts are closed right now.',
+    'single_identity_not_deletable': 'This is your only way to sign in, so it cannot be removed.',
+    'sms_send_failed': 'We could not send the text. Try again.',
+    'sso_provider_not_found': 'Your organization\'s sign-in is not set up.',
+    'too_many_enrolled_mfa_factors': 'You have reached the limit of security keys.',
+    'unexpected_failure': 'Something went wrong. Try again.',
+    'user_already_exists': 'This account already exists.',
+    'user_banned': 'This account is not available right now.',
+    'user_not_found': 'We could not find that account.',
+    'user_sso_managed': 'Your organization manages this account.',
+    'validation_failed': 'Check the information and try again.',
+    'weak_password': 'Choose a stronger password.',
     'other': 'Could not sign you in right now. Try again.',
   };
 }
@@ -7307,6 +7385,115 @@ extension on TranslationsEn {
           'authentication.continueWithApple' => 'Continue with Apple',
           'authentication.continueWithGoogle' => 'Continue with Google',
           'authentication.errors.NETWORK' => 'No connection. Check your internet and try again.',
+          'authentication.errors.anonymous_provider_disabled' =>
+            'Signing in without an account is off right now.',
+          'authentication.errors.bad_code_verifier' => 'Sign in again to continue.',
+          'authentication.errors.bad_json' => 'Something went wrong. Try again.',
+          'authentication.errors.bad_jwt' => 'Your session ended. Sign in again.',
+          'authentication.errors.bad_oauth_callback' => 'Sign in again to continue.',
+          'authentication.errors.bad_oauth_state' => 'Sign in again to continue.',
+          'authentication.errors.captcha_failed' =>
+            'We could not confirm you are human. Try again.',
+          'authentication.errors.conflict' => 'That did not go through. Try again.',
+          'authentication.errors.email_address_invalid' => 'That email address is not valid.',
+          'authentication.errors.email_address_not_authorized' =>
+            'We cannot send email to that address yet.',
+          'authentication.errors.email_conflict_identity_not_deletable' =>
+            'This is your only way to sign in, so it cannot be removed.',
+          'authentication.errors.email_exists' => 'This email already has an account.',
+          'authentication.errors.email_not_confirmed' => 'Confirm your email before signing in.',
+          'authentication.errors.email_provider_disabled' =>
+            'New email accounts are closed right now.',
+          'authentication.errors.flow_state_expired' => 'Sign in again to continue.',
+          'authentication.errors.flow_state_not_found' => 'Sign in again to continue.',
+          'authentication.errors.hook_payload_invalid_content_type' =>
+            'Something went wrong. Try again.',
+          'authentication.errors.hook_payload_over_size_limit' =>
+            'Something went wrong. Try again.',
+          'authentication.errors.hook_timeout' => 'That took too long. Try again.',
+          'authentication.errors.hook_timeout_after_retry' => 'That took too long. Try again.',
+          'authentication.errors.identity_already_exists' => 'This account is already linked.',
+          'authentication.errors.identity_not_found' => 'That sign-in method is no longer linked.',
+          'authentication.errors.insufficient_aal' => 'Finish the extra security step first.',
+          'authentication.errors.invalid_credentials' => 'Email or password is incorrect.',
+          'authentication.errors.invite_not_found' => 'This invite expired or was already used.',
+          'authentication.errors.manual_linking_disabled' => 'Linking accounts is off right now.',
+          'authentication.errors.mfa_challenge_expired' => 'That check expired. Try again.',
+          'authentication.errors.mfa_factor_name_conflict' =>
+            'You already have a security key with that name.',
+          'authentication.errors.mfa_factor_not_found' => 'That security key is no longer set up.',
+          'authentication.errors.mfa_ip_address_mismatch' =>
+            'Start and finish setup on the same connection.',
+          'authentication.errors.mfa_phone_enroll_not_enabled' =>
+            'Phone verification is off right now.',
+          'authentication.errors.mfa_phone_verify_not_enabled' =>
+            'Phone verification is off right now.',
+          'authentication.errors.mfa_totp_enroll_not_enabled' =>
+            'Authenticator codes are off right now.',
+          'authentication.errors.mfa_totp_verify_not_enabled' =>
+            'Authenticator codes are off right now.',
+          'authentication.errors.mfa_verification_failed' => 'That code is not right. Try again.',
+          'authentication.errors.mfa_verification_rejected' =>
+            'We could not verify that. Try again later.',
+          'authentication.errors.mfa_verified_factor_exists' =>
+            'This phone is already set up for verification.',
+          'authentication.errors.mfa_web_authn_enroll_not_enabled' =>
+            'Passkey setup is off right now.',
+          'authentication.errors.mfa_web_authn_verify_not_enabled' => 'Passkeys are off right now.',
+          'authentication.errors.no_authorization' => 'Your session ended. Sign in again.',
+          'authentication.errors.oauth_provider_not_supported' =>
+            'That sign-in option is not available.',
+          'authentication.errors.otp_disabled' => 'Sign-in codes are off right now.',
+          'authentication.errors.otp_expired' => 'That code expired. Ask for a new one.',
+          'authentication.errors.over_email_send_rate_limit' =>
+            'Too many emails sent. Wait a bit and try again.',
+          'authentication.errors.over_request_rate_limit' =>
+            'Too many tries in a row. Wait a moment and try again.',
+          'authentication.errors.over_sms_send_rate_limit' =>
+            'Too many texts sent. Wait a bit and try again.',
+          'authentication.errors.phone_exists' => 'This phone number already has an account.',
+          'authentication.errors.phone_not_confirmed' =>
+            'Confirm your phone number before signing in.',
+          'authentication.errors.phone_provider_disabled' =>
+            'New phone accounts are closed right now.',
+          'authentication.errors.provider_disabled' => 'That sign-in option is not available.',
+          'authentication.errors.provider_email_needs_verification' =>
+            'Check your email to finish signing in.',
+          'authentication.errors.reauthentication_needed' => 'Sign in again to continue.',
+          'authentication.errors.reauthentication_not_valid' =>
+            'That code is not right. Try again.',
+          'authentication.errors.refresh_token_already_used' =>
+            'Your session ended. Sign in again.',
+          'authentication.errors.refresh_token_not_found' => 'Your session ended. Sign in again.',
+          'authentication.errors.request_timeout' => 'That took too long. Try again.',
+          'authentication.errors.same_password' => 'Choose a password you have not used here.',
+          'authentication.errors.saml_assertion_no_email' =>
+            'Your organization did not share an email. Contact them.',
+          'authentication.errors.saml_assertion_no_user_id' =>
+            'Your organization did not share an ID. Contact them.',
+          'authentication.errors.saml_idp_not_found' =>
+            'Your organization\'s sign-in is not set up.',
+          'authentication.errors.saml_provider_disabled' =>
+            'Organization sign-in is off right now.',
+          'authentication.errors.saml_relay_state_expired' => 'Sign in again to continue.',
+          'authentication.errors.saml_relay_state_not_found' => 'Sign in again to continue.',
+          'authentication.errors.session_expired' => 'Your session ended. Sign in again.',
+          'authentication.errors.session_not_found' => 'Your session ended. Sign in again.',
+          'authentication.errors.signup_disabled' => 'New accounts are closed right now.',
+          'authentication.errors.single_identity_not_deletable' =>
+            'This is your only way to sign in, so it cannot be removed.',
+          'authentication.errors.sms_send_failed' => 'We could not send the text. Try again.',
+          'authentication.errors.sso_provider_not_found' =>
+            'Your organization\'s sign-in is not set up.',
+          'authentication.errors.too_many_enrolled_mfa_factors' =>
+            'You have reached the limit of security keys.',
+          'authentication.errors.unexpected_failure' => 'Something went wrong. Try again.',
+          'authentication.errors.user_already_exists' => 'This account already exists.',
+          'authentication.errors.user_banned' => 'This account is not available right now.',
+          'authentication.errors.user_not_found' => 'We could not find that account.',
+          'authentication.errors.user_sso_managed' => 'Your organization manages this account.',
+          'authentication.errors.validation_failed' => 'Check the information and try again.',
+          'authentication.errors.weak_password' => 'Choose a stronger password.',
           'authentication.errors.other' => 'Could not sign you in right now. Try again.',
           'capsules.title' => 'Time capsule',
           'capsules.text' => 'Write something to be opened on a future date. Until then nobody reads it, not even you.',
@@ -7736,6 +7923,9 @@ extension on TranslationsEn {
           'devices.errors.other' => 'Couldn\'t stop notifications on that device. Try again.',
           'discreet.title' => 'Discreet mode',
           'discreet.neutralIcon' => 'Neutral icon',
+          _ => null,
+        } ??
+        switch (path) {
           'discreet.neutralNotifications' => 'Neutral notifications',
           'discreet.hideWidgetText' => 'Hide widget text',
           'discreet.note' =>
@@ -8390,6 +8580,9 @@ extension on TranslationsEn {
           'history.storyMarried' => 'Got married',
           'history.storyAdd' => 'Add',
           'history.storyDateAddedBy' => ({required Object name}) => 'Added by ${name}',
+          _ => null,
+        } ??
+        switch (path) {
           'history.storyDatesNote' => 'Everything is optional. The start date feeds the counter.',
           'history.variationsTitle' => 'How the counter looks',
           'history.variationDating' => 'Dating',
@@ -9030,6 +9223,9 @@ extension on TranslationsEn {
           'notificationPreferences.types.card_reaction' => 'Reply to your card',
           'notificationPreferences.types.daily_idea' => 'Idea of the day',
           'notificationPreferences.types.date_coming' => 'Dates coming up',
+          _ => null,
+        } ??
+        switch (path) {
           'notificationPreferences.types.other' => '',
           'notificationPreferences.cardTitle' => 'Sunday card',
           'notificationPreferences.cardDay' => 'Day',
@@ -9615,6 +9811,9 @@ extension on TranslationsEn {
             'Breathe in slowly for 4. Breathe out slowly for 6. Repeat at your own pace.',
           'repair.calm.text' => 'There\'s no rush and no timer. Leave whenever you like.',
           'repair.calm.ready' => 'I feel calmer',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.calm.leave' => 'Leave',
           'repair.calm.askPause' => 'Ask my partner for some space',
           'repair.softStart.title' => 'Start softly',
@@ -10186,6 +10385,9 @@ extension on TranslationsEn {
           'temperature.levelTitle' => 'How is it between you?',
           'temperature.levelHighlight' => 'between you',
           'temperature.levelNote' => 'Private. Never becomes a score.',
+          _ => null,
+        } ??
+        switch (path) {
           'temperature.levels.good' => 'Good',
           'temperature.levels.so_so' => 'So-so',
           'temperature.levels.turbulent' => 'Turbulent',
