@@ -207,6 +207,34 @@ void main() {
     expect(hasSaved, isTrue);
   });
 
+  testWidgets('exposes the title, close and body as separate semantics', (tester) async {
+    final handle = tester.ensureSemantics();
+    setSurface(tester);
+
+    await tester.pumpWidget(appFor(variant: AppThemeVariant.rose, home: const _SheetLauncher()));
+    await tester.tap(find.text('Open sheet'));
+    await tester.pumpAndSettle();
+
+    final sheet = tester.getSemantics(find.byType(BaseSheet));
+    expect(sheet.flagsCollection.isButton, isFalse);
+    expect(sheet.label, isNot(contains('Send the card')));
+    expect(sheet.label, isNot(contains('Close')));
+
+    final title = tester.getSemantics(find.text('Send the card'));
+    expect(title.label, 'Send the card');
+    expect(title.flagsCollection.isButton, isFalse);
+
+    final close = tester.getSemantics(find.byType(BaseRoundButton));
+    expect(close.label, 'Close');
+    expect(close.flagsCollection.isButton, isTrue);
+    expect(close, isNot(same(title)));
+
+    expect(find.bySemanticsLabel('Send the card\nClose'), findsNothing);
+    expect(find.bySemanticsLabel(RegExp('Send the card\n')), findsNothing);
+
+    handle.dispose();
+  });
+
   testWidgets('opens one sheet surface with a readable default text style', (tester) async {
     await tester.pumpWidget(
       _materialApp(

@@ -24,81 +24,98 @@ class const BaseListTile({
   final bool showsDivider = false,
   super.key,
 }) extends StatelessWidget {
+  String get _rowLabel => [title, ?subtitle, ?value].join(', ');
+
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
     final radius = BorderRadius.circular(isLoose ? AppRadius.xxl : 0);
 
-    return AppPressable(
-      onTap: onTap,
-      isEnabled: isEnabled,
-      borderRadius: radius,
-      isSemanticButton: onTap != null,
-      child: ClipRRect(
+    return Semantics(
+      container: true,
+      explicitChildNodes: true,
+      child: AppPressable(
+        onTap: onTap,
+        isEnabled: isEnabled,
         borderRadius: radius,
-        child: ColoredBox(
-          color: colors.bgSurface,
-          child: Stack(
-            children: [
-              ConstrainedBox(
-                constraints: const BoxConstraints(minHeight: _minHeight),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpace.s16,
-                    vertical: AppSpace.s10,
-                  ),
-                  child: Row(
-                    children: [
-                      if (leading != null) ...[
-                        leading!,
-                        const SizedBox(width: AppSpace.s12),
-                      ] else if (icon != null) ...[
-                        _iconTile(colors, icon!),
-                        const SizedBox(width: AppSpace.s12),
-                      ],
-                      Expanded(child: _textBlock(context)),
-                      if (value != null || trailing != null || control != null || showsChevron) ...[
-                        const SizedBox(width: AppSpace.s12),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            if (value != null)
-                              Flexible(
-                                child: Text(
-                                  value!,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.end,
-                                  style: context.text.bodySm.copyWith(color: colors.textSecondary),
+        isSemanticButton: onTap != null,
+        semanticLabel: _rowLabel,
+        child: ClipRRect(
+          borderRadius: radius,
+          child: ColoredBox(
+            color: colors.bgSurface,
+            child: Stack(
+              children: [
+                ConstrainedBox(
+                  constraints: const BoxConstraints(minHeight: _minHeight),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpace.s16,
+                      vertical: AppSpace.s10,
+                    ),
+                    child: Row(
+                      children: [
+                        if (leading != null) ...[
+                          leading!,
+                          const SizedBox(width: AppSpace.s12),
+                        ] else if (icon != null) ...[
+                          _iconTile(colors, icon!),
+                          const SizedBox(width: AppSpace.s12),
+                        ],
+                        Expanded(child: ExcludeSemantics(child: _textBlock(context))),
+                        if (value != null ||
+                            trailing != null ||
+                            control != null ||
+                            showsChevron) ...[
+                          const SizedBox(width: AppSpace.s12),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              if (value != null)
+                                Flexible(
+                                  child: ExcludeSemantics(
+                                    child: Text(
+                                      value!,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.end,
+                                      style: context.text.bodySm.copyWith(
+                                        color: colors.textSecondary,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            if (trailing != null) ...[
-                              const SizedBox(width: AppSpace.s12),
-                              trailing!,
+                              if (trailing != null) ...[
+                                const SizedBox(width: AppSpace.s12),
+                                trailing!,
+                              ],
+                              if (control != null) ...[
+                                const SizedBox(width: AppSpace.s12),
+                                control!,
+                              ],
+                              if (showsChevron) ...[
+                                const SizedBox(width: AppSpace.s8),
+                                AppIcon(icon: AppIcons.chevron_right, color: colors.iconMuted),
+                              ],
                             ],
-                            if (control != null) ...[const SizedBox(width: AppSpace.s12), control!],
-                            if (showsChevron) ...[
-                              const SizedBox(width: AppSpace.s8),
-                              AppIcon(icon: AppIcons.chevron_right, color: colors.iconMuted),
-                            ],
-                          ],
-                        ),
+                          ),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
-              ),
-              if (showsDivider)
-                Positioned(
-                  top: 0,
-                  left: AppSpace.s16,
-                  right: 0,
-                  child: SizedBox(
-                    height: AppBorder.hair,
-                    child: ColoredBox(color: colors.borderDefault),
+                if (showsDivider)
+                  Positioned(
+                    top: 0,
+                    left: AppSpace.s16,
+                    right: 0,
+                    child: SizedBox(
+                      height: AppBorder.hair,
+                      child: ColoredBox(color: colors.borderDefault),
+                    ),
                   ),
-                ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -12,7 +12,8 @@ const double _dismissVelocity = 700;
 /// The sheet surface: grabber, optional header, scrollable body and fixed action.
 ///
 /// It grows to at most 90% of the screen height, or the height left above the
-/// software keyboard when one is open; the body scrolls.
+/// software keyboard when one is open; the body scrolls. The title, close
+/// button and body are separate semantics elements.
 class const BaseSheet({
   required final Widget child,
   final String? title,
@@ -35,7 +36,7 @@ class const BaseSheet({
 
     final hasHeader = sheetTitle != null || sheetSubtitle != null || onClose != null;
 
-    return Material(
+    final surface = Material(
       color: colors.bgSurface,
       borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.sheet)),
       clipBehavior: Clip.antiAlias,
@@ -128,6 +129,8 @@ class const BaseSheet({
         ),
       ),
     );
+
+    return Semantics(container: true, explicitChildNodes: true, child: surface);
   }
 
   /// Shows a [BaseSheet] and resolves with its result.
