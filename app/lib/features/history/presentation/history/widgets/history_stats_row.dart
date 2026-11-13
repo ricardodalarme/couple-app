@@ -5,9 +5,6 @@ import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 class const HistoryStatsRow({
   required final HistoryNumbers numbers,
   required final VoidCallback onNumbersTap,
-  required final VoidCallback onStoryDatesTap,
-  required final VoidCallback onVariationsTap,
-  required final VoidCallback onAvatarTap,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -15,62 +12,32 @@ class const HistoryStatsRow({
     final l10n = context.l10n.history;
     final showPlacesInThirdSlot = numbers.placesCount > 0;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Row(
+      spacing: AppSpace.s8,
       children: [
-        Row(
-          spacing: AppSpace.s8,
-          children: [
-            Expanded(
-              child: _StatTile(
-                value: numbers.daysTogether.toString(),
-                label: l10n.statDays(count: numbers.daysTogether),
-                onTap: onNumbersTap,
-              ),
-            ),
-            Expanded(
-              child: _StatTile(
-                value: numbers.weekendsTogether.toString(),
-                label: l10n.statWeekends(count: numbers.weekendsTogether),
-                onTap: onNumbersTap,
-              ),
-            ),
-            Expanded(
-              child: _StatTile(
-                value: showPlacesInThirdSlot
-                    ? numbers.placesCount.toString()
-                    : numbers.christmasesTogether.toString(),
-                label: showPlacesInThirdSlot
-                    ? l10n.statPlaces(count: numbers.placesCount)
-                    : l10n.statChristmases(count: numbers.christmasesTogether),
-                onTap: onNumbersTap,
-              ),
-            ),
-          ],
+        Expanded(
+          child: _StatTile(
+            value: numbers.daysTogether.toString(),
+            label: l10n.statDays(count: numbers.daysTogether),
+            onTap: onNumbersTap,
+          ),
         ),
-        const SizedBox(height: AppSpace.s12),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            spacing: AppSpace.s8,
-            children: [
-              BaseChoiceChip(
-                label: l10n.storyDatesAction,
-                icon: AppIcons.calendar,
-                onTap: onStoryDatesTap,
-              ),
-              BaseChoiceChip(
-                label: l10n.numbersAction,
-                icon: AppIcons.sparkle,
-                onTap: onNumbersTap,
-              ),
-              BaseChoiceChip(
-                label: l10n.variationsAction,
-                icon: AppIcons.heart,
-                onTap: onVariationsTap,
-              ),
-              BaseChoiceChip(label: l10n.avatarAction, icon: AppIcons.user, onTap: onAvatarTap),
-            ],
+        Expanded(
+          child: _StatTile(
+            value: numbers.weekendsTogether.toString(),
+            label: l10n.statWeekends(count: numbers.weekendsTogether),
+            onTap: onNumbersTap,
+          ),
+        ),
+        Expanded(
+          child: _StatTile(
+            value: showPlacesInThirdSlot
+                ? numbers.placesCount.toString()
+                : numbers.christmasesTogether.toString(),
+            label: showPlacesInThirdSlot
+                ? l10n.statPlaces(count: numbers.placesCount)
+                : l10n.statChristmases(count: numbers.christmasesTogether),
+            onTap: onNumbersTap,
           ),
         ),
       ],

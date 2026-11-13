@@ -22,12 +22,22 @@ class const PageContent({
             AppSpace.screenMargin,
             AppSpace.scrollTail,
           ),
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: AppSpace.maxContentWidth),
-          child: centre ? Center(child: child) : child,
-        ),
+      child: PageColumn(centre: centre, child: child),
+    );
+  }
+}
+
+/// Aligns [child] to the page content column: capped to
+/// [AppSpace.maxContentWidth] and centred horizontally.
+class const PageColumn({required final Widget child, final bool centre = false, super.key})
+    extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: AppSpace.maxContentWidth),
+        child: centre ? Center(child: child) : child,
       ),
     );
   }

@@ -1,9 +1,13 @@
+import 'dart:math' as math;
+
+import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
 import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/history/cubit/history_cubit.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/history/history_page.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
+import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -113,5 +117,72 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Início 2024'), findsOneWidget);
+  });
+
+  testWidgets('the chip row spans the page and keeps the page inset while scrolling', (
+    tester,
+  ) async {
+    const surfaceWidth = 390.0;
+    await tester.binding.setSurfaceSize(const Size(surfaceWidth, 844));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    final columnWidth = math.min(
+      surfaceWidth - 2 * AppSpace.screenMargin,
+      AppSpace.maxContentWidth,
+    );
+    final columnInset = (surfaceWidth - columnWidth) / 2;
+
+    final overview = HistoryOverview(
+      selfId: 's1',
+      selfName: 'Rafa',
+      selfInitials: 'R',
+      partnerName: 'Marina',
+      partnerInitials: 'M',
+      isPaired: true,
+      coupleId: 'c1',
+      avatarKind: AvatarKind.initials,
+      phase: RelationshipPhase.dating,
+      togetherSince: DateTime(2024, 3, 14),
+      milestones: const [],
+      storyDates: StoryDatesSummary.empty(),
+      numbers: HistoryNumbers.compute(
+        togetherSince: DateTime(2024, 3, 14),
+        now: DateTime(2026, 11, 8),
+        places: const [],
+      ),
+    );
+    when(() => repository.getOverview()).thenAnswer((_) async => overview);
+
+    final cubit = HistoryCubit(historyRepository: repository);
+    await cubit.load();
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const HistoryPage()));
+    await tester.pumpAndSettle();
+
+    final scroller = find.byWidgetPredicate(
+      (widget) => widget is SingleChildScrollView && widget.scrollDirection == Axis.horizontal,
+    );
+    expect(scroller, findsOneWidget);
+
+    final l10n = tester.element(find.byType(HistoryPage)).l10n.history;
+    final firstChip = find.widgetWithText(BaseChoiceChip, l10n.storyDatesAction);
+    final lastChip = find.widgetWithText(BaseChoiceChip, l10n.avatarAction);
+
+    final scrollerRect = tester.getRect(scroller);
+    expect(scrollerRect.left, moreOrLessEquals(0, epsilon: .001));
+    expect(scrollerRect.right, moreOrLessEquals(surfaceWidth, epsilon: .001));
+    expect(tester.getRect(firstChip).left, moreOrLessEquals(columnInset, epsilon: .001));
+
+    final position = tester
+        .state<ScrollableState>(find.descendant(of: scroller, matching: find.byType(Scrollable)))
+        .position;
+    expect(position.maxScrollExtent, greaterThan(0));
+
+    position.jumpTo(position.maxScrollExtent);
+    await tester.pump();
+
+    expect(
+      tester.getRect(lastChip).right,
+      moreOrLessEquals(surfaceWidth - columnInset, epsilon: .001),
+    );
   });
 }

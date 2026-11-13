@@ -33,13 +33,7 @@ void main() {
       Builder(
         builder: (context) => MediaQuery(
           data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(scale)),
-          child: HistoryStatsRow(
-            numbers: numbers,
-            onNumbersTap: () {},
-            onStoryDatesTap: () {},
-            onVariationsTap: () {},
-            onAvatarTap: () {},
-          ),
+          child: HistoryStatsRow(numbers: numbers, onNumbersTap: () {}),
         ),
       ),
     );

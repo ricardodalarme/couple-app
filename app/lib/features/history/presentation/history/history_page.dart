@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/history/cubit/history_cubit.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/history/widgets/history_hero_section.dart';
+import 'package:flutter_bloc_starter/features/history/presentation/history/widgets/history_quick_actions.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/history/widgets/history_stats_row.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/history/widgets/history_timeline_section.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -46,11 +47,11 @@ class const HistoryPage({super.key}) extends StatelessWidget implements AutoRout
       ),
       body: BaseRefreshable(
         onRefresh: cubit.load,
-        child: BaseStackedContent(
-          body: SkeletonizerResourceWidget<HistoryOverview>(
-            overviewResource,
-            fakeValue: HistoryOverview.fake(),
-            successBuilder: (overview) => Column(
+        child: SkeletonizerResourceWidget<HistoryOverview>(
+          overviewResource,
+          fakeValue: HistoryOverview.fake(),
+          successBuilder: (overview) => BaseStackedContent(
+            header: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 HistoryHeroSection(
@@ -63,10 +64,24 @@ class const HistoryPage({super.key}) extends StatelessWidget implements AutoRout
                 HistoryStatsRow(
                   numbers: overview.numbers,
                   onNumbersTap: () => _pushAndReload(context, const HistoryNumbersRoute()),
+                ),
+              ],
+            ),
+            bleed: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: AppSpace.s12),
+                HistoryQuickActions(
                   onStoryDatesTap: () => _pushAndReload(context, const StoryDatesRoute()),
+                  onNumbersTap: () => _pushAndReload(context, const HistoryNumbersRoute()),
                   onVariationsTap: () => _pushAndReload(context, const CounterVariationsRoute()),
                   onAvatarTap: () => _pushAndReload(context, const HistoryAvatarRoute()),
                 ),
+              ],
+            ),
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
                 const SizedBox(height: AppSpace.s24),
                 HistoryTimelineSection(
                   overview: overview,
@@ -83,7 +98,9 @@ class const HistoryPage({super.key}) extends StatelessWidget implements AutoRout
                 ),
               ],
             ),
-            failureBuilder: (_) => BaseEmptyState(
+          ),
+          failureBuilder: (_) => BaseStackedContent(
+            body: BaseEmptyState(
               title: l10n.errorTitle,
               text: l10n.errorText,
               actionText: context.l10n.common.retry,
