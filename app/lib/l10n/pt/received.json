@@ -9,6 +9,14 @@
     "good_news": "Boa notícia",
     "other": ""
   },
+  "bodies(map)": {
+    "miss_us": "Seu par está com saudade de vocês.",
+    "hug": "Seu par quer um abraço.",
+    "distance": "Seu par precisa de um pouco de distância.",
+    "heavy_day": "Seu par está tendo um dia pesado.",
+    "good_news": "Seu par tem uma boa notícia.",
+    "other": ""
+  },
   "fromPartner": "Do seu par",
   "privateFirst": "Sua resposta é privada primeiro. Não tem certo nem errado.",
   "responses(map)": {
@@ -18,6 +26,7 @@
     "other": ""
   },
   "seen": "Entendi",
+  "suggestPlan": "Sugerir um plano pequeno",
   "doneTitle": "Tudo certo",
   "doneText": "Obrigado por ler com calma.",
   "emptyTitle": "Nada novo",

@@ -7,6 +7,7 @@ import 'package:flutter_bloc_starter/features/repair/data/models/received_signal
 import 'package:flutter_bloc_starter/features/repair/presentation/received/cubit/received_signals_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// Messages from the partner, shown one at a time with calm ways to answer.
 @RoutePage()
@@ -63,7 +64,10 @@ class const _SignalView({required final ReceivedSignal signal}) extends Stateles
     final isRepair = signal.kind == 'repair';
     final value = signal.value;
     final needLabel = value == null ? '' : context.l10n.need.options.selectOrFallback(value);
-    final text = signal.body ?? (needLabel.isNotEmpty ? needLabel : value);
+    final kindBody = l10n.bodies.selectOrFallback(signal.kind);
+    final text =
+        signal.body ??
+        (kindBody.isNotEmpty ? kindBody : (needLabel.isNotEmpty ? needLabel : value));
 
     return BaseStackedContent(
       body: Column(
@@ -101,12 +105,21 @@ class const _SignalView({required final ReceivedSignal signal}) extends Stateles
               ),
               const SizedBox(height: AppSpace.s10),
             ]
-          else
+          else ...[
             BaseButton(
               text: l10n.seen,
               isEnabled: !isLoading,
               onPressed: () => cubit.respond(signal),
             ),
+            if (signal.kind == 'miss_us') ...[
+              const SizedBox(height: AppSpace.s10),
+              BaseButton(
+                text: l10n.suggestPlan,
+                variant: .secondary,
+                onPressed: () => context.pushRoute(const DateNightRoute()),
+              ),
+            ],
+          ],
         ],
       ),
     );

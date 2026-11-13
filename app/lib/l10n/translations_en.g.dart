@@ -4236,6 +4236,15 @@ class _Translations$received$en extends Translations$received$pt {
     'other': '',
   };
   @override
+  Map<String, String> get bodies => {
+    'miss_us': 'Your partner is missing you both.',
+    'hug': 'Your partner would like a hug.',
+    'distance': 'Your partner needs a little distance.',
+    'heavy_day': 'Your partner is having a heavy day.',
+    'good_news': 'Your partner has good news.',
+    'other': '',
+  };
+  @override
   String get fromPartner => 'From your partner';
   @override
   String get privateFirst => 'Your answer is private first. There is no right or wrong.';
@@ -4248,6 +4257,8 @@ class _Translations$received$en extends Translations$received$pt {
   };
   @override
   String get seen => 'Got it';
+  @override
+  String get suggestPlan => 'Suggest a small plan';
   @override
   String get doneTitle => 'All good';
   @override
@@ -9475,6 +9486,12 @@ extension on TranslationsEn {
           'received.kinds.heavy_day' => 'A heavy day',
           'received.kinds.good_news' => 'Good news',
           'received.kinds.other' => '',
+          'received.bodies.miss_us' => 'Your partner is missing you both.',
+          'received.bodies.hug' => 'Your partner would like a hug.',
+          'received.bodies.distance' => 'Your partner needs a little distance.',
+          'received.bodies.heavy_day' => 'Your partner is having a heavy day.',
+          'received.bodies.good_news' => 'Your partner has good news.',
+          'received.bodies.other' => '',
           'received.fromPartner' => 'From your partner',
           'received.privateFirst' => 'Your answer is private first. There is no right or wrong.',
           'received.responses.talk' => 'Yes, let\'s talk',
@@ -9482,6 +9499,7 @@ extension on TranslationsEn {
           'received.responses.later' => 'I\'ll answer later',
           'received.responses.other' => '',
           'received.seen' => 'Got it',
+          'received.suggestPlan' => 'Suggest a small plan',
           'received.doneTitle' => 'All good',
           'received.doneText' => 'Thanks for reading it calmly.',
           'received.emptyTitle' => 'Nothing new',
@@ -9619,6 +9637,9 @@ extension on TranslationsEn {
           'repair.guided.finalTitle' => 'How are you now?',
           'repair.guided.finalHighlight' => 'now',
           'repair.guided.feelings.calmer' => 'Calmer',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.guided.feelings.still_tense' => 'Still tense',
           'repair.guided.feelings.need_more_time' => 'I need more time',
           'repair.guided.feelings.other' => '',
@@ -9626,9 +9647,6 @@ extension on TranslationsEn {
           'repair.guided.followUps.none' => 'No need',
           'repair.guided.followUps.tomorrow' => 'Tomorrow',
           'repair.guided.followUps.inThreeDays' => 'In 3 days',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.guided.followUps.other' => '',
           'repair.guided.followUpNote' =>
             'The reminder is short and says nothing about what happened.',
@@ -10182,6 +10200,9 @@ extension on TranslationsEn {
           'today.months.6' => 'July',
           'today.months.7' => 'August',
           'today.months.8' => 'September',
+          _ => null,
+        } ??
+        switch (path) {
           'today.months.9' => 'October',
           'today.months.10' => 'November',
           'today.months.11' => 'December',
@@ -10207,9 +10228,6 @@ extension on TranslationsEn {
                   other: '${count} days',
                 ),
           'today.togetherChipAction' => 'Open our story',
-          _ => null,
-        } ??
-        switch (path) {
           'today.togetherJoin' => ({
             required Object first,
             required Object second,

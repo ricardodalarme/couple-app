@@ -5218,6 +5218,14 @@ class Translations$received$pt {
     'good_news': 'Boa notícia',
     'other': '',
   };
+  Map<String, String> get bodies => {
+    'miss_us': 'Seu par está com saudade de vocês.',
+    'hug': 'Seu par quer um abraço.',
+    'distance': 'Seu par precisa de um pouco de distância.',
+    'heavy_day': 'Seu par está tendo um dia pesado.',
+    'good_news': 'Seu par tem uma boa notícia.',
+    'other': '',
+  };
 
   /// pt: 'Do seu par'
   String get fromPartner => 'Do seu par';
@@ -5234,6 +5242,9 @@ class Translations$received$pt {
 
   /// pt: 'Entendi'
   String get seen => 'Entendi';
+
+  /// pt: 'Sugerir um plano pequeno'
+  String get suggestPlan => 'Sugerir um plano pequeno';
 
   /// pt: 'Tudo certo'
   String get doneTitle => 'Tudo certo';
@@ -11248,6 +11259,12 @@ extension on Translations {
           'received.kinds.heavy_day' => 'Um dia pesado',
           'received.kinds.good_news' => 'Boa notícia',
           'received.kinds.other' => '',
+          'received.bodies.miss_us' => 'Seu par está com saudade de vocês.',
+          'received.bodies.hug' => 'Seu par quer um abraço.',
+          'received.bodies.distance' => 'Seu par precisa de um pouco de distância.',
+          'received.bodies.heavy_day' => 'Seu par está tendo um dia pesado.',
+          'received.bodies.good_news' => 'Seu par tem uma boa notícia.',
+          'received.bodies.other' => '',
           'received.fromPartner' => 'Do seu par',
           'received.privateFirst' => 'Sua resposta é privada primeiro. Não tem certo nem errado.',
           'received.responses.talk' => 'Sim, vamos conversar',
@@ -11255,6 +11272,7 @@ extension on Translations {
           'received.responses.later' => 'Respondo depois',
           'received.responses.other' => '',
           'received.seen' => 'Entendi',
+          'received.suggestPlan' => 'Sugerir um plano pequeno',
           'received.doneTitle' => 'Tudo certo',
           'received.doneText' => 'Obrigado por ler com calma.',
           'received.emptyTitle' => 'Nada novo',
@@ -11391,6 +11409,9 @@ extension on Translations {
           'repair.guided.finalTitle' => 'Como você está agora?',
           'repair.guided.finalHighlight' => 'agora',
           'repair.guided.feelings.calmer' => 'Mais calmo(a)',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.guided.feelings.still_tense' => 'Ainda tenso(a)',
           'repair.guided.feelings.need_more_time' => 'Preciso de mais tempo',
           'repair.guided.feelings.other' => '',
@@ -11398,9 +11419,6 @@ extension on Translations {
           'repair.guided.followUps.none' => 'Não precisa',
           'repair.guided.followUps.tomorrow' => 'Amanhã',
           'repair.guided.followUps.inThreeDays' => 'Em 3 dias',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.guided.followUps.other' => '',
           'repair.guided.followUpNote' =>
             'O lembrete é curto e não diz nada sobre o que aconteceu.',
@@ -11958,6 +11976,9 @@ extension on Translations {
           'today.months.6' => 'julho',
           'today.months.7' => 'agosto',
           'today.months.8' => 'setembro',
+          _ => null,
+        } ??
+        switch (path) {
           'today.months.9' => 'outubro',
           'today.months.10' => 'novembro',
           'today.months.11' => 'dezembro',
@@ -11983,9 +12004,6 @@ extension on Translations {
                   other: '${count} dias',
                 ),
           'today.togetherChipAction' => 'Abrir nossa história',
-          _ => null,
-        } ??
-        switch (path) {
           'today.togetherJoin' => ({
             required Object first,
             required Object second,

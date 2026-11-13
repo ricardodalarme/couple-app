@@ -9,6 +9,14 @@
     "good_news": "Good news",
     "other": ""
   },
+  "bodies(map)": {
+    "miss_us": "Your partner is missing you both.",
+    "hug": "Your partner would like a hug.",
+    "distance": "Your partner needs a little distance.",
+    "heavy_day": "Your partner is having a heavy day.",
+    "good_news": "Your partner has good news.",
+    "other": ""
+  },
   "fromPartner": "From your partner",
   "privateFirst": "Your answer is private first. There is no right or wrong.",
   "responses(map)": {
@@ -18,6 +26,7 @@
     "other": ""
   },
   "seen": "Got it",
+  "suggestPlan": "Suggest a small plan",
   "doneTitle": "All good",
   "doneText": "Thanks for reading it calmly.",
   "emptyTitle": "Nothing new",
