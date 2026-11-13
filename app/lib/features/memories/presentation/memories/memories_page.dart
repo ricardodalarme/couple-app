@@ -189,6 +189,18 @@ Future<void> _openAddMemorySheet(BuildContext context) async {
   await cubit.add(title: draft.title, body: draft.body, place: draft.place);
 }
 
+/// Leaves the empty jar and shows the shell's Slips tab.
+void _seeMySlips(BuildContext context, MemoriesCubit cubit) {
+  final tabs = AutoTabsRouter.of(context);
+  final index = tabs.routeCollection.routes.toList().indexWhere(
+    (route) => route.name == SlipsRoute.name,
+  );
+  if (index < 0) return;
+
+  cubit.closeJar();
+  tabs.setActiveIndex(index);
+}
+
 class const _JarResult() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -205,7 +217,7 @@ class const _JarResult() extends StatelessWidget {
           text: l10n.jarEmpty,
           textMaxLines: null,
           actionText: l10n.jarEmptyAction,
-          onAction: cubit.closeJar,
+          onAction: () => _seeMySlips(context, cubit),
         );
       }
 
