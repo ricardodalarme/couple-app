@@ -4103,6 +4103,12 @@ class Translations$notificationPermission$pt {
 
   /// pt: 'Fechar'
   String get close => 'Fechar';
+
+  Map<String, String> get errors => {
+    'registerDevice':
+        'Não foi possível ativar as notificações neste aparelho. Tente de novo mais tarde.',
+    'other': 'Não foi possível ativar as notificações. Tente de novo.',
+  };
 }
 
 // Path: notificationPreferences
@@ -11086,6 +11092,10 @@ extension on Translations {
             'Os lembretes estão desligados. Ligue nas configurações.',
           'notificationPermission.openSettings' => 'Abrir ajustes',
           'notificationPermission.close' => 'Fechar',
+          'notificationPermission.errors.registerDevice' =>
+            'Não foi possível ativar as notificações neste aparelho. Tente de novo mais tarde.',
+          'notificationPermission.errors.other' =>
+            'Não foi possível ativar as notificações. Tente de novo.',
           'notificationPreferences.title' => 'Notificações',
           'notificationPreferences.subtitle' => 'Escolha o que chega e quando. Nada de cobrança.',
           'notificationPreferences.systemOff' => 'As notificações estão desligadas neste celular. Suas escolhas valem quando você ligar.',
@@ -11638,11 +11648,11 @@ extension on Translations {
           'relationshipSettings.phases.married' => 'Casados',
           'relationshipSettings.phases.with_kids' => 'Com filhos',
           'relationshipSettings.phases.long_distance' => 'Namoro à distância',
-          'relationshipSettings.phases.with_parents' => 'Moramos com os pais',
-          'relationshipSettings.phases.restarting' => 'Recomeçando',
           _ => null,
         } ??
         switch (path) {
+          'relationshipSettings.phases.with_parents' => 'Moramos com os pais',
+          'relationshipSettings.phases.restarting' => 'Recomeçando',
           'relationshipSettings.dateLabel' => 'Juntos desde',
           'relationshipSettings.dateHint' => 'Escolha uma data',
           'relationshipSettings.dateFormat' => ({
@@ -12210,11 +12220,11 @@ extension on Translations {
           'tabs.temperatureTitle' => 'Como está entre vocês?',
           'tabs.temperatureText' => 'Um registro privado, sem nota.',
           'tabs.learningLabel' => 'SÓ PARA VOCÊ',
-          'tabs.learningTitle' => 'O que você aprendeu',
-          'tabs.learningText' => 'Anotações privadas que você pode apagar.',
           _ => null,
         } ??
         switch (path) {
+          'tabs.learningTitle' => 'O que você aprendeu',
+          'tabs.learningText' => 'Anotações privadas que você pode apagar.',
           'tabs.fightStyleLabel' => 'SÓ PARA VOCÊ',
           'tabs.fightStyleTitle' => 'Como eu reajo numa briga',
           'tabs.fightStyleText' => 'Uma reflexão curta e privada sobre o seu jeito.',

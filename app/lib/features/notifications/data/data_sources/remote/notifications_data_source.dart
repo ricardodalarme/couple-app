@@ -38,7 +38,8 @@ class NotificationsDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<void> registerDevice({
+  /// Returns whether the backend accepted this installation for the caller.
+  Future<bool> registerDevice({
     required String token,
     required String platform,
     String? label,
@@ -49,7 +50,7 @@ class NotificationsDataSource({required final GQLClient _client}) {
       ),
     );
 
-    validateResponse(response);
+    return validateResponseData(response, getData: (data) => data.registerDevice ?? false);
   }
 
   Future<void> unregisterDevice(String token) async {

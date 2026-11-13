@@ -10,5 +10,9 @@
   "allow": "Permitir",
   "offBanner": "Os lembretes estão desligados. Ligue nas configurações.",
   "openSettings": "Abrir ajustes",
-  "close": "Fechar"
+  "close": "Fechar",
+  "errors(map)": {
+    "registerDevice": "Não foi possível ativar as notificações neste aparelho. Tente de novo mais tarde.",
+    "other": "Não foi possível ativar as notificações. Tente de novo."
+  }
 }

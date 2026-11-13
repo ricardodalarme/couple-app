@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:core/core.dart';
 import 'package:device_info_service/device_info_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc_starter/features/_shared/data/data_sources/local/device_marker_store.dart';
@@ -43,17 +46,29 @@ class NotificationsRepository({
 
   /// Registers the push token with the backend; a failure is retried at the next launch.
   Future<void> registerDevice() async {
+    StreamSubscription<String>? registration;
     try {
+      final installation = Completer<String>();
+      registration = _notificationService.onRegistered.listen((id) {
+        if (!installation.isCompleted) installation.complete(id);
+      });
       await _notificationService.register();
-      final token = await _notificationService.onRegistered.first.timeout(
-        const Duration(seconds: 10),
+      final installationId = await installation.future.timeout(const Duration(seconds: 10));
+      final marker = DeviceMarkerStore.markerFor(installationId);
+      final label = '${await _deviceLabel()}#$marker';
+      final accepted = await _dataSource.registerDevice(
+        token: installationId,
+        platform: _platform,
+        label: label,
       );
-      final label = '${await _deviceLabel()}#${DeviceMarkerStore.markerFor(token)}';
-      await _dataSource.registerDevice(token: token, platform: _platform, label: label);
-      _sessionToken = token;
-      await _markerStore.writeMarker(DeviceMarkerStore.markerFor(token));
-    } catch (e, stack) {
+      if (!accepted) throw const LocalizedException(l10nKey: 'registerDevice');
+      _sessionToken = installationId;
+      await _markerStore.writeMarker(marker);
+    } on Object catch (e, stack) {
       _logger.warning('Could not register this device for push', error: e, stackTrace: stack);
+      throw const LocalizedException(l10nKey: 'registerDevice');
+    } finally {
+      await registration?.cancel();
     }
   }
 

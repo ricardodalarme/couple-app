@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/notifications/presentation/permission/cubit/notification_permission_cubit.dart';
+import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// Explains the reminders before the system prompt; pops when the person has answered.
@@ -30,8 +31,17 @@ class const NotificationPermissionPage({super.key})
       body: BlocListener<NotificationPermissionCubit, NotificationPermissionState>(
         listenWhen: (previous, current) => previous.requestAction != current.requestAction,
         listener: (context, state) {
-          if (state.requestAction is Success || state.requestAction is Failure) {
-            context.router.maybePop();
+          switch (state.requestAction) {
+            case Success():
+              context.router.maybePop();
+            case Failure(:final exception):
+              BaseToast.show(
+                context,
+                context.l10n.notificationPermission.errors.selectOrFallback(exception.l10nKey),
+              );
+              context.router.maybePop();
+            case Initial() || Loading():
+              break;
           }
         },
         child: BaseStackedContent(

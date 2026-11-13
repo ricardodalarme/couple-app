@@ -3374,6 +3374,11 @@ class _Translations$notificationPermission$en extends Translations$notificationP
   String get openSettings => 'Open settings';
   @override
   String get close => 'Close';
+  @override
+  Map<String, String> get errors => {
+    'registerDevice': 'Could not turn notifications on for this phone. Try again later.',
+    'other': 'Could not turn notifications on. Try again.',
+  };
 }
 
 // Path: notificationPreferences
@@ -9278,6 +9283,9 @@ extension on TranslationsEn {
           'notificationPermission.offBanner' => 'Reminders are off. Turn them on in settings.',
           'notificationPermission.openSettings' => 'Open settings',
           'notificationPermission.close' => 'Close',
+          'notificationPermission.errors.registerDevice' =>
+            'Could not turn notifications on for this phone. Try again later.',
+          'notificationPermission.errors.other' => 'Could not turn notifications on. Try again.',
           'notificationPreferences.title' => 'Notifications',
           'notificationPreferences.subtitle' => 'Choose what arrives and when. No pressure.',
           'notificationPreferences.systemOff' =>
@@ -9830,11 +9838,11 @@ extension on TranslationsEn {
           'relationshipSettings.phases.married' => 'Married',
           'relationshipSettings.phases.with_kids' => 'With kids',
           'relationshipSettings.phases.long_distance' => 'Long distance',
-          'relationshipSettings.phases.with_parents' => 'Living with parents',
-          'relationshipSettings.phases.restarting' => 'Starting over',
           _ => null,
         } ??
         switch (path) {
+          'relationshipSettings.phases.with_parents' => 'Living with parents',
+          'relationshipSettings.phases.restarting' => 'Starting over',
           'relationshipSettings.dateLabel' => 'Together since',
           'relationshipSettings.dateHint' => 'Pick a date',
           'relationshipSettings.dateFormat' => ({
@@ -10400,11 +10408,11 @@ extension on TranslationsEn {
           'tabs.temperatureTitle' => 'How is it between you?',
           'tabs.temperatureText' => 'A private check-in, never a score.',
           'tabs.learningLabel' => 'JUST FOR YOU',
-          'tabs.learningTitle' => 'What you learned',
-          'tabs.learningText' => 'Private notes you can delete.',
           _ => null,
         } ??
         switch (path) {
+          'tabs.learningTitle' => 'What you learned',
+          'tabs.learningText' => 'Private notes you can delete.',
           'tabs.fightStyleLabel' => 'JUST FOR YOU',
           'tabs.fightStyleTitle' => 'How I react in a fight',
           'tabs.fightStyleText' => 'A short, private reflection on your own way.',

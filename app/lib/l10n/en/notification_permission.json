@@ -10,5 +10,9 @@
   "allow": "Allow",
   "offBanner": "Reminders are off. Turn them on in settings.",
   "openSettings": "Open settings",
-  "close": "Close"
+  "close": "Close",
+  "errors(map)": {
+    "registerDevice": "Could not turn notifications on for this phone. Try again later.",
+    "other": "Could not turn notifications on. Try again."
+  }
 }
