@@ -145,6 +145,7 @@ class const _MoodTile({
       borderRadius: BorderRadius.circular(AppRadius.card),
       enforceMinTapTarget: true,
       child: AnimatedContainer(
+        width: double.infinity,
         duration: context.motionDuration(AppMotion.fast),
         padding: const EdgeInsets.symmetric(vertical: AppSpace.s12),
         decoration: BoxDecoration(

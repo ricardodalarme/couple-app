@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/mood_entry.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
@@ -62,5 +63,27 @@ void main() {
     );
     await tester.pump();
     await cubit.close();
+  });
+
+  testWidgets('every mood card takes the same width', (tester) async {
+    final repository = _MockMoodRepository();
+    when(repository.getTodayMood).thenAnswer((_) async => (entry: null, partnerName: 'Marina'));
+    final cubit = MoodCubit(moodRepository: repository);
+    await cubit.load();
+    addTearDown(cubit.close);
+
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const MoodForm()));
+
+    final widths = [
+      for (final label in ['Feliz', 'Cansado(a)', 'Estressado(a)', 'Brincalhão(ona)'])
+        tester
+            .getSize(
+              find.ancestor(of: find.text(label), matching: find.byType(AnimatedContainer)).first,
+            )
+            .width,
+    ];
+
+    expect(widths, hasLength(4));
+    expect(widths.toSet(), hasLength(1));
   });
 }
