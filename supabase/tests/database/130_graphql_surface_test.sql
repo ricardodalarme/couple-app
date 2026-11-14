@@ -24,15 +24,13 @@ select is(
   120,
   'first above the table limit does not fail'
 );
-select is(
-  (graphql.resolve('{ listItemsCollection { aggregate { count } } }') #>> '{data,listItemsCollection,aggregate,count}')::int,
-  120,
-  'aggregates are enabled on list items'
+select ok(
+  coalesce(jsonb_array_length(graphql.resolve('{ listItemsCollection { aggregate { count } } }') -> 'errors'), 0) > 0,
+  'aggregates are not exposed until a screen needs one'
 );
-select is(
-  (graphql.resolve('{ listItemsCollection(first: 1) { totalCount } }') #>> '{data,listItemsCollection,totalCount}')::int,
-  120,
-  'totalCount ignores the page size'
+select ok(
+  coalesce(jsonb_array_length(graphql.resolve('{ listItemsCollection(first: 1) { totalCount } }') -> 'errors'), 0) > 0,
+  'totalCount is not exposed until a screen needs one'
 );
 select is(
   jsonb_array_length(graphql.resolve('{ listsCollection { edges { node { id } } } }') #> '{data,listsCollection,edges}'),
