@@ -1,6 +1,6 @@
 begin;
 set local search_path = tap, public, extensions;
-select plan(7);
+select plan(9);
 select tests.create_user('ana');
 select tests.create_user('bruno');
 select tests.pair('ana', 'bruno');
@@ -34,6 +34,17 @@ select is(
   'true', 'the partner sees it as shared');
 
 select tests.as('ana');
+select is(
+  graphql.resolve(format(
+    'mutation { updateListsCollection(set: {coupleId: "%s"}, filter: {id: {eq: "00000000-0000-4000-8000-000000000002"}}, atMost: 1) { records { isShared } } }',
+    (select id from public.my_couple())
+  )) #>> '{data,updateListsCollection,records,0,isShared}',
+  'true', 'a mutation that shares a list returns isShared already true in the same request');
+select is(
+  graphql.resolve('mutation { updateListsCollection(set: {coupleId: null}, filter: {id: {eq: "00000000-0000-4000-8000-000000000002"}}, atMost: 1) { records { isShared } } }')
+    #>> '{data,updateListsCollection,records,0,isShared}',
+  'false', 'a mutation that makes a list private returns isShared already false in the same request');
+
 select public.unpair();
 select is(
   graphql.resolve('{ listsByPk(id: "00000000-0000-4000-8000-000000000001") { isShared } }') #>> '{data,listsByPk,isShared}',
