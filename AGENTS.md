@@ -156,11 +156,13 @@ installs `MaterialApp.router`, so app code never touches `Scaffold`, `AppBar` or
 8. Imports are always `package:` imports.
 9. New `Base*` components go in `packages/design_system/lib/src/components` with a Storybook example and a test.
 10. A mapper gets its own test file under `test/.../mappers/`. One test file per real file, never a combined test.
-11. Do not edit `docs/` as part of code tasks.
 
 ## Working rules
 
-- **Commits.** Conventional Commits, lowercase subject: `type(scope): what`. One commit per change, and a change that spans
+- **Branches.** `<type>/<description>`, with the same types as commits (`feat/gift-ideas`, `fix/card-status`).
+- **Commits.** Conventional Commits, lowercase imperative subject without a final period, header up to 100 characters:
+  `type(scope): what`. Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`, `ci`. A body, when needed,
+  is short bullets that give the why; issue references go in the footer (`Closes #1`). One commit per change, and a change that spans
   features has no feature scope (`refactor: read single records with byPk`, not `refactor(cards,slips,chat): ...`). No
   `Co-Authored-By` or session trailers. Stage explicit paths.
 - **History is linear.** Integrate with rebase or cherry-pick, never a merge commit. Never push, open a PR or rewrite shared
