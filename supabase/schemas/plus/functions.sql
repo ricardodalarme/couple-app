@@ -34,6 +34,15 @@ language sql stable security definer set search_path = '' as $$
                                where me.profile_id = p_profile_id and me.left_at is null)));
 $$;
 
+-- Free-plan allowance per month for 'slips' or 'cards'. A missing app_config row falls back to the launch value,
+-- so removing the row can never lift the limit.
+create function private.free_limit(p_what text) returns integer
+language sql stable set search_path = '' as $$
+  select case p_what
+    when 'slips' then coalesce((select value::integer from public.app_config where key = 'free_slips_per_month'), 15)
+    else coalesce((select value::integer from public.app_config where key = 'free_cards_per_month'), 1) end;
+$$;
+
 create function private.month_usage(p_profile_id uuid, p_what text) returns integer
 language sql stable security definer set search_path = '' as $$
   select case p_what
@@ -57,8 +66,8 @@ begin
     r.paid_by_partner := false;
   end if;
   r.plan := e.plan; r.status := e.status; r.expires_at := e.expires_at;
-  r.slips_left_this_month := greatest(0, (select value::integer from public.app_config where key = 'free_slips_per_month') - private.month_usage(v_uid, 'slips'));
-  r.cards_left_this_month := greatest(0, (select value::integer from public.app_config where key = 'free_cards_per_month') - private.month_usage(v_uid, 'cards'));
+  r.slips_left_this_month := greatest(0, private.free_limit('slips') - private.month_usage(v_uid, 'slips'));
+  r.cards_left_this_month := greatest(0, private.free_limit('cards') - private.month_usage(v_uid, 'cards'));
   return r;
 end $$;
 grant execute on function public.my_plus() to authenticated;

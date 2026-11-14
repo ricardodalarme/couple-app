@@ -10,7 +10,7 @@ begin
     return new;
   end if;
   if not private.has_plus(new.author_id)
-     and private.month_usage(new.author_id, 'slips') >= (select value::integer from public.app_config where key = 'free_slips_per_month') then
+     and private.month_usage(new.author_id, 'slips') >= private.free_limit('slips') then
     raise exception 'FREE_LIMIT_REACHED' using errcode = 'P0001';
   end if;
   return new;
@@ -22,7 +22,7 @@ create function private.enforce_free_card_limit() returns trigger
 language plpgsql security definer set search_path = '' as $$
 begin
   if not private.has_plus(new.author_id)
-     and private.month_usage(new.author_id, 'cards') >= (select value::integer from public.app_config where key = 'free_cards_per_month') then
+     and private.month_usage(new.author_id, 'cards') >= private.free_limit('cards') then
     raise exception 'FREE_LIMIT_REACHED' using errcode = 'P0001';
   end if;
   return new;
