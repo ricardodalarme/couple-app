@@ -1,343 +1,186 @@
 ---
 name: data-layer
-description: Implement a feature's data layer in the app — GraphQL query/fragment files, graphql_codegen generated types, GQLClient data sources with one-shot queries and validateResponseData, mappers from generated types to hand-written Equatable models with fake values, and concrete repositories using Logger and LocalizedException. Use when adding a query, mutation, data source, model, mapper, or repository, when working with .graphql files, codegen, or when the user says "fetch data from the server".
+description: Implement a feature's data layer — GraphQL query, mutation and fragment files, graphql_codegen types, GQLClient data sources with validateResponseData, models with fakes, mappers (including enum mappers), and concrete repositories with a Logger. Use when adding a query, mutation, data source, model, mapper, enum or repository, when editing .graphql files or codegen, or when asked to fetch or save server data.
 ---
 
-# Data layer in the app
-
-Server data flows through GraphQL (pg_graphql) like this:
+# Data layer
 
 ```text
-.graphql file → generated/*.graphql.dart (codegen) → DataSource → Mapper → Model
-                                                              → Repository → Cubit
-
-read:     Future<GeneratedType> → Future<List<Model>> → cubit Loading → Success / Failure
-mutation: Future<GeneratedType> → Future<Model>       → cubit action Loading → Success / Failure
+.graphql -> generated/*.graphql.dart (codegen) -> DataSource -> Mapper -> Model -> Repository -> Cubit
 ```
 
-There is **no interface/impl split** for data sources or repositories — they are
-plain concrete classes with constructor injection.
-
-Reads are **one-shot Futures** in this starter. The cubit awaits the repository's
-`getX()`, and the repository awaits a single `GQLClient.query(...)`. There is no
-`watchX` or reactive stream convention in the current app; do not introduce one
-unless the whole feature is being migrated deliberately.
-
-Use a network-only fetch policy when a call must bypass the cache, for example a
-pull-to-refresh or an imperative revalidation. The starter's post data source
-uses the client default policies; keep the choice explicit when freshness
-matters.
+Data sources and repositories are plain concrete classes with constructor injection: no interface and implementation split, no
+use cases and no DTO layer. Reads are one-shot `Future`s: the repository awaits one `GQLClient` call. There is no `watchX` or stream
+convention. `features/gifts` is the reference.
 
 ## 1. GraphQL files
 
-Location: `app/lib/features/<feature>/data/data_sources/`
-
-Every feature's data sources sit in a `remote/` folder, a `local/` folder, or
-both:
-
 ```text
-data_sources/
+features/<feature>/data/data_sources/
 ├── remote/
-│   ├── post_data_source.dart
-│   ├── queries/GetPosts.graphql
-│   ├── queries/generated/GetPosts.graphql.dart       (generated, committed)
-│   ├── fragments/PostFragment.graphql
-│   └── fragments/generated/PostFragment.graphql.dart (generated, committed)
-└── local/
-    └── post_local_data_source.dart                    (only when the feature caches)
+│   ├── <feature>_data_source.dart
+│   ├── queries/      GiftPage.graphql      + generated/GiftPage.graphql.dart
+│   ├── mutations/    AddGiftWish.graphql   + generated/
+│   └── fragments/    GiftWishFragment.graphql + generated/
+└── local/            device storage only (*_local_data_source.dart); never imports package:network
 ```
 
-`remote/` holds everything that talks to the GraphQL server: `.graphql`
-operations, their `generated/` output, and the `XDataSource` classes.
-`local/` holds anything backed by device storage (`*_local_data_source.dart`,
-stores, in-memory sessions) and never imports `package:network`.
-
-Real example (`post`):
-
-```graphql
-query GetPosts($first: Int, $after: Cursor) {
-  postsCollection(first: $first, after: $after, orderBy: [{ id: DescNullsLast }]) {
-    edges {
-      node {
-        ...PostFragment
-      }
-    }
-  }
-}
-```
-
-```graphql
-fragment PostFragment on posts {
-  id
-  title
-  content
-  author_image_url
-}
-```
-
-Conventions:
-
-- One operation per file, named `GetX` / `CreateX` / `UpdateX` / `DeleteX`.
-  The file name matches the operation (`GetPosts.graphql`).
-- Reuse fields through fragments; every feature owns its own fragment file.
-- The shared schema snapshot lives at
-  `app/lib/features/_shared/data/data_sources/remote/schema.graphql` with
-  generated types in `.../remote/generated/schema.graphql.dart`. Only `_shared`
-  has a schema file; features only add queries and fragments under their own
-  `remote/` folder.
-- Refresh the schema snapshot when the backend API changes, then run
-  `melos gen`. Do not invent a table, field, query, or mutation the snapshot
-  does not expose.
-- Run `melos gen` after editing any `.graphql` file. **Never edit `generated/`.**
-
-Generator facts (configured in `app/build.yaml`):
-
-- `clients: [graphql]`, `namingSeparator: ""`,
-  `disableCopyWithGeneration: true`, `outputDirectory: generated`.
-- Generated names look like `OptionsQueryGetPosts`,
-  `VariablesQueryGetPosts`, `QueryGetPostspostsCollection`,
-  `FragmentPostFragment`.
-- Generated header is `// dart format width=100`; formatting is applied by the
-  generator, so leave it alone.
-- Custom scalars: `DateTime` → `DateTime`, `JSONObject` → `Map<String, dynamic>`.
-  Add a scalar mapping in `app/build.yaml` before using a new custom scalar.
+- One operation per file, named for what it does (`GiftPage`, `AddGiftWish`, `SetGiftWishVisibility`); the file name is the
+  operation name. Share fields through fragments.
+- The schema snapshot is `app/lib/features/_shared/data/data_sources/remote/schema.graphql`. Only `_shared` holds a schema file;
+  features add operations. Write a document only against fields the snapshot has. If the backend lacks one, ask for it (see
+  `supabase`); do not work around it.
+- After editing any `.graphql` file run `melos gen`. After a backend schema change run `melos graphql:schema` first. Never edit
+  `generated/` or the snapshot by hand.
+- GraphQL documents use enum literals unquoted (`kind: wish`) and enum variable types (`$kind: GiftKind!`), never `String`. The
+  Dart analyzer cannot see inside a `.graphql` file, so after changing the schema, validate every document against the snapshot
+  before `melos gen`.
+- Codegen (`app/build.yaml`): `namingSeparator: ""`, output in `generated/`, `setOperationName: true`, scalars `Date`, `Datetime`,
+  `BigInt`, `BigFloat`, `JSON`, `Opaque` and `Time` mapped to Dart types. Add a scalar mapping there before using a new custom
+  scalar. Generated names are fixed: `OptionsQueryGiftPage`, `VariablesMutationAddGiftWish`, `FragmentGiftWishFragment`,
+  `Enum<TypeName>`. Never rename or alias them.
 
 ## 2. Data source
 
 ```dart
-class PostDataSource({required GQLClient graphQLClient}) {
-  final GQLClient _client = graphQLClient;
+class GiftsDataSource({required final GQLClient _client}) {
+  Future<List<FragmentGiftWishFragment>> getGiftIdeas() async {
+    final response = await _client.query(OptionsQueryGiftPage(fetchPolicy: FetchPolicy.networkOnly));
+    final edges = validateResponseData(response, getData: (data) => data.giftIdeasCollection.edges);
+    return [for (final edge in edges) edge.node];
+  }
 
-  Future<QueryGetPostspostsCollection> getPosts({int? first, String? after}) async {
-    final response = await _client.query(
-      OptionsQueryGetPosts(
-        variables: VariablesQueryGetPosts(first: first, after: after),
-      ),
+  Future<FragmentGiftWishFragment> addGiftWish({required String id, required String title}) async {
+    final response = await _client.mutate(
+      OptionsMutationAddGiftWish(variables: VariablesMutationAddGiftWish(id: id, title: title)),
     );
-
-    return validateResponseData(response, getData: (data) => data?.postsCollection);
+    return validateResponseData(
+      response,
+      getData: (data) => data.insertIntoGiftIdeasCollection?.records.firstOrNull,
+    );
   }
 }
 ```
 
-- Name it `<Feature>DataSource` and keep it in
-  `data_sources/remote/<feature>_data_source.dart`.
-- `GQLClient` comes from `package:network/network.dart`; it is registered in
-  `SharedInjectionModule` and must be constructor-injected.
-- Wrap every one-shot query and mutation in
-  `validateResponseData(response, getData: ...)`.
-  - `getData` is **required** by the current helper signature. It receives
-    `T?`, so return the selected collection (e.g. `data?.postsCollection`).
-  - The helper throws `ServerResponseException(code)` or `NoDataException` for
-    you. Do not add your own null-check after it.
-  - When the whole payload is the value, return `data` from `getData`.
-- Never let `QueryResult`, `ObservableQuery`, or `WatchQueryOptions` escape the
-  data source. Return the generated collection type.
-- Mutations use `_client.mutate(OptionsMutationX(variables: ...))` and
-  `validateResponseData` in the same way.
-- `FetchPolicy`, `Store`, and `QueryResult` are re-exported by
-  `package:network`; app code must never import `package:graphql` directly.
-- No fake data. An empty response is a valid result and should reach the UI as
-  an empty state.
+- `GQLClient` comes from `package:network/network.dart` and is constructor-injected. App code never imports `package:graphql`;
+  `FetchPolicy` and the other types it needs are re-exported by `package:network`.
+- The client default is `cacheAndNetwork`; reads pass `FetchPolicy.networkOnly` so the cubit gets one fresh result.
+- Wrap every call in `validateResponseData(response, getData: ...)`. It throws `ServerResponseException` for a failed response
+  (codes `NETWORK` and `TIMEOUT` when the request did not complete, otherwise the server's stable code) and `NoDataException` when
+  the data, or what `getData` selects, is null. Do not add your own null check after it.
+- Retries, timeouts, de-duplication and token refresh are links in `package:network`; a data source does not implement them.
+- Never let `QueryResult` or generated types escape the data layer beyond the data source's return type. A data source has no
+  fake data: an empty response is a valid result.
 
 ## 3. Model
 
-Hand-written, `Equatable`, using primary constructor syntax, with a `fake` for
-skeletons:
+Hand-written, `Equatable`, primary constructor, with a `fake()` for skeletons:
 
 ```dart
-class const Post({
-  required final String id,
-  required final String title,
-  required final String body,
-  final String? authorImageUrl,
-}) with Equatable {
-  static const Post fake = Post(
-    id: '1',
-    title: 'Post title',
-    body: 'Post body used only as a skeleton placeholder.',
-  );
+class const GiftIdea({required final String id, required final String title, final String? note, ...}) with Equatable {
+  factory fake() => const GiftIdea(id: 'fake', title: 'Gift idea', ...);
 
   @override
-  List<Object?> get props => [id, title, body, authorImageUrl];
+  List<Object?> get props => [id, title, note, ...];
 }
 ```
 
-- Primary constructors: `class const <Model>({ ... }) with Equatable`.
-- No freezed / json_serializable. Types from codegen are **not** models — map
-  them.
-- Use `sealed` when the server type has variants; switch exhaustively in the
-  mapper.
-- Domain enums live in `models/`; see "Enums" below for the standard.
-- Add `static const fake` to every model used behind `Skeletonizer`. The fake is
-  a placeholder, never production data.
+- No freezed or json_serializable. Generated types are not models; map them.
+- Add `fake()` to every model rendered behind a `Skeletonizer`. It is a placeholder, never production data, and it must have the
+  same shape as real data.
+- Use `sealed` when the server type has variants, and switch exhaustively in the mapper.
+- Ownership flags such as `isMine` and `isShared` come from the server's computed fields; do not recompute them from user or
+  couple ids in the app.
 
 ## 4. Mapper
 
+One `extension <Generated>Mapper on <GeneratedType>` per model in `data/mappers/` (`FragmentGiftWishFragment.toModel()`). Parse a
+`DateTime` explicitly only when the schema type is a string. A mapper never throws for a valid variant.
+
+## 5. Enums
+
+A closed set of values is a Postgres enum, so GraphQL has an enum and codegen emits `Enum<Name>` (snake_case members plus
+`$unknown`). Model it as a plain camelCase Dart enum with **no** `value`, `wire`, `serverValue` or `key` field and no parser:
+
 ```dart
-extension PostResponseMapper on FragmentPostFragment {
-  Post toModel() {
-    return Post(id: id, title: title, body: content, authorImageUrl: author_image_url);
-  }
+// models/gift_budget.dart
+enum GiftBudget { free, low, medium, high }
+
+// mappers/gift_enum_mapper.dart
+extension EnumGiftBudgetMapper on EnumGiftBudget {
+  GiftBudget? toModel() => switch (this) { EnumGiftBudget.free => GiftBudget.free, /* ... */ EnumGiftBudget.$unknown => null };
+}
+
+extension GiftBudgetMapper on GiftBudget {
+  EnumGiftBudget toRemote() => switch (this) { GiftBudget.free => EnumGiftBudget.free, /* ... */ };
 }
 ```
 
-- One `extension <Generated>Mapper on <GeneratedType>` per model, in
-  `data/mappers/`.
-- Always handle the generated `$unknown` enum case explicitly (see "Enums").
-- `DateTime` fields usually arrive as `DateTime`; when a field is nullable or
-  string-shaped in the schema, parse explicitly with `DateTime.parse(...)`.
-  Follow the file you are extending.
+- Members are camelCase even when the stored value is snake_case (`so_so` is `soSo`); the mapper holds the spelling.
+- **Add only the directions in use.** A read-only enum has `toModel()` and no `toRemote()`. Remove a direction and let the compiler
+  say whether it is needed.
+- Data sources take and return generated enums; repositories convert with the mapper; cubits, states, pages and models see only
+  domain enums.
+- Handle `$unknown` explicitly: throw `FormatException` when the value cannot be shown or acted on, or degrade (return `null`, fall
+  back to a neutral member) when the UI can hide it, and say so in a one-line doc comment.
+- A SQL function parameter that is an enum is not exposed by `pg_graphql`, so function parameters stay `text`. Convert with a
+  `toRpc()` in the mapper (`toRemote().toJson()`), as `SlipCategoryMapper` does. The same rule covers values sent to an Edge Function:
+  map the enum, do not give it a `wire` string.
+- Never compare a domain value with a string literal. The analyzer only warns (`unrelated_type_equality_checks`) and the comparison
+  silently never matches.
+- Local storage (preferences, widget payloads) stores `.name` and reads it back with `Enum.values.asNameMap()[name]`; an unknown name
+  reads as `null`. Translation keys for an enum are its `.name`.
+- A mapper has its own test file under `test/features/<feature>/data/mappers/`: every domain value survives a round trip, and each
+  `$unknown` behavior is asserted.
 
-## Enums
-
-A column with a closed set of values is a Postgres enum in the schema, so the
-GraphQL schema has an enum and codegen emits `Enum<Name>` (snake_case members,
-plus `$unknown`). Model it in the app like this:
-
-```dart
-// models/list_kind.dart — plain enum, camelCase, no string field
-enum ListKind { travel, restaurants, movies, custom }
-```
-
-```dart
-// mappers/list_enum_mapper.dart
-extension EnumListKindMapper on EnumListKind {
-  ListKind toModel() => switch (this) {
-    EnumListKind.travel => ListKind.travel,
-    // ...
-    EnumListKind.$unknown => throw const FormatException('Unknown list kind'),
-  };
-}
-
-extension ListKindMapper on ListKind {
-  EnumListKind toRemote() => switch (this) {
-    ListKind.travel => EnumListKind.travel,
-    // ...
-  };
-}
-```
-
-- Plain enums only: no `value`, `wire`, `serverValue`, `key`, and no
-  `fromServer`/`fromValue` parsers. Members are camelCase even when the stored
-  value is snake_case (`so_so` is `soSo`); the mapper holds the spelling.
-- Conversions live in a mapper named `<feature>_enum_mapper.dart` (or
-  `<concept>_mapper.dart` for a single enum), in `data/mappers/`. Shared enums
-  live in the feature that owns the column.
-- **Add only the directions that are used.** A read-only enum has `toModel()`
-  and no `toRemote()`; do not add a conversion "for symmetry". Check with the
-  compiler: remove it, and put it back only if something fails.
-- Data sources take and return generated enums; repositories convert with the
-  mapper; cubits, states, pages and models see only domain enums.
-- `$unknown` is handled explicitly. Throw `FormatException` when the value
-  cannot be shown or acted on (a list kind, a status that drives behaviour);
-  degrade when the UI can hide it (return `null` for an optional value, fall back
-  to a neutral member for an audience or avatar) and say so in a one-line doc
-  comment on the method.
-- A SQL function parameter that is an enum is not exposed by `pg_graphql`, so
-  function parameters stay `text`. Convert the domain enum with a `toRpc()`
-  method in the mapper (`toRemote().toJson()`), never with a string literal.
-- Never compare a domain enum with a string literal; the analyzer only warns
-  (`unrelated_type_equality_checks`) and the comparison silently never matches.
-  Read the analyzer output for that lint after changing a type to an enum.
-- Local storage (preferences, widget payloads) stores the enum `.name` and reads
-  it back with `Enum.values.asNameMap()[name]`; an unknown name reads as `null`.
-- Translation keys for an enum are its `.name` (camelCase). See `localization`.
-- GraphQL documents use enum literals unquoted (`kind: wish`) and enum variable
-  types (`$kind: ListKind!`), never `String`. After changing the schema, validate
-  every document against `schema.graphql` (graphql-js `validate`) before
-  `melos gen`; the Dart analyzer cannot see inside a `.graphql` file.
-- A mapper has its own test file under `test/features/<feature>/data/mappers/`:
-  every domain value survives a trip through the remote enum, and each `$unknown`
-  behaviour is asserted.
-
-## 5. Repository
+## 6. Repository
 
 ```dart
-class PostRepository({required final PostDataSource _postDataSource}) {
-  final Logger _logger = Logger('PostRepository');
-  final PostDataSource _postDataSource;
+class GiftsRepository({required final GiftsDataSource _dataSource, ...}) {
+  final Logger _logger = Logger('GiftsRepository');
 
-  Future<List<Post>> getPosts({int? first, String? after}) async {
-    _logger.info('Fetching posts first=$first after=$after');
+  Future<List<GiftIdea>> getGiftIdeas() => _run('read gift wishes', () async => [
+    for (final node in await _dataSource.getGiftIdeas()) if (node.isMine == true || node.isShared == true) node.toModel(),
+  ]);
+
+  Future<T> _run<T>(String what, Future<T> Function() action) async {
     try {
-      final result = await _postDataSource.getPosts(first: first, after: after);
-      final posts = result.edges.map((edge) => edge.node.toModel()).toList();
-      _logger.trace('Fetched ${posts.length} posts');
-      return posts;
+      return await action();
     } catch (e, stack) {
-      _logger.error('Failed to fetch posts', error: e, stackTrace: stack);
+      _logger.error('Failed to $what', error: e, stackTrace: stack);
       rethrow;
     }
   }
 }
 ```
 
-- Concrete class named `<Feature>Repository`; constructor-inject the data source.
-- Return domain models, never generated types.
-- Use `final Logger _logger = Logger('<Name>Repository');` from
-  `package:logger/logger.dart`.
-- GraphQL exceptions are already `LocalizedException` → log and `rethrow`.
-- Third-party exceptions must be translated:
-  ```dart
-  LocalizedException _toLocalizedException(AuthenticationException exception) {
-    return LocalizedException(l10nKey: exception.code);
-  }
-  ```
-  The l10n key must exist in the feature's error map, with `other` as fallback.
-- Do not introduce a repository interface or abstraction — one concrete class.
-- Never return `Resource` from a repository. `Resource` is a presentation type;
-  the cubit owns `Failure` and the UI state.
+- A concrete `<Feature>Repository` with a `Logger` from `package:logger/logger.dart` and the data source injected. It returns domain
+  models, never generated types and never `Resource`.
+- Network failures are already `LocalizedException`s (`ServerResponseException`): log with context and `rethrow`. Translate a
+  third-party exception (`LocalizedException(l10nKey: exception.code)`), and make sure the key exists in the feature's error map with
+  an `other` fallback.
+- Trim and normalize user input here (`title.trim()`, empty note to `null`), not in the data source.
 
-## 6. Errors and localization
+## 7. Errors in the UI
 
-- `validateResponseData` extracts the server code from the first GraphQL error
-  and throws `ServerResponseException(code)`, which carries its own
-  `LocalizedException` key.
-- Map server and validation codes to localized copy through a slang `(map)`
-  namespace with an `other` entry:
+Map server codes to copy through a slang `(map)` namespace with an `other` entry:
 
-  ```json
-  {
-    "errors(map)": {
-      "serverError": "Something went wrong. Try again.",
-      "unauthorized": "Your session expired. Sign in again.",
-      "other": "@:common.genericError"
-    }
-  }
-  ```
+```json
+{ "errors(map)": { "unauthorized": "Your session expired. Sign in again.", "other": "@:common.genericError" } }
+```
 
-- In the UI, use
-  `context.l10n.<namespace>.errors.selectOrFallback(exception.l10nKey)`.
-- Never show a raw server code or a raw exception message.
+The UI shows `context.l10n.<namespace>.errors.selectOrFallback(exception.l10nKey)`, or `AppErrorView`. Never show a raw server code
+or exception message.
 
-## 7. Schema changes
+## 8. Backend changes
 
-This repository does not own the backend database or migrations. The GraphQL
-schema is a committed snapshot under
-`app/lib/features/_shared/data/data_sources/remote/schema.graphql`.
-
-- When the API changes, refresh the snapshot, run `melos gen`, and commit the
-  snapshot plus generated files.
-- Do not add local tables, migrations, or database policy files to this repo.
-- Do not hand-write a query against a field the snapshot does not contain. Ask
-  for the backend change first.
+The backend lives in this repository under `supabase/`. A feature that needs a new table, column, query or mutation changes
+`supabase/schemas/` and adds a migration first (see the `supabase` skill), then refreshes the snapshot with
+`melos graphql:schema`, then `melos gen`. Ask before inventing backend surface.
 
 ## Gotchas
 
-- A read is a `Future`, not a stream, in the current app. Do not reintroduce a
-  `watchX` convention just for one feature.
-- `getData` is required by `validateResponseData`; it receives nullable data and
-  throws `NoDataException` when the selected value is null.
-- A repository returns models, never generated types and never `Resource`.
-- `melos gen` runs build_runner for the whole workspace and is required before
-  analyzing new GraphQL code. CI does not run it — commit generated files.
-- Generated names are fixed by codegen config: `OptionsX`, `VariablesX`,
-  `FragmentX`, `Enum<table_name>`. Do not rename them or re-export aliases.
-- Mappers must not throw for valid data variants; exhaustive switches are
-  enforced by the analyzer, so handle `$unknown` explicitly (see "Enums").
-- Do not introduce `UseCase`, abstract repositories, or DTO layers; keep the
-  single concrete repository shape.
-- Do not import `package:graphql` directly in app code; use the re-exports from
-  `package:network`.
-- No fake records in the data layer. Empty is a valid, honest result.
+- `melos gen` is required before analyzing new GraphQL code, and CI does not run it: commit the generated files.
+- Do not introduce `UseCase`, abstract repositories or DTOs.
+- Do not import `package:graphql` in app code.
+- No fake records outside a skeleton. Empty is a valid, honest result.
