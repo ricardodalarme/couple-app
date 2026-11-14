@@ -51,6 +51,8 @@ Domains: `_cluster` (extensions, cron jobs), `_platform` (schemas, default privi
 - Statements that change the same object stay in one file, in order (for example `agreements` privileges follow the
   pattern grant in `cross_cutting/rls_patterns.sql`). A statement in another file that touches the same object can
   run before it and leave a different result.
+- Declarative files hold no data statements. Storage buckets are rows, created by migrations; `storage/` and
+  `couple_photos/storage.sql` hold only the policies on `storage.objects`.
 - Never run `supabase db schema declarative generate` or `db pull --declarative` over this tree; they rewrite it in
   their own layout.
 - After any change: `supabase db schema declarative sync` must print "No schema changes found" (or create exactly the
