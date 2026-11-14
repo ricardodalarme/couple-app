@@ -163,6 +163,25 @@ BaseToast.show(
 - Never surface a raw server or validation code as user copy — always map it to
   localized text.
 
+### Maps keyed by an enum
+
+When a map is looked up with a domain enum, the keys are the enum's camelCase
+`.name`, and the lookup is `selectOrFallback(kind.name)`:
+
+```json
+{ "kinds(map)": { "travel": "Travel", "goodNews": "Good news", "other": "" } }
+```
+
+```dart
+context.l10n.lists.kinds.selectOrFallback(list.kind.name)
+```
+
+- A multi-word value is camelCase (`so_so` → `soSo`, `miss_us` → `missUs`), not
+  the stored snake_case spelling. Rename the key in every locale when an enum
+  member is added or renamed, then run `melos l10n` and `melos l10n:analyze`.
+- Do not add a `value`/`wire` field to the enum to use as a key, and do not look a
+  map up with a string literal.
+
 ## Slang Features Reference (Authoring Translations)
 
 Slang supports rich features directly in the JSON trees. Because the project sets

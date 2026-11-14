@@ -91,7 +91,7 @@ app/lib/
 │   ├── data/
 │   │   ├── data_sources/  # remote/ and/or local/, each with its own sources
 │   │   ├── models/        # hand-written Equatable models with `fake`
-│   │   ├── mappers/       # generated type → model extensions
+│   │   ├── mappers/       # generated type → model extensions, and enum conversions
 │   │   └── repositories/  # concrete classes, Logger, rethrow/map exceptions
 │   └── presentation/
 │       ├── <page_or_sub_feature>/ # always a folder: <name>_page.dart + cubit/ + widgets/
@@ -214,6 +214,13 @@ allows them; use the body only for initializers and behavior.
   `authenticated` role; never hand-edit it.
 - **Never put a `service_role` or secret key in the app.** Use the project's
   publishable key for `SERVER_API_KEY` and `SUPABASE_ANON_KEY`.
+- **Closed value sets are enums end to end.** A column with a fixed set of
+  values is a Postgres enum, so `pg_graphql` exposes a GraphQL enum and codegen
+  emits `Enum<Name>`. The app models it as a plain Dart enum (camelCase, no
+  `value`/`wire`/`serverValue` field) and converts at the data boundary with a
+  mapper: `toModel()` on the generated enum, `toRemote()` on the domain enum.
+  Never compare a domain value with a string literal; read translations and
+  local storage by `.name`. See the `data-layer` skill.
 - **Codegen owns generated types.** Run `melos gen` after editing a `.graphql`
   file. Never edit `generated/` by hand.
 - Data sources are concrete classes that call `GQLClient` from
@@ -301,6 +308,11 @@ Loading is `BaseLoadingDots`; pull-to-refresh uses its own arc ring inside
     its own subfolder (`presentation/<page_or_sub_feature>/<name>_page.dart` with
     `cubit/` and `widgets/` beside it), even when the feature has a single page,
     because features grow more pages. Tests mirror the same paths.
+13. Enums follow one standard: plain domain enum in `models/`, conversions in a
+    mapper in `mappers/`, only the directions that are used, one test file per
+    mapper. No string-valued enums for a column that is a database enum, and no
+    `fromServer`/`serverValue`/`wire` parsers. Translation keys for an enum are
+    its camelCase names.
 
 ## Comments
 

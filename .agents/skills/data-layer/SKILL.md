@@ -168,9 +168,7 @@ class const Post({
   them.
 - Use `sealed` when the server type has variants; switch exhaustively in the
   mapper.
-- Domain enums live in `models/` with a `toSource()` extension in `mappers/`.
-  Domain enums use camelCase values; generated enums use snake_case. Keep the
-  two separate.
+- Domain enums live in `models/`; see "Enums" below for the standard.
 - Add `static const fake` to every model used behind `Skeletonizer`. The fake is
   a placeholder, never production data.
 
@@ -186,11 +184,72 @@ extension PostResponseMapper on FragmentPostFragment {
 
 - One `extension <Generated>Mapper on <GeneratedType>` per model, in
   `data/mappers/`.
-- Always handle the generated `$unknown` enum case by throwing
-  `UnimplementedError`.
+- Always handle the generated `$unknown` enum case explicitly (see "Enums").
 - `DateTime` fields usually arrive as `DateTime`; when a field is nullable or
   string-shaped in the schema, parse explicitly with `DateTime.parse(...)`.
   Follow the file you are extending.
+
+## Enums
+
+A column with a closed set of values is a Postgres enum in the schema, so the
+GraphQL schema has an enum and codegen emits `Enum<Name>` (snake_case members,
+plus `$unknown`). Model it in the app like this:
+
+```dart
+// models/list_kind.dart — plain enum, camelCase, no string field
+enum ListKind { travel, restaurants, movies, custom }
+```
+
+```dart
+// mappers/list_enum_mapper.dart
+extension EnumListKindMapper on EnumListKind {
+  ListKind toModel() => switch (this) {
+    EnumListKind.travel => ListKind.travel,
+    // ...
+    EnumListKind.$unknown => throw const FormatException('Unknown list kind'),
+  };
+}
+
+extension ListKindMapper on ListKind {
+  EnumListKind toRemote() => switch (this) {
+    ListKind.travel => EnumListKind.travel,
+    // ...
+  };
+}
+```
+
+- Plain enums only: no `value`, `wire`, `serverValue`, `key`, and no
+  `fromServer`/`fromValue` parsers. Members are camelCase even when the stored
+  value is snake_case (`so_so` is `soSo`); the mapper holds the spelling.
+- Conversions live in a mapper named `<feature>_enum_mapper.dart` (or
+  `<concept>_mapper.dart` for a single enum), in `data/mappers/`. Shared enums
+  live in the feature that owns the column.
+- **Add only the directions that are used.** A read-only enum has `toModel()`
+  and no `toRemote()`; do not add a conversion "for symmetry". Check with the
+  compiler: remove it, and put it back only if something fails.
+- Data sources take and return generated enums; repositories convert with the
+  mapper; cubits, states, pages and models see only domain enums.
+- `$unknown` is handled explicitly. Throw `FormatException` when the value
+  cannot be shown or acted on (a list kind, a status that drives behaviour);
+  degrade when the UI can hide it (return `null` for an optional value, fall back
+  to a neutral member for an audience or avatar) and say so in a one-line doc
+  comment on the method.
+- A SQL function parameter that is an enum is not exposed by `pg_graphql`, so
+  function parameters stay `text`. Convert the domain enum with a `toRpc()`
+  method in the mapper (`toRemote().toJson()`), never with a string literal.
+- Never compare a domain enum with a string literal; the analyzer only warns
+  (`unrelated_type_equality_checks`) and the comparison silently never matches.
+  Read the analyzer output for that lint after changing a type to an enum.
+- Local storage (preferences, widget payloads) stores the enum `.name` and reads
+  it back with `Enum.values.asNameMap()[name]`; an unknown name reads as `null`.
+- Translation keys for an enum are its `.name` (camelCase). See `localization`.
+- GraphQL documents use enum literals unquoted (`kind: wish`) and enum variable
+  types (`$kind: ListKind!`), never `String`. After changing the schema, validate
+  every document against `schema.graphql` (graphql-js `validate`) before
+  `melos gen`; the Dart analyzer cannot see inside a `.graphql` file.
+- A mapper has its own test file under `test/features/<feature>/data/mappers/`:
+  every domain value survives a trip through the remote enum, and each `$unknown`
+  behaviour is asserted.
 
 ## 5. Repository
 
@@ -276,7 +335,7 @@ schema is a committed snapshot under
 - Generated names are fixed by codegen config: `OptionsX`, `VariablesX`,
   `FragmentX`, `Enum<table_name>`. Do not rename them or re-export aliases.
 - Mappers must not throw for valid data variants; exhaustive switches are
-  enforced by the analyzer, so handle `$unknown` explicitly.
+  enforced by the analyzer, so handle `$unknown` explicitly (see "Enums").
 - Do not introduce `UseCase`, abstract repositories, or DTO layers; keep the
   single concrete repository shape.
 - Do not import `package:graphql` directly in app code; use the re-exports from

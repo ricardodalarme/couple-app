@@ -306,6 +306,24 @@ void main() {
 - Some packages have no tests yet — adding the first `test/<topic>_service_test.dart`
   following the SDK-mock pattern is fine.
 
+## Mappers and enums
+
+- **One test file per real file.** A mapper is tested in its own file that mirrors
+  `lib`: `lib/features/lists/data/mappers/list_enum_mapper.dart` →
+  `test/features/lists/data/mappers/list_enum_mapper_test.dart`. Do not group
+  several mappers in one shared test.
+- Assert that every domain value survives `value.toRemote().toModel()`, that each
+  stored spelling is right for multi-word values, and what each `$unknown` does.
+  Only test the directions the mapper has.
+- Fixtures use enums, never string literals. A comparison like
+  `expect(item.kind, 'travel')` compiles but fails: use `ListKind.travel`.
+- mocktail needs a fallback value for each enum type used with `any(named: ...)`.
+  They are registered once, in `test/flutter_test_config.dart`. When you add an
+  enum that a mock takes as an argument, add a `registerFallbackValue(...)` line
+  there instead of in each test.
+- Test an unknown server value with the generated `$unknown` member
+  (`EnumMood.$unknown`), not an invented string.
+
 ## Time
 
 Time comes from `package:clock`, never from `DateTime.now()`.

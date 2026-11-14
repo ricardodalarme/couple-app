@@ -110,6 +110,42 @@ caller can select are exposed automatically; the starter's query is
   `app/lib/features/<feature>/data/data_sources/remote/`; only `_shared` owns the
   schema snapshot.
 
+### GraphQL surface
+
+- **Closed value sets are Postgres enums, not `text` plus a `check`.** pg_graphql
+  turns them into GraphQL enums, and codegen into Dart enums. Add a value with
+  `alter type public.<type> add value '<label>'`. A label that is not a valid
+  GraphQL name is mapped with `comment on type ... is '@graphql({"mappings": {...}})'`.
+  Open or server-written sets (locale, editorial content kinds, subscription
+  state) stay `text`.
+- **Functions keep `text` parameters.** pg_graphql does not expose a function that
+  takes or returns an enum, so cast inside the function
+  (`insert ... values (p_kind::public.signal_kind)`). Passing text to an enum
+  column without a cast fails at runtime, and pgTAP only catches it if a test calls
+  the function, so add a test that calls each function with a valid and an invalid
+  value.
+- **Page size.** pg_graphql silently caps a page at `max_rows` even when the
+  query asks for more (`first: 100` returned 50 with the schema at 50). Every
+  collection the app reads in one page needs a limit that covers it.
+- **Table settings live in one file**, `supabase/schemas/public/graphql_surface.sql`:
+  `max_rows`, `totalCount`, `aggregate` and a description for every table and
+  view. Do not scatter `comment on table ... @graphql(...)` across files, because a
+  table has one comment and the last statement wins.
+- **Describe every public function** (`graphql_functions.sql`), and give caller
+  relative flags as computed fields (`is_mine`, `is_shared`) instead of making the
+  client fetch the user and couple ids. A computed field is a `stable` function
+  taking the row type, runs as the caller, and must return `false`, not `null`,
+  when the caller has no couple.
+- **Read-only functions are `stable` (queries); writers are `volatile`
+  (mutations).** Multi-step client writes belong in one `volatile` function so
+  they are atomic; aliased mutations in one request are atomic too, but a client
+  cannot build them dynamically.
+- After changing enums or table settings: `supabase db schema declarative sync -f
+  <name> --no-apply`, review the migration (it can emit `create type` after its
+  first use, so move the types to the top), `supabase migration up --local`,
+  `supabase test db`, refresh the snapshot against the **local** stack (never the
+  remote), then validate every document against it.
+
 ## Seed and tests
 
 - `supabase/seed.sql` is development-only. It is idempotent and clearly labeled.
