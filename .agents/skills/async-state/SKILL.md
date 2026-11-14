@@ -1,134 +1,71 @@
 ---
 name: async-state
-description: Implement Cubit state management in this app with the sealed Resource pattern (Initial/Loading/Success/Failure), one-shot Future repository reads, Equatable part-file state classes, read slots rendered by SkeletonizerResourceWidget (skeleton from a model fake, BaseEmptyState on failure), private rebuilding widgets that read narrow slices with context.select/context.read, and BlocListener side effects. Use when creating or editing a Cubit or its state, wiring loading/error/empty states, adding skeleton loaders, showing a failure SnackBar, or whenever code mentions Resource, emit, Success, Failure, SkeletonizerResourceWidget, Skeletonizer, or posts.
+description: Implement Cubit state in this app with the sealed Resource pattern (Initial, Loading, Success, Failure), one-shot Future reads, Equatable part-file states, action and form slots, SkeletonizerResourceWidget for read slots, context.select for narrow rebuilds, and BlocListener for side effects. Use when creating or editing a Cubit or its state, wiring loading, error or empty UI, adding skeletons or toasts, validating a form, or whenever code mentions Resource, emit, Success, Failure or SkeletonizerResourceWidget.
 ---
 
-# Async state in the app
+# Async state
 
-Every async value in `app/lib` goes through a `flutter_bloc` **Cubit** (never
-`Bloc`) that holds a sealed `Resource<T>` in its state. Match the existing
-features instead of inventing a variant.
-
-Reads are **one-shot repository calls**: the cubit method emits `Loading`, awaits
-a `Future`, then emits `Success` or `Failure`. There is no stream subscription
-layer and no reactive read path in this starter; the `GQLClient` may serve a
-cached result, but the cubit still receives it as one `Future`.
-
-## The pattern in one picture
+Every async value in `app/lib` lives in a `flutter_bloc` **Cubit** (never a `Bloc`) as a sealed `Resource<T>`. Reads are one-shot:
+the cubit emits `Loading`, awaits a repository `Future`, then emits `Success` or `Failure`. There is no stream layer.
 
 ```
-read:
-PostsListPage.wrappedRoute → BlocProvider(create: () => injector.get<PostsListCubit>()..getPosts())
-   → cubit.getPosts(): emit Loading → await repo.getPosts() → emit Success(list)
-                                                          catch → emit Failure.fromObject(e)
-   → SkeletonizerResourceWidget<List<Post>>(posts, fakeValue, successBuilder, failureBuilder)
-        Initial  → SizedBox.shrink()
-        Loading  → Skeletonizer(successBuilder(fakeValue))  (reuses the last Success on refresh)
-        Success  → successBuilder(value)                    (InfiniteListView, BaseEmptyState when empty)
-        Failure  → failureBuilder(exception)                (BaseEmptyState with retry)
-
-action / form submit:
-page → cubit.submit(): emit <slot> Loading → await repo → emit Success
-                                                  catch → emit Failure → emit Initial
-   → BlocListener shows an app toast for Failure; Success navigates
+page.wrappedRoute -> BlocProvider(create: get<GiftsCubit>()..load())
+  cubit.load(): Loading -> await repo.getGiftIdeas() -> Success(list)   | catch -> Failure.fromObject(e)
+  SkeletonizerResourceWidget(slot, fakeValue, successBuilder, failureBuilder)
+action: cubit.save(): saveAction Loading -> await repo -> Success(result) | catch -> Failure, then Initial
+        BlocListener(listenWhen: slot changed) shows a toast or navigates
 ```
 
-## Resource rules
+## Resource
 
-`Resource<S>` lives in `packages/core/lib/src/utils/resource.dart` and is
-exported by `package:core/core.dart`:
+`Resource<S>` is in `packages/core/lib/src/utils/resource.dart`, exported by `package:core/core.dart`.
 
-- `Initial()` — nothing requested, or reset after a handled result. Default for
-  **action / form slots**. `SkeletonizerResourceWidget` renders it as
-  `SizedBox.shrink()`.
-- `Loading()` — in flight. Default for **read slots**, so the skeleton is the
-  first frame instead of a flash of empty content.
-  `SkeletonizerResourceWidget` turns it into a skeleton over the fake value.
-- `Success<S>(value)` — the value.
-- `Failure(exception)` — build it with `Failure.fromObject(exception)`; it keeps
-  the exception only when it is a `LocalizedException`, otherwise it wraps
-  `UnknownException`.
+- `Initial()`: nothing requested. The default for **action and form slots**; renders as `SizedBox.shrink()`.
+- `Loading()`: in flight. The default for **read slots**, so the skeleton is the first frame instead of a flash of empty content.
+- `Success<S>(value)`: the value. An action with no result uses `Success(null)`.
+- `Failure(exception)`: build it with `Failure.fromObject(exception)`, which keeps a `LocalizedException` and wraps anything else
+  as `UnknownException`.
 
-`Success` and `Failure` implement `==`, so `BlocListener.listenWhen` can compare
-the slot directly.
+A repository returns plain models, never a `Resource`; the cubit is the only place that turns an exception into UI state.
 
-A repository returns a plain model (`Future<List<Post>>`) and never a
-`Resource`. `Resource` is a presentation type; keeping it out of the data layer
-means the cubit is the only place that translates an exception into UI state, and
-the data layer stays usable without Flutter.
+Name a read slot after its data (`gifts`, `slips`) and an action slot with the verb plus `Action` (`saveAction`). The constructor
+parameter, field, `copyWith` parameter and `props` entry all use the same name.
 
-### Naming convention
-
-- **Read slot**: the data name, no suffix. `posts`, `profile`, `settings`.
-  Default `const Loading()`.
-- **Action slot**: the verb plus `Action`, or the domain noun used by the screen.
-  Real examples: `login` in `LoginState`, `submission` in `EditProfileState`.
-  Template default `const Initial()`.
-- Constructor parameter, `copyWith` parameter, field, and `props` entry all use
-  the same name.
-
-## Cubit template (one-shot read)
-
-`app/lib/features/post/presentation/list/cubit/posts_list_cubit.dart` is the
-canonical read cubit:
+## Read cubit
 
 ```dart
-import 'package:core/core.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
-import 'package:flutter_bloc_starter/features/post/data/repositories/post_repository.dart';
+class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubit<GiftsState> {
+  this : super(const GiftsState());
 
-part 'posts_list_state.dart';
-
-class PostsListCubit({required final PostRepository _postRepository})
-    extends Cubit<PostsListState> {
-  this : super(const PostsListState());
-
-  Future<void> getPosts() async {
-    emit(state.copyWith(posts: const Loading()));
-
+  Future<void> load() async {
+    if (state.gifts is! Success) emit(state.copyWith(gifts: const Loading()));
     try {
-      final posts = await _postRepository.getPosts();
-      emit(state.copyWith(posts: Success(posts)));
+      emit(state.copyWith(gifts: Success(await _giftsRepository.getGiftIdeas())));
     } catch (exception) {
-      emit(state.copyWith(posts: Failure.fromObject(exception)));
+      if (state.gifts is Success) return; // a failed refresh keeps what is on screen
+      emit(state.copyWith(gifts: Failure.fromObject(exception)));
     }
   }
 }
 ```
 
-- The class declares `part '<name>_state.dart';`, uses a primary constructor with
-  a named private field, and passes the default state to `super`.
-- `emit(state.copyWith(<slot>: const Loading()))` runs **first**, so a retry
-  after a failure clears the error UI immediately.
-- Catch `exception` without a type filter — the repository already normalized
-  whatever the client threw. `Failure.fromObject` decides whether the UI gets a
-  `LocalizedException` or `UnknownException`.
-- Errors are carried by the `Failure` slot and nowhere else. The cubit does not
-  log or report them; the page decides what the user sees.
-- A method that takes runtime data takes it as a parameter
-  (`getPosts({int? first, String? after})`), never through the constructor.
-  Cubits are created by the injector with no runtime arguments (see
-  `dependency-injection`).
-- The repository method here is a single `GQLClient.query` wrapped in
-  `validateResponseData` and mapped by an extension (`PostResponseMapper`).
-  Keep the cubit blind to that: it sees `Future<List<Post>>`.
+- The cubit has a primary constructor with a named private field, declares `part '<name>_state.dart'`, and passes the default state
+  to `super`.
+- Emit `Loading` first so a retry clears the error at once, but not over an existing `Success`: refreshing keeps the content.
+- Catch without a type filter; the repository already normalized the failure. The cubit does not log or report it.
+- Runtime data (ids, filters) goes into method parameters, never the constructor: the injector creates cubits with no arguments.
 
-## Cubit template (one-shot action)
-
-Add this shape when a page mutates data or submits a form. It is a template — the
-starter's `PostRepository` currently exposes reads only.
+## Action cubit
 
 ```dart
-Future<void> savePost(Post post) async {
-  if (state.isNotValid) return;
+Future<void> save() async {
+  if (state.saveAction.isLoading || state.saveAction is Success || !_validate()) return;
 
   emit(state.copyWith(saveAction: const Loading()));
-
+  final id = _savedId ??= _uuid.v4();            // a retry reuses the id, so the server upserts instead of duplicating
   try {
-    await _postRepository.savePost(post);
-    emit(state.copyWith(saveAction: const Success(null)));
+    final outcome = await _slipRepository.saveQuick(id: id, body: state.text.value.trim(), createdAt: clock.now());
+    emit(state.copyWith(saveAction: Success(outcome)));
   } catch (exception) {
     emit(state.copyWith(saveAction: Failure.fromObject(exception)));
     emit(state.copyWith(saveAction: const Initial()));
@@ -136,318 +73,106 @@ Future<void> savePost(Post post) async {
 }
 ```
 
-- `if (state.isNotValid) return;` belongs only in form cubits; remove it for
-  plain actions.
-- `Resource<void>` actions use `const Success(null)`.
-- Resetting to `const Initial()` after a failure lets the same failure fire the
-  `BlocListener` twice in a row. `LoginCubit.onSubmit` does exactly this:
+- Guard against a double tap with `isLoading`. One method per user gesture, and no optimistic `Success` before the await resolves.
+- Resetting to `Initial` after a `Failure` lets the same failure fire the `BlocListener` again on the next attempt, because the
+  listener compares the slot. Do not reset after `Success` when the listener navigates away.
+- Do not emit `Failure` for a cancelled user action.
 
-  ```dart
-  } catch (exception) {
-    emit(state.copyWith(login: Failure.fromObject(exception)));
-    emit(state.copyWith(login: const Initial()));
-  }
-  ```
-
-  Because `listenWhen` compares the slot, `Failure → Initial → Failure` is two
-  distinct transitions. Emitting `Failure` twice with no reset would be one
-  transition only if the values were equal.
-- Do not reset to `Initial` after `Success` when a listener navigates away — the
-  page is disposed, and the reset would only rebuild a dead subtree.
-- One action method per user gesture, and no optimistic `Success` before the
-  await resolves.
-
-## State template
-
-`app/lib/features/post/presentation/list/cubit/posts_list_state.dart`:
+## State
 
 ```dart
-part of 'posts_list_cubit.dart';
+part of 'gifts_cubit.dart';
 
-final class const PostsListState({final Resource<List<Post>> posts = const Loading()})
-    with Equatable {
-  PostsListState copyWith({Resource<List<Post>>? posts}) {
-    return PostsListState(posts: posts ?? this.posts);
-  }
+final class const GiftsState({
+  final Resource<List<GiftIdea>> gifts = const Loading(),
+  final Resource<void> saveAction = const Initial(),
+}) with Equatable {
+  GiftsState copyWith({Resource<List<GiftIdea>>? gifts, Resource<void>? saveAction}) =>
+      GiftsState(gifts: gifts ?? this.gifts, saveAction: saveAction ?? this.saveAction);
 
   @override
-  List<Object?> get props => [posts];
+  List<Object?> get props => [gifts, saveAction];
 }
 ```
 
-Rules:
+- `with Equatable`, never `extends`. List **every** field in `props`, or equality and `listenWhen` break quietly.
+- One state file per cubit, `part of` the cubit file. No freezed or generated state.
+- `copyWith` cannot set a nullable field back to null. Use a `clearX` flag (`clearWorkArea` in `SlipKindState`) or a sentinel.
+- Keep derived values as getters on the state, not as second copies of the data.
 
-- `final class ... with Equatable` — **`with`** (mixin), never `extends`.
-- `part of` the cubit file, one state file per cubit, same base name.
-- Explicit `copyWith`; no `freezed`, no `json_serializable`, no generated state.
-- `props` lists **every** field, or equality tests and `listenWhen` silently
-  break.
-- Form states hold `FormInput<T>` fields from `package:form_inputs`. Change
-  handlers emit `FormInput(value)`, which clears that field's error. Validation
-  runs on submit, never by disabling the button:
+## Forms
+
+Fields are `FormInput<T>` from `package:form_inputs`. A change handler emits `FormInput(value)`, which clears that field's error.
+Validation runs on submit; submit buttons stay enabled.
 
 ```dart
 bool _validate() {
-  final validatedTitle = state.title.validate(
-    CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(titleMaxLength)]),
+  final validatedText = state.text.validate(
+    CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(slipKindMaxLength)]),
   );
-  final validatedBody = state.body.validate(MaxLengthValidator(bodyMaxLength));
-
-  emit(state.copyWith(title: validatedTitle, body: validatedBody));
-
-  return validatedTitle.isValid && validatedBody.isValid;
-}
-
-Future<void> save() async {
-  if (state.saveAction.isLoading || !_validate()) return;
-  // ...
+  final validatedFeeling = state.feeling.validate(MaxLengthValidator(slipKindNoteMaxLength));
+  emit(state.copyWith(text: validatedText, feeling: validatedFeeling));
+  return validatedText.isValid && validatedFeeling.isValid;
 }
 ```
 
-  Name the locals `validated<Field>`; never inline `.validate(...)` inside
-  `copyWith`. Submit buttons stay enabled and validate on press.
-  Validators are **non-const** (`NonEmptyValidator()`,
-  `MaxLengthValidator(n)`, `MinLengthValidator(n)`, `PatternValidator(regex)`,
-  `NumberRangeValidator(min, max)`, `EmailValidator`, `PasswordValidator`,
-  `ConfirmValueValidator(value)`, `CompositeValidator([...])`). Keep domain
-  rules (limits, regex, date windows) in the feature: compose the generic
-  validators, or implement a local `Validator<T>` class. `FormInput` itself
-  keeps its const constructor.
-  Widgets render `errorText: l10n.<field>Errors.selectOrNull(field.errorName)`.
-  Canonical form: `app/lib/features/memories/presentation/memories/cubit/memories_cubit.dart`.
+- One `_validate()` per cubit; name the locals `validated<Field>` and emit them together. A field that does not apply is reset
+  with `toPure()`.
+- Validators are non-const: `NonEmptyValidator()`, `MinLengthValidator(n)`, `MaxLengthValidator(n)`, `PatternValidator(regex)`,
+  `NumberRangeValidator(min, max)`, `EmailValidator()`, `PasswordValidator()`, `ConfirmValueValidator(value)` and
+  `CompositeValidator([...])`. Domain limits live in the feature; compose the generic validators or add a local `Validator<T>`.
+- Widgets render `errorText: l10n.<field>Errors.selectOrNull(field.errorName)`.
+- A sheet with text input is a `StatelessWidget` returning `BlocProvider(create: (_) => XSheetCubit()..start(...))`. Its cubit has no
+  constructor dependencies and `submit()` returns the result (or null when invalid). Never keep `FormInput` fields in `setState`.
+  Reference: `features/gifts/presentation/gift_sheet/`. Reference form cubit: `features/slips/presentation/slip_kind/cubit/`.
 
-- **Sheets own their form cubit.** A sheet with text input is a `StatelessWidget`
-  returning `BlocProvider(create: (_) => XSheetCubit()..start(...), child: ...)`;
-  the cubit has no constructor dependencies, seeds initial values in `start()`,
-  and exposes `submit()` returning the sheet's result (or null when invalid).
-  Never keep `FormInput` fields in `State`/`setState`. Canonical sheet:
-  `app/lib/features/gifts/presentation/gifts/widgets/` (cubit, state, sheet).
+## Rendering
 
-## Page consumption
+The page selects the read slot and hands it to `SkeletonizerResourceWidget` (`packages/common_ui`), which owns every branch. The page
+template is in `new-feature`. Points that matter here:
 
-The page creates the cubit in `wrappedRoute` (see `routing`) and hands the read
-slot to `SkeletonizerResourceWidget`, which owns every `Resource` branch. Real
-code from `app/lib/features/post/presentation/list/posts_list_page.dart`:
-
-```dart
-@RoutePage()
-class const PostsListPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
-  static final List<Post> _skeletonPosts = List.filled(6, Post.fake);
-
-  @override
-  Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AppInjector.instance.get<PostsListCubit>()..getPosts(),
-      child: this,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.post.list;
-    final posts = context.select((PostsListCubit cubit) => cubit.state.posts);
-
-    return BaseView(
-      appBar: BaseAppBar(title: l10n.title),
-      body: SkeletonizerResourceWidget<List<Post>>(
-        posts,
-        fakeValue: _skeletonPosts,
-        successBuilder: (posts) => _PostsListWidget(posts: posts),
-        failureBuilder: (exception) => BaseEmptyState(
-          title: context.l10n.common.genericError,
-          text: l10n.textFailure,
-          actionText: context.l10n.common.retry,
-          onAction: context.read<PostsListCubit>().getPosts,
-          face: FaceKind.sad,
-        ),
-      ),
-    );
-  }
-}
-```
-
-- The page does **not** switch over the `Resource`. `SkeletonizerResourceWidget`
-  (`packages/common_ui/lib/src/widgets/skeletonizer_resource_widget.dart`)
-  is the default renderer for a read slot and handles every branch:
-  `Initial` → `SizedBox.shrink()`, `Loading` → `Skeletonizer` over
-  `successBuilder(fakeValue)`, `Success` → `successBuilder(value)`, `Failure` →
-  `failureBuilder(exception)`.
-- `fakeValue` is passed to `successBuilder` while loading, so it must be
-  structurally representative of the real value: a single model
-  (`Post.fake`) or a list of them (`List.filled(6, Post.fake)`). Keep the list on
-  the page as a `static final` so it is allocated once. A fake with a different
-  shape produces a skeleton that jumps when the data arrives.
-- Do not wrap the widget in another `Skeletonizer`; it already applies one while
-  loading. Nested skeletonizers double the shimmer and break the loading
-  semantics.
-- `failureBuilder` receives the `LocalizedException`, so build a
-  `BaseEmptyState` (`title`, `text`, `actionText`, `onAction`, `face: FaceKind.sad`)
-  inside it. The retry callback is the same cubit method that produced the
-  failure.
-- While loading, the widget wraps the content in
-  `Semantics(liveRegion: true, label: context.l10n.common.loading)` and excludes
-  the fake content from semantics. Do not re-announce loading from the page.
-- The widget keeps the last `Success` value as the skeleton input when the slot
-  goes back to `Loading`, so a refresh keeps the current content on screen
-  instead of flashing a skeleton. Do not add a separate "refreshing" state or an
-  `isRefreshing` flag for that.
-- `context.select` selects only the resource slot, so the page rebuilds when the
-  slot changes and not on unrelated cubit state.
-- Localize a feature-specific message with
-  `context.l10n.<feature>.<scope>.errors.selectOrFallback(exception.l10nKey)`
-  when the feature has an error map; otherwise use a generic failure string.
-  Never show `exception.l10nKey` or `exception.toString()`.
-- The list itself is `InfiniteListView`
-  (`packages/common_ui/lib/src/widgets/infinite_list_view.dart`), which owns the
-  pagination trigger and pull-to-refresh. It has no `emptyBuilder`: handle zero
-  items at the call site by rendering a single `BaseEmptyState` row:
-
-  ```dart
-  class const _PostsListWidget({required final List<Post> posts}) extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      final l10n = context.l10n.post.list;
-
-      return InfiniteListView(
-        onRefresh: context.read<PostsListCubit>().getPosts,
-        padding: const EdgeInsets.all(AppSpace.screenMargin),
-        itemCount: posts.isEmpty ? 1 : posts.length,
-        onFetchData: () {},
-        hasNextPage: false,
-        isLoading: false,
-        itemBuilder: (_, index) => posts.isEmpty
-            ? BaseEmptyState(
-                title: l10n.emptyIndicator.title,
-                text: l10n.emptyIndicator.text,
-              )
-            : PostCard(key: ValueKey(posts[index].id), post: posts[index]),
-        separator: posts.isEmpty ? null : const SizedBox(height: AppSpace.s12),
-      );
-    }
-  }
-  ```
-
-- `onRefresh` is the same `getPosts` future, so the `RefreshIndicator` completes
-  when the network call does. Do not return a cached value from it.
-- The empty row is a `BaseEmptyState`; an empty list is a normal success, not a
-  failure.
+- Do not write a `switch` over the `Resource` for a read slot, and do not wrap the widget in another `Skeletonizer`.
+- `fakeValue` is what `successBuilder` gets while loading, so it must have the real shape (a list slot needs a list of fakes).
+- On `Loading` after a `Success`, the widget reuses the last value as the skeleton input, so a refresh keeps content on screen. Do
+  not add an `isRefreshing` flag.
+- Failures render with `AppErrorView(exception:, onRetry:)`, and retry is the cubit method that failed. Never show
+  `exception.l10nKey` or `toString()` to the user; a feature error map uses `errors.selectOrFallback(exception.l10nKey)`.
+- A list is an `InfiniteListView`, which owns pull-to-refresh and pagination. It has no empty builder: render one `BaseEmptyState`
+  row for zero items. An empty list is a successful result, not a failure.
 
 ## Rebuild discipline
 
-Split the body into private `StatelessWidget` classes, one per concern, and read
-only the slice each needs:
+- Split the body into private `StatelessWidget` classes, each reading one slice:
+  `context.select((GiftsCubit cubit) => cubit.state.gifts is Failure)`. Select a value, not the whole state.
+- Use `context.select` for every state read and `context.read` for callbacks. Never add `BlocBuilder`, `BlocSelector` or `buildWhen`.
+  A widget that needs several slices calls `context.select` once per slice.
+- Private widgets are classes with primary constructors, not `Builder` lambdas or `build` helper methods.
+- `BlocProvider(create:)` lives in `wrappedRoute`; `BlocProvider.value` is for the app-level cubits in `app.dart` and for tests.
+
+## Side effects
+
+Navigation and toasts belong in a `BlocListener` above the widgets they affect, never in `build` or in the cubit:
 
 ```dart
-class const _RetryButton({required final String label}) extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final hasFailed = context.select((PostsListCubit cubit) => cubit.state.posts is Failure);
-
-    if (!hasFailed) return const SizedBox.shrink();
-
-    return BaseButton(text: label, onPressed: context.read<PostsListCubit>().getPosts);
-  }
-}
-```
-
-- `context.select((Cubit c) => c.state.<narrow slice>)` rebuilds only that widget
-  when the slice changes. Select a value (`is Failure`, `posts.isLoading`), not
-  the whole state.
-- Use `context.select` for **every** state read in a widget. Do not add
-  `BlocBuilder`, `BlocSelector`, or `buildWhen` anywhere in `app/lib`; those
-  rebuild more than the slice and duplicate what `context.select` already does.
-  Form fields select their own field:
-
-  ```dart
-  final currentPassword = context.select(
-    (ChangePasswordCubit cubit) => cubit.state.currentPassword,
-  );
-  ```
-
-- If one widget needs several slices, call `context.select` once per slice (or
-  select a record); do not fall back to `BlocBuilder`.
-- The page selects the whole read slot
-  (`cubit.state.posts`) and passes it to `SkeletonizerResourceWidget`; the
-  widgets built by `successBuilder` select narrower slices of their own and never
-  the slot again.
-- `context.read<Cubit>()` for callbacks; it does not subscribe. `BlocListener`
-  remains the tool for side effects (SnackBars, navigation), never for rebuilds.
-- Private widgets are classes
-  (`class const _PostsListWidget({required final List<Post> posts}) extends StatelessWidget`),
-  not `Builder` lambdas or `build` helper methods.
-- Every class uses a **primary constructor** in its header — cubits, states,
-  pages, widgets, and mocks. Never declare an old-style constructor inside the
-  class body:
-
-  ```dart
-  class MockPostRepository() extends Mock implements PostRepository;
-  ```
-- `BlocProvider(create:)` lives in `wrappedRoute`. `BlocProvider.value` is only
-  for tests, which inject a `MockCubit`.
-
-## Side effects (BlocListener)
-
-Navigation and SnackBars belong in `BlocListener`, never in `build`:
-
-```dart
-BlocListener<LoginCubit, LoginState>(
-  listenWhen: (previous, current) => previous.login != current.login,
-  listener: _handleStatus,
-  child: const Center(/* form */),
+BlocListener<GiftsCubit, GiftsState>(
+  listenWhen: (previous, current) => previous.saveAction != current.saveAction,
+  listener: (context, state) {
+    final action = state.saveAction;
+    if (action is Failure) {
+      BaseToast.show(context, l10n.errors.selectOrFallback(action.exception.l10nKey), variant: BaseToastVariant.error);
+    }
+  },
+  child: ...,
 )
 ```
 
-```dart
-void _handleStatus(BuildContext context, LoginState state) {
-  final l10n = context.l10n.authentication.login;
-
-  switch (state.login) {
-    case Failure(:final LocalizedException exception):
-      BaseToast.show(context, l10n.errors.selectOrFallback(exception.l10nKey));
-    default:
-      break;
-  }
-}
-```
-
-- `BaseToast.show(context, message)` inserts the toast in the root overlay and
-  dismisses it after four seconds; the old success/error tones collapse to the
-  one neutral tone. The app does not wrap it in a helper.
-- `listenWhen` compares the action slot so unrelated rebuilds do not re-fire the
-  side effect.
-- A success case can both pop and show a message, as
-  `EditProfilePage._handleStatus` does with `context.router.maybePop()`.
-- Keep the listener above the widgets it affects so it survives their rebuilds.
-- Do not navigate or show a SnackBar from a cubit; state is data, the page
-  decides the side effect.
+`BaseToast.show(context, message)` has a neutral variant (a confirmation, optionally with an undo action) and an error variant (a
+background failure, optionally with a retry). Only one toast shows at a time.
 
 ## Gotchas
 
-- **`SkeletonizerResourceWidget` renders the read slot.** Do not hand-write a
-  `switch` over the `Resource` and do not wrap the widget in another
-  `Skeletonizer`; it already owns `Initial`/`Loading`/`Success`/`Failure`.
-- **`fakeValue` must match the real shape.** It is passed to `successBuilder`
-  while loading, so a list slot needs a list of model fakes, not one model.
-- **A refresh is not a new state.** The widget reuses the last `Success` value as
-  the skeleton input while the slot is `Loading`; do not add an `isRefreshing`
-  flag or a separate refreshing state.
-- **`Initial` vs `Loading` in the read slot.** A read that starts as `Initial`
-  flashes blank; start as `Loading`. `Initial` is for actions and forms.
-- **`Failure` is the error UI.** Nothing else needs to be set on failure, and
-  the slot must be replaced on retry so the message disappears.
-- **Never return `Resource` from a repository.** Keep the data layer free of
-  presentation types.
-- **`with Equatable`, not `extends`** — and list every field in `props`.
-- **`copyWith` cannot set a field back to `null`.** If a nullable field must be
-  cleared, add an explicit `bool clearX` flag or a sentinel.
-- **One cubit per page/flow.** Create it in `wrappedRoute`; never register a page
-  cubit as a singleton or provide it globally.
-- **No runtime constructor arguments.** Items ids, filters, and search terms go
-  into the method call.
-- **Close cubits in tests** (`tearDown(() => cubit.close())`), and pass mocks
-  through the constructor (`PostsListCubit(postRepository: mockRepository)`).
-- **`Success.equals` compares `value`**, so the model must implement `Equatable`
-  with all fields — otherwise two identical fetches look like a state change.
-- **A cancelled user action is not an error.** Do not emit `Failure` for it.
-- **Do not keep a second copy of the data** in a non-`Resource` field; the slot
-  is the single source of truth for the screen.
+- A read slot that starts as `Initial` flashes blank; start it as `Loading`.
+- Never return `Resource` from a repository, and never keep a second copy of the data in a non-`Resource` field.
+- Models must be `Equatable` over all fields, or two identical fetches look like a state change.
+- One cubit per page or flow, created in `wrappedRoute`; never a singleton or a global provider for a page.
+- In tests, close the cubit (`addTearDown(cubit.close)`) and pass mocks through the constructor.

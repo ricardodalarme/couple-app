@@ -149,6 +149,7 @@ the mappers (one file each), the model, the repository, the cubit and the page, 
 - Cubits take no runtime constructor arguments. Pass ids into methods or use route parameters.
 - A sheet with text input gets its own cubit, created in a `BlocProvider` inside the sheet (`gifts/presentation/gift_sheet`); do not
   keep `FormInput` fields in a `StatefulWidget`.
-- Do not use `BlocProvider.value` in app code (tests only); the page creates its cubit.
+- A page creates its own cubit in `wrappedRoute`. `BlocProvider.value` is only for the app-level cubits provided in `app.dart`
+  and for tests.
 - Never hand-edit generated files; commit the output of `melos gen` and `melos l10n`.
 - Do not invent server data. Unknown and empty are valid states, and the UI says so.
