@@ -331,27 +331,9 @@ type Capsules implements Node {
   isMine: Boolean
 }
 
-"""Aggregate results for `Capsules`"""
-type CapsulesAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: CapsulesMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: CapsulesMaxAggregateResult
-}
-
 type CapsulesConnection {
   edges: [CapsulesEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `Capsules`"""
-  aggregate: CapsulesAggregate
 }
 
 type CapsulesDeleteResponse {
@@ -409,42 +391,6 @@ type CapsulesInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [Capsules!]!
-}
-
-"""Result of maximum aggregation for `Capsules`"""
-type CapsulesMaxAggregateResult {
-  """Maximum of body across all matching records"""
-  body: String
-
-  """Maximum of opensOn across all matching records"""
-  opensOn: Date
-
-  """Maximum of openedAt across all matching records"""
-  openedAt: Datetime
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `Capsules`"""
-type CapsulesMinAggregateResult {
-  """Minimum of body across all matching records"""
-  body: String
-
-  """Minimum of opensOn across all matching records"""
-  opensOn: Date
-
-  """Minimum of openedAt across all matching records"""
-  openedAt: Datetime
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
 }
 
 input CapsulesOrderBy {
@@ -855,27 +801,9 @@ type Cards implements Node {
   isMine: Boolean
 }
 
-"""Aggregate results for `Cards`"""
-type CardsAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: CardsMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: CardsMaxAggregateResult
-}
-
 type CardsConnection {
   edges: [CardsEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `Cards`"""
-  aggregate: CardsAggregate
 }
 
 type CardsDeleteResponse {
@@ -941,48 +869,6 @@ type CardsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [Cards!]!
-}
-
-"""Result of maximum aggregation for `Cards`"""
-type CardsMaxAggregateResult {
-  """Maximum of weekStart across all matching records"""
-  weekStart: Date
-
-  """Maximum of note across all matching records"""
-  note: String
-
-  """Maximum of sentAt across all matching records"""
-  sentAt: Datetime
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-
-  """Maximum of deletedAt across all matching records"""
-  deletedAt: Datetime
-}
-
-"""Result of minimum aggregation for `Cards`"""
-type CardsMinAggregateResult {
-  """Minimum of weekStart across all matching records"""
-  weekStart: Date
-
-  """Minimum of note across all matching records"""
-  note: String
-
-  """Minimum of sentAt across all matching records"""
-  sentAt: Datetime
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
-
-  """Minimum of deletedAt across all matching records"""
-  deletedAt: Datetime
 }
 
 input CardsOrderBy {
@@ -1169,39 +1055,9 @@ type CheckinAnswers implements Node {
   isMine: Boolean
 }
 
-"""Aggregate results for `CheckinAnswers`"""
-type CheckinAnswersAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Summation aggregates for numeric fields"""
-  sum: CheckinAnswersSumAggregateResult
-
-  """Average aggregates for numeric fields"""
-  avg: CheckinAnswersAvgAggregateResult
-
-  """Minimum aggregates for comparable fields"""
-  min: CheckinAnswersMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: CheckinAnswersMaxAggregateResult
-}
-
-"""Result of average aggregation for `CheckinAnswers`"""
-type CheckinAnswersAvgAggregateResult {
-  """Average of question across all matching records"""
-  question: BigFloat
-}
-
 type CheckinAnswersConnection {
   edges: [CheckinAnswersEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `CheckinAnswers`"""
-  aggregate: CheckinAnswersAggregate
 }
 
 type CheckinAnswersDeleteResponse {
@@ -1261,42 +1117,6 @@ type CheckinAnswersInsertResponse {
   records: [CheckinAnswers!]!
 }
 
-"""Result of maximum aggregation for `CheckinAnswers`"""
-type CheckinAnswersMaxAggregateResult {
-  """Maximum of weekStart across all matching records"""
-  weekStart: Date
-
-  """Maximum of question across all matching records"""
-  question: Int
-
-  """Maximum of body across all matching records"""
-  body: String
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `CheckinAnswers`"""
-type CheckinAnswersMinAggregateResult {
-  """Minimum of weekStart across all matching records"""
-  weekStart: Date
-
-  """Minimum of question across all matching records"""
-  question: Int
-
-  """Minimum of body across all matching records"""
-  body: String
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
 input CheckinAnswersOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -1306,12 +1126,6 @@ input CheckinAnswersOrderBy {
   body: OrderByDirection
   createdAt: OrderByDirection
   updatedAt: OrderByDirection
-}
-
-"""Result of summation aggregation for `CheckinAnswers`"""
-type CheckinAnswersSumAggregateResult {
-  """Sum of question across all matching records"""
-  question: BigInt
 }
 
 input CheckinAnswersUpdateInput {
@@ -1458,7 +1272,7 @@ type ContentItems implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID!
-  kind: String!
+  kind: ContentKind!
   slug: String!
   locale: String!
   title: String!
@@ -1474,45 +1288,9 @@ type ContentItems implements Node {
   published: Boolean!
 }
 
-"""Aggregate results for `ContentItems`"""
-type ContentItemsAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Summation aggregates for numeric fields"""
-  sum: ContentItemsSumAggregateResult
-
-  """Average aggregates for numeric fields"""
-  avg: ContentItemsAvgAggregateResult
-
-  """Minimum aggregates for comparable fields"""
-  min: ContentItemsMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: ContentItemsMaxAggregateResult
-}
-
-"""Result of average aggregation for `ContentItems`"""
-type ContentItemsAvgAggregateResult {
-  """Average of position across all matching records"""
-  position: BigFloat
-
-  """Average of month across all matching records"""
-  month: BigFloat
-
-  """Average of day across all matching records"""
-  day: BigFloat
-}
-
 type ContentItemsConnection {
   edges: [ContentItemsEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `ContentItems`"""
-  aggregate: ContentItemsAggregate
 }
 
 type ContentItemsDeleteResponse {
@@ -1530,7 +1308,7 @@ type ContentItemsEdge {
 
 input ContentItemsFilter {
   id: UUIDFilter
-  kind: StringFilter
+  kind: ContentKindFilter
   slug: StringFilter
   locale: StringFilter
   title: StringFilter
@@ -1562,7 +1340,7 @@ input ContentItemsFilter {
 
 input ContentItemsInsertInput {
   id: UUID
-  kind: String
+  kind: ContentKind
   slug: String
   locale: String
   title: String
@@ -1586,90 +1364,6 @@ type ContentItemsInsertResponse {
   records: [ContentItems!]!
 }
 
-"""Result of maximum aggregation for `ContentItems`"""
-type ContentItemsMaxAggregateResult {
-  """Maximum of kind across all matching records"""
-  kind: String
-
-  """Maximum of slug across all matching records"""
-  slug: String
-
-  """Maximum of locale across all matching records"""
-  locale: String
-
-  """Maximum of title across all matching records"""
-  title: String
-
-  """Maximum of body across all matching records"""
-  body: String
-
-  """Maximum of parentSlug across all matching records"""
-  parentSlug: String
-
-  """Maximum of position across all matching records"""
-  position: Int
-
-  """Maximum of month across all matching records"""
-  month: Int
-
-  """Maximum of day across all matching records"""
-  day: Int
-
-  """Maximum of country across all matching records"""
-  country: String
-
-  """Maximum of plusOnly across all matching records"""
-  plusOnly: Boolean
-
-  """Maximum of sensitive across all matching records"""
-  sensitive: Boolean
-
-  """Maximum of published across all matching records"""
-  published: Boolean
-}
-
-"""Result of minimum aggregation for `ContentItems`"""
-type ContentItemsMinAggregateResult {
-  """Minimum of kind across all matching records"""
-  kind: String
-
-  """Minimum of slug across all matching records"""
-  slug: String
-
-  """Minimum of locale across all matching records"""
-  locale: String
-
-  """Minimum of title across all matching records"""
-  title: String
-
-  """Minimum of body across all matching records"""
-  body: String
-
-  """Minimum of parentSlug across all matching records"""
-  parentSlug: String
-
-  """Minimum of position across all matching records"""
-  position: Int
-
-  """Minimum of month across all matching records"""
-  month: Int
-
-  """Minimum of day across all matching records"""
-  day: Int
-
-  """Minimum of country across all matching records"""
-  country: String
-
-  """Minimum of plusOnly across all matching records"""
-  plusOnly: Boolean
-
-  """Minimum of sensitive across all matching records"""
-  sensitive: Boolean
-
-  """Minimum of published across all matching records"""
-  published: Boolean
-}
-
 input ContentItemsOrderBy {
   id: OrderByDirection
   kind: OrderByDirection
@@ -1687,21 +1381,9 @@ input ContentItemsOrderBy {
   published: OrderByDirection
 }
 
-"""Result of summation aggregation for `ContentItems`"""
-type ContentItemsSumAggregateResult {
-  """Sum of position across all matching records"""
-  position: BigInt
-
-  """Sum of month across all matching records"""
-  month: BigInt
-
-  """Sum of day across all matching records"""
-  day: BigInt
-}
-
 input ContentItemsUpdateInput {
   id: UUID
-  kind: String
+  kind: ContentKind
   slug: String
   locale: String
   title: String
@@ -1723,6 +1405,35 @@ type ContentItemsUpdateResponse {
 
   """Array of records impacted by the mutation"""
   records: [ContentItems!]!
+}
+
+enum ContentKind {
+  question
+  daily_idea
+  date_idea
+  touch_card
+  spice_card
+  mission
+  me_or_you
+  how_well
+  never_have_we
+  program
+  lesson
+  mood_tip
+  repair_card
+  ritual_idea
+  holiday
+  notification
+}
+
+"""
+Boolean expression comparing fields on type "ContentKind"
+"""
+input ContentKindFilter {
+  eq: ContentKind
+  in: [ContentKind!]
+  is: FilterIs
+  neq: ContentKind
 }
 
 enum ConversationGuide {
@@ -3348,6 +3059,22 @@ type DevicesUpdateResponse {
   records: [Devices!]!
 }
 
+enum EntitlementPlan {
+  plus_monthly
+  plus_annual
+  plus_gift
+}
+
+"""
+Boolean expression comparing fields on type "EntitlementPlan"
+"""
+input EntitlementPlanFilter {
+  eq: EntitlementPlan
+  in: [EntitlementPlan!]
+  is: FilterIs
+  neq: EntitlementPlan
+}
+
 """
 A person's Plus subscription state. Readable by the person and their partner; written only by the purchase webhook.
 """
@@ -3355,11 +3082,11 @@ type Entitlements implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   profileId: UUID!
-  plan: String!
-  status: String!
+  plan: EntitlementPlan!
+  status: EntitlementStatus!
   expiresAt: Datetime
   willRenew: Boolean!
-  store: String
+  store: EntitlementStore
   updatedAt: Datetime!
   profile: Profiles
 }
@@ -3384,11 +3111,11 @@ type EntitlementsEdge {
 
 input EntitlementsFilter {
   profileId: UUIDFilter
-  plan: StringFilter
-  status: StringFilter
+  plan: EntitlementPlanFilter
+  status: EntitlementStatusFilter
   expiresAt: DatetimeFilter
   willRenew: BooleanFilter
-  store: StringFilter
+  store: EntitlementStoreFilter
   updatedAt: DatetimeFilter
   nodeId: IDFilter
 
@@ -3408,11 +3135,11 @@ input EntitlementsFilter {
 
 input EntitlementsInsertInput {
   profileId: UUID
-  plan: String
-  status: String
+  plan: EntitlementPlan
+  status: EntitlementStatus
   expiresAt: Datetime
   willRenew: Boolean
-  store: String
+  store: EntitlementStore
   updatedAt: Datetime
 }
 
@@ -3434,13 +3161,48 @@ input EntitlementsOrderBy {
   updatedAt: OrderByDirection
 }
 
+enum EntitlementStatus {
+  trialing
+  active
+  grace
+  billing_issue
+  expired
+  refunded
+}
+
+"""
+Boolean expression comparing fields on type "EntitlementStatus"
+"""
+input EntitlementStatusFilter {
+  eq: EntitlementStatus
+  in: [EntitlementStatus!]
+  is: FilterIs
+  neq: EntitlementStatus
+}
+
+enum EntitlementStore {
+  app_store
+  play_store
+  promo
+}
+
+"""
+Boolean expression comparing fields on type "EntitlementStore"
+"""
+input EntitlementStoreFilter {
+  eq: EntitlementStore
+  in: [EntitlementStore!]
+  is: FilterIs
+  neq: EntitlementStore
+}
+
 input EntitlementsUpdateInput {
   profileId: UUID
-  plan: String
-  status: String
+  plan: EntitlementPlan
+  status: EntitlementStatus
   expiresAt: Datetime
   willRenew: Boolean
-  store: String
+  store: EntitlementStore
   updatedAt: Datetime
 }
 
@@ -3501,39 +3263,9 @@ type GameAnswers implements Node {
   isMine: Boolean
 }
 
-"""Aggregate results for `GameAnswers`"""
-type GameAnswersAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Summation aggregates for numeric fields"""
-  sum: GameAnswersSumAggregateResult
-
-  """Average aggregates for numeric fields"""
-  avg: GameAnswersAvgAggregateResult
-
-  """Minimum aggregates for comparable fields"""
-  min: GameAnswersMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: GameAnswersMaxAggregateResult
-}
-
-"""Result of average aggregation for `GameAnswers`"""
-type GameAnswersAvgAggregateResult {
-  """Average of idx across all matching records"""
-  idx: BigFloat
-}
-
 type GameAnswersConnection {
   edges: [GameAnswersEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `GameAnswers`"""
-  aggregate: GameAnswersAggregate
 }
 
 type GameAnswersDeleteResponse {
@@ -3589,30 +3321,6 @@ type GameAnswersInsertResponse {
   records: [GameAnswers!]!
 }
 
-"""Result of maximum aggregation for `GameAnswers`"""
-type GameAnswersMaxAggregateResult {
-  """Maximum of idx across all matching records"""
-  idx: Int
-
-  """Maximum of answer across all matching records"""
-  answer: String
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-}
-
-"""Result of minimum aggregation for `GameAnswers`"""
-type GameAnswersMinAggregateResult {
-  """Minimum of idx across all matching records"""
-  idx: Int
-
-  """Minimum of answer across all matching records"""
-  answer: String
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-}
-
 input GameAnswersOrderBy {
   id: OrderByDirection
   sessionId: OrderByDirection
@@ -3620,12 +3328,6 @@ input GameAnswersOrderBy {
   idx: OrderByDirection
   answer: OrderByDirection
   createdAt: OrderByDirection
-}
-
-"""Result of summation aggregation for `GameAnswers`"""
-type GameAnswersSumAggregateResult {
-  """Sum of idx across all matching records"""
-  idx: BigInt
 }
 
 input GameAnswersUpdateInput {
@@ -3893,27 +3595,9 @@ type GiftIdeas implements Node {
   isMine: Boolean
 }
 
-"""Aggregate results for `GiftIdeas`"""
-type GiftIdeasAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: GiftIdeasMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: GiftIdeasMaxAggregateResult
-}
-
 type GiftIdeasConnection {
   edges: [GiftIdeasEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `GiftIdeas`"""
-  aggregate: GiftIdeasAggregate
 }
 
 type GiftIdeasDeleteResponse {
@@ -3977,36 +3661,6 @@ type GiftIdeasInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [GiftIdeas!]!
-}
-
-"""Result of maximum aggregation for `GiftIdeas`"""
-type GiftIdeasMaxAggregateResult {
-  """Maximum of title across all matching records"""
-  title: String
-
-  """Maximum of note across all matching records"""
-  note: String
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `GiftIdeas`"""
-type GiftIdeasMinAggregateResult {
-  """Minimum of title across all matching records"""
-  title: String
-
-  """Minimum of note across all matching records"""
-  note: String
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
 }
 
 input GiftIdeasOrderBy {
@@ -4295,27 +3949,9 @@ type IdeaResponses implements Node {
   author: Profiles
 }
 
-"""Aggregate results for `IdeaResponses`"""
-type IdeaResponsesAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: IdeaResponsesMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: IdeaResponsesMaxAggregateResult
-}
-
 type IdeaResponsesConnection {
   edges: [IdeaResponsesEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `IdeaResponses`"""
-  aggregate: IdeaResponsesAggregate
 }
 
 type IdeaResponsesDeleteResponse {
@@ -4371,36 +4007,6 @@ type IdeaResponsesInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [IdeaResponses!]!
-}
-
-"""Result of maximum aggregation for `IdeaResponses`"""
-type IdeaResponsesMaxAggregateResult {
-  """Maximum of contentSlug across all matching records"""
-  contentSlug: String
-
-  """Maximum of day across all matching records"""
-  day: Date
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `IdeaResponses`"""
-type IdeaResponsesMinAggregateResult {
-  """Minimum of contentSlug across all matching records"""
-  contentSlug: String
-
-  """Minimum of day across all matching records"""
-  day: Date
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
 }
 
 input IdeaResponsesOrderBy {
@@ -4531,45 +4137,9 @@ type ImportantDates implements Node {
   isMine: Boolean
 }
 
-"""Aggregate results for `ImportantDates`"""
-type ImportantDatesAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Summation aggregates for numeric fields"""
-  sum: ImportantDatesSumAggregateResult
-
-  """Average aggregates for numeric fields"""
-  avg: ImportantDatesAvgAggregateResult
-
-  """Minimum aggregates for comparable fields"""
-  min: ImportantDatesMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: ImportantDatesMaxAggregateResult
-}
-
-"""Result of average aggregation for `ImportantDates`"""
-type ImportantDatesAvgAggregateResult {
-  """Average of month across all matching records"""
-  month: BigFloat
-
-  """Average of day across all matching records"""
-  day: BigFloat
-
-  """Average of year across all matching records"""
-  year: BigFloat
-}
-
 type ImportantDatesConnection {
   edges: [ImportantDatesEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `ImportantDates`"""
-  aggregate: ImportantDatesAggregate
 }
 
 type ImportantDatesDeleteResponse {
@@ -4643,66 +4213,6 @@ type ImportantDatesInsertResponse {
   records: [ImportantDates!]!
 }
 
-"""Result of maximum aggregation for `ImportantDates`"""
-type ImportantDatesMaxAggregateResult {
-  """Maximum of title across all matching records"""
-  title: String
-
-  """Maximum of month across all matching records"""
-  month: Int
-
-  """Maximum of day across all matching records"""
-  day: Int
-
-  """Maximum of year across all matching records"""
-  year: Int
-
-  """Maximum of yearly across all matching records"""
-  yearly: Boolean
-
-  """Maximum of hidden across all matching records"""
-  hidden: Boolean
-
-  """Maximum of holidayKey across all matching records"""
-  holidayKey: String
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `ImportantDates`"""
-type ImportantDatesMinAggregateResult {
-  """Minimum of title across all matching records"""
-  title: String
-
-  """Minimum of month across all matching records"""
-  month: Int
-
-  """Minimum of day across all matching records"""
-  day: Int
-
-  """Minimum of year across all matching records"""
-  year: Int
-
-  """Minimum of yearly across all matching records"""
-  yearly: Boolean
-
-  """Minimum of hidden across all matching records"""
-  hidden: Boolean
-
-  """Minimum of holidayKey across all matching records"""
-  holidayKey: String
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
 input ImportantDatesOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -4718,18 +4228,6 @@ input ImportantDatesOrderBy {
   holidayKey: OrderByDirection
   createdAt: OrderByDirection
   updatedAt: OrderByDirection
-}
-
-"""Result of summation aggregation for `ImportantDates`"""
-type ImportantDatesSumAggregateResult {
-  """Sum of month across all matching records"""
-  month: BigInt
-
-  """Sum of day across all matching records"""
-  day: BigInt
-
-  """Sum of year across all matching records"""
-  year: BigInt
 }
 
 input ImportantDatesUpdateInput {
@@ -4985,27 +4483,9 @@ type JournalEntries implements Node {
   author: Profiles
 }
 
-"""Aggregate results for `JournalEntries`"""
-type JournalEntriesAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: JournalEntriesMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: JournalEntriesMaxAggregateResult
-}
-
 type JournalEntriesConnection {
   edges: [JournalEntriesEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `JournalEntries`"""
-  aggregate: JournalEntriesAggregate
 }
 
 type JournalEntriesDeleteResponse {
@@ -5063,42 +4543,6 @@ type JournalEntriesInsertResponse {
   records: [JournalEntries!]!
 }
 
-"""Result of maximum aggregation for `JournalEntries`"""
-type JournalEntriesMaxAggregateResult {
-  """Maximum of entryDate across all matching records"""
-  entryDate: Date
-
-  """Maximum of body across all matching records"""
-  body: String
-
-  """Maximum of mood across all matching records"""
-  mood: String
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `JournalEntries`"""
-type JournalEntriesMinAggregateResult {
-  """Minimum of entryDate across all matching records"""
-  entryDate: Date
-
-  """Minimum of body across all matching records"""
-  body: String
-
-  """Minimum of mood across all matching records"""
-  mood: String
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
 input JournalEntriesOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -5147,27 +4591,9 @@ type LearnedItems implements Node {
   author: Profiles
 }
 
-"""Aggregate results for `LearnedItems`"""
-type LearnedItemsAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: LearnedItemsMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: LearnedItemsMaxAggregateResult
-}
-
 type LearnedItemsConnection {
   edges: [LearnedItemsEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `LearnedItems`"""
-  aggregate: LearnedItemsAggregate
 }
 
 type LearnedItemsDeleteResponse {
@@ -5225,36 +4651,6 @@ type LearnedItemsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [LearnedItems!]!
-}
-
-"""Result of maximum aggregation for `LearnedItems`"""
-type LearnedItemsMaxAggregateResult {
-  """Maximum of text across all matching records"""
-  text: String
-
-  """Maximum of excerpt across all matching records"""
-  excerpt: String
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `LearnedItems`"""
-type LearnedItemsMinAggregateResult {
-  """Minimum of text across all matching records"""
-  text: String
-
-  """Minimum of excerpt across all matching records"""
-  excerpt: String
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
 }
 
 input LearnedItemsOrderBy {
@@ -5336,39 +4732,9 @@ type LessonProgress implements Node {
   author: Profiles
 }
 
-"""Aggregate results for `LessonProgress`"""
-type LessonProgressAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Summation aggregates for numeric fields"""
-  sum: LessonProgressSumAggregateResult
-
-  """Average aggregates for numeric fields"""
-  avg: LessonProgressAvgAggregateResult
-
-  """Minimum aggregates for comparable fields"""
-  min: LessonProgressMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: LessonProgressMaxAggregateResult
-}
-
-"""Result of average aggregation for `LessonProgress`"""
-type LessonProgressAvgAggregateResult {
-  """Average of lessonDay across all matching records"""
-  lessonDay: BigFloat
-}
-
 type LessonProgressConnection {
   edges: [LessonProgressEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `LessonProgress`"""
-  aggregate: LessonProgressAggregate
 }
 
 type LessonProgressDeleteResponse {
@@ -5426,36 +4792,6 @@ type LessonProgressInsertResponse {
   records: [LessonProgress!]!
 }
 
-"""Result of maximum aggregation for `LessonProgress`"""
-type LessonProgressMaxAggregateResult {
-  """Maximum of programSlug across all matching records"""
-  programSlug: String
-
-  """Maximum of lessonDay across all matching records"""
-  lessonDay: Int
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `LessonProgress`"""
-type LessonProgressMinAggregateResult {
-  """Minimum of programSlug across all matching records"""
-  programSlug: String
-
-  """Minimum of lessonDay across all matching records"""
-  lessonDay: Int
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
 input LessonProgressOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -5464,12 +4800,6 @@ input LessonProgressOrderBy {
   status: OrderByDirection
   createdAt: OrderByDirection
   updatedAt: OrderByDirection
-}
-
-"""Result of summation aggregation for `LessonProgress`"""
-type LessonProgressSumAggregateResult {
-  """Sum of lessonDay across all matching records"""
-  lessonDay: BigInt
 }
 
 input LessonProgressUpdateInput {
@@ -5526,39 +4856,9 @@ type ListItems implements Node {
   isMine: Boolean
 }
 
-"""Aggregate results for `ListItems`"""
-type ListItemsAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Summation aggregates for numeric fields"""
-  sum: ListItemsSumAggregateResult
-
-  """Average aggregates for numeric fields"""
-  avg: ListItemsAvgAggregateResult
-
-  """Minimum aggregates for comparable fields"""
-  min: ListItemsMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: ListItemsMaxAggregateResult
-}
-
-"""Result of average aggregation for `ListItems`"""
-type ListItemsAvgAggregateResult {
-  """Average of position across all matching records"""
-  position: BigFloat
-}
-
 type ListItemsConnection {
   edges: [ListItemsEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `ListItems`"""
-  aggregate: ListItemsAggregate
 }
 
 type ListItemsDeleteResponse {
@@ -5618,36 +4918,6 @@ type ListItemsInsertResponse {
   records: [ListItems!]!
 }
 
-"""Result of maximum aggregation for `ListItems`"""
-type ListItemsMaxAggregateResult {
-  """Maximum of title across all matching records"""
-  title: String
-
-  """Maximum of position across all matching records"""
-  position: Int
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `ListItems`"""
-type ListItemsMinAggregateResult {
-  """Minimum of title across all matching records"""
-  title: String
-
-  """Minimum of position across all matching records"""
-  position: Int
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
 input ListItemsOrderBy {
   id: OrderByDirection
   listId: OrderByDirection
@@ -5657,12 +4927,6 @@ input ListItemsOrderBy {
   position: OrderByDirection
   createdAt: OrderByDirection
   updatedAt: OrderByDirection
-}
-
-"""Result of summation aggregation for `ListItems`"""
-type ListItemsSumAggregateResult {
-  """Sum of position across all matching records"""
-  position: BigInt
 }
 
 enum ListItemStatus {
@@ -5764,27 +5028,9 @@ type Lists implements Node {
   isMine: Boolean
 }
 
-"""Aggregate results for `Lists`"""
-type ListsAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: ListsMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: ListsMaxAggregateResult
-}
-
 type ListsConnection {
   edges: [ListsEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `Lists`"""
-  aggregate: ListsAggregate
 }
 
 type ListsDeleteResponse {
@@ -5840,30 +5086,6 @@ type ListsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [Lists!]!
-}
-
-"""Result of maximum aggregation for `Lists`"""
-type ListsMaxAggregateResult {
-  """Maximum of title across all matching records"""
-  title: String
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `Lists`"""
-type ListsMinAggregateResult {
-  """Minimum of title across all matching records"""
-  title: String
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
 }
 
 input ListsOrderBy {
@@ -5922,27 +5144,9 @@ type LogisticItems implements Node {
   isShared: Boolean
 }
 
-"""Aggregate results for `LogisticItems`"""
-type LogisticItemsAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: LogisticItemsMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: LogisticItemsMaxAggregateResult
-}
-
 type LogisticItemsConnection {
   edges: [LogisticItemsEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `LogisticItems`"""
-  aggregate: LogisticItemsAggregate
 }
 
 type LogisticItemsDeleteResponse {
@@ -6006,54 +5210,6 @@ type LogisticItemsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [LogisticItems!]!
-}
-
-"""Result of maximum aggregation for `LogisticItems`"""
-type LogisticItemsMaxAggregateResult {
-  """Maximum of title across all matching records"""
-  title: String
-
-  """Maximum of dueOn across all matching records"""
-  dueOn: Date
-
-  """Maximum of weekStart across all matching records"""
-  weekStart: Date
-
-  """Maximum of invisibleWork across all matching records"""
-  invisibleWork: Boolean
-
-  """Maximum of doneAt across all matching records"""
-  doneAt: Datetime
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `LogisticItems`"""
-type LogisticItemsMinAggregateResult {
-  """Minimum of title across all matching records"""
-  title: String
-
-  """Minimum of dueOn across all matching records"""
-  dueOn: Date
-
-  """Minimum of weekStart across all matching records"""
-  weekStart: Date
-
-  """Minimum of invisibleWork across all matching records"""
-  invisibleWork: Boolean
-
-  """Minimum of doneAt across all matching records"""
-  doneAt: Datetime
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
 }
 
 input LogisticItemsOrderBy {
@@ -6356,27 +5512,9 @@ type Memories implements Node {
   isMine: Boolean
 }
 
-"""Aggregate results for `Memories`"""
-type MemoriesAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: MemoriesMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: MemoriesMaxAggregateResult
-}
-
 type MemoriesConnection {
   edges: [MemoriesEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `Memories`"""
-  aggregate: MemoriesAggregate
 }
 
 type MemoriesDeleteResponse {
@@ -6444,54 +5582,6 @@ type MemoriesInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [Memories!]!
-}
-
-"""Result of maximum aggregation for `Memories`"""
-type MemoriesMaxAggregateResult {
-  """Maximum of title across all matching records"""
-  title: String
-
-  """Maximum of body across all matching records"""
-  body: String
-
-  """Maximum of happenedOn across all matching records"""
-  happenedOn: Date
-
-  """Maximum of place across all matching records"""
-  place: String
-
-  """Maximum of photoPath across all matching records"""
-  photoPath: String
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `Memories`"""
-type MemoriesMinAggregateResult {
-  """Minimum of title across all matching records"""
-  title: String
-
-  """Minimum of body across all matching records"""
-  body: String
-
-  """Minimum of happenedOn across all matching records"""
-  happenedOn: Date
-
-  """Minimum of place across all matching records"""
-  place: String
-
-  """Minimum of photoPath across all matching records"""
-  photoPath: String
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
 }
 
 input MemoriesOrderBy {
@@ -6609,27 +5699,9 @@ type Moods implements Node {
   author: Profiles
 }
 
-"""Aggregate results for `Moods`"""
-type MoodsAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: MoodsMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: MoodsMaxAggregateResult
-}
-
 type MoodsConnection {
   edges: [MoodsEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `Moods`"""
-  aggregate: MoodsAggregate
 }
 
 type MoodsDeleteResponse {
@@ -6703,30 +5775,6 @@ type MoodsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [Moods!]!
-}
-
-"""Result of maximum aggregation for `Moods`"""
-type MoodsMaxAggregateResult {
-  """Maximum of day across all matching records"""
-  day: Date
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `Moods`"""
-type MoodsMinAggregateResult {
-  """Minimum of day across all matching records"""
-  day: Date
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
 }
 
 input MoodsOrderBy {
@@ -9113,27 +8161,9 @@ type PartnerFacts implements Node {
   author: Profiles
 }
 
-"""Aggregate results for `PartnerFacts`"""
-type PartnerFactsAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: PartnerFactsMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: PartnerFactsMaxAggregateResult
-}
-
 type PartnerFactsConnection {
   edges: [PartnerFactsEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `PartnerFacts`"""
-  aggregate: PartnerFactsAggregate
 }
 
 type PartnerFactsDeleteResponse {
@@ -9191,36 +8221,6 @@ type PartnerFactsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [PartnerFacts!]!
-}
-
-"""Result of maximum aggregation for `PartnerFacts`"""
-type PartnerFactsMaxAggregateResult {
-  """Maximum of label across all matching records"""
-  label: String
-
-  """Maximum of value across all matching records"""
-  value: String
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `PartnerFacts`"""
-type PartnerFactsMinAggregateResult {
-  """Minimum of label across all matching records"""
-  label: String
-
-  """Minimum of value across all matching records"""
-  value: String
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
 }
 
 input PartnerFactsOrderBy {
@@ -9307,27 +8307,9 @@ type PartnerMessages implements Node {
   recipient: Profiles
 }
 
-"""Aggregate results for `PartnerMessages`"""
-type PartnerMessagesAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: PartnerMessagesMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: PartnerMessagesMaxAggregateResult
-}
-
 type PartnerMessagesConnection {
   edges: [PartnerMessagesEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `PartnerMessages`"""
-  aggregate: PartnerMessagesAggregate
 }
 
 type PartnerMessagesDeleteResponse {
@@ -9389,48 +8371,6 @@ type PartnerMessagesInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [PartnerMessages!]!
-}
-
-"""Result of maximum aggregation for `PartnerMessages`"""
-type PartnerMessagesMaxAggregateResult {
-  """Maximum of body across all matching records"""
-  body: String
-
-  """Maximum of mediaPath across all matching records"""
-  mediaPath: String
-
-  """Maximum of forWidget across all matching records"""
-  forWidget: Boolean
-
-  """Maximum of seenAt across all matching records"""
-  seenAt: Datetime
-
-  """Maximum of heartedAt across all matching records"""
-  heartedAt: Datetime
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-}
-
-"""Result of minimum aggregation for `PartnerMessages`"""
-type PartnerMessagesMinAggregateResult {
-  """Minimum of body across all matching records"""
-  body: String
-
-  """Minimum of mediaPath across all matching records"""
-  mediaPath: String
-
-  """Minimum of forWidget across all matching records"""
-  forWidget: Boolean
-
-  """Minimum of seenAt across all matching records"""
-  seenAt: Datetime
-
-  """Minimum of heartedAt across all matching records"""
-  heartedAt: Datetime
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
 }
 
 input PartnerMessagesOrderBy {
@@ -9781,8 +8721,8 @@ type PlusState implements Node {
   profileId: UUID
   hasPlus: Boolean
   paidByPartner: Boolean
-  plan: String
-  status: String
+  plan: EntitlementPlan
+  status: EntitlementStatus
   expiresAt: Datetime
   slipsLeftThisMonth: Int
   cardsLeftThisMonth: Int
@@ -9810,8 +8750,8 @@ input PlusStateFilter {
   profileId: UUIDFilter
   hasPlus: BooleanFilter
   paidByPartner: BooleanFilter
-  plan: StringFilter
-  status: StringFilter
+  plan: EntitlementPlanFilter
+  status: EntitlementStatusFilter
   expiresAt: DatetimeFilter
   slipsLeftThisMonth: IntFilter
   cardsLeftThisMonth: IntFilter
@@ -9835,8 +8775,8 @@ input PlusStateInsertInput {
   profileId: UUID
   hasPlus: Boolean
   paidByPartner: Boolean
-  plan: String
-  status: String
+  plan: EntitlementPlan
+  status: EntitlementStatus
   expiresAt: Datetime
   slipsLeftThisMonth: Int
   cardsLeftThisMonth: Int
@@ -9865,8 +8805,8 @@ input PlusStateUpdateInput {
   profileId: UUID
   hasPlus: Boolean
   paidByPartner: Boolean
-  plan: String
-  status: String
+  plan: EntitlementPlan
+  status: EntitlementStatus
   expiresAt: Datetime
   slipsLeftThisMonth: Int
   cardsLeftThisMonth: Int
@@ -13694,27 +12634,9 @@ type QuestionAnswers implements Node {
   isMine: Boolean
 }
 
-"""Aggregate results for `QuestionAnswers`"""
-type QuestionAnswersAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: QuestionAnswersMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: QuestionAnswersMaxAggregateResult
-}
-
 type QuestionAnswersConnection {
   edges: [QuestionAnswersEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `QuestionAnswers`"""
-  aggregate: QuestionAnswersAggregate
 }
 
 type QuestionAnswersDeleteResponse {
@@ -13768,30 +12690,6 @@ type QuestionAnswersInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [QuestionAnswers!]!
-}
-
-"""Result of maximum aggregation for `QuestionAnswers`"""
-type QuestionAnswersMaxAggregateResult {
-  """Maximum of questionSlug across all matching records"""
-  questionSlug: String
-
-  """Maximum of body across all matching records"""
-  body: String
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-}
-
-"""Result of minimum aggregation for `QuestionAnswers`"""
-type QuestionAnswersMinAggregateResult {
-  """Minimum of questionSlug across all matching records"""
-  questionSlug: String
-
-  """Minimum of body across all matching records"""
-  body: String
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
 }
 
 input QuestionAnswersOrderBy {
@@ -14320,27 +13218,9 @@ type RitualLogs implements Node {
   isMine: Boolean
 }
 
-"""Aggregate results for `RitualLogs`"""
-type RitualLogsAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: RitualLogsMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: RitualLogsMaxAggregateResult
-}
-
 type RitualLogsConnection {
   edges: [RitualLogsEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `RitualLogs`"""
-  aggregate: RitualLogsAggregate
 }
 
 type RitualLogsDeleteResponse {
@@ -14394,30 +13274,6 @@ type RitualLogsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [RitualLogs!]!
-}
-
-"""Result of maximum aggregation for `RitualLogs`"""
-type RitualLogsMaxAggregateResult {
-  """Maximum of doneOn across all matching records"""
-  doneOn: Date
-
-  """Maximum of skipped across all matching records"""
-  skipped: Boolean
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-}
-
-"""Result of minimum aggregation for `RitualLogs`"""
-type RitualLogsMinAggregateResult {
-  """Minimum of doneOn across all matching records"""
-  doneOn: Date
-
-  """Minimum of skipped across all matching records"""
-  skipped: Boolean
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
 }
 
 input RitualLogsOrderBy {
@@ -14497,39 +13353,9 @@ type Rituals implements Node {
   isShared: Boolean
 }
 
-"""Aggregate results for `Rituals`"""
-type RitualsAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Summation aggregates for numeric fields"""
-  sum: RitualsSumAggregateResult
-
-  """Average aggregates for numeric fields"""
-  avg: RitualsAvgAggregateResult
-
-  """Minimum aggregates for comparable fields"""
-  min: RitualsMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: RitualsMaxAggregateResult
-}
-
-"""Result of average aggregation for `Rituals`"""
-type RitualsAvgAggregateResult {
-  """Average of weekday across all matching records"""
-  weekday: BigFloat
-}
-
 type RitualsConnection {
   edges: [RitualsEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `Rituals`"""
-  aggregate: RitualsAggregate
 }
 
 type RitualsDeleteResponse {
@@ -14595,54 +13421,6 @@ type RitualsInsertResponse {
   records: [Rituals!]!
 }
 
-"""Result of maximum aggregation for `Rituals`"""
-type RitualsMaxAggregateResult {
-  """Maximum of title across all matching records"""
-  title: String
-
-  """Maximum of weekday across all matching records"""
-  weekday: Int
-
-  """Maximum of atTime across all matching records"""
-  atTime: Time
-
-  """Maximum of reminder across all matching records"""
-  reminder: Boolean
-
-  """Maximum of archivedAt across all matching records"""
-  archivedAt: Datetime
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `Rituals`"""
-type RitualsMinAggregateResult {
-  """Minimum of title across all matching records"""
-  title: String
-
-  """Minimum of weekday across all matching records"""
-  weekday: Int
-
-  """Minimum of atTime across all matching records"""
-  atTime: Time
-
-  """Minimum of reminder across all matching records"""
-  reminder: Boolean
-
-  """Minimum of archivedAt across all matching records"""
-  archivedAt: Datetime
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
 input RitualsOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -14655,12 +13433,6 @@ input RitualsOrderBy {
   archivedAt: OrderByDirection
   createdAt: OrderByDirection
   updatedAt: OrderByDirection
-}
-
-"""Result of summation aggregation for `Rituals`"""
-type RitualsSumAggregateResult {
-  """Sum of weekday across all matching records"""
-  weekday: BigInt
 }
 
 input RitualsUpdateInput {
@@ -14713,27 +13485,9 @@ type SavedDateIdeas implements Node {
   isShared: Boolean
 }
 
-"""Aggregate results for `SavedDateIdeas`"""
-type SavedDateIdeasAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: SavedDateIdeasMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: SavedDateIdeasMaxAggregateResult
-}
-
 type SavedDateIdeasConnection {
   edges: [SavedDateIdeasEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `SavedDateIdeas`"""
-  aggregate: SavedDateIdeasAggregate
 }
 
 type SavedDateIdeasDeleteResponse {
@@ -14799,60 +13553,6 @@ type SavedDateIdeasInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [SavedDateIdeas!]!
-}
-
-"""Result of maximum aggregation for `SavedDateIdeas`"""
-type SavedDateIdeasMaxAggregateResult {
-  """Maximum of contentSlug across all matching records"""
-  contentSlug: String
-
-  """Maximum of title across all matching records"""
-  title: String
-
-  """Maximum of notes across all matching records"""
-  notes: String
-
-  """Maximum of plannedFor across all matching records"""
-  plannedFor: Date
-
-  """Maximum of placeName across all matching records"""
-  placeName: String
-
-  """Maximum of placeAddress across all matching records"""
-  placeAddress: String
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `SavedDateIdeas`"""
-type SavedDateIdeasMinAggregateResult {
-  """Minimum of contentSlug across all matching records"""
-  contentSlug: String
-
-  """Minimum of title across all matching records"""
-  title: String
-
-  """Minimum of notes across all matching records"""
-  notes: String
-
-  """Minimum of plannedFor across all matching records"""
-  plannedFor: Date
-
-  """Minimum of placeName across all matching records"""
-  placeName: String
-
-  """Minimum of placeAddress across all matching records"""
-  placeAddress: String
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
 }
 
 input SavedDateIdeasOrderBy {
@@ -14954,27 +13654,9 @@ type Signals implements Node {
   recipient: Profiles
 }
 
-"""Aggregate results for `Signals`"""
-type SignalsAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: SignalsMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: SignalsMaxAggregateResult
-}
-
 type SignalsConnection {
   edges: [SignalsEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `Signals`"""
-  aggregate: SignalsAggregate
 }
 
 type SignalsDeleteResponse {
@@ -15036,42 +13718,6 @@ type SignalsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [Signals!]!
-}
-
-"""Result of maximum aggregation for `Signals`"""
-type SignalsMaxAggregateResult {
-  """Maximum of value across all matching records"""
-  value: String
-
-  """Maximum of body across all matching records"""
-  body: String
-
-  """Maximum of respondedAt across all matching records"""
-  respondedAt: Datetime
-
-  """Maximum of seenAt across all matching records"""
-  seenAt: Datetime
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-}
-
-"""Result of minimum aggregation for `Signals`"""
-type SignalsMinAggregateResult {
-  """Minimum of value across all matching records"""
-  value: String
-
-  """Minimum of body across all matching records"""
-  body: String
-
-  """Minimum of respondedAt across all matching records"""
-  respondedAt: Datetime
-
-  """Minimum of seenAt across all matching records"""
-  seenAt: Datetime
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
 }
 
 input SignalsOrderBy {
@@ -15192,27 +13838,9 @@ type Slips implements Node {
   ): CardItemsConnection
 }
 
-"""Aggregate results for `Slips`"""
-type SlipsAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: SlipsMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: SlipsMaxAggregateResult
-}
-
 type SlipsConnection {
   edges: [SlipsEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `Slips`"""
-  aggregate: SlipsAggregate
 }
 
 type SlipsDeleteResponse {
@@ -15288,78 +13916,6 @@ type SlipsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [Slips!]!
-}
-
-"""Result of maximum aggregation for `Slips`"""
-type SlipsMaxAggregateResult {
-  """Maximum of body across all matching records"""
-  body: String
-
-  """Maximum of feeling across all matching records"""
-  feeling: String
-
-  """Maximum of planNote across all matching records"""
-  planNote: String
-
-  """Maximum of forCard across all matching records"""
-  forCard: Boolean
-
-  """Maximum of photoPath across all matching records"""
-  photoPath: String
-
-  """Maximum of occurredOn across all matching records"""
-  occurredOn: Date
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-
-  """Maximum of archivedAt across all matching records"""
-  archivedAt: Datetime
-
-  """Maximum of deletedAt across all matching records"""
-  deletedAt: Datetime
-
-  """Maximum of inJar across all matching records"""
-  inJar: Boolean
-}
-
-"""Result of minimum aggregation for `Slips`"""
-type SlipsMinAggregateResult {
-  """Minimum of body across all matching records"""
-  body: String
-
-  """Minimum of feeling across all matching records"""
-  feeling: String
-
-  """Minimum of planNote across all matching records"""
-  planNote: String
-
-  """Minimum of forCard across all matching records"""
-  forCard: Boolean
-
-  """Minimum of photoPath across all matching records"""
-  photoPath: String
-
-  """Minimum of occurredOn across all matching records"""
-  occurredOn: Date
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
-
-  """Minimum of archivedAt across all matching records"""
-  archivedAt: Datetime
-
-  """Minimum of deletedAt across all matching records"""
-  deletedAt: Datetime
-
-  """Minimum of inJar across all matching records"""
-  inJar: Boolean
 }
 
 input SlipsOrderBy {
@@ -15452,27 +14008,9 @@ type StoryEvents implements Node {
   isMine: Boolean
 }
 
-"""Aggregate results for `StoryEvents`"""
-type StoryEventsAggregate {
-  """The number of records matching the query"""
-  count: Int!
-
-  """Minimum aggregates for comparable fields"""
-  min: StoryEventsMinAggregateResult
-
-  """Maximum aggregates for comparable fields"""
-  max: StoryEventsMaxAggregateResult
-}
-
 type StoryEventsConnection {
   edges: [StoryEventsEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
-
-  """Aggregate functions calculated on the collection of `StoryEvents`"""
-  aggregate: StoryEventsAggregate
 }
 
 type StoryEventsDeleteResponse {
@@ -15532,36 +14070,6 @@ type StoryEventsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [StoryEvents!]!
-}
-
-"""Result of maximum aggregation for `StoryEvents`"""
-type StoryEventsMaxAggregateResult {
-  """Maximum of title across all matching records"""
-  title: String
-
-  """Maximum of happenedOn across all matching records"""
-  happenedOn: Date
-
-  """Maximum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Maximum of updatedAt across all matching records"""
-  updatedAt: Datetime
-}
-
-"""Result of minimum aggregation for `StoryEvents`"""
-type StoryEventsMinAggregateResult {
-  """Minimum of title across all matching records"""
-  title: String
-
-  """Minimum of happenedOn across all matching records"""
-  happenedOn: Date
-
-  """Minimum of createdAt across all matching records"""
-  createdAt: Datetime
-
-  """Minimum of updatedAt across all matching records"""
-  updatedAt: Datetime
 }
 
 input StoryEventsOrderBy {
@@ -15792,9 +14300,6 @@ type TimelineItems implements Node {
 type TimelineItemsConnection {
   edges: [TimelineItemsEdge!]!
   pageInfo: PageInfo!
-
-  """The total number of records matching the `filter` criteria"""
-  totalCount: Int!
 }
 
 type TimelineItemsDeleteResponse {

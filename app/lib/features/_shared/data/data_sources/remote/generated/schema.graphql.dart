@@ -10888,7 +10888,7 @@ class InputConsentsUpdateInput {
 class InputContentItemsFilter {
   factory InputContentItemsFilter({
     InputUUIDFilter? id,
-    InputStringFilter? kind,
+    InputContentKindFilter? kind,
     InputStringFilter? slug,
     InputStringFilter? locale,
     InputStringFilter? title,
@@ -10942,7 +10942,7 @@ class InputContentItemsFilter {
       final l$kind = data['kind'];
       result$data['kind'] = l$kind == null
           ? null
-          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
+          : InputContentKindFilter.fromJson((l$kind as Map<String, dynamic>));
     }
     if (data.containsKey('slug')) {
       final l$slug = data['slug'];
@@ -11053,7 +11053,7 @@ class InputContentItemsFilter {
 
   InputUUIDFilter? get id => (_$data['id'] as InputUUIDFilter?);
 
-  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
+  InputContentKindFilter? get kind => (_$data['kind'] as InputContentKindFilter?);
 
   InputStringFilter? get slug => (_$data['slug'] as InputStringFilter?);
 
@@ -11411,7 +11411,7 @@ class InputContentItemsFilter {
 class InputContentItemsInsertInput {
   factory InputContentItemsInsertInput({
     String? id,
-    String? kind,
+    EnumContentKind? kind,
     String? slug,
     String? locale,
     String? title,
@@ -11453,7 +11453,7 @@ class InputContentItemsInsertInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumContentKind((l$kind as String));
     }
     if (data.containsKey('slug')) {
       final l$slug = data['slug'];
@@ -11514,7 +11514,7 @@ class InputContentItemsInsertInput {
 
   String? get id => (_$data['id'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumContentKind? get kind => (_$data['kind'] as EnumContentKind?);
 
   String? get slug => (_$data['slug'] as String?);
 
@@ -11550,7 +11550,7 @@ class InputContentItemsInsertInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumContentKind(l$kind);
     }
     if (_$data.containsKey('slug')) {
       final l$slug = slug;
@@ -12168,7 +12168,7 @@ class InputContentItemsOrderBy {
 class InputContentItemsUpdateInput {
   factory InputContentItemsUpdateInput({
     String? id,
-    String? kind,
+    EnumContentKind? kind,
     String? slug,
     String? locale,
     String? title,
@@ -12210,7 +12210,7 @@ class InputContentItemsUpdateInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumContentKind((l$kind as String));
     }
     if (data.containsKey('slug')) {
       final l$slug = data['slug'];
@@ -12271,7 +12271,7 @@ class InputContentItemsUpdateInput {
 
   String? get id => (_$data['id'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumContentKind? get kind => (_$data['kind'] as EnumContentKind?);
 
   String? get slug => (_$data['slug'] as String?);
 
@@ -12307,7 +12307,7 @@ class InputContentItemsUpdateInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumContentKind(l$kind);
     }
     if (_$data.containsKey('slug')) {
       final l$slug = slug;
@@ -12543,6 +12543,148 @@ class InputContentItemsUpdateInput {
       _$data.containsKey('plusOnly') ? l$plusOnly : const {},
       _$data.containsKey('sensitive') ? l$sensitive : const {},
       _$data.containsKey('published') ? l$published : const {},
+    ]);
+  }
+}
+
+class InputContentKindFilter {
+  factory InputContentKindFilter({
+    EnumContentKind? eq,
+    List<EnumContentKind>? $in,
+    EnumFilterIs? $is,
+    EnumContentKind? neq,
+  }) => InputContentKindFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputContentKindFilter._(this._$data);
+
+  factory InputContentKindFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumContentKind((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumContentKind((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumContentKind((l$neq as String));
+    }
+    return InputContentKindFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumContentKind? get eq => (_$data['eq'] as EnumContentKind?);
+
+  List<EnumContentKind>? get $in => (_$data['in'] as List<EnumContentKind>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumContentKind? get neq => (_$data['neq'] as EnumContentKind?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumContentKind(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumContentKind(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumContentKind(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputContentKindFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
     ]);
   }
 }
@@ -22346,14 +22488,156 @@ class InputDevicesUpdateInput {
   }
 }
 
+class InputEntitlementPlanFilter {
+  factory InputEntitlementPlanFilter({
+    EnumEntitlementPlan? eq,
+    List<EnumEntitlementPlan>? $in,
+    EnumFilterIs? $is,
+    EnumEntitlementPlan? neq,
+  }) => InputEntitlementPlanFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputEntitlementPlanFilter._(this._$data);
+
+  factory InputEntitlementPlanFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumEntitlementPlan((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumEntitlementPlan((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumEntitlementPlan((l$neq as String));
+    }
+    return InputEntitlementPlanFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumEntitlementPlan? get eq => (_$data['eq'] as EnumEntitlementPlan?);
+
+  List<EnumEntitlementPlan>? get $in => (_$data['in'] as List<EnumEntitlementPlan>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumEntitlementPlan? get neq => (_$data['neq'] as EnumEntitlementPlan?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumEntitlementPlan(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumEntitlementPlan(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumEntitlementPlan(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputEntitlementPlanFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputEntitlementsFilter {
   factory InputEntitlementsFilter({
     InputUUIDFilter? profileId,
-    InputStringFilter? plan,
-    InputStringFilter? status,
+    InputEntitlementPlanFilter? plan,
+    InputEntitlementStatusFilter? status,
     InputDatetimeFilter? expiresAt,
     InputBooleanFilter? willRenew,
-    InputStringFilter? store,
+    InputEntitlementStoreFilter? store,
     InputDatetimeFilter? updatedAt,
     InputIDFilter? nodeId,
     List<InputEntitlementsFilter>? and,
@@ -22387,13 +22671,13 @@ class InputEntitlementsFilter {
       final l$plan = data['plan'];
       result$data['plan'] = l$plan == null
           ? null
-          : InputStringFilter.fromJson((l$plan as Map<String, dynamic>));
+          : InputEntitlementPlanFilter.fromJson((l$plan as Map<String, dynamic>));
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
       result$data['status'] = l$status == null
           ? null
-          : InputStringFilter.fromJson((l$status as Map<String, dynamic>));
+          : InputEntitlementStatusFilter.fromJson((l$status as Map<String, dynamic>));
     }
     if (data.containsKey('expiresAt')) {
       final l$expiresAt = data['expiresAt'];
@@ -22411,7 +22695,7 @@ class InputEntitlementsFilter {
       final l$store = data['store'];
       result$data['store'] = l$store == null
           ? null
-          : InputStringFilter.fromJson((l$store as Map<String, dynamic>));
+          : InputEntitlementStoreFilter.fromJson((l$store as Map<String, dynamic>));
     }
     if (data.containsKey('updatedAt')) {
       final l$updatedAt = data['updatedAt'];
@@ -22450,15 +22734,15 @@ class InputEntitlementsFilter {
 
   InputUUIDFilter? get profileId => (_$data['profileId'] as InputUUIDFilter?);
 
-  InputStringFilter? get plan => (_$data['plan'] as InputStringFilter?);
+  InputEntitlementPlanFilter? get plan => (_$data['plan'] as InputEntitlementPlanFilter?);
 
-  InputStringFilter? get status => (_$data['status'] as InputStringFilter?);
+  InputEntitlementStatusFilter? get status => (_$data['status'] as InputEntitlementStatusFilter?);
 
   InputDatetimeFilter? get expiresAt => (_$data['expiresAt'] as InputDatetimeFilter?);
 
   InputBooleanFilter? get willRenew => (_$data['willRenew'] as InputBooleanFilter?);
 
-  InputStringFilter? get store => (_$data['store'] as InputStringFilter?);
+  InputEntitlementStoreFilter? get store => (_$data['store'] as InputEntitlementStoreFilter?);
 
   InputDatetimeFilter? get updatedAt => (_$data['updatedAt'] as InputDatetimeFilter?);
 
@@ -22680,11 +22964,11 @@ class InputEntitlementsFilter {
 class InputEntitlementsInsertInput {
   factory InputEntitlementsInsertInput({
     String? profileId,
-    String? plan,
-    String? status,
+    EnumEntitlementPlan? plan,
+    EnumEntitlementStatus? status,
     DateTime? expiresAt,
     bool? willRenew,
-    String? store,
+    EnumEntitlementStore? store,
     DateTime? updatedAt,
   }) => InputEntitlementsInsertInput._({
     if (profileId != null) r'profileId': profileId,
@@ -22706,11 +22990,13 @@ class InputEntitlementsInsertInput {
     }
     if (data.containsKey('plan')) {
       final l$plan = data['plan'];
-      result$data['plan'] = (l$plan as String?);
+      result$data['plan'] = l$plan == null ? null : fromJsonEnumEntitlementPlan((l$plan as String));
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumEntitlementStatus((l$status as String));
     }
     if (data.containsKey('expiresAt')) {
       final l$expiresAt = data['expiresAt'];
@@ -22724,7 +23010,9 @@ class InputEntitlementsInsertInput {
     }
     if (data.containsKey('store')) {
       final l$store = data['store'];
-      result$data['store'] = (l$store as String?);
+      result$data['store'] = l$store == null
+          ? null
+          : fromJsonEnumEntitlementStore((l$store as String));
     }
     if (data.containsKey('updatedAt')) {
       final l$updatedAt = data['updatedAt'];
@@ -22739,15 +23027,15 @@ class InputEntitlementsInsertInput {
 
   String? get profileId => (_$data['profileId'] as String?);
 
-  String? get plan => (_$data['plan'] as String?);
+  EnumEntitlementPlan? get plan => (_$data['plan'] as EnumEntitlementPlan?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumEntitlementStatus? get status => (_$data['status'] as EnumEntitlementStatus?);
 
   DateTime? get expiresAt => (_$data['expiresAt'] as DateTime?);
 
   bool? get willRenew => (_$data['willRenew'] as bool?);
 
-  String? get store => (_$data['store'] as String?);
+  EnumEntitlementStore? get store => (_$data['store'] as EnumEntitlementStore?);
 
   DateTime? get updatedAt => (_$data['updatedAt'] as DateTime?);
 
@@ -22759,11 +23047,11 @@ class InputEntitlementsInsertInput {
     }
     if (_$data.containsKey('plan')) {
       final l$plan = plan;
-      result$data['plan'] = l$plan;
+      result$data['plan'] = l$plan == null ? null : toJsonEnumEntitlementPlan(l$plan);
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumEntitlementStatus(l$status);
     }
     if (_$data.containsKey('expiresAt')) {
       final l$expiresAt = expiresAt;
@@ -22777,7 +23065,7 @@ class InputEntitlementsInsertInput {
     }
     if (_$data.containsKey('store')) {
       final l$store = store;
-      result$data['store'] = l$store;
+      result$data['store'] = l$store == null ? null : toJsonEnumEntitlementStore(l$store);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
@@ -23089,14 +23377,298 @@ class InputEntitlementsOrderBy {
   }
 }
 
+class InputEntitlementStatusFilter {
+  factory InputEntitlementStatusFilter({
+    EnumEntitlementStatus? eq,
+    List<EnumEntitlementStatus>? $in,
+    EnumFilterIs? $is,
+    EnumEntitlementStatus? neq,
+  }) => InputEntitlementStatusFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputEntitlementStatusFilter._(this._$data);
+
+  factory InputEntitlementStatusFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumEntitlementStatus((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumEntitlementStatus((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumEntitlementStatus((l$neq as String));
+    }
+    return InputEntitlementStatusFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumEntitlementStatus? get eq => (_$data['eq'] as EnumEntitlementStatus?);
+
+  List<EnumEntitlementStatus>? get $in => (_$data['in'] as List<EnumEntitlementStatus>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumEntitlementStatus? get neq => (_$data['neq'] as EnumEntitlementStatus?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumEntitlementStatus(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumEntitlementStatus(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumEntitlementStatus(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputEntitlementStatusFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
+class InputEntitlementStoreFilter {
+  factory InputEntitlementStoreFilter({
+    EnumEntitlementStore? eq,
+    List<EnumEntitlementStore>? $in,
+    EnumFilterIs? $is,
+    EnumEntitlementStore? neq,
+  }) => InputEntitlementStoreFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputEntitlementStoreFilter._(this._$data);
+
+  factory InputEntitlementStoreFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumEntitlementStore((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumEntitlementStore((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumEntitlementStore((l$neq as String));
+    }
+    return InputEntitlementStoreFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumEntitlementStore? get eq => (_$data['eq'] as EnumEntitlementStore?);
+
+  List<EnumEntitlementStore>? get $in => (_$data['in'] as List<EnumEntitlementStore>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumEntitlementStore? get neq => (_$data['neq'] as EnumEntitlementStore?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumEntitlementStore(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumEntitlementStore(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumEntitlementStore(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputEntitlementStoreFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputEntitlementsUpdateInput {
   factory InputEntitlementsUpdateInput({
     String? profileId,
-    String? plan,
-    String? status,
+    EnumEntitlementPlan? plan,
+    EnumEntitlementStatus? status,
     DateTime? expiresAt,
     bool? willRenew,
-    String? store,
+    EnumEntitlementStore? store,
     DateTime? updatedAt,
   }) => InputEntitlementsUpdateInput._({
     if (profileId != null) r'profileId': profileId,
@@ -23118,11 +23690,13 @@ class InputEntitlementsUpdateInput {
     }
     if (data.containsKey('plan')) {
       final l$plan = data['plan'];
-      result$data['plan'] = (l$plan as String?);
+      result$data['plan'] = l$plan == null ? null : fromJsonEnumEntitlementPlan((l$plan as String));
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumEntitlementStatus((l$status as String));
     }
     if (data.containsKey('expiresAt')) {
       final l$expiresAt = data['expiresAt'];
@@ -23136,7 +23710,9 @@ class InputEntitlementsUpdateInput {
     }
     if (data.containsKey('store')) {
       final l$store = data['store'];
-      result$data['store'] = (l$store as String?);
+      result$data['store'] = l$store == null
+          ? null
+          : fromJsonEnumEntitlementStore((l$store as String));
     }
     if (data.containsKey('updatedAt')) {
       final l$updatedAt = data['updatedAt'];
@@ -23151,15 +23727,15 @@ class InputEntitlementsUpdateInput {
 
   String? get profileId => (_$data['profileId'] as String?);
 
-  String? get plan => (_$data['plan'] as String?);
+  EnumEntitlementPlan? get plan => (_$data['plan'] as EnumEntitlementPlan?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumEntitlementStatus? get status => (_$data['status'] as EnumEntitlementStatus?);
 
   DateTime? get expiresAt => (_$data['expiresAt'] as DateTime?);
 
   bool? get willRenew => (_$data['willRenew'] as bool?);
 
-  String? get store => (_$data['store'] as String?);
+  EnumEntitlementStore? get store => (_$data['store'] as EnumEntitlementStore?);
 
   DateTime? get updatedAt => (_$data['updatedAt'] as DateTime?);
 
@@ -23171,11 +23747,11 @@ class InputEntitlementsUpdateInput {
     }
     if (_$data.containsKey('plan')) {
       final l$plan = plan;
-      result$data['plan'] = l$plan;
+      result$data['plan'] = l$plan == null ? null : toJsonEnumEntitlementPlan(l$plan);
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumEntitlementStatus(l$status);
     }
     if (_$data.containsKey('expiresAt')) {
       final l$expiresAt = expiresAt;
@@ -23189,7 +23765,7 @@ class InputEntitlementsUpdateInput {
     }
     if (_$data.containsKey('store')) {
       final l$store = store;
-      result$data['store'] = l$store;
+      result$data['store'] = l$store == null ? null : toJsonEnumEntitlementStore(l$store);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
@@ -53148,8 +53724,8 @@ class InputPlusStateFilter {
     InputUUIDFilter? profileId,
     InputBooleanFilter? hasPlus,
     InputBooleanFilter? paidByPartner,
-    InputStringFilter? plan,
-    InputStringFilter? status,
+    InputEntitlementPlanFilter? plan,
+    InputEntitlementStatusFilter? status,
     InputDatetimeFilter? expiresAt,
     InputIntFilter? slipsLeftThisMonth,
     InputIntFilter? cardsLeftThisMonth,
@@ -53198,13 +53774,13 @@ class InputPlusStateFilter {
       final l$plan = data['plan'];
       result$data['plan'] = l$plan == null
           ? null
-          : InputStringFilter.fromJson((l$plan as Map<String, dynamic>));
+          : InputEntitlementPlanFilter.fromJson((l$plan as Map<String, dynamic>));
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
       result$data['status'] = l$status == null
           ? null
-          : InputStringFilter.fromJson((l$status as Map<String, dynamic>));
+          : InputEntitlementStatusFilter.fromJson((l$status as Map<String, dynamic>));
     }
     if (data.containsKey('expiresAt')) {
       final l$expiresAt = data['expiresAt'];
@@ -53259,9 +53835,9 @@ class InputPlusStateFilter {
 
   InputBooleanFilter? get paidByPartner => (_$data['paidByPartner'] as InputBooleanFilter?);
 
-  InputStringFilter? get plan => (_$data['plan'] as InputStringFilter?);
+  InputEntitlementPlanFilter? get plan => (_$data['plan'] as InputEntitlementPlanFilter?);
 
-  InputStringFilter? get status => (_$data['status'] as InputStringFilter?);
+  InputEntitlementStatusFilter? get status => (_$data['status'] as InputEntitlementStatusFilter?);
 
   InputDatetimeFilter? get expiresAt => (_$data['expiresAt'] as InputDatetimeFilter?);
 
@@ -53505,8 +54081,8 @@ class InputPlusStateInsertInput {
     String? profileId,
     bool? hasPlus,
     bool? paidByPartner,
-    String? plan,
-    String? status,
+    EnumEntitlementPlan? plan,
+    EnumEntitlementStatus? status,
     DateTime? expiresAt,
     int? slipsLeftThisMonth,
     int? cardsLeftThisMonth,
@@ -53539,11 +54115,13 @@ class InputPlusStateInsertInput {
     }
     if (data.containsKey('plan')) {
       final l$plan = data['plan'];
-      result$data['plan'] = (l$plan as String?);
+      result$data['plan'] = l$plan == null ? null : fromJsonEnumEntitlementPlan((l$plan as String));
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumEntitlementStatus((l$status as String));
     }
     if (data.containsKey('expiresAt')) {
       final l$expiresAt = data['expiresAt'];
@@ -53570,9 +54148,9 @@ class InputPlusStateInsertInput {
 
   bool? get paidByPartner => (_$data['paidByPartner'] as bool?);
 
-  String? get plan => (_$data['plan'] as String?);
+  EnumEntitlementPlan? get plan => (_$data['plan'] as EnumEntitlementPlan?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumEntitlementStatus? get status => (_$data['status'] as EnumEntitlementStatus?);
 
   DateTime? get expiresAt => (_$data['expiresAt'] as DateTime?);
 
@@ -53596,11 +54174,11 @@ class InputPlusStateInsertInput {
     }
     if (_$data.containsKey('plan')) {
       final l$plan = plan;
-      result$data['plan'] = l$plan;
+      result$data['plan'] = l$plan == null ? null : toJsonEnumEntitlementPlan(l$plan);
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumEntitlementStatus(l$status);
     }
     if (_$data.containsKey('expiresAt')) {
       final l$expiresAt = expiresAt;
@@ -53967,8 +54545,8 @@ class InputPlusStateUpdateInput {
     String? profileId,
     bool? hasPlus,
     bool? paidByPartner,
-    String? plan,
-    String? status,
+    EnumEntitlementPlan? plan,
+    EnumEntitlementStatus? status,
     DateTime? expiresAt,
     int? slipsLeftThisMonth,
     int? cardsLeftThisMonth,
@@ -54001,11 +54579,13 @@ class InputPlusStateUpdateInput {
     }
     if (data.containsKey('plan')) {
       final l$plan = data['plan'];
-      result$data['plan'] = (l$plan as String?);
+      result$data['plan'] = l$plan == null ? null : fromJsonEnumEntitlementPlan((l$plan as String));
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumEntitlementStatus((l$status as String));
     }
     if (data.containsKey('expiresAt')) {
       final l$expiresAt = data['expiresAt'];
@@ -54032,9 +54612,9 @@ class InputPlusStateUpdateInput {
 
   bool? get paidByPartner => (_$data['paidByPartner'] as bool?);
 
-  String? get plan => (_$data['plan'] as String?);
+  EnumEntitlementPlan? get plan => (_$data['plan'] as EnumEntitlementPlan?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumEntitlementStatus? get status => (_$data['status'] as EnumEntitlementStatus?);
 
   DateTime? get expiresAt => (_$data['expiresAt'] as DateTime?);
 
@@ -54058,11 +54638,11 @@ class InputPlusStateUpdateInput {
     }
     if (_$data.containsKey('plan')) {
       final l$plan = plan;
-      result$data['plan'] = l$plan;
+      result$data['plan'] = l$plan == null ? null : toJsonEnumEntitlementPlan(l$plan);
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumEntitlementStatus(l$status);
     }
     if (_$data.containsKey('expiresAt')) {
       final l$expiresAt = expiresAt;
@@ -81692,6 +82272,108 @@ EnumConsentKind fromJsonEnumConsentKind(String value) {
   }
 }
 
+enum EnumContentKind {
+  question,
+  daily_idea,
+  date_idea,
+  touch_card,
+  spice_card,
+  mission,
+  me_or_you,
+  how_well,
+  never_have_we,
+  program,
+  lesson,
+  mood_tip,
+  repair_card,
+  ritual_idea,
+  holiday,
+  notification,
+  $unknown;
+
+  factory EnumContentKind.fromJson(String value) => fromJsonEnumContentKind(value);
+
+  String toJson() => toJsonEnumContentKind(this);
+}
+
+String toJsonEnumContentKind(EnumContentKind e) {
+  switch (e) {
+    case EnumContentKind.question:
+      return r'question';
+    case EnumContentKind.daily_idea:
+      return r'daily_idea';
+    case EnumContentKind.date_idea:
+      return r'date_idea';
+    case EnumContentKind.touch_card:
+      return r'touch_card';
+    case EnumContentKind.spice_card:
+      return r'spice_card';
+    case EnumContentKind.mission:
+      return r'mission';
+    case EnumContentKind.me_or_you:
+      return r'me_or_you';
+    case EnumContentKind.how_well:
+      return r'how_well';
+    case EnumContentKind.never_have_we:
+      return r'never_have_we';
+    case EnumContentKind.program:
+      return r'program';
+    case EnumContentKind.lesson:
+      return r'lesson';
+    case EnumContentKind.mood_tip:
+      return r'mood_tip';
+    case EnumContentKind.repair_card:
+      return r'repair_card';
+    case EnumContentKind.ritual_idea:
+      return r'ritual_idea';
+    case EnumContentKind.holiday:
+      return r'holiday';
+    case EnumContentKind.notification:
+      return r'notification';
+    case EnumContentKind.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumContentKind fromJsonEnumContentKind(String value) {
+  switch (value) {
+    case r'question':
+      return EnumContentKind.question;
+    case r'daily_idea':
+      return EnumContentKind.daily_idea;
+    case r'date_idea':
+      return EnumContentKind.date_idea;
+    case r'touch_card':
+      return EnumContentKind.touch_card;
+    case r'spice_card':
+      return EnumContentKind.spice_card;
+    case r'mission':
+      return EnumContentKind.mission;
+    case r'me_or_you':
+      return EnumContentKind.me_or_you;
+    case r'how_well':
+      return EnumContentKind.how_well;
+    case r'never_have_we':
+      return EnumContentKind.never_have_we;
+    case r'program':
+      return EnumContentKind.program;
+    case r'lesson':
+      return EnumContentKind.lesson;
+    case r'mood_tip':
+      return EnumContentKind.mood_tip;
+    case r'repair_card':
+      return EnumContentKind.repair_card;
+    case r'ritual_idea':
+      return EnumContentKind.ritual_idea;
+    case r'holiday':
+      return EnumContentKind.holiday;
+    case r'notification':
+      return EnumContentKind.notification;
+    default:
+      return EnumContentKind.$unknown;
+  }
+}
+
 enum EnumConversationGuide {
   free,
   transition,
@@ -81879,6 +82561,132 @@ EnumDevicePlatform fromJsonEnumDevicePlatform(String value) {
       return EnumDevicePlatform.android;
     default:
       return EnumDevicePlatform.$unknown;
+  }
+}
+
+enum EnumEntitlementPlan {
+  plus_monthly,
+  plus_annual,
+  plus_gift,
+  $unknown;
+
+  factory EnumEntitlementPlan.fromJson(String value) => fromJsonEnumEntitlementPlan(value);
+
+  String toJson() => toJsonEnumEntitlementPlan(this);
+}
+
+String toJsonEnumEntitlementPlan(EnumEntitlementPlan e) {
+  switch (e) {
+    case EnumEntitlementPlan.plus_monthly:
+      return r'plus_monthly';
+    case EnumEntitlementPlan.plus_annual:
+      return r'plus_annual';
+    case EnumEntitlementPlan.plus_gift:
+      return r'plus_gift';
+    case EnumEntitlementPlan.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumEntitlementPlan fromJsonEnumEntitlementPlan(String value) {
+  switch (value) {
+    case r'plus_monthly':
+      return EnumEntitlementPlan.plus_monthly;
+    case r'plus_annual':
+      return EnumEntitlementPlan.plus_annual;
+    case r'plus_gift':
+      return EnumEntitlementPlan.plus_gift;
+    default:
+      return EnumEntitlementPlan.$unknown;
+  }
+}
+
+enum EnumEntitlementStatus {
+  trialing,
+  active,
+  grace,
+  billing_issue,
+  expired,
+  refunded,
+  $unknown;
+
+  factory EnumEntitlementStatus.fromJson(String value) => fromJsonEnumEntitlementStatus(value);
+
+  String toJson() => toJsonEnumEntitlementStatus(this);
+}
+
+String toJsonEnumEntitlementStatus(EnumEntitlementStatus e) {
+  switch (e) {
+    case EnumEntitlementStatus.trialing:
+      return r'trialing';
+    case EnumEntitlementStatus.active:
+      return r'active';
+    case EnumEntitlementStatus.grace:
+      return r'grace';
+    case EnumEntitlementStatus.billing_issue:
+      return r'billing_issue';
+    case EnumEntitlementStatus.expired:
+      return r'expired';
+    case EnumEntitlementStatus.refunded:
+      return r'refunded';
+    case EnumEntitlementStatus.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumEntitlementStatus fromJsonEnumEntitlementStatus(String value) {
+  switch (value) {
+    case r'trialing':
+      return EnumEntitlementStatus.trialing;
+    case r'active':
+      return EnumEntitlementStatus.active;
+    case r'grace':
+      return EnumEntitlementStatus.grace;
+    case r'billing_issue':
+      return EnumEntitlementStatus.billing_issue;
+    case r'expired':
+      return EnumEntitlementStatus.expired;
+    case r'refunded':
+      return EnumEntitlementStatus.refunded;
+    default:
+      return EnumEntitlementStatus.$unknown;
+  }
+}
+
+enum EnumEntitlementStore {
+  app_store,
+  play_store,
+  promo,
+  $unknown;
+
+  factory EnumEntitlementStore.fromJson(String value) => fromJsonEnumEntitlementStore(value);
+
+  String toJson() => toJsonEnumEntitlementStore(this);
+}
+
+String toJsonEnumEntitlementStore(EnumEntitlementStore e) {
+  switch (e) {
+    case EnumEntitlementStore.app_store:
+      return r'app_store';
+    case EnumEntitlementStore.play_store:
+      return r'play_store';
+    case EnumEntitlementStore.promo:
+      return r'promo';
+    case EnumEntitlementStore.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumEntitlementStore fromJsonEnumEntitlementStore(String value) {
+  switch (value) {
+    case r'app_store':
+      return EnumEntitlementStore.app_store;
+    case r'play_store':
+      return EnumEntitlementStore.play_store;
+    case r'promo':
+      return EnumEntitlementStore.promo;
+    default:
+      return EnumEntitlementStore.$unknown;
   }
 }
 
