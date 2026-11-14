@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -11,9 +13,9 @@ class VariablesMutationUpdateHistoryMemory {
     required String title,
     String? body,
     required DateTime happenedOn,
-    required String datePrecision,
+    required EnumDatePrecision datePrecision,
     String? place,
-    required String origin,
+    required EnumMemoryOrigin origin,
   }) => VariablesMutationUpdateHistoryMemory._({
     r'id': id,
     if (coupleId != null) r'coupleId': coupleId,
@@ -44,13 +46,13 @@ class VariablesMutationUpdateHistoryMemory {
     final l$happenedOn = data['happenedOn'];
     result$data['happenedOn'] = DateTime.parse((l$happenedOn as String));
     final l$datePrecision = data['datePrecision'];
-    result$data['datePrecision'] = (l$datePrecision as String);
+    result$data['datePrecision'] = fromJsonEnumDatePrecision((l$datePrecision as String));
     if (data.containsKey('place')) {
       final l$place = data['place'];
       result$data['place'] = (l$place as String?);
     }
     final l$origin = data['origin'];
-    result$data['origin'] = (l$origin as String);
+    result$data['origin'] = fromJsonEnumMemoryOrigin((l$origin as String));
     return VariablesMutationUpdateHistoryMemory._(result$data);
   }
 
@@ -66,11 +68,11 @@ class VariablesMutationUpdateHistoryMemory {
 
   DateTime get happenedOn => (_$data['happenedOn'] as DateTime);
 
-  String get datePrecision => (_$data['datePrecision'] as String);
+  EnumDatePrecision get datePrecision => (_$data['datePrecision'] as EnumDatePrecision);
 
   String? get place => (_$data['place'] as String?);
 
-  String get origin => (_$data['origin'] as String);
+  EnumMemoryOrigin get origin => (_$data['origin'] as EnumMemoryOrigin);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -89,13 +91,13 @@ class VariablesMutationUpdateHistoryMemory {
     final l$happenedOn = happenedOn;
     result$data['happenedOn'] = ((v) => v.toIso8601String().substring(0, 10))(l$happenedOn);
     final l$datePrecision = datePrecision;
-    result$data['datePrecision'] = l$datePrecision;
+    result$data['datePrecision'] = toJsonEnumDatePrecision(l$datePrecision);
     if (_$data.containsKey('place')) {
       final l$place = place;
       result$data['place'] = l$place;
     }
     final l$origin = origin;
-    result$data['origin'] = l$origin;
+    result$data['origin'] = toJsonEnumMemoryOrigin(l$origin);
     return result$data;
   }
 
@@ -279,7 +281,7 @@ const documentNodeMutationUpdateHistoryMemory = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'datePrecision')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'DatePrecision'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -291,7 +293,7 @@ const documentNodeMutationUpdateHistoryMemory = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'origin')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'MemoryOrigin'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

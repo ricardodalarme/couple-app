@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
@@ -25,7 +27,7 @@ class FragmentProfileFragment {
       id: (l$id as String),
       displayName: (l$displayName as String?),
       avatarPath: (l$avatarPath as String?),
-      avatarKind: (l$avatarKind as String),
+      avatarKind: fromJsonEnumAvatarKind((l$avatarKind as String)),
       city: (l$city as String?),
       pronouns: (l$pronouns as String?),
       $__typename: (l$$__typename as String),
@@ -38,7 +40,7 @@ class FragmentProfileFragment {
 
   final String? avatarPath;
 
-  final String avatarKind;
+  final EnumAvatarKind avatarKind;
 
   final String? city;
 
@@ -55,7 +57,7 @@ class FragmentProfileFragment {
     final l$avatarPath = avatarPath;
     _resultData['avatarPath'] = l$avatarPath;
     final l$avatarKind = avatarKind;
-    _resultData['avatarKind'] = l$avatarKind;
+    _resultData['avatarKind'] = toJsonEnumAvatarKind(l$avatarKind);
     final l$city = city;
     _resultData['city'] = l$city;
     final l$pronouns = pronouns;

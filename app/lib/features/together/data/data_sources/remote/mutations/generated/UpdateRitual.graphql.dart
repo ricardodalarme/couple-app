@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -8,7 +10,7 @@ class VariablesMutationUpdateRitual {
   factory VariablesMutationUpdateRitual({
     required String id,
     required String title,
-    required String cadence,
+    required EnumRitualCadence cadence,
     int? weekday,
     String? atTime,
     required bool reminder,
@@ -30,7 +32,7 @@ class VariablesMutationUpdateRitual {
     final l$title = data['title'];
     result$data['title'] = (l$title as String);
     final l$cadence = data['cadence'];
-    result$data['cadence'] = (l$cadence as String);
+    result$data['cadence'] = fromJsonEnumRitualCadence((l$cadence as String));
     if (data.containsKey('weekday')) {
       final l$weekday = data['weekday'];
       result$data['weekday'] = (l$weekday as int?);
@@ -50,7 +52,7 @@ class VariablesMutationUpdateRitual {
 
   String get title => (_$data['title'] as String);
 
-  String get cadence => (_$data['cadence'] as String);
+  EnumRitualCadence get cadence => (_$data['cadence'] as EnumRitualCadence);
 
   int? get weekday => (_$data['weekday'] as int?);
 
@@ -65,7 +67,7 @@ class VariablesMutationUpdateRitual {
     final l$title = title;
     result$data['title'] = l$title;
     final l$cadence = cadence;
-    result$data['cadence'] = l$cadence;
+    result$data['cadence'] = toJsonEnumRitualCadence(l$cadence);
     if (_$data.containsKey('weekday')) {
       final l$weekday = weekday;
       result$data['weekday'] = l$weekday;
@@ -221,7 +223,7 @@ const documentNodeMutationUpdateRitual = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'cadence')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'RitualCadence'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

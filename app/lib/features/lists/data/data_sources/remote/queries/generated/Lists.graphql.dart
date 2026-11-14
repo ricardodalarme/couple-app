@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -424,7 +426,7 @@ class QueryListslistsCollectionedgesnode {
       id: (l$id as String),
       authorId: (l$authorId as String),
       title: (l$title as String),
-      kind: (l$kind as String),
+      kind: fromJsonEnumListKind((l$kind as String)),
       coupleId: (l$coupleId as String?),
       $__typename: (l$$__typename as String),
     );
@@ -436,7 +438,7 @@ class QueryListslistsCollectionedgesnode {
 
   final String title;
 
-  final String kind;
+  final EnumListKind kind;
 
   final String? coupleId;
 
@@ -451,7 +453,7 @@ class QueryListslistsCollectionedgesnode {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$kind = kind;
-    _resultData['kind'] = l$kind;
+    _resultData['kind'] = toJsonEnumListKind(l$kind);
     final l$coupleId = coupleId;
     _resultData['coupleId'] = l$coupleId;
     final l$$__typename = $__typename;

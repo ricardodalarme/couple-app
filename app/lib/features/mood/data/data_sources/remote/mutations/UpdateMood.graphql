@@ -1,4 +1,4 @@
-mutation UpdateMood($id: UUID!, $mood: String!, $need: String, $share: String!, $day: Date!) {
+mutation UpdateMood($id: UUID!, $mood: Mood!, $need: MoodNeed, $share: MoodShare!, $day: Date!) {
   updateMoodsCollection(
     set: { mood: $mood, need: $need, share: $share }
     filter: { id: { eq: $id }, day: { eq: $day } }

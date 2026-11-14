@@ -340,7 +340,7 @@ class QueryMySettingsmySettings {
       onboardedAt: l$onboardedAt == null ? null : DateTime.parse((l$onboardedAt as String)),
       shareReadReceipts: (l$shareReadReceipts as bool),
       widgetInDiscreet: (l$widgetInDiscreet as bool),
-      heavyDaySharing: (l$heavyDaySharing as String),
+      heavyDaySharing: fromJsonEnumHeavyDaySharing((l$heavyDaySharing as String)),
       phase: l$phase == null ? null : fromJsonEnumRelationshipPhase((l$phase as String)),
       goals: (l$goals as List<dynamic>).map((e) => (e as String?)).toList(),
       locale: (l$locale as String),
@@ -366,7 +366,7 @@ class QueryMySettingsmySettings {
 
   final bool widgetInDiscreet;
 
-  final String heavyDaySharing;
+  final EnumHeavyDaySharing heavyDaySharing;
 
   final EnumRelationshipPhase? phase;
 
@@ -401,7 +401,7 @@ class QueryMySettingsmySettings {
     final l$widgetInDiscreet = widgetInDiscreet;
     _resultData['widgetInDiscreet'] = l$widgetInDiscreet;
     final l$heavyDaySharing = heavyDaySharing;
-    _resultData['heavyDaySharing'] = l$heavyDaySharing;
+    _resultData['heavyDaySharing'] = toJsonEnumHeavyDaySharing(l$heavyDaySharing);
     final l$phase = phase;
     _resultData['phase'] = l$phase == null ? null : toJsonEnumRelationshipPhase(l$phase);
     final l$goals = goals;

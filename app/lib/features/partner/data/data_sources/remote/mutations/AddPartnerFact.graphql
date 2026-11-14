@@ -1,4 +1,4 @@
-mutation AddPartnerFact($id: UUID!, $label: String!, $value: String!, $category: String) {
+mutation AddPartnerFact($id: UUID!, $label: String!, $value: String!, $category: PartnerFactCategory) {
   insertIntoPartnerFactsCollection(
     objects: [{ id: $id, label: $label, value: $value, category: $category }]
   ) {

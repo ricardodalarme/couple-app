@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
@@ -23,8 +25,8 @@ class FragmentGameSessionFragment {
     final l$$__typename = json['__typename'];
     return FragmentGameSessionFragment(
       id: (l$id as String),
-      game: (l$game as String),
-      status: (l$status as String),
+      game: fromJsonEnumGameKind((l$game as String)),
+      status: fromJsonEnumGameStatus((l$status as String)),
       invitedBy: (l$invitedBy as String),
       itemSlugs: (l$itemSlugs as List<dynamic>).map((e) => (e as String?)).toList(),
       createdAt: DateTime.parse((l$createdAt as String)),
@@ -34,9 +36,9 @@ class FragmentGameSessionFragment {
 
   final String id;
 
-  final String game;
+  final EnumGameKind game;
 
-  final String status;
+  final EnumGameStatus status;
 
   final String invitedBy;
 
@@ -51,9 +53,9 @@ class FragmentGameSessionFragment {
     final l$id = id;
     _resultData['id'] = l$id;
     final l$game = game;
-    _resultData['game'] = l$game;
+    _resultData['game'] = toJsonEnumGameKind(l$game);
     final l$status = status;
-    _resultData['status'] = l$status;
+    _resultData['status'] = toJsonEnumGameStatus(l$status);
     final l$invitedBy = invitedBy;
     _resultData['invitedBy'] = l$invitedBy;
     final l$itemSlugs = itemSlugs;

@@ -1,4 +1,4 @@
-mutation UpdateGiftWish($id: UUID!, $title: String!, $note: String, $budget: String) {
+mutation UpdateGiftWish($id: UUID!, $title: String!, $note: String, $budget: GiftBudget) {
   updateGiftIdeasCollection(
     set: { title: $title, note: $note, budget: $budget }
     filter: { id: { eq: $id } }

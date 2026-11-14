@@ -151,7 +151,7 @@ const documentNodeMutationInsertFightStyleResult = DocumentNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'quizKey'),
-                          value: StringValueNode(value: 'conflict_style', isBlock: false),
+                          value: EnumValueNode(name: NameNode(value: 'conflict_style')),
                         ),
                         ObjectFieldNode(
                           name: NameNode(value: 'ranked'),

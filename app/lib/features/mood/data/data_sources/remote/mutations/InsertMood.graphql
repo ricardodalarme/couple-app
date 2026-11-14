@@ -1,4 +1,4 @@
-mutation InsertMood($mood: String!, $need: String, $share: String!, $day: Date!) {
+mutation InsertMood($mood: Mood!, $need: MoodNeed, $share: MoodShare!, $day: Date!) {
   insertIntoMoodsCollection(
     objects: [{ mood: $mood, need: $need, share: $share, day: $day }]
   ) {

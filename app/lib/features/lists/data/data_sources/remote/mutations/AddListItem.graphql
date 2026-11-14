@@ -1,6 +1,6 @@
 mutation AddListItem($id: UUID!, $listId: UUID!, $title: String!, $position: Int!) {
   insertIntoListItemsCollection(
-    objects: [{ id: $id, listId: $listId, title: $title, position: $position, status: "dream" }]
+    objects: [{ id: $id, listId: $listId, title: $title, position: $position, status: dream }]
   ) {
     affectedCount
   }

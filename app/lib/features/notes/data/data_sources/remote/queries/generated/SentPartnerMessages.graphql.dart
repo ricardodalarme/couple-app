@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -552,7 +554,7 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
     final l$$__typename = json['__typename'];
     return QuerySentPartnerMessagespartnerMessagesCollectionedgesnode(
       id: (l$id as String),
-      kind: (l$kind as String),
+      kind: fromJsonEnumPartnerMessageKind((l$kind as String)),
       body: (l$body as String?),
       mediaPath: (l$mediaPath as String?),
       forWidget: (l$forWidget as bool),
@@ -563,7 +565,7 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
 
   final String id;
 
-  final String kind;
+  final EnumPartnerMessageKind kind;
 
   final String? body;
 
@@ -580,7 +582,7 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
     final l$id = id;
     _resultData['id'] = l$id;
     final l$kind = kind;
-    _resultData['kind'] = l$kind;
+    _resultData['kind'] = toJsonEnumPartnerMessageKind(l$kind);
     final l$body = body;
     _resultData['body'] = l$body;
     final l$mediaPath = mediaPath;

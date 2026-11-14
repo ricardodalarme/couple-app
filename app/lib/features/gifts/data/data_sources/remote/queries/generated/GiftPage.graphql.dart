@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -83,7 +85,7 @@ const documentNodeQueryGiftPage = DocumentNode(
                         fields: [
                           ObjectFieldNode(
                             name: NameNode(value: 'eq'),
-                            value: StringValueNode(value: 'wish', isBlock: false),
+                            value: EnumValueNode(name: NameNode(value: 'wish')),
                           ),
                         ],
                       ),
@@ -465,8 +467,8 @@ class QueryGiftPagegiftIdeasCollectionedgesnode {
       coupleId: (l$coupleId as String?),
       title: (l$title as String),
       note: (l$note as String?),
-      budget: (l$budget as String?),
-      status: (l$status as String),
+      budget: l$budget == null ? null : fromJsonEnumGiftBudget((l$budget as String)),
+      status: fromJsonEnumGiftIdeaStatus((l$status as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -481,9 +483,9 @@ class QueryGiftPagegiftIdeasCollectionedgesnode {
 
   final String? note;
 
-  final String? budget;
+  final EnumGiftBudget? budget;
 
-  final String status;
+  final EnumGiftIdeaStatus status;
 
   final String $__typename;
 
@@ -500,9 +502,9 @@ class QueryGiftPagegiftIdeasCollectionedgesnode {
     final l$note = note;
     _resultData['note'] = l$note;
     final l$budget = budget;
-    _resultData['budget'] = l$budget;
+    _resultData['budget'] = l$budget == null ? null : toJsonEnumGiftBudget(l$budget);
     final l$status = status;
-    _resultData['status'] = l$status;
+    _resultData['status'] = toJsonEnumGiftIdeaStatus(l$status);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

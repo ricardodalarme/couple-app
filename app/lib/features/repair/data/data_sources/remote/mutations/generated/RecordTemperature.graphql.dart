@@ -1,11 +1,13 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationRecordTemperature {
-  factory VariablesMutationRecordTemperature({required String level}) =>
+  factory VariablesMutationRecordTemperature({required EnumTemperatureLevel level}) =>
       VariablesMutationRecordTemperature._({r'level': level});
 
   VariablesMutationRecordTemperature._(this._$data);
@@ -13,18 +15,18 @@ class VariablesMutationRecordTemperature {
   factory VariablesMutationRecordTemperature.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$level = data['level'];
-    result$data['level'] = (l$level as String);
+    result$data['level'] = fromJsonEnumTemperatureLevel((l$level as String));
     return VariablesMutationRecordTemperature._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String get level => (_$data['level'] as String);
+  EnumTemperatureLevel get level => (_$data['level'] as EnumTemperatureLevel);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$level = level;
-    result$data['level'] = l$level;
+    result$data['level'] = toJsonEnumTemperatureLevel(l$level);
     return result$data;
   }
 
@@ -123,7 +125,7 @@ const documentNodeMutationRecordTemperature = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'level')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'TemperatureLevel'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

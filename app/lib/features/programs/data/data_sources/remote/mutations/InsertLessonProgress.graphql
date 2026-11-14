@@ -1,7 +1,7 @@
 mutation InsertLessonProgress(
   $programSlug: String!
   $lessonDay: Int!
-  $status: String!
+  $status: LessonStatus!
 ) {
   insertIntoLessonProgressCollection(
     objects: [{ programSlug: $programSlug, lessonDay: $lessonDay, status: $status }]

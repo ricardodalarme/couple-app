@@ -1,6 +1,6 @@
 query GiftPage {
   giftIdeasCollection(
-    filter: { kind: { eq: "wish" } }
+    filter: { kind: { eq: wish } }
     orderBy: [{ createdAt: DescNullsLast }]
     first: 200
   ) {

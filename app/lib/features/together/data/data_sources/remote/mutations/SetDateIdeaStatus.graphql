@@ -1,4 +1,4 @@
-mutation SetDateIdeaStatus($id: UUID!, $status: String!) {
+mutation SetDateIdeaStatus($id: UUID!, $status: DateIdeaStatus!) {
   updateSavedDateIdeasCollection(
     set: { status: $status }
     filter: { id: { eq: $id } }

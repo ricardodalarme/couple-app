@@ -9,7 +9,7 @@ mutation AddSharedDate(
     objects: [
       {
         title: $title
-        kind: "custom"
+        kind: custom
         month: $month
         day: $day
         year: $year

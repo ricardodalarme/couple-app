@@ -568,13 +568,13 @@ class FragmentCardFragmentitemsedgesnodeslip {
     final l$createdAt = json['createdAt'];
     final l$$__typename = json['__typename'];
     return FragmentCardFragmentitemsedgesnodeslip(
-      category: (l$category as String?),
+      category: l$category == null ? null : fromJsonEnumSlipCategory((l$category as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String? category;
+  final EnumSlipCategory? category;
 
   final DateTime createdAt;
 
@@ -583,7 +583,7 @@ class FragmentCardFragmentitemsedgesnodeslip {
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$category = category;
-    _resultData['category'] = l$category;
+    _resultData['category'] = l$category == null ? null : toJsonEnumSlipCategory(l$category);
     final l$createdAt = createdAt;
     _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$$__typename = $__typename;

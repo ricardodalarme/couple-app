@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -876,7 +878,7 @@ class QueryProgramProgresslessonProgressCollectionedgesnode {
     return QueryProgramProgresslessonProgressCollectionedgesnode(
       programSlug: (l$programSlug as String),
       lessonDay: (l$lessonDay as int),
-      status: (l$status as String),
+      status: fromJsonEnumLessonStatus((l$status as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -885,7 +887,7 @@ class QueryProgramProgresslessonProgressCollectionedgesnode {
 
   final int lessonDay;
 
-  final String status;
+  final EnumLessonStatus status;
 
   final String $__typename;
 
@@ -896,7 +898,7 @@ class QueryProgramProgresslessonProgressCollectionedgesnode {
     final l$lessonDay = lessonDay;
     _resultData['lessonDay'] = l$lessonDay;
     final l$status = status;
-    _resultData['status'] = l$status;
+    _resultData['status'] = toJsonEnumLessonStatus(l$status);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

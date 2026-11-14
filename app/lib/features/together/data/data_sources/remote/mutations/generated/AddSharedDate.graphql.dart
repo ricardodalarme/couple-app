@@ -238,7 +238,7 @@ const documentNodeMutationAddSharedDate = DocumentNode(
                         ),
                         ObjectFieldNode(
                           name: NameNode(value: 'kind'),
-                          value: StringValueNode(value: 'custom', isBlock: false),
+                          value: EnumValueNode(name: NameNode(value: 'custom')),
                         ),
                         ObjectFieldNode(
                           name: NameNode(value: 'month'),

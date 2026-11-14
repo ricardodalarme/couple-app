@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -450,10 +452,10 @@ class QueryLearnedItemslearnedItemsCollectionedgesnode {
     final l$$__typename = json['__typename'];
     return QueryLearnedItemslearnedItemsCollectionedgesnode(
       id: (l$id as String),
-      target: (l$target as String),
+      target: fromJsonEnumLearnedItemTarget((l$target as String)),
       text: (l$text as String),
       excerpt: (l$excerpt as String?),
-      status: (l$status as String),
+      status: fromJsonEnumLearnedItemStatus((l$status as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
       $__typename: (l$$__typename as String),
     );
@@ -461,13 +463,13 @@ class QueryLearnedItemslearnedItemsCollectionedgesnode {
 
   final String id;
 
-  final String target;
+  final EnumLearnedItemTarget target;
 
   final String text;
 
   final String? excerpt;
 
-  final String status;
+  final EnumLearnedItemStatus status;
 
   final DateTime createdAt;
 
@@ -478,13 +480,13 @@ class QueryLearnedItemslearnedItemsCollectionedgesnode {
     final l$id = id;
     _resultData['id'] = l$id;
     final l$target = target;
-    _resultData['target'] = l$target;
+    _resultData['target'] = toJsonEnumLearnedItemTarget(l$target);
     final l$text = text;
     _resultData['text'] = l$text;
     final l$excerpt = excerpt;
     _resultData['excerpt'] = l$excerpt;
     final l$status = status;
-    _resultData['status'] = l$status;
+    _resultData['status'] = toJsonEnumLearnedItemStatus(l$status);
     final l$createdAt = createdAt;
     _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$$__typename = $__typename;

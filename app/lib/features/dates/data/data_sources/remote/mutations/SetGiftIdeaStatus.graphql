@@ -1,4 +1,4 @@
-mutation SetGiftIdeaStatus($id: UUID!, $status: String!) {
+mutation SetGiftIdeaStatus($id: UUID!, $status: GiftIdeaStatus!) {
   updateGiftIdeasCollection(set: { status: $status }, filter: { id: { eq: $id } }, atMost: 1) {
     affectedCount
   }

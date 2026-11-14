@@ -1,10 +1,10 @@
 mutation InsertStoryEvent(
   $id: UUID!
   $coupleId: UUID
-  $kind: String!
+  $kind: StoryEventKind!
   $title: String
   $happenedOn: Date!
-  $datePrecision: String!
+  $datePrecision: DatePrecision!
 ) {
   insertIntoStoryEventsCollection(
     objects: [

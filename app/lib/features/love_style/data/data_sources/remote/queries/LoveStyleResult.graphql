@@ -1,5 +1,5 @@
 query LoveStyleResult {
-  quizResultsCollection(filter: { quizKey: { eq: "loved" } }, first: 1) {
+  quizResultsCollection(filter: { quizKey: { eq: loved } }, first: 1) {
     edges {
       node {
         id

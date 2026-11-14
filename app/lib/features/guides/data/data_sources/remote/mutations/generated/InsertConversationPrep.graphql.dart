@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -7,7 +9,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationInsertConversationPrep {
   factory VariablesMutationInsertConversationPrep({
     required String id,
-    required String guide,
+    required EnumConversationGuide guide,
     required String topic,
     String? notes,
     String? draft,
@@ -26,7 +28,7 @@ class VariablesMutationInsertConversationPrep {
     final l$id = data['id'];
     result$data['id'] = (l$id as String);
     final l$guide = data['guide'];
-    result$data['guide'] = (l$guide as String);
+    result$data['guide'] = fromJsonEnumConversationGuide((l$guide as String));
     final l$topic = data['topic'];
     result$data['topic'] = (l$topic as String);
     if (data.containsKey('notes')) {
@@ -44,7 +46,7 @@ class VariablesMutationInsertConversationPrep {
 
   String get id => (_$data['id'] as String);
 
-  String get guide => (_$data['guide'] as String);
+  EnumConversationGuide get guide => (_$data['guide'] as EnumConversationGuide);
 
   String get topic => (_$data['topic'] as String);
 
@@ -57,7 +59,7 @@ class VariablesMutationInsertConversationPrep {
     final l$id = id;
     result$data['id'] = l$id;
     final l$guide = guide;
-    result$data['guide'] = l$guide;
+    result$data['guide'] = toJsonEnumConversationGuide(l$guide);
     final l$topic = topic;
     result$data['topic'] = l$topic;
     if (_$data.containsKey('notes')) {
@@ -208,7 +210,7 @@ const documentNodeMutationInsertConversationPrep = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'guide')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ConversationGuide'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

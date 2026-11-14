@@ -1,7 +1,7 @@
 mutation AddRitual(
   $id: UUID!
   $title: String!
-  $cadence: String!
+  $cadence: RitualCadence!
   $weekday: Int
   $atTime: Time
   $reminder: Boolean!

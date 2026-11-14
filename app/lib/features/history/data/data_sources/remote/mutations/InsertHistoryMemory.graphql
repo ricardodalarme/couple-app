@@ -4,9 +4,9 @@ mutation InsertHistoryMemory(
   $title: String!
   $body: String
   $happenedOn: Date!
-  $datePrecision: String!
+  $datePrecision: DatePrecision!
   $place: String
-  $origin: String!
+  $origin: MemoryOrigin!
 ) {
   insertIntoMemoriesCollection(
     objects: [

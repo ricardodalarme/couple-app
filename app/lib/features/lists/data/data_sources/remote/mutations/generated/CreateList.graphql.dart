@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -8,7 +10,7 @@ class VariablesMutationCreateList {
   factory VariablesMutationCreateList({
     required String id,
     required String title,
-    required String kind,
+    required EnumListKind kind,
     String? coupleId,
   }) => VariablesMutationCreateList._({
     r'id': id,
@@ -26,7 +28,7 @@ class VariablesMutationCreateList {
     final l$title = data['title'];
     result$data['title'] = (l$title as String);
     final l$kind = data['kind'];
-    result$data['kind'] = (l$kind as String);
+    result$data['kind'] = fromJsonEnumListKind((l$kind as String));
     if (data.containsKey('coupleId')) {
       final l$coupleId = data['coupleId'];
       result$data['coupleId'] = (l$coupleId as String?);
@@ -40,7 +42,7 @@ class VariablesMutationCreateList {
 
   String get title => (_$data['title'] as String);
 
-  String get kind => (_$data['kind'] as String);
+  EnumListKind get kind => (_$data['kind'] as EnumListKind);
 
   String? get coupleId => (_$data['coupleId'] as String?);
 
@@ -51,7 +53,7 @@ class VariablesMutationCreateList {
     final l$title = title;
     result$data['title'] = l$title;
     final l$kind = kind;
-    result$data['kind'] = l$kind;
+    result$data['kind'] = toJsonEnumListKind(l$kind);
     if (_$data.containsKey('coupleId')) {
       final l$coupleId = coupleId;
       result$data['coupleId'] = l$coupleId;
@@ -186,7 +188,7 @@ const documentNodeMutationCreateList = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ListKind'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

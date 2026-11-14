@@ -1,4 +1,4 @@
-mutation AddLearnedItem($target: String!, $text: String!, $excerpt: String) {
+mutation AddLearnedItem($target: LearnedItemTarget!, $text: String!, $excerpt: String) {
   insertIntoLearnedItemsCollection(objects: [{ target: $target, text: $text, excerpt: $excerpt }]) {
     records {
       id

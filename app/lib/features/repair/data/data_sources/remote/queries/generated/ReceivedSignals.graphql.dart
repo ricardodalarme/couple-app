@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -545,7 +547,7 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
     final l$$__typename = json['__typename'];
     return QueryReceivedSignalssignalsCollectionedgesnode(
       id: (l$id as String),
-      kind: (l$kind as String),
+      kind: fromJsonEnumSignalKind((l$kind as String)),
       value: (l$value as String?),
       body: (l$body as String?),
       createdAt: DateTime.parse((l$createdAt as String)),
@@ -555,7 +557,7 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
 
   final String id;
 
-  final String kind;
+  final EnumSignalKind kind;
 
   final String? value;
 
@@ -570,7 +572,7 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
     final l$id = id;
     _resultData['id'] = l$id;
     final l$kind = kind;
-    _resultData['kind'] = l$kind;
+    _resultData['kind'] = toJsonEnumSignalKind(l$kind);
     final l$value = value;
     _resultData['value'] = l$value;
     final l$body = body;

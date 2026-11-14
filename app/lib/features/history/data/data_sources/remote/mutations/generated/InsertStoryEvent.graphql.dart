@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -8,10 +10,10 @@ class VariablesMutationInsertStoryEvent {
   factory VariablesMutationInsertStoryEvent({
     required String id,
     String? coupleId,
-    required String kind,
+    required EnumStoryEventKind kind,
     String? title,
     required DateTime happenedOn,
-    required String datePrecision,
+    required EnumDatePrecision datePrecision,
   }) => VariablesMutationInsertStoryEvent._({
     r'id': id,
     if (coupleId != null) r'coupleId': coupleId,
@@ -32,7 +34,7 @@ class VariablesMutationInsertStoryEvent {
       result$data['coupleId'] = (l$coupleId as String?);
     }
     final l$kind = data['kind'];
-    result$data['kind'] = (l$kind as String);
+    result$data['kind'] = fromJsonEnumStoryEventKind((l$kind as String));
     if (data.containsKey('title')) {
       final l$title = data['title'];
       result$data['title'] = (l$title as String?);
@@ -40,7 +42,7 @@ class VariablesMutationInsertStoryEvent {
     final l$happenedOn = data['happenedOn'];
     result$data['happenedOn'] = DateTime.parse((l$happenedOn as String));
     final l$datePrecision = data['datePrecision'];
-    result$data['datePrecision'] = (l$datePrecision as String);
+    result$data['datePrecision'] = fromJsonEnumDatePrecision((l$datePrecision as String));
     return VariablesMutationInsertStoryEvent._(result$data);
   }
 
@@ -50,13 +52,13 @@ class VariablesMutationInsertStoryEvent {
 
   String? get coupleId => (_$data['coupleId'] as String?);
 
-  String get kind => (_$data['kind'] as String);
+  EnumStoryEventKind get kind => (_$data['kind'] as EnumStoryEventKind);
 
   String? get title => (_$data['title'] as String?);
 
   DateTime get happenedOn => (_$data['happenedOn'] as DateTime);
 
-  String get datePrecision => (_$data['datePrecision'] as String);
+  EnumDatePrecision get datePrecision => (_$data['datePrecision'] as EnumDatePrecision);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -67,7 +69,7 @@ class VariablesMutationInsertStoryEvent {
       result$data['coupleId'] = l$coupleId;
     }
     final l$kind = kind;
-    result$data['kind'] = l$kind;
+    result$data['kind'] = toJsonEnumStoryEventKind(l$kind);
     if (_$data.containsKey('title')) {
       final l$title = title;
       result$data['title'] = l$title;
@@ -75,7 +77,7 @@ class VariablesMutationInsertStoryEvent {
     final l$happenedOn = happenedOn;
     result$data['happenedOn'] = ((v) => v.toIso8601String().substring(0, 10))(l$happenedOn);
     final l$datePrecision = datePrecision;
-    result$data['datePrecision'] = l$datePrecision;
+    result$data['datePrecision'] = toJsonEnumDatePrecision(l$datePrecision);
     return result$data;
   }
 
@@ -223,7 +225,7 @@ const documentNodeMutationInsertStoryEvent = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'StoryEventKind'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -241,7 +243,7 @@ const documentNodeMutationInsertStoryEvent = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'datePrecision')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'DatePrecision'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

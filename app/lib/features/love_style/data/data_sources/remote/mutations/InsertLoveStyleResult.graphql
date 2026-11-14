@@ -1,5 +1,5 @@
 mutation InsertLoveStyleResult($ranked: [String]!) {
-  insertIntoQuizResultsCollection(objects: [{ quizKey: "loved", ranked: $ranked }]) {
+  insertIntoQuizResultsCollection(objects: [{ quizKey: loved, ranked: $ranked }]) {
     records {
       id
       ranked

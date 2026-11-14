@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -9,7 +11,7 @@ class VariablesMutationUpdateHistoryDate {
     required String id,
     String? coupleId,
     required String title,
-    required String kind,
+    required EnumImportantDateKind kind,
     required int month,
     required int day,
     int? year,
@@ -38,7 +40,7 @@ class VariablesMutationUpdateHistoryDate {
     final l$title = data['title'];
     result$data['title'] = (l$title as String);
     final l$kind = data['kind'];
-    result$data['kind'] = (l$kind as String);
+    result$data['kind'] = fromJsonEnumImportantDateKind((l$kind as String));
     final l$month = data['month'];
     result$data['month'] = (l$month as int);
     final l$day = data['day'];
@@ -60,7 +62,7 @@ class VariablesMutationUpdateHistoryDate {
 
   String get title => (_$data['title'] as String);
 
-  String get kind => (_$data['kind'] as String);
+  EnumImportantDateKind get kind => (_$data['kind'] as EnumImportantDateKind);
 
   int get month => (_$data['month'] as int);
 
@@ -81,7 +83,7 @@ class VariablesMutationUpdateHistoryDate {
     final l$title = title;
     result$data['title'] = l$title;
     final l$kind = kind;
-    result$data['kind'] = l$kind;
+    result$data['kind'] = toJsonEnumImportantDateKind(l$kind);
     final l$month = month;
     result$data['month'] = l$month;
     final l$day = day;
@@ -261,7 +263,7 @@ const documentNodeMutationUpdateHistoryDate = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ImportantDateKind'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

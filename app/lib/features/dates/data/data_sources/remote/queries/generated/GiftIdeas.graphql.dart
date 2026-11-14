@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -137,7 +139,7 @@ const documentNodeQueryGiftIdeas = DocumentNode(
                         fields: [
                           ObjectFieldNode(
                             name: NameNode(value: 'eq'),
-                            value: StringValueNode(value: 'idea', isBlock: false),
+                            value: EnumValueNode(name: NameNode(value: 'idea')),
                           ),
                         ],
                       ),
@@ -517,7 +519,7 @@ class QueryGiftIdeasgiftIdeasCollectionedgesnode {
     return QueryGiftIdeasgiftIdeasCollectionedgesnode(
       id: (l$id as String),
       title: (l$title as String),
-      status: (l$status as String),
+      status: fromJsonEnumGiftIdeaStatus((l$status as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -526,7 +528,7 @@ class QueryGiftIdeasgiftIdeasCollectionedgesnode {
 
   final String title;
 
-  final String status;
+  final EnumGiftIdeaStatus status;
 
   final String $__typename;
 
@@ -537,7 +539,7 @@ class QueryGiftIdeasgiftIdeasCollectionedgesnode {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$status = status;
-    _resultData['status'] = l$status;
+    _resultData['status'] = toJsonEnumGiftIdeaStatus(l$status);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

@@ -154,7 +154,7 @@ const documentNodeMutationPlanDateIdea = DocumentNode(
                   fields: [
                     ObjectFieldNode(
                       name: NameNode(value: 'status'),
-                      value: StringValueNode(value: 'planned', isBlock: false),
+                      value: EnumValueNode(name: NameNode(value: 'planned')),
                     ),
                     ObjectFieldNode(
                       name: NameNode(value: 'plannedFor'),

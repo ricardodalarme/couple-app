@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -7,9 +9,9 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationUpdateMood {
   factory VariablesMutationUpdateMood({
     required String id,
-    required String mood,
-    String? need,
-    required String share,
+    required EnumMood mood,
+    EnumMoodNeed? need,
+    required EnumMoodShare share,
     required DateTime day,
   }) => VariablesMutationUpdateMood._({
     r'id': id,
@@ -26,13 +28,13 @@ class VariablesMutationUpdateMood {
     final l$id = data['id'];
     result$data['id'] = (l$id as String);
     final l$mood = data['mood'];
-    result$data['mood'] = (l$mood as String);
+    result$data['mood'] = fromJsonEnumMood((l$mood as String));
     if (data.containsKey('need')) {
       final l$need = data['need'];
-      result$data['need'] = (l$need as String?);
+      result$data['need'] = l$need == null ? null : fromJsonEnumMoodNeed((l$need as String));
     }
     final l$share = data['share'];
-    result$data['share'] = (l$share as String);
+    result$data['share'] = fromJsonEnumMoodShare((l$share as String));
     final l$day = data['day'];
     result$data['day'] = DateTime.parse((l$day as String));
     return VariablesMutationUpdateMood._(result$data);
@@ -42,11 +44,11 @@ class VariablesMutationUpdateMood {
 
   String get id => (_$data['id'] as String);
 
-  String get mood => (_$data['mood'] as String);
+  EnumMood get mood => (_$data['mood'] as EnumMood);
 
-  String? get need => (_$data['need'] as String?);
+  EnumMoodNeed? get need => (_$data['need'] as EnumMoodNeed?);
 
-  String get share => (_$data['share'] as String);
+  EnumMoodShare get share => (_$data['share'] as EnumMoodShare);
 
   DateTime get day => (_$data['day'] as DateTime);
 
@@ -55,13 +57,13 @@ class VariablesMutationUpdateMood {
     final l$id = id;
     result$data['id'] = l$id;
     final l$mood = mood;
-    result$data['mood'] = l$mood;
+    result$data['mood'] = toJsonEnumMood(l$mood);
     if (_$data.containsKey('need')) {
       final l$need = need;
-      result$data['need'] = l$need;
+      result$data['need'] = l$need == null ? null : toJsonEnumMoodNeed(l$need);
     }
     final l$share = share;
-    result$data['share'] = l$share;
+    result$data['share'] = toJsonEnumMoodShare(l$share);
     final l$day = day;
     result$data['day'] = ((v) => v.toIso8601String().substring(0, 10))(l$day);
     return result$data;
@@ -193,19 +195,19 @@ const documentNodeMutationUpdateMood = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'mood')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'Mood'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'need')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'MoodNeed'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'share')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'MoodShare'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -553,9 +555,9 @@ class MutationUpdateMoodupdateMoodsCollectionrecords {
     return MutationUpdateMoodupdateMoodsCollectionrecords(
       id: (l$id as String),
       day: DateTime.parse((l$day as String)),
-      mood: (l$mood as String),
-      need: (l$need as String?),
-      share: (l$share as String),
+      mood: fromJsonEnumMood((l$mood as String)),
+      need: l$need == null ? null : fromJsonEnumMoodNeed((l$need as String)),
+      share: fromJsonEnumMoodShare((l$share as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -564,11 +566,11 @@ class MutationUpdateMoodupdateMoodsCollectionrecords {
 
   final DateTime day;
 
-  final String mood;
+  final EnumMood mood;
 
-  final String? need;
+  final EnumMoodNeed? need;
 
-  final String share;
+  final EnumMoodShare share;
 
   final String $__typename;
 
@@ -579,11 +581,11 @@ class MutationUpdateMoodupdateMoodsCollectionrecords {
     final l$day = day;
     _resultData['day'] = ((v) => v.toIso8601String().substring(0, 10))(l$day);
     final l$mood = mood;
-    _resultData['mood'] = l$mood;
+    _resultData['mood'] = toJsonEnumMood(l$mood);
     final l$need = need;
-    _resultData['need'] = l$need;
+    _resultData['need'] = l$need == null ? null : toJsonEnumMoodNeed(l$need);
     final l$share = share;
-    _resultData['share'] = l$share;
+    _resultData['share'] = toJsonEnumMoodShare(l$share);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

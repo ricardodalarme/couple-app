@@ -1,4 +1,4 @@
-mutation UpdateAvatarKind($profileId: UUID!, $avatarKind: String!) {
+mutation UpdateAvatarKind($profileId: UUID!, $avatarKind: AvatarKind!) {
   updateProfilesCollection(
     set: { avatarKind: $avatarKind }
     filter: { id: { eq: $profileId } }

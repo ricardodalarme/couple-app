@@ -1,6 +1,6 @@
 mutation PlanDateIdea($id: UUID!, $day: Date!) {
   updateSavedDateIdeasCollection(
-    set: { status: "planned", plannedFor: $day }
+    set: { status: planned, plannedFor: $day }
     filter: { id: { eq: $id } }
     atMost: 1
   ) {

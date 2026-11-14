@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -6,7 +8,7 @@ import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationAddLearnedItem {
   factory VariablesMutationAddLearnedItem({
-    required String target,
+    required EnumLearnedItemTarget target,
     required String text,
     String? excerpt,
   }) => VariablesMutationAddLearnedItem._({
@@ -20,7 +22,7 @@ class VariablesMutationAddLearnedItem {
   factory VariablesMutationAddLearnedItem.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$target = data['target'];
-    result$data['target'] = (l$target as String);
+    result$data['target'] = fromJsonEnumLearnedItemTarget((l$target as String));
     final l$text = data['text'];
     result$data['text'] = (l$text as String);
     if (data.containsKey('excerpt')) {
@@ -32,7 +34,7 @@ class VariablesMutationAddLearnedItem {
 
   Map<String, dynamic> _$data;
 
-  String get target => (_$data['target'] as String);
+  EnumLearnedItemTarget get target => (_$data['target'] as EnumLearnedItemTarget);
 
   String get text => (_$data['text'] as String);
 
@@ -41,7 +43,7 @@ class VariablesMutationAddLearnedItem {
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$target = target;
-    result$data['target'] = l$target;
+    result$data['target'] = toJsonEnumLearnedItemTarget(l$target);
     final l$text = text;
     result$data['text'] = l$text;
     if (_$data.containsKey('excerpt')) {
@@ -155,7 +157,7 @@ const documentNodeMutationAddLearnedItem = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'target')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'LearnedItemTarget'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

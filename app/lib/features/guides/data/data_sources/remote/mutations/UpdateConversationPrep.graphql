@@ -1,6 +1,6 @@
 mutation UpdateConversationPrep(
   $id: UUID!
-  $guide: String!
+  $guide: ConversationGuide!
   $topic: String!
   $notes: String
   $draft: String

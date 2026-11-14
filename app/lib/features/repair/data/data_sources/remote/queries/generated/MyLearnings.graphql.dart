@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -433,7 +435,7 @@ class QueryMyLearningsrepairLearningsCollectionedgesnode {
     final l$$__typename = json['__typename'];
     return QueryMyLearningsrepairLearningsCollectionedgesnode(
       id: (l$id as String),
-      kind: (l$kind as String),
+      kind: fromJsonEnumRepairLearningKind((l$kind as String)),
       note: (l$note as String),
       createdAt: DateTime.parse((l$createdAt as String)),
       $__typename: (l$$__typename as String),
@@ -442,7 +444,7 @@ class QueryMyLearningsrepairLearningsCollectionedgesnode {
 
   final String id;
 
-  final String kind;
+  final EnumRepairLearningKind kind;
 
   final String note;
 
@@ -455,7 +457,7 @@ class QueryMyLearningsrepairLearningsCollectionedgesnode {
     final l$id = id;
     _resultData['id'] = l$id;
     final l$kind = kind;
-    _resultData['kind'] = l$kind;
+    _resultData['kind'] = toJsonEnumRepairLearningKind(l$kind);
     final l$note = note;
     _resultData['note'] = l$note;
     final l$createdAt = createdAt;

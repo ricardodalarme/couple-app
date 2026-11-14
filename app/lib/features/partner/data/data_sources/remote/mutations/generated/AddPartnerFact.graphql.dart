@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -9,7 +11,7 @@ class VariablesMutationAddPartnerFact {
     required String id,
     required String label,
     required String value,
-    String? category,
+    EnumPartnerFactCategory? category,
   }) => VariablesMutationAddPartnerFact._({
     r'id': id,
     r'label': label,
@@ -29,7 +31,9 @@ class VariablesMutationAddPartnerFact {
     result$data['value'] = (l$value as String);
     if (data.containsKey('category')) {
       final l$category = data['category'];
-      result$data['category'] = (l$category as String?);
+      result$data['category'] = l$category == null
+          ? null
+          : fromJsonEnumPartnerFactCategory((l$category as String));
     }
     return VariablesMutationAddPartnerFact._(result$data);
   }
@@ -42,7 +46,7 @@ class VariablesMutationAddPartnerFact {
 
   String get value => (_$data['value'] as String);
 
-  String? get category => (_$data['category'] as String?);
+  EnumPartnerFactCategory? get category => (_$data['category'] as EnumPartnerFactCategory?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -54,7 +58,9 @@ class VariablesMutationAddPartnerFact {
     result$data['value'] = l$value;
     if (_$data.containsKey('category')) {
       final l$category = category;
-      result$data['category'] = l$category;
+      result$data['category'] = l$category == null
+          ? null
+          : toJsonEnumPartnerFactCategory(l$category);
     }
     return result$data;
   }
@@ -192,7 +198,7 @@ const documentNodeMutationAddPartnerFact = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'category')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'PartnerFactCategory'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

@@ -1,13 +1,13 @@
 mutation AddImportantDate(
   $id: UUID!
   $title: String!
-  $kind: String!
+  $kind: ImportantDateKind!
   $month: Int!
   $day: Int!
   $year: Int
   $yearly: Boolean!
   $remindDays: [Int]!
-  $origin: String!
+  $origin: ImportantDateOrigin!
   $holidayKey: String
   $coupleId: UUID
 ) {

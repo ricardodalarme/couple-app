@@ -644,8 +644,8 @@ class QuerySlipDetailslipsCollectionedgesnode {
       feeling: (l$feeling as String?),
       planNote: (l$planNote as String?),
       forCard: (l$forCard as bool),
-      category: (l$category as String?),
-      workArea: (l$workArea as String?),
+      category: l$category == null ? null : fromJsonEnumSlipCategory((l$category as String)),
+      workArea: l$workArea == null ? null : fromJsonEnumWorkArea((l$workArea as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
       archivedAt: l$archivedAt == null ? null : DateTime.parse((l$archivedAt as String)),
       inJar: (l$inJar as bool),
@@ -670,9 +670,9 @@ class QuerySlipDetailslipsCollectionedgesnode {
 
   final bool forCard;
 
-  final String? category;
+  final EnumSlipCategory? category;
 
-  final String? workArea;
+  final EnumWorkArea? workArea;
 
   final DateTime createdAt;
 
@@ -699,9 +699,9 @@ class QuerySlipDetailslipsCollectionedgesnode {
     final l$forCard = forCard;
     _resultData['forCard'] = l$forCard;
     final l$category = category;
-    _resultData['category'] = l$category;
+    _resultData['category'] = l$category == null ? null : toJsonEnumSlipCategory(l$category);
     final l$workArea = workArea;
-    _resultData['workArea'] = l$workArea;
+    _resultData['workArea'] = l$workArea == null ? null : toJsonEnumWorkArea(l$workArea);
     final l$createdAt = createdAt;
     _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$archivedAt = archivedAt;

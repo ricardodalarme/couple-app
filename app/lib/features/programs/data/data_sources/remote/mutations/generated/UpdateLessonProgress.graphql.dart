@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -8,7 +10,7 @@ class VariablesMutationUpdateLessonProgress {
   factory VariablesMutationUpdateLessonProgress({
     required String programSlug,
     required int lessonDay,
-    required String status,
+    required EnumLessonStatus status,
   }) => VariablesMutationUpdateLessonProgress._({
     r'programSlug': programSlug,
     r'lessonDay': lessonDay,
@@ -24,7 +26,7 @@ class VariablesMutationUpdateLessonProgress {
     final l$lessonDay = data['lessonDay'];
     result$data['lessonDay'] = (l$lessonDay as int);
     final l$status = data['status'];
-    result$data['status'] = (l$status as String);
+    result$data['status'] = fromJsonEnumLessonStatus((l$status as String));
     return VariablesMutationUpdateLessonProgress._(result$data);
   }
 
@@ -34,7 +36,7 @@ class VariablesMutationUpdateLessonProgress {
 
   int get lessonDay => (_$data['lessonDay'] as int);
 
-  String get status => (_$data['status'] as String);
+  EnumLessonStatus get status => (_$data['status'] as EnumLessonStatus);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -43,7 +45,7 @@ class VariablesMutationUpdateLessonProgress {
     final l$lessonDay = lessonDay;
     result$data['lessonDay'] = l$lessonDay;
     final l$status = status;
-    result$data['status'] = l$status;
+    result$data['status'] = toJsonEnumLessonStatus(l$status);
     return result$data;
   }
 
@@ -162,7 +164,7 @@ const documentNodeMutationUpdateLessonProgress = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'status')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'LessonStatus'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

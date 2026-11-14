@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -7,7 +9,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationCompleteRepairSession {
   factory VariablesMutationCompleteRepairSession({
     required String id,
-    String? feeling,
+    EnumRepairFeeling? feeling,
     required DateTime completedAt,
   }) => VariablesMutationCompleteRepairSession._({
     r'id': id,
@@ -23,7 +25,9 @@ class VariablesMutationCompleteRepairSession {
     result$data['id'] = (l$id as String);
     if (data.containsKey('feeling')) {
       final l$feeling = data['feeling'];
-      result$data['feeling'] = (l$feeling as String?);
+      result$data['feeling'] = l$feeling == null
+          ? null
+          : fromJsonEnumRepairFeeling((l$feeling as String));
     }
     final l$completedAt = data['completedAt'];
     result$data['completedAt'] = DateTime.parse((l$completedAt as String));
@@ -34,7 +38,7 @@ class VariablesMutationCompleteRepairSession {
 
   String get id => (_$data['id'] as String);
 
-  String? get feeling => (_$data['feeling'] as String?);
+  EnumRepairFeeling? get feeling => (_$data['feeling'] as EnumRepairFeeling?);
 
   DateTime get completedAt => (_$data['completedAt'] as DateTime);
 
@@ -44,7 +48,7 @@ class VariablesMutationCompleteRepairSession {
     result$data['id'] = l$id;
     if (_$data.containsKey('feeling')) {
       final l$feeling = feeling;
-      result$data['feeling'] = l$feeling;
+      result$data['feeling'] = l$feeling == null ? null : toJsonEnumRepairFeeling(l$feeling);
     }
     final l$completedAt = completedAt;
     result$data['completedAt'] = ((v) => v.toUtc().toIso8601String())(l$completedAt);
@@ -167,7 +171,7 @@ const documentNodeMutationCompleteRepairSession = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'feeling')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'RepairFeeling'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

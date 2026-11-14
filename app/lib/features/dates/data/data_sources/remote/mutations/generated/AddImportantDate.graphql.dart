@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -8,13 +10,13 @@ class VariablesMutationAddImportantDate {
   factory VariablesMutationAddImportantDate({
     required String id,
     required String title,
-    required String kind,
+    required EnumImportantDateKind kind,
     required int month,
     required int day,
     int? year,
     required bool yearly,
     required List<int?> remindDays,
-    required String origin,
+    required EnumImportantDateOrigin origin,
     String? holidayKey,
     String? coupleId,
   }) => VariablesMutationAddImportantDate._({
@@ -40,7 +42,7 @@ class VariablesMutationAddImportantDate {
     final l$title = data['title'];
     result$data['title'] = (l$title as String);
     final l$kind = data['kind'];
-    result$data['kind'] = (l$kind as String);
+    result$data['kind'] = fromJsonEnumImportantDateKind((l$kind as String));
     final l$month = data['month'];
     result$data['month'] = (l$month as int);
     final l$day = data['day'];
@@ -54,7 +56,7 @@ class VariablesMutationAddImportantDate {
     final l$remindDays = data['remindDays'];
     result$data['remindDays'] = (l$remindDays as List<dynamic>).map((e) => (e as int?)).toList();
     final l$origin = data['origin'];
-    result$data['origin'] = (l$origin as String);
+    result$data['origin'] = fromJsonEnumImportantDateOrigin((l$origin as String));
     if (data.containsKey('holidayKey')) {
       final l$holidayKey = data['holidayKey'];
       result$data['holidayKey'] = (l$holidayKey as String?);
@@ -72,7 +74,7 @@ class VariablesMutationAddImportantDate {
 
   String get title => (_$data['title'] as String);
 
-  String get kind => (_$data['kind'] as String);
+  EnumImportantDateKind get kind => (_$data['kind'] as EnumImportantDateKind);
 
   int get month => (_$data['month'] as int);
 
@@ -84,7 +86,7 @@ class VariablesMutationAddImportantDate {
 
   List<int?> get remindDays => (_$data['remindDays'] as List<int?>);
 
-  String get origin => (_$data['origin'] as String);
+  EnumImportantDateOrigin get origin => (_$data['origin'] as EnumImportantDateOrigin);
 
   String? get holidayKey => (_$data['holidayKey'] as String?);
 
@@ -97,7 +99,7 @@ class VariablesMutationAddImportantDate {
     final l$title = title;
     result$data['title'] = l$title;
     final l$kind = kind;
-    result$data['kind'] = l$kind;
+    result$data['kind'] = toJsonEnumImportantDateKind(l$kind);
     final l$month = month;
     result$data['month'] = l$month;
     final l$day = day;
@@ -111,7 +113,7 @@ class VariablesMutationAddImportantDate {
     final l$remindDays = remindDays;
     result$data['remindDays'] = l$remindDays.map((e) => e).toList();
     final l$origin = origin;
-    result$data['origin'] = l$origin;
+    result$data['origin'] = toJsonEnumImportantDateOrigin(l$origin);
     if (_$data.containsKey('holidayKey')) {
       final l$holidayKey = holidayKey;
       result$data['holidayKey'] = l$holidayKey;
@@ -317,7 +319,7 @@ const documentNodeMutationAddImportantDate = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ImportantDateKind'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -356,7 +358,7 @@ const documentNodeMutationAddImportantDate = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'origin')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ImportantDateOrigin'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

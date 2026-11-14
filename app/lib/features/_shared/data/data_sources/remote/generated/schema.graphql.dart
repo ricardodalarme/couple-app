@@ -1716,6 +1716,148 @@ class InputAppThemeFilter {
   }
 }
 
+class InputAvatarKindFilter {
+  factory InputAvatarKindFilter({
+    EnumAvatarKind? eq,
+    List<EnumAvatarKind>? $in,
+    EnumFilterIs? $is,
+    EnumAvatarKind? neq,
+  }) => InputAvatarKindFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputAvatarKindFilter._(this._$data);
+
+  factory InputAvatarKindFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumAvatarKind((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumAvatarKind((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumAvatarKind((l$neq as String));
+    }
+    return InputAvatarKindFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumAvatarKind? get eq => (_$data['eq'] as EnumAvatarKind?);
+
+  List<EnumAvatarKind>? get $in => (_$data['in'] as List<EnumAvatarKind>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumAvatarKind? get neq => (_$data['neq'] as EnumAvatarKind?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumAvatarKind(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumAvatarKind(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumAvatarKind(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputAvatarKindFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputBigFloatFilter {
   factory InputBigFloatFilter({
     double? eq,
@@ -3919,6 +4061,148 @@ class InputCapsulesUpdateInput {
   }
 }
 
+class InputCardChannelFilter {
+  factory InputCardChannelFilter({
+    EnumCardChannel? eq,
+    List<EnumCardChannel>? $in,
+    EnumFilterIs? $is,
+    EnumCardChannel? neq,
+  }) => InputCardChannelFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputCardChannelFilter._(this._$data);
+
+  factory InputCardChannelFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumCardChannel((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumCardChannel((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumCardChannel((l$neq as String));
+    }
+    return InputCardChannelFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumCardChannel? get eq => (_$data['eq'] as EnumCardChannel?);
+
+  List<EnumCardChannel>? get $in => (_$data['in'] as List<EnumCardChannel>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumCardChannel? get neq => (_$data['neq'] as EnumCardChannel?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumCardChannel(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumCardChannel(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumCardChannel(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputCardChannelFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputCardItemsFilter {
   factory InputCardItemsFilter({
     InputUUIDFilter? id,
@@ -4739,6 +5023,148 @@ class InputCardItemsUpdateInput {
       _$data.containsKey('body') ? l$body : const {},
       _$data.containsKey('feeling') ? l$feeling : const {},
       _$data.containsKey('position') ? l$position : const {},
+    ]);
+  }
+}
+
+class InputCardKindFilter {
+  factory InputCardKindFilter({
+    EnumCardKind? eq,
+    List<EnumCardKind>? $in,
+    EnumFilterIs? $is,
+    EnumCardKind? neq,
+  }) => InputCardKindFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputCardKindFilter._(this._$data);
+
+  factory InputCardKindFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumCardKind((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumCardKind((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumCardKind((l$neq as String));
+    }
+    return InputCardKindFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumCardKind? get eq => (_$data['eq'] as EnumCardKind?);
+
+  List<EnumCardKind>? get $in => (_$data['in'] as List<EnumCardKind>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumCardKind? get neq => (_$data['neq'] as EnumCardKind?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumCardKind(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumCardKind(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumCardKind(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputCardKindFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
     ]);
   }
 }
@@ -5958,7 +6384,7 @@ class InputCardsFilter {
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
     InputDatetimeFilter? deletedAt,
-    InputStringFilter? kind,
+    InputCardKindFilter? kind,
     InputIDFilter? nodeId,
     List<InputCardsFilter>? and,
     List<InputCardsFilter>? or,
@@ -6056,7 +6482,7 @@ class InputCardsFilter {
       final l$kind = data['kind'];
       result$data['kind'] = l$kind == null
           ? null
-          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
+          : InputCardKindFilter.fromJson((l$kind as Map<String, dynamic>));
     }
     if (data.containsKey('nodeId')) {
       final l$nodeId = data['nodeId'];
@@ -6109,7 +6535,7 @@ class InputCardsFilter {
 
   InputDatetimeFilter? get deletedAt => (_$data['deletedAt'] as InputDatetimeFilter?);
 
-  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
+  InputCardKindFilter? get kind => (_$data['kind'] as InputCardKindFilter?);
 
   InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
 
@@ -6409,7 +6835,7 @@ class InputCardsInsertInput {
     DateTime? createdAt,
     DateTime? updatedAt,
     DateTime? deletedAt,
-    String? kind,
+    EnumCardKind? kind,
   }) => InputCardsInsertInput._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
@@ -6485,7 +6911,7 @@ class InputCardsInsertInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumCardKind((l$kind as String));
     }
     return InputCardsInsertInput._(result$data);
   }
@@ -6514,7 +6940,7 @@ class InputCardsInsertInput {
 
   DateTime? get deletedAt => (_$data['deletedAt'] as DateTime?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumCardKind? get kind => (_$data['kind'] as EnumCardKind?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -6574,7 +7000,7 @@ class InputCardsInsertInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumCardKind(l$kind);
     }
     return result$data;
   }
@@ -7205,7 +7631,7 @@ class InputCardsUpdateInput {
     DateTime? createdAt,
     DateTime? updatedAt,
     DateTime? deletedAt,
-    String? kind,
+    EnumCardKind? kind,
   }) => InputCardsUpdateInput._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
@@ -7281,7 +7707,7 @@ class InputCardsUpdateInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumCardKind((l$kind as String));
     }
     return InputCardsUpdateInput._(result$data);
   }
@@ -7310,7 +7736,7 @@ class InputCardsUpdateInput {
 
   DateTime? get deletedAt => (_$data['deletedAt'] as DateTime?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumCardKind? get kind => (_$data['kind'] as EnumCardKind?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -7370,7 +7796,7 @@ class InputCardsUpdateInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumCardKind(l$kind);
     }
     return result$data;
   }
@@ -11979,11 +12405,153 @@ class InputContentItemsUpdateInput {
   }
 }
 
+class InputConversationGuideFilter {
+  factory InputConversationGuideFilter({
+    EnumConversationGuide? eq,
+    List<EnumConversationGuide>? $in,
+    EnumFilterIs? $is,
+    EnumConversationGuide? neq,
+  }) => InputConversationGuideFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputConversationGuideFilter._(this._$data);
+
+  factory InputConversationGuideFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumConversationGuide((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumConversationGuide((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumConversationGuide((l$neq as String));
+    }
+    return InputConversationGuideFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumConversationGuide? get eq => (_$data['eq'] as EnumConversationGuide?);
+
+  List<EnumConversationGuide>? get $in => (_$data['in'] as List<EnumConversationGuide>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumConversationGuide? get neq => (_$data['neq'] as EnumConversationGuide?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumConversationGuide(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumConversationGuide(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumConversationGuide(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputConversationGuideFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputConversationPrepsFilter {
   factory InputConversationPrepsFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
-    InputStringFilter? guide,
+    InputConversationGuideFilter? guide,
     InputStringFilter? topic,
     InputStringFilter? notes,
     InputStringFilter? draft,
@@ -12028,7 +12596,7 @@ class InputConversationPrepsFilter {
       final l$guide = data['guide'];
       result$data['guide'] = l$guide == null
           ? null
-          : InputStringFilter.fromJson((l$guide as Map<String, dynamic>));
+          : InputConversationGuideFilter.fromJson((l$guide as Map<String, dynamic>));
     }
     if (data.containsKey('topic')) {
       final l$topic = data['topic'];
@@ -12093,7 +12661,7 @@ class InputConversationPrepsFilter {
 
   InputUUIDFilter? get authorId => (_$data['authorId'] as InputUUIDFilter?);
 
-  InputStringFilter? get guide => (_$data['guide'] as InputStringFilter?);
+  InputConversationGuideFilter? get guide => (_$data['guide'] as InputConversationGuideFilter?);
 
   InputStringFilter? get topic => (_$data['topic'] as InputStringFilter?);
 
@@ -12340,7 +12908,7 @@ class InputConversationPrepsInsertInput {
   factory InputConversationPrepsInsertInput({
     String? id,
     String? authorId,
-    String? guide,
+    EnumConversationGuide? guide,
     String? topic,
     String? notes,
     String? draft,
@@ -12371,7 +12939,9 @@ class InputConversationPrepsInsertInput {
     }
     if (data.containsKey('guide')) {
       final l$guide = data['guide'];
-      result$data['guide'] = (l$guide as String?);
+      result$data['guide'] = l$guide == null
+          ? null
+          : fromJsonEnumConversationGuide((l$guide as String));
     }
     if (data.containsKey('topic')) {
       final l$topic = data['topic'];
@@ -12406,7 +12976,7 @@ class InputConversationPrepsInsertInput {
 
   String? get authorId => (_$data['authorId'] as String?);
 
-  String? get guide => (_$data['guide'] as String?);
+  EnumConversationGuide? get guide => (_$data['guide'] as EnumConversationGuide?);
 
   String? get topic => (_$data['topic'] as String?);
 
@@ -12430,7 +13000,7 @@ class InputConversationPrepsInsertInput {
     }
     if (_$data.containsKey('guide')) {
       final l$guide = guide;
-      result$data['guide'] = l$guide;
+      result$data['guide'] = l$guide == null ? null : toJsonEnumConversationGuide(l$guide);
     }
     if (_$data.containsKey('topic')) {
       final l$topic = topic;
@@ -12792,7 +13362,7 @@ class InputConversationPrepsUpdateInput {
   factory InputConversationPrepsUpdateInput({
     String? id,
     String? authorId,
-    String? guide,
+    EnumConversationGuide? guide,
     String? topic,
     String? notes,
     String? draft,
@@ -12823,7 +13393,9 @@ class InputConversationPrepsUpdateInput {
     }
     if (data.containsKey('guide')) {
       final l$guide = data['guide'];
-      result$data['guide'] = (l$guide as String?);
+      result$data['guide'] = l$guide == null
+          ? null
+          : fromJsonEnumConversationGuide((l$guide as String));
     }
     if (data.containsKey('topic')) {
       final l$topic = data['topic'];
@@ -12858,7 +13430,7 @@ class InputConversationPrepsUpdateInput {
 
   String? get authorId => (_$data['authorId'] as String?);
 
-  String? get guide => (_$data['guide'] as String?);
+  EnumConversationGuide? get guide => (_$data['guide'] as EnumConversationGuide?);
 
   String? get topic => (_$data['topic'] as String?);
 
@@ -12882,7 +13454,7 @@ class InputConversationPrepsUpdateInput {
     }
     if (_$data.containsKey('guide')) {
       final l$guide = guide;
-      result$data['guide'] = l$guide;
+      result$data['guide'] = l$guide == null ? null : toJsonEnumConversationGuide(l$guide);
     }
     if (_$data.containsKey('topic')) {
       final l$topic = topic;
@@ -15077,12 +15649,154 @@ class InputCouplesUpdateInput {
   }
 }
 
+class InputCycleDayKindFilter {
+  factory InputCycleDayKindFilter({
+    EnumCycleDayKind? eq,
+    List<EnumCycleDayKind>? $in,
+    EnumFilterIs? $is,
+    EnumCycleDayKind? neq,
+  }) => InputCycleDayKindFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputCycleDayKindFilter._(this._$data);
+
+  factory InputCycleDayKindFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumCycleDayKind((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumCycleDayKind((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumCycleDayKind((l$neq as String));
+    }
+    return InputCycleDayKindFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumCycleDayKind? get eq => (_$data['eq'] as EnumCycleDayKind?);
+
+  List<EnumCycleDayKind>? get $in => (_$data['in'] as List<EnumCycleDayKind>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumCycleDayKind? get neq => (_$data['neq'] as EnumCycleDayKind?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumCycleDayKind(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumCycleDayKind(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumCycleDayKind(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputCycleDayKindFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputCycleDaysFilter {
   factory InputCycleDaysFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
     InputDateFilter? day,
-    InputStringFilter? kind,
+    InputCycleDayKindFilter? kind,
     InputStringFilter? note,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
@@ -15130,7 +15844,7 @@ class InputCycleDaysFilter {
       final l$kind = data['kind'];
       result$data['kind'] = l$kind == null
           ? null
-          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
+          : InputCycleDayKindFilter.fromJson((l$kind as Map<String, dynamic>));
     }
     if (data.containsKey('note')) {
       final l$note = data['note'];
@@ -15185,7 +15899,7 @@ class InputCycleDaysFilter {
 
   InputDateFilter? get day => (_$data['day'] as InputDateFilter?);
 
-  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
+  InputCycleDayKindFilter? get kind => (_$data['kind'] as InputCycleDayKindFilter?);
 
   InputStringFilter? get note => (_$data['note'] as InputStringFilter?);
 
@@ -15413,7 +16127,7 @@ class InputCycleDaysInsertInput {
     String? id,
     String? authorId,
     DateTime? day,
-    String? kind,
+    EnumCycleDayKind? kind,
     String? note,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -15445,7 +16159,7 @@ class InputCycleDaysInsertInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumCycleDayKind((l$kind as String));
     }
     if (data.containsKey('note')) {
       final l$note = data['note'];
@@ -15474,7 +16188,7 @@ class InputCycleDaysInsertInput {
 
   DateTime? get day => (_$data['day'] as DateTime?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumCycleDayKind? get kind => (_$data['kind'] as EnumCycleDayKind?);
 
   String? get note => (_$data['note'] as String?);
 
@@ -15500,7 +16214,7 @@ class InputCycleDaysInsertInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumCycleDayKind(l$kind);
     }
     if (_$data.containsKey('note')) {
       final l$note = note;
@@ -15819,7 +16533,7 @@ class InputCycleDaysUpdateInput {
     String? id,
     String? authorId,
     DateTime? day,
-    String? kind,
+    EnumCycleDayKind? kind,
     String? note,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -15851,7 +16565,7 @@ class InputCycleDaysUpdateInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumCycleDayKind((l$kind as String));
     }
     if (data.containsKey('note')) {
       final l$note = data['note'];
@@ -15880,7 +16594,7 @@ class InputCycleDaysUpdateInput {
 
   DateTime? get day => (_$data['day'] as DateTime?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumCycleDayKind? get kind => (_$data['kind'] as EnumCycleDayKind?);
 
   String? get note => (_$data['note'] as String?);
 
@@ -15906,7 +16620,7 @@ class InputCycleDaysUpdateInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumCycleDayKind(l$kind);
     }
     if (_$data.containsKey('note')) {
       final l$note = note;
@@ -16253,6 +16967,148 @@ class InputDateFilter {
   }
 }
 
+class InputDateIdeaStatusFilter {
+  factory InputDateIdeaStatusFilter({
+    EnumDateIdeaStatus? eq,
+    List<EnumDateIdeaStatus>? $in,
+    EnumFilterIs? $is,
+    EnumDateIdeaStatus? neq,
+  }) => InputDateIdeaStatusFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputDateIdeaStatusFilter._(this._$data);
+
+  factory InputDateIdeaStatusFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumDateIdeaStatus((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumDateIdeaStatus((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumDateIdeaStatus((l$neq as String));
+    }
+    return InputDateIdeaStatusFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumDateIdeaStatus? get eq => (_$data['eq'] as EnumDateIdeaStatus?);
+
+  List<EnumDateIdeaStatus>? get $in => (_$data['in'] as List<EnumDateIdeaStatus>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumDateIdeaStatus? get neq => (_$data['neq'] as EnumDateIdeaStatus?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumDateIdeaStatus(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumDateIdeaStatus(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumDateIdeaStatus(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputDateIdeaStatusFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputDateListFilter {
   factory InputDateListFilter({
     List<DateTime>? containedBy,
@@ -16472,6 +17328,148 @@ class InputDateListFilter {
                 ? null
                 : Object.hashAll(l$overlaps.map((v) => v))
           : const {},
+    ]);
+  }
+}
+
+class InputDatePrecisionFilter {
+  factory InputDatePrecisionFilter({
+    EnumDatePrecision? eq,
+    List<EnumDatePrecision>? $in,
+    EnumFilterIs? $is,
+    EnumDatePrecision? neq,
+  }) => InputDatePrecisionFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputDatePrecisionFilter._(this._$data);
+
+  factory InputDatePrecisionFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumDatePrecision((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumDatePrecision((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumDatePrecision((l$neq as String));
+    }
+    return InputDatePrecisionFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumDatePrecision? get eq => (_$data['eq'] as EnumDatePrecision?);
+
+  List<EnumDatePrecision>? get $in => (_$data['in'] as List<EnumDatePrecision>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumDatePrecision? get neq => (_$data['neq'] as EnumDatePrecision?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumDatePrecision(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumDatePrecision(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumDatePrecision(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputDatePrecisionFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
     ]);
   }
 }
@@ -20028,12 +21026,154 @@ class InputDeletionRequestsUpdateInput {
   }
 }
 
+class InputDevicePlatformFilter {
+  factory InputDevicePlatformFilter({
+    EnumDevicePlatform? eq,
+    List<EnumDevicePlatform>? $in,
+    EnumFilterIs? $is,
+    EnumDevicePlatform? neq,
+  }) => InputDevicePlatformFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputDevicePlatformFilter._(this._$data);
+
+  factory InputDevicePlatformFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumDevicePlatform((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumDevicePlatform((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumDevicePlatform((l$neq as String));
+    }
+    return InputDevicePlatformFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumDevicePlatform? get eq => (_$data['eq'] as EnumDevicePlatform?);
+
+  List<EnumDevicePlatform>? get $in => (_$data['in'] as List<EnumDevicePlatform>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumDevicePlatform? get neq => (_$data['neq'] as EnumDevicePlatform?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumDevicePlatform(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumDevicePlatform(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumDevicePlatform(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputDevicePlatformFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputDevicesFilter {
   factory InputDevicesFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? profileId,
     InputStringFilter? token,
-    InputStringFilter? platform,
+    InputDevicePlatformFilter? platform,
     InputStringFilter? label,
     InputIntFilter? failureCount,
     InputDatetimeFilter? createdAt,
@@ -20083,7 +21223,7 @@ class InputDevicesFilter {
       final l$platform = data['platform'];
       result$data['platform'] = l$platform == null
           ? null
-          : InputStringFilter.fromJson((l$platform as Map<String, dynamic>));
+          : InputDevicePlatformFilter.fromJson((l$platform as Map<String, dynamic>));
     }
     if (data.containsKey('label')) {
       final l$label = data['label'];
@@ -20144,7 +21284,7 @@ class InputDevicesFilter {
 
   InputStringFilter? get token => (_$data['token'] as InputStringFilter?);
 
-  InputStringFilter? get platform => (_$data['platform'] as InputStringFilter?);
+  InputDevicePlatformFilter? get platform => (_$data['platform'] as InputDevicePlatformFilter?);
 
   InputStringFilter? get label => (_$data['label'] as InputStringFilter?);
 
@@ -20388,7 +21528,7 @@ class InputDevicesInsertInput {
     String? id,
     String? profileId,
     String? token,
-    String? platform,
+    EnumDevicePlatform? platform,
     String? label,
     int? failureCount,
     DateTime? createdAt,
@@ -20422,7 +21562,9 @@ class InputDevicesInsertInput {
     }
     if (data.containsKey('platform')) {
       final l$platform = data['platform'];
-      result$data['platform'] = (l$platform as String?);
+      result$data['platform'] = l$platform == null
+          ? null
+          : fromJsonEnumDevicePlatform((l$platform as String));
     }
     if (data.containsKey('label')) {
       final l$label = data['label'];
@@ -20455,7 +21597,7 @@ class InputDevicesInsertInput {
 
   String? get token => (_$data['token'] as String?);
 
-  String? get platform => (_$data['platform'] as String?);
+  EnumDevicePlatform? get platform => (_$data['platform'] as EnumDevicePlatform?);
 
   String? get label => (_$data['label'] as String?);
 
@@ -20481,7 +21623,7 @@ class InputDevicesInsertInput {
     }
     if (_$data.containsKey('platform')) {
       final l$platform = platform;
-      result$data['platform'] = l$platform;
+      result$data['platform'] = l$platform == null ? null : toJsonEnumDevicePlatform(l$platform);
     }
     if (_$data.containsKey('label')) {
       final l$label = label;
@@ -20844,7 +21986,7 @@ class InputDevicesUpdateInput {
     String? id,
     String? profileId,
     String? token,
-    String? platform,
+    EnumDevicePlatform? platform,
     String? label,
     int? failureCount,
     DateTime? createdAt,
@@ -20878,7 +22020,9 @@ class InputDevicesUpdateInput {
     }
     if (data.containsKey('platform')) {
       final l$platform = data['platform'];
-      result$data['platform'] = (l$platform as String?);
+      result$data['platform'] = l$platform == null
+          ? null
+          : fromJsonEnumDevicePlatform((l$platform as String));
     }
     if (data.containsKey('label')) {
       final l$label = data['label'];
@@ -20911,7 +22055,7 @@ class InputDevicesUpdateInput {
 
   String? get token => (_$data['token'] as String?);
 
-  String? get platform => (_$data['platform'] as String?);
+  EnumDevicePlatform? get platform => (_$data['platform'] as EnumDevicePlatform?);
 
   String? get label => (_$data['label'] as String?);
 
@@ -20937,7 +22081,7 @@ class InputDevicesUpdateInput {
     }
     if (_$data.containsKey('platform')) {
       final l$platform = platform;
-      result$data['platform'] = l$platform;
+      result$data['platform'] = l$platform == null ? null : toJsonEnumDevicePlatform(l$platform);
     }
     if (_$data.containsKey('label')) {
       final l$label = label;
@@ -23277,15 +24421,299 @@ class InputGameAnswersUpdateInput {
   }
 }
 
+class InputGameKindFilter {
+  factory InputGameKindFilter({
+    EnumGameKind? eq,
+    List<EnumGameKind>? $in,
+    EnumFilterIs? $is,
+    EnumGameKind? neq,
+  }) => InputGameKindFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputGameKindFilter._(this._$data);
+
+  factory InputGameKindFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumGameKind((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumGameKind((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumGameKind((l$neq as String));
+    }
+    return InputGameKindFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumGameKind? get eq => (_$data['eq'] as EnumGameKind?);
+
+  List<EnumGameKind>? get $in => (_$data['in'] as List<EnumGameKind>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumGameKind? get neq => (_$data['neq'] as EnumGameKind?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumGameKind(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumGameKind(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumGameKind(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputGameKindFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
+class InputGameOutcomeFilter {
+  factory InputGameOutcomeFilter({
+    EnumGameOutcome? eq,
+    List<EnumGameOutcome>? $in,
+    EnumFilterIs? $is,
+    EnumGameOutcome? neq,
+  }) => InputGameOutcomeFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputGameOutcomeFilter._(this._$data);
+
+  factory InputGameOutcomeFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumGameOutcome((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumGameOutcome((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumGameOutcome((l$neq as String));
+    }
+    return InputGameOutcomeFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumGameOutcome? get eq => (_$data['eq'] as EnumGameOutcome?);
+
+  List<EnumGameOutcome>? get $in => (_$data['in'] as List<EnumGameOutcome>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumGameOutcome? get neq => (_$data['neq'] as EnumGameOutcome?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumGameOutcome(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumGameOutcome(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumGameOutcome(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputGameOutcomeFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputGameSessionsFilter {
   factory InputGameSessionsFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? coupleId,
-    InputStringFilter? game,
+    InputGameKindFilter? game,
     InputUUIDFilter? invitedBy,
-    InputStringFilter? status,
+    InputGameStatusFilter? status,
     InputStringListFilter? itemSlugs,
-    InputStringFilter? outcome,
+    InputGameOutcomeFilter? outcome,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? finishedAt,
     InputIDFilter? nodeId,
@@ -23328,7 +24756,7 @@ class InputGameSessionsFilter {
       final l$game = data['game'];
       result$data['game'] = l$game == null
           ? null
-          : InputStringFilter.fromJson((l$game as Map<String, dynamic>));
+          : InputGameKindFilter.fromJson((l$game as Map<String, dynamic>));
     }
     if (data.containsKey('invitedBy')) {
       final l$invitedBy = data['invitedBy'];
@@ -23340,7 +24768,7 @@ class InputGameSessionsFilter {
       final l$status = data['status'];
       result$data['status'] = l$status == null
           ? null
-          : InputStringFilter.fromJson((l$status as Map<String, dynamic>));
+          : InputGameStatusFilter.fromJson((l$status as Map<String, dynamic>));
     }
     if (data.containsKey('itemSlugs')) {
       final l$itemSlugs = data['itemSlugs'];
@@ -23352,7 +24780,7 @@ class InputGameSessionsFilter {
       final l$outcome = data['outcome'];
       result$data['outcome'] = l$outcome == null
           ? null
-          : InputStringFilter.fromJson((l$outcome as Map<String, dynamic>));
+          : InputGameOutcomeFilter.fromJson((l$outcome as Map<String, dynamic>));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -23399,15 +24827,15 @@ class InputGameSessionsFilter {
 
   InputUUIDFilter? get coupleId => (_$data['coupleId'] as InputUUIDFilter?);
 
-  InputStringFilter? get game => (_$data['game'] as InputStringFilter?);
+  InputGameKindFilter? get game => (_$data['game'] as InputGameKindFilter?);
 
   InputUUIDFilter? get invitedBy => (_$data['invitedBy'] as InputUUIDFilter?);
 
-  InputStringFilter? get status => (_$data['status'] as InputStringFilter?);
+  InputGameStatusFilter? get status => (_$data['status'] as InputGameStatusFilter?);
 
   InputStringListFilter? get itemSlugs => (_$data['itemSlugs'] as InputStringListFilter?);
 
-  InputStringFilter? get outcome => (_$data['outcome'] as InputStringFilter?);
+  InputGameOutcomeFilter? get outcome => (_$data['outcome'] as InputGameOutcomeFilter?);
 
   InputDatetimeFilter? get createdAt => (_$data['createdAt'] as InputDatetimeFilter?);
 
@@ -23660,11 +25088,11 @@ class InputGameSessionsInsertInput {
   factory InputGameSessionsInsertInput({
     String? id,
     String? coupleId,
-    String? game,
+    EnumGameKind? game,
     String? invitedBy,
-    String? status,
+    EnumGameStatus? status,
     List<String?>? itemSlugs,
-    String? outcome,
+    EnumGameOutcome? outcome,
     DateTime? createdAt,
     DateTime? finishedAt,
   }) => InputGameSessionsInsertInput._({
@@ -23693,7 +25121,7 @@ class InputGameSessionsInsertInput {
     }
     if (data.containsKey('game')) {
       final l$game = data['game'];
-      result$data['game'] = (l$game as String?);
+      result$data['game'] = l$game == null ? null : fromJsonEnumGameKind((l$game as String));
     }
     if (data.containsKey('invitedBy')) {
       final l$invitedBy = data['invitedBy'];
@@ -23701,7 +25129,9 @@ class InputGameSessionsInsertInput {
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumGameStatus((l$status as String));
     }
     if (data.containsKey('itemSlugs')) {
       final l$itemSlugs = data['itemSlugs'];
@@ -23711,7 +25141,9 @@ class InputGameSessionsInsertInput {
     }
     if (data.containsKey('outcome')) {
       final l$outcome = data['outcome'];
-      result$data['outcome'] = (l$outcome as String?);
+      result$data['outcome'] = l$outcome == null
+          ? null
+          : fromJsonEnumGameOutcome((l$outcome as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -23734,15 +25166,15 @@ class InputGameSessionsInsertInput {
 
   String? get coupleId => (_$data['coupleId'] as String?);
 
-  String? get game => (_$data['game'] as String?);
+  EnumGameKind? get game => (_$data['game'] as EnumGameKind?);
 
   String? get invitedBy => (_$data['invitedBy'] as String?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumGameStatus? get status => (_$data['status'] as EnumGameStatus?);
 
   List<String?>? get itemSlugs => (_$data['itemSlugs'] as List<String?>?);
 
-  String? get outcome => (_$data['outcome'] as String?);
+  EnumGameOutcome? get outcome => (_$data['outcome'] as EnumGameOutcome?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -23760,7 +25192,7 @@ class InputGameSessionsInsertInput {
     }
     if (_$data.containsKey('game')) {
       final l$game = game;
-      result$data['game'] = l$game;
+      result$data['game'] = l$game == null ? null : toJsonEnumGameKind(l$game);
     }
     if (_$data.containsKey('invitedBy')) {
       final l$invitedBy = invitedBy;
@@ -23768,7 +25200,7 @@ class InputGameSessionsInsertInput {
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumGameStatus(l$status);
     }
     if (_$data.containsKey('itemSlugs')) {
       final l$itemSlugs = itemSlugs;
@@ -23776,7 +25208,7 @@ class InputGameSessionsInsertInput {
     }
     if (_$data.containsKey('outcome')) {
       final l$outcome = outcome;
-      result$data['outcome'] = l$outcome;
+      result$data['outcome'] = l$outcome == null ? null : toJsonEnumGameOutcome(l$outcome);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -24153,11 +25585,11 @@ class InputGameSessionsUpdateInput {
   factory InputGameSessionsUpdateInput({
     String? id,
     String? coupleId,
-    String? game,
+    EnumGameKind? game,
     String? invitedBy,
-    String? status,
+    EnumGameStatus? status,
     List<String?>? itemSlugs,
-    String? outcome,
+    EnumGameOutcome? outcome,
     DateTime? createdAt,
     DateTime? finishedAt,
   }) => InputGameSessionsUpdateInput._({
@@ -24186,7 +25618,7 @@ class InputGameSessionsUpdateInput {
     }
     if (data.containsKey('game')) {
       final l$game = data['game'];
-      result$data['game'] = (l$game as String?);
+      result$data['game'] = l$game == null ? null : fromJsonEnumGameKind((l$game as String));
     }
     if (data.containsKey('invitedBy')) {
       final l$invitedBy = data['invitedBy'];
@@ -24194,7 +25626,9 @@ class InputGameSessionsUpdateInput {
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumGameStatus((l$status as String));
     }
     if (data.containsKey('itemSlugs')) {
       final l$itemSlugs = data['itemSlugs'];
@@ -24204,7 +25638,9 @@ class InputGameSessionsUpdateInput {
     }
     if (data.containsKey('outcome')) {
       final l$outcome = data['outcome'];
-      result$data['outcome'] = (l$outcome as String?);
+      result$data['outcome'] = l$outcome == null
+          ? null
+          : fromJsonEnumGameOutcome((l$outcome as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -24227,15 +25663,15 @@ class InputGameSessionsUpdateInput {
 
   String? get coupleId => (_$data['coupleId'] as String?);
 
-  String? get game => (_$data['game'] as String?);
+  EnumGameKind? get game => (_$data['game'] as EnumGameKind?);
 
   String? get invitedBy => (_$data['invitedBy'] as String?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumGameStatus? get status => (_$data['status'] as EnumGameStatus?);
 
   List<String?>? get itemSlugs => (_$data['itemSlugs'] as List<String?>?);
 
-  String? get outcome => (_$data['outcome'] as String?);
+  EnumGameOutcome? get outcome => (_$data['outcome'] as EnumGameOutcome?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -24253,7 +25689,7 @@ class InputGameSessionsUpdateInput {
     }
     if (_$data.containsKey('game')) {
       final l$game = game;
-      result$data['game'] = l$game;
+      result$data['game'] = l$game == null ? null : toJsonEnumGameKind(l$game);
     }
     if (_$data.containsKey('invitedBy')) {
       final l$invitedBy = invitedBy;
@@ -24261,7 +25697,7 @@ class InputGameSessionsUpdateInput {
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumGameStatus(l$status);
     }
     if (_$data.containsKey('itemSlugs')) {
       final l$itemSlugs = itemSlugs;
@@ -24269,7 +25705,7 @@ class InputGameSessionsUpdateInput {
     }
     if (_$data.containsKey('outcome')) {
       final l$outcome = outcome;
-      result$data['outcome'] = l$outcome;
+      result$data['outcome'] = l$outcome == null ? null : toJsonEnumGameOutcome(l$outcome);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -24409,6 +25845,432 @@ class InputGameSessionsUpdateInput {
   }
 }
 
+class InputGameStatusFilter {
+  factory InputGameStatusFilter({
+    EnumGameStatus? eq,
+    List<EnumGameStatus>? $in,
+    EnumFilterIs? $is,
+    EnumGameStatus? neq,
+  }) => InputGameStatusFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputGameStatusFilter._(this._$data);
+
+  factory InputGameStatusFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumGameStatus((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumGameStatus((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumGameStatus((l$neq as String));
+    }
+    return InputGameStatusFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumGameStatus? get eq => (_$data['eq'] as EnumGameStatus?);
+
+  List<EnumGameStatus>? get $in => (_$data['in'] as List<EnumGameStatus>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumGameStatus? get neq => (_$data['neq'] as EnumGameStatus?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumGameStatus(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumGameStatus(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumGameStatus(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputGameStatusFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
+class InputGiftBudgetFilter {
+  factory InputGiftBudgetFilter({
+    EnumGiftBudget? eq,
+    List<EnumGiftBudget>? $in,
+    EnumFilterIs? $is,
+    EnumGiftBudget? neq,
+  }) => InputGiftBudgetFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputGiftBudgetFilter._(this._$data);
+
+  factory InputGiftBudgetFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumGiftBudget((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumGiftBudget((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumGiftBudget((l$neq as String));
+    }
+    return InputGiftBudgetFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumGiftBudget? get eq => (_$data['eq'] as EnumGiftBudget?);
+
+  List<EnumGiftBudget>? get $in => (_$data['in'] as List<EnumGiftBudget>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumGiftBudget? get neq => (_$data['neq'] as EnumGiftBudget?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumGiftBudget(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumGiftBudget(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumGiftBudget(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputGiftBudgetFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
+class InputGiftIdeaKindFilter {
+  factory InputGiftIdeaKindFilter({
+    EnumGiftIdeaKind? eq,
+    List<EnumGiftIdeaKind>? $in,
+    EnumFilterIs? $is,
+    EnumGiftIdeaKind? neq,
+  }) => InputGiftIdeaKindFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputGiftIdeaKindFilter._(this._$data);
+
+  factory InputGiftIdeaKindFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumGiftIdeaKind((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumGiftIdeaKind((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumGiftIdeaKind((l$neq as String));
+    }
+    return InputGiftIdeaKindFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumGiftIdeaKind? get eq => (_$data['eq'] as EnumGiftIdeaKind?);
+
+  List<EnumGiftIdeaKind>? get $in => (_$data['in'] as List<EnumGiftIdeaKind>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumGiftIdeaKind? get neq => (_$data['neq'] as EnumGiftIdeaKind?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumGiftIdeaKind(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumGiftIdeaKind(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumGiftIdeaKind(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputGiftIdeaKindFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputGiftIdeasFilter {
   factory InputGiftIdeasFilter({
     InputUUIDFilter? id,
@@ -24416,12 +26278,12 @@ class InputGiftIdeasFilter {
     InputStringFilter? title,
     InputStringFilter? note,
     InputUUIDFilter? occasionDateId,
-    InputStringFilter? status,
-    InputStringFilter? budget,
+    InputGiftIdeaStatusFilter? status,
+    InputGiftBudgetFilter? budget,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
     InputUUIDFilter? coupleId,
-    InputStringFilter? kind,
+    InputGiftIdeaKindFilter? kind,
     InputIDFilter? nodeId,
     List<InputGiftIdeasFilter>? and,
     List<InputGiftIdeasFilter>? or,
@@ -24482,13 +26344,13 @@ class InputGiftIdeasFilter {
       final l$status = data['status'];
       result$data['status'] = l$status == null
           ? null
-          : InputStringFilter.fromJson((l$status as Map<String, dynamic>));
+          : InputGiftIdeaStatusFilter.fromJson((l$status as Map<String, dynamic>));
     }
     if (data.containsKey('budget')) {
       final l$budget = data['budget'];
       result$data['budget'] = l$budget == null
           ? null
-          : InputStringFilter.fromJson((l$budget as Map<String, dynamic>));
+          : InputGiftBudgetFilter.fromJson((l$budget as Map<String, dynamic>));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -24512,7 +26374,7 @@ class InputGiftIdeasFilter {
       final l$kind = data['kind'];
       result$data['kind'] = l$kind == null
           ? null
-          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
+          : InputGiftIdeaKindFilter.fromJson((l$kind as Map<String, dynamic>));
     }
     if (data.containsKey('nodeId')) {
       final l$nodeId = data['nodeId'];
@@ -24553,9 +26415,9 @@ class InputGiftIdeasFilter {
 
   InputUUIDFilter? get occasionDateId => (_$data['occasionDateId'] as InputUUIDFilter?);
 
-  InputStringFilter? get status => (_$data['status'] as InputStringFilter?);
+  InputGiftIdeaStatusFilter? get status => (_$data['status'] as InputGiftIdeaStatusFilter?);
 
-  InputStringFilter? get budget => (_$data['budget'] as InputStringFilter?);
+  InputGiftBudgetFilter? get budget => (_$data['budget'] as InputGiftBudgetFilter?);
 
   InputDatetimeFilter? get createdAt => (_$data['createdAt'] as InputDatetimeFilter?);
 
@@ -24563,7 +26425,7 @@ class InputGiftIdeasFilter {
 
   InputUUIDFilter? get coupleId => (_$data['coupleId'] as InputUUIDFilter?);
 
-  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
+  InputGiftIdeaKindFilter? get kind => (_$data['kind'] as InputGiftIdeaKindFilter?);
 
   InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
 
@@ -24843,12 +26705,12 @@ class InputGiftIdeasInsertInput {
     String? title,
     String? note,
     String? occasionDateId,
-    String? status,
-    String? budget,
+    EnumGiftIdeaStatus? status,
+    EnumGiftBudget? budget,
     DateTime? createdAt,
     DateTime? updatedAt,
     String? coupleId,
-    String? kind,
+    EnumGiftIdeaKind? kind,
   }) => InputGiftIdeasInsertInput._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
@@ -24889,11 +26751,15 @@ class InputGiftIdeasInsertInput {
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumGiftIdeaStatus((l$status as String));
     }
     if (data.containsKey('budget')) {
       final l$budget = data['budget'];
-      result$data['budget'] = (l$budget as String?);
+      result$data['budget'] = l$budget == null
+          ? null
+          : fromJsonEnumGiftBudget((l$budget as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -24913,7 +26779,7 @@ class InputGiftIdeasInsertInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumGiftIdeaKind((l$kind as String));
     }
     return InputGiftIdeasInsertInput._(result$data);
   }
@@ -24930,9 +26796,9 @@ class InputGiftIdeasInsertInput {
 
   String? get occasionDateId => (_$data['occasionDateId'] as String?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumGiftIdeaStatus? get status => (_$data['status'] as EnumGiftIdeaStatus?);
 
-  String? get budget => (_$data['budget'] as String?);
+  EnumGiftBudget? get budget => (_$data['budget'] as EnumGiftBudget?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -24940,7 +26806,7 @@ class InputGiftIdeasInsertInput {
 
   String? get coupleId => (_$data['coupleId'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumGiftIdeaKind? get kind => (_$data['kind'] as EnumGiftIdeaKind?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -24966,11 +26832,11 @@ class InputGiftIdeasInsertInput {
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumGiftIdeaStatus(l$status);
     }
     if (_$data.containsKey('budget')) {
       final l$budget = budget;
-      result$data['budget'] = l$budget;
+      result$data['budget'] = l$budget == null ? null : toJsonEnumGiftBudget(l$budget);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -24990,7 +26856,7 @@ class InputGiftIdeasInsertInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumGiftIdeaKind(l$kind);
     }
     return result$data;
   }
@@ -25428,6 +27294,148 @@ class InputGiftIdeasOrderBy {
   }
 }
 
+class InputGiftIdeaStatusFilter {
+  factory InputGiftIdeaStatusFilter({
+    EnumGiftIdeaStatus? eq,
+    List<EnumGiftIdeaStatus>? $in,
+    EnumFilterIs? $is,
+    EnumGiftIdeaStatus? neq,
+  }) => InputGiftIdeaStatusFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputGiftIdeaStatusFilter._(this._$data);
+
+  factory InputGiftIdeaStatusFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumGiftIdeaStatus((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumGiftIdeaStatus((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumGiftIdeaStatus((l$neq as String));
+    }
+    return InputGiftIdeaStatusFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumGiftIdeaStatus? get eq => (_$data['eq'] as EnumGiftIdeaStatus?);
+
+  List<EnumGiftIdeaStatus>? get $in => (_$data['in'] as List<EnumGiftIdeaStatus>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumGiftIdeaStatus? get neq => (_$data['neq'] as EnumGiftIdeaStatus?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumGiftIdeaStatus(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumGiftIdeaStatus(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumGiftIdeaStatus(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputGiftIdeaStatusFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputGiftIdeasUpdateInput {
   factory InputGiftIdeasUpdateInput({
     String? id,
@@ -25435,12 +27443,12 @@ class InputGiftIdeasUpdateInput {
     String? title,
     String? note,
     String? occasionDateId,
-    String? status,
-    String? budget,
+    EnumGiftIdeaStatus? status,
+    EnumGiftBudget? budget,
     DateTime? createdAt,
     DateTime? updatedAt,
     String? coupleId,
-    String? kind,
+    EnumGiftIdeaKind? kind,
   }) => InputGiftIdeasUpdateInput._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
@@ -25481,11 +27489,15 @@ class InputGiftIdeasUpdateInput {
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumGiftIdeaStatus((l$status as String));
     }
     if (data.containsKey('budget')) {
       final l$budget = data['budget'];
-      result$data['budget'] = (l$budget as String?);
+      result$data['budget'] = l$budget == null
+          ? null
+          : fromJsonEnumGiftBudget((l$budget as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -25505,7 +27517,7 @@ class InputGiftIdeasUpdateInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumGiftIdeaKind((l$kind as String));
     }
     return InputGiftIdeasUpdateInput._(result$data);
   }
@@ -25522,9 +27534,9 @@ class InputGiftIdeasUpdateInput {
 
   String? get occasionDateId => (_$data['occasionDateId'] as String?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumGiftIdeaStatus? get status => (_$data['status'] as EnumGiftIdeaStatus?);
 
-  String? get budget => (_$data['budget'] as String?);
+  EnumGiftBudget? get budget => (_$data['budget'] as EnumGiftBudget?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -25532,7 +27544,7 @@ class InputGiftIdeasUpdateInput {
 
   String? get coupleId => (_$data['coupleId'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumGiftIdeaKind? get kind => (_$data['kind'] as EnumGiftIdeaKind?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -25558,11 +27570,11 @@ class InputGiftIdeasUpdateInput {
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumGiftIdeaStatus(l$status);
     }
     if (_$data.containsKey('budget')) {
       final l$budget = budget;
-      result$data['budget'] = l$budget;
+      result$data['budget'] = l$budget == null ? null : toJsonEnumGiftBudget(l$budget);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -25582,7 +27594,7 @@ class InputGiftIdeasUpdateInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumGiftIdeaKind(l$kind);
     }
     return result$data;
   }
@@ -27220,13 +29232,297 @@ class InputGuestLinksUpdateInput {
   }
 }
 
+class InputHeavyDaySharingFilter {
+  factory InputHeavyDaySharingFilter({
+    EnumHeavyDaySharing? eq,
+    List<EnumHeavyDaySharing>? $in,
+    EnumFilterIs? $is,
+    EnumHeavyDaySharing? neq,
+  }) => InputHeavyDaySharingFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputHeavyDaySharingFilter._(this._$data);
+
+  factory InputHeavyDaySharingFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumHeavyDaySharing((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumHeavyDaySharing((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumHeavyDaySharing((l$neq as String));
+    }
+    return InputHeavyDaySharingFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumHeavyDaySharing? get eq => (_$data['eq'] as EnumHeavyDaySharing?);
+
+  List<EnumHeavyDaySharing>? get $in => (_$data['in'] as List<EnumHeavyDaySharing>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumHeavyDaySharing? get neq => (_$data['neq'] as EnumHeavyDaySharing?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumHeavyDaySharing(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumHeavyDaySharing(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumHeavyDaySharing(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputHeavyDaySharingFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
+class InputIdeaResponseFilter {
+  factory InputIdeaResponseFilter({
+    EnumIdeaResponse? eq,
+    List<EnumIdeaResponse>? $in,
+    EnumFilterIs? $is,
+    EnumIdeaResponse? neq,
+  }) => InputIdeaResponseFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputIdeaResponseFilter._(this._$data);
+
+  factory InputIdeaResponseFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumIdeaResponse((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumIdeaResponse((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumIdeaResponse((l$neq as String));
+    }
+    return InputIdeaResponseFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumIdeaResponse? get eq => (_$data['eq'] as EnumIdeaResponse?);
+
+  List<EnumIdeaResponse>? get $in => (_$data['in'] as List<EnumIdeaResponse>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumIdeaResponse? get neq => (_$data['neq'] as EnumIdeaResponse?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumIdeaResponse(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumIdeaResponse(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumIdeaResponse(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputIdeaResponseFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputIdeaResponsesFilter {
   factory InputIdeaResponsesFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
     InputStringFilter? contentSlug,
     InputDateFilter? day,
-    InputStringFilter? response,
+    InputIdeaResponseFilter? response,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
     InputIDFilter? nodeId,
@@ -27279,7 +29575,7 @@ class InputIdeaResponsesFilter {
       final l$response = data['response'];
       result$data['response'] = l$response == null
           ? null
-          : InputStringFilter.fromJson((l$response as Map<String, dynamic>));
+          : InputIdeaResponseFilter.fromJson((l$response as Map<String, dynamic>));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -27330,7 +29626,7 @@ class InputIdeaResponsesFilter {
 
   InputDateFilter? get day => (_$data['day'] as InputDateFilter?);
 
-  InputStringFilter? get response => (_$data['response'] as InputStringFilter?);
+  InputIdeaResponseFilter? get response => (_$data['response'] as InputIdeaResponseFilter?);
 
   InputDatetimeFilter? get createdAt => (_$data['createdAt'] as InputDatetimeFilter?);
 
@@ -27557,7 +29853,7 @@ class InputIdeaResponsesInsertInput {
     String? authorId,
     String? contentSlug,
     DateTime? day,
-    String? response,
+    EnumIdeaResponse? response,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) => InputIdeaResponsesInsertInput._({
@@ -27592,7 +29888,9 @@ class InputIdeaResponsesInsertInput {
     }
     if (data.containsKey('response')) {
       final l$response = data['response'];
-      result$data['response'] = (l$response as String?);
+      result$data['response'] = l$response == null
+          ? null
+          : fromJsonEnumIdeaResponse((l$response as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -27619,7 +29917,7 @@ class InputIdeaResponsesInsertInput {
 
   DateTime? get day => (_$data['day'] as DateTime?);
 
-  String? get response => (_$data['response'] as String?);
+  EnumIdeaResponse? get response => (_$data['response'] as EnumIdeaResponse?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -27647,7 +29945,7 @@ class InputIdeaResponsesInsertInput {
     }
     if (_$data.containsKey('response')) {
       final l$response = response;
-      result$data['response'] = l$response;
+      result$data['response'] = l$response == null ? null : toJsonEnumIdeaResponse(l$response);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -27965,7 +30263,7 @@ class InputIdeaResponsesUpdateInput {
     String? authorId,
     String? contentSlug,
     DateTime? day,
-    String? response,
+    EnumIdeaResponse? response,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) => InputIdeaResponsesUpdateInput._({
@@ -28000,7 +30298,9 @@ class InputIdeaResponsesUpdateInput {
     }
     if (data.containsKey('response')) {
       final l$response = data['response'];
-      result$data['response'] = (l$response as String?);
+      result$data['response'] = l$response == null
+          ? null
+          : fromJsonEnumIdeaResponse((l$response as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -28027,7 +30327,7 @@ class InputIdeaResponsesUpdateInput {
 
   DateTime? get day => (_$data['day'] as DateTime?);
 
-  String? get response => (_$data['response'] as String?);
+  EnumIdeaResponse? get response => (_$data['response'] as EnumIdeaResponse?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -28055,7 +30355,7 @@ class InputIdeaResponsesUpdateInput {
     }
     if (_$data.containsKey('response')) {
       final l$response = response;
-      result$data['response'] = l$response;
+      result$data['response'] = l$response == null ? null : toJsonEnumIdeaResponse(l$response);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -28213,20 +30513,306 @@ class InputIDFilter {
   }
 }
 
+class InputImportantDateKindFilter {
+  factory InputImportantDateKindFilter({
+    EnumImportantDateKind? eq,
+    List<EnumImportantDateKind>? $in,
+    EnumFilterIs? $is,
+    EnumImportantDateKind? neq,
+  }) => InputImportantDateKindFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputImportantDateKindFilter._(this._$data);
+
+  factory InputImportantDateKindFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumImportantDateKind((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumImportantDateKind((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumImportantDateKind((l$neq as String));
+    }
+    return InputImportantDateKindFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumImportantDateKind? get eq => (_$data['eq'] as EnumImportantDateKind?);
+
+  List<EnumImportantDateKind>? get $in => (_$data['in'] as List<EnumImportantDateKind>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumImportantDateKind? get neq => (_$data['neq'] as EnumImportantDateKind?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumImportantDateKind(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumImportantDateKind(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumImportantDateKind(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputImportantDateKindFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
+class InputImportantDateOriginFilter {
+  factory InputImportantDateOriginFilter({
+    EnumImportantDateOrigin? eq,
+    List<EnumImportantDateOrigin>? $in,
+    EnumFilterIs? $is,
+    EnumImportantDateOrigin? neq,
+  }) => InputImportantDateOriginFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputImportantDateOriginFilter._(this._$data);
+
+  factory InputImportantDateOriginFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumImportantDateOrigin((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumImportantDateOrigin((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null
+          ? null
+          : fromJsonEnumImportantDateOrigin((l$neq as String));
+    }
+    return InputImportantDateOriginFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumImportantDateOrigin? get eq => (_$data['eq'] as EnumImportantDateOrigin?);
+
+  List<EnumImportantDateOrigin>? get $in => (_$data['in'] as List<EnumImportantDateOrigin>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumImportantDateOrigin? get neq => (_$data['neq'] as EnumImportantDateOrigin?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumImportantDateOrigin(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumImportantDateOrigin(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumImportantDateOrigin(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputImportantDateOriginFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputImportantDatesFilter {
   factory InputImportantDatesFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
     InputUUIDFilter? coupleId,
     InputStringFilter? title,
-    InputStringFilter? kind,
+    InputImportantDateKindFilter? kind,
     InputIntFilter? month,
     InputIntFilter? day,
     InputIntFilter? year,
     InputBooleanFilter? yearly,
     InputIntListFilter? remindDays,
     InputBooleanFilter? hidden,
-    InputStringFilter? origin,
+    InputImportantDateOriginFilter? origin,
     InputStringFilter? holidayKey,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
@@ -28288,7 +30874,7 @@ class InputImportantDatesFilter {
       final l$kind = data['kind'];
       result$data['kind'] = l$kind == null
           ? null
-          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
+          : InputImportantDateKindFilter.fromJson((l$kind as Map<String, dynamic>));
     }
     if (data.containsKey('month')) {
       final l$month = data['month'];
@@ -28330,7 +30916,7 @@ class InputImportantDatesFilter {
       final l$origin = data['origin'];
       result$data['origin'] = l$origin == null
           ? null
-          : InputStringFilter.fromJson((l$origin as Map<String, dynamic>));
+          : InputImportantDateOriginFilter.fromJson((l$origin as Map<String, dynamic>));
     }
     if (data.containsKey('holidayKey')) {
       final l$holidayKey = data['holidayKey'];
@@ -28387,7 +30973,7 @@ class InputImportantDatesFilter {
 
   InputStringFilter? get title => (_$data['title'] as InputStringFilter?);
 
-  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
+  InputImportantDateKindFilter? get kind => (_$data['kind'] as InputImportantDateKindFilter?);
 
   InputIntFilter? get month => (_$data['month'] as InputIntFilter?);
 
@@ -28401,7 +30987,8 @@ class InputImportantDatesFilter {
 
   InputBooleanFilter? get hidden => (_$data['hidden'] as InputBooleanFilter?);
 
-  InputStringFilter? get origin => (_$data['origin'] as InputStringFilter?);
+  InputImportantDateOriginFilter? get origin =>
+      (_$data['origin'] as InputImportantDateOriginFilter?);
 
   InputStringFilter? get holidayKey => (_$data['holidayKey'] as InputStringFilter?);
 
@@ -28742,14 +31329,14 @@ class InputImportantDatesInsertInput {
     String? authorId,
     String? coupleId,
     String? title,
-    String? kind,
+    EnumImportantDateKind? kind,
     int? month,
     int? day,
     int? year,
     bool? yearly,
     List<int?>? remindDays,
     bool? hidden,
-    String? origin,
+    EnumImportantDateOrigin? origin,
     String? holidayKey,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -28793,7 +31380,9 @@ class InputImportantDatesInsertInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null
+          ? null
+          : fromJsonEnumImportantDateKind((l$kind as String));
     }
     if (data.containsKey('month')) {
       final l$month = data['month'];
@@ -28823,7 +31412,9 @@ class InputImportantDatesInsertInput {
     }
     if (data.containsKey('origin')) {
       final l$origin = data['origin'];
-      result$data['origin'] = (l$origin as String?);
+      result$data['origin'] = l$origin == null
+          ? null
+          : fromJsonEnumImportantDateOrigin((l$origin as String));
     }
     if (data.containsKey('holidayKey')) {
       final l$holidayKey = data['holidayKey'];
@@ -28854,7 +31445,7 @@ class InputImportantDatesInsertInput {
 
   String? get title => (_$data['title'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumImportantDateKind? get kind => (_$data['kind'] as EnumImportantDateKind?);
 
   int? get month => (_$data['month'] as int?);
 
@@ -28868,7 +31459,7 @@ class InputImportantDatesInsertInput {
 
   bool? get hidden => (_$data['hidden'] as bool?);
 
-  String? get origin => (_$data['origin'] as String?);
+  EnumImportantDateOrigin? get origin => (_$data['origin'] as EnumImportantDateOrigin?);
 
   String? get holidayKey => (_$data['holidayKey'] as String?);
 
@@ -28896,7 +31487,7 @@ class InputImportantDatesInsertInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumImportantDateKind(l$kind);
     }
     if (_$data.containsKey('month')) {
       final l$month = month;
@@ -28924,7 +31515,7 @@ class InputImportantDatesInsertInput {
     }
     if (_$data.containsKey('origin')) {
       final l$origin = origin;
-      result$data['origin'] = l$origin;
+      result$data['origin'] = l$origin == null ? null : toJsonEnumImportantDateOrigin(l$origin);
     }
     if (_$data.containsKey('holidayKey')) {
       final l$holidayKey = holidayKey;
@@ -29509,14 +32100,14 @@ class InputImportantDatesUpdateInput {
     String? authorId,
     String? coupleId,
     String? title,
-    String? kind,
+    EnumImportantDateKind? kind,
     int? month,
     int? day,
     int? year,
     bool? yearly,
     List<int?>? remindDays,
     bool? hidden,
-    String? origin,
+    EnumImportantDateOrigin? origin,
     String? holidayKey,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -29560,7 +32151,9 @@ class InputImportantDatesUpdateInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null
+          ? null
+          : fromJsonEnumImportantDateKind((l$kind as String));
     }
     if (data.containsKey('month')) {
       final l$month = data['month'];
@@ -29590,7 +32183,9 @@ class InputImportantDatesUpdateInput {
     }
     if (data.containsKey('origin')) {
       final l$origin = data['origin'];
-      result$data['origin'] = (l$origin as String?);
+      result$data['origin'] = l$origin == null
+          ? null
+          : fromJsonEnumImportantDateOrigin((l$origin as String));
     }
     if (data.containsKey('holidayKey')) {
       final l$holidayKey = data['holidayKey'];
@@ -29621,7 +32216,7 @@ class InputImportantDatesUpdateInput {
 
   String? get title => (_$data['title'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumImportantDateKind? get kind => (_$data['kind'] as EnumImportantDateKind?);
 
   int? get month => (_$data['month'] as int?);
 
@@ -29635,7 +32230,7 @@ class InputImportantDatesUpdateInput {
 
   bool? get hidden => (_$data['hidden'] as bool?);
 
-  String? get origin => (_$data['origin'] as String?);
+  EnumImportantDateOrigin? get origin => (_$data['origin'] as EnumImportantDateOrigin?);
 
   String? get holidayKey => (_$data['holidayKey'] as String?);
 
@@ -29663,7 +32258,7 @@ class InputImportantDatesUpdateInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumImportantDateKind(l$kind);
     }
     if (_$data.containsKey('month')) {
       final l$month = month;
@@ -29691,7 +32286,7 @@ class InputImportantDatesUpdateInput {
     }
     if (_$data.containsKey('origin')) {
       final l$origin = origin;
-      result$data['origin'] = l$origin;
+      result$data['origin'] = l$origin == null ? null : toJsonEnumImportantDateOrigin(l$origin);
     }
     if (_$data.containsKey('holidayKey')) {
       final l$holidayKey = holidayKey;
@@ -32878,10 +35473,10 @@ class InputLearnedItemsFilter {
   factory InputLearnedItemsFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
-    InputStringFilter? target,
+    InputLearnedItemTargetFilter? target,
     InputStringFilter? text,
     InputStringFilter? excerpt,
-    InputStringFilter? status,
+    InputLearnedItemStatusFilter? status,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
     InputIDFilter? nodeId,
@@ -32923,7 +35518,7 @@ class InputLearnedItemsFilter {
       final l$target = data['target'];
       result$data['target'] = l$target == null
           ? null
-          : InputStringFilter.fromJson((l$target as Map<String, dynamic>));
+          : InputLearnedItemTargetFilter.fromJson((l$target as Map<String, dynamic>));
     }
     if (data.containsKey('text')) {
       final l$text = data['text'];
@@ -32941,7 +35536,7 @@ class InputLearnedItemsFilter {
       final l$status = data['status'];
       result$data['status'] = l$status == null
           ? null
-          : InputStringFilter.fromJson((l$status as Map<String, dynamic>));
+          : InputLearnedItemStatusFilter.fromJson((l$status as Map<String, dynamic>));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -32988,13 +35583,13 @@ class InputLearnedItemsFilter {
 
   InputUUIDFilter? get authorId => (_$data['authorId'] as InputUUIDFilter?);
 
-  InputStringFilter? get target => (_$data['target'] as InputStringFilter?);
+  InputLearnedItemTargetFilter? get target => (_$data['target'] as InputLearnedItemTargetFilter?);
 
   InputStringFilter? get text => (_$data['text'] as InputStringFilter?);
 
   InputStringFilter? get excerpt => (_$data['excerpt'] as InputStringFilter?);
 
-  InputStringFilter? get status => (_$data['status'] as InputStringFilter?);
+  InputLearnedItemStatusFilter? get status => (_$data['status'] as InputLearnedItemStatusFilter?);
 
   InputDatetimeFilter? get createdAt => (_$data['createdAt'] as InputDatetimeFilter?);
 
@@ -33233,10 +35828,10 @@ class InputLearnedItemsInsertInput {
   factory InputLearnedItemsInsertInput({
     String? id,
     String? authorId,
-    String? target,
+    EnumLearnedItemTarget? target,
     String? text,
     String? excerpt,
-    String? status,
+    EnumLearnedItemStatus? status,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) => InputLearnedItemsInsertInput._({
@@ -33264,7 +35859,9 @@ class InputLearnedItemsInsertInput {
     }
     if (data.containsKey('target')) {
       final l$target = data['target'];
-      result$data['target'] = (l$target as String?);
+      result$data['target'] = l$target == null
+          ? null
+          : fromJsonEnumLearnedItemTarget((l$target as String));
     }
     if (data.containsKey('text')) {
       final l$text = data['text'];
@@ -33276,7 +35873,9 @@ class InputLearnedItemsInsertInput {
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumLearnedItemStatus((l$status as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -33299,13 +35898,13 @@ class InputLearnedItemsInsertInput {
 
   String? get authorId => (_$data['authorId'] as String?);
 
-  String? get target => (_$data['target'] as String?);
+  EnumLearnedItemTarget? get target => (_$data['target'] as EnumLearnedItemTarget?);
 
   String? get text => (_$data['text'] as String?);
 
   String? get excerpt => (_$data['excerpt'] as String?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumLearnedItemStatus? get status => (_$data['status'] as EnumLearnedItemStatus?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -33323,7 +35922,7 @@ class InputLearnedItemsInsertInput {
     }
     if (_$data.containsKey('target')) {
       final l$target = target;
-      result$data['target'] = l$target;
+      result$data['target'] = l$target == null ? null : toJsonEnumLearnedItemTarget(l$target);
     }
     if (_$data.containsKey('text')) {
       final l$text = text;
@@ -33335,7 +35934,7 @@ class InputLearnedItemsInsertInput {
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumLearnedItemStatus(l$status);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -33681,14 +36280,156 @@ class InputLearnedItemsOrderBy {
   }
 }
 
+class InputLearnedItemStatusFilter {
+  factory InputLearnedItemStatusFilter({
+    EnumLearnedItemStatus? eq,
+    List<EnumLearnedItemStatus>? $in,
+    EnumFilterIs? $is,
+    EnumLearnedItemStatus? neq,
+  }) => InputLearnedItemStatusFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputLearnedItemStatusFilter._(this._$data);
+
+  factory InputLearnedItemStatusFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumLearnedItemStatus((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumLearnedItemStatus((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumLearnedItemStatus((l$neq as String));
+    }
+    return InputLearnedItemStatusFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumLearnedItemStatus? get eq => (_$data['eq'] as EnumLearnedItemStatus?);
+
+  List<EnumLearnedItemStatus>? get $in => (_$data['in'] as List<EnumLearnedItemStatus>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumLearnedItemStatus? get neq => (_$data['neq'] as EnumLearnedItemStatus?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumLearnedItemStatus(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumLearnedItemStatus(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumLearnedItemStatus(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputLearnedItemStatusFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputLearnedItemsUpdateInput {
   factory InputLearnedItemsUpdateInput({
     String? id,
     String? authorId,
-    String? target,
+    EnumLearnedItemTarget? target,
     String? text,
     String? excerpt,
-    String? status,
+    EnumLearnedItemStatus? status,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) => InputLearnedItemsUpdateInput._({
@@ -33716,7 +36457,9 @@ class InputLearnedItemsUpdateInput {
     }
     if (data.containsKey('target')) {
       final l$target = data['target'];
-      result$data['target'] = (l$target as String?);
+      result$data['target'] = l$target == null
+          ? null
+          : fromJsonEnumLearnedItemTarget((l$target as String));
     }
     if (data.containsKey('text')) {
       final l$text = data['text'];
@@ -33728,7 +36471,9 @@ class InputLearnedItemsUpdateInput {
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumLearnedItemStatus((l$status as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -33751,13 +36496,13 @@ class InputLearnedItemsUpdateInput {
 
   String? get authorId => (_$data['authorId'] as String?);
 
-  String? get target => (_$data['target'] as String?);
+  EnumLearnedItemTarget? get target => (_$data['target'] as EnumLearnedItemTarget?);
 
   String? get text => (_$data['text'] as String?);
 
   String? get excerpt => (_$data['excerpt'] as String?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumLearnedItemStatus? get status => (_$data['status'] as EnumLearnedItemStatus?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -33775,7 +36520,7 @@ class InputLearnedItemsUpdateInput {
     }
     if (_$data.containsKey('target')) {
       final l$target = target;
-      result$data['target'] = l$target;
+      result$data['target'] = l$target == null ? null : toJsonEnumLearnedItemTarget(l$target);
     }
     if (_$data.containsKey('text')) {
       final l$text = text;
@@ -33787,7 +36532,7 @@ class InputLearnedItemsUpdateInput {
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumLearnedItemStatus(l$status);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -33902,13 +36647,155 @@ class InputLearnedItemsUpdateInput {
   }
 }
 
+class InputLearnedItemTargetFilter {
+  factory InputLearnedItemTargetFilter({
+    EnumLearnedItemTarget? eq,
+    List<EnumLearnedItemTarget>? $in,
+    EnumFilterIs? $is,
+    EnumLearnedItemTarget? neq,
+  }) => InputLearnedItemTargetFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputLearnedItemTargetFilter._(this._$data);
+
+  factory InputLearnedItemTargetFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumLearnedItemTarget((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumLearnedItemTarget((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumLearnedItemTarget((l$neq as String));
+    }
+    return InputLearnedItemTargetFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumLearnedItemTarget? get eq => (_$data['eq'] as EnumLearnedItemTarget?);
+
+  List<EnumLearnedItemTarget>? get $in => (_$data['in'] as List<EnumLearnedItemTarget>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumLearnedItemTarget? get neq => (_$data['neq'] as EnumLearnedItemTarget?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumLearnedItemTarget(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumLearnedItemTarget(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumLearnedItemTarget(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputLearnedItemTargetFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputLessonProgressFilter {
   factory InputLessonProgressFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
     InputStringFilter? programSlug,
     InputIntFilter? lessonDay,
-    InputStringFilter? status,
+    InputLessonStatusFilter? status,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
     InputIDFilter? nodeId,
@@ -33961,7 +36848,7 @@ class InputLessonProgressFilter {
       final l$status = data['status'];
       result$data['status'] = l$status == null
           ? null
-          : InputStringFilter.fromJson((l$status as Map<String, dynamic>));
+          : InputLessonStatusFilter.fromJson((l$status as Map<String, dynamic>));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -34012,7 +36899,7 @@ class InputLessonProgressFilter {
 
   InputIntFilter? get lessonDay => (_$data['lessonDay'] as InputIntFilter?);
 
-  InputStringFilter? get status => (_$data['status'] as InputStringFilter?);
+  InputLessonStatusFilter? get status => (_$data['status'] as InputLessonStatusFilter?);
 
   InputDatetimeFilter? get createdAt => (_$data['createdAt'] as InputDatetimeFilter?);
 
@@ -34239,7 +37126,7 @@ class InputLessonProgressInsertInput {
     String? authorId,
     String? programSlug,
     int? lessonDay,
-    String? status,
+    EnumLessonStatus? status,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) => InputLessonProgressInsertInput._({
@@ -34274,7 +37161,9 @@ class InputLessonProgressInsertInput {
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumLessonStatus((l$status as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -34301,7 +37190,7 @@ class InputLessonProgressInsertInput {
 
   int? get lessonDay => (_$data['lessonDay'] as int?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumLessonStatus? get status => (_$data['status'] as EnumLessonStatus?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -34327,7 +37216,7 @@ class InputLessonProgressInsertInput {
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumLessonStatus(l$status);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -34649,7 +37538,7 @@ class InputLessonProgressUpdateInput {
     String? authorId,
     String? programSlug,
     int? lessonDay,
-    String? status,
+    EnumLessonStatus? status,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) => InputLessonProgressUpdateInput._({
@@ -34684,7 +37573,9 @@ class InputLessonProgressUpdateInput {
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumLessonStatus((l$status as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -34711,7 +37602,7 @@ class InputLessonProgressUpdateInput {
 
   int? get lessonDay => (_$data['lessonDay'] as int?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumLessonStatus? get status => (_$data['status'] as EnumLessonStatus?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -34737,7 +37628,7 @@ class InputLessonProgressUpdateInput {
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumLessonStatus(l$status);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -34842,13 +37733,155 @@ class InputLessonProgressUpdateInput {
   }
 }
 
+class InputLessonStatusFilter {
+  factory InputLessonStatusFilter({
+    EnumLessonStatus? eq,
+    List<EnumLessonStatus>? $in,
+    EnumFilterIs? $is,
+    EnumLessonStatus? neq,
+  }) => InputLessonStatusFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputLessonStatusFilter._(this._$data);
+
+  factory InputLessonStatusFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumLessonStatus((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumLessonStatus((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumLessonStatus((l$neq as String));
+    }
+    return InputLessonStatusFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumLessonStatus? get eq => (_$data['eq'] as EnumLessonStatus?);
+
+  List<EnumLessonStatus>? get $in => (_$data['in'] as List<EnumLessonStatus>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumLessonStatus? get neq => (_$data['neq'] as EnumLessonStatus?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumLessonStatus(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumLessonStatus(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumLessonStatus(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputLessonStatusFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputListItemsFilter {
   factory InputListItemsFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? listId,
     InputUUIDFilter? authorId,
     InputStringFilter? title,
-    InputStringFilter? status,
+    InputListItemStatusFilter? status,
     InputIntFilter? position,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
@@ -34903,7 +37936,7 @@ class InputListItemsFilter {
       final l$status = data['status'];
       result$data['status'] = l$status == null
           ? null
-          : InputStringFilter.fromJson((l$status as Map<String, dynamic>));
+          : InputListItemStatusFilter.fromJson((l$status as Map<String, dynamic>));
     }
     if (data.containsKey('position')) {
       final l$position = data['position'];
@@ -34960,7 +37993,7 @@ class InputListItemsFilter {
 
   InputStringFilter? get title => (_$data['title'] as InputStringFilter?);
 
-  InputStringFilter? get status => (_$data['status'] as InputStringFilter?);
+  InputListItemStatusFilter? get status => (_$data['status'] as InputListItemStatusFilter?);
 
   InputIntFilter? get position => (_$data['position'] as InputIntFilter?);
 
@@ -35203,7 +38236,7 @@ class InputListItemsInsertInput {
     String? listId,
     String? authorId,
     String? title,
-    String? status,
+    EnumListItemStatus? status,
     int? position,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -35240,7 +38273,9 @@ class InputListItemsInsertInput {
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumListItemStatus((l$status as String));
     }
     if (data.containsKey('position')) {
       final l$position = data['position'];
@@ -35271,7 +38306,7 @@ class InputListItemsInsertInput {
 
   String? get title => (_$data['title'] as String?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumListItemStatus? get status => (_$data['status'] as EnumListItemStatus?);
 
   int? get position => (_$data['position'] as int?);
 
@@ -35299,7 +38334,7 @@ class InputListItemsInsertInput {
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumListItemStatus(l$status);
     }
     if (_$data.containsKey('position')) {
       final l$position = position;
@@ -35649,13 +38684,155 @@ class InputListItemsOrderBy {
   }
 }
 
+class InputListItemStatusFilter {
+  factory InputListItemStatusFilter({
+    EnumListItemStatus? eq,
+    List<EnumListItemStatus>? $in,
+    EnumFilterIs? $is,
+    EnumListItemStatus? neq,
+  }) => InputListItemStatusFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputListItemStatusFilter._(this._$data);
+
+  factory InputListItemStatusFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumListItemStatus((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumListItemStatus((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumListItemStatus((l$neq as String));
+    }
+    return InputListItemStatusFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumListItemStatus? get eq => (_$data['eq'] as EnumListItemStatus?);
+
+  List<EnumListItemStatus>? get $in => (_$data['in'] as List<EnumListItemStatus>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumListItemStatus? get neq => (_$data['neq'] as EnumListItemStatus?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumListItemStatus(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumListItemStatus(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumListItemStatus(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputListItemStatusFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputListItemsUpdateInput {
   factory InputListItemsUpdateInput({
     String? id,
     String? listId,
     String? authorId,
     String? title,
-    String? status,
+    EnumListItemStatus? status,
     int? position,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -35692,7 +38869,9 @@ class InputListItemsUpdateInput {
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumListItemStatus((l$status as String));
     }
     if (data.containsKey('position')) {
       final l$position = data['position'];
@@ -35723,7 +38902,7 @@ class InputListItemsUpdateInput {
 
   String? get title => (_$data['title'] as String?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumListItemStatus? get status => (_$data['status'] as EnumListItemStatus?);
 
   int? get position => (_$data['position'] as int?);
 
@@ -35751,7 +38930,7 @@ class InputListItemsUpdateInput {
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumListItemStatus(l$status);
     }
     if (_$data.containsKey('position')) {
       final l$position = position;
@@ -35870,13 +39049,155 @@ class InputListItemsUpdateInput {
   }
 }
 
+class InputListKindFilter {
+  factory InputListKindFilter({
+    EnumListKind? eq,
+    List<EnumListKind>? $in,
+    EnumFilterIs? $is,
+    EnumListKind? neq,
+  }) => InputListKindFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputListKindFilter._(this._$data);
+
+  factory InputListKindFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumListKind((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumListKind((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumListKind((l$neq as String));
+    }
+    return InputListKindFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumListKind? get eq => (_$data['eq'] as EnumListKind?);
+
+  List<EnumListKind>? get $in => (_$data['in'] as List<EnumListKind>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumListKind? get neq => (_$data['neq'] as EnumListKind?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumListKind(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumListKind(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumListKind(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputListKindFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputListsFilter {
   factory InputListsFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
     InputUUIDFilter? coupleId,
     InputStringFilter? title,
-    InputStringFilter? kind,
+    InputListKindFilter? kind,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
     InputIDFilter? nodeId,
@@ -35929,7 +39250,7 @@ class InputListsFilter {
       final l$kind = data['kind'];
       result$data['kind'] = l$kind == null
           ? null
-          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
+          : InputListKindFilter.fromJson((l$kind as Map<String, dynamic>));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -35980,7 +39301,7 @@ class InputListsFilter {
 
   InputStringFilter? get title => (_$data['title'] as InputStringFilter?);
 
-  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
+  InputListKindFilter? get kind => (_$data['kind'] as InputListKindFilter?);
 
   InputDatetimeFilter? get createdAt => (_$data['createdAt'] as InputDatetimeFilter?);
 
@@ -36207,7 +39528,7 @@ class InputListsInsertInput {
     String? authorId,
     String? coupleId,
     String? title,
-    String? kind,
+    EnumListKind? kind,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) => InputListsInsertInput._({
@@ -36242,7 +39563,7 @@ class InputListsInsertInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumListKind((l$kind as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -36269,7 +39590,7 @@ class InputListsInsertInput {
 
   String? get title => (_$data['title'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumListKind? get kind => (_$data['kind'] as EnumListKind?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -36295,7 +39616,7 @@ class InputListsInsertInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumListKind(l$kind);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -36613,7 +39934,7 @@ class InputListsUpdateInput {
     String? authorId,
     String? coupleId,
     String? title,
-    String? kind,
+    EnumListKind? kind,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) => InputListsUpdateInput._({
@@ -36648,7 +39969,7 @@ class InputListsUpdateInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumListKind((l$kind as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -36675,7 +39996,7 @@ class InputListsUpdateInput {
 
   String? get title => (_$data['title'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumListKind? get kind => (_$data['kind'] as EnumListKind?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -36701,7 +40022,7 @@ class InputListsUpdateInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumListKind(l$kind);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -40260,10 +43581,10 @@ class InputMemoriesFilter {
     InputStringFilter? title,
     InputStringFilter? body,
     InputDateFilter? happenedOn,
-    InputStringFilter? datePrecision,
+    InputDatePrecisionFilter? datePrecision,
     InputStringFilter? place,
     InputStringFilter? photoPath,
-    InputStringFilter? origin,
+    InputMemoryOriginFilter? origin,
     InputUUIDFilter? sourceId,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
@@ -40335,7 +43656,7 @@ class InputMemoriesFilter {
       final l$datePrecision = data['datePrecision'];
       result$data['datePrecision'] = l$datePrecision == null
           ? null
-          : InputStringFilter.fromJson((l$datePrecision as Map<String, dynamic>));
+          : InputDatePrecisionFilter.fromJson((l$datePrecision as Map<String, dynamic>));
     }
     if (data.containsKey('place')) {
       final l$place = data['place'];
@@ -40353,7 +43674,7 @@ class InputMemoriesFilter {
       final l$origin = data['origin'];
       result$data['origin'] = l$origin == null
           ? null
-          : InputStringFilter.fromJson((l$origin as Map<String, dynamic>));
+          : InputMemoryOriginFilter.fromJson((l$origin as Map<String, dynamic>));
     }
     if (data.containsKey('sourceId')) {
       final l$sourceId = data['sourceId'];
@@ -40414,13 +43735,14 @@ class InputMemoriesFilter {
 
   InputDateFilter? get happenedOn => (_$data['happenedOn'] as InputDateFilter?);
 
-  InputStringFilter? get datePrecision => (_$data['datePrecision'] as InputStringFilter?);
+  InputDatePrecisionFilter? get datePrecision =>
+      (_$data['datePrecision'] as InputDatePrecisionFilter?);
 
   InputStringFilter? get place => (_$data['place'] as InputStringFilter?);
 
   InputStringFilter? get photoPath => (_$data['photoPath'] as InputStringFilter?);
 
-  InputStringFilter? get origin => (_$data['origin'] as InputStringFilter?);
+  InputMemoryOriginFilter? get origin => (_$data['origin'] as InputMemoryOriginFilter?);
 
   InputUUIDFilter? get sourceId => (_$data['sourceId'] as InputUUIDFilter?);
 
@@ -40735,10 +44057,10 @@ class InputMemoriesInsertInput {
     String? title,
     String? body,
     DateTime? happenedOn,
-    String? datePrecision,
+    EnumDatePrecision? datePrecision,
     String? place,
     String? photoPath,
-    String? origin,
+    EnumMemoryOrigin? origin,
     String? sourceId,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -40790,7 +44112,9 @@ class InputMemoriesInsertInput {
     }
     if (data.containsKey('datePrecision')) {
       final l$datePrecision = data['datePrecision'];
-      result$data['datePrecision'] = (l$datePrecision as String?);
+      result$data['datePrecision'] = l$datePrecision == null
+          ? null
+          : fromJsonEnumDatePrecision((l$datePrecision as String));
     }
     if (data.containsKey('place')) {
       final l$place = data['place'];
@@ -40802,7 +44126,9 @@ class InputMemoriesInsertInput {
     }
     if (data.containsKey('origin')) {
       final l$origin = data['origin'];
-      result$data['origin'] = (l$origin as String?);
+      result$data['origin'] = l$origin == null
+          ? null
+          : fromJsonEnumMemoryOrigin((l$origin as String));
     }
     if (data.containsKey('sourceId')) {
       final l$sourceId = data['sourceId'];
@@ -40837,13 +44163,13 @@ class InputMemoriesInsertInput {
 
   DateTime? get happenedOn => (_$data['happenedOn'] as DateTime?);
 
-  String? get datePrecision => (_$data['datePrecision'] as String?);
+  EnumDatePrecision? get datePrecision => (_$data['datePrecision'] as EnumDatePrecision?);
 
   String? get place => (_$data['place'] as String?);
 
   String? get photoPath => (_$data['photoPath'] as String?);
 
-  String? get origin => (_$data['origin'] as String?);
+  EnumMemoryOrigin? get origin => (_$data['origin'] as EnumMemoryOrigin?);
 
   String? get sourceId => (_$data['sourceId'] as String?);
 
@@ -40881,7 +44207,9 @@ class InputMemoriesInsertInput {
     }
     if (_$data.containsKey('datePrecision')) {
       final l$datePrecision = datePrecision;
-      result$data['datePrecision'] = l$datePrecision;
+      result$data['datePrecision'] = l$datePrecision == null
+          ? null
+          : toJsonEnumDatePrecision(l$datePrecision);
     }
     if (_$data.containsKey('place')) {
       final l$place = place;
@@ -40893,7 +44221,7 @@ class InputMemoriesInsertInput {
     }
     if (_$data.containsKey('origin')) {
       final l$origin = origin;
-      result$data['origin'] = l$origin;
+      result$data['origin'] = l$origin == null ? null : toJsonEnumMemoryOrigin(l$origin);
     }
     if (_$data.containsKey('sourceId')) {
       final l$sourceId = sourceId;
@@ -41427,10 +44755,10 @@ class InputMemoriesUpdateInput {
     String? title,
     String? body,
     DateTime? happenedOn,
-    String? datePrecision,
+    EnumDatePrecision? datePrecision,
     String? place,
     String? photoPath,
-    String? origin,
+    EnumMemoryOrigin? origin,
     String? sourceId,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -41482,7 +44810,9 @@ class InputMemoriesUpdateInput {
     }
     if (data.containsKey('datePrecision')) {
       final l$datePrecision = data['datePrecision'];
-      result$data['datePrecision'] = (l$datePrecision as String?);
+      result$data['datePrecision'] = l$datePrecision == null
+          ? null
+          : fromJsonEnumDatePrecision((l$datePrecision as String));
     }
     if (data.containsKey('place')) {
       final l$place = data['place'];
@@ -41494,7 +44824,9 @@ class InputMemoriesUpdateInput {
     }
     if (data.containsKey('origin')) {
       final l$origin = data['origin'];
-      result$data['origin'] = (l$origin as String?);
+      result$data['origin'] = l$origin == null
+          ? null
+          : fromJsonEnumMemoryOrigin((l$origin as String));
     }
     if (data.containsKey('sourceId')) {
       final l$sourceId = data['sourceId'];
@@ -41529,13 +44861,13 @@ class InputMemoriesUpdateInput {
 
   DateTime? get happenedOn => (_$data['happenedOn'] as DateTime?);
 
-  String? get datePrecision => (_$data['datePrecision'] as String?);
+  EnumDatePrecision? get datePrecision => (_$data['datePrecision'] as EnumDatePrecision?);
 
   String? get place => (_$data['place'] as String?);
 
   String? get photoPath => (_$data['photoPath'] as String?);
 
-  String? get origin => (_$data['origin'] as String?);
+  EnumMemoryOrigin? get origin => (_$data['origin'] as EnumMemoryOrigin?);
 
   String? get sourceId => (_$data['sourceId'] as String?);
 
@@ -41573,7 +44905,9 @@ class InputMemoriesUpdateInput {
     }
     if (_$data.containsKey('datePrecision')) {
       final l$datePrecision = datePrecision;
-      result$data['datePrecision'] = l$datePrecision;
+      result$data['datePrecision'] = l$datePrecision == null
+          ? null
+          : toJsonEnumDatePrecision(l$datePrecision);
     }
     if (_$data.containsKey('place')) {
       final l$place = place;
@@ -41585,7 +44919,7 @@ class InputMemoriesUpdateInput {
     }
     if (_$data.containsKey('origin')) {
       final l$origin = origin;
-      result$data['origin'] = l$origin;
+      result$data['origin'] = l$origin == null ? null : toJsonEnumMemoryOrigin(l$origin);
     }
     if (_$data.containsKey('sourceId')) {
       final l$sourceId = sourceId;
@@ -41754,14 +45088,436 @@ class InputMemoriesUpdateInput {
   }
 }
 
+class InputMemoryOriginFilter {
+  factory InputMemoryOriginFilter({
+    EnumMemoryOrigin? eq,
+    List<EnumMemoryOrigin>? $in,
+    EnumFilterIs? $is,
+    EnumMemoryOrigin? neq,
+  }) => InputMemoryOriginFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputMemoryOriginFilter._(this._$data);
+
+  factory InputMemoryOriginFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumMemoryOrigin((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumMemoryOrigin((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumMemoryOrigin((l$neq as String));
+    }
+    return InputMemoryOriginFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumMemoryOrigin? get eq => (_$data['eq'] as EnumMemoryOrigin?);
+
+  List<EnumMemoryOrigin>? get $in => (_$data['in'] as List<EnumMemoryOrigin>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumMemoryOrigin? get neq => (_$data['neq'] as EnumMemoryOrigin?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumMemoryOrigin(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumMemoryOrigin(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumMemoryOrigin(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputMemoryOriginFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
+class InputMoodFilter {
+  factory InputMoodFilter({EnumMood? eq, List<EnumMood>? $in, EnumFilterIs? $is, EnumMood? neq}) =>
+      InputMoodFilter._({
+        if (eq != null) r'eq': eq,
+        if ($in != null) r'in': $in,
+        if ($is != null) r'is': $is,
+        if (neq != null) r'neq': neq,
+      });
+
+  InputMoodFilter._(this._$data);
+
+  factory InputMoodFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumMood((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumMood((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumMood((l$neq as String));
+    }
+    return InputMoodFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumMood? get eq => (_$data['eq'] as EnumMood?);
+
+  List<EnumMood>? get $in => (_$data['in'] as List<EnumMood>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumMood? get neq => (_$data['neq'] as EnumMood?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumMood(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumMood(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumMood(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputMoodFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
+class InputMoodNeedFilter {
+  factory InputMoodNeedFilter({
+    EnumMoodNeed? eq,
+    List<EnumMoodNeed>? $in,
+    EnumFilterIs? $is,
+    EnumMoodNeed? neq,
+  }) => InputMoodNeedFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputMoodNeedFilter._(this._$data);
+
+  factory InputMoodNeedFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumMoodNeed((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumMoodNeed((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumMoodNeed((l$neq as String));
+    }
+    return InputMoodNeedFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumMoodNeed? get eq => (_$data['eq'] as EnumMoodNeed?);
+
+  List<EnumMoodNeed>? get $in => (_$data['in'] as List<EnumMoodNeed>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumMoodNeed? get neq => (_$data['neq'] as EnumMoodNeed?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumMoodNeed(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumMoodNeed(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumMoodNeed(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputMoodNeedFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputMoodsFilter {
   factory InputMoodsFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
     InputDateFilter? day,
-    InputStringFilter? mood,
-    InputStringFilter? need,
-    InputStringFilter? share,
+    InputMoodFilter? mood,
+    InputMoodNeedFilter? need,
+    InputMoodShareFilter? share,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
     InputIDFilter? nodeId,
@@ -41809,19 +45565,19 @@ class InputMoodsFilter {
       final l$mood = data['mood'];
       result$data['mood'] = l$mood == null
           ? null
-          : InputStringFilter.fromJson((l$mood as Map<String, dynamic>));
+          : InputMoodFilter.fromJson((l$mood as Map<String, dynamic>));
     }
     if (data.containsKey('need')) {
       final l$need = data['need'];
       result$data['need'] = l$need == null
           ? null
-          : InputStringFilter.fromJson((l$need as Map<String, dynamic>));
+          : InputMoodNeedFilter.fromJson((l$need as Map<String, dynamic>));
     }
     if (data.containsKey('share')) {
       final l$share = data['share'];
       result$data['share'] = l$share == null
           ? null
-          : InputStringFilter.fromJson((l$share as Map<String, dynamic>));
+          : InputMoodShareFilter.fromJson((l$share as Map<String, dynamic>));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -41870,11 +45626,11 @@ class InputMoodsFilter {
 
   InputDateFilter? get day => (_$data['day'] as InputDateFilter?);
 
-  InputStringFilter? get mood => (_$data['mood'] as InputStringFilter?);
+  InputMoodFilter? get mood => (_$data['mood'] as InputMoodFilter?);
 
-  InputStringFilter? get need => (_$data['need'] as InputStringFilter?);
+  InputMoodNeedFilter? get need => (_$data['need'] as InputMoodNeedFilter?);
 
-  InputStringFilter? get share => (_$data['share'] as InputStringFilter?);
+  InputMoodShareFilter? get share => (_$data['share'] as InputMoodShareFilter?);
 
   InputDatetimeFilter? get createdAt => (_$data['createdAt'] as InputDatetimeFilter?);
 
@@ -42109,14 +45865,156 @@ class InputMoodsFilter {
   }
 }
 
+class InputMoodShareFilter {
+  factory InputMoodShareFilter({
+    EnumMoodShare? eq,
+    List<EnumMoodShare>? $in,
+    EnumFilterIs? $is,
+    EnumMoodShare? neq,
+  }) => InputMoodShareFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputMoodShareFilter._(this._$data);
+
+  factory InputMoodShareFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumMoodShare((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumMoodShare((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumMoodShare((l$neq as String));
+    }
+    return InputMoodShareFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumMoodShare? get eq => (_$data['eq'] as EnumMoodShare?);
+
+  List<EnumMoodShare>? get $in => (_$data['in'] as List<EnumMoodShare>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumMoodShare? get neq => (_$data['neq'] as EnumMoodShare?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumMoodShare(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumMoodShare(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumMoodShare(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputMoodShareFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputMoodsInsertInput {
   factory InputMoodsInsertInput({
     String? id,
     String? authorId,
     DateTime? day,
-    String? mood,
-    String? need,
-    String? share,
+    EnumMood? mood,
+    EnumMoodNeed? need,
+    EnumMoodShare? share,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) => InputMoodsInsertInput._({
@@ -42148,15 +46046,15 @@ class InputMoodsInsertInput {
     }
     if (data.containsKey('mood')) {
       final l$mood = data['mood'];
-      result$data['mood'] = (l$mood as String?);
+      result$data['mood'] = l$mood == null ? null : fromJsonEnumMood((l$mood as String));
     }
     if (data.containsKey('need')) {
       final l$need = data['need'];
-      result$data['need'] = (l$need as String?);
+      result$data['need'] = l$need == null ? null : fromJsonEnumMoodNeed((l$need as String));
     }
     if (data.containsKey('share')) {
       final l$share = data['share'];
-      result$data['share'] = (l$share as String?);
+      result$data['share'] = l$share == null ? null : fromJsonEnumMoodShare((l$share as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -42181,11 +46079,11 @@ class InputMoodsInsertInput {
 
   DateTime? get day => (_$data['day'] as DateTime?);
 
-  String? get mood => (_$data['mood'] as String?);
+  EnumMood? get mood => (_$data['mood'] as EnumMood?);
 
-  String? get need => (_$data['need'] as String?);
+  EnumMoodNeed? get need => (_$data['need'] as EnumMoodNeed?);
 
-  String? get share => (_$data['share'] as String?);
+  EnumMoodShare? get share => (_$data['share'] as EnumMoodShare?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -42209,15 +46107,15 @@ class InputMoodsInsertInput {
     }
     if (_$data.containsKey('mood')) {
       final l$mood = mood;
-      result$data['mood'] = l$mood;
+      result$data['mood'] = l$mood == null ? null : toJsonEnumMood(l$mood);
     }
     if (_$data.containsKey('need')) {
       final l$need = need;
-      result$data['need'] = l$need;
+      result$data['need'] = l$need == null ? null : toJsonEnumMoodNeed(l$need);
     }
     if (_$data.containsKey('share')) {
       final l$share = share;
-      result$data['share'] = l$share;
+      result$data['share'] = l$share == null ? null : toJsonEnumMoodShare(l$share);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -42566,9 +46464,9 @@ class InputMoodsUpdateInput {
     String? id,
     String? authorId,
     DateTime? day,
-    String? mood,
-    String? need,
-    String? share,
+    EnumMood? mood,
+    EnumMoodNeed? need,
+    EnumMoodShare? share,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) => InputMoodsUpdateInput._({
@@ -42600,15 +46498,15 @@ class InputMoodsUpdateInput {
     }
     if (data.containsKey('mood')) {
       final l$mood = data['mood'];
-      result$data['mood'] = (l$mood as String?);
+      result$data['mood'] = l$mood == null ? null : fromJsonEnumMood((l$mood as String));
     }
     if (data.containsKey('need')) {
       final l$need = data['need'];
-      result$data['need'] = (l$need as String?);
+      result$data['need'] = l$need == null ? null : fromJsonEnumMoodNeed((l$need as String));
     }
     if (data.containsKey('share')) {
       final l$share = data['share'];
-      result$data['share'] = (l$share as String?);
+      result$data['share'] = l$share == null ? null : fromJsonEnumMoodShare((l$share as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -42633,11 +46531,11 @@ class InputMoodsUpdateInput {
 
   DateTime? get day => (_$data['day'] as DateTime?);
 
-  String? get mood => (_$data['mood'] as String?);
+  EnumMood? get mood => (_$data['mood'] as EnumMood?);
 
-  String? get need => (_$data['need'] as String?);
+  EnumMoodNeed? get need => (_$data['need'] as EnumMoodNeed?);
 
-  String? get share => (_$data['share'] as String?);
+  EnumMoodShare? get share => (_$data['share'] as EnumMoodShare?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -42661,15 +46559,15 @@ class InputMoodsUpdateInput {
     }
     if (_$data.containsKey('mood')) {
       final l$mood = mood;
-      result$data['mood'] = l$mood;
+      result$data['mood'] = l$mood == null ? null : toJsonEnumMood(l$mood);
     }
     if (_$data.containsKey('need')) {
       final l$need = need;
-      result$data['need'] = l$need;
+      result$data['need'] = l$need == null ? null : toJsonEnumMoodNeed(l$need);
     }
     if (_$data.containsKey('share')) {
       final l$share = share;
-      result$data['share'] = l$share;
+      result$data['share'] = l$share == null ? null : toJsonEnumMoodShare(l$share);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -43894,14 +47792,158 @@ class InputOpaqueFilter {
   }
 }
 
+class InputPartnerFactCategoryFilter {
+  factory InputPartnerFactCategoryFilter({
+    EnumPartnerFactCategory? eq,
+    List<EnumPartnerFactCategory>? $in,
+    EnumFilterIs? $is,
+    EnumPartnerFactCategory? neq,
+  }) => InputPartnerFactCategoryFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputPartnerFactCategoryFilter._(this._$data);
+
+  factory InputPartnerFactCategoryFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumPartnerFactCategory((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumPartnerFactCategory((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null
+          ? null
+          : fromJsonEnumPartnerFactCategory((l$neq as String));
+    }
+    return InputPartnerFactCategoryFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumPartnerFactCategory? get eq => (_$data['eq'] as EnumPartnerFactCategory?);
+
+  List<EnumPartnerFactCategory>? get $in => (_$data['in'] as List<EnumPartnerFactCategory>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumPartnerFactCategory? get neq => (_$data['neq'] as EnumPartnerFactCategory?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumPartnerFactCategory(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumPartnerFactCategory(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumPartnerFactCategory(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputPartnerFactCategoryFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputPartnerFactsFilter {
   factory InputPartnerFactsFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
     InputStringFilter? label,
     InputStringFilter? value,
-    InputStringFilter? category,
-    InputStringFilter? source,
+    InputPartnerFactCategoryFilter? category,
+    InputPartnerFactSourceFilter? source,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
     InputIDFilter? nodeId,
@@ -43955,13 +47997,13 @@ class InputPartnerFactsFilter {
       final l$category = data['category'];
       result$data['category'] = l$category == null
           ? null
-          : InputStringFilter.fromJson((l$category as Map<String, dynamic>));
+          : InputPartnerFactCategoryFilter.fromJson((l$category as Map<String, dynamic>));
     }
     if (data.containsKey('source')) {
       final l$source = data['source'];
       result$data['source'] = l$source == null
           ? null
-          : InputStringFilter.fromJson((l$source as Map<String, dynamic>));
+          : InputPartnerFactSourceFilter.fromJson((l$source as Map<String, dynamic>));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -44012,9 +48054,10 @@ class InputPartnerFactsFilter {
 
   InputStringFilter? get value => (_$data['value'] as InputStringFilter?);
 
-  InputStringFilter? get category => (_$data['category'] as InputStringFilter?);
+  InputPartnerFactCategoryFilter? get category =>
+      (_$data['category'] as InputPartnerFactCategoryFilter?);
 
-  InputStringFilter? get source => (_$data['source'] as InputStringFilter?);
+  InputPartnerFactSourceFilter? get source => (_$data['source'] as InputPartnerFactSourceFilter?);
 
   InputDatetimeFilter? get createdAt => (_$data['createdAt'] as InputDatetimeFilter?);
 
@@ -44255,8 +48298,8 @@ class InputPartnerFactsInsertInput {
     String? authorId,
     String? label,
     String? value,
-    String? category,
-    String? source,
+    EnumPartnerFactCategory? category,
+    EnumPartnerFactSource? source,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) => InputPartnerFactsInsertInput._({
@@ -44292,11 +48335,15 @@ class InputPartnerFactsInsertInput {
     }
     if (data.containsKey('category')) {
       final l$category = data['category'];
-      result$data['category'] = (l$category as String?);
+      result$data['category'] = l$category == null
+          ? null
+          : fromJsonEnumPartnerFactCategory((l$category as String));
     }
     if (data.containsKey('source')) {
       final l$source = data['source'];
-      result$data['source'] = (l$source as String?);
+      result$data['source'] = l$source == null
+          ? null
+          : fromJsonEnumPartnerFactSource((l$source as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -44323,9 +48370,9 @@ class InputPartnerFactsInsertInput {
 
   String? get value => (_$data['value'] as String?);
 
-  String? get category => (_$data['category'] as String?);
+  EnumPartnerFactCategory? get category => (_$data['category'] as EnumPartnerFactCategory?);
 
-  String? get source => (_$data['source'] as String?);
+  EnumPartnerFactSource? get source => (_$data['source'] as EnumPartnerFactSource?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -44351,11 +48398,13 @@ class InputPartnerFactsInsertInput {
     }
     if (_$data.containsKey('category')) {
       final l$category = category;
-      result$data['category'] = l$category;
+      result$data['category'] = l$category == null
+          ? null
+          : toJsonEnumPartnerFactCategory(l$category);
     }
     if (_$data.containsKey('source')) {
       final l$source = source;
-      result$data['source'] = l$source;
+      result$data['source'] = l$source == null ? null : toJsonEnumPartnerFactSource(l$source);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -44701,14 +48750,156 @@ class InputPartnerFactsOrderBy {
   }
 }
 
+class InputPartnerFactSourceFilter {
+  factory InputPartnerFactSourceFilter({
+    EnumPartnerFactSource? eq,
+    List<EnumPartnerFactSource>? $in,
+    EnumFilterIs? $is,
+    EnumPartnerFactSource? neq,
+  }) => InputPartnerFactSourceFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputPartnerFactSourceFilter._(this._$data);
+
+  factory InputPartnerFactSourceFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumPartnerFactSource((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumPartnerFactSource((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumPartnerFactSource((l$neq as String));
+    }
+    return InputPartnerFactSourceFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumPartnerFactSource? get eq => (_$data['eq'] as EnumPartnerFactSource?);
+
+  List<EnumPartnerFactSource>? get $in => (_$data['in'] as List<EnumPartnerFactSource>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumPartnerFactSource? get neq => (_$data['neq'] as EnumPartnerFactSource?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumPartnerFactSource(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumPartnerFactSource(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumPartnerFactSource(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputPartnerFactSourceFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputPartnerFactsUpdateInput {
   factory InputPartnerFactsUpdateInput({
     String? id,
     String? authorId,
     String? label,
     String? value,
-    String? category,
-    String? source,
+    EnumPartnerFactCategory? category,
+    EnumPartnerFactSource? source,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) => InputPartnerFactsUpdateInput._({
@@ -44744,11 +48935,15 @@ class InputPartnerFactsUpdateInput {
     }
     if (data.containsKey('category')) {
       final l$category = data['category'];
-      result$data['category'] = (l$category as String?);
+      result$data['category'] = l$category == null
+          ? null
+          : fromJsonEnumPartnerFactCategory((l$category as String));
     }
     if (data.containsKey('source')) {
       final l$source = data['source'];
-      result$data['source'] = (l$source as String?);
+      result$data['source'] = l$source == null
+          ? null
+          : fromJsonEnumPartnerFactSource((l$source as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -44775,9 +48970,9 @@ class InputPartnerFactsUpdateInput {
 
   String? get value => (_$data['value'] as String?);
 
-  String? get category => (_$data['category'] as String?);
+  EnumPartnerFactCategory? get category => (_$data['category'] as EnumPartnerFactCategory?);
 
-  String? get source => (_$data['source'] as String?);
+  EnumPartnerFactSource? get source => (_$data['source'] as EnumPartnerFactSource?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -44803,11 +48998,13 @@ class InputPartnerFactsUpdateInput {
     }
     if (_$data.containsKey('category')) {
       final l$category = category;
-      result$data['category'] = l$category;
+      result$data['category'] = l$category == null
+          ? null
+          : toJsonEnumPartnerFactCategory(l$category);
     }
     if (_$data.containsKey('source')) {
       final l$source = source;
-      result$data['source'] = l$source;
+      result$data['source'] = l$source == null ? null : toJsonEnumPartnerFactSource(l$source);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -44922,12 +49119,154 @@ class InputPartnerFactsUpdateInput {
   }
 }
 
+class InputPartnerMessageKindFilter {
+  factory InputPartnerMessageKindFilter({
+    EnumPartnerMessageKind? eq,
+    List<EnumPartnerMessageKind>? $in,
+    EnumFilterIs? $is,
+    EnumPartnerMessageKind? neq,
+  }) => InputPartnerMessageKindFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputPartnerMessageKindFilter._(this._$data);
+
+  factory InputPartnerMessageKindFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumPartnerMessageKind((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumPartnerMessageKind((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumPartnerMessageKind((l$neq as String));
+    }
+    return InputPartnerMessageKindFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumPartnerMessageKind? get eq => (_$data['eq'] as EnumPartnerMessageKind?);
+
+  List<EnumPartnerMessageKind>? get $in => (_$data['in'] as List<EnumPartnerMessageKind>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumPartnerMessageKind? get neq => (_$data['neq'] as EnumPartnerMessageKind?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumPartnerMessageKind(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumPartnerMessageKind(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumPartnerMessageKind(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputPartnerMessageKindFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputPartnerMessagesFilter {
   factory InputPartnerMessagesFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? senderId,
     InputUUIDFilter? recipientId,
-    InputStringFilter? kind,
+    InputPartnerMessageKindFilter? kind,
     InputStringFilter? body,
     InputStringFilter? mediaPath,
     InputBooleanFilter? forWidget,
@@ -44981,7 +49320,7 @@ class InputPartnerMessagesFilter {
       final l$kind = data['kind'];
       result$data['kind'] = l$kind == null
           ? null
-          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
+          : InputPartnerMessageKindFilter.fromJson((l$kind as Map<String, dynamic>));
     }
     if (data.containsKey('body')) {
       final l$body = data['body'];
@@ -45054,7 +49393,7 @@ class InputPartnerMessagesFilter {
 
   InputUUIDFilter? get recipientId => (_$data['recipientId'] as InputUUIDFilter?);
 
-  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
+  InputPartnerMessageKindFilter? get kind => (_$data['kind'] as InputPartnerMessageKindFilter?);
 
   InputStringFilter? get body => (_$data['body'] as InputStringFilter?);
 
@@ -45330,7 +49669,7 @@ class InputPartnerMessagesInsertInput {
     String? id,
     String? senderId,
     String? recipientId,
-    String? kind,
+    EnumPartnerMessageKind? kind,
     String? body,
     String? mediaPath,
     bool? forWidget,
@@ -45368,7 +49707,9 @@ class InputPartnerMessagesInsertInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null
+          ? null
+          : fromJsonEnumPartnerMessageKind((l$kind as String));
     }
     if (data.containsKey('body')) {
       final l$body = data['body'];
@@ -45409,7 +49750,7 @@ class InputPartnerMessagesInsertInput {
 
   String? get recipientId => (_$data['recipientId'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumPartnerMessageKind? get kind => (_$data['kind'] as EnumPartnerMessageKind?);
 
   String? get body => (_$data['body'] as String?);
 
@@ -45439,7 +49780,7 @@ class InputPartnerMessagesInsertInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumPartnerMessageKind(l$kind);
     }
     if (_$data.containsKey('body')) {
       final l$body = body;
@@ -45882,7 +50223,7 @@ class InputPartnerMessagesUpdateInput {
     String? id,
     String? senderId,
     String? recipientId,
-    String? kind,
+    EnumPartnerMessageKind? kind,
     String? body,
     String? mediaPath,
     bool? forWidget,
@@ -45920,7 +50261,9 @@ class InputPartnerMessagesUpdateInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null
+          ? null
+          : fromJsonEnumPartnerMessageKind((l$kind as String));
     }
     if (data.containsKey('body')) {
       final l$body = data['body'];
@@ -45961,7 +50304,7 @@ class InputPartnerMessagesUpdateInput {
 
   String? get recipientId => (_$data['recipientId'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumPartnerMessageKind? get kind => (_$data['kind'] as EnumPartnerMessageKind?);
 
   String? get body => (_$data['body'] as String?);
 
@@ -45991,7 +50334,7 @@ class InputPartnerMessagesUpdateInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumPartnerMessageKind(l$kind);
     }
     if (_$data.containsKey('body')) {
       final l$body = body;
@@ -46148,8 +50491,8 @@ class InputPartnerMoodFilter {
   factory InputPartnerMoodFilter({
     InputUUIDFilter? id,
     InputDateFilter? day,
-    InputStringFilter? mood,
-    InputStringFilter? need,
+    InputMoodFilter? mood,
+    InputMoodNeedFilter? need,
     InputIDFilter? nodeId,
     List<InputPartnerMoodFilter>? and,
     List<InputPartnerMoodFilter>? or,
@@ -46185,13 +50528,13 @@ class InputPartnerMoodFilter {
       final l$mood = data['mood'];
       result$data['mood'] = l$mood == null
           ? null
-          : InputStringFilter.fromJson((l$mood as Map<String, dynamic>));
+          : InputMoodFilter.fromJson((l$mood as Map<String, dynamic>));
     }
     if (data.containsKey('need')) {
       final l$need = data['need'];
       result$data['need'] = l$need == null
           ? null
-          : InputStringFilter.fromJson((l$need as Map<String, dynamic>));
+          : InputMoodNeedFilter.fromJson((l$need as Map<String, dynamic>));
     }
     if (data.containsKey('nodeId')) {
       final l$nodeId = data['nodeId'];
@@ -46226,9 +50569,9 @@ class InputPartnerMoodFilter {
 
   InputDateFilter? get day => (_$data['day'] as InputDateFilter?);
 
-  InputStringFilter? get mood => (_$data['mood'] as InputStringFilter?);
+  InputMoodFilter? get mood => (_$data['mood'] as InputMoodFilter?);
 
-  InputStringFilter? get need => (_$data['need'] as InputStringFilter?);
+  InputMoodNeedFilter? get need => (_$data['need'] as InputMoodNeedFilter?);
 
   InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
 
@@ -46404,13 +50747,17 @@ class InputPartnerMoodFilter {
 }
 
 class InputPartnerMoodInsertInput {
-  factory InputPartnerMoodInsertInput({String? id, DateTime? day, String? mood, String? need}) =>
-      InputPartnerMoodInsertInput._({
-        if (id != null) r'id': id,
-        if (day != null) r'day': day,
-        if (mood != null) r'mood': mood,
-        if (need != null) r'need': need,
-      });
+  factory InputPartnerMoodInsertInput({
+    String? id,
+    DateTime? day,
+    EnumMood? mood,
+    EnumMoodNeed? need,
+  }) => InputPartnerMoodInsertInput._({
+    if (id != null) r'id': id,
+    if (day != null) r'day': day,
+    if (mood != null) r'mood': mood,
+    if (need != null) r'need': need,
+  });
 
   InputPartnerMoodInsertInput._(this._$data);
 
@@ -46426,11 +50773,11 @@ class InputPartnerMoodInsertInput {
     }
     if (data.containsKey('mood')) {
       final l$mood = data['mood'];
-      result$data['mood'] = (l$mood as String?);
+      result$data['mood'] = l$mood == null ? null : fromJsonEnumMood((l$mood as String));
     }
     if (data.containsKey('need')) {
       final l$need = data['need'];
-      result$data['need'] = (l$need as String?);
+      result$data['need'] = l$need == null ? null : fromJsonEnumMoodNeed((l$need as String));
     }
     return InputPartnerMoodInsertInput._(result$data);
   }
@@ -46441,9 +50788,9 @@ class InputPartnerMoodInsertInput {
 
   DateTime? get day => (_$data['day'] as DateTime?);
 
-  String? get mood => (_$data['mood'] as String?);
+  EnumMood? get mood => (_$data['mood'] as EnumMood?);
 
-  String? get need => (_$data['need'] as String?);
+  EnumMoodNeed? get need => (_$data['need'] as EnumMoodNeed?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -46459,11 +50806,11 @@ class InputPartnerMoodInsertInput {
     }
     if (_$data.containsKey('mood')) {
       final l$mood = mood;
-      result$data['mood'] = l$mood;
+      result$data['mood'] = l$mood == null ? null : toJsonEnumMood(l$mood);
     }
     if (_$data.containsKey('need')) {
       final l$need = need;
-      result$data['need'] = l$need;
+      result$data['need'] = l$need == null ? null : toJsonEnumMoodNeed(l$need);
     }
     return result$data;
   }
@@ -46656,13 +51003,17 @@ class InputPartnerMoodOrderBy {
 }
 
 class InputPartnerMoodUpdateInput {
-  factory InputPartnerMoodUpdateInput({String? id, DateTime? day, String? mood, String? need}) =>
-      InputPartnerMoodUpdateInput._({
-        if (id != null) r'id': id,
-        if (day != null) r'day': day,
-        if (mood != null) r'mood': mood,
-        if (need != null) r'need': need,
-      });
+  factory InputPartnerMoodUpdateInput({
+    String? id,
+    DateTime? day,
+    EnumMood? mood,
+    EnumMoodNeed? need,
+  }) => InputPartnerMoodUpdateInput._({
+    if (id != null) r'id': id,
+    if (day != null) r'day': day,
+    if (mood != null) r'mood': mood,
+    if (need != null) r'need': need,
+  });
 
   InputPartnerMoodUpdateInput._(this._$data);
 
@@ -46678,11 +51029,11 @@ class InputPartnerMoodUpdateInput {
     }
     if (data.containsKey('mood')) {
       final l$mood = data['mood'];
-      result$data['mood'] = (l$mood as String?);
+      result$data['mood'] = l$mood == null ? null : fromJsonEnumMood((l$mood as String));
     }
     if (data.containsKey('need')) {
       final l$need = data['need'];
-      result$data['need'] = (l$need as String?);
+      result$data['need'] = l$need == null ? null : fromJsonEnumMoodNeed((l$need as String));
     }
     return InputPartnerMoodUpdateInput._(result$data);
   }
@@ -46693,9 +51044,9 @@ class InputPartnerMoodUpdateInput {
 
   DateTime? get day => (_$data['day'] as DateTime?);
 
-  String? get mood => (_$data['mood'] as String?);
+  EnumMood? get mood => (_$data['mood'] as EnumMood?);
 
-  String? get need => (_$data['need'] as String?);
+  EnumMoodNeed? get need => (_$data['need'] as EnumMoodNeed?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -46711,11 +51062,11 @@ class InputPartnerMoodUpdateInput {
     }
     if (_$data.containsKey('mood')) {
       final l$mood = mood;
-      result$data['mood'] = l$mood;
+      result$data['mood'] = l$mood == null ? null : toJsonEnumMood(l$mood);
     }
     if (_$data.containsKey('need')) {
       final l$need = need;
-      result$data['need'] = l$need;
+      result$data['need'] = l$need == null ? null : toJsonEnumMoodNeed(l$need);
     }
     return result$data;
   }
@@ -49706,7 +54057,7 @@ class InputProfileSettingsFilter {
     InputRelationshipStatusFilter? relationshipStatus,
     InputDatetimeFilter? appPausedUntil,
     InputStringListFilter? holidayCountries,
-    InputStringFilter? cardChannel,
+    InputCardChannelFilter? cardChannel,
     InputStringFilter? cardTheme,
     InputBooleanFilter? slipsDefaultForCard,
     InputBooleanFilter? widgetAllowPartnerNotes,
@@ -49717,7 +54068,7 @@ class InputProfileSettingsFilter {
     InputBooleanFilter? lowStimulation,
     InputBooleanFilter? chatEnabled,
     InputBooleanFilter? chatStoreFacts,
-    InputStringFilter? heavyDaySharing,
+    InputHeavyDaySharingFilter? heavyDaySharing,
     InputIDFilter? nodeId,
     List<InputProfileSettingsFilter>? and,
     List<InputProfileSettingsFilter>? or,
@@ -49861,7 +54212,7 @@ class InputProfileSettingsFilter {
       final l$cardChannel = data['cardChannel'];
       result$data['cardChannel'] = l$cardChannel == null
           ? null
-          : InputStringFilter.fromJson((l$cardChannel as Map<String, dynamic>));
+          : InputCardChannelFilter.fromJson((l$cardChannel as Map<String, dynamic>));
     }
     if (data.containsKey('cardTheme')) {
       final l$cardTheme = data['cardTheme'];
@@ -49927,7 +54278,7 @@ class InputProfileSettingsFilter {
       final l$heavyDaySharing = data['heavyDaySharing'];
       result$data['heavyDaySharing'] = l$heavyDaySharing == null
           ? null
-          : InputStringFilter.fromJson((l$heavyDaySharing as Map<String, dynamic>));
+          : InputHeavyDaySharingFilter.fromJson((l$heavyDaySharing as Map<String, dynamic>));
     }
     if (data.containsKey('nodeId')) {
       final l$nodeId = data['nodeId'];
@@ -49992,7 +54343,7 @@ class InputProfileSettingsFilter {
   InputStringListFilter? get holidayCountries =>
       (_$data['holidayCountries'] as InputStringListFilter?);
 
-  InputStringFilter? get cardChannel => (_$data['cardChannel'] as InputStringFilter?);
+  InputCardChannelFilter? get cardChannel => (_$data['cardChannel'] as InputCardChannelFilter?);
 
   InputStringFilter? get cardTheme => (_$data['cardTheme'] as InputStringFilter?);
 
@@ -50017,7 +54368,8 @@ class InputProfileSettingsFilter {
 
   InputBooleanFilter? get chatStoreFacts => (_$data['chatStoreFacts'] as InputBooleanFilter?);
 
-  InputStringFilter? get heavyDaySharing => (_$data['heavyDaySharing'] as InputStringFilter?);
+  InputHeavyDaySharingFilter? get heavyDaySharing =>
+      (_$data['heavyDaySharing'] as InputHeavyDaySharingFilter?);
 
   InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
 
@@ -50550,7 +54902,7 @@ class InputProfileSettingsInsertInput {
     EnumRelationshipStatus? relationshipStatus,
     DateTime? appPausedUntil,
     List<String?>? holidayCountries,
-    String? cardChannel,
+    EnumCardChannel? cardChannel,
     String? cardTheme,
     bool? slipsDefaultForCard,
     bool? widgetAllowPartnerNotes,
@@ -50561,7 +54913,7 @@ class InputProfileSettingsInsertInput {
     bool? lowStimulation,
     bool? chatEnabled,
     bool? chatStoreFacts,
-    String? heavyDaySharing,
+    EnumHeavyDaySharing? heavyDaySharing,
   }) => InputProfileSettingsInsertInput._({
     if (profileId != null) r'profileId': profileId,
     if (theme != null) r'theme': theme,
@@ -50681,7 +55033,9 @@ class InputProfileSettingsInsertInput {
     }
     if (data.containsKey('cardChannel')) {
       final l$cardChannel = data['cardChannel'];
-      result$data['cardChannel'] = (l$cardChannel as String?);
+      result$data['cardChannel'] = l$cardChannel == null
+          ? null
+          : fromJsonEnumCardChannel((l$cardChannel as String));
     }
     if (data.containsKey('cardTheme')) {
       final l$cardTheme = data['cardTheme'];
@@ -50725,7 +55079,9 @@ class InputProfileSettingsInsertInput {
     }
     if (data.containsKey('heavyDaySharing')) {
       final l$heavyDaySharing = data['heavyDaySharing'];
-      result$data['heavyDaySharing'] = (l$heavyDaySharing as String?);
+      result$data['heavyDaySharing'] = l$heavyDaySharing == null
+          ? null
+          : fromJsonEnumHeavyDaySharing((l$heavyDaySharing as String));
     }
     return InputProfileSettingsInsertInput._(result$data);
   }
@@ -50765,7 +55121,7 @@ class InputProfileSettingsInsertInput {
 
   List<String?>? get holidayCountries => (_$data['holidayCountries'] as List<String?>?);
 
-  String? get cardChannel => (_$data['cardChannel'] as String?);
+  EnumCardChannel? get cardChannel => (_$data['cardChannel'] as EnumCardChannel?);
 
   String? get cardTheme => (_$data['cardTheme'] as String?);
 
@@ -50787,7 +55143,7 @@ class InputProfileSettingsInsertInput {
 
   bool? get chatStoreFacts => (_$data['chatStoreFacts'] as bool?);
 
-  String? get heavyDaySharing => (_$data['heavyDaySharing'] as String?);
+  EnumHeavyDaySharing? get heavyDaySharing => (_$data['heavyDaySharing'] as EnumHeavyDaySharing?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -50869,7 +55225,9 @@ class InputProfileSettingsInsertInput {
     }
     if (_$data.containsKey('cardChannel')) {
       final l$cardChannel = cardChannel;
-      result$data['cardChannel'] = l$cardChannel;
+      result$data['cardChannel'] = l$cardChannel == null
+          ? null
+          : toJsonEnumCardChannel(l$cardChannel);
     }
     if (_$data.containsKey('cardTheme')) {
       final l$cardTheme = cardTheme;
@@ -50913,7 +55271,9 @@ class InputProfileSettingsInsertInput {
     }
     if (_$data.containsKey('heavyDaySharing')) {
       final l$heavyDaySharing = heavyDaySharing;
-      result$data['heavyDaySharing'] = l$heavyDaySharing;
+      result$data['heavyDaySharing'] = l$heavyDaySharing == null
+          ? null
+          : toJsonEnumHeavyDaySharing(l$heavyDaySharing);
     }
     return result$data;
   }
@@ -51981,7 +56341,7 @@ class InputProfileSettingsUpdateInput {
     EnumRelationshipStatus? relationshipStatus,
     DateTime? appPausedUntil,
     List<String?>? holidayCountries,
-    String? cardChannel,
+    EnumCardChannel? cardChannel,
     String? cardTheme,
     bool? slipsDefaultForCard,
     bool? widgetAllowPartnerNotes,
@@ -51992,7 +56352,7 @@ class InputProfileSettingsUpdateInput {
     bool? lowStimulation,
     bool? chatEnabled,
     bool? chatStoreFacts,
-    String? heavyDaySharing,
+    EnumHeavyDaySharing? heavyDaySharing,
   }) => InputProfileSettingsUpdateInput._({
     if (profileId != null) r'profileId': profileId,
     if (theme != null) r'theme': theme,
@@ -52112,7 +56472,9 @@ class InputProfileSettingsUpdateInput {
     }
     if (data.containsKey('cardChannel')) {
       final l$cardChannel = data['cardChannel'];
-      result$data['cardChannel'] = (l$cardChannel as String?);
+      result$data['cardChannel'] = l$cardChannel == null
+          ? null
+          : fromJsonEnumCardChannel((l$cardChannel as String));
     }
     if (data.containsKey('cardTheme')) {
       final l$cardTheme = data['cardTheme'];
@@ -52156,7 +56518,9 @@ class InputProfileSettingsUpdateInput {
     }
     if (data.containsKey('heavyDaySharing')) {
       final l$heavyDaySharing = data['heavyDaySharing'];
-      result$data['heavyDaySharing'] = (l$heavyDaySharing as String?);
+      result$data['heavyDaySharing'] = l$heavyDaySharing == null
+          ? null
+          : fromJsonEnumHeavyDaySharing((l$heavyDaySharing as String));
     }
     return InputProfileSettingsUpdateInput._(result$data);
   }
@@ -52196,7 +56560,7 @@ class InputProfileSettingsUpdateInput {
 
   List<String?>? get holidayCountries => (_$data['holidayCountries'] as List<String?>?);
 
-  String? get cardChannel => (_$data['cardChannel'] as String?);
+  EnumCardChannel? get cardChannel => (_$data['cardChannel'] as EnumCardChannel?);
 
   String? get cardTheme => (_$data['cardTheme'] as String?);
 
@@ -52218,7 +56582,7 @@ class InputProfileSettingsUpdateInput {
 
   bool? get chatStoreFacts => (_$data['chatStoreFacts'] as bool?);
 
-  String? get heavyDaySharing => (_$data['heavyDaySharing'] as String?);
+  EnumHeavyDaySharing? get heavyDaySharing => (_$data['heavyDaySharing'] as EnumHeavyDaySharing?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -52300,7 +56664,9 @@ class InputProfileSettingsUpdateInput {
     }
     if (_$data.containsKey('cardChannel')) {
       final l$cardChannel = cardChannel;
-      result$data['cardChannel'] = l$cardChannel;
+      result$data['cardChannel'] = l$cardChannel == null
+          ? null
+          : toJsonEnumCardChannel(l$cardChannel);
     }
     if (_$data.containsKey('cardTheme')) {
       final l$cardTheme = cardTheme;
@@ -52344,7 +56710,9 @@ class InputProfileSettingsUpdateInput {
     }
     if (_$data.containsKey('heavyDaySharing')) {
       final l$heavyDaySharing = heavyDaySharing;
-      result$data['heavyDaySharing'] = l$heavyDaySharing;
+      result$data['heavyDaySharing'] = l$heavyDaySharing == null
+          ? null
+          : toJsonEnumHeavyDaySharing(l$heavyDaySharing);
     }
     return result$data;
   }
@@ -52689,7 +57057,7 @@ class InputProfilesFilter {
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
     InputStringFilter? city,
-    InputStringFilter? avatarKind,
+    InputAvatarKindFilter? avatarKind,
     InputStringFilter? pronouns,
     InputIDFilter? nodeId,
     List<InputProfilesFilter>? and,
@@ -52754,7 +57122,7 @@ class InputProfilesFilter {
       final l$avatarKind = data['avatarKind'];
       result$data['avatarKind'] = l$avatarKind == null
           ? null
-          : InputStringFilter.fromJson((l$avatarKind as Map<String, dynamic>));
+          : InputAvatarKindFilter.fromJson((l$avatarKind as Map<String, dynamic>));
     }
     if (data.containsKey('pronouns')) {
       final l$pronouns = data['pronouns'];
@@ -52803,7 +57171,7 @@ class InputProfilesFilter {
 
   InputStringFilter? get city => (_$data['city'] as InputStringFilter?);
 
-  InputStringFilter? get avatarKind => (_$data['avatarKind'] as InputStringFilter?);
+  InputAvatarKindFilter? get avatarKind => (_$data['avatarKind'] as InputAvatarKindFilter?);
 
   InputStringFilter? get pronouns => (_$data['pronouns'] as InputStringFilter?);
 
@@ -53044,7 +57412,7 @@ class InputProfilesInsertInput {
     DateTime? createdAt,
     DateTime? updatedAt,
     String? city,
-    String? avatarKind,
+    EnumAvatarKind? avatarKind,
     String? pronouns,
   }) => InputProfilesInsertInput._({
     if (id != null) r'id': id,
@@ -53091,7 +57459,9 @@ class InputProfilesInsertInput {
     }
     if (data.containsKey('avatarKind')) {
       final l$avatarKind = data['avatarKind'];
-      result$data['avatarKind'] = (l$avatarKind as String?);
+      result$data['avatarKind'] = l$avatarKind == null
+          ? null
+          : fromJsonEnumAvatarKind((l$avatarKind as String));
     }
     if (data.containsKey('pronouns')) {
       final l$pronouns = data['pronouns'];
@@ -53114,7 +57484,7 @@ class InputProfilesInsertInput {
 
   String? get city => (_$data['city'] as String?);
 
-  String? get avatarKind => (_$data['avatarKind'] as String?);
+  EnumAvatarKind? get avatarKind => (_$data['avatarKind'] as EnumAvatarKind?);
 
   String? get pronouns => (_$data['pronouns'] as String?);
 
@@ -53150,7 +57520,7 @@ class InputProfilesInsertInput {
     }
     if (_$data.containsKey('avatarKind')) {
       final l$avatarKind = avatarKind;
-      result$data['avatarKind'] = l$avatarKind;
+      result$data['avatarKind'] = l$avatarKind == null ? null : toJsonEnumAvatarKind(l$avatarKind);
     }
     if (_$data.containsKey('pronouns')) {
       final l$pronouns = pronouns;
@@ -53502,7 +57872,7 @@ class InputProfilesUpdateInput {
     DateTime? createdAt,
     DateTime? updatedAt,
     String? city,
-    String? avatarKind,
+    EnumAvatarKind? avatarKind,
     String? pronouns,
   }) => InputProfilesUpdateInput._({
     if (id != null) r'id': id,
@@ -53549,7 +57919,9 @@ class InputProfilesUpdateInput {
     }
     if (data.containsKey('avatarKind')) {
       final l$avatarKind = data['avatarKind'];
-      result$data['avatarKind'] = (l$avatarKind as String?);
+      result$data['avatarKind'] = l$avatarKind == null
+          ? null
+          : fromJsonEnumAvatarKind((l$avatarKind as String));
     }
     if (data.containsKey('pronouns')) {
       final l$pronouns = data['pronouns'];
@@ -53572,7 +57944,7 @@ class InputProfilesUpdateInput {
 
   String? get city => (_$data['city'] as String?);
 
-  String? get avatarKind => (_$data['avatarKind'] as String?);
+  EnumAvatarKind? get avatarKind => (_$data['avatarKind'] as EnumAvatarKind?);
 
   String? get pronouns => (_$data['pronouns'] as String?);
 
@@ -53608,7 +57980,7 @@ class InputProfilesUpdateInput {
     }
     if (_$data.containsKey('avatarKind')) {
       final l$avatarKind = avatarKind;
-      result$data['avatarKind'] = l$avatarKind;
+      result$data['avatarKind'] = l$avatarKind == null ? null : toJsonEnumAvatarKind(l$avatarKind);
     }
     if (_$data.containsKey('pronouns')) {
       final l$pronouns = pronouns;
@@ -55503,11 +59875,153 @@ class InputQuestionAnswersUpdateInput {
   }
 }
 
+class InputQuizKeyFilter {
+  factory InputQuizKeyFilter({
+    EnumQuizKey? eq,
+    List<EnumQuizKey>? $in,
+    EnumFilterIs? $is,
+    EnumQuizKey? neq,
+  }) => InputQuizKeyFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputQuizKeyFilter._(this._$data);
+
+  factory InputQuizKeyFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumQuizKey((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumQuizKey((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumQuizKey((l$neq as String));
+    }
+    return InputQuizKeyFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumQuizKey? get eq => (_$data['eq'] as EnumQuizKey?);
+
+  List<EnumQuizKey>? get $in => (_$data['in'] as List<EnumQuizKey>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumQuizKey? get neq => (_$data['neq'] as EnumQuizKey?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumQuizKey(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumQuizKey(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumQuizKey(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputQuizKeyFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputQuizResultsFilter {
   factory InputQuizResultsFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
-    InputStringFilter? quizKey,
+    InputQuizKeyFilter? quizKey,
     InputStringListFilter? ranked,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
@@ -55548,7 +60062,7 @@ class InputQuizResultsFilter {
       final l$quizKey = data['quizKey'];
       result$data['quizKey'] = l$quizKey == null
           ? null
-          : InputStringFilter.fromJson((l$quizKey as Map<String, dynamic>));
+          : InputQuizKeyFilter.fromJson((l$quizKey as Map<String, dynamic>));
     }
     if (data.containsKey('ranked')) {
       final l$ranked = data['ranked'];
@@ -55601,7 +60115,7 @@ class InputQuizResultsFilter {
 
   InputUUIDFilter? get authorId => (_$data['authorId'] as InputUUIDFilter?);
 
-  InputStringFilter? get quizKey => (_$data['quizKey'] as InputStringFilter?);
+  InputQuizKeyFilter? get quizKey => (_$data['quizKey'] as InputQuizKeyFilter?);
 
   InputStringListFilter? get ranked => (_$data['ranked'] as InputStringListFilter?);
 
@@ -55814,7 +60328,7 @@ class InputQuizResultsInsertInput {
   factory InputQuizResultsInsertInput({
     String? id,
     String? authorId,
-    String? quizKey,
+    EnumQuizKey? quizKey,
     List<String?>? ranked,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -55841,7 +60355,9 @@ class InputQuizResultsInsertInput {
     }
     if (data.containsKey('quizKey')) {
       final l$quizKey = data['quizKey'];
-      result$data['quizKey'] = (l$quizKey as String?);
+      result$data['quizKey'] = l$quizKey == null
+          ? null
+          : fromJsonEnumQuizKey((l$quizKey as String));
     }
     if (data.containsKey('ranked')) {
       final l$ranked = data['ranked'];
@@ -55868,7 +60384,7 @@ class InputQuizResultsInsertInput {
 
   String? get authorId => (_$data['authorId'] as String?);
 
-  String? get quizKey => (_$data['quizKey'] as String?);
+  EnumQuizKey? get quizKey => (_$data['quizKey'] as EnumQuizKey?);
 
   List<String?>? get ranked => (_$data['ranked'] as List<String?>?);
 
@@ -55888,7 +60404,7 @@ class InputQuizResultsInsertInput {
     }
     if (_$data.containsKey('quizKey')) {
       final l$quizKey = quizKey;
-      result$data['quizKey'] = l$quizKey;
+      result$data['quizKey'] = l$quizKey == null ? null : toJsonEnumQuizKey(l$quizKey);
     }
     if (_$data.containsKey('ranked')) {
       final l$ranked = ranked;
@@ -56165,7 +60681,7 @@ class InputQuizResultsUpdateInput {
   factory InputQuizResultsUpdateInput({
     String? id,
     String? authorId,
-    String? quizKey,
+    EnumQuizKey? quizKey,
     List<String?>? ranked,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -56192,7 +60708,9 @@ class InputQuizResultsUpdateInput {
     }
     if (data.containsKey('quizKey')) {
       final l$quizKey = data['quizKey'];
-      result$data['quizKey'] = (l$quizKey as String?);
+      result$data['quizKey'] = l$quizKey == null
+          ? null
+          : fromJsonEnumQuizKey((l$quizKey as String));
     }
     if (data.containsKey('ranked')) {
       final l$ranked = data['ranked'];
@@ -56219,7 +60737,7 @@ class InputQuizResultsUpdateInput {
 
   String? get authorId => (_$data['authorId'] as String?);
 
-  String? get quizKey => (_$data['quizKey'] as String?);
+  EnumQuizKey? get quizKey => (_$data['quizKey'] as EnumQuizKey?);
 
   List<String?>? get ranked => (_$data['ranked'] as List<String?>?);
 
@@ -56239,7 +60757,7 @@ class InputQuizResultsUpdateInput {
     }
     if (_$data.containsKey('quizKey')) {
       final l$quizKey = quizKey;
-      result$data['quizKey'] = l$quizKey;
+      result$data['quizKey'] = l$quizKey == null ? null : toJsonEnumQuizKey(l$quizKey);
     }
     if (_$data.containsKey('ranked')) {
       final l$ranked = ranked;
@@ -56779,12 +61297,296 @@ class InputRelationshipStatusFilter {
   }
 }
 
+class InputRepairFeelingFilter {
+  factory InputRepairFeelingFilter({
+    EnumRepairFeeling? eq,
+    List<EnumRepairFeeling>? $in,
+    EnumFilterIs? $is,
+    EnumRepairFeeling? neq,
+  }) => InputRepairFeelingFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputRepairFeelingFilter._(this._$data);
+
+  factory InputRepairFeelingFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumRepairFeeling((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumRepairFeeling((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumRepairFeeling((l$neq as String));
+    }
+    return InputRepairFeelingFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumRepairFeeling? get eq => (_$data['eq'] as EnumRepairFeeling?);
+
+  List<EnumRepairFeeling>? get $in => (_$data['in'] as List<EnumRepairFeeling>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumRepairFeeling? get neq => (_$data['neq'] as EnumRepairFeeling?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumRepairFeeling(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumRepairFeeling(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumRepairFeeling(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputRepairFeelingFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
+class InputRepairLearningKindFilter {
+  factory InputRepairLearningKindFilter({
+    EnumRepairLearningKind? eq,
+    List<EnumRepairLearningKind>? $in,
+    EnumFilterIs? $is,
+    EnumRepairLearningKind? neq,
+  }) => InputRepairLearningKindFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputRepairLearningKindFilter._(this._$data);
+
+  factory InputRepairLearningKindFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumRepairLearningKind((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumRepairLearningKind((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumRepairLearningKind((l$neq as String));
+    }
+    return InputRepairLearningKindFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumRepairLearningKind? get eq => (_$data['eq'] as EnumRepairLearningKind?);
+
+  List<EnumRepairLearningKind>? get $in => (_$data['in'] as List<EnumRepairLearningKind>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumRepairLearningKind? get neq => (_$data['neq'] as EnumRepairLearningKind?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumRepairLearningKind(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumRepairLearningKind(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumRepairLearningKind(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputRepairLearningKindFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputRepairLearningsFilter {
   factory InputRepairLearningsFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
     InputUUIDFilter? repairSessionId,
-    InputStringFilter? kind,
+    InputRepairLearningKindFilter? kind,
     InputStringFilter? note,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
@@ -56832,7 +61634,7 @@ class InputRepairLearningsFilter {
       final l$kind = data['kind'];
       result$data['kind'] = l$kind == null
           ? null
-          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
+          : InputRepairLearningKindFilter.fromJson((l$kind as Map<String, dynamic>));
     }
     if (data.containsKey('note')) {
       final l$note = data['note'];
@@ -56887,7 +61689,7 @@ class InputRepairLearningsFilter {
 
   InputUUIDFilter? get repairSessionId => (_$data['repairSessionId'] as InputUUIDFilter?);
 
-  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
+  InputRepairLearningKindFilter? get kind => (_$data['kind'] as InputRepairLearningKindFilter?);
 
   InputStringFilter? get note => (_$data['note'] as InputStringFilter?);
 
@@ -57115,7 +61917,7 @@ class InputRepairLearningsInsertInput {
     String? id,
     String? authorId,
     String? repairSessionId,
-    String? kind,
+    EnumRepairLearningKind? kind,
     String? note,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -57147,7 +61949,9 @@ class InputRepairLearningsInsertInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null
+          ? null
+          : fromJsonEnumRepairLearningKind((l$kind as String));
     }
     if (data.containsKey('note')) {
       final l$note = data['note'];
@@ -57176,7 +61980,7 @@ class InputRepairLearningsInsertInput {
 
   String? get repairSessionId => (_$data['repairSessionId'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumRepairLearningKind? get kind => (_$data['kind'] as EnumRepairLearningKind?);
 
   String? get note => (_$data['note'] as String?);
 
@@ -57200,7 +62004,7 @@ class InputRepairLearningsInsertInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumRepairLearningKind(l$kind);
     }
     if (_$data.containsKey('note')) {
       final l$note = note;
@@ -57523,7 +62327,7 @@ class InputRepairLearningsUpdateInput {
     String? id,
     String? authorId,
     String? repairSessionId,
-    String? kind,
+    EnumRepairLearningKind? kind,
     String? note,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -57555,7 +62359,9 @@ class InputRepairLearningsUpdateInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null
+          ? null
+          : fromJsonEnumRepairLearningKind((l$kind as String));
     }
     if (data.containsKey('note')) {
       final l$note = data['note'];
@@ -57584,7 +62390,7 @@ class InputRepairLearningsUpdateInput {
 
   String? get repairSessionId => (_$data['repairSessionId'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumRepairLearningKind? get kind => (_$data['kind'] as EnumRepairLearningKind?);
 
   String? get note => (_$data['note'] as String?);
 
@@ -57608,7 +62414,7 @@ class InputRepairLearningsUpdateInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumRepairLearningKind(l$kind);
     }
     if (_$data.containsKey('note')) {
       final l$note = note;
@@ -57717,14 +62523,156 @@ class InputRepairLearningsUpdateInput {
   }
 }
 
+class InputRepairPathFilter {
+  factory InputRepairPathFilter({
+    EnumRepairPath? eq,
+    List<EnumRepairPath>? $in,
+    EnumFilterIs? $is,
+    EnumRepairPath? neq,
+  }) => InputRepairPathFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputRepairPathFilter._(this._$data);
+
+  factory InputRepairPathFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumRepairPath((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumRepairPath((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumRepairPath((l$neq as String));
+    }
+    return InputRepairPathFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumRepairPath? get eq => (_$data['eq'] as EnumRepairPath?);
+
+  List<EnumRepairPath>? get $in => (_$data['in'] as List<EnumRepairPath>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumRepairPath? get neq => (_$data['neq'] as EnumRepairPath?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumRepairPath(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumRepairPath(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumRepairPath(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputRepairPathFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputRepairSessionsFilter {
   factory InputRepairSessionsFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
     InputIntFilter? intensity,
-    InputStringFilter? path,
+    InputRepairPathFilter? path,
     InputIntFilter? step,
-    InputStringFilter? feelingAfter,
+    InputRepairFeelingFilter? feelingAfter,
     InputStringFilter? draft,
     InputDatetimeFilter? completedAt,
     InputDatetimeFilter? createdAt,
@@ -57776,7 +62724,7 @@ class InputRepairSessionsFilter {
       final l$path = data['path'];
       result$data['path'] = l$path == null
           ? null
-          : InputStringFilter.fromJson((l$path as Map<String, dynamic>));
+          : InputRepairPathFilter.fromJson((l$path as Map<String, dynamic>));
     }
     if (data.containsKey('step')) {
       final l$step = data['step'];
@@ -57788,7 +62736,7 @@ class InputRepairSessionsFilter {
       final l$feelingAfter = data['feelingAfter'];
       result$data['feelingAfter'] = l$feelingAfter == null
           ? null
-          : InputStringFilter.fromJson((l$feelingAfter as Map<String, dynamic>));
+          : InputRepairFeelingFilter.fromJson((l$feelingAfter as Map<String, dynamic>));
     }
     if (data.containsKey('draft')) {
       final l$draft = data['draft'];
@@ -57849,11 +62797,12 @@ class InputRepairSessionsFilter {
 
   InputIntFilter? get intensity => (_$data['intensity'] as InputIntFilter?);
 
-  InputStringFilter? get path => (_$data['path'] as InputStringFilter?);
+  InputRepairPathFilter? get path => (_$data['path'] as InputRepairPathFilter?);
 
   InputIntFilter? get step => (_$data['step'] as InputIntFilter?);
 
-  InputStringFilter? get feelingAfter => (_$data['feelingAfter'] as InputStringFilter?);
+  InputRepairFeelingFilter? get feelingAfter =>
+      (_$data['feelingAfter'] as InputRepairFeelingFilter?);
 
   InputStringFilter? get draft => (_$data['draft'] as InputStringFilter?);
 
@@ -58125,9 +63074,9 @@ class InputRepairSessionsInsertInput {
     String? id,
     String? authorId,
     int? intensity,
-    String? path,
+    EnumRepairPath? path,
     int? step,
-    String? feelingAfter,
+    EnumRepairFeeling? feelingAfter,
     String? draft,
     DateTime? completedAt,
     DateTime? createdAt,
@@ -58163,7 +63112,7 @@ class InputRepairSessionsInsertInput {
     }
     if (data.containsKey('path')) {
       final l$path = data['path'];
-      result$data['path'] = (l$path as String?);
+      result$data['path'] = l$path == null ? null : fromJsonEnumRepairPath((l$path as String));
     }
     if (data.containsKey('step')) {
       final l$step = data['step'];
@@ -58171,7 +63120,9 @@ class InputRepairSessionsInsertInput {
     }
     if (data.containsKey('feelingAfter')) {
       final l$feelingAfter = data['feelingAfter'];
-      result$data['feelingAfter'] = (l$feelingAfter as String?);
+      result$data['feelingAfter'] = l$feelingAfter == null
+          ? null
+          : fromJsonEnumRepairFeeling((l$feelingAfter as String));
     }
     if (data.containsKey('draft')) {
       final l$draft = data['draft'];
@@ -58206,11 +63157,11 @@ class InputRepairSessionsInsertInput {
 
   int? get intensity => (_$data['intensity'] as int?);
 
-  String? get path => (_$data['path'] as String?);
+  EnumRepairPath? get path => (_$data['path'] as EnumRepairPath?);
 
   int? get step => (_$data['step'] as int?);
 
-  String? get feelingAfter => (_$data['feelingAfter'] as String?);
+  EnumRepairFeeling? get feelingAfter => (_$data['feelingAfter'] as EnumRepairFeeling?);
 
   String? get draft => (_$data['draft'] as String?);
 
@@ -58236,7 +63187,7 @@ class InputRepairSessionsInsertInput {
     }
     if (_$data.containsKey('path')) {
       final l$path = path;
-      result$data['path'] = l$path;
+      result$data['path'] = l$path == null ? null : toJsonEnumRepairPath(l$path);
     }
     if (_$data.containsKey('step')) {
       final l$step = step;
@@ -58244,7 +63195,9 @@ class InputRepairSessionsInsertInput {
     }
     if (_$data.containsKey('feelingAfter')) {
       final l$feelingAfter = feelingAfter;
-      result$data['feelingAfter'] = l$feelingAfter;
+      result$data['feelingAfter'] = l$feelingAfter == null
+          ? null
+          : toJsonEnumRepairFeeling(l$feelingAfter);
     }
     if (_$data.containsKey('draft')) {
       final l$draft = draft;
@@ -58679,9 +63632,9 @@ class InputRepairSessionsUpdateInput {
     String? id,
     String? authorId,
     int? intensity,
-    String? path,
+    EnumRepairPath? path,
     int? step,
-    String? feelingAfter,
+    EnumRepairFeeling? feelingAfter,
     String? draft,
     DateTime? completedAt,
     DateTime? createdAt,
@@ -58717,7 +63670,7 @@ class InputRepairSessionsUpdateInput {
     }
     if (data.containsKey('path')) {
       final l$path = data['path'];
-      result$data['path'] = (l$path as String?);
+      result$data['path'] = l$path == null ? null : fromJsonEnumRepairPath((l$path as String));
     }
     if (data.containsKey('step')) {
       final l$step = data['step'];
@@ -58725,7 +63678,9 @@ class InputRepairSessionsUpdateInput {
     }
     if (data.containsKey('feelingAfter')) {
       final l$feelingAfter = data['feelingAfter'];
-      result$data['feelingAfter'] = (l$feelingAfter as String?);
+      result$data['feelingAfter'] = l$feelingAfter == null
+          ? null
+          : fromJsonEnumRepairFeeling((l$feelingAfter as String));
     }
     if (data.containsKey('draft')) {
       final l$draft = data['draft'];
@@ -58760,11 +63715,11 @@ class InputRepairSessionsUpdateInput {
 
   int? get intensity => (_$data['intensity'] as int?);
 
-  String? get path => (_$data['path'] as String?);
+  EnumRepairPath? get path => (_$data['path'] as EnumRepairPath?);
 
   int? get step => (_$data['step'] as int?);
 
-  String? get feelingAfter => (_$data['feelingAfter'] as String?);
+  EnumRepairFeeling? get feelingAfter => (_$data['feelingAfter'] as EnumRepairFeeling?);
 
   String? get draft => (_$data['draft'] as String?);
 
@@ -58790,7 +63745,7 @@ class InputRepairSessionsUpdateInput {
     }
     if (_$data.containsKey('path')) {
       final l$path = path;
-      result$data['path'] = l$path;
+      result$data['path'] = l$path == null ? null : toJsonEnumRepairPath(l$path);
     }
     if (_$data.containsKey('step')) {
       final l$step = step;
@@ -58798,7 +63753,9 @@ class InputRepairSessionsUpdateInput {
     }
     if (_$data.containsKey('feelingAfter')) {
       final l$feelingAfter = feelingAfter;
-      result$data['feelingAfter'] = l$feelingAfter;
+      result$data['feelingAfter'] = l$feelingAfter == null
+          ? null
+          : toJsonEnumRepairFeeling(l$feelingAfter);
     }
     if (_$data.containsKey('draft')) {
       final l$draft = draft;
@@ -58939,6 +63896,148 @@ class InputRepairSessionsUpdateInput {
       _$data.containsKey('completedAt') ? l$completedAt : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+    ]);
+  }
+}
+
+class InputRitualCadenceFilter {
+  factory InputRitualCadenceFilter({
+    EnumRitualCadence? eq,
+    List<EnumRitualCadence>? $in,
+    EnumFilterIs? $is,
+    EnumRitualCadence? neq,
+  }) => InputRitualCadenceFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputRitualCadenceFilter._(this._$data);
+
+  factory InputRitualCadenceFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumRitualCadence((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumRitualCadence((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumRitualCadence((l$neq as String));
+    }
+    return InputRitualCadenceFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumRitualCadence? get eq => (_$data['eq'] as EnumRitualCadence?);
+
+  List<EnumRitualCadence>? get $in => (_$data['in'] as List<EnumRitualCadence>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumRitualCadence? get neq => (_$data['neq'] as EnumRitualCadence?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumRitualCadence(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumRitualCadence(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumRitualCadence(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputRitualCadenceFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
     ]);
   }
 }
@@ -59787,7 +64886,7 @@ class InputRitualsFilter {
     InputUUIDFilter? authorId,
     InputUUIDFilter? coupleId,
     InputStringFilter? title,
-    InputStringFilter? cadence,
+    InputRitualCadenceFilter? cadence,
     InputIntFilter? weekday,
     InputTimeFilter? atTime,
     InputBooleanFilter? reminder,
@@ -59848,7 +64947,7 @@ class InputRitualsFilter {
       final l$cadence = data['cadence'];
       result$data['cadence'] = l$cadence == null
           ? null
-          : InputStringFilter.fromJson((l$cadence as Map<String, dynamic>));
+          : InputRitualCadenceFilter.fromJson((l$cadence as Map<String, dynamic>));
     }
     if (data.containsKey('weekday')) {
       final l$weekday = data['weekday'];
@@ -59923,7 +65022,7 @@ class InputRitualsFilter {
 
   InputStringFilter? get title => (_$data['title'] as InputStringFilter?);
 
-  InputStringFilter? get cadence => (_$data['cadence'] as InputStringFilter?);
+  InputRitualCadenceFilter? get cadence => (_$data['cadence'] as InputRitualCadenceFilter?);
 
   InputIntFilter? get weekday => (_$data['weekday'] as InputIntFilter?);
 
@@ -60214,7 +65313,7 @@ class InputRitualsInsertInput {
     String? authorId,
     String? coupleId,
     String? title,
-    String? cadence,
+    EnumRitualCadence? cadence,
     int? weekday,
     String? atTime,
     bool? reminder,
@@ -60257,7 +65356,9 @@ class InputRitualsInsertInput {
     }
     if (data.containsKey('cadence')) {
       final l$cadence = data['cadence'];
-      result$data['cadence'] = (l$cadence as String?);
+      result$data['cadence'] = l$cadence == null
+          ? null
+          : fromJsonEnumRitualCadence((l$cadence as String));
     }
     if (data.containsKey('weekday')) {
       final l$weekday = data['weekday'];
@@ -60302,7 +65403,7 @@ class InputRitualsInsertInput {
 
   String? get title => (_$data['title'] as String?);
 
-  String? get cadence => (_$data['cadence'] as String?);
+  EnumRitualCadence? get cadence => (_$data['cadence'] as EnumRitualCadence?);
 
   int? get weekday => (_$data['weekday'] as int?);
 
@@ -60336,7 +65437,7 @@ class InputRitualsInsertInput {
     }
     if (_$data.containsKey('cadence')) {
       final l$cadence = cadence;
-      result$data['cadence'] = l$cadence;
+      result$data['cadence'] = l$cadence == null ? null : toJsonEnumRitualCadence(l$cadence);
     }
     if (_$data.containsKey('weekday')) {
       final l$weekday = weekday;
@@ -60810,7 +65911,7 @@ class InputRitualsUpdateInput {
     String? authorId,
     String? coupleId,
     String? title,
-    String? cadence,
+    EnumRitualCadence? cadence,
     int? weekday,
     String? atTime,
     bool? reminder,
@@ -60853,7 +65954,9 @@ class InputRitualsUpdateInput {
     }
     if (data.containsKey('cadence')) {
       final l$cadence = data['cadence'];
-      result$data['cadence'] = (l$cadence as String?);
+      result$data['cadence'] = l$cadence == null
+          ? null
+          : fromJsonEnumRitualCadence((l$cadence as String));
     }
     if (data.containsKey('weekday')) {
       final l$weekday = data['weekday'];
@@ -60898,7 +66001,7 @@ class InputRitualsUpdateInput {
 
   String? get title => (_$data['title'] as String?);
 
-  String? get cadence => (_$data['cadence'] as String?);
+  EnumRitualCadence? get cadence => (_$data['cadence'] as EnumRitualCadence?);
 
   int? get weekday => (_$data['weekday'] as int?);
 
@@ -60932,7 +66035,7 @@ class InputRitualsUpdateInput {
     }
     if (_$data.containsKey('cadence')) {
       final l$cadence = cadence;
-      result$data['cadence'] = l$cadence;
+      result$data['cadence'] = l$cadence == null ? null : toJsonEnumRitualCadence(l$cadence);
     }
     if (_$data.containsKey('weekday')) {
       final l$weekday = weekday;
@@ -61103,7 +66206,7 @@ class InputSavedDateIdeasFilter {
     InputStringFilter? contentSlug,
     InputStringFilter? title,
     InputStringFilter? notes,
-    InputStringFilter? status,
+    InputDateIdeaStatusFilter? status,
     InputDateFilter? plannedFor,
     InputStringFilter? placeName,
     InputStringFilter? placeAddress,
@@ -61176,7 +66279,7 @@ class InputSavedDateIdeasFilter {
       final l$status = data['status'];
       result$data['status'] = l$status == null
           ? null
-          : InputStringFilter.fromJson((l$status as Map<String, dynamic>));
+          : InputDateIdeaStatusFilter.fromJson((l$status as Map<String, dynamic>));
     }
     if (data.containsKey('plannedFor')) {
       final l$plannedFor = data['plannedFor'];
@@ -61249,7 +66352,7 @@ class InputSavedDateIdeasFilter {
 
   InputStringFilter? get notes => (_$data['notes'] as InputStringFilter?);
 
-  InputStringFilter? get status => (_$data['status'] as InputStringFilter?);
+  InputDateIdeaStatusFilter? get status => (_$data['status'] as InputDateIdeaStatusFilter?);
 
   InputDateFilter? get plannedFor => (_$data['plannedFor'] as InputDateFilter?);
 
@@ -61554,7 +66657,7 @@ class InputSavedDateIdeasInsertInput {
     String? contentSlug,
     String? title,
     String? notes,
-    String? status,
+    EnumDateIdeaStatus? status,
     DateTime? plannedFor,
     String? placeName,
     String? placeAddress,
@@ -61605,7 +66708,9 @@ class InputSavedDateIdeasInsertInput {
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumDateIdeaStatus((l$status as String));
     }
     if (data.containsKey('plannedFor')) {
       final l$plannedFor = data['plannedFor'];
@@ -61650,7 +66755,7 @@ class InputSavedDateIdeasInsertInput {
 
   String? get notes => (_$data['notes'] as String?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumDateIdeaStatus? get status => (_$data['status'] as EnumDateIdeaStatus?);
 
   DateTime? get plannedFor => (_$data['plannedFor'] as DateTime?);
 
@@ -61690,7 +66795,7 @@ class InputSavedDateIdeasInsertInput {
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumDateIdeaStatus(l$status);
     }
     if (_$data.containsKey('plannedFor')) {
       final l$plannedFor = plannedFor;
@@ -62202,7 +67307,7 @@ class InputSavedDateIdeasUpdateInput {
     String? contentSlug,
     String? title,
     String? notes,
-    String? status,
+    EnumDateIdeaStatus? status,
     DateTime? plannedFor,
     String? placeName,
     String? placeAddress,
@@ -62253,7 +67358,9 @@ class InputSavedDateIdeasUpdateInput {
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = (l$status as String?);
+      result$data['status'] = l$status == null
+          ? null
+          : fromJsonEnumDateIdeaStatus((l$status as String));
     }
     if (data.containsKey('plannedFor')) {
       final l$plannedFor = data['plannedFor'];
@@ -62298,7 +67405,7 @@ class InputSavedDateIdeasUpdateInput {
 
   String? get notes => (_$data['notes'] as String?);
 
-  String? get status => (_$data['status'] as String?);
+  EnumDateIdeaStatus? get status => (_$data['status'] as EnumDateIdeaStatus?);
 
   DateTime? get plannedFor => (_$data['plannedFor'] as DateTime?);
 
@@ -62338,7 +67445,7 @@ class InputSavedDateIdeasUpdateInput {
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] = l$status;
+      result$data['status'] = l$status == null ? null : toJsonEnumDateIdeaStatus(l$status);
     }
     if (_$data.containsKey('plannedFor')) {
       final l$plannedFor = plannedFor;
@@ -62507,15 +67614,299 @@ class InputSavedDateIdeasUpdateInput {
   }
 }
 
+class InputSignalKindFilter {
+  factory InputSignalKindFilter({
+    EnumSignalKind? eq,
+    List<EnumSignalKind>? $in,
+    EnumFilterIs? $is,
+    EnumSignalKind? neq,
+  }) => InputSignalKindFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputSignalKindFilter._(this._$data);
+
+  factory InputSignalKindFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumSignalKind((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumSignalKind((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumSignalKind((l$neq as String));
+    }
+    return InputSignalKindFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumSignalKind? get eq => (_$data['eq'] as EnumSignalKind?);
+
+  List<EnumSignalKind>? get $in => (_$data['in'] as List<EnumSignalKind>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumSignalKind? get neq => (_$data['neq'] as EnumSignalKind?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumSignalKind(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumSignalKind(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumSignalKind(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputSignalKindFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
+class InputSignalResponseFilter {
+  factory InputSignalResponseFilter({
+    EnumSignalResponse? eq,
+    List<EnumSignalResponse>? $in,
+    EnumFilterIs? $is,
+    EnumSignalResponse? neq,
+  }) => InputSignalResponseFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputSignalResponseFilter._(this._$data);
+
+  factory InputSignalResponseFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumSignalResponse((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumSignalResponse((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumSignalResponse((l$neq as String));
+    }
+    return InputSignalResponseFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumSignalResponse? get eq => (_$data['eq'] as EnumSignalResponse?);
+
+  List<EnumSignalResponse>? get $in => (_$data['in'] as List<EnumSignalResponse>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumSignalResponse? get neq => (_$data['neq'] as EnumSignalResponse?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumSignalResponse(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumSignalResponse(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumSignalResponse(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputSignalResponseFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputSignalsFilter {
   factory InputSignalsFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? senderId,
     InputUUIDFilter? recipientId,
-    InputStringFilter? kind,
+    InputSignalKindFilter? kind,
     InputStringFilter? value,
     InputStringFilter? body,
-    InputStringFilter? response,
+    InputSignalResponseFilter? response,
     InputDatetimeFilter? respondedAt,
     InputDatetimeFilter? seenAt,
     InputDatetimeFilter? createdAt,
@@ -62566,7 +67957,7 @@ class InputSignalsFilter {
       final l$kind = data['kind'];
       result$data['kind'] = l$kind == null
           ? null
-          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
+          : InputSignalKindFilter.fromJson((l$kind as Map<String, dynamic>));
     }
     if (data.containsKey('value')) {
       final l$value = data['value'];
@@ -62584,7 +67975,7 @@ class InputSignalsFilter {
       final l$response = data['response'];
       result$data['response'] = l$response == null
           ? null
-          : InputStringFilter.fromJson((l$response as Map<String, dynamic>));
+          : InputSignalResponseFilter.fromJson((l$response as Map<String, dynamic>));
     }
     if (data.containsKey('respondedAt')) {
       final l$respondedAt = data['respondedAt'];
@@ -62639,13 +68030,13 @@ class InputSignalsFilter {
 
   InputUUIDFilter? get recipientId => (_$data['recipientId'] as InputUUIDFilter?);
 
-  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
+  InputSignalKindFilter? get kind => (_$data['kind'] as InputSignalKindFilter?);
 
   InputStringFilter? get value => (_$data['value'] as InputStringFilter?);
 
   InputStringFilter? get body => (_$data['body'] as InputStringFilter?);
 
-  InputStringFilter? get response => (_$data['response'] as InputStringFilter?);
+  InputSignalResponseFilter? get response => (_$data['response'] as InputSignalResponseFilter?);
 
   InputDatetimeFilter? get respondedAt => (_$data['respondedAt'] as InputDatetimeFilter?);
 
@@ -62915,10 +68306,10 @@ class InputSignalsInsertInput {
     String? id,
     String? senderId,
     String? recipientId,
-    String? kind,
+    EnumSignalKind? kind,
     String? value,
     String? body,
-    String? response,
+    EnumSignalResponse? response,
     DateTime? respondedAt,
     DateTime? seenAt,
     DateTime? createdAt,
@@ -62953,7 +68344,7 @@ class InputSignalsInsertInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumSignalKind((l$kind as String));
     }
     if (data.containsKey('value')) {
       final l$value = data['value'];
@@ -62965,7 +68356,9 @@ class InputSignalsInsertInput {
     }
     if (data.containsKey('response')) {
       final l$response = data['response'];
-      result$data['response'] = (l$response as String?);
+      result$data['response'] = l$response == null
+          ? null
+          : fromJsonEnumSignalResponse((l$response as String));
     }
     if (data.containsKey('respondedAt')) {
       final l$respondedAt = data['respondedAt'];
@@ -62994,13 +68387,13 @@ class InputSignalsInsertInput {
 
   String? get recipientId => (_$data['recipientId'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumSignalKind? get kind => (_$data['kind'] as EnumSignalKind?);
 
   String? get value => (_$data['value'] as String?);
 
   String? get body => (_$data['body'] as String?);
 
-  String? get response => (_$data['response'] as String?);
+  EnumSignalResponse? get response => (_$data['response'] as EnumSignalResponse?);
 
   DateTime? get respondedAt => (_$data['respondedAt'] as DateTime?);
 
@@ -63024,7 +68417,7 @@ class InputSignalsInsertInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumSignalKind(l$kind);
     }
     if (_$data.containsKey('value')) {
       final l$value = value;
@@ -63036,7 +68429,7 @@ class InputSignalsInsertInput {
     }
     if (_$data.containsKey('response')) {
       final l$response = response;
-      result$data['response'] = l$response;
+      result$data['response'] = l$response == null ? null : toJsonEnumSignalResponse(l$response);
     }
     if (_$data.containsKey('respondedAt')) {
       final l$respondedAt = respondedAt;
@@ -63463,10 +68856,10 @@ class InputSignalsUpdateInput {
     String? id,
     String? senderId,
     String? recipientId,
-    String? kind,
+    EnumSignalKind? kind,
     String? value,
     String? body,
-    String? response,
+    EnumSignalResponse? response,
     DateTime? respondedAt,
     DateTime? seenAt,
     DateTime? createdAt,
@@ -63501,7 +68894,7 @@ class InputSignalsUpdateInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumSignalKind((l$kind as String));
     }
     if (data.containsKey('value')) {
       final l$value = data['value'];
@@ -63513,7 +68906,9 @@ class InputSignalsUpdateInput {
     }
     if (data.containsKey('response')) {
       final l$response = data['response'];
-      result$data['response'] = (l$response as String?);
+      result$data['response'] = l$response == null
+          ? null
+          : fromJsonEnumSignalResponse((l$response as String));
     }
     if (data.containsKey('respondedAt')) {
       final l$respondedAt = data['respondedAt'];
@@ -63542,13 +68937,13 @@ class InputSignalsUpdateInput {
 
   String? get recipientId => (_$data['recipientId'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumSignalKind? get kind => (_$data['kind'] as EnumSignalKind?);
 
   String? get value => (_$data['value'] as String?);
 
   String? get body => (_$data['body'] as String?);
 
-  String? get response => (_$data['response'] as String?);
+  EnumSignalResponse? get response => (_$data['response'] as EnumSignalResponse?);
 
   DateTime? get respondedAt => (_$data['respondedAt'] as DateTime?);
 
@@ -63572,7 +68967,7 @@ class InputSignalsUpdateInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumSignalKind(l$kind);
     }
     if (_$data.containsKey('value')) {
       final l$value = value;
@@ -63584,7 +68979,7 @@ class InputSignalsUpdateInput {
     }
     if (_$data.containsKey('response')) {
       final l$response = response;
-      result$data['response'] = l$response;
+      result$data['response'] = l$response == null ? null : toJsonEnumSignalResponse(l$response);
     }
     if (_$data.containsKey('respondedAt')) {
       final l$respondedAt = respondedAt;
@@ -63721,6 +69116,148 @@ class InputSignalsUpdateInput {
       _$data.containsKey('respondedAt') ? l$respondedAt : const {},
       _$data.containsKey('seenAt') ? l$seenAt : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
+    ]);
+  }
+}
+
+class InputSlipCategoryFilter {
+  factory InputSlipCategoryFilter({
+    EnumSlipCategory? eq,
+    List<EnumSlipCategory>? $in,
+    EnumFilterIs? $is,
+    EnumSlipCategory? neq,
+  }) => InputSlipCategoryFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputSlipCategoryFilter._(this._$data);
+
+  factory InputSlipCategoryFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumSlipCategory((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumSlipCategory((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumSlipCategory((l$neq as String));
+    }
+    return InputSlipCategoryFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumSlipCategory? get eq => (_$data['eq'] as EnumSlipCategory?);
+
+  List<EnumSlipCategory>? get $in => (_$data['in'] as List<EnumSlipCategory>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumSlipCategory? get neq => (_$data['neq'] as EnumSlipCategory?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumSlipCategory(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumSlipCategory(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumSlipCategory(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputSlipCategoryFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
     ]);
   }
 }
@@ -63883,8 +69420,8 @@ class InputSlipsFilter {
     InputDatetimeFilter? updatedAt,
     InputDatetimeFilter? archivedAt,
     InputDatetimeFilter? deletedAt,
-    InputStringFilter? category,
-    InputStringFilter? workArea,
+    InputSlipCategoryFilter? category,
+    InputWorkAreaFilter? workArea,
     InputBooleanFilter? inJar,
     InputIDFilter? nodeId,
     List<InputSlipsFilter>? and,
@@ -64006,13 +69543,13 @@ class InputSlipsFilter {
       final l$category = data['category'];
       result$data['category'] = l$category == null
           ? null
-          : InputStringFilter.fromJson((l$category as Map<String, dynamic>));
+          : InputSlipCategoryFilter.fromJson((l$category as Map<String, dynamic>));
     }
     if (data.containsKey('workArea')) {
       final l$workArea = data['workArea'];
       result$data['workArea'] = l$workArea == null
           ? null
-          : InputStringFilter.fromJson((l$workArea as Map<String, dynamic>));
+          : InputWorkAreaFilter.fromJson((l$workArea as Map<String, dynamic>));
     }
     if (data.containsKey('inJar')) {
       final l$inJar = data['inJar'];
@@ -64077,9 +69614,9 @@ class InputSlipsFilter {
 
   InputDatetimeFilter? get deletedAt => (_$data['deletedAt'] as InputDatetimeFilter?);
 
-  InputStringFilter? get category => (_$data['category'] as InputStringFilter?);
+  InputSlipCategoryFilter? get category => (_$data['category'] as InputSlipCategoryFilter?);
 
-  InputStringFilter? get workArea => (_$data['workArea'] as InputStringFilter?);
+  InputWorkAreaFilter? get workArea => (_$data['workArea'] as InputWorkAreaFilter?);
 
   InputBooleanFilter? get inJar => (_$data['inJar'] as InputBooleanFilter?);
 
@@ -64454,8 +69991,8 @@ class InputSlipsInsertInput {
     DateTime? updatedAt,
     DateTime? archivedAt,
     DateTime? deletedAt,
-    String? category,
-    String? workArea,
+    EnumSlipCategory? category,
+    EnumWorkArea? workArea,
     bool? inJar,
   }) => InputSlipsInsertInput._({
     if (id != null) r'id': id,
@@ -64549,11 +70086,15 @@ class InputSlipsInsertInput {
     }
     if (data.containsKey('category')) {
       final l$category = data['category'];
-      result$data['category'] = (l$category as String?);
+      result$data['category'] = l$category == null
+          ? null
+          : fromJsonEnumSlipCategory((l$category as String));
     }
     if (data.containsKey('workArea')) {
       final l$workArea = data['workArea'];
-      result$data['workArea'] = (l$workArea as String?);
+      result$data['workArea'] = l$workArea == null
+          ? null
+          : fromJsonEnumWorkArea((l$workArea as String));
     }
     if (data.containsKey('inJar')) {
       final l$inJar = data['inJar'];
@@ -64592,9 +70133,9 @@ class InputSlipsInsertInput {
 
   DateTime? get deletedAt => (_$data['deletedAt'] as DateTime?);
 
-  String? get category => (_$data['category'] as String?);
+  EnumSlipCategory? get category => (_$data['category'] as EnumSlipCategory?);
 
-  String? get workArea => (_$data['workArea'] as String?);
+  EnumWorkArea? get workArea => (_$data['workArea'] as EnumWorkArea?);
 
   bool? get inJar => (_$data['inJar'] as bool?);
 
@@ -64668,11 +70209,11 @@ class InputSlipsInsertInput {
     }
     if (_$data.containsKey('category')) {
       final l$category = category;
-      result$data['category'] = l$category;
+      result$data['category'] = l$category == null ? null : toJsonEnumSlipCategory(l$category);
     }
     if (_$data.containsKey('workArea')) {
       final l$workArea = workArea;
-      result$data['workArea'] = l$workArea;
+      result$data['workArea'] = l$workArea == null ? null : toJsonEnumWorkArea(l$workArea);
     }
     if (_$data.containsKey('inJar')) {
       final l$inJar = inJar;
@@ -65331,8 +70872,8 @@ class InputSlipsUpdateInput {
     DateTime? updatedAt,
     DateTime? archivedAt,
     DateTime? deletedAt,
-    String? category,
-    String? workArea,
+    EnumSlipCategory? category,
+    EnumWorkArea? workArea,
     bool? inJar,
   }) => InputSlipsUpdateInput._({
     if (id != null) r'id': id,
@@ -65426,11 +70967,15 @@ class InputSlipsUpdateInput {
     }
     if (data.containsKey('category')) {
       final l$category = data['category'];
-      result$data['category'] = (l$category as String?);
+      result$data['category'] = l$category == null
+          ? null
+          : fromJsonEnumSlipCategory((l$category as String));
     }
     if (data.containsKey('workArea')) {
       final l$workArea = data['workArea'];
-      result$data['workArea'] = (l$workArea as String?);
+      result$data['workArea'] = l$workArea == null
+          ? null
+          : fromJsonEnumWorkArea((l$workArea as String));
     }
     if (data.containsKey('inJar')) {
       final l$inJar = data['inJar'];
@@ -65469,9 +71014,9 @@ class InputSlipsUpdateInput {
 
   DateTime? get deletedAt => (_$data['deletedAt'] as DateTime?);
 
-  String? get category => (_$data['category'] as String?);
+  EnumSlipCategory? get category => (_$data['category'] as EnumSlipCategory?);
 
-  String? get workArea => (_$data['workArea'] as String?);
+  EnumWorkArea? get workArea => (_$data['workArea'] as EnumWorkArea?);
 
   bool? get inJar => (_$data['inJar'] as bool?);
 
@@ -65545,11 +71090,11 @@ class InputSlipsUpdateInput {
     }
     if (_$data.containsKey('category')) {
       final l$category = category;
-      result$data['category'] = l$category;
+      result$data['category'] = l$category == null ? null : toJsonEnumSlipCategory(l$category);
     }
     if (_$data.containsKey('workArea')) {
       final l$workArea = workArea;
-      result$data['workArea'] = l$workArea;
+      result$data['workArea'] = l$workArea == null ? null : toJsonEnumWorkArea(l$workArea);
     }
     if (_$data.containsKey('inJar')) {
       final l$inJar = inJar;
@@ -65761,15 +71306,157 @@ class InputSlipsUpdateInput {
   }
 }
 
+class InputStoryEventKindFilter {
+  factory InputStoryEventKindFilter({
+    EnumStoryEventKind? eq,
+    List<EnumStoryEventKind>? $in,
+    EnumFilterIs? $is,
+    EnumStoryEventKind? neq,
+  }) => InputStoryEventKindFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputStoryEventKindFilter._(this._$data);
+
+  factory InputStoryEventKindFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumStoryEventKind((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumStoryEventKind((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumStoryEventKind((l$neq as String));
+    }
+    return InputStoryEventKindFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumStoryEventKind? get eq => (_$data['eq'] as EnumStoryEventKind?);
+
+  List<EnumStoryEventKind>? get $in => (_$data['in'] as List<EnumStoryEventKind>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumStoryEventKind? get neq => (_$data['neq'] as EnumStoryEventKind?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumStoryEventKind(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumStoryEventKind(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumStoryEventKind(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputStoryEventKindFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputStoryEventsFilter {
   factory InputStoryEventsFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
     InputUUIDFilter? coupleId,
-    InputStringFilter? kind,
+    InputStoryEventKindFilter? kind,
     InputStringFilter? title,
     InputDateFilter? happenedOn,
-    InputStringFilter? datePrecision,
+    InputDatePrecisionFilter? datePrecision,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
     InputIDFilter? nodeId,
@@ -65818,7 +71505,7 @@ class InputStoryEventsFilter {
       final l$kind = data['kind'];
       result$data['kind'] = l$kind == null
           ? null
-          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
+          : InputStoryEventKindFilter.fromJson((l$kind as Map<String, dynamic>));
     }
     if (data.containsKey('title')) {
       final l$title = data['title'];
@@ -65836,7 +71523,7 @@ class InputStoryEventsFilter {
       final l$datePrecision = data['datePrecision'];
       result$data['datePrecision'] = l$datePrecision == null
           ? null
-          : InputStringFilter.fromJson((l$datePrecision as Map<String, dynamic>));
+          : InputDatePrecisionFilter.fromJson((l$datePrecision as Map<String, dynamic>));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -65885,13 +71572,14 @@ class InputStoryEventsFilter {
 
   InputUUIDFilter? get coupleId => (_$data['coupleId'] as InputUUIDFilter?);
 
-  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
+  InputStoryEventKindFilter? get kind => (_$data['kind'] as InputStoryEventKindFilter?);
 
   InputStringFilter? get title => (_$data['title'] as InputStringFilter?);
 
   InputDateFilter? get happenedOn => (_$data['happenedOn'] as InputDateFilter?);
 
-  InputStringFilter? get datePrecision => (_$data['datePrecision'] as InputStringFilter?);
+  InputDatePrecisionFilter? get datePrecision =>
+      (_$data['datePrecision'] as InputDatePrecisionFilter?);
 
   InputDatetimeFilter? get createdAt => (_$data['createdAt'] as InputDatetimeFilter?);
 
@@ -66145,10 +71833,10 @@ class InputStoryEventsInsertInput {
     String? id,
     String? authorId,
     String? coupleId,
-    String? kind,
+    EnumStoryEventKind? kind,
     String? title,
     DateTime? happenedOn,
-    String? datePrecision,
+    EnumDatePrecision? datePrecision,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) => InputStoryEventsInsertInput._({
@@ -66181,7 +71869,7 @@ class InputStoryEventsInsertInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumStoryEventKind((l$kind as String));
     }
     if (data.containsKey('title')) {
       final l$title = data['title'];
@@ -66195,7 +71883,9 @@ class InputStoryEventsInsertInput {
     }
     if (data.containsKey('datePrecision')) {
       final l$datePrecision = data['datePrecision'];
-      result$data['datePrecision'] = (l$datePrecision as String?);
+      result$data['datePrecision'] = l$datePrecision == null
+          ? null
+          : fromJsonEnumDatePrecision((l$datePrecision as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -66220,13 +71910,13 @@ class InputStoryEventsInsertInput {
 
   String? get coupleId => (_$data['coupleId'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumStoryEventKind? get kind => (_$data['kind'] as EnumStoryEventKind?);
 
   String? get title => (_$data['title'] as String?);
 
   DateTime? get happenedOn => (_$data['happenedOn'] as DateTime?);
 
-  String? get datePrecision => (_$data['datePrecision'] as String?);
+  EnumDatePrecision? get datePrecision => (_$data['datePrecision'] as EnumDatePrecision?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -66248,7 +71938,7 @@ class InputStoryEventsInsertInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumStoryEventKind(l$kind);
     }
     if (_$data.containsKey('title')) {
       final l$title = title;
@@ -66262,7 +71952,9 @@ class InputStoryEventsInsertInput {
     }
     if (_$data.containsKey('datePrecision')) {
       final l$datePrecision = datePrecision;
-      result$data['datePrecision'] = l$datePrecision;
+      result$data['datePrecision'] = l$datePrecision == null
+          ? null
+          : toJsonEnumDatePrecision(l$datePrecision);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -66651,10 +72343,10 @@ class InputStoryEventsUpdateInput {
     String? id,
     String? authorId,
     String? coupleId,
-    String? kind,
+    EnumStoryEventKind? kind,
     String? title,
     DateTime? happenedOn,
-    String? datePrecision,
+    EnumDatePrecision? datePrecision,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) => InputStoryEventsUpdateInput._({
@@ -66687,7 +72379,7 @@ class InputStoryEventsUpdateInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumStoryEventKind((l$kind as String));
     }
     if (data.containsKey('title')) {
       final l$title = data['title'];
@@ -66701,7 +72393,9 @@ class InputStoryEventsUpdateInput {
     }
     if (data.containsKey('datePrecision')) {
       final l$datePrecision = data['datePrecision'];
-      result$data['datePrecision'] = (l$datePrecision as String?);
+      result$data['datePrecision'] = l$datePrecision == null
+          ? null
+          : fromJsonEnumDatePrecision((l$datePrecision as String));
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -66726,13 +72420,13 @@ class InputStoryEventsUpdateInput {
 
   String? get coupleId => (_$data['coupleId'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumStoryEventKind? get kind => (_$data['kind'] as EnumStoryEventKind?);
 
   String? get title => (_$data['title'] as String?);
 
   DateTime? get happenedOn => (_$data['happenedOn'] as DateTime?);
 
-  String? get datePrecision => (_$data['datePrecision'] as String?);
+  EnumDatePrecision? get datePrecision => (_$data['datePrecision'] as EnumDatePrecision?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
@@ -66754,7 +72448,7 @@ class InputStoryEventsUpdateInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumStoryEventKind(l$kind);
     }
     if (_$data.containsKey('title')) {
       final l$title = title;
@@ -66768,7 +72462,9 @@ class InputStoryEventsUpdateInput {
     }
     if (_$data.containsKey('datePrecision')) {
       final l$datePrecision = datePrecision;
-      result$data['datePrecision'] = l$datePrecision;
+      result$data['datePrecision'] = l$datePrecision == null
+          ? null
+          : toJsonEnumDatePrecision(l$datePrecision);
     }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
@@ -67444,7 +73140,7 @@ class InputTemperatureChecksFilter {
   factory InputTemperatureChecksFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? authorId,
-    InputStringFilter? level,
+    InputTemperatureLevelFilter? level,
     InputStringFilter? note,
     InputDatetimeFilter? createdAt,
     InputDatetimeFilter? updatedAt,
@@ -67485,7 +73181,7 @@ class InputTemperatureChecksFilter {
       final l$level = data['level'];
       result$data['level'] = l$level == null
           ? null
-          : InputStringFilter.fromJson((l$level as Map<String, dynamic>));
+          : InputTemperatureLevelFilter.fromJson((l$level as Map<String, dynamic>));
     }
     if (data.containsKey('note')) {
       final l$note = data['note'];
@@ -67538,7 +73234,7 @@ class InputTemperatureChecksFilter {
 
   InputUUIDFilter? get authorId => (_$data['authorId'] as InputUUIDFilter?);
 
-  InputStringFilter? get level => (_$data['level'] as InputStringFilter?);
+  InputTemperatureLevelFilter? get level => (_$data['level'] as InputTemperatureLevelFilter?);
 
   InputStringFilter? get note => (_$data['note'] as InputStringFilter?);
 
@@ -67753,7 +73449,7 @@ class InputTemperatureChecksInsertInput {
   factory InputTemperatureChecksInsertInput({
     String? id,
     String? authorId,
-    String? level,
+    EnumTemperatureLevel? level,
     String? note,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -67780,7 +73476,9 @@ class InputTemperatureChecksInsertInput {
     }
     if (data.containsKey('level')) {
       final l$level = data['level'];
-      result$data['level'] = (l$level as String?);
+      result$data['level'] = l$level == null
+          ? null
+          : fromJsonEnumTemperatureLevel((l$level as String));
     }
     if (data.containsKey('note')) {
       final l$note = data['note'];
@@ -67807,7 +73505,7 @@ class InputTemperatureChecksInsertInput {
 
   String? get authorId => (_$data['authorId'] as String?);
 
-  String? get level => (_$data['level'] as String?);
+  EnumTemperatureLevel? get level => (_$data['level'] as EnumTemperatureLevel?);
 
   String? get note => (_$data['note'] as String?);
 
@@ -67827,7 +73525,7 @@ class InputTemperatureChecksInsertInput {
     }
     if (_$data.containsKey('level')) {
       final l$level = level;
-      result$data['level'] = l$level;
+      result$data['level'] = l$level == null ? null : toJsonEnumTemperatureLevel(l$level);
     }
     if (_$data.containsKey('note')) {
       final l$note = note;
@@ -68113,7 +73811,7 @@ class InputTemperatureChecksUpdateInput {
   factory InputTemperatureChecksUpdateInput({
     String? id,
     String? authorId,
-    String? level,
+    EnumTemperatureLevel? level,
     String? note,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -68140,7 +73838,9 @@ class InputTemperatureChecksUpdateInput {
     }
     if (data.containsKey('level')) {
       final l$level = data['level'];
-      result$data['level'] = (l$level as String?);
+      result$data['level'] = l$level == null
+          ? null
+          : fromJsonEnumTemperatureLevel((l$level as String));
     }
     if (data.containsKey('note')) {
       final l$note = data['note'];
@@ -68167,7 +73867,7 @@ class InputTemperatureChecksUpdateInput {
 
   String? get authorId => (_$data['authorId'] as String?);
 
-  String? get level => (_$data['level'] as String?);
+  EnumTemperatureLevel? get level => (_$data['level'] as EnumTemperatureLevel?);
 
   String? get note => (_$data['note'] as String?);
 
@@ -68187,7 +73887,7 @@ class InputTemperatureChecksUpdateInput {
     }
     if (_$data.containsKey('level')) {
       final l$level = level;
-      result$data['level'] = l$level;
+      result$data['level'] = l$level == null ? null : toJsonEnumTemperatureLevel(l$level);
     }
     if (_$data.containsKey('note')) {
       final l$note = note;
@@ -68282,6 +73982,148 @@ class InputTemperatureChecksUpdateInput {
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+    ]);
+  }
+}
+
+class InputTemperatureLevelFilter {
+  factory InputTemperatureLevelFilter({
+    EnumTemperatureLevel? eq,
+    List<EnumTemperatureLevel>? $in,
+    EnumFilterIs? $is,
+    EnumTemperatureLevel? neq,
+  }) => InputTemperatureLevelFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputTemperatureLevelFilter._(this._$data);
+
+  factory InputTemperatureLevelFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumTemperatureLevel((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumTemperatureLevel((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumTemperatureLevel((l$neq as String));
+    }
+    return InputTemperatureLevelFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumTemperatureLevel? get eq => (_$data['eq'] as EnumTemperatureLevel?);
+
+  List<EnumTemperatureLevel>? get $in => (_$data['in'] as List<EnumTemperatureLevel>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumTemperatureLevel? get neq => (_$data['neq'] as EnumTemperatureLevel?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumTemperatureLevel(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumTemperatureLevel(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumTemperatureLevel(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputTemperatureLevelFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
     ]);
   }
 }
@@ -74073,6 +79915,148 @@ class InputWidgetStateUpdateInput {
   }
 }
 
+class InputWorkAreaFilter {
+  factory InputWorkAreaFilter({
+    EnumWorkArea? eq,
+    List<EnumWorkArea>? $in,
+    EnumFilterIs? $is,
+    EnumWorkArea? neq,
+  }) => InputWorkAreaFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputWorkAreaFilter._(this._$data);
+
+  factory InputWorkAreaFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumWorkArea((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumWorkArea((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumWorkArea((l$neq as String));
+    }
+    return InputWorkAreaFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumWorkArea? get eq => (_$data['eq'] as EnumWorkArea?);
+
+  List<EnumWorkArea>? get $in => (_$data['in'] as List<EnumWorkArea>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumWorkArea? get neq => (_$data['neq'] as EnumWorkArea?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumWorkArea(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumWorkArea(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumWorkArea(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputWorkAreaFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputYearRecapFilter {
   factory InputYearRecapFilter({
     InputUUIDFilter? profileId,
@@ -75128,6 +81112,107 @@ EnumAppTheme fromJsonEnumAppTheme(String value) {
   }
 }
 
+enum EnumAvatarKind {
+  photo,
+  illustration,
+  initials,
+  $unknown;
+
+  factory EnumAvatarKind.fromJson(String value) => fromJsonEnumAvatarKind(value);
+
+  String toJson() => toJsonEnumAvatarKind(this);
+}
+
+String toJsonEnumAvatarKind(EnumAvatarKind e) {
+  switch (e) {
+    case EnumAvatarKind.photo:
+      return r'photo';
+    case EnumAvatarKind.illustration:
+      return r'illustration';
+    case EnumAvatarKind.initials:
+      return r'initials';
+    case EnumAvatarKind.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumAvatarKind fromJsonEnumAvatarKind(String value) {
+  switch (value) {
+    case r'photo':
+      return EnumAvatarKind.photo;
+    case r'illustration':
+      return EnumAvatarKind.illustration;
+    case r'initials':
+      return EnumAvatarKind.initials;
+    default:
+      return EnumAvatarKind.$unknown;
+  }
+}
+
+enum EnumCardChannel {
+  link,
+  app,
+  $unknown;
+
+  factory EnumCardChannel.fromJson(String value) => fromJsonEnumCardChannel(value);
+
+  String toJson() => toJsonEnumCardChannel(this);
+}
+
+String toJsonEnumCardChannel(EnumCardChannel e) {
+  switch (e) {
+    case EnumCardChannel.link:
+      return r'link';
+    case EnumCardChannel.app:
+      return r'app';
+    case EnumCardChannel.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumCardChannel fromJsonEnumCardChannel(String value) {
+  switch (value) {
+    case r'link':
+      return EnumCardChannel.link;
+    case r'app':
+      return EnumCardChannel.app;
+    default:
+      return EnumCardChannel.$unknown;
+  }
+}
+
+enum EnumCardKind {
+  weekly,
+  single,
+  $unknown;
+
+  factory EnumCardKind.fromJson(String value) => fromJsonEnumCardKind(value);
+
+  String toJson() => toJsonEnumCardKind(this);
+}
+
+String toJsonEnumCardKind(EnumCardKind e) {
+  switch (e) {
+    case EnumCardKind.weekly:
+      return r'weekly';
+    case EnumCardKind.single:
+      return r'single';
+    case EnumCardKind.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumCardKind fromJsonEnumCardKind(String value) {
+  switch (value) {
+    case r'weekly':
+      return EnumCardKind.weekly;
+    case r'single':
+      return EnumCardKind.single;
+    default:
+      return EnumCardKind.$unknown;
+  }
+}
+
 enum EnumCardStatus {
   draft,
   held,
@@ -75165,6 +81250,196 @@ EnumCardStatus fromJsonEnumCardStatus(String value) {
   }
 }
 
+enum EnumConversationGuide {
+  free,
+  transition,
+  money,
+  apology,
+  difficult,
+  $unknown;
+
+  factory EnumConversationGuide.fromJson(String value) => fromJsonEnumConversationGuide(value);
+
+  String toJson() => toJsonEnumConversationGuide(this);
+}
+
+String toJsonEnumConversationGuide(EnumConversationGuide e) {
+  switch (e) {
+    case EnumConversationGuide.free:
+      return r'free';
+    case EnumConversationGuide.transition:
+      return r'transition';
+    case EnumConversationGuide.money:
+      return r'money';
+    case EnumConversationGuide.apology:
+      return r'apology';
+    case EnumConversationGuide.difficult:
+      return r'difficult';
+    case EnumConversationGuide.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumConversationGuide fromJsonEnumConversationGuide(String value) {
+  switch (value) {
+    case r'free':
+      return EnumConversationGuide.free;
+    case r'transition':
+      return EnumConversationGuide.transition;
+    case r'money':
+      return EnumConversationGuide.money;
+    case r'apology':
+      return EnumConversationGuide.apology;
+    case r'difficult':
+      return EnumConversationGuide.difficult;
+    default:
+      return EnumConversationGuide.$unknown;
+  }
+}
+
+enum EnumCycleDayKind {
+  heavy,
+  light,
+  note,
+  $unknown;
+
+  factory EnumCycleDayKind.fromJson(String value) => fromJsonEnumCycleDayKind(value);
+
+  String toJson() => toJsonEnumCycleDayKind(this);
+}
+
+String toJsonEnumCycleDayKind(EnumCycleDayKind e) {
+  switch (e) {
+    case EnumCycleDayKind.heavy:
+      return r'heavy';
+    case EnumCycleDayKind.light:
+      return r'light';
+    case EnumCycleDayKind.note:
+      return r'note';
+    case EnumCycleDayKind.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumCycleDayKind fromJsonEnumCycleDayKind(String value) {
+  switch (value) {
+    case r'heavy':
+      return EnumCycleDayKind.heavy;
+    case r'light':
+      return EnumCycleDayKind.light;
+    case r'note':
+      return EnumCycleDayKind.note;
+    default:
+      return EnumCycleDayKind.$unknown;
+  }
+}
+
+enum EnumDateIdeaStatus {
+  saved,
+  planned,
+  done,
+  $unknown;
+
+  factory EnumDateIdeaStatus.fromJson(String value) => fromJsonEnumDateIdeaStatus(value);
+
+  String toJson() => toJsonEnumDateIdeaStatus(this);
+}
+
+String toJsonEnumDateIdeaStatus(EnumDateIdeaStatus e) {
+  switch (e) {
+    case EnumDateIdeaStatus.saved:
+      return r'saved';
+    case EnumDateIdeaStatus.planned:
+      return r'planned';
+    case EnumDateIdeaStatus.done:
+      return r'done';
+    case EnumDateIdeaStatus.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumDateIdeaStatus fromJsonEnumDateIdeaStatus(String value) {
+  switch (value) {
+    case r'saved':
+      return EnumDateIdeaStatus.saved;
+    case r'planned':
+      return EnumDateIdeaStatus.planned;
+    case r'done':
+      return EnumDateIdeaStatus.done;
+    default:
+      return EnumDateIdeaStatus.$unknown;
+  }
+}
+
+enum EnumDatePrecision {
+  day,
+  month,
+  year,
+  $unknown;
+
+  factory EnumDatePrecision.fromJson(String value) => fromJsonEnumDatePrecision(value);
+
+  String toJson() => toJsonEnumDatePrecision(this);
+}
+
+String toJsonEnumDatePrecision(EnumDatePrecision e) {
+  switch (e) {
+    case EnumDatePrecision.day:
+      return r'day';
+    case EnumDatePrecision.month:
+      return r'month';
+    case EnumDatePrecision.year:
+      return r'year';
+    case EnumDatePrecision.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumDatePrecision fromJsonEnumDatePrecision(String value) {
+  switch (value) {
+    case r'day':
+      return EnumDatePrecision.day;
+    case r'month':
+      return EnumDatePrecision.month;
+    case r'year':
+      return EnumDatePrecision.year;
+    default:
+      return EnumDatePrecision.$unknown;
+  }
+}
+
+enum EnumDevicePlatform {
+  ios,
+  android,
+  $unknown;
+
+  factory EnumDevicePlatform.fromJson(String value) => fromJsonEnumDevicePlatform(value);
+
+  String toJson() => toJsonEnumDevicePlatform(this);
+}
+
+String toJsonEnumDevicePlatform(EnumDevicePlatform e) {
+  switch (e) {
+    case EnumDevicePlatform.ios:
+      return r'ios';
+    case EnumDevicePlatform.android:
+      return r'android';
+    case EnumDevicePlatform.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumDevicePlatform fromJsonEnumDevicePlatform(String value) {
+  switch (value) {
+    case r'ios':
+      return EnumDevicePlatform.ios;
+    case r'android':
+      return EnumDevicePlatform.android;
+    default:
+      return EnumDevicePlatform.$unknown;
+  }
+}
+
 enum EnumFilterIs {
   NULL,
   NOT_NULL,
@@ -75197,6 +81472,611 @@ EnumFilterIs fromJsonEnumFilterIs(String value) {
   }
 }
 
+enum EnumGameKind {
+  me_or_you,
+  how_well,
+  twenty_questions,
+  never_have_we,
+  compliments,
+  mission,
+  $unknown;
+
+  factory EnumGameKind.fromJson(String value) => fromJsonEnumGameKind(value);
+
+  String toJson() => toJsonEnumGameKind(this);
+}
+
+String toJsonEnumGameKind(EnumGameKind e) {
+  switch (e) {
+    case EnumGameKind.me_or_you:
+      return r'me_or_you';
+    case EnumGameKind.how_well:
+      return r'how_well';
+    case EnumGameKind.twenty_questions:
+      return r'twenty_questions';
+    case EnumGameKind.never_have_we:
+      return r'never_have_we';
+    case EnumGameKind.compliments:
+      return r'compliments';
+    case EnumGameKind.mission:
+      return r'mission';
+    case EnumGameKind.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumGameKind fromJsonEnumGameKind(String value) {
+  switch (value) {
+    case r'me_or_you':
+      return EnumGameKind.me_or_you;
+    case r'how_well':
+      return EnumGameKind.how_well;
+    case r'twenty_questions':
+      return EnumGameKind.twenty_questions;
+    case r'never_have_we':
+      return EnumGameKind.never_have_we;
+    case r'compliments':
+      return EnumGameKind.compliments;
+    case r'mission':
+      return EnumGameKind.mission;
+    default:
+      return EnumGameKind.$unknown;
+  }
+}
+
+enum EnumGameOutcome {
+  great,
+  ok,
+  did_not_happen,
+  $unknown;
+
+  factory EnumGameOutcome.fromJson(String value) => fromJsonEnumGameOutcome(value);
+
+  String toJson() => toJsonEnumGameOutcome(this);
+}
+
+String toJsonEnumGameOutcome(EnumGameOutcome e) {
+  switch (e) {
+    case EnumGameOutcome.great:
+      return r'great';
+    case EnumGameOutcome.ok:
+      return r'ok';
+    case EnumGameOutcome.did_not_happen:
+      return r'did_not_happen';
+    case EnumGameOutcome.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumGameOutcome fromJsonEnumGameOutcome(String value) {
+  switch (value) {
+    case r'great':
+      return EnumGameOutcome.great;
+    case r'ok':
+      return EnumGameOutcome.ok;
+    case r'did_not_happen':
+      return EnumGameOutcome.did_not_happen;
+    default:
+      return EnumGameOutcome.$unknown;
+  }
+}
+
+enum EnumGameStatus {
+  invited,
+  active,
+  finished,
+  cancelled,
+  $unknown;
+
+  factory EnumGameStatus.fromJson(String value) => fromJsonEnumGameStatus(value);
+
+  String toJson() => toJsonEnumGameStatus(this);
+}
+
+String toJsonEnumGameStatus(EnumGameStatus e) {
+  switch (e) {
+    case EnumGameStatus.invited:
+      return r'invited';
+    case EnumGameStatus.active:
+      return r'active';
+    case EnumGameStatus.finished:
+      return r'finished';
+    case EnumGameStatus.cancelled:
+      return r'cancelled';
+    case EnumGameStatus.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumGameStatus fromJsonEnumGameStatus(String value) {
+  switch (value) {
+    case r'invited':
+      return EnumGameStatus.invited;
+    case r'active':
+      return EnumGameStatus.active;
+    case r'finished':
+      return EnumGameStatus.finished;
+    case r'cancelled':
+      return EnumGameStatus.cancelled;
+    default:
+      return EnumGameStatus.$unknown;
+  }
+}
+
+enum EnumGiftBudget {
+  free,
+  low,
+  medium,
+  high,
+  $unknown;
+
+  factory EnumGiftBudget.fromJson(String value) => fromJsonEnumGiftBudget(value);
+
+  String toJson() => toJsonEnumGiftBudget(this);
+}
+
+String toJsonEnumGiftBudget(EnumGiftBudget e) {
+  switch (e) {
+    case EnumGiftBudget.free:
+      return r'free';
+    case EnumGiftBudget.low:
+      return r'low';
+    case EnumGiftBudget.medium:
+      return r'medium';
+    case EnumGiftBudget.high:
+      return r'high';
+    case EnumGiftBudget.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumGiftBudget fromJsonEnumGiftBudget(String value) {
+  switch (value) {
+    case r'free':
+      return EnumGiftBudget.free;
+    case r'low':
+      return EnumGiftBudget.low;
+    case r'medium':
+      return EnumGiftBudget.medium;
+    case r'high':
+      return EnumGiftBudget.high;
+    default:
+      return EnumGiftBudget.$unknown;
+  }
+}
+
+enum EnumGiftIdeaKind {
+  idea,
+  wish,
+  $unknown;
+
+  factory EnumGiftIdeaKind.fromJson(String value) => fromJsonEnumGiftIdeaKind(value);
+
+  String toJson() => toJsonEnumGiftIdeaKind(this);
+}
+
+String toJsonEnumGiftIdeaKind(EnumGiftIdeaKind e) {
+  switch (e) {
+    case EnumGiftIdeaKind.idea:
+      return r'idea';
+    case EnumGiftIdeaKind.wish:
+      return r'wish';
+    case EnumGiftIdeaKind.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumGiftIdeaKind fromJsonEnumGiftIdeaKind(String value) {
+  switch (value) {
+    case r'idea':
+      return EnumGiftIdeaKind.idea;
+    case r'wish':
+      return EnumGiftIdeaKind.wish;
+    default:
+      return EnumGiftIdeaKind.$unknown;
+  }
+}
+
+enum EnumGiftIdeaStatus {
+  idea,
+  planned,
+  given,
+  $unknown;
+
+  factory EnumGiftIdeaStatus.fromJson(String value) => fromJsonEnumGiftIdeaStatus(value);
+
+  String toJson() => toJsonEnumGiftIdeaStatus(this);
+}
+
+String toJsonEnumGiftIdeaStatus(EnumGiftIdeaStatus e) {
+  switch (e) {
+    case EnumGiftIdeaStatus.idea:
+      return r'idea';
+    case EnumGiftIdeaStatus.planned:
+      return r'planned';
+    case EnumGiftIdeaStatus.given:
+      return r'given';
+    case EnumGiftIdeaStatus.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumGiftIdeaStatus fromJsonEnumGiftIdeaStatus(String value) {
+  switch (value) {
+    case r'idea':
+      return EnumGiftIdeaStatus.idea;
+    case r'planned':
+      return EnumGiftIdeaStatus.planned;
+    case r'given':
+      return EnumGiftIdeaStatus.given;
+    default:
+      return EnumGiftIdeaStatus.$unknown;
+  }
+}
+
+enum EnumHeavyDaySharing {
+  off,
+  ask,
+  always,
+  $unknown;
+
+  factory EnumHeavyDaySharing.fromJson(String value) => fromJsonEnumHeavyDaySharing(value);
+
+  String toJson() => toJsonEnumHeavyDaySharing(this);
+}
+
+String toJsonEnumHeavyDaySharing(EnumHeavyDaySharing e) {
+  switch (e) {
+    case EnumHeavyDaySharing.off:
+      return r'off';
+    case EnumHeavyDaySharing.ask:
+      return r'ask';
+    case EnumHeavyDaySharing.always:
+      return r'always';
+    case EnumHeavyDaySharing.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumHeavyDaySharing fromJsonEnumHeavyDaySharing(String value) {
+  switch (value) {
+    case r'off':
+      return EnumHeavyDaySharing.off;
+    case r'ask':
+      return EnumHeavyDaySharing.ask;
+    case r'always':
+      return EnumHeavyDaySharing.always;
+    default:
+      return EnumHeavyDaySharing.$unknown;
+  }
+}
+
+enum EnumIdeaResponse {
+  will_do,
+  done,
+  skip,
+  saved,
+  $unknown;
+
+  factory EnumIdeaResponse.fromJson(String value) => fromJsonEnumIdeaResponse(value);
+
+  String toJson() => toJsonEnumIdeaResponse(this);
+}
+
+String toJsonEnumIdeaResponse(EnumIdeaResponse e) {
+  switch (e) {
+    case EnumIdeaResponse.will_do:
+      return r'will_do';
+    case EnumIdeaResponse.done:
+      return r'done';
+    case EnumIdeaResponse.skip:
+      return r'skip';
+    case EnumIdeaResponse.saved:
+      return r'saved';
+    case EnumIdeaResponse.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumIdeaResponse fromJsonEnumIdeaResponse(String value) {
+  switch (value) {
+    case r'will_do':
+      return EnumIdeaResponse.will_do;
+    case r'done':
+      return EnumIdeaResponse.done;
+    case r'skip':
+      return EnumIdeaResponse.skip;
+    case r'saved':
+      return EnumIdeaResponse.saved;
+    default:
+      return EnumIdeaResponse.$unknown;
+  }
+}
+
+enum EnumImportantDateKind {
+  relationship,
+  birthday,
+  first,
+  holiday,
+  trip,
+  reunion,
+  custom,
+  $unknown;
+
+  factory EnumImportantDateKind.fromJson(String value) => fromJsonEnumImportantDateKind(value);
+
+  String toJson() => toJsonEnumImportantDateKind(this);
+}
+
+String toJsonEnumImportantDateKind(EnumImportantDateKind e) {
+  switch (e) {
+    case EnumImportantDateKind.relationship:
+      return r'relationship';
+    case EnumImportantDateKind.birthday:
+      return r'birthday';
+    case EnumImportantDateKind.first:
+      return r'first';
+    case EnumImportantDateKind.holiday:
+      return r'holiday';
+    case EnumImportantDateKind.trip:
+      return r'trip';
+    case EnumImportantDateKind.reunion:
+      return r'reunion';
+    case EnumImportantDateKind.custom:
+      return r'custom';
+    case EnumImportantDateKind.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumImportantDateKind fromJsonEnumImportantDateKind(String value) {
+  switch (value) {
+    case r'relationship':
+      return EnumImportantDateKind.relationship;
+    case r'birthday':
+      return EnumImportantDateKind.birthday;
+    case r'first':
+      return EnumImportantDateKind.first;
+    case r'holiday':
+      return EnumImportantDateKind.holiday;
+    case r'trip':
+      return EnumImportantDateKind.trip;
+    case r'reunion':
+      return EnumImportantDateKind.reunion;
+    case r'custom':
+      return EnumImportantDateKind.custom;
+    default:
+      return EnumImportantDateKind.$unknown;
+  }
+}
+
+enum EnumImportantDateOrigin {
+  manual,
+  auto,
+  chat,
+  $unknown;
+
+  factory EnumImportantDateOrigin.fromJson(String value) => fromJsonEnumImportantDateOrigin(value);
+
+  String toJson() => toJsonEnumImportantDateOrigin(this);
+}
+
+String toJsonEnumImportantDateOrigin(EnumImportantDateOrigin e) {
+  switch (e) {
+    case EnumImportantDateOrigin.manual:
+      return r'manual';
+    case EnumImportantDateOrigin.auto:
+      return r'auto';
+    case EnumImportantDateOrigin.chat:
+      return r'chat';
+    case EnumImportantDateOrigin.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumImportantDateOrigin fromJsonEnumImportantDateOrigin(String value) {
+  switch (value) {
+    case r'manual':
+      return EnumImportantDateOrigin.manual;
+    case r'auto':
+      return EnumImportantDateOrigin.auto;
+    case r'chat':
+      return EnumImportantDateOrigin.chat;
+    default:
+      return EnumImportantDateOrigin.$unknown;
+  }
+}
+
+enum EnumLearnedItemStatus {
+  pending,
+  confirmed,
+  rejected,
+  $unknown;
+
+  factory EnumLearnedItemStatus.fromJson(String value) => fromJsonEnumLearnedItemStatus(value);
+
+  String toJson() => toJsonEnumLearnedItemStatus(this);
+}
+
+String toJsonEnumLearnedItemStatus(EnumLearnedItemStatus e) {
+  switch (e) {
+    case EnumLearnedItemStatus.pending:
+      return r'pending';
+    case EnumLearnedItemStatus.confirmed:
+      return r'confirmed';
+    case EnumLearnedItemStatus.rejected:
+      return r'rejected';
+    case EnumLearnedItemStatus.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumLearnedItemStatus fromJsonEnumLearnedItemStatus(String value) {
+  switch (value) {
+    case r'pending':
+      return EnumLearnedItemStatus.pending;
+    case r'confirmed':
+      return EnumLearnedItemStatus.confirmed;
+    case r'rejected':
+      return EnumLearnedItemStatus.rejected;
+    default:
+      return EnumLearnedItemStatus.$unknown;
+  }
+}
+
+enum EnumLearnedItemTarget {
+  partner_fact,
+  date,
+  memory,
+  commitment,
+  $unknown;
+
+  factory EnumLearnedItemTarget.fromJson(String value) => fromJsonEnumLearnedItemTarget(value);
+
+  String toJson() => toJsonEnumLearnedItemTarget(this);
+}
+
+String toJsonEnumLearnedItemTarget(EnumLearnedItemTarget e) {
+  switch (e) {
+    case EnumLearnedItemTarget.partner_fact:
+      return r'partner_fact';
+    case EnumLearnedItemTarget.date:
+      return r'date';
+    case EnumLearnedItemTarget.memory:
+      return r'memory';
+    case EnumLearnedItemTarget.commitment:
+      return r'commitment';
+    case EnumLearnedItemTarget.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumLearnedItemTarget fromJsonEnumLearnedItemTarget(String value) {
+  switch (value) {
+    case r'partner_fact':
+      return EnumLearnedItemTarget.partner_fact;
+    case r'date':
+      return EnumLearnedItemTarget.date;
+    case r'memory':
+      return EnumLearnedItemTarget.memory;
+    case r'commitment':
+      return EnumLearnedItemTarget.commitment;
+    default:
+      return EnumLearnedItemTarget.$unknown;
+  }
+}
+
+enum EnumLessonStatus {
+  done,
+  saved,
+  $unknown;
+
+  factory EnumLessonStatus.fromJson(String value) => fromJsonEnumLessonStatus(value);
+
+  String toJson() => toJsonEnumLessonStatus(this);
+}
+
+String toJsonEnumLessonStatus(EnumLessonStatus e) {
+  switch (e) {
+    case EnumLessonStatus.done:
+      return r'done';
+    case EnumLessonStatus.saved:
+      return r'saved';
+    case EnumLessonStatus.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumLessonStatus fromJsonEnumLessonStatus(String value) {
+  switch (value) {
+    case r'done':
+      return EnumLessonStatus.done;
+    case r'saved':
+      return EnumLessonStatus.saved;
+    default:
+      return EnumLessonStatus.$unknown;
+  }
+}
+
+enum EnumListItemStatus {
+  dream,
+  planned,
+  done,
+  $unknown;
+
+  factory EnumListItemStatus.fromJson(String value) => fromJsonEnumListItemStatus(value);
+
+  String toJson() => toJsonEnumListItemStatus(this);
+}
+
+String toJsonEnumListItemStatus(EnumListItemStatus e) {
+  switch (e) {
+    case EnumListItemStatus.dream:
+      return r'dream';
+    case EnumListItemStatus.planned:
+      return r'planned';
+    case EnumListItemStatus.done:
+      return r'done';
+    case EnumListItemStatus.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumListItemStatus fromJsonEnumListItemStatus(String value) {
+  switch (value) {
+    case r'dream':
+      return EnumListItemStatus.dream;
+    case r'planned':
+      return EnumListItemStatus.planned;
+    case r'done':
+      return EnumListItemStatus.done;
+    default:
+      return EnumListItemStatus.$unknown;
+  }
+}
+
+enum EnumListKind {
+  travel,
+  restaurants,
+  movies,
+  custom,
+  $unknown;
+
+  factory EnumListKind.fromJson(String value) => fromJsonEnumListKind(value);
+
+  String toJson() => toJsonEnumListKind(this);
+}
+
+String toJsonEnumListKind(EnumListKind e) {
+  switch (e) {
+    case EnumListKind.travel:
+      return r'travel';
+    case EnumListKind.restaurants:
+      return r'restaurants';
+    case EnumListKind.movies:
+      return r'movies';
+    case EnumListKind.custom:
+      return r'custom';
+    case EnumListKind.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumListKind fromJsonEnumListKind(String value) {
+  switch (value) {
+    case r'travel':
+      return EnumListKind.travel;
+    case r'restaurants':
+      return EnumListKind.restaurants;
+    case r'movies':
+      return EnumListKind.movies;
+    case r'custom':
+      return EnumListKind.custom;
+    default:
+      return EnumListKind.$unknown;
+  }
+}
+
 enum EnumMemberRole {
   inviter,
   invitee,
@@ -75226,6 +82106,204 @@ EnumMemberRole fromJsonEnumMemberRole(String value) {
       return EnumMemberRole.invitee;
     default:
       return EnumMemberRole.$unknown;
+  }
+}
+
+enum EnumMemoryOrigin {
+  manual,
+  slip,
+  card,
+  question,
+  game,
+  mission,
+  share,
+  chat,
+  first,
+  $unknown;
+
+  factory EnumMemoryOrigin.fromJson(String value) => fromJsonEnumMemoryOrigin(value);
+
+  String toJson() => toJsonEnumMemoryOrigin(this);
+}
+
+String toJsonEnumMemoryOrigin(EnumMemoryOrigin e) {
+  switch (e) {
+    case EnumMemoryOrigin.manual:
+      return r'manual';
+    case EnumMemoryOrigin.slip:
+      return r'slip';
+    case EnumMemoryOrigin.card:
+      return r'card';
+    case EnumMemoryOrigin.question:
+      return r'question';
+    case EnumMemoryOrigin.game:
+      return r'game';
+    case EnumMemoryOrigin.mission:
+      return r'mission';
+    case EnumMemoryOrigin.share:
+      return r'share';
+    case EnumMemoryOrigin.chat:
+      return r'chat';
+    case EnumMemoryOrigin.first:
+      return r'first';
+    case EnumMemoryOrigin.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumMemoryOrigin fromJsonEnumMemoryOrigin(String value) {
+  switch (value) {
+    case r'manual':
+      return EnumMemoryOrigin.manual;
+    case r'slip':
+      return EnumMemoryOrigin.slip;
+    case r'card':
+      return EnumMemoryOrigin.card;
+    case r'question':
+      return EnumMemoryOrigin.question;
+    case r'game':
+      return EnumMemoryOrigin.game;
+    case r'mission':
+      return EnumMemoryOrigin.mission;
+    case r'share':
+      return EnumMemoryOrigin.share;
+    case r'chat':
+      return EnumMemoryOrigin.chat;
+    case r'first':
+      return EnumMemoryOrigin.first;
+    default:
+      return EnumMemoryOrigin.$unknown;
+  }
+}
+
+enum EnumMood {
+  happy,
+  tired,
+  sad,
+  stressed,
+  loving,
+  playful,
+  $unknown;
+
+  factory EnumMood.fromJson(String value) => fromJsonEnumMood(value);
+
+  String toJson() => toJsonEnumMood(this);
+}
+
+String toJsonEnumMood(EnumMood e) {
+  switch (e) {
+    case EnumMood.happy:
+      return r'happy';
+    case EnumMood.tired:
+      return r'tired';
+    case EnumMood.sad:
+      return r'sad';
+    case EnumMood.stressed:
+      return r'stressed';
+    case EnumMood.loving:
+      return r'loving';
+    case EnumMood.playful:
+      return r'playful';
+    case EnumMood.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumMood fromJsonEnumMood(String value) {
+  switch (value) {
+    case r'happy':
+      return EnumMood.happy;
+    case r'tired':
+      return EnumMood.tired;
+    case r'sad':
+      return EnumMood.sad;
+    case r'stressed':
+      return EnumMood.stressed;
+    case r'loving':
+      return EnumMood.loving;
+    case r'playful':
+      return EnumMood.playful;
+    default:
+      return EnumMood.$unknown;
+  }
+}
+
+enum EnumMoodNeed {
+  listen,
+  opinion,
+  hug,
+  space,
+  $unknown;
+
+  factory EnumMoodNeed.fromJson(String value) => fromJsonEnumMoodNeed(value);
+
+  String toJson() => toJsonEnumMoodNeed(this);
+}
+
+String toJsonEnumMoodNeed(EnumMoodNeed e) {
+  switch (e) {
+    case EnumMoodNeed.listen:
+      return r'listen';
+    case EnumMoodNeed.opinion:
+      return r'opinion';
+    case EnumMoodNeed.hug:
+      return r'hug';
+    case EnumMoodNeed.space:
+      return r'space';
+    case EnumMoodNeed.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumMoodNeed fromJsonEnumMoodNeed(String value) {
+  switch (value) {
+    case r'listen':
+      return EnumMoodNeed.listen;
+    case r'opinion':
+      return EnumMoodNeed.opinion;
+    case r'hug':
+      return EnumMoodNeed.hug;
+    case r'space':
+      return EnumMoodNeed.space;
+    default:
+      return EnumMoodNeed.$unknown;
+  }
+}
+
+enum EnumMoodShare {
+  none,
+  mood,
+  mood_need,
+  $unknown;
+
+  factory EnumMoodShare.fromJson(String value) => fromJsonEnumMoodShare(value);
+
+  String toJson() => toJsonEnumMoodShare(this);
+}
+
+String toJsonEnumMoodShare(EnumMoodShare e) {
+  switch (e) {
+    case EnumMoodShare.none:
+      return r'none';
+    case EnumMoodShare.mood:
+      return r'mood';
+    case EnumMoodShare.mood_need:
+      return r'mood_need';
+    case EnumMoodShare.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumMoodShare fromJsonEnumMoodShare(String value) {
+  switch (value) {
+    case r'none':
+      return EnumMoodShare.none;
+    case r'mood':
+      return EnumMoodShare.mood;
+    case r'mood_need':
+      return EnumMoodShare.mood_need;
+    default:
+      return EnumMoodShare.$unknown;
   }
 }
 
@@ -75268,6 +82346,179 @@ EnumOrderByDirection fromJsonEnumOrderByDirection(String value) {
       return EnumOrderByDirection.DescNullsLast;
     default:
       return EnumOrderByDirection.$unknown;
+  }
+}
+
+enum EnumPartnerFactCategory {
+  likes,
+  dislikes,
+  sizes,
+  health,
+  comfort,
+  people,
+  other,
+  $unknown;
+
+  factory EnumPartnerFactCategory.fromJson(String value) => fromJsonEnumPartnerFactCategory(value);
+
+  String toJson() => toJsonEnumPartnerFactCategory(this);
+}
+
+String toJsonEnumPartnerFactCategory(EnumPartnerFactCategory e) {
+  switch (e) {
+    case EnumPartnerFactCategory.likes:
+      return r'likes';
+    case EnumPartnerFactCategory.dislikes:
+      return r'dislikes';
+    case EnumPartnerFactCategory.sizes:
+      return r'sizes';
+    case EnumPartnerFactCategory.health:
+      return r'health';
+    case EnumPartnerFactCategory.comfort:
+      return r'comfort';
+    case EnumPartnerFactCategory.people:
+      return r'people';
+    case EnumPartnerFactCategory.other:
+      return r'other';
+    case EnumPartnerFactCategory.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumPartnerFactCategory fromJsonEnumPartnerFactCategory(String value) {
+  switch (value) {
+    case r'likes':
+      return EnumPartnerFactCategory.likes;
+    case r'dislikes':
+      return EnumPartnerFactCategory.dislikes;
+    case r'sizes':
+      return EnumPartnerFactCategory.sizes;
+    case r'health':
+      return EnumPartnerFactCategory.health;
+    case r'comfort':
+      return EnumPartnerFactCategory.comfort;
+    case r'people':
+      return EnumPartnerFactCategory.people;
+    case r'other':
+      return EnumPartnerFactCategory.other;
+    default:
+      return EnumPartnerFactCategory.$unknown;
+  }
+}
+
+enum EnumPartnerFactSource {
+  manual,
+  chat,
+  game,
+  learning,
+  $unknown;
+
+  factory EnumPartnerFactSource.fromJson(String value) => fromJsonEnumPartnerFactSource(value);
+
+  String toJson() => toJsonEnumPartnerFactSource(this);
+}
+
+String toJsonEnumPartnerFactSource(EnumPartnerFactSource e) {
+  switch (e) {
+    case EnumPartnerFactSource.manual:
+      return r'manual';
+    case EnumPartnerFactSource.chat:
+      return r'chat';
+    case EnumPartnerFactSource.game:
+      return r'game';
+    case EnumPartnerFactSource.learning:
+      return r'learning';
+    case EnumPartnerFactSource.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumPartnerFactSource fromJsonEnumPartnerFactSource(String value) {
+  switch (value) {
+    case r'manual':
+      return EnumPartnerFactSource.manual;
+    case r'chat':
+      return EnumPartnerFactSource.chat;
+    case r'game':
+      return EnumPartnerFactSource.game;
+    case r'learning':
+      return EnumPartnerFactSource.learning;
+    default:
+      return EnumPartnerFactSource.$unknown;
+  }
+}
+
+enum EnumPartnerMessageKind {
+  note,
+  drawing,
+  voice,
+  pack,
+  $unknown;
+
+  factory EnumPartnerMessageKind.fromJson(String value) => fromJsonEnumPartnerMessageKind(value);
+
+  String toJson() => toJsonEnumPartnerMessageKind(this);
+}
+
+String toJsonEnumPartnerMessageKind(EnumPartnerMessageKind e) {
+  switch (e) {
+    case EnumPartnerMessageKind.note:
+      return r'note';
+    case EnumPartnerMessageKind.drawing:
+      return r'drawing';
+    case EnumPartnerMessageKind.voice:
+      return r'voice';
+    case EnumPartnerMessageKind.pack:
+      return r'pack';
+    case EnumPartnerMessageKind.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumPartnerMessageKind fromJsonEnumPartnerMessageKind(String value) {
+  switch (value) {
+    case r'note':
+      return EnumPartnerMessageKind.note;
+    case r'drawing':
+      return EnumPartnerMessageKind.drawing;
+    case r'voice':
+      return EnumPartnerMessageKind.voice;
+    case r'pack':
+      return EnumPartnerMessageKind.pack;
+    default:
+      return EnumPartnerMessageKind.$unknown;
+  }
+}
+
+enum EnumQuizKey {
+  loved,
+  conflict_style,
+  $unknown;
+
+  factory EnumQuizKey.fromJson(String value) => fromJsonEnumQuizKey(value);
+
+  String toJson() => toJsonEnumQuizKey(this);
+}
+
+String toJsonEnumQuizKey(EnumQuizKey e) {
+  switch (e) {
+    case EnumQuizKey.loved:
+      return r'loved';
+    case EnumQuizKey.conflict_style:
+      return r'conflict_style';
+    case EnumQuizKey.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumQuizKey fromJsonEnumQuizKey(String value) {
+  switch (value) {
+    case r'loved':
+      return EnumQuizKey.loved;
+    case r'conflict_style':
+      return EnumQuizKey.conflict_style;
+    default:
+      return EnumQuizKey.$unknown;
   }
 }
 
@@ -75417,6 +82668,330 @@ EnumRelationshipStatus fromJsonEnumRelationshipStatus(String value) {
   }
 }
 
+enum EnumRepairFeeling {
+  calmer,
+  still_tense,
+  need_more_time,
+  $unknown;
+
+  factory EnumRepairFeeling.fromJson(String value) => fromJsonEnumRepairFeeling(value);
+
+  String toJson() => toJsonEnumRepairFeeling(this);
+}
+
+String toJsonEnumRepairFeeling(EnumRepairFeeling e) {
+  switch (e) {
+    case EnumRepairFeeling.calmer:
+      return r'calmer';
+    case EnumRepairFeeling.still_tense:
+      return r'still_tense';
+    case EnumRepairFeeling.need_more_time:
+      return r'need_more_time';
+    case EnumRepairFeeling.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumRepairFeeling fromJsonEnumRepairFeeling(String value) {
+  switch (value) {
+    case r'calmer':
+      return EnumRepairFeeling.calmer;
+    case r'still_tense':
+      return EnumRepairFeeling.still_tense;
+    case r'need_more_time':
+      return EnumRepairFeeling.need_more_time;
+    default:
+      return EnumRepairFeeling.$unknown;
+  }
+}
+
+enum EnumRepairLearningKind {
+  trigger,
+  need,
+  good_fix,
+  $unknown;
+
+  factory EnumRepairLearningKind.fromJson(String value) => fromJsonEnumRepairLearningKind(value);
+
+  String toJson() => toJsonEnumRepairLearningKind(this);
+}
+
+String toJsonEnumRepairLearningKind(EnumRepairLearningKind e) {
+  switch (e) {
+    case EnumRepairLearningKind.trigger:
+      return r'trigger';
+    case EnumRepairLearningKind.need:
+      return r'need';
+    case EnumRepairLearningKind.good_fix:
+      return r'good_fix';
+    case EnumRepairLearningKind.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumRepairLearningKind fromJsonEnumRepairLearningKind(String value) {
+  switch (value) {
+    case r'trigger':
+      return EnumRepairLearningKind.trigger;
+    case r'need':
+      return EnumRepairLearningKind.need;
+    case r'good_fix':
+      return EnumRepairLearningKind.good_fix;
+    default:
+      return EnumRepairLearningKind.$unknown;
+  }
+}
+
+enum EnumRepairPath {
+  pause,
+  quick,
+  soft_start,
+  guided,
+  apology,
+  $unknown;
+
+  factory EnumRepairPath.fromJson(String value) => fromJsonEnumRepairPath(value);
+
+  String toJson() => toJsonEnumRepairPath(this);
+}
+
+String toJsonEnumRepairPath(EnumRepairPath e) {
+  switch (e) {
+    case EnumRepairPath.pause:
+      return r'pause';
+    case EnumRepairPath.quick:
+      return r'quick';
+    case EnumRepairPath.soft_start:
+      return r'soft_start';
+    case EnumRepairPath.guided:
+      return r'guided';
+    case EnumRepairPath.apology:
+      return r'apology';
+    case EnumRepairPath.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumRepairPath fromJsonEnumRepairPath(String value) {
+  switch (value) {
+    case r'pause':
+      return EnumRepairPath.pause;
+    case r'quick':
+      return EnumRepairPath.quick;
+    case r'soft_start':
+      return EnumRepairPath.soft_start;
+    case r'guided':
+      return EnumRepairPath.guided;
+    case r'apology':
+      return EnumRepairPath.apology;
+    default:
+      return EnumRepairPath.$unknown;
+  }
+}
+
+enum EnumRitualCadence {
+  daily,
+  weekly,
+  biweekly,
+  monthly,
+  $unknown;
+
+  factory EnumRitualCadence.fromJson(String value) => fromJsonEnumRitualCadence(value);
+
+  String toJson() => toJsonEnumRitualCadence(this);
+}
+
+String toJsonEnumRitualCadence(EnumRitualCadence e) {
+  switch (e) {
+    case EnumRitualCadence.daily:
+      return r'daily';
+    case EnumRitualCadence.weekly:
+      return r'weekly';
+    case EnumRitualCadence.biweekly:
+      return r'biweekly';
+    case EnumRitualCadence.monthly:
+      return r'monthly';
+    case EnumRitualCadence.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumRitualCadence fromJsonEnumRitualCadence(String value) {
+  switch (value) {
+    case r'daily':
+      return EnumRitualCadence.daily;
+    case r'weekly':
+      return EnumRitualCadence.weekly;
+    case r'biweekly':
+      return EnumRitualCadence.biweekly;
+    case r'monthly':
+      return EnumRitualCadence.monthly;
+    default:
+      return EnumRitualCadence.$unknown;
+  }
+}
+
+enum EnumSignalKind {
+  need,
+  miss_us,
+  hug,
+  distance,
+  repair,
+  heavy_day,
+  good_news,
+  $unknown;
+
+  factory EnumSignalKind.fromJson(String value) => fromJsonEnumSignalKind(value);
+
+  String toJson() => toJsonEnumSignalKind(this);
+}
+
+String toJsonEnumSignalKind(EnumSignalKind e) {
+  switch (e) {
+    case EnumSignalKind.need:
+      return r'need';
+    case EnumSignalKind.miss_us:
+      return r'miss_us';
+    case EnumSignalKind.hug:
+      return r'hug';
+    case EnumSignalKind.distance:
+      return r'distance';
+    case EnumSignalKind.repair:
+      return r'repair';
+    case EnumSignalKind.heavy_day:
+      return r'heavy_day';
+    case EnumSignalKind.good_news:
+      return r'good_news';
+    case EnumSignalKind.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumSignalKind fromJsonEnumSignalKind(String value) {
+  switch (value) {
+    case r'need':
+      return EnumSignalKind.need;
+    case r'miss_us':
+      return EnumSignalKind.miss_us;
+    case r'hug':
+      return EnumSignalKind.hug;
+    case r'distance':
+      return EnumSignalKind.distance;
+    case r'repair':
+      return EnumSignalKind.repair;
+    case r'heavy_day':
+      return EnumSignalKind.heavy_day;
+    case r'good_news':
+      return EnumSignalKind.good_news;
+    default:
+      return EnumSignalKind.$unknown;
+  }
+}
+
+enum EnumSignalResponse {
+  here,
+  talk,
+  more_time,
+  will_do,
+  not_now,
+  plan,
+  later,
+  heart,
+  $unknown;
+
+  factory EnumSignalResponse.fromJson(String value) => fromJsonEnumSignalResponse(value);
+
+  String toJson() => toJsonEnumSignalResponse(this);
+}
+
+String toJsonEnumSignalResponse(EnumSignalResponse e) {
+  switch (e) {
+    case EnumSignalResponse.here:
+      return r'here';
+    case EnumSignalResponse.talk:
+      return r'talk';
+    case EnumSignalResponse.more_time:
+      return r'more_time';
+    case EnumSignalResponse.will_do:
+      return r'will_do';
+    case EnumSignalResponse.not_now:
+      return r'not_now';
+    case EnumSignalResponse.plan:
+      return r'plan';
+    case EnumSignalResponse.later:
+      return r'later';
+    case EnumSignalResponse.heart:
+      return r'heart';
+    case EnumSignalResponse.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumSignalResponse fromJsonEnumSignalResponse(String value) {
+  switch (value) {
+    case r'here':
+      return EnumSignalResponse.here;
+    case r'talk':
+      return EnumSignalResponse.talk;
+    case r'more_time':
+      return EnumSignalResponse.more_time;
+    case r'will_do':
+      return EnumSignalResponse.will_do;
+    case r'not_now':
+      return EnumSignalResponse.not_now;
+    case r'plan':
+      return EnumSignalResponse.plan;
+    case r'later':
+      return EnumSignalResponse.later;
+    case r'heart':
+      return EnumSignalResponse.heart;
+    default:
+      return EnumSignalResponse.$unknown;
+  }
+}
+
+enum EnumSlipCategory {
+  said,
+  did,
+  noticed,
+  helped,
+  $unknown;
+
+  factory EnumSlipCategory.fromJson(String value) => fromJsonEnumSlipCategory(value);
+
+  String toJson() => toJsonEnumSlipCategory(this);
+}
+
+String toJsonEnumSlipCategory(EnumSlipCategory e) {
+  switch (e) {
+    case EnumSlipCategory.said:
+      return r'said';
+    case EnumSlipCategory.did:
+      return r'did';
+    case EnumSlipCategory.noticed:
+      return r'noticed';
+    case EnumSlipCategory.helped:
+      return r'helped';
+    case EnumSlipCategory.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumSlipCategory fromJsonEnumSlipCategory(String value) {
+  switch (value) {
+    case r'said':
+      return EnumSlipCategory.said;
+    case r'did':
+      return EnumSlipCategory.did;
+    case r'noticed':
+      return EnumSlipCategory.noticed;
+    case r'helped':
+      return EnumSlipCategory.helped;
+    default:
+      return EnumSlipCategory.$unknown;
+  }
+}
+
 enum EnumSlipKind {
   quick,
   specific,
@@ -75456,6 +83031,157 @@ EnumSlipKind fromJsonEnumSlipKind(String value) {
       return EnumSlipKind.invisible;
     default:
       return EnumSlipKind.$unknown;
+  }
+}
+
+enum EnumStoryEventKind {
+  met,
+  dating,
+  engaged,
+  married,
+  custom,
+  $unknown;
+
+  factory EnumStoryEventKind.fromJson(String value) => fromJsonEnumStoryEventKind(value);
+
+  String toJson() => toJsonEnumStoryEventKind(this);
+}
+
+String toJsonEnumStoryEventKind(EnumStoryEventKind e) {
+  switch (e) {
+    case EnumStoryEventKind.met:
+      return r'met';
+    case EnumStoryEventKind.dating:
+      return r'dating';
+    case EnumStoryEventKind.engaged:
+      return r'engaged';
+    case EnumStoryEventKind.married:
+      return r'married';
+    case EnumStoryEventKind.custom:
+      return r'custom';
+    case EnumStoryEventKind.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumStoryEventKind fromJsonEnumStoryEventKind(String value) {
+  switch (value) {
+    case r'met':
+      return EnumStoryEventKind.met;
+    case r'dating':
+      return EnumStoryEventKind.dating;
+    case r'engaged':
+      return EnumStoryEventKind.engaged;
+    case r'married':
+      return EnumStoryEventKind.married;
+    case r'custom':
+      return EnumStoryEventKind.custom;
+    default:
+      return EnumStoryEventKind.$unknown;
+  }
+}
+
+enum EnumTemperatureLevel {
+  good,
+  so_so,
+  turbulent,
+  fight,
+  $unknown;
+
+  factory EnumTemperatureLevel.fromJson(String value) => fromJsonEnumTemperatureLevel(value);
+
+  String toJson() => toJsonEnumTemperatureLevel(this);
+}
+
+String toJsonEnumTemperatureLevel(EnumTemperatureLevel e) {
+  switch (e) {
+    case EnumTemperatureLevel.good:
+      return r'good';
+    case EnumTemperatureLevel.so_so:
+      return r'so_so';
+    case EnumTemperatureLevel.turbulent:
+      return r'turbulent';
+    case EnumTemperatureLevel.fight:
+      return r'fight';
+    case EnumTemperatureLevel.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumTemperatureLevel fromJsonEnumTemperatureLevel(String value) {
+  switch (value) {
+    case r'good':
+      return EnumTemperatureLevel.good;
+    case r'so_so':
+      return EnumTemperatureLevel.so_so;
+    case r'turbulent':
+      return EnumTemperatureLevel.turbulent;
+    case r'fight':
+      return EnumTemperatureLevel.fight;
+    default:
+      return EnumTemperatureLevel.$unknown;
+  }
+}
+
+enum EnumWorkArea {
+  planning,
+  dates,
+  kitchen,
+  cleaning,
+  kids,
+  emotional,
+  finances,
+  other,
+  $unknown;
+
+  factory EnumWorkArea.fromJson(String value) => fromJsonEnumWorkArea(value);
+
+  String toJson() => toJsonEnumWorkArea(this);
+}
+
+String toJsonEnumWorkArea(EnumWorkArea e) {
+  switch (e) {
+    case EnumWorkArea.planning:
+      return r'planning';
+    case EnumWorkArea.dates:
+      return r'dates';
+    case EnumWorkArea.kitchen:
+      return r'kitchen';
+    case EnumWorkArea.cleaning:
+      return r'cleaning';
+    case EnumWorkArea.kids:
+      return r'kids';
+    case EnumWorkArea.emotional:
+      return r'emotional';
+    case EnumWorkArea.finances:
+      return r'finances';
+    case EnumWorkArea.other:
+      return r'other';
+    case EnumWorkArea.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumWorkArea fromJsonEnumWorkArea(String value) {
+  switch (value) {
+    case r'planning':
+      return EnumWorkArea.planning;
+    case r'dates':
+      return EnumWorkArea.dates;
+    case r'kitchen':
+      return EnumWorkArea.kitchen;
+    case r'cleaning':
+      return EnumWorkArea.cleaning;
+    case r'kids':
+      return EnumWorkArea.kids;
+    case r'emotional':
+      return EnumWorkArea.emotional;
+    case r'finances':
+      return EnumWorkArea.finances;
+    case r'other':
+      return EnumWorkArea.other;
+    default:
+      return EnumWorkArea.$unknown;
   }
 }
 

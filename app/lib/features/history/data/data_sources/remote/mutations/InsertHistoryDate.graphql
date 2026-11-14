@@ -2,7 +2,7 @@ mutation InsertHistoryDate(
   $id: UUID!
   $coupleId: UUID
   $title: String!
-  $kind: String!
+  $kind: ImportantDateKind!
   $month: Int!
   $day: Int!
   $year: Int
@@ -19,7 +19,7 @@ mutation InsertHistoryDate(
         day: $day
         year: $year
         yearly: $yearly
-        origin: "manual"
+        origin: manual
       }
     ]
   ) {

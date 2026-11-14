@@ -1,7 +1,7 @@
 mutation UpdateLessonProgress(
   $programSlug: String!
   $lessonDay: Int!
-  $status: String!
+  $status: LessonStatus!
 ) {
   updateLessonProgressCollection(
     set: { status: $status }

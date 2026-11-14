@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -9,7 +11,7 @@ class VariablesMutationAddGiftWish {
     required String id,
     required String title,
     String? note,
-    String? budget,
+    EnumGiftBudget? budget,
     String? coupleId,
   }) => VariablesMutationAddGiftWish._({
     r'id': id,
@@ -33,7 +35,9 @@ class VariablesMutationAddGiftWish {
     }
     if (data.containsKey('budget')) {
       final l$budget = data['budget'];
-      result$data['budget'] = (l$budget as String?);
+      result$data['budget'] = l$budget == null
+          ? null
+          : fromJsonEnumGiftBudget((l$budget as String));
     }
     if (data.containsKey('coupleId')) {
       final l$coupleId = data['coupleId'];
@@ -50,7 +54,7 @@ class VariablesMutationAddGiftWish {
 
   String? get note => (_$data['note'] as String?);
 
-  String? get budget => (_$data['budget'] as String?);
+  EnumGiftBudget? get budget => (_$data['budget'] as EnumGiftBudget?);
 
   String? get coupleId => (_$data['coupleId'] as String?);
 
@@ -66,7 +70,7 @@ class VariablesMutationAddGiftWish {
     }
     if (_$data.containsKey('budget')) {
       final l$budget = budget;
-      result$data['budget'] = l$budget;
+      result$data['budget'] = l$budget == null ? null : toJsonEnumGiftBudget(l$budget);
     }
     if (_$data.containsKey('coupleId')) {
       final l$coupleId = coupleId;
@@ -221,7 +225,7 @@ const documentNodeMutationAddGiftWish = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'budget')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'GiftBudget'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -267,7 +271,7 @@ const documentNodeMutationAddGiftWish = DocumentNode(
                         ),
                         ObjectFieldNode(
                           name: NameNode(value: 'kind'),
-                          value: StringValueNode(value: 'wish', isBlock: false),
+                          value: EnumValueNode(name: NameNode(value: 'wish')),
                         ),
                       ],
                     ),

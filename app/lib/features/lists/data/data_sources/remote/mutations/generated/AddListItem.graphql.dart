@@ -216,7 +216,7 @@ const documentNodeMutationAddListItem = DocumentNode(
                         ),
                         ObjectFieldNode(
                           name: NameNode(value: 'status'),
-                          value: StringValueNode(value: 'dream', isBlock: false),
+                          value: EnumValueNode(name: NameNode(value: 'dream')),
                         ),
                       ],
                     ),

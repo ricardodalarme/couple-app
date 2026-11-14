@@ -1,12 +1,16 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationSetGiftIdeaStatus {
-  factory VariablesMutationSetGiftIdeaStatus({required String id, required String status}) =>
-      VariablesMutationSetGiftIdeaStatus._({r'id': id, r'status': status});
+  factory VariablesMutationSetGiftIdeaStatus({
+    required String id,
+    required EnumGiftIdeaStatus status,
+  }) => VariablesMutationSetGiftIdeaStatus._({r'id': id, r'status': status});
 
   VariablesMutationSetGiftIdeaStatus._(this._$data);
 
@@ -15,7 +19,7 @@ class VariablesMutationSetGiftIdeaStatus {
     final l$id = data['id'];
     result$data['id'] = (l$id as String);
     final l$status = data['status'];
-    result$data['status'] = (l$status as String);
+    result$data['status'] = fromJsonEnumGiftIdeaStatus((l$status as String));
     return VariablesMutationSetGiftIdeaStatus._(result$data);
   }
 
@@ -23,14 +27,14 @@ class VariablesMutationSetGiftIdeaStatus {
 
   String get id => (_$data['id'] as String);
 
-  String get status => (_$data['status'] as String);
+  EnumGiftIdeaStatus get status => (_$data['status'] as EnumGiftIdeaStatus);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
     result$data['id'] = l$id;
     final l$status = status;
-    result$data['status'] = l$status;
+    result$data['status'] = toJsonEnumGiftIdeaStatus(l$status);
     return result$data;
   }
 
@@ -136,7 +140,7 @@ const documentNodeMutationSetGiftIdeaStatus = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'status')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'GiftIdeaStatus'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

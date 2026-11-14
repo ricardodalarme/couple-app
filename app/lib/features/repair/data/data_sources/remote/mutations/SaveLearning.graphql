@@ -1,4 +1,4 @@
-mutation SaveLearning($id: UUID!, $sessionId: UUID, $kind: String!, $note: String!) {
+mutation SaveLearning($id: UUID!, $sessionId: UUID, $kind: RepairLearningKind!, $note: String!) {
   insertIntoRepairLearningsCollection(
     objects: [{ id: $id, repairSessionId: $sessionId, kind: $kind, note: $note }]
   ) {

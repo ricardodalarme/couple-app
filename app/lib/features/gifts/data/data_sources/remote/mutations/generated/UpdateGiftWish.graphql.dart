@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -9,7 +11,7 @@ class VariablesMutationUpdateGiftWish {
     required String id,
     required String title,
     String? note,
-    String? budget,
+    EnumGiftBudget? budget,
   }) => VariablesMutationUpdateGiftWish._({
     r'id': id,
     r'title': title,
@@ -31,7 +33,9 @@ class VariablesMutationUpdateGiftWish {
     }
     if (data.containsKey('budget')) {
       final l$budget = data['budget'];
-      result$data['budget'] = (l$budget as String?);
+      result$data['budget'] = l$budget == null
+          ? null
+          : fromJsonEnumGiftBudget((l$budget as String));
     }
     return VariablesMutationUpdateGiftWish._(result$data);
   }
@@ -44,7 +48,7 @@ class VariablesMutationUpdateGiftWish {
 
   String? get note => (_$data['note'] as String?);
 
-  String? get budget => (_$data['budget'] as String?);
+  EnumGiftBudget? get budget => (_$data['budget'] as EnumGiftBudget?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -58,7 +62,7 @@ class VariablesMutationUpdateGiftWish {
     }
     if (_$data.containsKey('budget')) {
       final l$budget = budget;
-      result$data['budget'] = l$budget;
+      result$data['budget'] = l$budget == null ? null : toJsonEnumGiftBudget(l$budget);
     }
     return result$data;
   }
@@ -197,7 +201,7 @@ const documentNodeMutationUpdateGiftWish = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'budget')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'GiftBudget'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

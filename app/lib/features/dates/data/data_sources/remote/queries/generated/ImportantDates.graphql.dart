@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -487,7 +489,7 @@ class QueryImportantDatesimportantDatesCollectionedgesnode {
     return QueryImportantDatesimportantDatesCollectionedgesnode(
       id: (l$id as String),
       title: (l$title as String),
-      kind: (l$kind as String),
+      kind: fromJsonEnumImportantDateKind((l$kind as String)),
       month: (l$month as int),
       day: (l$day as int),
       year: (l$year as int?),
@@ -500,7 +502,7 @@ class QueryImportantDatesimportantDatesCollectionedgesnode {
 
   final String title;
 
-  final String kind;
+  final EnumImportantDateKind kind;
 
   final int month;
 
@@ -519,7 +521,7 @@ class QueryImportantDatesimportantDatesCollectionedgesnode {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$kind = kind;
-    _resultData['kind'] = l$kind;
+    _resultData['kind'] = toJsonEnumImportantDateKind(l$kind);
     final l$month = month;
     _resultData['month'] = l$month;
     final l$day = day;

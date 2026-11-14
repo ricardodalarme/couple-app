@@ -1,4 +1,4 @@
-mutation RecordTemperature($level: String!) {
+mutation RecordTemperature($level: TemperatureLevel!) {
   insertIntoTemperatureChecksCollection(objects: [{ level: $level }]) {
     affectedCount
   }

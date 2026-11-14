@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -1111,8 +1113,8 @@ class QueryTodayHomepartnerMoodToday {
     return QueryTodayHomepartnerMoodToday(
       id: (l$id as String?),
       day: l$day == null ? null : DateTime.parse((l$day as String)),
-      mood: (l$mood as String?),
-      need: (l$need as String?),
+      mood: l$mood == null ? null : fromJsonEnumMood((l$mood as String)),
+      need: l$need == null ? null : fromJsonEnumMoodNeed((l$need as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1121,9 +1123,9 @@ class QueryTodayHomepartnerMoodToday {
 
   final DateTime? day;
 
-  final String? mood;
+  final EnumMood? mood;
 
-  final String? need;
+  final EnumMoodNeed? need;
 
   final String $__typename;
 
@@ -1136,9 +1138,9 @@ class QueryTodayHomepartnerMoodToday {
         ? null
         : ((v) => v.toIso8601String().substring(0, 10))(l$day);
     final l$mood = mood;
-    _resultData['mood'] = l$mood;
+    _resultData['mood'] = l$mood == null ? null : toJsonEnumMood(l$mood);
     final l$need = need;
-    _resultData['need'] = l$need;
+    _resultData['need'] = l$need == null ? null : toJsonEnumMoodNeed(l$need);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1321,14 +1323,14 @@ class QueryTodayHomemyMoodedgesnode {
     final l$$__typename = json['__typename'];
     return QueryTodayHomemyMoodedgesnode(
       day: DateTime.parse((l$day as String)),
-      mood: (l$mood as String),
+      mood: fromJsonEnumMood((l$mood as String)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final DateTime day;
 
-  final String mood;
+  final EnumMood mood;
 
   final String $__typename;
 
@@ -1337,7 +1339,7 @@ class QueryTodayHomemyMoodedgesnode {
     final l$day = day;
     _resultData['day'] = ((v) => v.toIso8601String().substring(0, 10))(l$day);
     final l$mood = mood;
-    _resultData['mood'] = l$mood;
+    _resultData['mood'] = toJsonEnumMood(l$mood);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

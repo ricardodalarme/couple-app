@@ -1,10 +1,10 @@
 mutation UpdateStoryEvent(
   $id: UUID!
   $coupleId: UUID
-  $kind: String!
+  $kind: StoryEventKind!
   $title: String
   $happenedOn: Date!
-  $datePrecision: String!
+  $datePrecision: DatePrecision!
 ) {
   updateStoryEventsCollection(
     set: {

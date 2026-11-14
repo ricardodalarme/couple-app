@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -7,7 +9,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationUpdateAvatarKind {
   factory VariablesMutationUpdateAvatarKind({
     required String profileId,
-    required String avatarKind,
+    required EnumAvatarKind avatarKind,
   }) => VariablesMutationUpdateAvatarKind._({r'profileId': profileId, r'avatarKind': avatarKind});
 
   VariablesMutationUpdateAvatarKind._(this._$data);
@@ -17,7 +19,7 @@ class VariablesMutationUpdateAvatarKind {
     final l$profileId = data['profileId'];
     result$data['profileId'] = (l$profileId as String);
     final l$avatarKind = data['avatarKind'];
-    result$data['avatarKind'] = (l$avatarKind as String);
+    result$data['avatarKind'] = fromJsonEnumAvatarKind((l$avatarKind as String));
     return VariablesMutationUpdateAvatarKind._(result$data);
   }
 
@@ -25,14 +27,14 @@ class VariablesMutationUpdateAvatarKind {
 
   String get profileId => (_$data['profileId'] as String);
 
-  String get avatarKind => (_$data['avatarKind'] as String);
+  EnumAvatarKind get avatarKind => (_$data['avatarKind'] as EnumAvatarKind);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$profileId = profileId;
     result$data['profileId'] = l$profileId;
     final l$avatarKind = avatarKind;
-    result$data['avatarKind'] = l$avatarKind;
+    result$data['avatarKind'] = toJsonEnumAvatarKind(l$avatarKind);
     return result$data;
   }
 
@@ -135,7 +137,7 @@ const documentNodeMutationUpdateAvatarKind = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'avatarKind')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'AvatarKind'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

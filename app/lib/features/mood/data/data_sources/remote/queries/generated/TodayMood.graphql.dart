@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -542,9 +544,9 @@ class QueryTodayMoodmoodsCollectionedgesnode {
     return QueryTodayMoodmoodsCollectionedgesnode(
       id: (l$id as String),
       day: DateTime.parse((l$day as String)),
-      mood: (l$mood as String),
-      need: (l$need as String?),
-      share: (l$share as String),
+      mood: fromJsonEnumMood((l$mood as String)),
+      need: l$need == null ? null : fromJsonEnumMoodNeed((l$need as String)),
+      share: fromJsonEnumMoodShare((l$share as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -553,11 +555,11 @@ class QueryTodayMoodmoodsCollectionedgesnode {
 
   final DateTime day;
 
-  final String mood;
+  final EnumMood mood;
 
-  final String? need;
+  final EnumMoodNeed? need;
 
-  final String share;
+  final EnumMoodShare share;
 
   final String $__typename;
 
@@ -568,11 +570,11 @@ class QueryTodayMoodmoodsCollectionedgesnode {
     final l$day = day;
     _resultData['day'] = ((v) => v.toIso8601String().substring(0, 10))(l$day);
     final l$mood = mood;
-    _resultData['mood'] = l$mood;
+    _resultData['mood'] = toJsonEnumMood(l$mood);
     final l$need = need;
-    _resultData['need'] = l$need;
+    _resultData['need'] = l$need == null ? null : toJsonEnumMoodNeed(l$need);
     final l$share = share;
-    _resultData['share'] = l$share;
+    _resultData['share'] = toJsonEnumMoodShare(l$share);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

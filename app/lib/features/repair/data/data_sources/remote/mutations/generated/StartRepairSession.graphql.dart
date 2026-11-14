@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -8,7 +10,7 @@ class VariablesMutationStartRepairSession {
   factory VariablesMutationStartRepairSession({
     required String id,
     int? intensity,
-    required String path,
+    required EnumRepairPath path,
   }) => VariablesMutationStartRepairSession._({
     r'id': id,
     if (intensity != null) r'intensity': intensity,
@@ -26,7 +28,7 @@ class VariablesMutationStartRepairSession {
       result$data['intensity'] = (l$intensity as int?);
     }
     final l$path = data['path'];
-    result$data['path'] = (l$path as String);
+    result$data['path'] = fromJsonEnumRepairPath((l$path as String));
     return VariablesMutationStartRepairSession._(result$data);
   }
 
@@ -36,7 +38,7 @@ class VariablesMutationStartRepairSession {
 
   int? get intensity => (_$data['intensity'] as int?);
 
-  String get path => (_$data['path'] as String);
+  EnumRepairPath get path => (_$data['path'] as EnumRepairPath);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -47,7 +49,7 @@ class VariablesMutationStartRepairSession {
       result$data['intensity'] = l$intensity;
     }
     final l$path = path;
-    result$data['path'] = l$path;
+    result$data['path'] = toJsonEnumRepairPath(l$path);
     return result$data;
   }
 
@@ -172,7 +174,7 @@ const documentNodeMutationStartRepairSession = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'path')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'RepairPath'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

@@ -1657,7 +1657,7 @@ class QueryWidgetOverviewritualsCollectionedgesnode {
     return QueryWidgetOverviewritualsCollectionedgesnode(
       id: (l$id as String),
       title: (l$title as String),
-      cadence: (l$cadence as String),
+      cadence: fromJsonEnumRitualCadence((l$cadence as String)),
       weekday: (l$weekday as int?),
       atTime: (l$atTime as String?),
       $__typename: (l$$__typename as String),
@@ -1668,7 +1668,7 @@ class QueryWidgetOverviewritualsCollectionedgesnode {
 
   final String title;
 
-  final String cadence;
+  final EnumRitualCadence cadence;
 
   final int? weekday;
 
@@ -1683,7 +1683,7 @@ class QueryWidgetOverviewritualsCollectionedgesnode {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$cadence = cadence;
-    _resultData['cadence'] = l$cadence;
+    _resultData['cadence'] = toJsonEnumRitualCadence(l$cadence);
     final l$weekday = weekday;
     _resultData['weekday'] = l$weekday;
     final l$atTime = atTime;
@@ -1880,7 +1880,7 @@ class QueryWidgetOverviewmoodsCollectionedgesnode {
     return QueryWidgetOverviewmoodsCollectionedgesnode(
       id: (l$id as String),
       day: DateTime.parse((l$day as String)),
-      mood: (l$mood as String),
+      mood: fromJsonEnumMood((l$mood as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1889,7 +1889,7 @@ class QueryWidgetOverviewmoodsCollectionedgesnode {
 
   final DateTime day;
 
-  final String mood;
+  final EnumMood mood;
 
   final String $__typename;
 
@@ -1900,7 +1900,7 @@ class QueryWidgetOverviewmoodsCollectionedgesnode {
     final l$day = day;
     _resultData['day'] = ((v) => v.toIso8601String().substring(0, 10))(l$day);
     final l$mood = mood;
-    _resultData['mood'] = l$mood;
+    _resultData['mood'] = toJsonEnumMood(l$mood);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

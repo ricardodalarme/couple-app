@@ -83,7 +83,7 @@ const documentNodeQueryLoveStyleResult = DocumentNode(
                         fields: [
                           ObjectFieldNode(
                             name: NameNode(value: 'eq'),
-                            value: StringValueNode(value: 'loved', isBlock: false),
+                            value: EnumValueNode(name: NameNode(value: 'loved')),
                           ),
                         ],
                       ),

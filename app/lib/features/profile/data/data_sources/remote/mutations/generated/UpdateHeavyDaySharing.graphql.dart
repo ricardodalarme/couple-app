@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -7,7 +9,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationUpdateHeavyDaySharing {
   factory VariablesMutationUpdateHeavyDaySharing({
     required String profileId,
-    required String sharing,
+    required EnumHeavyDaySharing sharing,
   }) => VariablesMutationUpdateHeavyDaySharing._({r'profileId': profileId, r'sharing': sharing});
 
   VariablesMutationUpdateHeavyDaySharing._(this._$data);
@@ -17,7 +19,7 @@ class VariablesMutationUpdateHeavyDaySharing {
     final l$profileId = data['profileId'];
     result$data['profileId'] = (l$profileId as String);
     final l$sharing = data['sharing'];
-    result$data['sharing'] = (l$sharing as String);
+    result$data['sharing'] = fromJsonEnumHeavyDaySharing((l$sharing as String));
     return VariablesMutationUpdateHeavyDaySharing._(result$data);
   }
 
@@ -25,14 +27,14 @@ class VariablesMutationUpdateHeavyDaySharing {
 
   String get profileId => (_$data['profileId'] as String);
 
-  String get sharing => (_$data['sharing'] as String);
+  EnumHeavyDaySharing get sharing => (_$data['sharing'] as EnumHeavyDaySharing);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$profileId = profileId;
     result$data['profileId'] = l$profileId;
     final l$sharing = sharing;
-    result$data['sharing'] = l$sharing;
+    result$data['sharing'] = toJsonEnumHeavyDaySharing(l$sharing);
     return result$data;
   }
 
@@ -140,7 +142,7 @@ const documentNodeMutationUpdateHeavyDaySharing = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'sharing')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'HeavyDaySharing'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

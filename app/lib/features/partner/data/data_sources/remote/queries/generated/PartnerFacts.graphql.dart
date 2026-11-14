@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -434,7 +436,7 @@ class QueryPartnerFactspartnerFactsCollectionedgesnode {
       id: (l$id as String),
       label: (l$label as String),
       value: (l$value as String),
-      category: (l$category as String?),
+      category: l$category == null ? null : fromJsonEnumPartnerFactCategory((l$category as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -445,7 +447,7 @@ class QueryPartnerFactspartnerFactsCollectionedgesnode {
 
   final String value;
 
-  final String? category;
+  final EnumPartnerFactCategory? category;
 
   final String $__typename;
 
@@ -458,7 +460,7 @@ class QueryPartnerFactspartnerFactsCollectionedgesnode {
     final l$value = value;
     _resultData['value'] = l$value;
     final l$category = category;
-    _resultData['category'] = l$category;
+    _resultData['category'] = l$category == null ? null : toJsonEnumPartnerFactCategory(l$category);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

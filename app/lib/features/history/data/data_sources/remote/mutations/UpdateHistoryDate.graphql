@@ -2,7 +2,7 @@ mutation UpdateHistoryDate(
   $id: UUID!
   $coupleId: UUID
   $title: String!
-  $kind: String!
+  $kind: ImportantDateKind!
   $month: Int!
   $day: Int!
   $year: Int

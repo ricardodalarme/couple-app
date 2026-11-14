@@ -1,3 +1,6 @@
+"""
+An agreement between partners. Each person agrees for themselves through the agree function.
+"""
 type Agreements implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -12,6 +15,14 @@ type Agreements implements Node {
   updatedAt: Datetime!
   author: Profiles
   couple: Couples
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
 }
 
 type AgreementsConnection {
@@ -109,6 +120,9 @@ type AgreementsUpdateResponse {
   records: [Agreements!]!
 }
 
+"""
+Small key/value configuration readable by anyone, such as limits and the minimum app version.
+"""
 type AppConfig implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -200,6 +214,22 @@ input AppThemeFilter {
   neq: AppTheme
 }
 
+enum AvatarKind {
+  photo
+  illustration
+  initials
+}
+
+"""
+Boolean expression comparing fields on type "AvatarKind"
+"""
+input AvatarKindFilter {
+  eq: AvatarKind
+  in: [AvatarKind!]
+  is: FilterIs
+  neq: AvatarKind
+}
+
 """A high precision floating point value represented as a string"""
 scalar BigFloat
 
@@ -275,6 +305,9 @@ input BooleanListFilter {
   overlaps: [Boolean!]
 }
 
+"""
+A message sealed until opens_on. The partner can read it only after that day.
+"""
 type Capsules implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -288,11 +321,37 @@ type Capsules implements Node {
   updatedAt: Datetime!
   author: Profiles
   couple: Couples
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+}
+
+"""Aggregate results for `Capsules`"""
+type CapsulesAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: CapsulesMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: CapsulesMaxAggregateResult
 }
 
 type CapsulesConnection {
   edges: [CapsulesEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `Capsules`"""
+  aggregate: CapsulesAggregate
 }
 
 type CapsulesDeleteResponse {
@@ -352,6 +411,42 @@ type CapsulesInsertResponse {
   records: [Capsules!]!
 }
 
+"""Result of maximum aggregation for `Capsules`"""
+type CapsulesMaxAggregateResult {
+  """Maximum of body across all matching records"""
+  body: String
+
+  """Maximum of opensOn across all matching records"""
+  opensOn: Date
+
+  """Maximum of openedAt across all matching records"""
+  openedAt: Datetime
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `Capsules`"""
+type CapsulesMinAggregateResult {
+  """Minimum of body across all matching records"""
+  body: String
+
+  """Minimum of opensOn across all matching records"""
+  opensOn: Date
+
+  """Minimum of openedAt across all matching records"""
+  openedAt: Datetime
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
 input CapsulesOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -382,6 +477,22 @@ type CapsulesUpdateResponse {
   records: [Capsules!]!
 }
 
+enum CardChannel {
+  link
+  app
+}
+
+"""
+Boolean expression comparing fields on type "CardChannel"
+"""
+input CardChannelFilter {
+  eq: CardChannel
+  in: [CardChannel!]
+  is: FilterIs
+  neq: CardChannel
+}
+
+"""A frozen copy of a slip inside a card."""
 type CardItems implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -479,6 +590,22 @@ type CardItemsUpdateResponse {
   records: [CardItems!]!
 }
 
+enum CardKind {
+  weekly
+  single
+}
+
+"""
+Boolean expression comparing fields on type "CardKind"
+"""
+input CardKindFilter {
+  eq: CardKind
+  in: [CardKind!]
+  is: FilterIs
+  neq: CardKind
+}
+
+"""When the recipient opened a card."""
 type CardOpens implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -555,6 +682,7 @@ type CardOpensUpdateResponse {
   records: [CardOpens!]!
 }
 
+"""How the recipient reacted to a card."""
 type CardReactions implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -646,6 +774,9 @@ type CardReactionsUpdateResponse {
   records: [CardReactions!]!
 }
 
+"""
+A card made of slips. Drafts and held cards are private to the author; the recipient sees sent cards.
+"""
 type Cards implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -660,10 +791,10 @@ type Cards implements Node {
   createdAt: Datetime!
   updatedAt: Datetime!
   deletedAt: Datetime
-  kind: String!
-  author: Profiles
+  kind: CardKind!
   recipient: Profiles
   couple: Couples
+  author: Profiles
   items(
     """Query the first `n` records in the collection"""
     first: Int
@@ -716,12 +847,27 @@ type Cards implements Node {
   ): GuestLinksConnection
 }
 
+"""Aggregate results for `Cards`"""
+type CardsAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: CardsMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: CardsMaxAggregateResult
+}
+
 type CardsConnection {
   edges: [CardsEdge!]!
   pageInfo: PageInfo!
 
   """The total number of records matching the `filter` criteria"""
   totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `Cards`"""
+  aggregate: CardsAggregate
 }
 
 type CardsDeleteResponse {
@@ -749,7 +895,7 @@ input CardsFilter {
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
   deletedAt: DatetimeFilter
-  kind: StringFilter
+  kind: CardKindFilter
   nodeId: IDFilter
 
   """
@@ -778,7 +924,7 @@ input CardsInsertInput {
   createdAt: Datetime
   updatedAt: Datetime
   deletedAt: Datetime
-  kind: String
+  kind: CardKind
 }
 
 type CardsInsertResponse {
@@ -787,6 +933,48 @@ type CardsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [Cards!]!
+}
+
+"""Result of maximum aggregation for `Cards`"""
+type CardsMaxAggregateResult {
+  """Maximum of weekStart across all matching records"""
+  weekStart: Date
+
+  """Maximum of note across all matching records"""
+  note: String
+
+  """Maximum of sentAt across all matching records"""
+  sentAt: Datetime
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+
+  """Maximum of deletedAt across all matching records"""
+  deletedAt: Datetime
+}
+
+"""Result of minimum aggregation for `Cards`"""
+type CardsMinAggregateResult {
+  """Minimum of weekStart across all matching records"""
+  weekStart: Date
+
+  """Minimum of note across all matching records"""
+  note: String
+
+  """Minimum of sentAt across all matching records"""
+  sentAt: Datetime
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
+
+  """Minimum of deletedAt across all matching records"""
+  deletedAt: Datetime
 }
 
 input CardsOrderBy {
@@ -832,7 +1020,7 @@ input CardsUpdateInput {
   createdAt: Datetime
   updatedAt: Datetime
   deletedAt: Datetime
-  kind: String
+  kind: CardKind
 }
 
 type CardsUpdateResponse {
@@ -843,6 +1031,9 @@ type CardsUpdateResponse {
   records: [Cards!]!
 }
 
+"""
+A message in the mascot conversation. Private to the author; the Edge Function writes the mascot side.
+"""
 type ChatMessages implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -944,6 +1135,9 @@ type ChatMessagesUpdateResponse {
   records: [ChatMessages!]!
 }
 
+"""
+One of four weekly check-in answers. Revealed only when both partners have finished the week.
+"""
 type CheckinAnswers implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -959,9 +1153,39 @@ type CheckinAnswers implements Node {
   couple: Couples
 }
 
+"""Aggregate results for `CheckinAnswers`"""
+type CheckinAnswersAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Summation aggregates for numeric fields"""
+  sum: CheckinAnswersSumAggregateResult
+
+  """Average aggregates for numeric fields"""
+  avg: CheckinAnswersAvgAggregateResult
+
+  """Minimum aggregates for comparable fields"""
+  min: CheckinAnswersMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: CheckinAnswersMaxAggregateResult
+}
+
+"""Result of average aggregation for `CheckinAnswers`"""
+type CheckinAnswersAvgAggregateResult {
+  """Average of question across all matching records"""
+  question: BigFloat
+}
+
 type CheckinAnswersConnection {
   edges: [CheckinAnswersEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `CheckinAnswers`"""
+  aggregate: CheckinAnswersAggregate
 }
 
 type CheckinAnswersDeleteResponse {
@@ -1021,6 +1245,42 @@ type CheckinAnswersInsertResponse {
   records: [CheckinAnswers!]!
 }
 
+"""Result of maximum aggregation for `CheckinAnswers`"""
+type CheckinAnswersMaxAggregateResult {
+  """Maximum of weekStart across all matching records"""
+  weekStart: Date
+
+  """Maximum of question across all matching records"""
+  question: Int
+
+  """Maximum of body across all matching records"""
+  body: String
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `CheckinAnswers`"""
+type CheckinAnswersMinAggregateResult {
+  """Minimum of weekStart across all matching records"""
+  weekStart: Date
+
+  """Minimum of question across all matching records"""
+  question: Int
+
+  """Minimum of body across all matching records"""
+  body: String
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
 input CheckinAnswersOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -1030,6 +1290,12 @@ input CheckinAnswersOrderBy {
   body: OrderByDirection
   createdAt: OrderByDirection
   updatedAt: OrderByDirection
+}
+
+"""Result of summation aggregation for `CheckinAnswers`"""
+type CheckinAnswersSumAggregateResult {
+  """Sum of question across all matching records"""
+  question: BigInt
 }
 
 input CheckinAnswersUpdateInput {
@@ -1051,6 +1317,9 @@ type CheckinAnswersUpdateResponse {
   records: [CheckinAnswers!]!
 }
 
+"""
+Versioned consent history; the newest row per kind is the current answer. Visible only to its owner.
+"""
 type Consents implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -1170,12 +1439,45 @@ type ContentItems implements Node {
   published: Boolean!
 }
 
+"""Aggregate results for `ContentItems`"""
+type ContentItemsAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Summation aggregates for numeric fields"""
+  sum: ContentItemsSumAggregateResult
+
+  """Average aggregates for numeric fields"""
+  avg: ContentItemsAvgAggregateResult
+
+  """Minimum aggregates for comparable fields"""
+  min: ContentItemsMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: ContentItemsMaxAggregateResult
+}
+
+"""Result of average aggregation for `ContentItems`"""
+type ContentItemsAvgAggregateResult {
+  """Average of position across all matching records"""
+  position: BigFloat
+
+  """Average of month across all matching records"""
+  month: BigFloat
+
+  """Average of day across all matching records"""
+  day: BigFloat
+}
+
 type ContentItemsConnection {
   edges: [ContentItemsEdge!]!
   pageInfo: PageInfo!
 
   """The total number of records matching the `filter` criteria"""
   totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `ContentItems`"""
+  aggregate: ContentItemsAggregate
 }
 
 type ContentItemsDeleteResponse {
@@ -1249,6 +1551,90 @@ type ContentItemsInsertResponse {
   records: [ContentItems!]!
 }
 
+"""Result of maximum aggregation for `ContentItems`"""
+type ContentItemsMaxAggregateResult {
+  """Maximum of kind across all matching records"""
+  kind: String
+
+  """Maximum of slug across all matching records"""
+  slug: String
+
+  """Maximum of locale across all matching records"""
+  locale: String
+
+  """Maximum of title across all matching records"""
+  title: String
+
+  """Maximum of body across all matching records"""
+  body: String
+
+  """Maximum of parentSlug across all matching records"""
+  parentSlug: String
+
+  """Maximum of position across all matching records"""
+  position: Int
+
+  """Maximum of month across all matching records"""
+  month: Int
+
+  """Maximum of day across all matching records"""
+  day: Int
+
+  """Maximum of country across all matching records"""
+  country: String
+
+  """Maximum of plusOnly across all matching records"""
+  plusOnly: Boolean
+
+  """Maximum of sensitive across all matching records"""
+  sensitive: Boolean
+
+  """Maximum of published across all matching records"""
+  published: Boolean
+}
+
+"""Result of minimum aggregation for `ContentItems`"""
+type ContentItemsMinAggregateResult {
+  """Minimum of kind across all matching records"""
+  kind: String
+
+  """Minimum of slug across all matching records"""
+  slug: String
+
+  """Minimum of locale across all matching records"""
+  locale: String
+
+  """Minimum of title across all matching records"""
+  title: String
+
+  """Minimum of body across all matching records"""
+  body: String
+
+  """Minimum of parentSlug across all matching records"""
+  parentSlug: String
+
+  """Minimum of position across all matching records"""
+  position: Int
+
+  """Minimum of month across all matching records"""
+  month: Int
+
+  """Minimum of day across all matching records"""
+  day: Int
+
+  """Minimum of country across all matching records"""
+  country: String
+
+  """Minimum of plusOnly across all matching records"""
+  plusOnly: Boolean
+
+  """Minimum of sensitive across all matching records"""
+  sensitive: Boolean
+
+  """Minimum of published across all matching records"""
+  published: Boolean
+}
+
 input ContentItemsOrderBy {
   id: OrderByDirection
   kind: OrderByDirection
@@ -1264,6 +1650,18 @@ input ContentItemsOrderBy {
   plusOnly: OrderByDirection
   sensitive: OrderByDirection
   published: OrderByDirection
+}
+
+"""Result of summation aggregation for `ContentItems`"""
+type ContentItemsSumAggregateResult {
+  """Sum of position across all matching records"""
+  position: BigInt
+
+  """Sum of month across all matching records"""
+  month: BigInt
+
+  """Sum of day across all matching records"""
+  day: BigInt
 }
 
 input ContentItemsUpdateInput {
@@ -1292,12 +1690,31 @@ type ContentItemsUpdateResponse {
   records: [ContentItems!]!
 }
 
+enum ConversationGuide {
+  free
+  transition
+  money
+  apology
+  difficult
+}
+
+"""
+Boolean expression comparing fields on type "ConversationGuide"
+"""
+input ConversationGuideFilter {
+  eq: ConversationGuide
+  in: [ConversationGuide!]
+  is: FilterIs
+  neq: ConversationGuide
+}
+
+"""Notes and a draft for a hard conversation. Private to the author."""
 type ConversationPreps implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID!
   authorId: UUID!
-  guide: String!
+  guide: ConversationGuide!
   topic: String
   notes: String
   draft: String
@@ -1327,7 +1744,7 @@ type ConversationPrepsEdge {
 input ConversationPrepsFilter {
   id: UUIDFilter
   authorId: UUIDFilter
-  guide: StringFilter
+  guide: ConversationGuideFilter
   topic: StringFilter
   notes: StringFilter
   draft: StringFilter
@@ -1352,7 +1769,7 @@ input ConversationPrepsFilter {
 input ConversationPrepsInsertInput {
   id: UUID
   authorId: UUID
-  guide: String
+  guide: ConversationGuide
   topic: String
   notes: String
   draft: String
@@ -1382,7 +1799,7 @@ input ConversationPrepsOrderBy {
 input ConversationPrepsUpdateInput {
   id: UUID
   authorId: UUID
-  guide: String
+  guide: ConversationGuide
   topic: String
   notes: String
   draft: String
@@ -1398,6 +1815,7 @@ type ConversationPrepsUpdateResponse {
   records: [ConversationPreps!]!
 }
 
+"""A person's membership in a couple. left_at is set when they leave."""
 type CoupleMembers implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -1406,8 +1824,8 @@ type CoupleMembers implements Node {
   role: MemberRole!
   joinedAt: Datetime!
   leftAt: Datetime
-  couple: Couples
   profile: Profiles
+  couple: Couples
 }
 
 type CoupleMembersConnection {
@@ -1578,6 +1996,7 @@ type CouplePhotosUpdateResponse {
   records: [CouplePhotos!]!
 }
 
+"""A couple of two people."""
 type Couples implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -1585,30 +2004,6 @@ type Couples implements Node {
   createdAt: Datetime!
   archivedAt: Datetime
   touchTopicsEnabled: Boolean!
-  members(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: CoupleMembersFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [CoupleMembersOrderBy!]
-  ): CoupleMembersConnection
   cardsCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -1633,6 +2028,30 @@ type Couples implements Node {
     """Sort order to apply to the collection"""
     orderBy: [CardsOrderBy!]
   ): CardsConnection
+  members(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: CoupleMembersFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [CoupleMembersOrderBy!]
+  ): CoupleMembersConnection
   ritualsCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -2125,13 +2544,30 @@ An opaque string using for tracking a position in results during pagination
 """
 scalar Cursor
 
+enum CycleDayKind {
+  heavy
+  light
+  note
+}
+
+"""
+Boolean expression comparing fields on type "CycleDayKind"
+"""
+input CycleDayKindFilter {
+  eq: CycleDayKind
+  in: [CycleDayKind!]
+  is: FilterIs
+  neq: CycleDayKind
+}
+
+"""Heavy-day tracking. Private to the author."""
 type CycleDays implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID!
   authorId: UUID!
   day: Date!
-  kind: String!
+  kind: CycleDayKind!
   note: String
   createdAt: Datetime!
   updatedAt: Datetime!
@@ -2160,7 +2596,7 @@ input CycleDaysFilter {
   id: UUIDFilter
   authorId: UUIDFilter
   day: DateFilter
-  kind: StringFilter
+  kind: CycleDayKindFilter
   note: StringFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
@@ -2184,7 +2620,7 @@ input CycleDaysInsertInput {
   id: UUID
   authorId: UUID
   day: Date
-  kind: String
+  kind: CycleDayKind
   note: String
   createdAt: Datetime
   updatedAt: Datetime
@@ -2212,7 +2648,7 @@ input CycleDaysUpdateInput {
   id: UUID
   authorId: UUID
   day: Date
-  kind: String
+  kind: CycleDayKind
   note: String
   createdAt: Datetime
   updatedAt: Datetime
@@ -2243,6 +2679,22 @@ input DateFilter {
   neq: Date
 }
 
+enum DateIdeaStatus {
+  saved
+  planned
+  done
+}
+
+"""
+Boolean expression comparing fields on type "DateIdeaStatus"
+"""
+input DateIdeaStatusFilter {
+  eq: DateIdeaStatus
+  in: [DateIdeaStatus!]
+  is: FilterIs
+  neq: DateIdeaStatus
+}
+
 """
 Boolean expression comparing fields on type "DateList"
 """
@@ -2252,6 +2704,22 @@ input DateListFilter {
   eq: [Date!]
   is: FilterIs
   overlaps: [Date!]
+}
+
+enum DatePrecision {
+  day
+  month
+  year
+}
+
+"""
+Boolean expression comparing fields on type "DatePrecision"
+"""
+input DatePrecisionFilter {
+  eq: DatePrecision
+  in: [DatePrecision!]
+  is: FilterIs
+  neq: DatePrecision
 }
 
 """A date and time"""
@@ -2282,6 +2750,7 @@ input DatetimeListFilter {
   overlaps: [Datetime!]
 }
 
+"""An option of a decision. Follows the visibility of its decision."""
 type DecisionOptions implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -2316,6 +2785,9 @@ type DecisionOptions implements Node {
     """Sort order to apply to the collection"""
     orderBy: [DecisionRanksOrderBy!]
   ): DecisionRanksConnection
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
 }
 
 type DecisionOptionsConnection {
@@ -2398,6 +2870,9 @@ type DecisionOptionsUpdateResponse {
   records: [DecisionOptions!]!
 }
 
+"""
+A person's private ranking of one decision option. Only the combined result is ever shared.
+"""
 type DecisionRanks implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -2495,6 +2970,7 @@ type DecisionRanksUpdateResponse {
   records: [DecisionRanks!]!
 }
 
+"""Something to decide together. Private while couple_id is null."""
 type Decisions implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -2531,6 +3007,14 @@ type Decisions implements Node {
     """Sort order to apply to the collection"""
     orderBy: [DecisionOptionsOrderBy!]
   ): DecisionOptionsConnection
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
 }
 
 type DecisionsConnection {
@@ -2621,6 +3105,9 @@ type DecisionsUpdateResponse {
   records: [Decisions!]!
 }
 
+"""
+A pending account deletion. The account is erased at purge_after unless the request is cancelled.
+"""
 type DeletionRequests implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -2702,13 +3189,31 @@ type DeletionRequestsUpdateResponse {
   records: [DeletionRequests!]!
 }
 
+enum DevicePlatform {
+  ios
+  android
+}
+
+"""
+Boolean expression comparing fields on type "DevicePlatform"
+"""
+input DevicePlatformFilter {
+  eq: DevicePlatform
+  in: [DevicePlatform!]
+  is: FilterIs
+  neq: DevicePlatform
+}
+
+"""
+A device registered for push notifications. Push tokens themselves are never readable.
+"""
 type Devices implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID!
   profileId: UUID!
   token: String!
-  platform: String!
+  platform: DevicePlatform!
   label: String
   failureCount: Int!
   createdAt: Datetime!
@@ -2738,7 +3243,7 @@ input DevicesFilter {
   id: UUIDFilter
   profileId: UUIDFilter
   token: StringFilter
-  platform: StringFilter
+  platform: DevicePlatformFilter
   label: StringFilter
   failureCount: IntFilter
   createdAt: DatetimeFilter
@@ -2763,7 +3268,7 @@ input DevicesInsertInput {
   id: UUID
   profileId: UUID
   token: String
-  platform: String
+  platform: DevicePlatform
   label: String
   failureCount: Int
   createdAt: Datetime
@@ -2793,7 +3298,7 @@ input DevicesUpdateInput {
   id: UUID
   profileId: UUID
   token: String
-  platform: String
+  platform: DevicePlatform
   label: String
   failureCount: Int
   createdAt: Datetime
@@ -2808,6 +3313,9 @@ type DevicesUpdateResponse {
   records: [Devices!]!
 }
 
+"""
+A person's Plus subscription state. Readable by the person and their partner; written only by the purchase webhook.
+"""
 type Entitlements implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -2939,6 +3447,9 @@ input FloatListFilter {
   overlaps: [Float!]
 }
 
+"""
+An answer inside a game. Private to the author until the session is finished.
+"""
 type GameAnswers implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -2952,9 +3463,39 @@ type GameAnswers implements Node {
   author: Profiles
 }
 
+"""Aggregate results for `GameAnswers`"""
+type GameAnswersAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Summation aggregates for numeric fields"""
+  sum: GameAnswersSumAggregateResult
+
+  """Average aggregates for numeric fields"""
+  avg: GameAnswersAvgAggregateResult
+
+  """Minimum aggregates for comparable fields"""
+  min: GameAnswersMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: GameAnswersMaxAggregateResult
+}
+
+"""Result of average aggregation for `GameAnswers`"""
+type GameAnswersAvgAggregateResult {
+  """Average of idx across all matching records"""
+  idx: BigFloat
+}
+
 type GameAnswersConnection {
   edges: [GameAnswersEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `GameAnswers`"""
+  aggregate: GameAnswersAggregate
 }
 
 type GameAnswersDeleteResponse {
@@ -3010,6 +3551,30 @@ type GameAnswersInsertResponse {
   records: [GameAnswers!]!
 }
 
+"""Result of maximum aggregation for `GameAnswers`"""
+type GameAnswersMaxAggregateResult {
+  """Maximum of idx across all matching records"""
+  idx: Int
+
+  """Maximum of answer across all matching records"""
+  answer: String
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+}
+
+"""Result of minimum aggregation for `GameAnswers`"""
+type GameAnswersMinAggregateResult {
+  """Minimum of idx across all matching records"""
+  idx: Int
+
+  """Minimum of answer across all matching records"""
+  answer: String
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+}
+
 input GameAnswersOrderBy {
   id: OrderByDirection
   sessionId: OrderByDirection
@@ -3017,6 +3582,12 @@ input GameAnswersOrderBy {
   idx: OrderByDirection
   answer: OrderByDirection
   createdAt: OrderByDirection
+}
+
+"""Result of summation aggregation for `GameAnswers`"""
+type GameAnswersSumAggregateResult {
+  """Sum of idx across all matching records"""
+  idx: BigInt
 }
 
 input GameAnswersUpdateInput {
@@ -3036,16 +3607,52 @@ type GameAnswersUpdateResponse {
   records: [GameAnswers!]!
 }
 
+enum GameKind {
+  me_or_you
+  how_well
+  twenty_questions
+  never_have_we
+  compliments
+  mission
+}
+
+"""
+Boolean expression comparing fields on type "GameKind"
+"""
+input GameKindFilter {
+  eq: GameKind
+  in: [GameKind!]
+  is: FilterIs
+  neq: GameKind
+}
+
+enum GameOutcome {
+  great
+  ok
+  did_not_happen
+}
+
+"""
+Boolean expression comparing fields on type "GameOutcome"
+"""
+input GameOutcomeFilter {
+  eq: GameOutcome
+  in: [GameOutcome!]
+  is: FilterIs
+  neq: GameOutcome
+}
+
+"""A game one partner invited the other to. No score, no winner."""
 type GameSessions implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID!
   coupleId: UUID!
-  game: String!
+  game: GameKind!
   invitedBy: UUID!
-  status: String!
+  status: GameStatus!
   itemSlugs: [String]!
-  outcome: String
+  outcome: GameOutcome
   createdAt: Datetime!
   finishedAt: Datetime
   couple: Couples
@@ -3097,11 +3704,11 @@ type GameSessionsEdge {
 input GameSessionsFilter {
   id: UUIDFilter
   coupleId: UUIDFilter
-  game: StringFilter
+  game: GameKindFilter
   invitedBy: UUIDFilter
-  status: StringFilter
+  status: GameStatusFilter
   itemSlugs: StringListFilter
-  outcome: StringFilter
+  outcome: GameOutcomeFilter
   createdAt: DatetimeFilter
   finishedAt: DatetimeFilter
   nodeId: IDFilter
@@ -3123,11 +3730,11 @@ input GameSessionsFilter {
 input GameSessionsInsertInput {
   id: UUID
   coupleId: UUID
-  game: String
+  game: GameKind
   invitedBy: UUID
-  status: String
+  status: GameStatus
   itemSlugs: [String]
-  outcome: String
+  outcome: GameOutcome
   createdAt: Datetime
   finishedAt: Datetime
 }
@@ -3154,11 +3761,11 @@ input GameSessionsOrderBy {
 input GameSessionsUpdateInput {
   id: UUID
   coupleId: UUID
-  game: String
+  game: GameKind
   invitedBy: UUID
-  status: String
+  status: GameStatus
   itemSlugs: [String]
-  outcome: String
+  outcome: GameOutcome
   createdAt: Datetime
   finishedAt: Datetime
 }
@@ -3171,6 +3778,56 @@ type GameSessionsUpdateResponse {
   records: [GameSessions!]!
 }
 
+enum GameStatus {
+  invited
+  active
+  finished
+  cancelled
+}
+
+"""
+Boolean expression comparing fields on type "GameStatus"
+"""
+input GameStatusFilter {
+  eq: GameStatus
+  in: [GameStatus!]
+  is: FilterIs
+  neq: GameStatus
+}
+
+enum GiftBudget {
+  free
+  low
+  medium
+  high
+}
+
+"""
+Boolean expression comparing fields on type "GiftBudget"
+"""
+input GiftBudgetFilter {
+  eq: GiftBudget
+  in: [GiftBudget!]
+  is: FilterIs
+  neq: GiftBudget
+}
+
+enum GiftIdeaKind {
+  idea
+  wish
+}
+
+"""
+Boolean expression comparing fields on type "GiftIdeaKind"
+"""
+input GiftIdeaKindFilter {
+  eq: GiftIdeaKind
+  in: [GiftIdeaKind!]
+  is: FilterIs
+  neq: GiftIdeaKind
+}
+
+"""A gift idea or wish. Shared with the partner while couple_id is set."""
 type GiftIdeas implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -3179,20 +3836,46 @@ type GiftIdeas implements Node {
   title: String!
   note: String
   occasionDateId: UUID
-  status: String!
-  budget: String
+  status: GiftIdeaStatus!
+  budget: GiftBudget
   createdAt: Datetime!
   updatedAt: Datetime!
   coupleId: UUID
-  kind: String!
+  kind: GiftIdeaKind!
   author: Profiles
   occasionDate: ImportantDates
   couple: Couples
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+}
+
+"""Aggregate results for `GiftIdeas`"""
+type GiftIdeasAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: GiftIdeasMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: GiftIdeasMaxAggregateResult
 }
 
 type GiftIdeasConnection {
   edges: [GiftIdeasEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `GiftIdeas`"""
+  aggregate: GiftIdeasAggregate
 }
 
 type GiftIdeasDeleteResponse {
@@ -3214,12 +3897,12 @@ input GiftIdeasFilter {
   title: StringFilter
   note: StringFilter
   occasionDateId: UUIDFilter
-  status: StringFilter
-  budget: StringFilter
+  status: GiftIdeaStatusFilter
+  budget: GiftBudgetFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
   coupleId: UUIDFilter
-  kind: StringFilter
+  kind: GiftIdeaKindFilter
   nodeId: IDFilter
 
   """
@@ -3242,12 +3925,12 @@ input GiftIdeasInsertInput {
   title: String
   note: String
   occasionDateId: UUID
-  status: String
-  budget: String
+  status: GiftIdeaStatus
+  budget: GiftBudget
   createdAt: Datetime
   updatedAt: Datetime
   coupleId: UUID
-  kind: String
+  kind: GiftIdeaKind
 }
 
 type GiftIdeasInsertResponse {
@@ -3256,6 +3939,36 @@ type GiftIdeasInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [GiftIdeas!]!
+}
+
+"""Result of maximum aggregation for `GiftIdeas`"""
+type GiftIdeasMaxAggregateResult {
+  """Maximum of title across all matching records"""
+  title: String
+
+  """Maximum of note across all matching records"""
+  note: String
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `GiftIdeas`"""
+type GiftIdeasMinAggregateResult {
+  """Minimum of title across all matching records"""
+  title: String
+
+  """Minimum of note across all matching records"""
+  note: String
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
 }
 
 input GiftIdeasOrderBy {
@@ -3272,18 +3985,34 @@ input GiftIdeasOrderBy {
   kind: OrderByDirection
 }
 
+enum GiftIdeaStatus {
+  idea
+  planned
+  given
+}
+
+"""
+Boolean expression comparing fields on type "GiftIdeaStatus"
+"""
+input GiftIdeaStatusFilter {
+  eq: GiftIdeaStatus
+  in: [GiftIdeaStatus!]
+  is: FilterIs
+  neq: GiftIdeaStatus
+}
+
 input GiftIdeasUpdateInput {
   id: UUID
   authorId: UUID
   title: String
   note: String
   occasionDateId: UUID
-  status: String
-  budget: String
+  status: GiftIdeaStatus
+  budget: GiftBudget
   createdAt: Datetime
   updatedAt: Datetime
   coupleId: UUID
-  kind: String
+  kind: GiftIdeaKind
 }
 
 type GiftIdeasUpdateResponse {
@@ -3377,6 +4106,9 @@ type GuestLinkCreatedUpdateResponse {
   records: [GuestLinkCreated!]!
 }
 
+"""
+A shareable link to one card. The token is never stored, only its hash.
+"""
 type GuestLinks implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -3478,6 +4210,40 @@ type GuestLinksUpdateResponse {
   records: [GuestLinks!]!
 }
 
+enum HeavyDaySharing {
+  off
+  ask
+  always
+}
+
+"""
+Boolean expression comparing fields on type "HeavyDaySharing"
+"""
+input HeavyDaySharingFilter {
+  eq: HeavyDaySharing
+  in: [HeavyDaySharing!]
+  is: FilterIs
+  neq: HeavyDaySharing
+}
+
+enum IdeaResponse {
+  will_do
+  done
+  skip
+  saved
+}
+
+"""
+Boolean expression comparing fields on type "IdeaResponse"
+"""
+input IdeaResponseFilter {
+  eq: IdeaResponse
+  in: [IdeaResponse!]
+  is: FilterIs
+  neq: IdeaResponse
+}
+
+"""What a person did with a daily idea. Private to the author."""
 type IdeaResponses implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -3485,15 +4251,33 @@ type IdeaResponses implements Node {
   authorId: UUID!
   contentSlug: String!
   day: Date!
-  response: String!
+  response: IdeaResponse!
   createdAt: Datetime!
   updatedAt: Datetime!
   author: Profiles
 }
 
+"""Aggregate results for `IdeaResponses`"""
+type IdeaResponsesAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: IdeaResponsesMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: IdeaResponsesMaxAggregateResult
+}
+
 type IdeaResponsesConnection {
   edges: [IdeaResponsesEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `IdeaResponses`"""
+  aggregate: IdeaResponsesAggregate
 }
 
 type IdeaResponsesDeleteResponse {
@@ -3514,7 +4298,7 @@ input IdeaResponsesFilter {
   authorId: UUIDFilter
   contentSlug: StringFilter
   day: DateFilter
-  response: StringFilter
+  response: IdeaResponseFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
   nodeId: IDFilter
@@ -3538,7 +4322,7 @@ input IdeaResponsesInsertInput {
   authorId: UUID
   contentSlug: String
   day: Date
-  response: String
+  response: IdeaResponse
   createdAt: Datetime
   updatedAt: Datetime
 }
@@ -3549,6 +4333,36 @@ type IdeaResponsesInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [IdeaResponses!]!
+}
+
+"""Result of maximum aggregation for `IdeaResponses`"""
+type IdeaResponsesMaxAggregateResult {
+  """Maximum of contentSlug across all matching records"""
+  contentSlug: String
+
+  """Maximum of day across all matching records"""
+  day: Date
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `IdeaResponses`"""
+type IdeaResponsesMinAggregateResult {
+  """Minimum of contentSlug across all matching records"""
+  contentSlug: String
+
+  """Minimum of day across all matching records"""
+  day: Date
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
 }
 
 input IdeaResponsesOrderBy {
@@ -3566,7 +4380,7 @@ input IdeaResponsesUpdateInput {
   authorId: UUID
   contentSlug: String
   day: Date
-  response: String
+  response: IdeaResponse
   createdAt: Datetime
   updatedAt: Datetime
 }
@@ -3586,6 +4400,45 @@ input IDFilter {
   eq: ID
 }
 
+enum ImportantDateKind {
+  relationship
+  birthday
+  first
+  holiday
+  trip
+  reunion
+  custom
+}
+
+"""
+Boolean expression comparing fields on type "ImportantDateKind"
+"""
+input ImportantDateKindFilter {
+  eq: ImportantDateKind
+  in: [ImportantDateKind!]
+  is: FilterIs
+  neq: ImportantDateKind
+}
+
+enum ImportantDateOrigin {
+  manual
+  auto
+  chat
+}
+
+"""
+Boolean expression comparing fields on type "ImportantDateOrigin"
+"""
+input ImportantDateOriginFilter {
+  eq: ImportantDateOrigin
+  in: [ImportantDateOrigin!]
+  is: FilterIs
+  neq: ImportantDateOrigin
+}
+
+"""
+A date that matters: month and day, with an optional year. Private while couple_id is null.
+"""
 type ImportantDates implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -3593,14 +4446,14 @@ type ImportantDates implements Node {
   authorId: UUID!
   coupleId: UUID
   title: String!
-  kind: String!
+  kind: ImportantDateKind!
   month: Int!
   day: Int!
   year: Int
   yearly: Boolean!
   remindDays: [Int]!
   hidden: Boolean!
-  origin: String!
+  origin: ImportantDateOrigin!
   holidayKey: String
   createdAt: Datetime!
   updatedAt: Datetime!
@@ -3630,11 +4483,55 @@ type ImportantDates implements Node {
     """Sort order to apply to the collection"""
     orderBy: [GiftIdeasOrderBy!]
   ): GiftIdeasConnection
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+}
+
+"""Aggregate results for `ImportantDates`"""
+type ImportantDatesAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Summation aggregates for numeric fields"""
+  sum: ImportantDatesSumAggregateResult
+
+  """Average aggregates for numeric fields"""
+  avg: ImportantDatesAvgAggregateResult
+
+  """Minimum aggregates for comparable fields"""
+  min: ImportantDatesMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: ImportantDatesMaxAggregateResult
+}
+
+"""Result of average aggregation for `ImportantDates`"""
+type ImportantDatesAvgAggregateResult {
+  """Average of month across all matching records"""
+  month: BigFloat
+
+  """Average of day across all matching records"""
+  day: BigFloat
+
+  """Average of year across all matching records"""
+  year: BigFloat
 }
 
 type ImportantDatesConnection {
   edges: [ImportantDatesEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `ImportantDates`"""
+  aggregate: ImportantDatesAggregate
 }
 
 type ImportantDatesDeleteResponse {
@@ -3655,14 +4552,14 @@ input ImportantDatesFilter {
   authorId: UUIDFilter
   coupleId: UUIDFilter
   title: StringFilter
-  kind: StringFilter
+  kind: ImportantDateKindFilter
   month: IntFilter
   day: IntFilter
   year: IntFilter
   yearly: BooleanFilter
   remindDays: IntListFilter
   hidden: BooleanFilter
-  origin: StringFilter
+  origin: ImportantDateOriginFilter
   holidayKey: StringFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
@@ -3687,14 +4584,14 @@ input ImportantDatesInsertInput {
   authorId: UUID
   coupleId: UUID
   title: String
-  kind: String
+  kind: ImportantDateKind
   month: Int
   day: Int
   year: Int
   yearly: Boolean
   remindDays: [Int]
   hidden: Boolean
-  origin: String
+  origin: ImportantDateOrigin
   holidayKey: String
   createdAt: Datetime
   updatedAt: Datetime
@@ -3706,6 +4603,66 @@ type ImportantDatesInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [ImportantDates!]!
+}
+
+"""Result of maximum aggregation for `ImportantDates`"""
+type ImportantDatesMaxAggregateResult {
+  """Maximum of title across all matching records"""
+  title: String
+
+  """Maximum of month across all matching records"""
+  month: Int
+
+  """Maximum of day across all matching records"""
+  day: Int
+
+  """Maximum of year across all matching records"""
+  year: Int
+
+  """Maximum of yearly across all matching records"""
+  yearly: Boolean
+
+  """Maximum of hidden across all matching records"""
+  hidden: Boolean
+
+  """Maximum of holidayKey across all matching records"""
+  holidayKey: String
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `ImportantDates`"""
+type ImportantDatesMinAggregateResult {
+  """Minimum of title across all matching records"""
+  title: String
+
+  """Minimum of month across all matching records"""
+  month: Int
+
+  """Minimum of day across all matching records"""
+  day: Int
+
+  """Minimum of year across all matching records"""
+  year: Int
+
+  """Minimum of yearly across all matching records"""
+  yearly: Boolean
+
+  """Minimum of hidden across all matching records"""
+  hidden: Boolean
+
+  """Minimum of holidayKey across all matching records"""
+  holidayKey: String
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
 }
 
 input ImportantDatesOrderBy {
@@ -3725,19 +4682,31 @@ input ImportantDatesOrderBy {
   updatedAt: OrderByDirection
 }
 
+"""Result of summation aggregation for `ImportantDates`"""
+type ImportantDatesSumAggregateResult {
+  """Sum of month across all matching records"""
+  month: BigInt
+
+  """Sum of day across all matching records"""
+  day: BigInt
+
+  """Sum of year across all matching records"""
+  year: BigInt
+}
+
 input ImportantDatesUpdateInput {
   id: UUID
   authorId: UUID
   coupleId: UUID
   title: String
-  kind: String
+  kind: ImportantDateKind
   month: Int
   day: Int
   year: Int
   yearly: Boolean
   remindDays: [Int]
   hidden: Boolean
-  origin: String
+  origin: ImportantDateOrigin
   holidayKey: String
   createdAt: Datetime
   updatedAt: Datetime
@@ -3857,6 +4826,7 @@ type InviteCreatedUpdateResponse {
   records: [InviteCreated!]!
 }
 
+"""An invitation to pair. Only the hash of the code is stored."""
 type Invites implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -3963,6 +4933,7 @@ type InvitesUpdateResponse {
   records: [Invites!]!
 }
 
+"""Private journal. Never visible to the partner."""
 type JournalEntries implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -3976,9 +4947,27 @@ type JournalEntries implements Node {
   author: Profiles
 }
 
+"""Aggregate results for `JournalEntries`"""
+type JournalEntriesAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: JournalEntriesMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: JournalEntriesMaxAggregateResult
+}
+
 type JournalEntriesConnection {
   edges: [JournalEntriesEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `JournalEntries`"""
+  aggregate: JournalEntriesAggregate
 }
 
 type JournalEntriesDeleteResponse {
@@ -4036,6 +5025,42 @@ type JournalEntriesInsertResponse {
   records: [JournalEntries!]!
 }
 
+"""Result of maximum aggregation for `JournalEntries`"""
+type JournalEntriesMaxAggregateResult {
+  """Maximum of entryDate across all matching records"""
+  entryDate: Date
+
+  """Maximum of body across all matching records"""
+  body: String
+
+  """Maximum of mood across all matching records"""
+  mood: String
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `JournalEntries`"""
+type JournalEntriesMinAggregateResult {
+  """Minimum of entryDate across all matching records"""
+  entryDate: Date
+
+  """Minimum of body across all matching records"""
+  body: String
+
+  """Minimum of mood across all matching records"""
+  mood: String
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
 input JournalEntriesOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -4067,23 +5092,44 @@ type JournalEntriesUpdateResponse {
 """A Javascript Object Notation value serialized as a string"""
 scalar JSON
 
+"""
+Something the assistant learned about the partner, waiting for the person to confirm or reject it.
+"""
 type LearnedItems implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID!
   authorId: UUID!
-  target: String!
+  target: LearnedItemTarget!
   text: String!
   excerpt: String
-  status: String!
+  status: LearnedItemStatus!
   createdAt: Datetime!
   updatedAt: Datetime!
   author: Profiles
 }
 
+"""Aggregate results for `LearnedItems`"""
+type LearnedItemsAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: LearnedItemsMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: LearnedItemsMaxAggregateResult
+}
+
 type LearnedItemsConnection {
   edges: [LearnedItemsEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `LearnedItems`"""
+  aggregate: LearnedItemsAggregate
 }
 
 type LearnedItemsDeleteResponse {
@@ -4102,10 +5148,10 @@ type LearnedItemsEdge {
 input LearnedItemsFilter {
   id: UUIDFilter
   authorId: UUIDFilter
-  target: StringFilter
+  target: LearnedItemTargetFilter
   text: StringFilter
   excerpt: StringFilter
-  status: StringFilter
+  status: LearnedItemStatusFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
   nodeId: IDFilter
@@ -4127,10 +5173,10 @@ input LearnedItemsFilter {
 input LearnedItemsInsertInput {
   id: UUID
   authorId: UUID
-  target: String
+  target: LearnedItemTarget
   text: String
   excerpt: String
-  status: String
+  status: LearnedItemStatus
   createdAt: Datetime
   updatedAt: Datetime
 }
@@ -4141,6 +5187,36 @@ type LearnedItemsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [LearnedItems!]!
+}
+
+"""Result of maximum aggregation for `LearnedItems`"""
+type LearnedItemsMaxAggregateResult {
+  """Maximum of text across all matching records"""
+  text: String
+
+  """Maximum of excerpt across all matching records"""
+  excerpt: String
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `LearnedItems`"""
+type LearnedItemsMinAggregateResult {
+  """Minimum of text across all matching records"""
+  text: String
+
+  """Minimum of excerpt across all matching records"""
+  excerpt: String
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
 }
 
 input LearnedItemsOrderBy {
@@ -4154,13 +5230,29 @@ input LearnedItemsOrderBy {
   updatedAt: OrderByDirection
 }
 
+enum LearnedItemStatus {
+  pending
+  confirmed
+  rejected
+}
+
+"""
+Boolean expression comparing fields on type "LearnedItemStatus"
+"""
+input LearnedItemStatusFilter {
+  eq: LearnedItemStatus
+  in: [LearnedItemStatus!]
+  is: FilterIs
+  neq: LearnedItemStatus
+}
+
 input LearnedItemsUpdateInput {
   id: UUID
   authorId: UUID
-  target: String
+  target: LearnedItemTarget
   text: String
   excerpt: String
-  status: String
+  status: LearnedItemStatus
   createdAt: Datetime
   updatedAt: Datetime
 }
@@ -4173,6 +5265,26 @@ type LearnedItemsUpdateResponse {
   records: [LearnedItems!]!
 }
 
+enum LearnedItemTarget {
+  partner_fact
+  date
+  memory
+  commitment
+}
+
+"""
+Boolean expression comparing fields on type "LearnedItemTarget"
+"""
+input LearnedItemTargetFilter {
+  eq: LearnedItemTarget
+  in: [LearnedItemTarget!]
+  is: FilterIs
+  neq: LearnedItemTarget
+}
+
+"""
+A lesson a person finished or saved inside a program. Private to the author.
+"""
 type LessonProgress implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -4180,15 +5292,45 @@ type LessonProgress implements Node {
   authorId: UUID!
   programSlug: String!
   lessonDay: Int!
-  status: String!
+  status: LessonStatus!
   createdAt: Datetime!
   updatedAt: Datetime!
   author: Profiles
 }
 
+"""Aggregate results for `LessonProgress`"""
+type LessonProgressAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Summation aggregates for numeric fields"""
+  sum: LessonProgressSumAggregateResult
+
+  """Average aggregates for numeric fields"""
+  avg: LessonProgressAvgAggregateResult
+
+  """Minimum aggregates for comparable fields"""
+  min: LessonProgressMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: LessonProgressMaxAggregateResult
+}
+
+"""Result of average aggregation for `LessonProgress`"""
+type LessonProgressAvgAggregateResult {
+  """Average of lessonDay across all matching records"""
+  lessonDay: BigFloat
+}
+
 type LessonProgressConnection {
   edges: [LessonProgressEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `LessonProgress`"""
+  aggregate: LessonProgressAggregate
 }
 
 type LessonProgressDeleteResponse {
@@ -4209,7 +5351,7 @@ input LessonProgressFilter {
   authorId: UUIDFilter
   programSlug: StringFilter
   lessonDay: IntFilter
-  status: StringFilter
+  status: LessonStatusFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
   nodeId: IDFilter
@@ -4233,7 +5375,7 @@ input LessonProgressInsertInput {
   authorId: UUID
   programSlug: String
   lessonDay: Int
-  status: String
+  status: LessonStatus
   createdAt: Datetime
   updatedAt: Datetime
 }
@@ -4246,6 +5388,36 @@ type LessonProgressInsertResponse {
   records: [LessonProgress!]!
 }
 
+"""Result of maximum aggregation for `LessonProgress`"""
+type LessonProgressMaxAggregateResult {
+  """Maximum of programSlug across all matching records"""
+  programSlug: String
+
+  """Maximum of lessonDay across all matching records"""
+  lessonDay: Int
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `LessonProgress`"""
+type LessonProgressMinAggregateResult {
+  """Minimum of programSlug across all matching records"""
+  programSlug: String
+
+  """Minimum of lessonDay across all matching records"""
+  lessonDay: Int
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
 input LessonProgressOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -4256,12 +5428,18 @@ input LessonProgressOrderBy {
   updatedAt: OrderByDirection
 }
 
+"""Result of summation aggregation for `LessonProgress`"""
+type LessonProgressSumAggregateResult {
+  """Sum of lessonDay across all matching records"""
+  lessonDay: BigInt
+}
+
 input LessonProgressUpdateInput {
   id: UUID
   authorId: UUID
   programSlug: String
   lessonDay: Int
-  status: String
+  status: LessonStatus
   createdAt: Datetime
   updatedAt: Datetime
 }
@@ -4274,6 +5452,24 @@ type LessonProgressUpdateResponse {
   records: [LessonProgress!]!
 }
 
+enum LessonStatus {
+  done
+  saved
+}
+
+"""
+Boolean expression comparing fields on type "LessonStatus"
+"""
+input LessonStatusFilter {
+  eq: LessonStatus
+  in: [LessonStatus!]
+  is: FilterIs
+  neq: LessonStatus
+}
+
+"""
+An item of a list, ordered by position. Follows the visibility of its list.
+"""
 type ListItems implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -4281,17 +5477,50 @@ type ListItems implements Node {
   listId: UUID!
   authorId: UUID!
   title: String!
-  status: String!
+  status: ListItemStatus!
   position: Int!
   createdAt: Datetime!
   updatedAt: Datetime!
   list: Lists
   author: Profiles
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+}
+
+"""Aggregate results for `ListItems`"""
+type ListItemsAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Summation aggregates for numeric fields"""
+  sum: ListItemsSumAggregateResult
+
+  """Average aggregates for numeric fields"""
+  avg: ListItemsAvgAggregateResult
+
+  """Minimum aggregates for comparable fields"""
+  min: ListItemsMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: ListItemsMaxAggregateResult
+}
+
+"""Result of average aggregation for `ListItems`"""
+type ListItemsAvgAggregateResult {
+  """Average of position across all matching records"""
+  position: BigFloat
 }
 
 type ListItemsConnection {
   edges: [ListItemsEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `ListItems`"""
+  aggregate: ListItemsAggregate
 }
 
 type ListItemsDeleteResponse {
@@ -4312,7 +5541,7 @@ input ListItemsFilter {
   listId: UUIDFilter
   authorId: UUIDFilter
   title: StringFilter
-  status: StringFilter
+  status: ListItemStatusFilter
   position: IntFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
@@ -4337,7 +5566,7 @@ input ListItemsInsertInput {
   listId: UUID
   authorId: UUID
   title: String
-  status: String
+  status: ListItemStatus
   position: Int
   createdAt: Datetime
   updatedAt: Datetime
@@ -4351,6 +5580,36 @@ type ListItemsInsertResponse {
   records: [ListItems!]!
 }
 
+"""Result of maximum aggregation for `ListItems`"""
+type ListItemsMaxAggregateResult {
+  """Maximum of title across all matching records"""
+  title: String
+
+  """Maximum of position across all matching records"""
+  position: Int
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `ListItems`"""
+type ListItemsMinAggregateResult {
+  """Minimum of title across all matching records"""
+  title: String
+
+  """Minimum of position across all matching records"""
+  position: Int
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
 input ListItemsOrderBy {
   id: OrderByDirection
   listId: OrderByDirection
@@ -4362,12 +5621,34 @@ input ListItemsOrderBy {
   updatedAt: OrderByDirection
 }
 
+"""Result of summation aggregation for `ListItems`"""
+type ListItemsSumAggregateResult {
+  """Sum of position across all matching records"""
+  position: BigInt
+}
+
+enum ListItemStatus {
+  dream
+  planned
+  done
+}
+
+"""
+Boolean expression comparing fields on type "ListItemStatus"
+"""
+input ListItemStatusFilter {
+  eq: ListItemStatus
+  in: [ListItemStatus!]
+  is: FilterIs
+  neq: ListItemStatus
+}
+
 input ListItemsUpdateInput {
   id: UUID
   listId: UUID
   authorId: UUID
   title: String
-  status: String
+  status: ListItemStatus
   position: Int
   createdAt: Datetime
   updatedAt: Datetime
@@ -4381,6 +5662,24 @@ type ListItemsUpdateResponse {
   records: [ListItems!]!
 }
 
+enum ListKind {
+  travel
+  restaurants
+  movies
+  custom
+}
+
+"""
+Boolean expression comparing fields on type "ListKind"
+"""
+input ListKindFilter {
+  eq: ListKind
+  in: [ListKind!]
+  is: FilterIs
+  neq: ListKind
+}
+
+"""A list of things to do together. Private while couple_id is null."""
 type Lists implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -4388,7 +5687,7 @@ type Lists implements Node {
   authorId: UUID!
   coupleId: UUID
   title: String!
-  kind: String!
+  kind: ListKind!
   createdAt: Datetime!
   updatedAt: Datetime!
   author: Profiles
@@ -4417,11 +5716,37 @@ type Lists implements Node {
     """Sort order to apply to the collection"""
     orderBy: [ListItemsOrderBy!]
   ): ListItemsConnection
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+}
+
+"""Aggregate results for `Lists`"""
+type ListsAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: ListsMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: ListsMaxAggregateResult
 }
 
 type ListsConnection {
   edges: [ListsEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `Lists`"""
+  aggregate: ListsAggregate
 }
 
 type ListsDeleteResponse {
@@ -4442,7 +5767,7 @@ input ListsFilter {
   authorId: UUIDFilter
   coupleId: UUIDFilter
   title: StringFilter
-  kind: StringFilter
+  kind: ListKindFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
   nodeId: IDFilter
@@ -4466,7 +5791,7 @@ input ListsInsertInput {
   authorId: UUID
   coupleId: UUID
   title: String
-  kind: String
+  kind: ListKind
   createdAt: Datetime
   updatedAt: Datetime
 }
@@ -4477,6 +5802,30 @@ type ListsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [Lists!]!
+}
+
+"""Result of maximum aggregation for `Lists`"""
+type ListsMaxAggregateResult {
+  """Maximum of title across all matching records"""
+  title: String
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `Lists`"""
+type ListsMinAggregateResult {
+  """Minimum of title across all matching records"""
+  title: String
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
 }
 
 input ListsOrderBy {
@@ -4494,7 +5843,7 @@ input ListsUpdateInput {
   authorId: UUID
   coupleId: UUID
   title: String
-  kind: String
+  kind: ListKind
   createdAt: Datetime
   updatedAt: Datetime
 }
@@ -4507,6 +5856,7 @@ type ListsUpdateResponse {
   records: [Lists!]!
 }
 
+"""A shared logistics task. Private while couple_id is null."""
 type LogisticItems implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -4524,11 +5874,37 @@ type LogisticItems implements Node {
   author: Profiles
   couple: Couples
   assignee: Profiles
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
+}
+
+"""Aggregate results for `LogisticItems`"""
+type LogisticItemsAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: LogisticItemsMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: LogisticItemsMaxAggregateResult
 }
 
 type LogisticItemsConnection {
   edges: [LogisticItemsEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `LogisticItems`"""
+  aggregate: LogisticItemsAggregate
 }
 
 type LogisticItemsDeleteResponse {
@@ -4594,6 +5970,54 @@ type LogisticItemsInsertResponse {
   records: [LogisticItems!]!
 }
 
+"""Result of maximum aggregation for `LogisticItems`"""
+type LogisticItemsMaxAggregateResult {
+  """Maximum of title across all matching records"""
+  title: String
+
+  """Maximum of dueOn across all matching records"""
+  dueOn: Date
+
+  """Maximum of weekStart across all matching records"""
+  weekStart: Date
+
+  """Maximum of invisibleWork across all matching records"""
+  invisibleWork: Boolean
+
+  """Maximum of doneAt across all matching records"""
+  doneAt: Datetime
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `LogisticItems`"""
+type LogisticItemsMinAggregateResult {
+  """Minimum of title across all matching records"""
+  title: String
+
+  """Minimum of dueOn across all matching records"""
+  dueOn: Date
+
+  """Minimum of weekStart across all matching records"""
+  weekStart: Date
+
+  """Minimum of invisibleWork across all matching records"""
+  invisibleWork: Boolean
+
+  """Minimum of doneAt across all matching records"""
+  doneAt: Datetime
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
 input LogisticItemsOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -4630,6 +6054,7 @@ type LogisticItemsUpdateResponse {
   records: [LogisticItems!]!
 }
 
+"""The weekly logistics meeting notes. Private while couple_id is null."""
 type LogisticsMeetings implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -4643,6 +6068,14 @@ type LogisticsMeetings implements Node {
   updatedAt: Datetime!
   author: Profiles
   couple: Couples
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
 }
 
 type LogisticsMeetingsConnection {
@@ -4737,6 +6170,9 @@ type LogisticsMeetingsUpdateResponse {
   records: [LogisticsMeetings!]!
 }
 
+"""
+My manual: how to love me. The partner reads only entries marked shared.
+"""
 type ManualEntries implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -4853,6 +6289,7 @@ input MemberRoleFilter {
   neq: MemberRole
 }
 
+"""A remembered moment. Private while couple_id is null."""
 type Memories implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -4862,20 +6299,46 @@ type Memories implements Node {
   title: String!
   body: String
   happenedOn: Date!
-  datePrecision: String!
+  datePrecision: DatePrecision!
   place: String
   photoPath: String
-  origin: String!
+  origin: MemoryOrigin!
   sourceId: UUID
   createdAt: Datetime!
   updatedAt: Datetime!
   author: Profiles
   couple: Couples
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+}
+
+"""Aggregate results for `Memories`"""
+type MemoriesAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: MemoriesMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: MemoriesMaxAggregateResult
 }
 
 type MemoriesConnection {
   edges: [MemoriesEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `Memories`"""
+  aggregate: MemoriesAggregate
 }
 
 type MemoriesDeleteResponse {
@@ -4898,10 +6361,10 @@ input MemoriesFilter {
   title: StringFilter
   body: StringFilter
   happenedOn: DateFilter
-  datePrecision: StringFilter
+  datePrecision: DatePrecisionFilter
   place: StringFilter
   photoPath: StringFilter
-  origin: StringFilter
+  origin: MemoryOriginFilter
   sourceId: UUIDFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
@@ -4928,10 +6391,10 @@ input MemoriesInsertInput {
   title: String
   body: String
   happenedOn: Date
-  datePrecision: String
+  datePrecision: DatePrecision
   place: String
   photoPath: String
-  origin: String
+  origin: MemoryOrigin
   sourceId: UUID
   createdAt: Datetime
   updatedAt: Datetime
@@ -4943,6 +6406,54 @@ type MemoriesInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [Memories!]!
+}
+
+"""Result of maximum aggregation for `Memories`"""
+type MemoriesMaxAggregateResult {
+  """Maximum of title across all matching records"""
+  title: String
+
+  """Maximum of body across all matching records"""
+  body: String
+
+  """Maximum of happenedOn across all matching records"""
+  happenedOn: Date
+
+  """Maximum of place across all matching records"""
+  place: String
+
+  """Maximum of photoPath across all matching records"""
+  photoPath: String
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `Memories`"""
+type MemoriesMinAggregateResult {
+  """Minimum of title across all matching records"""
+  title: String
+
+  """Minimum of body across all matching records"""
+  body: String
+
+  """Minimum of happenedOn across all matching records"""
+  happenedOn: Date
+
+  """Minimum of place across all matching records"""
+  place: String
+
+  """Minimum of photoPath across all matching records"""
+  photoPath: String
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
 }
 
 input MemoriesOrderBy {
@@ -4968,10 +6479,10 @@ input MemoriesUpdateInput {
   title: String
   body: String
   happenedOn: Date
-  datePrecision: String
+  datePrecision: DatePrecision
   place: String
   photoPath: String
-  origin: String
+  origin: MemoryOrigin
   sourceId: UUID
   createdAt: Datetime
   updatedAt: Datetime
@@ -4985,23 +6496,102 @@ type MemoriesUpdateResponse {
   records: [Memories!]!
 }
 
+enum MemoryOrigin {
+  manual
+  slip
+  card
+  question
+  game
+  mission
+  share
+  chat
+  first
+}
+
+"""
+Boolean expression comparing fields on type "MemoryOrigin"
+"""
+input MemoryOriginFilter {
+  eq: MemoryOrigin
+  in: [MemoryOrigin!]
+  is: FilterIs
+  neq: MemoryOrigin
+}
+
+enum Mood {
+  happy
+  tired
+  sad
+  stressed
+  loving
+  playful
+}
+
+"""
+Boolean expression comparing fields on type "Mood"
+"""
+input MoodFilter {
+  eq: Mood
+  in: [Mood!]
+  is: FilterIs
+  neq: Mood
+}
+
+enum MoodNeed {
+  listen
+  opinion
+  hug
+  space
+}
+
+"""
+Boolean expression comparing fields on type "MoodNeed"
+"""
+input MoodNeedFilter {
+  eq: MoodNeed
+  in: [MoodNeed!]
+  is: FilterIs
+  neq: MoodNeed
+}
+
+"""
+One mood per person per day. The partner only sees it through partner_mood_today, as far as `share` allows.
+"""
 type Moods implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID!
   authorId: UUID!
   day: Date!
-  mood: String!
-  need: String
-  share: String!
+  mood: Mood!
+  need: MoodNeed
+  share: MoodShare!
   createdAt: Datetime!
   updatedAt: Datetime!
   author: Profiles
 }
 
+"""Aggregate results for `Moods`"""
+type MoodsAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: MoodsMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: MoodsMaxAggregateResult
+}
+
 type MoodsConnection {
   edges: [MoodsEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `Moods`"""
+  aggregate: MoodsAggregate
 }
 
 type MoodsDeleteResponse {
@@ -5021,9 +6611,9 @@ input MoodsFilter {
   id: UUIDFilter
   authorId: UUIDFilter
   day: DateFilter
-  mood: StringFilter
-  need: StringFilter
-  share: StringFilter
+  mood: MoodFilter
+  need: MoodNeedFilter
+  share: MoodShareFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
   nodeId: IDFilter
@@ -5042,13 +6632,29 @@ input MoodsFilter {
   not: MoodsFilter
 }
 
+enum MoodShare {
+  none
+  mood
+  mood_need
+}
+
+"""
+Boolean expression comparing fields on type "MoodShare"
+"""
+input MoodShareFilter {
+  eq: MoodShare
+  in: [MoodShare!]
+  is: FilterIs
+  neq: MoodShare
+}
+
 input MoodsInsertInput {
   id: UUID
   authorId: UUID
   day: Date
-  mood: String
-  need: String
-  share: String
+  mood: Mood
+  need: MoodNeed
+  share: MoodShare
   createdAt: Datetime
   updatedAt: Datetime
 }
@@ -5059,6 +6665,30 @@ type MoodsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [Moods!]!
+}
+
+"""Result of maximum aggregation for `Moods`"""
+type MoodsMaxAggregateResult {
+  """Maximum of day across all matching records"""
+  day: Date
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `Moods`"""
+type MoodsMinAggregateResult {
+  """Minimum of day across all matching records"""
+  day: Date
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
 }
 
 input MoodsOrderBy {
@@ -5076,9 +6706,9 @@ input MoodsUpdateInput {
   id: UUID
   authorId: UUID
   day: Date
-  mood: String
-  need: String
-  share: String
+  mood: Mood
+  need: MoodNeed
+  share: MoodShare
   createdAt: Datetime
   updatedAt: Datetime
 }
@@ -5093,15 +6723,41 @@ type MoodsUpdateResponse {
 
 """The root type for creating and mutating data"""
 type Mutation {
+  """
+  Pairs the caller with whoever created the invite. Returns null when the code
+  is invalid, expired, cancelled or either side is already paired.
+  """
   acceptInvite(code: String!): Couples
+
+  """
+  Adds or removes the caller's own agreement to an agreement. Nobody can agree for the other.
+  """
   agree(agreementId: UUID!, agreed: Boolean = true): Agreements
+
+  """Saves the caller's answer to one item of an active game."""
   answerGame(sessionId: UUID!, idx: Int!, answer: String!): Boolean
+
+  """Archives a slip, or restores it when archived is false."""
   archiveSlip(id: UUID!, archived: Boolean = true): Slips
+
+  """Cancels a pending account deletion."""
   cancelAccountDeletion: Boolean
+
+  """Cancels an unused invite the caller created."""
   cancelInvite(inviteId: UUID!): Boolean
+
+  """
+  Creates a link that lets someone without an account read one card. The token is returned once and never stored.
+  """
   createGuestLink(cardId: UUID!): GuestLinkCreated
+
+  """Creates an invite. The plain code is returned once and never stored."""
   createInvite: InviteCreated
+
+  """Sends a message to support. Returns true when it was received."""
   createSupportRequest(topic: String!, message: String!, replyEmail: String, appVersion: String): Boolean
+
+  """Removes a card the caller wrote, for both sides."""
   deleteCard(cardId: UUID!): Boolean
 
   """Deletes zero or more records from the `Agreements` collection"""
@@ -5831,11 +7487,27 @@ type Mutation {
     """
     atMost: Int! = 1
   ): YearRecapDeleteResponse!
+
+  """Takes back a message the caller sent."""
   deletePartnerMessage(messageId: UUID!): Boolean
+
+  """
+  Deletes a slip. Unsent cards drop it; sent cards keep their frozen copy.
+  """
   deleteSlip(id: UUID!): Boolean
+
+  """One random slip the caller put in the jar, or null when it is empty."""
   drawFromJar: Slips
+
+  """Ends the caller's own pause. Returns false when there was none."""
   endPause: Boolean
+
+  """
+  Creates the caller's profile and settings if they are missing, and returns the profile.
+  """
   ensureProfile: Profiles
+
+  """Holds a draft card back instead of sending it."""
   holdCard(cardId: UUID!): Cards
 
   """Adds one or more `Agreements` records to the collection"""
@@ -6035,26 +7707,124 @@ type Mutation {
 
   """Adds one or more `YearRecap` records to the collection"""
   insertIntoYearRecapCollection(objects: [YearRecapInsertInput!]!): YearRecapInsertResponse
+
+  """
+  Invites the partner to a game. Only one session per game can be open at a time.
+  """
   inviteToGame(game: String!, itemSlugs: [String]): GameSessions
+
+  """Records that the recipient opened a card."""
   markCardRead(cardId: UUID!): Boolean
+
+  """Marks a received message as seen, and optionally hearted."""
   markPartnerMessage(messageId: UUID!, hearted: Boolean = false): PartnerMessages
+
+  """
+  Builds this week's draft card on demand. Null when the week has no eligible slips.
+  """
   prepareCard: Cards
+
+  """Sets the recipient's reaction and reply to a card."""
   reactToCard(cardId: UUID!, reaction: String, reply: String): CardReactions
+
+  """
+  Registers or refreshes a device for push notifications. platform is ios or android.
+  """
   registerDevice(token: String!, platform: String!, label: String): Boolean
+
+  """
+  Sets each item's position to its index in itemIds and returns the whole list
+  in order. Items not in itemIds keep their position.
+  """
+  reorderListItems(
+    listId: UUID!
+    itemIds: [UUID]!
+
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: ListItemsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [ListItemsOrderBy!]
+  ): ListItemsConnection
+
+  """
+  Starts account deletion with a grace period, and ends the pairing right away.
+  """
   requestAccountDeletion: DeletionRequests
+
+  """
+  After unpairing: keep what the caller created in the shared space as private (keep = true) or delete it.
+  """
   resolveSharedItems(keep: Boolean!): Boolean
+
+  """
+  Marks a received signal as seen and optionally answers it. Answers are never counted or scored.
+  """
   respondToSignal(signalId: UUID!, response: String): Signals
+
+  """Removes one of the caller's devices."""
   revokeDevice(deviceId: UUID!): Boolean
+
+  """Revokes a guest link the caller created."""
   revokeGuestLink(linkId: UUID!): Boolean
+
+  """
+  Creates or edits a slip. Editing an existing slip keeps working at the free-plan limit.
+  """
   saveSlip(id: UUID!, body: String!, kind: String = "quick", feeling: String, planNote: String, tags: [String], forCard: Boolean = true, occurredOn: Date, photoPath: String, createdAt: Datetime): Slips
+
+  """
+  Sends a card to the current partner. With no partner the card travels only by guest link.
+  """
   sendCard(cardId: UUID!): Cards
+
+  """
+  Sends a note, drawing, voice message or pack to the partner. Limited per day.
+  """
   sendPartnerMessage(kind: String!, body: String, mediaPath: String, forWidget: Boolean = false): PartnerMessages
+
+  """Sends a one-tap signal to the partner. Limited per day."""
   sendSignal(kind: String!, value: String, body: String): Signals
+
+  """Sends one slip right away as a single card."""
   sendSlipNow(slipId: UUID!, note: String): Cards
+
+  """
+  Sets the category, work area or jar flag of a slip. Arguments left out keep their value.
+  """
   setSlipDetails(id: UUID!, category: String, workArea: String, inJar: Boolean): Slips
+
+  """Switches touch topics on or off for both partners."""
   setTouchTopics(enabled: Boolean!): Boolean
+
+  """
+  Starts a pause with a promise to return within 24 hours. The partner sees only the message and the return time.
+  """
   startPause(returnAt: Datetime!, message: String): Pauses
+
+  """
+  Ends the couple for both people. Each person keeps what is private to them; shared rows stop being reachable.
+  """
   unpair: Boolean
+
+  """Removes a device by its push token."""
   unregisterDevice(token: String!): Boolean
 
   """Updates zero or more records in the `Agreements` collection"""
@@ -6104,6 +7874,10 @@ type Mutation {
     """
     atMost: Int! = 1
   ): CapsulesUpdateResponse!
+
+  """
+  Replaces the items of a draft card with exactly these slips, in this order, and optionally sets the note.
+  """
   updateCardDraft(cardId: UUID!, slipIds: [UUID]!, note: String): Cards
 
   """Updates zero or more records in the `CardItems` collection"""
@@ -6409,6 +8183,10 @@ type Mutation {
     """
     atMost: Int! = 1
   ): EntitlementsUpdateResponse!
+
+  """
+  Moves a game session along: action is join, cancel or finish. Finishing needs both people to have answered every item.
+  """
   updateGame(sessionId: UUID!, action: String!, outcome: String): GameSessions
 
   """Updates zero or more records in the `GameAnswers` collection"""
@@ -7262,6 +9040,27 @@ type PageInfo {
   startCursor: String
 }
 
+enum PartnerFactCategory {
+  likes
+  dislikes
+  sizes
+  health
+  comfort
+  people
+  other
+}
+
+"""
+Boolean expression comparing fields on type "PartnerFactCategory"
+"""
+input PartnerFactCategoryFilter {
+  eq: PartnerFactCategory
+  in: [PartnerFactCategory!]
+  is: FilterIs
+  neq: PartnerFactCategory
+}
+
+"""What one person knows about their partner. Private to the author."""
 type PartnerFacts implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -7269,16 +9068,34 @@ type PartnerFacts implements Node {
   authorId: UUID!
   label: String!
   value: String!
-  category: String
-  source: String!
+  category: PartnerFactCategory
+  source: PartnerFactSource!
   createdAt: Datetime!
   updatedAt: Datetime!
   author: Profiles
 }
 
+"""Aggregate results for `PartnerFacts`"""
+type PartnerFactsAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: PartnerFactsMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: PartnerFactsMaxAggregateResult
+}
+
 type PartnerFactsConnection {
   edges: [PartnerFactsEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `PartnerFacts`"""
+  aggregate: PartnerFactsAggregate
 }
 
 type PartnerFactsDeleteResponse {
@@ -7299,8 +9116,8 @@ input PartnerFactsFilter {
   authorId: UUIDFilter
   label: StringFilter
   value: StringFilter
-  category: StringFilter
-  source: StringFilter
+  category: PartnerFactCategoryFilter
+  source: PartnerFactSourceFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
   nodeId: IDFilter
@@ -7324,8 +9141,8 @@ input PartnerFactsInsertInput {
   authorId: UUID
   label: String
   value: String
-  category: String
-  source: String
+  category: PartnerFactCategory
+  source: PartnerFactSource
   createdAt: Datetime
   updatedAt: Datetime
 }
@@ -7336,6 +9153,36 @@ type PartnerFactsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [PartnerFacts!]!
+}
+
+"""Result of maximum aggregation for `PartnerFacts`"""
+type PartnerFactsMaxAggregateResult {
+  """Maximum of label across all matching records"""
+  label: String
+
+  """Maximum of value across all matching records"""
+  value: String
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `PartnerFacts`"""
+type PartnerFactsMinAggregateResult {
+  """Minimum of label across all matching records"""
+  label: String
+
+  """Minimum of value across all matching records"""
+  value: String
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
 }
 
 input PartnerFactsOrderBy {
@@ -7349,13 +9196,30 @@ input PartnerFactsOrderBy {
   updatedAt: OrderByDirection
 }
 
+enum PartnerFactSource {
+  manual
+  chat
+  game
+  learning
+}
+
+"""
+Boolean expression comparing fields on type "PartnerFactSource"
+"""
+input PartnerFactSourceFilter {
+  eq: PartnerFactSource
+  in: [PartnerFactSource!]
+  is: FilterIs
+  neq: PartnerFactSource
+}
+
 input PartnerFactsUpdateInput {
   id: UUID
   authorId: UUID
   label: String
   value: String
-  category: String
-  source: String
+  category: PartnerFactCategory
+  source: PartnerFactSource
   createdAt: Datetime
   updatedAt: Datetime
 }
@@ -7368,13 +9232,33 @@ type PartnerFactsUpdateResponse {
   records: [PartnerFacts!]!
 }
 
+enum PartnerMessageKind {
+  note
+  drawing
+  voice
+  pack
+}
+
+"""
+Boolean expression comparing fields on type "PartnerMessageKind"
+"""
+input PartnerMessageKindFilter {
+  eq: PartnerMessageKind
+  in: [PartnerMessageKind!]
+  is: FilterIs
+  neq: PartnerMessageKind
+}
+
+"""
+A note, drawing, voice message or pack sent to the partner. Visible to the sender and the recipient.
+"""
 type PartnerMessages implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID!
   senderId: UUID!
   recipientId: UUID!
-  kind: String!
+  kind: PartnerMessageKind!
   body: String
   mediaPath: String
   forWidget: Boolean!
@@ -7385,9 +9269,27 @@ type PartnerMessages implements Node {
   recipient: Profiles
 }
 
+"""Aggregate results for `PartnerMessages`"""
+type PartnerMessagesAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: PartnerMessagesMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: PartnerMessagesMaxAggregateResult
+}
+
 type PartnerMessagesConnection {
   edges: [PartnerMessagesEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `PartnerMessages`"""
+  aggregate: PartnerMessagesAggregate
 }
 
 type PartnerMessagesDeleteResponse {
@@ -7407,7 +9309,7 @@ input PartnerMessagesFilter {
   id: UUIDFilter
   senderId: UUIDFilter
   recipientId: UUIDFilter
-  kind: StringFilter
+  kind: PartnerMessageKindFilter
   body: StringFilter
   mediaPath: StringFilter
   forWidget: BooleanFilter
@@ -7434,7 +9336,7 @@ input PartnerMessagesInsertInput {
   id: UUID
   senderId: UUID
   recipientId: UUID
-  kind: String
+  kind: PartnerMessageKind
   body: String
   mediaPath: String
   forWidget: Boolean
@@ -7449,6 +9351,48 @@ type PartnerMessagesInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [PartnerMessages!]!
+}
+
+"""Result of maximum aggregation for `PartnerMessages`"""
+type PartnerMessagesMaxAggregateResult {
+  """Maximum of body across all matching records"""
+  body: String
+
+  """Maximum of mediaPath across all matching records"""
+  mediaPath: String
+
+  """Maximum of forWidget across all matching records"""
+  forWidget: Boolean
+
+  """Maximum of seenAt across all matching records"""
+  seenAt: Datetime
+
+  """Maximum of heartedAt across all matching records"""
+  heartedAt: Datetime
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+}
+
+"""Result of minimum aggregation for `PartnerMessages`"""
+type PartnerMessagesMinAggregateResult {
+  """Minimum of body across all matching records"""
+  body: String
+
+  """Minimum of mediaPath across all matching records"""
+  mediaPath: String
+
+  """Minimum of forWidget across all matching records"""
+  forWidget: Boolean
+
+  """Minimum of seenAt across all matching records"""
+  seenAt: Datetime
+
+  """Minimum of heartedAt across all matching records"""
+  heartedAt: Datetime
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
 }
 
 input PartnerMessagesOrderBy {
@@ -7468,7 +9412,7 @@ input PartnerMessagesUpdateInput {
   id: UUID
   senderId: UUID
   recipientId: UUID
-  kind: String
+  kind: PartnerMessageKind
   body: String
   mediaPath: String
   forWidget: Boolean
@@ -7485,13 +9429,16 @@ type PartnerMessagesUpdateResponse {
   records: [PartnerMessages!]!
 }
 
+"""
+The mood the partner chose to share today. need is present only when they shared it.
+"""
 type PartnerMood implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID
   day: Date
-  mood: String
-  need: String
+  mood: Mood
+  need: MoodNeed
 }
 
 type PartnerMoodConnection {
@@ -7515,8 +9462,8 @@ type PartnerMoodEdge {
 input PartnerMoodFilter {
   id: UUIDFilter
   day: DateFilter
-  mood: StringFilter
-  need: StringFilter
+  mood: MoodFilter
+  need: MoodNeedFilter
   nodeId: IDFilter
 
   """
@@ -7536,8 +9483,8 @@ input PartnerMoodFilter {
 input PartnerMoodInsertInput {
   id: UUID
   day: Date
-  mood: String
-  need: String
+  mood: Mood
+  need: MoodNeed
 }
 
 type PartnerMoodInsertResponse {
@@ -7558,8 +9505,8 @@ input PartnerMoodOrderBy {
 input PartnerMoodUpdateInput {
   id: UUID
   day: Date
-  mood: String
-  need: String
+  mood: Mood
+  need: MoodNeed
 }
 
 type PartnerMoodUpdateResponse {
@@ -7570,6 +9517,9 @@ type PartnerMoodUpdateResponse {
   records: [PartnerMood!]!
 }
 
+"""
+A pause with a promise to return. The partner sees only the message and the return time.
+"""
 type Pauses implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -7672,6 +9622,9 @@ type PausesUpdateResponse {
   records: [Pauses!]!
 }
 
+"""
+An area of shared planning and who owns it. Private while couple_id is null.
+"""
 type PlanningAreas implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -7685,6 +9638,14 @@ type PlanningAreas implements Node {
   author: Profiles
   couple: Couples
   owner: Profiles
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
 }
 
 type PlanningAreasConnection {
@@ -7775,6 +9736,7 @@ type PlanningAreasUpdateResponse {
   records: [PlanningAreas!]!
 }
 
+"""Whether the person has Plus, and the free-plan usage this month."""
 type PlusState implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -7892,33 +9854,8 @@ type Profiles implements Node {
   createdAt: Datetime!
   updatedAt: Datetime!
   city: String
-  avatarKind: String!
+  avatarKind: AvatarKind!
   pronouns: String
-  profileSettings: ProfileSettings
-  memberships(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: CoupleMembersFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [CoupleMembersOrderBy!]
-  ): CoupleMembersConnection
   invitesCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -7943,54 +9880,6 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [InvitesOrderBy!]
   ): InvitesConnection
-  slips(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: SlipsFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [SlipsOrderBy!]
-  ): SlipsConnection
-  authoredCards(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: CardsFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [CardsOrderBy!]
-  ): CardsConnection
   receivedCards(
     """Query the first `n` records in the collection"""
     first: Int
@@ -8039,8 +9928,7 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [DevicesOrderBy!]
   ): DevicesConnection
-  notificationSettings: NotificationSettings
-  cycleDaysCollection(
+  memberships(
     """Query the first `n` records in the collection"""
     first: Int
 
@@ -8059,11 +9947,133 @@ type Profiles implements Node {
     offset: Int
 
     """Filters to apply to the results set when querying from the collection"""
-    filter: CycleDaysFilter
+    filter: CoupleMembersFilter
 
     """Sort order to apply to the collection"""
-    orderBy: [CycleDaysOrderBy!]
-  ): CycleDaysConnection
+    orderBy: [CoupleMembersOrderBy!]
+  ): CoupleMembersConnection
+  profileSettings: ProfileSettings
+  slips(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: SlipsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [SlipsOrderBy!]
+  ): SlipsConnection
+  authoredCards(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: CardsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [CardsOrderBy!]
+  ): CardsConnection
+  conversationPrepsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: ConversationPrepsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [ConversationPrepsOrderBy!]
+  ): ConversationPrepsConnection
+  notificationSettings: NotificationSettings
+  giftIdeasCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: GiftIdeasFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [GiftIdeasOrderBy!]
+  ): GiftIdeasConnection
+  signalsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: SignalsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [SignalsOrderBy!]
+  ): SignalsConnection
   temperatureChecksCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -8160,30 +10170,6 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [JournalEntriesOrderBy!]
   ): JournalEntriesConnection
-  conversationPrepsCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: ConversationPrepsFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [ConversationPrepsOrderBy!]
-  ): ConversationPrepsConnection
   partnerFactsCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -8208,30 +10194,6 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [PartnerFactsOrderBy!]
   ): PartnerFactsConnection
-  giftIdeasCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: GiftIdeasFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [GiftIdeasOrderBy!]
-  ): GiftIdeasConnection
   manualEntriesCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -8280,6 +10242,30 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [MoodsOrderBy!]
   ): MoodsConnection
+  cycleDaysCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: CycleDaysFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [CycleDaysOrderBy!]
+  ): CycleDaysConnection
   ideaResponsesCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -8808,30 +10794,6 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [PartnerMessagesOrderBy!]
   ): PartnerMessagesConnection
-  signalsCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: SignalsFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [SignalsOrderBy!]
-  ): SignalsConnection
   questionAnswersCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -8856,6 +10818,30 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [QuestionAnswersOrderBy!]
   ): QuestionAnswersConnection
+  chatMessagesCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: ChatMessagesFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [ChatMessagesOrderBy!]
+  ): ChatMessagesConnection
   checkinAnswersCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -8954,30 +10940,6 @@ type Profiles implements Node {
     orderBy: [ConsentsOrderBy!]
   ): ConsentsConnection
   deletionRequests: DeletionRequests
-  chatMessagesCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: ChatMessagesFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [ChatMessagesOrderBy!]
-  ): ChatMessagesConnection
   learnedItemsCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -9066,7 +11028,7 @@ type ProfileSettings implements Node {
   relationshipStatus: RelationshipStatus!
   appPausedUntil: Datetime
   holidayCountries: [String]!
-  cardChannel: String!
+  cardChannel: CardChannel!
   cardTheme: String!
   slipsDefaultForCard: Boolean!
   widgetAllowPartnerNotes: Boolean!
@@ -9077,7 +11039,7 @@ type ProfileSettings implements Node {
   lowStimulation: Boolean!
   chatEnabled: Boolean!
   chatStoreFacts: Boolean!
-  heavyDaySharing: String!
+  heavyDaySharing: HeavyDaySharing!
   profile: Profiles
 }
 
@@ -9116,7 +11078,7 @@ input ProfileSettingsFilter {
   relationshipStatus: RelationshipStatusFilter
   appPausedUntil: DatetimeFilter
   holidayCountries: StringListFilter
-  cardChannel: StringFilter
+  cardChannel: CardChannelFilter
   cardTheme: StringFilter
   slipsDefaultForCard: BooleanFilter
   widgetAllowPartnerNotes: BooleanFilter
@@ -9127,7 +11089,7 @@ input ProfileSettingsFilter {
   lowStimulation: BooleanFilter
   chatEnabled: BooleanFilter
   chatStoreFacts: BooleanFilter
-  heavyDaySharing: StringFilter
+  heavyDaySharing: HeavyDaySharingFilter
   nodeId: IDFilter
 
   """
@@ -9161,7 +11123,7 @@ input ProfileSettingsInsertInput {
   relationshipStatus: RelationshipStatus
   appPausedUntil: Datetime
   holidayCountries: [String]
-  cardChannel: String
+  cardChannel: CardChannel
   cardTheme: String
   slipsDefaultForCard: Boolean
   widgetAllowPartnerNotes: Boolean
@@ -9172,7 +11134,7 @@ input ProfileSettingsInsertInput {
   lowStimulation: Boolean
   chatEnabled: Boolean
   chatStoreFacts: Boolean
-  heavyDaySharing: String
+  heavyDaySharing: HeavyDaySharing
 }
 
 type ProfileSettingsInsertResponse {
@@ -9229,7 +11191,7 @@ input ProfileSettingsUpdateInput {
   relationshipStatus: RelationshipStatus
   appPausedUntil: Datetime
   holidayCountries: [String]
-  cardChannel: String
+  cardChannel: CardChannel
   cardTheme: String
   slipsDefaultForCard: Boolean
   widgetAllowPartnerNotes: Boolean
@@ -9240,7 +11202,7 @@ input ProfileSettingsUpdateInput {
   lowStimulation: Boolean
   chatEnabled: Boolean
   chatStoreFacts: Boolean
-  heavyDaySharing: String
+  heavyDaySharing: HeavyDaySharing
 }
 
 type ProfileSettingsUpdateResponse {
@@ -9258,7 +11220,7 @@ input ProfilesFilter {
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
   city: StringFilter
-  avatarKind: StringFilter
+  avatarKind: AvatarKindFilter
   pronouns: StringFilter
   nodeId: IDFilter
 
@@ -9283,7 +11245,7 @@ input ProfilesInsertInput {
   createdAt: Datetime
   updatedAt: Datetime
   city: String
-  avatarKind: String
+  avatarKind: AvatarKind
   pronouns: String
 }
 
@@ -9313,7 +11275,7 @@ input ProfilesUpdateInput {
   createdAt: Datetime
   updatedAt: Datetime
   city: String
-  avatarKind: String
+  avatarKind: AvatarKind
   pronouns: String
 }
 
@@ -9325,6 +11287,7 @@ type ProfilesUpdateResponse {
   records: [Profiles!]!
 }
 
+"""A person's enrollment in a program. Private to the author."""
 type ProgramEnrollments implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -9428,6 +11391,9 @@ type ProgramEnrollmentsUpdateResponse {
 
 """The root type for querying data"""
 type Query {
+  """
+  The pause that matters to the caller right now: their own, or their partner's.
+  """
   activePause: Pauses
 
   """Retrieve a record of type `Agreements` by its primary key"""
@@ -9685,6 +11651,8 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [ChatMessagesOrderBy!]
   ): ChatMessagesConnection!
+
+  """How many mascot messages the caller can still send this period."""
   chatMessagesLeft: Int
 
   """Retrieve a record of type `CheckinAnswers` by its primary key"""
@@ -9913,6 +11881,10 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [CouplesOrderBy!]
   ): CouplesConnection!
+
+  """
+  How the relationship feels right now, per the caller's latest check. A fight level counts for 24 hours.
+  """
   currentTemperature: TemperatureChecks
 
   """Retrieve a record of type `CycleDays` by its primary key"""
@@ -9946,6 +11918,10 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [CycleDaysOrderBy!]
   ): CycleDaysConnection!
+
+  """
+  The editorial item of this kind picked for today. The same pick for both partners.
+  """
   dailyContent(kind: String!): ContentItems
 
   """Retrieve a record of type `DecisionOptions` by its primary key"""
@@ -10011,6 +11987,10 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [DecisionRanksOrderBy!]
   ): DecisionRanksConnection!
+
+  """
+  The options of a decision in combined order, available only once both partners have ranked every option.
+  """
   decisionResult(
     decisionId: UUID!
 
@@ -10773,12 +12753,28 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [MoodsOrderBy!]
   ): MoodsConnection!
+
+  """The couple the caller is in now, or null when they are on their own."""
   myCouple: Couples
+
+  """The caller's notification settings."""
   myNotificationSettings: NotificationSettings
+
+  """The caller's current partner, or null when they are on their own."""
   myPartner: Profiles
+
+  """
+  Whether the caller has Plus and how much of the free plan they used this month.
+  """
   myPlus: PlusState
+
+  """The caller's profile."""
   myProfile: Profiles
+
+  """The caller's private settings."""
   mySettings: ProfileSettings
+
+  """A year in review for the caller."""
   myYear(year: Int!): YearRecap
 
   """Retrieve a record by its `ID`"""
@@ -10818,6 +12814,10 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [NotificationSettingsOrderBy!]
   ): NotificationSettingsConnection!
+
+  """
+  The caller's memories and slips from this calendar day in earlier years.
+  """
   onThisDay(
     """Query the first `n` records in the collection"""
     first: Int
@@ -10842,6 +12842,10 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [TimelineItemsOrderBy!]
   ): TimelineItemsConnection
+
+  """
+  Whether the partner answered the couple question. A yes or no only, never the answer.
+  """
   partnerAnswered(questionSlug: String!): Boolean
 
   """Retrieve a record of type `PartnerFacts` by its primary key"""
@@ -10939,7 +12943,11 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [PartnerMoodOrderBy!]
   ): PartnerMoodConnection!
+
+  """The mood the partner shared today, or null."""
   partnerMoodToday: PartnerMood
+
+  """The partner's time zone, or null when unpaired."""
   partnerTimeZone: String
 
   """Retrieve a record of type `Pauses` by its primary key"""
@@ -11453,6 +13461,8 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [StoryEventsOrderBy!]
   ): StoryEventsConnection!
+
+  """This week's card for the caller in any status, or null."""
   sundayCard: Cards
 
   """Retrieve a record of type `TemperatureChecks` by its primary key"""
@@ -11518,6 +13528,8 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [TimelineItemsOrderBy!]
   ): TimelineItemsConnection!
+
+  """Everything the Today screen needs in one call."""
   today: TodayState
 
   """Retrieve a record of type `TodayState` by its primary key"""
@@ -11551,6 +13563,8 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [TodayStateOrderBy!]
   ): TodayStateConnection!
+
+  """Everything the home-screen widget shows."""
   widget: WidgetState
 
   """Retrieve a record of type `WidgetState` by its primary key"""
@@ -11618,6 +13632,9 @@ type Query {
   ): YearRecapConnection!
 }
 
+"""
+An answer to a couple question. The partner's answer stays hidden until the reader has answered too.
+"""
 type QuestionAnswers implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -11631,9 +13648,27 @@ type QuestionAnswers implements Node {
   couple: Couples
 }
 
+"""Aggregate results for `QuestionAnswers`"""
+type QuestionAnswersAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: QuestionAnswersMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: QuestionAnswersMaxAggregateResult
+}
+
 type QuestionAnswersConnection {
   edges: [QuestionAnswersEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `QuestionAnswers`"""
+  aggregate: QuestionAnswersAggregate
 }
 
 type QuestionAnswersDeleteResponse {
@@ -11689,6 +13724,30 @@ type QuestionAnswersInsertResponse {
   records: [QuestionAnswers!]!
 }
 
+"""Result of maximum aggregation for `QuestionAnswers`"""
+type QuestionAnswersMaxAggregateResult {
+  """Maximum of questionSlug across all matching records"""
+  questionSlug: String
+
+  """Maximum of body across all matching records"""
+  body: String
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+}
+
+"""Result of minimum aggregation for `QuestionAnswers`"""
+type QuestionAnswersMinAggregateResult {
+  """Minimum of questionSlug across all matching records"""
+  questionSlug: String
+
+  """Minimum of body across all matching records"""
+  body: String
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+}
+
 input QuestionAnswersOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -11715,12 +13774,30 @@ type QuestionAnswersUpdateResponse {
   records: [QuestionAnswers!]!
 }
 
+enum QuizKey {
+  loved
+  conflict_style
+}
+
+"""
+Boolean expression comparing fields on type "QuizKey"
+"""
+input QuizKeyFilter {
+  eq: QuizKey
+  in: [QuizKey!]
+  is: FilterIs
+  neq: QuizKey
+}
+
+"""
+A person's ranked quiz result (love style or conflict style). Private to the author.
+"""
 type QuizResults implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID!
   authorId: UUID!
-  quizKey: String!
+  quizKey: QuizKey!
   ranked: [String]!
   createdAt: Datetime!
   updatedAt: Datetime!
@@ -11748,7 +13825,7 @@ type QuizResultsEdge {
 input QuizResultsFilter {
   id: UUIDFilter
   authorId: UUIDFilter
-  quizKey: StringFilter
+  quizKey: QuizKeyFilter
   ranked: StringListFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
@@ -11771,7 +13848,7 @@ input QuizResultsFilter {
 input QuizResultsInsertInput {
   id: UUID
   authorId: UUID
-  quizKey: String
+  quizKey: QuizKey
   ranked: [String]
   createdAt: Datetime
   updatedAt: Datetime
@@ -11796,7 +13873,7 @@ input QuizResultsOrderBy {
 input QuizResultsUpdateInput {
   id: UUID
   authorId: UUID
-  quizKey: String
+  quizKey: QuizKey
   ranked: [String]
   createdAt: Datetime
   updatedAt: Datetime
@@ -11865,13 +13942,48 @@ input RelationshipStatusFilter {
   neq: RelationshipStatus
 }
 
+enum RepairFeeling {
+  calmer
+  still_tense
+  need_more_time
+}
+
+"""
+Boolean expression comparing fields on type "RepairFeeling"
+"""
+input RepairFeelingFilter {
+  eq: RepairFeeling
+  in: [RepairFeeling!]
+  is: FilterIs
+  neq: RepairFeeling
+}
+
+enum RepairLearningKind {
+  trigger
+  need
+  good_fix
+}
+
+"""
+Boolean expression comparing fields on type "RepairLearningKind"
+"""
+input RepairLearningKindFilter {
+  eq: RepairLearningKind
+  in: [RepairLearningKind!]
+  is: FilterIs
+  neq: RepairLearningKind
+}
+
+"""
+What a person learned from a repair: a trigger, a need or a fix that worked. Private to the author.
+"""
 type RepairLearnings implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID!
   authorId: UUID!
   repairSessionId: UUID
-  kind: String!
+  kind: RepairLearningKind!
   note: String!
   createdAt: Datetime!
   updatedAt: Datetime!
@@ -11901,7 +14013,7 @@ input RepairLearningsFilter {
   id: UUIDFilter
   authorId: UUIDFilter
   repairSessionId: UUIDFilter
-  kind: StringFilter
+  kind: RepairLearningKindFilter
   note: StringFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
@@ -11925,7 +14037,7 @@ input RepairLearningsInsertInput {
   id: UUID
   authorId: UUID
   repairSessionId: UUID
-  kind: String
+  kind: RepairLearningKind
   note: String
   createdAt: Datetime
   updatedAt: Datetime
@@ -11953,7 +14065,7 @@ input RepairLearningsUpdateInput {
   id: UUID
   authorId: UUID
   repairSessionId: UUID
-  kind: String
+  kind: RepairLearningKind
   note: String
   createdAt: Datetime
   updatedAt: Datetime
@@ -11967,15 +14079,34 @@ type RepairLearningsUpdateResponse {
   records: [RepairLearnings!]!
 }
 
+enum RepairPath {
+  pause
+  quick
+  soft_start
+  guided
+  apology
+}
+
+"""
+Boolean expression comparing fields on type "RepairPath"
+"""
+input RepairPathFilter {
+  eq: RepairPath
+  in: [RepairPath!]
+  is: FilterIs
+  neq: RepairPath
+}
+
+"""One guided repair after a fight. Private to the author."""
 type RepairSessions implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID!
   authorId: UUID!
   intensity: Int
-  path: String
+  path: RepairPath
   step: Int!
-  feelingAfter: String
+  feelingAfter: RepairFeeling
   draft: String
   completedAt: Datetime
   createdAt: Datetime!
@@ -12029,9 +14160,9 @@ input RepairSessionsFilter {
   id: UUIDFilter
   authorId: UUIDFilter
   intensity: IntFilter
-  path: StringFilter
+  path: RepairPathFilter
   step: IntFilter
-  feelingAfter: StringFilter
+  feelingAfter: RepairFeelingFilter
   draft: StringFilter
   completedAt: DatetimeFilter
   createdAt: DatetimeFilter
@@ -12056,9 +14187,9 @@ input RepairSessionsInsertInput {
   id: UUID
   authorId: UUID
   intensity: Int
-  path: String
+  path: RepairPath
   step: Int
-  feelingAfter: String
+  feelingAfter: RepairFeeling
   draft: String
   completedAt: Datetime
   createdAt: Datetime
@@ -12090,9 +14221,9 @@ input RepairSessionsUpdateInput {
   id: UUID
   authorId: UUID
   intensity: Int
-  path: String
+  path: RepairPath
   step: Int
-  feelingAfter: String
+  feelingAfter: RepairFeeling
   draft: String
   completedAt: Datetime
   createdAt: Datetime
@@ -12107,6 +14238,26 @@ type RepairSessionsUpdateResponse {
   records: [RepairSessions!]!
 }
 
+enum RitualCadence {
+  daily
+  weekly
+  biweekly
+  monthly
+}
+
+"""
+Boolean expression comparing fields on type "RitualCadence"
+"""
+input RitualCadenceFilter {
+  eq: RitualCadence
+  in: [RitualCadence!]
+  is: FilterIs
+  neq: RitualCadence
+}
+
+"""
+One occurrence of a ritual, done or skipped. Follows the visibility of its ritual.
+"""
 type RitualLogs implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -12118,11 +14269,32 @@ type RitualLogs implements Node {
   createdAt: Datetime!
   ritual: Rituals
   author: Profiles
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+}
+
+"""Aggregate results for `RitualLogs`"""
+type RitualLogsAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: RitualLogsMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: RitualLogsMaxAggregateResult
 }
 
 type RitualLogsConnection {
   edges: [RitualLogsEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `RitualLogs`"""
+  aggregate: RitualLogsAggregate
 }
 
 type RitualLogsDeleteResponse {
@@ -12178,6 +14350,30 @@ type RitualLogsInsertResponse {
   records: [RitualLogs!]!
 }
 
+"""Result of maximum aggregation for `RitualLogs`"""
+type RitualLogsMaxAggregateResult {
+  """Maximum of doneOn across all matching records"""
+  doneOn: Date
+
+  """Maximum of skipped across all matching records"""
+  skipped: Boolean
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+}
+
+"""Result of minimum aggregation for `RitualLogs`"""
+type RitualLogsMinAggregateResult {
+  """Minimum of doneOn across all matching records"""
+  doneOn: Date
+
+  """Minimum of skipped across all matching records"""
+  skipped: Boolean
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+}
+
 input RitualLogsOrderBy {
   id: OrderByDirection
   ritualId: OrderByDirection
@@ -12204,6 +14400,7 @@ type RitualLogsUpdateResponse {
   records: [RitualLogs!]!
 }
 
+"""A recurring thing to do together. Private while couple_id is null."""
 type Rituals implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -12211,7 +14408,7 @@ type Rituals implements Node {
   authorId: UUID!
   coupleId: UUID
   title: String!
-  cadence: String!
+  cadence: RitualCadence!
   weekday: Int
   atTime: Time
   reminder: Boolean!
@@ -12244,11 +14441,49 @@ type Rituals implements Node {
     """Sort order to apply to the collection"""
     orderBy: [RitualLogsOrderBy!]
   ): RitualLogsConnection
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
+}
+
+"""Aggregate results for `Rituals`"""
+type RitualsAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Summation aggregates for numeric fields"""
+  sum: RitualsSumAggregateResult
+
+  """Average aggregates for numeric fields"""
+  avg: RitualsAvgAggregateResult
+
+  """Minimum aggregates for comparable fields"""
+  min: RitualsMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: RitualsMaxAggregateResult
+}
+
+"""Result of average aggregation for `Rituals`"""
+type RitualsAvgAggregateResult {
+  """Average of weekday across all matching records"""
+  weekday: BigFloat
 }
 
 type RitualsConnection {
   edges: [RitualsEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `Rituals`"""
+  aggregate: RitualsAggregate
 }
 
 type RitualsDeleteResponse {
@@ -12269,7 +14504,7 @@ input RitualsFilter {
   authorId: UUIDFilter
   coupleId: UUIDFilter
   title: StringFilter
-  cadence: StringFilter
+  cadence: RitualCadenceFilter
   weekday: IntFilter
   atTime: TimeFilter
   reminder: BooleanFilter
@@ -12297,7 +14532,7 @@ input RitualsInsertInput {
   authorId: UUID
   coupleId: UUID
   title: String
-  cadence: String
+  cadence: RitualCadence
   weekday: Int
   atTime: Time
   reminder: Boolean
@@ -12314,6 +14549,54 @@ type RitualsInsertResponse {
   records: [Rituals!]!
 }
 
+"""Result of maximum aggregation for `Rituals`"""
+type RitualsMaxAggregateResult {
+  """Maximum of title across all matching records"""
+  title: String
+
+  """Maximum of weekday across all matching records"""
+  weekday: Int
+
+  """Maximum of atTime across all matching records"""
+  atTime: Time
+
+  """Maximum of reminder across all matching records"""
+  reminder: Boolean
+
+  """Maximum of archivedAt across all matching records"""
+  archivedAt: Datetime
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `Rituals`"""
+type RitualsMinAggregateResult {
+  """Minimum of title across all matching records"""
+  title: String
+
+  """Minimum of weekday across all matching records"""
+  weekday: Int
+
+  """Minimum of atTime across all matching records"""
+  atTime: Time
+
+  """Minimum of reminder across all matching records"""
+  reminder: Boolean
+
+  """Minimum of archivedAt across all matching records"""
+  archivedAt: Datetime
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
 input RitualsOrderBy {
   id: OrderByDirection
   authorId: OrderByDirection
@@ -12328,12 +14611,18 @@ input RitualsOrderBy {
   updatedAt: OrderByDirection
 }
 
+"""Result of summation aggregation for `Rituals`"""
+type RitualsSumAggregateResult {
+  """Sum of weekday across all matching records"""
+  weekday: BigInt
+}
+
 input RitualsUpdateInput {
   id: UUID
   authorId: UUID
   coupleId: UUID
   title: String
-  cadence: String
+  cadence: RitualCadence
   weekday: Int
   atTime: Time
   reminder: Boolean
@@ -12350,6 +14639,7 @@ type RitualsUpdateResponse {
   records: [Rituals!]!
 }
 
+"""A saved date idea. Private while couple_id is null."""
 type SavedDateIdeas implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -12359,7 +14649,7 @@ type SavedDateIdeas implements Node {
   contentSlug: String
   title: String!
   notes: String
-  status: String!
+  status: DateIdeaStatus!
   plannedFor: Date
   placeName: String
   placeAddress: String
@@ -12367,11 +14657,37 @@ type SavedDateIdeas implements Node {
   updatedAt: Datetime!
   author: Profiles
   couple: Couples
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
+}
+
+"""Aggregate results for `SavedDateIdeas`"""
+type SavedDateIdeasAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: SavedDateIdeasMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: SavedDateIdeasMaxAggregateResult
 }
 
 type SavedDateIdeasConnection {
   edges: [SavedDateIdeasEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `SavedDateIdeas`"""
+  aggregate: SavedDateIdeasAggregate
 }
 
 type SavedDateIdeasDeleteResponse {
@@ -12394,7 +14710,7 @@ input SavedDateIdeasFilter {
   contentSlug: StringFilter
   title: StringFilter
   notes: StringFilter
-  status: StringFilter
+  status: DateIdeaStatusFilter
   plannedFor: DateFilter
   placeName: StringFilter
   placeAddress: StringFilter
@@ -12423,7 +14739,7 @@ input SavedDateIdeasInsertInput {
   contentSlug: String
   title: String
   notes: String
-  status: String
+  status: DateIdeaStatus
   plannedFor: Date
   placeName: String
   placeAddress: String
@@ -12437,6 +14753,60 @@ type SavedDateIdeasInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [SavedDateIdeas!]!
+}
+
+"""Result of maximum aggregation for `SavedDateIdeas`"""
+type SavedDateIdeasMaxAggregateResult {
+  """Maximum of contentSlug across all matching records"""
+  contentSlug: String
+
+  """Maximum of title across all matching records"""
+  title: String
+
+  """Maximum of notes across all matching records"""
+  notes: String
+
+  """Maximum of plannedFor across all matching records"""
+  plannedFor: Date
+
+  """Maximum of placeName across all matching records"""
+  placeName: String
+
+  """Maximum of placeAddress across all matching records"""
+  placeAddress: String
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `SavedDateIdeas`"""
+type SavedDateIdeasMinAggregateResult {
+  """Minimum of contentSlug across all matching records"""
+  contentSlug: String
+
+  """Minimum of title across all matching records"""
+  title: String
+
+  """Minimum of notes across all matching records"""
+  notes: String
+
+  """Minimum of plannedFor across all matching records"""
+  plannedFor: Date
+
+  """Minimum of placeName across all matching records"""
+  placeName: String
+
+  """Minimum of placeAddress across all matching records"""
+  placeAddress: String
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
 }
 
 input SavedDateIdeasOrderBy {
@@ -12461,7 +14831,7 @@ input SavedDateIdeasUpdateInput {
   contentSlug: String
   title: String
   notes: String
-  status: String
+  status: DateIdeaStatus
   plannedFor: Date
   placeName: String
   placeAddress: String
@@ -12477,16 +14847,60 @@ type SavedDateIdeasUpdateResponse {
   records: [SavedDateIdeas!]!
 }
 
+enum SignalKind {
+  need
+  miss_us
+  hug
+  distance
+  repair
+  heavy_day
+  good_news
+}
+
+"""
+Boolean expression comparing fields on type "SignalKind"
+"""
+input SignalKindFilter {
+  eq: SignalKind
+  in: [SignalKind!]
+  is: FilterIs
+  neq: SignalKind
+}
+
+enum SignalResponse {
+  here
+  talk
+  more_time
+  will_do
+  not_now
+  plan
+  later
+  heart
+}
+
+"""
+Boolean expression comparing fields on type "SignalResponse"
+"""
+input SignalResponseFilter {
+  eq: SignalResponse
+  in: [SignalResponse!]
+  is: FilterIs
+  neq: SignalResponse
+}
+
+"""
+A one-tap message between partners. Visible to the sender and the recipient.
+"""
 type Signals implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID!
   senderId: UUID!
   recipientId: UUID!
-  kind: String!
+  kind: SignalKind!
   value: String
   body: String
-  response: String
+  response: SignalResponse
   respondedAt: Datetime
   seenAt: Datetime
   createdAt: Datetime!
@@ -12494,9 +14908,27 @@ type Signals implements Node {
   recipient: Profiles
 }
 
+"""Aggregate results for `Signals`"""
+type SignalsAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: SignalsMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: SignalsMaxAggregateResult
+}
+
 type SignalsConnection {
   edges: [SignalsEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `Signals`"""
+  aggregate: SignalsAggregate
 }
 
 type SignalsDeleteResponse {
@@ -12516,10 +14948,10 @@ input SignalsFilter {
   id: UUIDFilter
   senderId: UUIDFilter
   recipientId: UUIDFilter
-  kind: StringFilter
+  kind: SignalKindFilter
   value: StringFilter
   body: StringFilter
-  response: StringFilter
+  response: SignalResponseFilter
   respondedAt: DatetimeFilter
   seenAt: DatetimeFilter
   createdAt: DatetimeFilter
@@ -12543,10 +14975,10 @@ input SignalsInsertInput {
   id: UUID
   senderId: UUID
   recipientId: UUID
-  kind: String
+  kind: SignalKind
   value: String
   body: String
-  response: String
+  response: SignalResponse
   respondedAt: Datetime
   seenAt: Datetime
   createdAt: Datetime
@@ -12558,6 +14990,42 @@ type SignalsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [Signals!]!
+}
+
+"""Result of maximum aggregation for `Signals`"""
+type SignalsMaxAggregateResult {
+  """Maximum of value across all matching records"""
+  value: String
+
+  """Maximum of body across all matching records"""
+  body: String
+
+  """Maximum of respondedAt across all matching records"""
+  respondedAt: Datetime
+
+  """Maximum of seenAt across all matching records"""
+  seenAt: Datetime
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+}
+
+"""Result of minimum aggregation for `Signals`"""
+type SignalsMinAggregateResult {
+  """Minimum of value across all matching records"""
+  value: String
+
+  """Minimum of body across all matching records"""
+  body: String
+
+  """Minimum of respondedAt across all matching records"""
+  respondedAt: Datetime
+
+  """Minimum of seenAt across all matching records"""
+  seenAt: Datetime
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
 }
 
 input SignalsOrderBy {
@@ -12577,10 +15045,10 @@ input SignalsUpdateInput {
   id: UUID
   senderId: UUID
   recipientId: UUID
-  kind: String
+  kind: SignalKind
   value: String
   body: String
-  response: String
+  response: SignalResponse
   respondedAt: Datetime
   seenAt: Datetime
   createdAt: Datetime
@@ -12592,6 +15060,23 @@ type SignalsUpdateResponse {
 
   """Array of records impacted by the mutation"""
   records: [Signals!]!
+}
+
+enum SlipCategory {
+  said
+  did
+  noticed
+  helped
+}
+
+"""
+Boolean expression comparing fields on type "SlipCategory"
+"""
+input SlipCategoryFilter {
+  eq: SlipCategory
+  in: [SlipCategory!]
+  is: FilterIs
+  neq: SlipCategory
 }
 
 enum SlipKind {
@@ -12631,8 +15116,8 @@ type Slips implements Node {
   updatedAt: Datetime!
   archivedAt: Datetime
   deletedAt: Datetime
-  category: String
-  workArea: String
+  category: SlipCategory
+  workArea: WorkArea
   inJar: Boolean!
   author: Profiles
   cardItemsCollection(
@@ -12661,12 +15146,27 @@ type Slips implements Node {
   ): CardItemsConnection
 }
 
+"""Aggregate results for `Slips`"""
+type SlipsAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: SlipsMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: SlipsMaxAggregateResult
+}
+
 type SlipsConnection {
   edges: [SlipsEdge!]!
   pageInfo: PageInfo!
 
   """The total number of records matching the `filter` criteria"""
   totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `Slips`"""
+  aggregate: SlipsAggregate
 }
 
 type SlipsDeleteResponse {
@@ -12697,8 +15197,8 @@ input SlipsFilter {
   updatedAt: DatetimeFilter
   archivedAt: DatetimeFilter
   deletedAt: DatetimeFilter
-  category: StringFilter
-  workArea: StringFilter
+  category: SlipCategoryFilter
+  workArea: WorkAreaFilter
   inJar: BooleanFilter
   nodeId: IDFilter
 
@@ -12731,8 +15231,8 @@ input SlipsInsertInput {
   updatedAt: Datetime
   archivedAt: Datetime
   deletedAt: Datetime
-  category: String
-  workArea: String
+  category: SlipCategory
+  workArea: WorkArea
   inJar: Boolean
 }
 
@@ -12742,6 +15242,78 @@ type SlipsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [Slips!]!
+}
+
+"""Result of maximum aggregation for `Slips`"""
+type SlipsMaxAggregateResult {
+  """Maximum of body across all matching records"""
+  body: String
+
+  """Maximum of feeling across all matching records"""
+  feeling: String
+
+  """Maximum of planNote across all matching records"""
+  planNote: String
+
+  """Maximum of forCard across all matching records"""
+  forCard: Boolean
+
+  """Maximum of photoPath across all matching records"""
+  photoPath: String
+
+  """Maximum of occurredOn across all matching records"""
+  occurredOn: Date
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+
+  """Maximum of archivedAt across all matching records"""
+  archivedAt: Datetime
+
+  """Maximum of deletedAt across all matching records"""
+  deletedAt: Datetime
+
+  """Maximum of inJar across all matching records"""
+  inJar: Boolean
+}
+
+"""Result of minimum aggregation for `Slips`"""
+type SlipsMinAggregateResult {
+  """Minimum of body across all matching records"""
+  body: String
+
+  """Minimum of feeling across all matching records"""
+  feeling: String
+
+  """Minimum of planNote across all matching records"""
+  planNote: String
+
+  """Minimum of forCard across all matching records"""
+  forCard: Boolean
+
+  """Minimum of photoPath across all matching records"""
+  photoPath: String
+
+  """Minimum of occurredOn across all matching records"""
+  occurredOn: Date
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
+
+  """Minimum of archivedAt across all matching records"""
+  archivedAt: Datetime
+
+  """Minimum of deletedAt across all matching records"""
+  deletedAt: Datetime
+
+  """Minimum of inJar across all matching records"""
+  inJar: Boolean
 }
 
 input SlipsOrderBy {
@@ -12778,8 +15350,8 @@ input SlipsUpdateInput {
   updatedAt: Datetime
   archivedAt: Datetime
   deletedAt: Datetime
-  category: String
-  workArea: String
+  category: SlipCategory
+  workArea: WorkArea
   inJar: Boolean
 }
 
@@ -12791,25 +15363,70 @@ type SlipsUpdateResponse {
   records: [Slips!]!
 }
 
+enum StoryEventKind {
+  met
+  dating
+  engaged
+  married
+  custom
+}
+
+"""
+Boolean expression comparing fields on type "StoryEventKind"
+"""
+input StoryEventKindFilter {
+  eq: StoryEventKind
+  in: [StoryEventKind!]
+  is: FilterIs
+  neq: StoryEventKind
+}
+
+"""A milestone in the couple story. Private while couple_id is null."""
 type StoryEvents implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID!
   authorId: UUID!
   coupleId: UUID
-  kind: String!
+  kind: StoryEventKind!
   title: String
   happenedOn: Date!
-  datePrecision: String!
+  datePrecision: DatePrecision!
   createdAt: Datetime!
   updatedAt: Datetime!
   author: Profiles
   couple: Couples
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+}
+
+"""Aggregate results for `StoryEvents`"""
+type StoryEventsAggregate {
+  """The number of records matching the query"""
+  count: Int!
+
+  """Minimum aggregates for comparable fields"""
+  min: StoryEventsMinAggregateResult
+
+  """Maximum aggregates for comparable fields"""
+  max: StoryEventsMaxAggregateResult
 }
 
 type StoryEventsConnection {
   edges: [StoryEventsEdge!]!
   pageInfo: PageInfo!
+
+  """The total number of records matching the `filter` criteria"""
+  totalCount: Int!
+
+  """Aggregate functions calculated on the collection of `StoryEvents`"""
+  aggregate: StoryEventsAggregate
 }
 
 type StoryEventsDeleteResponse {
@@ -12829,10 +15446,10 @@ input StoryEventsFilter {
   id: UUIDFilter
   authorId: UUIDFilter
   coupleId: UUIDFilter
-  kind: StringFilter
+  kind: StoryEventKindFilter
   title: StringFilter
   happenedOn: DateFilter
-  datePrecision: StringFilter
+  datePrecision: DatePrecisionFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
   nodeId: IDFilter
@@ -12855,10 +15472,10 @@ input StoryEventsInsertInput {
   id: UUID
   authorId: UUID
   coupleId: UUID
-  kind: String
+  kind: StoryEventKind
   title: String
   happenedOn: Date
-  datePrecision: String
+  datePrecision: DatePrecision
   createdAt: Datetime
   updatedAt: Datetime
 }
@@ -12869,6 +15486,36 @@ type StoryEventsInsertResponse {
 
   """Array of records impacted by the mutation"""
   records: [StoryEvents!]!
+}
+
+"""Result of maximum aggregation for `StoryEvents`"""
+type StoryEventsMaxAggregateResult {
+  """Maximum of title across all matching records"""
+  title: String
+
+  """Maximum of happenedOn across all matching records"""
+  happenedOn: Date
+
+  """Maximum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Maximum of updatedAt across all matching records"""
+  updatedAt: Datetime
+}
+
+"""Result of minimum aggregation for `StoryEvents`"""
+type StoryEventsMinAggregateResult {
+  """Minimum of title across all matching records"""
+  title: String
+
+  """Minimum of happenedOn across all matching records"""
+  happenedOn: Date
+
+  """Minimum of createdAt across all matching records"""
+  createdAt: Datetime
+
+  """Minimum of updatedAt across all matching records"""
+  updatedAt: Datetime
 }
 
 input StoryEventsOrderBy {
@@ -12887,10 +15534,10 @@ input StoryEventsUpdateInput {
   id: UUID
   authorId: UUID
   coupleId: UUID
-  kind: String
+  kind: StoryEventKind
   title: String
   happenedOn: Date
-  datePrecision: String
+  datePrecision: DatePrecision
   createdAt: Datetime
   updatedAt: Datetime
 }
@@ -12933,12 +15580,15 @@ input StringListFilter {
   overlaps: [String!]
 }
 
+"""
+How the relationship feels right now. Private to the author; a `fight` level expires after 24 hours.
+"""
 type TemperatureChecks implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   id: UUID!
   authorId: UUID!
-  level: String!
+  level: TemperatureLevel!
   note: String
   createdAt: Datetime!
   updatedAt: Datetime!
@@ -12966,7 +15616,7 @@ type TemperatureChecksEdge {
 input TemperatureChecksFilter {
   id: UUIDFilter
   authorId: UUIDFilter
-  level: StringFilter
+  level: TemperatureLevelFilter
   note: StringFilter
   createdAt: DatetimeFilter
   updatedAt: DatetimeFilter
@@ -12989,7 +15639,7 @@ input TemperatureChecksFilter {
 input TemperatureChecksInsertInput {
   id: UUID
   authorId: UUID
-  level: String
+  level: TemperatureLevel
   note: String
   createdAt: Datetime
   updatedAt: Datetime
@@ -13015,7 +15665,7 @@ input TemperatureChecksOrderBy {
 input TemperatureChecksUpdateInput {
   id: UUID
   authorId: UUID
-  level: String
+  level: TemperatureLevel
   note: String
   createdAt: Datetime
   updatedAt: Datetime
@@ -13027,6 +15677,23 @@ type TemperatureChecksUpdateResponse {
 
   """Array of records impacted by the mutation"""
   records: [TemperatureChecks!]!
+}
+
+enum TemperatureLevel {
+  good
+  so_so
+  turbulent
+  fight
+}
+
+"""
+Boolean expression comparing fields on type "TemperatureLevel"
+"""
+input TemperatureLevelFilter {
+  eq: TemperatureLevel
+  in: [TemperatureLevel!]
+  is: FilterIs
+  neq: TemperatureLevel
 }
 
 """A time without date information"""
@@ -13046,6 +15713,7 @@ input TimeFilter {
   neq: Time
 }
 
+"""Memories, story events and important dates in one chronological feed."""
 type TimelineItems implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -13372,6 +16040,7 @@ input UUIDListFilter {
   overlaps: [UUID!]
 }
 
+"""Everything the home-screen widget shows."""
 type WidgetState implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
@@ -13502,6 +16171,28 @@ type WidgetStateUpdateResponse {
   records: [WidgetState!]!
 }
 
+enum WorkArea {
+  planning
+  dates
+  kitchen
+  cleaning
+  kids
+  emotional
+  finances
+  other
+}
+
+"""
+Boolean expression comparing fields on type "WorkArea"
+"""
+input WorkAreaFilter {
+  eq: WorkArea
+  in: [WorkArea!]
+  is: FilterIs
+  neq: WorkArea
+}
+
+"""A year in review for one person."""
 type YearRecap implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!

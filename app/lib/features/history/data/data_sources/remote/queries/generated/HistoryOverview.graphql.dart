@@ -1130,7 +1130,7 @@ class QueryHistoryOverviewmyProfile {
       id: (l$id as String),
       displayName: (l$displayName as String?),
       avatarPath: (l$avatarPath as String?),
-      avatarKind: (l$avatarKind as String),
+      avatarKind: fromJsonEnumAvatarKind((l$avatarKind as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1141,7 +1141,7 @@ class QueryHistoryOverviewmyProfile {
 
   final String? avatarPath;
 
-  final String avatarKind;
+  final EnumAvatarKind avatarKind;
 
   final String $__typename;
 
@@ -1154,7 +1154,7 @@ class QueryHistoryOverviewmyProfile {
     final l$avatarPath = avatarPath;
     _resultData['avatarPath'] = l$avatarPath;
     final l$avatarKind = avatarKind;
-    _resultData['avatarKind'] = l$avatarKind;
+    _resultData['avatarKind'] = toJsonEnumAvatarKind(l$avatarKind);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1226,7 +1226,7 @@ class QueryHistoryOverviewmyPartner {
       id: (l$id as String),
       displayName: (l$displayName as String?),
       avatarPath: (l$avatarPath as String?),
-      avatarKind: (l$avatarKind as String),
+      avatarKind: fromJsonEnumAvatarKind((l$avatarKind as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1237,7 +1237,7 @@ class QueryHistoryOverviewmyPartner {
 
   final String? avatarPath;
 
-  final String avatarKind;
+  final EnumAvatarKind avatarKind;
 
   final String $__typename;
 
@@ -1250,7 +1250,7 @@ class QueryHistoryOverviewmyPartner {
     final l$avatarPath = avatarPath;
     _resultData['avatarPath'] = l$avatarPath;
     final l$avatarKind = avatarKind;
-    _resultData['avatarKind'] = l$avatarKind;
+    _resultData['avatarKind'] = toJsonEnumAvatarKind(l$avatarKind);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1645,10 +1645,10 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
       id: (l$id as String),
       authorId: (l$authorId as String),
       coupleId: (l$coupleId as String?),
-      kind: (l$kind as String),
+      kind: fromJsonEnumStoryEventKind((l$kind as String)),
       title: (l$title as String?),
       happenedOn: DateTime.parse((l$happenedOn as String)),
-      datePrecision: (l$datePrecision as String),
+      datePrecision: fromJsonEnumDatePrecision((l$datePrecision as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1659,13 +1659,13 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
 
   final String? coupleId;
 
-  final String kind;
+  final EnumStoryEventKind kind;
 
   final String? title;
 
   final DateTime happenedOn;
 
-  final String datePrecision;
+  final EnumDatePrecision datePrecision;
 
   final String $__typename;
 
@@ -1678,13 +1678,13 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
     final l$coupleId = coupleId;
     _resultData['coupleId'] = l$coupleId;
     final l$kind = kind;
-    _resultData['kind'] = l$kind;
+    _resultData['kind'] = toJsonEnumStoryEventKind(l$kind);
     final l$title = title;
     _resultData['title'] = l$title;
     final l$happenedOn = happenedOn;
     _resultData['happenedOn'] = ((v) => v.toIso8601String().substring(0, 10))(l$happenedOn);
     final l$datePrecision = datePrecision;
-    _resultData['datePrecision'] = l$datePrecision;
+    _resultData['datePrecision'] = toJsonEnumDatePrecision(l$datePrecision);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -2000,10 +2000,10 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
       title: (l$title as String),
       body: (l$body as String?),
       happenedOn: DateTime.parse((l$happenedOn as String)),
-      datePrecision: (l$datePrecision as String),
+      datePrecision: fromJsonEnumDatePrecision((l$datePrecision as String)),
       place: (l$place as String?),
       photoPath: (l$photoPath as String?),
-      origin: (l$origin as String),
+      origin: fromJsonEnumMemoryOrigin((l$origin as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -2020,13 +2020,13 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
 
   final DateTime happenedOn;
 
-  final String datePrecision;
+  final EnumDatePrecision datePrecision;
 
   final String? place;
 
   final String? photoPath;
 
-  final String origin;
+  final EnumMemoryOrigin origin;
 
   final String $__typename;
 
@@ -2045,13 +2045,13 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
     final l$happenedOn = happenedOn;
     _resultData['happenedOn'] = ((v) => v.toIso8601String().substring(0, 10))(l$happenedOn);
     final l$datePrecision = datePrecision;
-    _resultData['datePrecision'] = l$datePrecision;
+    _resultData['datePrecision'] = toJsonEnumDatePrecision(l$datePrecision);
     final l$place = place;
     _resultData['place'] = l$place;
     final l$photoPath = photoPath;
     _resultData['photoPath'] = l$photoPath;
     final l$origin = origin;
-    _resultData['origin'] = l$origin;
+    _resultData['origin'] = toJsonEnumMemoryOrigin(l$origin);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -2391,7 +2391,7 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
       authorId: (l$authorId as String),
       coupleId: (l$coupleId as String?),
       title: (l$title as String),
-      kind: (l$kind as String),
+      kind: fromJsonEnumImportantDateKind((l$kind as String)),
       month: (l$month as int),
       day: (l$day as int),
       year: (l$year as int?),
@@ -2409,7 +2409,7 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
 
   final String title;
 
-  final String kind;
+  final EnumImportantDateKind kind;
 
   final int month;
 
@@ -2434,7 +2434,7 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$kind = kind;
-    _resultData['kind'] = l$kind;
+    _resultData['kind'] = toJsonEnumImportantDateKind(l$kind);
     final l$month = month;
     _resultData['month'] = l$month;
     final l$day = day;

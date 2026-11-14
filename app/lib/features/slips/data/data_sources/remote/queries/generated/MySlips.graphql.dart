@@ -622,7 +622,7 @@ class QueryMySlipsslipsCollectionedgesnode {
       id: (l$id as String),
       body: (l$body as String),
       kind: fromJsonEnumSlipKind((l$kind as String)),
-      category: (l$category as String?),
+      category: l$category == null ? null : fromJsonEnumSlipCategory((l$category as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
       $__typename: (l$$__typename as String),
     );
@@ -634,7 +634,7 @@ class QueryMySlipsslipsCollectionedgesnode {
 
   final EnumSlipKind kind;
 
-  final String? category;
+  final EnumSlipCategory? category;
 
   final DateTime createdAt;
 
@@ -649,7 +649,7 @@ class QueryMySlipsslipsCollectionedgesnode {
     final l$kind = kind;
     _resultData['kind'] = toJsonEnumSlipKind(l$kind);
     final l$category = category;
-    _resultData['category'] = l$category;
+    _resultData['category'] = l$category == null ? null : toJsonEnumSlipCategory(l$category);
     final l$createdAt = createdAt;
     _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$$__typename = $__typename;

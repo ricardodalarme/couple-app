@@ -1,6 +1,6 @@
 query GiftIdeas($authorId: UUID!) {
   giftIdeasCollection(
-    filter: { kind: { eq: "idea" }, authorId: { eq: $authorId } }
+    filter: { kind: { eq: idea }, authorId: { eq: $authorId } }
     orderBy: [{ createdAt: DescNullsLast }]
     first: 200
   ) {

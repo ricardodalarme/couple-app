@@ -1,6 +1,6 @@
 query OpenGuidedSession {
   repairSessionsCollection(
-    filter: { path: { eq: "guided" }, completedAt: { is: NULL } }
+    filter: { path: { eq: guided }, completedAt: { is: NULL } }
     orderBy: [{ createdAt: DescNullsLast }]
     first: 1
   ) {

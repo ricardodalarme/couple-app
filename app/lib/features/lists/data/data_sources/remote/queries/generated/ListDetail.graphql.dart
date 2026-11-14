@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -629,7 +631,7 @@ class QueryListDetaillistsCollectionedgesnode {
       id: (l$id as String),
       authorId: (l$authorId as String),
       title: (l$title as String),
-      kind: (l$kind as String),
+      kind: fromJsonEnumListKind((l$kind as String)),
       coupleId: (l$coupleId as String?),
       listItemsCollection: l$listItemsCollection == null
           ? null
@@ -646,7 +648,7 @@ class QueryListDetaillistsCollectionedgesnode {
 
   final String title;
 
-  final String kind;
+  final EnumListKind kind;
 
   final String? coupleId;
 
@@ -663,7 +665,7 @@ class QueryListDetaillistsCollectionedgesnode {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$kind = kind;
-    _resultData['kind'] = l$kind;
+    _resultData['kind'] = toJsonEnumListKind(l$kind);
     final l$coupleId = coupleId;
     _resultData['coupleId'] = l$coupleId;
     final l$listItemsCollection = listItemsCollection;
@@ -898,7 +900,7 @@ class QueryListDetaillistsCollectionedgesnodelistItemsCollectionedgesnode {
       id: (l$id as String),
       listId: (l$listId as String),
       title: (l$title as String),
-      status: (l$status as String),
+      status: fromJsonEnumListItemStatus((l$status as String)),
       position: (l$position as int),
       $__typename: (l$$__typename as String),
     );
@@ -910,7 +912,7 @@ class QueryListDetaillistsCollectionedgesnodelistItemsCollectionedgesnode {
 
   final String title;
 
-  final String status;
+  final EnumListItemStatus status;
 
   final int position;
 
@@ -925,7 +927,7 @@ class QueryListDetaillistsCollectionedgesnodelistItemsCollectionedgesnode {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$status = status;
-    _resultData['status'] = l$status;
+    _resultData['status'] = toJsonEnumListItemStatus(l$status);
     final l$position = position;
     _resultData['position'] = l$position;
     final l$$__typename = $__typename;

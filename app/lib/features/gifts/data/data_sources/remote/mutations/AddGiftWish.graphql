@@ -1,7 +1,7 @@
-mutation AddGiftWish($id: UUID!, $title: String!, $note: String, $budget: String, $coupleId: UUID) {
+mutation AddGiftWish($id: UUID!, $title: String!, $note: String, $budget: GiftBudget, $coupleId: UUID) {
   insertIntoGiftIdeasCollection(
     objects: [
-      { id: $id, title: $title, note: $note, budget: $budget, coupleId: $coupleId, kind: "wish" }
+      { id: $id, title: $title, note: $note, budget: $budget, coupleId: $coupleId, kind: wish }
     ]
   ) {
     affectedCount

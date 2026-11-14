@@ -161,7 +161,7 @@ const documentNodeMutationAddRepairTool = DocumentNode(
                         ),
                         ObjectFieldNode(
                           name: NameNode(value: 'kind'),
-                          value: StringValueNode(value: 'trigger', isBlock: false),
+                          value: EnumValueNode(name: NameNode(value: 'trigger')),
                         ),
                         ObjectFieldNode(
                           name: NameNode(value: 'note'),

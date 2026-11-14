@@ -83,7 +83,7 @@ const documentNodeQueryFightStyleResult = DocumentNode(
                         fields: [
                           ObjectFieldNode(
                             name: NameNode(value: 'eq'),
-                            value: StringValueNode(value: 'conflict_style', isBlock: false),
+                            value: EnumValueNode(name: NameNode(value: 'conflict_style')),
                           ),
                         ],
                       ),

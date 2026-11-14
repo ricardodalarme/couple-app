@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -431,7 +433,7 @@ class QueryDateIdeassavedDateIdeasCollectionedgesnode {
     return QueryDateIdeassavedDateIdeasCollectionedgesnode(
       id: (l$id as String),
       title: (l$title as String),
-      status: (l$status as String),
+      status: fromJsonEnumDateIdeaStatus((l$status as String)),
       plannedFor: l$plannedFor == null ? null : DateTime.parse((l$plannedFor as String)),
       $__typename: (l$$__typename as String),
     );
@@ -441,7 +443,7 @@ class QueryDateIdeassavedDateIdeasCollectionedgesnode {
 
   final String title;
 
-  final String status;
+  final EnumDateIdeaStatus status;
 
   final DateTime? plannedFor;
 
@@ -454,7 +456,7 @@ class QueryDateIdeassavedDateIdeasCollectionedgesnode {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$status = status;
-    _resultData['status'] = l$status;
+    _resultData['status'] = toJsonEnumDateIdeaStatus(l$status);
     final l$plannedFor = plannedFor;
     _resultData['plannedFor'] = l$plannedFor == null
         ? null

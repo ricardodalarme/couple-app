@@ -151,7 +151,7 @@ const documentNodeMutationInsertLoveStyleResult = DocumentNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'quizKey'),
-                          value: StringValueNode(value: 'loved', isBlock: false),
+                          value: EnumValueNode(name: NameNode(value: 'loved')),
                         ),
                         ObjectFieldNode(
                           name: NameNode(value: 'ranked'),

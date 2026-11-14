@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -532,7 +534,7 @@ class QueryRitualsritualsCollectionedgesnode {
     return QueryRitualsritualsCollectionedgesnode(
       id: (l$id as String),
       title: (l$title as String),
-      cadence: (l$cadence as String),
+      cadence: fromJsonEnumRitualCadence((l$cadence as String)),
       weekday: (l$weekday as int?),
       atTime: (l$atTime as String?),
       reminder: (l$reminder as bool),
@@ -549,7 +551,7 @@ class QueryRitualsritualsCollectionedgesnode {
 
   final String title;
 
-  final String cadence;
+  final EnumRitualCadence cadence;
 
   final int? weekday;
 
@@ -568,7 +570,7 @@ class QueryRitualsritualsCollectionedgesnode {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$cadence = cadence;
-    _resultData['cadence'] = l$cadence;
+    _resultData['cadence'] = toJsonEnumRitualCadence(l$cadence);
     final l$weekday = weekday;
     _resultData['weekday'] = l$weekday;
     final l$atTime = atTime;

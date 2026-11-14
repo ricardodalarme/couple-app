@@ -83,7 +83,7 @@ const documentNodeQueryOpenGuidedSession = DocumentNode(
                         fields: [
                           ObjectFieldNode(
                             name: NameNode(value: 'eq'),
-                            value: StringValueNode(value: 'guided', isBlock: false),
+                            value: EnumValueNode(name: NameNode(value: 'guided')),
                           ),
                         ],
                       ),

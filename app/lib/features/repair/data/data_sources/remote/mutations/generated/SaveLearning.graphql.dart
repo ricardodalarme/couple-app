@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -8,7 +10,7 @@ class VariablesMutationSaveLearning {
   factory VariablesMutationSaveLearning({
     required String id,
     String? sessionId,
-    required String kind,
+    required EnumRepairLearningKind kind,
     required String note,
   }) => VariablesMutationSaveLearning._({
     r'id': id,
@@ -28,7 +30,7 @@ class VariablesMutationSaveLearning {
       result$data['sessionId'] = (l$sessionId as String?);
     }
     final l$kind = data['kind'];
-    result$data['kind'] = (l$kind as String);
+    result$data['kind'] = fromJsonEnumRepairLearningKind((l$kind as String));
     final l$note = data['note'];
     result$data['note'] = (l$note as String);
     return VariablesMutationSaveLearning._(result$data);
@@ -40,7 +42,7 @@ class VariablesMutationSaveLearning {
 
   String? get sessionId => (_$data['sessionId'] as String?);
 
-  String get kind => (_$data['kind'] as String);
+  EnumRepairLearningKind get kind => (_$data['kind'] as EnumRepairLearningKind);
 
   String get note => (_$data['note'] as String);
 
@@ -53,7 +55,7 @@ class VariablesMutationSaveLearning {
       result$data['sessionId'] = l$sessionId;
     }
     final l$kind = kind;
-    result$data['kind'] = l$kind;
+    result$data['kind'] = toJsonEnumRepairLearningKind(l$kind);
     final l$note = note;
     result$data['note'] = l$note;
     return result$data;
@@ -188,7 +190,7 @@ const documentNodeMutationSaveLearning = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'RepairLearningKind'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -419,7 +421,7 @@ class QueryMyDevicesdevicesCollectionedgesnode {
     final l$$__typename = json['__typename'];
     return QueryMyDevicesdevicesCollectionedgesnode(
       id: (l$id as String),
-      platform: (l$platform as String),
+      platform: fromJsonEnumDevicePlatform((l$platform as String)),
       label: (l$label as String?),
       lastSeenAt: DateTime.parse((l$lastSeenAt as String)),
       $__typename: (l$$__typename as String),
@@ -428,7 +430,7 @@ class QueryMyDevicesdevicesCollectionedgesnode {
 
   final String id;
 
-  final String platform;
+  final EnumDevicePlatform platform;
 
   final String? label;
 
@@ -441,7 +443,7 @@ class QueryMyDevicesdevicesCollectionedgesnode {
     final l$id = id;
     _resultData['id'] = l$id;
     final l$platform = platform;
-    _resultData['platform'] = l$platform;
+    _resultData['platform'] = toJsonEnumDevicePlatform(l$platform);
     final l$label = label;
     _resultData['label'] = l$label;
     final l$lastSeenAt = lastSeenAt;
