@@ -10,12 +10,8 @@ query ChatStatus($profileId: UUID!) {
       }
     }
   }
-  profileSettingsCollection(filter: { profileId: { eq: $profileId } }, first: 1) {
-    edges {
-      node {
-        profileId
-        chatEnabled
-      }
-    }
+  profileSettingsByPk(profileId: $profileId) {
+    profileId
+    chatEnabled
   }
 }

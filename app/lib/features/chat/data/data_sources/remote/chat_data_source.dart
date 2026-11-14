@@ -25,7 +25,6 @@ class ChatDataSource({
     return validateResponseData(
       response,
       getData: (data) {
-        final edges = data.profileSettingsCollection.edges;
         final limits = {
           for (final edge in data.appConfigCollection.edges)
             edge.node.key: int.tryParse(edge.node.value) ?? 0,
@@ -33,7 +32,7 @@ class ChatDataSource({
 
         return (
           messagesLeft: data.chatMessagesLeft ?? 0,
-          isEnabled: edges.isNotEmpty && edges.first.node.chatEnabled,
+          isEnabled: data.profileSettingsByPk?.chatEnabled ?? false,
           plusLimit: limits['chat_messages_per_day_plus'] ?? 0,
           freeLimit: limits['chat_messages_per_day_free'] ?? 0,
         );

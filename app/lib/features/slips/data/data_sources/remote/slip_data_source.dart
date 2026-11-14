@@ -89,16 +89,17 @@ class SlipDataSource({required final GQLClient _client}) {
   }
 
   /// Reads one slip of the person, or null when it is gone or not theirs.
-  Future<QuerySlipDetailslipsCollectionedgesnode?> getSlip(String id) async {
+  Future<QuerySlipDetailslipsByPk?> getSlip(String id) async {
     final response = await _client.query(
       OptionsQuerySlipDetail(
         fetchPolicy: FetchPolicy.networkOnly,
         variables: VariablesQuerySlipDetail(id: id),
       ),
     );
-    final edges = validateResponseData(response, getData: (data) => data.slipsCollection.edges);
+    validateResponse(response);
+    final slip = response.parsedData?.slipsByPk;
 
-    return edges.isEmpty ? null : edges.first.node;
+    return slip == null || slip.deletedAt != null ? null : slip;
   }
 
   Future<void> setInJar({required String id, required bool inJar}) async {

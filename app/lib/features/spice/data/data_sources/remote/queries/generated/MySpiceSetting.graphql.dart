@@ -52,27 +52,29 @@ class VariablesQueryMySpiceSetting {
 }
 
 class QueryMySpiceSetting {
-  QueryMySpiceSetting({required this.profileSettingsCollection, this.$__typename = 'Query'});
+  QueryMySpiceSetting({this.profileSettingsByPk, this.$__typename = 'Query'});
 
   factory QueryMySpiceSetting.fromJson(Map<String, dynamic> json) {
-    final l$profileSettingsCollection = json['profileSettingsCollection'];
+    final l$profileSettingsByPk = json['profileSettingsByPk'];
     final l$$__typename = json['__typename'];
     return QueryMySpiceSetting(
-      profileSettingsCollection: QueryMySpiceSettingprofileSettingsCollection.fromJson(
-        (l$profileSettingsCollection as Map<String, dynamic>),
-      ),
+      profileSettingsByPk: l$profileSettingsByPk == null
+          ? null
+          : QueryMySpiceSettingprofileSettingsByPk.fromJson(
+              (l$profileSettingsByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryMySpiceSettingprofileSettingsCollection profileSettingsCollection;
+  final QueryMySpiceSettingprofileSettingsByPk? profileSettingsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$profileSettingsCollection = profileSettingsCollection;
-    _resultData['profileSettingsCollection'] = l$profileSettingsCollection.toJson();
+    final l$profileSettingsByPk = profileSettingsByPk;
+    _resultData['profileSettingsByPk'] = l$profileSettingsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -80,9 +82,9 @@ class QueryMySpiceSetting {
 
   @override
   int get hashCode {
-    final l$profileSettingsCollection = profileSettingsCollection;
+    final l$profileSettingsByPk = profileSettingsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$profileSettingsCollection, l$$__typename]);
+    return Object.hashAll([l$profileSettingsByPk, l$$__typename]);
   }
 
   @override
@@ -93,9 +95,9 @@ class QueryMySpiceSetting {
     if (other is! QueryMySpiceSetting || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$profileSettingsCollection = profileSettingsCollection;
-    final lOther$profileSettingsCollection = other.profileSettingsCollection;
-    if (l$profileSettingsCollection != lOther$profileSettingsCollection) {
+    final l$profileSettingsByPk = profileSettingsByPk;
+    final lOther$profileSettingsByPk = other.profileSettingsByPk;
+    if (l$profileSettingsByPk != lOther$profileSettingsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -124,82 +126,30 @@ const documentNodeQueryMySpiceSetting = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'profileSettingsCollection'),
+            name: NameNode(value: 'profileSettingsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'profileId'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'profileId')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'first'),
-                value: IntValueNode(value: '1'),
+                name: NameNode(value: 'profileId'),
+                value: VariableNode(name: NameNode(value: 'profileId')),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'profileId'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'profileId'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'spiceEnabled'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'spiceEnabled'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -351,151 +301,18 @@ extension ClientExtensionQueryMySpiceSetting on graphql.GraphQLClient {
   }
 }
 
-class QueryMySpiceSettingprofileSettingsCollection {
-  QueryMySpiceSettingprofileSettingsCollection({
-    required this.edges,
-    this.$__typename = 'ProfileSettingsConnection',
-  });
-
-  factory QueryMySpiceSettingprofileSettingsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryMySpiceSettingprofileSettingsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryMySpiceSettingprofileSettingsCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryMySpiceSettingprofileSettingsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryMySpiceSettingprofileSettingsCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryMySpiceSettingprofileSettingsCollectionedges {
-  QueryMySpiceSettingprofileSettingsCollectionedges({
-    required this.node,
-    this.$__typename = 'ProfileSettingsEdge',
-  });
-
-  factory QueryMySpiceSettingprofileSettingsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryMySpiceSettingprofileSettingsCollectionedges(
-      node: QueryMySpiceSettingprofileSettingsCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryMySpiceSettingprofileSettingsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryMySpiceSettingprofileSettingsCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryMySpiceSettingprofileSettingsCollectionedgesnode {
-  QueryMySpiceSettingprofileSettingsCollectionedgesnode({
+class QueryMySpiceSettingprofileSettingsByPk {
+  QueryMySpiceSettingprofileSettingsByPk({
     required this.profileId,
     required this.spiceEnabled,
     this.$__typename = 'ProfileSettings',
   });
 
-  factory QueryMySpiceSettingprofileSettingsCollectionedgesnode.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory QueryMySpiceSettingprofileSettingsByPk.fromJson(Map<String, dynamic> json) {
     final l$profileId = json['profileId'];
     final l$spiceEnabled = json['spiceEnabled'];
     final l$$__typename = json['__typename'];
-    return QueryMySpiceSettingprofileSettingsCollectionedgesnode(
+    return QueryMySpiceSettingprofileSettingsByPk(
       profileId: (l$profileId as String),
       spiceEnabled: (l$spiceEnabled as bool),
       $__typename: (l$$__typename as String),
@@ -532,8 +349,7 @@ class QueryMySpiceSettingprofileSettingsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryMySpiceSettingprofileSettingsCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryMySpiceSettingprofileSettingsByPk || runtimeType != other.runtimeType) {
       return false;
     }
     final l$profileId = profileId;

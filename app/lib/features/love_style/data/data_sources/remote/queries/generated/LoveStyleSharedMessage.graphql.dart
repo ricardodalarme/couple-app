@@ -52,30 +52,29 @@ class VariablesQueryLoveStyleSharedMessage {
 }
 
 class QueryLoveStyleSharedMessage {
-  QueryLoveStyleSharedMessage({
-    required this.partnerMessagesCollection,
-    this.$__typename = 'Query',
-  });
+  QueryLoveStyleSharedMessage({this.partnerMessagesByPk, this.$__typename = 'Query'});
 
   factory QueryLoveStyleSharedMessage.fromJson(Map<String, dynamic> json) {
-    final l$partnerMessagesCollection = json['partnerMessagesCollection'];
+    final l$partnerMessagesByPk = json['partnerMessagesByPk'];
     final l$$__typename = json['__typename'];
     return QueryLoveStyleSharedMessage(
-      partnerMessagesCollection: QueryLoveStyleSharedMessagepartnerMessagesCollection.fromJson(
-        (l$partnerMessagesCollection as Map<String, dynamic>),
-      ),
+      partnerMessagesByPk: l$partnerMessagesByPk == null
+          ? null
+          : QueryLoveStyleSharedMessagepartnerMessagesByPk.fromJson(
+              (l$partnerMessagesByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryLoveStyleSharedMessagepartnerMessagesCollection partnerMessagesCollection;
+  final QueryLoveStyleSharedMessagepartnerMessagesByPk? partnerMessagesByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$partnerMessagesCollection = partnerMessagesCollection;
-    _resultData['partnerMessagesCollection'] = l$partnerMessagesCollection.toJson();
+    final l$partnerMessagesByPk = partnerMessagesByPk;
+    _resultData['partnerMessagesByPk'] = l$partnerMessagesByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -83,9 +82,9 @@ class QueryLoveStyleSharedMessage {
 
   @override
   int get hashCode {
-    final l$partnerMessagesCollection = partnerMessagesCollection;
+    final l$partnerMessagesByPk = partnerMessagesByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$partnerMessagesCollection, l$$__typename]);
+    return Object.hashAll([l$partnerMessagesByPk, l$$__typename]);
   }
 
   @override
@@ -96,9 +95,9 @@ class QueryLoveStyleSharedMessage {
     if (other is! QueryLoveStyleSharedMessage || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$partnerMessagesCollection = partnerMessagesCollection;
-    final lOther$partnerMessagesCollection = other.partnerMessagesCollection;
-    if (l$partnerMessagesCollection != lOther$partnerMessagesCollection) {
+    final l$partnerMessagesByPk = partnerMessagesByPk;
+    final lOther$partnerMessagesByPk = other.partnerMessagesByPk;
+    if (l$partnerMessagesByPk != lOther$partnerMessagesByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -127,75 +126,23 @@ const documentNodeQueryLoveStyleSharedMessage = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'partnerMessagesCollection'),
+            name: NameNode(value: 'partnerMessagesByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'first'),
-                value: IntValueNode(value: '1'),
+                name: NameNode(value: 'id'),
+                value: VariableNode(name: NameNode(value: 'id')),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -351,151 +298,16 @@ extension ClientExtensionQueryLoveStyleSharedMessage on graphql.GraphQLClient {
   }
 }
 
-class QueryLoveStyleSharedMessagepartnerMessagesCollection {
-  QueryLoveStyleSharedMessagepartnerMessagesCollection({
-    required this.edges,
-    this.$__typename = 'PartnerMessagesConnection',
-  });
-
-  factory QueryLoveStyleSharedMessagepartnerMessagesCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryLoveStyleSharedMessagepartnerMessagesCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryLoveStyleSharedMessagepartnerMessagesCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryLoveStyleSharedMessagepartnerMessagesCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryLoveStyleSharedMessagepartnerMessagesCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryLoveStyleSharedMessagepartnerMessagesCollectionedges {
-  QueryLoveStyleSharedMessagepartnerMessagesCollectionedges({
-    required this.node,
-    this.$__typename = 'PartnerMessagesEdge',
-  });
-
-  factory QueryLoveStyleSharedMessagepartnerMessagesCollectionedges.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryLoveStyleSharedMessagepartnerMessagesCollectionedges(
-      node: QueryLoveStyleSharedMessagepartnerMessagesCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryLoveStyleSharedMessagepartnerMessagesCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryLoveStyleSharedMessagepartnerMessagesCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryLoveStyleSharedMessagepartnerMessagesCollectionedgesnode {
-  QueryLoveStyleSharedMessagepartnerMessagesCollectionedgesnode({
+class QueryLoveStyleSharedMessagepartnerMessagesByPk {
+  QueryLoveStyleSharedMessagepartnerMessagesByPk({
     required this.id,
     this.$__typename = 'PartnerMessages',
   });
 
-  factory QueryLoveStyleSharedMessagepartnerMessagesCollectionedgesnode.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory QueryLoveStyleSharedMessagepartnerMessagesByPk.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return QueryLoveStyleSharedMessagepartnerMessagesCollectionedgesnode(
+    return QueryLoveStyleSharedMessagepartnerMessagesByPk(
       id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
@@ -526,7 +338,7 @@ class QueryLoveStyleSharedMessagepartnerMessagesCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryLoveStyleSharedMessagepartnerMessagesCollectionedgesnode ||
+    if (other is! QueryLoveStyleSharedMessagepartnerMessagesByPk ||
         runtimeType != other.runtimeType) {
       return false;
     }

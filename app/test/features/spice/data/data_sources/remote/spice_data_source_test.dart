@@ -31,14 +31,11 @@ void main() {
     dataSource = SpiceDataSource(client: client);
   });
 
-  QueryResult<QueryMySpiceSetting> settingsResponse(List<Map<String, dynamic>> edges) {
+  QueryResult<QueryMySpiceSetting> settingsResponse(Map<String, dynamic>? row) {
     return QueryResult<QueryMySpiceSetting>(
       options: OptionsQueryMySpiceSetting(variables: VariablesQueryMySpiceSetting(profileId: 'p1')),
       source: QueryResultSource.network,
-      data: {
-        'profileSettingsCollection': {'__typename': 'ProfileSettingsConnection', 'edges': edges},
-        '__typename': 'Query',
-      },
+      data: {'profileSettingsByPk': row, '__typename': 'Query'},
     );
   }
 
@@ -71,19 +68,18 @@ void main() {
 
   test('a missing settings row reads as off', () async {
     when(() => client.query<QueryMySpiceSetting>(any()))
-        .thenAnswer((_) async => settingsResponse([]));
+        .thenAnswer((_) async => settingsResponse(null));
 
     expect(await dataSource.getEnabled('p1'), isFalse);
   });
 
   test('the settings row carries the saved switch', () async {
     when(() => client.query<QueryMySpiceSetting>(any())).thenAnswer(
-      (_) async => settingsResponse([
-        {
-          '__typename': 'ProfileSettingsEdge',
-          'node': {'__typename': 'ProfileSettings', 'profileId': 'p1', 'spiceEnabled': true},
-        },
-      ]),
+      (_) async => settingsResponse({
+        '__typename': 'ProfileSettings',
+        'profileId': 'p1',
+        'spiceEnabled': true,
+      }),
     );
 
     expect(await dataSource.getEnabled('p1'), isTrue);

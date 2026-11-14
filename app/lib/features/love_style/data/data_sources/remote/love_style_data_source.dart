@@ -112,12 +112,9 @@ class LoveStyleDataSource({required final GQLClient _client}) {
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.partnerMessagesCollection.edges,
-    );
+    validateResponse(response);
 
-    return edges.isNotEmpty;
+    return response.parsedData?.partnerMessagesByPk != null;
   }
 
   /// Deletes one of the person's own notes through the sender-only RPC.

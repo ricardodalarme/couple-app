@@ -29,7 +29,7 @@ class CardsDataSource({required final GQLClient _client}) {
   }
 
   /// The card with [id], or `null` when it is gone or not visible to the person.
-  Future<QueryCardDetailcardsCollectionedgesnode?> getCard(String id) async {
+  Future<QueryCardDetailcardsByPk?> getCard(String id) async {
     final response = await _client.query(
       OptionsQueryCardDetail(
         fetchPolicy: FetchPolicy.networkOnly,
@@ -38,7 +38,7 @@ class CardsDataSource({required final GQLClient _client}) {
     );
     validateResponse(response);
 
-    return response.parsedData?.cardsCollection.edges.firstOrNull?.node;
+    return response.parsedData?.cardsByPk;
   }
 
   Future<void> markRead(String cardId) async {

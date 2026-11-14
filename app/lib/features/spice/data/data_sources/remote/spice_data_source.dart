@@ -12,12 +12,9 @@ class SpiceDataSource({required final GQLClient _client}) {
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.profileSettingsCollection.edges,
-    );
+    validateResponse(response);
 
-    return edges.isNotEmpty && edges.first.node.spiceEnabled;
+    return response.parsedData?.profileSettingsByPk?.spiceEnabled ?? false;
   }
 
   Future<int> setEnabled({required String profileId, required bool enabled}) async {

@@ -53,27 +53,27 @@ class VariablesQuerySlipDetail {
 }
 
 class QuerySlipDetail {
-  QuerySlipDetail({required this.slipsCollection, this.$__typename = 'Query'});
+  QuerySlipDetail({this.slipsByPk, this.$__typename = 'Query'});
 
   factory QuerySlipDetail.fromJson(Map<String, dynamic> json) {
-    final l$slipsCollection = json['slipsCollection'];
+    final l$slipsByPk = json['slipsByPk'];
     final l$$__typename = json['__typename'];
     return QuerySlipDetail(
-      slipsCollection: QuerySlipDetailslipsCollection.fromJson(
-        (l$slipsCollection as Map<String, dynamic>),
-      ),
+      slipsByPk: l$slipsByPk == null
+          ? null
+          : QuerySlipDetailslipsByPk.fromJson((l$slipsByPk as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QuerySlipDetailslipsCollection slipsCollection;
+  final QuerySlipDetailslipsByPk? slipsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$slipsCollection = slipsCollection;
-    _resultData['slipsCollection'] = l$slipsCollection.toJson();
+    final l$slipsByPk = slipsByPk;
+    _resultData['slipsByPk'] = l$slipsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -81,9 +81,9 @@ class QuerySlipDetail {
 
   @override
   int get hashCode {
-    final l$slipsCollection = slipsCollection;
+    final l$slipsByPk = slipsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$slipsCollection, l$$__typename]);
+    return Object.hashAll([l$slipsByPk, l$$__typename]);
   }
 
   @override
@@ -94,9 +94,9 @@ class QuerySlipDetail {
     if (other is! QuerySlipDetail || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$slipsCollection = slipsCollection;
-    final lOther$slipsCollection = other.slipsCollection;
-    if (l$slipsCollection != lOther$slipsCollection) {
+    final l$slipsByPk = slipsByPk;
+    final lOther$slipsByPk = other.slipsByPk;
+    if (l$slipsByPk != lOther$slipsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -125,189 +125,133 @@ const documentNodeQuerySlipDetail = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'slipsCollection'),
+            name: NameNode(value: 'slipsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                    ObjectFieldNode(
-                      name: NameNode(value: 'deletedAt'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'is'),
-                            value: EnumValueNode(name: NameNode(value: 'NULL')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'first'),
-                value: IntValueNode(value: '1'),
+                name: NameNode(value: 'id'),
+                value: VariableNode(name: NameNode(value: 'id')),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'body'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'kind'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'feeling'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'planNote'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'forCard'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'category'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'workArea'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'createdAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'archivedAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'deletedAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'inJar'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'cardItemsCollection'),
+                  alias: null,
+                  arguments: [
+                    ArgumentNode(
+                      name: NameNode(value: 'first'),
+                      value: IntValueNode(value: '1'),
+                    ),
+                  ],
                   directives: [],
                   selectionSet: SelectionSetNode(
                     selections: [
                       FieldNode(
-                        name: NameNode(value: 'node'),
+                        name: NameNode(value: 'edges'),
                         alias: null,
                         arguments: [],
                         directives: [],
                         selectionSet: SelectionSetNode(
                           selections: [
                             FieldNode(
-                              name: NameNode(value: 'id'),
+                              name: NameNode(value: 'node'),
                               alias: null,
                               arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'body'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'kind'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'feeling'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'planNote'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'forCard'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'category'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'workArea'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'createdAt'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'archivedAt'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'inJar'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'cardItemsCollection'),
-                              alias: null,
-                              arguments: [
-                                ArgumentNode(
-                                  name: NameNode(value: 'first'),
-                                  value: IntValueNode(value: '1'),
-                                ),
-                              ],
                               directives: [],
                               selectionSet: SelectionSetNode(
                                 selections: [
                                   FieldNode(
-                                    name: NameNode(value: 'edges'),
+                                    name: NameNode(value: 'id'),
                                     alias: null,
                                     arguments: [],
                                     directives: [],
-                                    selectionSet: SelectionSetNode(
-                                      selections: [
-                                        FieldNode(
-                                          name: NameNode(value: 'node'),
-                                          alias: null,
-                                          arguments: [],
-                                          directives: [],
-                                          selectionSet: SelectionSetNode(
-                                            selections: [
-                                              FieldNode(
-                                                name: NameNode(value: 'id'),
-                                                alias: null,
-                                                arguments: [],
-                                                directives: [],
-                                                selectionSet: null,
-                                              ),
-                                              FieldNode(
-                                                name: NameNode(value: '__typename'),
-                                                alias: null,
-                                                arguments: [],
-                                                directives: [],
-                                                selectionSet: null,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        FieldNode(
-                                          name: NameNode(value: '__typename'),
-                                          alias: null,
-                                          arguments: [],
-                                          directives: [],
-                                          selectionSet: null,
-                                        ),
-                                      ],
-                                    ),
+                                    selectionSet: null,
                                   ),
                                   FieldNode(
                                     name: NameNode(value: '__typename'),
@@ -489,125 +433,8 @@ extension ClientExtensionQuerySlipDetail on graphql.GraphQLClient {
   }
 }
 
-class QuerySlipDetailslipsCollection {
-  QuerySlipDetailslipsCollection({required this.edges, this.$__typename = 'SlipsConnection'});
-
-  factory QuerySlipDetailslipsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QuerySlipDetailslipsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map((e) => QuerySlipDetailslipsCollectionedges.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QuerySlipDetailslipsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QuerySlipDetailslipsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QuerySlipDetailslipsCollectionedges {
-  QuerySlipDetailslipsCollectionedges({required this.node, this.$__typename = 'SlipsEdge'});
-
-  factory QuerySlipDetailslipsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QuerySlipDetailslipsCollectionedges(
-      node: QuerySlipDetailslipsCollectionedgesnode.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QuerySlipDetailslipsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QuerySlipDetailslipsCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QuerySlipDetailslipsCollectionedgesnode {
-  QuerySlipDetailslipsCollectionedgesnode({
+class QuerySlipDetailslipsByPk {
+  QuerySlipDetailslipsByPk({
     required this.id,
     required this.body,
     required this.kind,
@@ -618,12 +445,13 @@ class QuerySlipDetailslipsCollectionedgesnode {
     this.workArea,
     required this.createdAt,
     this.archivedAt,
+    this.deletedAt,
     required this.inJar,
     this.cardItemsCollection,
     this.$__typename = 'Slips',
   });
 
-  factory QuerySlipDetailslipsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QuerySlipDetailslipsByPk.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$body = json['body'];
     final l$kind = json['kind'];
@@ -634,10 +462,11 @@ class QuerySlipDetailslipsCollectionedgesnode {
     final l$workArea = json['workArea'];
     final l$createdAt = json['createdAt'];
     final l$archivedAt = json['archivedAt'];
+    final l$deletedAt = json['deletedAt'];
     final l$inJar = json['inJar'];
     final l$cardItemsCollection = json['cardItemsCollection'];
     final l$$__typename = json['__typename'];
-    return QuerySlipDetailslipsCollectionedgesnode(
+    return QuerySlipDetailslipsByPk(
       id: (l$id as String),
       body: (l$body as String),
       kind: fromJsonEnumSlipKind((l$kind as String)),
@@ -648,10 +477,11 @@ class QuerySlipDetailslipsCollectionedgesnode {
       workArea: l$workArea == null ? null : fromJsonEnumWorkArea((l$workArea as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
       archivedAt: l$archivedAt == null ? null : DateTime.parse((l$archivedAt as String)),
+      deletedAt: l$deletedAt == null ? null : DateTime.parse((l$deletedAt as String)),
       inJar: (l$inJar as bool),
       cardItemsCollection: l$cardItemsCollection == null
           ? null
-          : QuerySlipDetailslipsCollectionedgesnodecardItemsCollection.fromJson(
+          : QuerySlipDetailslipsByPkcardItemsCollection.fromJson(
               (l$cardItemsCollection as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
@@ -678,9 +508,11 @@ class QuerySlipDetailslipsCollectionedgesnode {
 
   final DateTime? archivedAt;
 
+  final DateTime? deletedAt;
+
   final bool inJar;
 
-  final QuerySlipDetailslipsCollectionedgesnodecardItemsCollection? cardItemsCollection;
+  final QuerySlipDetailslipsByPkcardItemsCollection? cardItemsCollection;
 
   final String $__typename;
 
@@ -708,6 +540,10 @@ class QuerySlipDetailslipsCollectionedgesnode {
     _resultData['archivedAt'] = l$archivedAt == null
         ? null
         : ((v) => v.toUtc().toIso8601String())(l$archivedAt);
+    final l$deletedAt = deletedAt;
+    _resultData['deletedAt'] = l$deletedAt == null
+        ? null
+        : ((v) => v.toUtc().toIso8601String())(l$deletedAt);
     final l$inJar = inJar;
     _resultData['inJar'] = l$inJar;
     final l$cardItemsCollection = cardItemsCollection;
@@ -729,6 +565,7 @@ class QuerySlipDetailslipsCollectionedgesnode {
     final l$workArea = workArea;
     final l$createdAt = createdAt;
     final l$archivedAt = archivedAt;
+    final l$deletedAt = deletedAt;
     final l$inJar = inJar;
     final l$cardItemsCollection = cardItemsCollection;
     final l$$__typename = $__typename;
@@ -743,6 +580,7 @@ class QuerySlipDetailslipsCollectionedgesnode {
       l$workArea,
       l$createdAt,
       l$archivedAt,
+      l$deletedAt,
       l$inJar,
       l$cardItemsCollection,
       l$$__typename,
@@ -754,7 +592,7 @@ class QuerySlipDetailslipsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QuerySlipDetailslipsCollectionedgesnode || runtimeType != other.runtimeType) {
+    if (other is! QuerySlipDetailslipsByPk || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -807,6 +645,11 @@ class QuerySlipDetailslipsCollectionedgesnode {
     if (l$archivedAt != lOther$archivedAt) {
       return false;
     }
+    final l$deletedAt = deletedAt;
+    final lOther$deletedAt = other.deletedAt;
+    if (l$deletedAt != lOther$deletedAt) {
+      return false;
+    }
     final l$inJar = inJar;
     final lOther$inJar = other.inJar;
     if (l$inJar != lOther$inJar) {
@@ -826,21 +669,19 @@ class QuerySlipDetailslipsCollectionedgesnode {
   }
 }
 
-class QuerySlipDetailslipsCollectionedgesnodecardItemsCollection {
-  QuerySlipDetailslipsCollectionedgesnodecardItemsCollection({
+class QuerySlipDetailslipsByPkcardItemsCollection {
+  QuerySlipDetailslipsByPkcardItemsCollection({
     required this.edges,
     this.$__typename = 'CardItemsConnection',
   });
 
-  factory QuerySlipDetailslipsCollectionedgesnodecardItemsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory QuerySlipDetailslipsByPkcardItemsCollection.fromJson(Map<String, dynamic> json) {
     final l$edges = json['edges'];
     final l$$__typename = json['__typename'];
-    return QuerySlipDetailslipsCollectionedgesnodecardItemsCollection(
+    return QuerySlipDetailslipsByPkcardItemsCollection(
       edges: (l$edges as List<dynamic>)
           .map(
-            (e) => QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedges.fromJson(
+            (e) => QuerySlipDetailslipsByPkcardItemsCollectionedges.fromJson(
               (e as Map<String, dynamic>),
             ),
           )
@@ -849,7 +690,7 @@ class QuerySlipDetailslipsCollectionedgesnodecardItemsCollection {
     );
   }
 
-  final List<QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedges> edges;
+  final List<QuerySlipDetailslipsByPkcardItemsCollectionedges> edges;
 
   final String $__typename;
 
@@ -874,8 +715,7 @@ class QuerySlipDetailslipsCollectionedgesnodecardItemsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QuerySlipDetailslipsCollectionedgesnodecardItemsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! QuerySlipDetailslipsByPkcardItemsCollection || runtimeType != other.runtimeType) {
       return false;
     }
     final l$edges = edges;
@@ -899,26 +739,24 @@ class QuerySlipDetailslipsCollectionedgesnodecardItemsCollection {
   }
 }
 
-class QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedges {
-  QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedges({
+class QuerySlipDetailslipsByPkcardItemsCollectionedges {
+  QuerySlipDetailslipsByPkcardItemsCollectionedges({
     required this.node,
     this.$__typename = 'CardItemsEdge',
   });
 
-  factory QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedges.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory QuerySlipDetailslipsByPkcardItemsCollectionedges.fromJson(Map<String, dynamic> json) {
     final l$node = json['node'];
     final l$$__typename = json['__typename'];
-    return QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedges(
-      node: QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedgesnode.fromJson(
+    return QuerySlipDetailslipsByPkcardItemsCollectionedges(
+      node: QuerySlipDetailslipsByPkcardItemsCollectionedgesnode.fromJson(
         (l$node as Map<String, dynamic>),
       ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedgesnode node;
+  final QuerySlipDetailslipsByPkcardItemsCollectionedgesnode node;
 
   final String $__typename;
 
@@ -943,7 +781,7 @@ class QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedges {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedges ||
+    if (other is! QuerySlipDetailslipsByPkcardItemsCollectionedges ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -961,18 +799,16 @@ class QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedges {
   }
 }
 
-class QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedgesnode {
-  QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedgesnode({
+class QuerySlipDetailslipsByPkcardItemsCollectionedgesnode {
+  QuerySlipDetailslipsByPkcardItemsCollectionedgesnode({
     required this.id,
     this.$__typename = 'CardItems',
   });
 
-  factory QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedgesnode.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory QuerySlipDetailslipsByPkcardItemsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedgesnode(
+    return QuerySlipDetailslipsByPkcardItemsCollectionedgesnode(
       id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
@@ -1003,7 +839,7 @@ class QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QuerySlipDetailslipsCollectionedgesnodecardItemsCollectionedgesnode ||
+    if (other is! QuerySlipDetailslipsByPkcardItemsCollectionedgesnode ||
         runtimeType != other.runtimeType) {
       return false;
     }

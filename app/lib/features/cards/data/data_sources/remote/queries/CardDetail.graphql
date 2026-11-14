@@ -1,20 +1,16 @@
 query CardDetail($id: UUID!) {
-  cardsCollection(first: 1, filter: { id: { eq: $id } }) {
-    edges {
-      node {
-        ...CardFragment
-        authorId
-        author {
-          displayName
-        }
-        recipient {
-          displayName
-        }
-        reaction {
-          reaction
-          reply
-        }
-      }
+  cardsByPk(id: $id) {
+    ...CardFragment
+    authorId
+    author {
+      displayName
+    }
+    recipient {
+      displayName
+    }
+    reaction {
+      reaction
+      reply
     }
   }
 }
