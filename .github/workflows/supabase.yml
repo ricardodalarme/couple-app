@@ -1,0 +1,112 @@
+name: Supabase
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      database: ${{ steps.filter.outputs.database }}
+      functions: ${{ steps.filter.outputs.functions }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            database:
+              - "supabase/migrations/**"
+              - "supabase/schemas/**"
+              - "supabase/tests/**"
+              - "supabase/seed.sql"
+              - "supabase/config.toml"
+              - ".github/workflows/supabase.yml"
+            functions:
+              - "supabase/functions/**"
+              - "supabase/config.toml"
+              - ".github/workflows/supabase.yml"
+
+  database:
+    name: Database
+    needs: changes
+    if: needs.changes.outputs.database == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: supabase/setup-cli@v3
+        with:
+          version: 3.1.0
+
+      - name: Start the local stack
+        run: supabase start
+
+      - name: Replay migrations and seed
+        run: supabase db reset
+
+      - name: Run the database tests
+        run: supabase test db
+
+      - name: Check the schema files match the migrations
+        run: |
+          out=$(supabase db schema declarative sync --no-apply 2>&1) || { echo "$out"; exit 1; }
+          echo "$out" | tail -3
+          if ! echo "$out" | grep -q "No schema changes found"; then
+            echo "::error::supabase/schemas and supabase/migrations differ. Run 'supabase db schema declarative sync -f <name> --no-apply', review the migration and commit it."
+            git status --short supabase/migrations
+            exit 1
+          fi
+
+      - name: Check the security advisors
+        run: supabase db advisors --type security --level error --fail-on error
+
+      - name: Stop the stack
+        if: always()
+        run: supabase stop --no-backup
+
+  functions:
+    name: Edge Functions
+    needs: changes
+    if: needs.changes.outputs.functions == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Type-check the entrypoints
+        run: deno check supabase/functions/*/index.ts
+
+      - name: Run the tests
+        run: deno test --allow-env $(find supabase/functions -name '*_test.ts')
+
+  result:
+    name: Supabase result
+    needs: [database, functions]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail when a job failed or was cancelled
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1

@@ -23,23 +23,6 @@ permissions:
   pull-requests: read
 
 jobs:
-  changes:
-    runs-on: ubuntu-latest
-    outputs:
-      backend: ${{ steps.filter.outputs.backend }}
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-
-      - uses: dorny/paths-filter@v3
-        id: filter
-        with:
-          filters: |
-            backend:
-              - "supabase/**"
-              - ".github/workflows/code-check.yml"
-
   test:
     runs-on: ubuntu-latest
     steps:
@@ -64,35 +47,3 @@ jobs:
 
       - name: Analyze Localizations
         run: melos l10n:analyze
-
-  backend:
-    needs: changes
-    if: needs.changes.outputs.backend == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
-    steps:
-      - uses: actions/checkout@v7
-
-      - uses: supabase/setup-cli@v1
-        with:
-          version: 3.1.0
-
-      - name: Start the local stack
-        run: supabase start
-
-      - name: Replay migrations and seed
-        run: supabase db reset
-
-      - name: Run the database tests
-        run: supabase test db
-
-      - uses: denoland/setup-deno@v2
-        with:
-          deno-version: v2.x
-
-      - name: Run the edge function tests
-        run: deno test --allow-all $(find supabase/functions -name '*_test.ts')
-
-      - name: Stop the stack
-        if: always()
-        run: supabase stop --no-backup
