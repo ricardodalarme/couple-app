@@ -127,11 +127,11 @@ caller can select are exposed automatically; the starter's query is
 - **Page size.** pg_graphql silently caps a page at `max_rows` even when the
   query asks for more (`first: 100` returned 50 with the schema at 50). Every
   collection the app reads in one page needs a limit that covers it.
-- **Table settings live in one file**, `supabase/schemas/public/graphql_surface.sql`:
+- **Table settings live in one file**, `supabase/schemas/graphql/table_comments.sql`:
   `max_rows`, `totalCount`, `aggregate` and a description for every table and
   view. Do not scatter `comment on table ... @graphql(...)` across files, because a
   table has one comment and the last statement wins.
-- **Describe every public function** (`graphql_functions.sql`), and give caller
+- **Describe every public function** (`graphql/function_docs.sql`), and give caller
   relative flags as computed fields (`is_mine`, `is_shared`) instead of making the
   client fetch the user and couple ids. A computed field is a `stable` function
   taking the row type, runs as the caller, and must return `false`, not `null`,

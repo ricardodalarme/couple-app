@@ -16,7 +16,6 @@ major_version = 17
 
 [db.migrations]
 enabled = true
-schema_paths = ["./schemas/_cluster/*.sql", "./schemas/private/*.sql", "./schemas/public/*.sql"]
 
 [db.seed]
 enabled = true
