@@ -39,11 +39,12 @@ class const MoodRow({
           children: [
             for (var index = 0; index < options.length; index++)
               Expanded(
-                child: Center(
-                  child: AppPressable(
-                    onTap: () => onSelected(index),
-                    semanticLabel: options[index].label,
-                    borderRadius: BorderRadius.circular(AppRadius.sm),
+                child: AppPressable(
+                  onTap: () => onSelected(index),
+                  semanticLabel: options[index].label,
+                  borderRadius: BorderRadius.circular(AppRadius.sm),
+                  child: SizedBox(
+                    width: double.infinity,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [

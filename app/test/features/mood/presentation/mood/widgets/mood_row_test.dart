@@ -25,4 +25,27 @@ void main() {
     expect(selected, 1);
     expect(find.byType(BaseFace), findsNWidgets(2));
   });
+
+  testWidgets('every mood option takes the same width', (tester) async {
+    await tester.pumpApp(
+      MoodRow(
+        title: 'Como você está?',
+        options: const [
+          MoodRowOption(face: FaceKind.good, label: 'Feliz'),
+          MoodRowOption(face: FaceKind.thinking, label: 'Mais ou menos'),
+          MoodRowOption(face: FaceKind.sad, label: 'Triste'),
+        ],
+        onSelected: (_) {},
+      ),
+    );
+
+    final widths = [
+      for (final pressable in tester.widgetList<AppPressable>(find.byType(AppPressable)))
+        tester.getSize(find.byWidget(pressable)).width,
+    ];
+
+    expect(widths, hasLength(3));
+    expect(widths.toSet(), hasLength(1));
+    expect(find.byType(BaseFace), findsNWidgets(3));
+  });
 }
