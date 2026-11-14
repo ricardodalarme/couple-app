@@ -16,7 +16,7 @@ inventory:
 - `packages/common_ui/` shared non-design widgets (`BaseListView`, `InfiniteListView`, `SkeletonizerResourceWidget`, `WebView`)
   and the generated `Assets`
 
-To decide where a new reusable widget belongs, or whether to promote one, read [component-boundary.md](component-boundary.md).
+To decide where a new reusable widget belongs, or whether to promote one, read [component-boundary.md](references/component-boundary.md).
 
 ## Rules
 
@@ -66,7 +66,7 @@ Only `AppTheme.light(variant)` exists (variants `rose`, `blue`, `neutral`); ther
 
 ## Creating a component
 
-First apply the boundary test in [component-boundary.md](component-boundary.md); a scenario recipe (empty, error, page shell,
+First apply the boundary test in [component-boundary.md](references/component-boundary.md); a scenario recipe (empty, error, page shell,
 section, screen) is a shared widget, not a `Base*`. Then:
 
 1. Create `packages/design_system/lib/src/components/<group>/base_<name>.dart` with a primary constructor, reading `context.colors`,
