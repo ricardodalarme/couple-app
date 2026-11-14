@@ -15,8 +15,7 @@ create policy app_config_read_all on public.app_config for select to anon, authe
 -- Content catalog: every piece of editorial content, one row per language -----------------------------
 create table public.content_items (
   id uuid primary key default gen_random_uuid(),
-  kind text not null check (kind in ('question', 'daily_idea', 'date_idea', 'touch_card', 'spice_card', 'mission', 'me_or_you',
-    'how_well', 'never_have_we', 'program', 'lesson', 'mood_tip', 'repair_card', 'ritual_idea', 'holiday', 'notification')),
+  kind public.content_kind not null,
   slug text not null check (char_length(slug) between 1 and 80),
   locale text not null check (locale in ('pt-BR', 'en')),
   title text not null check (char_length(title) <= 300),
@@ -50,11 +49,11 @@ create policy content_items_read_published on public.content_items for select to
 -- Entitlements --------------------------------------------------------------------------------------
 create table public.entitlements (
   profile_id uuid primary key references public.profiles (id) on delete cascade,
-  plan text not null check (plan in ('plus_monthly', 'plus_annual', 'plus_gift')),
-  status text not null check (status in ('trialing', 'active', 'grace', 'billing_issue', 'expired', 'refunded')),
+  plan public.entitlement_plan not null,
+  status public.entitlement_status not null,
   expires_at timestamptz,
   will_renew boolean not null default true,
-  store text check (store in ('app_store', 'play_store', 'promo')),
+  store public.entitlement_store,
   updated_at timestamptz not null default now()
 );
 alter table public.entitlements enable row level security;
@@ -83,7 +82,8 @@ begin
   if not found then return false; end if;
   if not exists (select 1 from public.profiles where id = p_profile_id) then return false; end if;
   insert into public.entitlements as e (profile_id, plan, status, expires_at, will_renew, store, updated_at)
-  values (p_profile_id, p_plan, p_status, p_expires_at, coalesce(p_will_renew, true), p_store, p_event_at)
+  values (p_profile_id, p_plan::public.entitlement_plan, p_status::public.entitlement_status, p_expires_at, coalesce(p_will_renew, true),
+          p_store::public.entitlement_store, p_event_at)
   on conflict (profile_id) do update
     set plan = excluded.plan, status = excluded.status, expires_at = excluded.expires_at,
         will_renew = excluded.will_renew, store = excluded.store, updated_at = excluded.updated_at
@@ -106,8 +106,9 @@ language sql stable security definer set search_path = '' as $$
                                where me.profile_id = p_profile_id and me.left_at is null)));
 $$;
 create view public.plus_state with (security_invoker = true) as
-  select p.id as profile_id, false as has_plus, false as paid_by_partner, null::text as plan, null::text as status,
-         null::timestamptz as expires_at, 0 as slips_left_this_month, 0 as cards_left_this_month
+  select p.id as profile_id, false as has_plus, false as paid_by_partner, null::public.entitlement_plan as plan,
+         null::public.entitlement_status as status, null::timestamptz as expires_at, 0 as slips_left_this_month,
+         0 as cards_left_this_month
   from public.profiles p where false;
 grant select on public.plus_state to authenticated;
 
@@ -474,6 +475,7 @@ begin
 end $$;
 
 -- The same question (or idea) for both partners on the same day: a deterministic pick from the catalog.
+-- Compares as text so an unsupported kind still returns nothing instead of failing the cast.
 create function public.daily_content(kind text) returns public.content_items
 language sql stable security definer set search_path = '' as $$
   with me as (
@@ -484,7 +486,7 @@ language sql stable security definer set search_path = '' as $$
   pool as (
     select c.*, row_number() over (order by c.position, c.slug) - 1 as n, count(*) over () as total
     from public.content_items c, me
-    where c.kind = daily_content.kind and daily_content.kind in ('question', 'daily_idea', 'mission', 'touch_card')
+    where c.kind::text = daily_content.kind and daily_content.kind in ('question', 'daily_idea', 'mission', 'touch_card')
       and c.published and not c.plus_only and c.locale = me.locale)
   select p.id, p.kind, p.slug, p.locale, p.title, p.body, p.parent_slug, p.position, p.tags, p.month, p.day, p.country,
          p.plus_only, p.sensitive, p.published

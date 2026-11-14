@@ -4,6 +4,11 @@ create type public.avatar_kind as enum ('photo', 'illustration', 'initials');
 create type public.card_channel as enum ('link', 'app');
 create type public.card_kind as enum ('weekly', 'single');
 create type public.consent_kind as enum ('sensitive_data', 'analytics', 'marketing', 'ai', 'terms', 'sensitive_tracks');
+create type public.content_kind as enum ('question', 'daily_idea', 'date_idea', 'touch_card', 'spice_card', 'mission', 'me_or_you',
+  'how_well', 'never_have_we', 'program', 'lesson', 'mood_tip', 'repair_card', 'ritual_idea', 'holiday', 'notification');
+create type public.entitlement_plan as enum ('plus_monthly', 'plus_annual', 'plus_gift');
+create type public.entitlement_status as enum ('trialing', 'active', 'grace', 'billing_issue', 'expired', 'refunded');
+create type public.entitlement_store as enum ('app_store', 'play_store', 'promo');
 create type public.conversation_guide as enum ('free', 'transition', 'money', 'apology', 'difficult');
 create type public.cycle_day_kind as enum ('heavy', 'light', 'note');
 create type public.date_idea_status as enum ('saved', 'planned', 'done');
