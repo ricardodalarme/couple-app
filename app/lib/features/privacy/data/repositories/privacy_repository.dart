@@ -1,4 +1,5 @@
 import 'package:flutter_bloc_starter/features/privacy/data/data_sources/remote/privacy_data_source.dart';
+import 'package:flutter_bloc_starter/features/privacy/data/mappers/consent_kind_mapper.dart';
 import 'package:flutter_bloc_starter/features/privacy/data/models/consent.dart';
 import 'package:logger/logger.dart';
 
@@ -27,8 +28,8 @@ class PrivacyRepository({required final PrivacyDataSource _dataSource}) {
       final latest = {...defaults};
       final seen = <ConsentKind>{};
       for (final row in rows) {
-        final kind = ConsentKind.fromValue(row.kind);
-        if (kind == null || seen.contains(kind)) continue;
+        final kind = row.kind.toModel();
+        if (seen.contains(kind)) continue;
         seen.add(kind);
         latest[kind] = row.granted;
       }
@@ -42,7 +43,7 @@ class PrivacyRepository({required final PrivacyDataSource _dataSource}) {
 
   Future<void> setConsent(ConsentKind kind, {required bool granted}) async {
     try {
-      await _dataSource.grant(kind: kind.value, granted: granted, version: consentVersion);
+      await _dataSource.grant(kind: kind.toRemote(), granted: granted, version: consentVersion);
     } catch (e, stack) {
       _logger.error('Failed to save a consent', error: e, stackTrace: stack);
       rethrow;

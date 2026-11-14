@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/privacy/data/data_sources/remote/privacy_data_source.dart';
 import 'package:flutter_bloc_starter/features/privacy/data/data_sources/remote/queries/generated/MyConsents.graphql.dart';
 import 'package:flutter_bloc_starter/features/privacy/data/models/consent.dart';
@@ -7,16 +8,21 @@ import 'package:mocktail/mocktail.dart';
 
 class _MockPrivacyDataSource() extends Mock implements PrivacyDataSource;
 
-QueryMyConsentsconsentsCollectionedgesnode _row(String kind, bool granted, {DateTime? at}) =>
-    QueryMyConsentsconsentsCollectionedgesnode(
-      kind: kind,
-      granted: granted,
-      version: '1',
-      createdAt: at ?? DateTime(2026, 11, 10),
-    );
+QueryMyConsentsconsentsCollectionedgesnode _row(
+  EnumConsentKind kind,
+  bool granted, {
+  DateTime? at,
+}) => QueryMyConsentsconsentsCollectionedgesnode(
+  kind: kind,
+  granted: granted,
+  version: '1',
+  createdAt: at ?? DateTime(2026, 11, 10),
+);
 
 void main() {
   late PrivacyDataSource dataSource;
+
+  setUpAll(() => registerFallbackValue(EnumConsentKind.analytics));
 
   setUp(() => dataSource = _MockPrivacyDataSource());
 
@@ -25,9 +31,9 @@ void main() {
   test('the newest row per kind wins and missing kinds use the defaults', () async {
     when(() => dataSource.getConsents()).thenAnswer(
       (_) async => [
-        _row('analytics', false, at: DateTime(2026, 11, 10)),
-        _row('analytics', true, at: DateTime(2026, 11, 9)),
-        _row('marketing', true),
+        _row(EnumConsentKind.analytics, false, at: DateTime(2026, 11, 10)),
+        _row(EnumConsentKind.analytics, true, at: DateTime(2026, 11, 9)),
+        _row(EnumConsentKind.marketing, true),
       ],
     );
 
@@ -54,7 +60,7 @@ void main() {
 
     verify(
       () => dataSource.grant(
-        kind: 'marketing',
+        kind: EnumConsentKind.marketing,
         granted: false,
         version: PrivacyRepository.consentVersion,
       ),

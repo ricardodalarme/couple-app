@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -415,7 +417,7 @@ class QueryMyConsentsconsentsCollectionedgesnode {
     final l$createdAt = json['createdAt'];
     final l$$__typename = json['__typename'];
     return QueryMyConsentsconsentsCollectionedgesnode(
-      kind: (l$kind as String),
+      kind: fromJsonEnumConsentKind((l$kind as String)),
       granted: (l$granted as bool),
       version: (l$version as String),
       createdAt: DateTime.parse((l$createdAt as String)),
@@ -423,7 +425,7 @@ class QueryMyConsentsconsentsCollectionedgesnode {
     );
   }
 
-  final String kind;
+  final EnumConsentKind kind;
 
   final bool granted;
 
@@ -436,7 +438,7 @@ class QueryMyConsentsconsentsCollectionedgesnode {
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$kind = kind;
-    _resultData['kind'] = l$kind;
+    _resultData['kind'] = toJsonEnumConsentKind(l$kind);
     final l$granted = granted;
     _resultData['granted'] = l$granted;
     final l$version = version;

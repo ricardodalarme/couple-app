@@ -2,6 +2,7 @@ import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/help/data/data_sources/local/support_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/help/data/data_sources/remote/support_data_source.dart';
+import 'package:flutter_bloc_starter/features/help/data/mappers/support_topic_mapper.dart';
 import 'package:flutter_bloc_starter/features/help/data/models/pending_support_request.dart';
 import 'package:flutter_bloc_starter/features/help/data/models/support_topic.dart';
 import 'package:logger/logger.dart';
@@ -108,7 +109,7 @@ class SupportRepository({
   }
 
   Future<void> _send(PendingSupportRequest request) => _dataSource.createSupportRequest(
-    topic: request.topic.value,
+    topic: request.topic.toRemote(),
     message: request.message,
     replyEmail: request.replyEmail,
     appVersion: request.appVersion,

@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -6,7 +8,7 @@ import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationGrantConsent {
   factory VariablesMutationGrantConsent({
-    required String kind,
+    required EnumConsentKind kind,
     required bool granted,
     required String version,
   }) => VariablesMutationGrantConsent._({r'kind': kind, r'granted': granted, r'version': version});
@@ -16,7 +18,7 @@ class VariablesMutationGrantConsent {
   factory VariablesMutationGrantConsent.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$kind = data['kind'];
-    result$data['kind'] = (l$kind as String);
+    result$data['kind'] = fromJsonEnumConsentKind((l$kind as String));
     final l$granted = data['granted'];
     result$data['granted'] = (l$granted as bool);
     final l$version = data['version'];
@@ -26,7 +28,7 @@ class VariablesMutationGrantConsent {
 
   Map<String, dynamic> _$data;
 
-  String get kind => (_$data['kind'] as String);
+  EnumConsentKind get kind => (_$data['kind'] as EnumConsentKind);
 
   bool get granted => (_$data['granted'] as bool);
 
@@ -35,7 +37,7 @@ class VariablesMutationGrantConsent {
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$kind = kind;
-    result$data['kind'] = l$kind;
+    result$data['kind'] = toJsonEnumConsentKind(l$kind);
     final l$granted = granted;
     result$data['granted'] = l$granted;
     final l$version = version;
@@ -144,7 +146,7 @@ const documentNodeMutationGrantConsent = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ConsentKind'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

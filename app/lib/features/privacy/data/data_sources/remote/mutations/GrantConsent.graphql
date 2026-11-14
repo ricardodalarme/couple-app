@@ -1,4 +1,4 @@
-mutation GrantConsent($kind: String!, $granted: Boolean!, $version: String!) {
+mutation GrantConsent($kind: ConsentKind!, $granted: Boolean!, $version: String!) {
   insertIntoConsentsCollection(
     objects: [{ kind: $kind, granted: $granted, version: $version }]
   ) {

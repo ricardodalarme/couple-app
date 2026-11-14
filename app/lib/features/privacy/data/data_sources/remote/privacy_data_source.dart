@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/privacy/data/data_sources/remote/mutations/generated/GrantConsent.graphql.dart';
 import 'package:flutter_bloc_starter/features/privacy/data/data_sources/remote/queries/generated/MyConsents.graphql.dart';
 import 'package:network/network.dart';
@@ -13,7 +14,11 @@ class PrivacyDataSource({required final GQLClient _client}) {
     return [for (final edge in data.edges) edge.node];
   }
 
-  Future<void> grant({required String kind, required bool granted, required String version}) async {
+  Future<void> grant({
+    required EnumConsentKind kind,
+    required bool granted,
+    required String version,
+  }) async {
     final response = await _client.mutate(
       OptionsMutationGrantConsent(
         variables: VariablesMutationGrantConsent(kind: kind, granted: granted, version: version),
