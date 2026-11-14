@@ -24,7 +24,13 @@ migrate_working_dir
 build
 .flutter-plugins
 .flutter-plugins-dependencies
+.test_optimizer.dart
 *.test_optimizer.dart
+
+# Test coverage
+coverage/
+lcov.info
+*.lcov
 
 # Melos
 pubspec_overrides.yaml
