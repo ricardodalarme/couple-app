@@ -1,363 +1,156 @@
 ---
 name: testing
-description: Write and run tests for the app and packages — cubit tests with blocTest and mocktail for one-shot repository reads, state tests only where copyWith encodes behaviour, widget tests with MockCubit and the pumpApp helper, and package tests with package:test. Use when adding or fixing tests, when the user says "write tests", "add coverage", "spec", or "test this cubit/widget", or when a code change needs verification.
+description: Writes and runs tests for the app and packages. Covers cubit tests with blocTest and mocktail, widget tests with MockCubit and pumpApp, data source, repository, model and mapper tests, form validation and time tests, and package tests. Use when adding or fixing tests, when asked to write tests or add coverage, or when a change needs verification.
 ---
 
 # Testing
 
-Tests mirror the source tree: `app/test/features/<feature>/...` mirrors
-`app/lib/features/<feature>/...`. A state test is optional and sits next to its
-cubit test; page and widget tests live in the matching presentation folder.
-
-The canonical feature is `post`; these are the reference tests:
+Tests mirror the source tree and there is **one test file per real file**: `app/lib/features/<f>/<path>/<name>.dart` is tested in
+`app/test/features/<f>/<path>/<name>_test.dart`. Never combine several files in one test. `features/gifts` is the reference.
 
 ```text
-app/test/features/post/presentation/list/cubit/post_list_cubit_test.dart
-app/test/features/post/presentation/list/cubit/post_list_state_test.dart
-app/test/features/post/presentation/list/posts_list_page_test.dart
-app/test/features/post/presentation/list/widgets/post_card_test.dart
-packages/common_ui/test/src/widgets/skeletonizer_resource_widget_test.dart
+test/features/gifts/
+├── data/data_sources/remote/gifts_data_source_test.dart
+├── data/mappers/{gift_mapper_test.dart, gift_enum_mapper_test.dart}
+├── data/models/gift_idea_test.dart
+├── data/repositories/gifts_repository_test.dart
+└── presentation/gifts/{cubit/gifts_cubit_test.dart, gifts_page_test.dart}
 ```
 
 ## Commands
 
 ```bash
-melos test                     # whole workspace
-cd app && flutter test         # app only
-cd app && flutter test test/features/post/presentation/list/cubit/post_list_cubit_test.dart
-cd app && flutter test test/path/file_test.dart --plain-name "initial state is correct"
-cd packages/core && dart test              # pure Dart package
-cd packages/design_system && flutter test             # Flutter package
+melos test                                          # every package, random order
+cd app && flutter test test/features/gifts          # a folder
+cd app && flutter test path/file_test.dart --plain-name "initial state"
+cd packages/core && dart test                       # pure Dart package
 ```
+
+New test files are picked up automatically; there is no registration list.
 
 ## Tools
 
-- `flutter_test` + `bloc_test` + `mocktail` (no mockito, no golden tests).
-- Mocks are primary-constructor classes:
-  `class MockPostRepository() extends Mock implements PostRepository;` and
-  `class MockPostsListCubit() extends MockCubit<PostsListState> implements PostsListCubit;`.
-- Repositories, data sources, and SDK wrappers are mocked — never the network
-  client or a real plugin.
-- `app/test/test_helpers/pump_app.dart` provides `tester.pumpApp(widget)`, which
-  wraps the widget in `TranslationProvider` + `AppThemeHost` + `MaterialApp`, so
-  l10n and the theme work.
+- `flutter_test`, `bloc_test` and `mocktail`. No mockito, no generated mocks, no golden tests.
+- Hand-write mocks as primary-constructor classes: `class _MockGiftsRepository() extends Mock implements GiftsRepository;` and
+  `class _MockGiftsCubit() extends MockCubit<GiftsState> implements GiftsCubit;`.
+- `tester.pumpApp(widget)` (`app/test/test_helpers/pump_app.dart`) wraps the widget in `TranslationProvider`, the theme and
+  `BaseApp`. Never use `pumpWidget` alone: l10n and the theme break.
+- Mock a repository for cubit and page tests, and an SDK wrapper for service tests. Data source tests stub `GQLClient` at the
+  boundary (see below); never mock a platform channel.
+- mocktail needs a fallback value for each custom type used with `any(named: ...)`. They are registered once in
+  `app/test/flutter_test_config.dart`; add a `registerFallbackValue(...)` there when a mock takes a new enum or model.
 
-## Cubit test template
-
-`PostsListCubit.getPosts()` is a one-shot read: it emits `Loading`, awaits
-`PostRepository.getPosts()`, then emits `Success(posts)` or
-`Failure.fromObject(exception)`.
+## Cubit
 
 ```dart
-import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/post/data/models/post.dart';
-import 'package:flutter_bloc_starter/features/post/data/repositories/post_repository.dart';
-import 'package:flutter_bloc_starter/features/post/presentation/list/cubit/posts_list_cubit.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-
-class MockPostRepository() extends Mock implements PostRepository;
-
 void main() {
-  late PostRepository postRepository;
-  late PostsListCubit postsListCubit;
-
-  const posts = [Post.fake];
-  const failure = LocalizedException(l10nKey: 'other');
+  late GiftsRepository repository;
+  late GiftsCubit cubit;
 
   setUp(() {
-    postRepository = MockPostRepository();
-    postsListCubit = PostsListCubit(postRepository: postRepository);
+    repository = _MockGiftsRepository();
+    cubit = GiftsCubit(giftsRepository: repository);
   });
+  tearDown(() => cubit.close());
 
-  tearDown(() => postsListCubit.close());
+  test('starts loading', () => expect(cubit.state, const GiftsState()));
 
-  test('initial state is correct', () {
-    expect(postsListCubit.state, const PostsListState(posts: Loading()));
-  });
-
-  blocTest<PostsListCubit, PostsListState>(
-    'emits Loading then Success when the repository returns posts',
+  blocTest<GiftsCubit, GiftsState>(
+    'emits Loading then Success',
     build: () {
-      when(() => postRepository.getPosts()).thenAnswer((_) async => posts);
-      return postsListCubit;
+      when(repository.getGiftIdeas).thenAnswer((_) async => [gift]);
+      return cubit;
     },
-    act: (cubit) => cubit.getPosts(),
-    expect: () => [
-      const PostsListState(posts: Loading()),
-      const PostsListState(posts: Success(posts)),
-    ],
+    act: (cubit) => cubit.load(),
+    expect: () => [const GiftsState(gifts: Success([gift]))],
   );
 
-  blocTest<PostsListCubit, PostsListState>(
+  blocTest<GiftsCubit, GiftsState>(
     'emits Failure when the repository throws',
     build: () {
-      when(() => postRepository.getPosts()).thenThrow(failure);
-      return postsListCubit;
+      when(repository.getGiftIdeas).thenThrow(const LocalizedException(l10nKey: 'other'));
+      return cubit;
     },
-    act: (cubit) => cubit.getPosts(),
-    expect: () => [
-      const PostsListState(posts: Loading()),
-      const PostsListState(posts: Failure(failure)),
-    ],
+    act: (cubit) => cubit.load(),
+    expect: () => [const GiftsState(gifts: Failure(LocalizedException(l10nKey: 'other')))],
   );
 }
 ```
 
-Notes:
+- Stub with `thenAnswer((_) async => ...)` or `thenThrow(...)`. Reuse one `const` exception in the stub and in `expect`: the exception has
+  no value equality.
+- `blocTest` records only what `act` emits; assert the initial state with a plain `test`. If the cubit skips `Loading` (a refresh that
+  keeps a `Success`), expect no `Loading`.
+- States need Equatable `props` for `==` to work. Close every cubit in `tearDown`.
+- Verify side effects explicitly: `verify(() => repository.add(...)).called(1)`, `verifyNever(...)` when validation blocks a write.
 
-- Stub the repository with `thenAnswer((_) async => …)` for the success path and
-  `thenThrow(…)` for the failure path; the cubit awaits the read, so both work.
-- `Failure.fromObject` keeps a `LocalizedException` and maps anything else to
-  `Failure(const UnknownException())`. Reuse one `const` exception instance in
-  the stub and in `expect`, because the exception has no value equality.
-- `blocTest` compares states with `==`, so every state class needs Equatable
-  `props`, and expectations should be `const` where the resource holds no
-  non-const value.
-- A retry after a `Failure` re-emits `Loading`; a repeat call while the state is
-  already `Success` still emits `Loading` first, then the new result.
-- `blocTest` consumes only the states emitted during `act`; the initial state is
-  asserted with a plain `test` + `expect` as above.
-- Flat `test`/`blocTest` calls in `main()` are enough; nest related cases when a
-  file grows.
+### States
 
-## State test template
+Test a state class only when `copyWith` or a getter carries behavior a cubit test cannot see: a `clearX` flag that nulls a field, a
+nullable reset, a derived getter with branches. Do not test the default constructor, field passthrough or Equatable.
 
-A state class does not need its own test by default: `blocTest` already asserts
-the states a cubit emits, and `props`/`copyWith` passthrough is visible there.
-Write a `<name>_state_test.dart` only when `copyWith` carries behaviour a cubit
-test cannot see:
+### Forms
 
-- a `clearX` flag that nulls a field,
-- a nullable reset,
-- a derived getter with branching (e.g. `isVisible`, `canSend`).
+Validation lives in the cubit, so test it there, without a widget: a required field left empty emits its error and writes nothing
+(`verifyNever`), an over-limit value reports `tooLong`, typing after a failed submit clears the error, and a valid form writes the trimmed
+value. Reference: `test/features/slips/presentation/slip_kind/cubit/`. A widget test needs one case: the submit button shows the field
+error and does not pop. `BaseTextArea` only renders `errorText` when `hasError` is true.
 
-Do not test the default constructor, plain field passthrough, or `Equatable`
-equality.
+## Widgets and pages
 
 ```dart
-import 'package:flutter_bloc_starter/features/slips/presentation/need/cubit/need_cubit.dart';
-import 'package:flutter_test/flutter_test.dart';
+setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
 
-void main() {
-  const state = NeedState(need: 'sleep');
-
-  test('clearNeed nulls the field', () {
-    expect(state.copyWith(clearNeed: true).need, isNull);
-  });
-
-  test('changing another field keeps the need', () {
-    expect(state.copyWith(sendAction: const Loading()).need, 'sleep');
-  });
+Future<GiftsCubit> pumpGifts(WidgetTester tester) async {
+  final cubit = GiftsCubit(giftsRepository: repository); // the real cubit over a mocked repository
+  addTearDown(cubit.close);
+  await cubit.load();
+  await tester.pumpApp(BlocProvider.value(value: cubit, child: const GiftsPage()));
+  await tester.pump();
+  return cubit;
 }
-```
 
-## Form validation tests
-
-Validation lives in the cubit, so assert it there — no widget needed:
-
-- submitting with a required field empty emits that field's error
-  (`expect(state.title.error, NonEmptyValidationError.empty)`) and performs no
-  write (`verifyNever(() => repository.add(...))`);
-- an over-limit value reports the length error (`MaxLengthValidationError.tooLong`);
-- typing after a failed submit clears the error, because the setter emits a new
-  `FormInput(value)`;
-- a valid form writes through with the trimmed value.
-
-Widget tests need one case: pressing the submit button shows the field error and
-does not pop/save. `BaseTextArea` only renders `errorText` when `hasError: true`.
-
-Canonical: `app/test/features/memories/presentation/memories/cubit/memories_cubit_test.dart`.
-
-## Widget test template
-
-```dart
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/post/presentation/list/cubit/posts_list_cubit.dart';
-import 'package:flutter_bloc_starter/features/post/presentation/list/posts_list_page.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-
-import '../../../../test_helpers/pump_app.dart';
-
-class MockPostsListCubit() extends MockCubit<PostsListState> implements PostsListCubit;
-
-void main() {
-  late PostsListCubit postsListCubit;
-
-  setUp(() {
-    postsListCubit = MockPostsListCubit();
-    when(() => postsListCubit.state).thenReturn(const PostsListState());
-  });
-
-  testWidgets('renders page', (tester) async {
-    await tester.pumpApp(
-      BlocProvider.value(value: postsListCubit, child: const PostsListPage()),
-    );
-    await tester.pump();
-
-    expect(find.byType(PostsListPage), findsOneWidget);
-  });
-}
-```
-
-- `when(() => mockCubit.state).thenReturn(...)` is required for `MockCubit`; stub
-  it again with `Success(...)` or `Failure(...)` to cover those branches.
-- Stub cubit methods before tapping anything that calls them, for example
-  `when(() => cubit.getPosts()).thenAnswer((_) async {})`.
-- `BlocProvider.value` is used **only in tests** — production pages create their
-  cubit in `wrappedRoute`.
-- `await tester.pump()` flushes the first frame. Avoid `pumpAndSettle` unless
-  animations really settle: the `Skeletonizer` loading state shimmers forever.
-- Widget-level tests read the rendered output; assert text and component types,
-  not cubit internals.
-
-A leaf widget test needs no cubit at all:
-
-```dart
-void main() {
-  testWidgets('shows the post content', (tester) async {
-    const post = Post(id: '1', title: 'Test Title', body: 'Test Body');
-
-    await tester.pumpApp(const PostCard(post: post));
-
-    expect(find.text('Test Title'), findsOneWidget);
-    expect(find.text('Test Body'), findsOneWidget);
-  });
-}
-```
-
-## Resource widget test
-
-`SkeletonizerResourceWidget<T>` collapses the four `Resource` cases into one
-widget, so a widget test covers each case by pumping a different resource. It
-lives at
-`packages/common_ui/test/src/widgets/skeletonizer_resource_widget_test.dart`.
-
-```dart
-import 'package:core/core.dart';
-import 'package:common_ui/common_ui.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:design_system/design_system.dart';
-
-import '../../../../test_helpers/pump_app.dart';
-
-void main() {
-  const fake = ['fake item'];
-  const failure = LocalizedException(l10nKey: 'other');
-
-  SkeletonizerResourceWidget<List<String>> build(Resource<List<String>> resource) {
-    return SkeletonizerResourceWidget<List<String>>(
-      resource,
-      fakeValue: fake,
-      successBuilder: (value) => Text('items: ${value.length}'),
-      failureBuilder: (exception) => Text('failed: ${exception.l10nKey}'),
-    );
-  }
-
-  testWidgets('renders real content on Success', (tester) async {
-    await tester.pumpApp(build(const Success(['a', 'b'])));
-
-    expect(find.text('items: 2'), findsOneWidget);
-  });
-
-  testWidgets('renders the failure builder on Failure', (tester) async {
-    await tester.pumpApp(build(const Failure(failure)));
-
-    expect(find.text('failed: other'), findsOneWidget);
-  });
-
-  testWidgets('renders the fake value under Skeletonizer on Loading', (tester) async {
-    await tester.pumpApp(build(const Loading()));
-
-    expect(tester.widget<Skeletonizer>(find.byType(Skeletonizer)).enabled, isTrue);
-    expect(find.text('items: 1'), findsOneWidget);
-  });
-
-  testWidgets('renders nothing on Initial', (tester) async {
-    await tester.pumpApp(build(const Initial()));
-
-    expect(find.byType(Text), findsNothing);
-  });
-}
-```
-
-- Assert the builder output by text or type; the fake value only appears while
-  loading, and `Success` must show the real value. `Skeletonizer` wraps both, so
-  check its `enabled` flag rather than only its presence.
-- Loading content is a live region: wrap the assertions in
-  `final handle = tester.ensureSemantics();` … `handle.dispose();` and match the
-  semantics label (`context.l10n.common.loading`) when you need to lock the
-  announcement. The four visual state assertions above are the minimum.
-- `Skeletonizer` shimmer animates while enabled, so use `pumpApp` without
-  `pumpAndSettle`.
-
-## Package tests
-
-- Pure Dart packages (`core`, `form_inputs`, `formatters`, `logger`, `network`):
-  `package:test`, plain `test()` functions, no Flutter binding.
-- Flutter packages (`design_system`, `services/*`): `flutter_test` + `mocktail`;
-  inject SDK mocks through the constructor's optional parameter
-  (`FirebaseAnalyticsService(MockFirebaseAnalytics())`,
-  `SecureStorageServiceImpl(MockFlutterSecureStorage())`).
-- `design_system` tests use `test/helpers/widget_host.dart`, which wraps a widget in
-  `MaterialApp` + `AppThemed` (or a plain host) at the rose variant.
-- Some packages have no tests yet — adding the first `test/<topic>_service_test.dart`
-  following the SDK-mock pattern is fine.
-
-## Mappers and enums
-
-- **One test file per real file.** A mapper is tested in its own file that mirrors
-  `lib`: `lib/features/lists/data/mappers/list_enum_mapper.dart` →
-  `test/features/lists/data/mappers/list_enum_mapper_test.dart`. Do not group
-  several mappers in one shared test.
-- Assert that every domain value survives `value.toRemote().toModel()`, that each
-  stored spelling is right for multi-word values, and what each `$unknown` does.
-  Only test the directions the mapper has.
-- Fixtures use enums, never string literals. A comparison like
-  `expect(item.kind, 'travel')` compiles but fails: use `ListKind.travel`.
-- mocktail needs a fallback value for each enum type used with `any(named: ...)`.
-  They are registered once, in `test/flutter_test_config.dart`. When you add an
-  enum that a mock takes as an argument, add a `registerFallbackValue(...)` line
-  there instead of in each test.
-- Test an unknown server value with the generated `$unknown` member
-  (`EnumMood.$unknown`), not an invented string.
-
-## Time
-
-Time comes from `package:clock`, never from `DateTime.now()`.
-
-- Production code calls `clock.now()`; this is why models, cubits and services
-  take no `DateTime` for "now".
-- A test that depends on the current time wraps its body in
-  `withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () { ... })` and derives
-  every fixture and expectation from that instant. Never assert against a
-  wall-clock value and never offset from `DateTime.now()` (a run near midnight
-  or across DST will flip it).
-- Timers still use `FakeAsync`/`blocTest`'s own fake clock; `withClock` only
-  fixes `clock.now()`.
-
-```dart
-test('yesterday is relative to the injected clock', () {
-  withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () {
-    final item = LearnedItem(createdAt: clock.now().subtract(const Duration(hours: 25)));
-    expect(labelFor(item), 'yesterday');
-  });
+testWidgets('shows my wishes and my partner\'s', (tester) async {
+  await pumpGifts(tester);
+  expect(find.text('Livro'), findsOneWidget);
 });
 ```
 
+- Provide the cubit with `BlocProvider.value`; never initialize the injector. Prefer the real cubit over a mocked repository, so the
+  test covers state to UI. Use `MockCubit` (with `when(() => cubit.state).thenReturn(...)`) only to isolate a widget from cubit logic.
+- Set the locale (`LocaleSettings.setLocaleSync(AppLocale.pt)`) and assert the Portuguese copy.
+- Do not `pumpAndSettle` on a loading state: the skeleton shimmer never settles.
+- `SkeletonizerResourceWidget` has its own test (`packages/common_ui/test/src/widgets/`) for `Initial`, `Loading`, `Success` and
+  `Failure`; a page test only checks its own builders.
+- A test that must prove "no platform calls" (haptics, notifications) installs a mock method-call handler on
+  `SystemChannels.platform` and removes it in `addTearDown`.
+
+## Data layer
+
+- **Data source:** pass a stub `GQLClient` that returns a `QueryResult` (see `_StubGQLClient` and `_CapturingGQLClient` in
+  `gifts_data_source_test.dart`) and assert the variables sent and what is returned. Capture the options to check the fetch policy.
+- **Repository:** mock the data source; assert mapping, filtering, trimming and that failures are logged and rethrown.
+- **Model and mapper:** plain `test`s on `const` values.
+- **Enum mappers:** every domain value survives `value.toRemote().toModel()`, multi-word values have the right spelling, and each
+  `$unknown` behavior is asserted using the generated member (`EnumMood.$unknown`), never an invented string. Test only the
+  directions the mapper has. Fixtures use enums, never string literals.
+
+## Time
+
+Production code reads time from `package:clock` (`clock.now()`), never `DateTime.now()`. A test that depends on now wraps its body in
+`withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () { ... })` and derives every fixture from that instant; never assert against the
+wall clock or offset from `DateTime.now()`. Timers still use `FakeAsync` or `blocTest`'s clock.
+
+## Packages
+
+- Pure Dart packages (`core`, `form_inputs`, `formatters`, `logger`, `network`): `package:test`, no Flutter binding.
+- Flutter packages (`design_system`, `services/*`): `flutter_test` and `mocktail`, with SDK mocks injected through the constructor
+  (`FirebaseAnalyticsService(MockFirebaseAnalytics())`). `design_system` widget tests use `test/helpers/widget_host.dart`.
+- A package without tests can get its first `test/<topic>_test.dart` using the same pattern.
+
 ## Gotchas
 
-- Always `tearDown(() => cubit.close())` — leaked cubits fail the suite.
-- Never mock the network client or a platform channel; mock the repository or the
-  SDK wrapper one level in.
-- `app/test/analysis_options.yaml` extends the root config and disables
-  `avoid_redundant_argument_values`; keep the same conventions there.
-- Use `Success(null)` (not `Success<void>(null)`) for void resources.
-- Widget tests must pump with `pumpApp`; `pumpWidget` alone breaks l10n and the
-  theme.
-- Do not generate mocks or add codegen for tests; hand-write them with
-  `mocktail`.
-- New test files are picked up by `melos test` automatically (workspace `melos exec`) —
-  there is no test registration list.
+- `app/test/analysis_options.yaml` extends the root config and relaxes `avoid_redundant_argument_values`.
+- Use `Success(null)` for void resources.
+- Wrap a loading assertion about announcements in `tester.ensureSemantics()`; the label is `context.l10n.common.loading`.
+- Do not generate mocks or add codegen for tests.
