@@ -1,12 +1,14 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 
 /// Device-local preferences, including the introduction answers kept until sign-in.
 final class const Settings({
   final bool useBiometrics = false,
   final String themeVariant = 'rose',
   final int introStep = 0,
-  final String? introPhase,
-  final List<String> introGoals = const [],
+  final RelationshipPhase? introPhase,
+  final List<RelationshipGoal> introGoals = const [],
   final bool introUploaded = false,
   final String locale = 'pt',
 }) with Equatable {
@@ -16,8 +18,11 @@ final class const Settings({
     useBiometrics: map['useBiometrics'] as bool? ?? false,
     themeVariant: map['themeVariant'] as String? ?? 'rose',
     introStep: map['introStep'] as int? ?? 0,
-    introPhase: map['introPhase'] as String?,
-    introGoals: (map['introGoals'] as List<dynamic>?)?.cast<String>() ?? const [],
+    introPhase: RelationshipPhase.values.asNameMap()[map['introPhase'] as String?],
+    introGoals: [
+      for (final name in (map['introGoals'] as List<dynamic>?) ?? const [])
+        ?RelationshipGoal.values.asNameMap()[name],
+    ],
     introUploaded: map['introUploaded'] as bool? ?? false,
     locale: map['locale'] as String? ?? 'pt',
   );
@@ -30,8 +35,8 @@ final class const Settings({
     bool? useBiometrics,
     String? themeVariant,
     int? introStep,
-    String? introPhase,
-    List<String>? introGoals,
+    RelationshipPhase? introPhase,
+    List<RelationshipGoal>? introGoals,
     bool? introUploaded,
     String? locale,
   }) => Settings(
@@ -48,8 +53,8 @@ final class const Settings({
     'useBiometrics': useBiometrics,
     'themeVariant': themeVariant,
     'introStep': introStep,
-    'introPhase': introPhase,
-    'introGoals': introGoals,
+    'introPhase': introPhase?.name,
+    'introGoals': [for (final goal in introGoals) goal.name],
     'introUploaded': introUploaded,
     'locale': locale,
   };

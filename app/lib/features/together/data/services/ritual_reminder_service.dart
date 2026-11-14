@@ -16,7 +16,7 @@ class RitualReminderService({
         if (ritual.hasReminder)
           RitualSchedule(
             id: ritual.id,
-            cadence: ritual.cadence,
+            cadence: ritual.cadence.name,
             weekday: ritual.needsWeekday ? ritual.weekday : null,
             time: TimeOfDayValue(hour: ritual.hour, minute: 0),
           ),

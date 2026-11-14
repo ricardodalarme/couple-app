@@ -97,7 +97,7 @@ class const _RitualTile({required final Ritual ritual}) extends StatelessWidget 
   Widget build(BuildContext context) {
     final l10n = context.l10n.rituals;
     final cubit = context.read<RitualsCubit>();
-    final cadence = l10n.cadences.selectOrFallback(ritual.cadence);
+    final cadence = l10n.cadences.selectOrFallback(ritual.cadence.name);
     final subtitle = ritual.needsWeekday && ritual.weekday != null
         ? l10n.cadenceOn(cadence: cadence, weekday: l10n.weekdays[ritual.weekday!])
         : cadence;

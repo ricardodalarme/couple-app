@@ -4,6 +4,7 @@ import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:uuid/uuid.dart';
@@ -18,18 +19,6 @@ const int slipKindNoteMaxLength = 200;
 
 /// The slip kinds this screen writes, matching the server kinds.
 const List<String> slipKinds = ['specific', 'if_then', 'invisible'];
-
-/// The areas of invisible work, matching the server work areas.
-const List<String> slipWorkAreas = [
-  'planning',
-  'dates',
-  'kitchen',
-  'cleaning',
-  'kids',
-  'emotional',
-  'finances',
-  'other',
-];
 
 class SlipKindCubit({required final SlipRepository _slipRepository}) extends Cubit<SlipKindState> {
   this : super(const SlipKindState());
@@ -58,7 +47,7 @@ class SlipKindCubit({required final SlipRepository _slipRepository}) extends Cub
 
   void onPlanChanged(String plan) => emit(state.copyWith(plan: FormInput(plan)));
 
-  void onWorkAreaToggled(String area) {
+  void onWorkAreaToggled(SlipWorkArea area) {
     final isSame = state.workArea == area;
     emit(state.copyWith(workArea: isSame ? null : area, clearWorkArea: isSame));
   }

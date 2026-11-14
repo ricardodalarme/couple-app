@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/ritual.dart';
+import 'package:flutter_bloc_starter/features/together/data/models/ritual_cadence.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/services/ritual_reminder_service.dart';
 import 'package:uuid/uuid.dart';
@@ -16,7 +17,7 @@ class RitualEditCubit({
   this
     : super(
         RitualEditState(
-          ritual: const Ritual(id: '', title: '', cadence: 'weekly', weekday: 5),
+          ritual: const Ritual(id: '', title: '', cadence: RitualCadence.weekly, weekday: 5),
         ),
       );
 
@@ -27,7 +28,7 @@ class RitualEditCubit({
     if (id == null) {
       emit(
         RitualEditState(
-          ritual: Ritual(id: _uuid.v4(), title: '', cadence: 'weekly', weekday: 5),
+          ritual: Ritual(id: _uuid.v4(), title: '', cadence: RitualCadence.weekly, weekday: 5),
           isNew: true,
         ),
       );
@@ -52,7 +53,8 @@ class RitualEditCubit({
 
   void onTitleChanged(String title) => _edit((ritual) => ritual.copyWith(title: title));
 
-  void onCadenceChosen(String cadence) => _edit((ritual) => ritual.copyWith(cadence: cadence));
+  void onCadenceChosen(RitualCadence cadence) =>
+      _edit((ritual) => ritual.copyWith(cadence: cadence));
 
   void onWeekdayChosen(int weekday) => _edit((ritual) => ritual.copyWith(weekday: weekday));
 

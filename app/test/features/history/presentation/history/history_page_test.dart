@@ -6,6 +6,7 @@ import 'package:flutter_bloc_starter/features/history/data/models/history_models
 import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/history/cubit/history_cubit.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/history/history_page.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';

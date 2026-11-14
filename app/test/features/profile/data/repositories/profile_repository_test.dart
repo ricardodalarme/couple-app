@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/UpdateHeavyDaySharing.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/profile_data_source.dart';
@@ -36,7 +37,10 @@ void main() {
   test('the heavy-day setting is saved with its server value', () async {
     when(
       () => dataSource.updateHeavyDaySharing(
-        VariablesMutationUpdateHeavyDaySharing(profileId: 'p1', sharing: 'always'),
+        VariablesMutationUpdateHeavyDaySharing(
+          profileId: 'p1',
+          sharing: EnumHeavyDaySharing.always,
+        ),
       ),
     ).thenAnswer((_) async => 1);
 
@@ -44,7 +48,10 @@ void main() {
 
     verify(
       () => dataSource.updateHeavyDaySharing(
-        VariablesMutationUpdateHeavyDaySharing(profileId: 'p1', sharing: 'always'),
+        VariablesMutationUpdateHeavyDaySharing(
+          profileId: 'p1',
+          sharing: EnumHeavyDaySharing.always,
+        ),
       ),
     ).called(1);
   });

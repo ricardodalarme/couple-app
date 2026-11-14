@@ -1,7 +1,9 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/_shared/data/data_sources/local/device_marker_store.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/devices/data/data_sources/remote/devices_data_source.dart';
 import 'package:flutter_bloc_starter/features/devices/data/data_sources/remote/queries/generated/MyDevices.graphql.dart';
+import 'package:flutter_bloc_starter/features/devices/data/models/device_platform.dart';
 import 'package:flutter_bloc_starter/features/devices/data/repositories/devices_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -26,7 +28,7 @@ void main() {
 
   QueryMyDevicesdevicesCollectionedgesnode row({
     required String id,
-    required String platform,
+    required EnumDevicePlatform platform,
     required DateTime lastSeenAt,
     String? label,
   }) => QueryMyDevicesdevicesCollectionedgesnode(
@@ -42,8 +44,13 @@ void main() {
     when(() => markerStore.readMarker()).thenAnswer((_) async => marker);
     when(() => dataSource.getDevices()).thenAnswer(
       (_) async => [
-        row(id: 'd1', platform: 'ios', label: 'iPhone 14#$marker', lastSeenAt: newest),
-        row(id: 'd2', platform: 'android', lastSeenAt: oldest),
+        row(
+          id: 'd1',
+          platform: EnumDevicePlatform.ios,
+          label: 'iPhone 14#$marker',
+          lastSeenAt: newest,
+        ),
+        row(id: 'd2', platform: EnumDevicePlatform.android, lastSeenAt: oldest),
       ],
     );
 
@@ -51,7 +58,7 @@ void main() {
 
     expect(devices, hasLength(2));
     expect(devices.first.id, 'd1');
-    expect(devices.first.platform, 'ios');
+    expect(devices.first.platform, DevicePlatform.ios);
     expect(devices.first.label, 'iPhone 14');
     expect(devices.first.lastSeenAt, newest);
     expect(devices.first.isCurrent, isTrue);
@@ -65,7 +72,7 @@ void main() {
       (_) async => [
         row(
           id: 'd1',
-          platform: 'ios',
+          platform: EnumDevicePlatform.ios,
           label: 'iPhone#${DeviceMarkerStore.markerFor('token-12345678')}',
           lastSeenAt: newest,
         ),

@@ -2,7 +2,11 @@ import 'dart:async';
 
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/dates_data_source.dart';
+import 'package:flutter_bloc_starter/features/dates/data/mappers/important_date_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
+import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/mappers/gift_enum_mapper.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea_status.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:logger/logger.dart';
@@ -22,7 +26,7 @@ class DatesRepository({
         ImportantDate(
           id: node.id,
           title: node.title,
-          kind: node.kind,
+          kind: node.kind.toModel(),
           month: node.month,
           day: node.day,
           year: node.year,
@@ -35,7 +39,7 @@ class DatesRepository({
   Future<void> addDate({
     required String id,
     required String title,
-    required String kind,
+    required ImportantDateKind kind,
     required int month,
     required int day,
     int? year,
@@ -46,13 +50,14 @@ class DatesRepository({
     await _dataSource.addDate(
       id: id,
       title: title.trim(),
-      kind: kind,
+      kind: kind.toRemote(),
       month: month,
       day: day,
       year: year,
       yearly: isYearly,
       remindDays: remindDays,
-      origin: holidayKey == null ? 'manual' : 'auto',
+      origin: (holidayKey == null ? ImportantDateOrigin.manual : ImportantDateOrigin.auto)
+          .toRemote(),
       holidayKey: holidayKey,
       coupleId: await _togetherRepository.getCoupleId(),
     );
@@ -70,7 +75,7 @@ class DatesRepository({
 
     return [
       for (final node in await _dataSource.getGiftIdeas(authorId: authorId))
-        GiftIdea(id: node.id, title: node.title, status: node.status),
+        GiftIdea(id: node.id, title: node.title, status: node.status.toModel()),
     ];
   });
 
@@ -79,7 +84,10 @@ class DatesRepository({
 
   Future<void> setGiftGiven({required String id, required bool isGiven}) => _run(
     'update a gift idea',
-    () => _dataSource.setGiftIdeaStatus(id: id, status: isGiven ? 'given' : 'idea'),
+    () => _dataSource.setGiftIdeaStatus(
+      id: id,
+      status: (isGiven ? GiftIdeaStatus.given : GiftIdeaStatus.idea).toRemote(),
+    ),
   );
 
   Future<void> deleteGiftIdea(String id) =>

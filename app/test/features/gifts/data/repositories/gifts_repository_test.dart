@@ -1,6 +1,8 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/gifts_data_source.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/queries/generated/GiftPage.graphql.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -37,8 +39,8 @@ void main() {
     String? coupleId = 'couple-1',
     String title = 'Livro',
     String? note,
-    String? budget,
-    String status = 'idea',
+    EnumGiftBudget? budget,
+    EnumGiftIdeaStatus status = EnumGiftIdeaStatus.idea,
   }) => QueryGiftPagegiftIdeasCollectionedgesnode(
     id: id,
     authorId: authorId,
@@ -110,7 +112,7 @@ void main() {
       id: 'g1',
       title: '  Livro  ',
       note: '  Capa dura  ',
-      budget: 'low',
+      budget: GiftBudget.low,
       coupleId: 'couple-1',
     );
 
@@ -119,7 +121,7 @@ void main() {
         id: 'g1',
         title: 'Livro',
         note: 'Capa dura',
-        budget: 'low',
+        budget: EnumGiftBudget.low,
         coupleId: 'couple-1',
       ),
     ).called(1);

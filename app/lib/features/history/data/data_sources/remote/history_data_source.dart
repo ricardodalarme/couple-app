@@ -28,9 +28,9 @@ class HistoryDataSource({required final GQLClient _client}) {
 
   Future<void> insertStoryEvent({
     required String id,
-    required String kind,
+    required EnumStoryEventKind kind,
     required DateTime happenedOn,
-    required String datePrecision,
+    required EnumDatePrecision datePrecision,
     String? title,
     String? coupleId,
   }) async {
@@ -52,9 +52,9 @@ class HistoryDataSource({required final GQLClient _client}) {
 
   Future<void> updateStoryEvent({
     required String id,
-    required String kind,
+    required EnumStoryEventKind kind,
     required DateTime happenedOn,
-    required String datePrecision,
+    required EnumDatePrecision datePrecision,
     String? title,
     String? coupleId,
   }) async {
@@ -86,8 +86,8 @@ class HistoryDataSource({required final GQLClient _client}) {
     required String id,
     required String title,
     required DateTime happenedOn,
-    required String datePrecision,
-    required String origin,
+    required EnumDatePrecision datePrecision,
+    required EnumMemoryOrigin origin,
     String? body,
     String? place,
     String? coupleId,
@@ -114,8 +114,8 @@ class HistoryDataSource({required final GQLClient _client}) {
     required String id,
     required String title,
     required DateTime happenedOn,
-    required String datePrecision,
-    required String origin,
+    required EnumDatePrecision datePrecision,
+    required EnumMemoryOrigin origin,
     String? body,
     String? place,
     String? coupleId,
@@ -149,7 +149,7 @@ class HistoryDataSource({required final GQLClient _client}) {
   Future<void> insertImportantDate({
     required String id,
     required String title,
-    required String kind,
+    required EnumImportantDateKind kind,
     required int month,
     required int day,
     required bool yearly,
@@ -177,7 +177,7 @@ class HistoryDataSource({required final GQLClient _client}) {
   Future<void> updateImportantDate({
     required String id,
     required String title,
-    required String kind,
+    required EnumImportantDateKind kind,
     required int month,
     required int day,
     required bool yearly,
@@ -210,7 +210,10 @@ class HistoryDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<void> updateAvatarKind({required String profileId, required String avatarKind}) async {
+  Future<void> updateAvatarKind({
+    required String profileId,
+    required EnumAvatarKind avatarKind,
+  }) async {
     final response = await _client.mutate(
       OptionsMutationUpdateAvatarKind(
         variables: VariablesMutationUpdateAvatarKind(profileId: profileId, avatarKind: avatarKind),

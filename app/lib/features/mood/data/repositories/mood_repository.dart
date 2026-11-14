@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/mood_data_source.dart';
+import 'package:flutter_bloc_starter/features/mood/data/mappers/mood_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/mood/data/mappers/mood_record_mapper.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/mood_entry.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
@@ -30,9 +31,9 @@ class MoodRepository({required final MoodDataSource _dataSource}) {
 
         try {
           final record = await _dataSource.insertMood(
-            mood: mood.value,
-            need: need?.value,
-            share: share.value,
+            mood: mood.toRemote(),
+            need: need?.toRemote(),
+            share: share.toRemote(),
             day: today.day,
           );
 
@@ -55,12 +56,17 @@ class MoodRepository({required final MoodDataSource _dataSource}) {
     required MoodShare share,
   }) async {
     final record = need == null
-        ? await _dataSource.clearNeed(id: id, mood: mood.value, share: share.value, day: day)
+        ? await _dataSource.clearNeed(
+            id: id,
+            mood: mood.toRemote(),
+            share: share.toRemote(),
+            day: day,
+          )
         : await _dataSource.updateMood(
             id: id,
-            mood: mood.value,
-            need: need.value,
-            share: share.value,
+            mood: mood.toRemote(),
+            need: need.toRemote(),
+            share: share.toRemote(),
             day: day,
           );
 

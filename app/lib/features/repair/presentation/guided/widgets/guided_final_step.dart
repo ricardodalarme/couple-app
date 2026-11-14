@@ -38,9 +38,9 @@ class const GuidedFinalStep({super.key}) extends StatelessWidget {
             spacing: AppSpace.s8,
             runSpacing: AppSpace.s8,
             children: [
-              for (final key in feelingsAfter)
+              for (final key in RepairFeeling.values)
                 BaseChoiceChip(
-                  label: l10n.feelings.selectOrFallback(key),
+                  label: l10n.feelings.selectOrFallback(key.name),
                   isSelected: feeling == key,
                   onTap: () => cubit.onFeelingChosen(key),
                 ),

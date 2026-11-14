@@ -2,6 +2,8 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:flutter_bloc_starter/features/lists/presentation/create_list/create_list_sheet.dart';
@@ -20,9 +22,20 @@ class _MockListsRepository() extends Mock implements ListsRepository;
 void main() {
   late ListsRepository repository;
 
-  const shared = CoupleList(id: 'l1', title: 'Viagens', kind: 'travel', coupleId: 'couple-1');
-  const solo = CoupleList(id: 'l2', title: 'Filmes', kind: 'movies');
-  const item = ListItem(id: 'i1', listId: 'l1', title: 'Lisboa', status: 'planned', position: 0);
+  const shared = CoupleList(
+    id: 'l1',
+    title: 'Viagens',
+    kind: ListKind.travel,
+    coupleId: 'couple-1',
+  );
+  const solo = CoupleList(id: 'l2', title: 'Filmes', kind: ListKind.movies);
+  const item = ListItem(
+    id: 'i1',
+    listId: 'l1',
+    title: 'Lisboa',
+    status: ListItemStatus.planned,
+    position: 0,
+  );
 
   setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
 
@@ -138,7 +151,7 @@ void main() {
     final detail = cubit.state.detail;
     expect(detail, isA<Success<ListDetail>>());
     expect((detail as Success<ListDetail>).value.items.single.isDone, isTrue);
-    verify(() => repository.setItemStatus(id: 'i1', status: 'done')).called(1);
+    verify(() => repository.setItemStatus(id: 'i1', status: ListItemStatus.done)).called(1);
     expect(find.text('Marcar como feito'), findsNothing);
 
     await tester.tap(find.byIcon(AppIcons.more));

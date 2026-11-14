@@ -6,23 +6,19 @@ const int learnedItemMaxLength = 500;
 /// The longest excerpt the server keeps from the reply that started the learning.
 const int learnedExcerptMaxLength = 500;
 
-/// What a saved learning is about, matching the server values.
-enum LearnedTarget(final String wire) {
-  partnerFact('partner_fact'),
-  date('date'),
-  memory('memory'),
-  commitment('commitment');
-
-  static LearnedTarget fromWire(String wire) => values.firstWhere((target) => target.wire == wire);
+/// What a saved learning is about.
+enum LearnedTarget() {
+  partnerFact,
+  date,
+  memory,
+  commitment,
 }
 
 /// Where a learning is in the person's own review.
-enum LearnedStatus(final String wire) {
-  pending('pending'),
-  confirmed('confirmed'),
-  rejected('rejected');
-
-  static LearnedStatus fromWire(String wire) => values.firstWhere((status) => status.wire == wire);
+enum LearnedStatus() {
+  pending,
+  confirmed,
+  rejected,
 }
 
 /// One thing the person chose to keep from a conversation; only its author sees it.

@@ -1,6 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
 import 'package:flutter_bloc_starter/features/lists/presentation/create_list/cubit/create_list_sheet_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 /// The sheet that names a new list, chooses its kind and who can see it.
 class const CreateListSheet({
   required final bool hasPartner,
-  required final void Function(String title, String kind, bool isShared) onCreate,
+  required final void Function(String title, ListKind kind, bool isShared) onCreate,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -19,7 +19,7 @@ class const CreateListSheet({
 }
 
 class const _CreateListContent({
-  required final void Function(String title, String kind, bool isShared) onCreate,
+  required final void Function(String title, ListKind kind, bool isShared) onCreate,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -50,9 +50,9 @@ class const _CreateListContent({
           spacing: AppSpace.s8,
           runSpacing: AppSpace.s8,
           children: [
-            for (final kindOption in listKinds)
+            for (final kindOption in ListKind.values)
               BaseChoiceChip(
-                label: l10n.kinds.selectOrFallback(kindOption),
+                label: l10n.kinds.selectOrFallback(kindOption.name),
                 isSelected: kind == kindOption,
                 onTap: () => context.read<CreateListSheetCubit>().onKindChanged(kindOption),
               ),

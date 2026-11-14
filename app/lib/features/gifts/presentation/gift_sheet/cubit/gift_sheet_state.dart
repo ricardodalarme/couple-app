@@ -3,7 +3,7 @@ part of 'gift_sheet_cubit.dart';
 final class const GiftSheetState({
   final FormInput<String> title = const FormInput(''),
   final FormInput<String> note = const FormInput(''),
-  final String? budget,
+  final GiftBudget? budget,
   final bool isShared = false,
   final bool isEditing = false,
   final bool hasPartner = false,
@@ -11,7 +11,7 @@ final class const GiftSheetState({
   GiftSheetState copyWith({
     FormInput<String>? title,
     FormInput<String>? note,
-    String? budget,
+    GiftBudget? budget,
     bool clearBudget = false,
     bool? isShared,
     bool? isEditing,

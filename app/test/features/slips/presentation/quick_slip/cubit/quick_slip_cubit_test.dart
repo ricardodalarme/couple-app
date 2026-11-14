@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_draft.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
@@ -41,12 +42,13 @@ void main() {
   blocTest<QuickSlipCubit, QuickSlipState>(
     'start restores a fresh draft',
     build: () {
-      when(() => repository.readDraft(any()))
-          .thenReturn(SlipDraft(text: 'Fez café', savedAt: DateTime(2026), category: 'did'));
+      when(() => repository.readDraft(any())).thenReturn(
+        SlipDraft(text: 'Fez café', savedAt: DateTime(2026), category: SlipCategory.did),
+      );
       return build();
     },
     act: (cubit) => cubit.start(),
-    expect: () => const [QuickSlipState(text: FormInput('Fez café'), category: 'did')],
+    expect: () => const [QuickSlipState(text: FormInput('Fez café'), category: SlipCategory.did)],
   );
 
   blocTest<QuickSlipCubit, QuickSlipState>(

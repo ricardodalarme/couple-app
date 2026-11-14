@@ -1,19 +1,21 @@
-/// The temperature levels a person can name, matching the server levels.
-const List<String> temperatureLevels = ['good', 'so_so', 'turbulent', 'fight'];
+/// How the relationship feels right now, from calm to fighting.
+enum Temperature() {
+  good,
+  soSo,
+  turbulent,
+  fight,
+}
 
-/// The next step after the check, matching the server repair paths used here.
-enum RepairPath(
-  /// The server value.
-  final String key,
-) {
+/// The next step after the check.
+enum RepairPath() {
   /// Calm down first.
-  pause('pause'),
+  pause,
 
   /// A short, light repair.
-  quick('quick'),
+  quick,
 
   /// The longer guided repair.
-  guided('guided'),
+  guided,
 }
 
 /// The intensity from which calm comes before any conversation.
@@ -22,9 +24,9 @@ const int highIntensity = 7;
 /// Chooses the next step from the temperature [level] and the [intensity] from 1 to 10.
 ///
 /// The hottest answers always begin with calm; a good level needs no repair.
-RepairPath? pathFor({required String level, required int intensity}) {
-  if (level == 'good') return null;
-  if (level == 'fight' || intensity >= highIntensity) return RepairPath.pause;
+RepairPath? pathFor({required Temperature level, required int intensity}) {
+  if (level == Temperature.good) return null;
+  if (level == Temperature.fight || intensity >= highIntensity) return RepairPath.pause;
 
   return intensity >= 4 ? RepairPath.guided : RepairPath.quick;
 }

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
@@ -87,9 +88,9 @@ class const _CategoryChips() extends StatelessWidget {
       spacing: AppSpace.s8,
       runSpacing: AppSpace.s8,
       children: [
-        for (final category in quickSlipCategories)
+        for (final category in SlipCategory.values)
           BaseChoiceChip(
-            label: labels.selectOrFallback(category),
+            label: labels.selectOrFallback(category.name),
             isSelected: selected == category,
             onTap: () => context.read<QuickSlipCubit>().onCategoryToggled(category),
           ),

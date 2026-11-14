@@ -19,7 +19,7 @@ class const MoodPage({final String? initialMood, super.key})
       create: (_) {
         final cubit = AppInjector.instance.get<MoodCubit>();
         cubit.load().then((_) {
-          final mood = MoodKind.fromValue(initialMood);
+          final mood = MoodKind.values.asNameMap()[initialMood];
           if (mood != null && !cubit.isClosed) cubit.selectMood(mood);
         });
 

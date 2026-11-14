@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
+import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
 import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:form_inputs/form_inputs.dart';
@@ -47,7 +48,7 @@ class DatesCubit({
 
   void onTitleChanged(String title) => emit(state.copyWith(title: FormInput(title)));
 
-  void onKindChosen(String kind) => emit(state.copyWith(kind: kind));
+  void onKindChosen(ImportantDateKind kind) => emit(state.copyWith(kind: kind));
 
   void onMonthChosen(int month) => emit(state.copyWith(month: month));
 
@@ -72,7 +73,7 @@ class DatesCubit({
         month: state.month!,
         day: state.day!,
         year: state.yearValue,
-        isYearly: state.kind != 'reunion',
+        isYearly: state.kind != ImportantDateKind.reunion,
       );
       emit(
         state.copyWith(
@@ -110,7 +111,7 @@ class DatesCubit({
     () => _datesRepository.addDate(
       id: _uuid.v4(),
       title: holiday.title,
-      kind: 'holiday',
+      kind: ImportantDateKind.holiday,
       month: holiday.month,
       day: holiday.day,
       holidayKey: holiday.slug,

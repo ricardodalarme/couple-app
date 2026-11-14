@@ -1,8 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
+import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
 import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/different_dates/cubit/different_dates_cubit.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/different_dates/different_dates_page.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -31,10 +33,10 @@ void main() {
       togetherSince: DateTime(2024, 3, 14),
       milestones: const [],
       storyDates: StoryDatesSummary(
-        met: const StoryDateEntry(kind: 'met'),
-        dating: const StoryDateEntry(kind: 'dating'),
-        engaged: const StoryDateEntry(kind: 'engaged'),
-        married: const StoryDateEntry(kind: 'married'),
+        met: const StoryDateEntry(kind: StoryEventKind.met),
+        dating: const StoryDateEntry(kind: StoryEventKind.dating),
+        engaged: const StoryDateEntry(kind: StoryEventKind.engaged),
+        married: const StoryDateEntry(kind: StoryEventKind.married),
         selfStartDate: DateTime(2024, 3, 14),
         partnerStartDate: DateTime(2024, 3, 22),
       ),

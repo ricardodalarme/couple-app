@@ -4,6 +4,7 @@ import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:uuid/uuid.dart';
@@ -12,9 +13,6 @@ part 'quick_slip_state.dart';
 
 /// The longest slip the capture screen accepts.
 const int quickSlipMaxLength = 140;
-
-/// The four ways a slip can be labelled, matching the server categories.
-const List<String> quickSlipCategories = ['said', 'did', 'noticed', 'helped'];
 
 /// How long the undo stays available after a slip is saved.
 const Duration undoWindow = Duration(seconds: 30);
@@ -40,7 +38,7 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
     unawaited(_persistDraft());
   }
 
-  void onCategoryToggled(String category) {
+  void onCategoryToggled(SlipCategory category) {
     final isSame = state.category == category;
     emit(state.copyWith(category: isSame ? null : category, clearCategory: isSame));
     unawaited(_persistDraft());

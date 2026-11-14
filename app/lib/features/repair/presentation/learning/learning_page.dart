@@ -61,9 +61,9 @@ class const LearningPage({@QueryParam('sessionId') final String? sessionId, supe
                 spacing: AppSpace.s8,
                 runSpacing: AppSpace.s8,
                 children: [
-                  for (final key in learningKinds)
+                  for (final key in RepairLearningKind.values)
                     BaseChoiceChip(
-                      label: l10n.kinds.selectOrFallback(key),
+                      label: l10n.kinds.selectOrFallback(key.name),
                       isSelected: kind == key,
                       onTap: () => cubit.onKindChosen(key),
                     ),
@@ -91,7 +91,7 @@ class const LearningPage({@QueryParam('sessionId') final String? sessionId, supe
                           for (final item in items)
                             BaseListTile(
                               title: item.note,
-                              subtitle: l10n.kinds.selectOrFallback(item.kind),
+                              subtitle: l10n.kinds.selectOrFallback(item.kind.name),
                               trailing: BaseTextLink(
                                 text: l10n.delete,
                                 onPressed: () => cubit.delete(item.id),

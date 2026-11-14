@@ -9,16 +9,7 @@ enum GameStatus() {
   invited,
   active,
   finished,
-  cancelled;
-
-  /// The status for a server [value], or [cancelled] for anything unknown.
-  static GameStatus fromKey(String value) {
-    for (final status in values) {
-      if (status.name == value) return status;
-    }
-
-    return cancelled;
-  }
+  cancelled,
 }
 
 /// One round of a game between the two partners.

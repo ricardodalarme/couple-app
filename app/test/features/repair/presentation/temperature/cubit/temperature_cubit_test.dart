@@ -28,28 +28,28 @@ void main() {
 
   group('pathFor', () {
     test('a good level needs no repair', () {
-      expect(pathFor(level: 'good', intensity: 9), isNull);
+      expect(pathFor(level: Temperature.good, intensity: 9), isNull);
     });
 
     test('a fight or high intensity starts with calm', () {
-      expect(pathFor(level: 'fight', intensity: 2), RepairPath.pause);
-      expect(pathFor(level: 'turbulent', intensity: 7), RepairPath.pause);
+      expect(pathFor(level: Temperature.fight, intensity: 2), RepairPath.pause);
+      expect(pathFor(level: Temperature.turbulent, intensity: 7), RepairPath.pause);
     });
 
     test('middle intensity is guided and low is quick', () {
-      expect(pathFor(level: 'turbulent', intensity: 5), RepairPath.guided);
-      expect(pathFor(level: 'so_so', intensity: 3), RepairPath.quick);
+      expect(pathFor(level: Temperature.turbulent, intensity: 5), RepairPath.guided);
+      expect(pathFor(level: Temperature.soSo, intensity: 3), RepairPath.quick);
     });
   });
 
   test('a good level is stored and ends without a session', () async {
-    final cubit = build()..onLevelChosen('good');
+    final cubit = build()..onLevelChosen(Temperature.good);
 
     await cubit.continueFromLevel();
 
     expect(cubit.state.step, TemperatureStep.result);
     expect(cubit.state.path, isNull);
-    verify(() => repository.recordTemperature('good')).called(1);
+    verify(() => repository.recordTemperature(Temperature.good)).called(1);
     verifyNever(
       () => repository.startSession(
         id: any(named: 'id'),
@@ -60,7 +60,7 @@ void main() {
   });
 
   test('other levels ask for intensity, then store the answer and a session', () async {
-    final cubit = build()..onLevelChosen('fight');
+    final cubit = build()..onLevelChosen(Temperature.fight);
 
     await cubit.continueFromLevel();
     expect(cubit.state.step, TemperatureStep.intensity);
@@ -80,25 +80,25 @@ void main() {
   });
 
   test('back keeps the chosen level', () async {
-    final cubit = build()..onLevelChosen('so_so');
+    final cubit = build()..onLevelChosen(Temperature.soSo);
     await cubit.continueFromLevel();
 
     cubit.back();
 
     expect(cubit.state.step, TemperatureStep.level);
-    expect(cubit.state.level, 'so_so');
+    expect(cubit.state.level, Temperature.soSo);
   });
 
   test('a failed save stays on the step and keeps the answers', () async {
     when(() => repository.recordTemperature(any()))
         .thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
-    final cubit = build()..onLevelChosen('turbulent');
+    final cubit = build()..onLevelChosen(Temperature.turbulent);
     await cubit.continueFromLevel();
 
     await cubit.finish();
 
     expect(cubit.state.step, TemperatureStep.intensity);
-    expect(cubit.state.level, 'turbulent');
+    expect(cubit.state.level, Temperature.turbulent);
     expect(cubit.state.saveAction, isA<Initial>());
   });
 }

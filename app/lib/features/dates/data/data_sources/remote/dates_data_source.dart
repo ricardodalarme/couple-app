@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/mutations/generated/AddGiftIdea.graphql.dart';
 import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/mutations/generated/AddImportantDate.graphql.dart';
 import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/mutations/generated/DeleteGiftIdea.graphql.dart';
@@ -24,12 +25,12 @@ class DatesDataSource({required final GQLClient _client}) {
   Future<void> addDate({
     required String id,
     required String title,
-    required String kind,
+    required EnumImportantDateKind kind,
     required int month,
     required int day,
     required bool yearly,
     required List<int> remindDays,
-    required String origin,
+    required EnumImportantDateOrigin origin,
     int? year,
     String? holidayKey,
     String? coupleId,
@@ -87,7 +88,7 @@ class DatesDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<void> setGiftIdeaStatus({required String id, required String status}) async {
+  Future<void> setGiftIdeaStatus({required String id, required EnumGiftIdeaStatus status}) async {
     final response = await _client.mutate(
       OptionsMutationSetGiftIdeaStatus(
         variables: VariablesMutationSetGiftIdeaStatus(id: id, status: status),

@@ -1,15 +1,16 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
 
 /// Text typed in the quick capture screen and not saved yet.
 final class const SlipDraft({
   required final String text,
   required final DateTime savedAt,
-  final String? category,
+  final SlipCategory? category,
 }) with Equatable {
   factory fromMap(Map<String, dynamic> map) => SlipDraft(
     text: map['text'] as String,
     savedAt: DateTime.parse(map['savedAt'] as String),
-    category: map['category'] as String?,
+    category: SlipCategory.values.asNameMap()[map['category'] as String?],
   );
 
   /// How long a draft stays worth restoring.
@@ -20,7 +21,7 @@ final class const SlipDraft({
   Map<String, dynamic> toMap() => <String, dynamic>{
     'text': text,
     'savedAt': savedAt.toUtc().toIso8601String(),
-    'category': category,
+    'category': category?.name,
   };
 
   @override

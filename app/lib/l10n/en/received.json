@@ -2,26 +2,26 @@
   "kinds(map)": {
     "repair": "Repair card",
     "need": "I need…",
-    "miss_us": "Missing you",
+    "missUs": "Missing you",
     "hug": "A hug",
     "distance": "A little distance",
-    "heavy_day": "A heavy day",
-    "good_news": "Good news",
+    "heavyDay": "A heavy day",
+    "goodNews": "Good news",
     "other": ""
   },
   "bodies(map)": {
-    "miss_us": "Your partner is missing you both.",
+    "missUs": "Your partner is missing you both.",
     "hug": "Your partner would like a hug.",
     "distance": "Your partner needs a little distance.",
-    "heavy_day": "Your partner is having a heavy day.",
-    "good_news": "Your partner has good news.",
+    "heavyDay": "Your partner is having a heavy day.",
+    "goodNews": "Your partner has good news.",
     "other": ""
   },
   "fromPartner": "From your partner",
   "privateFirst": "Your answer is private first. There is no right or wrong.",
   "responses(map)": {
     "talk": "Yes, let's talk",
-    "more_time": "I need a bit more time",
+    "moreTime": "I need a bit more time",
     "later": "I'll answer later",
     "other": ""
   },

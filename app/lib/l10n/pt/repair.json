@@ -70,8 +70,8 @@
     "finalHighlight": "agora",
     "feelings(map)": {
       "calmer": "Mais calmo(a)",
-      "still_tense": "Ainda tenso(a)",
-      "need_more_time": "Preciso de mais tempo",
+      "stillTense": "Ainda tenso(a)",
+      "needMoreTime": "Preciso de mais tempo",
       "other": ""
     },
     "followUpTitle": "Quer um lembrete para ver como estão?",
@@ -97,7 +97,7 @@
     "kinds(map)": {
       "trigger": "O que me incomoda",
       "need": "O que eu preciso",
-      "good_fix": "O que ajudou",
+      "goodFix": "O que ajudou",
       "other": ""
     },
     "hint": "Escreva em uma ou duas frases",

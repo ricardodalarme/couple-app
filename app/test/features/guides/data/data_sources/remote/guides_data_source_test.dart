@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/guides/data/data_sources/remote/guides_data_source.dart';
 import 'package:flutter_bloc_starter/features/guides/data/data_sources/remote/mutations/generated/InsertConversationPrep.graphql.dart';
 import 'package:flutter_bloc_starter/features/guides/data/data_sources/remote/mutations/generated/UpdateConversationPrep.graphql.dart';
@@ -16,7 +17,7 @@ void main() {
       OptionsMutationInsertConversationPrep(
         variables: VariablesMutationInsertConversationPrep(
           id: 'p1',
-          guide: 'money',
+          guide: EnumConversationGuide.money,
           topic: 'Dinheiro',
         ),
       ),
@@ -25,7 +26,7 @@ void main() {
       OptionsMutationUpdateConversationPrep(
         variables: VariablesMutationUpdateConversationPrep(
           id: 'p1',
-          guide: 'money',
+          guide: EnumConversationGuide.money,
           topic: 'Dinheiro',
         ),
       ),
@@ -43,7 +44,7 @@ void main() {
         options: OptionsMutationInsertConversationPrep(
           variables: VariablesMutationInsertConversationPrep(
             id: 'p1',
-            guide: 'money',
+            guide: EnumConversationGuide.money,
             topic: 'Dinheiro',
           ),
         ),
@@ -61,7 +62,7 @@ void main() {
 
     final id = await dataSource.insertPrep(
       id: 'p1',
-      guide: 'money',
+      guide: EnumConversationGuide.money,
       topic: 'Dinheiro',
       notes: 'Uma nota',
       draft: null,
@@ -76,7 +77,7 @@ void main() {
         options: OptionsMutationUpdateConversationPrep(
           variables: VariablesMutationUpdateConversationPrep(
             id: 'p1',
-            guide: 'money',
+            guide: EnumConversationGuide.money,
             topic: 'Dinheiro',
           ),
         ),
@@ -93,7 +94,7 @@ void main() {
     await expectLater(
       dataSource.updatePrep(
         id: 'p1',
-        guide: 'money',
+        guide: EnumConversationGuide.money,
         topic: 'Dinheiro',
         notes: 'Uma nota',
         draft: null,

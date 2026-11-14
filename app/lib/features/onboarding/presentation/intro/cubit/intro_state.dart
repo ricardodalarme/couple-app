@@ -1,13 +1,13 @@
 part of 'intro_cubit.dart';
 
 final class const IntroState({
-  final String? phase,
-  final List<String> goals = const [],
+  final RelationshipPhase? phase,
+  final List<RelationshipGoal> goals = const [],
   final AppThemeVariant theme = AppThemeVariant.rose,
 }) with Equatable {
   IntroState copyWith({
-    String? phase,
-    List<String>? goals,
+    RelationshipPhase? phase,
+    List<RelationshipGoal>? goals,
     AppThemeVariant? theme,
     bool clearPhase = false,
   }) {

@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/mutations/generated/AddGiftWish.graphql.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/mutations/generated/ClearGiftWishBudget.graphql.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/mutations/generated/ClearGiftWishNote.graphql.dart';
@@ -22,7 +23,7 @@ class GiftsDataSource({required final GQLClient _client}) {
     required String id,
     required String title,
     String? note,
-    String? budget,
+    EnumGiftBudget? budget,
     String? coupleId,
   }) async {
     final response = await _client.mutate(
@@ -47,7 +48,7 @@ class GiftsDataSource({required final GQLClient _client}) {
     required String id,
     required String title,
     String? note,
-    String? budget,
+    EnumGiftBudget? budget,
   }) async {
     final response = await _client.mutate(
       OptionsMutationUpdateGiftWish(

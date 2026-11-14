@@ -195,7 +195,7 @@ void main() {
     await dataSource.addGiftWish(id: 'g1', title: 'Livro');
 
     final operation = client.mutations.single;
-    expect(printNode(operation.document), contains('kind: "wish"'));
+    expect(printNode(operation.document), contains('kind: wish'));
   });
 
   test('the gift page reads only wishes', () async {
@@ -205,6 +205,6 @@ void main() {
     await dataSource.getGiftIdeas();
 
     final operation = client.queries.single;
-    expect(printNode(operation.document), contains('kind: {eq: "wish"}'));
+    expect(printNode(operation.document), contains('kind: {eq: wish}'));
   });
 }

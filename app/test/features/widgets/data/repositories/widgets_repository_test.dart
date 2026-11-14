@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/settings/data/data_sources/local/discreet_local_data_source.dart';
@@ -171,7 +172,8 @@ void main() {
       return calls == 1 ? 0 : 1;
     });
     when(() => profileRepository.ensureProfile()).thenAnswer(
-      (_) async => const Profile(id: 'profile-9', avatarKind: 'initials', displayName: 'Ana'),
+      (_) async =>
+          const Profile(id: 'profile-9', avatarKind: AvatarKind.initials, displayName: 'Ana'),
     );
     when(() => dataSource.getOverview()).thenAnswer((_) async => response());
 

@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
-
-/// The budgets the server accepts, in the order they are offered.
-const List<String> giftBudgets = ['free', 'low', 'medium', 'high'];
+import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea_status.dart';
 
 /// The longest gift title the server accepts.
 const int giftTitleMaxLength = 120;
@@ -17,8 +16,8 @@ final class const GiftIdea({
   required final String id,
   required final String title,
   final String? note,
-  final String? budget,
-  final String status = 'idea',
+  final GiftBudget? budget,
+  final GiftIdeaStatus status = GiftIdeaStatus.idea,
   final String? coupleId,
   final bool isMine = false,
 }) with Equatable {
@@ -27,23 +26,26 @@ final class const GiftIdea({
     id: 'fake',
     title: 'Livro de poemas',
     note: 'Capa dura',
-    budget: 'low',
+    budget: GiftBudget.low,
     isMine: true,
   );
 
   /// Whether the partner can see this wish.
   bool get isShared => coupleId != null;
 
-  GiftIdea withDetails({required String title, required String? note, required String? budget}) =>
-      GiftIdea(
-        id: id,
-        title: title,
-        note: note,
-        budget: budget,
-        status: status,
-        coupleId: coupleId,
-        isMine: isMine,
-      );
+  GiftIdea withDetails({
+    required String title,
+    required String? note,
+    required GiftBudget? budget,
+  }) => GiftIdea(
+    id: id,
+    title: title,
+    note: note,
+    budget: budget,
+    status: status,
+    coupleId: coupleId,
+    isMine: isMine,
+  );
 
   GiftIdea withCoupleId(String? coupleId) => GiftIdea(
     id: id,

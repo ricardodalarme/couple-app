@@ -5,6 +5,7 @@ import 'package:flutter_bloc_starter/features/fight_style/data/repositories/figh
 import 'package:flutter_bloc_starter/features/fight_style/presentation/exercise/cubit/fight_style_cubit.dart';
 import 'package:flutter_bloc_starter/features/fight_style/presentation/exercise/fight_style_page.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -34,7 +35,7 @@ void main() {
     when(() => repository.saveRanked(any())).thenAnswer((_) async {});
     when(() => repository.addRepairTool(any())).thenAnswer((_) async {});
     when(() => pairingRepository.getPartner()).thenAnswer(
-      (_) async => const Profile(id: 'p1', avatarKind: 'initial', displayName: 'Marina'),
+      (_) async => const Profile(id: 'p1', avatarKind: AvatarKind.initials, displayName: 'Marina'),
     );
   });
 

@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/questions/data/models/question_thread.dart';
 import 'package:flutter_bloc_starter/features/questions/data/repositories/questions_repository.dart';
@@ -91,8 +93,9 @@ void main() {
   });
 
   test('the lists entry shows how many lists the couple has', () async {
-    when(listsRepository.getLists)
-        .thenAnswer((_) async => const [CoupleList(id: 'l1', title: 'Viagens', kind: 'travel')]);
+    when(listsRepository.getLists).thenAnswer(
+      (_) async => const [CoupleList(id: 'l1', title: 'Viagens', kind: ListKind.travel)],
+    );
     final cubit = build();
     addTearDown(cubit.close);
 
@@ -138,26 +141,29 @@ void main() {
   });
 
   test('a saved phase change reloads the hub and swaps its variant card', () async {
-    when(profileRepository.getMySettings)
-        .thenAnswer((_) async => const AccountSettings(theme: .rose, phase: 'long_distance'));
+    when(profileRepository.getMySettings).thenAnswer(
+      (_) async => const AccountSettings(theme: .rose, phase: RelationshipPhase.longDistance),
+    );
     final cubit = build();
     addTearDown(cubit.close);
     await cubit.load();
-    expect(cubit.state.phase, 'long_distance');
+    expect(cubit.state.phase, RelationshipPhase.longDistance);
 
-    when(profileRepository.getMySettings)
-        .thenAnswer((_) async => const AccountSettings(theme: .rose, phase: 'with_parents'));
+    when(profileRepository.getMySettings).thenAnswer(
+      (_) async => const AccountSettings(theme: .rose, phase: RelationshipPhase.withParents),
+    );
     profileChanges.add(null);
     await pumpEventQueue();
 
-    expect(cubit.state.phase, 'with_parents');
+    expect(cubit.state.phase, RelationshipPhase.withParents);
   });
 
   test('closing stops listening for profile changes', () async {
     final cubit = build();
     await cubit.close();
-    when(profileRepository.getMySettings)
-        .thenAnswer((_) async => const AccountSettings(theme: .rose, phase: 'long_distance'));
+    when(profileRepository.getMySettings).thenAnswer(
+      (_) async => const AccountSettings(theme: .rose, phase: RelationshipPhase.longDistance),
+    );
 
     profileChanges.add(null);
     await pumpEventQueue();

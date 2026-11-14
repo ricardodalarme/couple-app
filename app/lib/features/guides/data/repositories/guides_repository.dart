@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/guides/data/data_sources/local/guides_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/guides/data/data_sources/remote/guides_data_source.dart';
+import 'package:flutter_bloc_starter/features/guides/data/mappers/guide_slug_mapper.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide_catalogue.dart';
 import 'package:flutter_bloc_starter/features/guides/data/models/guide_progress.dart';
@@ -91,7 +92,7 @@ class GuidesRepository({
         try {
           await _dataSource.updatePrep(
             id: prepId,
-            guide: guide,
+            guide: guide.toConversationGuide(),
             topic: topic,
             notes: safeNotes.isEmpty ? null : safeNotes,
             draft: safeDraft,
@@ -101,7 +102,7 @@ class GuidesRepository({
         } on NoDataException {
           return await _dataSource.insertPrep(
             id: _uuid.v4(),
-            guide: guide,
+            guide: guide.toConversationGuide(),
             topic: topic,
             notes: safeNotes.isEmpty ? null : safeNotes,
             draft: safeDraft,
@@ -111,7 +112,7 @@ class GuidesRepository({
 
       return await _dataSource.insertPrep(
         id: _uuid.v4(),
-        guide: guide,
+        guide: guide.toConversationGuide(),
         topic: topic,
         notes: safeNotes.isEmpty ? null : safeNotes,
         draft: safeDraft,

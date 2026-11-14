@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/lists_data_source.dart';
 import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/DeleteListItem.graphql.dart';
 import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/SetListItemPosition.graphql.dart';
@@ -35,7 +36,7 @@ QueryResult<T> _result<T>(MutationOptions<T> options, Map<String, dynamic> data)
 void main() {
   test('a status change that matches no row fails', () {
     final options = OptionsMutationSetListItemStatus(
-      variables: VariablesMutationSetListItemStatus(id: 'i1', status: 'done'),
+      variables: VariablesMutationSetListItemStatus(id: 'i1', status: EnumListItemStatus.done),
     );
     final dataSource = ListsDataSource(
       client: _StubGQLClient(
@@ -49,7 +50,10 @@ void main() {
       ),
     );
 
-    expect(dataSource.setItemStatus(id: 'i1', status: 'done'), throwsA(isA<NoDataException>()));
+    expect(
+      dataSource.setItemStatus(id: 'i1', status: EnumListItemStatus.done),
+      throwsA(isA<NoDataException>()),
+    );
   });
 
   test('a position change that matches no row fails', () {
@@ -107,7 +111,7 @@ void main() {
 
   test('a mutation that touches one row succeeds', () async {
     final options = OptionsMutationSetListItemStatus(
-      variables: VariablesMutationSetListItemStatus(id: 'i1', status: 'done'),
+      variables: VariablesMutationSetListItemStatus(id: 'i1', status: EnumListItemStatus.done),
     );
     final dataSource = ListsDataSource(
       client: _StubGQLClient(
@@ -121,6 +125,6 @@ void main() {
       ),
     );
 
-    await dataSource.setItemStatus(id: 'i1', status: 'done');
+    await dataSource.setItemStatus(id: 'i1', status: EnumListItemStatus.done);
   });
 }

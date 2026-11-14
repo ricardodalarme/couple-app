@@ -5,6 +5,7 @@ import 'package:flutter_bloc_starter/features/notes/data/models/sent_message.dar
 import 'package:flutter_bloc_starter/features/notes/data/repositories/notes_repository.dart';
 import 'package:flutter_bloc_starter/features/notes/presentation/compose/cubit/compose_cubit.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -28,7 +29,7 @@ void main() {
     repository = _MockNotesRepository();
     pairingRepository = _MockPairingRepository();
     when(() => pairingRepository.getPartner())
-        .thenAnswer((_) async => const Profile(id: 'p1', avatarKind: 'initial'));
+        .thenAnswer((_) async => const Profile(id: 'p1', avatarKind: AvatarKind.initials));
     when(() => repository.getSent()).thenAnswer((_) async => [message]);
     when(
       () => repository.sendNote(

@@ -51,7 +51,7 @@ class const MoodForm({super.key}) extends StatelessWidget {
             children: [
               for (final option in NeedKind.values)
                 BaseChoiceChip(
-                  label: l10n.needs.selectOrFallback(option.value),
+                  label: l10n.needs.selectOrFallback(option.name),
                   isSelected: need == option,
                   onTap: isSaving ? null : () => cubit.toggleNeed(option),
                 ),
@@ -70,8 +70,8 @@ class const MoodForm({super.key}) extends StatelessWidget {
             children: [
               for (final option in MoodShare.values)
                 BaseOptionTile(
-                  title: l10n.share.selectOrFallback(option.value),
-                  support: l10n.shareSupport.selectOrFallback(option.value),
+                  title: l10n.share.selectOrFallback(option.name),
+                  support: l10n.shareSupport.selectOrFallback(option.name),
                   isSelected: share == option,
                   isEnabled: !isSaving && (option != MoodShare.moodNeed || need != null),
                   onTap: isSaving ? null : () => cubit.selectShare(option),
@@ -114,7 +114,7 @@ class const _MoodGrid({
                 width: width,
                 child: _MoodTile(
                   mood: mood,
-                  label: l10n.moods.selectOrFallback(mood.value),
+                  label: l10n.moods.selectOrFallback(mood.name),
                   isSelected: selected == mood,
                   isEnabled: isEnabled,
                   onTap: () => onSelected(mood),

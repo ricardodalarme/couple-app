@@ -13,7 +13,7 @@ final class const TogetherState({
   final int listCount = 0,
   final int sharedGiftCount = 0,
   final String? questionTitle,
-  final String? phase,
+  final RelationshipPhase? phase,
 }) with Equatable {
   TogetherState copyWith({
     TogetherView? view,
@@ -22,7 +22,7 @@ final class const TogetherState({
     int? listCount,
     int? sharedGiftCount,
     String? questionTitle,
-    String? phase,
+    RelationshipPhase? phase,
   }) {
     return TogetherState(
       view: view ?? this.view,

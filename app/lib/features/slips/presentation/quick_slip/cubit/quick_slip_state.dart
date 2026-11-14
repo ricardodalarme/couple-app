@@ -2,7 +2,7 @@ part of 'quick_slip_cubit.dart';
 
 final class const QuickSlipState({
   final FormInput<String> text = const FormInput(''),
-  final String? category,
+  final SlipCategory? category,
   final Resource<SlipSaveOutcome> saveAction = const Initial(),
   final Resource<void> undoAction = const Initial(),
   final bool canUndo = false,
@@ -15,7 +15,7 @@ final class const QuickSlipState({
 
   QuickSlipState copyWith({
     FormInput<String>? text,
-    String? category,
+    SlipCategory? category,
     bool clearCategory = false,
     Resource<SlipSaveOutcome>? saveAction,
     Resource<void>? undoAction,

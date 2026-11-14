@@ -117,7 +117,7 @@ void main() {
     final cubit = build();
     await cubit.load();
     cubit
-      ..onFeelingChosen('calmer')
+      ..onFeelingChosen(RepairFeeling.calmer)
       ..onFollowUpChosen(FollowUp.tomorrow);
 
     await cubit.finish();
@@ -126,7 +126,7 @@ void main() {
       () => repair.completeSession(
         id: 's1',
         now: any(named: 'now'),
-        feeling: 'calmer',
+        feeling: RepairFeeling.calmer,
       ),
     ).called(1);
     verify(() => reminders.addFollowUp(any(), now: any(named: 'now'))).called(1);
@@ -195,14 +195,14 @@ void main() {
       final cubit = LearningCubit(repairRepository: repair)..onNoteChanged('Preciso de calma');
       expect(cubit.state.note.isValid, isTrue);
 
-      cubit.onKindChosen('need');
+      cubit.onKindChosen(RepairLearningKind.need);
 
       await cubit.save(sessionId: 's1');
 
       verify(
         () => repair.saveLearning(
           id: any(named: 'id'),
-          kind: 'need',
+          kind: RepairLearningKind.need,
           note: 'Preciso de calma',
           sessionId: 's1',
         ),
@@ -212,7 +212,12 @@ void main() {
     });
 
     test('delete removes the learning from the list', () async {
-      final learning = Learning(id: 'l1', kind: 'need', note: 'x', createdAt: DateTime(2026));
+      final learning = Learning(
+        id: 'l1',
+        kind: RepairLearningKind.need,
+        note: 'x',
+        createdAt: DateTime(2026),
+      );
       when(() => repair.getLearnings()).thenAnswer((_) async => [learning]);
       when(() => repair.deleteLearning('l1')).thenAnswer((_) async {});
       final cubit = LearningCubit(repairRepository: repair);

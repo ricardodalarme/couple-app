@@ -2,13 +2,13 @@ part of 'create_list_sheet_cubit.dart';
 
 final class const CreateListSheetState({
   final FormInput<String> title = const FormInput(''),
-  final String kind = '',
+  final ListKind kind = ListKind.travel,
   final bool isShared = false,
   final bool hasPartner = false,
 }) with Equatable {
   CreateListSheetState copyWith({
     FormInput<String>? title,
-    String? kind,
+    ListKind? kind,
     bool? isShared,
     bool? hasPartner,
   }) => CreateListSheetState(

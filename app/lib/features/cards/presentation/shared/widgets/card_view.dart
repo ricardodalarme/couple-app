@@ -54,7 +54,7 @@ class const _Item({required final CardItem item, final Widget? trailing}) extend
     final category = item.category;
     final parts = [
       if (writtenAt != null) l10n.weekdays[writtenAt.weekday - 1],
-      if (category != null) l10n.categories.selectOrFallback(category),
+      if (category != null) l10n.categories.selectOrFallback(category.name),
     ];
 
     return Row(

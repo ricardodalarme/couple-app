@@ -1,24 +1,13 @@
 import 'package:design_system/design_system.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 
 /// How readily the person lets the partner see a heavy-day notice.
 enum HeavyDaySharing() {
   off,
   ask,
-  always;
-
-  static HeavyDaySharing fromServer(String value) => switch (value) {
-    'off' => off,
-    'ask' => ask,
-    'always' => always,
-    _ => off,
-  };
-
-  String get toServer => switch (this) {
-    off => 'off',
-    ask => 'ask',
-    always => 'always',
-  };
+  always,
 }
 
 final class const AccountSettings({
@@ -31,8 +20,8 @@ final class const AccountSettings({
   final bool shareReadReceipts = false,
   final bool widgetInDiscreet = false,
   final HeavyDaySharing heavyDaySharing = HeavyDaySharing.off,
-  final String? phase,
-  final List<String> goals = const [],
+  final RelationshipPhase? phase,
+  final List<RelationshipGoal> goals = const [],
   final String locale = 'pt-BR',
 }) with Equatable {
   /// Whether the person finished the first profile step.

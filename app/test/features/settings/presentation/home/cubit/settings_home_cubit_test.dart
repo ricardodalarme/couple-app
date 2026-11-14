@@ -4,6 +4,7 @@ import 'package:flutter_bloc_starter/features/notifications/data/repositories/no
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
 import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/settings/presentation/home/cubit/settings_home_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -39,9 +40,9 @@ void main() {
   );
 
   test('each section shows its current state', () async {
-    when(
-      () => pairing.getPartner(),
-    ).thenAnswer((_) async => const Profile(id: 'p', avatarKind: 'initials', displayName: 'Rui'));
+    when(() => pairing.getPartner()).thenAnswer(
+      (_) async => const Profile(id: 'p', avatarKind: AvatarKind.initials, displayName: 'Rui'),
+    );
     when(() => plus.getPlus()).thenAnswer((_) async => const PlusState(hasPlus: true));
     when(() => notifications.getPreferences())
         .thenAnswer((_) async => const NotificationPreferences(isEnabled: false));

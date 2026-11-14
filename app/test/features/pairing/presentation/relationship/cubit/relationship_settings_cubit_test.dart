@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/relationship/cubit/relationship_settings_cubit.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_details.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
@@ -38,9 +39,9 @@ void main() {
   tearDown(() => cubit.close());
 
   test('loads the phase, date and partner name', () async {
-    when(
-      () => pairing.getPartner(),
-    ).thenAnswer((_) async => const Profile(id: 'p2', avatarKind: 'initial', displayName: 'Rui'));
+    when(() => pairing.getPartner()).thenAnswer(
+      (_) async => const Profile(id: 'p2', avatarKind: AvatarKind.initials, displayName: 'Rui'),
+    );
 
     await cubit.load();
 
@@ -59,9 +60,9 @@ void main() {
     expect(cubit.state.hasPartner, isNull);
     expect(cubit.state.partnerLoadFailed, isTrue);
 
-    when(
-      () => pairing.getPartner(),
-    ).thenAnswer((_) async => const Profile(id: 'p2', avatarKind: 'initial', displayName: 'Rui'));
+    when(() => pairing.getPartner()).thenAnswer(
+      (_) async => const Profile(id: 'p2', avatarKind: AvatarKind.initials, displayName: 'Rui'),
+    );
     await cubit.loadPartner();
 
     expect(cubit.state.partnerLoadFailed, isFalse);
@@ -70,7 +71,7 @@ void main() {
 
   test('a partner without a display name still keeps the unpair path', () async {
     when(() => pairing.getPartner())
-        .thenAnswer((_) async => const Profile(id: 'p2', avatarKind: 'initial'));
+        .thenAnswer((_) async => const Profile(id: 'p2', avatarKind: AvatarKind.initials));
 
     await cubit.load();
 

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart' show Skeletonizer;
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 
 /// Breakdown of the relationship duration at local midnight.
 typedef TogetherDurationBreakdown = ({int years, int months, int days, int totalDays});
@@ -22,7 +23,7 @@ final class const WidgetPayload({
   required final int slipsCount,
   required final String updatedAt,
   final String? togetherSince,
-  final String? relationshipPhase,
+  final RelationshipPhase? relationshipPhase,
   final String? partnerName,
   final String? nextDateTitle,
   final String? nextDateOn,
@@ -65,7 +66,7 @@ final class const WidgetPayload({
     onLockScreen: false,
     isOffline: false,
     togetherSince: '2024-02-14',
-    relationshipPhase: 'dating',
+    relationshipPhase: RelationshipPhase.dating,
     partnerName: 'Marina',
     nextDateTitle: 'Aniversário',
     nextDateOn: '2026-11-23',
@@ -91,7 +92,7 @@ final class const WidgetPayload({
     onLockScreen: json['onLockScreen'] as bool? ?? false,
     isOffline: json['isOffline'] as bool? ?? false,
     togetherSince: json['togetherSince'] as String?,
-    relationshipPhase: json['relationshipPhase'] as String?,
+    relationshipPhase: RelationshipPhase.values.asNameMap()[json['relationshipPhase'] as String?],
     partnerName: json['partnerName'] as String?,
     nextDateTitle: json['nextDateTitle'] as String?,
     nextDateOn: json['nextDateOn'] as String?,
@@ -175,7 +176,7 @@ final class const WidgetPayload({
       onLockScreen: onLockScreen,
       isOffline: isOffline,
       togetherSince: _nonEmpty(togetherSince),
-      relationshipPhase: _nonEmpty(relationshipPhase),
+      relationshipPhase: relationshipPhase,
       partnerName: resolvedPartnerName,
       nextDateTitle: validDateTitle,
       nextDateOn: validDateOn,
@@ -260,7 +261,7 @@ final class const WidgetPayload({
     bool? onLockScreen,
     bool? isOffline,
     String? togetherSince,
-    String? relationshipPhase,
+    RelationshipPhase? relationshipPhase,
     String? partnerName,
     String? nextDateTitle,
     String? nextDateOn,
@@ -320,7 +321,7 @@ final class const WidgetPayload({
     'onLockScreen': onLockScreen,
     'isOffline': isOffline,
     'togetherSince': togetherSince,
-    'relationshipPhase': relationshipPhase,
+    'relationshipPhase': relationshipPhase?.name,
     'partnerName': partnerName,
     'nextDateTitle': nextDateTitle,
     'nextDateOn': nextDateOn,

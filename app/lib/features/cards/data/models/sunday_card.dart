@@ -1,10 +1,11 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
 
 /// One slip on a card.
 final class const CardItem({
   required final String slipId,
   required final String body,
-  final String? category,
+  final SlipCategory? category,
   final DateTime? writtenAt,
 }) with Equatable {
   @override

@@ -7,12 +7,12 @@
     "subtitle": "Pick the closest one. You can change it later.",
     "options(map)": {
       "dating": "Dating",
-      "living_together": "Living together",
+      "livingTogether": "Living together",
       "engaged": "Engaged",
       "married": "Married",
-      "with_kids": "With kids",
-      "long_distance": "Long distance",
-      "with_parents": "Living with parents",
+      "withKids": "With kids",
+      "longDistance": "Long distance",
+      "withParents": "Living with parents",
       "restarting": "Starting over",
       "other": ""
     }
@@ -23,11 +23,11 @@
     "subtitle": "Pick as many as you like.",
     "options(map)": {
       "reconnect": "Reconnect",
-      "fight_less": "Fight less",
-      "keep_romance": "Keep the romance",
-      "remember_dates": "Remember dates",
-      "organize_routine": "Organise the routine",
-      "just_record": "Just note the good things",
+      "fightLess": "Fight less",
+      "keepRomance": "Keep the romance",
+      "rememberDates": "Remember dates",
+      "organizeRoutine": "Organise the routine",
+      "justRecord": "Just note the good things",
       "other": ""
     }
   },

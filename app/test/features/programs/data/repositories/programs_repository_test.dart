@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/programs_data_source.dart';
@@ -136,8 +137,8 @@ void main() {
     );
     when(() => dataSource.getLessonProgress('gratitude-7')).thenAnswer(
       (_) async => [
-        (programSlug: 'gratitude-7', lessonDay: 1, status: 'done'),
-        (programSlug: 'gratitude-7', lessonDay: 2, status: 'saved'),
+        (programSlug: 'gratitude-7', lessonDay: 1, status: EnumLessonStatus.done),
+        (programSlug: 'gratitude-7', lessonDay: 2, status: EnumLessonStatus.saved),
       ],
     );
 
@@ -253,10 +254,18 @@ void main() {
     await repository.saveLesson(slug: 'gratitude-7', day: 2);
 
     verify(
-      () => dataSource.setLessonStatus(programSlug: 'gratitude-7', lessonDay: 1, status: 'done'),
+      () => dataSource.setLessonStatus(
+        programSlug: 'gratitude-7',
+        lessonDay: 1,
+        status: EnumLessonStatus.done,
+      ),
     ).called(1);
     verify(
-      () => dataSource.setLessonStatus(programSlug: 'gratitude-7', lessonDay: 2, status: 'saved'),
+      () => dataSource.setLessonStatus(
+        programSlug: 'gratitude-7',
+        lessonDay: 2,
+        status: EnumLessonStatus.saved,
+      ),
     ).called(1);
   });
 

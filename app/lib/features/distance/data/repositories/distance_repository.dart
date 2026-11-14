@@ -1,4 +1,5 @@
 import 'package:clock/clock.dart';
+import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
 import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
 import 'package:flutter_bloc_starter/features/distance/data/data_sources/remote/distance_data_source.dart';
 import 'package:flutter_bloc_starter/features/distance/data/models/distance_info.dart';
@@ -6,8 +7,6 @@ import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_
 import 'package:logger/logger.dart';
 import 'package:timezone/data/latest_all.dart' as tz_data;
 import 'package:timezone/timezone.dart' as tz;
-
-const String _reunionKind = 'reunion';
 
 class DistanceRepository({
   required final DistanceDataSource _dataSource,
@@ -59,7 +58,7 @@ class DistanceRepository({
     final today = DateTime.utc(moment.year, moment.month, moment.day);
     ({DateTime date, int days, String title})? best;
     for (final item in await _datesRepository.getDates()) {
-      if (item.kind != _reunionKind) continue;
+      if (item.kind != ImportantDateKind.reunion) continue;
       final date = nextOccurrence(
         month: item.month,
         day: item.day,

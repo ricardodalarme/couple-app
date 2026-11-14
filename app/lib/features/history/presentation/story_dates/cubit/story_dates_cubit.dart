@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
+import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
 import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
 import 'package:uuid/uuid.dart';
 
@@ -26,7 +27,7 @@ class StoryDatesCubit({required final HistoryRepository _historyRepository})
 
   /// Saves one of the four canonical dates the person picked.
   Future<void> saveDate({
-    required String kind,
+    required StoryEventKind kind,
     required String title,
     required DateTime date,
   }) async {
@@ -37,10 +38,10 @@ class StoryDatesCubit({required final HistoryRepository _historyRepository})
     if (currentOverview == null || state.saveAction.isLoading) return;
 
     final entry = switch (kind) {
-      'met' => currentOverview.storyDates.met,
-      'dating' => currentOverview.storyDates.dating,
-      'engaged' => currentOverview.storyDates.engaged,
-      'married' => currentOverview.storyDates.married,
+      StoryEventKind.met => currentOverview.storyDates.met,
+      StoryEventKind.dating => currentOverview.storyDates.dating,
+      StoryEventKind.engaged => currentOverview.storyDates.engaged,
+      StoryEventKind.married => currentOverview.storyDates.married,
       _ => null,
     };
 
@@ -56,7 +57,8 @@ class StoryDatesCubit({required final HistoryRepository _historyRepository})
         existingEventIsMine: entry?.isMine ?? true,
         coupleId: currentOverview.coupleId,
         updateTogetherSince:
-            kind == 'dating' || (kind == 'met' && currentOverview.togetherSince == null),
+            kind == StoryEventKind.dating ||
+            (kind == StoryEventKind.met && currentOverview.togetherSince == null),
       );
       emit(state.copyWith(saveAction: const Success(null)));
       await load();

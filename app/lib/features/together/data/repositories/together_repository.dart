@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:clock/clock.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/together_data_source.dart';
+import 'package:flutter_bloc_starter/features/together/data/mappers/together_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
+import 'package:flutter_bloc_starter/features/together/data/models/date_idea_status.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/logistic_item.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/ritual.dart';
 import 'package:logger/logger.dart';
@@ -76,7 +78,7 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
           Ritual(
             id: node.id,
             title: node.title,
-            cadence: node.cadence,
+            cadence: node.cadence.toModel(),
             weekday: node.weekday,
             hour: _hourOf(node.atTime),
             hasReminder: node.reminder,
@@ -98,7 +100,7 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
         await _dataSource.addRitual(
           id: ritual.id,
           title: ritual.title.trim(),
-          cadence: ritual.cadence,
+          cadence: ritual.cadence.toRemote(),
           weekday: weekday,
           atTime: time,
           reminder: ritual.hasReminder,
@@ -108,7 +110,7 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
         await _dataSource.updateRitual(
           id: ritual.id,
           title: ritual.title.trim(),
-          cadence: ritual.cadence,
+          cadence: ritual.cadence.toRemote(),
           weekday: weekday,
           atTime: time,
           reminder: ritual.hasReminder,
@@ -138,7 +140,7 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
           DateIdea(
             id: node.id,
             title: node.title,
-            status: node.status,
+            status: node.status.toModel(),
             plannedFor: node.plannedFor,
           ),
       ];
@@ -195,7 +197,10 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
 
   Future<void> setDateIdeaDone({required String id, required bool isDone}) => _run(
     'update a date idea',
-    () => _dataSource.setDateIdeaStatus(id: id, status: isDone ? 'done' : 'saved'),
+    () => _dataSource.setDateIdeaStatus(
+      id: id,
+      status: (isDone ? DateIdeaStatus.done : DateIdeaStatus.saved).toRemote(),
+    ),
   );
 
   Future<void> deleteDateIdea(String id) =>

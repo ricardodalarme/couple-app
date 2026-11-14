@@ -1,18 +1,20 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_starter/features/together/data/models/date_idea_status.dart';
 
 /// One date idea the couple saved, planned or did.
 final class const DateIdea({
   required final String id,
   required final String title,
-  required final String status,
+  required final DateIdeaStatus status,
   final DateTime? plannedFor,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
-  factory fake() => const DateIdea(id: 'fake', title: 'Piquenique no parque', status: 'saved');
+  factory fake() =>
+      const DateIdea(id: 'fake', title: 'Piquenique no parque', status: DateIdeaStatus.saved);
 
-  bool get isPlanned => status == 'planned';
+  bool get isPlanned => status == DateIdeaStatus.planned;
 
-  bool get isDone => status == 'done';
+  bool get isDone => status == DateIdeaStatus.done;
 
   @override
   List<Object?> get props => [id, title, status, plannedFor];

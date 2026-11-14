@@ -1,4 +1,5 @@
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/learned_items_data_source.dart';
+import 'package:flutter_bloc_starter/features/chat/data/mappers/learned_item_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
 import 'package:logger/logger.dart';
 
@@ -11,10 +12,10 @@ class LearnedItemsRepository({required final LearnedItemsDataSource _dataSource}
         for (final node in await _dataSource.getItems())
           LearnedItem(
             id: node.id,
-            target: LearnedTarget.fromWire(node.target),
+            target: node.target.toModel(),
             text: node.text,
             excerpt: node.excerpt,
-            status: LearnedStatus.fromWire(node.status),
+            status: node.status.toModel(),
             createdAt: node.createdAt,
           ),
       ];
@@ -30,7 +31,7 @@ class LearnedItemsRepository({required final LearnedItemsDataSource _dataSource}
       final trimmed = text.trim();
       final trimmedExcerpt = excerpt?.trim();
       await _dataSource.add(
-        target: target.wire,
+        target: target.toRemote(),
         text: trimmed,
         excerpt: trimmedExcerpt == null
             ? null
@@ -55,7 +56,7 @@ class LearnedItemsRepository({required final LearnedItemsDataSource _dataSource}
 
   Future<void> setStatus(String id, LearnedStatus status) async {
     try {
-      await _dataSource.setStatus(id: id, status: status.wire);
+      await _dataSource.setStatus(id: id, status: status.toRemote());
     } catch (e, stack) {
       _logger.error('Failed to change a learning status', error: e, stackTrace: stack);
       rethrow;

@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/logistic_item.dart';
@@ -25,11 +26,12 @@ void main() {
     together = _MockTogetherRepository();
     profile = _MockProfileRepository();
     pairing = _MockPairingRepository();
-    when(
-      () => profile.getMyProfile(),
-    ).thenAnswer((_) async => const Profile(id: 'me', avatarKind: 'initials', displayName: 'Ana'));
+    when(() => profile.getMyProfile()).thenAnswer(
+      (_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials, displayName: 'Ana'),
+    );
     when(() => pairing.getPartner()).thenAnswer(
-      (_) async => const Profile(id: 'partner', avatarKind: 'initials', displayName: 'Rui'),
+      (_) async =>
+          const Profile(id: 'partner', avatarKind: AvatarKind.initials, displayName: 'Rui'),
     );
     when(() => together.getLogisticItems()).thenAnswer((_) async => [item]);
     when(

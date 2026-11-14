@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
+import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
 import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
 import 'package:flutter_bloc_starter/features/dates/presentation/dates/cubit/dates_cubit.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
@@ -88,7 +89,7 @@ void main() {
       () => repository.addDate(
         id: any(named: 'id'),
         title: 'Aniversário',
-        kind: 'birthday',
+        kind: ImportantDateKind.birthday,
         month: 5,
         day: 12,
         year: null,
@@ -144,7 +145,7 @@ void main() {
       () => repository.addDate(
         id: any(named: 'id'),
         title: 'Aniversário',
-        kind: 'birthday',
+        kind: ImportantDateKind.birthday,
         month: 5,
         day: 12,
         year: null,
@@ -158,7 +159,7 @@ void main() {
   test('a reunion is saved as a single meeting, not a yearly date', () async {
     final cubit = build()
       ..onTitleChanged('Reencontro')
-      ..onKindChosen('reunion')
+      ..onKindChosen(ImportantDateKind.reunion)
       ..onMonthChosen(12)
       ..onDayChosen(23)
       ..onYearChanged('2026');
@@ -169,7 +170,7 @@ void main() {
       () => repository.addDate(
         id: any(named: 'id'),
         title: 'Reencontro',
-        kind: 'reunion',
+        kind: ImportantDateKind.reunion,
         month: 12,
         day: 23,
         year: 2026,
@@ -198,7 +199,7 @@ void main() {
       () => repository.addDate(
         id: any(named: 'id'),
         title: 'Dia dos Namorados',
-        kind: 'holiday',
+        kind: ImportantDateKind.holiday,
         month: 6,
         day: 12,
         year: any(named: 'year'),

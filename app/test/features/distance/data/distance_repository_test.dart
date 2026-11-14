@@ -1,4 +1,5 @@
 import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
+import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
 import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
 import 'package:flutter_bloc_starter/features/distance/data/data_sources/remote/distance_data_source.dart';
 import 'package:flutter_bloc_starter/features/distance/data/models/distance_info.dart';
@@ -47,9 +48,29 @@ void main() {
   test('the nearest reunion date sets the countdown', () async {
     when(() => datesRepository.getDates()).thenAnswer(
       (_) async => const [
-        ImportantDate(id: 'a', title: 'Natal', kind: 'reunion', month: 12, day: 23, year: 2026),
-        ImportantDate(id: 'b', title: 'Depois', kind: 'reunion', month: 1, day: 5, year: 2027),
-        ImportantDate(id: 'c', title: 'Festa', kind: 'birthday', month: 11, day: 12),
+        ImportantDate(
+          id: 'a',
+          title: 'Natal',
+          kind: ImportantDateKind.reunion,
+          month: 12,
+          day: 23,
+          year: 2026,
+        ),
+        ImportantDate(
+          id: 'b',
+          title: 'Depois',
+          kind: ImportantDateKind.reunion,
+          month: 1,
+          day: 5,
+          year: 2027,
+        ),
+        ImportantDate(
+          id: 'c',
+          title: 'Festa',
+          kind: ImportantDateKind.birthday,
+          month: 11,
+          day: 12,
+        ),
       ],
     );
 
@@ -65,7 +86,7 @@ void main() {
         ImportantDate(
           id: 'r',
           title: 'Reencontro',
-          kind: 'reunion',
+          kind: ImportantDateKind.reunion,
           month: 12,
           day: 23,
           year: 2026,
@@ -86,7 +107,7 @@ void main() {
         ImportantDate(
           id: 'r',
           title: 'Reencontro',
-          kind: 'reunion',
+          kind: ImportantDateKind.reunion,
           month: 3,
           day: 9,
           year: 2026,

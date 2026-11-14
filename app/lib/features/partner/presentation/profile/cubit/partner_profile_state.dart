@@ -4,14 +4,14 @@ final class const PartnerProfileState({
   final Resource<List<PartnerFact>> facts = const Loading(),
   final FormInput<String> label = const FormInput(''),
   final FormInput<String> value = const FormInput(''),
-  final String? category,
+  final PartnerFactCategory? category,
   final Resource<void> saveAction = const Initial(),
 }) with Equatable {
   PartnerProfileState copyWith({
     Resource<List<PartnerFact>>? facts,
     FormInput<String>? label,
     FormInput<String>? value,
-    String? category,
+    PartnerFactCategory? category,
     bool clearCategory = false,
     Resource<void>? saveAction,
   }) {

@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/games_data_source.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_item.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
@@ -21,8 +22,8 @@ void main() {
 
   GameSessionRecord record({
     String id = 's1',
-    String game = 'me_or_you',
-    String status = 'active',
+    EnumGameKind game = EnumGameKind.me_or_you,
+    EnumGameStatus status = EnumGameStatus.active,
     String invitedBy = 'me',
     List<String> slugs = const ['a', 'b'],
   }) => (
@@ -66,7 +67,7 @@ void main() {
     stubSessions(
       sessions: [
         record(),
-        record(id: 's2', game: 'compliments'),
+        record(id: 's2', game: EnumGameKind.compliments),
       ],
     );
 
@@ -134,7 +135,7 @@ void main() {
 
   test('an open invitation does not read items twice or answers', () async {
     stubSessions(
-      sessions: [record(status: 'invited', invitedBy: 'partner')],
+      sessions: [record(status: EnumGameStatus.invited, invitedBy: 'partner')],
     );
     stubItems(const [(slug: 'a', title: 'A?', body: null), (slug: 'b', title: 'B?', body: null)]);
 
@@ -146,7 +147,7 @@ void main() {
   });
 
   test('keeps a cancelled session so the start screen can explain it', () async {
-    stubSessions(sessions: [record(status: 'cancelled')]);
+    stubSessions(sessions: [record(status: EnumGameStatus.cancelled)]);
     stubItems(const [(slug: 'a', title: 'A?', body: null)]);
 
     final play = await repository.getPlay(kind: GameKind.meOrYou, locale: 'pt-BR', now: now);
@@ -157,7 +158,7 @@ void main() {
   });
 
   test('keeps an expired invitation so the start screen can explain it', () async {
-    stubSessions(sessions: [record(status: 'invited')]);
+    stubSessions(sessions: [record(status: EnumGameStatus.invited)]);
     stubItems(const [(slug: 'a', title: 'A?', body: null)]);
     final later = created.add(const Duration(hours: 49));
 
@@ -169,7 +170,7 @@ void main() {
   });
 
   test('splits the answers the server returns by author', () async {
-    stubSessions(sessions: [record(status: 'finished')]);
+    stubSessions(sessions: [record(status: EnumGameStatus.finished)]);
     stubItems(const [(slug: 'a', title: 'A?', body: null), (slug: 'b', title: 'B?', body: null)]);
     when(() => dataSource.getAnswers('s1')).thenAnswer(
       (_) async => [
@@ -191,7 +192,7 @@ void main() {
         game: any(named: 'game'),
         itemSlugs: any(named: 'itemSlugs'),
       ),
-    ).thenAnswer((_) async => record(status: 'invited'));
+    ).thenAnswer((_) async => record(status: EnumGameStatus.invited));
     const play = GamePlay(
       kind: GameKind.meOrYou,
       selfId: 'me',
@@ -254,7 +255,7 @@ void main() {
     ).thenAnswer((invocation) async {
       final action = invocation.namedArguments[#action] as String;
 
-      return record(status: action == 'join' ? 'active' : 'cancelled');
+      return record(status: action == 'join' ? EnumGameStatus.active : EnumGameStatus.cancelled);
     });
     final session = GameSession(
       id: 's1',

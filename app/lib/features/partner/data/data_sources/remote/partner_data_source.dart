@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/partner/data/data_sources/remote/mutations/generated/AddPartnerFact.graphql.dart';
 import 'package:flutter_bloc_starter/features/partner/data/data_sources/remote/mutations/generated/DeletePartnerFact.graphql.dart';
 import 'package:flutter_bloc_starter/features/partner/data/data_sources/remote/queries/generated/PartnerFacts.graphql.dart';
@@ -20,7 +21,7 @@ class PartnerDataSource({required final GQLClient _client}) {
     required String id,
     required String label,
     required String value,
-    String? category,
+    EnumPartnerFactCategory? category,
   }) async {
     final response = await _client.mutate(
       OptionsMutationAddPartnerFact(

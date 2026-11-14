@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/guides/data/data_sources/local/guides_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/guides/data/data_sources/remote/guides_data_source.dart';
@@ -147,7 +148,7 @@ void main() {
     verify(
       () => dataSource.insertPrep(
         id: any(named: 'id'),
-        guide: 'money',
+        guide: EnumConversationGuide.money,
         topic: 'Dinheiro',
         notes: 'Uma nota',
         draft: 'Uma nota',
@@ -156,7 +157,7 @@ void main() {
     verify(
       () => dataSource.updatePrep(
         id: 'prep-1',
-        guide: 'money',
+        guide: EnumConversationGuide.money,
         topic: 'Dinheiro',
         notes: 'Uma nota nova',
         draft: 'Uma nota nova',
@@ -196,7 +197,7 @@ void main() {
     verify(
       () => dataSource.insertPrep(
         id: any(named: 'id'),
-        guide: 'money',
+        guide: EnumConversationGuide.money,
         topic: 'Dinheiro',
         notes: 'Uma nota',
         draft: null,
@@ -226,7 +227,7 @@ void main() {
     final captured = verify(
       () => dataSource.insertPrep(
         id: any(named: 'id'),
-        guide: 'money',
+        guide: EnumConversationGuide.money,
         topic: 'Dinheiro',
         notes: captureAny(named: 'notes'),
         draft: null,

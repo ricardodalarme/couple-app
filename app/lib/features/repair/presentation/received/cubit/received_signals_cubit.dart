@@ -31,13 +31,13 @@ class ReceivedSignalsCubit({
   /// Answers the signal on top, or only marks it seen when [response] is null.
   ///
   /// Answering "later" schedules a generic reminder so the person is not left to remember.
-  Future<void> respond(ReceivedSignal signal, {String? response}) async {
+  Future<void> respond(ReceivedSignal signal, {RepairResponse? response}) async {
     if (state.respondAction.isLoading) return;
 
     emit(state.copyWith(respondAction: const Loading()));
     try {
       await _repairRepository.respondToSignal(signalId: signal.id, response: response);
-      if (response == 'later') await _scheduleReminder();
+      if (response == RepairResponse.later) await _scheduleReminder();
       final current = state.signals;
       if (current is Success<List<ReceivedSignal>>) {
         emit(

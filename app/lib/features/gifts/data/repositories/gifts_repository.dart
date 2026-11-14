@@ -1,5 +1,7 @@
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/gifts_data_source.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/mappers/gift_enum_mapper.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:logger/logger.dart';
@@ -26,8 +28,8 @@ class GiftsRepository({
               id: node.id,
               title: node.title,
               note: node.note,
-              budget: node.budget,
-              status: node.status,
+              budget: node.budget?.toModel(),
+              status: node.status.toModel(),
               coupleId: node.coupleId == coupleId ? node.coupleId : null,
               isMine: node.authorId == selfId,
             ),
@@ -42,7 +44,7 @@ class GiftsRepository({
     required String id,
     required String title,
     String? note,
-    String? budget,
+    GiftBudget? budget,
     String? coupleId,
   }) => _run(
     'add a gift wish',
@@ -50,7 +52,7 @@ class GiftsRepository({
       id: id,
       title: title.trim(),
       note: _clean(note),
-      budget: budget,
+      budget: budget?.toRemote(),
       coupleId: coupleId,
     ),
   );
@@ -59,11 +61,15 @@ class GiftsRepository({
     required String id,
     required String title,
     String? note,
-    String? budget,
+    GiftBudget? budget,
   }) => _run(
     'update a gift wish',
-    () =>
-        _dataSource.updateGiftWish(id: id, title: title.trim(), note: _clean(note), budget: budget),
+    () => _dataSource.updateGiftWish(
+      id: id,
+      title: title.trim(),
+      note: _clean(note),
+      budget: budget?.toRemote(),
+    ),
   );
 
   Future<void> deleteGiftWish(String id) =>

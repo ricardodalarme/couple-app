@@ -1,6 +1,7 @@
 import 'package:clock/clock.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/programs_data_source.dart';
+import 'package:flutter_bloc_starter/features/programs/data/mappers/lesson_status_mapper.dart';
 import 'package:flutter_bloc_starter/features/programs/data/models/diary_entry.dart';
 import 'package:flutter_bloc_starter/features/programs/data/models/program.dart';
 import 'package:logger/logger.dart';
@@ -52,7 +53,7 @@ class ProgramsRepository({
         LessonProgress(
           programSlug: row.programSlug,
           lessonDay: row.lessonDay,
-          status: LessonStatus.fromServer(row.status),
+          status: row.status.toModel(),
         ),
     ],
   );
@@ -98,7 +99,7 @@ class ProgramsRepository({
     () => _dataSource.setLessonStatus(
       programSlug: slug,
       lessonDay: day,
-      status: LessonStatus.done.toServer,
+      status: LessonStatus.done.toRemote(),
     ),
   );
 
@@ -107,7 +108,7 @@ class ProgramsRepository({
     () => _dataSource.setLessonStatus(
       programSlug: slug,
       lessonDay: day,
-      status: LessonStatus.saved.toServer,
+      status: LessonStatus.saved.toRemote(),
     ),
   );
 

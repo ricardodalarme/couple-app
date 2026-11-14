@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact.dart';
+import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact_category.dart';
 import 'package:flutter_bloc_starter/features/partner/data/repositories/partner_repository.dart';
 import 'package:flutter_bloc_starter/features/partner/presentation/profile/cubit/partner_profile_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,7 +12,12 @@ class _MockPartnerRepository() extends Mock implements PartnerRepository;
 void main() {
   late PartnerRepository repository;
 
-  const fact = PartnerFact(id: 'f1', label: 'Café', value: 'Sem açúcar', category: 'likes');
+  const fact = PartnerFact(
+    id: 'f1',
+    label: 'Café',
+    value: 'Sem açúcar',
+    category: PartnerFactCategory.likes,
+  );
 
   setUp(() {
     repository = _MockPartnerRepository();
@@ -52,7 +58,7 @@ void main() {
     final cubit = build()
       ..onLabelChanged('Café')
       ..onValueChanged('Sem açúcar')
-      ..onCategoryToggled('likes');
+      ..onCategoryToggled(PartnerFactCategory.likes);
 
     await cubit.save();
 
@@ -61,7 +67,7 @@ void main() {
         id: any(named: 'id'),
         label: 'Café',
         value: 'Sem açúcar',
-        category: 'likes',
+        category: PartnerFactCategory.likes,
       ),
     ).called(1);
     expect(cubit.state.label.value, '');

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/fragments/generated/ProfileFragment.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/mappers/profile_mapper.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -17,7 +18,12 @@ void main() {
 
     expect(
       fragment.toModel(),
-      const Profile(id: 'p1', avatarKind: 'initial', displayName: 'Marina', city: 'Curitiba'),
+      const Profile(
+        id: 'p1',
+        avatarKind: AvatarKind.initials,
+        displayName: 'Marina',
+        city: 'Curitiba',
+      ),
     );
   });
 }

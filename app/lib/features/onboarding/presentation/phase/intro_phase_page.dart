@@ -54,7 +54,7 @@ class const _PhaseOptions() extends StatelessWidget {
       children: [
         for (final phase in introPhases) ...[
           BaseOptionTile(
-            title: labels.selectOrFallback(phase),
+            title: labels.selectOrFallback(phase.name),
             isSelected: selected == phase,
             onTap: () => context.read<IntroCubit>().selectPhase(phase),
           ),

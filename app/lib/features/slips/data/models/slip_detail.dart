@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
 
 /// One slip with everything needed to read, edit and decide on it.
 final class const SlipDetail({
@@ -9,8 +11,8 @@ final class const SlipDetail({
   required final bool forCard,
   final String? feeling,
   final String? planNote,
-  final String? category,
-  final String? workArea,
+  final SlipCategory? category,
+  final SlipWorkArea? workArea,
   final bool isArchived = false,
   final bool wasInCard = false,
   final bool isInJar = false,

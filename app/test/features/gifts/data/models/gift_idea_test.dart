@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -19,12 +20,16 @@ void main() {
   test('details keep identity and visibility', () {
     const gift = GiftIdea(id: 'g1', title: 'Livro', coupleId: 'couple-1', isMine: true);
 
-    final edited = gift.withDetails(title: 'Livro de poemas', note: 'Capa dura', budget: 'low');
+    final edited = gift.withDetails(
+      title: 'Livro de poemas',
+      note: 'Capa dura',
+      budget: GiftBudget.low,
+    );
 
     expect(edited.id, gift.id);
     expect(edited.title, 'Livro de poemas');
     expect(edited.note, 'Capa dura');
-    expect(edited.budget, 'low');
+    expect(edited.budget, GiftBudget.low);
     expect(edited.isShared, isTrue);
     expect(edited.isMine, isTrue);
   });

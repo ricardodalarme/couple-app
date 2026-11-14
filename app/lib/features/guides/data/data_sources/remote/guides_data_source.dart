@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/guides/data/data_sources/remote/mutations/generated/InsertConversationPrep.graphql.dart';
 import 'package:flutter_bloc_starter/features/guides/data/data_sources/remote/mutations/generated/UpdateConversationPrep.graphql.dart';
 import 'package:network/network.dart';
@@ -6,7 +7,7 @@ class GuidesDataSource({required final GQLClient _client}) {
   /// Inserts a private preparation and returns the row id.
   Future<String> insertPrep({
     required String id,
-    required String guide,
+    required EnumConversationGuide guide,
     required String topic,
     required String? notes,
     required String? draft,
@@ -32,7 +33,7 @@ class GuidesDataSource({required final GQLClient _client}) {
 
   Future<void> updatePrep({
     required String id,
-    required String guide,
+    required EnumConversationGuide guide,
     required String topic,
     required String? notes,
     required String? draft,

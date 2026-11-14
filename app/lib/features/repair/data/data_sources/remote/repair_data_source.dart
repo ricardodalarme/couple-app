@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/mutations/generated/CompleteRepairSession.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/mutations/generated/DeleteLearning.graphql.dart';
 import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/mutations/generated/RecordTemperature.graphql.dart';
@@ -13,7 +14,7 @@ import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/qu
 import 'package:network/network.dart';
 
 class RepairDataSource({required final GQLClient _client}) {
-  Future<void> recordTemperature(String level) async {
+  Future<void> recordTemperature(EnumTemperatureLevel level) async {
     final response = await _client.mutate(
       OptionsMutationRecordTemperature(variables: VariablesMutationRecordTemperature(level: level)),
     );
@@ -57,7 +58,7 @@ class RepairDataSource({required final GQLClient _client}) {
   Future<void> completeSession({
     required String id,
     required DateTime completedAt,
-    String? feeling,
+    EnumRepairFeeling? feeling,
   }) async {
     final response = await _client.mutate(
       OptionsMutationCompleteRepairSession(
@@ -86,7 +87,7 @@ class RepairDataSource({required final GQLClient _client}) {
 
   Future<void> saveLearning({
     required String id,
-    required String kind,
+    required EnumRepairLearningKind kind,
     required String note,
     String? sessionId,
   }) async {
@@ -148,7 +149,11 @@ class RepairDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<void> startSession({required String id, required String path, int? intensity}) async {
+  Future<void> startSession({
+    required String id,
+    required EnumRepairPath path,
+    int? intensity,
+  }) async {
     final response = await _client.mutate(
       OptionsMutationStartRepairSession(
         variables: VariablesMutationStartRepairSession(id: id, intensity: intensity, path: path),

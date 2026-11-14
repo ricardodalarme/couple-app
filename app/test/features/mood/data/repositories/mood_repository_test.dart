@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/mood_data_source.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/mood_share.dart';
@@ -15,13 +16,19 @@ void main() {
   late MoodRepository repository;
 
   final day = DateTime(2026, 11, 11);
-  MoodRecord record({String mood = 'tired', String? need = 'hug', String share = 'mood_need'}) =>
-      (id: 'm1', day: day, mood: mood, need: need, share: share);
+  MoodRecord record({
+    EnumMood mood = EnumMood.tired,
+    EnumMoodNeed? need = EnumMoodNeed.hug,
+    EnumMoodShare share = EnumMoodShare.mood_need,
+  }) => (id: 'm1', day: day, mood: mood, need: need, share: share);
   MoodTodayRecord today({MoodRecord? mood, String? partnerName = 'Rui'}) =>
       (day: day, partnerName: partnerName, mood: mood);
 
   setUpAll(() {
     registerFallbackValue('');
+    registerFallbackValue(EnumMood.happy);
+    registerFallbackValue(EnumMoodNeed.hug);
+    registerFallbackValue(EnumMoodShare.none);
     registerFallbackValue(DateTime(2026));
   });
 
@@ -45,7 +52,11 @@ void main() {
   test('an unknown server value stays private and moodless', () async {
     when(() => dataSource.getTodayMood()).thenAnswer(
       (_) async => today(
-        mood: record(mood: 'unknown', need: 'unknown', share: 'unknown'),
+        mood: record(
+          mood: EnumMood.$unknown,
+          need: EnumMoodNeed.$unknown,
+          share: EnumMoodShare.$unknown,
+        ),
       ),
     );
 
@@ -65,7 +76,7 @@ void main() {
         share: any(named: 'share'),
         day: any(named: 'day'),
       ),
-    ).thenAnswer((_) async => record(mood: 'happy', share: 'mood'));
+    ).thenAnswer((_) async => record(mood: EnumMood.happy, share: EnumMoodShare.mood));
 
     final entry = await repository.saveMood(
       mood: MoodKind.happy,
@@ -76,7 +87,13 @@ void main() {
     expect(entry.mood, MoodKind.happy);
     expect(entry.share, MoodShare.mood);
     verify(
-      () => dataSource.updateMood(id: 'm1', mood: 'happy', need: 'hug', share: 'mood', day: day),
+      () => dataSource.updateMood(
+        id: 'm1',
+        mood: EnumMood.happy,
+        need: EnumMoodNeed.hug,
+        share: EnumMoodShare.mood,
+        day: day,
+      ),
     ).called(1);
     verifyNever(
       () => dataSource.insertMood(
@@ -97,11 +114,13 @@ void main() {
         share: any(named: 'share'),
         day: any(named: 'day'),
       ),
-    ).thenAnswer((_) async => record(need: null, share: 'none'));
+    ).thenAnswer((_) async => record(need: null, share: EnumMoodShare.none));
 
     await repository.saveMood(mood: MoodKind.sad, share: MoodShare.none);
 
-    verify(() => dataSource.clearNeed(id: 'm1', mood: 'sad', share: 'none', day: day)).called(1);
+    verify(
+      () => dataSource.clearNeed(id: 'm1', mood: EnumMood.sad, share: EnumMoodShare.none, day: day),
+    ).called(1);
   });
 
   test('clearing the need uses the explicit clear mutation', () async {
@@ -112,7 +131,7 @@ void main() {
         share: any(named: 'share'),
         day: any(named: 'day'),
       ),
-    ).thenAnswer((_) async => record(need: null, share: 'mood'));
+    ).thenAnswer((_) async => record(need: null, share: EnumMoodShare.mood));
     when(
       () => dataSource.updateMood(
         id: any(named: 'id'),
@@ -121,12 +140,15 @@ void main() {
         share: any(named: 'share'),
         day: any(named: 'day'),
       ),
-    ).thenAnswer((_) async => record(need: null, share: 'mood'));
+    ).thenAnswer((_) async => record(need: null, share: EnumMoodShare.mood));
 
     final entry = await repository.saveMood(mood: MoodKind.happy, share: MoodShare.mood);
 
     expect(entry.need, isNull);
-    verify(() => dataSource.clearNeed(id: 'm1', mood: 'happy', share: 'mood', day: day)).called(1);
+    verify(
+      () =>
+          dataSource.clearNeed(id: 'm1', mood: EnumMood.happy, share: EnumMoodShare.mood, day: day),
+    ).called(1);
     verifyNever(
       () => dataSource.updateMood(
         id: any(named: 'id'),
@@ -147,11 +169,18 @@ void main() {
         share: any(named: 'share'),
         day: any(named: 'day'),
       ),
-    ).thenAnswer((_) async => record(mood: 'sad', need: null, share: 'none'));
+    ).thenAnswer((_) async => record(mood: EnumMood.sad, need: null, share: EnumMoodShare.none));
 
     await repository.saveMood(mood: MoodKind.sad, share: MoodShare.none);
 
-    verify(() => dataSource.insertMood(mood: 'sad', need: null, share: 'none', day: day)).called(1);
+    verify(
+      () => dataSource.insertMood(
+        mood: EnumMood.sad,
+        need: null,
+        share: EnumMoodShare.none,
+        day: day,
+      ),
+    ).called(1);
   });
 
   test('a unique race updates the row created by the other save', () async {
@@ -159,7 +188,7 @@ void main() {
     when(() => dataSource.getTodayMood()).thenAnswer((_) async {
       reads++;
 
-      return reads == 1 ? today() : today(mood: record(share: 'none'));
+      return reads == 1 ? today() : today(mood: record(share: EnumMoodShare.none));
     });
     when(
       () => dataSource.insertMood(
@@ -176,13 +205,22 @@ void main() {
         share: any(named: 'share'),
         day: any(named: 'day'),
       ),
-    ).thenAnswer((_) async => record(mood: 'sad', need: null, share: 'none'));
+    ).thenAnswer((_) async => record(mood: EnumMood.sad, need: null, share: EnumMoodShare.none));
 
     final entry = await repository.saveMood(mood: MoodKind.sad, share: MoodShare.none);
 
     expect(entry.mood, MoodKind.sad);
-    verify(() => dataSource.insertMood(mood: 'sad', need: null, share: 'none', day: day)).called(1);
-    verify(() => dataSource.clearNeed(id: 'm1', mood: 'sad', share: 'none', day: day)).called(1);
+    verify(
+      () => dataSource.insertMood(
+        mood: EnumMood.sad,
+        need: null,
+        share: EnumMoodShare.none,
+        day: day,
+      ),
+    ).called(1);
+    verify(
+      () => dataSource.clearNeed(id: 'm1', mood: EnumMood.sad, share: EnumMoodShare.none, day: day),
+    ).called(1);
   });
 
   test('a read failure is rethrown', () {

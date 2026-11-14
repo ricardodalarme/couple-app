@@ -1,3 +1,5 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:flutter_bloc_starter/features/games/data/mappers/game_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_session.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -15,11 +17,11 @@ void main() {
       );
 
   test('maps every server status and treats unknown values as cancelled', () {
-    expect(GameStatus.fromKey('invited'), GameStatus.invited);
-    expect(GameStatus.fromKey('active'), GameStatus.active);
-    expect(GameStatus.fromKey('finished'), GameStatus.finished);
-    expect(GameStatus.fromKey('cancelled'), GameStatus.cancelled);
-    expect(GameStatus.fromKey('something-new'), GameStatus.cancelled);
+    expect(EnumGameStatus.invited.toModel(), GameStatus.invited);
+    expect(EnumGameStatus.active.toModel(), GameStatus.active);
+    expect(EnumGameStatus.finished.toModel(), GameStatus.finished);
+    expect(EnumGameStatus.cancelled.toModel(), GameStatus.cancelled);
+    expect(EnumGameStatus.$unknown.toModel(), GameStatus.cancelled);
   });
 
   test('maps server game keys and ignores games the app has no screens for', () {

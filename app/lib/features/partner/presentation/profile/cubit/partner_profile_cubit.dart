@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact.dart';
+import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact_category.dart';
 import 'package:flutter_bloc_starter/features/partner/data/repositories/partner_repository.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:uuid/uuid.dart';
@@ -29,7 +30,7 @@ class PartnerProfileCubit({required final PartnerRepository _partnerRepository})
 
   void onValueChanged(String value) => emit(state.copyWith(value: FormInput(value)));
 
-  void onCategoryToggled(String category) {
+  void onCategoryToggled(PartnerFactCategory category) {
     final isSame = state.category == category;
     emit(state.copyWith(category: isSame ? null : category, clearCategory: isSame));
   }

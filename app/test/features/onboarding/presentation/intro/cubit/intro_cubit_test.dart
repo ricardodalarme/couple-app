@@ -1,6 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/intro/cubit/intro_cubit.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -25,13 +27,21 @@ void main() {
     'start restores answers from an interrupted run',
     build: () {
       when(() => settingsRepository.get()).thenReturn(
-        const Settings(introPhase: 'married', introGoals: ['remember_dates'], themeVariant: 'blue'),
+        const Settings(
+          introPhase: RelationshipPhase.married,
+          introGoals: [RelationshipGoal.rememberDates],
+          themeVariant: 'blue',
+        ),
       );
       return build();
     },
     act: (cubit) => cubit.start(),
     expect: () => const [
-      IntroState(phase: 'married', goals: ['remember_dates'], theme: AppThemeVariant.blue),
+      IntroState(
+        phase: RelationshipPhase.married,
+        goals: [RelationshipGoal.rememberDates],
+        theme: AppThemeVariant.blue,
+      ),
     ],
   );
 
@@ -39,13 +49,13 @@ void main() {
     'toggleGoal adds and removes a goal',
     build: build,
     act: (cubit) => cubit
-      ..toggleGoal('remember_dates')
-      ..toggleGoal('keep_romance')
-      ..toggleGoal('remember_dates'),
+      ..toggleGoal(RelationshipGoal.rememberDates)
+      ..toggleGoal(RelationshipGoal.keepRomance)
+      ..toggleGoal(RelationshipGoal.rememberDates),
     expect: () => const [
-      IntroState(goals: ['remember_dates']),
-      IntroState(goals: ['remember_dates', 'keep_romance']),
-      IntroState(goals: ['keep_romance']),
+      IntroState(goals: [RelationshipGoal.rememberDates]),
+      IntroState(goals: [RelationshipGoal.rememberDates, RelationshipGoal.keepRomance]),
+      IntroState(goals: [RelationshipGoal.keepRomance]),
     ],
   );
 
@@ -54,15 +64,15 @@ void main() {
     build: build,
     act: (cubit) async {
       cubit
-        ..selectPhase('engaged')
-        ..toggleGoal('reconnect');
+        ..selectPhase(RelationshipPhase.engaged)
+        ..toggleGoal(RelationshipGoal.reconnect);
       await cubit.complete(2);
     },
     verify: (_) {
       final saved = verify(() => settingsRepository.save(captureAny())).captured.single as Settings;
       expect(saved.introStep, 2);
-      expect(saved.introPhase, 'engaged');
-      expect(saved.introGoals, ['reconnect']);
+      expect(saved.introPhase, RelationshipPhase.engaged);
+      expect(saved.introGoals, [RelationshipGoal.reconnect]);
       expect(saved.introUploaded, isFalse);
     },
   );
@@ -71,7 +81,7 @@ void main() {
     'skip advances the step without keeping the chosen answers',
     build: build,
     act: (cubit) async {
-      cubit.selectPhase('engaged');
+      cubit.selectPhase(RelationshipPhase.engaged);
       await cubit.skip(1);
     },
     verify: (_) {

@@ -13,10 +13,10 @@ class const IdeaReason({super.key}) extends StatelessWidget {
     final goals = context.select((IdeaDetailCubit cubit) => cubit.state.goals);
     final phaseLabel = phase == null
         ? null
-        : context.l10n.intro.phase.options.selectOrFallback(phase);
+        : context.l10n.intro.phase.options.selectOrFallback(phase.name);
     final goalLabel = goals.isEmpty
         ? null
-        : context.l10n.intro.goals.options.selectOrFallback(goals.first);
+        : context.l10n.intro.goals.options.selectOrFallback(goals.first.name);
     if ((phaseLabel ?? '').isEmpty && (goalLabel ?? '').isEmpty) return const SizedBox.shrink();
 
     return Column(

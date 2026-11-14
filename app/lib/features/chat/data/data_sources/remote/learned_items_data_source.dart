@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/AddLearnedItem.graphql.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/DeleteLearnedItem.graphql.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/SetLearnedItemStatus.graphql.dart';
@@ -19,7 +20,7 @@ class LearnedItemsDataSource({required final GQLClient _client}) {
   }
 
   Future<MutationAddLearnedIteminsertIntoLearnedItemsCollectionrecords> add({
-    required String target,
+    required EnumLearnedItemTarget target,
     required String text,
     String? excerpt,
   }) async {
@@ -50,7 +51,7 @@ class LearnedItemsDataSource({required final GQLClient _client}) {
     if (affected == 0) throw const NoDataException();
   }
 
-  Future<void> setStatus({required String id, required String status}) async {
+  Future<void> setStatus({required String id, required EnumLearnedItemStatus status}) async {
     final response = await _client.mutate(
       OptionsMutationSetLearnedItemStatus(
         variables: VariablesMutationSetLearnedItemStatus(id: id, status: status),

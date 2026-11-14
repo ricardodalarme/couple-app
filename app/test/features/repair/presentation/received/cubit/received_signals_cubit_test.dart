@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
@@ -25,11 +26,11 @@ void main() {
 
   final first = ReceivedSignal(
     id: 's1',
-    kind: 'repair',
+    kind: SignalKind.repair,
     createdAt: DateTime(2026, 11, 10),
     body: 'Podemos recomeçar?',
   );
-  final second = ReceivedSignal(id: 's2', kind: 'hug', createdAt: DateTime(2026, 11, 10));
+  final second = ReceivedSignal(id: 's2', kind: SignalKind.hug, createdAt: DateTime(2026, 11, 10));
 
   setUpAll(() => registerFallbackValue(DateTime(2026)));
 
@@ -38,9 +39,9 @@ void main() {
     profile = _MockProfileRepository();
     reminders = _MockRemindersRepository();
     sync = _MockSyncService();
-    when(
-      () => profile.getMyProfile(),
-    ).thenAnswer((_) async => const Profile(id: 'me', avatarKind: 'initials', displayName: 'Ana'));
+    when(() => profile.getMyProfile()).thenAnswer(
+      (_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials, displayName: 'Ana'),
+    );
     when(() => repair.getReceivedSignals('me')).thenAnswer((_) async => [first, second]);
     when(
       () => repair.respondToSignal(
@@ -74,9 +75,9 @@ void main() {
     final cubit = build();
     await cubit.load();
 
-    await cubit.respond(first, response: 'talk');
+    await cubit.respond(first, response: RepairResponse.talk);
 
-    verify(() => repair.respondToSignal(signalId: 's1', response: 'talk')).called(1);
+    verify(() => repair.respondToSignal(signalId: 's1', response: RepairResponse.talk)).called(1);
     expect(items(cubit), [second]);
     expect(cubit.state.answeredCount, 1);
     verifyNever(() => reminders.addFollowUp(any(), now: any(named: 'now')));
@@ -86,7 +87,7 @@ void main() {
     final cubit = build();
     await cubit.load();
 
-    await cubit.respond(first, response: 'later');
+    await cubit.respond(first, response: RepairResponse.later);
 
     verify(() => reminders.addFollowUp(any(), now: any(named: 'now'))).called(1);
     verify(() => sync.sync()).called(1);
@@ -111,7 +112,7 @@ void main() {
     final cubit = build();
     await cubit.load();
 
-    await cubit.respond(first, response: 'talk');
+    await cubit.respond(first, response: RepairResponse.talk);
 
     expect(items(cubit), [first, second]);
     expect(cubit.state.respondAction, isA<Initial>());

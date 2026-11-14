@@ -132,7 +132,7 @@ class const _GiftTile({required final GiftIdea gift, required final bool hasPart
       titleMaxLines: 1,
       subtitle: gift.note ?? (gift.isShared ? l10n.shared : l10n.private),
       subtitleMaxLines: 2,
-      value: gift.budget == null ? null : l10n.budgets.selectOrFallback(gift.budget),
+      value: gift.budget == null ? null : l10n.budgets.selectOrFallback(gift.budget!.name),
       trailing: hasPartner
           ? BaseSwitch(
               value: gift.isShared,
@@ -156,7 +156,7 @@ class const _PartnerGiftTile({required final GiftIdea gift}) extends StatelessWi
       titleMaxLines: 1,
       subtitle: gift.note ?? l10n.shared,
       subtitleMaxLines: 2,
-      value: gift.budget == null ? null : l10n.budgets.selectOrFallback(gift.budget),
+      value: gift.budget == null ? null : l10n.budgets.selectOrFallback(gift.budget!.name),
     );
   }
 }

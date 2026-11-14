@@ -2,13 +2,13 @@ part of 'learning_cubit.dart';
 
 final class const LearningState({
   final Resource<List<Learning>> learnings = const Loading(),
-  final String? kind,
+  final RepairLearningKind? kind,
   final FormInput<String> note = const FormInput(''),
   final Resource<void> saveAction = const Initial(),
 }) with Equatable {
   LearningState copyWith({
     Resource<List<Learning>>? learnings,
-    String? kind,
+    RepairLearningKind? kind,
     bool clearKind = false,
     FormInput<String>? note,
     Resource<void>? saveAction,

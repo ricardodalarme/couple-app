@@ -2,7 +2,7 @@ part of 'guided_repair_cubit.dart';
 
 final class const GuidedRepairState({
   final Resource<GuidedSession> session = const Loading(),
-  final String? feeling,
+  final RepairFeeling? feeling,
   final FollowUp followUp = FollowUp.none,
   final Resource<void> saveAction = const Initial(),
   final Resource<void> completeAction = const Initial(),
@@ -15,7 +15,7 @@ final class const GuidedRepairState({
 
   GuidedRepairState copyWith({
     Resource<GuidedSession>? session,
-    String? feeling,
+    RepairFeeling? feeling,
     FollowUp? followUp,
     Resource<void>? saveAction,
     Resource<void>? completeAction,

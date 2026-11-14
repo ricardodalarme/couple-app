@@ -5,7 +5,7 @@ final class const SlipKindState({
   final FormInput<String> text = const FormInput(''),
   final FormInput<String> feeling = const FormInput(''),
   final FormInput<String> plan = const FormInput(''),
-  final String? workArea,
+  final SlipWorkArea? workArea,
   final Resource<SlipSaveOutcome> saveAction = const Initial(),
 }) with Equatable {
   /// Whether the form holds text or a choice that would be lost.
@@ -20,7 +20,7 @@ final class const SlipKindState({
     FormInput<String>? text,
     FormInput<String>? feeling,
     FormInput<String>? plan,
-    String? workArea,
+    SlipWorkArea? workArea,
     bool clearWorkArea = false,
     Resource<SlipSaveOutcome>? saveAction,
   }) {

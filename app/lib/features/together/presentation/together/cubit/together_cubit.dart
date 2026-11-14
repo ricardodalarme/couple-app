@@ -6,6 +6,7 @@ import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_
 import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/questions/data/repositories/questions_repository.dart';
 
@@ -48,7 +49,7 @@ class TogetherCubit({
       // An unreadable count leaves the entry without a number.
     }
 
-    String? phase;
+    RelationshipPhase? phase;
     try {
       phase = (await _profileRepository.getMySettings()).phase;
     } on Object {

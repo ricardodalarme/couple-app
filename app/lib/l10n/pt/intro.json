@@ -7,12 +7,12 @@
     "subtitle": "Escolha o mais próximo. Você pode mudar depois.",
     "options(map)": {
       "dating": "Namorando",
-      "living_together": "Moramos juntos",
+      "livingTogether": "Moramos juntos",
       "engaged": "Noivos",
       "married": "Casados",
-      "with_kids": "Com filhos",
-      "long_distance": "Namoro à distância",
-      "with_parents": "Moramos com os pais",
+      "withKids": "Com filhos",
+      "longDistance": "Namoro à distância",
+      "withParents": "Moramos com os pais",
       "restarting": "Recomeçando",
       "other": ""
     }
@@ -23,11 +23,11 @@
     "subtitle": "Escolha quantos quiser.",
     "options(map)": {
       "reconnect": "Reconectar",
-      "fight_less": "Brigar menos",
-      "keep_romance": "Manter o romance",
-      "remember_dates": "Lembrar de datas",
-      "organize_routine": "Organizar a rotina",
-      "just_record": "Só registrar coisas boas",
+      "fightLess": "Brigar menos",
+      "keepRomance": "Manter o romance",
+      "rememberDates": "Lembrar de datas",
+      "organizeRoutine": "Organizar a rotina",
+      "justRecord": "Só registrar coisas boas",
       "other": ""
     }
   },

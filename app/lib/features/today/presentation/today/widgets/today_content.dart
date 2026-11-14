@@ -195,12 +195,12 @@ class const _PartnerSection({
               for (final mood in homeMoods)
                 MoodRowOption(
                   face: mood.face,
-                  label: moodL10n.homeMoods.selectOrFallback(mood.value),
+                  label: moodL10n.homeMoods.selectOrFallback(mood.name),
                 ),
             ],
             selectedIndex: selectedMood == null || selectedMood < 0 ? null : selectedMood,
             onSelected: (index) async {
-              await context.pushRoute(MoodRoute(initialMood: homeMoods[index].value));
+              await context.pushRoute(MoodRoute(initialMood: homeMoods[index].name));
               if (context.mounted) await context.read<TodayCubit>().load();
             },
           ),

@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/AddListItem.graphql.dart';
 import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/CreateList.graphql.dart';
 import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/DeleteList.graphql.dart';
@@ -34,7 +35,7 @@ class ListsDataSource({required final GQLClient _client}) {
   Future<void> createList({
     required String id,
     required String title,
-    required String kind,
+    required EnumListKind kind,
     String? coupleId,
   }) async {
     final response = await _client.mutate(
@@ -110,7 +111,7 @@ class ListsDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<void> setItemStatus({required String id, required String status}) async {
+  Future<void> setItemStatus({required String id, required EnumListItemStatus status}) async {
     final response = await _client.mutate(
       OptionsMutationSetListItemStatus(
         variables: VariablesMutationSetListItemStatus(id: id, status: status),

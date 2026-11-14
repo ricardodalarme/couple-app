@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/partner_mood.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
@@ -240,7 +241,7 @@ void main() {
       when(() => profile.onChanged).thenAnswer((_) => const Stream.empty());
       when(() => slip.onChanged).thenAnswer((_) => const Stream.empty());
       when(() => profile.getMyProfile()).thenAnswer(
-        (_) async => const Profile(id: 'me', avatarKind: 'initials', displayName: 'Ana'),
+        (_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials, displayName: 'Ana'),
       );
       when(() => today.acknowledgeUnpair()).thenAnswer((_) async {});
     });
@@ -336,7 +337,7 @@ void main() {
       expect(cubit.state.selfName, 'Ana');
 
       when(() => profile.getMyProfile()).thenAnswer(
-        (_) async => const Profile(id: 'me', avatarKind: 'initials', displayName: 'Bia'),
+        (_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials, displayName: 'Bia'),
       );
       changes.add(null);
       await pumpEventQueue();

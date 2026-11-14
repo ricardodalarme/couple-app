@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/ritual.dart';
+import 'package:flutter_bloc_starter/features/together/data/models/ritual_cadence.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/services/ritual_reminder_service.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/ritual_edit/cubit/ritual_edit_cubit.dart';
@@ -18,7 +19,7 @@ void main() {
   const dinner = Ritual(
     id: 'r1',
     title: 'Jantar de sexta',
-    cadence: 'weekly',
+    cadence: RitualCadence.weekly,
     weekday: 5,
     hasReminder: true,
   );
@@ -92,7 +93,7 @@ void main() {
       await cubit.start(null);
       cubit
         ..onTitleChanged('Café juntos')
-        ..onCadenceChosen('daily');
+        ..onCadenceChosen(RitualCadence.daily);
 
       expect(cubit.state.ritual.needsWeekday, isFalse);
       expect(cubit.state.canSave, isTrue);

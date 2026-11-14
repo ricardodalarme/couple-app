@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/errors/app_error_view.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/lists/presentation/detail/cubit/list_detail_cubit.dart';
 import 'package:flutter_bloc_starter/features/lists/presentation/text_prompt/text_prompt_sheet.dart';
@@ -134,7 +135,7 @@ class const _ItemTile({required final ListItem item, required final bool isShare
 
     return BaseListTile(
       title: item.title,
-      subtitle: l10n.statuses.selectOrFallback(item.status),
+      subtitle: l10n.statuses.selectOrFallback(item.status.name),
       leading: BaseCheckbox(
         value: item.isDone,
         semanticLabel: item.title,
@@ -168,21 +169,21 @@ class const _ItemTile({required final ListItem item, required final bool isShare
               BaseButton(
                 text: l10n.markDream,
                 variant: .secondary,
-                isEnabled: item.status != 'dream',
+                isEnabled: item.status != ListItemStatus.dream,
                 onPressed: () => pick(_ItemChoice.dream),
               ),
               const SizedBox(height: AppSpace.s10),
               BaseButton(
                 text: l10n.markPlanned,
                 variant: .secondary,
-                isEnabled: item.status != 'planned',
+                isEnabled: item.status != ListItemStatus.planned,
                 onPressed: () => pick(_ItemChoice.planned),
               ),
               const SizedBox(height: AppSpace.s10),
               BaseButton(
                 text: l10n.markDone,
                 variant: .secondary,
-                isEnabled: item.status != 'done',
+                isEnabled: item.status != ListItemStatus.done,
                 onPressed: () => pick(_ItemChoice.done),
               ),
               const SizedBox(height: AppSpace.s10),
@@ -212,11 +213,11 @@ class const _ItemTile({required final ListItem item, required final bool isShare
 
     switch (choice) {
       case _ItemChoice.dream:
-        await cubit.setStatus(item, 'dream');
+        await cubit.setStatus(item, ListItemStatus.dream);
       case _ItemChoice.planned:
-        await cubit.setStatus(item, 'planned');
+        await cubit.setStatus(item, ListItemStatus.planned);
       case _ItemChoice.done:
-        await cubit.setStatus(item, 'done');
+        await cubit.setStatus(item, ListItemStatus.done);
       case _ItemChoice.up:
         await cubit.move(item, up: true);
       case _ItemChoice.down:

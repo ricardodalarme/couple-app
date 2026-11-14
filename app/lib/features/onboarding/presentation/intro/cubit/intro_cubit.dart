@@ -3,30 +3,22 @@ import 'dart:math' as math;
 import 'package:design_system/design_system.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 
 part 'intro_state.dart';
 
 /// The relationship phases offered on the first introduction screen.
-const List<String> introPhases = [
-  'dating',
-  'living_together',
-  'engaged',
-  'married',
-  'with_kids',
-  'long_distance',
-  'with_parents',
-  'restarting',
-];
-
-/// The goals offered on the second introduction screen.
-const List<String> introGoalOptions = [
-  'reconnect',
-  'fight_less',
-  'keep_romance',
-  'remember_dates',
-  'organize_routine',
-  'just_record',
+const List<RelationshipPhase> introPhases = [
+  RelationshipPhase.dating,
+  RelationshipPhase.livingTogether,
+  RelationshipPhase.engaged,
+  RelationshipPhase.married,
+  RelationshipPhase.withKids,
+  RelationshipPhase.longDistance,
+  RelationshipPhase.withParents,
+  RelationshipPhase.restarting,
 ];
 
 /// Number of screens in the first-use sequence, including the ones after the theme.
@@ -52,9 +44,9 @@ class IntroCubit({required final SettingsRepository _settingsRepository})
     );
   }
 
-  void selectPhase(String phase) => emit(state.copyWith(phase: phase));
+  void selectPhase(RelationshipPhase phase) => emit(state.copyWith(phase: phase));
 
-  void toggleGoal(String goal) {
+  void toggleGoal(RelationshipGoal goal) {
     final goals = [...state.goals];
     goals.contains(goal) ? goals.remove(goal) : goals.add(goal);
     emit(state.copyWith(goals: goals));

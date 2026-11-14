@@ -1,4 +1,6 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:flutter_bloc_starter/features/lists/presentation/detail/cubit/list_detail_cubit.dart';
@@ -13,20 +15,32 @@ void main() {
   const list = CoupleList(
     id: 'l1',
     title: 'Viagens',
-    kind: 'travel',
+    kind: ListKind.travel,
     coupleId: 'couple-1',
     isMine: true,
   );
-  const privateList = CoupleList(id: 'l1', title: 'Viagens', kind: 'travel', isMine: true);
-  const lisbon = ListItem(id: 'i1', listId: 'l1', title: 'Lisboa', status: 'dream', position: 0);
+  const privateList = CoupleList(id: 'l1', title: 'Viagens', kind: ListKind.travel, isMine: true);
+  const lisbon = ListItem(
+    id: 'i1',
+    listId: 'l1',
+    title: 'Lisboa',
+    status: ListItemStatus.dream,
+    position: 0,
+  );
   const chapada = ListItem(
     id: 'i2',
     listId: 'l1',
     title: 'Chapada',
-    status: 'planned',
+    status: ListItemStatus.planned,
     position: 1,
   );
-  const paraty = ListItem(id: 'i3', listId: 'l1', title: 'Paraty', status: 'done', position: 2);
+  const paraty = ListItem(
+    id: 'i3',
+    listId: 'l1',
+    title: 'Paraty',
+    status: ListItemStatus.done,
+    position: 2,
+  );
   const detail = ListDetail(
     list: list,
     items: [lisbon, chapada, paraty],
@@ -91,7 +105,7 @@ void main() {
 
     final created = items(cubit).last;
     expect(created.title, 'Paraty');
-    expect(created.status, 'dream');
+    expect(created.status, ListItemStatus.dream);
     expect(created.position, 3);
     verify(() => repository.addItem(id: created.id, listId: 'l1', title: 'Paraty', position: 3))
         .called(1);
@@ -120,12 +134,12 @@ void main() {
     await cubit.load('l1');
 
     await cubit.toggleDone(lisbon);
-    expect(items(cubit).first.status, 'done');
-    verify(() => repository.setItemStatus(id: 'i1', status: 'done')).called(1);
+    expect(items(cubit).first.status, ListItemStatus.done);
+    verify(() => repository.setItemStatus(id: 'i1', status: ListItemStatus.done)).called(1);
 
     await cubit.toggleDone(items(cubit).first);
-    expect(items(cubit).first.status, 'planned');
-    verify(() => repository.setItemStatus(id: 'i1', status: 'planned')).called(1);
+    expect(items(cubit).first.status, ListItemStatus.planned);
+    verify(() => repository.setItemStatus(id: 'i1', status: ListItemStatus.planned)).called(1);
   });
 
   test('moving an item up renumbers every position in order', () async {
@@ -241,7 +255,7 @@ void main() {
   test("a partner's list keeps its visibility", () async {
     when(() => repository.getList(any())).thenAnswer(
       (_) async => const ListDetail(
-        list: CoupleList(id: 'l1', title: 'Viagens', kind: 'travel', coupleId: 'couple-1'),
+        list: CoupleList(id: 'l1', title: 'Viagens', kind: ListKind.travel, coupleId: 'couple-1'),
         items: [lisbon, chapada, paraty],
         currentCoupleId: 'couple-1',
       ),

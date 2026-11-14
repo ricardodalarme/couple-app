@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
@@ -31,11 +32,13 @@ void main() {
     final profile = _MockProfileRepository();
     final reminders = _MockRemindersRepository();
     final sync = _MockSyncService();
-    when(
-      profile.getMyProfile,
-    ).thenAnswer((_) async => const Profile(id: 'me', avatarKind: 'initials', displayName: 'Ana'));
+    when(profile.getMyProfile).thenAnswer(
+      (_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials, displayName: 'Ana'),
+    );
     when(() => repair.getReceivedSignals('me')).thenAnswer(
-      (_) async => [ReceivedSignal(id: 's1', kind: 'miss_us', createdAt: DateTime(2026, 11, 10))],
+      (_) async => [
+        ReceivedSignal(id: 's1', kind: SignalKind.missUs, createdAt: DateTime(2026, 11, 10)),
+      ],
     );
 
     final cubit = ReceivedSignalsCubit(

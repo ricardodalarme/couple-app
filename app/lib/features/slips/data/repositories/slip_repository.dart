@@ -3,10 +3,13 @@ import 'dart:async';
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/local/slip_local_data_source.dart';
 import 'package:flutter_bloc_starter/features/slips/data/data_sources/remote/slip_data_source.dart';
+import 'package:flutter_bloc_starter/features/slips/data/mappers/slip_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/pending_slip.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_detail.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_draft.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_entry.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
 import 'package:logger/logger.dart';
 import 'package:network/network.dart';
 
@@ -42,11 +45,11 @@ class SlipRepository({
     required String id,
     required String body,
     required DateTime createdAt,
-    String? category,
+    SlipCategory? category,
     String kind = 'quick',
     String? feeling,
     String? planNote,
-    String? workArea,
+    SlipWorkArea? workArea,
   }) async {
     final slip = PendingSlip(
       id: id,
@@ -87,8 +90,8 @@ class SlipRepository({
         forCard: node.forCard,
         feeling: node.feeling,
         planNote: node.planNote,
-        category: node.category,
-        workArea: node.workArea,
+        category: node.category?.toModel(),
+        workArea: node.workArea?.toModel(),
         isArchived: node.archivedAt != null,
         isInJar: node.inJar,
         wasInCard: node.cardItemsCollection?.edges.isNotEmpty ?? false,
@@ -182,7 +185,7 @@ class SlipRepository({
               id: edge.node.id,
               body: edge.node.body,
               kind: edge.node.kind.name,
-              category: edge.node.category,
+              category: edge.node.category?.toModel(),
               createdAt: edge.node.createdAt,
             ),
         ],
@@ -241,7 +244,7 @@ class SlipRepository({
     return draft != null && draft.isFresh(now) ? draft : null;
   }
 
-  Future<void> saveDraft({required String text, required DateTime now, String? category}) {
+  Future<void> saveDraft({required String text, required DateTime now, SlipCategory? category}) {
     if (text.trim().isEmpty && category == null) return _localDataSource.clearDraft();
 
     return _localDataSource.writeDraft(SlipDraft(text: text, savedAt: now, category: category));
@@ -259,10 +262,10 @@ class SlipRepository({
       planNote: slip.planNote,
     );
     if (slip.category != null) {
-      await _slipDataSource.setCategory(id: slip.id, category: slip.category);
+      await _slipDataSource.setCategory(id: slip.id, category: slip.category?.toRpc());
     }
     if (slip.workArea != null) {
-      await _slipDataSource.setWorkArea(id: slip.id, workArea: slip.workArea!);
+      await _slipDataSource.setWorkArea(id: slip.id, workArea: slip.workArea!.toRpc());
     }
   }
 

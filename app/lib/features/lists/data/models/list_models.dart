@@ -1,10 +1,6 @@
 import 'package:equatable/equatable.dart';
-
-/// The list kinds the server accepts, in the order they are offered.
-const List<String> listKinds = ['travel', 'restaurants', 'movies', 'custom'];
-
-/// The item states the server accepts.
-const List<String> listItemStatuses = ['dream', 'planned', 'done'];
+import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
 
 /// The longest list title the server accepts.
 const int listTitleMaxLength = 80;
@@ -19,18 +15,18 @@ const String listNotFoundCode = 'NOT_FOUND';
 final class const CoupleList({
   required final String id,
   required final String title,
-  required final String kind,
+  required final ListKind kind,
   final String? coupleId,
   final bool isMine = false,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
   factory fake() =>
-      const CoupleList(id: 'fake', title: 'Viagens dos nossos sonhos', kind: 'travel');
+      const CoupleList(id: 'fake', title: 'Viagens dos nossos sonhos', kind: ListKind.travel);
 
   /// Whether the partner can see and change this list.
   bool get isShared => coupleId != null;
 
-  CoupleList copyWith({String? title, String? kind, bool? isMine}) => CoupleList(
+  CoupleList copyWith({String? title, ListKind? kind, bool? isMine}) => CoupleList(
     id: id,
     title: title ?? this.title,
     kind: kind ?? this.kind,
@@ -50,16 +46,21 @@ final class const ListItem({
   required final String id,
   required final String listId,
   required final String title,
-  required final String status,
+  required final ListItemStatus status,
   required final int position,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
-  factory fake() =>
-      const ListItem(id: 'fake', listId: 'fake', title: 'Lisboa', status: 'planned', position: 0);
+  factory fake() => const ListItem(
+    id: 'fake',
+    listId: 'fake',
+    title: 'Lisboa',
+    status: ListItemStatus.planned,
+    position: 0,
+  );
 
-  bool get isDone => status == 'done';
+  bool get isDone => status == ListItemStatus.done;
 
-  ListItem copyWith({String? title, String? status, int? position}) => ListItem(
+  ListItem copyWith({String? title, ListItemStatus? status, int? position}) => ListItem(
     id: id,
     listId: listId,
     title: title ?? this.title,

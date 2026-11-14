@@ -24,12 +24,12 @@
   "share(map)": {
     "none": "Keep private",
     "mood": "Just my mood",
-    "mood_need": "Mood and what I need"
+    "moodNeed": "Mood and what I need"
   },
   "shareSupport(map)": {
     "none": "Nothing is shared.",
     "mood": "Your partner sees the mood only.",
-    "mood_need": "Your partner sees the mood and the need."
+    "moodNeed": "Your partner sees the mood and the need."
   },
   "privacyNote": "Nothing is shared by default. Your partner never sees a chart or a score.",
   "save": "Save",

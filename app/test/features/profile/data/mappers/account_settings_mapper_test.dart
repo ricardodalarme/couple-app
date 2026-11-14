@@ -1,6 +1,9 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/queries/generated/MySettings.graphql.dart';
 import 'package:flutter_bloc_starter/features/profile/data/mappers/account_settings_mapper.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -32,10 +35,20 @@ void main() {
         togetherSince: DateTime(2024, 5, 1),
         shareReadReceipts: true,
         heavyDaySharing: HeavyDaySharing.always,
-        phase: 'married',
-        goals: const ['keep_romance'],
+        phase: RelationshipPhase.married,
+        goals: const [RelationshipGoal.keepRomance],
         locale: 'pt-BR',
       ),
     );
+  });
+
+  test('heavy day sharing survives a trip to the remote enum and back', () {
+    for (final value in HeavyDaySharing.values) {
+      expect(value.toRemote().toModel(), value);
+    }
+  });
+
+  test('an unknown heavy day sharing is off', () {
+    expect(EnumHeavyDaySharing.$unknown.toModel(), HeavyDaySharing.off);
   });
 }

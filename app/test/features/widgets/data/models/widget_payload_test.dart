@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -58,6 +59,26 @@ void main() {
         payload.copyWith(isSignedIn: false).sanitized(referenceNow: now).cachedPhotoPath,
         isNull,
       );
+    });
+  });
+
+  group('WidgetPayload relationship phase', () {
+    test('is stored by its enum name and read back', () {
+      final payload = WidgetPayload.fake().copyWith(
+        relationshipPhase: RelationshipPhase.livingTogether,
+      );
+
+      expect(payload.toJson()['relationshipPhase'], 'livingTogether');
+      expect(
+        WidgetPayload.fromJson(payload.toJson()).relationshipPhase,
+        RelationshipPhase.livingTogether,
+      );
+    });
+
+    test('a phase this version does not know reads as none', () {
+      final json = WidgetPayload.fake().toJson()..['relationshipPhase'] = 'living_together';
+
+      expect(WidgetPayload.fromJson(json).relationshipPhase, isNull);
     });
   });
 }

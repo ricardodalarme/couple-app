@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/fragments/generated/GameSessionFragment.graphql.dart';
 import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/mutations/generated/AnswerGame.graphql.dart';
 import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/mutations/generated/InviteToGame.graphql.dart';
@@ -10,8 +11,8 @@ import 'package:network/network.dart';
 
 typedef GameSessionRecord = ({
   String id,
-  String game,
-  String status,
+  EnumGameKind game,
+  EnumGameStatus status,
   String invitedBy,
   List<String> itemSlugs,
   DateTime createdAt,

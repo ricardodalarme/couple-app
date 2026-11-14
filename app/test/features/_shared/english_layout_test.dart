@@ -27,6 +27,7 @@ import 'package:flutter_bloc_starter/features/notes/presentation/compose/cubit/c
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
 import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
@@ -122,7 +123,7 @@ void main() {
     final pairingRepository = _MockPairing();
     when(repository.getSent).thenAnswer((_) async => const []);
     when(pairingRepository.getPartner)
-        .thenAnswer((_) async => const Profile(id: 'p1', avatarKind: 'initial'));
+        .thenAnswer((_) async => const Profile(id: 'p1', avatarKind: AvatarKind.initials));
     final cubit = ComposeCubit(
       notesRepository: repository,
       pairingRepository: pairingRepository,

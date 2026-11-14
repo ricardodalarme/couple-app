@@ -47,7 +47,7 @@ void main() {
     await dataSource.getGiftIdeas(authorId: 'me');
 
     final operation = client.queries.single;
-    expect(printNode(operation.document), contains('kind: {eq: "idea"}'));
+    expect(printNode(operation.document), contains('kind: {eq: idea}'));
     expect(printNode(operation.document), contains(r'authorId: {eq: $authorId}'));
     expect(operation.variables, {'authorId': 'me'});
   });
@@ -59,6 +59,6 @@ void main() {
     await dataSource.addGiftIdea(id: 'g1', title: 'Livro');
 
     final operation = client.mutations.single;
-    expect(printNode(operation.document), contains('kind: "idea"'));
+    expect(printNode(operation.document), contains('kind: idea'));
   });
 }

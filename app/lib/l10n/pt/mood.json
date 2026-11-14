@@ -24,12 +24,12 @@
   "share(map)": {
     "none": "Manter privado",
     "mood": "Só meu humor",
-    "mood_need": "Humor e o que preciso"
+    "moodNeed": "Humor e o que preciso"
   },
   "shareSupport(map)": {
     "none": "Nada é compartilhado.",
     "mood": "Seu par vê o humor, sem o que você precisa.",
-    "mood_need": "Seu par vê o humor e o que você precisa."
+    "moodNeed": "Seu par vê o humor e o que você precisa."
   },
   "privacyNote": "Nada é compartilhado por padrão. Seu par nunca vê gráfico nem nota.",
   "save": "Salvar",

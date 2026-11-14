@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:uuid/uuid.dart';
@@ -48,7 +49,7 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
       id: _uuid.v4(),
       listId: detail.list.id,
       title: trimmed,
-      status: 'dream',
+      status: ListItemStatus.dream,
       position: position,
     );
 
@@ -92,11 +93,12 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
   }
 
   /// A check marks the item done; unchecking puts it back in the plans.
-  Future<void> toggleDone(ListItem item) => setStatus(item, item.isDone ? 'planned' : 'done');
+  Future<void> toggleDone(ListItem item) =>
+      setStatus(item, item.isDone ? ListItemStatus.planned : ListItemStatus.done);
 
-  Future<void> setStatus(ListItem item, String status) async {
+  Future<void> setStatus(ListItem item, ListItemStatus status) async {
     final detail = _currentDetail;
-    if (detail == null || !listItemStatuses.contains(status)) return;
+    if (detail == null) return;
 
     await _change(
       previous: detail,

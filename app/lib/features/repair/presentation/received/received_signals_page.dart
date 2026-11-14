@@ -61,10 +61,10 @@ class const _SignalView({required final ReceivedSignal signal}) extends Stateles
       (ReceivedSignalsCubit cubit) => cubit.state.respondAction.isLoading,
     );
     final cubit = context.read<ReceivedSignalsCubit>();
-    final isRepair = signal.kind == 'repair';
+    final isRepair = signal.kind == SignalKind.repair;
     final value = signal.value;
     final needLabel = value == null ? '' : context.l10n.need.options.selectOrFallback(value);
-    final kindBody = l10n.bodies.selectOrFallback(signal.kind);
+    final kindBody = l10n.bodies.selectOrFallback(signal.kind.name);
     final text =
         signal.body ??
         (kindBody.isNotEmpty ? kindBody : (needLabel.isNotEmpty ? needLabel : value));
@@ -75,7 +75,7 @@ class const _SignalView({required final ReceivedSignal signal}) extends Stateles
         children: [
           Align(
             alignment: Alignment.centerLeft,
-            child: BaseTag(text: l10n.kinds.selectOrFallback(signal.kind)),
+            child: BaseTag(text: l10n.kinds.selectOrFallback(signal.kind.name)),
           ),
           const SizedBox(height: AppSpace.s16),
           Semantics(header: true, child: Text(l10n.fromPartner, style: context.text.label)),
@@ -96,10 +96,10 @@ class const _SignalView({required final ReceivedSignal signal}) extends Stateles
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           if (isRepair)
-            for (final response in repairResponses) ...[
+            for (final response in RepairResponse.values) ...[
               BaseButton(
-                text: l10n.responses.selectOrFallback(response),
-                variant: response == repairResponses.first ? .primary : .secondary,
+                text: l10n.responses.selectOrFallback(response.name),
+                variant: response == RepairResponse.values.first ? .primary : .secondary,
                 isEnabled: !isLoading,
                 onPressed: () => cubit.respond(signal, response: response),
               ),
@@ -111,7 +111,7 @@ class const _SignalView({required final ReceivedSignal signal}) extends Stateles
               isEnabled: !isLoading,
               onPressed: () => cubit.respond(signal),
             ),
-            if (signal.kind == 'miss_us') ...[
+            if (signal.kind == SignalKind.missUs) ...[
               const SizedBox(height: AppSpace.s10),
               BaseButton(
                 text: l10n.suggestPlan,

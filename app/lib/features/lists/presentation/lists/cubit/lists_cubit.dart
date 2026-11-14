@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:uuid/uuid.dart';
@@ -26,7 +27,11 @@ class ListsCubit({required final ListsRepository _listsRepository}) extends Cubi
   }
 
   /// Adds the list on screen first and puts the previous read back if the server refuses it.
-  Future<void> create({required String title, required String kind, required bool isShared}) async {
+  Future<void> create({
+    required String title,
+    required ListKind kind,
+    required bool isShared,
+  }) async {
     final trimmed = title.trim();
     if (trimmed.isEmpty ||
         trimmed.length > listTitleMaxLength ||

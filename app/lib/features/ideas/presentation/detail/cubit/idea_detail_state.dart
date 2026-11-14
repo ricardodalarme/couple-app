@@ -3,8 +3,8 @@ part of 'idea_detail_cubit.dart';
 final class const IdeaDetailState({
   final Resource<List<Idea>> ideas = const Loading(),
   final int index = 0,
-  final String? phase,
-  final List<String> goals = const [],
+  final RelationshipPhase? phase,
+  final List<RelationshipGoal> goals = const [],
   final bool isDone = false,
   final Resource<ReminderChoice> reminderAction = const Initial(),
 }) with Equatable {
@@ -19,8 +19,8 @@ final class const IdeaDetailState({
   IdeaDetailState copyWith({
     Resource<List<Idea>>? ideas,
     int? index,
-    String? phase,
-    List<String>? goals,
+    RelationshipPhase? phase,
+    List<RelationshipGoal>? goals,
     bool? isDone,
     Resource<ReminderChoice>? reminderAction,
   }) {

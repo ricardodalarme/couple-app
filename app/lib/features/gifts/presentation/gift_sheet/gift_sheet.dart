@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea.dart';
 import 'package:flutter_bloc_starter/features/gifts/presentation/gift_sheet/cubit/gift_sheet_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 final class const GiftDraft({
   final String title = '',
   final String? note,
-  final String? budget,
+  final GiftBudget? budget,
   final bool isShared = false,
   final bool isDelete = false,
 });
@@ -72,9 +73,9 @@ class const _GiftSheetContent() extends StatelessWidget {
               isSelected: budget == null,
               onTap: () => cubit.onBudgetChanged(null),
             ),
-            for (final option in giftBudgets)
+            for (final option in GiftBudget.values)
               BaseChoiceChip(
-                label: l10n.budgets.selectOrFallback(option),
+                label: l10n.budgets.selectOrFallback(option.name),
                 isSelected: budget == option,
                 onTap: () => cubit.onBudgetChanged(option),
               ),

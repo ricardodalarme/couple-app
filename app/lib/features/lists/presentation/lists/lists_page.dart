@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/errors/app_error_view.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/lists/presentation/create_list/create_list_sheet.dart';
 import 'package:flutter_bloc_starter/features/lists/presentation/lists/cubit/lists_cubit.dart';
@@ -137,11 +138,11 @@ class const _ListTile({required final CoupleList list}) extends StatelessWidget 
     );
   }
 
-  IconData _icon(String kind) => switch (kind) {
-    'travel' => AppIcons.globe,
-    'restaurants' => AppIcons.star,
-    'movies' => AppIcons.camera,
-    _ => AppIcons.note,
+  IconData _icon(ListKind kind) => switch (kind) {
+    ListKind.travel => AppIcons.globe,
+    ListKind.restaurants => AppIcons.star,
+    ListKind.movies => AppIcons.camera,
+    ListKind.custom => AppIcons.note,
   };
 
   Future<void> _showOptions(BuildContext context, CoupleList list) async {

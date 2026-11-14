@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:flutter_bloc_starter/features/gifts/presentation/gifts/cubit/gifts_cubit.dart';
@@ -106,18 +107,18 @@ void main() {
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.add(title: 'Fone', isShared: true, note: '  Sem fio  ', budget: 'medium');
+    await cubit.add(title: 'Fone', isShared: true, note: '  Sem fio  ', budget: GiftBudget.medium);
 
     final created = cubit.state.currentGifts.first;
     expect(created.isShared, isTrue);
     expect(created.note, 'Sem fio');
-    expect(created.budget, 'medium');
+    expect(created.budget, GiftBudget.medium);
     verify(
       () => repository.addGiftWish(
         id: created.id,
         title: 'Fone',
         note: 'Sem fio',
-        budget: 'medium',
+        budget: GiftBudget.medium,
         coupleId: 'couple-1',
       ),
     ).called(1);
@@ -167,19 +168,24 @@ void main() {
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.edit(shared, title: '  Livro de poemas  ', note: 'Capa dura', budget: 'low');
+    await cubit.edit(
+      shared,
+      title: '  Livro de poemas  ',
+      note: 'Capa dura',
+      budget: GiftBudget.low,
+    );
 
     final edited = cubit.state.currentGifts.first;
     expect(edited.title, 'Livro de poemas');
     expect(edited.note, 'Capa dura');
-    expect(edited.budget, 'low');
+    expect(edited.budget, GiftBudget.low);
     expect(edited.isShared, isTrue);
     verify(
       () => repository.updateGiftWish(
         id: 'g1',
         title: 'Livro de poemas',
         note: 'Capa dura',
-        budget: 'low',
+        budget: GiftBudget.low,
       ),
     ).called(1);
   });

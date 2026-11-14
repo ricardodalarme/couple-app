@@ -70,8 +70,8 @@
     "finalHighlight": "now",
     "feelings(map)": {
       "calmer": "Calmer",
-      "still_tense": "Still tense",
-      "need_more_time": "I need more time",
+      "stillTense": "Still tense",
+      "needMoreTime": "I need more time",
       "other": ""
     },
     "followUpTitle": "Want a reminder to check in on how you are?",
@@ -97,7 +97,7 @@
     "kinds(map)": {
       "trigger": "What bothers me",
       "need": "What I need",
-      "good_fix": "What helped",
+      "goodFix": "What helped",
       "other": ""
     },
     "hint": "Write one or two sentences",

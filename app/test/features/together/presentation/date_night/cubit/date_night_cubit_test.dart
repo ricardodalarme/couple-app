@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
+import 'package:flutter_bloc_starter/features/together/data/models/date_idea_status.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/date_night/cubit/date_night_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -15,7 +16,7 @@ void main() {
   late TogetherRepository together;
   late ProfileRepository profile;
 
-  const idea = DateIdea(id: 'd1', title: 'Piquenique', status: 'saved');
+  const idea = DateIdea(id: 'd1', title: 'Piquenique', status: DateIdeaStatus.saved);
   const suggestion = DateIdeaSuggestion(slug: 'picnic', title: 'Piquenique no parque');
 
   setUpAll(() => registerFallbackValue(idea));

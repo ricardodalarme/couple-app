@@ -1,4 +1,5 @@
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
+import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -128,20 +129,20 @@ void main() {
 
     test('detects when self and partner chose different start dates', () {
       final same = StoryDatesSummary(
-        met: const StoryDateEntry(kind: 'met'),
-        dating: const StoryDateEntry(kind: 'dating'),
-        engaged: const StoryDateEntry(kind: 'engaged'),
-        married: const StoryDateEntry(kind: 'married'),
+        met: const StoryDateEntry(kind: StoryEventKind.met),
+        dating: const StoryDateEntry(kind: StoryEventKind.dating),
+        engaged: const StoryDateEntry(kind: StoryEventKind.engaged),
+        married: const StoryDateEntry(kind: StoryEventKind.married),
         selfStartDate: DateTime(2024, 3, 14),
         partnerStartDate: DateTime(2024, 3, 14),
       );
       expect(same.hasDifferentStartDates, isFalse);
 
       final different = StoryDatesSummary(
-        met: const StoryDateEntry(kind: 'met'),
-        dating: const StoryDateEntry(kind: 'dating'),
-        engaged: const StoryDateEntry(kind: 'engaged'),
-        married: const StoryDateEntry(kind: 'married'),
+        met: const StoryDateEntry(kind: StoryEventKind.met),
+        dating: const StoryDateEntry(kind: StoryEventKind.dating),
+        engaged: const StoryDateEntry(kind: StoryEventKind.engaged),
+        married: const StoryDateEntry(kind: StoryEventKind.married),
         selfStartDate: DateTime(2024, 3, 14),
         partnerStartDate: DateTime(2024, 3, 22),
       );

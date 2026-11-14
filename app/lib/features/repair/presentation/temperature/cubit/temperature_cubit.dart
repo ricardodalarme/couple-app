@@ -14,7 +14,7 @@ class TemperatureCubit({required final RepairRepository _repairRepository})
   final Uuid _uuid = const Uuid();
   String? _sessionId;
 
-  void onLevelChosen(String level) => emit(state.copyWith(level: level));
+  void onLevelChosen(Temperature level) => emit(state.copyWith(level: level));
 
   void onIntensityChanged(int intensity) => emit(state.copyWith(intensity: intensity));
 
@@ -23,7 +23,7 @@ class TemperatureCubit({required final RepairRepository _repairRepository})
     final level = state.level;
     if (level == null || state.saveAction.isLoading) return;
 
-    if (level == 'good') {
+    if (level == Temperature.good) {
       await _record(level, TemperatureStep.result);
       return;
     }
@@ -60,7 +60,7 @@ class TemperatureCubit({required final RepairRepository _repairRepository})
     }
   }
 
-  Future<void> _record(String level, TemperatureStep next) async {
+  Future<void> _record(Temperature level, TemperatureStep next) async {
     emit(state.copyWith(saveAction: const Loading()));
     try {
       await _repairRepository.recordTemperature(level);

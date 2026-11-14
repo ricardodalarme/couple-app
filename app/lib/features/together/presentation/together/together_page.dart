@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/together/cubit/together_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
@@ -217,8 +218,10 @@ class const _ToolsSection({
   }
 }
 
-class const _TogetherMoreSection({required final bool hasPartner, required final String? phase})
-    extends StatelessWidget {
+class const _TogetherMoreSection({
+  required final bool hasPartner,
+  required final RelationshipPhase? phase,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.tabs;
@@ -226,14 +229,14 @@ class const _TogetherMoreSection({required final bool hasPartner, required final
     return _section(
       title: l10n.sectionMore,
       children: [
-        if (phase == 'long_distance')
+        if (phase == RelationshipPhase.longDistance)
           _row(
             icon: AppIcons.map_pin,
             title: l10n.distanceTitle,
             subtitle: l10n.distanceMeta,
             onTap: () => context.pushRoute(const DistanceRoute()),
           )
-        else if (phase == 'with_parents')
+        else if (phase == RelationshipPhase.withParents)
           _row(
             icon: AppIcons.home,
             title: l10n.parentsTitle,

@@ -3782,12 +3782,12 @@ class Translations$mood$pt {
   Map<String, String> get share => {
     'none': 'Manter privado',
     'mood': 'Só meu humor',
-    'mood_need': 'Humor e o que preciso',
+    'moodNeed': 'Humor e o que preciso',
   };
   Map<String, String> get shareSupport => {
     'none': 'Nada é compartilhado.',
     'mood': 'Seu par vê o humor, sem o que você precisa.',
-    'mood_need': 'Seu par vê o humor e o que você precisa.',
+    'moodNeed': 'Seu par vê o humor e o que você precisa.',
   };
 
   /// pt: 'Nada é compartilhado por padrão. Seu par nunca vê gráfico nem nota.'
@@ -5367,19 +5367,19 @@ class Translations$received$pt {
   Map<String, String> get kinds => {
     'repair': 'Cartão de reparo',
     'need': 'Preciso de…',
-    'miss_us': 'Saudade',
+    'missUs': 'Saudade',
     'hug': 'Um abraço',
     'distance': 'Um pouco de distância',
-    'heavy_day': 'Um dia pesado',
-    'good_news': 'Boa notícia',
+    'heavyDay': 'Um dia pesado',
+    'goodNews': 'Boa notícia',
     'other': '',
   };
   Map<String, String> get bodies => {
-    'miss_us': 'Seu par está com saudade de vocês.',
+    'missUs': 'Seu par está com saudade de vocês.',
     'hug': 'Seu par quer um abraço.',
     'distance': 'Seu par precisa de um pouco de distância.',
-    'heavy_day': 'Seu par está tendo um dia pesado.',
-    'good_news': 'Seu par tem uma boa notícia.',
+    'heavyDay': 'Seu par está tendo um dia pesado.',
+    'goodNews': 'Seu par tem uma boa notícia.',
     'other': '',
   };
 
@@ -5391,7 +5391,7 @@ class Translations$received$pt {
 
   Map<String, String> get responses => {
     'talk': 'Sim, vamos conversar',
-    'more_time': 'Preciso de mais um tempo',
+    'moreTime': 'Preciso de mais um tempo',
     'later': 'Respondo depois',
     'other': '',
   };
@@ -5491,12 +5491,12 @@ class Translations$relationshipSettings$pt {
   Map<String, String> get phases => {
     'beginning': 'Começando',
     'dating': 'Namorando',
-    'living_together': 'Moramos juntos',
+    'livingTogether': 'Moramos juntos',
     'engaged': 'Noivos',
     'married': 'Casados',
-    'with_kids': 'Com filhos',
-    'long_distance': 'Namoro à distância',
-    'with_parents': 'Moramos com os pais',
+    'withKids': 'Com filhos',
+    'longDistance': 'Namoro à distância',
+    'withParents': 'Moramos com os pais',
     'restarting': 'Recomeçando',
   };
 
@@ -6778,7 +6778,7 @@ class Translations$temperature$pt {
 
   Map<String, String> get levels => {
     'good': 'Bem',
-    'so_so': 'Mais ou menos',
+    'soSo': 'Mais ou menos',
     'turbulent': 'Turbulento',
     'fight': 'Uma briga',
     'other': '',
@@ -8271,12 +8271,12 @@ class Translations$intro$phase$pt {
 
   Map<String, String> get options => {
     'dating': 'Namorando',
-    'living_together': 'Moramos juntos',
+    'livingTogether': 'Moramos juntos',
     'engaged': 'Noivos',
     'married': 'Casados',
-    'with_kids': 'Com filhos',
-    'long_distance': 'Namoro à distância',
-    'with_parents': 'Moramos com os pais',
+    'withKids': 'Com filhos',
+    'longDistance': 'Namoro à distância',
+    'withParents': 'Moramos com os pais',
     'restarting': 'Recomeçando',
     'other': '',
   };
@@ -8301,11 +8301,11 @@ class Translations$intro$goals$pt {
 
   Map<String, String> get options => {
     'reconnect': 'Reconectar',
-    'fight_less': 'Brigar menos',
-    'keep_romance': 'Manter o romance',
-    'remember_dates': 'Lembrar de datas',
-    'organize_routine': 'Organizar a rotina',
-    'just_record': 'Só registrar coisas boas',
+    'fightLess': 'Brigar menos',
+    'keepRomance': 'Manter o romance',
+    'rememberDates': 'Lembrar de datas',
+    'organizeRoutine': 'Organizar a rotina',
+    'justRecord': 'Só registrar coisas boas',
     'other': '',
   };
 }
@@ -8571,8 +8571,8 @@ class Translations$repair$guided$pt {
 
   Map<String, String> get feelings => {
     'calmer': 'Mais calmo(a)',
-    'still_tense': 'Ainda tenso(a)',
-    'need_more_time': 'Preciso de mais tempo',
+    'stillTense': 'Ainda tenso(a)',
+    'needMoreTime': 'Preciso de mais tempo',
     'other': '',
   };
 
@@ -8624,7 +8624,7 @@ class Translations$repair$learning$pt {
   Map<String, String> get kinds => {
     'trigger': 'O que me incomoda',
     'need': 'O que eu preciso',
-    'good_fix': 'O que ajudou',
+    'goodFix': 'O que ajudou',
     'other': '',
   };
 
@@ -10602,23 +10602,23 @@ extension on Translations {
           'intro.phase.titleHighlight' => 'agora',
           'intro.phase.subtitle' => 'Escolha o mais próximo. Você pode mudar depois.',
           'intro.phase.options.dating' => 'Namorando',
-          'intro.phase.options.living_together' => 'Moramos juntos',
+          'intro.phase.options.livingTogether' => 'Moramos juntos',
           'intro.phase.options.engaged' => 'Noivos',
           'intro.phase.options.married' => 'Casados',
-          'intro.phase.options.with_kids' => 'Com filhos',
-          'intro.phase.options.long_distance' => 'Namoro à distância',
-          'intro.phase.options.with_parents' => 'Moramos com os pais',
+          'intro.phase.options.withKids' => 'Com filhos',
+          'intro.phase.options.longDistance' => 'Namoro à distância',
+          'intro.phase.options.withParents' => 'Moramos com os pais',
           'intro.phase.options.restarting' => 'Recomeçando',
           'intro.phase.options.other' => '',
           'intro.goals.title' => 'O que você quer do app?',
           'intro.goals.titleHighlight' => 'app',
           'intro.goals.subtitle' => 'Escolha quantos quiser.',
           'intro.goals.options.reconnect' => 'Reconectar',
-          'intro.goals.options.fight_less' => 'Brigar menos',
-          'intro.goals.options.keep_romance' => 'Manter o romance',
-          'intro.goals.options.remember_dates' => 'Lembrar de datas',
-          'intro.goals.options.organize_routine' => 'Organizar a rotina',
-          'intro.goals.options.just_record' => 'Só registrar coisas boas',
+          'intro.goals.options.fightLess' => 'Brigar menos',
+          'intro.goals.options.keepRomance' => 'Manter o romance',
+          'intro.goals.options.rememberDates' => 'Lembrar de datas',
+          'intro.goals.options.organizeRoutine' => 'Organizar a rotina',
+          'intro.goals.options.justRecord' => 'Só registrar coisas boas',
           'intro.goals.options.other' => '',
           'intro.theme.title' => 'Qual cor combina com você?',
           'intro.theme.titleHighlight' => 'cor',
@@ -10951,10 +10951,10 @@ extension on Translations {
           'mood.shareSubtitle' => 'Quem cria o dado decide. O padrão é privado.',
           'mood.share.none' => 'Manter privado',
           'mood.share.mood' => 'Só meu humor',
-          'mood.share.mood_need' => 'Humor e o que preciso',
+          'mood.share.moodNeed' => 'Humor e o que preciso',
           'mood.shareSupport.none' => 'Nada é compartilhado.',
           'mood.shareSupport.mood' => 'Seu par vê o humor, sem o que você precisa.',
-          'mood.shareSupport.mood_need' => 'Seu par vê o humor e o que você precisa.',
+          'mood.shareSupport.moodNeed' => 'Seu par vê o humor e o que você precisa.',
           'mood.privacyNote' =>
             'Nada é compartilhado por padrão. Seu par nunca vê gráfico nem nota.',
           'mood.save' => 'Salvar',
@@ -11597,22 +11597,22 @@ extension on Translations {
             'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
           'received.kinds.repair' => 'Cartão de reparo',
           'received.kinds.need' => 'Preciso de…',
-          'received.kinds.miss_us' => 'Saudade',
+          'received.kinds.missUs' => 'Saudade',
           'received.kinds.hug' => 'Um abraço',
           'received.kinds.distance' => 'Um pouco de distância',
-          'received.kinds.heavy_day' => 'Um dia pesado',
-          'received.kinds.good_news' => 'Boa notícia',
+          'received.kinds.heavyDay' => 'Um dia pesado',
+          'received.kinds.goodNews' => 'Boa notícia',
           'received.kinds.other' => '',
-          'received.bodies.miss_us' => 'Seu par está com saudade de vocês.',
+          'received.bodies.missUs' => 'Seu par está com saudade de vocês.',
           'received.bodies.hug' => 'Seu par quer um abraço.',
           'received.bodies.distance' => 'Seu par precisa de um pouco de distância.',
-          'received.bodies.heavy_day' => 'Seu par está tendo um dia pesado.',
-          'received.bodies.good_news' => 'Seu par tem uma boa notícia.',
+          'received.bodies.heavyDay' => 'Seu par está tendo um dia pesado.',
+          'received.bodies.goodNews' => 'Seu par tem uma boa notícia.',
           'received.bodies.other' => '',
           'received.fromPartner' => 'Do seu par',
           'received.privateFirst' => 'Sua resposta é privada primeiro. Não tem certo nem errado.',
           'received.responses.talk' => 'Sim, vamos conversar',
-          'received.responses.more_time' => 'Preciso de mais um tempo',
+          'received.responses.moreTime' => 'Preciso de mais um tempo',
           'received.responses.later' => 'Respondo depois',
           'received.responses.other' => '',
           'received.seen' => 'Entendi',
@@ -11643,15 +11643,15 @@ extension on Translations {
           'relationshipSettings.phasePlaceholder' => 'Escolha uma fase',
           'relationshipSettings.phases.beginning' => 'Começando',
           'relationshipSettings.phases.dating' => 'Namorando',
-          'relationshipSettings.phases.living_together' => 'Moramos juntos',
+          'relationshipSettings.phases.livingTogether' => 'Moramos juntos',
           'relationshipSettings.phases.engaged' => 'Noivos',
           'relationshipSettings.phases.married' => 'Casados',
-          'relationshipSettings.phases.with_kids' => 'Com filhos',
-          'relationshipSettings.phases.long_distance' => 'Namoro à distância',
+          'relationshipSettings.phases.withKids' => 'Com filhos',
+          'relationshipSettings.phases.longDistance' => 'Namoro à distância',
           _ => null,
         } ??
         switch (path) {
-          'relationshipSettings.phases.with_parents' => 'Moramos com os pais',
+          'relationshipSettings.phases.withParents' => 'Moramos com os pais',
           'relationshipSettings.phases.restarting' => 'Recomeçando',
           'relationshipSettings.dateLabel' => 'Juntos desde',
           'relationshipSettings.dateHint' => 'Escolha uma data',
@@ -11756,8 +11756,8 @@ extension on Translations {
           'repair.guided.finalTitle' => 'Como você está agora?',
           'repair.guided.finalHighlight' => 'agora',
           'repair.guided.feelings.calmer' => 'Mais calmo(a)',
-          'repair.guided.feelings.still_tense' => 'Ainda tenso(a)',
-          'repair.guided.feelings.need_more_time' => 'Preciso de mais tempo',
+          'repair.guided.feelings.stillTense' => 'Ainda tenso(a)',
+          'repair.guided.feelings.needMoreTime' => 'Preciso de mais tempo',
           'repair.guided.feelings.other' => '',
           'repair.guided.followUpTitle' => 'Quer um lembrete para ver como estão?',
           'repair.guided.followUps.none' => 'Não precisa',
@@ -11777,7 +11777,7 @@ extension on Translations {
           'repair.learning.subtitle' => 'Fica só com você e pode ser apagado quando quiser.',
           'repair.learning.kinds.trigger' => 'O que me incomoda',
           'repair.learning.kinds.need' => 'O que eu preciso',
-          'repair.learning.kinds.good_fix' => 'O que ajudou',
+          'repair.learning.kinds.goodFix' => 'O que ajudou',
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Escreva em uma ou duas frases',
           'repair.learning.noteErrors.empty' => 'Escreva o que você aprendeu',
@@ -12280,7 +12280,7 @@ extension on Translations {
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',
           'temperature.levels.good' => 'Bem',
-          'temperature.levels.so_so' => 'Mais ou menos',
+          'temperature.levels.soSo' => 'Mais ou menos',
           'temperature.levels.turbulent' => 'Turbulento',
           'temperature.levels.fight' => 'Uma briga',
           'temperature.levels.other' => '',

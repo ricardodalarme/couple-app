@@ -3121,13 +3121,13 @@ class _Translations$mood$en extends Translations$mood$pt {
   Map<String, String> get share => {
     'none': 'Keep private',
     'mood': 'Just my mood',
-    'mood_need': 'Mood and what I need',
+    'moodNeed': 'Mood and what I need',
   };
   @override
   Map<String, String> get shareSupport => {
     'none': 'Nothing is shared.',
     'mood': 'Your partner sees the mood only.',
-    'mood_need': 'Your partner sees the mood and the need.',
+    'moodNeed': 'Your partner sees the mood and the need.',
   };
   @override
   String get privacyNote =>
@@ -4363,20 +4363,20 @@ class _Translations$received$en extends Translations$received$pt {
   Map<String, String> get kinds => {
     'repair': 'Repair card',
     'need': 'I need…',
-    'miss_us': 'Missing you',
+    'missUs': 'Missing you',
     'hug': 'A hug',
     'distance': 'A little distance',
-    'heavy_day': 'A heavy day',
-    'good_news': 'Good news',
+    'heavyDay': 'A heavy day',
+    'goodNews': 'Good news',
     'other': '',
   };
   @override
   Map<String, String> get bodies => {
-    'miss_us': 'Your partner is missing you both.',
+    'missUs': 'Your partner is missing you both.',
     'hug': 'Your partner would like a hug.',
     'distance': 'Your partner needs a little distance.',
-    'heavy_day': 'Your partner is having a heavy day.',
-    'good_news': 'Your partner has good news.',
+    'heavyDay': 'Your partner is having a heavy day.',
+    'goodNews': 'Your partner has good news.',
     'other': '',
   };
   @override
@@ -4386,7 +4386,7 @@ class _Translations$received$en extends Translations$received$pt {
   @override
   Map<String, String> get responses => {
     'talk': 'Yes, let\'s talk',
-    'more_time': 'I need a bit more time',
+    'moreTime': 'I need a bit more time',
     'later': 'I\'ll answer later',
     'other': '',
   };
@@ -4469,12 +4469,12 @@ class _Translations$relationshipSettings$en extends Translations$relationshipSet
   Map<String, String> get phases => {
     'beginning': 'Just starting',
     'dating': 'Dating',
-    'living_together': 'Living together',
+    'livingTogether': 'Living together',
     'engaged': 'Engaged',
     'married': 'Married',
-    'with_kids': 'With kids',
-    'long_distance': 'Long distance',
-    'with_parents': 'Living with parents',
+    'withKids': 'With kids',
+    'longDistance': 'Long distance',
+    'withParents': 'Living with parents',
     'restarting': 'Starting over',
   };
   @override
@@ -5460,7 +5460,7 @@ class _Translations$temperature$en extends Translations$temperature$pt {
   @override
   Map<String, String> get levels => {
     'good': 'Good',
-    'so_so': 'So-so',
+    'soSo': 'So-so',
     'turbulent': 'Turbulent',
     'fight': 'An argument',
     'other': '',
@@ -6602,12 +6602,12 @@ class _Translations$intro$phase$en extends Translations$intro$phase$pt {
   @override
   Map<String, String> get options => {
     'dating': 'Dating',
-    'living_together': 'Living together',
+    'livingTogether': 'Living together',
     'engaged': 'Engaged',
     'married': 'Married',
-    'with_kids': 'With kids',
-    'long_distance': 'Long distance',
-    'with_parents': 'Living with parents',
+    'withKids': 'With kids',
+    'longDistance': 'Long distance',
+    'withParents': 'Living with parents',
     'restarting': 'Starting over',
     'other': '',
   };
@@ -6629,11 +6629,11 @@ class _Translations$intro$goals$en extends Translations$intro$goals$pt {
   @override
   Map<String, String> get options => {
     'reconnect': 'Reconnect',
-    'fight_less': 'Fight less',
-    'keep_romance': 'Keep the romance',
-    'remember_dates': 'Remember dates',
-    'organize_routine': 'Organise the routine',
-    'just_record': 'Just note the good things',
+    'fightLess': 'Fight less',
+    'keepRomance': 'Keep the romance',
+    'rememberDates': 'Remember dates',
+    'organizeRoutine': 'Organise the routine',
+    'justRecord': 'Just note the good things',
     'other': '',
   };
 }
@@ -6847,8 +6847,8 @@ class _Translations$repair$guided$en extends Translations$repair$guided$pt {
   @override
   Map<String, String> get feelings => {
     'calmer': 'Calmer',
-    'still_tense': 'Still tense',
-    'need_more_time': 'I need more time',
+    'stillTense': 'Still tense',
+    'needMoreTime': 'I need more time',
     'other': '',
   };
   @override
@@ -6892,7 +6892,7 @@ class _Translations$repair$learning$en extends Translations$repair$learning$pt {
   Map<String, String> get kinds => {
     'trigger': 'What bothers me',
     'need': 'What I need',
-    'good_fix': 'What helped',
+    'goodFix': 'What helped',
     'other': '',
   };
   @override
@@ -8793,23 +8793,23 @@ extension on TranslationsEn {
           'intro.phase.titleHighlight' => 'right now',
           'intro.phase.subtitle' => 'Pick the closest one. You can change it later.',
           'intro.phase.options.dating' => 'Dating',
-          'intro.phase.options.living_together' => 'Living together',
+          'intro.phase.options.livingTogether' => 'Living together',
           'intro.phase.options.engaged' => 'Engaged',
           'intro.phase.options.married' => 'Married',
-          'intro.phase.options.with_kids' => 'With kids',
-          'intro.phase.options.long_distance' => 'Long distance',
-          'intro.phase.options.with_parents' => 'Living with parents',
+          'intro.phase.options.withKids' => 'With kids',
+          'intro.phase.options.longDistance' => 'Long distance',
+          'intro.phase.options.withParents' => 'Living with parents',
           'intro.phase.options.restarting' => 'Starting over',
           'intro.phase.options.other' => '',
           'intro.goals.title' => 'What do you want from the app?',
           'intro.goals.titleHighlight' => 'app',
           'intro.goals.subtitle' => 'Pick as many as you like.',
           'intro.goals.options.reconnect' => 'Reconnect',
-          'intro.goals.options.fight_less' => 'Fight less',
-          'intro.goals.options.keep_romance' => 'Keep the romance',
-          'intro.goals.options.remember_dates' => 'Remember dates',
-          'intro.goals.options.organize_routine' => 'Organise the routine',
-          'intro.goals.options.just_record' => 'Just note the good things',
+          'intro.goals.options.fightLess' => 'Fight less',
+          'intro.goals.options.keepRomance' => 'Keep the romance',
+          'intro.goals.options.rememberDates' => 'Remember dates',
+          'intro.goals.options.organizeRoutine' => 'Organise the routine',
+          'intro.goals.options.justRecord' => 'Just note the good things',
           'intro.goals.options.other' => '',
           'intro.theme.title' => 'Which colour suits you?',
           'intro.theme.titleHighlight' => 'colour',
@@ -9146,10 +9146,10 @@ extension on TranslationsEn {
           'mood.shareSubtitle' => 'You decide. Nothing is shared by default.',
           'mood.share.none' => 'Keep private',
           'mood.share.mood' => 'Just my mood',
-          'mood.share.mood_need' => 'Mood and what I need',
+          'mood.share.moodNeed' => 'Mood and what I need',
           'mood.shareSupport.none' => 'Nothing is shared.',
           'mood.shareSupport.mood' => 'Your partner sees the mood only.',
-          'mood.shareSupport.mood_need' => 'Your partner sees the mood and the need.',
+          'mood.shareSupport.moodNeed' => 'Your partner sees the mood and the need.',
           'mood.privacyNote' =>
             'Nothing is shared by default. Your partner never sees a chart or a score.',
           'mood.save' => 'Save',
@@ -9787,22 +9787,22 @@ extension on TranslationsEn {
             'Could not save right now. Your text is still here, try again.',
           'received.kinds.repair' => 'Repair card',
           'received.kinds.need' => 'I need…',
-          'received.kinds.miss_us' => 'Missing you',
+          'received.kinds.missUs' => 'Missing you',
           'received.kinds.hug' => 'A hug',
           'received.kinds.distance' => 'A little distance',
-          'received.kinds.heavy_day' => 'A heavy day',
-          'received.kinds.good_news' => 'Good news',
+          'received.kinds.heavyDay' => 'A heavy day',
+          'received.kinds.goodNews' => 'Good news',
           'received.kinds.other' => '',
-          'received.bodies.miss_us' => 'Your partner is missing you both.',
+          'received.bodies.missUs' => 'Your partner is missing you both.',
           'received.bodies.hug' => 'Your partner would like a hug.',
           'received.bodies.distance' => 'Your partner needs a little distance.',
-          'received.bodies.heavy_day' => 'Your partner is having a heavy day.',
-          'received.bodies.good_news' => 'Your partner has good news.',
+          'received.bodies.heavyDay' => 'Your partner is having a heavy day.',
+          'received.bodies.goodNews' => 'Your partner has good news.',
           'received.bodies.other' => '',
           'received.fromPartner' => 'From your partner',
           'received.privateFirst' => 'Your answer is private first. There is no right or wrong.',
           'received.responses.talk' => 'Yes, let\'s talk',
-          'received.responses.more_time' => 'I need a bit more time',
+          'received.responses.moreTime' => 'I need a bit more time',
           'received.responses.later' => 'I\'ll answer later',
           'received.responses.other' => '',
           'received.seen' => 'Got it',
@@ -9833,15 +9833,15 @@ extension on TranslationsEn {
           'relationshipSettings.phasePlaceholder' => 'Pick a phase',
           'relationshipSettings.phases.beginning' => 'Just starting',
           'relationshipSettings.phases.dating' => 'Dating',
-          'relationshipSettings.phases.living_together' => 'Living together',
+          'relationshipSettings.phases.livingTogether' => 'Living together',
           'relationshipSettings.phases.engaged' => 'Engaged',
           'relationshipSettings.phases.married' => 'Married',
-          'relationshipSettings.phases.with_kids' => 'With kids',
-          'relationshipSettings.phases.long_distance' => 'Long distance',
+          'relationshipSettings.phases.withKids' => 'With kids',
+          'relationshipSettings.phases.longDistance' => 'Long distance',
           _ => null,
         } ??
         switch (path) {
-          'relationshipSettings.phases.with_parents' => 'Living with parents',
+          'relationshipSettings.phases.withParents' => 'Living with parents',
           'relationshipSettings.phases.restarting' => 'Starting over',
           'relationshipSettings.dateLabel' => 'Together since',
           'relationshipSettings.dateHint' => 'Pick a date',
@@ -9947,8 +9947,8 @@ extension on TranslationsEn {
           'repair.guided.finalTitle' => 'How are you now?',
           'repair.guided.finalHighlight' => 'now',
           'repair.guided.feelings.calmer' => 'Calmer',
-          'repair.guided.feelings.still_tense' => 'Still tense',
-          'repair.guided.feelings.need_more_time' => 'I need more time',
+          'repair.guided.feelings.stillTense' => 'Still tense',
+          'repair.guided.feelings.needMoreTime' => 'I need more time',
           'repair.guided.feelings.other' => '',
           'repair.guided.followUpTitle' => 'Want a reminder to check in on how you are?',
           'repair.guided.followUps.none' => 'No need',
@@ -9967,7 +9967,7 @@ extension on TranslationsEn {
           'repair.learning.subtitle' => 'It stays with you and can be deleted whenever you like.',
           'repair.learning.kinds.trigger' => 'What bothers me',
           'repair.learning.kinds.need' => 'What I need',
-          'repair.learning.kinds.good_fix' => 'What helped',
+          'repair.learning.kinds.goodFix' => 'What helped',
           'repair.learning.kinds.other' => '',
           'repair.learning.hint' => 'Write one or two sentences',
           'repair.learning.noteErrors.empty' => 'Write what you learned',
@@ -10468,7 +10468,7 @@ extension on TranslationsEn {
           'temperature.levelHighlight' => 'between you',
           'temperature.levelNote' => 'Private. Never becomes a score.',
           'temperature.levels.good' => 'Good',
-          'temperature.levels.so_so' => 'So-so',
+          'temperature.levels.soSo' => 'So-so',
           'temperature.levels.turbulent' => 'Turbulent',
           'temperature.levels.fight' => 'An argument',
           'temperature.levels.other' => '',

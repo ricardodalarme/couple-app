@@ -1,9 +1,15 @@
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/dates/data/mappers/important_date_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/history_data_source.dart';
+import 'package:flutter_bloc_starter/features/history/data/mappers/history_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/history/data/mappers/history_mapper.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
+import 'package:flutter_bloc_starter/features/history/data/models/memory_origin.dart';
+import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
+import 'package:flutter_bloc_starter/features/profile/data/mappers/avatar_kind_mapper.dart';
 import 'package:flutter_bloc_starter/features/profile/data/mappers/relationship_phase_mapper.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:logger/logger.dart';
 
@@ -43,12 +49,7 @@ class HistoryRepository({required final HistoryDataSource _dataSource}) {
     final isUnknownDate = precision == MilestoneDatePrecision.unknown || date == null;
 
     if (isUnknownDate) {
-      final dateKind = switch (kind) {
-        .first => 'first',
-        .trip => 'trip',
-        .met || .dating || .engaged || .married => 'relationship',
-        .home || .custom => 'custom',
-      };
+      final dateKind = kind.toImportantDateKind().toRemote();
       if (existing != null && existing.source == MilestoneSource.importantDate) {
         await _dataSource.updateImportantDate(
           id: existing.id,
@@ -88,7 +89,8 @@ class HistoryRepository({required final HistoryDataSource _dataSource}) {
         (existing?.source == MilestoneSource.memory);
 
     if (hasMemoryFields) {
-      final origin = kind == MilestoneKind.first ? 'first' : 'manual';
+      final origin = (kind == MilestoneKind.first ? MemoryOrigin.first : MemoryOrigin.manual)
+          .toRemote();
       if (existing != null && existing.source == MilestoneSource.memory) {
         await _dataSource.updateMemory(
           id: existing.id,
@@ -97,7 +99,7 @@ class HistoryRepository({required final HistoryDataSource _dataSource}) {
           body: trimmedBody,
           place: trimmedPlace,
           happenedOn: resolvedDate,
-          datePrecision: precision.serverValue,
+          datePrecision: precision.toRemote(),
           origin: origin,
         );
       } else {
@@ -108,7 +110,7 @@ class HistoryRepository({required final HistoryDataSource _dataSource}) {
           body: trimmedBody,
           place: trimmedPlace,
           happenedOn: resolvedDate,
-          datePrecision: precision.serverValue,
+          datePrecision: precision.toRemote(),
           origin: origin,
         );
         if (existing != null) await deleteMilestone(existing);
@@ -116,13 +118,7 @@ class HistoryRepository({required final HistoryDataSource _dataSource}) {
       return;
     }
 
-    final storyKind = switch (kind) {
-      .met => 'met',
-      .dating => 'dating',
-      .engaged => 'engaged',
-      .married => 'married',
-      .first || .trip || .home || .custom => 'custom',
-    };
+    final storyKind = kind.toStoryEventKind().toRemote();
 
     if (existing != null && existing.source == MilestoneSource.storyEvent) {
       await _dataSource.updateStoryEvent(
@@ -131,7 +127,7 @@ class HistoryRepository({required final HistoryDataSource _dataSource}) {
         kind: storyKind,
         title: trimmedTitle,
         happenedOn: resolvedDate,
-        datePrecision: precision.serverValue,
+        datePrecision: precision.toRemote(),
       );
     } else {
       await _dataSource.insertStoryEvent(
@@ -140,7 +136,7 @@ class HistoryRepository({required final HistoryDataSource _dataSource}) {
         kind: storyKind,
         title: trimmedTitle,
         happenedOn: resolvedDate,
-        datePrecision: precision.serverValue,
+        datePrecision: precision.toRemote(),
       );
       if (existing != null) await deleteMilestone(existing);
     }
@@ -165,7 +161,7 @@ class HistoryRepository({required final HistoryDataSource _dataSource}) {
   Future<void> saveStoryDate({
     required String id,
     required String profileId,
-    required String kind,
+    required StoryEventKind kind,
     required String title,
     required DateTime date,
     String? existingEventId,
@@ -181,19 +177,19 @@ class HistoryRepository({required final HistoryDataSource _dataSource}) {
       await _dataSource.updateStoryEvent(
         id: existingEventId,
         coupleId: coupleId,
-        kind: kind,
+        kind: kind.toRemote(),
         title: title,
         happenedOn: normalized,
-        datePrecision: MilestoneDatePrecision.month.serverValue,
+        datePrecision: MilestoneDatePrecision.month.toRemote(),
       );
     } else {
       await _dataSource.insertStoryEvent(
         id: id,
         coupleId: coupleId,
-        kind: kind,
+        kind: kind.toRemote(),
         title: title,
         happenedOn: normalized,
-        datePrecision: MilestoneDatePrecision.month.serverValue,
+        datePrecision: MilestoneDatePrecision.month.toRemote(),
       );
     }
 
@@ -212,12 +208,12 @@ class HistoryRepository({required final HistoryDataSource _dataSource}) {
 
   Future<void> updateAvatarKind({required String profileId, required AvatarKind kind}) => _run(
     'update avatar kind',
-    () => _dataSource.updateAvatarKind(profileId: profileId, avatarKind: kind.serverValue),
+    () => _dataSource.updateAvatarKind(profileId: profileId, avatarKind: kind.toRemote()),
   );
 
   Future<void> updatePhase({required String profileId, required RelationshipPhase phase}) => _run(
     'update relationship phase',
-    () => _dataSource.updatePhase(profileId: profileId, phase: phase.toSource()),
+    () => _dataSource.updatePhase(profileId: profileId, phase: phase.toRemote()),
   );
 
   Future<T> _run<T>(String what, Future<T> Function() action) async {

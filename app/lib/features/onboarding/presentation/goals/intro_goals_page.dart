@@ -4,6 +4,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/intro/cubit/intro_cubit.dart';
 import 'package:flutter_bloc_starter/features/onboarding/presentation/intro/widgets/intro_scaffold.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_bloc_starter/router/app_router.dart';
@@ -52,9 +53,9 @@ class const _GoalOptions() extends StatelessWidget {
 
     return Column(
       children: [
-        for (final goal in introGoalOptions) ...[
+        for (final goal in RelationshipGoal.values) ...[
           BaseOptionTile(
-            title: labels.selectOrFallback(goal),
+            title: labels.selectOrFallback(goal.name),
             isSelected: selected.contains(goal),
             control: BaseOptionTileControl.checkbox,
             onTap: () => context.read<IntroCubit>().toggleGoal(goal),

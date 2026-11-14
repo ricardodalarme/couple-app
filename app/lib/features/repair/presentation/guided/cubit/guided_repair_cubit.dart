@@ -71,7 +71,7 @@ class GuidedRepairCubit({
     emit(state.copyWith(saveAction: const Initial()));
   }
 
-  void onFeelingChosen(String feeling) => emit(state.copyWith(feeling: feeling));
+  void onFeelingChosen(RepairFeeling feeling) => emit(state.copyWith(feeling: feeling));
 
   void onFollowUpChosen(FollowUp followUp) => emit(state.copyWith(followUp: followUp));
 

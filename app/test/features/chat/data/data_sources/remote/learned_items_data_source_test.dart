@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/learned_items_data_source.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/AddLearnedItem.graphql.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/DeleteLearnedItem.graphql.dart';
@@ -21,7 +22,10 @@ QueryResult<T> _result<T>(MutationOptions<T> options, Map<String, dynamic> data)
 void main() {
   test('adding a learning that the server does not return fails', () {
     final options = OptionsMutationAddLearnedItem(
-      variables: VariablesMutationAddLearnedItem(target: 'date', text: 'Jantar'),
+      variables: VariablesMutationAddLearnedItem(
+        target: EnumLearnedItemTarget.date,
+        text: 'Jantar',
+      ),
     );
     final dataSource = LearnedItemsDataSource(
       client: _StubGQLClient(
@@ -35,7 +39,10 @@ void main() {
       ),
     );
 
-    expect(dataSource.add(target: 'date', text: 'Jantar'), throwsA(isA<NoDataException>()));
+    expect(
+      dataSource.add(target: EnumLearnedItemTarget.date, text: 'Jantar'),
+      throwsA(isA<NoDataException>()),
+    );
   });
 
   test('editing a learning that matches no row fails', () {
@@ -59,7 +66,10 @@ void main() {
 
   test('changing the status of a missing learning fails', () {
     final options = OptionsMutationSetLearnedItemStatus(
-      variables: VariablesMutationSetLearnedItemStatus(id: 'l1', status: 'confirmed'),
+      variables: VariablesMutationSetLearnedItemStatus(
+        id: 'l1',
+        status: EnumLearnedItemStatus.confirmed,
+      ),
     );
     final dataSource = LearnedItemsDataSource(
       client: _StubGQLClient(
@@ -73,7 +83,10 @@ void main() {
       ),
     );
 
-    expect(dataSource.setStatus(id: 'l1', status: 'confirmed'), throwsA(isA<NoDataException>()));
+    expect(
+      dataSource.setStatus(id: 'l1', status: EnumLearnedItemStatus.confirmed),
+      throwsA(isA<NoDataException>()),
+    );
   });
 
   test('deleting a learning that is already gone fails', () {

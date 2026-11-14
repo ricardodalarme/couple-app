@@ -1,5 +1,7 @@
 import 'package:flutter_bloc_starter/features/partner/data/data_sources/remote/partner_data_source.dart';
+import 'package:flutter_bloc_starter/features/partner/data/mappers/partner_fact_category_mapper.dart';
 import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact.dart';
+import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact_category.dart';
 import 'package:logger/logger.dart';
 
 class PartnerRepository({required final PartnerDataSource _dataSource}) {
@@ -9,7 +11,12 @@ class PartnerRepository({required final PartnerDataSource _dataSource}) {
     try {
       return [
         for (final node in await _dataSource.getFacts())
-          PartnerFact(id: node.id, label: node.label, value: node.value, category: node.category),
+          PartnerFact(
+            id: node.id,
+            label: node.label,
+            value: node.value,
+            category: node.category?.toModel(),
+          ),
       ];
     } catch (e, stack) {
       _logger.error('Failed to read partner notes', error: e, stackTrace: stack);
@@ -22,14 +29,14 @@ class PartnerRepository({required final PartnerDataSource _dataSource}) {
     required String id,
     required String label,
     required String value,
-    String? category,
+    PartnerFactCategory? category,
   }) async {
     try {
       await _dataSource.addFact(
         id: id,
         label: label.trim(),
         value: value.trim(),
-        category: category,
+        category: category?.toRemote(),
       );
     } catch (e, stack) {
       _logger.error('Failed to save a partner note', error: e, stackTrace: stack);

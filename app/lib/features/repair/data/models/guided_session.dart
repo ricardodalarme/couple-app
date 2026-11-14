@@ -42,20 +42,32 @@ final class const GuidedSession({
 /// One thing the person learned, private and deletable.
 final class const Learning({
   required final String id,
-  required final String kind,
+  required final RepairLearningKind kind,
   required final String note,
   required final DateTime createdAt,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
-  factory fake() =>
-      Learning(id: 'fake', kind: 'need', note: 'Preciso de um tempo', createdAt: DateTime(2026));
+  factory fake() => Learning(
+    id: 'fake',
+    kind: RepairLearningKind.need,
+    note: 'Preciso de um tempo',
+    createdAt: DateTime(2026),
+  );
 
   @override
   List<Object?> get props => [id, kind, note, createdAt];
 }
 
-/// The kinds of learning, matching the server values.
-const List<String> learningKinds = ['trigger', 'need', 'good_fix'];
+/// What a learning is about.
+enum RepairLearningKind() {
+  trigger,
+  need,
+  goodFix,
+}
 
-/// How the person feels after the repair, matching the server values.
-const List<String> feelingsAfter = ['calmer', 'still_tense', 'need_more_time'];
+/// How the person feels after the repair.
+enum RepairFeeling() {
+  calmer,
+  stillTense,
+  needMoreTime,
+}

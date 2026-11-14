@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
+import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
 import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/story_dates/cubit/story_dates_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -60,13 +61,17 @@ void main() {
     final cubit = build();
     await cubit.load();
 
-    await cubit.saveDate(kind: 'engaged', title: 'Noivamos', date: DateTime(2025, 6, 7));
+    await cubit.saveDate(
+      kind: StoryEventKind.engaged,
+      title: 'Noivamos',
+      date: DateTime(2025, 6, 7),
+    );
 
     verify(
       () => repository.saveStoryDate(
         id: any(named: 'id'),
         profileId: 'fake-self',
-        kind: 'engaged',
+        kind: StoryEventKind.engaged,
         title: 'Noivamos',
         date: DateTime(2025, 6, 7),
         existingEventId: null,
@@ -83,14 +88,22 @@ void main() {
     final cubit = build();
     await cubit.load();
 
-    await cubit.saveDate(kind: 'dating', title: 'Começamos a namorar', date: DateTime(2024, 3, 14));
-    await cubit.saveDate(kind: 'met', title: 'Nos conhecemos', date: DateTime(2023, 2, 1));
+    await cubit.saveDate(
+      kind: StoryEventKind.dating,
+      title: 'Começamos a namorar',
+      date: DateTime(2024, 3, 14),
+    );
+    await cubit.saveDate(
+      kind: StoryEventKind.met,
+      title: 'Nos conhecemos',
+      date: DateTime(2023, 2, 1),
+    );
 
     verify(
       () => repository.saveStoryDate(
         id: any(named: 'id'),
         profileId: any(named: 'profileId'),
-        kind: 'dating',
+        kind: StoryEventKind.dating,
         title: any(named: 'title'),
         date: any(named: 'date'),
         existingEventId: any(named: 'existingEventId'),
@@ -103,7 +116,7 @@ void main() {
       () => repository.saveStoryDate(
         id: any(named: 'id'),
         profileId: any(named: 'profileId'),
-        kind: 'met',
+        kind: StoryEventKind.met,
         title: any(named: 'title'),
         date: any(named: 'date'),
         existingEventId: any(named: 'existingEventId'),
@@ -119,13 +132,17 @@ void main() {
     final cubit = build();
     await cubit.load();
 
-    await cubit.saveDate(kind: 'met', title: 'Nos conhecemos', date: DateTime(2023, 2, 1));
+    await cubit.saveDate(
+      kind: StoryEventKind.met,
+      title: 'Nos conhecemos',
+      date: DateTime(2023, 2, 1),
+    );
 
     verify(
       () => repository.saveStoryDate(
         id: any(named: 'id'),
         profileId: any(named: 'profileId'),
-        kind: 'met',
+        kind: StoryEventKind.met,
         title: any(named: 'title'),
         date: any(named: 'date'),
         existingEventId: any(named: 'existingEventId'),
@@ -156,7 +173,11 @@ void main() {
     final subscription = cubit.stream.listen((state) => actions.add(state.saveAction));
     addTearDown(subscription.cancel);
 
-    await cubit.saveDate(kind: 'met', title: 'Nos conhecemos', date: DateTime(2023, 2, 1));
+    await cubit.saveDate(
+      kind: StoryEventKind.met,
+      title: 'Nos conhecemos',
+      date: DateTime(2023, 2, 1),
+    );
     await pumpEventQueue();
 
     final failure = actions.whereType<Failure>().single;
@@ -185,11 +206,19 @@ void main() {
     final cubit = build();
     await cubit.load();
 
-    final first = cubit.saveDate(kind: 'met', title: 'Nos conhecemos', date: DateTime(2023, 2, 1));
+    final first = cubit.saveDate(
+      kind: StoryEventKind.met,
+      title: 'Nos conhecemos',
+      date: DateTime(2023, 2, 1),
+    );
     await pumpEventQueue();
     expect(cubit.state.saveAction, isA<Loading>());
 
-    await cubit.saveDate(kind: 'met', title: 'Nos conhecemos', date: DateTime(2023, 2, 2));
+    await cubit.saveDate(
+      kind: StoryEventKind.met,
+      title: 'Nos conhecemos',
+      date: DateTime(2023, 2, 2),
+    );
 
     verify(
       () => repository.saveStoryDate(

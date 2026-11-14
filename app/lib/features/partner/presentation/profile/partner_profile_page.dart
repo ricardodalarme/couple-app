@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact.dart';
+import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact_category.dart';
 import 'package:flutter_bloc_starter/features/partner/presentation/profile/cubit/partner_profile_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -48,9 +49,9 @@ class const PartnerProfilePage({super.key}) extends StatelessWidget implements A
                 spacing: AppSpace.s8,
                 runSpacing: AppSpace.s8,
                 children: [
-                  for (final key in partnerFactCategories)
+                  for (final key in PartnerFactCategory.values)
                     BaseChoiceChip(
-                      label: l10n.categories.selectOrFallback(key),
+                      label: l10n.categories.selectOrFallback(key.name),
                       isSelected: state.category == key,
                       onTap: () => cubit.onCategoryToggled(key),
                     ),

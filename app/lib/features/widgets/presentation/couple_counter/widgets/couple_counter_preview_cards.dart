@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
 import 'package:flutter_bloc_starter/features/widgets/presentation/shared/widget_surface_preview.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -70,9 +71,9 @@ class const CoupleCounterPreviewCards({
     }
 
     final phaseLabel = switch (payload.relationshipPhase) {
-      'living_together' => l10n.counterStatusLivingTogether,
-      'married' => l10n.counterStatusMarried,
-      'dating' => l10n.counterStatusDating,
+      RelationshipPhase.livingTogether => l10n.counterStatusLivingTogether,
+      RelationshipPhase.married => l10n.counterStatusMarried,
+      RelationshipPhase.dating => l10n.counterStatusDating,
       _ => l10n.counterStatusTogether,
     };
 

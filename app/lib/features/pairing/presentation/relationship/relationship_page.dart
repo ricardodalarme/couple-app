@@ -100,10 +100,7 @@ class const _RelationshipForm() extends StatelessWidget {
             value: phase,
             options: [
               for (final value in RelationshipPhase.values)
-                BaseSelectOption(
-                  value: value,
-                  label: l10n.phases[value.serverValue] ?? value.serverValue,
-                ),
+                BaseSelectOption(value: value, label: l10n.phases.selectOrFallback(value.name)),
             ],
             onChanged: cubit.onPhaseChanged,
           ),

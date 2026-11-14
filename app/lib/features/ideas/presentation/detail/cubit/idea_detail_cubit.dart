@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/ideas/data/models/idea.dart';
 import 'package:flutter_bloc_starter/features/ideas/data/repositories/ideas_repository.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';

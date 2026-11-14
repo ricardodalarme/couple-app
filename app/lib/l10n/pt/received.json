@@ -2,26 +2,26 @@
   "kinds(map)": {
     "repair": "Cartão de reparo",
     "need": "Preciso de…",
-    "miss_us": "Saudade",
+    "missUs": "Saudade",
     "hug": "Um abraço",
     "distance": "Um pouco de distância",
-    "heavy_day": "Um dia pesado",
-    "good_news": "Boa notícia",
+    "heavyDay": "Um dia pesado",
+    "goodNews": "Boa notícia",
     "other": ""
   },
   "bodies(map)": {
-    "miss_us": "Seu par está com saudade de vocês.",
+    "missUs": "Seu par está com saudade de vocês.",
     "hug": "Seu par quer um abraço.",
     "distance": "Seu par precisa de um pouco de distância.",
-    "heavy_day": "Seu par está tendo um dia pesado.",
-    "good_news": "Seu par tem uma boa notícia.",
+    "heavyDay": "Seu par está tendo um dia pesado.",
+    "goodNews": "Seu par tem uma boa notícia.",
     "other": ""
   },
   "fromPartner": "Do seu par",
   "privateFirst": "Sua resposta é privada primeiro. Não tem certo nem errado.",
   "responses(map)": {
     "talk": "Sim, vamos conversar",
-    "more_time": "Preciso de mais um tempo",
+    "moreTime": "Preciso de mais um tempo",
     "later": "Respondo depois",
     "other": ""
   },

@@ -1,5 +1,4 @@
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/need_kind.dart';
+import 'package:flutter_bloc_starter/features/mood/data/mappers/mood_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/partner_mood.dart';
 import 'package:flutter_bloc_starter/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
 import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
@@ -28,7 +27,7 @@ extension TodayHomeMapper on QueryTodayHome {
       pauseIsMine: state.pauseIsMine ?? false,
       pauseReturnAt: state.pauseReturnAt,
       myMood: ownMood != null && localDate != null && ownMood.day == localDate
-          ? MoodKind.fromValue(ownMood.mood)
+          ? ownMood.mood.toModel()
           : null,
       slipDays: [
         for (final edge in weekSlips.edges)
@@ -57,5 +56,5 @@ extension TodayHomeMapper on QueryTodayHome {
 
 extension PartnerMoodMapper on QueryTodayHomepartnerMoodToday {
   PartnerMood toPartnerMood() =>
-      PartnerMood(day: day, mood: MoodKind.fromValue(mood), need: NeedKind.fromValue(need));
+      PartnerMood(day: day, mood: mood?.toModel(), need: need?.toModel());
 }

@@ -1,6 +1,13 @@
 import 'package:clock/clock.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/queries/generated/HistoryOverview.graphql.dart';
+import 'package:flutter_bloc_starter/features/history/data/mappers/history_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
+import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
+import 'package:flutter_bloc_starter/features/profile/data/mappers/avatar_kind_mapper.dart';
+import 'package:flutter_bloc_starter/features/profile/data/mappers/relationship_phase_mapper.dart';
+import 'package:flutter_bloc_starter/features/profile/data/mappers/relationship_status_mapper.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_status.dart';
 
@@ -19,10 +26,10 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
 
     final selfInitials = _initials(selfName, fallback: 'V');
     final partnerInitials = partnerName != null ? _initials(partnerName, fallback: '+') : null;
-    final avatarKind = AvatarKind.fromServer(selfProfile?.avatarKind);
-    final phase =
-        RelationshipPhase.fromServer(settings?.phase?.toJson()) ?? RelationshipPhase.dating;
-    final relationshipStatus = RelationshipStatus.fromServer(settings?.relationshipStatus.toJson());
+    final avatarKind = selfProfile?.avatarKind.toModel() ?? AvatarKind.initials;
+    final phase = settings?.phase?.toModel() ?? RelationshipPhase.dating;
+    final relationshipStatus =
+        settings?.relationshipStatus.toModel() ?? RelationshipStatus.together;
 
     final storyNodes = [for (final edge in storyEventsCollection.edges) edge.node];
     final memoryNodes = [for (final edge in memoriesCollection.edges) edge.node];
@@ -56,12 +63,12 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
         HistoryMilestone(
           id: node.id,
           source: MilestoneSource.storyEvent,
-          kind: MilestoneKind.fromServer(node.kind),
+          kind: node.kind.toMilestoneKind(),
           title: (node.title != null && node.title!.trim().isNotEmpty)
               ? node.title!.trim()
-              : _defaultStoryEventTitle(node.kind),
+              : _defaultStoryEventTitle(node.kind.toMilestoneKind()),
           date: node.happenedOn,
-          precision: MilestoneDatePrecision.fromServer(node.datePrecision),
+          precision: node.datePrecision.toModel(),
           isShared: node.coupleId != null,
           isMine: isMine,
           authorName: isMine ? null : partnerName,
@@ -79,12 +86,12 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
         HistoryMilestone(
           id: node.id,
           source: MilestoneSource.memory,
-          kind: MilestoneKind.fromServer(node.origin, place: place),
+          kind: node.origin.toMilestoneKind(place: place),
           title: node.title,
           body: node.body,
           place: (place == null || place.isEmpty) ? null : place,
           date: node.happenedOn,
-          precision: MilestoneDatePrecision.fromServer(node.datePrecision),
+          precision: node.datePrecision.toModel(),
           isShared: node.coupleId != null,
           isMine: isMine,
           authorName: isMine ? null : partnerName,
@@ -96,12 +103,15 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
     final todayUtc = DateTime.utc(currentNow.year, currentNow.month, currentNow.day);
 
     for (final node in dateNodes) {
-      if (node.kind == 'birthday' || node.kind == 'holiday') continue;
+      if (node.kind == EnumImportantDateKind.birthday ||
+          node.kind == EnumImportantDateKind.holiday) {
+        continue;
+      }
       final isMine = node.authorId == selfId;
       final year = node.year;
       final resolvedDate = year == null ? null : DateTime(year, node.month, node.day);
 
-      if (node.kind == 'reunion' && resolvedDate != null) {
+      if (node.kind == EnumImportantDateKind.reunion && resolvedDate != null) {
         final reunionUtc = DateTime.utc(resolvedDate.year, resolvedDate.month, resolvedDate.day);
         if (!reunionUtc.isBefore(todayUtc) &&
             (nextReunionDate == null || reunionUtc.isBefore(nextReunionDate))) {
@@ -113,7 +123,7 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
         HistoryMilestone(
           id: node.id,
           source: MilestoneSource.importantDate,
-          kind: MilestoneKind.fromServer(node.kind),
+          kind: node.kind.toMilestoneKind(),
           title: node.title,
           date: resolvedDate,
           precision: year == null ? MilestoneDatePrecision.unknown : MilestoneDatePrecision.day,
@@ -174,10 +184,10 @@ StoryDatesSummary _buildStoryDates({
   required String? partnerName,
   required DateTime? settingsTogetherSince,
 }) {
-  StoryDateEntry entryFor(String kind) {
+  StoryDateEntry entryFor(StoryEventKind kind) {
     QueryHistoryOverviewstoryEventsCollectionedgesnode? match;
     for (final node in storyNodes) {
-      if (node.kind != kind) continue;
+      if (node.kind != kind.toRemote()) continue;
       if (node.authorId == selfId) {
         match = node;
         break;
@@ -190,7 +200,7 @@ StoryDatesSummary _buildStoryDates({
       id: match.id,
       kind: kind,
       date: match.happenedOn,
-      precision: MilestoneDatePrecision.fromServer(match.datePrecision),
+      precision: match.datePrecision.toModel(),
       isShared: match.coupleId != null,
       isMine: isMine,
       authorName: isMine ? null : partnerName,
@@ -201,7 +211,7 @@ StoryDatesSummary _buildStoryDates({
   DateTime? partnerStart;
 
   for (final node in storyNodes) {
-    if (node.kind == 'dating' || node.kind == 'met') {
+    if (node.kind == EnumStoryEventKind.dating || node.kind == EnumStoryEventKind.met) {
       if (node.authorId == selfId) {
         selfStart ??= node.happenedOn;
       } else {
@@ -211,10 +221,10 @@ StoryDatesSummary _buildStoryDates({
   }
 
   return StoryDatesSummary(
-    met: entryFor('met'),
-    dating: entryFor('dating'),
-    engaged: entryFor('engaged'),
-    married: entryFor('married'),
+    met: entryFor(StoryEventKind.met),
+    dating: entryFor(StoryEventKind.dating),
+    engaged: entryFor(StoryEventKind.engaged),
+    married: entryFor(StoryEventKind.married),
     selfStartDate: selfStart,
     partnerStartDate: partnerStart,
   );
@@ -235,11 +245,11 @@ String _initials(String name, {required String fallback}) {
   return trimmed.characters.first.toUpperCase();
 }
 
-String _defaultStoryEventTitle(String kind) => switch (kind) {
-  'met' => 'Nos conhecemos',
-  'dating' => 'Começamos a namorar',
-  'engaged' => 'Noivamos',
-  'married' => 'Casamos',
+String _defaultStoryEventTitle(MilestoneKind kind) => switch (kind) {
+  MilestoneKind.met => 'Nos conhecemos',
+  MilestoneKind.dating => 'Começamos a namorar',
+  MilestoneKind.engaged => 'Noivamos',
+  MilestoneKind.married => 'Casamos',
   _ => 'Marco',
 };
 

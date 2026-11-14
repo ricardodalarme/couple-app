@@ -3,7 +3,9 @@ import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/g
 import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/history_data_source.dart';
 import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/queries/generated/HistoryOverview.graphql.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
+import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
 import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_status.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -31,12 +33,12 @@ void main() {
         myProfile: QueryHistoryOverviewmyProfile(
           id: 'self-1',
           displayName: 'Rafa',
-          avatarKind: 'initials',
+          avatarKind: EnumAvatarKind.initials,
         ),
         myPartner: QueryHistoryOverviewmyPartner(
           id: 'partner-1',
           displayName: 'Marina',
-          avatarKind: 'photo',
+          avatarKind: EnumAvatarKind.photo,
         ),
         mySettings: QueryHistoryOverviewmySettings(
           profileId: 'self-1',
@@ -53,10 +55,10 @@ void main() {
                 id: 'se-1',
                 authorId: 'self-1',
                 coupleId: 'couple-1',
-                kind: 'met',
+                kind: EnumStoryEventKind.met,
                 title: 'Nos conhecemos',
                 happenedOn: DateTime(2024, 3, 14),
-                datePrecision: 'day',
+                datePrecision: EnumDatePrecision.day,
               ),
             ),
             QueryHistoryOverviewstoryEventsCollectionedges(
@@ -64,10 +66,10 @@ void main() {
                 id: 'se-2',
                 authorId: 'partner-1',
                 coupleId: 'couple-1',
-                kind: 'dating',
+                kind: EnumStoryEventKind.dating,
                 title: 'Começamos a namorar',
                 happenedOn: DateTime(2024, 3, 22),
-                datePrecision: 'day',
+                datePrecision: EnumDatePrecision.day,
               ),
             ),
           ],
@@ -82,9 +84,9 @@ void main() {
                 coupleId: 'couple-1',
                 title: 'Primeira viagem juntos',
                 happenedOn: DateTime(2025, 7, 1),
-                datePrecision: 'month',
+                datePrecision: EnumDatePrecision.month,
                 place: 'Paraty',
-                origin: 'manual',
+                origin: EnumMemoryOrigin.manual,
               ),
             ),
           ],
@@ -98,7 +100,7 @@ void main() {
                 authorId: 'self-1',
                 coupleId: 'couple-1',
                 title: 'Primeiro olhar',
-                kind: 'first',
+                kind: EnumImportantDateKind.first,
                 month: 1,
                 day: 1,
                 year: null,
@@ -166,7 +168,7 @@ void main() {
       repository.saveStoryDate(
         id: 'new-event',
         profileId: 'self-1',
-        kind: 'dating',
+        kind: StoryEventKind.dating,
         title: 'Começamos a namorar',
         date: DateTime(2024, 3, 22),
         existingEventId: 'partner-event',
@@ -230,8 +232,8 @@ void main() {
         body: 'Guardado',
         place: null,
         happenedOn: DateTime.utc(2025, 7, 1),
-        datePrecision: 'month',
-        origin: 'first',
+        datePrecision: EnumDatePrecision.month,
+        origin: EnumMemoryOrigin.first,
       ),
     ).called(1);
   });
@@ -279,8 +281,8 @@ void main() {
         body: null,
         place: 'Paraty',
         happenedOn: DateTime.utc(2024, 3, 1),
-        datePrecision: 'month',
-        origin: 'manual',
+        datePrecision: EnumDatePrecision.month,
+        origin: EnumMemoryOrigin.manual,
       ),
       () => dataSource.deleteStoryEvent('se-1'),
     ]);
@@ -314,7 +316,7 @@ void main() {
         id: 'ms-unknown',
         coupleId: 'couple-1',
         title: 'Primeira música',
-        kind: 'first',
+        kind: EnumImportantDateKind.first,
         month: 1,
         day: 1,
         year: null,
@@ -356,8 +358,8 @@ void main() {
         body: null,
         place: 'Paraty',
         happenedOn: DateTime.utc(2025, 7, 1),
-        datePrecision: 'month',
-        origin: 'manual',
+        datePrecision: EnumDatePrecision.month,
+        origin: EnumMemoryOrigin.manual,
       ),
     ).called(1);
   });
@@ -379,8 +381,9 @@ void main() {
     await repository.updateAvatarKind(profileId: 'p1', kind: AvatarKind.illustration);
     await repository.updatePhase(profileId: 'p1', phase: RelationshipPhase.engaged);
 
-    verify(() => dataSource.updateAvatarKind(profileId: 'p1', avatarKind: 'illustration'))
-        .called(1);
+    verify(
+      () => dataSource.updateAvatarKind(profileId: 'p1', avatarKind: EnumAvatarKind.illustration),
+    ).called(1);
     verify(() => dataSource.updatePhase(profileId: 'p1', phase: EnumRelationshipPhase.engaged))
         .called(1);
   });

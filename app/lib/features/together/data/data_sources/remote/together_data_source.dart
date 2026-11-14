@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/mutations/generated/AddDateIdea.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/mutations/generated/AddLogisticItem.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/mutations/generated/AddRitual.graphql.dart';
@@ -108,7 +109,7 @@ class TogetherDataSource({required final GQLClient _client}) {
   Future<void> addRitual({
     required String id,
     required String title,
-    required String cadence,
+    required EnumRitualCadence cadence,
     required bool reminder,
     int? weekday,
     String? atTime,
@@ -134,7 +135,7 @@ class TogetherDataSource({required final GQLClient _client}) {
   Future<void> updateRitual({
     required String id,
     required String title,
-    required String cadence,
+    required EnumRitualCadence cadence,
     required bool reminder,
     int? weekday,
     String? atTime,
@@ -232,7 +233,7 @@ class TogetherDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<void> setDateIdeaStatus({required String id, required String status}) async {
+  Future<void> setDateIdeaStatus({required String id, required EnumDateIdeaStatus status}) async {
     final response = await _client.mutate(
       OptionsMutationSetDateIdeaStatus(
         variables: VariablesMutationSetDateIdeaStatus(id: id, status: status),

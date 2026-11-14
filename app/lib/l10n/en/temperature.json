@@ -4,7 +4,7 @@
   "levelNote": "Private. Never becomes a score.",
   "levels(map)": {
     "good": "Good",
-    "so_so": "So-so",
+    "soSo": "So-so",
     "turbulent": "Turbulent",
     "fight": "An argument",
     "other": ""

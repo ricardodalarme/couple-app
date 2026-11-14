@@ -2,6 +2,7 @@ import 'package:design_system/design_system.dart';
 import 'package:design_system/design_system_l10n.dart' as design_system_l10n;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
+import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
 import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/story_dates/cubit/story_dates_cubit.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/story_dates/story_dates_page.dart';
@@ -87,7 +88,7 @@ void main() {
       () => repository.saveStoryDate(
         id: any(named: 'id'),
         profileId: 'fake-self',
-        kind: 'dating',
+        kind: StoryEventKind.dating,
         title: 'Começamos a namorar',
         date: any(named: 'date'),
         existingEventId: null,

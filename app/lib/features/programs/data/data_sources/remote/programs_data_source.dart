@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/mutations/generated/CompleteProgramEnrollment.graphql.dart';
 import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/mutations/generated/DeleteJournalEntry.graphql.dart';
 import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/mutations/generated/DeleteLessonProgress.graphql.dart';
@@ -32,7 +33,7 @@ typedef ProgramRecord = ({ContentItemRecord? program, List<ContentItemRecord> le
 
 typedef EnrollmentRecord = ({String programSlug, int currentDay, DateTime? completedAt});
 
-typedef LessonProgressRecord = ({String programSlug, int lessonDay, String status});
+typedef LessonProgressRecord = ({String programSlug, int lessonDay, EnumLessonStatus status});
 
 typedef JournalEntryRecord = ({String id, DateTime entryDate, String body, String? mood});
 
@@ -211,7 +212,7 @@ class ProgramsDataSource({required final GQLClient _client}) {
   Future<void> setLessonStatus({
     required String programSlug,
     required int lessonDay,
-    required String status,
+    required EnumLessonStatus status,
   }) async {
     final response = await _client.mutate(
       OptionsMutationUpdateLessonProgress(

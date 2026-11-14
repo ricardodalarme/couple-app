@@ -1,4 +1,6 @@
 import 'package:clock/clock.dart';
+import 'package:flutter_bloc_starter/features/mood/data/mappers/mood_enum_mapper.dart';
+import 'package:flutter_bloc_starter/features/profile/data/mappers/relationship_phase_mapper.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/queries/generated/WidgetOverview.graphql.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
@@ -68,7 +70,7 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
       onLockScreen: onLockScreen,
       isOffline: false,
       togetherSince: togetherSince,
-      relationshipPhase: settings?.phase?.toJson().toLowerCase(),
+      relationshipPhase: settings?.phase?.toModel(),
       partnerName: widgetState?.partnerName,
       nextDateTitle: nextDateTitle,
       nextDateOn: nextDateOn,
@@ -79,7 +81,7 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
       partnerNoteMedia: widgetState?.partnerNoteMedia,
       partnerNoteAt: widgetState?.partnerNoteAt?.toUtc().toIso8601String(),
       partnerMood: widgetState?.partnerMood,
-      myMood: moodNode?.mood,
+      myMood: moodNode?.mood.toModel()?.name,
       ritualTitle: ritualNode?.title,
       ritualSchedule: ritualSchedule,
       dailyIdeaTitle: idea?.title,

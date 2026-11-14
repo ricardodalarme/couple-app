@@ -3,6 +3,7 @@ import 'package:flutter_bloc_starter/features/love_style/data/models/love_patter
 import 'package:flutter_bloc_starter/features/love_style/data/repositories/love_style_repository.dart';
 import 'package:flutter_bloc_starter/features/love_style/presentation/exercise/cubit/love_style_cubit.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -30,7 +31,7 @@ void main() {
     when(() => repository.share(any())).thenAnswer((_) async => 'msg-1');
     when(() => repository.revokeShare(any())).thenAnswer((_) async {});
     when(() => pairingRepository.getPartner()).thenAnswer(
-      (_) async => const Profile(id: 'p1', avatarKind: 'initial', displayName: 'Marina'),
+      (_) async => const Profile(id: 'p1', avatarKind: AvatarKind.initials, displayName: 'Marina'),
     );
   });
 
@@ -255,7 +256,7 @@ void main() {
 
   test('a paired person with no display name can still share', () async {
     when(() => pairingRepository.getPartner())
-        .thenAnswer((_) async => const Profile(id: 'p1', avatarKind: 'initial'));
+        .thenAnswer((_) async => const Profile(id: 'p1', avatarKind: AvatarKind.initials));
     final cubit = build();
     await cubit.load();
     await answerAll(cubit, 'touch');

@@ -9,7 +9,7 @@ enum TemperatureStep() {
 
 final class const TemperatureState({
   final TemperatureStep step = TemperatureStep.level,
-  final String? level,
+  final Temperature? level,
   final int intensity = 5,
   final Resource<void> saveAction = const Initial(),
 }) with Equatable {
@@ -22,7 +22,7 @@ final class const TemperatureState({
 
   TemperatureState copyWith({
     TemperatureStep? step,
-    String? level,
+    Temperature? level,
     int? intensity,
     Resource<void>? saveAction,
   }) {

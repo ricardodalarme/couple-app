@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -190,9 +191,9 @@ class const _InvisibleFields() extends StatelessWidget {
           spacing: AppSpace.s8,
           runSpacing: AppSpace.s8,
           children: [
-            for (final area in slipWorkAreas)
+            for (final area in SlipWorkArea.values)
               BaseChoiceChip(
-                label: labels.selectOrFallback(area),
+                label: labels.selectOrFallback(area.name),
                 isSelected: selected == area,
                 onTap: () => context.read<SlipKindCubit>().onWorkAreaToggled(area),
               ),

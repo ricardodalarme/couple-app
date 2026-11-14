@@ -5,6 +5,8 @@ import 'package:flutter_bloc_starter/features/ideas/data/repositories/ideas_repo
 import 'package:flutter_bloc_starter/features/ideas/presentation/detail/cubit/idea_detail_cubit.dart';
 import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
 import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
@@ -89,8 +91,8 @@ void main() {
       when(() => profile.getMySettings()).thenAnswer(
         (_) async => const AccountSettings(
           theme: AppThemeVariant.rose,
-          phase: 'married',
-          goals: ['keep_romance'],
+          phase: RelationshipPhase.married,
+          goals: [RelationshipGoal.keepRomance],
         ),
       );
       when(() => reminders.addCustomReminder(any(), now: any(named: 'now')))
@@ -111,8 +113,8 @@ void main() {
       await cubit.load('b');
 
       expect(cubit.state.current?.slug, 'b');
-      expect(cubit.state.phase, 'married');
-      expect(cubit.state.goals, ['keep_romance']);
+      expect(cubit.state.phase, RelationshipPhase.married);
+      expect(cubit.state.goals, [RelationshipGoal.keepRomance]);
     });
 
     test('an unknown slug falls back to the first idea', () async {

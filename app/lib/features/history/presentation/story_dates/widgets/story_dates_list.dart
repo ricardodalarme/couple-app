@@ -1,6 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
+import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/history/widgets/history_date_formatter.dart';
 import 'package:flutter_bloc_starter/features/history/presentation/story_dates/cubit/story_dates_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -35,8 +36,12 @@ class const StoryDatesList({required final HistoryOverview overview, super.key})
               subtitle: subtitleFor(dates.met),
               value: formatValue(dates.met),
               showsChevron: true,
-              onTap: () =>
-                  _pickDate(context, kind: 'met', title: l10n.storyMet, date: dates.met.date),
+              onTap: () => _pickDate(
+                context,
+                kind: StoryEventKind.met,
+                title: l10n.storyMet,
+                date: dates.met.date,
+              ),
             ),
             BaseListTile(
               title: l10n.storyDating,
@@ -45,7 +50,7 @@ class const StoryDatesList({required final HistoryOverview overview, super.key})
               showsChevron: true,
               onTap: () => _pickDate(
                 context,
-                kind: 'dating',
+                kind: StoryEventKind.dating,
                 title: l10n.storyDating,
                 date: dates.dating.date,
               ),
@@ -57,7 +62,7 @@ class const StoryDatesList({required final HistoryOverview overview, super.key})
               showsChevron: true,
               onTap: () => _pickDate(
                 context,
-                kind: 'engaged',
+                kind: StoryEventKind.engaged,
                 title: l10n.storyEngaged,
                 date: dates.engaged.date,
               ),
@@ -69,7 +74,7 @@ class const StoryDatesList({required final HistoryOverview overview, super.key})
               showsChevron: true,
               onTap: () => _pickDate(
                 context,
-                kind: 'married',
+                kind: StoryEventKind.married,
                 title: l10n.storyMarried,
                 date: dates.married.date,
               ),
@@ -84,7 +89,7 @@ class const StoryDatesList({required final HistoryOverview overview, super.key})
 
   Future<void> _pickDate(
     BuildContext context, {
-    required String kind,
+    required StoryEventKind kind,
     required String title,
     DateTime? date,
   }) async {

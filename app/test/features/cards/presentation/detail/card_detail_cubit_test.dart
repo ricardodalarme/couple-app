@@ -4,6 +4,7 @@ import 'package:flutter_bloc_starter/features/cards/data/models/card_reaction.da
 import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
 import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -30,7 +31,7 @@ void main() {
     cards = _MockCardsRepository();
     profile = _MockProfileRepository();
     when(() => profile.getMyProfile())
-        .thenAnswer((_) async => const Profile(id: 'me', avatarKind: 'initials'));
+        .thenAnswer((_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials));
     when(() => cards.markRead(any())).thenAnswer((_) async {});
   });
 

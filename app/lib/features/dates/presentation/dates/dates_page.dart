@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
+import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
 import 'package:flutter_bloc_starter/features/dates/presentation/dates/cubit/dates_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -97,9 +98,9 @@ class const _DatesView() extends StatelessWidget {
           spacing: AppSpace.s8,
           runSpacing: AppSpace.s8,
           children: [
-            for (final kindOption in dateKinds)
+            for (final kindOption in manualDateKinds)
               BaseChoiceChip(
-                label: l10n.kinds.selectOrFallback(kindOption),
+                label: l10n.kinds.selectOrFallback(kindOption.name),
                 isSelected: kind == kindOption,
                 onTap: () => cubit.onKindChosen(kindOption),
               ),
@@ -171,7 +172,7 @@ class const _DatesList() extends StatelessWidget {
                     subtitle: l10n.dayLine(
                       day: date.day,
                       month: l10n.monthsShort[date.month - 1],
-                      kind: l10n.kinds.selectOrFallback(date.kind),
+                      kind: l10n.kinds.selectOrFallback(date.kind.name),
                     ),
                     trailing: BaseTextLink(text: l10n.delete, onPressed: () => confirmDelete(date)),
                   ),

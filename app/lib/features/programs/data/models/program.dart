@@ -72,18 +72,7 @@ final class const ProgramEnrollment({
 /// What the person did with one lesson; saving is not completing.
 enum LessonStatus() {
   done,
-  saved;
-
-  static LessonStatus fromServer(String value) => switch (value) {
-    'done' => done,
-    'saved' => saved,
-    _ => throw UnimplementedError('Unknown lesson status $value'),
-  };
-
-  String get toServer => switch (this) {
-    done => 'done',
-    saved => 'saved',
-  };
+  saved,
 }
 
 /// The person's own marker for one lesson.

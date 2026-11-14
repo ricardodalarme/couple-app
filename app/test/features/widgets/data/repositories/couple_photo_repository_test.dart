@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/couple_photo_data_source.dart';
@@ -63,7 +64,7 @@ void main() {
 
     when(() => authenticationRepository.currentUserId).thenReturn('profile-1');
     when(() => profileRepository.getMyProfile())
-        .thenAnswer((_) async => const Profile(id: 'profile-1', avatarKind: 'initial'));
+        .thenAnswer((_) async => const Profile(id: 'profile-1', avatarKind: AvatarKind.initials));
     when(
       () => storageService.upload(
         bucket: any(named: 'bucket'),

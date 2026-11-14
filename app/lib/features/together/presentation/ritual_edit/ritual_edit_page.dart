@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/ritual.dart';
+import 'package:flutter_bloc_starter/features/together/data/models/ritual_cadence.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/ritual_edit/cubit/ritual_edit_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -65,9 +65,9 @@ class const RitualEditPage({@QueryParam('id') final String? id, super.key})
                       spacing: AppSpace.s8,
                       runSpacing: AppSpace.s8,
                       children: [
-                        for (final cadence in ritualCadences)
+                        for (final cadence in RitualCadence.values)
                           BaseChoiceChip(
-                            label: l10n.cadences.selectOrFallback(cadence),
+                            label: l10n.cadences.selectOrFallback(cadence.name),
                             isSelected: ritual.cadence == cadence,
                             onTap: () => cubit.onCadenceChosen(cadence),
                           ),

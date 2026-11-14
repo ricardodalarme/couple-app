@@ -1,8 +1,11 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/lists_data_source.dart';
 import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/queries/generated/ListDetail.graphql.dart';
 import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/queries/generated/Lists.graphql.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
@@ -38,7 +41,7 @@ void main() {
     String id = 'i1',
     String listId = 'l1',
     String title = 'Lisboa',
-    String status = 'dream',
+    EnumListItemStatus status = EnumListItemStatus.dream,
     int position = 0,
   }) => QueryListDetaillistsCollectionedgesnodelistItemsCollectionedgesnode(
     id: id,
@@ -52,7 +55,7 @@ void main() {
     String id = 'l1',
     String authorId = 'me',
     String title = 'Viagens',
-    String kind = 'travel',
+    EnumListKind kind = EnumListKind.travel,
     String? coupleId = 'couple-1',
     List<QueryListDetaillistsCollectionedgesnodelistItemsCollectionedgesnode> items = const [],
   }) => QueryListDetaillistsCollectionedgesnode(
@@ -77,14 +80,14 @@ void main() {
           id: 'l1',
           authorId: 'me',
           title: 'Viagens',
-          kind: 'travel',
+          kind: EnumListKind.travel,
           coupleId: 'couple-1',
         ),
         QueryListslistsCollectionedgesnode(
           id: 'l2',
           authorId: 'partner',
           title: 'Filmes',
-          kind: 'movies',
+          kind: EnumListKind.movies,
         ),
       ],
     );
@@ -94,7 +97,7 @@ void main() {
     expect(lists, hasLength(2));
     expect(lists.first.id, 'l1');
     expect(lists.first.title, 'Viagens');
-    expect(lists.first.kind, 'travel');
+    expect(lists.first.kind, ListKind.travel);
     expect(lists.first.isShared, isTrue);
     expect(lists.first.isMine, isTrue);
     expect(lists.last.isShared, isFalse);
@@ -109,7 +112,7 @@ void main() {
           id: 'l1',
           authorId: 'me',
           title: 'Viagens',
-          kind: 'travel',
+          kind: EnumListKind.travel,
           coupleId: 'couple-1',
         ),
       ],
@@ -125,8 +128,8 @@ void main() {
     when(() => dataSource.getList(any())).thenAnswer(
       (_) async => list(
         items: [
-          item(id: 'i1', title: 'Lisboa', status: 'planned', position: 0),
-          item(id: 'i2', title: 'Chapada', status: 'dream', position: 1),
+          item(id: 'i1', title: 'Lisboa', status: EnumListItemStatus.planned, position: 0),
+          item(id: 'i2', title: 'Chapada', status: EnumListItemStatus.dream, position: 1),
         ],
       ),
     );
@@ -139,7 +142,7 @@ void main() {
     expect(detail.currentCoupleId, 'couple-1');
     expect(detail.items, hasLength(2));
     expect(detail.items.first.title, 'Lisboa');
-    expect(detail.items.first.status, 'planned');
+    expect(detail.items.first.status, ListItemStatus.planned);
     expect(detail.items.last.position, 1);
     verify(() => dataSource.getList('l1')).called(1);
   });
@@ -169,12 +172,17 @@ void main() {
     await repository.createList(
       id: 'l1',
       title: '  Viagens  ',
-      kind: 'travel',
+      kind: ListKind.travel,
       coupleId: 'couple-1',
     );
 
     verify(
-      () => dataSource.createList(id: 'l1', title: 'Viagens', kind: 'travel', coupleId: 'couple-1'),
+      () => dataSource.createList(
+        id: 'l1',
+        title: 'Viagens',
+        kind: EnumListKind.travel,
+        coupleId: 'couple-1',
+      ),
     ).called(1);
   });
 
@@ -188,10 +196,16 @@ void main() {
       ),
     ).thenAnswer((_) async {});
 
-    await repository.createList(id: 'l1', title: 'Viagens', kind: 'travel');
+    await repository.createList(id: 'l1', title: 'Viagens', kind: ListKind.travel);
 
-    verify(() => dataSource.createList(id: 'l1', title: 'Viagens', kind: 'travel', coupleId: null))
-        .called(1);
+    verify(
+      () => dataSource.createList(
+        id: 'l1',
+        title: 'Viagens',
+        kind: EnumListKind.travel,
+        coupleId: null,
+      ),
+    ).called(1);
   });
 
   test('rename and delete forward the list id', () async {
@@ -249,13 +263,13 @@ void main() {
     when(() => dataSource.deleteItem(any())).thenAnswer((_) async {});
 
     await repository.addItem(id: 'i1', listId: 'l1', title: '  Lisboa ', position: 2);
-    await repository.setItemStatus(id: 'i1', status: 'done');
+    await repository.setItemStatus(id: 'i1', status: ListItemStatus.done);
     await repository.setItemPosition(id: 'i1', position: 0);
     await repository.deleteItem('i1');
 
     verify(() => dataSource.addItem(id: 'i1', listId: 'l1', title: 'Lisboa', position: 2))
         .called(1);
-    verify(() => dataSource.setItemStatus(id: 'i1', status: 'done')).called(1);
+    verify(() => dataSource.setItemStatus(id: 'i1', status: EnumListItemStatus.done)).called(1);
     verify(() => dataSource.setItemPosition(id: 'i1', position: 0)).called(1);
     verify(() => dataSource.deleteItem('i1')).called(1);
   });

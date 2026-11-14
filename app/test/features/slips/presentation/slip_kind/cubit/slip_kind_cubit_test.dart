@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -124,8 +125,8 @@ void main() {
 
   test('invisible work area can be toggled off', () {
     final cubit = build()
-      ..onWorkAreaToggled('kids')
-      ..onWorkAreaToggled('kids');
+      ..onWorkAreaToggled(SlipWorkArea.kids)
+      ..onWorkAreaToggled(SlipWorkArea.kids);
 
     expect(cubit.state.workArea, isNull);
   });
@@ -134,7 +135,7 @@ void main() {
     final cubit = build()
       ..start(kind: 'if_then', text: 'Quando eu estiver cansada')
       ..onPlanChanged('peço um tempo')
-      ..onWorkAreaToggled('kids');
+      ..onWorkAreaToggled(SlipWorkArea.kids);
 
     await cubit.save();
 
@@ -154,7 +155,7 @@ void main() {
   test('saving an invisible slip sends the work area', () async {
     final cubit = build()
       ..start(kind: 'invisible', text: 'Marquei a consulta')
-      ..onWorkAreaToggled('planning');
+      ..onWorkAreaToggled(SlipWorkArea.planning);
 
     await cubit.save();
 
@@ -166,7 +167,7 @@ void main() {
         kind: 'invisible',
         feeling: null,
         planNote: null,
-        workArea: 'planning',
+        workArea: SlipWorkArea.planning,
       ),
     ).called(1);
     expect(cubit.state.saveAction.isLoading, isFalse);

@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/need_kind.dart';
 import 'package:flutter_bloc_starter/features/mood/data/models/partner_mood.dart';
@@ -23,8 +24,8 @@ void main() {
     test('maps the shared mood and need', () {
       final node = QueryTodayHomepartnerMoodToday(
         day: DateTime(2026, 11, 10),
-        mood: 'tired',
-        need: 'hug',
+        mood: EnumMood.tired,
+        need: EnumMoodNeed.hug,
       );
 
       final partnerMood = node.toPartnerMood();
@@ -36,7 +37,7 @@ void main() {
     });
 
     test('a mood shared without the need has no need line', () {
-      final node = QueryTodayHomepartnerMoodToday(mood: 'happy', need: null);
+      final node = QueryTodayHomepartnerMoodToday(mood: EnumMood.happy, need: null);
 
       final partnerMood = node.toPartnerMood();
 
@@ -45,7 +46,7 @@ void main() {
     });
 
     test('an unknown mood stays hidden', () {
-      final partnerMood = QueryTodayHomepartnerMoodToday(mood: 'dreamy').toPartnerMood();
+      final partnerMood = QueryTodayHomepartnerMoodToday(mood: EnumMood.$unknown).toPartnerMood();
 
       expect(partnerMood.isVisible, isFalse);
     });
@@ -53,7 +54,10 @@ void main() {
     test("yesterday's shared mood is hidden from Hoje", () {
       final model = _query(
         today: QueryTodayHometoday(localDate: DateTime(2026, 11, 10)),
-        partnerMoodToday: QueryTodayHomepartnerMoodToday(day: DateTime(2026, 11, 9), mood: 'tired'),
+        partnerMoodToday: QueryTodayHomepartnerMoodToday(
+          day: DateTime(2026, 11, 9),
+          mood: EnumMood.tired,
+        ),
       ).toModel();
 
       expect(model?.partnerMood, isNull);
@@ -64,7 +68,7 @@ void main() {
         today: QueryTodayHometoday(localDate: DateTime(2026, 11, 10)),
         partnerMoodToday: QueryTodayHomepartnerMoodToday(
           day: DateTime(2026, 11, 10),
-          mood: 'tired',
+          mood: EnumMood.tired,
         ),
       ).toModel();
 
@@ -99,7 +103,7 @@ void main() {
         today: QueryTodayHometoday(localDate: DateTime(2026, 11, 10)),
         myMoodEdges: [
           QueryTodayHomemyMoodedges(
-            node: QueryTodayHomemyMoodedgesnode(day: DateTime(2026, 11, 10), mood: 'happy'),
+            node: QueryTodayHomemyMoodedgesnode(day: DateTime(2026, 11, 10), mood: EnumMood.happy),
           ),
         ],
         weekSlipEdges: [

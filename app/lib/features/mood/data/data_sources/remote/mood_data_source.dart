@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/mutations/generated/ClearMoodNeed.graphql.dart';
 import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/mutations/generated/InsertMood.graphql.dart';
 import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/mutations/generated/UpdateMood.graphql.dart';
@@ -5,7 +6,13 @@ import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/quer
 import 'package:network/network.dart';
 
 /// A mood row with its raw server values, before the domain mapping.
-typedef MoodRecord = ({String id, DateTime day, String mood, String? need, String share});
+typedef MoodRecord = ({
+  String id,
+  DateTime day,
+  EnumMood mood,
+  EnumMoodNeed? need,
+  EnumMoodShare share,
+});
 
 /// The server's local day, the partner's name and today's own mood, when there is one.
 typedef MoodTodayRecord = ({DateTime day, String? partnerName, MoodRecord? mood});
@@ -27,9 +34,9 @@ class MoodDataSource({required final GQLClient _client}) {
   }
 
   Future<MoodRecord> insertMood({
-    required String mood,
-    required String? need,
-    required String share,
+    required EnumMood mood,
+    required EnumMoodNeed? need,
+    required EnumMoodShare share,
     required DateTime day,
   }) async {
     final response = await _client.mutate(
@@ -46,9 +53,9 @@ class MoodDataSource({required final GQLClient _client}) {
 
   Future<MoodRecord> updateMood({
     required String id,
-    required String mood,
-    required String need,
-    required String share,
+    required EnumMood mood,
+    required EnumMoodNeed need,
+    required EnumMoodShare share,
     required DateTime day,
   }) async {
     final response = await _client.mutate(
@@ -72,8 +79,8 @@ class MoodDataSource({required final GQLClient _client}) {
   /// Clears the need with a literal null, because a null variable would be omitted.
   Future<MoodRecord> clearNeed({
     required String id,
-    required String mood,
-    required String share,
+    required EnumMood mood,
+    required EnumMoodShare share,
     required DateTime day,
   }) async {
     final response = await _client.mutate(

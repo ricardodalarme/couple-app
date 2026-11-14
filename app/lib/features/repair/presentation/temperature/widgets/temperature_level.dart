@@ -36,9 +36,9 @@ class const TemperatureLevel({super.key}) extends StatelessWidget {
             spacing: AppSpace.s8,
             runSpacing: AppSpace.s8,
             children: [
-              for (final level in temperatureLevels)
+              for (final level in Temperature.values)
                 BaseChoiceChip(
-                  label: l10n.levels.selectOrFallback(level),
+                  label: l10n.levels.selectOrFallback(level.name),
                   isSelected: selected == level,
                   onTap: () => cubit.onLevelChosen(level),
                 ),

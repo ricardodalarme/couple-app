@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
-
-/// The kinds of date a person can add by hand, matching the server kinds.
-const List<String> dateKinds = ['relationship', 'birthday', 'first', 'trip', 'reunion', 'custom'];
+import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea_status.dart';
 
 /// The days before a date that a reminder is sent, offered as choices.
 const List<int> remindDayOptions = [30, 7, 1, 0];
@@ -13,15 +12,20 @@ const int dateTitleMaxLength = 120;
 final class const ImportantDate({
   required final String id,
   required final String title,
-  required final String kind,
+  required final ImportantDateKind kind,
   required final int month,
   required final int day,
   final int? year,
   final bool isYearly = true,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
-  factory fake() =>
-      const ImportantDate(id: 'fake', title: 'Aniversário', kind: 'birthday', month: 5, day: 12);
+  factory fake() => const ImportantDate(
+    id: 'fake',
+    title: 'Aniversário',
+    kind: ImportantDateKind.birthday,
+    month: 5,
+    day: 12,
+  );
 
   @override
   List<Object?> get props => [id, title, kind, month, day, year, isYearly];
@@ -31,12 +35,13 @@ final class const ImportantDate({
 final class const GiftIdea({
   required final String id,
   required final String title,
-  required final String status,
+  required final GiftIdeaStatus status,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
-  factory fake() => const GiftIdea(id: 'fake', title: 'Livro de poemas', status: 'idea');
+  factory fake() =>
+      const GiftIdea(id: 'fake', title: 'Livro de poemas', status: GiftIdeaStatus.idea);
 
-  bool get isGiven => status == 'given';
+  bool get isGiven => status == GiftIdeaStatus.given;
 
   @override
   List<Object?> get props => [id, title, status];

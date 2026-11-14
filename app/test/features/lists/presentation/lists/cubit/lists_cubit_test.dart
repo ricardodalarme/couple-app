@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
 import 'package:flutter_bloc_starter/features/lists/presentation/lists/cubit/lists_cubit.dart';
@@ -13,11 +14,11 @@ void main() {
   const shared = CoupleList(
     id: 'l1',
     title: 'Viagens',
-    kind: 'travel',
+    kind: ListKind.travel,
     coupleId: 'couple-1',
     isMine: true,
   );
-  const solo = CoupleList(id: 'l2', title: 'Filmes', kind: 'movies');
+  const solo = CoupleList(id: 'l2', title: 'Filmes', kind: ListKind.movies);
 
   setUp(() {
     repository = _MockListsRepository();
@@ -58,11 +59,11 @@ void main() {
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.create(title: '  Restaurantes  ', kind: 'restaurants', isShared: true);
+    await cubit.create(title: '  Restaurantes  ', kind: ListKind.restaurants, isShared: true);
 
     final created = cubit.state.currentLists.first;
     expect(created.title, 'Restaurantes');
-    expect(created.kind, 'restaurants');
+    expect(created.kind, ListKind.restaurants);
     expect(created.isShared, isTrue);
     expect(created.isMine, isTrue);
     expect(cubit.state.currentLists, hasLength(3));
@@ -70,7 +71,7 @@ void main() {
       () => repository.createList(
         id: created.id,
         title: 'Restaurantes',
-        kind: 'restaurants',
+        kind: ListKind.restaurants,
         coupleId: 'couple-1',
       ),
     ).called(1);
@@ -81,12 +82,17 @@ void main() {
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.create(title: 'Viagens', kind: 'travel', isShared: false);
+    await cubit.create(title: 'Viagens', kind: ListKind.travel, isShared: false);
 
     final created = cubit.state.currentLists.first;
     expect(created.isShared, isFalse);
     verify(
-      () => repository.createList(id: created.id, title: 'Viagens', kind: 'travel', coupleId: null),
+      () => repository.createList(
+        id: created.id,
+        title: 'Viagens',
+        kind: ListKind.travel,
+        coupleId: null,
+      ),
     ).called(1);
   });
 
@@ -96,12 +102,17 @@ void main() {
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.create(title: 'Viagens', kind: 'travel', isShared: true);
+    await cubit.create(title: 'Viagens', kind: ListKind.travel, isShared: true);
 
     final created = cubit.state.currentLists.first;
     expect(created.isShared, isFalse);
     verify(
-      () => repository.createList(id: created.id, title: 'Viagens', kind: 'travel', coupleId: null),
+      () => repository.createList(
+        id: created.id,
+        title: 'Viagens',
+        kind: ListKind.travel,
+        coupleId: null,
+      ),
     ).called(1);
   });
 
@@ -110,7 +121,7 @@ void main() {
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.create(title: '   ', kind: 'custom', isShared: false);
+    await cubit.create(title: '   ', kind: ListKind.custom, isShared: false);
 
     verifyNever(
       () => repository.createList(
@@ -126,7 +137,7 @@ void main() {
     final cubit = build();
     addTearDown(cubit.close);
 
-    await cubit.create(title: 'Viagens', kind: 'travel', isShared: true);
+    await cubit.create(title: 'Viagens', kind: ListKind.travel, isShared: true);
 
     expect(cubit.state.lists, isA<Loading>());
     verifyNever(
@@ -146,7 +157,7 @@ void main() {
     await cubit.load();
     final failure = cubit.state.lists;
 
-    await cubit.create(title: 'Viagens', kind: 'travel', isShared: true);
+    await cubit.create(title: 'Viagens', kind: ListKind.travel, isShared: true);
 
     expect(cubit.state.lists, failure);
     expect(cubit.state.lists, isA<Failure>());
@@ -173,7 +184,7 @@ void main() {
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.create(title: 'Viagens', kind: 'travel', isShared: false);
+    await cubit.create(title: 'Viagens', kind: ListKind.travel, isShared: false);
 
     expect(cubit.state.currentLists, [shared, solo]);
     expect(cubit.state.createAction, isA<Initial>());
@@ -185,7 +196,7 @@ void main() {
     await cubit.load();
     when(repository.getCoupleId).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
 
-    await cubit.create(title: 'Viagens', kind: 'travel', isShared: true);
+    await cubit.create(title: 'Viagens', kind: ListKind.travel, isShared: true);
 
     expect(cubit.state.lists, isA<Success<List<CoupleList>>>());
     expect(cubit.state.currentLists, [shared, solo]);

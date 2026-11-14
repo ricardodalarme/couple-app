@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/relationship_status.dart';
 
@@ -10,54 +12,23 @@ enum MilestoneSource() {
 }
 
 /// Visual and semantic category of a milestone in "Our history".
-enum MilestoneKind(final String serverValue) {
-  met('met'),
-  dating('dating'),
-  engaged('engaged'),
-  married('married'),
-  first('first'),
-  trip('trip'),
-  home('home'),
-  custom('custom');
-
-  static MilestoneKind fromServer(String? value, {String? place}) {
-    if (place != null && place.trim().isNotEmpty && (value == null || value == 'manual')) {
-      return MilestoneKind.trip;
-    }
-    for (final kind in values) {
-      if (kind.serverValue == value) return kind;
-    }
-    return MilestoneKind.custom;
-  }
+enum MilestoneKind() {
+  met,
+  dating,
+  engaged,
+  married,
+  first,
+  trip,
+  home,
+  custom,
 }
 
 /// How much of a milestone's date is known.
-enum MilestoneDatePrecision(final String serverValue) {
-  day('day'),
-  month('month'),
-  year('year'),
-  unknown('unknown');
-
-  static MilestoneDatePrecision fromServer(String? value) {
-    for (final precision in values) {
-      if (precision.serverValue == value) return precision;
-    }
-    return MilestoneDatePrecision.day;
-  }
-}
-
-/// How the person's avatar is rendered in the counter and header.
-enum AvatarKind(final String serverValue) {
-  photo('photo'),
-  illustration('illustration'),
-  initials('initials');
-
-  static AvatarKind fromServer(String? value) {
-    for (final kind in values) {
-      if (kind.serverValue == value) return kind;
-    }
-    return AvatarKind.initials;
-  }
+enum MilestoneDatePrecision() {
+  day,
+  month,
+  year,
+  unknown,
 }
 
 /// A single milestone or memory shown on the "Our history" timeline.
@@ -137,7 +108,7 @@ final class const HistoryMilestone({
 
 /// One of the four canonical relationship story dates (`met`, `dating`, `engaged`, `married`).
 final class const StoryDateEntry({
-  required final String kind,
+  required final StoryEventKind kind,
   final String? id,
   final DateTime? date,
   final MilestoneDatePrecision precision = MilestoneDatePrecision.month,
@@ -159,10 +130,10 @@ final class const StoryDatesSummary({
   final DateTime? partnerStartDate,
 }) with Equatable {
   factory empty() => const StoryDatesSummary(
-    met: StoryDateEntry(kind: 'met'),
-    dating: StoryDateEntry(kind: 'dating'),
-    engaged: StoryDateEntry(kind: 'engaged'),
-    married: StoryDateEntry(kind: 'married'),
+    met: StoryDateEntry(kind: StoryEventKind.met),
+    dating: StoryDateEntry(kind: StoryEventKind.dating),
+    engaged: StoryDateEntry(kind: StoryEventKind.engaged),
+    married: StoryDateEntry(kind: StoryEventKind.married),
   );
 
   bool get hasDifferentStartDates {

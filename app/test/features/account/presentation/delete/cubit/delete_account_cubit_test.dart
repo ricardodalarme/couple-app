@@ -4,6 +4,7 @@ import 'package:flutter_bloc_starter/features/account/data/models/deletion_reque
 import 'package:flutter_bloc_starter/features/account/data/repositories/account_repository.dart';
 import 'package:flutter_bloc_starter/features/account/presentation/delete/cubit/delete_account_cubit.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -42,9 +43,9 @@ void main() {
   );
 
   test('load shows the partner name and no pending request', () async {
-    when(
-      () => pairing.getPartner(),
-    ).thenAnswer((_) async => const Profile(id: 'p', avatarKind: 'initials', displayName: 'Dani'));
+    when(() => pairing.getPartner()).thenAnswer(
+      (_) async => const Profile(id: 'p', avatarKind: AvatarKind.initials, displayName: 'Dani'),
+    );
     final cubit = build();
 
     await cubit.load();

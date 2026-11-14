@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/learned_items_data_source.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/AddLearnedItem.graphql.dart';
 import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/queries/generated/LearnedItems.graphql.dart';
@@ -19,10 +20,10 @@ void main() {
 
   QueryLearnedItemslearnedItemsCollectionedgesnode item({
     String id = 'l1',
-    String target = 'partner_fact',
+    EnumLearnedItemTarget target = EnumLearnedItemTarget.partner_fact,
     String text = 'Gosta de café',
     String? excerpt = 'Da conversa',
-    String status = 'pending',
+    EnumLearnedItemStatus status = EnumLearnedItemStatus.pending,
     DateTime? createdAt,
   }) => QueryLearnedItemslearnedItemsCollectionedgesnode(
     id: id,
@@ -37,9 +38,13 @@ void main() {
     when(dataSource.getItems).thenAnswer(
       (_) async => [
         item(),
-        item(id: 'l2', target: 'date', status: 'confirmed'),
-        item(id: 'l3', target: 'memory', status: 'rejected'),
-        item(id: 'l4', target: 'commitment'),
+        item(id: 'l2', target: EnumLearnedItemTarget.date, status: EnumLearnedItemStatus.confirmed),
+        item(
+          id: 'l3',
+          target: EnumLearnedItemTarget.memory,
+          status: EnumLearnedItemStatus.rejected,
+        ),
+        item(id: 'l4', target: EnumLearnedItemTarget.commitment),
       ],
     );
 
@@ -82,7 +87,7 @@ void main() {
 
     verify(
       () => dataSource.add(
-        target: 'partner_fact',
+        target: EnumLearnedItemTarget.partner_fact,
         text: 'Gosta de café',
         excerpt: 'a' * learnedExcerptMaxLength,
       ),
@@ -109,7 +114,7 @@ void main() {
     await repository.delete('l1');
 
     verify(() => dataSource.updateText(id: 'l1', text: 'Gosta de chá')).called(1);
-    verify(() => dataSource.setStatus(id: 'l1', status: 'confirmed')).called(1);
+    verify(() => dataSource.setStatus(id: 'l1', status: EnumLearnedItemStatus.confirmed)).called(1);
     verify(() => dataSource.delete('l1')).called(1);
   });
 }

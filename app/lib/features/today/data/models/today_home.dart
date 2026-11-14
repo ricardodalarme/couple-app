@@ -64,7 +64,7 @@ final class const TodayHome({
     unseenSignals: map['unseenSignals'] as int? ?? 0,
     question: _suggestion(map['question']),
     idea: _suggestion(map['idea']),
-    myMood: MoodKind.fromValue(map['myMood'] as String?),
+    myMood: MoodKind.values.asNameMap()[map['myMood'] as String?],
     slipDays:
         (map['slipDays'] as List<dynamic>?)
             ?.map((value) => DateTime.parse(value as String))
@@ -112,7 +112,7 @@ final class const TodayHome({
     'unseenSignals': unseenSignals,
     'question': question?.toMap(),
     'idea': idea?.toMap(),
-    'myMood': myMood?.value,
+    'myMood': myMood?.name,
     'slipDays': [for (final day in slipDays) day.toIso8601String()],
   };
 

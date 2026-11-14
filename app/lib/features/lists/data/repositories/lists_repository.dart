@@ -1,6 +1,9 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/lists_data_source.dart';
+import 'package:flutter_bloc_starter/features/lists/data/mappers/list_enum_mapper.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
+import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:logger/logger.dart';
@@ -25,7 +28,7 @@ class ListsRepository({
           CoupleList(
             id: node.id,
             title: node.title,
-            kind: node.kind,
+            kind: node.kind.toModel(),
             coupleId: node.coupleId == coupleId ? node.coupleId : null,
             isMine: node.authorId == selfId,
           ),
@@ -48,7 +51,7 @@ class ListsRepository({
         list: CoupleList(
           id: node.id,
           title: node.title,
-          kind: node.kind,
+          kind: node.kind.toModel(),
           coupleId: node.coupleId == coupleId ? node.coupleId : null,
           isMine: node.authorId == selfId,
         ),
@@ -59,7 +62,7 @@ class ListsRepository({
                 id: edge.node.id,
                 listId: edge.node.listId,
                 title: edge.node.title,
-                status: edge.node.status,
+                status: edge.node.status.toModel(),
                 position: edge.node.position,
               ),
         ],
@@ -74,11 +77,16 @@ class ListsRepository({
   Future<void> createList({
     required String id,
     required String title,
-    required String kind,
+    required ListKind kind,
     String? coupleId,
   }) => _run(
     'create a list',
-    () => _dataSource.createList(id: id, title: title.trim(), kind: kind, coupleId: coupleId),
+    () => _dataSource.createList(
+      id: id,
+      title: title.trim(),
+      kind: kind.toRemote(),
+      coupleId: coupleId,
+    ),
   );
 
   Future<void> renameList({required String id, required String title}) =>
@@ -101,8 +109,8 @@ class ListsRepository({
     () => _dataSource.addItem(id: id, listId: listId, title: title.trim(), position: position),
   );
 
-  Future<void> setItemStatus({required String id, required String status}) =>
-      _run('update an item', () => _dataSource.setItemStatus(id: id, status: status));
+  Future<void> setItemStatus({required String id, required ListItemStatus status}) =>
+      _run('update an item', () => _dataSource.setItemStatus(id: id, status: status.toRemote()));
 
   Future<void> setItemPosition({required String id, required int position}) =>
       _run('reorder an item', () => _dataSource.setItemPosition(id: id, position: position));

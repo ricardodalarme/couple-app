@@ -1,6 +1,7 @@
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/games_data_source.dart';
+import 'package:flutter_bloc_starter/features/games/data/mappers/game_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_item.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_play.dart';
@@ -158,13 +159,13 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
 
   /// Maps a session row, or null when the app has no screens for its game.
   GameSession? _session(GameSessionRecord record) {
-    final game = GameKind.fromKey(record.game);
+    final game = record.game.toModel();
     if (game == null) return null;
 
     return GameSession(
       id: record.id,
       game: game,
-      status: GameStatus.fromKey(record.status),
+      status: record.status.toModel(),
       invitedBy: record.invitedBy,
       itemSlugs: record.itemSlugs,
       createdAt: record.createdAt,

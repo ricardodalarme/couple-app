@@ -4,6 +4,7 @@ import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repo
 import 'package:flutter_bloc_starter/features/cards/presentation/draft/cubit/sunday_card_cubit.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -37,13 +38,13 @@ void main() {
     cards = _MockCardsRepository();
     profile = _MockProfileRepository();
     pairing = _MockPairingRepository();
-    when(
-      () => pairing.getPartner(),
-    ).thenAnswer((_) async => const Profile(id: 'p', avatarKind: 'initials', displayName: 'Rui'));
+    when(() => pairing.getPartner()).thenAnswer(
+      (_) async => const Profile(id: 'p', avatarKind: AvatarKind.initials, displayName: 'Rui'),
+    );
     when(() => cards.getDraft()).thenAnswer((_) async => card);
-    when(
-      () => profile.getMyProfile(),
-    ).thenAnswer((_) async => const Profile(id: 'me', avatarKind: 'initials', displayName: 'Ana'));
+    when(() => profile.getMyProfile()).thenAnswer(
+      (_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials, displayName: 'Ana'),
+    );
     when(() => profile.getMySettings())
         .thenAnswer((_) async => const AccountSettings(theme: .rose, partnerName: 'Rui'));
   });

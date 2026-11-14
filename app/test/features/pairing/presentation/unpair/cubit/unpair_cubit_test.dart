@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/cubit/unpair_cubit.dart';
+import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_bloc_starter/features/today/data/repositories/today_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -18,7 +19,8 @@ void main() {
     pairing = _MockPairingRepository();
     today = _MockTodayRepository();
     when(() => pairing.getPartner()).thenAnswer(
-      (_) async => const Profile(id: 'partner', avatarKind: 'initials', displayName: 'Marina'),
+      (_) async =>
+          const Profile(id: 'partner', avatarKind: AvatarKind.initials, displayName: 'Marina'),
     );
     when(() => pairing.unpair()).thenAnswer((_) async {});
     when(() => today.clearCache()).thenAnswer((_) async {});

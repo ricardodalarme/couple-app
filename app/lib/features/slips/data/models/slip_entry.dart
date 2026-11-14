@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
 
 /// A slip as shown in the list.
 final class const SlipEntry({
@@ -6,7 +7,7 @@ final class const SlipEntry({
   required final String body,
   required final DateTime createdAt,
   final String kind = 'quick',
-  final String? category,
+  final SlipCategory? category,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
   factory fake() => SlipEntry(id: 'fake', body: 'Fez café sem eu pedir', createdAt: DateTime(2026));

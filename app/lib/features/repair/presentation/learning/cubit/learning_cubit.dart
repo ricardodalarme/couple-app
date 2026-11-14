@@ -28,7 +28,7 @@ class LearningCubit({required final RepairRepository _repairRepository})
     }
   }
 
-  void onKindChosen(String kind) => emit(state.copyWith(kind: kind));
+  void onKindChosen(RepairLearningKind kind) => emit(state.copyWith(kind: kind));
 
   void onNoteChanged(String note) => emit(state.copyWith(note: FormInput(note)));
 

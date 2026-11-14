@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:uuid/uuid.dart';
@@ -30,7 +31,7 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
     required String title,
     required bool isShared,
     String? note,
-    String? budget,
+    GiftBudget? budget,
   }) async {
     final trimmed = title.trim();
     if (!_isValid(trimmed, note) || state.saveAction.isLoading || state.gifts is! Success) {
@@ -65,7 +66,12 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
     emit(state.copyWith(saveAction: const Initial()));
   }
 
-  Future<void> edit(GiftIdea gift, {required String title, String? note, String? budget}) async {
+  Future<void> edit(
+    GiftIdea gift, {
+    required String title,
+    String? note,
+    GiftBudget? budget,
+  }) async {
     final trimmed = title.trim();
     if (!gift.isMine || !_isValid(trimmed, note) || state.saveAction.isLoading) return;
 

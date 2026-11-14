@@ -1,9 +1,11 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
+import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
 import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
 import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
+import 'package:flutter_bloc_starter/features/together/data/models/date_idea_status.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/day/cubit/day_cubit.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/help/cubit/help_cubit.dart';
@@ -84,7 +86,7 @@ void main() {
     const birthday = ImportantDate(
       id: 'b',
       title: 'Aniversário',
-      kind: 'birthday',
+      kind: ImportantDateKind.birthday,
       month: 5,
       day: 12,
     );
@@ -98,7 +100,7 @@ void main() {
       const trip = ImportantDate(
         id: 't',
         title: 'Viagem',
-        kind: 'trip',
+        kind: ImportantDateKind.trip,
         month: 7,
         day: 1,
         year: 2026,
@@ -114,7 +116,13 @@ void main() {
     test('lists the dates and planned ideas of the day and moves between days', () async {
       when(() => dates.getDates()).thenAnswer(
         (_) async => const [
-          ImportantDate(id: 'b', title: 'Aniversário', kind: 'birthday', month: 5, day: 12),
+          ImportantDate(
+            id: 'b',
+            title: 'Aniversário',
+            kind: ImportantDateKind.birthday,
+            month: 5,
+            day: 12,
+          ),
         ],
       );
       when(() => together.getDateIdeas()).thenAnswer(
@@ -122,7 +130,7 @@ void main() {
           DateIdea(
             id: 'i',
             title: 'Piquenique',
-            status: 'planned',
+            status: DateIdeaStatus.planned,
             plannedFor: DateTime(2026, 5, 12),
           ),
         ],
