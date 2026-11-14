@@ -1,27 +1,26 @@
 ---
 name: supabase
-description: Work on the starter's schema-first Supabase backend — declarative schemas, generated migrations, RLS policies, explicit grants, pgTAP tests, the pg_graphql surface, local ports, and the GraphQL SDL snapshot. Use when changing the database schema, adding a table/query/mutation, fixing RLS or permissions, refreshing the GraphQL schema, or running the local Supabase stack.
+description: Work on the schema-first Supabase backend — declarative schemas, generated migrations, RLS policies, explicit grants, pgTAP tests, the pg_graphql surface, local ports, and the GraphQL SDL snapshot. Use when changing the database schema, adding a table/query/mutation, fixing RLS or permissions, refreshing the GraphQL schema, or running the local Supabase stack.
 ---
 
 # Supabase backend
 
-The starter has its own schema-first Supabase project. It is no longer backed by
-the external `quickstart-gql` server.
+The app has its own schema-first Supabase project (Repara).
 
-- Project ref: `rqrntvjatuwbmostkpao` (`sa-east-1`)
-- Project URL: `https://rqrntvjatuwbmostkpao.supabase.co`
-- GraphQL endpoint: `https://rqrntvjatuwbmostkpao.supabase.co/graphql/v1`
-- Schema source of truth: `supabase/schemas/`
+- Project ref: `esbhdlbhbeoiwaonsgdg` (`sa-east-1`)
+- Project URL: `https://esbhdlbhbeoiwaonsgdg.supabase.co`
+- GraphQL endpoint: `https://esbhdlbhbeoiwaonsgdg.supabase.co/graphql/v1`
+- Schema source of truth: `supabase/schemas/<domain>/` (layout and placement rules in `supabase/README.md`)
 - Migrations: `supabase/migrations/`
 - Dev seed: `supabase/seed.sql`
-- pgTAP tests: `supabase/tests/`
-- Local ports: `55321` API, `55322` database, `55323` Studio, `55324` SMTP,
-  `55327` analytics
+- pgTAP tests: `supabase/tests/database/<domain>/`
+- Local ports: `56321` API, `56322` database, `56323` Studio, `56324` SMTP,
+  `56327` analytics
 
 ## Commands
 
 ```bash
-supabase link --project-ref rqrntvjatuwbmostkpao   # one-time
+supabase link --project-ref esbhdlbhbeoiwaonsgdg   # one-time
 supabase start                                    # local stack
 supabase db reset --local                         # migrations + seed
 supabase test db                                  # pgTAP
@@ -51,19 +50,16 @@ Applied migrations are immutable. Add a new migration for the next change.
 
 ## Tables, grants, and RLS
 
-Every exposed table has RLS enabled and explicit grants. The starter's `posts`
-table is public-read only:
+Every exposed table has RLS enabled and explicit grants. Default privileges
+revoke everything from `anon` and `authenticated` on new tables and functions
+(`supabase/schemas/_platform/privileges.sql`), so nothing is reachable until it is
+granted. `app_config` is public-read only:
 
 ```sql
-alter table public.posts enable row level security;
-revoke all on table public.posts from anon, authenticated;
-grant select on table public.posts to anon, authenticated;
-
-create policy posts_select_all
-on public.posts
-for select
-to anon, authenticated
-using (true);
+alter table public.app_config enable row level security;
+grant select on public.app_config to anon, authenticated;
+create policy app_config_read_all on public.app_config
+  for select to anon, authenticated using (true);
 ```
 
 - Use `to anon` / `to authenticated` on policies; do not use `auth.role()`.
@@ -72,19 +68,23 @@ using (true);
 - UPDATE policies need both `USING` and `WITH CHECK`.
 - Public reads go through explicit grants/policies, never a base table with
   broad write grants.
-- `SECURITY DEFINER` bypasses RLS. Keep it out of `public`; prefer
-  `SECURITY INVOKER`.
-- The local config sets `auto_expose_new_tables = false`, but hosted projects may
-  still auto-expose new tables. Revoke broad grants explicitly.
+- `SECURITY DEFINER` bypasses RLS. Give it `set search_path = ''`, start it with
+  `private.require_user()` and scope every row by `auth.uid()` or
+  `private.partner_id()`. Prefer `security invoker` when RLS already filters
+  (`my_profile`, `reorder_list_items`).
+- Hosted projects may still auto-expose new tables. The default-privilege
+  revokes above are the guard; add explicit `revoke`/`grant` for anything else.
 
-The starter also has a private notification inbox and push-token backend:
-- `authenticated` can select its own notifications and update only `read_at`.
-- `device_tokens` is backend-only; clients never read or write the table.
-- `register_device_token` / `unregister_device_token` are security-definer RPCs
-  keyed to `auth.uid()`. Push tokens are registered from the app after auth.
+Notifications and push tokens:
+- There is no client-readable notifications table. Triggers and security-definer
+  functions queue rows in `private.notification_outbox` with
+  `private.enqueue_notification`; the `push-sender` Edge Function (service role)
+  claims and completes them.
+- Clients read and update only their own `notification_settings`.
+- `public.devices` exposes no token column to `authenticated`. The app registers
+  a token through `register_device`, removes it with `unregister_device` and
+  revokes a device by id with `revoke_device`.
 - `anon` has no access; clients never insert notifications or tokens.
-- Notifications are created server-side with the service role or a
-  security-definer function, never from the app.
 
 Do not put a `service_role` or secret key in the app. `SERVER_API_KEY` and
 `SUPABASE_ANON_KEY` use the project's publishable key.
@@ -92,8 +92,7 @@ Do not put a `service_role` or secret key in the app. `SERVER_API_KEY` and
 ## GraphQL
 
 `pg_graphql` is installed in the `graphql` schema. Tables in `public` that the
-caller can select are exposed automatically; the starter's query is
-`postsCollection`.
+caller can select are exposed automatically.
 
 - The committed snapshot is
   `app/lib/features/_shared/data/data_sources/remote/schema.graphql`.
@@ -103,7 +102,7 @@ caller can select are exposed automatically; the starter's query is
   `npm install -g get-graphql-schema@2.1.2`.
   It uses the publishable/anon role by default; set `SCHEMA_AUTH_TOKEN` to a
   service-role token when the schema includes authenticated-only tables such as
-  notifications.
+  `slips`.
 - Never hand-edit the snapshot or `*.graphql.dart` generated files.
 - After a schema change: `melos graphql:schema` then `melos gen`.
 - Feature queries/fragments belong in
@@ -149,7 +148,7 @@ caller can select are exposed automatically; the starter's query is
 ## Seed and tests
 
 - `supabase/seed.sql` is development-only. It is idempotent and clearly labeled.
-- pgTAP tests live in `supabase/tests/` and run with `supabase test db` after
+- pgTAP tests live in `supabase/tests/database/<domain>/` and run with `supabase test db` after
   `supabase db reset --local`.
 - Cover RLS, grants, constraints, and any database-owned invariant. A schema
   change needs a test there.
@@ -160,7 +159,8 @@ caller can select are exposed automatically; the starter's query is
 - `supabase db reset` replays migrations, not the declarative files.
 - `supabase db push` requires the project to be linked and may need a moment
   after a project restore before the login role is ready.
-- `project_id` in `config.toml` is the project ref; local container names use it.
+- `project_id` in `config.toml` is the local project name (`repara`); local
+  container names use it. The remote ref is in the config header and `.env.development`.
 - The hosted project may have Data API auto-expose enabled even though local
   config disables it. Explicit `revoke`/`grant` is the portable rule.
 - Do not add product/domain tables without a real feature requirement.

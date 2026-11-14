@@ -6,9 +6,8 @@ with pub workspaces.
 
 This is a generic starter, not a product repository. There is no product
 blueprint or brand book in this repo. The backend is a schema-first Supabase
-project under `supabase/` with `pg_graphql`; the starter's domain is deliberately
-small (a public `posts` feed). When a requirement is unclear, ask instead of
-inventing product behavior.
+project under `supabase/` with `pg_graphql`. When a requirement is unclear, ask
+instead of inventing product behavior.
 
 Before working in an area, load the matching skill in `.agents/skills/` — the
 skills contain the full conventions, templates, and gotchas. This file is the
@@ -40,8 +39,8 @@ Melos config is the `melos:` key in the **root `pubspec.yaml`** — there is no
 
 | Command | What it does |
 | --- | --- |
-| `supabase link --project-ref rqrntvjatuwbmostkpao` | One-time link to the starter project |
-| `supabase start` / `supabase stop` | Start/stop the local stack (ports `553xx`) |
+| `supabase link --project-ref esbhdlbhbeoiwaonsgdg` | One-time link to the Repara project |
+| `supabase start` / `supabase stop` | Start/stop the local stack (ports `563xx`) |
 | `supabase db reset --local` | Replay migrations + seed into the local database |
 | `supabase test db` | Run the pgTAP tests in `supabase/tests/` |
 | `supabase db push --remote --include-all` | Apply committed migrations to the linked project |
@@ -198,15 +197,18 @@ allows them; use the body only for initializers and behavior.
   `data/data_sources/remote/`. `RestClient` exists for REST integrations; prefer
   GraphQL for feature reads unless the API requires REST.
 - **`supabase/schemas/` is the database source of truth.** Edit the declarative
-  schema first, generate/review a migration, and keep the two together. The
-  starter's `posts` table is public-read only; new tables need explicit grants
-  and RLS policies.
-- **Notifications are backend-created.** `authenticated` can select its own rows
-  and update only `read_at`; `anon` has no access and clients never insert
-  notifications. Producers use the service role or a security-definer function.
-- **Push tokens are backend-only.** `device_tokens` has no client grants; the app
-  registers its FCM installation through `register_device_token` and removes it
-  through `unregister_device_token`. `NotificationService` wraps FCM and registers
+  schema first, generate/review a migration, and keep the two together. New
+  tables need explicit grants and RLS policies; the layout and the rules for
+  where an object goes are in `supabase/README.md`.
+- **Notifications are backend-created.** There is no client-readable
+  notifications table. Triggers and security-definer functions queue rows in
+  `private.notification_outbox` through `private.enqueue_notification`, and the
+  `push-sender` Edge Function (service role) claims and sends them. Clients only
+  read and update their own `notification_settings`.
+- **Push tokens are write-only for clients.** `public.devices` exposes no token
+  column to `authenticated`; the app registers its FCM installation through the
+  `registerDevice` mutation and removes it through `unregisterDevice` (or
+  `revokeDevice` by id). `NotificationService` wraps FCM and registers
   tokens after auth. iOS still needs the Push Notifications capability and an
   APNs key in Firebase; the app does not auto-prompt for notification permission.
 - **Refresh the GraphQL snapshot after a schema change**: `melos graphql:schema`

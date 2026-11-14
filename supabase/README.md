@@ -8,11 +8,13 @@
 
 ```bash
 supabase link --project-ref esbhdlbhbeoiwaonsgdg   # one-time
-scripts/test-backend.sh                            # local reset + pgTAP + lint + drift check
+supabase db reset --local                          # replay migrations + seed
+supabase test db                                   # pgTAP
+supabase db schema declarative sync --no-apply     # drift check: must say "No schema changes found"
 supabase db push                                   # apply new migrations to the remote
 ```
 
-Docs: `backlog/backend/` (PROGRESS, DECISIONS, api-contract, remote, standards).
+Notes: `.work/backend/` (local only, not committed) holds the API contract and decisions.
 
 ## Schema layout
 
