@@ -199,10 +199,14 @@ class const _IdeaTile({required final DateIdea idea}) extends StatelessWidget {
               BaseButton(
                 text: idea.isDone ? l10n.reopen : l10n.markDone,
                 variant: .secondary,
-                onPressed: () => pick('done'),
+                onPressed: () => pick(_IdeaAction.toggleDone),
               ),
               const SizedBox(height: AppSpace.s10),
-              BaseButton(text: l10n.delete, variant: .secondary, onPressed: () => pick('delete')),
+              BaseButton(
+                text: l10n.delete,
+                variant: .secondary,
+                onPressed: () => pick(_IdeaAction.delete),
+              ),
             ],
           );
         },
@@ -211,10 +215,15 @@ class const _IdeaTile({required final DateIdea idea}) extends StatelessWidget {
     switch (action) {
       case PlanChoice():
         await cubit.plan(idea, action);
-      case 'done':
+      case _IdeaAction.toggleDone:
         await cubit.toggleDone(idea);
-      case 'delete':
+      case _IdeaAction.delete:
         await cubit.delete(idea);
     }
   }
+}
+
+enum _IdeaAction() {
+  toggleDone,
+  delete,
 }
