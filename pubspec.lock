@@ -250,13 +250,13 @@ packages:
     source: hosted
     version: "2.0.4"
   cli_completion:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: cli_completion
-      sha256: "72e8ccc4545f24efa7bbdf3bff7257dc9d62b072dee77513cc54295575bc9220"
+      sha256: d61bbbfccabe02fdad54eeb275586e15e31abdeb35ec7a0d68832fae473cc298
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.1"
+    version: "0.6.0"
   cli_config:
     dependency: transitive
     description:
@@ -1479,7 +1479,7 @@ packages:
     source: hosted
     version: "2.1.5"
   package_config:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: package_config
       sha256: f096c55ebb7deb7e384101542bfba8c52696c1b56fca2eb62827989ef2353bbc
@@ -2207,18 +2207,18 @@ packages:
     dependency: "direct dev"
     description:
       name: very_good_cli
-      sha256: "0f72d123537ade844c293cb19e1159f2110160fcedab90bd24fd5c55c4877b78"
+      sha256: fef326de9130a366fd0e10e89244446d4e6b89fac205e1c16b1c041e9213c51d
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.0"
+    version: "1.6.0"
   very_good_test_runner:
     dependency: transitive
     description:
       name: very_good_test_runner
-      sha256: "8c5b75c8d233a112825ddbb6a146bde8a2d40ee2d46d57ee7832e4106ec501c3"
+      sha256: "9d87f638e2879342ce395cc7f716d4f471ea583ee9a288db28eb3b736c22817b"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.0"
+    version: "0.4.0"
   vm_service:
     dependency: transitive
     description:
