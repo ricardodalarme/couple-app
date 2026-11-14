@@ -174,9 +174,10 @@ installs `MaterialApp.router`, so app code never touches `Scaffold`, `AppBar` or
 3. Cubits take no runtime constructor arguments (`Injector` has no `registerFactoryParam`); pass ids into methods or use route
    params.
 4. Every new `InjectionModule` goes into `main.dart::_registerModules()`, or `AppInjector.instance.get<T>()` fails at runtime.
-5. All user-facing text comes from slang: `app/lib/l10n/{en,pt}/<namespace>.json` (shared keys in `common.json`), and
-   `packages/design_system/lib/src/l10n/{en,pt}/<namespace>.json` read through `context.designSystemL10nOrBase`. File names are
-   the namespace and are unique per package. Run `melos l10n`, then `melos l10n:analyze`.
+5. All user-facing text comes from slang, in both `pt` and `en`: `app/lib/l10n/<locale>/<namespace>.json` (base locale `pt`) and
+   `packages/design_system/lib/src/l10n/<locale>/<namespace>.json` (base locale `en`, read through
+   `context.designSystemL10nOrBase`). File names are the namespace and are unique per package. Run `melos l10n`, then
+   `melos l10n:analyze`.
 6. Never hand-edit generated files (`*.g.dart`, `*.gr.dart`, `*.gen.dart`, `*.graphql.dart`, `translations*.dart`); regenerate
    and commit the output.
 7. A feature's `presentation/` never holds files directly: every page lives in
