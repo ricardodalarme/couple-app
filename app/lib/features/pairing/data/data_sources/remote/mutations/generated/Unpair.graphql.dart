@@ -103,7 +103,7 @@ class OptionsMutationUnpair extends graphql.MutationOptions<MutationUnpair> {
     graphql.OnError? onError,
   }) : onCompletedWithParsed = onCompleted,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'Unpair',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -143,7 +143,7 @@ class WatchOptionsMutationUnpair extends graphql.WatchQueryOptions<MutationUnpai
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'Unpair',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

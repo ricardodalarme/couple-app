@@ -189,7 +189,7 @@ class OptionsQueryLoveStyleSharedMessage extends graphql.QueryOptions<QueryLoveS
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'LoveStyleSharedMessage',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -235,7 +235,7 @@ class WatchOptionsQueryLoveStyleSharedMessage
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'LoveStyleSharedMessage',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

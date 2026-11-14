@@ -107,7 +107,7 @@ class OptionsQueryPartnerTimeZone extends graphql.QueryOptions<QueryPartnerTimeZ
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'PartnerTimeZone',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -148,7 +148,7 @@ class WatchOptionsQueryPartnerTimeZone extends graphql.WatchQueryOptions<QueryPa
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'PartnerTimeZone',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

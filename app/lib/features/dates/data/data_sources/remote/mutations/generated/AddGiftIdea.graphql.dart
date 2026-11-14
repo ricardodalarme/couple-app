@@ -226,7 +226,7 @@ class OptionsMutationAddGiftIdea extends graphql.MutationOptions<MutationAddGift
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'AddGiftIdea',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -269,7 +269,7 @@ class WatchOptionsMutationAddGiftIdea extends graphql.WatchQueryOptions<Mutation
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'AddGiftIdea',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

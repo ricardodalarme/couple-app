@@ -209,7 +209,7 @@ class OptionsMutationSetSlipInJar extends graphql.MutationOptions<MutationSetSli
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SetSlipInJar',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -252,7 +252,7 @@ class WatchOptionsMutationSetSlipInJar extends graphql.WatchQueryOptions<Mutatio
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SetSlipInJar',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

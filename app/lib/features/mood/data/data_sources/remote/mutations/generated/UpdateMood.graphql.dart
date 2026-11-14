@@ -381,7 +381,7 @@ class OptionsMutationUpdateMood extends graphql.MutationOptions<MutationUpdateMo
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'UpdateMood',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -423,7 +423,7 @@ class WatchOptionsMutationUpdateMood extends graphql.WatchQueryOptions<MutationU
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'UpdateMood',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

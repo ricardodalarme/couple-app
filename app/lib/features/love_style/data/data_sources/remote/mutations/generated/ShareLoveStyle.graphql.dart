@@ -197,7 +197,7 @@ class OptionsMutationShareLoveStyle extends graphql.MutationOptions<MutationShar
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'ShareLoveStyle',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -240,7 +240,7 @@ class WatchOptionsMutationShareLoveStyle extends graphql.WatchQueryOptions<Mutat
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'ShareLoveStyle',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

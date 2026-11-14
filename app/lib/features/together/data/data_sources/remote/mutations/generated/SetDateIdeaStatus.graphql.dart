@@ -242,7 +242,7 @@ class OptionsMutationSetDateIdeaStatus extends graphql.MutationOptions<MutationS
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SetDateIdeaStatus',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -288,7 +288,7 @@ class WatchOptionsMutationSetDateIdeaStatus
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SetDateIdeaStatus',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

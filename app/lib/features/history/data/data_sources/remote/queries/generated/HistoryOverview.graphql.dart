@@ -998,7 +998,7 @@ class OptionsQueryHistoryOverview extends graphql.QueryOptions<QueryHistoryOverv
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'HistoryOverview',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -1041,7 +1041,7 @@ class WatchOptionsQueryHistoryOverview extends graphql.WatchQueryOptions<QueryHi
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'HistoryOverview',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

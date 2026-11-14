@@ -500,7 +500,7 @@ class OptionsQueryTodayHome extends graphql.QueryOptions<QueryTodayHome> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'TodayHome',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -540,7 +540,7 @@ class WatchOptionsQueryTodayHome extends graphql.WatchQueryOptions<QueryTodayHom
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'TodayHome',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

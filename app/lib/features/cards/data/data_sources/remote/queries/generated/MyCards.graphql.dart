@@ -449,7 +449,7 @@ class OptionsQueryMyCards extends graphql.QueryOptions<QueryMyCards> {
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables?.toJson() ?? {},
-         operationName: operationName,
+         operationName: operationName ?? 'MyCards',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -491,7 +491,7 @@ class WatchOptionsQueryMyCards extends graphql.WatchQueryOptions<QueryMyCards> {
     bool fetchResults = false,
   }) : super(
          variables: variables?.toJson() ?? {},
-         operationName: operationName,
+         operationName: operationName ?? 'MyCards',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

@@ -176,7 +176,7 @@ class OptionsQueryLists extends graphql.QueryOptions<QueryLists> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'Lists',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -216,7 +216,7 @@ class WatchOptionsQueryLists extends graphql.WatchQueryOptions<QueryLists> {
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'Lists',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

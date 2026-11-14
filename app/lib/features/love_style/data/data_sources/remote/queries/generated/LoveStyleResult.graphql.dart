@@ -190,7 +190,7 @@ class OptionsQueryLoveStyleResult extends graphql.QueryOptions<QueryLoveStyleRes
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'LoveStyleResult',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -231,7 +231,7 @@ class WatchOptionsQueryLoveStyleResult extends graphql.WatchQueryOptions<QueryLo
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'LoveStyleResult',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

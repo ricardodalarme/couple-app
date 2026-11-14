@@ -201,7 +201,7 @@ class OptionsQueryLogisticItems extends graphql.QueryOptions<QueryLogisticItems>
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'LogisticItems',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -241,7 +241,7 @@ class WatchOptionsQueryLogisticItems extends graphql.WatchQueryOptions<QueryLogi
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'LogisticItems',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

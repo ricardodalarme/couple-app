@@ -125,7 +125,7 @@ class OptionsQueryMyCouple extends graphql.QueryOptions<QueryMyCouple> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'MyCouple',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -165,7 +165,7 @@ class WatchOptionsQueryMyCouple extends graphql.WatchQueryOptions<QueryMyCouple>
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'MyCouple',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

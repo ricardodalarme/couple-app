@@ -254,7 +254,7 @@ class OptionsQueryTodayMood extends graphql.QueryOptions<QueryTodayMood> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'TodayMood',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -294,7 +294,7 @@ class WatchOptionsQueryTodayMood extends graphql.WatchQueryOptions<QueryTodayMoo
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'TodayMood',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

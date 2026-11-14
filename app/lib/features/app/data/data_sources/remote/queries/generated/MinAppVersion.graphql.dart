@@ -131,7 +131,7 @@ class OptionsQueryMinAppVersion extends graphql.QueryOptions<QueryMinAppVersion>
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'MinAppVersion',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -171,7 +171,7 @@ class WatchOptionsQueryMinAppVersion extends graphql.WatchQueryOptions<QueryMinA
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'MinAppVersion',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

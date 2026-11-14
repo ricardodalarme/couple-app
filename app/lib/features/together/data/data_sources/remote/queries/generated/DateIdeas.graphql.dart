@@ -202,7 +202,7 @@ class OptionsQueryDateIdeas extends graphql.QueryOptions<QueryDateIdeas> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'DateIdeas',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -242,7 +242,7 @@ class WatchOptionsQueryDateIdeas extends graphql.WatchQueryOptions<QueryDateIdea
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'DateIdeas',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

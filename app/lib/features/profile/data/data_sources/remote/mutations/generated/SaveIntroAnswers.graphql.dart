@@ -337,7 +337,7 @@ class OptionsMutationSaveIntroAnswers extends graphql.MutationOptions<MutationSa
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SaveIntroAnswers',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -381,7 +381,7 @@ class WatchOptionsMutationSaveIntroAnswers
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SaveIntroAnswers',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

@@ -205,7 +205,7 @@ class OptionsMutationDeleteList extends graphql.MutationOptions<MutationDeleteLi
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'DeleteList',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -247,7 +247,7 @@ class WatchOptionsMutationDeleteList extends graphql.WatchQueryOptions<MutationD
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'DeleteList',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

@@ -321,7 +321,7 @@ class OptionsQueryHelpContent extends graphql.QueryOptions<QueryHelpContent> {
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'HelpContent',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -363,7 +363,7 @@ class WatchOptionsQueryHelpContent extends graphql.WatchQueryOptions<QueryHelpCo
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'HelpContent',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

@@ -216,7 +216,7 @@ class OptionsMutationArchiveSlip extends graphql.MutationOptions<MutationArchive
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'ArchiveSlip',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -259,7 +259,7 @@ class WatchOptionsMutationArchiveSlip extends graphql.WatchQueryOptions<Mutation
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'ArchiveSlip',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

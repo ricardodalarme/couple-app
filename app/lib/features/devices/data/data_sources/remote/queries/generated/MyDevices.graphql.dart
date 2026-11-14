@@ -202,7 +202,7 @@ class OptionsQueryMyDevices extends graphql.QueryOptions<QueryMyDevices> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'MyDevices',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -242,7 +242,7 @@ class WatchOptionsQueryMyDevices extends graphql.WatchQueryOptions<QueryMyDevice
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'MyDevices',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

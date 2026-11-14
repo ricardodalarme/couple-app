@@ -187,7 +187,7 @@ class OptionsMutationHoldCard extends graphql.MutationOptions<MutationHoldCard> 
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'HoldCard',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -229,7 +229,7 @@ class WatchOptionsMutationHoldCard extends graphql.WatchQueryOptions<MutationHol
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'HoldCard',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

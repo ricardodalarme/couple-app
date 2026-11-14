@@ -358,7 +358,7 @@ class OptionsMutationUpdateRitual extends graphql.MutationOptions<MutationUpdate
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'UpdateRitual',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -401,7 +401,7 @@ class WatchOptionsMutationUpdateRitual extends graphql.WatchQueryOptions<Mutatio
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'UpdateRitual',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

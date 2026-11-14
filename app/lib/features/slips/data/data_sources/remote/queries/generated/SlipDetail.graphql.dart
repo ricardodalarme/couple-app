@@ -328,7 +328,7 @@ class OptionsQuerySlipDetail extends graphql.QueryOptions<QuerySlipDetail> {
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SlipDetail',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -370,7 +370,7 @@ class WatchOptionsQuerySlipDetail extends graphql.WatchQueryOptions<QuerySlipDet
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SlipDetail',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

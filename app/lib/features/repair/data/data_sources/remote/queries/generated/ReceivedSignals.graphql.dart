@@ -295,7 +295,7 @@ class OptionsQueryReceivedSignals extends graphql.QueryOptions<QueryReceivedSign
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'ReceivedSignals',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -338,7 +338,7 @@ class WatchOptionsQueryReceivedSignals extends graphql.WatchQueryOptions<QueryRe
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'ReceivedSignals',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

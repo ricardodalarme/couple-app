@@ -204,7 +204,7 @@ class OptionsMutationDeleteCapsule extends graphql.MutationOptions<MutationDelet
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'DeleteCapsule',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -247,7 +247,7 @@ class WatchOptionsMutationDeleteCapsule extends graphql.WatchQueryOptions<Mutati
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'DeleteCapsule',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

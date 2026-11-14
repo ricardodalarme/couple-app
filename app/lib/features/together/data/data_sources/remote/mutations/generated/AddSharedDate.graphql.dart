@@ -325,7 +325,7 @@ class OptionsMutationAddSharedDate extends graphql.MutationOptions<MutationAddSh
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'AddSharedDate',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -368,7 +368,7 @@ class WatchOptionsMutationAddSharedDate extends graphql.WatchQueryOptions<Mutati
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'AddSharedDate',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

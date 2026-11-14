@@ -140,7 +140,7 @@ class OptionsMutationCreateInvite extends graphql.MutationOptions<MutationCreate
     graphql.OnError? onError,
   }) : onCompletedWithParsed = onCompleted,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'CreateInvite',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -181,7 +181,7 @@ class WatchOptionsMutationCreateInvite extends graphql.WatchQueryOptions<Mutatio
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'CreateInvite',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

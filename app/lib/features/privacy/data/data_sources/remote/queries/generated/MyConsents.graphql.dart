@@ -199,7 +199,7 @@ class OptionsQueryMyConsents extends graphql.QueryOptions<QueryMyConsents> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'MyConsents',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -239,7 +239,7 @@ class WatchOptionsQueryMyConsents extends graphql.WatchQueryOptions<QueryMyConse
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'MyConsents',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

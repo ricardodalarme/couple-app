@@ -133,7 +133,7 @@ class OptionsMutationDrawFromJar extends graphql.MutationOptions<MutationDrawFro
     graphql.OnError? onError,
   }) : onCompletedWithParsed = onCompleted,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'DrawFromJar',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -174,7 +174,7 @@ class WatchOptionsMutationDrawFromJar extends graphql.WatchQueryOptions<Mutation
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'DrawFromJar',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

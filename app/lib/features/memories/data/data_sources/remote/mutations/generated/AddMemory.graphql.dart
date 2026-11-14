@@ -351,7 +351,7 @@ class OptionsMutationAddMemory extends graphql.MutationOptions<MutationAddMemory
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'AddMemory',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -393,7 +393,7 @@ class WatchOptionsMutationAddMemory extends graphql.WatchQueryOptions<MutationAd
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'AddMemory',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

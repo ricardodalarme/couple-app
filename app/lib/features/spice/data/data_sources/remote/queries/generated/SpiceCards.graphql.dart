@@ -283,7 +283,7 @@ class OptionsQuerySpiceCards extends graphql.QueryOptions<QuerySpiceCards> {
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SpiceCards',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -325,7 +325,7 @@ class WatchOptionsQuerySpiceCards extends graphql.WatchQueryOptions<QuerySpiceCa
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SpiceCards',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

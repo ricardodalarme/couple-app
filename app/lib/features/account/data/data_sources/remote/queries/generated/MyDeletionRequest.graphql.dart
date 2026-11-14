@@ -172,7 +172,7 @@ class OptionsQueryMyDeletionRequest extends graphql.QueryOptions<QueryMyDeletion
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'MyDeletionRequest',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -213,7 +213,7 @@ class WatchOptionsQueryMyDeletionRequest extends graphql.WatchQueryOptions<Query
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'MyDeletionRequest',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

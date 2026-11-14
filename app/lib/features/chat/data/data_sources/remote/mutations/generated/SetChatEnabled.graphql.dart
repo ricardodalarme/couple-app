@@ -238,7 +238,7 @@ class OptionsMutationSetChatEnabled extends graphql.MutationOptions<MutationSetC
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SetChatEnabled',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -281,7 +281,7 @@ class WatchOptionsMutationSetChatEnabled extends graphql.WatchQueryOptions<Mutat
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SetChatEnabled',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

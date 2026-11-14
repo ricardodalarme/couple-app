@@ -187,7 +187,7 @@ class OptionsMutationAcceptInvite extends graphql.MutationOptions<MutationAccept
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'AcceptInvite',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -230,7 +230,7 @@ class WatchOptionsMutationAcceptInvite extends graphql.WatchQueryOptions<Mutatio
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'AcceptInvite',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

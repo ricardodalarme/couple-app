@@ -480,7 +480,7 @@ class OptionsQueryPrograms extends graphql.QueryOptions<QueryPrograms> {
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'Programs',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -522,7 +522,7 @@ class WatchOptionsQueryPrograms extends graphql.WatchQueryOptions<QueryPrograms>
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'Programs',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

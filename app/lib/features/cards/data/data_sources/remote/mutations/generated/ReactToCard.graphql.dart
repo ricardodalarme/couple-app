@@ -260,7 +260,7 @@ class OptionsMutationReactToCard extends graphql.MutationOptions<MutationReactTo
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'ReactToCard',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -303,7 +303,7 @@ class WatchOptionsMutationReactToCard extends graphql.WatchQueryOptions<Mutation
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'ReactToCard',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

@@ -313,7 +313,7 @@ class OptionsQueryChatStatus extends graphql.QueryOptions<QueryChatStatus> {
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'ChatStatus',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -355,7 +355,7 @@ class WatchOptionsQueryChatStatus extends graphql.WatchQueryOptions<QueryChatSta
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'ChatStatus',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

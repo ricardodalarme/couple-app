@@ -291,7 +291,7 @@ class OptionsMutationSaveLearning extends graphql.MutationOptions<MutationSaveLe
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SaveLearning',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -334,7 +334,7 @@ class WatchOptionsMutationSaveLearning extends graphql.WatchQueryOptions<Mutatio
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SaveLearning',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

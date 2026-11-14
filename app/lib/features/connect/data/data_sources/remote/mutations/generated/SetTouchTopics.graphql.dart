@@ -168,7 +168,7 @@ class OptionsMutationSetTouchTopics extends graphql.MutationOptions<MutationSetT
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SetTouchTopics',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -211,7 +211,7 @@ class WatchOptionsMutationSetTouchTopics extends graphql.WatchQueryOptions<Mutat
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SetTouchTopics',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

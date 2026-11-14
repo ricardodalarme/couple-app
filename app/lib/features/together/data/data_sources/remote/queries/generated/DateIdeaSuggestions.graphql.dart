@@ -294,7 +294,7 @@ class OptionsQueryDateIdeaSuggestions extends graphql.QueryOptions<QueryDateIdea
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'DateIdeaSuggestions',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -338,7 +338,7 @@ class WatchOptionsQueryDateIdeaSuggestions
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'DateIdeaSuggestions',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

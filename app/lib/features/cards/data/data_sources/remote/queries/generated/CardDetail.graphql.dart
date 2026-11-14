@@ -273,7 +273,7 @@ class OptionsQueryCardDetail extends graphql.QueryOptions<QueryCardDetail> {
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'CardDetail',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -315,7 +315,7 @@ class WatchOptionsQueryCardDetail extends graphql.WatchQueryOptions<QueryCardDet
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'CardDetail',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

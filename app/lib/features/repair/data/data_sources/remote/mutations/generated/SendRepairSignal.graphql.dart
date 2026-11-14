@@ -233,7 +233,7 @@ class OptionsMutationSendRepairSignal extends graphql.MutationOptions<MutationSe
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables?.toJson() ?? {},
-         operationName: operationName,
+         operationName: operationName ?? 'SendRepairSignal',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -277,7 +277,7 @@ class WatchOptionsMutationSendRepairSignal
     bool fetchResults = false,
   }) : super(
          variables: variables?.toJson() ?? {},
-         operationName: operationName,
+         operationName: operationName ?? 'SendRepairSignal',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

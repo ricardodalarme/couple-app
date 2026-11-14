@@ -308,7 +308,7 @@ class OptionsQueryDailyIdeas extends graphql.QueryOptions<QueryDailyIdeas> {
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'DailyIdeas',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -350,7 +350,7 @@ class WatchOptionsQueryDailyIdeas extends graphql.WatchQueryOptions<QueryDailyId
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'DailyIdeas',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

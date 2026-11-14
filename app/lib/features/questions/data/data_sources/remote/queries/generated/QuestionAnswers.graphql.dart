@@ -295,7 +295,7 @@ class OptionsQueryQuestionAnswers extends graphql.QueryOptions<QueryQuestionAnsw
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'QuestionAnswers',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -338,7 +338,7 @@ class WatchOptionsQueryQuestionAnswers extends graphql.WatchQueryOptions<QueryQu
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'QuestionAnswers',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

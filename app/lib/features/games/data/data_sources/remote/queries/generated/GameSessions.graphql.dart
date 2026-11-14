@@ -306,7 +306,7 @@ class OptionsQueryGameSessions extends graphql.QueryOptions<QueryGameSessions> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'GameSessions',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -346,7 +346,7 @@ class WatchOptionsQueryGameSessions extends graphql.WatchQueryOptions<QueryGameS
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'GameSessions',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

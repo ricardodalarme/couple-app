@@ -131,7 +131,7 @@ class OptionsMutationSendMissUs extends graphql.MutationOptions<MutationSendMiss
     graphql.OnError? onError,
   }) : onCompletedWithParsed = onCompleted,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'SendMissUs',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -171,7 +171,7 @@ class WatchOptionsMutationSendMissUs extends graphql.WatchQueryOptions<MutationS
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'SendMissUs',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

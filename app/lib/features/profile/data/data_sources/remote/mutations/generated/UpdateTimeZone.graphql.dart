@@ -238,7 +238,7 @@ class OptionsMutationUpdateTimeZone extends graphql.MutationOptions<MutationUpda
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'UpdateTimeZone',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -281,7 +281,7 @@ class WatchOptionsMutationUpdateTimeZone extends graphql.WatchQueryOptions<Mutat
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'UpdateTimeZone',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

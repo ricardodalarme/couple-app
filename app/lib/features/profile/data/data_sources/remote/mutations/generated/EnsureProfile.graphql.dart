@@ -126,7 +126,7 @@ class OptionsMutationEnsureProfile extends graphql.MutationOptions<MutationEnsur
     graphql.OnError? onError,
   }) : onCompletedWithParsed = onCompleted,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'EnsureProfile',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -167,7 +167,7 @@ class WatchOptionsMutationEnsureProfile extends graphql.WatchQueryOptions<Mutati
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'EnsureProfile',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

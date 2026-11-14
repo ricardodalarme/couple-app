@@ -228,7 +228,7 @@ class OptionsMutationAddRepairTool extends graphql.MutationOptions<MutationAddRe
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'AddRepairTool',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -271,7 +271,7 @@ class WatchOptionsMutationAddRepairTool extends graphql.WatchQueryOptions<Mutati
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'AddRepairTool',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

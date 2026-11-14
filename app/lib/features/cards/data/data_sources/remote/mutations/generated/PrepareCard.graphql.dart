@@ -126,7 +126,7 @@ class OptionsMutationPrepareCard extends graphql.MutationOptions<MutationPrepare
     graphql.OnError? onError,
   }) : onCompletedWithParsed = onCompleted,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'PrepareCard',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -167,7 +167,7 @@ class WatchOptionsMutationPrepareCard extends graphql.WatchQueryOptions<Mutation
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'PrepareCard',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

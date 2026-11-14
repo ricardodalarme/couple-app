@@ -279,7 +279,7 @@ class OptionsQueryQuestionOfTheWeek extends graphql.QueryOptions<QueryQuestionOf
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'QuestionOfTheWeek',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -320,7 +320,7 @@ class WatchOptionsQueryQuestionOfTheWeek extends graphql.WatchQueryOptions<Query
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'QuestionOfTheWeek',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

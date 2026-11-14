@@ -257,7 +257,7 @@ class OptionsQueryLoveStyleManualEntry extends graphql.QueryOptions<QueryLoveSty
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'LoveStyleManualEntry',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -301,7 +301,7 @@ class WatchOptionsQueryLoveStyleManualEntry
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'LoveStyleManualEntry',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

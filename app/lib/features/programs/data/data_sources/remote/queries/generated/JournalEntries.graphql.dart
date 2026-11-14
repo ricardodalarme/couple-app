@@ -209,7 +209,7 @@ class OptionsQueryJournalEntries extends graphql.QueryOptions<QueryJournalEntrie
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'JournalEntries',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -249,7 +249,7 @@ class WatchOptionsQueryJournalEntries extends graphql.WatchQueryOptions<QueryJou
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'JournalEntries',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

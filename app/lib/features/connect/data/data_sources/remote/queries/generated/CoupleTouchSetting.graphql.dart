@@ -133,7 +133,7 @@ class OptionsQueryCoupleTouchSetting extends graphql.QueryOptions<QueryCoupleTou
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'CoupleTouchSetting',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -175,7 +175,7 @@ class WatchOptionsQueryCoupleTouchSetting
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'CoupleTouchSetting',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

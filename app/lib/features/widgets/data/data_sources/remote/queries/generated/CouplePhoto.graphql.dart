@@ -228,7 +228,7 @@ class OptionsQueryCouplePhoto extends graphql.QueryOptions<QueryCouplePhoto> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'CouplePhoto',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -268,7 +268,7 @@ class WatchOptionsQueryCouplePhoto extends graphql.WatchQueryOptions<QueryCouple
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'CouplePhoto',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

@@ -107,7 +107,7 @@ class OptionsMutationEndPause extends graphql.MutationOptions<MutationEndPause> 
     graphql.OnError? onError,
   }) : onCompletedWithParsed = onCompleted,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'EndPause',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -147,7 +147,7 @@ class WatchOptionsMutationEndPause extends graphql.WatchQueryOptions<MutationEnd
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'EndPause',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

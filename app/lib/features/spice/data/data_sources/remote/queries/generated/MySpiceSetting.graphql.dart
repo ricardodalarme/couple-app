@@ -196,7 +196,7 @@ class OptionsQueryMySpiceSetting extends graphql.QueryOptions<QueryMySpiceSettin
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'MySpiceSetting',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -238,7 +238,7 @@ class WatchOptionsQueryMySpiceSetting extends graphql.WatchQueryOptions<QueryMyS
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'MySpiceSetting',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

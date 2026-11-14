@@ -217,7 +217,7 @@ class OptionsQueryLearnedItems extends graphql.QueryOptions<QueryLearnedItems> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'LearnedItems',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -257,7 +257,7 @@ class WatchOptionsQueryLearnedItems extends graphql.WatchQueryOptions<QueryLearn
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'LearnedItems',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

@@ -304,7 +304,7 @@ class OptionsQueryHolidays extends graphql.QueryOptions<QueryHolidays> {
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'Holidays',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -346,7 +346,7 @@ class WatchOptionsQueryHolidays extends graphql.WatchQueryOptions<QueryHolidays>
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'Holidays',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

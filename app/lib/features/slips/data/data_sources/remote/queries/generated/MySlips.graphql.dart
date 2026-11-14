@@ -360,7 +360,7 @@ class OptionsQueryMySlips extends graphql.QueryOptions<QueryMySlips> {
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables?.toJson() ?? {},
-         operationName: operationName,
+         operationName: operationName ?? 'MySlips',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -402,7 +402,7 @@ class WatchOptionsQueryMySlips extends graphql.WatchQueryOptions<QueryMySlips> {
     bool fetchResults = false,
   }) : super(
          variables: variables?.toJson() ?? {},
-         operationName: operationName,
+         operationName: operationName ?? 'MySlips',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

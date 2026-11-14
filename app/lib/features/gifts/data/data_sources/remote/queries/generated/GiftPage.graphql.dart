@@ -197,7 +197,7 @@ class OptionsQueryGiftPage extends graphql.QueryOptions<QueryGiftPage> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'GiftPage',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -237,7 +237,7 @@ class WatchOptionsQueryGiftPage extends graphql.WatchQueryOptions<QueryGiftPage>
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'GiftPage',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

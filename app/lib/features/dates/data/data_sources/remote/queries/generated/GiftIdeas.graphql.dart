@@ -220,7 +220,7 @@ class OptionsQueryGiftIdeas extends graphql.QueryOptions<QueryGiftIdeas> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'GiftIdeas',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -260,7 +260,7 @@ class WatchOptionsQueryGiftIdeas extends graphql.WatchQueryOptions<QueryGiftIdea
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'GiftIdeas',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

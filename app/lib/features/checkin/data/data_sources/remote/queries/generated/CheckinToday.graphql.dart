@@ -216,7 +216,7 @@ class OptionsQueryCheckinToday extends graphql.QueryOptions<QueryCheckinToday> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'CheckinToday',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -256,7 +256,7 @@ class WatchOptionsQueryCheckinToday extends graphql.WatchQueryOptions<QueryCheck
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'CheckinToday',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

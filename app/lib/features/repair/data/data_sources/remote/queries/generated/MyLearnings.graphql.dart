@@ -203,7 +203,7 @@ class OptionsQueryMyLearnings extends graphql.QueryOptions<QueryMyLearnings> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'MyLearnings',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -243,7 +243,7 @@ class WatchOptionsQueryMyLearnings extends graphql.WatchQueryOptions<QueryMyLear
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'MyLearnings',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

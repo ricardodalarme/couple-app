@@ -250,7 +250,7 @@ class OptionsQueryImportantDates extends graphql.QueryOptions<QueryImportantDate
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'ImportantDates',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -290,7 +290,7 @@ class WatchOptionsQueryImportantDates extends graphql.WatchQueryOptions<QueryImp
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'ImportantDates',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

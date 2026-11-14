@@ -223,7 +223,7 @@ class OptionsQueryOpenGuidedSession extends graphql.QueryOptions<QueryOpenGuided
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'OpenGuidedSession',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -264,7 +264,7 @@ class WatchOptionsQueryOpenGuidedSession extends graphql.WatchQueryOptions<Query
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'OpenGuidedSession',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

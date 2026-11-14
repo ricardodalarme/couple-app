@@ -159,7 +159,7 @@ class OptionsQueryMyPlus extends graphql.QueryOptions<QueryMyPlus> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'MyPlus',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -199,7 +199,7 @@ class WatchOptionsQueryMyPlus extends graphql.WatchQueryOptions<QueryMyPlus> {
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'MyPlus',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

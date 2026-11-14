@@ -731,7 +731,7 @@ class OptionsQueryWidgetOverview extends graphql.QueryOptions<QueryWidgetOvervie
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'WidgetOverview',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -771,7 +771,7 @@ class WatchOptionsQueryWidgetOverview extends graphql.WatchQueryOptions<QueryWid
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'WidgetOverview',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

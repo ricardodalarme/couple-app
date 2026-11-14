@@ -203,7 +203,7 @@ class OptionsQueryPartnerFacts extends graphql.QueryOptions<QueryPartnerFacts> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         operationName: operationName,
+         operationName: operationName ?? 'PartnerFacts',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -243,7 +243,7 @@ class WatchOptionsQueryPartnerFacts extends graphql.WatchQueryOptions<QueryPartn
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
+         operationName: operationName ?? 'PartnerFacts',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

@@ -215,7 +215,7 @@ class OptionsMutationAnswerGame extends graphql.MutationOptions<MutationAnswerGa
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'AnswerGame',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -257,7 +257,7 @@ class WatchOptionsMutationAnswerGame extends graphql.WatchQueryOptions<MutationA
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'AnswerGame',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

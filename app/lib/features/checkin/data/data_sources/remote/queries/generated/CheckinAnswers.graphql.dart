@@ -311,7 +311,7 @@ class OptionsQueryCheckinAnswers extends graphql.QueryOptions<QueryCheckinAnswer
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'CheckinAnswers',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -353,7 +353,7 @@ class WatchOptionsQueryCheckinAnswers extends graphql.WatchQueryOptions<QueryChe
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'CheckinAnswers',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

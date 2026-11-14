@@ -381,7 +381,7 @@ class OptionsMutationSaveSlip extends graphql.MutationOptions<MutationSaveSlip> 
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SaveSlip',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -423,7 +423,7 @@ class WatchOptionsMutationSaveSlip extends graphql.WatchQueryOptions<MutationSav
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'SaveSlip',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

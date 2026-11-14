@@ -287,7 +287,7 @@ class OptionsMutationAddCapsule extends graphql.MutationOptions<MutationAddCapsu
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'AddCapsule',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -329,7 +329,7 @@ class WatchOptionsMutationAddCapsule extends graphql.WatchQueryOptions<MutationA
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'AddCapsule',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

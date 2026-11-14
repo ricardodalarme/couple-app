@@ -402,7 +402,7 @@ class OptionsQueryProgramProgress extends graphql.QueryOptions<QueryProgramProgr
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'ProgramProgress',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -445,7 +445,7 @@ class WatchOptionsQueryProgramProgress extends graphql.WatchQueryOptions<QueryPr
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'ProgramProgress',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

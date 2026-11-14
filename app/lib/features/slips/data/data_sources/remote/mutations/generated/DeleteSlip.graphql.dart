@@ -168,7 +168,7 @@ class OptionsMutationDeleteSlip extends graphql.MutationOptions<MutationDeleteSl
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'DeleteSlip',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -210,7 +210,7 @@ class WatchOptionsMutationDeleteSlip extends graphql.WatchQueryOptions<MutationD
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'DeleteSlip',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,

@@ -337,7 +337,7 @@ class OptionsQueryGameItemsBySlug extends graphql.QueryOptions<QueryGameItemsByS
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'GameItemsBySlug',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -380,7 +380,7 @@ class WatchOptionsQueryGameItemsBySlug extends graphql.WatchQueryOptions<QueryGa
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName,
+         operationName: operationName ?? 'GameItemsBySlug',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
