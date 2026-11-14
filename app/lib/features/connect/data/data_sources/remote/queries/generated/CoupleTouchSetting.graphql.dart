@@ -5,27 +5,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryCoupleTouchSetting {
-  QueryCoupleTouchSetting({required this.couplesCollection, this.$__typename = 'Query'});
+  QueryCoupleTouchSetting({this.myCouple, this.$__typename = 'Query'});
 
   factory QueryCoupleTouchSetting.fromJson(Map<String, dynamic> json) {
-    final l$couplesCollection = json['couplesCollection'];
+    final l$myCouple = json['myCouple'];
     final l$$__typename = json['__typename'];
     return QueryCoupleTouchSetting(
-      couplesCollection: QueryCoupleTouchSettingcouplesCollection.fromJson(
-        (l$couplesCollection as Map<String, dynamic>),
-      ),
+      myCouple: l$myCouple == null
+          ? null
+          : QueryCoupleTouchSettingmyCouple.fromJson((l$myCouple as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryCoupleTouchSettingcouplesCollection couplesCollection;
+  final QueryCoupleTouchSettingmyCouple? myCouple;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$couplesCollection = couplesCollection;
-    _resultData['couplesCollection'] = l$couplesCollection.toJson();
+    final l$myCouple = myCouple;
+    _resultData['myCouple'] = l$myCouple?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -33,9 +33,9 @@ class QueryCoupleTouchSetting {
 
   @override
   int get hashCode {
-    final l$couplesCollection = couplesCollection;
+    final l$myCouple = myCouple;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$couplesCollection, l$$__typename]);
+    return Object.hashAll([l$myCouple, l$$__typename]);
   }
 
   @override
@@ -46,9 +46,9 @@ class QueryCoupleTouchSetting {
     if (other is! QueryCoupleTouchSetting || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$couplesCollection = couplesCollection;
-    final lOther$couplesCollection = other.couplesCollection;
-    if (l$couplesCollection != lOther$couplesCollection) {
+    final l$myCouple = myCouple;
+    final lOther$myCouple = other.myCouple;
+    if (l$myCouple != lOther$myCouple) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -70,64 +70,25 @@ const documentNodeQueryCoupleTouchSetting = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'couplesCollection'),
+            name: NameNode(value: 'myCouple'),
             alias: null,
-            arguments: [
-              ArgumentNode(
-                name: NameNode(value: 'first'),
-                value: IntValueNode(value: '1'),
-              ),
-            ],
+            arguments: [],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'touchTopicsEnabled'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'touchTopicsEnabled'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -261,147 +222,18 @@ extension ClientExtensionQueryCoupleTouchSetting on graphql.GraphQLClient {
   }
 }
 
-class QueryCoupleTouchSettingcouplesCollection {
-  QueryCoupleTouchSettingcouplesCollection({
-    required this.edges,
-    this.$__typename = 'CouplesConnection',
-  });
-
-  factory QueryCoupleTouchSettingcouplesCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryCoupleTouchSettingcouplesCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) =>
-                QueryCoupleTouchSettingcouplesCollectionedges.fromJson((e as Map<String, dynamic>)),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryCoupleTouchSettingcouplesCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryCoupleTouchSettingcouplesCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryCoupleTouchSettingcouplesCollectionedges {
-  QueryCoupleTouchSettingcouplesCollectionedges({
-    required this.node,
-    this.$__typename = 'CouplesEdge',
-  });
-
-  factory QueryCoupleTouchSettingcouplesCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryCoupleTouchSettingcouplesCollectionedges(
-      node: QueryCoupleTouchSettingcouplesCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryCoupleTouchSettingcouplesCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryCoupleTouchSettingcouplesCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryCoupleTouchSettingcouplesCollectionedgesnode {
-  QueryCoupleTouchSettingcouplesCollectionedgesnode({
+class QueryCoupleTouchSettingmyCouple {
+  QueryCoupleTouchSettingmyCouple({
     required this.id,
     required this.touchTopicsEnabled,
     this.$__typename = 'Couples',
   });
 
-  factory QueryCoupleTouchSettingcouplesCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryCoupleTouchSettingmyCouple.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$touchTopicsEnabled = json['touchTopicsEnabled'];
     final l$$__typename = json['__typename'];
-    return QueryCoupleTouchSettingcouplesCollectionedgesnode(
+    return QueryCoupleTouchSettingmyCouple(
       id: (l$id as String),
       touchTopicsEnabled: (l$touchTopicsEnabled as bool),
       $__typename: (l$$__typename as String),
@@ -438,8 +270,7 @@ class QueryCoupleTouchSettingcouplesCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryCoupleTouchSettingcouplesCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryCoupleTouchSettingmyCouple || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

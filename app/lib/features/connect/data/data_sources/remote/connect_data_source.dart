@@ -9,9 +9,10 @@ class ConnectDataSource({required final GQLClient _client}) {
     final response = await _client.query(
       OptionsQueryCoupleTouchSetting(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final edges = validateResponseData(response, getData: (data) => data.couplesCollection.edges);
 
-    return edges.isEmpty ? null : edges.first.node.touchTopicsEnabled;
+    validateResponse(response);
+
+    return response.parsedData?.myCouple?.touchTopicsEnabled;
   }
 
   Future<void> setTouchTopics({required bool enabled}) async {
