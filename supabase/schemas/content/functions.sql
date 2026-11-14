@@ -11,6 +11,7 @@ grant execute on function private.spice_allowed() to authenticated;
 
 -- The same question (or idea) for both partners on the same day: a deterministic pick from the catalog.
 -- Compares as text so an unsupported kind still returns nothing instead of failing the cast.
+-- The rotation counts days from 2026-01-01; moving that date changes every couple's pick for the day.
 create function public.daily_content(kind text) returns public.content_items
 language sql stable security definer set search_path = '' as $$
   with me as (

@@ -49,6 +49,5 @@ begin
   end loop;
 end $$;
 
-revoke update (agreed_by) on public.agreements from authenticated;
 revoke update on public.agreements from authenticated;
 grant update (title, body, review_on, couple_id) on public.agreements to authenticated;

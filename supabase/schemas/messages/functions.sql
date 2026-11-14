@@ -30,7 +30,7 @@ begin
   return v_row;
 end $$;
 
--- The sender can take back a note or drawing (mirrors migration 20261111000300_delete_partner_message.sql).
+-- The sender can take back a note or drawing.
 create function public.delete_partner_message(message_id uuid) returns boolean
 language plpgsql security definer set search_path = '' as $$
 declare v_uid uuid := private.require_user(); v_recipient uuid;
