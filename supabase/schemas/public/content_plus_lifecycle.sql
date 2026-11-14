@@ -174,7 +174,7 @@ create trigger cards_free_limit before update of status on public.cards
 create table public.consents (
   id uuid primary key default gen_random_uuid(),
   profile_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  kind text not null check (kind in ('sensitive_data', 'analytics', 'marketing', 'ai', 'terms', 'sensitive_tracks')),
+  kind public.consent_kind not null,
   granted boolean not null,
   version text not null check (char_length(version) between 1 and 20),
   created_at timestamptz not null default now()
@@ -278,7 +278,7 @@ grant execute on function public.resolve_shared_items(boolean) to authenticated;
 create table private.support_requests (
   id uuid primary key default gen_random_uuid(),
   profile_id uuid references public.profiles (id) on delete set null,
-  topic text not null check (topic in ('account', 'billing', 'bug', 'other')),
+  topic public.support_topic not null,
   message text not null check (char_length(message) between 1 and 2000),
   reply_email text check (char_length(reply_email) <= 254),
   app_version text, created_at timestamptz not null default now()
@@ -293,7 +293,8 @@ begin
     raise exception 'RATE_LIMITED' using errcode = 'P0001';
   end if;
   insert into private.support_requests (profile_id, topic, message, reply_email, app_version)
-  values (v_uid, create_support_request.topic, btrim(create_support_request.message), create_support_request.reply_email, create_support_request.app_version);
+  values (v_uid, create_support_request.topic::public.support_topic, btrim(create_support_request.message),
+          create_support_request.reply_email, create_support_request.app_version);
   return true;
 end $$;
 grant execute on function public.create_support_request(text, text, text, text) to authenticated;
@@ -528,7 +529,7 @@ create or replace view public.today_state with (security_invoker = true) as
          null::date as together_since, null::uuid as pause_id, false as pause_is_mine, null::timestamptz as pause_return_at,
          null::text as pause_message, null::text as temperature, null::uuid as next_date_id, null::text as next_date_title,
          null::date as next_date_on, 0 as unseen_signals, false as has_plus, false as deletion_pending,
-         null::text as relationship_status
+         null::text as relationship_status, null::date[] as slip_days
   from public.profiles p where false;
 
 create or replace function public.today() returns public.today_state
@@ -555,6 +556,10 @@ begin
   select count(*) filter (where (s.created_at at time zone v_s.time_zone)::date >= v_week), count(*)
   into r.slips_this_week, r.slips_total
   from public.slips s where s.author_id = v_uid and s.deleted_at is null;
+  r.slip_days := (select array_agg(distinct (s.created_at at time zone v_s.time_zone)::date)
+                  from public.slips s
+                  where s.author_id = v_uid and s.deleted_at is null
+                    and (s.created_at at time zone v_s.time_zone)::date >= v_week);
   r.has_pending_invite := exists (select 1 from public.invites i
     where i.created_by = v_uid and i.used_at is null and i.cancelled_at is null and i.expires_at > now());
   select * into v_pause from public.active_pause();

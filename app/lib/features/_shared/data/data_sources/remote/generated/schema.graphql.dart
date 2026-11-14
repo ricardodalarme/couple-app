@@ -9907,11 +9907,153 @@ class InputCheckinAnswersUpdateInput {
   }
 }
 
+class InputConsentKindFilter {
+  factory InputConsentKindFilter({
+    EnumConsentKind? eq,
+    List<EnumConsentKind>? $in,
+    EnumFilterIs? $is,
+    EnumConsentKind? neq,
+  }) => InputConsentKindFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputConsentKindFilter._(this._$data);
+
+  factory InputConsentKindFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumConsentKind((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumConsentKind((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumConsentKind((l$neq as String));
+    }
+    return InputConsentKindFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumConsentKind? get eq => (_$data['eq'] as EnumConsentKind?);
+
+  List<EnumConsentKind>? get $in => (_$data['in'] as List<EnumConsentKind>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumConsentKind? get neq => (_$data['neq'] as EnumConsentKind?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumConsentKind(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumConsentKind(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumConsentKind(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputConsentKindFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputConsentsFilter {
   factory InputConsentsFilter({
     InputUUIDFilter? id,
     InputUUIDFilter? profileId,
-    InputStringFilter? kind,
+    InputConsentKindFilter? kind,
     InputBooleanFilter? granted,
     InputStringFilter? version,
     InputDatetimeFilter? createdAt,
@@ -9952,7 +10094,7 @@ class InputConsentsFilter {
       final l$kind = data['kind'];
       result$data['kind'] = l$kind == null
           ? null
-          : InputStringFilter.fromJson((l$kind as Map<String, dynamic>));
+          : InputConsentKindFilter.fromJson((l$kind as Map<String, dynamic>));
     }
     if (data.containsKey('granted')) {
       final l$granted = data['granted'];
@@ -10005,7 +10147,7 @@ class InputConsentsFilter {
 
   InputUUIDFilter? get profileId => (_$data['profileId'] as InputUUIDFilter?);
 
-  InputStringFilter? get kind => (_$data['kind'] as InputStringFilter?);
+  InputConsentKindFilter? get kind => (_$data['kind'] as InputConsentKindFilter?);
 
   InputBooleanFilter? get granted => (_$data['granted'] as InputBooleanFilter?);
 
@@ -10218,7 +10360,7 @@ class InputConsentsInsertInput {
   factory InputConsentsInsertInput({
     String? id,
     String? profileId,
-    String? kind,
+    EnumConsentKind? kind,
     bool? granted,
     String? version,
     DateTime? createdAt,
@@ -10245,7 +10387,7 @@ class InputConsentsInsertInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumConsentKind((l$kind as String));
     }
     if (data.containsKey('granted')) {
       final l$granted = data['granted'];
@@ -10270,7 +10412,7 @@ class InputConsentsInsertInput {
 
   String? get profileId => (_$data['profileId'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumConsentKind? get kind => (_$data['kind'] as EnumConsentKind?);
 
   bool? get granted => (_$data['granted'] as bool?);
 
@@ -10290,7 +10432,7 @@ class InputConsentsInsertInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumConsentKind(l$kind);
     }
     if (_$data.containsKey('granted')) {
       final l$granted = granted;
@@ -10574,7 +10716,7 @@ class InputConsentsUpdateInput {
   factory InputConsentsUpdateInput({
     String? id,
     String? profileId,
-    String? kind,
+    EnumConsentKind? kind,
     bool? granted,
     String? version,
     DateTime? createdAt,
@@ -10601,7 +10743,7 @@ class InputConsentsUpdateInput {
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumConsentKind((l$kind as String));
     }
     if (data.containsKey('granted')) {
       final l$granted = data['granted'];
@@ -10626,7 +10768,7 @@ class InputConsentsUpdateInput {
 
   String? get profileId => (_$data['profileId'] as String?);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumConsentKind? get kind => (_$data['kind'] as EnumConsentKind?);
 
   bool? get granted => (_$data['granted'] as bool?);
 
@@ -10646,7 +10788,7 @@ class InputConsentsUpdateInput {
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
-      result$data['kind'] = l$kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumConsentKind(l$kind);
     }
     if (_$data.containsKey('granted')) {
       final l$granted = granted;
@@ -73136,6 +73278,148 @@ class InputStringListFilter {
   }
 }
 
+class InputSupportTopicFilter {
+  factory InputSupportTopicFilter({
+    EnumSupportTopic? eq,
+    List<EnumSupportTopic>? $in,
+    EnumFilterIs? $is,
+    EnumSupportTopic? neq,
+  }) => InputSupportTopicFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputSupportTopicFilter._(this._$data);
+
+  factory InputSupportTopicFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumSupportTopic((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumSupportTopic((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumSupportTopic((l$neq as String));
+    }
+    return InputSupportTopicFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumSupportTopic? get eq => (_$data['eq'] as EnumSupportTopic?);
+
+  List<EnumSupportTopic>? get $in => (_$data['in'] as List<EnumSupportTopic>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumSupportTopic? get neq => (_$data['neq'] as EnumSupportTopic?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumSupportTopic(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumSupportTopic(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumSupportTopic(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputSupportTopicFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputTemperatureChecksFilter {
   factory InputTemperatureChecksFilter({
     InputUUIDFilter? id,
@@ -75511,6 +75795,7 @@ class InputTodayStateFilter {
     InputBooleanFilter? hasPlus,
     InputBooleanFilter? deletionPending,
     InputStringFilter? relationshipStatus,
+    InputDateListFilter? slipDays,
     InputIDFilter? nodeId,
     List<InputTodayStateFilter>? and,
     List<InputTodayStateFilter>? or,
@@ -75540,6 +75825,7 @@ class InputTodayStateFilter {
     if (hasPlus != null) r'hasPlus': hasPlus,
     if (deletionPending != null) r'deletionPending': deletionPending,
     if (relationshipStatus != null) r'relationshipStatus': relationshipStatus,
+    if (slipDays != null) r'slipDays': slipDays,
     if (nodeId != null) r'nodeId': nodeId,
     if (and != null) r'and': and,
     if (or != null) r'or': or,
@@ -75694,6 +75980,12 @@ class InputTodayStateFilter {
           ? null
           : InputStringFilter.fromJson((l$relationshipStatus as Map<String, dynamic>));
     }
+    if (data.containsKey('slipDays')) {
+      final l$slipDays = data['slipDays'];
+      result$data['slipDays'] = l$slipDays == null
+          ? null
+          : InputDateListFilter.fromJson((l$slipDays as Map<String, dynamic>));
+    }
     if (data.containsKey('nodeId')) {
       final l$nodeId = data['nodeId'];
       result$data['nodeId'] = l$nodeId == null
@@ -75770,6 +76062,8 @@ class InputTodayStateFilter {
   InputBooleanFilter? get deletionPending => (_$data['deletionPending'] as InputBooleanFilter?);
 
   InputStringFilter? get relationshipStatus => (_$data['relationshipStatus'] as InputStringFilter?);
+
+  InputDateListFilter? get slipDays => (_$data['slipDays'] as InputDateListFilter?);
 
   InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
 
@@ -75876,6 +76170,10 @@ class InputTodayStateFilter {
     if (_$data.containsKey('relationshipStatus')) {
       final l$relationshipStatus = relationshipStatus;
       result$data['relationshipStatus'] = l$relationshipStatus?.toJson();
+    }
+    if (_$data.containsKey('slipDays')) {
+      final l$slipDays = slipDays;
+      result$data['slipDays'] = l$slipDays?.toJson();
     }
     if (_$data.containsKey('nodeId')) {
       final l$nodeId = nodeId;
@@ -76097,6 +76395,14 @@ class InputTodayStateFilter {
     if (l$relationshipStatus != lOther$relationshipStatus) {
       return false;
     }
+    final l$slipDays = slipDays;
+    final lOther$slipDays = other.slipDays;
+    if (_$data.containsKey('slipDays') != other._$data.containsKey('slipDays')) {
+      return false;
+    }
+    if (l$slipDays != lOther$slipDays) {
+      return false;
+    }
     final l$nodeId = nodeId;
     final lOther$nodeId = other.nodeId;
     if (_$data.containsKey('nodeId') != other._$data.containsKey('nodeId')) {
@@ -76180,6 +76486,7 @@ class InputTodayStateFilter {
     final l$hasPlus = hasPlus;
     final l$deletionPending = deletionPending;
     final l$relationshipStatus = relationshipStatus;
+    final l$slipDays = slipDays;
     final l$nodeId = nodeId;
     final l$and = and;
     final l$or = or;
@@ -76209,6 +76516,7 @@ class InputTodayStateFilter {
       _$data.containsKey('hasPlus') ? l$hasPlus : const {},
       _$data.containsKey('deletionPending') ? l$deletionPending : const {},
       _$data.containsKey('relationshipStatus') ? l$relationshipStatus : const {},
+      _$data.containsKey('slipDays') ? l$slipDays : const {},
       _$data.containsKey('nodeId') ? l$nodeId : const {},
       _$data.containsKey('and')
           ? l$and == null
@@ -76251,6 +76559,7 @@ class InputTodayStateInsertInput {
     bool? hasPlus,
     bool? deletionPending,
     String? relationshipStatus,
+    List<DateTime?>? slipDays,
   }) => InputTodayStateInsertInput._({
     if (profileId != null) r'profileId': profileId,
     if (isPaired != null) r'isPaired': isPaired,
@@ -76276,6 +76585,7 @@ class InputTodayStateInsertInput {
     if (hasPlus != null) r'hasPlus': hasPlus,
     if (deletionPending != null) r'deletionPending': deletionPending,
     if (relationshipStatus != null) r'relationshipStatus': relationshipStatus,
+    if (slipDays != null) r'slipDays': slipDays,
   });
 
   InputTodayStateInsertInput._(this._$data);
@@ -76386,6 +76696,12 @@ class InputTodayStateInsertInput {
       final l$relationshipStatus = data['relationshipStatus'];
       result$data['relationshipStatus'] = (l$relationshipStatus as String?);
     }
+    if (data.containsKey('slipDays')) {
+      final l$slipDays = data['slipDays'];
+      result$data['slipDays'] = (l$slipDays as List<dynamic>?)
+          ?.map((e) => e == null ? null : DateTime.parse((e as String)))
+          .toList();
+    }
     return InputTodayStateInsertInput._(result$data);
   }
 
@@ -76438,6 +76754,8 @@ class InputTodayStateInsertInput {
   bool? get deletionPending => (_$data['deletionPending'] as bool?);
 
   String? get relationshipStatus => (_$data['relationshipStatus'] as String?);
+
+  List<DateTime?>? get slipDays => (_$data['slipDays'] as List<DateTime?>?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -76544,6 +76862,12 @@ class InputTodayStateInsertInput {
     if (_$data.containsKey('relationshipStatus')) {
       final l$relationshipStatus = relationshipStatus;
       result$data['relationshipStatus'] = l$relationshipStatus;
+    }
+    if (_$data.containsKey('slipDays')) {
+      final l$slipDays = slipDays;
+      result$data['slipDays'] = l$slipDays
+          ?.map((e) => e == null ? null : ((v) => v.toIso8601String().substring(0, 10))(e))
+          .toList();
     }
     return result$data;
   }
@@ -76749,6 +77073,25 @@ class InputTodayStateInsertInput {
     if (l$relationshipStatus != lOther$relationshipStatus) {
       return false;
     }
+    final l$slipDays = slipDays;
+    final lOther$slipDays = other.slipDays;
+    if (_$data.containsKey('slipDays') != other._$data.containsKey('slipDays')) {
+      return false;
+    }
+    if (l$slipDays != null && lOther$slipDays != null) {
+      if (l$slipDays.length != lOther$slipDays.length) {
+        return false;
+      }
+      for (int i = 0; i < l$slipDays.length; i++) {
+        final l$slipDays$entry = l$slipDays[i];
+        final lOther$slipDays$entry = lOther$slipDays[i];
+        if (l$slipDays$entry != lOther$slipDays$entry) {
+          return false;
+        }
+      }
+    } else if (l$slipDays != lOther$slipDays) {
+      return false;
+    }
     return true;
   }
 
@@ -76778,6 +77121,7 @@ class InputTodayStateInsertInput {
     final l$hasPlus = hasPlus;
     final l$deletionPending = deletionPending;
     final l$relationshipStatus = relationshipStatus;
+    final l$slipDays = slipDays;
     return Object.hashAll([
       _$data.containsKey('profileId') ? l$profileId : const {},
       _$data.containsKey('isPaired') ? l$isPaired : const {},
@@ -76803,6 +77147,11 @@ class InputTodayStateInsertInput {
       _$data.containsKey('hasPlus') ? l$hasPlus : const {},
       _$data.containsKey('deletionPending') ? l$deletionPending : const {},
       _$data.containsKey('relationshipStatus') ? l$relationshipStatus : const {},
+      _$data.containsKey('slipDays')
+          ? l$slipDays == null
+                ? null
+                : Object.hashAll(l$slipDays.map((v) => v))
+          : const {},
     ]);
   }
 }
@@ -77489,6 +77838,7 @@ class InputTodayStateUpdateInput {
     bool? hasPlus,
     bool? deletionPending,
     String? relationshipStatus,
+    List<DateTime?>? slipDays,
   }) => InputTodayStateUpdateInput._({
     if (profileId != null) r'profileId': profileId,
     if (isPaired != null) r'isPaired': isPaired,
@@ -77514,6 +77864,7 @@ class InputTodayStateUpdateInput {
     if (hasPlus != null) r'hasPlus': hasPlus,
     if (deletionPending != null) r'deletionPending': deletionPending,
     if (relationshipStatus != null) r'relationshipStatus': relationshipStatus,
+    if (slipDays != null) r'slipDays': slipDays,
   });
 
   InputTodayStateUpdateInput._(this._$data);
@@ -77624,6 +77975,12 @@ class InputTodayStateUpdateInput {
       final l$relationshipStatus = data['relationshipStatus'];
       result$data['relationshipStatus'] = (l$relationshipStatus as String?);
     }
+    if (data.containsKey('slipDays')) {
+      final l$slipDays = data['slipDays'];
+      result$data['slipDays'] = (l$slipDays as List<dynamic>?)
+          ?.map((e) => e == null ? null : DateTime.parse((e as String)))
+          .toList();
+    }
     return InputTodayStateUpdateInput._(result$data);
   }
 
@@ -77676,6 +78033,8 @@ class InputTodayStateUpdateInput {
   bool? get deletionPending => (_$data['deletionPending'] as bool?);
 
   String? get relationshipStatus => (_$data['relationshipStatus'] as String?);
+
+  List<DateTime?>? get slipDays => (_$data['slipDays'] as List<DateTime?>?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -77782,6 +78141,12 @@ class InputTodayStateUpdateInput {
     if (_$data.containsKey('relationshipStatus')) {
       final l$relationshipStatus = relationshipStatus;
       result$data['relationshipStatus'] = l$relationshipStatus;
+    }
+    if (_$data.containsKey('slipDays')) {
+      final l$slipDays = slipDays;
+      result$data['slipDays'] = l$slipDays
+          ?.map((e) => e == null ? null : ((v) => v.toIso8601String().substring(0, 10))(e))
+          .toList();
     }
     return result$data;
   }
@@ -77987,6 +78352,25 @@ class InputTodayStateUpdateInput {
     if (l$relationshipStatus != lOther$relationshipStatus) {
       return false;
     }
+    final l$slipDays = slipDays;
+    final lOther$slipDays = other.slipDays;
+    if (_$data.containsKey('slipDays') != other._$data.containsKey('slipDays')) {
+      return false;
+    }
+    if (l$slipDays != null && lOther$slipDays != null) {
+      if (l$slipDays.length != lOther$slipDays.length) {
+        return false;
+      }
+      for (int i = 0; i < l$slipDays.length; i++) {
+        final l$slipDays$entry = l$slipDays[i];
+        final lOther$slipDays$entry = lOther$slipDays[i];
+        if (l$slipDays$entry != lOther$slipDays$entry) {
+          return false;
+        }
+      }
+    } else if (l$slipDays != lOther$slipDays) {
+      return false;
+    }
     return true;
   }
 
@@ -78016,6 +78400,7 @@ class InputTodayStateUpdateInput {
     final l$hasPlus = hasPlus;
     final l$deletionPending = deletionPending;
     final l$relationshipStatus = relationshipStatus;
+    final l$slipDays = slipDays;
     return Object.hashAll([
       _$data.containsKey('profileId') ? l$profileId : const {},
       _$data.containsKey('isPaired') ? l$isPaired : const {},
@@ -78041,6 +78426,11 @@ class InputTodayStateUpdateInput {
       _$data.containsKey('hasPlus') ? l$hasPlus : const {},
       _$data.containsKey('deletionPending') ? l$deletionPending : const {},
       _$data.containsKey('relationshipStatus') ? l$relationshipStatus : const {},
+      _$data.containsKey('slipDays')
+          ? l$slipDays == null
+                ? null
+                : Object.hashAll(l$slipDays.map((v) => v))
+          : const {},
     ]);
   }
 }
@@ -81250,6 +81640,58 @@ EnumCardStatus fromJsonEnumCardStatus(String value) {
   }
 }
 
+enum EnumConsentKind {
+  sensitive_data,
+  analytics,
+  marketing,
+  ai,
+  terms,
+  sensitive_tracks,
+  $unknown;
+
+  factory EnumConsentKind.fromJson(String value) => fromJsonEnumConsentKind(value);
+
+  String toJson() => toJsonEnumConsentKind(this);
+}
+
+String toJsonEnumConsentKind(EnumConsentKind e) {
+  switch (e) {
+    case EnumConsentKind.sensitive_data:
+      return r'sensitive_data';
+    case EnumConsentKind.analytics:
+      return r'analytics';
+    case EnumConsentKind.marketing:
+      return r'marketing';
+    case EnumConsentKind.ai:
+      return r'ai';
+    case EnumConsentKind.terms:
+      return r'terms';
+    case EnumConsentKind.sensitive_tracks:
+      return r'sensitive_tracks';
+    case EnumConsentKind.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumConsentKind fromJsonEnumConsentKind(String value) {
+  switch (value) {
+    case r'sensitive_data':
+      return EnumConsentKind.sensitive_data;
+    case r'analytics':
+      return EnumConsentKind.analytics;
+    case r'marketing':
+      return EnumConsentKind.marketing;
+    case r'ai':
+      return EnumConsentKind.ai;
+    case r'terms':
+      return EnumConsentKind.terms;
+    case r'sensitive_tracks':
+      return EnumConsentKind.sensitive_tracks;
+    default:
+      return EnumConsentKind.$unknown;
+  }
+}
+
 enum EnumConversationGuide {
   free,
   transition,
@@ -83078,6 +83520,48 @@ EnumStoryEventKind fromJsonEnumStoryEventKind(String value) {
       return EnumStoryEventKind.custom;
     default:
       return EnumStoryEventKind.$unknown;
+  }
+}
+
+enum EnumSupportTopic {
+  account,
+  billing,
+  bug,
+  other,
+  $unknown;
+
+  factory EnumSupportTopic.fromJson(String value) => fromJsonEnumSupportTopic(value);
+
+  String toJson() => toJsonEnumSupportTopic(this);
+}
+
+String toJsonEnumSupportTopic(EnumSupportTopic e) {
+  switch (e) {
+    case EnumSupportTopic.account:
+      return r'account';
+    case EnumSupportTopic.billing:
+      return r'billing';
+    case EnumSupportTopic.bug:
+      return r'bug';
+    case EnumSupportTopic.other:
+      return r'other';
+    case EnumSupportTopic.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumSupportTopic fromJsonEnumSupportTopic(String value) {
+  switch (value) {
+    case r'account':
+      return EnumSupportTopic.account;
+    case r'billing':
+      return EnumSupportTopic.billing;
+    case r'bug':
+      return EnumSupportTopic.bug;
+    case r'other':
+      return EnumSupportTopic.other;
+    default:
+      return EnumSupportTopic.$unknown;
   }
 }
 

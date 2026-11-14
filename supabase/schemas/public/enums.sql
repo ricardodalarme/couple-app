@@ -3,6 +3,7 @@
 create type public.avatar_kind as enum ('photo', 'illustration', 'initials');
 create type public.card_channel as enum ('link', 'app');
 create type public.card_kind as enum ('weekly', 'single');
+create type public.consent_kind as enum ('sensitive_data', 'analytics', 'marketing', 'ai', 'terms', 'sensitive_tracks');
 create type public.conversation_guide as enum ('free', 'transition', 'money', 'apology', 'difficult');
 create type public.cycle_day_kind as enum ('heavy', 'light', 'note');
 create type public.date_idea_status as enum ('saved', 'planned', 'done');
@@ -39,5 +40,6 @@ create type public.signal_kind as enum ('need', 'miss_us', 'hug', 'distance', 'r
 create type public.signal_response as enum ('here', 'talk', 'more_time', 'will_do', 'not_now', 'plan', 'later', 'heart');
 create type public.slip_category as enum ('said', 'did', 'noticed', 'helped');
 create type public.story_event_kind as enum ('met', 'dating', 'engaged', 'married', 'custom');
+create type public.support_topic as enum ('account', 'billing', 'bug', 'other');
 create type public.temperature_level as enum ('good', 'so_so', 'turbulent', 'fight');
 create type public.work_area as enum ('planning', 'dates', 'kitchen', 'cleaning', 'kids', 'emotional', 'finances', 'other');

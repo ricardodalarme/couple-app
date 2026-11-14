@@ -69,7 +69,7 @@ select lives_ok(
 );
 select throws_ok(
   $$insert into public.consents (kind, granted, version) values ('unknown_track', true, '1')$$,
-  '23514',
+  '22P02',
   null,
   'consents reject an unknown kind'
 );

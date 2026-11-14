@@ -1333,6 +1333,25 @@ type CheckinAnswersUpdateResponse {
   records: [CheckinAnswers!]!
 }
 
+enum ConsentKind {
+  sensitive_data
+  analytics
+  marketing
+  ai
+  terms
+  sensitive_tracks
+}
+
+"""
+Boolean expression comparing fields on type "ConsentKind"
+"""
+input ConsentKindFilter {
+  eq: ConsentKind
+  in: [ConsentKind!]
+  is: FilterIs
+  neq: ConsentKind
+}
+
 """
 Versioned consent history; the newest row per kind is the current answer. Visible only to its owner.
 """
@@ -1341,7 +1360,7 @@ type Consents implements Node {
   nodeId: ID!
   id: UUID!
   profileId: UUID!
-  kind: String!
+  kind: ConsentKind!
   granted: Boolean!
   version: String!
   createdAt: Datetime!
@@ -1369,7 +1388,7 @@ type ConsentsEdge {
 input ConsentsFilter {
   id: UUIDFilter
   profileId: UUIDFilter
-  kind: StringFilter
+  kind: ConsentKindFilter
   granted: BooleanFilter
   version: StringFilter
   createdAt: DatetimeFilter
@@ -1392,7 +1411,7 @@ input ConsentsFilter {
 input ConsentsInsertInput {
   id: UUID
   profileId: UUID
-  kind: String
+  kind: ConsentKind
   granted: Boolean
   version: String
   createdAt: Datetime
@@ -1418,7 +1437,7 @@ input ConsentsOrderBy {
 input ConsentsUpdateInput {
   id: UUID
   profileId: UUID
-  kind: String
+  kind: ConsentKind
   granted: Boolean
   version: String
   createdAt: Datetime
@@ -15607,6 +15626,23 @@ input StringListFilter {
   overlaps: [String!]
 }
 
+enum SupportTopic {
+  account
+  billing
+  bug
+  other
+}
+
+"""
+Boolean expression comparing fields on type "SupportTopic"
+"""
+input SupportTopicFilter {
+  eq: SupportTopic
+  in: [SupportTopic!]
+  is: FilterIs
+  neq: SupportTopic
+}
+
 """
 How the relationship feels right now. Private to the author; a `fight` level expires after 24 hours.
 """
@@ -15885,6 +15921,7 @@ type TodayState implements Node {
   hasPlus: Boolean
   deletionPending: Boolean
   relationshipStatus: String
+  slipDays: [Date]
 }
 
 type TodayStateConnection {
@@ -15930,6 +15967,7 @@ input TodayStateFilter {
   hasPlus: BooleanFilter
   deletionPending: BooleanFilter
   relationshipStatus: StringFilter
+  slipDays: DateListFilter
   nodeId: IDFilter
 
   """
@@ -15971,6 +16009,7 @@ input TodayStateInsertInput {
   hasPlus: Boolean
   deletionPending: Boolean
   relationshipStatus: String
+  slipDays: [Date]
 }
 
 type TodayStateInsertResponse {
@@ -16033,6 +16072,7 @@ input TodayStateUpdateInput {
   hasPlus: Boolean
   deletionPending: Boolean
   relationshipStatus: String
+  slipDays: [Date]
 }
 
 type TodayStateUpdateResponse {
