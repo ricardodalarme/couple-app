@@ -4,8 +4,6 @@ import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/
 import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/mutations/generated/AddRitual.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/mutations/generated/AddSharedDate.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/mutations/generated/ArchiveRitual.graphql.dart';
-import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/mutations/generated/ClearLogisticItemAssignee.graphql.dart';
-import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/mutations/generated/ClearLogisticItemDone.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/mutations/generated/CompleteRitual.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/mutations/generated/DeleteDateIdea.graphql.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/mutations/generated/DeleteLogisticItem.graphql.dart';
@@ -66,35 +64,31 @@ class TogetherDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
+  /// Marks the item done at [doneAt], or open again when it is null.
   Future<void> setLogisticItemDone({required String id, required DateTime? doneAt}) async {
-    final response = doneAt == null
-        ? await _client.mutate(
-            OptionsMutationClearLogisticItemDone(
-              variables: VariablesMutationClearLogisticItemDone(id: id),
-            ),
-          )
-        : await _client.mutate(
-            OptionsMutationSetLogisticItemDone(
-              variables: VariablesMutationSetLogisticItemDone(id: id, doneAt: doneAt),
-            ),
-          );
+    final response = await _client.mutate(
+      OptionsMutationSetLogisticItemDone(
+        // fromJson keeps a null in the payload; the generated constructor drops it.
+        variables: VariablesMutationSetLogisticItemDone.fromJson({
+          'id': id,
+          'doneAt': doneAt?.toUtc().toIso8601String(),
+        }),
+      ),
+    );
 
     validateResponse(response);
   }
 
   /// Gives the item to one person, or to both when [assigneeId] is null.
   Future<void> setLogisticItemAssignee({required String id, String? assigneeId}) async {
-    final response = assigneeId == null
-        ? await _client.mutate(
-            OptionsMutationClearLogisticItemAssignee(
-              variables: VariablesMutationClearLogisticItemAssignee(id: id),
-            ),
-          )
-        : await _client.mutate(
-            OptionsMutationSetLogisticItemAssignee(
-              variables: VariablesMutationSetLogisticItemAssignee(id: id, assigneeId: assigneeId),
-            ),
-          );
+    final response = await _client.mutate(
+      OptionsMutationSetLogisticItemAssignee(
+        variables: VariablesMutationSetLogisticItemAssignee.fromJson({
+          'id': id,
+          'assigneeId': assigneeId,
+        }),
+      ),
+    );
 
     validateResponse(response);
   }

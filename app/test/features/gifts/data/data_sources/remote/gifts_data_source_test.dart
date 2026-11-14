@@ -37,9 +37,24 @@ class _CapturingGQLClient() implements GQLClient {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
+const Map<String, dynamic> _wish = {
+  'id': 'g1',
+  'title': 'Livro',
+  'status': 'idea',
+  'isMine': true,
+  'isShared': false,
+  '__typename': 'GiftIdeas',
+};
+
 const Map<String, dynamic> _mutationData = {
-  'insertIntoGiftIdeasCollection': {'affectedCount': 1, '__typename': 'GiftIdeasInsertResponse'},
-  'updateGiftIdeasCollection': {'affectedCount': 1, '__typename': 'GiftIdeasUpdateResponse'},
+  'insertIntoGiftIdeasCollection': {
+    'records': [_wish],
+    '__typename': 'GiftIdeasInsertResponse',
+  },
+  'updateGiftIdeasCollection': {
+    'records': [_wish],
+    '__typename': 'GiftIdeasUpdateResponse',
+  },
   'deleteFromGiftIdeasCollection': {'affectedCount': 1, '__typename': 'GiftIdeasDeleteResponse'},
   '__typename': 'Mutation',
 };
@@ -52,20 +67,19 @@ const Map<String, dynamic> _queryData = {
 QueryResult<T> _result<T>(MutationOptions<T> options, Map<String, dynamic> data) =>
     QueryResult.loading(options: options, data: data);
 
+Map<String, dynamic> _noRows(String field, String type) => {
+  field: {'records': <Object?>[], '__typename': type},
+  '__typename': 'Mutation',
+};
+
 void main() {
-  test('adding a wish that matches no row fails', () {
+  test('adding a wish that stores no row fails', () {
     final options = OptionsMutationAddGiftWish(
       variables: VariablesMutationAddGiftWish(id: 'g1', title: 'Livro'),
     );
     final dataSource = GiftsDataSource(
       client: _StubGQLClient(
-        _result(options, {
-          'insertIntoGiftIdeasCollection': {
-            'affectedCount': 0,
-            '__typename': 'GiftIdeasInsertResponse',
-          },
-          '__typename': 'Mutation',
-        }),
+        _result(options, _noRows('insertIntoGiftIdeasCollection', 'GiftIdeasInsertResponse')),
       ),
     );
 
@@ -78,13 +92,7 @@ void main() {
     );
     final dataSource = GiftsDataSource(
       client: _StubGQLClient(
-        _result(options, {
-          'updateGiftIdeasCollection': {
-            'affectedCount': 0,
-            '__typename': 'GiftIdeasUpdateResponse',
-          },
-          '__typename': 'Mutation',
-        }),
+        _result(options, _noRows('updateGiftIdeasCollection', 'GiftIdeasUpdateResponse')),
       ),
     );
 
@@ -116,48 +124,32 @@ void main() {
     );
     final dataSource = GiftsDataSource(
       client: _StubGQLClient(
-        _result(options, {
-          'updateGiftIdeasCollection': {
-            'affectedCount': 0,
-            '__typename': 'GiftIdeasUpdateResponse',
-          },
-          '__typename': 'Mutation',
-        }),
+        _result(options, _noRows('updateGiftIdeasCollection', 'GiftIdeasUpdateResponse')),
       ),
     );
 
     expect(dataSource.setGiftWishVisibility(id: 'g1'), throwsA(isA<NoDataException>()));
   });
 
-  test('a mutation that touches one row succeeds', () async {
-    final options = OptionsMutationUpdateGiftWish(
-      variables: VariablesMutationUpdateGiftWish(id: 'g1', title: 'Livro'),
-    );
-    final dataSource = GiftsDataSource(
-      client: _StubGQLClient(
-        _result(options, {
-          'updateGiftIdeasCollection': {
-            'affectedCount': 1,
-            '__typename': 'GiftIdeasUpdateResponse',
-          },
-          '__typename': 'Mutation',
-        }),
-      ),
-    );
+  test('a mutation that touches one row returns the stored wish', () async {
+    final client = _CapturingGQLClient();
+    final dataSource = GiftsDataSource(client: client);
 
-    await dataSource.updateGiftWish(id: 'g1', title: 'Livro');
+    final saved = await dataSource.updateGiftWish(id: 'g1', title: 'Livro');
+
+    expect(saved.id, 'g1');
+    expect(saved.isMine, isTrue);
   });
 
-  test('unsharing a wish sends the clear-visibility mutation', () async {
+  test('unsharing a wish sends coupleId as null in one request', () async {
     final client = _CapturingGQLClient();
     final dataSource = GiftsDataSource(client: client);
 
     await dataSource.setGiftWishVisibility(id: 'g1');
 
     final operation = client.mutations.single;
-    expect(printNode(operation.document), contains('mutation ClearGiftWishVisibility'));
-    expect(printNode(operation.document), contains('coupleId: null'));
-    expect(operation.variables, {'id': 'g1'});
+    expect(printNode(operation.document), contains('mutation SetGiftWishVisibility'));
+    expect(operation.variables, {'id': 'g1', 'coupleId': null});
   });
 
   test('sharing a wish sends the couple id variable', () async {
@@ -171,21 +163,15 @@ void main() {
     expect(operation.variables, {'id': 'g1', 'coupleId': 'couple-1'});
   });
 
-  test('clearing a note and budget sends dedicated null mutations', () async {
+  test('clearing a note and budget is one request with explicit nulls', () async {
     final client = _CapturingGQLClient();
     final dataSource = GiftsDataSource(client: client);
 
     await dataSource.updateGiftWish(id: 'g1', title: 'Livro');
 
-    expect(client.mutations, hasLength(3));
-    expect(printNode(client.mutations[0].document), contains('mutation UpdateGiftWish'));
-    expect(client.mutations[0].variables, {'id': 'g1', 'title': 'Livro'});
-    expect(printNode(client.mutations[1].document), contains('mutation ClearGiftWishNote'));
-    expect(printNode(client.mutations[1].document), contains('note: null'));
-    expect(client.mutations[1].variables, {'id': 'g1'});
-    expect(printNode(client.mutations[2].document), contains('mutation ClearGiftWishBudget'));
-    expect(printNode(client.mutations[2].document), contains('budget: null'));
-    expect(client.mutations[2].variables, {'id': 'g1'});
+    final operation = client.mutations.single;
+    expect(printNode(operation.document), contains('mutation UpdateGiftWish'));
+    expect(operation.variables, {'id': 'g1', 'title': 'Livro', 'note': null, 'budget': null});
   });
 
   test('a new wish is inserted as a wish, not a date idea', () async {

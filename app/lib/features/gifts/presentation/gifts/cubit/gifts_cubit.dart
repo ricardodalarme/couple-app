@@ -52,14 +52,14 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
       state.copyWith(gifts: Success([gift, ...state.currentGifts]), saveAction: const Loading()),
     );
     try {
-      await _giftsRepository.addGiftWish(
+      final saved = await _giftsRepository.addGiftWish(
         id: gift.id,
         title: gift.title,
         note: gift.note,
         budget: gift.budget,
         coupleId: coupleId,
       );
-      emit(state.copyWith(saveAction: const Success(null)));
+      emit(state.copyWith(gifts: Success(_replace(saved)), saveAction: const Success(null)));
     } catch (exception) {
       emit(state.copyWith(gifts: previous, saveAction: Failure.fromObject(exception)));
     }
@@ -85,11 +85,13 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
           else
             item,
       ],
-      action: () => _giftsRepository.updateGiftWish(
-        id: gift.id,
-        title: trimmed,
-        note: _clean(note),
-        budget: budget,
+      action: () async => _replace(
+        await _giftsRepository.updateGiftWish(
+          id: gift.id,
+          title: trimmed,
+          note: _clean(note),
+          budget: budget,
+        ),
       ),
     );
   }
@@ -103,7 +105,11 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
         for (final item in state.currentGifts)
           if (item.id != gift.id) item,
       ],
-      action: () => _giftsRepository.deleteGiftWish(gift.id),
+      action: () async {
+        await _giftsRepository.deleteGiftWish(gift.id);
+
+        return null;
+      },
     );
   }
 
@@ -119,7 +125,8 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
         for (final item in state.currentGifts)
           if (item.id == gift.id) item.withShared(isShared: coupleId != null) else item,
       ],
-      action: () => _giftsRepository.setGiftWishVisibility(id: gift.id, coupleId: coupleId),
+      action: () async =>
+          _replace(await _giftsRepository.setGiftWishVisibility(id: gift.id, coupleId: coupleId)),
     );
   }
 
@@ -137,17 +144,28 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
   Future<void> _change({
     required List<GiftIdea> previous,
     required List<GiftIdea> next,
-    required Future<void> Function() action,
+    required Future<List<GiftIdea>?> Function() action,
   }) async {
     if (state.saveAction.isLoading) return;
 
     emit(state.copyWith(gifts: Success(next), saveAction: const Loading()));
     try {
-      await action();
-      emit(state.copyWith(saveAction: const Success(null)));
+      final confirmed = await action();
+      emit(
+        state.copyWith(
+          gifts: confirmed == null ? null : Success(confirmed),
+          saveAction: const Success(null),
+        ),
+      );
     } catch (exception) {
       emit(state.copyWith(gifts: Success(previous), saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));
   }
+
+  /// The wishes on screen with [saved] in place of the one it replaces.
+  List<GiftIdea> _replace(GiftIdea saved) => [
+    for (final item in state.currentGifts)
+      if (item.id == saved.id) saved else item,
+  ];
 }

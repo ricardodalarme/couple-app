@@ -1,5 +1,0 @@
-mutation ClearGiftWishVisibility($id: UUID!) {
-  updateGiftIdeasCollection(set: { coupleId: null }, filter: { id: { eq: $id } }, atMost: 1) {
-    affectedCount
-  }
-}

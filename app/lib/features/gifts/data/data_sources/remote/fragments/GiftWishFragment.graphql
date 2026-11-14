@@ -1,0 +1,9 @@
+fragment GiftWishFragment on GiftIdeas {
+  id
+  title
+  note
+  budget
+  status
+  isMine
+  isShared
+}

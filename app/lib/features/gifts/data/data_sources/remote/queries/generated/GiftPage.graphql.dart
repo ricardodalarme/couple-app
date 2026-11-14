@@ -1,5 +1,5 @@
 // dart format width=100
-import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import '../../fragments/generated/GiftWishFragment.graphql.dart';
 
 import 'dart:async';
 
@@ -130,54 +130,9 @@ const documentNodeQueryGiftPage = DocumentNode(
                         directives: [],
                         selectionSet: SelectionSetNode(
                           selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
+                            FragmentSpreadNode(
+                              name: NameNode(value: 'GiftWishFragment'),
                               directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'isMine'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'isShared'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'note'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'budget'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'status'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
                             ),
                             FieldNode(
                               name: NameNode(value: '__typename'),
@@ -219,6 +174,7 @@ const documentNodeQueryGiftPage = DocumentNode(
         ],
       ),
     ),
+    fragmentDefinitionGiftWishFragment,
   ],
 );
 QueryGiftPage _parserFnQueryGiftPage(Map<String, dynamic> data) => QueryGiftPage.fromJson(data);
@@ -393,12 +349,12 @@ class QueryGiftPagegiftIdeasCollectionedges {
     final l$node = json['node'];
     final l$$__typename = json['__typename'];
     return QueryGiftPagegiftIdeasCollectionedges(
-      node: QueryGiftPagegiftIdeasCollectionedgesnode.fromJson((l$node as Map<String, dynamic>)),
+      node: FragmentGiftWishFragment.fromJson((l$node as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryGiftPagegiftIdeasCollectionedgesnode node;
+  final FragmentGiftWishFragment node;
 
   final String $__typename;
 
@@ -429,150 +385,6 @@ class QueryGiftPagegiftIdeasCollectionedges {
     final l$node = node;
     final lOther$node = other.node;
     if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryGiftPagegiftIdeasCollectionedgesnode {
-  QueryGiftPagegiftIdeasCollectionedgesnode({
-    required this.id,
-    this.isMine,
-    this.isShared,
-    required this.title,
-    this.note,
-    this.budget,
-    required this.status,
-    this.$__typename = 'GiftIdeas',
-  });
-
-  factory QueryGiftPagegiftIdeasCollectionedgesnode.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$isMine = json['isMine'];
-    final l$isShared = json['isShared'];
-    final l$title = json['title'];
-    final l$note = json['note'];
-    final l$budget = json['budget'];
-    final l$status = json['status'];
-    final l$$__typename = json['__typename'];
-    return QueryGiftPagegiftIdeasCollectionedgesnode(
-      id: (l$id as String),
-      isMine: (l$isMine as bool?),
-      isShared: (l$isShared as bool?),
-      title: (l$title as String),
-      note: (l$note as String?),
-      budget: l$budget == null ? null : fromJsonEnumGiftBudget((l$budget as String)),
-      status: fromJsonEnumGiftIdeaStatus((l$status as String)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final bool? isMine;
-
-  final bool? isShared;
-
-  final String title;
-
-  final String? note;
-
-  final EnumGiftBudget? budget;
-
-  final EnumGiftIdeaStatus status;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$isMine = isMine;
-    _resultData['isMine'] = l$isMine;
-    final l$isShared = isShared;
-    _resultData['isShared'] = l$isShared;
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$note = note;
-    _resultData['note'] = l$note;
-    final l$budget = budget;
-    _resultData['budget'] = l$budget == null ? null : toJsonEnumGiftBudget(l$budget);
-    final l$status = status;
-    _resultData['status'] = toJsonEnumGiftIdeaStatus(l$status);
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$isMine = isMine;
-    final l$isShared = isShared;
-    final l$title = title;
-    final l$note = note;
-    final l$budget = budget;
-    final l$status = status;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$isMine,
-      l$isShared,
-      l$title,
-      l$note,
-      l$budget,
-      l$status,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGiftPagegiftIdeasCollectionedgesnode || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$isMine = isMine;
-    final lOther$isMine = other.isMine;
-    if (l$isMine != lOther$isMine) {
-      return false;
-    }
-    final l$isShared = isShared;
-    final lOther$isShared = other.isShared;
-    if (l$isShared != lOther$isShared) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$note = note;
-    final lOther$note = other.note;
-    if (l$note != lOther$note) {
-      return false;
-    }
-    final l$budget = budget;
-    final lOther$budget = other.budget;
-    if (l$budget != lOther$budget) {
-      return false;
-    }
-    final l$status = status;
-    final lOther$status = other.status;
-    if (l$status != lOther$status) {
       return false;
     }
     final l$$__typename = $__typename;

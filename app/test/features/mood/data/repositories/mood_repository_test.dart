@@ -108,9 +108,10 @@ void main() {
   test('a midnight save re-reads the server day before updating', () async {
     when(() => dataSource.getTodayMood()).thenAnswer((_) async => today(mood: record()));
     when(
-      () => dataSource.clearNeed(
+      () => dataSource.updateMood(
         id: any(named: 'id'),
         mood: any(named: 'mood'),
+        need: any(named: 'need'),
         share: any(named: 'share'),
         day: any(named: 'day'),
       ),
@@ -119,19 +120,17 @@ void main() {
     await repository.saveMood(mood: MoodKind.sad, share: MoodShare.none);
 
     verify(
-      () => dataSource.clearNeed(id: 'm1', mood: EnumMood.sad, share: EnumMoodShare.none, day: day),
+      () => dataSource.updateMood(
+        id: 'm1',
+        mood: EnumMood.sad,
+        need: null,
+        share: EnumMoodShare.none,
+        day: day,
+      ),
     ).called(1);
   });
 
-  test('clearing the need uses the explicit clear mutation', () async {
-    when(
-      () => dataSource.clearNeed(
-        id: any(named: 'id'),
-        mood: any(named: 'mood'),
-        share: any(named: 'share'),
-        day: any(named: 'day'),
-      ),
-    ).thenAnswer((_) async => record(need: null, share: EnumMoodShare.mood));
+  test('clearing the need sends a null need in the same update', () async {
     when(
       () => dataSource.updateMood(
         id: any(named: 'id'),
@@ -146,18 +145,14 @@ void main() {
 
     expect(entry.need, isNull);
     verify(
-      () =>
-          dataSource.clearNeed(id: 'm1', mood: EnumMood.happy, share: EnumMoodShare.mood, day: day),
-    ).called(1);
-    verifyNever(
       () => dataSource.updateMood(
-        id: any(named: 'id'),
-        mood: any(named: 'mood'),
-        need: any(named: 'need'),
-        share: any(named: 'share'),
-        day: any(named: 'day'),
+        id: 'm1',
+        mood: EnumMood.happy,
+        need: null,
+        share: EnumMoodShare.mood,
+        day: day,
       ),
-    );
+    ).called(1);
   });
 
   test('a missing row inserts with the server local day', () async {
@@ -199,9 +194,10 @@ void main() {
       ),
     ).thenThrow(const LocalizedException(l10nKey: '23505'));
     when(
-      () => dataSource.clearNeed(
+      () => dataSource.updateMood(
         id: any(named: 'id'),
         mood: any(named: 'mood'),
+        need: any(named: 'need'),
         share: any(named: 'share'),
         day: any(named: 'day'),
       ),
@@ -219,7 +215,13 @@ void main() {
       ),
     ).called(1);
     verify(
-      () => dataSource.clearNeed(id: 'm1', mood: EnumMood.sad, share: EnumMoodShare.none, day: day),
+      () => dataSource.updateMood(
+        id: 'm1',
+        mood: EnumMood.sad,
+        need: null,
+        share: EnumMoodShare.none,
+        day: day,
+      ),
     ).called(1);
   });
 

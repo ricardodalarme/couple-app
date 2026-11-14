@@ -1,8 +1,6 @@
 import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/fragments/generated/GiftWishFragment.graphql.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/mutations/generated/AddGiftWish.graphql.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/mutations/generated/ClearGiftWishBudget.graphql.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/mutations/generated/ClearGiftWishNote.graphql.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/mutations/generated/ClearGiftWishVisibility.graphql.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/mutations/generated/DeleteGiftWish.graphql.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/mutations/generated/SetGiftWishVisibility.graphql.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/mutations/generated/UpdateGiftWish.graphql.dart';
@@ -10,7 +8,7 @@ import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/que
 import 'package:network/network.dart';
 
 class GiftsDataSource({required final GQLClient _client}) {
-  Future<List<QueryGiftPagegiftIdeasCollectionedgesnode>> getGiftIdeas() async {
+  Future<List<FragmentGiftWishFragment>> getGiftIdeas() async {
     final response = await _client.query(
       OptionsQueryGiftPage(fetchPolicy: FetchPolicy.networkOnly),
     );
@@ -19,7 +17,7 @@ class GiftsDataSource({required final GQLClient _client}) {
     return [for (final edge in edges) edge.node];
   }
 
-  Future<void> addGiftWish({
+  Future<FragmentGiftWishFragment> addGiftWish({
     required String id,
     required String title,
     String? note,
@@ -37,14 +35,15 @@ class GiftsDataSource({required final GQLClient _client}) {
         ),
       ),
     );
-    final affected = validateResponseData(
+
+    return validateResponseData(
       response,
-      getData: (data) => data.insertIntoGiftIdeasCollection?.affectedCount ?? 0,
+      getData: (data) => data.insertIntoGiftIdeasCollection?.records.firstOrNull,
     );
-    if (affected == 0) throw const NoDataException();
   }
 
-  Future<void> updateGiftWish({
+  /// Saves the details in one request. A null [note] or [budget] clears the value.
+  Future<FragmentGiftWishFragment> updateGiftWish({
     required String id,
     required String title,
     String? note,
@@ -52,21 +51,21 @@ class GiftsDataSource({required final GQLClient _client}) {
   }) async {
     final response = await _client.mutate(
       OptionsMutationUpdateGiftWish(
-        variables: VariablesMutationUpdateGiftWish(
-          id: id,
-          title: title,
-          note: note,
-          budget: budget,
-        ),
+        // fromJson keeps a null in the payload; the generated constructor drops it,
+        // which would leave the old note or budget in place.
+        variables: VariablesMutationUpdateGiftWish.fromJson({
+          'id': id,
+          'title': title,
+          'note': note,
+          'budget': budget?.toJson(),
+        }),
       ),
     );
-    final affected = validateResponseData(
+
+    return validateResponseData(
       response,
-      getData: (data) => data.updateGiftIdeasCollection.affectedCount,
+      getData: (data) => data.updateGiftIdeasCollection.records.firstOrNull,
     );
-    if (affected == 0) throw const NoDataException();
-    if (note == null) await _clearNote(id);
-    if (budget == null) await _clearBudget(id);
   }
 
   Future<void> deleteGiftWish(String id) async {
@@ -80,54 +79,23 @@ class GiftsDataSource({required final GQLClient _client}) {
     if (affected == 0) throw const NoDataException();
   }
 
-  Future<void> setGiftWishVisibility({required String id, String? coupleId}) async {
-    if (coupleId == null) return _clearVisibility(id);
-
+  /// Shares the wish with the couple, or makes it private when [coupleId] is null.
+  Future<FragmentGiftWishFragment> setGiftWishVisibility({
+    required String id,
+    String? coupleId,
+  }) async {
     final response = await _client.mutate(
       OptionsMutationSetGiftWishVisibility(
-        variables: VariablesMutationSetGiftWishVisibility(id: id, coupleId: coupleId),
+        variables: VariablesMutationSetGiftWishVisibility.fromJson({
+          'id': id,
+          'coupleId': coupleId,
+        }),
       ),
     );
-    final affected = validateResponseData(
-      response,
-      getData: (data) => data.updateGiftIdeasCollection.affectedCount,
-    );
-    if (affected == 0) throw const NoDataException();
-  }
 
-  /// Clears a value with a literal null, because a null variable would be omitted.
-  Future<void> _clearVisibility(String id) async {
-    final response = await _client.mutate(
-      OptionsMutationClearGiftWishVisibility(
-        variables: VariablesMutationClearGiftWishVisibility(id: id),
-      ),
-    );
-    final affected = validateResponseData(
+    return validateResponseData(
       response,
-      getData: (data) => data.updateGiftIdeasCollection.affectedCount,
+      getData: (data) => data.updateGiftIdeasCollection.records.firstOrNull,
     );
-    if (affected == 0) throw const NoDataException();
-  }
-
-  Future<void> _clearNote(String id) async {
-    final response = await _client.mutate(
-      OptionsMutationClearGiftWishNote(variables: VariablesMutationClearGiftWishNote(id: id)),
-    );
-    final affected = validateResponseData(
-      response,
-      getData: (data) => data.updateGiftIdeasCollection.affectedCount,
-    );
-    if (affected == 0) throw const NoDataException();
-  }
-
-  Future<void> _clearBudget(String id) async {
-    final response = await _client.mutate(
-      OptionsMutationClearGiftWishBudget(variables: VariablesMutationClearGiftWishBudget(id: id)),
-    );
-    final affected = validateResponseData(
-      response,
-      getData: (data) => data.updateGiftIdeasCollection.affectedCount,
-    );
-    if (affected == 0) throw const NoDataException();
   }
 }

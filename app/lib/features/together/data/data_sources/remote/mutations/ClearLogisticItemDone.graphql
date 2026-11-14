@@ -1,5 +1,0 @@
-mutation ClearLogisticItemDone($id: UUID!) {
-  updateLogisticItemsCollection(set: { doneAt: null }, filter: { id: { eq: $id } }, atMost: 1) {
-    affectedCount
-  }
-}

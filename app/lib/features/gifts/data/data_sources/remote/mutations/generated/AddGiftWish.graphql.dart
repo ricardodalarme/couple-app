@@ -1,5 +1,6 @@
 // dart format width=100
 import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import '../../fragments/generated/GiftWishFragment.graphql.dart';
 
 import 'dart:async';
 
@@ -283,11 +284,25 @@ const documentNodeMutationAddGiftWish = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'records'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null,
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FragmentSpreadNode(
+                        name: NameNode(value: 'GiftWishFragment'),
+                        directives: [],
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -309,6 +324,7 @@ const documentNodeMutationAddGiftWish = DocumentNode(
         ],
       ),
     ),
+    fragmentDefinitionGiftWishFragment,
   ],
 );
 MutationAddGiftWish _parserFnMutationAddGiftWish(Map<String, dynamic> data) =>
@@ -404,27 +420,29 @@ extension ClientExtensionMutationAddGiftWish on graphql.GraphQLClient {
 
 class MutationAddGiftWishinsertIntoGiftIdeasCollection {
   MutationAddGiftWishinsertIntoGiftIdeasCollection({
-    required this.affectedCount,
+    required this.records,
     this.$__typename = 'GiftIdeasInsertResponse',
   });
 
   factory MutationAddGiftWishinsertIntoGiftIdeasCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+    final l$records = json['records'];
     final l$$__typename = json['__typename'];
     return MutationAddGiftWishinsertIntoGiftIdeasCollection(
-      affectedCount: (l$affectedCount as int),
+      records: (l$records as List<dynamic>)
+          .map((e) => FragmentGiftWishFragment.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final List<FragmentGiftWishFragment> records;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$records = records;
+    _resultData['records'] = l$records.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -432,9 +450,9 @@ class MutationAddGiftWishinsertIntoGiftIdeasCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$records = records;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$records.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -446,10 +464,17 @@ class MutationAddGiftWishinsertIntoGiftIdeasCollection {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$records = records;
+    final lOther$records = other.records;
+    if (l$records.length != lOther$records.length) {
       return false;
+    }
+    for (int i = 0; i < l$records.length; i++) {
+      final l$records$entry = l$records[i];
+      final lOther$records$entry = lOther$records[i];
+      if (l$records$entry != lOther$records$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;

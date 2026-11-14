@@ -55,20 +55,13 @@ class MoodRepository({required final MoodDataSource _dataSource}) {
     required NeedKind? need,
     required MoodShare share,
   }) async {
-    final record = need == null
-        ? await _dataSource.clearNeed(
-            id: id,
-            mood: mood.toRemote(),
-            share: share.toRemote(),
-            day: day,
-          )
-        : await _dataSource.updateMood(
-            id: id,
-            mood: mood.toRemote(),
-            need: need.toRemote(),
-            share: share.toRemote(),
-            day: day,
-          );
+    final record = await _dataSource.updateMood(
+      id: id,
+      mood: mood.toRemote(),
+      need: need?.toRemote(),
+      share: share.toRemote(),
+      day: day,
+    );
 
     return record.toEntry();
   }

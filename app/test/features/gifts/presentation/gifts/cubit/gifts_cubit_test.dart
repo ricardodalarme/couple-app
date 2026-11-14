@@ -27,7 +27,16 @@ void main() {
         budget: any(named: 'budget'),
         coupleId: any(named: 'coupleId'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer(
+      (invocation) async => GiftIdea(
+        id: invocation.namedArguments[#id] as String,
+        title: invocation.namedArguments[#title] as String,
+        note: invocation.namedArguments[#note] as String?,
+        budget: invocation.namedArguments[#budget] as GiftBudget?,
+        isShared: invocation.namedArguments[#coupleId] != null,
+        isMine: true,
+      ),
+    );
     when(
       () => repository.updateGiftWish(
         id: any(named: 'id'),
@@ -35,14 +44,26 @@ void main() {
         note: any(named: 'note'),
         budget: any(named: 'budget'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer(
+      (invocation) async => [shared, partnerShared, private]
+          .firstWhere((gift) => gift.id == invocation.namedArguments[#id])
+          .withDetails(
+            title: invocation.namedArguments[#title] as String,
+            note: invocation.namedArguments[#note] as String?,
+            budget: invocation.namedArguments[#budget] as GiftBudget?,
+          ),
+    );
     when(() => repository.deleteGiftWish(any())).thenAnswer((_) async {});
     when(
       () => repository.setGiftWishVisibility(
         id: any(named: 'id'),
         coupleId: any(named: 'coupleId'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer(
+      (invocation) async => [shared, partnerShared, private]
+          .firstWhere((gift) => gift.id == invocation.namedArguments[#id])
+          .withShared(isShared: invocation.namedArguments[#coupleId] != null),
+    );
   });
 
   GiftsCubit build() => GiftsCubit(giftsRepository: repository);
@@ -280,5 +301,31 @@ void main() {
     await cubit.load();
 
     expect(cubit.state.gifts, isA<Failure>());
+  });
+
+  test('the stored wish replaces the one shown while the request was running', () async {
+    when(
+      () => repository.addGiftWish(
+        id: any(named: 'id'),
+        title: any(named: 'title'),
+        note: any(named: 'note'),
+        budget: any(named: 'budget'),
+        coupleId: any(named: 'coupleId'),
+      ),
+    ).thenAnswer(
+      (invocation) async => GiftIdea(
+        id: invocation.namedArguments[#id] as String,
+        title: 'Fone (servidor)',
+        isMine: true,
+      ),
+    );
+    when(repository.getGiftIdeas).thenAnswer((_) async => [shared]);
+    final cubit = build();
+    addTearDown(cubit.close);
+    await cubit.load();
+
+    await cubit.add(title: 'Fone', isShared: false);
+
+    expect(cubit.state.currentGifts.first.title, 'Fone (servidor)');
   });
 }

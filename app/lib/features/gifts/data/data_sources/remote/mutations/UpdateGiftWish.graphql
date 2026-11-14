@@ -4,6 +4,8 @@ mutation UpdateGiftWish($id: UUID!, $title: String!, $note: String, $budget: Gif
     filter: { id: { eq: $id } }
     atMost: 1
   ) {
-    affectedCount
+    records {
+      ...GiftWishFragment
+    }
   }
 }

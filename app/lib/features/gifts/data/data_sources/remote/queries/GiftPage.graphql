@@ -6,13 +6,7 @@ query GiftPage {
   ) {
     edges {
       node {
-        id
-        isMine
-        isShared
-        title
-        note
-        budget
-        status
+        ...GiftWishFragment
       }
     }
   }

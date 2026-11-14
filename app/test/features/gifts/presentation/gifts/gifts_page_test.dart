@@ -1,6 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:flutter_bloc_starter/features/gifts/presentation/gift_sheet/gift_sheet.dart';
@@ -31,7 +32,11 @@ void main() {
         id: any(named: 'id'),
         coupleId: any(named: 'coupleId'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer(
+      (invocation) async => [shared, partnerShared]
+          .firstWhere((gift) => gift.id == invocation.namedArguments[#id])
+          .withShared(isShared: invocation.namedArguments[#coupleId] != null),
+    );
     when(
       () => repository.updateGiftWish(
         id: any(named: 'id'),
@@ -39,7 +44,15 @@ void main() {
         note: any(named: 'note'),
         budget: any(named: 'budget'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer(
+      (invocation) async => [shared, partnerShared]
+          .firstWhere((gift) => gift.id == invocation.namedArguments[#id])
+          .withDetails(
+            title: invocation.namedArguments[#title] as String,
+            note: invocation.namedArguments[#note] as String?,
+            budget: invocation.namedArguments[#budget] as GiftBudget?,
+          ),
+    );
     when(() => repository.deleteGiftWish(any())).thenAnswer((_) async {});
   });
 

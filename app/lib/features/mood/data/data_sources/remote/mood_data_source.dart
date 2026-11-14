@@ -1,5 +1,4 @@
 import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/mutations/generated/ClearMoodNeed.graphql.dart';
 import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/mutations/generated/InsertMood.graphql.dart';
 import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/mutations/generated/UpdateMood.graphql.dart';
 import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/queries/generated/TodayMood.graphql.dart';
@@ -51,44 +50,28 @@ class MoodDataSource({required final GQLClient _client}) {
     return record.toRecord();
   }
 
+  /// Saves today's mood. A null [need] clears it.
   Future<MoodRecord> updateMood({
     required String id,
     required EnumMood mood,
-    required EnumMoodNeed need,
+    required EnumMoodNeed? need,
     required EnumMoodShare share,
     required DateTime day,
   }) async {
     final response = await _client.mutate(
       OptionsMutationUpdateMood(
-        variables: VariablesMutationUpdateMood(
-          id: id,
-          mood: mood,
-          need: need,
-          share: share,
-          day: day,
-        ),
+        // fromJson keeps a null need in the payload; the generated constructor drops it,
+        // which would leave the old need in place.
+        variables: VariablesMutationUpdateMood.fromJson({
+          'id': id,
+          'mood': mood.toJson(),
+          'need': need?.toJson(),
+          'share': share.toJson(),
+          'day': day.toIso8601String().substring(0, 10),
+        }),
       ),
     );
     final data = validateResponseData<MutationUpdateMood, MutationUpdateMood>(response);
-    final record = data.updateMoodsCollection.records.firstOrNull;
-    if (record == null) throw const NoDataException();
-
-    return record.toRecord();
-  }
-
-  /// Clears the need with a literal null, because a null variable would be omitted.
-  Future<MoodRecord> clearNeed({
-    required String id,
-    required EnumMood mood,
-    required EnumMoodShare share,
-    required DateTime day,
-  }) async {
-    final response = await _client.mutate(
-      OptionsMutationClearMoodNeed(
-        variables: VariablesMutationClearMoodNeed(id: id, mood: mood, share: share, day: day),
-      ),
-    );
-    final data = validateResponseData<MutationClearMoodNeed, MutationClearMoodNeed>(response);
     final record = data.updateMoodsCollection.records.firstOrNull;
     if (record == null) throw const NoDataException();
 
@@ -105,9 +88,5 @@ extension on MutationInsertMoodinsertIntoMoodsCollectionrecords {
 }
 
 extension on MutationUpdateMoodupdateMoodsCollectionrecords {
-  MoodRecord toRecord() => (id: id, day: day, mood: mood, need: need, share: share);
-}
-
-extension on MutationClearMoodNeedupdateMoodsCollectionrecords {
   MoodRecord toRecord() => (id: id, day: day, mood: mood, need: need, share: share);
 }

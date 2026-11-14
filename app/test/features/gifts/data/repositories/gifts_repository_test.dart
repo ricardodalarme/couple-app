@@ -1,6 +1,6 @@
 import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/fragments/generated/GiftWishFragment.graphql.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/gifts_data_source.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/queries/generated/GiftPage.graphql.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
@@ -23,7 +23,7 @@ void main() {
     when(togetherRepository.getCoupleId).thenAnswer((_) async => 'couple-1');
   });
 
-  QueryGiftPagegiftIdeasCollectionedgesnode gift({
+  FragmentGiftWishFragment gift({
     String id = 'g1',
     bool isMine = true,
     bool isShared = true,
@@ -31,7 +31,7 @@ void main() {
     String? note,
     EnumGiftBudget? budget,
     EnumGiftIdeaStatus status = EnumGiftIdeaStatus.idea,
-  }) => QueryGiftPagegiftIdeasCollectionedgesnode(
+  }) => FragmentGiftWishFragment(
     id: id,
     isMine: isMine,
     isShared: isShared,
@@ -91,7 +91,7 @@ void main() {
         budget: any(named: 'budget'),
         coupleId: any(named: 'coupleId'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async => gift());
 
     await repository.addGiftWish(
       id: 'g1',
@@ -121,7 +121,7 @@ void main() {
         budget: any(named: 'budget'),
         coupleId: any(named: 'coupleId'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async => gift());
 
     await repository.addGiftWish(id: 'g1', title: 'Livro', note: '   ');
 
@@ -144,14 +144,14 @@ void main() {
         note: any(named: 'note'),
         budget: any(named: 'budget'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async => gift());
     when(() => dataSource.deleteGiftWish(any())).thenAnswer((_) async {});
     when(
       () => dataSource.setGiftWishVisibility(
         id: any(named: 'id'),
         coupleId: any(named: 'coupleId'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async => gift());
 
     await repository.updateGiftWish(id: 'g1', title: ' Livro ', note: ' Capa dura ');
     await repository.deleteGiftWish('g1');
