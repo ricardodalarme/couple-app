@@ -845,6 +845,14 @@ type Cards implements Node {
     """Sort order to apply to the collection"""
     orderBy: [GuestLinksOrderBy!]
   ): GuestLinksConnection
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
 }
 
 """Aggregate results for `Cards`"""
@@ -1151,6 +1159,14 @@ type CheckinAnswers implements Node {
   updatedAt: Datetime!
   author: Profiles
   couple: Couples
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
 }
 
 """Aggregate results for `CheckinAnswers`"""
@@ -3461,6 +3477,9 @@ type GameAnswers implements Node {
   createdAt: Datetime!
   session: GameSessions
   author: Profiles
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
 }
 
 """Aggregate results for `GameAnswers`"""
@@ -13646,6 +13665,14 @@ type QuestionAnswers implements Node {
   createdAt: Datetime!
   author: Profiles
   couple: Couples
+
+  """
+  Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
+  """
+  isShared: Boolean
+
+  """Whether the caller wrote the row."""
+  isMine: Boolean
 }
 
 """Aggregate results for `QuestionAnswers`"""

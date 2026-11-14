@@ -1,4 +1,4 @@
--- Declarative mirror of migration 20261113131000_graphql_computed_fields.sql.
+-- Declarative mirror of migrations 20261113131000_graphql_computed_fields.sql and 20261113140000_graphql_flow_flags.sql.
 -- Computed GraphQL fields `isMine` and `isShared` on the owner + optional couple tables, so clients stop
 -- fetching the couple id and the user id just to derive them. Both run as the caller, so RLS and auth.uid() apply.
 
@@ -6,7 +6,8 @@ do $$
 declare t text;
 begin
   foreach t in array array['rituals', 'logistic_items', 'logistics_meetings', 'planning_areas', 'saved_date_ideas', 'important_dates',
-    'memories', 'story_events', 'lists', 'agreements', 'decisions', 'gift_ideas', 'capsules'] loop
+    'memories', 'story_events', 'lists', 'agreements', 'decisions', 'gift_ideas', 'capsules',
+    'cards', 'checkin_answers', 'question_answers'] loop
     execute format($f$
       create function public.is_shared(rec public.%1$I) returns boolean
       stable language sql set search_path = '' as
@@ -18,7 +19,8 @@ begin
 
   foreach t in array array['rituals', 'logistic_items', 'logistics_meetings', 'planning_areas', 'saved_date_ideas', 'important_dates',
     'memories', 'story_events', 'lists', 'agreements', 'decisions', 'gift_ideas', 'capsules',
-    'ritual_logs', 'list_items', 'decision_options'] loop
+    'ritual_logs', 'list_items', 'decision_options',
+    'cards', 'checkin_answers', 'game_answers', 'question_answers'] loop
     execute format($f$
       create function public.is_mine(rec public.%1$I) returns boolean
       stable language sql set search_path = '' as
