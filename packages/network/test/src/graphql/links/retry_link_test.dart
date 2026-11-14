@@ -5,7 +5,7 @@ import 'package:network/src/graphql/links/retry_link.dart';
 import 'package:network/src/graphql/links/timeout_link.dart';
 import 'package:test/test.dart';
 
-import 'support.dart';
+import '../../../helpers/link_helpers.dart';
 
 void main() {
   late List<Duration> waits;

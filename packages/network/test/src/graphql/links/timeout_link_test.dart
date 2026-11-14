@@ -4,7 +4,7 @@ import 'package:graphql/client.dart';
 import 'package:network/src/graphql/links/timeout_link.dart';
 import 'package:test/test.dart';
 
-import 'support.dart';
+import '../../../helpers/link_helpers.dart';
 
 void main() {
   Link build({
