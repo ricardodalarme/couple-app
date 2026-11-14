@@ -82,6 +82,30 @@ void main() {
     );
   });
 
+  testWidgets('the new-list action sits in the page app bar', (tester) async {
+    final cubit = ListsCubit(listsRepository: repository);
+    addTearDown(cubit.close);
+    await cubit.load();
+
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const ListsPage()));
+    await tester.pump();
+
+    final action = find.descendant(
+      of: find.byType(BaseAppBar),
+      matching: find.byType(BaseRoundButton),
+    );
+    expect(action, findsOneWidget);
+    expect(
+      find.descendant(of: find.byType(BaseAppBar), matching: find.text('Listas')),
+      findsOneWidget,
+    );
+
+    await tester.tap(action);
+    await tester.pumpAndSettle();
+
+    expect(find.text('Criar lista'), findsOneWidget);
+  });
+
   testWidgets('the create sheet defaults to shared when the person has a partner', (tester) async {
     await tester.pumpApp(CreateListSheet(hasPartner: true, onCreate: (_, _, _) {}));
 

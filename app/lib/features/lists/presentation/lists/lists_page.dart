@@ -52,6 +52,14 @@ class _ListsPageState() extends State<ListsPage> with WidgetsBindingObserver {
     final cubit = context.read<ListsCubit>();
 
     return BaseView(
+      appBar: BaseAppBar(
+        title: l10n.title,
+        trailing: BaseRoundButton(
+          icon: AppIcons.plus,
+          semanticLabel: l10n.newList,
+          onPressed: canCreate ? () => _create(context, hasPartner) : null,
+        ),
+      ),
       body: BlocListener<ListsCubit, ListsState>(
         listenWhen: (previous, current) =>
             previous.createAction != current.createAction ||
@@ -71,22 +79,6 @@ class _ListsPageState() extends State<ListsPage> with WidgetsBindingObserver {
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Semantics(
-                        header: true,
-                        child: Text(l10n.title, style: context.text.titleXl),
-                      ),
-                    ),
-                    BaseRoundButton(
-                      icon: AppIcons.plus,
-                      semanticLabel: l10n.newList,
-                      onPressed: canCreate ? () => _create(context, hasPartner) : null,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: AppSpace.s8),
                 Text(
                   l10n.subtitle,
                   style: context.text.body.copyWith(color: context.colors.textSecondary),
