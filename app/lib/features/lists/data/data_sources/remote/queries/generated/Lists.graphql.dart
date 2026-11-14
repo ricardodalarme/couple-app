@@ -1,5 +1,5 @@
 // dart format width=100
-import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import '../../fragments/generated/ListFragment.graphql.dart';
 
 import 'dart:async';
 
@@ -112,40 +112,9 @@ const documentNodeQueryLists = DocumentNode(
                         directives: [],
                         selectionSet: SelectionSetNode(
                           selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
+                            FragmentSpreadNode(
+                              name: NameNode(value: 'ListFragment'),
                               directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'authorId'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'kind'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'coupleId'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
                             ),
                             FieldNode(
                               name: NameNode(value: '__typename'),
@@ -187,6 +156,7 @@ const documentNodeQueryLists = DocumentNode(
         ],
       ),
     ),
+    fragmentDefinitionListFragment,
   ],
 );
 QueryLists _parserFnQueryLists(Map<String, dynamic> data) => QueryLists.fromJson(data);
@@ -358,12 +328,12 @@ class QueryListslistsCollectionedges {
     final l$node = json['node'];
     final l$$__typename = json['__typename'];
     return QueryListslistsCollectionedges(
-      node: QueryListslistsCollectionedgesnode.fromJson((l$node as Map<String, dynamic>)),
+      node: FragmentListFragment.fromJson((l$node as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryListslistsCollectionedgesnode node;
+  final FragmentListFragment node;
 
   final String $__typename;
 
@@ -394,115 +364,6 @@ class QueryListslistsCollectionedges {
     final l$node = node;
     final lOther$node = other.node;
     if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryListslistsCollectionedgesnode {
-  QueryListslistsCollectionedgesnode({
-    required this.id,
-    required this.authorId,
-    required this.title,
-    required this.kind,
-    this.coupleId,
-    this.$__typename = 'Lists',
-  });
-
-  factory QueryListslistsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$authorId = json['authorId'];
-    final l$title = json['title'];
-    final l$kind = json['kind'];
-    final l$coupleId = json['coupleId'];
-    final l$$__typename = json['__typename'];
-    return QueryListslistsCollectionedgesnode(
-      id: (l$id as String),
-      authorId: (l$authorId as String),
-      title: (l$title as String),
-      kind: fromJsonEnumListKind((l$kind as String)),
-      coupleId: (l$coupleId as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String authorId;
-
-  final String title;
-
-  final EnumListKind kind;
-
-  final String? coupleId;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$authorId = authorId;
-    _resultData['authorId'] = l$authorId;
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$kind = kind;
-    _resultData['kind'] = toJsonEnumListKind(l$kind);
-    final l$coupleId = coupleId;
-    _resultData['coupleId'] = l$coupleId;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$authorId = authorId;
-    final l$title = title;
-    final l$kind = kind;
-    final l$coupleId = coupleId;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$authorId, l$title, l$kind, l$coupleId, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryListslistsCollectionedgesnode || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (l$authorId != lOther$authorId) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$kind = kind;
-    final lOther$kind = other.kind;
-    if (l$kind != lOther$kind) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (l$coupleId != lOther$coupleId) {
       return false;
     }
     final l$$__typename = $__typename;

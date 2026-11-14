@@ -55,12 +55,14 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
 
     await _change(
       previous: detail,
-      next: ListDetail(list: detail.list, items: [...detail.items, item]),
-      action: () => _listsRepository.addItem(
-        id: item.id,
-        listId: item.listId,
-        title: item.title,
-        position: item.position,
+      next: detail.copyWith(items: [...detail.items, item]),
+      action: () async => _replaceItem(
+        await _listsRepository.addItem(
+          id: item.id,
+          listId: item.listId,
+          title: item.title,
+          position: item.position,
+        ),
       ),
     );
   }
@@ -83,12 +85,10 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
 
     await _change(
       previous: detail,
-      next: ListDetail(
-        list: detail.list.withCoupleId(coupleId),
-        items: detail.items,
-        currentCoupleId: detail.currentCoupleId,
+      next: detail.copyWith(list: detail.list.copyWith(isShared: coupleId != null)),
+      action: () async => _replaceList(
+        await _listsRepository.setListVisibility(id: detail.list.id, coupleId: coupleId),
       ),
-      action: () => _listsRepository.setListVisibility(id: detail.list.id, coupleId: coupleId),
     );
   }
 
@@ -102,14 +102,14 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
 
     await _change(
       previous: detail,
-      next: ListDetail(
-        list: detail.list,
+      next: detail.copyWith(
         items: [
           for (final current in detail.items)
             if (current.id == item.id) current.copyWith(status: status) else current,
         ],
       ),
-      action: () => _listsRepository.setItemStatus(id: item.id, status: status),
+      action: () async =>
+          _replaceItem(await _listsRepository.setItemStatus(id: item.id, status: status)),
     );
   }
 
@@ -123,24 +123,20 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
 
     final reordered = [...detail.items];
     reordered.insert(target, reordered.removeAt(index));
-    final previousPositions = {for (final current in detail.items) current.id: current.position};
     final next = [
       for (var index = 0; index < reordered.length; index++)
         reordered[index].copyWith(position: index),
     ];
-    final changed = [
-      for (final current in next)
-        if (previousPositions[current.id] != current.position) current,
-    ];
 
     await _change(
       previous: detail,
-      next: ListDetail(list: detail.list, items: next),
-      action: () async {
-        for (final current in changed) {
-          await _listsRepository.setItemPosition(id: current.id, position: current.position);
-        }
-      },
+      next: detail.copyWith(items: next),
+      action: () async => _replaceItems(
+        await _listsRepository.reorderItems(
+          listId: detail.list.id,
+          itemIds: [for (final current in next) current.id],
+        ),
+      ),
     );
   }
 
@@ -150,8 +146,7 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
 
     await _change(
       previous: detail,
-      next: ListDetail(
-        list: detail.list,
+      next: detail.copyWith(
         items: [
           for (final current in detail.items)
             if (current.id != item.id) current,
@@ -159,6 +154,24 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
       ),
       action: () => _listsRepository.deleteItem(item.id),
     );
+  }
+
+  void _replaceItem(ListItem saved) => _update(
+    (detail) => detail.copyWith(
+      items: [
+        for (final current in detail.items)
+          if (current.id == saved.id) saved else current,
+      ],
+    ),
+  );
+
+  void _replaceItems(List<ListItem> saved) => _update((detail) => detail.copyWith(items: saved));
+
+  void _replaceList(CoupleList saved) => _update((detail) => detail.copyWith(list: saved));
+
+  void _update(ListDetail Function(ListDetail detail) change) {
+    final detail = _currentDetail;
+    if (detail != null) emit(state.copyWith(detail: Success(change(detail))));
   }
 
   ListDetail? get _currentDetail => switch (state.detail) {

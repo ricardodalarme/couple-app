@@ -1,5 +1,7 @@
 mutation SetListVisibility($id: UUID!, $coupleId: UUID) {
   updateListsCollection(set: { coupleId: $coupleId }, filter: { id: { eq: $id } }, atMost: 1) {
-    affectedCount
+    records {
+      ...ListFragment
+    }
   }
 }

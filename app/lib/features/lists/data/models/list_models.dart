@@ -16,29 +16,23 @@ final class const CoupleList({
   required final String id,
   required final String title,
   required final ListKind kind,
-  final String? coupleId,
+  final bool isShared = false,
   final bool isMine = false,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
   factory fake() =>
       const CoupleList(id: 'fake', title: 'Viagens dos nossos sonhos', kind: ListKind.travel);
 
-  /// Whether the partner can see and change this list.
-  bool get isShared => coupleId != null;
-
-  CoupleList copyWith({String? title, ListKind? kind, bool? isMine}) => CoupleList(
+  CoupleList copyWith({String? title, ListKind? kind, bool? isShared, bool? isMine}) => CoupleList(
     id: id,
     title: title ?? this.title,
     kind: kind ?? this.kind,
-    coupleId: coupleId,
+    isShared: isShared ?? this.isShared,
     isMine: isMine ?? this.isMine,
   );
 
-  CoupleList withCoupleId(String? coupleId) =>
-      CoupleList(id: id, title: title, kind: kind, coupleId: coupleId, isMine: isMine);
-
   @override
-  List<Object?> get props => [id, title, kind, coupleId, isMine];
+  List<Object?> get props => [id, title, kind, isShared, isMine];
 }
 
 /// One thing inside a [CoupleList].
@@ -78,6 +72,12 @@ final class const ListDetail({
   required final List<ListItem> items,
   final String? currentCoupleId,
 }) with Equatable {
+  ListDetail copyWith({CoupleList? list, List<ListItem>? items}) => ListDetail(
+    list: list ?? this.list,
+    items: items ?? this.items,
+    currentCoupleId: currentCoupleId,
+  );
+
   @override
   List<Object?> get props => [list, items, currentCoupleId];
 }

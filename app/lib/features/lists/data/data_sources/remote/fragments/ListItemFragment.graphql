@@ -1,0 +1,7 @@
+fragment ListItemFragment on ListItems {
+  id
+  listId
+  title
+  status
+  position
+}

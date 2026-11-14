@@ -48,17 +48,17 @@ class ListsCubit({required final ListsRepository _listsRepository}) extends Cubi
         id: _uuid.v4(),
         title: trimmed,
         kind: kind,
-        coupleId: coupleId,
+        isShared: coupleId != null,
         isMine: true,
       );
       emit(state.copyWith(lists: Success([list, ...state.currentLists])));
-      await _listsRepository.createList(
+      final saved = await _listsRepository.createList(
         id: list.id,
         title: trimmed,
         kind: kind,
         coupleId: coupleId,
       );
-      emit(state.copyWith(createAction: const Success(null)));
+      emit(state.copyWith(lists: Success(_replace(saved)), createAction: const Success(null)));
     } catch (exception) {
       emit(state.copyWith(lists: previous, createAction: Failure.fromObject(exception)));
     }
@@ -78,7 +78,7 @@ class ListsCubit({required final ListsRepository _listsRepository}) extends Cubi
         for (final item in previous)
           if (item.id == list.id) item.copyWith(title: trimmed) else item,
       ],
-      action: () => _listsRepository.renameList(id: list.id, title: trimmed),
+      action: () async => _replace(await _listsRepository.renameList(id: list.id, title: trimmed)),
     );
   }
 
@@ -88,23 +88,38 @@ class ListsCubit({required final ListsRepository _listsRepository}) extends Cubi
       for (final item in state.currentLists)
         if (item.id != list.id) item,
     ],
-    action: () => _listsRepository.deleteList(list.id),
+    action: () async {
+      await _listsRepository.deleteList(list.id);
+
+      return null;
+    },
   );
 
   Future<void> _change({
     required List<CoupleList> previous,
     required List<CoupleList> next,
-    required Future<void> Function() action,
+    required Future<List<CoupleList>?> Function() action,
   }) async {
     if (state.changeAction.isLoading) return;
 
     emit(state.copyWith(lists: Success(next), changeAction: const Loading()));
     try {
-      await action();
-      emit(state.copyWith(changeAction: const Success(null)));
+      final confirmed = await action();
+      emit(
+        state.copyWith(
+          lists: confirmed == null ? null : Success(confirmed),
+          changeAction: const Success(null),
+        ),
+      );
     } catch (exception) {
       emit(state.copyWith(lists: Success(previous), changeAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(changeAction: const Initial()));
   }
+
+  /// The lists on screen with [saved] in place of the one it replaces.
+  List<CoupleList> _replace(CoupleList saved) => [
+    for (final item in state.currentLists)
+      if (item.id == saved.id) saved else item,
+  ];
 }

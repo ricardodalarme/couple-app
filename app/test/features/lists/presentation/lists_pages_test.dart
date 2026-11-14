@@ -22,12 +22,7 @@ class _MockListsRepository() extends Mock implements ListsRepository;
 void main() {
   late ListsRepository repository;
 
-  const shared = CoupleList(
-    id: 'l1',
-    title: 'Viagens',
-    kind: ListKind.travel,
-    coupleId: 'couple-1',
-  );
+  const shared = CoupleList(id: 'l1', title: 'Viagens', kind: ListKind.travel, isShared: true);
   const solo = CoupleList(id: 'l2', title: 'Filmes', kind: ListKind.movies);
   const item = ListItem(
     id: 'i1',
@@ -132,7 +127,7 @@ void main() {
         id: any(named: 'id'),
         status: any(named: 'status'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async => item.copyWith(status: ListItemStatus.done));
     final cubit = ListDetailCubit(listsRepository: repository);
     addTearDown(cubit.close);
     await cubit.load('l1');

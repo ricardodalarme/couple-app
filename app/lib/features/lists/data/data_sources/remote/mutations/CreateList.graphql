@@ -1,5 +1,7 @@
 mutation CreateList($id: UUID!, $title: String!, $kind: ListKind!, $coupleId: UUID) {
   insertIntoListsCollection(objects: [{ id: $id, title: $title, kind: $kind, coupleId: $coupleId }]) {
-    affectedCount
+    records {
+      ...ListFragment
+    }
   }
 }

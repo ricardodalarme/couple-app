@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/lists_data_source.dart';
 import 'package:flutter_bloc_starter/features/lists/data/mappers/list_enum_mapper.dart';
+import 'package:flutter_bloc_starter/features/lists/data/mappers/list_mapper.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
 import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
@@ -11,109 +11,88 @@ import 'package:logger/logger.dart';
 class ListsRepository({
   required final ListsDataSource _dataSource,
   required final TogetherRepository _togetherRepository,
-  required final AuthenticationRepository _authenticationRepository,
 }) {
   final Logger _logger = Logger('ListsRepository');
 
   /// The id of the couple the person is in, or null when they are on their own.
   Future<String?> getCoupleId() => _togetherRepository.getCoupleId();
 
-  Future<List<CoupleList>> getLists() async {
-    try {
-      final coupleId = await _togetherRepository.getCoupleId();
-      final selfId = _authenticationRepository.currentUserId;
+  Future<List<CoupleList>> getLists() => _run(
+    'read lists',
+    () async => [for (final node in await _dataSource.getLists()) node.toModel()],
+  );
 
-      return [
-        for (final node in await _dataSource.getLists())
-          CoupleList(
-            id: node.id,
-            title: node.title,
-            kind: node.kind.toModel(),
-            coupleId: node.coupleId == coupleId ? node.coupleId : null,
-            isMine: node.authorId == selfId,
-          ),
-      ];
-    } catch (e, stack) {
-      _logger.error('Failed to read lists', error: e, stackTrace: stack);
-      rethrow;
-    }
-  }
+  Future<ListDetail> getList(String id) => _run('read a list', () async {
+    final node = await _dataSource.getList(id);
+    if (node == null) throw const LocalizedException(l10nKey: listNotFoundCode);
 
-  Future<ListDetail> getList(String id) async {
-    try {
-      final node = await _dataSource.getList(id);
-      if (node == null) throw const LocalizedException(l10nKey: listNotFoundCode);
-      final edges = node.listItemsCollection?.edges;
-      final coupleId = await _togetherRepository.getCoupleId();
-      final selfId = _authenticationRepository.currentUserId;
+    return ListDetail(
+      list: node.toModel(),
+      items: [
+        if (node.listItemsCollection case final items?)
+          for (final edge in items.edges) edge.node.toModel(),
+      ],
+      currentCoupleId: await _togetherRepository.getCoupleId(),
+    );
+  });
 
-      return ListDetail(
-        list: CoupleList(
-          id: node.id,
-          title: node.title,
-          kind: node.kind.toModel(),
-          coupleId: node.coupleId == coupleId ? node.coupleId : null,
-          isMine: node.authorId == selfId,
-        ),
-        items: [
-          if (edges != null)
-            for (final edge in edges)
-              ListItem(
-                id: edge.node.id,
-                listId: edge.node.listId,
-                title: edge.node.title,
-                status: edge.node.status.toModel(),
-                position: edge.node.position,
-              ),
-        ],
-        currentCoupleId: coupleId,
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to read a list', error: e, stackTrace: stack);
-      rethrow;
-    }
-  }
-
-  Future<void> createList({
+  /// Creates the list and returns it as the server stored it.
+  Future<CoupleList> createList({
     required String id,
     required String title,
     required ListKind kind,
     String? coupleId,
   }) => _run(
     'create a list',
-    () => _dataSource.createList(
+    () async => (await _dataSource.createList(
       id: id,
       title: title.trim(),
       kind: kind.toRemote(),
       coupleId: coupleId,
-    ),
+    )).toModel(),
   );
 
-  Future<void> renameList({required String id, required String title}) =>
-      _run('rename a list', () => _dataSource.renameList(id: id, title: title.trim()));
+  Future<CoupleList> renameList({required String id, required String title}) => _run(
+    'rename a list',
+    () async => (await _dataSource.renameList(id: id, title: title.trim())).toModel(),
+  );
 
   Future<void> deleteList(String id) => _run('delete a list', () => _dataSource.deleteList(id));
 
-  Future<void> setListVisibility({required String id, String? coupleId}) => _run(
+  Future<CoupleList> setListVisibility({required String id, String? coupleId}) => _run(
     'change a list visibility',
-    () => _dataSource.setListVisibility(id: id, coupleId: coupleId),
+    () async => (await _dataSource.setListVisibility(id: id, coupleId: coupleId)).toModel(),
   );
 
-  Future<void> addItem({
+  Future<ListItem> addItem({
     required String id,
     required String listId,
     required String title,
     required int position,
   }) => _run(
     'add an item',
-    () => _dataSource.addItem(id: id, listId: listId, title: title.trim(), position: position),
+    () async => (await _dataSource.addItem(
+      id: id,
+      listId: listId,
+      title: title.trim(),
+      position: position,
+    )).toModel(),
   );
 
-  Future<void> setItemStatus({required String id, required ListItemStatus status}) =>
-      _run('update an item', () => _dataSource.setItemStatus(id: id, status: status.toRemote()));
+  Future<ListItem> setItemStatus({required String id, required ListItemStatus status}) => _run(
+    'update an item',
+    () async => (await _dataSource.setItemStatus(id: id, status: status.toRemote())).toModel(),
+  );
 
-  Future<void> setItemPosition({required String id, required int position}) =>
-      _run('reorder an item', () => _dataSource.setItemPosition(id: id, position: position));
+  /// Moves the items to the order of [itemIds] in one request and returns the whole list in order.
+  Future<List<ListItem>> reorderItems({required String listId, required List<String> itemIds}) =>
+      _run(
+        'reorder items',
+        () async => [
+          for (final node in await _dataSource.reorderItems(listId: listId, itemIds: itemIds))
+            node.toModel(),
+        ],
+      );
 
   Future<void> deleteItem(String id) => _run('delete an item', () => _dataSource.deleteItem(id));
 

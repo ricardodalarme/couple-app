@@ -1,25 +1,13 @@
 query ListDetail($id: UUID!) {
-  listsCollection(filter: { id: { eq: $id } }, first: 1) {
-    edges {
-      node {
-        id
-        authorId
-        title
-        kind
-        coupleId
-        listItemsCollection(
-          orderBy: [{ position: AscNullsLast }, { createdAt: AscNullsLast }]
-          first: 500
-        ) {
-          edges {
-            node {
-              id
-              listId
-              title
-              status
-              position
-            }
-          }
+  listsByPk(id: $id) {
+    ...ListFragment
+    listItemsCollection(
+      orderBy: [{ position: AscNullsLast }, { createdAt: AscNullsLast }]
+      first: 500
+    ) {
+      edges {
+        node {
+          ...ListItemFragment
         }
       }
     }

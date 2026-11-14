@@ -16,7 +16,7 @@ void main() {
     id: 'l1',
     title: 'Viagens',
     kind: ListKind.travel,
-    coupleId: 'couple-1',
+    isShared: true,
     isMine: true,
   );
   const privateList = CoupleList(id: 'l1', title: 'Viagens', kind: ListKind.travel, isMine: true);
@@ -56,7 +56,9 @@ void main() {
         id: any(named: 'id'),
         coupleId: any(named: 'coupleId'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer(
+      (invocation) async => list.copyWith(isShared: invocation.namedArguments[#coupleId] != null),
+    );
     when(
       () => repository.addItem(
         id: any(named: 'id'),
@@ -64,19 +66,38 @@ void main() {
         title: any(named: 'title'),
         position: any(named: 'position'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer(
+      (invocation) async => ListItem(
+        id: invocation.namedArguments[#id] as String,
+        listId: 'l1',
+        title: invocation.namedArguments[#title] as String,
+        status: ListItemStatus.dream,
+        position: invocation.namedArguments[#position] as int,
+      ),
+    );
     when(
       () => repository.setItemStatus(
         id: any(named: 'id'),
         status: any(named: 'status'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer(
+      (invocation) async => detail.items
+          .firstWhere((item) => item.id == invocation.namedArguments[#id])
+          .copyWith(status: invocation.namedArguments[#status] as ListItemStatus),
+    );
     when(
-      () => repository.setItemPosition(
-        id: any(named: 'id'),
-        position: any(named: 'position'),
+      () => repository.reorderItems(
+        listId: any(named: 'listId'),
+        itemIds: any(named: 'itemIds'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((invocation) async {
+      final ids = invocation.namedArguments[#itemIds] as List<String>;
+
+      return [
+        for (var index = 0; index < ids.length; index++)
+          detail.items.firstWhere((item) => item.id == ids[index]).copyWith(position: index),
+      ];
+    });
     when(() => repository.deleteItem(any())).thenAnswer((_) async {});
   });
 
@@ -151,10 +172,49 @@ void main() {
 
     expect(items(cubit).map((item) => item.id), ['i1', 'i3', 'i2']);
     expect(items(cubit).map((item) => item.position), [0, 1, 2]);
-    verifyInOrder([
-      () => repository.setItemPosition(id: 'i3', position: 1),
-      () => repository.setItemPosition(id: 'i2', position: 2),
-    ]);
+    verify(() => repository.reorderItems(listId: 'l1', itemIds: ['i1', 'i3', 'i2'])).called(1);
+  });
+
+  test('a reorder is one request however many items move', () async {
+    final cubit = build();
+    addTearDown(cubit.close);
+    await cubit.load('l1');
+
+    await cubit.move(chapada, up: true);
+
+    verify(
+      () => repository.reorderItems(
+        listId: any(named: 'listId'),
+        itemIds: any(named: 'itemIds'),
+      ),
+    ).called(1);
+  });
+
+  test('the stored item replaces the one shown while the request was running', () async {
+    when(
+      () => repository.addItem(
+        id: any(named: 'id'),
+        listId: any(named: 'listId'),
+        title: any(named: 'title'),
+        position: any(named: 'position'),
+      ),
+    ).thenAnswer(
+      (invocation) async => ListItem(
+        id: invocation.namedArguments[#id] as String,
+        listId: 'l1',
+        title: 'Paraty (server)',
+        status: ListItemStatus.dream,
+        position: 9,
+      ),
+    );
+    final cubit = build();
+    addTearDown(cubit.close);
+    await cubit.load('l1');
+
+    await cubit.addItem('Paraty');
+
+    expect(items(cubit).last.title, 'Paraty (server)');
+    expect(items(cubit).last.position, 9);
   });
 
   test('moving the first item up does nothing', () async {
@@ -166,9 +226,9 @@ void main() {
 
     expect(items(cubit), [lisbon, chapada, paraty]);
     verifyNever(
-      () => repository.setItemPosition(
-        id: any(named: 'id'),
-        position: any(named: 'position'),
+      () => repository.reorderItems(
+        listId: any(named: 'listId'),
+        itemIds: any(named: 'itemIds'),
       ),
     );
   });
@@ -205,9 +265,9 @@ void main() {
 
   test('a failed reorder restores the previous order', () async {
     when(
-      () => repository.setItemPosition(
-        id: any(named: 'id'),
-        position: any(named: 'position'),
+      () => repository.reorderItems(
+        listId: any(named: 'listId'),
+        itemIds: any(named: 'itemIds'),
       ),
     ).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
     final cubit = build();
@@ -255,7 +315,7 @@ void main() {
   test("a partner's list keeps its visibility", () async {
     when(() => repository.getList(any())).thenAnswer(
       (_) async => const ListDetail(
-        list: CoupleList(id: 'l1', title: 'Viagens', kind: ListKind.travel, coupleId: 'couple-1'),
+        list: CoupleList(id: 'l1', title: 'Viagens', kind: ListKind.travel, isShared: true),
         items: [lisbon, chapada, paraty],
         currentCoupleId: 'couple-1',
       ),

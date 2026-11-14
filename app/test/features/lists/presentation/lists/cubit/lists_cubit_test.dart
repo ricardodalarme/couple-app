@@ -15,7 +15,7 @@ void main() {
     id: 'l1',
     title: 'Viagens',
     kind: ListKind.travel,
-    coupleId: 'couple-1',
+    isShared: true,
     isMine: true,
   );
   const solo = CoupleList(id: 'l2', title: 'Filmes', kind: ListKind.movies);
@@ -31,13 +31,25 @@ void main() {
         kind: any(named: 'kind'),
         coupleId: any(named: 'coupleId'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer(
+      (invocation) async => CoupleList(
+        id: invocation.namedArguments[#id] as String,
+        title: invocation.namedArguments[#title] as String,
+        kind: invocation.namedArguments[#kind] as ListKind,
+        isShared: invocation.namedArguments[#coupleId] != null,
+        isMine: true,
+      ),
+    );
     when(
       () => repository.renameList(
         id: any(named: 'id'),
         title: any(named: 'title'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer(
+      (invocation) async => [shared, solo]
+          .firstWhere((list) => list.id == invocation.namedArguments[#id])
+          .copyWith(title: invocation.namedArguments[#title] as String),
+    );
     when(() => repository.deleteList(any())).thenAnswer((_) async {});
   });
 

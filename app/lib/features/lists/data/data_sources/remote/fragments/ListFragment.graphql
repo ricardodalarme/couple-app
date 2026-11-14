@@ -1,0 +1,7 @@
+fragment ListFragment on Lists {
+  id
+  title
+  kind
+  isMine
+  isShared
+}

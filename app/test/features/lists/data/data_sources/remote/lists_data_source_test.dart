@@ -1,7 +1,7 @@
 import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/lists_data_source.dart';
 import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/DeleteListItem.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/SetListItemPosition.graphql.dart';
+import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/ReorderListItems.graphql.dart';
 import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/SetListItemStatus.graphql.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network/network.dart';
@@ -21,7 +21,10 @@ class const _CapturingGQLClient(final void Function(MutationOptions<Object?>) _o
     _onMutate(options);
 
     return _result(options, {
-      'updateListsCollection': {'affectedCount': 1, '__typename': 'ListsUpdateResponse'},
+      'updateListsCollection': {
+        'records': [_list],
+        '__typename': 'ListsUpdateResponse',
+      },
       '__typename': 'Mutation',
     });
   }
@@ -30,19 +33,38 @@ class const _CapturingGQLClient(final void Function(MutationOptions<Object?>) _o
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
+const Map<String, dynamic> _list = {
+  'id': 'l1',
+  'title': 'Viagens',
+  'kind': 'travel',
+  'isMine': true,
+  'isShared': false,
+  '__typename': 'Lists',
+};
+
+Map<String, dynamic> _item(String id, int position, {String status = 'done'}) => {
+  'id': id,
+  'listId': 'l1',
+  'title': 'Lisboa',
+  'status': status,
+  'position': position,
+  '__typename': 'ListItems',
+};
+
 QueryResult<T> _result<T>(MutationOptions<T> options, Map<String, dynamic> data) =>
     QueryResult.loading(options: options, data: data);
 
 void main() {
+  final statusOptions = OptionsMutationSetListItemStatus(
+    variables: VariablesMutationSetListItemStatus(id: 'i1', status: EnumListItemStatus.done),
+  );
+
   test('a status change that matches no row fails', () {
-    final options = OptionsMutationSetListItemStatus(
-      variables: VariablesMutationSetListItemStatus(id: 'i1', status: EnumListItemStatus.done),
-    );
     final dataSource = ListsDataSource(
       client: _StubGQLClient(
-        _result(options, {
+        _result(statusOptions, {
           'updateListItemsCollection': {
-            'affectedCount': 0,
+            'records': <Map<String, dynamic>>[],
             '__typename': 'ListItemsUpdateResponse',
           },
           '__typename': 'Mutation',
@@ -56,15 +78,12 @@ void main() {
     );
   });
 
-  test('a position change that matches no row fails', () {
-    final options = OptionsMutationSetListItemPosition(
-      variables: VariablesMutationSetListItemPosition(id: 'i1', position: 2),
-    );
+  test('a status change returns the row as the server stored it', () async {
     final dataSource = ListsDataSource(
       client: _StubGQLClient(
-        _result(options, {
+        _result(statusOptions, {
           'updateListItemsCollection': {
-            'affectedCount': 0,
+            'records': [_item('i1', 3)],
             '__typename': 'ListItemsUpdateResponse',
           },
           '__typename': 'Mutation',
@@ -72,7 +91,36 @@ void main() {
       ),
     );
 
-    expect(dataSource.setItemPosition(id: 'i1', position: 2), throwsA(isA<NoDataException>()));
+    final saved = await dataSource.setItemStatus(id: 'i1', status: EnumListItemStatus.done);
+
+    expect(saved.id, 'i1');
+    expect(saved.position, 3);
+    expect(saved.status, EnumListItemStatus.done);
+  });
+
+  test('reordering returns the whole list in the order the server stored it', () async {
+    final options = OptionsMutationReorderListItems(
+      variables: VariablesMutationReorderListItems(listId: 'l1', itemIds: ['i2', 'i1']),
+    );
+    final dataSource = ListsDataSource(
+      client: _StubGQLClient(
+        _result(options, {
+          'reorderListItems': {
+            'edges': [
+              {'node': _item('i2', 0, status: 'dream'), '__typename': 'ListItemsEdge'},
+              {'node': _item('i1', 1), '__typename': 'ListItemsEdge'},
+            ],
+            '__typename': 'ListItemsConnection',
+          },
+          '__typename': 'Mutation',
+        }),
+      ),
+    );
+
+    final items = await dataSource.reorderItems(listId: 'l1', itemIds: ['i2', 'i1']);
+
+    expect([for (final item in items) item.id], ['i2', 'i1']);
+    expect([for (final item in items) item.position], [0, 1]);
   });
 
   test('deleting an item that is already gone fails', () {
@@ -102,29 +150,11 @@ void main() {
       }),
     );
 
-    await dataSource.setListVisibility(id: 'l1');
+    final saved = await dataSource.setListVisibility(id: 'l1');
 
     final variables = captured!.variables;
     expect(variables.containsKey('coupleId'), isTrue);
     expect(variables['coupleId'], isNull);
-  });
-
-  test('a mutation that touches one row succeeds', () async {
-    final options = OptionsMutationSetListItemStatus(
-      variables: VariablesMutationSetListItemStatus(id: 'i1', status: EnumListItemStatus.done),
-    );
-    final dataSource = ListsDataSource(
-      client: _StubGQLClient(
-        _result(options, {
-          'updateListItemsCollection': {
-            'affectedCount': 1,
-            '__typename': 'ListItemsUpdateResponse',
-          },
-          '__typename': 'Mutation',
-        }),
-      ),
-    );
-
-    await dataSource.setItemStatus(id: 'i1', status: EnumListItemStatus.done);
+    expect(saved.isShared, isFalse);
   });
 }

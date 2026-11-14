@@ -1,0 +1,9 @@
+mutation ReorderListItems($listId: UUID!, $itemIds: [UUID!]!) {
+  reorderListItems(listId: $listId, itemIds: $itemIds) {
+    edges {
+      node {
+        ...ListItemFragment
+      }
+    }
+  }
+}
