@@ -6,7 +6,7 @@ create view public.today_state with (security_invoker = true) as
          null::uuid as card_id, null::text as card_status, 0 as unopened_cards, 0 as slips_this_week,
          0 as slips_total, false as has_pending_invite, null::text as suggestion_key
   from public.profiles p where false;
-comment on view public.today_state is e'@graphql({"primary_key_columns": ["profile_id"], "description": "Everything Hoje needs in one call. suggestion_key: first_slip, open_card, review_card, invite_partner, write_slip."})';
+comment on view public.today_state is e'@graphql({"primary_key_columns": ["profile_id"], "description": "Everything Hoje needs in one call. suggestion_key: pause, first_slip, open_card, repair, review_card, invite_partner, write_slip."})';
 grant select on public.today_state to authenticated;
 
 -- Hoje v2 and the widget summary -----------------------------------------------------------------------

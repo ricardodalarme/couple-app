@@ -1,0 +1,1 @@
+COMMENT ON VIEW "public"."today_state" IS '@graphql({"primary_key_columns": ["profile_id"], "description": "Everything Hoje needs in one call. suggestion_key: pause, first_slip, open_card, repair, review_card, invite_partner, write_slip."})';
