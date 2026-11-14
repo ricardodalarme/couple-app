@@ -15,8 +15,7 @@ query MySlips($first: Int, $after: Cursor, $filter: SlipsFilter) {
       }
     }
     pageInfo {
-      hasNextPage
-      endCursor
+      ...PageInfoFragment
     }
   }
 }

@@ -1,4 +1,5 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/fragments/generated/PageInfoFragment.graphql.dart';
 import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
 
 import 'dart:async';
@@ -526,12 +527,9 @@ const documentNodeQueryHistoryOverview = DocumentNode(
                   directives: [],
                   selectionSet: SelectionSetNode(
                     selections: [
-                      FieldNode(
-                        name: NameNode(value: 'hasNextPage'),
-                        alias: null,
-                        arguments: [],
+                      FragmentSpreadNode(
+                        name: NameNode(value: 'PageInfoFragment'),
                         directives: [],
-                        selectionSet: null,
                       ),
                       FieldNode(
                         name: NameNode(value: '__typename'),
@@ -691,12 +689,9 @@ const documentNodeQueryHistoryOverview = DocumentNode(
                   directives: [],
                   selectionSet: SelectionSetNode(
                     selections: [
-                      FieldNode(
-                        name: NameNode(value: 'hasNextPage'),
-                        alias: null,
-                        arguments: [],
+                      FragmentSpreadNode(
+                        name: NameNode(value: 'PageInfoFragment'),
                         directives: [],
-                        selectionSet: null,
                       ),
                       FieldNode(
                         name: NameNode(value: '__typename'),
@@ -872,12 +867,9 @@ const documentNodeQueryHistoryOverview = DocumentNode(
                   directives: [],
                   selectionSet: SelectionSetNode(
                     selections: [
-                      FieldNode(
-                        name: NameNode(value: 'hasNextPage'),
-                        alias: null,
-                        arguments: [],
+                      FragmentSpreadNode(
+                        name: NameNode(value: 'PageInfoFragment'),
                         directives: [],
-                        selectionSet: null,
                       ),
                       FieldNode(
                         name: NameNode(value: '__typename'),
@@ -980,6 +972,7 @@ const documentNodeQueryHistoryOverview = DocumentNode(
         ],
       ),
     ),
+    fragmentDefinitionPageInfoFragment,
   ],
 );
 QueryHistoryOverview _parserFnQueryHistoryOverview(Map<String, dynamic> data) =>
@@ -1494,16 +1487,14 @@ class QueryHistoryOverviewstoryEventsCollection {
             ),
           )
           .toList(),
-      pageInfo: QueryHistoryOverviewstoryEventsCollectionpageInfo.fromJson(
-        (l$pageInfo as Map<String, dynamic>),
-      ),
+      pageInfo: FragmentPageInfoFragment.fromJson((l$pageInfo as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final List<QueryHistoryOverviewstoryEventsCollectionedges> edges;
 
-  final QueryHistoryOverviewstoryEventsCollectionpageInfo pageInfo;
+  final FragmentPageInfoFragment pageInfo;
 
   final String $__typename;
 
@@ -1765,64 +1756,6 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
   }
 }
 
-class QueryHistoryOverviewstoryEventsCollectionpageInfo {
-  QueryHistoryOverviewstoryEventsCollectionpageInfo({
-    required this.hasNextPage,
-    this.$__typename = 'PageInfo',
-  });
-
-  factory QueryHistoryOverviewstoryEventsCollectionpageInfo.fromJson(Map<String, dynamic> json) {
-    final l$hasNextPage = json['hasNextPage'];
-    final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewstoryEventsCollectionpageInfo(
-      hasNextPage: (l$hasNextPage as bool),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final bool hasNextPage;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$hasNextPage = hasNextPage;
-    _resultData['hasNextPage'] = l$hasNextPage;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$hasNextPage = hasNextPage;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$hasNextPage, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryHistoryOverviewstoryEventsCollectionpageInfo ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$hasNextPage = hasNextPage;
-    final lOther$hasNextPage = other.hasNextPage;
-    if (l$hasNextPage != lOther$hasNextPage) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
 class QueryHistoryOverviewmemoriesCollection {
   QueryHistoryOverviewmemoriesCollection({
     required this.edges,
@@ -1841,16 +1774,14 @@ class QueryHistoryOverviewmemoriesCollection {
                 QueryHistoryOverviewmemoriesCollectionedges.fromJson((e as Map<String, dynamic>)),
           )
           .toList(),
-      pageInfo: QueryHistoryOverviewmemoriesCollectionpageInfo.fromJson(
-        (l$pageInfo as Map<String, dynamic>),
-      ),
+      pageInfo: FragmentPageInfoFragment.fromJson((l$pageInfo as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final List<QueryHistoryOverviewmemoriesCollectionedges> edges;
 
-  final QueryHistoryOverviewmemoriesCollectionpageInfo pageInfo;
+  final FragmentPageInfoFragment pageInfo;
 
   final String $__typename;
 
@@ -2153,64 +2084,6 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
   }
 }
 
-class QueryHistoryOverviewmemoriesCollectionpageInfo {
-  QueryHistoryOverviewmemoriesCollectionpageInfo({
-    required this.hasNextPage,
-    this.$__typename = 'PageInfo',
-  });
-
-  factory QueryHistoryOverviewmemoriesCollectionpageInfo.fromJson(Map<String, dynamic> json) {
-    final l$hasNextPage = json['hasNextPage'];
-    final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewmemoriesCollectionpageInfo(
-      hasNextPage: (l$hasNextPage as bool),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final bool hasNextPage;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$hasNextPage = hasNextPage;
-    _resultData['hasNextPage'] = l$hasNextPage;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$hasNextPage = hasNextPage;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$hasNextPage, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryHistoryOverviewmemoriesCollectionpageInfo ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$hasNextPage = hasNextPage;
-    final lOther$hasNextPage = other.hasNextPage;
-    if (l$hasNextPage != lOther$hasNextPage) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
 class QueryHistoryOverviewimportantDatesCollection {
   QueryHistoryOverviewimportantDatesCollection({
     required this.edges,
@@ -2230,16 +2103,14 @@ class QueryHistoryOverviewimportantDatesCollection {
             ),
           )
           .toList(),
-      pageInfo: QueryHistoryOverviewimportantDatesCollectionpageInfo.fromJson(
-        (l$pageInfo as Map<String, dynamic>),
-      ),
+      pageInfo: FragmentPageInfoFragment.fromJson((l$pageInfo as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final List<QueryHistoryOverviewimportantDatesCollectionedges> edges;
 
-  final QueryHistoryOverviewimportantDatesCollectionpageInfo pageInfo;
+  final FragmentPageInfoFragment pageInfo;
 
   final String $__typename;
 
@@ -2535,64 +2406,6 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
     final l$hidden = hidden;
     final lOther$hidden = other.hidden;
     if (l$hidden != lOther$hidden) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryHistoryOverviewimportantDatesCollectionpageInfo {
-  QueryHistoryOverviewimportantDatesCollectionpageInfo({
-    required this.hasNextPage,
-    this.$__typename = 'PageInfo',
-  });
-
-  factory QueryHistoryOverviewimportantDatesCollectionpageInfo.fromJson(Map<String, dynamic> json) {
-    final l$hasNextPage = json['hasNextPage'];
-    final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewimportantDatesCollectionpageInfo(
-      hasNextPage: (l$hasNextPage as bool),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final bool hasNextPage;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$hasNextPage = hasNextPage;
-    _resultData['hasNextPage'] = l$hasNextPage;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$hasNextPage = hasNextPage;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$hasNextPage, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryHistoryOverviewimportantDatesCollectionpageInfo ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$hasNextPage = hasNextPage;
-    final lOther$hasNextPage = other.hasNextPage;
-    if (l$hasNextPage != lOther$hasNextPage) {
       return false;
     }
     final l$$__typename = $__typename;

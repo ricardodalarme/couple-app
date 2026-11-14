@@ -1,5 +1,10 @@
 query MyPartner {
   myPartner {
-    ...ProfileFragment
+    id
+    displayName
+    avatarPath
+    avatarKind
+    city
+    pronouns
   }
 }

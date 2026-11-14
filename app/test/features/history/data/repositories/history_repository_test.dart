@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/fragments/generated/PageInfoFragment.graphql.dart';
 import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/history_data_source.dart';
 import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/queries/generated/HistoryOverview.graphql.dart';
@@ -73,7 +74,7 @@ void main() {
               ),
             ),
           ],
-          pageInfo: QueryHistoryOverviewstoryEventsCollectionpageInfo(hasNextPage: false),
+          pageInfo: FragmentPageInfoFragment(hasNextPage: false, hasPreviousPage: false),
         ),
         memoriesCollection: QueryHistoryOverviewmemoriesCollection(
           edges: [
@@ -90,7 +91,7 @@ void main() {
               ),
             ),
           ],
-          pageInfo: QueryHistoryOverviewmemoriesCollectionpageInfo(hasNextPage: false),
+          pageInfo: FragmentPageInfoFragment(hasNextPage: false, hasPreviousPage: false),
         ),
         importantDatesCollection: QueryHistoryOverviewimportantDatesCollection(
           edges: [
@@ -109,7 +110,7 @@ void main() {
               ),
             ),
           ],
-          pageInfo: QueryHistoryOverviewimportantDatesCollectionpageInfo(hasNextPage: false),
+          pageInfo: FragmentPageInfoFragment(hasNextPage: false, hasPreviousPage: false),
         ),
         myYear: QueryHistoryOverviewmyYear(
           year: 2026,

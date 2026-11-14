@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/fragments/generated/PageInfoFragment.graphql.dart';
 import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/cards_data_source.dart';
 import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/queries/generated/CardDetail.graphql.dart';
@@ -21,7 +22,7 @@ void main() {
   QueryMyCardscardsCollection cards(List<QueryMyCardscardsCollectionedgesnode> nodes) =>
       QueryMyCardscardsCollection(
         edges: [for (final node in nodes) QueryMyCardscardsCollectionedges(node: node)],
-        pageInfo: QueryMyCardscardsCollectionpageInfo(hasNextPage: false),
+        pageInfo: FragmentPageInfoFragment(hasNextPage: false, hasPreviousPage: false),
       );
 
   setUp(() {

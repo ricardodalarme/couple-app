@@ -28,8 +28,7 @@ query MyCards($first: Int, $after: Cursor) {
       }
     }
     pageInfo {
-      hasNextPage
-      endCursor
+      ...PageInfoFragment
     }
   }
 }

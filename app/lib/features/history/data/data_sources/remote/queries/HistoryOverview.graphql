@@ -34,7 +34,7 @@ query HistoryOverview($year: Int!) {
       }
     }
     pageInfo {
-      hasNextPage
+      ...PageInfoFragment
     }
   }
   memoriesCollection(orderBy: [{ happenedOn: DescNullsLast }], first: 50) {
@@ -53,7 +53,7 @@ query HistoryOverview($year: Int!) {
       }
     }
     pageInfo {
-      hasNextPage
+      ...PageInfoFragment
     }
   }
   importantDatesCollection(
@@ -75,7 +75,7 @@ query HistoryOverview($year: Int!) {
       }
     }
     pageInfo {
-      hasNextPage
+      ...PageInfoFragment
     }
   }
   myYear(year: $year) {

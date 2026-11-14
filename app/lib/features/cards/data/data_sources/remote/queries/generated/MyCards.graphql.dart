@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/fragments/generated/PageInfoFragment.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -391,19 +393,9 @@ const documentNodeQueryMyCards = DocumentNode(
                   directives: [],
                   selectionSet: SelectionSetNode(
                     selections: [
-                      FieldNode(
-                        name: NameNode(value: 'hasNextPage'),
-                        alias: null,
-                        arguments: [],
+                      FragmentSpreadNode(
+                        name: NameNode(value: 'PageInfoFragment'),
                         directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'endCursor'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
                       ),
                       FieldNode(
                         name: NameNode(value: '__typename'),
@@ -435,6 +427,7 @@ const documentNodeQueryMyCards = DocumentNode(
         ],
       ),
     ),
+    fragmentDefinitionPageInfoFragment,
   ],
 );
 QueryMyCards _parserFnQueryMyCards(Map<String, dynamic> data) => QueryMyCards.fromJson(data);
@@ -571,14 +564,14 @@ class QueryMyCardscardsCollection {
       edges: (l$edges as List<dynamic>)
           .map((e) => QueryMyCardscardsCollectionedges.fromJson((e as Map<String, dynamic>)))
           .toList(),
-      pageInfo: QueryMyCardscardsCollectionpageInfo.fromJson((l$pageInfo as Map<String, dynamic>)),
+      pageInfo: FragmentPageInfoFragment.fromJson((l$pageInfo as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final List<QueryMyCardscardsCollectionedges> edges;
 
-  final QueryMyCardscardsCollectionpageInfo pageInfo;
+  final FragmentPageInfoFragment pageInfo;
 
   final String $__typename;
 
@@ -1145,76 +1138,6 @@ class QueryMyCardscardsCollectionedgesnodeopen {
     final l$openedAt = openedAt;
     final lOther$openedAt = other.openedAt;
     if (l$openedAt != lOther$openedAt) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryMyCardscardsCollectionpageInfo {
-  QueryMyCardscardsCollectionpageInfo({
-    required this.hasNextPage,
-    this.endCursor,
-    this.$__typename = 'PageInfo',
-  });
-
-  factory QueryMyCardscardsCollectionpageInfo.fromJson(Map<String, dynamic> json) {
-    final l$hasNextPage = json['hasNextPage'];
-    final l$endCursor = json['endCursor'];
-    final l$$__typename = json['__typename'];
-    return QueryMyCardscardsCollectionpageInfo(
-      hasNextPage: (l$hasNextPage as bool),
-      endCursor: (l$endCursor as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final bool hasNextPage;
-
-  final String? endCursor;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$hasNextPage = hasNextPage;
-    _resultData['hasNextPage'] = l$hasNextPage;
-    final l$endCursor = endCursor;
-    _resultData['endCursor'] = l$endCursor;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$hasNextPage = hasNextPage;
-    final l$endCursor = endCursor;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$hasNextPage, l$endCursor, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryMyCardscardsCollectionpageInfo || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$hasNextPage = hasNextPage;
-    final lOther$hasNextPage = other.hasNextPage;
-    if (l$hasNextPage != lOther$hasNextPage) {
-      return false;
-    }
-    final l$endCursor = endCursor;
-    final lOther$endCursor = other.endCursor;
-    if (l$endCursor != lOther$endCursor) {
       return false;
     }
     final l$$__typename = $__typename;

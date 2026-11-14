@@ -4,7 +4,6 @@ import 'package:flutter_bloc_starter/features/pairing/data/data_sources/remote/m
 import 'package:flutter_bloc_starter/features/pairing/data/data_sources/remote/mutations/generated/ResolveSharedItems.graphql.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/data_sources/remote/mutations/generated/Unpair.graphql.dart';
 import 'package:flutter_bloc_starter/features/pairing/data/data_sources/remote/queries/generated/MyPartner.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/fragments/generated/ProfileFragment.graphql.dart';
 import 'package:network/network.dart';
 
 class PairingDataSource({required final GQLClient _client}) {
@@ -25,7 +24,7 @@ class PairingDataSource({required final GQLClient _client}) {
     return response.parsedData?.acceptInvite != null;
   }
 
-  Future<FragmentProfileFragment?> getMyPartner() async {
+  Future<QueryMyPartnermyPartner?> getMyPartner() async {
     final response = await _client.query(
       OptionsQueryMyPartner(fetchPolicy: FetchPolicy.networkOnly),
     );
