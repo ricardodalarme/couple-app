@@ -1,7 +1,7 @@
-query GiftIdeas($authorId: UUID!) {
+query GiftIdeas {
   giftIdeasCollection(
-    filter: { kind: { eq: idea }, authorId: { eq: $authorId } }
-    orderBy: [{ createdAt: DescNullsLast }]
+    filter: {kind: {eq: idea}}
+    orderBy: [{createdAt: DescNullsLast}]
     first: 200
   ) {
     edges {
@@ -9,6 +9,7 @@ query GiftIdeas($authorId: UUID!) {
         id
         title
         status
+        isMine
       }
     }
   }

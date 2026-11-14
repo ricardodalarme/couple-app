@@ -64,14 +64,9 @@ class DatesDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<List<QueryGiftIdeasgiftIdeasCollectionedgesnode>> getGiftIdeas({
-    required String authorId,
-  }) async {
+  Future<List<QueryGiftIdeasgiftIdeasCollectionedgesnode>> getGiftIdeas() async {
     final response = await _client.query(
-      OptionsQueryGiftIdeas(
-        variables: VariablesQueryGiftIdeas(authorId: authorId),
-        fetchPolicy: FetchPolicy.networkOnly,
-      ),
+      OptionsQueryGiftIdeas(fetchPolicy: FetchPolicy.networkOnly),
     );
     final edges = validateResponseData(response, getData: (data) => data.giftIdeasCollection.edges);
 

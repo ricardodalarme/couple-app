@@ -6,53 +6,6 @@ import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
-class VariablesQueryGiftIdeas {
-  factory VariablesQueryGiftIdeas({required String authorId}) =>
-      VariablesQueryGiftIdeas._({r'authorId': authorId});
-
-  VariablesQueryGiftIdeas._(this._$data);
-
-  factory VariablesQueryGiftIdeas.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    final l$authorId = data['authorId'];
-    result$data['authorId'] = (l$authorId as String);
-    return VariablesQueryGiftIdeas._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  String get authorId => (_$data['authorId'] as String);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    final l$authorId = authorId;
-    result$data['authorId'] = l$authorId;
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! VariablesQueryGiftIdeas || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (l$authorId != lOther$authorId) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$authorId = authorId;
-    return Object.hashAll([l$authorId]);
-  }
-}
-
 class QueryGiftIdeas {
   QueryGiftIdeas({required this.giftIdeasCollection, this.$__typename = 'Query'});
 
@@ -114,14 +67,7 @@ const documentNodeQueryGiftIdeas = DocumentNode(
     OperationDefinitionNode(
       type: OperationType.query,
       name: NameNode(value: 'GiftIdeas'),
-      variableDefinitions: [
-        VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'authorId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
-        ),
-      ],
+      variableDefinitions: [],
       directives: [],
       selectionSet: SelectionSetNode(
         selections: [
@@ -140,17 +86,6 @@ const documentNodeQueryGiftIdeas = DocumentNode(
                           ObjectFieldNode(
                             name: NameNode(value: 'eq'),
                             value: EnumValueNode(name: NameNode(value: 'idea')),
-                          ),
-                        ],
-                      ),
-                    ),
-                    ObjectFieldNode(
-                      name: NameNode(value: 'authorId'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'authorId')),
                           ),
                         ],
                       ),
@@ -217,6 +152,13 @@ const documentNodeQueryGiftIdeas = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
+                              name: NameNode(value: 'isMine'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
                               name: NameNode(value: '__typename'),
                               alias: null,
                               arguments: [],
@@ -267,7 +209,6 @@ typedef OnQueryCompleteQueryGiftIdeas = FutureOr<void> Function(
 class OptionsQueryGiftIdeas extends graphql.QueryOptions<QueryGiftIdeas> {
   OptionsQueryGiftIdeas({
     String? operationName,
-    required VariablesQueryGiftIdeas variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -279,7 +220,6 @@ class OptionsQueryGiftIdeas extends graphql.QueryOptions<QueryGiftIdeas> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
-         variables: variables.toJson(),
          operationName: operationName,
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -309,7 +249,6 @@ class OptionsQueryGiftIdeas extends graphql.QueryOptions<QueryGiftIdeas> {
 class WatchOptionsQueryGiftIdeas extends graphql.WatchQueryOptions<QueryGiftIdeas> {
   WatchOptionsQueryGiftIdeas({
     String? operationName,
-    required VariablesQueryGiftIdeas variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -321,7 +260,6 @@ class WatchOptionsQueryGiftIdeas extends graphql.WatchQueryOptions<QueryGiftIdea
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         variables: variables.toJson(),
          operationName: operationName,
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -338,45 +276,29 @@ class WatchOptionsQueryGiftIdeas extends graphql.WatchQueryOptions<QueryGiftIdea
 }
 
 class FetchMoreOptionsQueryGiftIdeas extends graphql.FetchMoreOptions {
-  FetchMoreOptionsQueryGiftIdeas({
-    required graphql.UpdateQuery updateQuery,
-    required VariablesQueryGiftIdeas variables,
-  }) : super(
-         updateQuery: updateQuery,
-         variables: variables.toJson(),
-         document: documentNodeQueryGiftIdeas,
-       );
+  FetchMoreOptionsQueryGiftIdeas({required graphql.UpdateQuery updateQuery})
+    : super(updateQuery: updateQuery, document: documentNodeQueryGiftIdeas);
 }
 
 extension ClientExtensionQueryGiftIdeas on graphql.GraphQLClient {
-  Future<graphql.QueryResult<QueryGiftIdeas>> queryGiftIdeas(OptionsQueryGiftIdeas options) async =>
-      await this.query(options);
+  Future<graphql.QueryResult<QueryGiftIdeas>> queryGiftIdeas([
+    OptionsQueryGiftIdeas? options,
+  ]) async => await this.query(options ?? OptionsQueryGiftIdeas());
 
-  graphql.ObservableQuery<QueryGiftIdeas> watchQueryGiftIdeas(WatchOptionsQueryGiftIdeas options) =>
-      this.watchQuery(options);
+  graphql.ObservableQuery<QueryGiftIdeas> watchQueryGiftIdeas([
+    WatchOptionsQueryGiftIdeas? options,
+  ]) => this.watchQuery(options ?? WatchOptionsQueryGiftIdeas());
 
-  void writeQueryGiftIdeas({
-    required QueryGiftIdeas data,
-    required VariablesQueryGiftIdeas variables,
-    bool broadcast = true,
-  }) => this.writeQuery(
-    graphql.Request(
-      operation: graphql.Operation(document: documentNodeQueryGiftIdeas),
-      variables: variables.toJson(),
-    ),
-    data: data.toJson(),
-    broadcast: broadcast,
-  );
+  void writeQueryGiftIdeas({required QueryGiftIdeas data, bool broadcast = true}) =>
+      this.writeQuery(
+        graphql.Request(operation: graphql.Operation(document: documentNodeQueryGiftIdeas)),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
 
-  QueryGiftIdeas? readQueryGiftIdeas({
-    required VariablesQueryGiftIdeas variables,
-    bool optimistic = true,
-  }) {
+  QueryGiftIdeas? readQueryGiftIdeas({bool optimistic = true}) {
     final result = this.readQuery(
-      graphql.Request(
-        operation: graphql.Operation(document: documentNodeQueryGiftIdeas),
-        variables: variables.toJson(),
-      ),
+      graphql.Request(operation: graphql.Operation(document: documentNodeQueryGiftIdeas)),
       optimistic: optimistic,
     );
     return result == null ? null : QueryGiftIdeas.fromJson(result);
@@ -508,6 +430,7 @@ class QueryGiftIdeasgiftIdeasCollectionedgesnode {
     required this.id,
     required this.title,
     required this.status,
+    this.isMine,
     this.$__typename = 'GiftIdeas',
   });
 
@@ -515,11 +438,13 @@ class QueryGiftIdeasgiftIdeasCollectionedgesnode {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$status = json['status'];
+    final l$isMine = json['isMine'];
     final l$$__typename = json['__typename'];
     return QueryGiftIdeasgiftIdeasCollectionedgesnode(
       id: (l$id as String),
       title: (l$title as String),
       status: fromJsonEnumGiftIdeaStatus((l$status as String)),
+      isMine: (l$isMine as bool?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -529,6 +454,8 @@ class QueryGiftIdeasgiftIdeasCollectionedgesnode {
   final String title;
 
   final EnumGiftIdeaStatus status;
+
+  final bool? isMine;
 
   final String $__typename;
 
@@ -540,6 +467,8 @@ class QueryGiftIdeasgiftIdeasCollectionedgesnode {
     _resultData['title'] = l$title;
     final l$status = status;
     _resultData['status'] = toJsonEnumGiftIdeaStatus(l$status);
+    final l$isMine = isMine;
+    _resultData['isMine'] = l$isMine;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -550,8 +479,9 @@ class QueryGiftIdeasgiftIdeasCollectionedgesnode {
     final l$id = id;
     final l$title = title;
     final l$status = status;
+    final l$isMine = isMine;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$title, l$status, l$$__typename]);
+    return Object.hashAll([l$id, l$title, l$status, l$isMine, l$$__typename]);
   }
 
   @override
@@ -575,6 +505,11 @@ class QueryGiftIdeasgiftIdeasCollectionedgesnode {
     final l$status = status;
     final lOther$status = other.status;
     if (l$status != lOther$status) {
+      return false;
+    }
+    final l$isMine = isMine;
+    final lOther$isMine = other.isMine;
+    if (l$isMine != lOther$isMine) {
       return false;
     }
     final l$$__typename = $__typename;

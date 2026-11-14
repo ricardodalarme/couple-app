@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/dates_data_source.dart';
 import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
 import 'package:flutter_bloc_starter/features/dates/presentation/dates/cubit/dates_cubit.dart';
@@ -18,7 +17,6 @@ class DatesInjectionModule() implements InjectionModule {
       () => DatesRepository(
         dataSource: injector.get<DatesDataSource>(),
         togetherRepository: injector.get<TogetherRepository>(),
-        authenticationRepository: injector.get<AuthenticationRepository>(),
         widgetsRepository: injector.get<WidgetsRepository>(),
       ),
     )

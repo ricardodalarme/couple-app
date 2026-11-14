@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/dates_data_source.dart';
 import 'package:flutter_bloc_starter/features/dates/data/mappers/important_date_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
@@ -14,7 +13,6 @@ import 'package:logger/logger.dart';
 class DatesRepository({
   required final DatesDataSource _dataSource,
   required final TogetherRepository _togetherRepository,
-  required final AuthenticationRepository _authenticationRepository,
   final WidgetsRepository? _widgetsRepository,
 }) {
   final Logger _logger = Logger('DatesRepository');
@@ -70,12 +68,12 @@ class DatesRepository({
   });
 
   Future<List<GiftIdea>> getGiftIdeas() => _run('read gift ideas', () async {
-    final authorId = _authenticationRepository.currentUserId;
-    if (authorId == null) return <GiftIdea>[];
+    final nodes = await _dataSource.getGiftIdeas();
 
     return [
-      for (final node in await _dataSource.getGiftIdeas(authorId: authorId))
-        GiftIdea(id: node.id, title: node.title, status: node.status.toModel()),
+      for (final node in nodes)
+        if (node.isMine ?? false)
+          GiftIdea(id: node.id, title: node.title, status: node.status.toModel()),
     ];
   });
 

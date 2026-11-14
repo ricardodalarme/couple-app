@@ -44,12 +44,12 @@ void main() {
     final client = _CapturingGQLClient();
     final dataSource = DatesDataSource(client: client);
 
-    await dataSource.getGiftIdeas(authorId: 'me');
+    await dataSource.getGiftIdeas();
 
     final operation = client.queries.single;
     expect(printNode(operation.document), contains('kind: {eq: idea}'));
-    expect(printNode(operation.document), contains(r'authorId: {eq: $authorId}'));
-    expect(operation.variables, {'authorId': 'me'});
+    expect(printNode(operation.document), contains('isMine'));
+    expect(operation.variables, <String, dynamic>{});
   });
 
   test('a new date idea is inserted as an idea, not a wish', () async {
