@@ -1,180 +1,105 @@
 ---
 name: new-feature
-description: Scaffold a complete new feature in the app — folder structure, GraphQL data layer, DI module, Cubit + Resource state, pages with private widgets, route registration, localization keys, tests, and Storybook examples. Use when adding any feature, screen, page, form, or flow under app/lib/features, including small requests like "add a detail page", "create a list screen", or "build an onboarding step" — even if the user does not mention architecture.
+description: Scaffold a complete feature in the app — folder layout, data layer, DI module, Cubit with Resource state, pages, route, localization keys, tests and Storybook. Use when adding any feature, screen, page, form or flow under app/lib/features, including small requests like "add a detail page" or "build an onboarding step", even if the user does not mention architecture.
 ---
 
-# Adding a feature to the app
+# Adding a feature
 
-A feature is one user-facing capability: `app/lib/features/<snake_case_name>/`.
-Everything follows the same three-part layout, and every feature must be wired
-into the global places it needs (DI module list, router, l10n, tests).
-
-This is a generic starter. Do not invent product behavior. When the request is
-ambiguous, ask for the missing behavior instead of assuming a domain.
+A feature is one user-facing capability in `app/lib/features/<snake_case_name>/`. `gifts` is the reference for a feature that reads
+and writes server data, with a page and a sheet; copy its shapes. Do not invent product behavior or backend surface: if the
+request is ambiguous or needs a table, query or mutation the schema snapshot does not have, ask.
 
 ## Definition of done
 
-A feature is only complete when all of these exist and `melos gen` / `melos l10n`
-have run:
+1. `data/` data sources, models, mappers and a repository (only if the feature touches data).
+2. `di/<feature>_injection_module.dart`, **and** the module added to `main.dart::_registerModules()`.
+3. `presentation/<page>/` with `<name>_page.dart` (`@RoutePage()`), `cubit/` and `widgets/`.
+4. The route in `app/lib/router/app_router.dart`, then `melos gen`.
+5. Keys in `app/lib/l10n/en/<feature>.json` and `pt/<feature>.json`, then `melos l10n`.
+6. Tests that mirror `app/lib` under `app/test/features/<feature>/` (see `testing`).
+7. A Storybook example for any reusable widget (see `storybook`).
+8. `melos gen`, `melos l10n`, `melos l10n:analyze`, `melos lint` and `melos test` pass, and you ran the screen.
 
-1. `data/` — data sources, models, mappers, repository (only if it touches data)
-2. `di/<feature>_injection_module.dart` — registered **and** added to `main.dart::_registerModules()`
-3. `presentation/` — page(s) with `@RoutePage()` + cubit(s)
-4. Route registered in `app/lib/router/app_router.dart`
-5. l10n keys in `app/lib/l10n/en/<feature>.json` (plus the `pt/` sibling)
-6. Tests in `app/test/features/<feature>/`
-7. Storybook example for any reusable widget
-   (`app/lib/features/dev_menu/storybook/`)
-8. A new `common_ui` widget ships with a widget test under
-   `packages/common_ui/test/src/widgets/`; visual ones also get a Storybook
-   example under `app/lib/features/dev_menu/storybook/examples/widgets/`
-9. `melos analyze` and `melos test` pass
-
-## Step 1 — Choose the shape
+## Step 1: shape
 
 | Situation | Layout |
 | --- | --- |
-| One screen, reads/writes server data | `di/`, `data/`, `presentation/<name>/` |
-| One screen, UI only (no data) | `presentation/<name>/` + `di/` (cubit only) |
-| Multiple pages / sub-features (see `authentication`) | `presentation/<sub_feature>/` each with `<name>_page.dart`, `cubit/`, `widgets/` |
+| One screen that reads or writes server data | `di/`, `data/`, `presentation/<page>/` |
+| One screen, UI only | `presentation/<page>/`, plus `di/` only if it needs a cubit dependency |
+| Several pages or sub-features | one `presentation/<sub_feature>/` per page; data source, models, mappers and repository stay at feature level |
 
-Key rule for multi-page features: **data source, models, mappers, and repository
-stay at feature level; presentation is split per sub-feature.** Each sub-feature
-folder holds its page, widgets, and cubits.
-
-Simple feature tree (modeled on the real `post` feature; `posts` is a placeholder
-feature name — replace it with yours):
+`presentation/` never holds files directly, even for a single page. The `gifts` tree:
 
 ```text
-app/lib/features/posts/
+features/gifts/
 ├── data/
-│   ├── data_sources/
-│   │   └── remote/
-│   │       ├── post_data_source.dart
-│   │       ├── queries/GetPosts.graphql
-│   │       ├── queries/generated/GetPosts.graphql.dart       (generated)
-│   │       ├── fragments/PostFragment.graphql
-│   │       └── fragments/generated/PostFragment.graphql.dart (generated)
-│   ├── mappers/post_response_mapper.dart
-│   ├── models/post.dart
-│   └── repositories/post_repository.dart
-├── di/post_injection_module.dart
-└── presentation/list/
-    ├── posts_list_page.dart
-    ├── cubit/posts_list_cubit.dart        (parts its state)
-    ├── cubit/posts_list_state.dart
-    └── widgets/post_card.dart
+│   ├── data_sources/remote/{gifts_data_source.dart, queries/, mutations/, fragments/}   # each with a generated/ folder
+│   ├── mappers/{gift_mapper.dart, gift_enum_mapper.dart}
+│   ├── models/{gift_idea.dart, gift_budget.dart, gift_idea_status.dart}
+│   └── repositories/gifts_repository.dart
+├── di/gifts_injection_module.dart
+└── presentation/
+    ├── gifts/{gifts_page.dart, cubit/gifts_cubit.dart, cubit/gifts_state.dart}
+    └── gift_sheet/{gift_sheet.dart, cubit/...}
 ```
 
-## Step 2 — Data layer
+## Step 2: data layer
 
-Follow the `data-layer` skill. Minimum viable flow:
+Follow `data-layer`. Write the `.graphql` files against the committed snapshot, run `melos gen`, then the models (with a
+`Model.fake()` factory), the mappers, a data source that wraps every call in `validateResponseData`, and a concrete repository that
+returns models. Empty is a valid result, and `fake` values only exist behind a skeleton.
 
-1. Add `.graphql` query/fragment files under `data/data_sources/remote/` against
-   the committed schema snapshot at
-   `app/lib/features/_shared/data/data_sources/remote/schema.graphql`.
-2. Write model(s) and mapper(s) — hand-written Equatable models with a
-   `static const fake`.
-3. Write an `XDataSource` with a one-shot `getX` returning the generated
-   collection, wrapped in `validateResponseData`.
-4. Write a concrete repository returning `Future<Model>` or
-   `Future<List<Model>>`, with a `Logger` and `LocalizedException` mapping.
-5. Run `melos gen` to generate GraphQL code before importing it.
+## Step 3: cubit and state
 
-Do not invent a table, field, or mutation the snapshot does not expose. Empty is
-a valid result; `Model.fake` is only a skeleton placeholder.
-
-## Step 3 — Cubit + state
-
-Follow the `async-state` skill. Condensed template:
+Follow `async-state`. The shape, from `GiftsCubit`:
 
 ```dart
-// presentation/list/cubit/posts_list_cubit.dart
-import 'package:core/core.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/posts/data/models/post.dart';
-import 'package:flutter_bloc_starter/features/posts/data/repositories/post_repository.dart';
+class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubit<GiftsState> {
+  this : super(const GiftsState());
 
-part 'posts_list_state.dart';
-
-class PostsListCubit({required final PostRepository _postRepository})
-    extends Cubit<PostsListState> {
-  this : super(const PostsListState());
-
-  Future<void> getPosts() async {
-    emit(state.copyWith(posts: const Loading()));
-
+  Future<void> load() async {
+    if (state.gifts is! Success) emit(state.copyWith(gifts: const Loading()));
     try {
-      final posts = await _postRepository.getPosts();
-      emit(state.copyWith(posts: Success(posts)));
+      emit(state.copyWith(gifts: Success(await _giftsRepository.getGiftIdeas())));
     } catch (exception) {
-      emit(state.copyWith(posts: Failure.fromObject(exception)));
+      if (state.gifts is Success) return; // a failed refresh keeps what is on screen
+      emit(state.copyWith(gifts: Failure.fromObject(exception)));
     }
   }
 }
 ```
 
-```dart
-// presentation/list/cubit/posts_list_state.dart
-part of 'posts_list_cubit.dart';
+- A read slot starts as `const Loading()` so the skeleton shows on the first frame; an action slot (`saveAction`) starts as
+  `const Initial()` and a `BlocListener` reacts to it.
+- Name the method for what it does (`load`, `add`, `save`), not `getX`.
 
-final class const PostsListState({final Resource<List<Post>> posts = const Loading()})
-    with Equatable {
-  PostsListState copyWith({Resource<List<Post>>? posts}) {
-    return PostsListState(posts: posts ?? this.posts);
-  }
+## Step 4: page
 
-  @override
-  List<Object?> get props => [posts];
-}
-```
-
-- Primary constructors in the class header; no separate constructor body.
-- Reads start as `const Loading()` so the skeleton shows on the first frame.
-- Mutations/actions use an `*Action` slot and start as `const Initial()`.
-- Always emit `Failure.fromObject(exception)` on failure.
-- Forms hold `FormInput<String>` fields; `onSubmit` emits the validated state
-  and returns early when invalid, so submit buttons stay enabled. Render errors
-  from `field.errorName` and clear them by emitting `FormInput(value)` on change
-  (see `login_state.dart`).
-
-## Step 4 — Page + widgets
-
-Follow `async-state` for state rendering and `design-system` for UI. A read slot
-is rendered by `SkeletonizerResourceWidget`, not by a hand-written `switch`:
+Follow `design-system` for UI. The page creates its cubit in `wrappedRoute`, reads narrow slices with `context.select`, and
+renders a read slot with `SkeletonizerResourceWidget`:
 
 ```dart
-// presentation/list/posts_list_page.dart
 @RoutePage()
-class const PostsListPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
-  static final List<Post> _skeletonPosts = List.filled(6, Post.fake);
-
+class const GiftsPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override
-  Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AppInjector.instance.get<PostsListCubit>()..getPosts(),
-      child: this,
-    );
-  }
+  Widget wrappedRoute(BuildContext context) =>
+      BlocProvider(create: (_) => AppInjector.instance.get<GiftsCubit>()..load(), child: this);
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n.posts.list;
-    final posts = context.select((PostsListCubit cubit) => cubit.state.posts);
-
+    final gifts = context.select((GiftsCubit cubit) => cubit.state.gifts);
     return BaseView(
-      appBar: BaseAppBar(title: l10n.title),
-      body: SkeletonizerResourceWidget<List<Post>>(
-        posts,
-        fakeValue: _skeletonPosts,
-        successBuilder: (posts) => _PostsListWidget(posts: posts),
-        failureBuilder: (exception) => BaseEmptyState(
-          title: context.l10n.common.genericError,
-          text: l10n.textFailure,
-          actionText: context.l10n.common.retry,
-          onAction: context.read<PostsListCubit>().getPosts,
-          face: FaceKind.sad,
+      appBar: BaseAppBar(title: context.l10n.gifts.title),
+      body: BaseRefreshable(
+        onRefresh: context.read<GiftsCubit>().load,
+        child: BaseStackedContent(
+          body: SkeletonizerResourceWidget<List<GiftIdea>>(
+            gifts,
+            fakeValue: [GiftIdea.fake(), GiftIdea.fake()],
+            successBuilder: (values) => values.isEmpty ? const _Empty() : _Sections(gifts: values),
+            failureBuilder: (exception) =>
+                AppErrorView(exception: exception, onRetry: context.read<GiftsCubit>().load),
+          ),
         ),
       ),
     );
@@ -182,130 +107,48 @@ class const PostsListPage({super.key}) extends StatelessWidget implements AutoRo
 }
 ```
 
-- `SkeletonizerResourceWidget`
-  (`packages/common_ui/lib/src/widgets/skeletonizer_resource_widget.dart`)
-  is the default renderer for a read slot: `Initial` → `SizedBox.shrink()`,
-  `Loading` → `Skeletonizer` over `successBuilder(fakeValue)`, `Success` →
-  `successBuilder(value)`, `Failure` → `failureBuilder(exception)`. Use a manual
-  `switch` over the `Resource` only for a one-off case that genuinely does not
-  fit, and say why in the page.
-- `fakeValue` is what `successBuilder` receives while loading, so it must be
-  structurally representative (`Post.fake`, `List.filled(6, Post.fake)`). A fake
-  with a different shape makes the skeleton jump when the data lands.
-- `failureBuilder` receives the `LocalizedException`; build a `BaseEmptyState`
-  there (`face: FaceKind.sad`), and point its retry at the cubit method that
-  produced the failure.
-- Do not wrap the widget in another `Skeletonizer`, and do not add an
-  `isRefreshing` flag — the widget keeps the last `Success` on screen while a
-  refresh is loading.
-- Split the body into `_PrivateWidget` classes so each one selects only the
-  state slice it needs with `context.select`. Do not add `BlocBuilder`,
-  `BlocSelector`, or `buildWhen`; use `context.select` for every state read and
-  `context.read` for actions.
-- Use `InfiniteListView` for lists (it owns pull-to-refresh and the pagination
-  trigger; handle zero items with a single `BaseEmptyState` row). Never render
-  invented records.
-- The `fake` model is only used inside the skeleton while loading.
+- `fakeValue` must have the same shape as real data, or the skeleton jumps when it lands.
+- Failures use `AppErrorView` (`features/_shared/presentation/errors/`), which picks the copy from the exception code and backs off
+  retries. Do not hand-build an error state.
+- Split the body into private widgets that each `context.select` one slice. Never `BlocBuilder`, `BlocSelector` or `buildWhen`;
+  `BlocListener` (with `listenWhen`) is for side effects such as a toast.
+- Lists use `InfiniteListView`, which owns pull-to-refresh and pagination. Handle zero items with one `BaseEmptyState`.
 
-## Step 5 — DI module
+## Step 5: DI
 
-Follow `dependency-injection`:
+Follow `dependency-injection`. Data sources and repositories are lazy singletons and cubits are factories:
 
 ```dart
-// di/post_injection_module.dart
-class PostInjectionModule() implements InjectionModule {
+class GiftsInjectionModule() implements InjectionModule {
   @override
   void registerDependencies({required Injector injector}) => injector
-    ..registerLazySingleton<PostDataSource>(
-      () => PostDataSource(graphlQLClient: injector.get<GQLClient>()),
-    )
-    ..registerLazySingleton<PostRepository>(
-      () => PostRepository(postDataSource: injector.get<PostDataSource>()),
-    )
-    ..registerFactory<PostsListCubit>(
-      () => PostsListCubit(postRepository: injector.get<PostRepository>()),
-    );
+    ..registerLazySingleton<GiftsDataSource>(() => GiftsDataSource(client: injector.get<GQLClient>()))
+    ..registerLazySingleton<GiftsRepository>(() => GiftsRepository(
+        dataSource: injector.get<GiftsDataSource>(),
+        togetherRepository: injector.get<TogetherRepository>()))
+    ..registerFactory<GiftsCubit>(() => GiftsCubit(giftsRepository: injector.get<GiftsRepository>()));
 }
 ```
 
-Then **add `PostInjectionModule()` to the `injectionModules` list in
-`app/lib/main.dart::_registerModules()`** — forgetting this causes a
-runtime "not registered" error.
+Add `GiftsInjectionModule()` to `main.dart::_registerModules()`; forgetting it fails at runtime with "not registered".
 
-## Step 6 — Route
+## Step 6: route
 
-Follow `routing`. Add to `app/lib/router/app_router.dart`:
+Follow `routing`. Add `AutoRoute(page: GiftsRoute.page)` to `app_router.dart` (a flat root route unless it is a tab), run `melos gen`.
+The tabs are Today, Slips, Together and Memories under `HomeRoute`; a new tab needs a child route and an entry in `HomePage`'s
+`routes`.
 
-```dart
-AutoRoute(page: PostsListPage.page),
-```
+## Step 7: localization and tests
 
-inside the appropriate parent `AutoRoute(children: [...])`, then run `melos gen`.
-The tab shell is `HomePage` with `PostsListRoute`, `SearchRoute`, and
-`ProfileRoute` under `HomeRoute`. Adding a tab requires both a child route and a
-`HomePage` `AutoTabsRouter.routes` entry.
-
-## Step 7 — Localization
-
-Follow `localization`. Add `app/lib/l10n/en/posts.json` with the feature
-namespace, run `melos l10n`, then reference
-`context.l10n.posts.list.title`. Add the `pt` sibling when the feature is ready
-for translation; do not machine-translate inline.
-
-## Step 8 — Tests
-
-Follow `testing`. Minimum:
-
-- `app/test/features/posts/presentation/list/cubit/posts_list_cubit_test.dart`
-- `app/test/features/posts/presentation/list/cubit/posts_list_state_test.dart`
-- `app/test/features/posts/presentation/list/posts_list_page_test.dart`
-
-A new or changed widget under `packages/common_ui/lib/src/widgets/` also needs
-its own widget test at `packages/common_ui/test/src/widgets/...`; visual widgets
-also get a Storybook example at
-`app/lib/features/dev_menu/storybook/examples/widgets/`, registered in
-`examples/examples.dart` (see `storybook`).
-
-## Step 9 — Verify
-
-```bash
-melos gen          # routes + GraphQL codegen
-melos l10n         # if you added keys
-melos analyze
-melos test         # or: cd app && flutter test test/features/posts
-```
-
-## Canonical examples to imitate
-
-- `post` — GraphQL read, `Resource` state, skeleton, empty/error states.
-- `authentication` — multi-step forms, service-backed repository,
-  `BlocListener` side effects, private widgets.
-- `account` — profile pages and form-driven cubits.
-- `settings` — local preference-backed state.
-- `home` — the three-tab shell.
-- `packages/common_ui` — shared widgets (`SkeletonizerResourceWidget`, lists, `WebView`).
+Follow `localization` (add `en` and `pt`, never machine-translate inline) and `testing`. For `gifts` the tests are the data source,
+the mappers (one file each), the model, the repository, the cubit and the page, at the mirrored paths.
 
 ## Gotchas
 
-- There is **no domain/usecase layer**. Cubits call repositories directly. Do not invent one.
-- Cubits take **no constructor arguments for runtime data** — `Injector` has no
-  `registerFactoryParam`. Pass ids/objects into cubit methods or page widgets.
-- Any new `InjectionModule` must be added to `main.dart::_registerModules()`, or
-  `AppInjector.instance.get<T>()` throws at runtime.
-- Generated files (`*.graphql.dart`, `*.gr.dart`, `translations*.dart`) are
-  committed. Run `melos gen` / `melos l10n` and commit the outputs; never
-  hand-edit them.
-- Use Dart **primary constructors**: the constructor lives in the class header
-  (`class const PostCard({required final Post post, super.key})`). Never use the
-  old separate constructor-body style.
-- Imports are always `package:` imports.
-- Never import `flutter/material.dart`, `flutter/cupertino.dart`, or
-  `material_ui` in `app/lib` — use `package:design_system/design_system.dart`.
-- Do not use `BlocProvider.value` in app code (tests only). Pages always create
-  their cubit in `wrappedRoute`.
-- A sheet with text input gets its own zero-dependency cubit, created in a
-  `BlocProvider` inside the sheet; do not keep `FormInput` fields in a
-  `StatefulWidget` (see `async-state` → form validation, canonical
-  `app/lib/features/gifts/presentation/gifts/widgets/`).
-- Do not invent server data. If the service cannot confirm a value, the UI says
-  so — empty and unknown are valid states.
+- There is no domain or use-case layer: cubits call repositories directly.
+- Cubits take no runtime constructor arguments. Pass ids into methods or use route parameters.
+- A sheet with text input gets its own cubit, created in a `BlocProvider` inside the sheet (`gifts/presentation/gift_sheet`); do not
+  keep `FormInput` fields in a `StatefulWidget`.
+- Do not use `BlocProvider.value` in app code (tests only); the page creates its cubit.
+- Never hand-edit generated files; commit the output of `melos gen` and `melos l10n`.
+- Do not invent server data. Unknown and empty are valid states, and the UI says so.
