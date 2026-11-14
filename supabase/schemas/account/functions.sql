@@ -45,8 +45,6 @@ begin
     perform private.erase_profile(v_id);
     v_n := v_n + 1;
   end loop;
-  delete from private.rate_limits where window_start < now() - interval '2 days';
-  delete from private.notification_outbox where sent_at < now() - interval '30 days';
   return v_n;
 end $$;
 grant execute on function public.request_account_deletion(), public.cancel_account_deletion() to authenticated;

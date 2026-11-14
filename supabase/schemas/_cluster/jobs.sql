@@ -3,3 +3,4 @@ select cron.schedule('weekly-card-drafts', '5 * * * *', 'select private.generate
 select cron.schedule('expire-pauses', '*/10 * * * *', 'select private.expire_pauses()');
 select cron.schedule('purge-deleted-accounts', '17 3 * * *', 'select private.purge_deleted_accounts()');
 select cron.schedule('daily-reminders', '0 * * * *', 'select private.enqueue_daily_reminders()');
+select cron.schedule('prune-expired-rows', '27 3 * * *', 'select private.prune_expired_rows()');
