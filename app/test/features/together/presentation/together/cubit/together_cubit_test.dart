@@ -117,9 +117,9 @@ void main() {
   test('the gifts entry counts the wishes shared with the partner', () async {
     when(giftsRepository.getGiftIdeas).thenAnswer(
       (_) async => const [
-        GiftIdea(id: 'g1', title: 'Livro', coupleId: 'c1', isMine: true),
+        GiftIdea(id: 'g1', title: 'Livro', isShared: true, isMine: true),
         GiftIdea(id: 'g2', title: 'Chá', isMine: true),
-        GiftIdea(id: 'g3', title: 'Flor', coupleId: 'c1'),
+        GiftIdea(id: 'g3', title: 'Flor', isShared: true),
       ],
     );
     final cubit = build();

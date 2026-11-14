@@ -10,7 +10,7 @@ const int giftNoteMaxLength = 1000;
 
 /// One wish on a person's gift page.
 ///
-/// A null [coupleId] means only the author sees it; a set one means the current
+/// When [isShared] is false only the author sees it; when it is true the current
 /// partner can read it too. [isMine] is false for items the partner shared.
 final class const GiftIdea({
   required final String id,
@@ -18,7 +18,7 @@ final class const GiftIdea({
   final String? note,
   final GiftBudget? budget,
   final GiftIdeaStatus status = GiftIdeaStatus.idea,
-  final String? coupleId,
+  final bool isShared = false,
   final bool isMine = false,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
@@ -30,9 +30,6 @@ final class const GiftIdea({
     isMine: true,
   );
 
-  /// Whether the partner can see this wish.
-  bool get isShared => coupleId != null;
-
   GiftIdea withDetails({
     required String title,
     required String? note,
@@ -43,20 +40,20 @@ final class const GiftIdea({
     note: note,
     budget: budget,
     status: status,
-    coupleId: coupleId,
+    isShared: isShared,
     isMine: isMine,
   );
 
-  GiftIdea withCoupleId(String? coupleId) => GiftIdea(
+  GiftIdea withShared({required bool isShared}) => GiftIdea(
     id: id,
     title: title,
     note: note,
     budget: budget,
     status: status,
-    coupleId: coupleId,
+    isShared: isShared,
     isMine: isMine,
   );
 
   @override
-  List<Object?> get props => [id, title, note, budget, status, coupleId, isMine];
+  List<Object?> get props => [id, title, note, budget, status, isShared, isMine];
 }

@@ -11,8 +11,8 @@ class _MockGiftsRepository() extends Mock implements GiftsRepository;
 void main() {
   late GiftsRepository repository;
 
-  const shared = GiftIdea(id: 'g1', title: 'Livro', coupleId: 'couple-1', isMine: true);
-  const partnerShared = GiftIdea(id: 'g2', title: 'Vinil', coupleId: 'couple-1');
+  const shared = GiftIdea(id: 'g1', title: 'Livro', isShared: true, isMine: true);
+  const partnerShared = GiftIdea(id: 'g2', title: 'Vinil', isShared: true);
   const private = GiftIdea(id: 'g3', title: 'Caneca', isMine: true);
 
   setUp(() {

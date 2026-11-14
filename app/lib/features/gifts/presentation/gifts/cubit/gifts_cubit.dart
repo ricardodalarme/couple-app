@@ -45,7 +45,7 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
       title: trimmed,
       note: _clean(note),
       budget: budget,
-      coupleId: coupleId,
+      isShared: coupleId != null,
       isMine: true,
     );
     emit(
@@ -117,7 +117,7 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
       previous: state.currentGifts,
       next: [
         for (final item in state.currentGifts)
-          if (item.id == gift.id) item.withCoupleId(coupleId) else item,
+          if (item.id == gift.id) item.withShared(isShared: coupleId != null) else item,
       ],
       action: () => _giftsRepository.setGiftWishVisibility(id: gift.id, coupleId: coupleId),
     );

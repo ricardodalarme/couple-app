@@ -10,15 +10,15 @@ void main() {
     expect(gift.isMine, isFalse);
   });
 
-  test('a wish with a couple id is shared', () {
-    const gift = GiftIdea(id: 'g1', title: 'Livro', coupleId: 'couple-1', isMine: true);
+  test('a shared wish', () {
+    const gift = GiftIdea(id: 'g1', title: 'Livro', isShared: true, isMine: true);
 
     expect(gift.isShared, isTrue);
     expect(gift.isMine, isTrue);
   });
 
   test('details keep identity and visibility', () {
-    const gift = GiftIdea(id: 'g1', title: 'Livro', coupleId: 'couple-1', isMine: true);
+    const gift = GiftIdea(id: 'g1', title: 'Livro', isShared: true, isMine: true);
 
     final edited = gift.withDetails(
       title: 'Livro de poemas',
@@ -34,10 +34,10 @@ void main() {
     expect(edited.isMine, isTrue);
   });
 
-  test('changing the couple id changes only visibility', () {
+  test('changing visibility changes only visibility', () {
     const gift = GiftIdea(id: 'g1', title: 'Livro', isMine: true);
 
-    expect(gift.withCoupleId('couple-1').isShared, isTrue);
-    expect(gift.withCoupleId(null).isShared, isFalse);
+    expect(gift.withShared(isShared: true).isShared, isTrue);
+    expect(gift.withShared(isShared: false).isShared, isFalse);
   });
 }

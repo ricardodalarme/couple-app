@@ -138,14 +138,14 @@ const documentNodeQueryGiftPage = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'authorId'),
+                              name: NameNode(value: 'isMine'),
                               alias: null,
                               arguments: [],
                               directives: [],
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'coupleId'),
+                              name: NameNode(value: 'isShared'),
                               alias: null,
                               arguments: [],
                               directives: [],
@@ -443,8 +443,8 @@ class QueryGiftPagegiftIdeasCollectionedges {
 class QueryGiftPagegiftIdeasCollectionedgesnode {
   QueryGiftPagegiftIdeasCollectionedgesnode({
     required this.id,
-    required this.authorId,
-    this.coupleId,
+    this.isMine,
+    this.isShared,
     required this.title,
     this.note,
     this.budget,
@@ -454,8 +454,8 @@ class QueryGiftPagegiftIdeasCollectionedgesnode {
 
   factory QueryGiftPagegiftIdeasCollectionedgesnode.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$authorId = json['authorId'];
-    final l$coupleId = json['coupleId'];
+    final l$isMine = json['isMine'];
+    final l$isShared = json['isShared'];
     final l$title = json['title'];
     final l$note = json['note'];
     final l$budget = json['budget'];
@@ -463,8 +463,8 @@ class QueryGiftPagegiftIdeasCollectionedgesnode {
     final l$$__typename = json['__typename'];
     return QueryGiftPagegiftIdeasCollectionedgesnode(
       id: (l$id as String),
-      authorId: (l$authorId as String),
-      coupleId: (l$coupleId as String?),
+      isMine: (l$isMine as bool?),
+      isShared: (l$isShared as bool?),
       title: (l$title as String),
       note: (l$note as String?),
       budget: l$budget == null ? null : fromJsonEnumGiftBudget((l$budget as String)),
@@ -475,9 +475,9 @@ class QueryGiftPagegiftIdeasCollectionedgesnode {
 
   final String id;
 
-  final String authorId;
+  final bool? isMine;
 
-  final String? coupleId;
+  final bool? isShared;
 
   final String title;
 
@@ -493,10 +493,10 @@ class QueryGiftPagegiftIdeasCollectionedgesnode {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$authorId = authorId;
-    _resultData['authorId'] = l$authorId;
-    final l$coupleId = coupleId;
-    _resultData['coupleId'] = l$coupleId;
+    final l$isMine = isMine;
+    _resultData['isMine'] = l$isMine;
+    final l$isShared = isShared;
+    _resultData['isShared'] = l$isShared;
     final l$title = title;
     _resultData['title'] = l$title;
     final l$note = note;
@@ -513,8 +513,8 @@ class QueryGiftPagegiftIdeasCollectionedgesnode {
   @override
   int get hashCode {
     final l$id = id;
-    final l$authorId = authorId;
-    final l$coupleId = coupleId;
+    final l$isMine = isMine;
+    final l$isShared = isShared;
     final l$title = title;
     final l$note = note;
     final l$budget = budget;
@@ -522,8 +522,8 @@ class QueryGiftPagegiftIdeasCollectionedgesnode {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$authorId,
-      l$coupleId,
+      l$isMine,
+      l$isShared,
       l$title,
       l$note,
       l$budget,
@@ -545,14 +545,14 @@ class QueryGiftPagegiftIdeasCollectionedgesnode {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (l$authorId != lOther$authorId) {
+    final l$isMine = isMine;
+    final lOther$isMine = other.isMine;
+    if (l$isMine != lOther$isMine) {
       return false;
     }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (l$coupleId != lOther$coupleId) {
+    final l$isShared = isShared;
+    final lOther$isShared = other.isShared;
+    if (l$isShared != lOther$isShared) {
       return false;
     }
     final l$title = title;

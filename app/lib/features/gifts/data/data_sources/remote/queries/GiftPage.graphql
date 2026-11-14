@@ -7,8 +7,8 @@ query GiftPage {
     edges {
       node {
         id
-        authorId
-        coupleId
+        isMine
+        isShared
         title
         note
         budget

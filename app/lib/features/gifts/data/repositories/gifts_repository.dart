@@ -1,4 +1,3 @@
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/gifts_data_source.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/mappers/gift_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
@@ -9,7 +8,6 @@ import 'package:logger/logger.dart';
 class GiftsRepository({
   required final GiftsDataSource _dataSource,
   required final TogetherRepository _togetherRepository,
-  required final AuthenticationRepository _authenticationRepository,
 }) {
   final Logger _logger = Logger('GiftsRepository');
 
@@ -18,20 +16,17 @@ class GiftsRepository({
 
   Future<List<GiftIdea>> getGiftIdeas() async {
     try {
-      final coupleId = await _togetherRepository.getCoupleId();
-      final selfId = _authenticationRepository.currentUserId;
-
       return [
         for (final node in await _dataSource.getGiftIdeas())
-          if (node.authorId == selfId || (coupleId != null && node.coupleId == coupleId))
+          if (node.isMine == true || node.isShared == true)
             GiftIdea(
               id: node.id,
               title: node.title,
               note: node.note,
               budget: node.budget?.toModel(),
               status: node.status.toModel(),
-              coupleId: node.coupleId == coupleId ? node.coupleId : null,
-              isMine: node.authorId == selfId,
+              isShared: node.isShared ?? false,
+              isMine: node.isMine ?? false,
             ),
       ];
     } catch (e, stack) {

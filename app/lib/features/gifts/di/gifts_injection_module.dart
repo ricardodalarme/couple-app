@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/gifts_data_source.dart';
 import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:flutter_bloc_starter/features/gifts/presentation/gifts/cubit/gifts_cubit.dart';
@@ -16,7 +15,6 @@ class GiftsInjectionModule() implements InjectionModule {
       () => GiftsRepository(
         dataSource: injector.get<GiftsDataSource>(),
         togetherRepository: injector.get<TogetherRepository>(),
-        authenticationRepository: injector.get<AuthenticationRepository>(),
       ),
     )
     ..registerFactory<GiftsCubit>(
