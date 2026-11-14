@@ -19,7 +19,7 @@ void main() {
           'id': 'c1',
           'status': 'sent',
           'weekStart': '2026-11-09',
-          'authorId': 'a1',
+          'isMine': true,
           '__typename': 'Cards',
         },
         '__typename': 'Query',
@@ -29,7 +29,7 @@ void main() {
     final card = await dataSource.getCard('c1');
 
     expect(card?.id, 'c1');
-    expect(card?.authorId, 'a1');
+    expect(card?.isMine, isTrue);
   });
 
   test('a card that is gone or not visible reads as not found', () async {

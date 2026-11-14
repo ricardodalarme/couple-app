@@ -4,7 +4,7 @@ query QuestionAnswers($questionSlug: String!) {
     edges {
       node {
         id
-        authorId
+        isMine
         coupleId
         questionSlug
         body

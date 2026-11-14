@@ -4,19 +4,13 @@ import 'package:flutter_bloc_starter/features/cards/data/models/card_reaction.da
 import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
 import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockCardsRepository() extends Mock implements CardsRepository;
 
-class _MockProfileRepository() extends Mock implements ProfileRepository;
-
 void main() {
   late CardsRepository cards;
-  late ProfileRepository profile;
 
   final card = SundayCard(
     id: 'c1',
@@ -29,14 +23,11 @@ void main() {
 
   setUp(() {
     cards = _MockCardsRepository();
-    profile = _MockProfileRepository();
-    when(() => profile.getMyProfile())
-        .thenAnswer((_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials));
     when(() => cards.markRead(any())).thenAnswer((_) async {});
   });
 
   void stubDetail(CardDetail detail) =>
-      when(() => cards.getDetail(id: 'c1', selfId: 'me')).thenAnswer((_) async => detail);
+      when(() => cards.getDetail(id: 'c1')).thenAnswer((_) async => detail);
 
   void stubReaction({required String? result}) => when(
     () => cards.react(
@@ -46,7 +37,7 @@ void main() {
     ),
   ).thenAnswer((_) async => result);
 
-  CardDetailCubit build() => CardDetailCubit(cardsRepository: cards, profileRepository: profile);
+  CardDetailCubit build() => CardDetailCubit(cardsRepository: cards);
 
   test('loading an incoming card marks it read once', () async {
     stubDetail(incoming);

@@ -28,7 +28,7 @@ typedef GameSessionsRecord = ({
 
 typedef GameItemRecord = ({String slug, String title, String? body});
 
-typedef GameAnswerRecord = ({String authorId, int idx, String answer});
+typedef GameAnswerRecord = ({bool isMine, int idx, String answer});
 
 class GamesDataSource({required final GQLClient _client}) {
   Future<GameSessionsRecord> getSessions() async {
@@ -107,7 +107,7 @@ class GamesDataSource({required final GQLClient _client}) {
 
     return [
       for (final edge in edges)
-        (authorId: edge.node.authorId, idx: edge.node.idx, answer: edge.node.answer),
+        (isMine: edge.node.isMine ?? false, idx: edge.node.idx, answer: edge.node.answer),
     ];
   }
 

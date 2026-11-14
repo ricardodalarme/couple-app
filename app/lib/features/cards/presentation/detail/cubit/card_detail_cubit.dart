@@ -4,15 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/card_detail.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/card_reaction.dart';
 import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 
 part 'card_detail_state.dart';
 
 /// Reads one card and lets its recipient answer it.
-class CardDetailCubit({
-  required final CardsRepository _cardsRepository,
-  required final ProfileRepository _profileRepository,
-}) extends Cubit<CardDetailState> {
+class CardDetailCubit({required final CardsRepository _cardsRepository})
+    extends Cubit<CardDetailState> {
   this : super(const CardDetailState());
 
   String? _markedCardId;
@@ -20,8 +17,7 @@ class CardDetailCubit({
   Future<void> load(String cardId) async {
     if (state.card is! Success) emit(state.copyWith(card: const Loading()));
     try {
-      final selfId = (await _profileRepository.getMyProfile()).id;
-      final detail = await _cardsRepository.getDetail(id: cardId, selfId: selfId);
+      final detail = await _cardsRepository.getDetail(id: cardId);
       emit(
         state.copyWith(
           card: Success(detail),

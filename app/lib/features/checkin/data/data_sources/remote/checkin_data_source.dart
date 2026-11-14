@@ -5,7 +5,9 @@ import 'package:flutter_bloc_starter/features/checkin/data/data_sources/remote/q
 import 'package:flutter_bloc_starter/features/checkin/data/data_sources/remote/queries/generated/CheckinToday.graphql.dart';
 import 'package:network/network.dart';
 
-typedef CheckinAnswerRecord = ({String id, String authorId, int question, String body});
+typedef CheckinAnswerRecord = ({String id, bool isMine, int question, String body});
+
+typedef CheckinAnswerWriteRecord = ({String id, int question, String body});
 
 /// The server's local day, the person's couple and the partner's display name.
 typedef CheckinTodayRecord = ({
@@ -13,7 +15,6 @@ typedef CheckinTodayRecord = ({
   String? partnerName,
   String? coupleId,
   bool isPaired,
-  String selfId,
 });
 
 class CheckinDataSource({required final GQLClient _client}) {
@@ -23,15 +24,13 @@ class CheckinDataSource({required final GQLClient _client}) {
     );
     final data = validateResponseData<QueryCheckinToday, QueryCheckinToday>(response);
     final localDate = data.today?.localDate;
-    final selfId = data.myProfile?.id;
-    if (localDate == null || selfId == null) throw const NoDataException();
+    if (localDate == null || data.myProfile == null) throw const NoDataException();
 
     return (
       localDate: localDate,
       partnerName: data.today?.partnerName,
       coupleId: data.myCouple?.id,
       isPaired: data.today?.isPaired ?? false,
-      selfId: selfId,
     );
   }
 
@@ -54,14 +53,14 @@ class CheckinDataSource({required final GQLClient _client}) {
       for (final edge in edges)
         (
           id: edge.node.id,
-          authorId: edge.node.authorId,
+          isMine: edge.node.isMine ?? false,
           question: edge.node.question,
           body: edge.node.body,
         ),
     ];
   }
 
-  Future<CheckinAnswerRecord> saveAnswer({
+  Future<CheckinAnswerWriteRecord> saveAnswer({
     required String? id,
     required String coupleId,
     required DateTime weekStart,
@@ -75,7 +74,7 @@ class CheckinDataSource({required final GQLClient _client}) {
     return _update(id: id, body: body);
   }
 
-  Future<CheckinAnswerRecord> _insert({
+  Future<CheckinAnswerWriteRecord> _insert({
     required String coupleId,
     required DateTime weekStart,
     required int question,
@@ -96,10 +95,10 @@ class CheckinDataSource({required final GQLClient _client}) {
       getData: (data) => data.insertIntoCheckinAnswersCollection?.records.firstOrNull,
     );
 
-    return (id: node.id, authorId: node.authorId, question: node.question, body: node.body);
+    return (id: node.id, question: node.question, body: node.body);
   }
 
-  Future<CheckinAnswerRecord> _update({required String id, required String body}) async {
+  Future<CheckinAnswerWriteRecord> _update({required String id, required String body}) async {
     final response = await _client.mutate(
       OptionsMutationUpdateCheckinAnswer(
         variables: VariablesMutationUpdateCheckinAnswer(id: id, body: body),
@@ -110,7 +109,7 @@ class CheckinDataSource({required final GQLClient _client}) {
       getData: (data) => data.updateCheckinAnswersCollection.records.firstOrNull,
     );
 
-    return (id: node.id, authorId: node.authorId, question: node.question, body: node.body);
+    return (id: node.id, question: node.question, body: node.body);
   }
 
   Future<void> deleteAnswer(String id) async {

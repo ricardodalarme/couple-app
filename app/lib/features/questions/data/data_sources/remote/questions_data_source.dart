@@ -15,7 +15,9 @@ typedef QuestionPromptRecord = ({
   String selfId,
 });
 
-typedef QuestionAnswerRecord = ({String id, String authorId, String? coupleId, String body});
+typedef QuestionAnswerRecord = ({String id, bool isMine, String? coupleId, String body});
+
+typedef QuestionAnswerWriteRecord = ({String id, String? coupleId, String body});
 
 /// The visible answer rows for one question and whether the partner answered.
 typedef QuestionAnswersRecord = ({List<QuestionAnswerRecord> rows, bool partnerAnswered});
@@ -57,7 +59,7 @@ class QuestionsDataSource({required final GQLClient _client}) {
         for (final edge in edges)
           (
             id: edge.node.id,
-            authorId: edge.node.authorId,
+            isMine: edge.node.isMine ?? false,
             coupleId: edge.node.coupleId,
             body: edge.node.body,
           ),
@@ -66,7 +68,7 @@ class QuestionsDataSource({required final GQLClient _client}) {
     );
   }
 
-  Future<QuestionAnswerRecord> insertAnswer({
+  Future<QuestionAnswerWriteRecord> insertAnswer({
     required String questionSlug,
     required String body,
     String? coupleId,
@@ -85,7 +87,7 @@ class QuestionsDataSource({required final GQLClient _client}) {
       getData: (data) => data.insertIntoQuestionAnswersCollection?.records.firstOrNull,
     );
 
-    return (id: node.id, authorId: node.authorId, coupleId: node.coupleId, body: node.body);
+    return (id: node.id, coupleId: node.coupleId, body: node.body);
   }
 
   Future<void> deleteAnswer(String id) async {

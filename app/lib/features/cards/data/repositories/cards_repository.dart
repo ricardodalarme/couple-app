@@ -34,7 +34,7 @@ class CardsRepository({
   }
 
   /// One page of the sent and received cards, newest first.
-  Future<CardSummaryPage> getHistory({required String selfId, String? after}) async {
+  Future<CardSummaryPage> getHistory({String? after}) async {
     try {
       final result = await _dataSource.getCards(first: cardPageSize, after: after);
 
@@ -43,7 +43,7 @@ class CardsRepository({
           for (final edge in result.edges)
             CardSummary(
               id: edge.node.id,
-              isMine: edge.node.authorId == selfId,
+              isMine: edge.node.isMine ?? false,
               sentAt: edge.node.sentAt ?? edge.node.weekStart,
               itemCount: edge.node.items?.edges.length ?? 0,
               reaction: edge.node.reaction?.reaction,
@@ -61,14 +61,14 @@ class CardsRepository({
   }
 
   /// One card with its author and the answer, or a not-found failure.
-  Future<CardDetail> getDetail({required String id, required String selfId}) async {
+  Future<CardDetail> getDetail({required String id}) async {
     try {
       final node = await _dataSource.getCard(id);
       if (node == null) throw const LocalizedException(l10nKey: 'CARD_NOT_FOUND');
 
       return CardDetail(
         card: node.toModel(),
-        isMine: node.authorId == selfId,
+        isMine: node.isMine ?? false,
         authorName: node.author?.displayName,
         recipientName: node.recipient?.displayName,
         reaction: node.reaction?.reaction,

@@ -4,7 +4,6 @@ mutation InsertQuestionAnswer($questionSlug: String!, $body: String!, $coupleId:
   ) {
     records {
       id
-      authorId
       coupleId
       questionSlug
       body

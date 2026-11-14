@@ -3,27 +3,22 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/card_summary.dart';
 import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 
 part 'cards_list_state.dart';
 
-class CardsListCubit({
-  required final CardsRepository _cardsRepository,
-  required final ProfileRepository _profileRepository,
-}) extends Cubit<CardsListState> {
+class CardsListCubit({required final CardsRepository _cardsRepository})
+    extends Cubit<CardsListState> {
   this : super(const CardsListState());
 
   /// Bumped by every first-page read so an older page request cannot overwrite it.
   int _generation = 0;
-  String? _selfId;
 
   /// Reads the first page again; the list on screen stays until the new one arrives.
   Future<void> load() async {
     final generation = ++_generation;
     if (state.cards is! Success) emit(const CardsListState());
     try {
-      final selfId = _selfId ??= (await _profileRepository.getMyProfile()).id;
-      final page = await _cardsRepository.getHistory(selfId: selfId);
+      final page = await _cardsRepository.getHistory();
       if (generation != _generation) return;
       emit(
         state.copyWith(
@@ -44,14 +39,13 @@ class CardsListCubit({
   /// Appends the next page; ignored while one is loading or when there is none.
   Future<void> loadMore() async {
     final current = state.cards;
-    final selfId = _selfId;
-    if (current is! Success<List<CardSummary>> || selfId == null) return;
+    if (current is! Success<List<CardSummary>>) return;
     if (!state.hasNext || state.isLoadingMore) return;
 
     final generation = _generation;
     emit(state.copyWith(isLoadingMore: true));
     try {
-      final page = await _cardsRepository.getHistory(selfId: selfId, after: state.cursor);
+      final page = await _cardsRepository.getHistory(after: state.cursor);
       if (generation != _generation) return;
       final latest = state.cards;
       if (latest is! Success<List<CardSummary>>) return;

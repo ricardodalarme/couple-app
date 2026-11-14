@@ -8,7 +8,7 @@ query MyCards($first: Int, $after: Cursor) {
     edges {
       node {
         id
-        authorId
+        isMine
         sentAt
         weekStart
         items {

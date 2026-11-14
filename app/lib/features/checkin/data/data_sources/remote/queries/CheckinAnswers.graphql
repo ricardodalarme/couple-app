@@ -7,7 +7,7 @@ query CheckinAnswers($weekStart: Date!, $coupleId: UUID!) {
     edges {
       node {
         id
-        authorId
+        isMine
         weekStart
         question
         body

@@ -72,11 +72,11 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
           available: available,
           own: {
             for (final row in answers)
-              if (row.authorId == record.selfId) row.idx: row.answer,
+              if (row.isMine) row.idx: row.answer,
           },
           partner: {
             for (final row in answers)
-              if (row.authorId != record.selfId) row.idx: row.answer,
+              if (!row.isMine) row.idx: row.answer,
           },
         );
       });

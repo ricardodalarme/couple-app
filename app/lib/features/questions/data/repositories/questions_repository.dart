@@ -32,7 +32,7 @@ class QuestionsRepository({required final QuestionsDataSource _dataSource}) {
     for (final row in answers.rows) {
       if (row.coupleId != prompt.coupleId) continue;
       final answer = QuestionAnswer(id: row.id, body: row.body);
-      if (row.authorId == prompt.selfId) {
+      if (row.isMine) {
         own = answer;
       } else {
         partner = answer;

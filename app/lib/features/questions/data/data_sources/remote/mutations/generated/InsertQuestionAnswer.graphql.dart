@@ -230,13 +230,6 @@ const documentNodeMutationInsertQuestionAnswer = DocumentNode(
                         selectionSet: null,
                       ),
                       FieldNode(
-                        name: NameNode(value: 'authorId'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
                         name: NameNode(value: 'coupleId'),
                         alias: null,
                         arguments: [],
@@ -460,7 +453,6 @@ class MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollection {
 class MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords {
   MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords({
     required this.id,
-    required this.authorId,
     this.coupleId,
     required this.questionSlug,
     required this.body,
@@ -471,14 +463,12 @@ class MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords {
     Map<String, dynamic> json,
   ) {
     final l$id = json['id'];
-    final l$authorId = json['authorId'];
     final l$coupleId = json['coupleId'];
     final l$questionSlug = json['questionSlug'];
     final l$body = json['body'];
     final l$$__typename = json['__typename'];
     return MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords(
       id: (l$id as String),
-      authorId: (l$authorId as String),
       coupleId: (l$coupleId as String?),
       questionSlug: (l$questionSlug as String),
       body: (l$body as String),
@@ -487,8 +477,6 @@ class MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords {
   }
 
   final String id;
-
-  final String authorId;
 
   final String? coupleId;
 
@@ -502,8 +490,6 @@ class MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$authorId = authorId;
-    _resultData['authorId'] = l$authorId;
     final l$coupleId = coupleId;
     _resultData['coupleId'] = l$coupleId;
     final l$questionSlug = questionSlug;
@@ -518,12 +504,11 @@ class MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords {
   @override
   int get hashCode {
     final l$id = id;
-    final l$authorId = authorId;
     final l$coupleId = coupleId;
     final l$questionSlug = questionSlug;
     final l$body = body;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$authorId, l$coupleId, l$questionSlug, l$body, l$$__typename]);
+    return Object.hashAll([l$id, l$coupleId, l$questionSlug, l$body, l$$__typename]);
   }
 
   @override
@@ -538,11 +523,6 @@ class MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords {
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
-      return false;
-    }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (l$authorId != lOther$authorId) {
       return false;
     }
     final l$coupleId = coupleId;

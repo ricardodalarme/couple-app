@@ -142,7 +142,7 @@ const documentNodeQueryCardDetail = DocumentNode(
                   directives: [],
                 ),
                 FieldNode(
-                  name: NameNode(value: 'authorId'),
+                  name: NameNode(value: 'isMine'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -387,7 +387,7 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
     this.sentAt,
     this.items,
     this.$__typename = 'Cards',
-    required this.authorId,
+    this.isMine,
     this.author,
     this.recipient,
     this.reaction,
@@ -401,7 +401,7 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
     final l$sentAt = json['sentAt'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
-    final l$authorId = json['authorId'];
+    final l$isMine = json['isMine'];
     final l$author = json['author'];
     final l$recipient = json['recipient'];
     final l$reaction = json['reaction'];
@@ -415,7 +415,7 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
           ? null
           : QueryCardDetailcardsByPkitems.fromJson((l$items as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
-      authorId: (l$authorId as String),
+      isMine: (l$isMine as bool?),
       author: l$author == null
           ? null
           : QueryCardDetailcardsByPkauthor.fromJson((l$author as Map<String, dynamic>)),
@@ -442,7 +442,7 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
 
   final String $__typename;
 
-  final String authorId;
+  final bool? isMine;
 
   final QueryCardDetailcardsByPkauthor? author;
 
@@ -468,8 +468,8 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
     _resultData['items'] = l$items?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
-    final l$authorId = authorId;
-    _resultData['authorId'] = l$authorId;
+    final l$isMine = isMine;
+    _resultData['isMine'] = l$isMine;
     final l$author = author;
     _resultData['author'] = l$author?.toJson();
     final l$recipient = recipient;
@@ -488,7 +488,7 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
     final l$sentAt = sentAt;
     final l$items = items;
     final l$$__typename = $__typename;
-    final l$authorId = authorId;
+    final l$isMine = isMine;
     final l$author = author;
     final l$recipient = recipient;
     final l$reaction = reaction;
@@ -500,7 +500,7 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
       l$sentAt,
       l$items,
       l$$__typename,
-      l$authorId,
+      l$isMine,
       l$author,
       l$recipient,
       l$reaction,
@@ -550,9 +550,9 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
     if (l$$__typename != lOther$$__typename) {
       return false;
     }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (l$authorId != lOther$authorId) {
+    final l$isMine = isMine;
+    final lOther$isMine = other.isMine;
+    if (l$isMine != lOther$isMine) {
       return false;
     }
     final l$author = author;

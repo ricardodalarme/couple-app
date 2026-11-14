@@ -168,7 +168,7 @@ const documentNodeQueryGameAnswers = DocumentNode(
                         selectionSet: SelectionSetNode(
                           selections: [
                             FieldNode(
-                              name: NameNode(value: 'authorId'),
+                              name: NameNode(value: 'isMine'),
                               alias: null,
                               arguments: [],
                               directives: [],
@@ -487,26 +487,26 @@ class QueryGameAnswersgameAnswersCollectionedges {
 
 class QueryGameAnswersgameAnswersCollectionedgesnode {
   QueryGameAnswersgameAnswersCollectionedgesnode({
-    required this.authorId,
+    this.isMine,
     required this.idx,
     required this.answer,
     this.$__typename = 'GameAnswers',
   });
 
   factory QueryGameAnswersgameAnswersCollectionedgesnode.fromJson(Map<String, dynamic> json) {
-    final l$authorId = json['authorId'];
+    final l$isMine = json['isMine'];
     final l$idx = json['idx'];
     final l$answer = json['answer'];
     final l$$__typename = json['__typename'];
     return QueryGameAnswersgameAnswersCollectionedgesnode(
-      authorId: (l$authorId as String),
+      isMine: (l$isMine as bool?),
       idx: (l$idx as int),
       answer: (l$answer as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String authorId;
+  final bool? isMine;
 
   final int idx;
 
@@ -516,8 +516,8 @@ class QueryGameAnswersgameAnswersCollectionedgesnode {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$authorId = authorId;
-    _resultData['authorId'] = l$authorId;
+    final l$isMine = isMine;
+    _resultData['isMine'] = l$isMine;
     final l$idx = idx;
     _resultData['idx'] = l$idx;
     final l$answer = answer;
@@ -529,11 +529,11 @@ class QueryGameAnswersgameAnswersCollectionedgesnode {
 
   @override
   int get hashCode {
-    final l$authorId = authorId;
+    final l$isMine = isMine;
     final l$idx = idx;
     final l$answer = answer;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$authorId, l$idx, l$answer, l$$__typename]);
+    return Object.hashAll([l$isMine, l$idx, l$answer, l$$__typename]);
   }
 
   @override
@@ -545,9 +545,9 @@ class QueryGameAnswersgameAnswersCollectionedgesnode {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (l$authorId != lOther$authorId) {
+    final l$isMine = isMine;
+    final lOther$isMine = other.isMine;
+    if (l$isMine != lOther$isMine) {
       return false;
     }
     final l$idx = idx;

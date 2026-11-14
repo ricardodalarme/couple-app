@@ -197,13 +197,6 @@ const documentNodeMutationUpdateCheckinAnswer = DocumentNode(
                         selectionSet: null,
                       ),
                       FieldNode(
-                        name: NameNode(value: 'authorId'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
                         name: NameNode(value: 'weekStart'),
                         alias: null,
                         arguments: [],
@@ -427,7 +420,6 @@ class MutationUpdateCheckinAnswerupdateCheckinAnswersCollection {
 class MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords {
   MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords({
     required this.id,
-    required this.authorId,
     required this.weekStart,
     required this.question,
     required this.body,
@@ -438,14 +430,12 @@ class MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords {
     Map<String, dynamic> json,
   ) {
     final l$id = json['id'];
-    final l$authorId = json['authorId'];
     final l$weekStart = json['weekStart'];
     final l$question = json['question'];
     final l$body = json['body'];
     final l$$__typename = json['__typename'];
     return MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords(
       id: (l$id as String),
-      authorId: (l$authorId as String),
       weekStart: DateTime.parse((l$weekStart as String)),
       question: (l$question as int),
       body: (l$body as String),
@@ -454,8 +444,6 @@ class MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords {
   }
 
   final String id;
-
-  final String authorId;
 
   final DateTime weekStart;
 
@@ -469,8 +457,6 @@ class MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$authorId = authorId;
-    _resultData['authorId'] = l$authorId;
     final l$weekStart = weekStart;
     _resultData['weekStart'] = ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
     final l$question = question;
@@ -485,12 +471,11 @@ class MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords {
   @override
   int get hashCode {
     final l$id = id;
-    final l$authorId = authorId;
     final l$weekStart = weekStart;
     final l$question = question;
     final l$body = body;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$authorId, l$weekStart, l$question, l$body, l$$__typename]);
+    return Object.hashAll([l$id, l$weekStart, l$question, l$body, l$$__typename]);
   }
 
   @override
@@ -505,11 +490,6 @@ class MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords {
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
-      return false;
-    }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (l$authorId != lOther$authorId) {
       return false;
     }
     final l$weekStart = weekStart;

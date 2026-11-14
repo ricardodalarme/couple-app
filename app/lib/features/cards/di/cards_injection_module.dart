@@ -22,16 +22,10 @@ class CardsInjectionModule() implements InjectionModule {
       ),
     )
     ..registerFactory<CardsListCubit>(
-      () => CardsListCubit(
-        cardsRepository: injector.get<CardsRepository>(),
-        profileRepository: injector.get<ProfileRepository>(),
-      ),
+      () => CardsListCubit(cardsRepository: injector.get<CardsRepository>()),
     )
     ..registerFactory<CardDetailCubit>(
-      () => CardDetailCubit(
-        cardsRepository: injector.get<CardsRepository>(),
-        profileRepository: injector.get<ProfileRepository>(),
-      ),
+      () => CardDetailCubit(cardsRepository: injector.get<CardsRepository>()),
     )
     ..registerFactory<SundayCardCubit>(
       () => SundayCardCubit(

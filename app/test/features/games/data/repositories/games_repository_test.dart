@@ -169,13 +169,13 @@ void main() {
     expect(play.available.map((item) => item.slug), ['a']);
   });
 
-  test('splits the answers the server returns by author', () async {
+  test('splits the answers by the server ownership flag', () async {
     stubSessions(sessions: [record(status: EnumGameStatus.finished)]);
     stubItems(const [(slug: 'a', title: 'A?', body: null), (slug: 'b', title: 'B?', body: null)]);
     when(() => dataSource.getAnswers('s1')).thenAnswer(
       (_) async => [
-        (authorId: 'me', idx: 0, answer: pickSelf),
-        (authorId: 'partner', idx: 0, answer: pickPartner),
+        (isMine: true, idx: 0, answer: pickSelf),
+        (isMine: false, idx: 0, answer: pickPartner),
       ],
     );
 

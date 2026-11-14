@@ -24,31 +24,35 @@ void main() {
     String? partnerName = 'Marina',
     String? coupleId = 'couple-1',
     bool isPaired = true,
-    String selfId = 'me',
   }) => (
     localDate: localDate ?? sunday,
     partnerName: partnerName,
     coupleId: coupleId,
     isPaired: isPaired,
-    selfId: selfId,
   );
 
   CheckinAnswerRecord row({
     String id = 'a1',
-    String authorId = 'me',
+    bool isMine = true,
     int question = 1,
     String body = 'Foi uma boa semana.',
-  }) => (id: id, authorId: authorId, question: question, body: body);
+  }) => (id: id, isMine: isMine, question: question, body: body);
+
+  CheckinAnswerWriteRecord writeRow({
+    String id = 'a1',
+    int question = 1,
+    String body = 'Foi uma boa semana.',
+  }) => (id: id, question: question, body: body);
 
   Map<int, CheckinAnswerRecord> rowsFor({
     required int count,
-    String authorId = 'me',
+    bool isMine = true,
     String prefix = 'a',
   }) => {
     for (var question = 1; question <= count; question++)
       question: row(
         id: '$prefix$question',
-        authorId: authorId,
+        isMine: isMine,
         question: question,
         body: 'Resposta $question',
       ),
@@ -90,7 +94,7 @@ void main() {
   test('own and partner rows are kept apart', () async {
     stubAnswers([
       ...rowsFor(count: 1).values,
-      ...rowsFor(count: 2, authorId: 'partner', prefix: 'p').values,
+      ...rowsFor(count: 2, isMine: false, prefix: 'p').values,
     ]);
 
     final week = await repository.getWeek();
@@ -105,7 +109,7 @@ void main() {
   test('four own rows and four partner rows reveal together', () async {
     stubAnswers([
       ...rowsFor(count: 4).values,
-      ...rowsFor(count: 4, authorId: 'partner', prefix: 'p').values,
+      ...rowsFor(count: 4, isMine: false, prefix: 'p').values,
     ]);
 
     final week = await repository.getWeek();
@@ -118,7 +122,7 @@ void main() {
   test('three own rows keep the reveal hidden even with four partner rows', () async {
     stubAnswers([
       ...rowsFor(count: 3).values,
-      ...rowsFor(count: 4, authorId: 'partner', prefix: 'p').values,
+      ...rowsFor(count: 4, isMine: false, prefix: 'p').values,
     ]);
 
     final week = await repository.getWeek();
@@ -130,7 +134,7 @@ void main() {
   test('four own rows and one partner row must not reveal', () async {
     stubAnswers([
       ...rowsFor(count: 4).values,
-      ...rowsFor(count: 1, authorId: 'partner', prefix: 'p').values,
+      ...rowsFor(count: 1, isMine: false, prefix: 'p').values,
     ]);
 
     final week = await repository.getWeek();
@@ -188,7 +192,7 @@ void main() {
         question: any(named: 'question'),
         body: any(named: 'body'),
       ),
-    ).thenAnswer((_) async => row(id: 'a1', body: 'Texto novo'));
+    ).thenAnswer((_) async => writeRow(id: 'a1', body: 'Texto novo'));
     final week = CheckinWeek(
       weekStart: monday,
       coupleId: 'couple-1',
@@ -219,7 +223,7 @@ void main() {
         question: any(named: 'question'),
         body: any(named: 'body'),
       ),
-    ).thenAnswer((_) async => row(question: 2, body: 'Uma resposta'));
+    ).thenAnswer((_) async => writeRow(question: 2, body: 'Uma resposta'));
 
     await repository.saveAnswer(
       week: CheckinWeek(weekStart: monday, coupleId: 'couple-1', isPaired: true),
@@ -253,7 +257,7 @@ void main() {
       attempts++;
       if (attempts == 1) throw const LocalizedException(l10nKey: '23505');
 
-      return row(id: 'a1', body: 'Oi');
+      return writeRow(id: 'a1', body: 'Oi');
     });
 
     await repository.saveAnswer(

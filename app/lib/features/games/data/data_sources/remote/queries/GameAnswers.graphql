@@ -2,7 +2,7 @@ query GameAnswers($sessionId: UUID!) {
   gameAnswersCollection(filter: { sessionId: { eq: $sessionId } }, first: 120) {
     edges {
       node {
-        authorId
+        isMine
         idx
         answer
       }

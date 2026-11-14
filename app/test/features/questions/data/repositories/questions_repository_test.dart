@@ -28,11 +28,8 @@ void main() {
     selfId: selfId,
   );
 
-  QuestionAnswerRecord row({
-    String id = 'a1',
-    String authorId = 'me',
-    String? coupleId = 'couple-1',
-  }) => (id: id, authorId: authorId, coupleId: coupleId, body: 'Foi na festa da Ana.');
+  QuestionAnswerRecord row({String id = 'a1', bool isMine = true, String? coupleId = 'couple-1'}) =>
+      (id: id, isMine: isMine, coupleId: coupleId, body: 'Foi na festa da Ana.');
 
   void stubAnswers({List<QuestionAnswerRecord> rows = const [], bool partnerAnswered = false}) {
     when(() => dataSource.getAnswers('first-meeting'))
@@ -54,9 +51,7 @@ void main() {
         body: any(named: 'body'),
         coupleId: any(named: 'coupleId'),
       ),
-    ).thenAnswer(
-      (_) async => (id: 'a2', authorId: 'me', coupleId: 'couple-1', body: 'Resposta nova'),
-    );
+    ).thenAnswer((_) async => (id: 'a2', coupleId: 'couple-1', body: 'Resposta nova'));
     when(() => dataSource.deleteAnswer(any())).thenAnswer((_) async {});
   });
 
@@ -74,7 +69,7 @@ void main() {
     stubAnswers(
       rows: [
         row(),
-        row(id: 'p1', authorId: 'partner'),
+        row(id: 'p1', isMine: false),
       ],
       partnerAnswered: true,
     );
@@ -101,7 +96,7 @@ void main() {
     stubAnswers(
       rows: [
         row(id: 'old', coupleId: 'old-couple'),
-        row(id: 'p1', authorId: 'partner'),
+        row(id: 'p1', isMine: false),
       ],
       partnerAnswered: true,
     );
@@ -115,7 +110,7 @@ void main() {
     stubAnswers(
       rows: [
         row(),
-        row(id: 'p1', authorId: 'partner'),
+        row(id: 'p1', isMine: false),
       ],
       partnerAnswered: true,
     );
@@ -192,7 +187,7 @@ void main() {
       inserts++;
       if (inserts == 1) throw const LocalizedException(l10nKey: networkErrorCode);
 
-      return (id: 'restored', authorId: 'me', coupleId: 'couple-1', body: 'Foi na festa da Ana.');
+      return (id: 'restored', coupleId: 'couple-1', body: 'Foi na festa da Ana.');
     });
     stubAnswers(rows: [row()]);
     final thread = await repository.getThread();
@@ -229,7 +224,7 @@ void main() {
       inserts++;
       if (inserts == 1) throw const LocalizedException(l10nKey: '23505');
 
-      return (id: 'a2', authorId: 'me', coupleId: 'couple-1', body: 'Resposta nova');
+      return (id: 'a2', coupleId: 'couple-1', body: 'Resposta nova');
     });
     when(() => dataSource.getPrompt()).thenAnswer((_) async => prompt());
     stubAnswers(rows: [row(id: 'old')]);

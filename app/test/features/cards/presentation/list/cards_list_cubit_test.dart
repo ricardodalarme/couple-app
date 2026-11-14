@@ -4,34 +4,25 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/card_summary.dart';
 import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/list/cubit/cards_list_cubit.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockCardsRepository() extends Mock implements CardsRepository;
-
-class _MockProfileRepository() extends Mock implements ProfileRepository;
 
 CardSummary _card(String id, {bool mine = true}) =>
     CardSummary(id: id, isMine: mine, sentAt: DateTime(2026, 11, 2), itemCount: 3);
 
 void main() {
   late CardsRepository cards;
-  late ProfileRepository profile;
 
   setUp(() {
     cards = _MockCardsRepository();
-    profile = _MockProfileRepository();
-    when(() => profile.getMyProfile())
-        .thenAnswer((_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials));
   });
 
-  CardsListCubit build() => CardsListCubit(cardsRepository: cards, profileRepository: profile);
+  CardsListCubit build() => CardsListCubit(cardsRepository: cards);
 
   void stub(CardSummaryPage page, {String? after}) =>
-      when(() => cards.getHistory(selfId: 'me', after: after)).thenAnswer((_) async => page);
+      when(() => cards.getHistory(after: after)).thenAnswer((_) async => page);
 
   test('load shows sent and received cards in the order the server gave', () async {
     stub(CardSummaryPage(items: [_card('a'), _card('b', mine: false)], hasNext: false));
@@ -68,12 +59,8 @@ void main() {
   });
 
   test('a failed first load shows a failure', () async {
-    when(
-      () => cards.getHistory(
-        selfId: any(named: 'selfId'),
-        after: any(named: 'after'),
-      ),
-    ).thenAnswer((_) async => throw Exception());
+    when(() => cards.getHistory(after: any(named: 'after')))
+        .thenAnswer((_) async => throw Exception());
     final cubit = build();
 
     await cubit.load();
@@ -86,12 +73,8 @@ void main() {
     final cubit = build();
     await cubit.load();
 
-    when(
-      () => cards.getHistory(
-        selfId: any(named: 'selfId'),
-        after: any(named: 'after'),
-      ),
-    ).thenAnswer((_) async => throw Exception());
+    when(() => cards.getHistory(after: any(named: 'after')))
+        .thenAnswer((_) async => throw Exception());
     await cubit.load();
 
     expect(cubit.state.cards, isA<Success<List<CardSummary>>>());
@@ -103,7 +86,7 @@ void main() {
     await cubit.load();
 
     final page = Completer<CardSummaryPage>();
-    when(() => cards.getHistory(selfId: 'me', after: 'c1')).thenAnswer((_) => page.future);
+    when(() => cards.getHistory(after: 'c1')).thenAnswer((_) => page.future);
     final more = cubit.loadMore();
 
     stub(CardSummaryPage(items: [_card('fresh')], hasNext: false));

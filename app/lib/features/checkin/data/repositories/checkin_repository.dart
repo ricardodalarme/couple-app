@@ -31,7 +31,7 @@ class CheckinRepository({
 
     for (final row in rows) {
       final answer = CheckinAnswer(id: row.id, question: row.question, body: row.body);
-      if (row.authorId == today.selfId) {
+      if (row.isMine) {
         ownAnswers[answer.question] = answer;
       } else {
         partnerAnswers[answer.question] = answer;

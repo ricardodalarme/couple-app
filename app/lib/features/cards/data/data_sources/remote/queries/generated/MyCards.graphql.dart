@@ -231,7 +231,7 @@ const documentNodeQueryMyCards = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'authorId'),
+                              name: NameNode(value: 'isMine'),
                               alias: null,
                               arguments: [],
                               directives: [],
@@ -692,7 +692,7 @@ class QueryMyCardscardsCollectionedges {
 class QueryMyCardscardsCollectionedgesnode {
   QueryMyCardscardsCollectionedgesnode({
     required this.id,
-    required this.authorId,
+    this.isMine,
     this.sentAt,
     required this.weekStart,
     this.items,
@@ -703,7 +703,7 @@ class QueryMyCardscardsCollectionedgesnode {
 
   factory QueryMyCardscardsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$authorId = json['authorId'];
+    final l$isMine = json['isMine'];
     final l$sentAt = json['sentAt'];
     final l$weekStart = json['weekStart'];
     final l$items = json['items'];
@@ -712,7 +712,7 @@ class QueryMyCardscardsCollectionedgesnode {
     final l$$__typename = json['__typename'];
     return QueryMyCardscardsCollectionedgesnode(
       id: (l$id as String),
-      authorId: (l$authorId as String),
+      isMine: (l$isMine as bool?),
       sentAt: l$sentAt == null ? null : DateTime.parse((l$sentAt as String)),
       weekStart: DateTime.parse((l$weekStart as String)),
       items: l$items == null
@@ -732,7 +732,7 @@ class QueryMyCardscardsCollectionedgesnode {
 
   final String id;
 
-  final String authorId;
+  final bool? isMine;
 
   final DateTime? sentAt;
 
@@ -750,8 +750,8 @@ class QueryMyCardscardsCollectionedgesnode {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$authorId = authorId;
-    _resultData['authorId'] = l$authorId;
+    final l$isMine = isMine;
+    _resultData['isMine'] = l$isMine;
     final l$sentAt = sentAt;
     _resultData['sentAt'] = l$sentAt == null
         ? null
@@ -772,7 +772,7 @@ class QueryMyCardscardsCollectionedgesnode {
   @override
   int get hashCode {
     final l$id = id;
-    final l$authorId = authorId;
+    final l$isMine = isMine;
     final l$sentAt = sentAt;
     final l$weekStart = weekStart;
     final l$items = items;
@@ -781,7 +781,7 @@ class QueryMyCardscardsCollectionedgesnode {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$authorId,
+      l$isMine,
       l$sentAt,
       l$weekStart,
       l$items,
@@ -804,9 +804,9 @@ class QueryMyCardscardsCollectionedgesnode {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (l$authorId != lOther$authorId) {
+    final l$isMine = isMine;
+    final lOther$isMine = other.isMine;
+    if (l$isMine != lOther$isMine) {
       return false;
     }
     final l$sentAt = sentAt;

@@ -203,7 +203,7 @@ const documentNodeQueryQuestionAnswers = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'authorId'),
+                              name: NameNode(value: 'isMine'),
                               alias: null,
                               arguments: [],
                               directives: [],
@@ -535,7 +535,7 @@ class QueryQuestionAnswersquestionAnswersCollectionedges {
 class QueryQuestionAnswersquestionAnswersCollectionedgesnode {
   QueryQuestionAnswersquestionAnswersCollectionedgesnode({
     required this.id,
-    required this.authorId,
+    this.isMine,
     this.coupleId,
     required this.questionSlug,
     required this.body,
@@ -546,14 +546,14 @@ class QueryQuestionAnswersquestionAnswersCollectionedgesnode {
     Map<String, dynamic> json,
   ) {
     final l$id = json['id'];
-    final l$authorId = json['authorId'];
+    final l$isMine = json['isMine'];
     final l$coupleId = json['coupleId'];
     final l$questionSlug = json['questionSlug'];
     final l$body = json['body'];
     final l$$__typename = json['__typename'];
     return QueryQuestionAnswersquestionAnswersCollectionedgesnode(
       id: (l$id as String),
-      authorId: (l$authorId as String),
+      isMine: (l$isMine as bool?),
       coupleId: (l$coupleId as String?),
       questionSlug: (l$questionSlug as String),
       body: (l$body as String),
@@ -563,7 +563,7 @@ class QueryQuestionAnswersquestionAnswersCollectionedgesnode {
 
   final String id;
 
-  final String authorId;
+  final bool? isMine;
 
   final String? coupleId;
 
@@ -577,8 +577,8 @@ class QueryQuestionAnswersquestionAnswersCollectionedgesnode {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$authorId = authorId;
-    _resultData['authorId'] = l$authorId;
+    final l$isMine = isMine;
+    _resultData['isMine'] = l$isMine;
     final l$coupleId = coupleId;
     _resultData['coupleId'] = l$coupleId;
     final l$questionSlug = questionSlug;
@@ -593,12 +593,12 @@ class QueryQuestionAnswersquestionAnswersCollectionedgesnode {
   @override
   int get hashCode {
     final l$id = id;
-    final l$authorId = authorId;
+    final l$isMine = isMine;
     final l$coupleId = coupleId;
     final l$questionSlug = questionSlug;
     final l$body = body;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$authorId, l$coupleId, l$questionSlug, l$body, l$$__typename]);
+    return Object.hashAll([l$id, l$isMine, l$coupleId, l$questionSlug, l$body, l$$__typename]);
   }
 
   @override
@@ -615,9 +615,9 @@ class QueryQuestionAnswersquestionAnswersCollectionedgesnode {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (l$authorId != lOther$authorId) {
+    final l$isMine = isMine;
+    final lOther$isMine = other.isMine;
+    if (l$isMine != lOther$isMine) {
       return false;
     }
     final l$coupleId = coupleId;
