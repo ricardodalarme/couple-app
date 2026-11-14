@@ -25,8 +25,8 @@ query HistoryOverview($year: Int!) {
     edges {
       node {
         id
-        authorId
-        coupleId
+        isMine
+        isShared
         kind
         title
         happenedOn
@@ -41,8 +41,8 @@ query HistoryOverview($year: Int!) {
     edges {
       node {
         id
-        authorId
-        coupleId
+        isMine
+        isShared
         title
         body
         happenedOn
@@ -63,8 +63,8 @@ query HistoryOverview($year: Int!) {
     edges {
       node {
         id
-        authorId
-        coupleId
+        isMine
+        isShared
         title
         kind
         month

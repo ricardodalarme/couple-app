@@ -53,8 +53,8 @@ void main() {
             QueryHistoryOverviewstoryEventsCollectionedges(
               node: QueryHistoryOverviewstoryEventsCollectionedgesnode(
                 id: 'se-1',
-                authorId: 'self-1',
-                coupleId: 'couple-1',
+                isMine: true,
+                isShared: true,
                 kind: EnumStoryEventKind.met,
                 title: 'Nos conhecemos',
                 happenedOn: DateTime(2024, 3, 14),
@@ -64,8 +64,8 @@ void main() {
             QueryHistoryOverviewstoryEventsCollectionedges(
               node: QueryHistoryOverviewstoryEventsCollectionedgesnode(
                 id: 'se-2',
-                authorId: 'partner-1',
-                coupleId: 'couple-1',
+                isMine: false,
+                isShared: true,
                 kind: EnumStoryEventKind.dating,
                 title: 'Começamos a namorar',
                 happenedOn: DateTime(2024, 3, 22),
@@ -80,8 +80,8 @@ void main() {
             QueryHistoryOverviewmemoriesCollectionedges(
               node: QueryHistoryOverviewmemoriesCollectionedgesnode(
                 id: 'mem-1',
-                authorId: 'self-1',
-                coupleId: 'couple-1',
+                isMine: true,
+                isShared: true,
                 title: 'Primeira viagem juntos',
                 happenedOn: DateTime(2025, 7, 1),
                 datePrecision: EnumDatePrecision.month,
@@ -97,8 +97,8 @@ void main() {
             QueryHistoryOverviewimportantDatesCollectionedges(
               node: QueryHistoryOverviewimportantDatesCollectionedgesnode(
                 id: 'id-1',
-                authorId: 'self-1',
-                coupleId: 'couple-1',
+                isMine: true,
+                isShared: true,
                 title: 'Primeiro olhar',
                 kind: EnumImportantDateKind.first,
                 month: 1,

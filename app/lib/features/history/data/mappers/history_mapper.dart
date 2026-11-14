@@ -40,7 +40,6 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
 
     final storyDates = _buildStoryDates(
       storyNodes: storyNodes,
-      selfId: selfId,
       partnerName: partnerName,
       settingsTogetherSince: settings?.togetherSince,
     );
@@ -58,7 +57,7 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
     final places = <String>[];
 
     for (final node in storyNodes) {
-      final isMine = node.authorId == selfId;
+      final isMine = node.isMine ?? false;
       milestones.add(
         HistoryMilestone(
           id: node.id,
@@ -69,7 +68,7 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
               : _defaultStoryEventTitle(node.kind.toMilestoneKind()),
           date: node.happenedOn,
           precision: node.datePrecision.toModel(),
-          isShared: node.coupleId != null,
+          isShared: node.isShared ?? false,
           isMine: isMine,
           authorName: isMine ? null : partnerName,
         ),
@@ -77,7 +76,7 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
     }
 
     for (final node in memoryNodes) {
-      final isMine = node.authorId == selfId;
+      final isMine = node.isMine ?? false;
       final place = node.place?.trim();
       if (place != null && place.isNotEmpty) {
         places.add(place);
@@ -92,7 +91,7 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
           place: (place == null || place.isEmpty) ? null : place,
           date: node.happenedOn,
           precision: node.datePrecision.toModel(),
-          isShared: node.coupleId != null,
+          isShared: node.isShared ?? false,
           isMine: isMine,
           authorName: isMine ? null : partnerName,
         ),
@@ -107,7 +106,7 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
           node.kind == EnumImportantDateKind.holiday) {
         continue;
       }
-      final isMine = node.authorId == selfId;
+      final isMine = node.isMine ?? false;
       final year = node.year;
       final resolvedDate = year == null ? null : DateTime(year, node.month, node.day);
 
@@ -127,7 +126,7 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
           title: node.title,
           date: resolvedDate,
           precision: year == null ? MilestoneDatePrecision.unknown : MilestoneDatePrecision.day,
-          isShared: node.coupleId != null,
+          isShared: node.isShared ?? false,
           isMine: isMine,
           authorName: isMine ? null : partnerName,
         ),
@@ -180,7 +179,6 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
 
 StoryDatesSummary _buildStoryDates({
   required List<QueryHistoryOverviewstoryEventsCollectionedgesnode> storyNodes,
-  required String selfId,
   required String? partnerName,
   required DateTime? settingsTogetherSince,
 }) {
@@ -188,20 +186,20 @@ StoryDatesSummary _buildStoryDates({
     QueryHistoryOverviewstoryEventsCollectionedgesnode? match;
     for (final node in storyNodes) {
       if (node.kind != kind.toRemote()) continue;
-      if (node.authorId == selfId) {
+      if (node.isMine == true) {
         match = node;
         break;
       }
       match ??= node;
     }
     if (match == null) return StoryDateEntry(kind: kind);
-    final isMine = match.authorId == selfId;
+    final isMine = match.isMine ?? false;
     return StoryDateEntry(
       id: match.id,
       kind: kind,
       date: match.happenedOn,
       precision: match.datePrecision.toModel(),
-      isShared: match.coupleId != null,
+      isShared: match.isShared ?? false,
       isMine: isMine,
       authorName: isMine ? null : partnerName,
     );
@@ -212,7 +210,7 @@ StoryDatesSummary _buildStoryDates({
 
   for (final node in storyNodes) {
     if (node.kind == EnumStoryEventKind.dating || node.kind == EnumStoryEventKind.met) {
-      if (node.authorId == selfId) {
+      if (node.isMine == true) {
         selfStart ??= node.happenedOn;
       } else {
         partnerStart ??= node.happenedOn;

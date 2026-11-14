@@ -1,5 +1,4 @@
 import 'package:clock/clock.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/capsules/data/data_sources/remote/capsules_data_source.dart';
 import 'package:flutter_bloc_starter/features/capsules/data/models/capsule.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
@@ -8,7 +7,6 @@ import 'package:logger/logger.dart';
 class CapsulesRepository({
   required final CapsulesDataSource _dataSource,
   required final TogetherRepository _togetherRepository,
-  required final AuthenticationRepository _authenticationRepository,
 }) {
   final Logger _logger = Logger('CapsulesRepository');
 
@@ -17,15 +15,14 @@ class CapsulesRepository({
     try {
       final moment = now ?? clock.now();
       final today = DateTime(moment.year, moment.month, moment.day);
-      final selfId = _authenticationRepository.currentUserId;
 
       return [
         for (final node in await _dataSource.getCapsules())
           Capsule(
             id: node.id,
             opensOn: node.opensOn,
-            isMine: node.authorId == selfId,
-            isShared: node.coupleId != null,
+            isMine: node.isMine ?? false,
+            isShared: node.isShared ?? false,
             body: DateTime(node.opensOn.year, node.opensOn.month, node.opensOn.day).isAfter(today)
                 ? null
                 : node.body,

@@ -118,14 +118,14 @@ const documentNodeQueryCapsules = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'authorId'),
+                              name: NameNode(value: 'isMine'),
                               alias: null,
                               arguments: [],
                               directives: [],
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'coupleId'),
+                              name: NameNode(value: 'isShared'),
                               alias: null,
                               arguments: [],
                               directives: [],
@@ -409,8 +409,8 @@ class QueryCapsulescapsulesCollectionedges {
 class QueryCapsulescapsulesCollectionedgesnode {
   QueryCapsulescapsulesCollectionedgesnode({
     required this.id,
-    required this.authorId,
-    this.coupleId,
+    this.isMine,
+    this.isShared,
     required this.body,
     required this.opensOn,
     this.$__typename = 'Capsules',
@@ -418,15 +418,15 @@ class QueryCapsulescapsulesCollectionedgesnode {
 
   factory QueryCapsulescapsulesCollectionedgesnode.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$authorId = json['authorId'];
-    final l$coupleId = json['coupleId'];
+    final l$isMine = json['isMine'];
+    final l$isShared = json['isShared'];
     final l$body = json['body'];
     final l$opensOn = json['opensOn'];
     final l$$__typename = json['__typename'];
     return QueryCapsulescapsulesCollectionedgesnode(
       id: (l$id as String),
-      authorId: (l$authorId as String),
-      coupleId: (l$coupleId as String?),
+      isMine: (l$isMine as bool?),
+      isShared: (l$isShared as bool?),
       body: (l$body as String),
       opensOn: DateTime.parse((l$opensOn as String)),
       $__typename: (l$$__typename as String),
@@ -435,9 +435,9 @@ class QueryCapsulescapsulesCollectionedgesnode {
 
   final String id;
 
-  final String authorId;
+  final bool? isMine;
 
-  final String? coupleId;
+  final bool? isShared;
 
   final String body;
 
@@ -449,10 +449,10 @@ class QueryCapsulescapsulesCollectionedgesnode {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$authorId = authorId;
-    _resultData['authorId'] = l$authorId;
-    final l$coupleId = coupleId;
-    _resultData['coupleId'] = l$coupleId;
+    final l$isMine = isMine;
+    _resultData['isMine'] = l$isMine;
+    final l$isShared = isShared;
+    _resultData['isShared'] = l$isShared;
     final l$body = body;
     _resultData['body'] = l$body;
     final l$opensOn = opensOn;
@@ -465,12 +465,12 @@ class QueryCapsulescapsulesCollectionedgesnode {
   @override
   int get hashCode {
     final l$id = id;
-    final l$authorId = authorId;
-    final l$coupleId = coupleId;
+    final l$isMine = isMine;
+    final l$isShared = isShared;
     final l$body = body;
     final l$opensOn = opensOn;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$authorId, l$coupleId, l$body, l$opensOn, l$$__typename]);
+    return Object.hashAll([l$id, l$isMine, l$isShared, l$body, l$opensOn, l$$__typename]);
   }
 
   @override
@@ -486,14 +486,14 @@ class QueryCapsulescapsulesCollectionedgesnode {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (l$authorId != lOther$authorId) {
+    final l$isMine = isMine;
+    final lOther$isMine = other.isMine;
+    if (l$isMine != lOther$isMine) {
       return false;
     }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (l$coupleId != lOther$coupleId) {
+    final l$isShared = isShared;
+    final lOther$isShared = other.isShared;
+    if (l$isShared != lOther$isShared) {
       return false;
     }
     final l$body = body;

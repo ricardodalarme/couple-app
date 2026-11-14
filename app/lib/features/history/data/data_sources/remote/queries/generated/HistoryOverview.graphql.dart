@@ -458,14 +458,14 @@ const documentNodeQueryHistoryOverview = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'authorId'),
+                              name: NameNode(value: 'isMine'),
                               alias: null,
                               arguments: [],
                               directives: [],
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'coupleId'),
+                              name: NameNode(value: 'isShared'),
                               alias: null,
                               arguments: [],
                               directives: [],
@@ -602,14 +602,14 @@ const documentNodeQueryHistoryOverview = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'authorId'),
+                              name: NameNode(value: 'isMine'),
                               alias: null,
                               arguments: [],
                               directives: [],
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'coupleId'),
+                              name: NameNode(value: 'isShared'),
                               alias: null,
                               arguments: [],
                               directives: [],
@@ -783,14 +783,14 @@ const documentNodeQueryHistoryOverview = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'authorId'),
+                              name: NameNode(value: 'isMine'),
                               alias: null,
                               arguments: [],
                               directives: [],
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'coupleId'),
+                              name: NameNode(value: 'isShared'),
                               alias: null,
                               arguments: [],
                               directives: [],
@@ -1623,8 +1623,8 @@ class QueryHistoryOverviewstoryEventsCollectionedges {
 class QueryHistoryOverviewstoryEventsCollectionedgesnode {
   QueryHistoryOverviewstoryEventsCollectionedgesnode({
     required this.id,
-    required this.authorId,
-    this.coupleId,
+    this.isMine,
+    this.isShared,
     required this.kind,
     this.title,
     required this.happenedOn,
@@ -1634,8 +1634,8 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
 
   factory QueryHistoryOverviewstoryEventsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$authorId = json['authorId'];
-    final l$coupleId = json['coupleId'];
+    final l$isMine = json['isMine'];
+    final l$isShared = json['isShared'];
     final l$kind = json['kind'];
     final l$title = json['title'];
     final l$happenedOn = json['happenedOn'];
@@ -1643,8 +1643,8 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
     final l$$__typename = json['__typename'];
     return QueryHistoryOverviewstoryEventsCollectionedgesnode(
       id: (l$id as String),
-      authorId: (l$authorId as String),
-      coupleId: (l$coupleId as String?),
+      isMine: (l$isMine as bool?),
+      isShared: (l$isShared as bool?),
       kind: fromJsonEnumStoryEventKind((l$kind as String)),
       title: (l$title as String?),
       happenedOn: DateTime.parse((l$happenedOn as String)),
@@ -1655,9 +1655,9 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
 
   final String id;
 
-  final String authorId;
+  final bool? isMine;
 
-  final String? coupleId;
+  final bool? isShared;
 
   final EnumStoryEventKind kind;
 
@@ -1673,10 +1673,10 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$authorId = authorId;
-    _resultData['authorId'] = l$authorId;
-    final l$coupleId = coupleId;
-    _resultData['coupleId'] = l$coupleId;
+    final l$isMine = isMine;
+    _resultData['isMine'] = l$isMine;
+    final l$isShared = isShared;
+    _resultData['isShared'] = l$isShared;
     final l$kind = kind;
     _resultData['kind'] = toJsonEnumStoryEventKind(l$kind);
     final l$title = title;
@@ -1693,8 +1693,8 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
   @override
   int get hashCode {
     final l$id = id;
-    final l$authorId = authorId;
-    final l$coupleId = coupleId;
+    final l$isMine = isMine;
+    final l$isShared = isShared;
     final l$kind = kind;
     final l$title = title;
     final l$happenedOn = happenedOn;
@@ -1702,8 +1702,8 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$authorId,
-      l$coupleId,
+      l$isMine,
+      l$isShared,
       l$kind,
       l$title,
       l$happenedOn,
@@ -1726,14 +1726,14 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (l$authorId != lOther$authorId) {
+    final l$isMine = isMine;
+    final lOther$isMine = other.isMine;
+    if (l$isMine != lOther$isMine) {
       return false;
     }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (l$coupleId != lOther$coupleId) {
+    final l$isShared = isShared;
+    final lOther$isShared = other.isShared;
+    if (l$isShared != lOther$isShared) {
       return false;
     }
     final l$kind = kind;
@@ -1969,8 +1969,8 @@ class QueryHistoryOverviewmemoriesCollectionedges {
 class QueryHistoryOverviewmemoriesCollectionedgesnode {
   QueryHistoryOverviewmemoriesCollectionedgesnode({
     required this.id,
-    required this.authorId,
-    this.coupleId,
+    this.isMine,
+    this.isShared,
     required this.title,
     this.body,
     required this.happenedOn,
@@ -1983,8 +1983,8 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
 
   factory QueryHistoryOverviewmemoriesCollectionedgesnode.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$authorId = json['authorId'];
-    final l$coupleId = json['coupleId'];
+    final l$isMine = json['isMine'];
+    final l$isShared = json['isShared'];
     final l$title = json['title'];
     final l$body = json['body'];
     final l$happenedOn = json['happenedOn'];
@@ -1995,8 +1995,8 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
     final l$$__typename = json['__typename'];
     return QueryHistoryOverviewmemoriesCollectionedgesnode(
       id: (l$id as String),
-      authorId: (l$authorId as String),
-      coupleId: (l$coupleId as String?),
+      isMine: (l$isMine as bool?),
+      isShared: (l$isShared as bool?),
       title: (l$title as String),
       body: (l$body as String?),
       happenedOn: DateTime.parse((l$happenedOn as String)),
@@ -2010,9 +2010,9 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
 
   final String id;
 
-  final String authorId;
+  final bool? isMine;
 
-  final String? coupleId;
+  final bool? isShared;
 
   final String title;
 
@@ -2034,10 +2034,10 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$authorId = authorId;
-    _resultData['authorId'] = l$authorId;
-    final l$coupleId = coupleId;
-    _resultData['coupleId'] = l$coupleId;
+    final l$isMine = isMine;
+    _resultData['isMine'] = l$isMine;
+    final l$isShared = isShared;
+    _resultData['isShared'] = l$isShared;
     final l$title = title;
     _resultData['title'] = l$title;
     final l$body = body;
@@ -2060,8 +2060,8 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
   @override
   int get hashCode {
     final l$id = id;
-    final l$authorId = authorId;
-    final l$coupleId = coupleId;
+    final l$isMine = isMine;
+    final l$isShared = isShared;
     final l$title = title;
     final l$body = body;
     final l$happenedOn = happenedOn;
@@ -2072,8 +2072,8 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$authorId,
-      l$coupleId,
+      l$isMine,
+      l$isShared,
       l$title,
       l$body,
       l$happenedOn,
@@ -2099,14 +2099,14 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (l$authorId != lOther$authorId) {
+    final l$isMine = isMine;
+    final lOther$isMine = other.isMine;
+    if (l$isMine != lOther$isMine) {
       return false;
     }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (l$coupleId != lOther$coupleId) {
+    final l$isShared = isShared;
+    final lOther$isShared = other.isShared;
+    if (l$isShared != lOther$isShared) {
       return false;
     }
     final l$title = title;
@@ -2360,8 +2360,8 @@ class QueryHistoryOverviewimportantDatesCollectionedges {
 class QueryHistoryOverviewimportantDatesCollectionedgesnode {
   QueryHistoryOverviewimportantDatesCollectionedgesnode({
     required this.id,
-    required this.authorId,
-    this.coupleId,
+    this.isMine,
+    this.isShared,
     required this.title,
     required this.kind,
     required this.month,
@@ -2376,8 +2376,8 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
     Map<String, dynamic> json,
   ) {
     final l$id = json['id'];
-    final l$authorId = json['authorId'];
-    final l$coupleId = json['coupleId'];
+    final l$isMine = json['isMine'];
+    final l$isShared = json['isShared'];
     final l$title = json['title'];
     final l$kind = json['kind'];
     final l$month = json['month'];
@@ -2388,8 +2388,8 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
     final l$$__typename = json['__typename'];
     return QueryHistoryOverviewimportantDatesCollectionedgesnode(
       id: (l$id as String),
-      authorId: (l$authorId as String),
-      coupleId: (l$coupleId as String?),
+      isMine: (l$isMine as bool?),
+      isShared: (l$isShared as bool?),
       title: (l$title as String),
       kind: fromJsonEnumImportantDateKind((l$kind as String)),
       month: (l$month as int),
@@ -2403,9 +2403,9 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
 
   final String id;
 
-  final String authorId;
+  final bool? isMine;
 
-  final String? coupleId;
+  final bool? isShared;
 
   final String title;
 
@@ -2427,10 +2427,10 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$authorId = authorId;
-    _resultData['authorId'] = l$authorId;
-    final l$coupleId = coupleId;
-    _resultData['coupleId'] = l$coupleId;
+    final l$isMine = isMine;
+    _resultData['isMine'] = l$isMine;
+    final l$isShared = isShared;
+    _resultData['isShared'] = l$isShared;
     final l$title = title;
     _resultData['title'] = l$title;
     final l$kind = kind;
@@ -2453,8 +2453,8 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
   @override
   int get hashCode {
     final l$id = id;
-    final l$authorId = authorId;
-    final l$coupleId = coupleId;
+    final l$isMine = isMine;
+    final l$isShared = isShared;
     final l$title = title;
     final l$kind = kind;
     final l$month = month;
@@ -2465,8 +2465,8 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$authorId,
-      l$coupleId,
+      l$isMine,
+      l$isShared,
       l$title,
       l$kind,
       l$month,
@@ -2492,14 +2492,14 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (l$authorId != lOther$authorId) {
+    final l$isMine = isMine;
+    final lOther$isMine = other.isMine;
+    if (l$isMine != lOther$isMine) {
       return false;
     }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (l$coupleId != lOther$coupleId) {
+    final l$isShared = isShared;
+    final lOther$isShared = other.isShared;
+    if (l$isShared != lOther$isShared) {
       return false;
     }
     final l$title = title;

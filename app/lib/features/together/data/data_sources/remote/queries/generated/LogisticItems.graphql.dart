@@ -139,13 +139,6 @@ const documentNodeQueryLogisticItems = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'authorId'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
                               name: NameNode(value: '__typename'),
                               alias: null,
                               arguments: [],
@@ -429,7 +422,6 @@ class QueryLogisticItemslogisticItemsCollectionedgesnode {
     required this.title,
     this.assigneeId,
     this.doneAt,
-    required this.authorId,
     this.$__typename = 'LogisticItems',
   });
 
@@ -438,14 +430,12 @@ class QueryLogisticItemslogisticItemsCollectionedgesnode {
     final l$title = json['title'];
     final l$assigneeId = json['assigneeId'];
     final l$doneAt = json['doneAt'];
-    final l$authorId = json['authorId'];
     final l$$__typename = json['__typename'];
     return QueryLogisticItemslogisticItemsCollectionedgesnode(
       id: (l$id as String),
       title: (l$title as String),
       assigneeId: (l$assigneeId as String?),
       doneAt: l$doneAt == null ? null : DateTime.parse((l$doneAt as String)),
-      authorId: (l$authorId as String),
       $__typename: (l$$__typename as String),
     );
   }
@@ -457,8 +447,6 @@ class QueryLogisticItemslogisticItemsCollectionedgesnode {
   final String? assigneeId;
 
   final DateTime? doneAt;
-
-  final String authorId;
 
   final String $__typename;
 
@@ -474,8 +462,6 @@ class QueryLogisticItemslogisticItemsCollectionedgesnode {
     _resultData['doneAt'] = l$doneAt == null
         ? null
         : ((v) => v.toUtc().toIso8601String())(l$doneAt);
-    final l$authorId = authorId;
-    _resultData['authorId'] = l$authorId;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -487,9 +473,8 @@ class QueryLogisticItemslogisticItemsCollectionedgesnode {
     final l$title = title;
     final l$assigneeId = assigneeId;
     final l$doneAt = doneAt;
-    final l$authorId = authorId;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$title, l$assigneeId, l$doneAt, l$authorId, l$$__typename]);
+    return Object.hashAll([l$id, l$title, l$assigneeId, l$doneAt, l$$__typename]);
   }
 
   @override
@@ -519,11 +504,6 @@ class QueryLogisticItemslogisticItemsCollectionedgesnode {
     final l$doneAt = doneAt;
     final lOther$doneAt = other.doneAt;
     if (l$doneAt != lOther$doneAt) {
-      return false;
-    }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (l$authorId != lOther$authorId) {
       return false;
     }
     final l$$__typename = $__typename;

@@ -3,8 +3,8 @@ query Capsules {
     edges {
       node {
         id
-        authorId
-        coupleId
+        isMine
+        isShared
         body
         opensOn
       }

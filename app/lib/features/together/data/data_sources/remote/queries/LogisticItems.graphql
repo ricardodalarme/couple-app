@@ -6,7 +6,6 @@ query LogisticItems {
         title
         assigneeId
         doneAt
-        authorId
       }
     }
   }
