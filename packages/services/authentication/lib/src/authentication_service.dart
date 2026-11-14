@@ -120,26 +120,4 @@ class AuthenticationService() {
       Error.throwWithStackTrace(AuthenticationException(code: error.code), stackTrace);
     }
   }
-
-  Future<void> deleteAccount() async {
-    try {
-      final response = await Supabase.instance.client.functions.invoke('delete-account');
-      if (response.status < 200 || response.status >= 300) {
-        throw AuthenticationException(code: 'account_deletion_failed');
-      }
-
-      try {
-        await _auth.signOut();
-      } on Exception {
-        // The user is already deleted; a local sign-out failure must not mask it.
-      }
-    } on AuthenticationException {
-      rethrow;
-    } on Exception catch (error, stackTrace) {
-      Error.throwWithStackTrace(
-        AuthenticationException(code: 'account_deletion_failed'),
-        stackTrace,
-      );
-    }
-  }
 }
