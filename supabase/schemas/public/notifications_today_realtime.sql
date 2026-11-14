@@ -6,7 +6,7 @@ create table public.devices (
   id uuid primary key default gen_random_uuid(),
   profile_id uuid not null references public.profiles (id) on delete cascade,
   token text not null unique check (char_length(token) between 10 and 4096),
-  platform text not null check (platform in ('ios', 'android')),
+  platform public.device_platform not null,
   label text check (char_length(label) <= 80),
   failure_count integer not null default 0,
   created_at timestamptz not null default now(),
@@ -32,7 +32,7 @@ begin
     raise exception 'RATE_LIMITED' using errcode = 'P0001';
   end if;
   insert into public.devices as d (profile_id, token, platform, label)
-  values (v_uid, register_device.token, register_device.platform, register_device.label)
+  values (v_uid, register_device.token, register_device.platform::public.device_platform, register_device.label)
   on conflict on constraint devices_token_key do update
     set platform = excluded.platform, label = excluded.label, failure_count = 0, last_seen_at = now()
     where d.profile_id = v_uid

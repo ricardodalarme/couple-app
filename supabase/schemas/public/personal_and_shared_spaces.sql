@@ -12,7 +12,7 @@ alter type public.relationship_phase add value if not exists 'restarting';
 alter type public.relationship_phase add value if not exists 'with_parents';
 create type public.relationship_status as enum ('together', 'on_break', 'ended', 'bereaved');
 
-alter table public.profiles add column avatar_kind text not null default 'initials' check (avatar_kind in ('photo', 'illustration', 'initials'));
+alter table public.profiles add column avatar_kind public.avatar_kind not null default 'initials';
 alter table public.profiles add column pronouns text check (char_length(pronouns) <= 30);
 grant update (avatar_kind, pronouns) on public.profiles to authenticated;
 
@@ -22,7 +22,7 @@ alter table public.profile_settings
   add column relationship_status public.relationship_status not null default 'together',
   add column app_paused_until timestamptz,
   add column holiday_countries text[] not null default '{BR}' check (cardinality(holiday_countries) <= 10),
-  add column card_channel text not null default 'link' check (card_channel in ('link', 'app')),
+  add column card_channel public.card_channel not null default 'link',
   add column card_theme text not null default 'paper' check (char_length(card_theme) <= 30),
   add column slips_default_for_card boolean not null default false,
   add column widget_allow_partner_notes boolean not null default false,
@@ -33,7 +33,7 @@ alter table public.profile_settings
   add column low_stimulation boolean not null default false,
   add column chat_enabled boolean not null default false,
   add column chat_store_facts boolean not null default false,
-  add column heavy_day_sharing text not null default 'off' check (heavy_day_sharing in ('off', 'ask', 'always'));
+  add column heavy_day_sharing public.heavy_day_sharing not null default 'off';
 grant update (goals, together_since, relationship_status, app_paused_until, holiday_countries, card_channel, card_theme,
   slips_default_for_card, widget_allow_partner_notes, widget_on_lock_screen, widget_in_discreet, widget_show_names,
   spice_enabled, low_stimulation, chat_enabled, chat_store_facts, heavy_day_sharing) on public.profile_settings to authenticated;
@@ -43,8 +43,8 @@ grant update (daily_max) on public.notification_settings to authenticated;
 
 -- Slip extras ---------------------------------------------------------------------------------------
 alter table public.slips
-  add column category text check (category in ('said', 'did', 'noticed', 'helped')),
-  add column work_area text check (work_area in ('planning', 'dates', 'kitchen', 'cleaning', 'kids', 'emotional', 'finances', 'other')),
+  add column category public.slip_category,
+  add column work_area public.work_area,
   add column in_jar boolean not null default false;
 
 create function public.set_slip_details(id uuid, category text default null, work_area text default null, in_jar boolean default null)
@@ -52,8 +52,8 @@ returns public.slips language plpgsql security definer set search_path = '' as $
 declare v_uid uuid := private.require_user(); v_row public.slips;
 begin
   update public.slips s
-  set category = coalesce(set_slip_details.category, s.category),
-      work_area = coalesce(set_slip_details.work_area, s.work_area),
+  set category = coalesce(set_slip_details.category::public.slip_category, s.category),
+      work_area = coalesce(set_slip_details.work_area::public.work_area, s.work_area),
       in_jar = coalesce(set_slip_details.in_jar, s.in_jar)
   where s.id = set_slip_details.id and s.author_id = v_uid and s.deleted_at is null
   returning s.* into v_row;
@@ -74,20 +74,20 @@ grant execute on function public.set_slip_details(uuid, text, text, boolean), pu
 -- Owner-only tables: column author_id, visible and writable only by the author.
 create table public.temperature_checks (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  level text not null check (level in ('good', 'so_so', 'turbulent', 'fight')),
+  level public.temperature_level not null,
   note text check (char_length(note) <= 500),
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.repair_sessions (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
   intensity smallint check (intensity between 1 and 10),
-  path text check (path in ('pause', 'quick', 'soft_start', 'guided', 'apology')),
-  step smallint not null default 0, feeling_after text check (feeling_after in ('calmer', 'still_tense', 'need_more_time')),
+  path public.repair_path,
+  step smallint not null default 0, feeling_after public.repair_feeling,
   draft text check (char_length(draft) <= 1000), completed_at timestamptz,
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.repair_learnings (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
   repair_session_id uuid references public.repair_sessions (id) on delete set null,
-  kind text not null check (kind in ('trigger', 'need', 'good_fix')), note text not null check (char_length(note) between 1 and 1000),
+  kind public.repair_learning_kind not null, note text not null check (char_length(note) between 1 and 1000),
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.journal_entries (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
@@ -95,21 +95,21 @@ create table public.journal_entries (
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.conversation_preps (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  guide text not null default 'free' check (guide in ('free', 'transition', 'money', 'apology', 'difficult')),
+  guide public.conversation_guide not null default 'free',
   topic text check (char_length(topic) <= 120), notes text check (char_length(notes) <= 5000), draft text check (char_length(draft) <= 2000),
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.partner_facts (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
   label text not null check (char_length(label) between 1 and 80), value text not null check (char_length(value) between 1 and 500),
-  category text check (category in ('likes', 'dislikes', 'sizes', 'health', 'comfort', 'people', 'other')),
-  source text not null default 'manual' check (source in ('manual', 'chat', 'game', 'learning')),
+  category public.partner_fact_category,
+  source public.partner_fact_source not null default 'manual',
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.gift_ideas (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
   couple_id uuid references public.couples (id) on delete set null,
-  kind text not null default 'idea' check (kind in ('idea', 'wish')),
+  kind public.gift_idea_kind not null default 'idea',
   title text not null check (char_length(title) between 1 and 120), note text check (char_length(note) <= 1000),
-  occasion_date_id uuid, status text not null default 'idea' check (status in ('idea', 'planned', 'given')), budget text check (budget in ('free', 'low', 'medium', 'high')),
+  occasion_date_id uuid, status public.gift_idea_status not null default 'idea', budget public.gift_budget,
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.manual_entries (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
@@ -118,16 +118,16 @@ create table public.manual_entries (
   created_at timestamptz not null default now(), updated_at timestamptz not null default now(), unique (author_id, key));
 create table public.moods (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  day date not null, mood text not null check (mood in ('happy', 'tired', 'sad', 'stressed', 'loving', 'playful')),
-  need text check (need in ('listen', 'opinion', 'hug', 'space')), share text not null default 'none' check (share in ('none', 'mood', 'mood_need')),
+  day date not null, mood public.mood not null,
+  need public.mood_need, share public.mood_share not null default 'none',
   created_at timestamptz not null default now(), updated_at timestamptz not null default now(), unique (author_id, day));
 create table public.cycle_days (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  day date not null, kind text not null default 'heavy' check (kind in ('heavy', 'light', 'note')), note text check (char_length(note) <= 300),
+  day date not null, kind public.cycle_day_kind not null default 'heavy', note text check (char_length(note) <= 300),
   created_at timestamptz not null default now(), updated_at timestamptz not null default now(), unique (author_id, day));
 create table public.idea_responses (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  content_slug text not null, day date not null, response text not null check (response in ('will_do', 'done', 'skip', 'saved')),
+  content_slug text not null, day date not null, response public.idea_response not null,
   created_at timestamptz not null default now(), updated_at timestamptz not null default now(), unique (author_id, content_slug, day));
 create table public.program_enrollments (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
@@ -135,18 +135,18 @@ create table public.program_enrollments (
   created_at timestamptz not null default now(), updated_at timestamptz not null default now(), unique (author_id, program_slug));
 create table public.lesson_progress (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  program_slug text not null, lesson_day smallint not null, status text not null default 'done' check (status in ('done', 'saved')),
+  program_slug text not null, lesson_day smallint not null, status public.lesson_status not null default 'done',
   created_at timestamptz not null default now(), updated_at timestamptz not null default now(), unique (author_id, program_slug, lesson_day));
 create table public.quiz_results (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  quiz_key text not null check (quiz_key in ('loved', 'conflict_style')), ranked text[] not null,
+  quiz_key public.quiz_key not null, ranked text[] not null,
   created_at timestamptz not null default now(), updated_at timestamptz not null default now(), unique (author_id, quiz_key));
 
 -- Owner + optional couple tables: private while couple_id is null, shared with the partner when it is set.
 create table public.rituals (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
   couple_id uuid references public.couples (id) on delete set null,
-  title text not null check (char_length(title) between 1 and 80), cadence text not null default 'weekly' check (cadence in ('daily', 'weekly', 'biweekly', 'monthly')),
+  title text not null check (char_length(title) between 1 and 80), cadence public.ritual_cadence not null default 'weekly',
   weekday smallint check (weekday between 0 and 6), at_time time, reminder boolean not null default false, archived_at timestamptz,
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.logistic_items (
@@ -169,36 +169,36 @@ create table public.saved_date_ideas (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
   couple_id uuid references public.couples (id) on delete set null,
   content_slug text, title text not null check (char_length(title) between 1 and 120), notes text check (char_length(notes) <= 1000),
-  status text not null default 'saved' check (status in ('saved', 'planned', 'done')), planned_for date,
+  status public.date_idea_status not null default 'saved', planned_for date,
   place_name text check (char_length(place_name) <= 120), place_address text check (char_length(place_address) <= 240),
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.important_dates (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
   couple_id uuid references public.couples (id) on delete set null,
   title text not null check (char_length(title) between 1 and 120),
-  kind text not null default 'custom' check (kind in ('relationship', 'birthday', 'first', 'holiday', 'trip', 'reunion', 'custom')),
+  kind public.important_date_kind not null default 'custom',
   month smallint not null check (month between 1 and 12), day smallint not null check (day between 1 and 31), year smallint check (year between 1900 and 2200),
   yearly boolean not null default true, remind_days smallint[] not null default '{7,1}', hidden boolean not null default false,
-  origin text not null default 'manual' check (origin in ('manual', 'auto', 'chat')), holiday_key text,
+  origin public.important_date_origin not null default 'manual', holiday_key text,
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.memories (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
   couple_id uuid references public.couples (id) on delete set null,
   title text not null check (char_length(title) between 1 and 160), body text check (char_length(body) <= 3000),
-  happened_on date not null, date_precision text not null default 'day' check (date_precision in ('day', 'month', 'year')),
+  happened_on date not null, date_precision public.date_precision not null default 'day',
   place text check (char_length(place) <= 120), photo_path text check (char_length(photo_path) <= 300),
-  origin text not null default 'manual' check (origin in ('manual', 'slip', 'card', 'question', 'game', 'mission', 'share', 'chat', 'first')), source_id uuid,
+  origin public.memory_origin not null default 'manual', source_id uuid,
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.story_events (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
   couple_id uuid references public.couples (id) on delete set null,
-  kind text not null check (kind in ('met', 'dating', 'engaged', 'married', 'custom')), title text check (char_length(title) <= 120),
-  happened_on date not null, date_precision text not null default 'day' check (date_precision in ('day', 'month', 'year')),
+  kind public.story_event_kind not null, title text check (char_length(title) <= 120),
+  happened_on date not null, date_precision public.date_precision not null default 'day',
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.lists (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
   couple_id uuid references public.couples (id) on delete set null,
-  title text not null check (char_length(title) between 1 and 80), kind text not null default 'custom' check (kind in ('travel', 'restaurants', 'movies', 'custom')),
+  title text not null check (char_length(title) between 1 and 80), kind public.list_kind not null default 'custom',
   created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.agreements (
   id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
@@ -226,7 +226,7 @@ create table public.ritual_logs (
 create table public.list_items (
   id uuid primary key default gen_random_uuid(), list_id uuid not null references public.lists (id) on delete cascade,
   author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  title text not null check (char_length(title) between 1 and 160), status text not null default 'dream' check (status in ('dream', 'planned', 'done')),
+  title text not null check (char_length(title) between 1 and 160), status public.list_item_status not null default 'dream',
   position integer not null default 0, created_at timestamptz not null default now(), updated_at timestamptz not null default now());
 create table public.decision_options (
   id uuid primary key default gen_random_uuid(), decision_id uuid not null references public.decisions (id) on delete cascade,

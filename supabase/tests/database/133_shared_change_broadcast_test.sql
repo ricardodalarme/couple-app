@@ -31,7 +31,7 @@ select is(
   1::bigint, 'a shared mood tells the couple');
 
 select tests.as('ana');
-insert into public.moods (day, mood, share) values (current_date - 1, 'sad', 'none');
+insert into public.moods (day, mood, share) values (current_date - 5, 'sad', 'none');
 select tests.as_admin();
 select is(
   (select count(*) from realtime.messages m where m.topic = (select topic from couple_topic) and m.event = 'partner_mood_changed'),

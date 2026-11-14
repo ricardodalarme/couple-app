@@ -11,7 +11,7 @@ alter table public.slips add constraint slips_body_check check (char_length(btri
 alter table public.notification_settings alter column card_hour set default 18;
 
 -- "Enviar agora" (X-62): a single slip can be sent on its own, without touching the weekly card.
-alter table public.cards add column kind text not null default 'weekly' check (kind in ('weekly', 'single'));
+alter table public.cards add column kind public.card_kind not null default 'weekly';
 alter table public.cards drop constraint cards_one_per_week;
 create unique index cards_one_weekly_per_week on public.cards (author_id, week_start) where kind = 'weekly';
 

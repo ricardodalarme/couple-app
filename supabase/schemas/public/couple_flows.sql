@@ -86,10 +86,10 @@ create table public.signals (
   id uuid primary key default gen_random_uuid(),
   sender_id uuid not null references public.profiles (id) on delete cascade,
   recipient_id uuid not null references public.profiles (id) on delete cascade,
-  kind text not null check (kind in ('need', 'miss_us', 'hug', 'distance', 'repair', 'heavy_day', 'good_news')),
+  kind public.signal_kind not null,
   value text check (char_length(value) <= 40),
   body text check (char_length(body) <= 500),
-  response text check (response in ('here', 'talk', 'more_time', 'will_do', 'not_now', 'plan', 'later', 'heart')),
+  response public.signal_response,
   responded_at timestamptz,
   seen_at timestamptz,
   created_at timestamptz not null default now()
@@ -111,7 +111,7 @@ begin
     raise exception 'RATE_LIMITED' using errcode = 'P0001';
   end if;
   insert into public.signals (sender_id, recipient_id, kind, value, body)
-  values (v_uid, v_partner, send_signal.kind, send_signal.value, nullif(btrim(send_signal.body), '')) returning * into v_row;
+  values (v_uid, v_partner, send_signal.kind::public.signal_kind, send_signal.value, nullif(btrim(send_signal.body), '')) returning * into v_row;
   perform private.enqueue_notification(v_partner, 'signal_' || v_row.kind, v_row.id, 'signal:' || v_row.id);
   perform private.signal('user:' || v_partner, 'signal');
   return v_row;
@@ -124,7 +124,7 @@ declare v_uid uuid := private.require_user(); v_row public.signals;
 begin
   update public.signals s
   set seen_at = coalesce(s.seen_at, now()),
-      response = coalesce(respond_to_signal.response, s.response),
+      response = coalesce(respond_to_signal.response::public.signal_response, s.response),
       responded_at = case when respond_to_signal.response is null then s.responded_at else now() end
   where s.id = signal_id and s.recipient_id = v_uid returning s.* into v_row;
   if v_row.id is null then raise exception 'NOT_FOUND' using errcode = 'P0001'; end if;
@@ -137,7 +137,7 @@ create table public.partner_messages (
   id uuid primary key default gen_random_uuid(),
   sender_id uuid not null references public.profiles (id) on delete cascade,
   recipient_id uuid not null references public.profiles (id) on delete cascade,
-  kind text not null check (kind in ('note', 'drawing', 'voice', 'pack')),
+  kind public.partner_message_kind not null,
   body text check (char_length(body) <= 280),
   media_path text check (char_length(media_path) <= 300),
   for_widget boolean not null default false,
@@ -165,7 +165,7 @@ begin
   end if;
   -- The widget shows a note only if the receiver allowed it; otherwise it is delivered in the app only.
   insert into public.partner_messages (sender_id, recipient_id, kind, body, media_path, for_widget)
-  values (v_uid, v_partner, send_partner_message.kind, nullif(btrim(send_partner_message.body), ''), send_partner_message.media_path,
+  values (v_uid, v_partner, send_partner_message.kind::public.partner_message_kind, nullif(btrim(send_partner_message.body), ''), send_partner_message.media_path,
           coalesce(send_partner_message.for_widget, false)
             and coalesce((select widget_allow_partner_notes from public.profile_settings where profile_id = v_partner), false))
   returning * into v_row;
@@ -263,11 +263,11 @@ create trigger checkin_answers_set_updated_at before update on public.checkin_an
 create table public.game_sessions (
   id uuid primary key default gen_random_uuid(),
   couple_id uuid not null references public.couples (id) on delete cascade,
-  game text not null check (game in ('me_or_you', 'how_well', 'twenty_questions', 'never_have_we', 'compliments', 'mission')),
+  game public.game_kind not null,
   invited_by uuid not null references public.profiles (id) on delete cascade,
-  status text not null default 'invited' check (status in ('invited', 'active', 'finished', 'cancelled')),
+  status public.game_status not null default 'invited',
   item_slugs text[] not null default '{}',
-  outcome text check (outcome in ('great', 'ok', 'did_not_happen')),
+  outcome public.game_outcome,
   created_at timestamptz not null default now(),
   finished_at timestamptz
 );
@@ -302,12 +302,12 @@ declare v_uid uuid := private.require_user(); v_couple uuid := private.current_c
 begin
   if v_couple is null then raise exception 'NOT_PAIRED' using errcode = 'P0001'; end if;
   if exists (select 1 from public.game_sessions g
-             where g.couple_id = v_couple and g.game = invite_to_game.game
+             where g.couple_id = v_couple and g.game = invite_to_game.game::public.game_kind
                and g.status in ('invited', 'active')) then
     raise exception 'GAME_ALREADY_OPEN' using errcode = 'P0001';
   end if;
   insert into public.game_sessions (couple_id, game, invited_by, item_slugs)
-  values (v_couple, invite_to_game.game, v_uid, coalesce(invite_to_game.item_slugs, '{}')) returning * into v_row;
+  values (v_couple, invite_to_game.game::public.game_kind, v_uid, coalesce(invite_to_game.item_slugs, '{}')) returning * into v_row;
   perform private.enqueue_notification(private.partner_id(), 'game_invite', v_row.id, 'game_invite:' || v_row.id);
   perform private.signal('couple:' || v_couple, 'game_changed');
   return v_row;
@@ -344,7 +344,7 @@ begin
         raise exception 'GAME_NOT_COMPLETE' using errcode = 'P0001';
       end if;
     end if;
-    update public.game_sessions g set status = 'finished', finished_at = now(), outcome = update_game.outcome
+    update public.game_sessions g set status = 'finished', finished_at = now(), outcome = update_game.outcome::public.game_outcome
     where g.id = v_row.id returning g.* into v_row;
   else
     raise exception 'INVALID_GAME_ACTION' using errcode = 'P0001';

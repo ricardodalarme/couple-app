@@ -323,10 +323,10 @@ create index chat_messages_author_idx on public.chat_messages (author_id, create
 create table public.learned_items (
   id uuid primary key default gen_random_uuid(),
   author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  target text not null check (target in ('partner_fact', 'date', 'memory', 'commitment')),
+  target public.learned_item_target not null,
   text text not null check (char_length(text) between 1 and 500),
   excerpt text check (char_length(excerpt) <= 500),
-  status text not null default 'pending' check (status in ('pending', 'confirmed', 'rejected')),
+  status public.learned_item_status not null default 'pending',
   created_at timestamptz not null default now(), updated_at timestamptz not null default now()
 );
 create index learned_items_author_idx on public.learned_items (author_id, status);
@@ -503,7 +503,7 @@ create view public.timeline_items with (security_invoker = true) as
   select c.id, case when c.author_id = auth.uid() then 'card_sent' else 'card_received' end, c.note, (c.sent_at)::date, c.author_id, true, null
   from public.cards c where c.status = 'sent'
   union all
-  select e.id, 'story', coalesce(e.title, e.kind), e.happened_on, e.author_id, e.couple_id is not null, null
+  select e.id, 'story', coalesce(e.title, e.kind::text), e.happened_on, e.author_id, e.couple_id is not null, null
   from public.story_events e
   union all
   select d.id, 'first', d.title, make_date(d.year, d.month, least(d.day, 28)), d.author_id, d.couple_id is not null, null
