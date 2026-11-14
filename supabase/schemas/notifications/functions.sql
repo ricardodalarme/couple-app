@@ -50,14 +50,34 @@ returns void language sql security definer set search_path = '' as $$
   on conflict (dedupe_key) do nothing;
 $$;
 
--- Decision for one notification at a moment: 'send' or 'drop'.
+-- Whether a notification type is started by the partner. Those are never silenced by a pause or counted in the daily cap.
+create function private.is_partner_initiated(p_type text) returns boolean
+language sql immutable set search_path = '' as $$
+  select p_type in ('card_received', 'card_reaction', 'partner_joined', 'unpaired', 'pause_started', 'partner_message', 'game_invite')
+         or p_type like 'signal_%';
+$$;
+
+-- Decision for one notification at a moment: 'send' or 'drop'. Applies the person's settings, the daily cap,
+-- and silence for reminders during a pause, a fight or time away.
 create function private.should_send(p_profile_id uuid, p_type text, p_at timestamptz) returns text
 language plpgsql stable security definer set search_path = '' as $$
-declare v_s public.notification_settings;
+declare
+  v_s public.notification_settings;
+  v_from_partner boolean := private.is_partner_initiated(p_type);
 begin
   select * into v_s from public.notification_settings where profile_id = p_profile_id;
   if not found or not v_s.enabled or p_type = any (v_s.muted_types) then
     return 'drop';
+  end if;
+  if p_type <> 'pause_over' and not v_from_partner then
+    if private.is_quiet_moment(p_profile_id) then
+      return 'drop';
+    end if;
+    if (select count(*) from private.notification_outbox o
+        where o.profile_id = p_profile_id and o.outcome = 'sent' and o.sent_at > p_at - interval '24 hours'
+          and not private.is_partner_initiated(o.type) and o.type <> 'pause_over') >= v_s.daily_max then
+      return 'drop';
+    end if;
   end if;
   return 'send';
 end $$;
@@ -98,34 +118,3 @@ begin
 end $$;
 grant execute on function private.claim_notifications(integer), private.complete_notification(uuid, text[]) to service_role;
 grant select on private.push_job to service_role;
-
--- Whether a notification type is started by the partner. Those are never silenced by a pause or counted in the daily cap.
-create function private.is_partner_initiated(p_type text) returns boolean
-language sql immutable set search_path = '' as $$
-  select p_type in ('card_received', 'card_reaction', 'partner_joined', 'unpaired', 'pause_started', 'partner_message', 'game_invite')
-         or p_type like 'signal_%';
-$$;
-
--- Notification rules v2: daily cap, and silence for reminders during a pause, a fight or time away ------
-create or replace function private.should_send(p_profile_id uuid, p_type text, p_at timestamptz) returns text
-language plpgsql stable security definer set search_path = '' as $$
-declare
-  v_s public.notification_settings;
-  v_from_partner boolean := private.is_partner_initiated(p_type);
-begin
-  select * into v_s from public.notification_settings where profile_id = p_profile_id;
-  if not found or not v_s.enabled or p_type = any (v_s.muted_types) then
-    return 'drop';
-  end if;
-  if p_type <> 'pause_over' and not v_from_partner then
-    if private.is_quiet_moment(p_profile_id) then
-      return 'drop';
-    end if;
-    if (select count(*) from private.notification_outbox o
-        where o.profile_id = p_profile_id and o.outcome = 'sent' and o.sent_at > p_at - interval '24 hours'
-          and not private.is_partner_initiated(o.type) and o.type <> 'pause_over') >= v_s.daily_max then
-      return 'drop';
-    end if;
-  end if;
-  return 'send';
-end $$;

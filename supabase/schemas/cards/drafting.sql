@@ -15,7 +15,7 @@ declare
   v_tz text;
   v_card uuid;
 begin
-  select id into v_card from public.cards where author_id = p_profile_id and week_start = v_week;
+  select id into v_card from public.cards where author_id = p_profile_id and week_start = v_week and kind = 'weekly';
   if v_card is not null then
     return v_card;
   end if;
@@ -28,9 +28,9 @@ begin
     return null;
   end if;
   insert into public.cards (author_id, week_start) values (p_profile_id, v_week)
-  on conflict on constraint cards_one_per_week do nothing returning id into v_card;
+  on conflict (author_id, week_start) where kind = 'weekly' do nothing returning id into v_card;
   if v_card is null then
-    select id into v_card from public.cards where author_id = p_profile_id and week_start = v_week;
+    select id into v_card from public.cards where author_id = p_profile_id and week_start = v_week and kind = 'weekly';
     return v_card;
   end if;
   insert into public.card_items (card_id, slip_id, body, feeling, position)
@@ -62,7 +62,8 @@ grant execute on function private.own_editable_card(uuid) to authenticated;
 create function public.sunday_card() returns public.cards
 language sql stable set search_path = '' as $$
   select c.* from public.cards c
-  where c.author_id = auth.uid() and c.week_start = private.local_week_start(auth.uid()) and c.deleted_at is null;
+  where c.author_id = auth.uid() and c.week_start = private.local_week_start(auth.uid())
+    and c.kind = 'weekly' and c.deleted_at is null;
 $$;
 grant execute on function private.local_week_start(uuid) to authenticated;
 
@@ -131,47 +132,7 @@ begin
   return found;
 end $$;
 
-create or replace function private.build_card_draft(p_profile_id uuid) returns uuid
-language plpgsql security definer set search_path = '' as $$
-declare
-  v_week date := private.local_week_start(p_profile_id);
-  v_tz text;
-  v_card uuid;
-begin
-  select id into v_card from public.cards where author_id = p_profile_id and week_start = v_week and kind = 'weekly';
-  if v_card is not null then
-    return v_card;
-  end if;
-  select time_zone into v_tz from public.profile_settings where profile_id = p_profile_id;
-  if not exists (
-    select 1 from public.slips s
-    where s.author_id = p_profile_id and s.for_card and s.kind <> 'invisible'
-      and s.deleted_at is null and s.archived_at is null
-      and (s.created_at at time zone v_tz)::date >= v_week) then
-    return null;
-  end if;
-  insert into public.cards (author_id, week_start) values (p_profile_id, v_week)
-  on conflict (author_id, week_start) where kind = 'weekly' do nothing returning id into v_card;
-  if v_card is null then
-    select id into v_card from public.cards where author_id = p_profile_id and week_start = v_week and kind = 'weekly';
-    return v_card;
-  end if;
-  insert into public.card_items (card_id, slip_id, body, feeling, position)
-  select v_card, s.id, s.body, s.feeling, row_number() over (order by s.created_at)
-  from public.slips s
-  where s.author_id = p_profile_id and s.for_card and s.kind <> 'invisible'
-    and s.deleted_at is null and s.archived_at is null
-    and (s.created_at at time zone v_tz)::date >= v_week;
-  return v_card;
-end $$;
-
-create or replace function public.sunday_card() returns public.cards
-language sql stable set search_path = '' as $$
-  select c.* from public.cards c
-  where c.author_id = auth.uid() and c.week_start = private.local_week_start(auth.uid())
-    and c.kind = 'weekly' and c.deleted_at is null;
-$$;
-
+-- A single slip can be sent on its own, without touching the weekly card.
 create function public.send_slip_now(slip_id uuid, note text default null) returns public.cards
 language plpgsql security definer set search_path = '' as $$
 declare v_uid uuid := private.require_user(); v_slip public.slips; v_card public.cards;

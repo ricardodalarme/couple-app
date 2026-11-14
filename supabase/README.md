@@ -48,9 +48,12 @@ Domains: `_cluster` (extensions, cron jobs), `_platform` (schemas, default privi
 
 - Folder load order is not fully dependency-driven: default privileges are only applied to tables created after
   them. `_platform` therefore sorts before every domain folder. Keep it that way.
-- Statements that change the same object stay in one file, in order (for example `agreements` privileges follow the
-  pattern grant in `cross_cutting/rls_patterns.sql`). A statement in another file that touches the same object can
-  run before it and leave a different result.
+- Declare each object once, in its final form: no `alter table ... add column`, `create or replace` or second
+  `create` of the same object. Append a new column last, because the sync does not compare column order and a
+  fresh database would otherwise differ from production.
+- The one remaining ordering dependency is `agreements`: its `revoke update` follows the table-wide grant that the
+  pattern block gives it, so both live in `cross_cutting/rls_patterns.sql`. A statement in another file would run
+  first and leave a different result.
 - Declarative files hold no data statements. Storage buckets are rows, created by migrations; `storage/` and
   `couple_photos/storage.sql` hold only the policies on `storage.objects`.
 - Never run `supabase db schema declarative generate` or `db pull --declarative` over this tree; they rewrite it in

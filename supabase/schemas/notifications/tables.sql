@@ -19,9 +19,10 @@ create table public.notification_settings (
   enabled boolean not null default true,
   discreet boolean not null default false,
   card_day smallint not null default 0 check (card_day between 0 and 6),
-  card_hour smallint not null default 9 check (card_hour between 0 and 23),
+  card_hour smallint not null default 18 check (card_hour between 0 and 23),
   muted_types text[] not null default '{}',
-  updated_at timestamptz not null default now()
+  updated_at timestamptz not null default now(),
+  daily_max smallint not null default 2 check (daily_max between 0 and 2)
 );
 create trigger notification_settings_set_updated_at before update on public.notification_settings
   for each row execute function private.set_updated_at();
@@ -43,9 +44,3 @@ create table private.notification_outbox (
 create index notification_outbox_due_idx on private.notification_outbox (send_after) where sent_at is null;
 create index notification_outbox_profile_idx on private.notification_outbox (profile_id);
 create index notification_outbox_sent_idx on private.notification_outbox (profile_id, sent_at) where outcome = 'sent';
-
-alter table public.notification_settings add column daily_max smallint not null default 2 check (daily_max between 0 and 2);
-grant update (daily_max) on public.notification_settings to authenticated;
-
--- The designs show the weekly card leaving on Sunday at 18:00.
-alter table public.notification_settings alter column card_hour set default 18;

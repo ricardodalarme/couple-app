@@ -24,24 +24,8 @@ end $$;
 create trigger card_reactions_after_write after insert or update on public.card_reactions
   for each row execute function private.on_card_reaction();
 
+-- The person who was unpaired gets a neutral notice, not only a realtime signal.
 create function private.on_membership_change() returns trigger
-language plpgsql security definer set search_path = '' as $$
-begin
-  if tg_op = 'INSERT' then
-    if new.role = 'inviter' then
-      perform private.enqueue_notification(new.profile_id, 'partner_joined', new.couple_id, 'partner_joined:' || new.couple_id);
-    end if;
-    perform private.signal('user:' || new.profile_id, 'paired');
-  elsif new.left_at is not null and old.left_at is null then
-    perform private.signal('user:' || new.profile_id, 'unpaired');
-  end if;
-  return new;
-end $$;
-create trigger couple_members_after_change after insert or update of left_at on public.couple_members
-  for each row execute function private.on_membership_change();
-
--- The person who was unpaired gets a neutral notice (X-164), not only a realtime signal.
-create or replace function private.on_membership_change() returns trigger
 language plpgsql security definer set search_path = '' as $$
 begin
   if tg_op = 'INSERT' then
@@ -57,3 +41,5 @@ begin
   end if;
   return new;
 end $$;
+create trigger couple_members_after_change after insert or update of left_at on public.couple_members
+  for each row execute function private.on_membership_change();

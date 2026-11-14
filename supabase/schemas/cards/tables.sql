@@ -12,9 +12,11 @@ create table public.cards (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   deleted_at timestamptz,
-  constraint cards_one_per_week unique (author_id, week_start),
+  kind public.card_kind not null default 'weekly',
   constraint cards_sent_has_time check ((status = 'sent') = (sent_at is not null))
 );
+-- A single-slip card can be sent on its own, so only weekly cards are limited to one per week.
+create unique index cards_one_weekly_per_week on public.cards (author_id, week_start) where kind = 'weekly';
 create index cards_recipient_idx on public.cards (recipient_id, sent_at desc) where status = 'sent';
 create index cards_couple_id_idx on public.cards (couple_id);
 comment on constraint cards_author_id_fkey on public.cards is e'@graphql({"foreign_name": "author", "local_name": "authoredCards"})';
@@ -51,8 +53,3 @@ create table public.card_opens (
   opened_at timestamptz not null default now()
 );
 comment on constraint card_opens_card_id_fkey on public.card_opens is e'@graphql({"foreign_name": "card", "local_name": "open"})';
-
--- "Enviar agora" (X-62): a single slip can be sent on its own, without touching the weekly card.
-alter table public.cards add column kind public.card_kind not null default 'weekly';
-alter table public.cards drop constraint cards_one_per_week;
-create unique index cards_one_weekly_per_week on public.cards (author_id, week_start) where kind = 'weekly';
