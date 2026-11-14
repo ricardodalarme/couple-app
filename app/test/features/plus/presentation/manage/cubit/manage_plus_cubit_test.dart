@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/plus/data/models/plus_plan.dart';
 import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
 import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
 import 'package:flutter_bloc_starter/features/plus/presentation/manage/cubit/manage_plus_cubit.dart';
@@ -16,12 +17,12 @@ void main() {
 
   test('load reads the plan for the status rows', () async {
     when(() => repository.getPlus())
-        .thenAnswer((_) async => const PlusState(hasPlus: true, plan: 'plus_annual'));
+        .thenAnswer((_) async => const PlusState(hasPlus: true, plan: PlusPlan.annual));
     final cubit = build();
 
     await cubit.load();
 
-    expect((cubit.state.plus as Success<PlusState>).value.plan, 'plus_annual');
+    expect((cubit.state.plus as Success<PlusState>).value.plan, PlusPlan.annual);
   });
 
   test('a failed plan read can be retried', () async {

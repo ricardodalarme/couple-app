@@ -1,7 +1,10 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/plus/data/data_sources/remote/plus_data_source.dart';
 import 'package:flutter_bloc_starter/features/plus/data/data_sources/remote/queries/generated/MyPlus.graphql.dart';
+import 'package:flutter_bloc_starter/features/plus/data/models/plus_plan.dart';
 import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
+import 'package:flutter_bloc_starter/features/plus/data/models/plus_status.dart';
 import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -47,8 +50,8 @@ void main() {
       (_) async => QueryMyPlusmyPlus(
         hasPlus: true,
         paidByPartner: true,
-        plan: 'plus_annual',
-        status: 'active',
+        plan: EnumEntitlementPlan.plus_annual,
+        status: EnumEntitlementStatus.active,
         slipsLeftThisMonth: 2,
         cardsLeftThisMonth: 1,
       ),
@@ -58,8 +61,8 @@ void main() {
 
     expect(plus.hasPlus, isTrue);
     expect(plus.isPaidByPartner, isTrue);
-    expect(plus.plan, 'plus_annual');
-    expect(plus.status, 'active');
+    expect(plus.plan, PlusPlan.annual);
+    expect(plus.status, PlusStatus.active);
     expect(plus.slipsLeft, 2);
     expect(plus.cardsLeft, 1);
   });

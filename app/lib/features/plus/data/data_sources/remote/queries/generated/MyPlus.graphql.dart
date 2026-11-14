@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -261,8 +263,8 @@ class QueryMyPlusmyPlus {
     return QueryMyPlusmyPlus(
       hasPlus: (l$hasPlus as bool?),
       paidByPartner: (l$paidByPartner as bool?),
-      plan: (l$plan as String?),
-      status: (l$status as String?),
+      plan: l$plan == null ? null : fromJsonEnumEntitlementPlan((l$plan as String)),
+      status: l$status == null ? null : fromJsonEnumEntitlementStatus((l$status as String)),
       slipsLeftThisMonth: (l$slipsLeftThisMonth as int?),
       cardsLeftThisMonth: (l$cardsLeftThisMonth as int?),
       $__typename: (l$$__typename as String),
@@ -273,9 +275,9 @@ class QueryMyPlusmyPlus {
 
   final bool? paidByPartner;
 
-  final String? plan;
+  final EnumEntitlementPlan? plan;
 
-  final String? status;
+  final EnumEntitlementStatus? status;
 
   final int? slipsLeftThisMonth;
 
@@ -290,9 +292,9 @@ class QueryMyPlusmyPlus {
     final l$paidByPartner = paidByPartner;
     _resultData['paidByPartner'] = l$paidByPartner;
     final l$plan = plan;
-    _resultData['plan'] = l$plan;
+    _resultData['plan'] = l$plan == null ? null : toJsonEnumEntitlementPlan(l$plan);
     final l$status = status;
-    _resultData['status'] = l$status;
+    _resultData['status'] = l$status == null ? null : toJsonEnumEntitlementStatus(l$status);
     final l$slipsLeftThisMonth = slipsLeftThisMonth;
     _resultData['slipsLeftThisMonth'] = l$slipsLeftThisMonth;
     final l$cardsLeftThisMonth = cardsLeftThisMonth;

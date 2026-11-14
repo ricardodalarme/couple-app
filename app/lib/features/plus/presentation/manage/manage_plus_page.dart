@@ -3,7 +3,9 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/plus/data/models/plus_plan.dart';
 import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
+import 'package:flutter_bloc_starter/features/plus/data/models/plus_status.dart';
 import 'package:flutter_bloc_starter/features/plus/presentation/manage/cubit/manage_plus_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -157,24 +159,24 @@ Future<bool> _openStore(Uri url) async {
   }
 }
 
-String _planLabel(BuildContext context, String? plan) {
+String _planLabel(BuildContext context, PlusPlan? plan) {
   final l10n = context.l10n.plus;
 
   return switch (plan) {
-    'plus_monthly' => l10n.monthly,
-    'plus_annual' => l10n.yearly,
-    'plus_gift' => l10n.giftPlan,
+    PlusPlan.monthly => l10n.monthly,
+    PlusPlan.annual => l10n.yearly,
+    PlusPlan.gift => l10n.giftPlan,
     _ => l10n.plusActive,
   };
 }
 
-String _statusLabel(BuildContext context, String status) {
+String _statusLabel(BuildContext context, PlusStatus status) {
   final l10n = context.l10n.plus;
 
   return switch (status) {
-    'trialing' => l10n.statusTrialing,
-    'grace' => l10n.statusGrace,
-    'billing_issue' => l10n.statusBillingIssue,
+    PlusStatus.trialing => l10n.statusTrialing,
+    PlusStatus.grace => l10n.statusGrace,
+    PlusStatus.billingIssue => l10n.statusBillingIssue,
     _ => l10n.statusActive,
   };
 }

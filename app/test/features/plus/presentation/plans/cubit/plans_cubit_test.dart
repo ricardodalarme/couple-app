@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
+import 'package:flutter_bloc_starter/features/plus/data/models/plus_status.dart';
 import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
 import 'package:flutter_bloc_starter/features/plus/presentation/plans/cubit/plans_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -109,7 +110,7 @@ void main() {
   });
 
   test('a billing problem keeps Plus on and says so', () {
-    const state = PlusState(hasPlus: true, status: 'billing_issue');
+    const state = PlusState(hasPlus: true, status: PlusStatus.billingIssue);
 
     expect(state.hasBillingProblem, isTrue);
     expect(state.hasPlus, isTrue);

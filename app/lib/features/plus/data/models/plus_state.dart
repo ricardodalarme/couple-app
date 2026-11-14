@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_starter/features/plus/data/models/plus_plan.dart';
+import 'package:flutter_bloc_starter/features/plus/data/models/plus_status.dart';
 
 /// What the person has: Plus (their own or their partner's) or the free plan with its monthly room.
 final class const PlusState({
@@ -6,14 +8,14 @@ final class const PlusState({
   final bool isPaidByPartner = false,
   final int slipsLeft = 0,
   final int cardsLeft = 0,
-  final String? plan,
-  final String? status,
+  final PlusPlan? plan,
+  final PlusStatus? status,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
   factory fake() => const PlusState(hasPlus: false, slipsLeft: 10, cardsLeft: 1);
 
   /// Whether a payment failed; Plus stays on during the grace period.
-  bool get hasBillingProblem => status == 'billing_issue' || status == 'grace';
+  bool get hasBillingProblem => status == PlusStatus.billingIssue || status == PlusStatus.grace;
 
   @override
   List<Object?> get props => [hasPlus, isPaidByPartner, slipsLeft, cardsLeft, plan, status];
