@@ -51,7 +51,7 @@ enable_manual_linking = false
 # Email sign-up stays on here only so the dev menu's debug sign-in works on the local stack and simulators.
 # Never run `supabase config push` with this file against production: it would open sign-up to throwaway accounts.
 [auth.email]
-enable_signup = true
+enabled = true
 enable_confirmations = false
 
 [auth.external.apple]
