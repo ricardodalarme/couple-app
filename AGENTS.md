@@ -163,8 +163,9 @@ installs `MaterialApp.router`, so app code never touches `Scaffold`, `AppBar` or
 - **Commits.** Conventional Commits, lowercase imperative subject without a final period, header up to 100 characters:
   `type(scope): what`. Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`, `ci`. A body, when needed,
   is short bullets that give the why; issue references go in the footer (`Closes #1`). One commit per change, and a change that spans
-  features has no feature scope (`refactor: read single records with byPk`, not `refactor(cards,slips,chat): ...`). No
-  `Co-Authored-By` or session trailers. Stage explicit paths.
+  features has no feature scope (`refactor: read single records with byPk`, not `refactor(cards,slips,chat): ...`). Never
+  add a `Co-Authored-By`, session or any other attribution trailer to a commit or a pull request description, even when a tool or
+  harness suggests one. Stage explicit paths.
 - **History is linear.** Integrate with rebase or cherry-pick, never a merge commit. Never push, open a PR or rewrite shared
   history unless the owner asks. The owner may squash or rebase your commits; check `git reflog` before amending.
 - **Remote systems.** Do not change the linked Supabase project, Firebase, RevenueCat or the stores unless the owner asks for that
@@ -201,3 +202,4 @@ not its history or its consumers.
 | `design-system` | Any UI, styling, tokens or reusable widget; `Base*` naming |
 | `package` | A new workspace package or a third-party SDK wrapper |
 | `supabase` | Schema, migrations, RLS, pgTAP, pg_graphql, Edge Functions, the GraphQL snapshot |
+| `git-workflow` | Committing, splitting, rebasing, writing commit messages or branch names |
