@@ -44,50 +44,21 @@ Product, design and ticket documents are in `.work/` (local only, never committe
 Melos is configured under `melos:` in the root `pubspec.yaml` (there is no `melos.yaml`). Generated files are committed and CI
 does not run codegen.
 
-Supabase (details and the schema layout rules are in `supabase/README.md`):
-
-| Command | What it does |
-| --- | --- |
-| `supabase start` / `supabase stop` | Start or stop the local stack (ports `563xx`) |
-| `supabase db reset --local` | Replay migrations and the dev seed |
-| `supabase test db` | Run the pgTAP suite. Local stack only, never against the linked project |
-| `supabase db schema declarative sync --no-apply` | Must print "No schema changes found", or create the migration you intend |
-| `supabase db push --remote` | Apply committed migrations to the linked project. Only when the owner asks |
-| `melos graphql:schema` | Download the GraphQL schema snapshot (needs `get-graphql-schema` and `SCHEMA_AUTH_TOKEN`) |
+Supabase commands, the schema layout and the migration workflow are in `supabase/README.md` and the `supabase` skill. Run
+`supabase test db` only against the local stack, and push to the linked project only when the owner asks.
 
 ## Repository layout
 
-```text
-app/        Flutter app (package flutter_bloc_starter), flavors development and production
-packages/   core, network, design_system, common_ui, form_inputs, formatters, logger, services/*
-supabase/   declarative schema, migrations, seed, pgTAP tests, Edge Functions
-docs/       contributing, dependency injection, localization and navigation notes
-.agents/    skills (SKILL.md files)
-```
+`app/` (package `flutter_bloc_starter`, flavors `development` and `production`), `packages/` (`core`, `network`, `design_system`,
+`common_ui`, `form_inputs`, `formatters`, `logger`, `services/*`), `supabase/`, `.agents/skills/`.
 
 Firebase client configuration is committed per flavor: `app/android/app/src/{development,production}/google-services.json` and
 `app/ios/config/{development,production}/GoogleService-Info.plist`. Firebase is initialized from the native flavor config.
 
 ## App architecture
 
-```text
-app/lib/
-├── main.dart                 # entrypoint: registers DI modules, runs the startup pipeline, runApp
-├── app.dart                  # root widget and AppCubit
-├── infrastructure/           # app-wide technical concerns
-│   ├── config/               # EnvVariables (dart-define values)
-│   └── initializers/         # startup steps ordered by declared dependencies
-├── features/<feature>/       # feature-first
-│   ├── di/<feature>_injection_module.dart
-│   ├── data/
-│   │   ├── data_sources/     # remote/ and local/, each with queries, mutations and fragments
-│   │   ├── models/           # hand-written Equatable models with a `fake`
-│   │   ├── mappers/          # generated type -> model, and enum conversions
-│   │   └── repositories/     # concrete classes, Logger, map failures to LocalizedException
-│   └── presentation/<page>/  # <name>_page.dart + cubit/ + widgets/
-├── features/_shared/         # the GraphQL schema snapshot and cross-feature DI
-└── router/app_router.dart    # auto_route config (generated app_router.gr.dart is committed)
-```
+`app/lib` is feature-first: `features/<feature>/{di,data/{data_sources,models,mappers,repositories},presentation/<page>}`, plus
+`infrastructure/` (config, initializers), `router/app_router.dart`, `main.dart` and `app.dart`. `features/gifts` is the reference.
 
 **Navigation.** `AppRouter` has a global auth and onboarding guard. `HomePage` is an `AutoTabsRouter` with four tabs, **Today,
 Slips, Together, Memories**, and a capture button in the middle that pushes `QuickSlipRoute` on the root router. Every other page,
