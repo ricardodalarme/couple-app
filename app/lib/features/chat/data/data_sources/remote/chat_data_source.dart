@@ -24,19 +24,12 @@ class ChatDataSource({
 
     return validateResponseData(
       response,
-      getData: (data) {
-        final limits = {
-          for (final edge in data.appConfigCollection.edges)
-            edge.node.key: int.tryParse(edge.node.value) ?? 0,
-        };
-
-        return (
-          messagesLeft: data.chatMessagesLeft ?? 0,
-          isEnabled: data.profileSettingsByPk?.chatEnabled ?? false,
-          plusLimit: limits['chat_messages_per_day_plus'] ?? 0,
-          freeLimit: limits['chat_messages_per_day_free'] ?? 0,
-        );
-      },
+      getData: (data) => (
+        messagesLeft: data.chatMessagesLeft ?? 0,
+        isEnabled: data.profileSettingsByPk?.chatEnabled ?? false,
+        plusLimit: int.tryParse(data.plusLimit?.value ?? '') ?? 0,
+        freeLimit: int.tryParse(data.freeLimit?.value ?? '') ?? 0,
+      ),
     );
   }
 

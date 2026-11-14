@@ -1,14 +1,10 @@
 query ChatStatus($profileId: UUID!) {
   chatMessagesLeft
-  appConfigCollection(
-    filter: { key: { in: ["chat_messages_per_day_plus", "chat_messages_per_day_free"] } }
-  ) {
-    edges {
-      node {
-        key
-        value
-      }
-    }
+  plusLimit: appConfigByPk(key: "chat_messages_per_day_plus") {
+    value
+  }
+  freeLimit: appConfigByPk(key: "chat_messages_per_day_free") {
+    value
   }
   profileSettingsByPk(profileId: $profileId) {
     profileId
