@@ -42,7 +42,8 @@ the migration through the CLI/MCP, and keep both files consistent.
    ```
    Review it before applying. Do not hand-write a migration when sync can
    produce it.
-3. Apply locally with `supabase db reset --local`, then `supabase test db`.
+3. Apply locally with `supabase db reset --local`, then `supabase test db`. Never run the pgTAP suite against a remote or
+   linked database: its setup file leaves the `tap` and `tests` schemas behind.
 4. Push with `supabase db push --remote --include-all`.
 5. Refresh the GraphQL snapshot: `melos graphql:schema`, then `melos gen`.
 

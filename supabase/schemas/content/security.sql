@@ -2,6 +2,7 @@
 
 alter table public.app_config enable row level security;
 grant select on public.app_config to anon, authenticated;
+-- Intentionally public: limits and the minimum app version are read before sign-in. Never store anything sensitive here.
 create policy app_config_read_all on public.app_config for select to anon, authenticated using (true);
 
 alter table public.content_items enable row level security;

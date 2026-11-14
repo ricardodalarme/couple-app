@@ -47,7 +47,9 @@ enable_signup = true
 enable_anonymous_sign_ins = false
 enable_manual_linking = false
 
-# Sign-in is Apple and Google only (product decision of 8 Nov). No email/password, no magic link.
+# Production sign-in is Apple and Google only (product decision of 8 Nov): no email/password, no magic link.
+# Email sign-up stays on here only so the dev menu's debug sign-in works on the local stack and simulators.
+# Never run `supabase config push` with this file against production: it would open sign-up to throwaway accounts.
 [auth.email]
 enable_signup = true
 enable_confirmations = false

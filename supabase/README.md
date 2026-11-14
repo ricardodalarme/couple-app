@@ -67,3 +67,57 @@ Domains: `_cluster` (extensions, cron jobs), `_platform` (schemas, default privi
 
 `supabase/tests/database/<domain>/<name>_test.sql`, using the schema domain names. A test that walks several domains with
 shared fixtures lives in `cross_cutting/`. `00_setup/` holds the pgTAP and helper bootstrap and sorts first.
+
+**Run the suite only against the local stack.** The setup file creates the `tap` and `tests` schemas and does not roll them
+back. Run against the linked project, it left pgTAP views readable by `anon` and visible in the production GraphQL schema.
+If that has happened, remove them on the remote:
+
+```sql
+drop schema if exists tap cascade;
+drop schema if exists tests cascade;
+```
+
+Edge Function helpers have Deno tests: `deno test --allow-env supabase/functions/_shared`.
+
+## Edge Functions and their schedule
+
+`pg_cron` calls `push-sender` every minute and `storage-cleanup` daily through `private.invoke_edge_function`. The helper
+sends nothing until both Vault secrets exist, so the jobs are safe before setup. One-time setup per project:
+
+1. Deploy: `supabase functions deploy push-sender storage-cleanup purchases-webhook guest places chat`.
+2. Secrets: `supabase secrets set FCM_SERVICE_ACCOUNT=... REVENUECAT_WEBHOOK_AUTH=... MAPBOX_TOKEN=...` (plus the chat provider keys).
+3. In the SQL editor, outside migrations, store the project URL and a dedicated secret key (`sb_secret_...`):
+
+   ```sql
+   select vault.create_secret('https://<project-ref>.supabase.co', 'project_url');
+   select vault.create_secret('<secret key>', 'secret_key');
+   ```
+
+   Any role that can log in to the database can read the key from `net.http_request_queue` while a request is pending.
+   Use a key created for this purpose so it can be rotated alone.
+
+`push-sender` and `storage-cleanup` run with `verify_jwt = false` and check the secret key themselves
+(`supabase/functions/_shared/auth.ts`). `chat` and `places` rely on `verify_jwt = true` and read the claims from the verified token.
+
+## Decisions that look like findings
+
+These show up in advisors or reviews and are intentional. Revisit them only with the reason in mind.
+
+- **Plus-only content is readable by every signed-in user** (decision D-029): the app must list locked items by title, and the
+  content is not secret. Server-enforced Plus limits are slips, cards and mascot messages. The `sensitive` flag and the
+  `sensitive_tracks` consent are a UX gate the user controls, not a security boundary.
+- **`app_config` is readable by `anon`** (advisor 0024): the limits and the minimum app version are read before sign-in.
+- **GraphQL introspection is on** (`graphql/schema_settings.sql`): the Supabase docs recommend turning it off in production,
+  but the schema snapshot is generated from the project in `.env.development`. Turning it off in production means switching
+  the snapshot to the local stack, with `seed.sql` turning it back on there (the seed never runs on the remote). Row access
+  does not depend on introspection.
+- **Public `security definer` functions are the API** (advisors 0028 and 0029 on `authenticated`): each one starts with
+  `private.require_user()` and scopes rows by the caller. `anon` can execute none of them.
+- **Every table is visible to `authenticated` in the GraphQL schema** (advisor 0027): the app reads them. Rows are protected
+  by RLS.
+- **Tables in `private` have RLS on and no policies**: the schema is not exposed and `authenticated` has no grants, so the
+  default deny is deliberate.
+- **Email sign-up is enabled in `config.toml`** for the local debug sign-in only. Leaked-password protection needs the Pro plan;
+  turn it on if email sign-in is ever enabled in production.
+- **Realtime uses private channels.** In the dashboard, Realtime settings, turn off "Allow public access" so only authorized
+  channels connect. Only a `select` policy exists on `realtime.messages`, so clients receive but cannot broadcast.
