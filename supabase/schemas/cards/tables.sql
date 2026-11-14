@@ -17,6 +17,7 @@ create table public.cards (
 );
 -- A single-slip card can be sent on its own, so only weekly cards are limited to one per week.
 create unique index cards_one_weekly_per_week on public.cards (author_id, week_start) where kind = 'weekly';
+create index cards_author_idx on public.cards (author_id, sent_at desc);
 create index cards_recipient_idx on public.cards (recipient_id, sent_at desc) where status = 'sent';
 create index cards_couple_id_idx on public.cards (couple_id);
 comment on constraint cards_author_id_fkey on public.cards is e'@graphql({"foreign_name": "author", "local_name": "authoredCards"})';
