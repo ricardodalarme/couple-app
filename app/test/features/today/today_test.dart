@@ -40,7 +40,6 @@ QueryTodayHome _query({
   today: today,
   partnerMoodToday: partnerMoodToday,
   myMood: QueryTodayHomemyMood(edges: const []),
-  weekSlips: QueryTodayHomeweekSlips(edges: const []),
 );
 
 void main() {

@@ -10,13 +10,11 @@ import 'package:flutter_test/flutter_test.dart';
 QueryTodayHome _query({
   QueryTodayHometoday? today,
   QueryTodayHomepartnerMoodToday? partnerMoodToday,
-  List<QueryTodayHomeweekSlipsedges> weekSlipEdges = const [],
   List<QueryTodayHomemyMoodedges> myMoodEdges = const [],
 }) => QueryTodayHome(
   today: today,
   partnerMoodToday: partnerMoodToday,
   myMood: QueryTodayHomemyMood(edges: myMoodEdges),
-  weekSlips: QueryTodayHomeweekSlips(edges: weekSlipEdges),
 );
 
 void main() {
@@ -100,15 +98,13 @@ void main() {
 
     test('maps today mood and the week slip days', () {
       final model = _query(
-        today: QueryTodayHometoday(localDate: DateTime(2026, 11, 10)),
+        today: QueryTodayHometoday(
+          localDate: DateTime(2026, 11, 10),
+          slipDays: [DateTime(2026, 11, 9), null],
+        ),
         myMoodEdges: [
           QueryTodayHomemyMoodedges(
             node: QueryTodayHomemyMoodedgesnode(day: DateTime(2026, 11, 10), mood: EnumMood.happy),
-          ),
-        ],
-        weekSlipEdges: [
-          QueryTodayHomeweekSlipsedges(
-            node: QueryTodayHomeweekSlipsedgesnode(createdAt: DateTime(2026, 11, 9, 12)),
           ),
         ],
       ).toModel();

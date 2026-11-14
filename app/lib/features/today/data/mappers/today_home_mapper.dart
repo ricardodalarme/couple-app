@@ -29,14 +29,7 @@ extension TodayHomeMapper on QueryTodayHome {
       myMood: ownMood != null && localDate != null && ownMood.day == localDate
           ? ownMood.mood.toModel()
           : null,
-      slipDays: [
-        for (final edge in weekSlips.edges)
-          DateTime(
-            edge.node.createdAt.toLocal().year,
-            edge.node.createdAt.toLocal().month,
-            edge.node.createdAt.toLocal().day,
-          ),
-      ],
+      slipDays: [for (final day in state.slipDays ?? const <DateTime?>[]) ?day],
       question: question == null
           ? null
           : Suggestion(

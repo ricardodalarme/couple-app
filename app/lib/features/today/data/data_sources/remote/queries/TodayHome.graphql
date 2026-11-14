@@ -13,6 +13,7 @@ query TodayHome {
     pauseReturnAt
     hasPlus
     unseenSignals
+    slipDays
   }
   question: dailyContent(kind: "question") {
     slug
@@ -35,17 +36,6 @@ query TodayHome {
       node {
         day
         mood
-      }
-    }
-  }
-  weekSlips: slipsCollection(
-    first: 50
-    filter: {deletedAt: {is: NULL}}
-    orderBy: [{createdAt: DescNullsLast}]
-  ) {
-    edges {
-      node {
-        createdAt
       }
     }
   }
