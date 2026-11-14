@@ -1,353 +1,229 @@
 # AGENTS.md
 
-Flutter monorepo template for **Flutter Bloc Starter**. The app lives in `app/`
-(package `flutter_bloc_starter`); shared code lives in `packages/`. Uses Melos
-with pub workspaces.
+**Repara** is a mobile app for couples, in Brazilian Portuguese first and English second. Each person quietly saves
+small good things the partner did ("slips"); the app turns them into a weekly Sunday card, helps repair after a fight and keeps
+dates and memories. It is a Flutter monorepo (Melos, pub workspaces): the app is in `app/`, shared code in `packages/`, the
+backend in `supabase/` (Postgres, GraphQL through `pg_graphql`, Edge Functions).
 
-This is a generic starter, not a product repository. There is no product
-blueprint or brand book in this repo. The backend is a schema-first Supabase
-project under `supabase/` with `pg_graphql`. When a requirement is unclear, ask
-instead of inventing product behavior.
+"Repara" is a working name. The Dart package (`flutter_bloc_starter`), the bundle IDs and the Firebase configs keep the
+template's names on purpose until the owner picks the final name. Do not rename them, and do not create Firebase, RevenueCat or
+store projects named after the product before that.
 
-Before working in an area, load the matching skill in `.agents/skills/` — the
-skills contain the full conventions, templates, and gotchas. This file is the
-always-on summary. Skills use the generic `SKILL.md` format, so any
-Agent-Skills-compatible tool can load them.
+Before working in an area, load the matching skill from `.agents/skills/` (table at the end). Skills hold the templates and
+gotchas; this file holds the rules that always apply. When a requirement is unclear, ask instead of inventing product
+behavior.
 
-## Commands (run from the repo root)
+## Product rules that constrain the code
 
-| Command                                                                                  | What it does                                                                       |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `melos bootstrap`                                                                        | Install deps + hooks, copies `.env.example` → `.env.development`                   |
-| `melos get`                                                                              | `flutter pub get`                                                                  |
-| `melos gen`                                                                              | build_runner for routes, GraphQL and generated assets (required before analyze)    |
-| `melos l10n`                                                                             | Regenerate app + design-system slang translations                                  |
-| `melos l10n:analyze`                                                                     | Fails on missing/unused translation keys (CI + pre-push)                           |
-| `melos lint`                                                                             | `flutter analyze` + format check                                                   |
-| `melos test`                                                                             | Run tests in every workspace package only (app + packages).                         |
-| `melos format`                                                                           | Format all Dart files (100-col page width)                                         |
-| `cd app && flutter test test/path_test.dart [--plain-name "..."]`                        | Single test file                                                                   |
-| `cd packages/core && dart test`                                                          | Pure-Dart package tests                                                            |
-| `cd packages/design_system && flutter test`                                                         | Flutter package tests                                                              |
-| `cd packages/common_ui && flutter test`                                                  | Shared widget tests                                                                |
-| `cd app && flutter run --dart-define-from-file ../.env.development --flavor development` | Run the app (VSCode F5 works too)                                                  |
+- **Whoever produces data decides who sees it.** Slips, moods, partner notes and cycle data are private until shared, item by
+  item. RLS enforces it; the app never fetches what it must not show.
+- **Never score the relationship.** No health score, no "who did more", no predictions. Metrics are individual and opt-in.
+- **No guilt, no surveillance.** No real-time location, no reading messages, no partner activity history.
+- **Works with one person.** Everything that can work alone does. The partner joins by invite code or a guest link.
+- **Safety content stays on the device.** Nothing about safety triage is stored on the server.
+- **Honest states.** Empty, loading and unavailable states say what is true. Never invent data, help-line numbers or medical or
+  therapeutic claims; use the approved copy and flag gaps to the owner.
 
-Melos config is the `melos:` key in the **root `pubspec.yaml`** — there is no
-`melos.yaml`. Generated files are committed; CI does not run codegen.
+Product, design and ticket documents are in `.work/` (local only, never committed): start with `.work/FRONTEND_PROMPT.md`.
 
-### Supabase
+## Commands (repo root)
 
 | Command | What it does |
 | --- | --- |
-| `supabase link --project-ref esbhdlbhbeoiwaonsgdg` | One-time link to the Repara project |
-| `supabase start` / `supabase stop` | Start/stop the local stack (ports `563xx`) |
-| `supabase db reset --local` | Replay migrations + seed into the local database |
-| `supabase test db` | Run the pgTAP tests in `supabase/tests/` |
-| `supabase db push --remote --include-all` | Apply committed migrations to the linked project |
-| `melos graphql:schema` | Download the GraphQL SDL from the configured Supabase endpoint |
+| `melos bootstrap` | Install dependencies and git hooks |
+| `melos get` | `flutter pub get` in every package |
+| `melos gen` | `build_runner` for routes, GraphQL and assets; run it before analyzing |
+| `melos l10n` | Generate the app and design-system slang translations |
+| `melos l10n:analyze` | Fail on missing or unused translation keys |
+| `melos lint` | `flutter analyze` plus the format check |
+| `melos format` | `dart format` on all Dart files |
+| `melos test` | Run every package's tests in random order (`very_good test`) |
+| `cd app && flutter test test/path_test.dart [--plain-name "..."]` | One test file |
+| `cd app && flutter run --dart-define-from-file ../.env.development --flavor development` | Run the app |
 
-`melos graphql:schema` runs an inline shell command in the root
-`pubspec.yaml`. It reads `SERVER_URL` and `SERVER_API_KEY` from
-`.env.development` (or the process environment) and calls the npm
-`get-graphql-schema` CLI. Install it globally with
-`npm install -g get-graphql-schema@2.1.2`. It authenticates with
-`SCHEMA_AUTH_TOKEN` when set; otherwise it obtains the legacy `service_role`
-key from the logged-in Supabase CLI (`supabase projects api-keys`). The
-resulting snapshot is the complete service_role schema: never hand-edit it.
-For CI, set `SCHEMA_AUTH_TOKEN` to the legacy service_role JWT.
-`get-graphql-schema` must be installed in the CI job as well.
+Melos is configured under `melos:` in the root `pubspec.yaml` (there is no `melos.yaml`). Generated files are committed and CI
+does not run codegen.
 
-`supabase db schema declarative sync` is local-only and requires Docker. When
-Docker is unavailable, edit the declarative schema and migration together and
-keep them in sync.
+Supabase (details and the schema layout rules are in `supabase/README.md`):
+
+| Command | What it does |
+| --- | --- |
+| `supabase start` / `supabase stop` | Start or stop the local stack (ports `563xx`) |
+| `supabase db reset --local` | Replay migrations and the dev seed |
+| `supabase test db` | Run the pgTAP suite. Local stack only, never against the linked project |
+| `supabase db schema declarative sync --no-apply` | Must print "No schema changes found", or create the migration you intend |
+| `supabase db push --remote` | Apply committed migrations to the linked project. Only when the owner asks |
+| `melos graphql:schema` | Download the GraphQL schema snapshot (needs `get-graphql-schema` and `SCHEMA_AUTH_TOKEN`) |
 
 ## Repository layout
 
 ```text
-app/          # Flutter app, package flutter_bloc_starter
-packages/     # core, network, design_system, common_ui, form_inputs, formatters, logger, services/*
-supabase/     # schema-first database, migrations, seed, pgTAP tests
-docs/         # contributing, dependency injection, localization, navigation notes
-.agents/      # skills (SKILL.md) and agent instructions
+app/        Flutter app (package flutter_bloc_starter), flavors development and production
+packages/   core, network, design_system, common_ui, form_inputs, formatters, logger, services/*
+supabase/   declarative schema, migrations, seed, pgTAP tests, Edge Functions
+docs/       contributing, dependency injection, localization and navigation notes
+.agents/    skills (SKILL.md files)
 ```
 
-Firebase client configuration is committed per flavor:
-`app/android/app/src/{development,production}/google-services.json` and
-`app/ios/config/{development,production}/GoogleService-Info.plist`. Keep those
-files aligned with the Firebase dev and production projects; the startup
-initializers initialize Firebase through the native flavor config.
+Firebase client configuration is committed per flavor: `app/android/app/src/{development,production}/google-services.json` and
+`app/ios/config/{development,production}/GoogleService-Info.plist`. Firebase is initialized from the native flavor config.
 
 ## App architecture
 
 ```text
 app/lib/
-├── main.dart              # entrypoint, DI registration, startup pipeline, runApp
-├── infrastructure/        # app-wide technical concerns
-│   └── initializers/      # startup steps ordered by declared dependencies
-├── app.dart               # root widget + AppCubit routing
-├── features/<feature>/    # feature-first
+├── main.dart                 # entrypoint: registers DI modules, runs the startup pipeline, runApp
+├── app.dart                  # root widget and AppCubit
+├── infrastructure/           # app-wide technical concerns
+│   ├── config/               # EnvVariables (dart-define values)
+│   └── initializers/         # startup steps ordered by declared dependencies
+├── features/<feature>/       # feature-first
 │   ├── di/<feature>_injection_module.dart
 │   ├── data/
-│   │   ├── data_sources/  # remote/ and/or local/, each with its own sources
-│   │   ├── models/        # hand-written Equatable models with `fake`
-│   │   ├── mappers/       # generated type → model extensions, and enum conversions
-│   │   └── repositories/  # concrete classes, Logger, rethrow/map exceptions
-│   └── presentation/
-│       ├── <page_or_sub_feature>/ # always a folder: <name>_page.dart + cubit/ + widgets/
-└── router/app_router.dart # auto_route config
+│   │   ├── data_sources/     # remote/ and local/, each with queries, mutations and fragments
+│   │   ├── models/           # hand-written Equatable models with a `fake`
+│   │   ├── mappers/          # generated type -> model, and enum conversions
+│   │   └── repositories/     # concrete classes, Logger, map failures to LocalizedException
+│   └── presentation/<page>/  # <name>_page.dart + cubit/ + widgets/
+├── features/_shared/         # the GraphQL schema snapshot and cross-feature DI
+└── router/app_router.dart    # auto_route config (generated app_router.gr.dart is committed)
 ```
 
-The canonical feature is `post`: a GraphQL read with `PostDataSource`,
-`PostRepository`, `PostsListCubit`, `PostsListState`, and a page that renders the
-`Resource` state with `SkeletonizerResourceWidget` plus `BaseEmptyState` for
-empty and failure. `notifications` follows the same one-shot pattern with a
-separate unread badge cubit.
+**Navigation.** `AppRouter` has a global auth and onboarding guard. `HomePage` is an `AutoTabsRouter` with four tabs, **Today,
+Slips, Together, Memories**, and a capture button in the middle that pushes `QuickSlipRoute` on the root router. Every other page,
+including the widget-extension screens, is a flat root route. Adding a tab needs both a child route under `HomeRoute` and an
+entry in `HomePage`'s `routes`; keep the two in sync.
 
-### Navigation shell
+**State.** Cubit with `Resource<T>` (`Initial`, `Loading`, `Success`, `Failure`). Name read slots after the data (`slips`) and
+action slots with an `Action` suffix (`saveAction`). Reads start as `const Loading()`, actions as `const Initial()`. On failure
+emit `Failure.fromObject(exception)`. Reads are Futures: a cubit awaits a repository `getX()`; there is no stream convention.
 
-The app has three primary tabs, rendered by `HomePage` with `AutoTabsRouter`
-and `BaseTabBar`:
+**UI.** Pages are `@RoutePage()` plus `AutoRouteWrapper` and create their cubit in `wrappedRoute`. Read state with
+`context.select`, act with `context.read`, and use `BlocListener` only for side effects. Render read slots with
+`SkeletonizerResourceWidget` (a fake value plus success and failure builders) and `BaseEmptyState`. Every page is
+`BaseView(appBar:, body:)`; the body is a design-system content widget (`BaseFlowContent`, `BaseStackedContent`,
+`BaseMomentContent`, `BaseTabContent`) or the page's own viewport. A sheet with form state gets its own cubit in a
+`BlocProvider` inside the sheet.
 
-**Posts · Search · Profile**
+**Forms.** Fields back `FormInput<T>` values from `package:form_inputs`. A cubit has one `_validate()` that validates every
+field and returns whether all are valid; `save()` calls it first. Submit buttons stay enabled; only a loading action disables
+them. Field errors come from a per-field l10n map.
 
-- `HomePage` is a `@RoutePage()` and its tab routes are nested under `HomeRoute`
-  in `app/lib/router/app_router.dart`: `PostsListRoute` (initial), `SearchRoute`,
-  and `ProfileRoute`.
-- Adding a tab requires both a child `AutoRoute` under `HomeRoute` and an entry
-  in `HomePage`'s `AutoTabsRouter.routes`; keep the two lists in sync.
-- All other pages (`Login`, `SignUp`, `Settings`, `EditProfile`,
-  `ChangePassword`, `Notifications`, `PrivacyPolicy`, `TermsList`, `NotFound`)
-  are flat root routes.
+**DI.** One `InjectionModule` per feature, added to `main.dart::_registerModules()`. Data sources, repositories and services are
+lazy singletons; cubits are factories with no runtime arguments.
 
-### State, UI, DI
+**Startup.** New startup work is an `Initializer` under `infrastructure/initializers/`, never inline in `main.dart`.
 
-- **State**: Cubit + `Resource<T>` (`Initial`/`Loading`/`Success`/`Failure`).
-  Name read slots after the data they hold (e.g. `posts`) and action slots with
-  an `Action` suffix (e.g. `saveAction`). Reads start as `const Loading()`;
-  actions start as `const Initial()`. On failure, emit
-  `Failure.fromObject(exception)`. A cubit that handles a one-shot mutation may
-  emit `const Initial()` after a handled `Failure` so a `BlocListener` can fire
-  again.
-- **Reads are Futures**: a cubit awaits a repository `getX()` that returns the
-  model; the repository wraps a one-shot GraphQL query in `validateResponseData`.
-  There is no `watchX`/stream convention in the current app.
-- **UI**: pages are `@RoutePage()` + `AutoRouteWrapper`, create their cubit in
-  `wrappedRoute`, render read slots with `SkeletonizerResourceWidget` (a fake
-  value plus success and failure builders), and split UI into private widgets
-  that read narrow slices with `context.select`. Use `context.select` for state
-  reads — do not add `BlocBuilder`, `BlocSelector`, or `buildWhen`. Use a manual
-  `switch` over the `Resource` only for one-off cases. Every page starts with
-  `BaseView(appBar: BaseAppBar(...), body: ...)`, the padding-free page
-  shell. `appBar` defaults to a bare `BaseAppBar`, so stack routes get a
-  back button without page code; pass `appBar: null` only when the screen owns
-  the full screen. The body is a design-system content widget (`BaseFlowContent`,
-  `BaseStackedContent`, `BaseMomentContent`, `BaseTabContent`) for scrolling
-  content, or the page's own viewport (infinite lists, `WebView`, `PageView`,
-  dynamic lists). `BaseAppBar` adds the back button automatically when the
-  route can pop; use `onClose` only for a modal-style dismissal. Text fields
-  use `BaseTextField`/`BaseTextArea` with `text` + `onChanged`, and transient
-  confirmations use `BaseToast.show`.
-- **DI**: one `InjectionModule` per feature, registered in
-  `main.dart::_registerModules()`; data sources/repositories/services are lazy
-  singletons, cubits are factories.
-- **Startup**: initialization steps are `Initializer`s under
-  `app/lib/infrastructure/initializers/`, ordered by their declared
-  dependencies. `main.dart` composes and runs the pipeline; add new startup
-  work as an initializer, not inline in `main.dart`.
-- **Errors**: `LocalizedException(l10nKey:)` from data layers, shown via
-  `context.l10n.<namespace>.<errors>.selectOrFallback(exception.l10nKey)`.
-- **Forms**: text fields back `FormInput<T>` values from `package:form_inputs`
-  (see the `async-state` skill). A cubit has one `_validate()` that validates
-  each field into a `validated<Field>` local, emits them together, and returns
-  their `isValid`; `save()`/`send()` calls it before doing anything else. Submit
-  buttons stay enabled (only a loading action disables them) — do not gate them
-  on `canSave`. Field errors render from a per-field `…Errors(map)` l10n map via
-  `selectOrNull(field.errorName)`. A sheet with form state gets its own cubit,
-  created in a `BlocProvider` inside the sheet, never local `setState` fields.
-- **Tests**: `app/test` mirrors `app/lib`; `blocTest` + `mocktail` + `pumpApp`.
+**Errors.** Data layers throw `LocalizedException(l10nKey:)`; the UI shows
+`context.l10n.<namespace>.<errors>.selectOrFallback(exception.l10nKey)`.
 
-### Constructors
-
-Use Dart **primary constructors** — the constructor lives in the class header:
+**Constructors.** Use Dart primary constructors, in the class header, for widgets, cubits, states, repositories and mocks:
 
 ```dart
-class const PostCard({required final Post post, super.key}) extends StatelessWidget {
-  final Post post;
-  // ...
-}
-
-class PostRepository({required final PostDataSource _postDataSource}) {
-  final PostDataSource _postDataSource;
-  // ...
+class const SlipCard({required final Slip slip, super.key}) extends StatelessWidget {
+  final Slip slip;
 }
 ```
 
-Never use the old separate-constructor style
-(`const PostCard({required this.post});` inside the class body). The same rule
-applies to cubits, states, pages, widgets, mocks, and services. Keep `const`,
-`factory`, and initializer-list forms in the class header where the language
-allows them; use the body only for initializers and behavior.
+Never write the old separate form (`const SlipCard({required this.slip});` in the body).
 
 ## Data rules
 
-- **The starter's feature data uses GraphQL** (pg_graphql). The shared schema
-  snapshot lives at
-  `app/lib/features/_shared/data/data_sources/remote/schema.graphql`; features
-  add their own `queries/` and `fragments/` files under
-  `data/data_sources/remote/`. `RestClient` exists for REST integrations; prefer
-  GraphQL for feature reads unless the API requires REST.
-- **`supabase/schemas/` is the database source of truth.** Edit the declarative
-  schema first, generate/review a migration, and keep the two together. New
-  tables need explicit grants and RLS policies; the layout and the rules for
-  where an object goes are in `supabase/README.md`.
-- **Notifications are backend-created.** There is no client-readable
-  notifications table. Triggers and security-definer functions queue rows in
-  `private.notification_outbox` through `private.enqueue_notification`, and the
-  `push-sender` Edge Function (service role) claims and sends them. Clients only
-  read and update their own `notification_settings`.
-- **Push tokens are write-only for clients.** `public.devices` exposes no token
-  column to `authenticated`; the app registers its FCM installation through the
-  `registerDevice` mutation and removes it through `unregisterDevice` (or
-  `revokeDevice` by id). `NotificationService` wraps FCM and registers
-  tokens after auth. iOS still needs the Push Notifications capability and an
-  APNs key in Firebase; the app does not auto-prompt for notification permission.
-- **Refresh the GraphQL snapshot after a schema change**: `melos graphql:schema`
-  then `melos gen`. The snapshot is generated from the linked project as the
-  `authenticated` role; never hand-edit it.
-- **Never put a `service_role` or secret key in the app.** Use the project's
-  publishable key for `SERVER_API_KEY` and `SUPABASE_ANON_KEY`.
-- **Closed value sets are enums end to end.** A column with a fixed set of
-  values is a Postgres enum, so `pg_graphql` exposes a GraphQL enum and codegen
-  emits `Enum<Name>`. The app models it as a plain Dart enum (camelCase, no
-  `value`/`wire`/`serverValue` field) and converts at the data boundary with a
-  mapper: `toModel()` on the generated enum, `toRemote()` on the domain enum.
-  Never compare a domain value with a string literal; read translations and
-  local storage by `.name`. See the `data-layer` skill.
-- **Codegen owns generated types.** Run `melos gen` after editing a `.graphql`
-  file. Never edit `generated/` by hand.
-- Data sources are concrete classes that call `GQLClient` from
-  `package:network/network.dart`, wrap one-shot queries with
-  `validateResponseData`, and never let generated GraphQL types escape the data
-  layer.
-- Repositories are concrete classes with a `Logger`, return domain models, and
-  map third-party failures to `LocalizedException`. There is no
-  repository-interface layer.
-- **No invented server data.** Empty, loading, and unavailable states are
-  honest. `Model.fake` values exist only as skeleton placeholders behind
-  `Skeletonizer`; never render them as real records. `supabase/seed.sql` is
-  development-only.
-- A feature that needs a new backend surface edits `supabase/schemas/` and adds a
-  migration first. Ask before inventing a new table, query, or mutation.
+- **Feature data uses GraphQL.** Each feature keeps its `queries/`, `mutations/` and `fragments/` under
+  `data/data_sources/remote/`; the schema snapshot is `app/lib/features/_shared/data/data_sources/remote/schema.graphql`.
+  `RestClient` is for Edge Functions and other REST APIs only.
+- **Data sources** are concrete classes that call `GQLClient` from `package:network/network.dart`, wrap one-shot queries in
+  `validateResponseData`, and never let generated GraphQL types escape the data layer. **Repositories** are concrete classes with a
+  `Logger` that return models. There is no domain layer, no use cases and no repository interfaces.
+- **Closed value sets are enums end to end.** A column with a fixed set of values is a Postgres enum, so GraphQL and codegen
+  expose it as an enum. The app models it as a plain camelCase Dart enum with no `value`, `wire` or `serverValue` field,
+  and converts at the data boundary with a mapper (`toModel()` on the generated enum, `toRemote()` on the domain enum; only the
+  directions in use). Never compare a domain value with a string literal; translation keys and local storage use `.name`. The same
+  applies to values sent to an Edge Function.
+- **Codegen owns generated types.** Run `melos gen` after editing a `.graphql` file. After a schema change run
+  `melos graphql:schema`, then `melos gen`. Never hand-edit the snapshot or any generated file.
+- **No invented server data.** `Model.fake` values exist only as skeleton placeholders behind `Skeletonizer`; never render them as
+  real records. `supabase/seed.sql` is development-only.
+- **Backend changes come first.** A feature that needs a new table, query or mutation edits `supabase/schemas/` and adds a
+  migration; ask before inventing one. New tables need explicit grants and RLS policies.
+- **Notifications are created by the backend.** Clients read and update only `notification_settings`, register a push token
+  through `registerDevice` (and remove it with `unregisterDevice` or `revokeDevice`), and never read tokens or the outbox.
+- **Secrets.** Never put a `service_role` or secret key in the app. `SERVER_API_KEY` and `SUPABASE_ANON_KEY` are the project's
+  publishable key.
 
 ## Design system
 
-`packages/design_system` is the only UI layer the app may use; Material and Cupertino exist
-inside that package only. There is no separate design-system document in this
-repo — the tokens and components are the source of truth.
+`packages/design_system` is the only UI layer the app uses; Material and Cupertino exist inside that package only. Import
+everything UI-related from `package:design_system/design_system.dart`, which also re-exports `flutter/widgets.dart`,
+`skeletonizer`, `flutter_svg`, `cached_network_image_ce`, the icons, the tokens and the `Base*` components. `BaseApp.router`
+installs `MaterialApp.router`, so app code never touches `Scaffold`, `AppBar` or `MaterialApp`.
 
-Import everything UI-related from `package:design_system/design_system.dart`. The root is
-`BaseApp.router`, which installs `MaterialApp.router`, owns the root
-`DefaultTextStyle`, and defaults to `GlobalMaterialLocalizations.delegates` from
-`material_ui`; the barrel also re-exports `flutter/widgets.dart`, `ThemeMode`,
-`GlobalMaterialLocalizations`, `skeletonizer`, `flutter_svg`,
-`cached_network_image_ce`, the icons, the tokens and the `Base*` components.
-Do not import `flutter_localizations` in app code.
-
-Use semantic colors (`context.colors`), text styles (`context.text`), and the
-token constants (`AppSpace`, `AppRadius`, `AppBorder`, `AppMotion`,
-`AppIconSize`) — never raw colors or magic numbers.
-
-Loading is `BaseLoadingDots`; pull-to-refresh uses its own arc ring inside
-`BaseRefreshable`. Never use a rounded spinner (`CircularProgressIndicator`,
-`CupertinoActivityIndicator`, or `RefreshIndicator`'s spinner).
-
-- `packages/design_system/lib/src/components` holds **domain-blind building-block nouns**
-  (`Base*`).
-- `packages/common_ui` holds shared non-design widgets: `SkeletonizerResourceWidget`,
-  `BaseListView`, `InfiniteListView`, `WebView` and the generated `Assets`.
-  They depend on app-level types or third-party packages, never on the feature
-  layer. Every page starts with `design_system`'s `BaseView(appBar:, body:)`; scrolling
-  content uses the content widgets (`BaseFlowContent`, `BaseStackedContent`,
-  `BaseMomentContent`, `BaseTabContent`) and `BaseEmptyState` for empty and
-  failure states.
-- Apply the `design-system` skill before creating, moving, or promoting any
-  reusable widget.
+- Use semantic colors (`context.colors`), text styles (`context.text`) and the token constants (`AppSpace`, `AppRadius`,
+  `AppBorder`, `AppMotion`, `AppIconSize`); never raw colors or magic numbers.
+- Loading is `BaseLoadingDots` and pull-to-refresh is `BaseRefreshable`. Never use a rounded spinner
+  (`CircularProgressIndicator`, `CupertinoActivityIndicator`, `RefreshIndicator`).
+- `design_system/lib/src/components` holds domain-blind `Base*` building blocks. `packages/common_ui` holds shared non-design
+  widgets (`SkeletonizerResourceWidget`, `BaseListView`, `InfiniteListView`, `WebView`, `Assets`); new widgets there do not take
+  the `Base*` prefix.
+- Apply the `design-system` skill before creating, moving or promoting a reusable widget.
 
 ## Hard rules
 
-1. **Never** import `flutter/material.dart` or `flutter/cupertino.dart` in
-   `app/lib`. Use `package:design_system/design_system.dart`; new components go in `packages/design_system`.
-   `material_ui` is re-exported from the barrel, never imported directly in
-   `app/lib`. Never use `Scaffold`, `AppBar`, `MaterialApp` or `AutoTabsScaffold`
-   in app code; `BaseView` and `BaseApp` own them.
-2. Cubits, not Blocs. No domain/usecase layer, no repository interfaces, no
-   freezed/json_serializable/injectable.
-3. Cubits take no runtime constructor arguments (`Injector` has no
-   `registerFactoryParam`); pass ids into methods or use route params.
-4. Every new `InjectionModule` must be added to `main.dart::_registerModules()`
-   or `AppInjector.instance.get<T>()` fails at runtime.
-5. All user-facing strings come from slang. App strings live at
-   `app/lib/l10n/en/<namespace>.json` with a `pt/<namespace>.json` sibling
-   (shared keys in `common.json`). Design-system strings live at
-   `packages/design_system/lib/src/l10n/en/<namespace>.json` with a `pt` sibling and are
-   read through `context.designSystemL10nOrBase`. File names are the namespace and must be
-   unique within their package. Run `melos l10n` then `melos l10n:analyze`.
-6. Never hand-edit generated files (`*.g.dart`, `*.gr.dart`, `*.gen.dart`,
-   `*.graphql.dart`, `translations*.dart`). Run `melos gen`/`melos l10n` and
-   commit outputs.
-7. Do not edit `docs/` as part of code tasks.
-8. New `Base*` components go in `packages/design_system/lib/src/components` with a
-   Storybook example and a test; shared non-design widgets go in
-   `packages/common_ui`. New widgets there do not take the `Base*` prefix
-   (`BaseListView` keeps its existing name).
-9. Use Dart primary constructors everywhere (see §State, UI, DI → Constructors).
-   Do not add a separate constructor body just to assign fields.
-10. Imports are always `package:` imports, never relative package imports.
-11. Read widget state with `context.select` and act with `context.read`. Do not
-    add `BlocBuilder`, `BlocSelector`, or `buildWhen` anywhere in `app/lib`;
-    `BlocListener` is only for side effects.
-12. A feature's `presentation/` never holds files directly. Every page lives in
-    its own subfolder (`presentation/<page_or_sub_feature>/<name>_page.dart` with
-    `cubit/` and `widgets/` beside it), even when the feature has a single page,
-    because features grow more pages. Tests mirror the same paths.
-13. Enums follow one standard: plain domain enum in `models/`, conversions in a
-    mapper in `mappers/`, only the directions that are used, one test file per
-    mapper. No string-valued enums for a column that is a database enum, and no
-    `fromServer`/`serverValue`/`wire` parsers. Translation keys for an enum are
-    its camelCase names.
+1. Never import `flutter/material.dart`, `flutter/cupertino.dart` or `material_ui` in `app/lib`. Use the design-system barrel.
+2. Cubits, not Blocs. No freezed, json_serializable or injectable.
+3. Cubits take no runtime constructor arguments (`Injector` has no `registerFactoryParam`); pass ids into methods or use route
+   params.
+4. Every new `InjectionModule` goes into `main.dart::_registerModules()`, or `AppInjector.instance.get<T>()` fails at runtime.
+5. All user-facing text comes from slang: `app/lib/l10n/{en,pt}/<namespace>.json` (shared keys in `common.json`), and
+   `packages/design_system/lib/src/l10n/{en,pt}/<namespace>.json` read through `context.designSystemL10nOrBase`. File names are
+   the namespace and are unique per package. Run `melos l10n`, then `melos l10n:analyze`.
+6. Never hand-edit generated files (`*.g.dart`, `*.gr.dart`, `*.gen.dart`, `*.graphql.dart`, `translations*.dart`); regenerate
+   and commit the output.
+7. A feature's `presentation/` never holds files directly: every page lives in
+   `presentation/<page>/<name>_page.dart` with `cubit/` and `widgets/` beside it, even for a single page. Tests mirror the paths.
+8. Imports are always `package:` imports.
+9. New `Base*` components go in `packages/design_system/lib/src/components` with a Storybook example and a test.
+10. A mapper gets its own test file under `test/.../mappers/`. One test file per real file, never a combined test.
+11. Do not edit `docs/` as part of code tasks.
+
+## Working rules
+
+- **Commits.** Conventional Commits, lowercase subject: `type(scope): what`. One commit per change, and a change that spans
+  features has no feature scope (`refactor: read single records with byPk`, not `refactor(cards,slips,chat): ...`). No
+  `Co-Authored-By` or session trailers. Stage explicit paths.
+- **History is linear.** Integrate with rebase or cherry-pick, never a merge commit. Never push, open a PR or rewrite shared
+  history unless the owner asks. The owner may squash or rebase your commits; check `git reflog` before amending.
+- **Remote systems.** Do not change the linked Supabase project, Firebase, RevenueCat or the stores unless the owner asks for that
+  action, and say exactly what you changed. Run `supabase test db` only against the local stack.
+- **Secrets and local files.** Keys live only in `.env*`. Never commit `.work/`, `.env*`, screenshots or build output.
+- **Done means verified.** `melos gen`, `melos l10n`, `melos l10n:analyze`, `melos lint` and `melos test` pass; for backend
+  changes the drift check and `supabase test db` pass too. Run the app for UI changes.
 
 ## Comments
 
-Default to none. Write one only when the code cannot say it, and keep it to a
-short sentence. Describe the declaration in front of you — not its history, its
-consumers, or why it changed.
+Default to none. Write one only when the code cannot say it, in one short sentence, describing the declaration in front of you,
+not its history or its consumers.
 
-- `///` is for public API whose contract is not obvious from the name: what it
-  is, invariants, units, thrown errors. No `@param`/`@return`/`@throws`.
-- `//` is only for a non-obvious why — a workaround, invariant or ordering
-  requirement. One line; if it needs more, simplify the code.
-- Never restate the name or next line, narrate steps, add banners, keep
-  commented-out code, or mention a feature, page, cubit or consumer.
-- No diff notes: "now", "no longer", "previously", "moved", "used to", "still".
-  A comment must stand on its own.
-- Keep a comment local to its declaration; never edit another comment to
-  explain a change.
-- Properties start with a noun phrase, booleans with "Whether", methods with a
-  third-person verb. Link identifiers with `[Symbol]`; backtick literals.
-- Every `// ignore:` states the lint and a short reason.
+- `///` is for public API whose contract is not obvious from the name: invariants, units, thrown errors. No `@param`, `@return`
+  or `@throws`.
+- `//` is only for a non-obvious why: a workaround, invariant or ordering requirement.
+- Never restate the code, narrate steps, add banners, keep commented-out code, or mention a feature, page, cubit or consumer. No
+  diff notes ("now", "no longer", "previously", "moved").
+- Properties start with a noun phrase, booleans with "Whether", methods with a third-person verb. Link identifiers with
+  `[Symbol]` and backtick literals. Every `// ignore:` states the lint and a short reason.
 
 ## Skills
 
-| Skill                  | Use when                                                                                                               |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `new-feature`          | Adding any feature, screen, page, or flow                                                                              |
-| `async-state`          | Cubits, `Resource`, loading/error UI, skeletons, `context.select`                                                      |
-| `data-layer`           | GraphQL, data sources, models, mappers, repositories                                                                   |
-| `localization`         | Adding/fixing UI strings and translations                                                                              |
-| `routing`              | Pages, routes, navigation, wizard/tab flows, route args                                                                |
-| `dependency-injection` | Registering/resolving dependencies, DI modules                                                                         |
-| `testing`              | Writing or running tests                                                                                               |
-| `storybook`            | Widgetbook (Storybook) examples for components/widgets                                                                 |
-| `design-system`        | Any UI, styling, tokens, `design_system`, colors/typography; component-vs-pattern boundary, `Base*` naming, library audits        |
-| `package`              | New workspace package or third-party SDK wrapper                                                                       |
-| `supabase`             | Schema-first changes, migrations, RLS/grants, pgTAP, pg_graphql, GraphQL snapshot refresh                              |
+| Skill | Use when |
+| --- | --- |
+| `new-feature` | Adding a feature, screen, page or flow |
+| `async-state` | Cubits, `Resource`, loading and error UI, skeletons, forms |
+| `data-layer` | GraphQL, data sources, models, mappers, repositories, enums |
+| `localization` | Adding or fixing UI strings and translations |
+| `routing` | Pages, routes, navigation, tabs, route arguments |
+| `dependency-injection` | Registering or resolving dependencies, DI modules |
+| `testing` | Writing or running tests |
+| `storybook` | Widgetbook examples for components and widgets |
+| `design-system` | Any UI, styling, tokens or reusable widget; `Base*` naming |
+| `package` | A new workspace package or a third-party SDK wrapper |
+| `supabase` | Schema, migrations, RLS, pgTAP, pg_graphql, Edge Functions, the GraphQL snapshot |
