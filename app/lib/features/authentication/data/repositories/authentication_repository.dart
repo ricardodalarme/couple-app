@@ -9,6 +9,12 @@ class AuthenticationRepository({required final AuthenticationService _authentica
 
   String? getAccessToken() => _authenticationService.currentSession?.accessToken;
 
+  /// The access token, renewed first when it is about to expire.
+  Future<String?> getFreshAccessToken() => _authenticationService.getFreshAccessToken();
+
+  /// Renews the session; false when there is none or it cannot be renewed.
+  Future<bool> refreshSession() => _authenticationService.refreshSession();
+
   /// The auth provider that created the session, or null when it cannot be read.
   String? get loginProvider => _authenticationService.loginProvider;
 

@@ -53,7 +53,8 @@ class SharedInjectionModule() implements InjectionModule {
     ..registerLazySingleton<GQLClient>(
       () => GQLClient(
         serverUrl: EnvVariables.serverUrl,
-        tokenCallback: injector.get<AuthenticationRepository>().getAccessToken,
+        tokenCallback: injector.get<AuthenticationRepository>().getFreshAccessToken,
+        refreshSession: injector.get<AuthenticationRepository>().refreshSession,
         defaultHeaders: {'apikey': EnvVariables.serverApiKey},
       ),
     )

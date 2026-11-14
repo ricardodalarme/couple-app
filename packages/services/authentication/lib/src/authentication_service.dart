@@ -113,6 +113,30 @@ class AuthenticationService() {
     }
   }
 
+  /// The access token, renewed first when it is about to expire.
+  ///
+  /// When the renewal fails the stored token is returned, so a request is never sent as anonymous.
+  Future<String?> getFreshAccessToken() async {
+    try {
+      return (await _auth.getSession())?.accessToken;
+    } on AuthException {
+      return currentSession?.accessToken;
+    }
+  }
+
+  /// Renews the session with its refresh token; false when there is no session or it cannot be renewed.
+  Future<bool> refreshSession() async {
+    if (currentSession == null) return false;
+
+    try {
+      final response = await _auth.refreshSession();
+
+      return response.session != null;
+    } on AuthException {
+      return false;
+    }
+  }
+
   Future<void> signOut() async {
     try {
       await _auth.signOut();
