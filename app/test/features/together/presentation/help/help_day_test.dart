@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/models/content_kind.dart';
 import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
 import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
 import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
@@ -22,6 +23,8 @@ void main() {
   late TogetherRepository together;
   late ProfileRepository profile;
   late DatesRepository dates;
+
+  setUpAll(() => registerFallbackValue(ContentKind.question));
 
   const tips = [
     HelpItem(slug: 'a', title: 'Faça um chá'),
@@ -50,15 +53,15 @@ void main() {
     test('load reads the content kind in the person language', () async {
       final cubit = build();
 
-      await cubit.load('mood_tip');
+      await cubit.load(ContentKind.moodTip);
 
-      verify(() => together.getHelpContent(kind: 'mood_tip', locale: 'en')).called(1);
+      verify(() => together.getHelpContent(kind: ContentKind.moodTip, locale: 'en')).called(1);
       expect((cubit.state.items as Success<List<HelpItem>>).value, tips);
     });
 
     test('next wraps around the openers', () async {
       final cubit = build();
-      await cubit.load('question');
+      await cubit.load(ContentKind.question);
 
       for (var i = 0; i < tips.length; i++) {
         cubit.next();
@@ -76,7 +79,7 @@ void main() {
       ).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
       final cubit = build();
 
-      await cubit.load('question');
+      await cubit.load(ContentKind.question);
 
       expect(cubit.state.items, isA<Failure>());
     });

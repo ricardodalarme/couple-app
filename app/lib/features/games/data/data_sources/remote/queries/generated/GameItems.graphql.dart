@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -6,7 +8,7 @@ import 'package:graphql/client.dart' as graphql;
 
 class VariablesQueryGameItems {
   factory VariablesQueryGameItems({
-    required String kind,
+    required EnumContentKind kind,
     required String locale,
     required int first,
   }) => VariablesQueryGameItems._({r'kind': kind, r'locale': locale, r'first': first});
@@ -16,7 +18,7 @@ class VariablesQueryGameItems {
   factory VariablesQueryGameItems.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$kind = data['kind'];
-    result$data['kind'] = (l$kind as String);
+    result$data['kind'] = fromJsonEnumContentKind((l$kind as String));
     final l$locale = data['locale'];
     result$data['locale'] = (l$locale as String);
     final l$first = data['first'];
@@ -26,7 +28,7 @@ class VariablesQueryGameItems {
 
   Map<String, dynamic> _$data;
 
-  String get kind => (_$data['kind'] as String);
+  EnumContentKind get kind => (_$data['kind'] as EnumContentKind);
 
   String get locale => (_$data['locale'] as String);
 
@@ -35,7 +37,7 @@ class VariablesQueryGameItems {
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$kind = kind;
-    result$data['kind'] = l$kind;
+    result$data['kind'] = toJsonEnumContentKind(l$kind);
     final l$locale = locale;
     result$data['locale'] = l$locale;
     final l$first = first;
@@ -142,7 +144,7 @@ const documentNodeQueryGameItems = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ContentKind'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

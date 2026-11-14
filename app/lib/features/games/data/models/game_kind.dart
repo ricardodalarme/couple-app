@@ -1,3 +1,5 @@
+import 'package:flutter_bloc_starter/features/_shared/data/models/content_kind.dart';
+
 /// How a game collects and shows its answers.
 enum GameFlow() {
   /// Each person picks who fits a phrase better.
@@ -19,13 +21,13 @@ enum GameKind(
   final GameFlow flow,
   final int itemCount,
   final int minutes, {
-  final String? contentKind,
+  final ContentKind? contentKind,
 }) {
-  meOrYou('me_or_you', GameFlow.pick, 5, 3, contentKind: 'me_or_you'),
-  howWell('how_well', GameFlow.guess, 10, 5, contentKind: 'how_well'),
+  meOrYou('me_or_you', GameFlow.pick, 5, 3, contentKind: ContentKind.meOrYou),
+  howWell('how_well', GameFlow.guess, 10, 5, contentKind: ContentKind.howWell),
   twentyQuestions('twenty_questions', GameFlow.talk, 20, 5),
-  neverHaveWe('never_have_we', GameFlow.talk, 10, 10, contentKind: 'never_have_we'),
-  mission('mission', GameFlow.date, 1, 20, contentKind: 'mission');
+  neverHaveWe('never_have_we', GameFlow.talk, 10, 10, contentKind: ContentKind.neverHaveWe),
+  mission('mission', GameFlow.date, 1, 20, contentKind: ContentKind.mission);
 
   /// The game for a server [key], or null when the app has no screens for it.
   static GameKind? fromKey(String key) {

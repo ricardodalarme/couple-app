@@ -141,7 +141,7 @@ const documentNodeQueryDateIdeaSuggestions = DocumentNode(
                         fields: [
                           ObjectFieldNode(
                             name: NameNode(value: 'eq'),
-                            value: StringValueNode(value: 'date_idea', isBlock: false),
+                            value: EnumValueNode(name: NameNode(value: 'date_idea')),
                           ),
                         ],
                       ),

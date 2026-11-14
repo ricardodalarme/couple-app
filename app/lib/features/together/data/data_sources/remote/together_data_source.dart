@@ -267,7 +267,7 @@ class TogetherDataSource({required final GQLClient _client}) {
   }
 
   Future<List<QueryHelpContentcontentItemsCollectionedgesnode>> getHelpContent({
-    required String kind,
+    required EnumContentKind kind,
     required String locale,
   }) async {
     final response = await _client.query(

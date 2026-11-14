@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/_shared/data/models/content_kind.dart';
 import 'package:flutter_bloc_starter/features/connect/data/data_sources/remote/connect_data_source.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
@@ -44,6 +45,6 @@ class ConnectRepository({
   Future<List<HelpItem>> getTouchCards() async {
     final settings = await _profileRepository.getMySettings();
 
-    return _togetherRepository.getHelpContent(kind: 'touch_card', locale: settings.locale);
+    return _togetherRepository.getHelpContent(kind: ContentKind.touchCard, locale: settings.locale);
   }
 }

@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:clock/clock.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/mappers/content_kind_mapper.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/models/content_kind.dart';
 import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/together_data_source.dart';
 import 'package:flutter_bloc_starter/features/together/data/mappers/together_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
@@ -206,11 +208,11 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
   Future<void> deleteDateIdea(String id) =>
       _run('delete a date idea', () => _dataSource.deleteDateIdea(id));
 
-  /// Editorial help content of a [kind], such as `mood_tip` or `question`, in editorial order.
-  Future<List<HelpItem>> getHelpContent({required String kind, required String locale}) async {
+  /// Editorial help content of a [kind], such as [ContentKind.moodTip], in editorial order.
+  Future<List<HelpItem>> getHelpContent({required ContentKind kind, required String locale}) async {
     try {
       return [
-        for (final node in await _dataSource.getHelpContent(kind: kind, locale: locale))
+        for (final node in await _dataSource.getHelpContent(kind: kind.toRemote(), locale: locale))
           HelpItem(slug: node.slug, title: node.title, body: node.body),
       ];
     } catch (e, stack) {

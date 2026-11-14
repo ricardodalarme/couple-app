@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/models/content_kind.dart';
 import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
 import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
@@ -17,7 +18,7 @@ class HelpCubit({
   this : super(const HelpState());
 
   /// Loads the bundled [kind] of content in the person's language.
-  Future<void> load(String kind) async {
+  Future<void> load(ContentKind kind) async {
     emit(state.copyWith(items: const Loading()));
     try {
       final settings = await _profileRepository.getMySettings();

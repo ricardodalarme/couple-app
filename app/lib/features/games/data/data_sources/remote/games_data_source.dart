@@ -49,7 +49,7 @@ class GamesDataSource({required final GQLClient _client}) {
 
   /// The published items of a content [kind] for [locale], in editorial order.
   Future<List<GameItemRecord>> getItems({
-    required String kind,
+    required EnumContentKind kind,
     required String locale,
     required int first,
   }) async {
@@ -71,7 +71,7 @@ class GamesDataSource({required final GQLClient _client}) {
   }
 
   Future<List<GameItemRecord>> getItemsBySlug({
-    required String kind,
+    required EnumContentKind kind,
     required String locale,
     required List<String> slugs,
   }) async {

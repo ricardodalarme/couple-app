@@ -141,7 +141,7 @@ const documentNodeQueryHolidays = DocumentNode(
                         fields: [
                           ObjectFieldNode(
                             name: NameNode(value: 'eq'),
-                            value: StringValueNode(value: 'holiday', isBlock: false),
+                            value: EnumValueNode(name: NameNode(value: 'holiday')),
                           ),
                         ],
                       ),

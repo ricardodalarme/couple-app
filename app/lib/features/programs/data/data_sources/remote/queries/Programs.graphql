@@ -1,6 +1,6 @@
 query Programs($locale: String!) {
   programs: contentItemsCollection(
-    filter: { kind: { eq: "program" }, locale: { eq: $locale }, published: { eq: true } }
+    filter: { kind: { eq: program }, locale: { eq: $locale }, published: { eq: true } }
     orderBy: [{ position: AscNullsLast }]
     first: 100
   ) {
@@ -16,7 +16,7 @@ query Programs($locale: String!) {
     }
   }
   lessons: contentItemsCollection(
-    filter: { kind: { eq: "lesson" }, locale: { eq: $locale }, published: { eq: true } }
+    filter: { kind: { eq: lesson }, locale: { eq: $locale }, published: { eq: true } }
     orderBy: [{ position: AscNullsLast }]
     first: 500
   ) {

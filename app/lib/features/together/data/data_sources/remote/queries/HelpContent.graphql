@@ -1,4 +1,4 @@
-query HelpContent($kind: String!, $locale: String!) {
+query HelpContent($kind: ContentKind!, $locale: String!) {
   contentItemsCollection(
     first: 20
     filter: {

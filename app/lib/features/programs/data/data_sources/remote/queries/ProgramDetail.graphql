@@ -1,7 +1,7 @@
 query ProgramDetail($slug: String!, $locale: String!) {
   program: contentItemsCollection(
     filter: {
-      kind: { eq: "program" }
+      kind: { eq: program }
       slug: { eq: $slug }
       locale: { eq: $locale }
       published: { eq: true }
@@ -21,7 +21,7 @@ query ProgramDetail($slug: String!, $locale: String!) {
   }
   lessons: contentItemsCollection(
     filter: {
-      kind: { eq: "lesson" }
+      kind: { eq: lesson }
       parentSlug: { eq: $slug }
       locale: { eq: $locale }
       published: { eq: true }

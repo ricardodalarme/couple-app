@@ -147,7 +147,7 @@ const documentNodeQueryPrograms = DocumentNode(
                         fields: [
                           ObjectFieldNode(
                             name: NameNode(value: 'eq'),
-                            value: StringValueNode(value: 'program', isBlock: false),
+                            value: EnumValueNode(name: NameNode(value: 'program')),
                           ),
                         ],
                       ),
@@ -300,7 +300,7 @@ const documentNodeQueryPrograms = DocumentNode(
                         fields: [
                           ObjectFieldNode(
                             name: NameNode(value: 'eq'),
-                            value: StringValueNode(value: 'lesson', isBlock: false),
+                            value: EnumValueNode(name: NameNode(value: 'lesson')),
                           ),
                         ],
                       ),

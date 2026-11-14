@@ -1,4 +1,4 @@
-query GameItems($kind: String!, $locale: String!, $first: Int!) {
+query GameItems($kind: ContentKind!, $locale: String!, $first: Int!) {
   contentItemsCollection(
     first: $first
     filter: {

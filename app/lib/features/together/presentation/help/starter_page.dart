@@ -3,6 +3,7 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/models/content_kind.dart';
 import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
 import 'package:flutter_bloc_starter/features/together/presentation/help/cubit/help_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -13,7 +14,7 @@ class const StarterPage({super.key}) extends StatelessWidget implements AutoRout
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (_) => AppInjector.instance.get<HelpCubit>()..load('question'),
+      create: (_) => AppInjector.instance.get<HelpCubit>()..load(ContentKind.question),
       child: this,
     );
   }
@@ -54,7 +55,7 @@ class const StarterPage({super.key}) extends StatelessWidget implements AutoRout
           title: l10n.errorTitle,
           text: l10n.errorText,
           actionText: context.l10n.common.retry,
-          onAction: () => cubit.load('question'),
+          onAction: () => cubit.load(ContentKind.question),
         ),
       ),
     );

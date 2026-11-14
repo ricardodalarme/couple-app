@@ -141,7 +141,7 @@ const documentNodeQueryDailyIdeas = DocumentNode(
                         fields: [
                           ObjectFieldNode(
                             name: NameNode(value: 'eq'),
-                            value: StringValueNode(value: 'daily_idea', isBlock: false),
+                            value: EnumValueNode(name: NameNode(value: 'daily_idea')),
                           ),
                         ],
                       ),

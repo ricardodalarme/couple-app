@@ -1,5 +1,6 @@
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/_shared/data/mappers/content_kind_mapper.dart';
 import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/games_data_source.dart';
 import 'package:flutter_bloc_starter/features/games/data/mappers/game_enum_mapper.dart';
 import 'package:flutter_bloc_starter/features/games/data/models/game_item.dart';
@@ -126,7 +127,7 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
     final contentKind = kind.contentKind;
     if (contentKind == null) return const [];
     final records = await _dataSource.getItems(
-      kind: contentKind,
+      kind: contentKind.toRemote(),
       locale: locale,
       first: kind.itemCount,
     );
@@ -138,7 +139,7 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
     final contentKind = kind.contentKind;
     if (contentKind == null || slugs.isEmpty) return const [];
     final records = await _dataSource.getItemsBySlug(
-      kind: contentKind,
+      kind: contentKind.toRemote(),
       locale: locale,
       slugs: slugs.toSet().toList(),
     );

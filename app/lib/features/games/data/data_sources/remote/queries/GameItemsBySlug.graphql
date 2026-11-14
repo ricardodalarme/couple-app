@@ -1,4 +1,4 @@
-query GameItemsBySlug($kind: String!, $locale: String!, $slugs: [String!]!) {
+query GameItemsBySlug($kind: ContentKind!, $locale: String!, $slugs: [String!]!) {
   contentItemsCollection(
     first: 60
     filter: {

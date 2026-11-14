@@ -141,7 +141,7 @@ const documentNodeQuerySpiceCards = DocumentNode(
                         fields: [
                           ObjectFieldNode(
                             name: NameNode(value: 'eq'),
-                            value: StringValueNode(value: 'spice_card', isBlock: false),
+                            value: EnumValueNode(name: NameNode(value: 'spice_card')),
                           ),
                         ],
                       ),

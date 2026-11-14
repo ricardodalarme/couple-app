@@ -12,7 +12,10 @@ import 'package:network/network.dart';
 class _MockGamesDataSource() extends Mock implements GamesDataSource;
 
 void main() {
-  setUpAll(() => registerFallbackValue(GameKind.meOrYou));
+  setUpAll(() {
+    registerFallbackValue(GameKind.meOrYou);
+    registerFallbackValue(EnumContentKind.me_or_you);
+  });
 
   late GamesDataSource dataSource;
   late GamesRepository repository;
