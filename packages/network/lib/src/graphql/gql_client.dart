@@ -1,31 +1,36 @@
+import 'dart:async';
+
 import 'package:graphql/client.dart';
 import 'package:graphql_query_compress/graphql_query_compress.dart';
+import 'package:network/src/graphql/links/link_chain.dart';
 
 class const GQLClient._(final GraphQLClient _client) {
   factory({
     required String serverUrl,
-    String? Function()? tokenCallback,
+    FutureOr<String?> Function()? tokenCallback,
+    Future<bool> Function()? refreshSession,
     Map<String, String> defaultHeaders = const {},
+    Duration queryTimeout = const Duration(seconds: 10),
+    Duration mutationTimeout = const Duration(seconds: 30),
   }) {
-    final httpLink = HttpLink(
-      serverUrl,
-      defaultHeaders: defaultHeaders,
-      serializer: const RequestSerializerWithCompressor(),
+    final link = buildGraphQLLink(
+      terminatingLink: HttpLink(
+        serverUrl,
+        defaultHeaders: defaultHeaders,
+        serializer: const RequestSerializerWithCompressor(),
+      ),
+      tokenCallback: tokenCallback,
+      refreshSession: refreshSession,
+      queryTimeout: queryTimeout,
+      mutationTimeout: mutationTimeout,
     );
-
-    final authLink = AuthLink(
-      getToken: () {
-        final accessToken = tokenCallback?.call();
-        if (accessToken == null || accessToken.isEmpty) return null;
-        return 'Bearer $accessToken';
-      },
-    );
-    final link = Link.from([authLink, httpLink]);
 
     return GQLClient._(
       GraphQLClient(
         cache: GraphQLCache(),
         link: link,
+        // TimeoutLink owns the deadlines; the client's own timer completes a request twice.
+        queryRequestTimeout: null,
         defaultPolicies: DefaultPolicies(
           query: Policies.safe(
             FetchPolicy.cacheAndNetwork,

@@ -1,6 +1,7 @@
 import 'package:graphql/client.dart' hide UnknownException;
 import 'package:network/src/exceptions/no_data_exception.dart';
 import 'package:network/src/exceptions/server_response_exception.dart';
+import 'package:network/src/graphql/links/timeout_link.dart';
 
 void validateResponse(QueryResult response) {
   final mapped = mapResponseException(response);
@@ -17,11 +18,10 @@ ServerResponseException? mapResponseException(QueryResult response) {
 
   if (exception.linkException != null && exception.graphqlErrors.isEmpty) {
     final link = exception.linkException.toString().toLowerCase();
+    final isTimeout =
+        exception.linkException is RequestTimeoutException || link.contains('timeout');
 
-    return ServerResponseException(
-      link.contains('timeout') ? timeoutErrorCode : networkErrorCode,
-      exception,
-    );
+    return ServerResponseException(isTimeout ? timeoutErrorCode : networkErrorCode, exception);
   }
 
   final firstError = exception.graphqlErrors.firstOrNull;

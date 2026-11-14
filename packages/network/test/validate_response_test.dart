@@ -1,5 +1,6 @@
 import 'package:graphql/client.dart';
 import 'package:network/network.dart';
+import 'package:network/src/graphql/links/timeout_link.dart';
 import 'package:test/test.dart';
 
 QueryResult<Object?> _result(OperationException exception) => QueryResult<Object?>(
@@ -27,6 +28,14 @@ void main() {
     );
 
     expect(mapResponseException(result)?.code, 'NOT_PAIRED');
+  });
+
+  test('reports TIMEOUT when the request limit was reached', () {
+    final result = _result(
+      OperationException(linkException: const RequestTimeoutException(Duration(seconds: 10))),
+    );
+
+    expect(mapResponseException(result)?.code, timeoutErrorCode);
   });
 
   test('reports NETWORK when the request never reached the server', () {
