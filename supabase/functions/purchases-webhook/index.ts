@@ -1,6 +1,7 @@
 // RevenueCat webhook -> entitlements. Auth: the Authorization header must equal secret REVENUECAT_WEBHOOK_AUTH.
 // Idempotent by event id; out-of-order events are ignored in SQL (private.apply_purchase_event).
 // app_user_id must be the Supabase user id (set it with Purchases.logIn(userId) in the app).
+import { safeEqual } from "../_shared/auth.ts";
 import { json, log, sql } from "../_shared/db.ts";
 
 const STATUS: Record<string, string> = {
@@ -10,7 +11,7 @@ const STATUS: Record<string, string> = {
 
 Deno.serve(async (req) => {
   const secret = Deno.env.get("REVENUECAT_WEBHOOK_AUTH");
-  if (!secret || req.headers.get("authorization") !== secret) return json({ error: "UNAUTHORIZED" }, 401);
+  if (!secret || !(await safeEqual(req.headers.get("authorization") ?? "", secret))) return json({ error: "UNAUTHORIZED" }, 401);
   const { event } = await req.json().catch(() => ({ event: null }));
   if (!event?.id || !event?.app_user_id || !/^[0-9a-f-]{36}$/.test(event.app_user_id)) return json({ ok: true, ignored: true });
 

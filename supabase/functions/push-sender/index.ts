@@ -1,9 +1,10 @@
-// Drains the notification outbox. Invoked every minute by pg_cron (see docs) with the service-role key.
+// Drains the notification outbox. Invoked every minute by pg_cron through private.invoke_edge_function, with the project secret key in the apikey header.
 // Preferences (muted types, daily cap, pause/fight silence) are decided in SQL by
 // private.claim_notifications; this function only delivers. Payloads are generic: type + ref id, never content.
 // Requires secret FCM_SERVICE_ACCOUNT (Firebase service account JSON). Without it, nothing is claimed.
 // Delivery outcomes: 2xx = sent; 400/404 = dead token (counted against the device); anything else (401, 403, 429, 5xx,
 // network) = transient: the job is left unsent and claim_notifications retries it in 5 minutes (max 5 attempts).
+import { isServiceCaller } from "../_shared/auth.ts";
 import { json, log, sql } from "../_shared/db.ts";
 import { JWT } from "npm:google-auth-library@9";
 
@@ -27,9 +28,7 @@ async function accessToken(account: Account): Promise<string> {
 }
 
 Deno.serve(async (req) => {
-  if (req.headers.get("authorization") !== `Bearer ${Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")}`) {
-    return json({ error: "UNAUTHORIZED" }, 401);
-  }
+  if (!(await isServiceCaller(req))) return json({ error: "UNAUTHORIZED" }, 401);
   const account = loadAccount();
   if (account === null) return json({ skipped: "FCM_SERVICE_ACCOUNT not set" });
   if (account === "invalid") {
@@ -57,6 +56,7 @@ Deno.serve(async (req) => {
         // Data-only message: the app renders localized generic text (or the neutral text in discreet mode).
         const res = await fetch(`https://fcm.googleapis.com/v1/projects/${account.project_id}/messages:send`, {
           method: "POST",
+          signal: AbortSignal.timeout(10_000),
           headers: { authorization: `Bearer ${bearer}`, "content-type": "application/json" },
           body: JSON.stringify({
             message: {

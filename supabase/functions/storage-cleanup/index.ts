@@ -1,11 +1,11 @@
-// Removes the files of erased accounts. Invoked daily by pg_cron with the service-role key.
+// Removes the files of erased accounts. Invoked daily by pg_cron through private.invoke_edge_function, with the project secret key in the apikey header.
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { isServiceCaller } from "../_shared/auth.ts";
 import { json, log, sql } from "../_shared/db.ts";
 
 Deno.serve(async (req) => {
-  const key = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-  if (req.headers.get("authorization") !== `Bearer ${key}`) return json({ error: "UNAUTHORIZED" }, 401);
-  const supabase = createClient(Deno.env.get("SUPABASE_URL")!, key);
+  if (!(await isServiceCaller(req))) return json({ error: "UNAUTHORIZED" }, 401);
+  const supabase = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
   const rows = await sql<{ id: number; bucket: string; path: string }[]>`
     select id, bucket, path from private.storage_deletions where done_at is null order by id limit 500`;
   let removed = 0;

@@ -35,7 +35,7 @@ Deno.serve(async (req) => {
 
   let res: Response;
   try {
-    res = await fetch(api);
+    res = await fetch(api, { signal: AbortSignal.timeout(8_000) });
   } catch (_e) {
     log("places_error", { status: 0 });
     return json({ error: "PLACES_UNAVAILABLE" }, 502);
